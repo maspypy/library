@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2613.test.cpp
+    title: test/yukicoder/2613.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -247,6 +250,7 @@ data:
   verifiedWith:
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2613.test.cpp
   - test/yukicoder/2181.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document

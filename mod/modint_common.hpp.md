@@ -62,15 +62,18 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
+  - icon: ':warning:'
+    path: mod/multiplicative_convolution_mod_2n.hpp
+    title: mod/multiplicative_convolution_mod_2n.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/multiplicative_convolution_mod_p.hpp
+    title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':heavy_check_mark:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/multiplicative_convolution_mod2n.hpp
-    title: nt/multiplicative_convolution_mod2n.hpp
   - icon: ':heavy_check_mark:'
     path: other/count_seq_with_fixed_xor_value.hpp
     title: other/count_seq_with_fixed_xor_value.hpp
@@ -119,9 +122,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/convolution_mod_2_64.hpp
-    title: poly/convolution_mod_2_64.hpp
+  - icon: ':warning:'
+    path: poly/convolution_u64.hpp
+    title: poly/convolution_u64.hpp
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
@@ -334,17 +337,11 @@ data:
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-    title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-    title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
@@ -1021,6 +1018,9 @@ data:
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2613.test.cpp
+    title: test/yukicoder/2613.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':x:'
@@ -1268,7 +1268,9 @@ data:
   - bigint/binary.hpp
   - mod/modint.hpp
   - mod/dynamic_modint_64.hpp
+  - mod/multiplicative_convolution_mod_2n.hpp
   - mod/q_analogue.hpp
+  - mod/multiplicative_convolution_mod_p.hpp
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
   - linalg/matrix_mul.hpp
@@ -1294,7 +1296,6 @@ data:
   - seq/count_grid_path.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - setfunc/sps_log.hpp
-  - nt/multiplicative_convolution_mod2n.hpp
   - graph/count_matching_on_tree.hpp
   - graph/tree_walk_generating_function.hpp
   - graph/count/count_clique.hpp
@@ -1314,6 +1315,7 @@ data:
   - poly/poly_taylor_shift.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/finding_root_of_polynomial.hpp
+  - poly/convolution_u64.hpp
   - poly/convolution2d.hpp
   - poly/multivar_convolution.hpp
   - poly/coef_of_rational_fps_2d.hpp
@@ -1331,7 +1333,6 @@ data:
   - poly/composed_product.hpp
   - poly/typical_divide_conquer.hpp
   - poly/poly_gcd.hpp
-  - poly/convolution_mod_2_64.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/fps_exp.hpp
   - poly/poly_divmod.hpp
@@ -1399,8 +1400,6 @@ data:
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
-  - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
@@ -1550,6 +1549,7 @@ data:
   - test/yukicoder/1783.test.cpp
   - test/yukicoder/2583.test.cpp
   - test/yukicoder/1276.test.cpp
+  - test/yukicoder/2613.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/1260.test.cpp
   - test/yukicoder/2293.test.cpp

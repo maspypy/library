@@ -232,9 +232,6 @@ data:
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-    title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,9 +243,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-    title: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
@@ -1546,6 +1540,9 @@ data:
     path: test/yukicoder/2606.test.cpp
     title: test/yukicoder/2606.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2613.test.cpp
+    title: test/yukicoder/2613.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2301,8 +2298,6 @@ data:
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
-  - test/library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - test/library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
@@ -2562,6 +2557,7 @@ data:
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/2583.test.cpp
   - test/yukicoder/1276.test.cpp
+  - test/yukicoder/2613.test.cpp
   - test/yukicoder/1311.test.cpp
   - test/yukicoder/2066.test.cpp
   - test/yukicoder/789_2.test.cpp

@@ -33,6 +33,9 @@ data:
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/multiplicative_convolution_mod_p.hpp
+    title: mod/multiplicative_convolution_mod_p.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
@@ -111,6 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2613.test.cpp
+    title: test/yukicoder/2613.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
@@ -248,6 +254,7 @@ data:
   requiredBy:
   - mod/binomial.hpp
   - mod/mod_kth_root.hpp
+  - mod/multiplicative_convolution_mod_p.hpp
   - mod/mod_log.hpp
   - mod/dynamic_modint.hpp
   - poly/multivar_convolution_cyclic.hpp
@@ -276,6 +283,7 @@ data:
   - test/yukicoder/1667.test.cpp
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1783.test.cpp
+  - test/yukicoder/2613.test.cpp
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1339.test.cpp
   - test/yukicoder/2181.test.cpp

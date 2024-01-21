@@ -21,6 +21,9 @@ data:
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/multiplicative_convolution_mod_p.hpp
+    title: mod/multiplicative_convolution_mod_p.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -211,6 +214,9 @@ data:
     path: test/yukicoder/2578.test.cpp
     title: test/yukicoder/2578.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2613.test.cpp
+    title: test/yukicoder/2613.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
@@ -289,6 +295,7 @@ data:
   requiredBy:
   - mod/binomial.hpp
   - mod/mod_kth_root.hpp
+  - mod/multiplicative_convolution_mod_p.hpp
   - mod/mod_log.hpp
   - mod/tetration.hpp
   - mod/dynamic_modint.hpp
@@ -347,6 +354,7 @@ data:
   - test/yukicoder/187.test.cpp
   - test/yukicoder/2120.test.cpp
   - test/yukicoder/1783.test.cpp
+  - test/yukicoder/2613.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/590.test.cpp
