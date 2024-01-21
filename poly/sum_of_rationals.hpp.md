@@ -29,7 +29,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
@@ -416,6 +419,7 @@ data:
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/yukicoder/1145.test.cpp
   - test/yukicoder/2459.test.cpp
   - test/yukicoder/1875.test.cpp

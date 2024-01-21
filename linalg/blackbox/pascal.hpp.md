@@ -29,10 +29,16 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2108.test.cpp
+    title: test/yukicoder/2108.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -340,8 +346,10 @@ data:
   path: linalg/blackbox/pascal.hpp
   requiredBy: []
   timestamp: '2024-01-21 21:06:12+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/2108.test.cpp
+  - test/yukicoder/2243.test.cpp
 documentation_of: linalg/blackbox/pascal.hpp
 layout: document
 redirect_from:

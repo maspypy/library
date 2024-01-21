@@ -35,7 +35,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
@@ -516,6 +519,7 @@ data:
   - test/library_checker/math/bernoulli.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1145.test.cpp

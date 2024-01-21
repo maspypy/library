@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
   - icon: ':heavy_check_mark:'
@@ -35,10 +35,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -249,7 +249,7 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_A.test.cpp
     title: test/aoj/NTL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -258,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
     title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -417,7 +417,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
   - icon: ':heavy_check_mark:'
@@ -435,6 +435,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell_number.test.cpp
     title: test/mytest/bell_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/bigint.test.cpp
+    title: test/mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/catalan_convolution.test.cpp
     title: test/mytest/catalan_convolution.test.cpp
@@ -522,6 +525,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
@@ -619,6 +625,9 @@ data:
     path: test/yukicoder/2097.test.cpp
     title: test/yukicoder/2097.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2108.test.cpp
+    title: test/yukicoder/2108.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2119.test.cpp
     title: test/yukicoder/2119.test.cpp
   - icon: ':heavy_check_mark:'
@@ -633,6 +642,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
@@ -660,7 +672,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -929,11 +941,13 @@ data:
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
   - test/mytest/online_inv.test.cpp
+  - test/mytest/bigint.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/count_unlabeled_tree.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1796.test.cpp
@@ -941,6 +955,7 @@ data:
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/1080.test.cpp
+  - test/yukicoder/2108.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1618.test.cpp
   - test/yukicoder/1547.test.cpp
@@ -955,6 +970,7 @@ data:
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1783.test.cpp
   - test/yukicoder/2583.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/2587.test.cpp

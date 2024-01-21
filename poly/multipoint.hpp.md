@@ -41,7 +41,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -82,11 +82,17 @@ data:
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
@@ -577,7 +583,9 @@ data:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/yukicoder/1575.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc272_h.test.cpp

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':heavy_check_mark:'
@@ -246,6 +246,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/all_inverse.test.cpp
     title: test/mytest/all_inverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/bigint.test.cpp
+    title: test/mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/binary_trie.test.cpp
     title: test/mytest/binary_trie.test.cpp
@@ -568,6 +571,9 @@ data:
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -687,7 +693,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -699,7 +705,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -905,6 +911,7 @@ data:
   - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/fenwick_raq.test.cpp
+  - test/mytest/bigint.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/maxidx_add.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
@@ -921,6 +928,7 @@ data:
   - test/mytest/dynamic_lazy_segtree.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/summin_add.test.cpp

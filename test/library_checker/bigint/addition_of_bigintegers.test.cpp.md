@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/addition_of_big_integers
@@ -489,24 +489,24 @@ data:
     \  int sgn;\n  vc<int> dat;\n\n  BigInteger() : sgn(0) {}\n  BigInteger(i128 val)\
     \ {\n    if (val == 0) {\n      sgn = 0;\n      return;\n    }\n    sgn = 1;\n\
     \    if (val != 0) {\n      if (val < 0) sgn = -1, val = -val;\n      while (val\
-    \ > 0) {\n        dat.eb(val % MOD);\n        val /= MOD;\n      }\n    }\n  }\n\
-    \  BigInteger(string s) {\n    assert(!s.empty());\n    sgn = 1;\n    if (s[0]\
-    \ == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n      assert(!s.empty());\n\
-    \    }\n    if (s[0] == '0') {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n\
-    \    int n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i,\
-    \ n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const\
-    \ bint &p) {\n    sgn = p.sgn;\n    dat = p.dat;\n    return *this;\n  }\n  bool\
-    \ operator<(const bint &p) const {\n    if (sgn != p.sgn) { return sgn < p.sgn;\
-    \ }\n    if (sgn == 0) return false;\n    if (len(dat) != len(p.dat)) {\n    \
-    \  if (sgn == 1) return len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat)\
-    \ > len(p.dat);\n    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i])\
-    \ continue;\n      if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1)\
-    \ return dat[i] > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const\
-    \ bint &p) const { return p < *this; }\n  bool operator<=(const bint &p) const\
-    \ { return !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this\
-    \ < p); }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) { return *this\
-    \ = (-p); }\n    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn) {\n    \
-    \  *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat), len(p.dat));\n\
+    \ > 0) { dat.eb(val % MOD), val /= MOD; }\n    }\n  }\n  BigInteger(string s)\
+    \ {\n    assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn\
+    \ = -1;\n      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    if (s[0]\
+    \ == '0') {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n    int\
+    \ n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i, n)\
+    \ { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const\
+    \ bint &p) {\n    sgn = p.sgn, dat = p.dat;\n    return *this;\n  }\n  bool operator<(const\
+    \ bint &p) const {\n    if (sgn != p.sgn) { return sgn < p.sgn; }\n    if (sgn\
+    \ == 0) return false;\n    if (len(dat) != len(p.dat)) {\n      if (sgn == 1)\
+    \ return len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat) > len(p.dat);\n\
+    \    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i]) continue;\n  \
+    \    if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1) return dat[i]\
+    \ > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const bint &p)\
+    \ const { return p < *this; }\n  bool operator<=(const bint &p) const { return\
+    \ !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this < p);\
+    \ }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) { return *this = p;\
+    \ }\n    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn) {\n      *this -=\
+    \ (-p);\n      return *this;\n    }\n    int n = max(len(dat), len(p.dat));\n\
     \    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat)) dat[i] +=\
     \ p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n    }\n\
     \    while (len(dat) && dat.back() == 0) dat.pop_back();\n    return *this;\n\
@@ -516,16 +516,16 @@ data:
     \ == -1 && *this > p)) {\n      *this = p - *this;\n      sgn = -sgn;\n      return\
     \ *this;\n    }\n    FOR(i, len(p.dat)) { dat[i] -= p.dat[i]; }\n    FOR(i, len(dat)\
     \ - 1) {\n      if (dat[i] < 0) dat[i] += MOD, dat[i + 1] -= 1;\n    }\n    while\
-    \ (len(dat) && dat.back() == 0) { dat.pop_back(); }\n    return *this;\n  }\n\
-    \  bint &operator*=(const bint &p) {\n    sgn *= p.sgn;\n    if (sgn == 0) {\n\
-    \      dat.clear();\n    } else {\n      dat = convolve(dat, p.dat);\n    }\n\
-    \    return *this;\n  }\n  // bint &operator/=(const bint &p) { return *this;\
-    \ }\n  bint operator-() const {\n    bint p = *this;\n    p.sgn *= -1;\n    return\
-    \ p;\n  }\n  bint operator+(const bint &p) const { return bint(*this) += p; }\n\
-    \  bint operator-(const bint &p) const { return bint(*this) -= p; }\n  bint operator*(const\
-    \ bint &p) const { return bint(*this) *= p; }\n  // bint operator/(const modint\
-    \ &p) const { return modint(*this) /= p; }\n  bool operator==(const bint &p) const\
-    \ {\n    return (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const\
+    \ (len(dat) && dat.back() == 0) { dat.pop_back(); }\n    if (dat.empty()) sgn\
+    \ = 0;\n    return *this;\n  }\n  bint &operator*=(const bint &p) {\n    sgn *=\
+    \ p.sgn;\n    if (sgn == 0) {\n      dat.clear();\n    } else {\n      dat = convolve(dat,\
+    \ p.dat);\n    }\n    return *this;\n  }\n  // bint &operator/=(const bint &p)\
+    \ { return *this; }\n  bint operator-() const {\n    bint p = *this;\n    p.sgn\
+    \ *= -1;\n    return p;\n  }\n  bint operator+(const bint &p) const { return bint(*this)\
+    \ += p; }\n  bint operator-(const bint &p) const { return bint(*this) -= p; }\n\
+    \  bint operator*(const bint &p) const { return bint(*this) *= p; }\n  // bint\
+    \ operator/(const modint &p) const { return modint(*this) /= p; }\n  bool operator==(const\
+    \ bint &p) const {\n    return (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const\
     \ bint &p) const { return !((*this) == p); }\n\n  vc<int> convolve(const vc<int>\
     \ &a, const vc<int> &b) {\n    int n = len(a), m = len(b);\n    if (!n || !m)\
     \ return {};\n    if (min(n, m) <= 500) {\n      vc<int> c(n + m - 1);\n     \
@@ -599,8 +599,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 21:13:12+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-21 21:33:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/bigint/addition_of_bigintegers.test.cpp
 layout: document

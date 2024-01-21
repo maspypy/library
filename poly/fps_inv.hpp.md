@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unicyclic.hpp
     title: graph/count/count_unicyclic.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -292,6 +292,9 @@ data:
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080.test.cpp
     title: test/yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
@@ -351,6 +354,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
@@ -836,6 +842,7 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1533.test.cpp
   - test/yukicoder/1145.test.cpp
@@ -848,6 +855,7 @@ data:
   - test/yukicoder/2097.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/2583.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/1321.test.cpp
   - test/yukicoder/2587.test.cpp

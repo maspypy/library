@@ -198,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_E.test.cpp
     title: test/aoj/NTL_1_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_A.test.cpp
     title: test/aoj/NTL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -207,7 +207,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
     title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -786,7 +786,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
   - icon: ':heavy_check_mark:'
@@ -894,6 +894,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell_number.test.cpp
     title: test/mytest/bell_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/bigint.test.cpp
+    title: test/mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/binary_trie.test.cpp
     title: test/mytest/binary_trie.test.cpp
@@ -1314,6 +1317,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
@@ -1819,6 +1825,9 @@ data:
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2108.test.cpp
+    title: test/yukicoder/2108.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2109.test.cpp
     title: test/yukicoder/2109.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1857,6 +1866,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2258.test.cpp
     title: test/yukicoder/2258.test.cpp
@@ -1983,7 +1995,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2124,7 +2136,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2277,13 +2289,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc273_e.test.cpp
     title: test_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2999,6 +3011,7 @@ data:
   - test/mytest/cf702_F.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/fenwick_raq.test.cpp
+  - test/mytest/bigint.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/ARC30D.test.cpp
   - test/mytest/datetime.test.cpp
@@ -3026,6 +3039,7 @@ data:
   - test/mytest/partial_frac.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test/mytest/all_inverse.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/summin_add.test.cpp
@@ -3067,6 +3081,7 @@ data:
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1494.test.cpp
   - test/yukicoder/779.test.cpp
+  - test/yukicoder/2108.test.cpp
   - test/yukicoder/2604.test.cpp
   - test/yukicoder/2338.test.cpp
   - test/yukicoder/263.test.cpp
@@ -3130,6 +3145,7 @@ data:
   - test/yukicoder/2574.test.cpp
   - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/114.test.cpp
+  - test/yukicoder/2243.test.cpp
   - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/1260.test.cpp
