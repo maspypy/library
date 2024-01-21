@@ -2,13 +2,13 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "poly/convolution_mod_2_64.hpp"
+#include "poly/convolution_u64.hpp"
 
 void solve() {
   LL(N, M);
   VEC(u64, A, N);
   VEC(u64, B, M);
-  auto C = convolution_mod_2_64(A, B);
+  auto C = convolution_u64(A, B);
   print(C);
 }
 
