@@ -67,7 +67,7 @@ void solve() {
     w.resize(N - 1);
     return w;
   };
-  mint det = implicit_matrix_det<mint>(N - 1, f);
+  mint det = blackbox_matrix_det<mint>(N - 1, f);
   for (auto&& x: indeg) cf *= fact<mint>(x - 1);
   print(cf * det);
 }

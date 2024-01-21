@@ -3,7 +3,7 @@
 
 #include "mod/modint.hpp"
 #include "linalg/spmat_min_poly.hpp"
-#include "linalg/implicit_matrix/min_poly.hpp"
+#include "linalg/blackbox/min_poly.hpp"
 #include "linalg/matrix_mul.hpp"
 
 using mint = modint998;
@@ -21,7 +21,7 @@ void test() {
   A.eb(0, 1, 1);
   f = spmat_min_poly<mint>(2, A);
   assert(f == vc<mint>({mint(0), mint(0), mint(1)}));
-  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
+  assert(f == blackbox_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(2);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
            return b;
@@ -30,7 +30,7 @@ void test() {
   A.clear();
   f = spmat_min_poly<mint>(2, A);
   assert(f == vc<mint>({mint(0), mint(1)}));
-  assert(f == implicit_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
+  assert(f == blackbox_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(2);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
            return b;
@@ -39,7 +39,7 @@ void test() {
   A.clear();
   f = spmat_min_poly<mint>(0, A);
   assert(f == vc<mint>({mint(1)}));
-  assert(f == implicit_matrix_min_poly<mint>(0, [&](vc<mint> a) -> vc<mint> {
+  assert(f == blackbox_min_poly<mint>(0, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(0);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
            return b;
@@ -51,7 +51,7 @@ void test() {
   A.eb(1, 2, 1);
   f = spmat_min_poly<mint>(3, A);
   assert(f == vc<mint>({mint(0), mint(0), mint(0), mint(1)}));
-  assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
+  assert(f == blackbox_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(3);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
            return b;
@@ -61,7 +61,7 @@ void test() {
   A.eb(0, 2, 1);
   f = spmat_min_poly<mint>(3, A);
   assert(f == vc<mint>({mint(0), mint(0), mint(1)}));
-  assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
+  assert(f == blackbox_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(3);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
            return b;
@@ -70,7 +70,7 @@ void test() {
   A.clear();
   f = spmat_min_poly<mint>(3, A);
   assert(f == vc<mint>({mint(0), mint(1)}));
-  assert(f == implicit_matrix_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
+  assert(f == blackbox_min_poly<mint>(3, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(3);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
            return b;
