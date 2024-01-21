@@ -4,8 +4,8 @@
 
 #include "mod/modint.hpp"
 #include "poly/convolution_all.hpp"
-#include "linalg/implicit_matrix/pascal.hpp"
-#include "linalg/implicit_matrix/vandermonde.hpp"
+#include "linalg/blackbox/pascal.hpp"
+#include "linalg/blackbox/vandermonde.hpp"
 
 using mint = modint998;
 
