@@ -93,12 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
-    title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
@@ -271,7 +268,6 @@ data:
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/fenwick_raq.test.cpp

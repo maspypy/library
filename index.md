@@ -602,7 +602,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
     - icon: ':question:'
@@ -2320,7 +2320,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/count_points_in_triangles.test.cpp
       title: test/library_checker/geometry/count_points_in_triangles.test.cpp
     - icon: ':x:'

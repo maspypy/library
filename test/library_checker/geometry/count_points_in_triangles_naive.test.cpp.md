@@ -2,29 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':question:'
-    path: ds/fenwicktree/fenwicktree.hpp
-    title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
-    path: geo/angle_sort.hpp
-    title: geo/angle_sort.hpp
-  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
-    path: geo/count_points_in_triangles.hpp
-    title: geo/count_points_in_triangles.hpp
+  - icon: ':x:'
+    path: geo/convex_polygon.hpp
+    title: geo/convex_polygon.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -197,9 +185,8 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 3 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
-    \n\n#line 1 \"geo/count_points_in_triangles.hpp\"\n\n#line 2 \"geo/angle_sort.hpp\"\
-    \n\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x,\
-    \ y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
+    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
+    \n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
     \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
     \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x\
     \ + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y -\
@@ -257,132 +244,55 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\
-    \u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
-    \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
-    \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
-    \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
-    \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
-    \ all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
-    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
-    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
-    struct FenwickTree {\n  using G = Monoid;\n  using E = typename G::value_type;\n\
-    \  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n  FenwickTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  FenwickTree(int n, F f) {\n   \
-    \ build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total = G::unit();\n  }\n\
-    \  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i];\
-    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
-    \    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n    FOR(i, n)\
-    \ { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i\
-    \ & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j - 1]);\n    }\n\
-    \    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total; }\n  E sum_all()\
-    \ { return total; }\n  E sum(int k) { return prefix_sum(k); }\n  E prod(int k)\
-    \ { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k); }\n\
-    \  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for (;\
-    \ k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n  E\
-    \ sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
-    \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
-    \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
-    \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
-    \ = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
-    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
-    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
-    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
-    \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
-    \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
-    \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
-    \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
-    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
-    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
-    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
-    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
-    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
-    \ k; });\n  }\n};\n#line 6 \"geo/count_points_in_triangles.hpp\"\n\n// \u70B9\u7FA4\
-    \ A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\u4E09\u89D2\
-    \u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\u8CA0\uFF09\
-    \u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\u30EA O(1)\n\
-    // https://codeforces.com/contest/13/problem/D\nstruct Count_Points_In_Triangles\
-    \ {\n  using P = Point<ll>;\n  const int LIM = 1'000'000'000 + 10;\n  vc<P> A,\
-    \ B;\n  vc<int> new_idx; // O \u304B\u3089\u898B\u305F\u504F\u89D2\u30BD\u30FC\
-    \u30C8\u9806\u3092\u7BA1\u7406\n  vc<int> point;   // A[i] \u3068\u4E00\u81F4\u3059\
-    \u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int> seg;    // \u7DDA\u5206\
-    \ A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int>\
-    \ tri;    // OA[i]A[j] \u5185\u90E8\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\
-    \u3052\n  Count_Points_In_Triangles(const vc<P>& A, const vc<P>& B) : A(A), B(B)\
-    \ {\n    for (auto&& p: A) assert(max(abs(p.x), abs(p.y)) < LIM);\n    for (auto&&\
-    \ p: B) assert(max(abs(p.x), abs(p.y)) < LIM);\n    build();\n  }\n\n  int query(int\
-    \ i, int j, int k) {\n    i = new_idx[i], j = new_idx[j], k = new_idx[k];\n  \
-    \  if (i > j) swap(i, j);\n    if (j > k) swap(j, k);\n    if (i > j) swap(i,\
-    \ j);\n    assert(i <= j && j <= k);\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n\
-    \    if (d == 0) return 0;\n    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k]\
-    \ - seg[i][k]; }\n    int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x\
-    \ - seg[i][j] - seg[j][k] - point[j];\n  }\n\nprivate:\n  P take_origin() {\n\
-    \    // OAiAj, OAiBj \u304C\u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u306A\u3089\u306A\
-    \u3044\u3088\u3046\u306B\u3059\u308B\n    // fail prob: at most N(N+M)/LIM\n \
-    \   return P{-LIM, RNG(-LIM, LIM)};\n  }\n\n  void build() {\n    P O = take_origin();\n\
-    \    for (auto&& p: A) p = p - O;\n    for (auto&& p: B) p = p - O;\n    int N\
-    \ = len(A), M = len(B);\n    vc<int> I = angle_sort(A);\n    A = rearrange(A,\
-    \ I);\n    new_idx.resize(N);\n    FOR(i, N) new_idx[I[i]] = i;\n\n    I = angle_sort(B);\n\
-    \    B = rearrange(B, I);\n\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
-    \    tri.assign(N, vc<int>(N));\n\n    // point\n    FOR(i, N) FOR(j, M) if (A[i]\
-    \ == B[j])++ point[i];\n\n    int m = 0;\n    FOR(j, N) {\n      // OA[i]A[j],\
-    \ B[k]\n      while (m < M && A[j].det(B[m]) < 0) ++m;\n      vc<P> C(m);\n  \
-    \    FOR(k, m) C[k] = B[k] - A[j];\n      vc<int> I(m);\n      FOR(i, m) I[i]\
-    \ = i;\n      sort(all(I),\n           [&](auto& a, auto& b) -> bool { return\
-    \ C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n      vc<int> rk(m);\n\
-    \      FOR(k, m) rk[I[k]] = k;\n      FenwickTree<Monoid_Add<int>> bit(m);\n\n\
-    \      int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k -\
-    \ 1]) > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int lb\
-    \ = binary_search(\n            [&](int n) -> bool {\n              return (n\
-    \ == 0 ? true : C[n - 1].det(p) > 0);\n            },\n            0, m + 1);\n\
-    \        int ub = binary_search(\n            [&](int n) -> bool {\n         \
-    \     return (n == 0 ? true : C[n - 1].det(p) >= 0);\n            },\n       \
-    \     0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
-    \      }\n    }\n  }\n};\n#line 5 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
-    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  INT(N);\n  VEC(P, A, N);\n  INT(M);\n\
-    \  VEC(P, B, M);\n\n  INT(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    P A = points_1[a],\
-    \ B = points_1[b], C = points_1[c];\n    // counter-clockwise\n    if ((B - A).det(C\
-    \ - A) < 0) swap(B, C);\n\n    int ans = 0;\n    FOR(i, M) {\n      P p = points_2[i];\n\
-    \      if ((B - A).det(p - A) <= 0) continue;\n      if ((C - B).det(p - B) <=\
-    \ 0) continue;\n      if ((A - C).det(p - C) <= 0) continue;\n      ++ans;\n \
-    \   }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/count_points_in_triangles.hpp\"\
-    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  INT(N);\n  VEC(P, A, N);\n  INT(M);\n\
-    \  VEC(P, B, M);\n\n  INT(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    P A = points_1[a],\
-    \ B = points_1[b], C = points_1[c];\n    // counter-clockwise\n    if ((B - A).det(C\
-    \ - A) < 0) swap(B, C);\n\n    int ans = 0;\n    FOR(i, M) {\n      P p = points_2[i];\n\
-    \      if ((B - A).det(p - A) <= 0) continue;\n      if ((C - B).det(p - B) <=\
-    \ 0) continue;\n      if ((A - C).det(p - C) <= 0) continue;\n      ++ans;\n \
-    \   }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    #line 2 \"geo/convex_polygon.hpp\"\n\n// \u307B\u3068\u3093\u3069\u30C6\u30B9\u30C8\
+    \u3055\u308C\u3066\u3044\u306A\u3044\u306E\u3067\u3042\u3084\u3057\u3044\n// n=2\
+    \ \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\ntemplate\
+    \ <typename T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int n;\n  vc<P>\
+    \ point;\n\n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {\n\
+    \    assert(n >= 3);\n    // counter clockwise \u306B\u306A\u304A\u3059\n    if\
+    \ (n >= 3) {\n      if ((point[1] - point[0]).det(point[2] - point[0]) < 0) {\n\
+    \        reverse(all(point));\n      }\n    }\n  }\n\n  // \u6BD4\u8F03\u95A2\u6570\
+    \ comp(i,j)\n  template <typename F>\n  int periodic_min_comp(F comp) {\n    int\
+    \ L = 0, M = n, R = n + n;\n    while (1) {\n      if (R - L == 2) break;\n  \
+    \    int L1 = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1, M)) { R =\
+    \ M, M = L1; }\n      elif (comp(R1, M)) { L = M, M = R1; }\n      else {\n  \
+    \      L = L1, R = R1;\n      }\n    }\n    return M % n;\n  }\n\n  int nxt_idx(int\
+    \ i) { return (i + 1 == n ? 0 : i + 1); }\n  int prev_idx(int i) { return (i ==\
+    \ 0 ? n - 1 : i - 1); }\n\n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A\
+    -1\n  int side(P p) {\n    int L = 1, R = n - 1;\n    T a = (point[L] - point[0]).det(p\
+    \ - point[0]);\n    T b = (point[R] - point[0]).det(p - point[0]);\n    if (a\
+    \ < 0 || b > 0) return -1;\n    // p \u306F 0 \u304B\u3089\u898B\u3066 [L,R] \u65B9\
+    \u5411\n    while (R - L >= 2) {\n      int M = (L + R) / 2;\n      T c = (point[M]\
+    \ - point[0]).det(p - point[0]);\n      if (c < 0)\n        R = M, b = c;\n  \
+    \    else\n        L = M, a = c;\n    }\n    T c = (point[R] - point[L]).det(p\
+    \ - point[L]);\n    T x = min({a, -b, c});\n    if (x < 0) return -1;\n    if\
+    \ (x > 0) return 1;\n    return 0;\n  }\n\n  pair<int, T> min_dot(P p) {\n   \
+    \ int idx = periodic_min_comp([&](int i, int j) -> bool {\n      return point[i\
+    \ % n].dot(p) < point[j % n].dot(p);\n    });\n    return {idx, point[idx].dot(p)};\n\
+    \  }\n  pair<int, T> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i,\
+    \ int j) -> bool {\n      return point[i % n].dot(p) > point[j % n].dot(p);\n\
+    \    });\n    return {idx, point[idx].dot(p)};\n  }\n  // pair<int, int> visible_range(P\
+    \ p) {}\n};\n#line 5 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
+    \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
+    \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
+    \ X({A[a], A[b], A[c]});\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
+    \ == 1); }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_polygon.hpp\"\
+    \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
+    \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
+    \ X({A[a], A[b], A[c]});\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
+    \ == 1); }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - geo/count_points_in_triangles.hpp
-  - geo/angle_sort.hpp
+  - geo/convex_polygon.hpp
   - geo/base.hpp
-  - random/base.hpp
-  - ds/fenwicktree/fenwicktree.hpp
-  - alg/monoid/add.hpp
   isVerificationFile: true
   path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   requiredBy: []
-  timestamp: '2024-01-22 21:51:00+09:00'
+  timestamp: '2024-01-22 23:22:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
