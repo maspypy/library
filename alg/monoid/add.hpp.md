@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -86,6 +86,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix.hpp
     title: ds/wavelet_matrix.hpp
+  - icon: ':question:'
+    path: geo/count_points_in_triangles.hpp
+    title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
@@ -246,6 +249,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
@@ -255,6 +264,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_points_in_triangles.test.cpp
+    title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/dual_fenwick.test.cpp
     title: test/mytest/dual_fenwick.test.cpp
@@ -429,6 +441,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc202_f.test.cpp
+    title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc228f.test.cpp
     title: test_atcoder/abc228f.test.cpp
@@ -465,9 +480,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g2.test.cpp
     title: test_atcoder/abc324g2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -509,6 +524,7 @@ data:
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/count/count_connected_intervals.hpp
+  - geo/count_points_in_triangles.hpp
   - string/trie.hpp
   - string/prefix_substring_LCS.hpp
   - alg/acted_monoid/minmincnt_add.hpp
@@ -525,7 +541,7 @@ data:
   - alg/acted_monoid/min_add.hpp
   - alg/acted_monoid/summin_add.hpp
   timestamp: '2022-11-28 14:51:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/2842.test.cpp
   - test/aoj/DSL_2_H.test.cpp
@@ -571,12 +587,15 @@ data:
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test/library_checker/string/prefix_substring_lcs.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/kdtree_am.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
@@ -633,6 +652,7 @@ data:
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc318b.test.cpp
   - test_atcoder/abc127f_1.test.cpp
+  - test_atcoder/abc202_f.test.cpp
   - test_atcoder/abc280f.test.cpp
   - test_atcoder/abc324g2.test.cpp
   - test_atcoder/abc234g.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy:
@@ -23,6 +23,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
+  - icon: ':question:'
+    path: geo/count_points_in_triangles.hpp
+    title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
@@ -90,6 +93,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_points_in_triangles.test.cpp
+    title: test/mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
@@ -138,9 +150,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc202_f.test.cpp
+    title: test_atcoder/abc202_f.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -234,8 +249,9 @@ data:
   - graph/ds/incremental_centroid.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abelgroup.hpp
+  - geo/count_points_in_triangles.hpp
   timestamp: '2023-11-01 01:33:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/aoj/DSL_2_E.test.cpp
   - test/aoj/DSL_2_G.test.cpp
@@ -254,6 +270,9 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/fenwick_raq.test.cpp
   - test/mytest/factorial_digit.test.cpp
@@ -269,6 +288,7 @@ data:
   - test/yukicoder/1270.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/694.test.cpp
+  - test_atcoder/abc202_f.test.cpp
   - test_atcoder/abc190f.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document

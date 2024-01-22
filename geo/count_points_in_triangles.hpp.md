@@ -1,29 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':question:'
+    path: ds/fenwicktree/fenwicktree.hpp
+    title: ds/fenwicktree/fenwicktree.hpp
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+    title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/13/problem/D
@@ -103,89 +112,145 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"geo/count_points_in_triangles.hpp\"\
-    \n\n// \u70B9\u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\
-    \u4E09\u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\
-    \u8CA0\uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(N^2M)\u3001\u30AF\u30A8\
-    \u30EA O(1)\n// https://codeforces.com/contest/13/problem/D\ntemplate <typename\
-    \ Point>\nstruct Count_Points_In_Triangles {\n  using P = Point;\n  const int\
-    \ LIM = 1'000'000'000 + 10;\n  vc<P> A, B;\n  vc<int> I, rk; // O \u304B\u3089\
-    \u898B\u305F\u504F\u89D2\u30BD\u30FC\u30C8\u9806\u3092\u7BA1\u7406\n  vc<int>\
-    \ point; // A[i] \u3068\u4E00\u81F4\u3059\u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\
-    \n  vvc<int> seg;  // \u7DDA\u5206 A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\
-    \u6570\u3048\u4E0A\u3052\n  vvc<int> tri;  // OA[i]A[j] \u5185\u90E8\u306B\u3042\
-    \u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  Count_Points_In_Triangles(vc<P>\
-    \ A, vc<P> B) : A(A), B(B) {\n    for (auto&& p: A) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    for (auto&& p: B) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    build();\n  }\n\n  int query(int i, int j, int\
-    \ k) {\n    i = rk[i], j = rk[j], k = rk[k];\n    if (i > j) swap(i, j);\n   \
-    \ if (j > k) swap(j, k);\n    if (i > j) swap(i, j);\n    assert(i <= j && j <=\
-    \ k);\n\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n    if (d == 0) return 0;\n\
-    \    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k] - seg[i][k]; }\n  \
-    \  int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x - seg[i][j] - seg[j][k]\
-    \ - point[j];\n  }\n\nprivate:\n  P take_origin() {\n    int N = len(A), M = len(B);\n\
-    \    while (1) {\n      P O = P{-LIM, RNG(-LIM, LIM)};\n      bool ok = 1;\n \
-    \     FOR(i, N) FOR(j, N) {\n        if (A[i] == A[j]) continue;\n        if ((A[i]\
-    \ - O).det(A[j] - O) == 0) ok = 0;\n      }\n      FOR(i, N) FOR(j, M) {\n   \
-    \     if (A[i] == B[j]) continue;\n        if ((A[i] - O).det(B[j] - O) == 0)\
-    \ ok = 0;\n      }\n      if (ok) return O;\n    }\n    return P{};\n  }\n\n \
-    \ void build() {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n\
-    \    for (auto&& p: B) p = p - O;\n    int N = len(A), M = len(B);\n    I.resize(N),\
-    \ rk.resize(N);\n    iota(all(I), 0);\n    sort(all(I), [&](auto& a, auto& b)\
-    \ -> bool { return A[a].det(A[b]) > 0; });\n    FOR(i, N) rk[I[i]] = i;\n    A\
-    \ = rearrange(A, I);\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
-    \    tri.assign(N, vc<int>(N));\n\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++\
-    \ point[i];\n    FOR(i, N) FOR(j, i + 1, N) {\n      FOR(k, M) {\n        if (A[i].det(B[k])\
-    \ <= 0) continue;\n        if (A[j].det(B[k]) >= 0) continue;\n        ll d =\
-    \ (B[k] - A[i]).det(A[j] - A[i]);\n        if (d == 0) ++seg[i][j];\n        if\
-    \ (d < 0) ++tri[i][j];\n      }\n    }\n  }\n};\n"
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\
+    \n  static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\
+    \n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct FenwickTree {\n  using G = Monoid;\n  using E = typename G::value_type;\n\
+    \  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n  FenwickTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  FenwickTree(int n, F f) {\n   \
+    \ build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total = G::unit();\n  }\n\
+    \  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i];\
+    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
+    \    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n    FOR(i, n)\
+    \ { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i\
+    \ & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j - 1]);\n    }\n\
+    \    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total; }\n  E sum_all()\
+    \ { return total; }\n  E sum(int k) { return prefix_sum(k); }\n  E prod(int k)\
+    \ { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k); }\n\
+    \  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for (;\
+    \ k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n  E\
+    \ sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
+    \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
+    \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
+    \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
+    \ = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
+    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
+    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
+    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
+    \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
+    \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
+    \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
+    \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 6 \"geo/count_points_in_triangles.hpp\"\n\n// \u70B9\u7FA4\
+    \ A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\u4E09\u89D2\
+    \u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\u8CA0\uFF09\
+    \u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\u30EA O(1)\n\
+    // https://codeforces.com/contest/13/problem/D\nstruct Count_Points_In_Triangles\
+    \ {\n  using P = Point<ll>;\n  const int LIM = 1'000'000'000 + 10;\n  vc<P> A,\
+    \ B;\n  vc<int> new_idx; // O \u304B\u3089\u898B\u305F\u504F\u89D2\u30BD\u30FC\
+    \u30C8\u9806\u3092\u7BA1\u7406\n  vc<int> point;   // A[i] \u3068\u4E00\u81F4\u3059\
+    \u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int> seg;    // \u7DDA\u5206\
+    \ A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int>\
+    \ tri;    // OA[i]A[j] \u5185\u90E8\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\
+    \u3052\n  Count_Points_In_Triangles(const vc<P>& A, const vc<P>& B) : A(A), B(B)\
+    \ {\n    for (auto&& p: A) assert(max(abs(p.x), abs(p.y)) < LIM);\n    for (auto&&\
+    \ p: B) assert(max(abs(p.x), abs(p.y)) < LIM);\n    build();\n  }\n\n  int query(int\
+    \ i, int j, int k) {\n    i = new_idx[i], j = new_idx[j], k = new_idx[k];\n  \
+    \  if (i > j) swap(i, j);\n    if (j > k) swap(j, k);\n    if (i > j) swap(i,\
+    \ j);\n    assert(i <= j && j <= k);\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n\
+    \    if (d == 0) return 0;\n    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k]\
+    \ - seg[i][k]; }\n    int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x\
+    \ - seg[i][j] - seg[j][k] - point[j];\n  }\n\nprivate:\n  P take_origin() {\n\
+    \    // OAiAj, OAiBj \u304C\u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u306A\u3089\u306A\
+    \u3044\u3088\u3046\u306B\u3059\u308B\n    // fail prob: at most N(N+M)/LIM\n \
+    \   return P{-LIM, RNG(-LIM, LIM)};\n  }\n\n  void build() {\n    P O = take_origin();\n\
+    \    for (auto&& p: A) p = p - O;\n    for (auto&& p: B) p = p - O;\n    int N\
+    \ = len(A), M = len(B);\n    vc<int> I = angle_sort(A);\n    A = rearrange(A,\
+    \ I);\n    new_idx.resize(N);\n    FOR(i, N) new_idx[I[i]] = i;\n\n    I = angle_sort(B);\n\
+    \    B = rearrange(B, I);\n\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
+    \    tri.assign(N, vc<int>(N));\n\n    // point\n    FOR(i, N) FOR(j, M) if (A[i]\
+    \ == B[j])++ point[i];\n\n    int m = 0;\n    FOR(j, N) {\n      // OA[i]A[j],\
+    \ B[k]\n      while (m < M && A[j].det(B[m]) < 0) ++m;\n      vc<P> C(m);\n  \
+    \    FOR(k, m) C[k] = B[k] - A[j];\n      vc<int> I(m);\n      FOR(i, m) I[i]\
+    \ = i;\n      sort(all(I),\n           [&](auto& a, auto& b) -> bool { return\
+    \ C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n      vc<int> rk(m);\n\
+    \      FOR(k, m) rk[I[k]] = k;\n      FenwickTree<Monoid_Add<int>> bit(m);\n\n\
+    \      int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k -\
+    \ 1]) > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int lb\
+    \ = binary_search(\n            [&](int n) -> bool {\n              return (n\
+    \ == 0 ? true : C[n - 1].det(p) > 0);\n            },\n            0, m + 1);\n\
+    \        int ub = binary_search(\n            [&](int n) -> bool {\n         \
+    \     return (n == 0 ? true : C[n - 1].det(p) >= 0);\n            },\n       \
+    \     0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
+    \      }\n    }\n  }\n};\n"
   code: "\n#include \"geo/angle_sort.hpp\"\n#include \"geo/base.hpp\"\n#include \"\
-    random/base.hpp\"\n\n// \u70B9\u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\
-    \n// query(i,j,k)\uFF1A\u4E09\u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\
-    \u6570\uFF08\u975E\u8CA0\uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(N^2M)\u3001\
-    \u30AF\u30A8\u30EA O(1)\n// https://codeforces.com/contest/13/problem/D\ntemplate\
-    \ <typename Point>\nstruct Count_Points_In_Triangles {\n  using P = Point;\n \
-    \ const int LIM = 1'000'000'000 + 10;\n  vc<P> A, B;\n  vc<int> I, rk; // O \u304B\
-    \u3089\u898B\u305F\u504F\u89D2\u30BD\u30FC\u30C8\u9806\u3092\u7BA1\u7406\n  vc<int>\
-    \ point; // A[i] \u3068\u4E00\u81F4\u3059\u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\
-    \n  vvc<int> seg;  // \u7DDA\u5206 A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\
-    \u6570\u3048\u4E0A\u3052\n  vvc<int> tri;  // OA[i]A[j] \u5185\u90E8\u306B\u3042\
-    \u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  Count_Points_In_Triangles(vc<P>\
-    \ A, vc<P> B) : A(A), B(B) {\n    for (auto&& p: A) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    for (auto&& p: B) assert(-LIM < min(p.x, p.y)\
-    \ && max(p.x, p.y) < LIM);\n    build();\n  }\n\n  int query(int i, int j, int\
-    \ k) {\n    i = rk[i], j = rk[j], k = rk[k];\n    if (i > j) swap(i, j);\n   \
-    \ if (j > k) swap(j, k);\n    if (i > j) swap(i, j);\n    assert(i <= j && j <=\
-    \ k);\n\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n    if (d == 0) return 0;\n\
-    \    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k] - seg[i][k]; }\n  \
-    \  int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x - seg[i][j] - seg[j][k]\
-    \ - point[j];\n  }\n\nprivate:\n  P take_origin() {\n    int N = len(A), M = len(B);\n\
-    \    while (1) {\n      P O = P{-LIM, RNG(-LIM, LIM)};\n      bool ok = 1;\n \
-    \     FOR(i, N) FOR(j, N) {\n        if (A[i] == A[j]) continue;\n        if ((A[i]\
-    \ - O).det(A[j] - O) == 0) ok = 0;\n      }\n      FOR(i, N) FOR(j, M) {\n   \
-    \     if (A[i] == B[j]) continue;\n        if ((A[i] - O).det(B[j] - O) == 0)\
-    \ ok = 0;\n      }\n      if (ok) return O;\n    }\n    return P{};\n  }\n\n \
-    \ void build() {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n\
-    \    for (auto&& p: B) p = p - O;\n    int N = len(A), M = len(B);\n    I.resize(N),\
-    \ rk.resize(N);\n    iota(all(I), 0);\n    sort(all(I), [&](auto& a, auto& b)\
-    \ -> bool { return A[a].det(A[b]) > 0; });\n    FOR(i, N) rk[I[i]] = i;\n    A\
-    \ = rearrange(A, I);\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
-    \    tri.assign(N, vc<int>(N));\n\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++\
-    \ point[i];\n    FOR(i, N) FOR(j, i + 1, N) {\n      FOR(k, M) {\n        if (A[i].det(B[k])\
-    \ <= 0) continue;\n        if (A[j].det(B[k]) >= 0) continue;\n        ll d =\
-    \ (B[k] - A[i]).det(A[j] - A[i]);\n        if (d == 0) ++seg[i][j];\n        if\
-    \ (d < 0) ++tri[i][j];\n      }\n    }\n  }\n};"
+    random/base.hpp\"\n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// \u70B9\u7FA4\
+    \ A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\u4E09\u89D2\
+    \u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\u8CA0\uFF09\
+    \u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\u30EA O(1)\n\
+    // https://codeforces.com/contest/13/problem/D\nstruct Count_Points_In_Triangles\
+    \ {\n  using P = Point<ll>;\n  const int LIM = 1'000'000'000 + 10;\n  vc<P> A,\
+    \ B;\n  vc<int> new_idx; // O \u304B\u3089\u898B\u305F\u504F\u89D2\u30BD\u30FC\
+    \u30C8\u9806\u3092\u7BA1\u7406\n  vc<int> point;   // A[i] \u3068\u4E00\u81F4\u3059\
+    \u308B B[j] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int> seg;    // \u7DDA\u5206\
+    \ A[i]A[j] \u5185\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  vvc<int>\
+    \ tri;    // OA[i]A[j] \u5185\u90E8\u306B\u3042\u308B B[k] \u306E\u6570\u3048\u4E0A\
+    \u3052\n  Count_Points_In_Triangles(const vc<P>& A, const vc<P>& B) : A(A), B(B)\
+    \ {\n    for (auto&& p: A) assert(max(abs(p.x), abs(p.y)) < LIM);\n    for (auto&&\
+    \ p: B) assert(max(abs(p.x), abs(p.y)) < LIM);\n    build();\n  }\n\n  int query(int\
+    \ i, int j, int k) {\n    i = new_idx[i], j = new_idx[j], k = new_idx[k];\n  \
+    \  if (i > j) swap(i, j);\n    if (j > k) swap(j, k);\n    if (i > j) swap(i,\
+    \ j);\n    assert(i <= j && j <= k);\n    ll d = (A[j] - A[i]).det(A[k] - A[i]);\n\
+    \    if (d == 0) return 0;\n    if (d > 0) { return tri[i][j] + tri[j][k] - tri[i][k]\
+    \ - seg[i][k]; }\n    int x = tri[i][k] - tri[i][j] - tri[j][k];\n    return x\
+    \ - seg[i][j] - seg[j][k] - point[j];\n  }\n\nprivate:\n  P take_origin() {\n\
+    \    // OAiAj, OAiBj \u304C\u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u306A\u3089\u306A\
+    \u3044\u3088\u3046\u306B\u3059\u308B\n    // fail prob: at most N(N+M)/LIM\n \
+    \   return P{-LIM, RNG(-LIM, LIM)};\n  }\n\n  void build() {\n    P O = take_origin();\n\
+    \    for (auto&& p: A) p = p - O;\n    for (auto&& p: B) p = p - O;\n    int N\
+    \ = len(A), M = len(B);\n    vc<int> I = angle_sort(A);\n    A = rearrange(A,\
+    \ I);\n    new_idx.resize(N);\n    FOR(i, N) new_idx[I[i]] = i;\n\n    I = angle_sort(B);\n\
+    \    B = rearrange(B, I);\n\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
+    \    tri.assign(N, vc<int>(N));\n\n    // point\n    FOR(i, N) FOR(j, M) if (A[i]\
+    \ == B[j])++ point[i];\n\n    int m = 0;\n    FOR(j, N) {\n      // OA[i]A[j],\
+    \ B[k]\n      while (m < M && A[j].det(B[m]) < 0) ++m;\n      vc<P> C(m);\n  \
+    \    FOR(k, m) C[k] = B[k] - A[j];\n      vc<int> I(m);\n      FOR(i, m) I[i]\
+    \ = i;\n      sort(all(I),\n           [&](auto& a, auto& b) -> bool { return\
+    \ C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n      vc<int> rk(m);\n\
+    \      FOR(k, m) rk[I[k]] = k;\n      FenwickTree<Monoid_Add<int>> bit(m);\n\n\
+    \      int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k -\
+    \ 1]) > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int lb\
+    \ = binary_search(\n            [&](int n) -> bool {\n              return (n\
+    \ == 0 ? true : C[n - 1].det(p) > 0);\n            },\n            0, m + 1);\n\
+    \        int ub = binary_search(\n            [&](int n) -> bool {\n         \
+    \     return (n == 0 ? true : C[n - 1].det(p) >= 0);\n            },\n       \
+    \     0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
+    \      }\n    }\n  }\n};"
   dependsOn:
   - geo/angle_sort.hpp
   - geo/base.hpp
   - random/base.hpp
+  - ds/fenwicktree/fenwicktree.hpp
+  - alg/monoid/add.hpp
   isVerificationFile: false
   path: geo/count_points_in_triangles.hpp
   requiredBy: []
-  timestamp: '2024-01-21 19:07:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-22 21:51:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
