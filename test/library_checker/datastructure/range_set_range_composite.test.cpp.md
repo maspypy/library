@@ -1,9 +1,21 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/affine.hpp
+    title: alg/monoid/affine.hpp
   - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/range_assignment_segtree.hpp
+    title: ds/segtree/range_assignment_segtree.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/segtree/segtree.hpp
+    title: ds/segtree/segtree.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -18,15 +30,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc200/tasks/abc200_f
+    PROBLEM: https://judge.yosupo.jp/problem/range_set_range_composite
     links:
-    - https://atcoder.jp/contests/abc200/tasks/abc200_f
-  bundledCode: "#line 1 \"test_atcoder/abc200f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_f\"\
+    - https://judge.yosupo.jp/problem/range_set_range_composite
+  bundledCode: "#line 1 \"test/library_checker/datastructure/range_set_range_composite.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_set_range_composite\"\
     \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
@@ -190,8 +203,9 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n \
-    \ template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/range_set_range_composite.test.cpp\"\
+    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
@@ -264,10 +278,58 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename U, typename\
-    \ Arg1, typename Arg2>\nstruct has_power_method {\nprivate:\n  // \u30D8\u30EB\
-    \u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename V, typename A1,\
-    \ typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
+    #line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
+    \u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n\
+    \  using value_type = F;\n  using X = value_type;\n  static constexpr F op(const\
+    \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
+    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
+    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
+    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
+    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
+    \ commute = false;\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class\
+    \ Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n\
+    \  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f)\
+    \ {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void\
+    \ build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n\
+    \  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i];\
+    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log\
+    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ update(i);\n  }\n\n  X get(int i) { return dat[size + i]; }\n  vc<X> get_all()\
+    \ { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
+    \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
+    \ X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
+    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
+    \  X prod(int L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n    X vl =\
+    \ Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while (L\
+    \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
+    \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
+    \ max_right(F check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) { sm = Monoid::op(sm, dat[L++]); }\n        }\n        return L -\
+    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
+    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
+    \ int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R\
+    \ == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n    \
+    \  --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
+    \ (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }\n       \
+    \ }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n\
+    \    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r} A[i xor\
+    \ x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
+    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
+    \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
+    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
+    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
+    \  }\n};\n#line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename U,\
+    \ typename Arg1, typename Arg2>\nstruct has_power_method {\nprivate:\n  // \u30D8\
+    \u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename V, typename\
+    \ A1, typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
     \                                          std::declval<A2>()),\n            \
     \      std::true_type{});\n  template <typename, typename, typename>\n  static\
     \ auto check(...) -> std::false_type;\n\npublic:\n  // \u30E1\u30BD\u30C3\u30C9\
@@ -277,60 +339,99 @@ data:
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
     \ exp);\n  } else {\n    assert(exp >= 0);\n    X res = Monoid::unit();\n    while\
     \ (exp) {\n      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x,\
-    \ x);\n      exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 7 \"test_atcoder/abc200f.test.cpp\"\
-    \n\nusing mint = modint107;\n\nusing P = pair<mint, mint>;\nusing ARR = array<array<P,\
-    \ 2>, 2>;\n\nstruct Mono {\n  using value_type = ARR;\n  using X = value_type;\n\
-    \  static X op(X x, X y) {\n    if (x == unit()) return y;\n    if (y == unit())\
-    \ return x;\n    X z = unit();\n    FOR(i, 2) FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n\
-    \    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d, 2) {\n      auto& dp1 = x[a][b];\n \
-    \     auto& dp2 = y[c][d];\n      z[a][d].fi += dp1.fi * dp2.fi;\n      z[a][d].se\
-    \ += dp1.fi * dp2.se + dp2.fi * dp1.se;\n      if (b != c) z[a][b].se += dp1.fi\
-    \ * dp2.fi;\n    }\n    return z;\n  }\n  static X unit() {\n    X x;\n    FOR(i,\
-    \ 2) FOR(j, 2) x[i][j] = {mint(0), mint(0)};\n    return x;\n  }\n  static X from_element(char\
-    \ c) {\n    X t = unit();\n    FOR(x, 2) {\n      if (x == 0 && c == '1') continue;\n\
-    \      if (x == 1 && c == '0') continue;\n      t[x][x] = {1, 0};\n    }\n   \
-    \ return t;\n  }\n  static constexpr bool commute = 0;\n};\n\nvoid solve() {\n\
-    \  STR(S);\n  INT(K);\n  ARR x = Mono::unit();\n  for (auto&& c: S) x = Mono::op(x,\
-    \ Mono::from_element(c));\n\n  ARR e = monoid_pow<Mono>(x, K);\n  mint ANS = 0;\n\
-    \  FOR(a, 2) FOR(b, 2) {\n    auto [cnt, sm] = e[a][b];\n    if (a != b) ANS +=\
-    \ (sm + cnt) * inv<mint>(2);\n    if (a == b) ANS += sm * inv<mint>(2);\n  }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc200/tasks/abc200_f\"\n\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"alg/monoid_pow.hpp\"\n\nusing mint = modint107;\n\nusing P = pair<mint,\
-    \ mint>;\nusing ARR = array<array<P, 2>, 2>;\n\nstruct Mono {\n  using value_type\
-    \ = ARR;\n  using X = value_type;\n  static X op(X x, X y) {\n    if (x == unit())\
-    \ return y;\n    if (y == unit()) return x;\n    X z = unit();\n    FOR(i, 2)\
-    \ FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d,\
-    \ 2) {\n      auto& dp1 = x[a][b];\n      auto& dp2 = y[c][d];\n      z[a][d].fi\
-    \ += dp1.fi * dp2.fi;\n      z[a][d].se += dp1.fi * dp2.se + dp2.fi * dp1.se;\n\
-    \      if (b != c) z[a][b].se += dp1.fi * dp2.fi;\n    }\n    return z;\n  }\n\
-    \  static X unit() {\n    X x;\n    FOR(i, 2) FOR(j, 2) x[i][j] = {mint(0), mint(0)};\n\
-    \    return x;\n  }\n  static X from_element(char c) {\n    X t = unit();\n  \
-    \  FOR(x, 2) {\n      if (x == 0 && c == '1') continue;\n      if (x == 1 && c\
-    \ == '0') continue;\n      t[x][x] = {1, 0};\n    }\n    return t;\n  }\n  static\
-    \ constexpr bool commute = 0;\n};\n\nvoid solve() {\n  STR(S);\n  INT(K);\n  ARR\
-    \ x = Mono::unit();\n  for (auto&& c: S) x = Mono::op(x, Mono::from_element(c));\n\
-    \n  ARR e = monoid_pow<Mono>(x, K);\n  mint ANS = 0;\n  FOR(a, 2) FOR(b, 2) {\n\
-    \    auto [cnt, sm] = e[a][b];\n    if (a != b) ANS += (sm + cnt) * inv<mint>(2);\n\
-    \    if (a == b) ANS += sm * inv<mint>(2);\n  }\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ x);\n      exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"ds/fastset.hpp\"\
+    \n\r\n// 64-ary tree\r\n// space: (N/63) * u64\r\nstruct FastSet {\r\n  static\
+    \ constexpr u32 B = 64;\r\n  int n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet()\
+    \ {}\r\n  FastSet(int n) { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\
+    \n  template <typename F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n \
+    \ }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\
+    \n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\
+    \n    } while (m > 1);\r\n    log = len(seg);\r\n  }\r\n  template <typename F>\r\
+    \n  void build(int n, F f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B]\
+    \ |= u64(f(i)) << (i % B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h]))\
+    \ {\r\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n     \
+    \ }\r\n    }\r\n  }\r\n\r\n  bool operator[](int i) const { return seg[0][i /\
+    \ B] >> (i % B) & 1; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < log;\
+    \ h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n    }\r\n  }\r\
+    \n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n    u64 x = 0;\r\
+    \n    for (int h = 0; h < log; h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i\
+    \ % B));\r\n      seg[h][i / B] |= x << (i % B);\r\n      x = bool(seg[h][i /\
+    \ B]);\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int i) { erase(i); }\r\
+    \n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i <= n);\r\n   \
+    \ chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if (i / B == seg[h].size())\
+    \ break;\r\n      u64 d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n   \
+    \     i = i / B + 1;\r\n        continue;\r\n      }\r\n      i += lowbit(d);\r\
+    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
+    \ lowbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
+    \ n;\r\n  }\r\n\r\n  // max [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i\
+    \ >= -1);\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\
+    \n      if (i == -1) break;\r\n      u64 d = seg[h][i / B] << (63 - i % B);\r\n\
+    \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
+    \      i -= __builtin_clzll(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n\
+    \        i *= B;\r\n        i += topbit(seg[g][i / B]);\r\n      }\r\n      return\
+    \ i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r)\r\n  template <typename\
+    \ F>\r\n  void enumerate(int l, int r, F f) {\r\n    for (int x = next(l); x <\
+    \ r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n  string to_string() {\r\n    string\
+    \ s(n, '?');\r\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\
+    \n    return s;\r\n  }\r\n};\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct Range_Assignment_SegTree {\n  using MX\
+    \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n\
+    \  FastSet cut;\n  vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  Range_Assignment_SegTree(int n,\
+    \ F f) {\n    build(n, f);\n  }\n  Range_Assignment_SegTree(const vc<X> &v) {\
+    \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
+    \ });\n  }\n  void build(const vc<X> &v) {\n    build(len(v), [&](int i) -> X\
+    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
+    \    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });\n\
+    \    dat = seg.get_all();\n    cut.insert(0);\n  }\n\n  X prod(int l, int r) {\n\
+    \    split(l), split(r);\n    return seg.prod(l, r);\n  }\n\n  void assign(int\
+    \ l, int r, X x) {\n    split(l), split(r);\n    cut.enumerate(l + 1, r, [&](int\
+    \ i) -> void {\n      seg.set(i, MX::unit());\n      cut.erase(i);\n    });\n\
+    \    dat[l] = x;\n    seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\nprivate:\n\
+    \  void split(int p) {\n    if (p == 0 || p == n) return;\n    int a = cut.prev(p);\n\
+    \    if (a == p) return;\n    int b = cut.next(p);\n    // [a,b) -> [a,p), [p,b)\n\
+    \    X x = dat[a];\n    dat[p] = x;\n    seg.set(a, monoid_pow<MX>(x, p - a));\n\
+    \    seg.set(p, monoid_pow<MX>(x, b - p));\n    cut.insert(p);\n  }\n};\n#line\
+    \ 9 \"test/library_checker/datastructure/range_set_range_composite.test.cpp\"\n\
+    \nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\nusing AFF = typename\
+    \ Mono::value_type;\n\nvoid solve() {\n  INT(N, Q);\n\n  Range_Assignment_SegTree<Mono>\
+    \ seg(N, [&](int i) -> AFF {\n    INT(a, b);\n    return {mint(a), mint(b)};\n\
+    \  });\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(l, r, b, c);\n\
+    \      seg.assign(l, r, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n     \
+    \ INT(l, r, x);\n      AFF f = seg.prod(l, r);\n      mint ans = Mono::eval(f,\
+    \ x);\n      print(ans);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_set_range_composite\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"alg/monoid/affine.hpp\"\n#include \"ds/segtree/range_assignment_segtree.hpp\"\
+    \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\nusing AFF = typename\
+    \ Mono::value_type;\n\nvoid solve() {\n  INT(N, Q);\n\n  Range_Assignment_SegTree<Mono>\
+    \ seg(N, [&](int i) -> AFF {\n    INT(a, b);\n    return {mint(a), mint(b)};\n\
+    \  });\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(l, r, b, c);\n\
+    \      seg.assign(l, r, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n     \
+    \ INT(l, r, x);\n      AFF f = seg.prod(l, r);\n      mint ans = Mono::eval(f,\
+    \ x);\n      print(ans);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return\
+    \ 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
+  - alg/monoid/affine.hpp
+  - ds/segtree/range_assignment_segtree.hpp
+  - ds/segtree/segtree.hpp
   - alg/monoid_pow.hpp
+  - ds/fastset.hpp
   isVerificationFile: true
-  path: test_atcoder/abc200f.test.cpp
+  path: test/library_checker/datastructure/range_set_range_composite.test.cpp
   requiredBy: []
   timestamp: '2024-01-23 03:59:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_atcoder/abc200f.test.cpp
+documentation_of: test/library_checker/datastructure/range_set_range_composite.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc200f.test.cpp
-- /verify/test_atcoder/abc200f.test.cpp.html
-title: test_atcoder/abc200f.test.cpp
+- /verify/test/library_checker/datastructure/range_set_range_composite.test.cpp
+- /verify/test/library_checker/datastructure/range_set_range_composite.test.cpp.html
+title: test/library_checker/datastructure/range_set_range_composite.test.cpp
 ---

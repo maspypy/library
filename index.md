@@ -171,7 +171,7 @@ data:
       title: alg/monoid/xor.hpp
   - name: alg
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
   - name: bigint
@@ -429,6 +429,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/segtree/range_assignment_segtree.hpp
+      title: ds/segtree/range_assignment_segtree.hpp
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
@@ -2225,6 +2228,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
       title: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/range_set_range_composite.test.cpp
+      title: test/library_checker/datastructure/range_set_range_composite.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/rect_add_pt_get.test.cpp
       title: test/library_checker/datastructure/rect_add_pt_get.test.cpp
@@ -4037,7 +4043,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200a.test.cpp
       title: test_atcoder/abc200a.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc200f.test.cpp
       title: test_atcoder/abc200f.test.cpp
     - icon: ':x:'

@@ -370,6 +370,9 @@ data:
     path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
     title: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_set_range_composite.test.cpp
+    title: test/library_checker/datastructure/range_set_range_composite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rect_add_pt_get.test.cpp
     title: test/library_checker/datastructure/rect_add_pt_get.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1692,7 +1695,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200a.test.cpp
     title: test_atcoder/abc200a.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
   - icon: ':x:'
@@ -2338,6 +2341,7 @@ data:
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
+  - test/library_checker/datastructure/range_set_range_composite.test.cpp
   - test/library_checker/datastructure/static_range_mode_query.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
