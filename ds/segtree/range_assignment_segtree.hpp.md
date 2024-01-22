@@ -117,14 +117,16 @@ data:
     \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
     \    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });\n\
     \    dat = seg.get_all();\n    cut.insert(0);\n  }\n\n  X prod(int l, int r) {\n\
-    \    split(l), split(r);\n    return seg.prod(l, r);\n  }\n\n  void assign(int\
-    \ l, int r, X x) {\n    split(l), split(r);\n    cut.enumerate(l + 1, r, [&](int\
-    \ i) -> void {\n      seg.set(i, MX::unit());\n      cut.erase(i);\n    });\n\
-    \    dat[l] = x;\n    seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\nprivate:\n\
-    \  void split(int p) {\n    if (p == 0 || p == n) return;\n    int a = cut.prev(p);\n\
-    \    if (a == p) return;\n    int b = cut.next(p);\n    // [a,b) -> [a,p), [p,b)\n\
-    \    X x = dat[a];\n    dat[p] = x;\n    seg.set(a, monoid_pow<MX>(x, p - a));\n\
-    \    seg.set(p, monoid_pow<MX>(x, b - p));\n    cut.insert(p);\n  }\n};\n"
+    \    int a = cut.prev(l), b = cut.next(l), c = cut.prev(r);\n    if (a == c) {\
+    \ return monoid_pow<MX>(dat[a], r - l); };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a],\
+    \ b - l);\n    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n\
+    \    return MX::op(MX::op(x, y), z);\n  }\n\n  void assign(int l, int r, X x)\
+    \ {\n    int a = cut.prev(l), b = cut.next(r);\n    if (a < l) seg.set(a, monoid_pow<MX>(dat[a],\
+    \ l - a));\n    if (r < b) {\n      X y = dat[cut.prev(r)];\n      dat[r] = y,\
+    \ cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));\n    }\n    cut.enumerate(l\
+    \ + 1, r,\n                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i);\
+    \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
+    \  }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid_pow.hpp\"\n#include\
     \ \"ds/fastset.hpp\"\n\ntemplate <typename Monoid>\nstruct Range_Assignment_SegTree\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  SegTree<MX>\
@@ -136,14 +138,16 @@ data:
     \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
     \    n = m;\n    seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });\n\
     \    dat = seg.get_all();\n    cut.insert(0);\n  }\n\n  X prod(int l, int r) {\n\
-    \    split(l), split(r);\n    return seg.prod(l, r);\n  }\n\n  void assign(int\
-    \ l, int r, X x) {\n    split(l), split(r);\n    cut.enumerate(l + 1, r, [&](int\
-    \ i) -> void {\n      seg.set(i, MX::unit());\n      cut.erase(i);\n    });\n\
-    \    dat[l] = x;\n    seg.set(l, monoid_pow<MX>(x, r - l));\n  }\n\nprivate:\n\
-    \  void split(int p) {\n    if (p == 0 || p == n) return;\n    int a = cut.prev(p);\n\
-    \    if (a == p) return;\n    int b = cut.next(p);\n    // [a,b) -> [a,p), [p,b)\n\
-    \    X x = dat[a];\n    dat[p] = x;\n    seg.set(a, monoid_pow<MX>(x, p - a));\n\
-    \    seg.set(p, monoid_pow<MX>(x, b - p));\n    cut.insert(p);\n  }\n};\n"
+    \    int a = cut.prev(l), b = cut.next(l), c = cut.prev(r);\n    if (a == c) {\
+    \ return monoid_pow<MX>(dat[a], r - l); };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a],\
+    \ b - l);\n    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n\
+    \    return MX::op(MX::op(x, y), z);\n  }\n\n  void assign(int l, int r, X x)\
+    \ {\n    int a = cut.prev(l), b = cut.next(r);\n    if (a < l) seg.set(a, monoid_pow<MX>(dat[a],\
+    \ l - a));\n    if (r < b) {\n      X y = dat[cut.prev(r)];\n      dat[r] = y,\
+    \ cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));\n    }\n    cut.enumerate(l\
+    \ + 1, r,\n                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i);\
+    \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
+    \  }\n};\n"
   dependsOn:
   - ds/segtree/segtree.hpp
   - alg/monoid_pow.hpp
@@ -151,7 +155,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_assignment_segtree.hpp
   requiredBy: []
-  timestamp: '2024-01-23 03:59:43+09:00'
+  timestamp: '2024-01-23 05:32:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/range_set_range_composite.test.cpp
