@@ -34,31 +34,24 @@ struct Range_Assignment_SegTree {
   }
 
   X prod(int l, int r) {
-    split(l), split(r);
-    return seg.prod(l, r);
+    int a = cut.prev(l), b = cut.next(l), c = cut.prev(r);
+    if (a == c) { return monoid_pow<MX>(dat[a], r - l); };
+    assert(b <= c);
+    X x = monoid_pow<MX>(dat[a], b - l);
+    X y = seg.prod(b, c);
+    X z = monoid_pow<MX>(dat[c], r - c);
+    return MX::op(MX::op(x, y), z);
   }
 
   void assign(int l, int r, X x) {
-    split(l), split(r);
-    cut.enumerate(l + 1, r, [&](int i) -> void {
-      seg.set(i, MX::unit());
-      cut.erase(i);
-    });
-    dat[l] = x;
-    seg.set(l, monoid_pow<MX>(x, r - l));
-  }
-
-private:
-  void split(int p) {
-    if (p == 0 || p == n) return;
-    int a = cut.prev(p);
-    if (a == p) return;
-    int b = cut.next(p);
-    // [a,b) -> [a,p), [p,b)
-    X x = dat[a];
-    dat[p] = x;
-    seg.set(a, monoid_pow<MX>(x, p - a));
-    seg.set(p, monoid_pow<MX>(x, b - p));
-    cut.insert(p);
+    int a = cut.prev(l), b = cut.next(r);
+    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));
+    if (r < b) {
+      X y = dat[cut.prev(r)];
+      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));
+    }
+    cut.enumerate(l + 1, r,
+                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i); });
+    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));
   }
 };
