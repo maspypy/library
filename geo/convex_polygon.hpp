@@ -1,11 +1,22 @@
+#include "geo/base.hpp"
 
+// ほとんどテストされていないのであやしい
+// n=2 は現状サポートしていない
 template <typename T>
 struct ConvexPolygon {
   using P = Point<T>;
   int n;
   vc<P> point;
 
-  ConvexPolygon(vc<P> point) : n(len(point)), point(point) { assert(n >= 1); }
+  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {
+    assert(n >= 3);
+    // counter clockwise になおす
+    if (n >= 3) {
+      if ((point[1] - point[0]).det(point[2] - point[0]) < 0) {
+        reverse(all(point));
+      }
+    }
+  }
 
   // 比較関数 comp(i,j)
   template <typename F>
@@ -27,7 +38,26 @@ struct ConvexPolygon {
   int prev_idx(int i) { return (i == 0 ? n - 1 : i - 1); }
 
   // 中：1, 境界：0, 外：-1
-  // int side(P p) {}
+  int side(P p) {
+    int L = 1, R = n - 1;
+    T a = (point[L] - point[0]).det(p - point[0]);
+    T b = (point[R] - point[0]).det(p - point[0]);
+    if (a < 0 || b > 0) return -1;
+    // p は 0 から見て [L,R] 方向
+    while (R - L >= 2) {
+      int M = (L + R) / 2;
+      T c = (point[M] - point[0]).det(p - point[0]);
+      if (c < 0)
+        R = M, b = c;
+      else
+        L = M, a = c;
+    }
+    T c = (point[R] - point[L]).det(p - point[L]);
+    T x = min({a, -b, c});
+    if (x < 0) return -1;
+    if (x > 0) return 1;
+    return 0;
+  }
 
   pair<int, T> min_dot(P p) {
     int idx = periodic_min_comp([&](int i, int j) -> bool {
