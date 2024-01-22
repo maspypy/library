@@ -41,9 +41,6 @@ data:
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
-  - icon: ':warning:'
-    path: graph/count/BEST.hpp
-    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
@@ -976,7 +973,6 @@ data:
   - graph/maximum_matching_of_line_graph.hpp
   - graph/centroid_decomposition.hpp
   - graph/count/count_clique.hpp
-  - graph/count/BEST.hpp
   - graph/count/count_connected_intervals.hpp
   - graph/count/count_cycle.hpp
   - graph/count/count_independent_set.hpp

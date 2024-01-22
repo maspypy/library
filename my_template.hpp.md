@@ -700,9 +700,6 @@ data:
     path: test/library_checker/matrix/solve_linear.test.cpp
     title: test/library_checker/matrix/solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/sparse_matrix_det.test.cpp
-    title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/composition_of_fps.test.cpp
     title: test/library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1107,9 +1104,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -2694,7 +2688,6 @@ data:
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/1508.test.cpp
   - test/aoj/ALDS1_5.test.cpp
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/matrix_product.test.cpp
   - test/library_checker/matrix/inverse_matrix.test.cpp
@@ -2998,7 +2991,6 @@ data:
   - test/mytest/st_numbering.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/simple_perm.test.cpp
-  - test/mytest/min_poly.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/tutte.test.cpp

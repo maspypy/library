@@ -20,9 +20,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':warning:'
-    path: graph/count/BEST.hpp
-    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -291,7 +288,6 @@ data:
   - graph/implicit_graph/mst.hpp
   - graph/implicit_graph/complement_graph_unionfind.hpp
   - graph/dag_path_cover.hpp
-  - graph/count/BEST.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2023-06-11 17:06:39+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -40,9 +40,6 @@ data:
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1080_2.test.cpp
     title: test/yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -221,7 +218,6 @@ data:
   - test/library_checker/math/factorial.test.cpp
   - test/library_checker/matix/pow_of_matrix.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/mytest/min_poly.test.cpp
   - test/yukicoder/1810.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1907.test.cpp
