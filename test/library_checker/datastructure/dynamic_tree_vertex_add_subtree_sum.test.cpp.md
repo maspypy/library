@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'
@@ -289,33 +289,34 @@ data:
     \    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n \
     \   if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r ==\
     \ n) return -1;\n    return 0;\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\n\
-    template <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr\
-    \ X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr\
-    \ X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n\n// SUBTREE : cluster\
-    \ \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\ntemplate <typename\
-    \ Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid {\n  static_assert(Monoid::commute);\n\
-    \  static constexpr bool NODE_FOR_SUBTREE = SUBTREE;\n  using np = LCT_Node_Commutative_Monoid\
-    \ *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int idx, size; //\
-    \ size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\
-    \u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X =\
-    \ typename MX::value_type;\n  using VX = X;\n  X x, vx, mid;\n\n  LCT_Node_Commutative_Monoid(int\
-    \ i = 0)\n      : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n    \
-    \    idx(i),\n        size(1),\n        rev(0),\n        x(MX::unit()),\n    \
-    \    vx(MX::unit()),\n        mid(MX::unit()) {}\n\n  void update() {\n    size\
-    \ = 1;\n    x = vx;\n    if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l)\
-    \ { size += l->size, x = Monoid::op(l->x, x); }\n    if (r) { size += r->size,\
-    \ x = Monoid::op(x, r->x); }\n  }\n\n  void push() {\n    if (rev) {\n      if\
-    \ (l) l->reverse();\n      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n\
-    \  // data \u306E reverse \u3082\u884C\u3046\n  void reverse() {\n    rev ^= 1;\n\
-    \    swap(l, r);\n  }\n\n  // LCT \u5185\u3067 expose, update \u3092\u884C\u3046\
-    \u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n  void set(VX x) { vx\
-    \ = x; }\n\n  void add_light(np c) {\n    if constexpr (SUBTREE) mid = MX::op(mid,\
-    \ c->x);\n  }\n  void erase_light(np c) {\n    if constexpr (SUBTREE) mid = MX::op(mid,\
-    \ MX::inverse(c->x));\n  }\n\n  // b->x \u306B subtree value \u304C\u5165\u3063\
-    \u3066\u3044\u308B.\n  void change_light(np a, np b) {}\n};\n#line 9 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
+    template <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
+    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n\n//\
+    \ SUBTREE : cluster \u304C subtree \u60C5\u5831\u3092\u6301\u3064\u5834\u5408\n\
+    template <typename Monoid, bool SUBTREE = false>\nstruct LCT_Node_Commutative_Monoid\
+    \ {\n  static_assert(Monoid::commute);\n  static constexpr bool NODE_FOR_SUBTREE\
+    \ = SUBTREE;\n  using np = LCT_Node_Commutative_Monoid *;\n  // \u30C7\u30D5\u30A9\
+    \u30EB\u30C8\n  np l, r, p;\n  int idx, size; // size \u306F heavy path \u306E\
+    \u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\u3054\u3068\u306B\u5B9A\u7FA9\
+    \u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
+    \ VX = X;\n  X x, vx, mid;\n\n  LCT_Node_Commutative_Monoid(int i = 0)\n     \
+    \ : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n        idx(i),\n \
+    \       size(1),\n        rev(0),\n        x(MX::unit()),\n        vx(MX::unit()),\n\
+    \        mid(MX::unit()) {}\n\n  void update() {\n    size = 1;\n    x = vx;\n\
+    \    if constexpr (SUBTREE) x = MX::op(x, mid);\n    if (l) { size += l->size,\
+    \ x = Monoid::op(l->x, x); }\n    if (r) { size += r->size, x = Monoid::op(x,\
+    \ r->x); }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
+    \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  // data \u306E reverse\
+    \ \u3082\u884C\u3046\n  void reverse() {\n    rev ^= 1;\n    swap(l, r);\n  }\n\
+    \n  // LCT \u5185\u3067 expose, update \u3092\u884C\u3046\u306E\u3067\u3053\u3053\
+    \u306F\u5909\u66F4\u3060\u3051\n  void set(VX x) { vx = x; }\n\n  void add_light(np\
+    \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, c->x);\n  }\n  void erase_light(np\
+    \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, MX::inverse(c->x));\n  }\n\
+    \n  // b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void\
+    \ change_light(np a, np b) {}\n};\n#line 9 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
     \n\nusing Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>, true>;\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n\n  VEC(ll, A, N);\n  FOR(i,\
     \ N) { LCT.set(i, A[i]); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n\
@@ -344,7 +345,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2023-12-03 14:24:05+09:00'
+  timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp

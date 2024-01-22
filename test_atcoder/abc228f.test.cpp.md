@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree_2d_dense.hpp
     title: ds/segtree/segtree_2d_dense.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc228/tasks/abc228_f
@@ -198,44 +198,45 @@ data:
     \ X op(const X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr\
     \ X unit() { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
     };\r\n#line 2 \"ds/cumsum_2d.hpp\"\n\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"ds/cumsum_2d.hpp\"\
-    \n\r\ntemplate <typename Monoid>\r\nstruct Cumsum_2D {\r\n  using MX = Monoid;\r\
-    \n  static_assert(MX::commute);\r\n  using X = typename MX::value_type;\r\n  int\
-    \ H, W;\r\n  vc<X> dat;\r\n\r\n  Cumsum_2D() {}\r\n  Cumsum_2D(vvc<X> &A) { build(A);\
-    \ }\r\n\r\n  void build(vvc<X> &A) {\r\n    H = len(A);\r\n    W = (H == 0 ? 0\
-    \ : len(A[0]));\r\n    dat.assign(H * W, MX::unit());\r\n    FOR(x, H) FOR(y,\
-    \ W) {\r\n      int k = W * x + y;\r\n      dat[k] = (y == 0 ? A[x][y] : MX::op(dat[k\
-    \ - 1], A[x][y]));\r\n    }\r\n    FOR(i, W, H * W) dat[i] = MX::op(dat[i - W],\
-    \ dat[i]);\r\n  }\r\n\r\n  // [x1,x2) x [y1,y2)\r\n  template <bool allow_out_of_range\
-    \ = false>\r\n  X sum(int x1, int x2, int y1, int y2) {\r\n    if constexpr (allow_out_of_range)\
-    \ {\r\n      chmax(x1, 0), chmin(x2, H), chmax(y1, 0), chmin(y2, W);\r\n     \
-    \ if (x1 >= x2 || y1 >= y2) return MX::unit();\r\n    }\r\n    if (x2 == 0 ||\
-    \ y2 == 0) return MX::unit();\r\n    assert(0 <= x1 && x1 <= x2 && x2 <= H);\r\
-    \n    assert(0 <= y1 && y1 <= y2 && y2 <= W);\r\n    --x1, --y1, --x2, --y2;\r\
-    \n    X a = (x1 >= 0 && y1 >= 0 ? dat[W * x1 + y1] : MX::unit());\r\n    X b =\
-    \ (x1 >= 0 && y2 >= 0 ? dat[W * x1 + y2] : MX::unit());\r\n    X c = (x2 >= 0\
-    \ && y1 >= 0 ? dat[W * x2 + y1] : MX::unit());\r\n    X d = (x2 >= 0 && y2 >=\
-    \ 0 ? dat[W * x2 + y2] : MX::unit());\r\n    return MX::op(MX::op(a, d), MX::inverse(MX::op(b,\
-    \ c)));\r\n  }\r\n\r\n  X prefix_sum(int x, int y) {\r\n    return (x == 0 ||\
-    \ y == 0) ? MX::unit() : dat[W * x + y - (W + 1)];\r\n  }\r\n};\r\n#line 2 \"\
-    ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree_2D_Dense\
-    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
-    \ = X;\n  static_assert(MX::commute);\n  int H, W;\n  vc<X> dat;\n\n  SegTree_2D_Dense()\
-    \ : SegTree_2D_Dense(0, 0) {}\n  SegTree_2D_Dense(int H, int W) : H(H), W(W),\
-    \ dat(4 * H * W, MX::unit()) {}\n  SegTree_2D_Dense(vc<vc<X>> &v) {\n    H = len(v),\
-    \ W = (H == 0 ? 0 : len(v[0]));\n    dat.assign(4 * H * W, MX::unit());\n    FOR(x,\
-    \ H) FOR(y, W) { dat[idx(H + x, W + y)] = v[x][y]; }\n    FOR(y, W, W + W) FOR_R(x,\
-    \ H) {\n      dat[idx(x, y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(2 * x +\
-    \ 1, y)]);\n    }\n    FOR(x, H + H) FOR_R(y, W) {\n      dat[idx(x, y)] = MX::op(dat[idx(x,\
-    \ 2 * y + 0)], dat[idx(x, 2 * y + 1)]);\n    }\n  }\n\n  void set(int x, int y,\
-    \ X e) {\n    x += H, y += W;\n    dat[idx(x, y)] = e;\n    int i = x;\n    while\
-    \ (i >>= 1) {\n      dat[idx(i, y)] = MX::op(dat[idx(2 * i + 0, y)], dat[idx(2\
-    \ * i + 1, y)]);\n    }\n    i = x;\n    while (i) {\n      int j = y;\n     \
-    \ while (j >>= 1) {\n        dat[idx(i, j)] = MX::op(dat[idx(i, 2 * j + 0)], dat[idx(i,\
+    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
+    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 4 \"ds/cumsum_2d.hpp\"\n\r\ntemplate <typename Monoid>\r\
+    \nstruct Cumsum_2D {\r\n  using MX = Monoid;\r\n  static_assert(MX::commute);\r\
+    \n  using X = typename MX::value_type;\r\n  int H, W;\r\n  vc<X> dat;\r\n\r\n\
+    \  Cumsum_2D() {}\r\n  Cumsum_2D(vvc<X> &A) { build(A); }\r\n\r\n  void build(vvc<X>\
+    \ &A) {\r\n    H = len(A);\r\n    W = (H == 0 ? 0 : len(A[0]));\r\n    dat.assign(H\
+    \ * W, MX::unit());\r\n    FOR(x, H) FOR(y, W) {\r\n      int k = W * x + y;\r\
+    \n      dat[k] = (y == 0 ? A[x][y] : MX::op(dat[k - 1], A[x][y]));\r\n    }\r\n\
+    \    FOR(i, W, H * W) dat[i] = MX::op(dat[i - W], dat[i]);\r\n  }\r\n\r\n  //\
+    \ [x1,x2) x [y1,y2)\r\n  template <bool allow_out_of_range = false>\r\n  X sum(int\
+    \ x1, int x2, int y1, int y2) {\r\n    if constexpr (allow_out_of_range) {\r\n\
+    \      chmax(x1, 0), chmin(x2, H), chmax(y1, 0), chmin(y2, W);\r\n      if (x1\
+    \ >= x2 || y1 >= y2) return MX::unit();\r\n    }\r\n    if (x2 == 0 || y2 == 0)\
+    \ return MX::unit();\r\n    assert(0 <= x1 && x1 <= x2 && x2 <= H);\r\n    assert(0\
+    \ <= y1 && y1 <= y2 && y2 <= W);\r\n    --x1, --y1, --x2, --y2;\r\n    X a = (x1\
+    \ >= 0 && y1 >= 0 ? dat[W * x1 + y1] : MX::unit());\r\n    X b = (x1 >= 0 && y2\
+    \ >= 0 ? dat[W * x1 + y2] : MX::unit());\r\n    X c = (x2 >= 0 && y1 >= 0 ? dat[W\
+    \ * x2 + y1] : MX::unit());\r\n    X d = (x2 >= 0 && y2 >= 0 ? dat[W * x2 + y2]\
+    \ : MX::unit());\r\n    return MX::op(MX::op(a, d), MX::inverse(MX::op(b, c)));\r\
+    \n  }\r\n\r\n  X prefix_sum(int x, int y) {\r\n    return (x == 0 || y == 0) ?\
+    \ MX::unit() : dat[W * x + y - (W + 1)];\r\n  }\r\n};\r\n#line 2 \"ds/segtree/segtree_2d_dense.hpp\"\
+    \n\ntemplate <class Monoid>\nstruct SegTree_2D_Dense {\n  using MX = Monoid;\n\
+    \  using X = typename MX::value_type;\n  using value_type = X;\n  static_assert(MX::commute);\n\
+    \  int H, W;\n  vc<X> dat;\n\n  SegTree_2D_Dense() : SegTree_2D_Dense(0, 0) {}\n\
+    \  SegTree_2D_Dense(int H, int W) : H(H), W(W), dat(4 * H * W, MX::unit()) {}\n\
+    \  SegTree_2D_Dense(vc<vc<X>> &v) {\n    H = len(v), W = (H == 0 ? 0 : len(v[0]));\n\
+    \    dat.assign(4 * H * W, MX::unit());\n    FOR(x, H) FOR(y, W) { dat[idx(H +\
+    \ x, W + y)] = v[x][y]; }\n    FOR(y, W, W + W) FOR_R(x, H) {\n      dat[idx(x,\
+    \ y)] = MX::op(dat[idx(2 * x + 0, y)], dat[idx(2 * x + 1, y)]);\n    }\n    FOR(x,\
+    \ H + H) FOR_R(y, W) {\n      dat[idx(x, y)] = MX::op(dat[idx(x, 2 * y + 0)],\
+    \ dat[idx(x, 2 * y + 1)]);\n    }\n  }\n\n  void set(int x, int y, X e) {\n  \
+    \  x += H, y += W;\n    dat[idx(x, y)] = e;\n    int i = x;\n    while (i >>=\
+    \ 1) {\n      dat[idx(i, y)] = MX::op(dat[idx(2 * i + 0, y)], dat[idx(2 * i +\
+    \ 1, y)]);\n    }\n    i = x;\n    while (i) {\n      int j = y;\n      while\
+    \ (j >>= 1) {\n        dat[idx(i, j)] = MX::op(dat[idx(i, 2 * j + 0)], dat[idx(i,\
     \ 2 * j + 1)]);\n      }\n      i >>= 1;\n    }\n  }\n\n  X prod(int xl, int xr,\
     \ int yl, int yr) {\n    assert(0 <= xl && xl <= xr && xr <= H);\n    assert(0\
     \ <= yl && yl <= yr && yr <= W);\n    X res = MX::unit();\n    xl += H, xr +=\
@@ -276,8 +277,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc228f.test.cpp
   requiredBy: []
-  timestamp: '2024-01-19 02:38:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-23 05:58:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc228f.test.cpp
 layout: document

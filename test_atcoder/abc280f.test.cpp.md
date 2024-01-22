@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/weighted_unionfind.hpp
     title: ds/unionfind/weighted_unionfind.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc280/tasks/abc280_f
@@ -204,21 +204,22 @@ data:
     \n    }\r\n    x = Group::op(x1, x);\r\n    x = Group::op(x, Group::inverse(x2));\r\
     \n    vals[v2] = x;\r\n    par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    --n_comp;\r\
     \n    return true;\r\n  }\r\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename X>\r\nstruct Monoid_Add {\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 8 \"test_atcoder/abc280f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M, Q);\n  Weighted_UnionFind<Monoid_Add<ll>> uf(N);\n\
-    \  vi neg(N);\n\n  FOR(M) {\n    LL(a, b, c);\n    --a, --b;\n    auto [ra, xa]\
-    \ = uf[a];\n    auto [rb, xb] = uf[b];\n    if (ra != rb) {\n      uf.merge(a,\
-    \ b, c);\n      continue;\n    }\n    if (xa + c == xb) continue;\n    neg[a]\
-    \ = 1;\n  }\n  FOR(v, N) if (neg[v]) {\n    auto [r, x] = uf[v];\n    neg[r] =\
-    \ 1;\n  }\n\n  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    auto [ra, xa] = uf[a];\n\
-    \    auto [rb, xb] = uf[b];\n    if (ra != rb) {\n      print(\"nan\");\n    }\
-    \ else {\n      if (neg[ra]) {\n        print(\"inf\");\n      } else {\n    \
-    \    print(xb - xa);\n      }\n    }\n  }\n}\n\nsigned main() {\n  int T = 1;\n\
-    \  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
+    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 8 \"test_atcoder/abc280f.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N, M, Q);\n  Weighted_UnionFind<Monoid_Add<ll>> uf(N);\n  vi neg(N);\n\n\
+    \  FOR(M) {\n    LL(a, b, c);\n    --a, --b;\n    auto [ra, xa] = uf[a];\n   \
+    \ auto [rb, xb] = uf[b];\n    if (ra != rb) {\n      uf.merge(a, b, c);\n    \
+    \  continue;\n    }\n    if (xa + c == xb) continue;\n    neg[a] = 1;\n  }\n \
+    \ FOR(v, N) if (neg[v]) {\n    auto [r, x] = uf[v];\n    neg[r] = 1;\n  }\n\n\
+    \  FOR(Q) {\n    LL(a, b);\n    --a, --b;\n    auto [ra, xa] = uf[a];\n    auto\
+    \ [rb, xb] = uf[b];\n    if (ra != rb) {\n      print(\"nan\");\n    } else {\n\
+    \      if (neg[ra]) {\n        print(\"inf\");\n      } else {\n        print(xb\
+    \ - xa);\n      }\n    }\n  }\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
+    \  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc280/tasks/abc280_f\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/unionfind/weighted_unionfind.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, M, Q);\n  Weighted_UnionFind<Monoid_Add<ll>>\
@@ -239,8 +240,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc280f.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-23 05:58:02+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc280f.test.cpp
 layout: document

@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/floor_sum_of_polynomial.test.cpp
     title: test/mytest/floor_sum_of_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/mytest/range_assign.test.cpp
+    title: test/mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2362.test.cpp
     title: test/yukicoder/2362.test.cpp
@@ -72,6 +75,7 @@ data:
   verifiedWith:
   - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   - test/library_checker/datastructure/range_set_range_composite.test.cpp
+  - test/mytest/range_assign.test.cpp
   - test/mytest/floor_sum_of_polynomial.test.cpp
   - test/yukicoder/2362.test.cpp
   - test_atcoder/abc200f.test.cpp
