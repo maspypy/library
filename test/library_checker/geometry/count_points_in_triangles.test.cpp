@@ -15,7 +15,7 @@ void solve() {
   vc<P> B(M);
   FOR(i, M) read(B[i]);
 
-  Count_Points_In_Triangles<P> X(A, B);
+  Count_Points_In_Triangles X(A, B);
 
   LL(Q);
   FOR(Q) {
