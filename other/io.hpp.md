@@ -360,28 +360,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
     title: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_set_range_composite.test.cpp
     title: test/library_checker/datastructure/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rect_add_pt_get.test.cpp
     title: test/library_checker/datastructure/rect_add_pt_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_bit2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
@@ -405,10 +405,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_frequency.test.cpp
     title: test/library_checker/datastructure/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -417,7 +417,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_sum.test.cpp
     title: test/library_checker/datastructure/static_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -435,22 +435,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -459,7 +459,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':x:'
@@ -495,7 +495,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -813,7 +813,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/online_z.test.cpp
     title: test/library_checker/string/online_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/prefix_substring_lcs.test.cpp
     title: test/library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'

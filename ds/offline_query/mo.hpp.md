@@ -6,7 +6,7 @@ data:
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - icon: ':heavy_check_mark:'
