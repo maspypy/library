@@ -30,7 +30,7 @@ void test() {
   A.clear();
   f = spmat_min_poly<mint>(2, A);
   assert(f == vc<mint>({mint(0), mint(1)}));
-  assert(f == blackbox_matrix_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
+  assert(f == blackbox_min_poly<mint>(2, [&](vc<mint> a) -> vc<mint> {
            vc<mint> b(2);
            for (auto&& [i, j, x]: A) b[j] += a[i] * x;
            return b;
@@ -83,7 +83,7 @@ void test() {
     A.clear();
     FOR(i, N) FOR(j, N) A.eb(i, j, mat[i][j]);
     f = spmat_min_poly(N, A);
-    assert(f == implicit_matrix_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint> {
+    assert(f == blackbox_min_poly<mint>(N, [&](vc<mint> a) -> vc<mint> {
              vc<mint> b(N);
              for (auto&& [i, j, x]: A) b[j] += a[i] * x;
              return b;
