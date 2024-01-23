@@ -30,7 +30,6 @@ struct Range_Assignment_SegTree {
     n = m;
     seg.build(m, f), cut.build(n, [&](int i) -> int { return 1; });
     dat = seg.get_all();
-    cut.insert(0);
   }
 
   X prod(int l, int r) {

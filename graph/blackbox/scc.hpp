@@ -4,7 +4,7 @@
 // set_used(int v, bool rev)
 // find_used(int v, bool rev)
 template <typename F1, typename F2>
-pair<int, vc<int>> implicit_graph_scc(int N, F1 set_used, F2 find_unused) {
+pair<int, vc<int>> blackbox_scc(int N, F1 set_used, F2 find_unused) {
   vc<int> ord(N);
   {
     int nxt = N;
