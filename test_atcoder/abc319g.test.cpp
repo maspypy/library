@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/implicit_graph/complement_graph_bfs.hpp"
+#include "graph/blackbox/complement_graph_bfs.hpp"
 #include "mod/modint.hpp"
 using mint = modint998;
 
