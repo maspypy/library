@@ -23,6 +23,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/complement_graph_bfs.hpp
+    title: graph/blackbox/complement_graph_bfs.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/complement_graph_distance.hpp
+    title: graph/blackbox/complement_graph_distance.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/complement_graph_unionfind.hpp
+    title: graph/blackbox/complement_graph_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
@@ -140,15 +149,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/implicit_graph/complement_graph_bfs.hpp
-    title: graph/implicit_graph/complement_graph_bfs.hpp
-  - icon: ':warning:'
-    path: graph/implicit_graph/complement_graph_distance.hpp
-    title: graph/implicit_graph/complement_graph_distance.hpp
-  - icon: ':warning:'
-    path: graph/implicit_graph/complement_graph_unionfind.hpp
-    title: graph/implicit_graph/complement_graph_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
@@ -757,9 +757,6 @@ data:
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc319g.test.cpp
-    title: test_atcoder/abc319g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -965,9 +962,6 @@ data:
   - graph/tree_walk_generating_function.hpp
   - graph/minimum_cost_cycle.hpp
   - graph/range_to_range_graph.hpp
-  - graph/implicit_graph/complement_graph_bfs.hpp
-  - graph/implicit_graph/complement_graph_distance.hpp
-  - graph/implicit_graph/complement_graph_unionfind.hpp
   - graph/dag_path_cover.hpp
   - graph/bracket_graph.hpp
   - graph/maximum_matching_of_line_graph.hpp
@@ -976,6 +970,9 @@ data:
   - graph/count/count_connected_intervals.hpp
   - graph/count/count_cycle.hpp
   - graph/count/count_independent_set.hpp
+  - graph/blackbox/complement_graph_bfs.hpp
+  - graph/blackbox/complement_graph_distance.hpp
+  - graph/blackbox/complement_graph_unionfind.hpp
   - graph/reachability.hpp
   - graph/steiner_tree.hpp
   - graph/incremental_scc.hpp
@@ -1143,7 +1140,6 @@ data:
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc180e.test.cpp
   - test_atcoder/abc274g.test.cpp
-  - test_atcoder/abc319g.test.cpp
   - test_atcoder/abc209e.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc160f.test.cpp

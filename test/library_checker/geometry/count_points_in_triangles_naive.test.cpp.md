@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -15,13 +15,17 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
+    links:
+    - https://judge.yosupo.jp/problem/count_points_in_triangle
+  bundledCode: "#line 1 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n#pragma GCC optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\"\
     )\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\n\
     using u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
@@ -184,7 +188,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 3 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
     \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
     \n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
     \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
@@ -272,13 +276,14 @@ data:
     \  }\n  pair<int, T> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i,\
     \ int j) -> bool {\n      return point[i % n].dot(p) > point[j % n].dot(p);\n\
     \    });\n    return {idx, point[idx].dot(p)};\n  }\n  // pair<int, int> visible_range(P\
-    \ p) {}\n};\n#line 5 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
+    \ p) {}\n};\n#line 7 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
     \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
     \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
     \ X({A[a], A[b], A[c]});\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
     \ == 1); }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_polygon.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_polygon.hpp\"\
     \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
     \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
     \ X({A[a], A[b], A[c]});\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
@@ -292,8 +297,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   requiredBy: []
-  timestamp: '2024-01-22 23:22:27+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-23 14:37:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
 layout: document

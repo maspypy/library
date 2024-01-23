@@ -17,12 +17,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/complement_graph_unionfind.hpp
+    title: graph/blackbox/complement_graph_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':warning:'
-    path: graph/implicit_graph/complement_graph_unionfind.hpp
-    title: graph/implicit_graph/complement_graph_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
@@ -160,7 +160,7 @@ data:
   - ds/intervals.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/toposort.hpp
-  - graph/implicit_graph/complement_graph_unionfind.hpp
+  - graph/blackbox/complement_graph_unionfind.hpp
   timestamp: '2024-01-14 14:14:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

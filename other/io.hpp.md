@@ -462,7 +462,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
@@ -936,9 +936,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1170_2.test.cpp
-    title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
@@ -1939,9 +1936,6 @@ data:
     path: test_atcoder/abc318h.test.cpp
     title: test_atcoder/abc318h.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc319g.test.cpp
-    title: test_atcoder/abc319g.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc321g.test.cpp
     title: test_atcoder/abc321g.test.cpp
   - icon: ':x:'
@@ -2501,7 +2495,6 @@ data:
   - test/yukicoder/913.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/1634.test.cpp
-  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1418.test.cpp
   - test/yukicoder/1080.test.cpp
   - test/yukicoder/1718.test.cpp
@@ -2783,7 +2776,6 @@ data:
   - test_atcoder/abc180e.test.cpp
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc274g.test.cpp
-  - test_atcoder/abc319g.test.cpp
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc123d.test.cpp
   - test_atcoder/abc276_g.test.cpp

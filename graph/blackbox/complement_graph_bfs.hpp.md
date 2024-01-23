@@ -6,15 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: graph/implicit_graph/complement_graph_distance.hpp
-    title: graph/implicit_graph/complement_graph_distance.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc319g.test.cpp
-    title: test_atcoder/abc319g.test.cpp
+    path: graph/blackbox/complement_graph_distance.hpp
+    title: graph/blackbox/complement_graph_distance.hpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -75,8 +72,8 @@ data:
     \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/implicit_graph/complement_graph_bfs.hpp\"\n\ntemplate <typename\
-    \ GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n  static vc<int>\
+    #line 2 \"graph/blackbox/complement_graph_bfs.hpp\"\n\ntemplate <typename GT>\n\
+    pair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n  static vc<int>\
     \ que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que) < N) que.resize(N);\n\
     \  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n  dist.assign(N,\
     \ infty<int>);\n  par.assign(N, -1);\n  int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++]\
@@ -100,17 +97,16 @@ data:
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/implicit_graph/complement_graph_bfs.hpp
+  path: graph/blackbox/complement_graph_bfs.hpp
   requiredBy:
-  - graph/implicit_graph/complement_graph_distance.hpp
-  timestamp: '2023-11-10 11:44:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test_atcoder/abc319g.test.cpp
-documentation_of: graph/implicit_graph/complement_graph_bfs.hpp
+  - graph/blackbox/complement_graph_distance.hpp
+  timestamp: '2024-01-23 14:37:36+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/blackbox/complement_graph_bfs.hpp
 layout: document
 redirect_from:
-- /library/graph/implicit_graph/complement_graph_bfs.hpp
-- /library/graph/implicit_graph/complement_graph_bfs.hpp.html
-title: graph/implicit_graph/complement_graph_bfs.hpp
+- /library/graph/blackbox/complement_graph_bfs.hpp
+- /library/graph/blackbox/complement_graph_bfs.hpp.html
+title: graph/blackbox/complement_graph_bfs.hpp
 ---

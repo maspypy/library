@@ -17,6 +17,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/complement_graph_unionfind.hpp
+    title: graph/blackbox/complement_graph_unionfind.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/interval_graph_unionfind.hpp
+    title: graph/blackbox/interval_graph_unionfind.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/mst.hpp
+    title: graph/blackbox/mst.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/unionfind.hpp
+    title: graph/blackbox/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
@@ -32,18 +44,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':warning:'
-    path: graph/implicit_graph/complement_graph_unionfind.hpp
-    title: graph/implicit_graph/complement_graph_unionfind.hpp
-  - icon: ':warning:'
-    path: graph/implicit_graph/interval_graph_unionfind.hpp
-    title: graph/implicit_graph/interval_graph_unionfind.hpp
-  - icon: ':warning:'
-    path: graph/implicit_graph/mst.hpp
-    title: graph/implicit_graph/mst.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/implicit_graph/unionfind.hpp
-    title: graph/implicit_graph/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
@@ -153,9 +153,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1170_2.test.cpp
-    title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
@@ -283,11 +280,11 @@ data:
   - graph/tree_of_unionfind.hpp
   - graph/directed_mst.hpp
   - graph/tree_walk_generating_function.hpp
-  - graph/implicit_graph/interval_graph_unionfind.hpp
-  - graph/implicit_graph/unionfind.hpp
-  - graph/implicit_graph/mst.hpp
-  - graph/implicit_graph/complement_graph_unionfind.hpp
   - graph/dag_path_cover.hpp
+  - graph/blackbox/interval_graph_unionfind.hpp
+  - graph/blackbox/unionfind.hpp
+  - graph/blackbox/mst.hpp
+  - graph/blackbox/complement_graph_unionfind.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2023-06-11 17:06:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -321,7 +318,6 @@ data:
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1451.test.cpp

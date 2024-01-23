@@ -605,7 +605,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
     - icon: ':question:'
@@ -858,6 +858,35 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/vs_to_es.hpp
       title: graph/vs_to_es.hpp
+  - name: graph/blackbox
+    pages:
+    - icon: ':warning:'
+      path: graph/blackbox/bfs.hpp
+      title: graph/blackbox/bfs.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/complement_graph_bfs.hpp
+      title: graph/blackbox/complement_graph_bfs.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/complement_graph_distance.hpp
+      title: graph/blackbox/complement_graph_distance.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/complement_graph_unionfind.hpp
+      title: graph/blackbox/complement_graph_unionfind.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/interval_graph_unionfind.hpp
+      title: graph/blackbox/interval_graph_unionfind.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/mst.hpp
+      title: graph/blackbox/mst.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/scc.hpp
+      title: graph/blackbox/scc.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/toposort.hpp
+      title: graph/blackbox/toposort.hpp
+    - icon: ':warning:'
+      path: graph/blackbox/unionfind.hpp
+      title: graph/blackbox/unionfind.hpp
   - name: graph/count
     pages:
     - icon: ':warning:'
@@ -961,35 +990,6 @@ data:
     - icon: ':warning:'
       path: graph/ds/tree_wavelet_matrix.hpp
       title: graph/ds/tree_wavelet_matrix.hpp
-  - name: graph/implicit_graph
-    pages:
-    - icon: ':warning:'
-      path: graph/implicit_graph/bfs.hpp
-      title: graph/implicit_graph/bfs.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/implicit_graph/complement_graph_bfs.hpp
-      title: graph/implicit_graph/complement_graph_bfs.hpp
-    - icon: ':warning:'
-      path: graph/implicit_graph/complement_graph_distance.hpp
-      title: graph/implicit_graph/complement_graph_distance.hpp
-    - icon: ':warning:'
-      path: graph/implicit_graph/complement_graph_unionfind.hpp
-      title: graph/implicit_graph/complement_graph_unionfind.hpp
-    - icon: ':warning:'
-      path: graph/implicit_graph/interval_graph_unionfind.hpp
-      title: graph/implicit_graph/interval_graph_unionfind.hpp
-    - icon: ':warning:'
-      path: graph/implicit_graph/mst.hpp
-      title: graph/implicit_graph/mst.hpp
-    - icon: ':warning:'
-      path: graph/implicit_graph/scc.hpp
-      title: graph/implicit_graph/scc.hpp
-    - icon: ':warning:'
-      path: graph/implicit_graph/toposort.hpp
-      title: graph/implicit_graph/toposort.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/implicit_graph/unionfind.hpp
-      title: graph/implicit_graph/unionfind.hpp
   - name: graph/shortest_path
     pages:
     - icon: ':heavy_check_mark:'
@@ -2323,7 +2323,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/count_points_in_triangles.test.cpp
       title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
       title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3282,7 +3282,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1170.test.cpp
       title: test/yukicoder/1170.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1170_2.test.cpp
       title: test/yukicoder/1170_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4289,7 +4289,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318h.test.cpp
       title: test_atcoder/abc318h.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc319g.test.cpp
       title: test_atcoder/abc319g.test.cpp
     - icon: ':heavy_check_mark:'

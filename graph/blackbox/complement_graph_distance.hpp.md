@@ -4,9 +4,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/implicit_graph/complement_graph_bfs.hpp
-    title: graph/implicit_graph/complement_graph_bfs.hpp
+  - icon: ':warning:'
+    path: graph/blackbox/complement_graph_bfs.hpp
+    title: graph/blackbox/complement_graph_bfs.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -72,8 +72,8 @@ data:
     \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/implicit_graph/complement_graph_bfs.hpp\"\n\ntemplate <typename\
-    \ GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n  static vc<int>\
+    #line 2 \"graph/blackbox/complement_graph_bfs.hpp\"\n\ntemplate <typename GT>\n\
+    pair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n  static vc<int>\
     \ que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que) < N) que.resize(N);\n\
     \  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n  dist.assign(N,\
     \ infty<int>);\n  par.assign(N, -1);\n  int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++]\
@@ -82,9 +82,10 @@ data:
     \ i = p - 1; i >= 0; --i) {\n      int to = yet[i];\n      if (NG[to]) continue;\n\
     \      dist[to] = dist[v] + 1, par[to] = v, que[qr++] = to;\n      swap(yet[i],\
     \ yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to] = 0;\n  }\n  return {dist,\
-    \ par};\n}\n#line 2 \"graph/implicit_graph/complement_graph_distance.hpp\"\n\n\
-    // {v,w,dvw}, dvw>=2\ntemplate <typename GT>\nvc<tuple<int, int, int>> complement_graph_distance(GT&\
-    \ G) {\n  const int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg))\
+    \ par};\n}\n#line 2 \"graph/blackbox/complement_graph_distance.hpp\"\n\n// \u8DDD\
+    \u96E2 2 \u4EE5\u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate\
+    \ <typename GT>\nvc<tuple<int, int, int>> complement_graph_all_distance(GT& G)\
+    \ {\n  const int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg))\
     \ - deg.begin();\n  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\
     \n  vc<tuple<int, int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm]\
     \ || nbd[e.to]) continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n\
@@ -92,29 +93,30 @@ data:
     \ auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n      if (dist[b]\
     \ <= 1) continue;\n      if (nbd[b] && a >= b) continue;\n      res.eb(a, b, dist[b]);\n\
     \    }\n  }\n  return res;\n}\n"
-  code: "#include \"graph/implicit_graph/complement_graph_bfs.hpp\"\n\n// {v,w,dvw},\
-    \ dvw>=2\ntemplate <typename GT>\nvc<tuple<int, int, int>> complement_graph_distance(GT&\
-    \ G) {\n  const int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg))\
-    \ - deg.begin();\n  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\
-    \n  vc<tuple<int, int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm]\
+  code: "#include \"graph/blackbox/complement_graph_bfs.hpp\"\n\n// \u8DDD\u96E2 2\
+    \ \u4EE5\u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate <typename\
+    \ GT>\nvc<tuple<int, int, int>> complement_graph_all_distance(GT& G) {\n  const\
+    \ int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg)) -\
+    \ deg.begin();\n  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\n\
+    \  vc<tuple<int, int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm]\
     \ || nbd[e.to]) continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n\
     \    res.eb(a, b, 2);\n  }\n\n  for (auto& e: G[S]) {\n    int a = e.to;\n   \
     \ auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n      if (dist[b]\
     \ <= 1) continue;\n      if (nbd[b] && a >= b) continue;\n      res.eb(a, b, dist[b]);\n\
     \    }\n  }\n  return res;\n}\n"
   dependsOn:
-  - graph/implicit_graph/complement_graph_bfs.hpp
+  - graph/blackbox/complement_graph_bfs.hpp
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/implicit_graph/complement_graph_distance.hpp
+  path: graph/blackbox/complement_graph_distance.hpp
   requiredBy: []
-  timestamp: '2023-11-10 11:44:35+09:00'
+  timestamp: '2024-01-23 14:37:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/implicit_graph/complement_graph_distance.hpp
+documentation_of: graph/blackbox/complement_graph_distance.hpp
 layout: document
 redirect_from:
-- /library/graph/implicit_graph/complement_graph_distance.hpp
-- /library/graph/implicit_graph/complement_graph_distance.hpp.html
-title: graph/implicit_graph/complement_graph_distance.hpp
+- /library/graph/blackbox/complement_graph_distance.hpp
+- /library/graph/blackbox/complement_graph_distance.hpp.html
+title: graph/blackbox/complement_graph_distance.hpp
 ---

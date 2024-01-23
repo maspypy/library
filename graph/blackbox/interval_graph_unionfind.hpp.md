@@ -12,19 +12,19 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1209/problem/G1
-  bundledCode: "#line 1 \"graph/implicit_graph/interval_graph_unionfind.hpp\"\n\n\
-    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
-    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
-    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+  bundledCode: "#line 1 \"graph/blackbox/interval_graph_unionfind.hpp\"\n\n#line 2\
+    \ \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int>\
+    \ dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int\
+    \ m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void reset()\
+    \ { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n    \
+    \  int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x]\
+    \ = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
     \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
-    #line 3 \"graph/implicit_graph/interval_graph_unionfind.hpp\"\n\n// \u533A\u9593\
-    \u306F [L, R). \u4EA4\u308F\u308A\u304C\u7A7A\u3067\u306A\u3044\u3082\u306E\u3092\
-    \ union\uFF0E\n// https://codeforces.com/contest/1209/problem/G1\nUnionFind interval_graph_unionfind(int\
+    #line 3 \"graph/blackbox/interval_graph_unionfind.hpp\"\n\n// \u533A\u9593\u306F\
+    \ [L, R). \u4EA4\u308F\u308A\u304C\u7A7A\u3067\u306A\u3044\u3082\u306E\u3092 union\uFF0E\
+    \n// https://codeforces.com/contest/1209/problem/G1\nUnionFind interval_graph_unionfind(int\
     \ N, vc<int> L, vc<int> R) {\n  // \u5305\u542B\u306E\u3042\u308B\u5834\u5408\u542B\
     \u307E\u308C\u3066\u3044\u308B\u3082\u306E\u3092\u30DE\u30FC\u30B8\u3057\u3066\
     \u524A\u9664\u3059\u308B\n  // \u5305\u542B\u304C\u306A\u304F\u306A\u3063\u305F\
@@ -55,15 +55,15 @@ data:
   dependsOn:
   - ds/unionfind/unionfind.hpp
   isVerificationFile: false
-  path: graph/implicit_graph/interval_graph_unionfind.hpp
+  path: graph/blackbox/interval_graph_unionfind.hpp
   requiredBy: []
-  timestamp: '2024-01-06 22:36:17+09:00'
+  timestamp: '2024-01-23 14:37:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: graph/implicit_graph/interval_graph_unionfind.hpp
+documentation_of: graph/blackbox/interval_graph_unionfind.hpp
 layout: document
 redirect_from:
-- /library/graph/implicit_graph/interval_graph_unionfind.hpp
-- /library/graph/implicit_graph/interval_graph_unionfind.hpp.html
-title: graph/implicit_graph/interval_graph_unionfind.hpp
+- /library/graph/blackbox/interval_graph_unionfind.hpp
+- /library/graph/blackbox/interval_graph_unionfind.hpp.html
+title: graph/blackbox/interval_graph_unionfind.hpp
 ---
