@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/blackbox/complement_graph_bfs.hpp
     title: graph/blackbox/complement_graph_bfs.hpp
   - icon: ':warning:'
@@ -757,6 +757,9 @@ data:
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc319g.test.cpp
+    title: test_atcoder/abc319g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1140,6 +1143,7 @@ data:
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc180e.test.cpp
   - test_atcoder/abc274g.test.cpp
+  - test_atcoder/abc319g.test.cpp
   - test_atcoder/abc209e.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc160f.test.cpp

@@ -863,7 +863,7 @@ data:
     - icon: ':warning:'
       path: graph/blackbox/bfs.hpp
       title: graph/blackbox/bfs.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/blackbox/complement_graph_bfs.hpp
       title: graph/blackbox/complement_graph_bfs.hpp
     - icon: ':warning:'
@@ -4286,7 +4286,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318h.test.cpp
       title: test_atcoder/abc318h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc319g.test.cpp
       title: test_atcoder/abc319g.test.cpp
     - icon: ':heavy_check_mark:'

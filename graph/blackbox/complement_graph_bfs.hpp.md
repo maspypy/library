@@ -8,10 +8,13 @@ data:
   - icon: ':warning:'
     path: graph/blackbox/complement_graph_distance.hpp
     title: graph/blackbox/complement_graph_distance.hpp
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc319g.test.cpp
+    title: test_atcoder/abc319g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -101,8 +104,9 @@ data:
   requiredBy:
   - graph/blackbox/complement_graph_distance.hpp
   timestamp: '2024-01-23 14:37:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_atcoder/abc319g.test.cpp
 documentation_of: graph/blackbox/complement_graph_bfs.hpp
 layout: document
 redirect_from:
