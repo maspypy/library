@@ -190,6 +190,9 @@ data:
     path: test/library_checker/math/tetration.test.cpp
     title: test/library_checker/math/tetration.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/sparse_matrix_det.test.cpp
+    title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -387,6 +390,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
@@ -792,6 +798,7 @@ data:
   - test/aoj/ITP1_D_D.test.cpp
   - test/aoj/CGL_5_A.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
@@ -889,6 +896,7 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/st_numbering.test.cpp
   - test/mytest/conv_leq.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp

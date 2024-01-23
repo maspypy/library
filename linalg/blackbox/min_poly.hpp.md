@@ -13,6 +13,12 @@ data:
     title: linalg/blackbox/det.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/sparse_matrix_det.test.cpp
+    title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/min_poly.test.cpp
+    title: test/mytest/min_poly.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
   _isVerificationFailed: false
@@ -61,6 +67,8 @@ data:
   timestamp: '2024-01-21 23:24:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/mytest/min_poly.test.cpp
   - test/yukicoder/310.test.cpp
 documentation_of: linalg/blackbox/min_poly.hpp
 layout: document
