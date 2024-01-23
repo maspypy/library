@@ -1,8 +1,7 @@
 // 辺重みはすべて 1 である
 // [dist, par]
 template <typename F1, typename F2>
-pair<vc<int>, vc<int>> implicit_graph_bfs(int N, int s, F1 set_used,
-                                          F2 find_unused) {
+pair<vc<int>, vc<int>> blackbox_bfs(int N, int s, F1 set_used, F2 find_unused) {
   vc<int> que(N);
   vc<int> dist(N, infty<int>);
   vc<int> par(N, -1);

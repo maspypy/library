@@ -3,7 +3,7 @@
 // set_used(v)：v を使用済に変更する
 // find_unused(v)：v の行き先を探す。なければ -1 を返すこと。
 template <typename F1, typename F2>
-vc<int> implicit_graph_toposort(int N, F1 set_used, F2 find_unused) {
+vc<int> blackbox_toposort(int N, F1 set_used, F2 find_unused) {
   vc<int> V;
   vc<bool> done(N);
   auto dfs = [&](auto self, ll v) -> void {

@@ -1,8 +1,8 @@
-#include "graph/implicit_graph/complement_graph_bfs.hpp"
+#include "graph/blackbox/complement_graph_bfs.hpp"
 
-// {v,w,dvw}, dvw>=2
+// 距離 2 以上の 2 点組の列挙. {v,w,dvw}.
 template <typename GT>
-vc<tuple<int, int, int>> complement_graph_distance(GT& G) {
+vc<tuple<int, int, int>> complement_graph_all_distance(GT& G) {
   const int N = G.N;
   auto deg = G.deg_array();
   int S = min_element(all(deg)) - deg.begin();
