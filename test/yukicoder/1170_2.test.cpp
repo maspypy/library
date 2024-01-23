@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1170"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "graph/implicit_graph/unionfind.hpp"
+#include "graph/blackbox/unionfind.hpp"
 
 void solve() {
   LL(N, A, B);
@@ -24,18 +24,11 @@ void solve() {
     }
     return -1;
   };
-  auto uf = implicit_graph_unionfind(N, set_used, find_unused);
+  auto uf = blackbox_unionfind(N, set_used, find_unused);
   FOR(v, N) print(uf.size(uf[v]));
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
