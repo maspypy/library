@@ -26,7 +26,7 @@ data:
   - icon: ':warning:'
     path: graph/blackbox/mst.hpp
     title: graph/blackbox/mst.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -153,6 +153,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
@@ -318,6 +321,7 @@ data:
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/1392.test.cpp
+  - test/yukicoder/1170_2.test.cpp
   - test/yukicoder/1745.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1451.test.cpp

@@ -5,10 +5,13 @@ data:
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1170_2.test.cpp
+    title: test/yukicoder/1170_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -52,8 +55,9 @@ data:
   path: graph/blackbox/unionfind.hpp
   requiredBy: []
   timestamp: '2024-01-23 14:37:36+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1170_2.test.cpp
 documentation_of: graph/blackbox/unionfind.hpp
 layout: document
 redirect_from:
