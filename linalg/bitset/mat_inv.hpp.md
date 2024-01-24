@@ -39,8 +39,9 @@ data:
     \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
     \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
     \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
-    \ T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n    for (u64 val: dat)\
-    \ ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
+    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
+    \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
+    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
     \ 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n\
     \      int s = i & 63;\n      x = (x >> s) << s;\n      if (x) return (k << 6)\
     \ | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] ==\
@@ -93,25 +94,33 @@ data:
     \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
     \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
     \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  string to_string() const {\n    string S;\n    FOR(i, N) S +=\
-    \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
-    \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
-    \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
-    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
-    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
-    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
-    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n};\n#line 2 \"linalg/bitset/mat_inv.hpp\"\n\n//\
-    \ det = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\ntemplate\
-    \ <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS> B(N);\n\
-    \  if constexpr (is_same_v<BS, My_Bitset>) { FOR(i, N) B[i] = BS(N); }\n  FOR(i,\
-    \ N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n      swap(A[k],\
-    \ A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if (!A[i][i]) return\
-    \ {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if (A[k][i]) {\n  \
-    \      A[k] ^= A[i];\n        B[k] ^= B[i];\n      }\n    }\n  }\n  return B;\n\
-    }\n"
+    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
+    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
+    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
+    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
+    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
+    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
+    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
+    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
+    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  string to_string() const {\n    string\
+    \ S;\n    FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n\
+    \  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int\
+    \ i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int\
+    \ i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat), u64(-1));\n  \
+    \  resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void flip() {\n \
+    \   FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat)\
+    \ - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n      flip(64\
+    \ * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i])\
+    \ return true;\n    }\n    return false;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n#line 2 \"\
+    linalg/bitset/mat_inv.hpp\"\n\n// det = 0 \u306E\u5834\u5408\u306B\u306F empty\
+    \ \u3092\u304B\u3048\u3059\ntemplate <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n\
+    \  int N = len(A);\n  vc<BS> B(N);\n  if constexpr (is_same_v<BS, My_Bitset>)\
+    \ { FOR(i, N) B[i] = BS(N); }\n  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k,\
+    \ i + 1, N) if (A[k][i]) {\n      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n\
+    \      break;\n    }\n    if (!A[i][i]) return {};\n    FOR(k, N) {\n      if\
+    \ (i == k) continue;\n      if (A[k][i]) {\n        A[k] ^= A[i];\n        B[k]\
+    \ ^= B[i];\n      }\n    }\n  }\n  return B;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// det = 0 \u306E\u5834\u5408\u306B\u306F\
     \ empty \u3092\u304B\u3048\u3059\ntemplate <typename BS>\nvc<BS> mat_inv(vc<BS>\
     \ A) {\n  int N = len(A);\n  vc<BS> B(N);\n  if constexpr (is_same_v<BS, My_Bitset>)\
@@ -125,7 +134,7 @@ data:
   isVerificationFile: false
   path: linalg/bitset/mat_inv.hpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2024-01-24 23:45:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/bitset/mat_inv.hpp

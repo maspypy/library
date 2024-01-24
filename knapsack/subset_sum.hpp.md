@@ -49,8 +49,9 @@ data:
     \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
     \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
     \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
-    \ T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n    for (u64 val: dat)\
-    \ ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
+    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
+    \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
+    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
     \ 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n\
     \      int s = i & 63;\n      x = (x >> s) << s;\n      if (x) return (k << 6)\
     \ | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] ==\
@@ -103,23 +104,32 @@ data:
     \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
     \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
     \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  string to_string() const {\n    string S;\n    FOR(i, N) S +=\
-    \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
-    \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
-    \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
-    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
-    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
-    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
-    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n};\n#line 1 \"enumerate/bits.hpp\"\ntemplate <typename\
-    \ F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n    int i = __builtin_ctz(s);\n\
-    \    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate <typename F>\nvoid enumerate_bits_64(u64\
-    \ s, F f) {\n  while (s) {\n    int i = __builtin_ctzll(s);\n    f(i);\n    s\
-    \ ^= u64(1) << i;\n  }\n}\n\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
-    \ b, int L, int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p\
-    \ < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
+    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
+    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
+    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
+    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
+    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
+    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
+    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
+    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
+    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  string to_string() const {\n    string\
+    \ S;\n    FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n\
+    \  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int\
+    \ i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int\
+    \ i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat), u64(-1));\n  \
+    \  resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void flip() {\n \
+    \   FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat)\
+    \ - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n      flip(64\
+    \ * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i])\
+    \ return true;\n    }\n    return false;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n#line 1 \"\
+    enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32 s, F f)\
+    \ {\n  while (s) {\n    int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n\
+    \  }\n}\n\ntemplate <typename F>\nvoid enumerate_bits_64(u64 s, F f) {\n  while\
+    \ (s) {\n    int i = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1) << i;\n \
+    \ }\n}\n\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b,\
+    \ int L, int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p <\
+    \ R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
     \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
     \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
     \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
@@ -257,7 +267,7 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2024-01-24 23:45:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/subset_sum.test.cpp

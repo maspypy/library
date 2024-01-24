@@ -133,12 +133,13 @@ data:
     \ T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n \
     \   return *this;\n  }\n  T operator&(const T &p) const { return T(*this) &= p;\
     \ }\n  T operator|(const T &p) const { return T(*this) |= p; }\n  T operator^(const\
-    \ T &p) const { return T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n\
-    \    for (u64 val: dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int\
-    \ i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n   \
-    \ {\n      u64 x = dat[k];\n      int s = i & 63;\n      x = (x >> s) << s;\n\
-    \      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat))\
-    \ {\n      if (dat[idx] == 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n\
+    \ T &p) const { return T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n\
+    \    p.flip_range(0, N);\n    return p;\n  }\n\n  int count() {\n    int ans =\
+    \ 0;\n    for (u64 val: dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int\
+    \ next(int i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n    int k = i >>\
+    \ 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n      x = (x >> s)\
+    \ << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx, k + 1,\
+    \ len(dat)) {\n      if (dat[idx] == 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n\
     \    }\n    return N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if\
     \ (i <= -1) return -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64\
     \ x = dat[k];\n      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return\
@@ -187,27 +188,35 @@ data:
     \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
     \ {\n      FOR(i, n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi =\
     \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i]\
-    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  string to_string() const\
-    \ {\n    string S;\n    FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);\n\
-    \    return S;\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\
-    \n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0;\
-    \ }\n  void flip(int i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat),\
-    \ u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void\
-    \ flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i\
-    \ = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n\
-    \      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n\
-    \      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
-    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n#line\
-    \ 6 \"test/mytest/mybitset.test.cpp\"\n\nvoid test() {\n  FOR(N, 2000) {\n   \
-    \ int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset B(N);\n    FOR(Q) {\n    \
-    \  int t = RNG(0, 4);\n      int i = RNG(0, N);\n      if (t == 0) {\n       \
-    \ A[i] = 0;\n        B[i] = 0;\n      }\n      if (t == 1) {\n        A[i] = 1;\n\
-    \        B[i] = 1;\n      }\n      if (t == 2) {\n        int p = i;\n       \
-    \ while (p < N && A[p] == 0) ++p;\n        assert(B.next(i) == p);\n      }\n\
-    \      if (t == 3) {\n        int p = i;\n        while (p >= 0 && A[p] == 0)\
-    \ --p;\n        assert(B.prev(i) == p);\n      }\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u3092 1 \u306B\
+    \u5909\u66F4\n  void set_range(int L, int R) {\n    while (L < R && (L & 63))\
+    \ { set(L++); }\n    while (L < R && (R & 63)) { set(--R); }\n    FOR(i, L >>\
+    \ 6, R >> 6) dat[i] = u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n\
+    \  void reset_range(int L, int R) {\n    while (L < R && (L & 63)) { reset(L++);\
+    \ }\n    while (L < R && (R & 63)) { reset(--R); }\n    FOR(i, L >> 6, R >> 6)\
+    \ dat[i] = u64(0);\n  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int\
+    \ R) {\n    while (L < R && (L & 63)) { flip(L++); }\n    while (L < R && (R &\
+    \ 63)) { flip(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n\
+    \  string to_string() const {\n    string S;\n    FOR(i, N) S += '0' + (dat[i\
+    \ >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\u4ED5\u69D8\
+    \u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void\
+    \ reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n\
+    \  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset()\
+    \ { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] =\
+    \ u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64\
+    \ * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n  bool any()\
+    \ {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n    return\
+    \ false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
+    \ p) { return next(p + 1); }\n};\n#line 6 \"test/mytest/mybitset.test.cpp\"\n\n\
+    void test() {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset\
+    \ B(N);\n    FOR(Q) {\n      int t = RNG(0, 4);\n      int i = RNG(0, N);\n  \
+    \    if (t == 0) {\n        A[i] = 0;\n        B[i] = 0;\n      }\n      if (t\
+    \ == 1) {\n        A[i] = 1;\n        B[i] = 1;\n      }\n      if (t == 2) {\n\
+    \        int p = i;\n        while (p < N && A[p] == 0) ++p;\n        assert(B.next(i)\
+    \ == p);\n      }\n      if (t == 3) {\n        int p = i;\n        while (p >=\
+    \ 0 && A[p] == 0) --p;\n        assert(B.prev(i) == p);\n      }\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"ds/my_bitset.hpp\"\n\nvoid test()\
     \ {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset B(N);\n\
@@ -226,7 +235,7 @@ data:
   isVerificationFile: true
   path: test/mytest/mybitset.test.cpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2024-01-24 23:45:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/mybitset.test.cpp

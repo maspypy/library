@@ -45,8 +45,9 @@ data:
     \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
     \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
     \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
-    \ T(*this) ^= p; }\n\n  int count() {\n    int ans = 0;\n    for (u64 val: dat)\
-    \ ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
+    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
+    \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
+    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
     \ 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n\
     \      int s = i & 63;\n      x = (x >> s) << s;\n      if (x) return (k << 6)\
     \ | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] ==\
@@ -99,29 +100,38 @@ data:
     \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
     \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
     \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  string to_string() const {\n    string S;\n    FOR(i, N) S +=\
-    \ '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\
-    \u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1;\
-    \ }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
-    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
-    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
-    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
-    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n};\n#line 2 \"graph/shortest_path/bfs_bitset.hpp\"\
-    \n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\u306A\u3057\u6700\u77ED\u8DEF\
-    \u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset> \u306E\u5F62\u3067\u6E21\u3059\
-    \n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000) \u3092 4000 \u56DE\u3067 2 \u79D2\
-    \u4EE5\u5185\uFF1F\ntemplate <typename BITSET>\nvc<int> bfs_bitset(vc<BITSET>&\
-    \ G, int s) {\n  const int N = len(G);\n  assert(0 <= s && s < N);\n  vc<int>\
-    \ dist(N, -1);\n  BITSET unused, que;\n  if constexpr (is_same_v<BITSET, My_Bitset>)\
-    \ {\n    unused = BITSET(N, 1);\n    que = BITSET(N, 0);\n  }\n  FOR(v, N) unused[v]\
-    \ = 1;\n  que[s] = 1;\n\n  int d = 0;\n  while (1) {\n    int p = que._Find_first();\n\
-    \    if (p >= N) break;\n    BITSET nxt;\n    if constexpr (is_same_v<BITSET,\
-    \ My_Bitset>) { nxt = BITSET(N); }\n    while (p < N) {\n      dist[p] = d;\n\
-    \      unused[p] = 0;\n      nxt |= G[p];\n      p = que._Find_next(p);\n    }\n\
-    \    que = nxt & unused;\n    ++d;\n  }\n  return dist;\n}\n"
+    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
+    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
+    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
+    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
+    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
+    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
+    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
+    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
+    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  string to_string() const {\n    string\
+    \ S;\n    FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n\
+    \  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int\
+    \ i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int\
+    \ i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat), u64(-1));\n  \
+    \  resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void flip() {\n \
+    \   FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat)\
+    \ - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n      flip(64\
+    \ * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i])\
+    \ return true;\n    }\n    return false;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n#line 2 \"\
+    graph/shortest_path/bfs_bitset.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\
+    \u307F\u306A\u3057\u6700\u77ED\u8DEF\u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset>\
+    \ \u306E\u5F62\u3067\u6E21\u3059\n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000)\
+    \ \u3092 4000 \u56DE\u3067 2 \u79D2\u4EE5\u5185\uFF1F\ntemplate <typename BITSET>\n\
+    vc<int> bfs_bitset(vc<BITSET>& G, int s) {\n  const int N = len(G);\n  assert(0\
+    \ <= s && s < N);\n  vc<int> dist(N, -1);\n  BITSET unused, que;\n  if constexpr\
+    \ (is_same_v<BITSET, My_Bitset>) {\n    unused = BITSET(N, 1);\n    que = BITSET(N,\
+    \ 0);\n  }\n  FOR(v, N) unused[v] = 1;\n  que[s] = 1;\n\n  int d = 0;\n  while\
+    \ (1) {\n    int p = que._Find_first();\n    if (p >= N) break;\n    BITSET nxt;\n\
+    \    if constexpr (is_same_v<BITSET, My_Bitset>) { nxt = BITSET(N); }\n    while\
+    \ (p < N) {\n      dist[p] = d;\n      unused[p] = 0;\n      nxt |= G[p];\n  \
+    \    p = que._Find_next(p);\n    }\n    que = nxt & unused;\n    ++d;\n  }\n \
+    \ return dist;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\
     \u306A\u3057\u6700\u77ED\u8DEF\u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset>\
     \ \u306E\u5F62\u3067\u6E21\u3059\n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000)\
@@ -140,7 +150,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bfs_bitset.hpp
   requiredBy: []
-  timestamp: '2023-12-21 22:18:31+09:00'
+  timestamp: '2024-01-24 23:45:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1400_2.test.cpp
