@@ -75,6 +75,11 @@ struct My_Bitset {
   T operator&(const T &p) const { return T(*this) &= p; }
   T operator|(const T &p) const { return T(*this) |= p; }
   T operator^(const T &p) const { return T(*this) ^= p; }
+  T operator~() const {
+    T p = (*this);
+    p.flip_range(0, N);
+    return p;
+  }
 
   int count() {
     int ans = 0;
@@ -236,6 +241,27 @@ struct My_Bitset {
       int lo = 64 - hi;
       FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
     }
+  }
+
+  // [L,R) を 1 に変更
+  void set_range(int L, int R) {
+    while (L < R && (L & 63)) { set(L++); }
+    while (L < R && (R & 63)) { set(--R); }
+    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);
+  }
+
+  // [L,R) を 1 に変更
+  void reset_range(int L, int R) {
+    while (L < R && (L & 63)) { reset(L++); }
+    while (L < R && (R & 63)) { reset(--R); }
+    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);
+  }
+
+  // [L,R) を flip
+  void flip_range(int L, int R) {
+    while (L < R && (L & 63)) { flip(L++); }
+    while (L < R && (R & 63)) { flip(--R); }
+    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);
   }
 
   string to_string() const {
