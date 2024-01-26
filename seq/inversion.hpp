@@ -1,18 +1,15 @@
 #pragma once
-#include "ds/fenwicktree/fenwicktree.hpp"
+#include "ds/fenwicktree/fenwicktree_01.hpp"
 
-template <typename T, bool SMALL = false>
+template <typename T>
 ll inversion(vc<T> A) {
   if (A.empty()) return 0;
-  if (!SMALL) {
-    auto key = A;
-    UNIQUE(key);
-    for (auto&& x: A) x = LB(key, x);
-  }
+  auto I = argsort(A);
+  vc<int> B(N);
+  FOR(i, N) B[I[i]] = i;
   ll ANS = 0;
-  ll K = MAX(A) + 1;
-  FenwickTree<Monoid_Add<int>> bit(K);
-  for (auto&& x: A) {
+  FenwickTree_01 bit(N);
+  for (auto&& x: B) {
     ANS += bit.sum(x + 1, K);
     bit.add(x, 1);
   }
