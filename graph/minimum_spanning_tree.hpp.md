@@ -404,8 +404,8 @@ data:
   timestamp: '2024-01-01 04:47:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
   - test/library_checker/tree/mst.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
   - test_atcoder/abc270_f.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp
 layout: document

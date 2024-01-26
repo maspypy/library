@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
@@ -199,14 +199,16 @@ data:
     \ ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b >=\
     \ mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n \
     \   tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n\
-    \  return res;\n}\n#line 2 \"mod/range_freq_of_linear.hpp\"\n\n// L <= x < R \u306E\
-    \u3046\u3061\u3067\u3001(ax+b mod) in [lo, hi) \u3068\u306A\u308B\u3082\u306E\u306E\
-    \u500B\u6570\nll range_freq_of_linear(ll L, ll R, ll a, ll b, ll mod, ll lo, ll\
-    \ hi) {\n  if (lo >= hi) return 0;\n  assert(0 <= lo && lo < hi && hi <= mod);\n\
-    \n  i128 x1 = floor_sum_of_linear(L, R, a, b - lo, mod);\n  i128 x2 = floor_sum_of_linear(L,\
-    \ R, a, b - hi, mod);\n  return x1 - x2;\n}\n#line 6 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\
-    \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n \
-    \   return range_freq_of_linear(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
+    \  return res;\n}\n#line 2 \"mod/range_freq_of_linear.hpp\"\n\n// sum_{x in [L,R)}\
+    \ floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\
+    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename\
+    \ O = i128, typename I = long long>\nI range_freq_of_linear(I L, I R, I a, I b,\
+    \ I mod, I lo, I hi) {\n  if (lo >= hi) return 0;\n  assert(0 <= lo && lo < hi\
+    \ && hi <= mod);\n\n  O x1 = floor_sum_of_linear<O, I>(L, R, a, b - lo, mod);\n\
+    \  O x2 = floor_sum_of_linear<O, I>(L, R, a, b - hi, mod);\n  return x1 - x2;\n\
+    }\n#line 6 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n    return\
+    \ range_freq_of_linear(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
     \ 0, m));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
     \  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\
@@ -223,8 +225,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2023-11-10 22:48:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-26 14:07:48+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 layout: document

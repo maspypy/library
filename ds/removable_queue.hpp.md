@@ -52,11 +52,11 @@ data:
   timestamp: '2023-09-22 01:21:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/yukicoder/902.test.cpp
-  - test_atcoder/abc281e.test.cpp
-  - test_atcoder/abc314g.test.cpp
+  - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test_atcoder/abc312f.test.cpp
+  - test_atcoder/abc314g.test.cpp
+  - test_atcoder/abc281e.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document
 redirect_from:

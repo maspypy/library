@@ -57,8 +57,8 @@ data:
   isVerificationFile: false
   path: linalg/xor/transpose.hpp
   requiredBy:
-  - linalg/xor/vector_space.hpp
   - alg/monoid/merge_vector_space.hpp
+  - linalg/xor/vector_space.hpp
   timestamp: '2023-02-03 02:21:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

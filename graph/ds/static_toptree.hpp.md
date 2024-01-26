@@ -307,8 +307,8 @@ data:
   verifiedWith:
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/2587.test.cpp
-  - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/2258.test.cpp
+  - test/yukicoder/2587_2.test.cpp
   - test_atcoder/abc269ex2.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
