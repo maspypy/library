@@ -118,7 +118,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/lcm.hpp
       title: alg/monoid/lcm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -322,10 +322,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_01.hpp
       title: ds/fenwicktree/fenwicktree_01.hpp
     - icon: ':heavy_check_mark:'
@@ -1165,7 +1165,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/floor_monoid_product.hpp
       title: mod/floor_monoid_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -1231,7 +1231,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/q_analogue.hpp
       title: mod/q_analogue.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -1658,7 +1658,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
     - icon: ':heavy_check_mark:'
@@ -3792,7 +3792,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2276.test.cpp
       title: test/yukicoder/2276.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2280.test.cpp
       title: test/yukicoder/2280.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4034,7 +4034,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc180e.test.cpp
       title: test_atcoder/abc180e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc190f.test.cpp
       title: test_atcoder/abc190f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4187,7 +4187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266f.test.cpp
       title: test_atcoder/abc266f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h.test.cpp
       title: test_atcoder/abc266h.test.cpp
     - icon: ':heavy_check_mark:'
