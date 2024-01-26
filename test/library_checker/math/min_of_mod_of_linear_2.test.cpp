@@ -7,14 +7,12 @@
 void solve() {
   LL(n, m, a, b);
   auto check = [&](int k) -> bool {
-    return range_freq_of_linear(0, n, a, b, m, 0, k) == 0;
+    return range_freq_of_linear<i128, ll>(0, n, a, b, m, 0, k) == 0;
   };
   print(binary_search(check, 0, m));
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   LL(T);
   FOR(T) solve();
 

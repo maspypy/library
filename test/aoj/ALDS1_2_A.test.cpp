@@ -7,20 +7,13 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  ll x = inversion<ll, false>(A);
+  ll x = inversion<ll>(A);
   sort(all(A));
   print(A);
   print(x);
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
