@@ -3,15 +3,14 @@
 
 template <typename T>
 ll inversion(vc<T> A) {
+  int N = len(A);
   if (A.empty()) return 0;
-  auto I = argsort(A);
-  vc<int> B(N);
-  FOR(i, N) B[I[i]] = i;
   ll ANS = 0;
   FenwickTree_01 bit(N);
-  for (auto&& x: B) {
-    ANS += bit.sum(x + 1, K);
-    bit.add(x, 1);
+  auto I = argsort(A);
+  for (auto& i: I) {
+    ANS += bit.sum_all() - bit.sum(i);
+    bit.add(i, 1);
   }
   return ANS;
 }
