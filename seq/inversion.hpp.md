@@ -12,16 +12,16 @@ data:
     title: ds/fenwicktree/fenwicktree_01.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
     title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/694.test.cpp
     title: test/yukicoder/694.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test_atcoder/abc190f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -90,14 +90,31 @@ data:
     \ dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int\
     \ k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n\
     \  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>\
-    \ A) {\n  if (A.empty()) return 0;\n  auto I = argsort(A);\n  vc<int> B(N);\n\
-    \  FOR(i, N) B[I[i]] = i;\n  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  for (auto&&\
-    \ x: B) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  return ANS;\n\
-    }\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\
-    \u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename\
-    \ T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n  const int N = len(A);\n\
-    \  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x\
-    \ = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
+    \ A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n  FenwickTree_01\
+    \ bit(N);\n  auto I = argsort(A);\n  for (auto& i: I) {\n    ANS += bit.sum_all()\
+    \ - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\
+    \uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B rotate \u3057\
+    \u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename T, bool SMALL =\
+    \ false>\nvi inversion_rotate(vc<T>& A) {\n  const int N = len(A);\n  if (!SMALL)\
+    \ {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n\
+    \  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n\
+    \  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n\
+    \  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS\
+    \ + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n}\n\n// inv[i][j]\
+    \ = inversion A[i:j) \u3067\u3042\u308B\u3088\u3046\u306A (N+1, N+1) \u30C6\u30FC\
+    \u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(vc<T>& A) {\n\
+    \  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R, L +\
+    \ 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R - 1];\n\
+    \    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n"
+  code: "#pragma once\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate\
+    \ <typename T>\nll inversion(vc<T> A) {\n  int N = len(A);\n  if (A.empty()) return\
+    \ 0;\n  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto&\
+    \ i: I) {\n    ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n \
+    \ return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\
+    \u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate\
+    \ <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n  const int\
+    \ N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&&\
+    \ x: A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
     \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
     \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
     \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
@@ -105,25 +122,7 @@ data:
     \ N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(vc<T>&\
     \ A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R,\
     \ L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R -\
-    \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n"
-  code: "#pragma once\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate\
-    \ <typename T>\nll inversion(vc<T> A) {\n  if (A.empty()) return 0;\n  auto I\
-    \ = argsort(A);\n  vc<int> B(N);\n  FOR(i, N) B[I[i]] = i;\n  ll ANS = 0;\n  FenwickTree_01\
-    \ bit(N);\n  for (auto&& x: B) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
-    \ 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\
-    \u306A\u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\
-    \u6570\ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>&\
-    \ A) {\n  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
-    \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS =\
-    \ 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
-    \ bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n \
-    \   res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n\
-    \  }\n  return res;\n}\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\
-    \u3046\u306A (N+1, N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int>\
-    \ all_range_inversion(vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N +\
-    \ 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] +\
-    \ dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n\
-    \  return dp;\n}"
+    \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}"
   dependsOn:
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
@@ -131,8 +130,8 @@ data:
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy: []
-  timestamp: '2024-01-26 14:07:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-26 19:57:58+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/694.test.cpp
   - test/yukicoder/1838.test.cpp
