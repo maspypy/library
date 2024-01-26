@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
@@ -978,6 +981,7 @@ data:
   - graph/find_odd_cycle.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/find_centroid.hpp
+  - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
   - graph/maximum_antichain.hpp
   - graph/block_cut.hpp

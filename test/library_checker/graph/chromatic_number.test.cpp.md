@@ -293,7 +293,7 @@ data:
     \  };\r\n  if (x < (u64(1) << 32)) {\r\n    for (u64 a: {2, 7, 61})\r\n      if\
     \ (!ok(a)) return false;\r\n  } else {\r\n    for (u64 a: {2, 325, 9375, 28178,\
     \ 450775, 9780504, 1795265022}) {\r\n      if (!ok(a)) return false;\r\n    }\r\
-    \n  }\r\n  return true;\r\n}\n#line 3 \"graph/chromatic.hpp\"\n\r\n// O(N2^N)\r\
+    \n  }\r\n  return true;\r\n}\n#line 4 \"graph/chromatic.hpp\"\n\r\n// O(N2^N)\r\
     \ntemplate <typename Graph, int TRIAL = 0>\r\nint chromatic_number(Graph& G) {\r\
     \n  assert(G.is_prepared());\r\n\r\n  int N = G.N;\r\n  vc<int> nbd(N);\r\n  FOR(v,\
     \ N) for (auto&& e: G[v]) nbd[v] |= 1 << e.to;\r\n\r\n  // s \u306E subset \u3067\
@@ -329,7 +329,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/chromatic_number.test.cpp
   requiredBy: []
-  timestamp: '2023-11-09 00:59:01+09:00'
+  timestamp: '2024-01-26 19:43:43+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/chromatic_number.test.cpp

@@ -269,16 +269,13 @@ data:
     \ L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R -\
     \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n#line 6 \"\
     test/aoj/ALDS1_2_A.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n\
-    \  ll x = inversion<ll, false>(A);\n  sort(all(A));\n  print(A);\n  print(x);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
-    \ return 0;\n}\n"
+    \  ll x = inversion<ll>(A);\n  sort(all(A));\n  print(A);\n  print(x);\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_2_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/inversion.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion<ll, false>(A);\n\
-    \  sort(all(A));\n  print(A);\n  print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll x = inversion<ll>(A);\n \
+    \ sort(all(A));\n  print(A);\n  print(x);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -289,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_2_A.test.cpp
   requiredBy: []
-  timestamp: '2024-01-26 14:07:48+09:00'
+  timestamp: '2024-01-26 19:43:43+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_2_A.test.cpp

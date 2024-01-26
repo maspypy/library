@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
@@ -208,15 +208,15 @@ data:
     \  O x2 = floor_sum_of_linear<O, I>(L, R, a, b - hi, mod);\n  return x1 - x2;\n\
     }\n#line 6 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\n\nvoid\
     \ solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n    return\
-    \ range_freq_of_linear(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
-    \ 0, m));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ range_freq_of_linear<i128, ll>(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
+    \ 0, m));\n}\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/range_freq_of_linear.hpp\"\
     \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n \
-    \   return range_freq_of_linear(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
-    \ 0, m));\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \   return range_freq_of_linear<i128, ll>(0, n, a, b, m, 0, k) == 0;\n  };\n \
+    \ print(binary_search(check, 0, m));\n}\n\nsigned main() {\n  LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -225,8 +225,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2024-01-26 14:07:48+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-26 19:43:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 layout: document
