@@ -63,7 +63,7 @@ private:
     FOR(i, len(used)) {
       if (used[i]) dat.eb(key[i], val[i]);
     }
-    build(2 * len(used));
+    build(2 * len(dat));
     for (auto& [a, b]: dat) (*this)[a] = b;
   }
 };
