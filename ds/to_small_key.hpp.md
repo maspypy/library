@@ -15,12 +15,12 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/static_range_frequency.test.cpp
     title: test/library_checker/datastructure/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_mode_query.test.cpp
     title: test/library_checker/datastructure/static_range_mode_query.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -46,28 +46,25 @@ data:
     \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(used));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\
-    \n// [30,10,20,30] -> [0,1,2,0] etc.\ntemplate <int LOG = 20, bool USE_RESET =\
-    \ false>\nstruct To_Small_Key {\n  int kind = 0;\n  HashMap<int, LOG, true> MP;\n\
-    \n  int set_key(u64 x) {\n    int idx = MP.index(x);\n    if (!MP.used[idx]) {\n\
-    \      MP.used[idx] = 1;\n      MP.key[idx] = x;\n      MP.val[idx] = kind++;\n\
+    \n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
+    \  HashMap<int> MP;\n\n  To_Small_Key(u32 n) : MP(n) {}\n\n  int set_key(u64 x)\
+    \ {\n    int idx = MP.index(x);\n    if (!MP.used[idx]) {\n      MP.used[idx]\
+    \ = 1;\n      MP.key[idx] = x;\n      MP.val[idx] = kind++;\n    }\n    return\
+    \ MP.val[idx];\n  }\n\n  int query(u64 x) { return MP.get(x, -1); }\n};\n"
+  code: "#include \"ds/hashmap.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct\
+    \ To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n\n  To_Small_Key(u32 n)\
+    \ : MP(n) {}\n\n  int set_key(u64 x) {\n    int idx = MP.index(x);\n    if (!MP.used[idx])\
+    \ {\n      MP.used[idx] = 1;\n      MP.key[idx] = x;\n      MP.val[idx] = kind++;\n\
     \    }\n    return MP.val[idx];\n  }\n\n  int query(u64 x) { return MP.get(x,\
-    \ -1); }\n\n  void reset() {\n    static_assert(USE_RESET);\n    MP.reset();\n\
-    \  }\n};\n"
-  code: "#include \"ds/hashmap.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\ntemplate\
-    \ <int LOG = 20, bool USE_RESET = false>\nstruct To_Small_Key {\n  int kind =\
-    \ 0;\n  HashMap<int, LOG, true> MP;\n\n  int set_key(u64 x) {\n    int idx = MP.index(x);\n\
-    \    if (!MP.used[idx]) {\n      MP.used[idx] = 1;\n      MP.key[idx] = x;\n \
-    \     MP.val[idx] = kind++;\n    }\n    return MP.val[idx];\n  }\n\n  int query(u64\
-    \ x) { return MP.get(x, -1); }\n\n  void reset() {\n    static_assert(USE_RESET);\n\
-    \    MP.reset();\n  }\n};"
+    \ -1); }\n};"
   dependsOn:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
   - ds/static_range_frequency.hpp
-  timestamp: '2024-01-27 11:27:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-27 12:03:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/static_range_frequency.test.cpp
   - test/library_checker/datastructure/static_range_mode_query.test.cpp

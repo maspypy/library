@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_mode_query
@@ -239,14 +239,13 @@ data:
     \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(used));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\
-    \n// [30,10,20,30] -> [0,1,2,0] etc.\ntemplate <int LOG = 20, bool USE_RESET =\
-    \ false>\nstruct To_Small_Key {\n  int kind = 0;\n  HashMap<int, LOG, true> MP;\n\
-    \n  int set_key(u64 x) {\n    int idx = MP.index(x);\n    if (!MP.used[idx]) {\n\
-    \      MP.used[idx] = 1;\n      MP.key[idx] = x;\n      MP.val[idx] = kind++;\n\
-    \    }\n    return MP.val[idx];\n  }\n\n  int query(u64 x) { return MP.get(x,\
-    \ -1); }\n\n  void reset() {\n    static_assert(USE_RESET);\n    MP.reset();\n\
-    \  }\n};\n#line 8 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\
-    \n\nvoid solve() {\n  INT(N, Q);\n  VEC(int, A, N);\n  vc<int> key = A;\n  UNIQUE(key);\n\
+    \n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
+    \  HashMap<int> MP;\n\n  To_Small_Key(u32 n) : MP(n) {}\n\n  int set_key(u64 x)\
+    \ {\n    int idx = MP.index(x);\n    if (!MP.used[idx]) {\n      MP.used[idx]\
+    \ = 1;\n      MP.key[idx] = x;\n      MP.val[idx] = kind++;\n    }\n    return\
+    \ MP.val[idx];\n  }\n\n  int query(u64 x) { return MP.get(x, -1); }\n};\n#line\
+    \ 8 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\n\n\
+    void solve() {\n  INT(N, Q);\n  VEC(int, A, N);\n  vc<int> key = A;\n  UNIQUE(key);\n\
     \  for (auto& x: A) x = LB(key, x);\n\n  Rollback_Mo mo;\n  FOR(Q) {\n    LL(L,\
     \ R);\n    mo.add(L, R);\n  }\n  vc<pair<int, int>> ANS(Q);\n\n  vc<int> CNT(N);\n\
     \  int max_cnt = 0;\n  int max_key = 0;\n  vc<int> history;\n\n  auto add = [&](int\
@@ -286,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_mode_query.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:27:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-27 12:03:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_mode_query.test.cpp
 layout: document

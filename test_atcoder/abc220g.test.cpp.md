@@ -301,9 +301,9 @@ data:
     \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi\
     \ C(N);\n  FOR(i, N) read(point[i], C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(),\
     \ cc = RNG_64();\n\n  using Mono = Monoid_Max2<ll, ll>;\n  using Data = typename\
-    \ Mono::Data;\n  HashMap<Data, 20, true> MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll>\
-    \ L = perpendicular_bisector(point[i], point[j]);\n    L.normalize();\n    u64\
-    \ key = 0;\n    key += u64(L.a + infty<ll>) * aa;\n    key += u64(L.b + infty<ll>)\
+    \ Mono::Data;\n  HashMap<Data> MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L\
+    \ = perpendicular_bisector(point[i], point[j]);\n    L.normalize();\n    u64 key\
+    \ = 0;\n    key += u64(L.a + infty<ll>) * aa;\n    key += u64(L.b + infty<ll>)\
     \ * bb;\n    key += u64(L.c + infty<ll>) * cc;\n    if (!MP.count(key)) MP[key]\
     \ = Mono::unit();\n    ll g = gcd(L.a, L.b);\n    Point<ll> normal = {L.b / g,\
     \ -L.a / g};\n    ll t = normal.dot(point[i]);\n    MP[key].add_element(C[i] +\
@@ -316,8 +316,8 @@ data:
     \ \"ds/hashmap.hpp\"\n#include \"alg/monoid/max2.hpp\"\n\nusing P = Point<ll>;\n\
     \nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi C(N);\n  FOR(i, N) read(point[i],\
     \ C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(), cc = RNG_64();\n\n  using Mono\
-    \ = Monoid_Max2<ll, ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data,\
-    \ 20, true> MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i],\
+    \ = Monoid_Max2<ll, ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data>\
+    \ MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i],\
     \ point[j]);\n    L.normalize();\n    u64 key = 0;\n    key += u64(L.a + infty<ll>)\
     \ * aa;\n    key += u64(L.b + infty<ll>) * bb;\n    key += u64(L.c + infty<ll>)\
     \ * cc;\n    if (!MP.count(key)) MP[key] = Mono::unit();\n    ll g = gcd(L.a,\
@@ -337,7 +337,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220g.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:27:49+09:00'
+  timestamp: '2024-01-27 12:03:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc220g.test.cpp

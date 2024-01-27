@@ -312,19 +312,19 @@ data:
     \ / p) break;\n      pp *= p;\n      ll s = ceil(L, pp) * pp;\n      while (s\
     \ < R) {\n        f(s, p);\n        A[s - L] /= p;\n        s += pp;\n      }\n\
     \    }\n  }\n  FOR(i, n) if (A[i] > 1) f(L + i, A[i]);\n}\n#line 9 \"test_atcoder/abc227g.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  HashMap<int, 20,\
-    \ 1> MP;\n  factor_interval(1, K + 1, [&](int i, ll p) -> void { MP[p]--; });\n\
-    \  factor_interval(N - K + 1, N + 1, [&](int i, ll p) -> void { MP[p]++; });\n\
-    \  mint ANS = 1;\n  MP.enumerate_all([&](ll p, int k) -> void { ANS *= mint(1\
-    \ + k); });\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc227/tasks/abc227_g\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\n#include \"nt/factor_interval.hpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  HashMap<int, 20, 1> MP;\n\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  HashMap<int> MP;\n\
     \  factor_interval(1, K + 1, [&](int i, ll p) -> void { MP[p]--; });\n  factor_interval(N\
     \ - K + 1, N + 1, [&](int i, ll p) -> void { MP[p]++; });\n  mint ANS = 1;\n \
     \ MP.enumerate_all([&](ll p, int k) -> void { ANS *= mint(1 + k); });\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc227/tasks/abc227_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\
+    \n#include \"mod/modint.hpp\"\n\n#include \"nt/factor_interval.hpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  HashMap<int> MP;\n  factor_interval(1,\
+    \ K + 1, [&](int i, ll p) -> void { MP[p]--; });\n  factor_interval(N - K + 1,\
+    \ N + 1, [&](int i, ll p) -> void { MP[p]++; });\n  mint ANS = 1;\n  MP.enumerate_all([&](ll\
+    \ p, int k) -> void { ANS *= mint(1 + k); });\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -336,7 +336,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc227g.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:27:49+09:00'
+  timestamp: '2024-01-27 12:03:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc227g.test.cpp

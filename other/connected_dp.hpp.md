@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
@@ -142,7 +142,7 @@ data:
     \u306A\u3057\uFF09\u3092\u3072\u3068\u3064\u4F5C\u308B\u3002\n// \u72B6\u614B\uFF1A\
     -1 \u304C\u9078\u3093\u3067\u3044\u306A\u3044\u30020,1,2,3 \u7B49\u306F\u540C\u3058\
     \u6210\u5206\u306B\u306F\u540C\u3058\u5024\u304C\u5165\u308B\u3002\n// [states,\
-    \ edges]\npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  HashMap\
+    \ edges]\npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {\n  HashMap<int>\
     \ MP;\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
     \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
     \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
@@ -218,37 +218,37 @@ data:
     \n// \u72B6\u614B\uFF1A-1 \u304C\u9078\u3093\u3067\u3044\u306A\u3044\u30020,1,2,3\
     \ \u7B49\u306F\u540C\u3058\u6210\u5206\u306B\u306F\u540C\u3058\u5024\u304C\u5165\
     \u308B\u3002\n// [states, edges]\npair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int\
-    \ N) {\n  HashMap MP;\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n  states.eb(vc<int>(N,\
-    \ -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])] = 0;\n\
-    \n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n    if (p\
-    \ == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int> now = states[p];\n\
-    \    for (auto&& [nxt, convert]: next_states(now)) {\n      // \u4ECA\u306E\u6210\
-    \u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\n      int a = 0, b = 0;\n\
-    \      FOR(v, N) if (now[v] == v) {\n        ++a;\n        if (convert[v] == -1)\
-    \ ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\u5206\u304C\u3042\u3063\u3066\
-    \u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\u306B\u3044\u304F\u3068\u304D\
-    \u306E\u307F\n      if (b >= 2) continue;\n      if (b == 1) {\n        if (MAX(nxt)\
-    \ != -1) continue;\n        edges.eb(p, 1);\n        continue;\n      }\n    \
-    \  bool ok = [&](vc<int>& now, vc<int>& nxt, vc<int>& convert) -> bool {\n   \
-    \     // \u9802\u70B9\u306E\u307F\u3067\u63A5\u3059\u308B\u306E\u306F\u30C0\u30E1\
-    \n        FOR(i, N - 1) {\n          bool a1 = now[i] != -1, a2 = now[i + 1] !=\
-    \ -1;\n          bool b1 = nxt[i] != -1, b2 = nxt[i + 1] != -1;\n          if\
-    \ (a1 && !a2 && !b1 && b2) return false;\n          if (!a1 && a2 && b1 && !b2)\
-    \ return false;\n        }\n        // empty region \u3092\u9589\u3058\u308B\u3053\
-    \u3068\u3068\u3001\u7570\u306A\u308B\u9023\u7D50\u6210\u5206\u304C\u30DE\u30FC\
-    \u30B8\u3055\u308C\u308B\u3053\u3068\u304C\u540C\u5024\n        int close = 0;\n\
-    \        int after = 0;\n        vc<bool> is_new(N, 1);\n        FOR(i, N) if\
-    \ (convert[i] != -1) is_new[convert[i]] = 0;\n        FOR(i, N) if (nxt[i] ==\
-    \ i && !is_new[i])++ after;\n        vc<int> I;\n        FOR(i, N) if (now[i]\
-    \ != -1) I.eb(i);\n        FOR(k, len(I) - 1) {\n          int i = I[k], j = I[k\
-    \ + 1];\n          if (j == i + 1) continue;\n          bool cl = 1;\n       \
-    \   FOR(p, i + 1, j) if (nxt[p] == -1) cl = 0;\n          if (cl) close++;\n \
-    \       }\n        return a - close == after;\n      }(now, nxt, convert);\n \
-    \     if (!ok) continue;\n      u64 h = hash_vector<int>(nxt);\n      int idx\
-    \ = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.used[idx] = 1, MP.IDS.eb(idx),\
-    \ MP.key[idx] = h,\n        MP.val[idx] = len(states);\n        states.eb(nxt);\n\
-    \      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n  return {states, edges};\n\
-    }\n\n} // namespace connected_dp_squares"
+    \ N) {\n  HashMap<int> MP;\n  vvc<int> states;\n  vc<pair<int, int>> edges;\n\n\
+    \  states.eb(vc<int>(N, -1));\n  states.eb(vc<int>(N, -1));\n  MP[hash_vector<int>(states[0])]\
+    \ = 0;\n\n  int p = -1;\n  while (1) {\n    if (++p == len(states)) break;\n \
+    \   if (p == 1) {\n      edges.eb(1, 1);\n      continue;\n    }\n    vc<int>\
+    \ now = states[p];\n    for (auto&& [nxt, convert]: next_states(now)) {\n    \
+    \  // \u4ECA\u306E\u6210\u5206\u6570\u3001\u6D88\u3048\u308B\u6210\u5206\u6570\
+    \n      int a = 0, b = 0;\n      FOR(v, N) if (now[v] == v) {\n        ++a;\n\
+    \        if (convert[v] == -1) ++b;\n      }\n      // \u6D88\u3048\u308B\u6210\
+    \u5206\u304C\u3042\u3063\u3066\u3088\u3044\u306E\u306F\u3001\u7D42\u72B6\u614B\
+    \u306B\u3044\u304F\u3068\u304D\u306E\u307F\n      if (b >= 2) continue;\n    \
+    \  if (b == 1) {\n        if (MAX(nxt) != -1) continue;\n        edges.eb(p, 1);\n\
+    \        continue;\n      }\n      bool ok = [&](vc<int>& now, vc<int>& nxt, vc<int>&\
+    \ convert) -> bool {\n        // \u9802\u70B9\u306E\u307F\u3067\u63A5\u3059\u308B\
+    \u306E\u306F\u30C0\u30E1\n        FOR(i, N - 1) {\n          bool a1 = now[i]\
+    \ != -1, a2 = now[i + 1] != -1;\n          bool b1 = nxt[i] != -1, b2 = nxt[i\
+    \ + 1] != -1;\n          if (a1 && !a2 && !b1 && b2) return false;\n         \
+    \ if (!a1 && a2 && b1 && !b2) return false;\n        }\n        // empty region\
+    \ \u3092\u9589\u3058\u308B\u3053\u3068\u3068\u3001\u7570\u306A\u308B\u9023\u7D50\
+    \u6210\u5206\u304C\u30DE\u30FC\u30B8\u3055\u308C\u308B\u3053\u3068\u304C\u540C\
+    \u5024\n        int close = 0;\n        int after = 0;\n        vc<bool> is_new(N,\
+    \ 1);\n        FOR(i, N) if (convert[i] != -1) is_new[convert[i]] = 0;\n     \
+    \   FOR(i, N) if (nxt[i] == i && !is_new[i])++ after;\n        vc<int> I;\n  \
+    \      FOR(i, N) if (now[i] != -1) I.eb(i);\n        FOR(k, len(I) - 1) {\n  \
+    \        int i = I[k], j = I[k + 1];\n          if (j == i + 1) continue;\n  \
+    \        bool cl = 1;\n          FOR(p, i + 1, j) if (nxt[p] == -1) cl = 0;\n\
+    \          if (cl) close++;\n        }\n        return a - close == after;\n \
+    \     }(now, nxt, convert);\n      if (!ok) continue;\n      u64 h = hash_vector<int>(nxt);\n\
+    \      int idx = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.used[idx]\
+    \ = 1, MP.IDS.eb(idx), MP.key[idx] = h,\n        MP.val[idx] = len(states);\n\
+    \        states.eb(nxt);\n      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n\
+    \  return {states, edges};\n}\n\n} // namespace connected_dp_squares"
   dependsOn:
   - ds/hashmap.hpp
   - random/hash_vector.hpp
@@ -257,7 +257,7 @@ data:
   isVerificationFile: false
   path: other/connected_dp.hpp
   requiredBy: []
-  timestamp: '2024-01-27 11:52:36+09:00'
+  timestamp: '2024-01-27 12:03:51+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
