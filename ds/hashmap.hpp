@@ -1,34 +1,33 @@
 #pragma once
 
 // u64 -> Val
-template <typename Val, int LOG = 20, bool KEEP_IDS = false>
+template <typename Val>
 struct HashMap {
-  static constexpr int N = (1 << LOG);
-  u64* key;
-  Val* val;
-  vc<int> IDS;
-  bitset<N> used;
-  const int shift;
-  const u64 r = 11995408973635179863ULL;
-  HashMap() : key(new u64[N]), val(new Val[N]), shift(64 - LOG) {}
-  u32 hash(u64 x) {
-    static const u64 FIXED_RANDOM
-        = std::chrono::steady_clock::now().time_since_epoch().count();
-    return (u64(x + FIXED_RANDOM) * r) >> shift;
+  u32 cap, mask;
+  vc<u64> key;
+  vc<Val> val;
+  vc<bool> used;
+
+  HashMap(u32 n = 0) { build(n); }
+  void build(u32 n) {
+    u32 k = 8;
+    while (k * 0.8 < n) k *= 2;
+    cap = k * 0.8, mask = k - 1;
+    key.resize(k), val.resize(k), used.assign(k, 0);
   }
+  void clear() { build(0); }
+  int size() { return len(used) - cap; }
 
   int index(const u64& k) {
     int i = 0;
-    for (i = hash(k); used[i] && key[i] != k; (i += 1) &= (N - 1)) {}
+    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}
     return i;
   }
 
   Val& operator[](const u64& k) {
+    if (cap == 0) extend();
     int i = index(k);
-    if (!used[i]) {
-      used[i] = 1, key[i] = k, val[i] = Val{};
-      if constexpr (KEEP_IDS) IDS.eb(i);
-    }
+    if (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }
     return val[i];
   }
 
@@ -42,16 +41,29 @@ struct HashMap {
     return used[i] && key[i] == k;
   }
 
-  void reset() {
-    static_assert(KEEP_IDS);
-    for (auto&& i: IDS) used[i] = 0;
-    IDS.clear();
-  }
-
   // f(key, val)
   template <typename F>
   void enumerate_all(F f) {
-    static_assert(KEEP_IDS);
-    for (auto&& i: IDS) f(key[i], val[i]);
+    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);
+  }
+
+private:
+  u64 hash(u64 x) {
+    static const u64 FIXED_RANDOM
+        = std::chrono::steady_clock::now().time_since_epoch().count();
+    x += FIXED_RANDOM;
+    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
+    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
+    return (x ^ (x >> 31)) & mask;
+  }
+
+  void extend() {
+    vc<pair<u64, Val>> dat;
+    dat.reserve(len(used) - cap);
+    FOR(i, len(used)) {
+      if (used[i]) dat.eb(key[i], val[i]);
+    }
+    build(2 * len(used));
+    for (auto& [a, b]: dat) (*this)[a] = b;
   }
 };
