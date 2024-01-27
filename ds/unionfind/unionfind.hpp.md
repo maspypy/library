@@ -32,6 +32,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':warning:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -272,6 +275,7 @@ data:
   - flow/rank_maximal_bipartite_matching.hpp
   - graph/tree_of_unionfind.hpp
   - graph/dag_path_cover.hpp
+  - graph/count/BEST.hpp
   - graph/functional.hpp
   - graph/bipartite_vertex_coloring.hpp
   - graph/unicyclic.hpp

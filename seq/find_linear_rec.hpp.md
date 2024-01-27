@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
@@ -81,6 +84,7 @@ data:
   isVerificationFile: false
   path: seq/find_linear_rec.hpp
   requiredBy:
+  - graph/count/BEST.hpp
   - linalg/blackbox/min_poly.hpp
   - linalg/blackbox/det.hpp
   - seq/interpolate_linear_rec.hpp

@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
+  - icon: ':warning:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_bipartite.hpp
     title: graph/count/count_bipartite.hpp
@@ -775,6 +778,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - poly/finding_root_of_polynomial.hpp
   - graph/find_path_through_specified.hpp
+  - graph/count/BEST.hpp
   - graph/count/count_bipartite.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/maximum_matching_size.hpp

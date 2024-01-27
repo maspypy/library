@@ -8,6 +8,9 @@ data:
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
@@ -63,6 +66,7 @@ data:
   isVerificationFile: false
   path: linalg/blackbox/min_poly.hpp
   requiredBy:
+  - graph/count/BEST.hpp
   - linalg/blackbox/det.hpp
   timestamp: '2024-01-21 23:24:39+09:00'
   verificationStatus: LIBRARY_ALL_AC

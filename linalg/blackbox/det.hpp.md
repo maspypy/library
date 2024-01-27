@@ -10,7 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
@@ -64,7 +67,8 @@ data:
   - random/base.hpp
   isVerificationFile: false
   path: linalg/blackbox/det.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/count/BEST.hpp
   timestamp: '2024-01-21 23:24:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
