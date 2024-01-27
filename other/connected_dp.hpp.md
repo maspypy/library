@@ -170,10 +170,10 @@ data:
     \   FOR(p, i + 1, j) if (nxt[p] == -1) cl = 0;\n          if (cl) close++;\n \
     \       }\n        return a - close == after;\n      }(now, nxt, convert);\n \
     \     if (!ok) continue;\n      u64 h = hash_vector<int>(nxt);\n      int idx\
-    \ = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.used[idx] = 1, MP.IDS.eb(idx),\
-    \ MP.key[idx] = h,\n        MP.val[idx] = len(states);\n        states.eb(nxt);\n\
-    \      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n  return {states, edges};\n\
-    }\n\n} // namespace connected_dp_squares\n"
+    \ = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.used[idx] = 1, MP.key[idx]\
+    \ = h, MP.val[idx] = len(states), MP.capa--;\n        states.eb(nxt);\n      }\n\
+    \      edges.eb(p, MP.val[idx]);\n    }\n  }\n  return {states, edges};\n}\n}\
+    \ // namespace connected_dp_squares\n"
   code: "#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\n\nnamespace\
     \ connected_dp_squares {\n// pair<\u65B0\u3057\u3044\u72B6\u614B\u3001\u4ECA\u306E\
     \u6210\u5206 \u2192 \u65B0\u3057\u3044\u6210\u5206>\nvc<pair<vc<int>, vc<int>>>\
@@ -246,9 +246,9 @@ data:
     \          if (cl) close++;\n        }\n        return a - close == after;\n \
     \     }(now, nxt, convert);\n      if (!ok) continue;\n      u64 h = hash_vector<int>(nxt);\n\
     \      int idx = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.used[idx]\
-    \ = 1, MP.IDS.eb(idx), MP.key[idx] = h,\n        MP.val[idx] = len(states);\n\
-    \        states.eb(nxt);\n      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n\
-    \  return {states, edges};\n}\n\n} // namespace connected_dp_squares"
+    \ = 1, MP.key[idx] = h, MP.val[idx] = len(states), MP.capa--;\n        states.eb(nxt);\n\
+    \      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n  return {states, edges};\n\
+    }\n} // namespace connected_dp_squares"
   dependsOn:
   - ds/hashmap.hpp
   - random/hash_vector.hpp
@@ -257,7 +257,7 @@ data:
   isVerificationFile: false
   path: other/connected_dp.hpp
   requiredBy: []
-  timestamp: '2024-01-27 12:03:51+09:00'
+  timestamp: '2024-01-27 12:26:59+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp

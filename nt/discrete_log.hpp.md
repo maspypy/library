@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
   - icon: ':question:'
@@ -11,14 +11,14 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/discrete_logarithm_mod.test.cpp
     title: test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test_atcoder/abc270_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -75,7 +75,7 @@ data:
     \n    X res = Mono::unit();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res,\
     \ p);\r\n      p = Mono::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
     \n  };\r\n\r\n  auto Ht = H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64\
-    \ LIM = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<bool> MP(K);\r\
+    \ LIM = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<char> MP(K);\r\
     \n\r\n  FOR(k, K) {\r\n    t = ActedSet::act(t, x);\r\n    MP[H(t)] = 1;\r\n \
     \ }\r\n\r\n  X y = xpow(K);\r\n  int failed = 0;\r\n  FOR(k, K + 1) {\r\n    S\
     \ s1 = ActedSet::act(s, y);\r\n    if (MP.count(H(s1))) {\r\n      FOR(i, K) {\r\
@@ -104,7 +104,7 @@ data:
     \ while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p,\
     \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  auto Ht =\
     \ H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n \
-    \ ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<bool> MP(K);\r\n\r\n  FOR(k, K) {\r\n\
+    \ ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<char> MP(K);\r\n\r\n  FOR(k, K) {\r\n\
     \    t = ActedSet::act(t, x);\r\n    MP[H(t)] = 1;\r\n  }\r\n\r\n  X y = xpow(K);\r\
     \n  int failed = 0;\r\n  FOR(k, K + 1) {\r\n    S s1 = ActedSet::act(s, y);\r\n\
     \    if (MP.count(H(s1))) {\r\n      FOR(i, K) {\r\n        if (H(s) == Ht) {\r\
@@ -126,8 +126,8 @@ data:
   path: nt/discrete_log.hpp
   requiredBy:
   - mod/mod_log.hpp
-  timestamp: '2024-01-27 11:52:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-27 12:26:59+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1339.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':question:'
@@ -270,7 +270,7 @@ data:
     \n    X res = Mono::unit();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res,\
     \ p);\r\n      p = Mono::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
     \n  };\r\n\r\n  auto Ht = H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64\
-    \ LIM = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<bool> MP(K);\r\
+    \ LIM = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<char> MP(K);\r\
     \n\r\n  FOR(k, K) {\r\n    t = ActedSet::act(t, x);\r\n    MP[H(t)] = 1;\r\n \
     \ }\r\n\r\n  X y = xpow(K);\r\n  int failed = 0;\r\n  FOR(k, K + 1) {\r\n    S\
     \ s1 = ActedSet::act(s, y);\r\n    if (MP.count(H(s1))) {\r\n      FOR(i, K) {\r\
@@ -503,7 +503,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc222g.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:52:36+09:00'
+  timestamp: '2024-01-27 12:26:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc222g.test.cpp

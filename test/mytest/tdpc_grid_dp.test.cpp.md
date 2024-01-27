@@ -322,19 +322,18 @@ data:
     \          if (cl) close++;\n        }\n        return a - close == after;\n \
     \     }(now, nxt, convert);\n      if (!ok) continue;\n      u64 h = hash_vector<int>(nxt);\n\
     \      int idx = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.used[idx]\
-    \ = 1, MP.IDS.eb(idx), MP.key[idx] = h,\n        MP.val[idx] = len(states);\n\
-    \        states.eb(nxt);\n      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n\
-    \  return {states, edges};\n}\n\n} // namespace connected_dp_squares\n#line 8\
-    \ \"test/mytest/tdpc_grid_dp.test.cpp\"\n\nusing mint = modint107;\n\nmint calc_tdpc_grid(int\
-    \ H, int W) {\n  HashMap<int> MP;\n\n  using P = pair<vc<int>, int>;\n  vc<P>\
-    \ states;\n\n  auto get_hash = [&](vc<int> a, int b) -> ll {\n    a.eb(b);\n \
-    \   return hash_vector<int>(a);\n  };\n\n  vc<int> init(H, -1);\n  init[0] = 0;\n\
-    \  states.eb(init, 0);\n  vc<int> end(H, -1);\n  end[H - 1] = H - 1;\n  states.eb(end,\
-    \ H - 1);\n  FOR(i, 2) {\n    auto [a, b] = states[i];\n    ll h = get_hash(a,\
-    \ b);\n    MP[h] = i;\n  }\n\n  vc<pi> edges;\n\n  int p = -1;\n  while (1) {\n\
-    \    ++p;\n    if (p >= len(states)) break;\n    auto [now, r] = states[p];\n\
-    \    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now)) {\n \
-    \     int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
+    \ = 1, MP.key[idx] = h, MP.val[idx] = len(states), MP.capa--;\n        states.eb(nxt);\n\
+    \      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n  return {states, edges};\n\
+    }\n} // namespace connected_dp_squares\n#line 8 \"test/mytest/tdpc_grid_dp.test.cpp\"\
+    \n\nusing mint = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMap<int>\
+    \ MP;\n\n  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash =\
+    \ [&](vc<int> a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n\
+    \  };\n\n  vc<int> init(H, -1);\n  init[0] = 0;\n  states.eb(init, 0);\n  vc<int>\
+    \ end(H, -1);\n  end[H - 1] = H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n\
+    \    auto [a, b] = states[i];\n    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\
+    \n  vc<pi> edges;\n\n  int p = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states))\
+    \ break;\n    auto [now, r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now))\
+    \ {\n      int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
     \ s);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt,\
     \ s);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n  int S = len(states);\n\
     \  vc<mint> dp(S);\n  dp[0] = mint(1);\n  FOR(W + 1) {\n    vc<mint> newdp(S);\n\
@@ -377,7 +376,7 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 12:03:51+09:00'
+  timestamp: '2024-01-27 12:26:59+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
