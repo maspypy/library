@@ -7,6 +7,8 @@ struct To_Small_Key {
 
   To_Small_Key(u32 n = 0) : MP(n) {}
 
+  void reserve(u32 n) { MP.build(n); }
+
   int set_key(u64 x) {
     if (!MP.count(x)) MP[x] = kind++;
     return MP[x];
