@@ -8,7 +8,7 @@
 void solve() {
   RollingHash RH;
   LL(N);
-  HashMap<bool> MP(N);
+  HashMap<char> MP(N);
   FOR(N) {
     STR(S);
     ll n = len(S);
