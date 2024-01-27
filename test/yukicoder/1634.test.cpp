@@ -57,11 +57,10 @@ void solve() {
   auto Y = calc(N / 2, N, 1);
 
   ll ANS = 0;
-  HashMap<int, 14, true> MP;
   FOR(s, 1 << N) {
     if (X[s].empty() || Y[s].empty()) continue;
-    MP.reset();
     auto &P = X[s], &Q = Y[s];
+    HashMap<int> MP(len(P));
     for (auto&& x: P) MP[x]++;
     for (auto&& x: Q)
       if (MP.count(x)) ANS += MP[x];

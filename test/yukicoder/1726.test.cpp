@@ -10,13 +10,11 @@ void solve() {
   VEC(pi, AB, N);
   VEC(pi, CD, M);
 
-  HashMap<ll, 20, true> MP;
-
   FOR(2) {
     for (auto&& [a, b]: AB) a = -a;
     FOR(2) {
       for (auto&& [a, b]: AB) b = -b;
-      MP.reset();
+      HashMap<ll> MP(N * M);
       FOR(i, N) FOR(j, M) {
         auto [a, b] = AB[i];
         auto [c, d] = CD[j];

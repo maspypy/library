@@ -5,12 +5,11 @@
 #include "ds/hashmap.hpp"
 
 void solve() {
-  HashMap<bool, 20> MP;
+  INT(Q);
+  HashMap<bool> MP(Q);
   Binary_Trie<30, false, 1'000'000, int, int> X;
   using np = decltype(X)::np;
   np root = nullptr;
-
-  INT(Q);
   FOR(Q) {
     INT(t, x);
     if (t == 0) {
