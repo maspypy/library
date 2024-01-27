@@ -10,9 +10,7 @@ struct To_Small_Key {
   int set_key(u64 x) {
     int idx = MP.index(x);
     if (!MP.used[idx]) {
-      MP.used[idx] = 1;
-      MP.key[idx] = x;
-      MP.val[idx] = kind++;
+      MP.used[idx] = 1 MP.key[idx] = x, MP.val[idx] = kind++, --MP.cap;
     }
     return MP.val[idx];
   }
