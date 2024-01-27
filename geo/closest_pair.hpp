@@ -4,12 +4,11 @@
 #include "ds/hashmap.hpp"
 #include "random/hash_pair.hpp"
 
-template <typename T, int LOG = 20>
+template <typename T>
 pair<int, int> closest_pair(vc<Point<T>> points) {
-  static HashMap<int, LOG, true> MP;
-  MP.reset();
   int N = len(points);
-  assert(N >= 2 && N < (1 << LOG));
+  assert(N >= 2);
+  HashMap<int> MP(N);
   vc<int> I(N);
   iota(all(I), 0);
   shuffle(I);
@@ -50,7 +49,7 @@ pair<int, int> closest_pair(vc<Point<T>> points) {
   FOR(i, 2, N) {
     if (query(i)) {
       if (best == T(0)) break;
-      MP.reset();
+      MP.build(N);
       FOR(j, i) insert(j);
     }
     insert(i);
