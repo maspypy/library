@@ -6,7 +6,7 @@ struct Array_On_Divisors {
   vc<pair<ll, int>> pf;
   vc<ll> divs;
   vc<T> dat;
-  HashMap<int, 20, true> MP;
+  HashMap<int> MP;
 
   Array_On_Divisors(ll N = 1) { build(N); }
   Array_On_Divisors(vc<pair<ll, int>> pf) { build(pf); }
@@ -28,7 +28,7 @@ struct Array_On_Divisors {
         q *= p;
       }
     }
-    MP.reset();
+    MP.build(n);
     FOR(i, n) MP[divs[i]] = i;
   }
 

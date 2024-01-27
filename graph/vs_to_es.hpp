@@ -6,8 +6,7 @@ template <typename GT>
 vc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {
   assert(!vs.empty());
 
-  static HashMap<int, 20, true> MP;
-  MP.reset();
+  HashMap<int> MP(G.M);
   vc<int> nxt(G.M, -1);
 
   auto get = [&](ll a, ll b) -> u64 {
