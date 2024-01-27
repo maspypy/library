@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -181,64 +181,62 @@ data:
     \ y);\n  }\n  void add_query(int L, int R) {\n    assert(R - L >= 2);\n    query.eb(L,\
     \ R);\n  }\n  ll dist(int i, int j) {\n    ll dx = point[i].fi - point[j].fi;\n\
     \    ll dy = point[i].se - point[j].se;\n    return dx * dx + dy * dy;\n  }\n\n\
-    \  vc<ll> calc() {\n    static HashMap<int, 20, true> MP;\n    MP.reset();\n \
-    \   const int K = LOG;\n    const int N = len(point), Q = len(query);\n    using\
-    \ A9 = array<int, 9>;\n    // \u305D\u308C\u305E\u308C\u306E\u30EC\u30D9\u30EB\
-    \u306E\u3068\u304D\u306E\u30BB\u30EB\u756A\u53F7\n    vv(int, IDX, K, N, -1);\n\
-    \    // \u5404\u30BB\u30EB\u756A\u53F7\u306B\u5BFE\u3059\u308B\u8FD1\u508D\n \
-    \   vc<A9> nbd;\n    FOR(k, 1, K) {\n      MP.reset();\n      auto to_64 = [&](int\
-    \ x, int y) -> u64 { return u64(x) << 30 | y; };\n      int off = len(nbd);\n\
-    \      int p = off;\n      FOR(i, N) {\n        int x = point[i].fi >> (k);\n\
-    \        int y = point[i].se >> (k);\n        u64 key = to_64(x, y);\n       \
-    \ int idx = MP.index(key);\n        if (!MP.used[idx]) {\n          MP.used[idx]\
-    \ = 1, MP.IDS.eb(idx), MP.key[idx] = key,\n          MP.val[idx] = p++;\n    \
-    \    }\n        IDX[k][i] = MP.val[idx];\n      }\n      nbd.resize(p);\n    \
-    \  FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
+    \  vc<ll> calc() {\n    const int K = LOG;\n    const int N = len(point), Q =\
+    \ len(query);\n    using A9 = array<int, 9>;\n    // \u305D\u308C\u305E\u308C\u306E\
+    \u30EC\u30D9\u30EB\u306E\u3068\u304D\u306E\u30BB\u30EB\u756A\u53F7\n    vv(int,\
+    \ IDX, K, N, -1);\n    // \u5404\u30BB\u30EB\u756A\u53F7\u306B\u5BFE\u3059\u308B\
+    \u8FD1\u508D\n    vc<A9> nbd;\n    FOR(k, 1, K) {\n      HashMap<int> MP(N);\n\
+    \      auto to_64 = [&](int x, int y) -> u64 { return u64(x) << 30 | y; };\n \
+    \     int off = len(nbd);\n      int p = off;\n      FOR(i, N) {\n        int\
+    \ x = point[i].fi >> (k);\n        int y = point[i].se >> (k);\n        u64 key\
+    \ = to_64(x, y);\n        int idx = MP.index(key);\n        if (!MP.used[idx])\
+    \ {\n          MP.used[idx] = 1, MP.key[idx] = key, MP.cap -= 1, MP.val[idx] =\
+    \ p++;\n        }\n        IDX[k][i] = MP.val[idx];\n      }\n      nbd.resize(p);\n\
+    \      FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
     \ >> (k);\n        int me = MP[to_64(x, y)];\n        int s = 0;\n        FOR(dx,\
     \ -1, 2) FOR(dy, -1, 2) {\n          u64 key = to_64(x + dx, y + dy);\n      \
-    \    nbd[me][s++] = (MP.count(key) ? MP[key] : -1);\n        }\n      }\n    }\n\
-    \n    vc<array<int, 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});\n   \
-    \ auto add = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n      for\
-    \ (auto&& j: dat[idx]) {\n        if (j == -1) {\n          j = i;\n         \
-    \ return;\n        }\n      }\n    };\n    auto rm = [&](int k, int i) -> void\
-    \ {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx]) {\n        if\
-    \ (j == i) {\n          j = -1;\n          return;\n        }\n      }\n    };\n\
-    \n    auto solve_level = [&](int k, int i) -> vc<pair<int, ll>> {\n      // \u30EC\
-    \u30D9\u30EB k \u306E\u70B9\u7FA4\u306B\u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\
-    \n      vc<pair<int, ll>> res;\n      int me = IDX[k][i];\n      for (auto&& idx:\
-    \ nbd[me]) {\n        if (idx == -1) continue;\n        for (auto&& j: dat[idx])\
-    \ {\n          if (j == -1) continue;\n          res.eb(j, dist(i, j));\n    \
-    \    }\n      }\n      return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n\
-    \    vc<int> LEVEL(N, -1);\n    auto get_lv = [&](ll d) -> int {\n      if (d\
-    \ == 0) return 0;\n      return topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n\
-    \    vvc<int> query_at(N);\n    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n\
-    \      left[qid] = L;\n      query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\
-    \n    FOR(R, N) {\n      // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\
-    \u7B54\u306E\u66F4\u65B0\n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n\
-    \        auto res = solve_level(k, R);\n        upd.insert(upd.end(), all(res));\n\
-    \      }\n\n      for (auto [i, d]: upd) {\n        int lv = get_lv(d);\n    \
-    \    if (seg.get(i) < d) continue;\n        // \u7B54\u3048\u306E\u66F4\u65B0\n\
-    \        seg.apply(0, i + 1, d);\n        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\
-    \n        while (i >= 0 && LEVEL[i] > lv) {\n          rm(LEVEL[i], i);\n    \
-    \      LEVEL[i] = lv;\n          if (lv) add(lv, i);\n          --i;\n       \
-    \ }\n      }\n      LEVEL[R] = K - 1;\n      add(K - 1, R);\n      for (auto&&\
-    \ qid: query_at[R]) { ANS[qid] = seg.get(left[qid]); }\n    }\n    return ANS;\n\
-    \  }\n};\n#line 5 \"test/mytest/range_closest_pair.test.cpp\"\n\nvoid test() {\n\
-    \  FOR(N, 2, 100) {\n    FOR(Q, 1, 100) {\n      vc<pair<int, int>> point(N),\
-    \ query(Q);\n      FOR(i, N) {\n        int x = RNG(0, 20);\n        int y = RNG(0,\
-    \ 20);\n        point[i] = {x, y};\n      }\n      FOR(q, Q) {\n        while\
-    \ (1) {\n          int L = RNG(0, N);\n          int R = RNG(0, N);\n        \
-    \  if (L + 1 <= R) {\n            query[q] = {L, R + 1};\n            break;\n\
-    \          }\n        }\n      }\n      Range_Closest_Pair_Query X;\n      for\
-    \ (auto&& [a, b]: point) X.add_point(a, b);\n      for (auto&& [l, r]: query)\
-    \ X.add_query(l, r);\n      vi ANS = X.calc();\n      FOR(q, Q) {\n        ll\
-    \ ans = infty<ll>;\n        auto [L, R] = query[q];\n        FOR(i, L, R) FOR(j,\
-    \ L, R) {\n          if (i == j) continue;\n          auto [x1, y1] = point[i];\n\
-    \          auto [x2, y2] = point[j];\n          ll dx = x1 - x2, dy = y1 - y2;\n\
-    \          chmin(ans, dx * dx + dy * dy);\n        }\n        assert(ans == ANS[q]);\n\
-    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \    nbd[me][s++] = MP.get(key, -1);\n        }\n      }\n    }\n\n    vc<array<int,\
+    \ 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});\n    auto add = [&](int\
+    \ k, int i) -> void {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx])\
+    \ {\n        if (j == -1) {\n          j = i;\n          return;\n        }\n\
+    \      }\n    };\n    auto rm = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n\
+    \      for (auto&& j: dat[idx]) {\n        if (j == i) {\n          j = -1;\n\
+    \          return;\n        }\n      }\n    };\n\n    auto solve_level = [&](int\
+    \ k, int i) -> vc<pair<int, ll>> {\n      // \u30EC\u30D9\u30EB k \u306E\u70B9\
+    \u7FA4\u306B\u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\n      vc<pair<int, ll>>\
+    \ res;\n      int me = IDX[k][i];\n      for (auto&& idx: nbd[me]) {\n       \
+    \ if (idx == -1) continue;\n        for (auto&& j: dat[idx]) {\n          if (j\
+    \ == -1) continue;\n          res.eb(j, dist(i, j));\n        }\n      }\n   \
+    \   return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n    vc<int>\
+    \ LEVEL(N, -1);\n    auto get_lv = [&](ll d) -> int {\n      if (d == 0) return\
+    \ 0;\n      return topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n    vvc<int>\
+    \ query_at(N);\n    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n      left[qid]\
+    \ = L;\n      query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\n    FOR(R, N)\
+    \ {\n      // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\u7B54\u306E\u66F4\
+    \u65B0\n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n        auto res =\
+    \ solve_level(k, R);\n        upd.insert(upd.end(), all(res));\n      }\n\n  \
+    \    for (auto [i, d]: upd) {\n        int lv = get_lv(d);\n        if (seg.get(i)\
+    \ < d) continue;\n        // \u7B54\u3048\u306E\u66F4\u65B0\n        seg.apply(0,\
+    \ i + 1, d);\n        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\n        while (i\
+    \ >= 0 && LEVEL[i] > lv) {\n          rm(LEVEL[i], i);\n          LEVEL[i] = lv;\n\
+    \          if (lv) add(lv, i);\n          --i;\n        }\n      }\n      LEVEL[R]\
+    \ = K - 1;\n      add(K - 1, R);\n      for (auto&& qid: query_at[R]) { ANS[qid]\
+    \ = seg.get(left[qid]); }\n    }\n    return ANS;\n  }\n};\n#line 5 \"test/mytest/range_closest_pair.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 2, 100) {\n    FOR(Q, 1, 100) {\n      vc<pair<int,\
+    \ int>> point(N), query(Q);\n      FOR(i, N) {\n        int x = RNG(0, 20);\n\
+    \        int y = RNG(0, 20);\n        point[i] = {x, y};\n      }\n      FOR(q,\
+    \ Q) {\n        while (1) {\n          int L = RNG(0, N);\n          int R = RNG(0,\
+    \ N);\n          if (L + 1 <= R) {\n            query[q] = {L, R + 1};\n     \
+    \       break;\n          }\n        }\n      }\n      Range_Closest_Pair_Query\
+    \ X;\n      for (auto&& [a, b]: point) X.add_point(a, b);\n      for (auto&& [l,\
+    \ r]: query) X.add_query(l, r);\n      vi ANS = X.calc();\n      FOR(q, Q) {\n\
+    \        ll ans = infty<ll>;\n        auto [L, R] = query[q];\n        FOR(i,\
+    \ L, R) FOR(j, L, R) {\n          if (i == j) continue;\n          auto [x1, y1]\
+    \ = point[i];\n          auto [x2, y2] = point[j];\n          ll dx = x1 - x2,\
+    \ dy = y1 - y2;\n          chmin(ans, dx * dx + dy * dy);\n        }\n       \
+    \ assert(ans == ANS[q]);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"geo/range_closest_pair_query.hpp\"\n\
     \nvoid test() {\n  FOR(N, 2, 100) {\n    FOR(Q, 1, 100) {\n      vc<pair<int,\
@@ -266,8 +264,8 @@ data:
   isVerificationFile: true
   path: test/mytest/range_closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:27:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-27 11:52:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/range_closest_pair.test.cpp
 layout: document

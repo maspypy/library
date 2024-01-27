@@ -5,14 +5,14 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/eulerwalk_d.test.cpp
     title: test/library_checker/graph/eulerwalk_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/eulerwalk_ud.test.cpp
     title: test/library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/arc157a.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\r\n\
@@ -48,32 +48,30 @@ data:
     \n    }\r\n    build(2 * len(used));\r\n    for (auto& [a, b]: dat) (*this)[a]\
     \ = b;\r\n  }\r\n};\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\n\
     vc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
-    \n  static HashMap<int, 20, true> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\
-    \n  auto get = [&](ll a, ll b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a,\
-    \ b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm,\
-    \ G.edges[eid].to);\n    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n\
-    \  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k =\
-    \ get(vs[i], vs[i + 1]);\n    int eid = MP.get(k, -1);\n    assert(eid != -1);\n\
-    \    es[i] = eid;\n    if (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return\
-    \ es;\n}\n"
+    \n  HashMap<int> MP(G.M);\n  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll\
+    \ b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a, b);\n    return a *\
+    \ G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n\
+    \    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n\
+    \  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n\
+    \    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if\
+    \ (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n"
   code: "#pragma once\n\n#include \"ds/hashmap.hpp\"\n\ntemplate <typename GT>\nvc<int>\
     \ vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
-    \n  static HashMap<int, 20, true> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\
-    \n  auto get = [&](ll a, ll b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a,\
-    \ b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm,\
-    \ G.edges[eid].to);\n    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n\
-    \  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k =\
-    \ get(vs[i], vs[i + 1]);\n    int eid = MP.get(k, -1);\n    assert(eid != -1);\n\
-    \    es[i] = eid;\n    if (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return\
-    \ es;\n}"
+    \n  HashMap<int> MP(G.M);\n  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll\
+    \ b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a, b);\n    return a *\
+    \ G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n\
+    \    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n\
+    \  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n\
+    \    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if\
+    \ (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n}"
   dependsOn:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: graph/vs_to_es.hpp
   requiredBy:
   - graph/eulerwalk.hpp
-  timestamp: '2024-01-27 11:27:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-27 11:52:36+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/graph/eulerwalk_d.test.cpp
   - test/library_checker/graph/eulerwalk_ud.test.cpp

@@ -446,34 +446,34 @@ data:
     \u95A2\u6570 H\uFF1AS -> Z\r\n// x in X, s, t in S \u306B\u5BFE\u3057\u3066 x^ns\
     \ = t \u3092\u89E3\u304F\r\n// [lb, ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\
     \u3048\u3059\u3002\u306A\u3051\u308C\u3070 -1 \u3092\u304B\u3048\u3059\u3002\r\
-    \ntemplate <typename ActedSet, typename F, int MP_SIZE = 20>\r\nll discrete_log_acted(typename\
-    \ ActedSet::A x, typename ActedSet::S s,\r\n                      typename ActedSet::S\
-    \ t, F H, ll lb, ll ub) {\r\n  static HashMap<bool, MP_SIZE, true> MP;\r\n  MP.reset();\r\
-    \n  using Mono = typename ActedSet::Monoid_A;\r\n  using X = typename Mono::value_type;\r\
-    \n  using S = typename ActedSet::S;\r\n\r\n  if (lb >= ub) return -1;\r\n  auto\
-    \ xpow = [&](ll n) -> X {\r\n    X p = x;\r\n    X res = Mono::unit();\r\n   \
-    \ while (n) {\r\n      if (n & 1) res = Mono::op(res, p);\r\n      p = Mono::op(p,\
-    \ p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\n  };\r\n\r\n  auto Ht =\
-    \ H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64 LIM = ub - lb;\r\n\r\n \
-    \ ll K = sqrt(LIM) + 1;\r\n\r\n  FOR(k, K) {\r\n    t = ActedSet::act(t, x);\r\
-    \n    MP[H(t)] = 1;\r\n  }\r\n\r\n  X y = xpow(K);\r\n  int failed = 0;\r\n  FOR(k,\
-    \ K + 1) {\r\n    S s1 = ActedSet::act(s, y);\r\n    if (MP.count(H(s1))) {\r\n\
-    \      FOR(i, K) {\r\n        if (H(s) == Ht) {\r\n          ll ans = k * K +\
-    \ i + lb;\r\n          return (ans >= ub ? -1 : ans);\r\n        }\r\n       \
-    \ s = ActedSet::act(s, x);\r\n      }\r\n      if (failed) return -1;\r\n    \
-    \  failed = 1;\r\n    }\r\n    s = s1;\r\n  }\r\n  return -1;\r\n}\r\n\r\n// \u7FA4\
-    \ X \u306B\u304A\u3051\u308B log_a b \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\
-    \u30E5\u95A2\u6570 H : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb,\
-    \ ub) \u306E\u6700\u521D\u306E\u89E3\u3092\u304B\u3048\u3059\u3001\u306A\u3051\
-    \u308C\u3070 -1\r\ntemplate <typename Monoid, typename F>\r\nll discrete_log_monoid(typename\
-    \ Monoid::X a, typename Monoid::X b, F H, ll lb,\r\n                       ll\
-    \ ub) {\r\n  using AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a,\
-    \ Monoid::unit(), b, H, lb, ub);\r\n}\r\n#line 8 \"test_atcoder/abc270_g.test.cpp\"\
-    \n\nusing mint = dmint;\n\nvoid solve() {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n\
-    \  using AS = ActedSet_Affine<mint>;\n  auto h = [&](mint x) -> ll { return x.val;\
-    \ };\n\n  ll ANS = discrete_log_acted<AS, decltype(h), 18>({A, B}, S, G, h, 0,\
-    \ P);\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ntemplate <typename ActedSet, typename F>\r\nll discrete_log_acted(typename ActedSet::A\
+    \ x, typename ActedSet::S s,\r\n                      typename ActedSet::S t,\
+    \ F H, ll lb, ll ub) {\r\n  using Mono = typename ActedSet::Monoid_A;\r\n  using\
+    \ X = typename Mono::value_type;\r\n  using S = typename ActedSet::S;\r\n\r\n\
+    \  if (lb >= ub) return -1;\r\n  auto xpow = [&](ll n) -> X {\r\n    X p = x;\r\
+    \n    X res = Mono::unit();\r\n    while (n) {\r\n      if (n & 1) res = Mono::op(res,\
+    \ p);\r\n      p = Mono::op(p, p);\r\n      n /= 2;\r\n    }\r\n    return res;\r\
+    \n  };\r\n\r\n  auto Ht = H(t);\r\n  s = ActedSet::act(s, xpow(lb));\r\n  u64\
+    \ LIM = ub - lb;\r\n\r\n  ll K = sqrt(LIM) + 1;\r\n\r\n  HashMap<bool> MP(K);\r\
+    \n\r\n  FOR(k, K) {\r\n    t = ActedSet::act(t, x);\r\n    MP[H(t)] = 1;\r\n \
+    \ }\r\n\r\n  X y = xpow(K);\r\n  int failed = 0;\r\n  FOR(k, K + 1) {\r\n    S\
+    \ s1 = ActedSet::act(s, y);\r\n    if (MP.count(H(s1))) {\r\n      FOR(i, K) {\r\
+    \n        if (H(s) == Ht) {\r\n          ll ans = k * K + i + lb;\r\n        \
+    \  return (ans >= ub ? -1 : ans);\r\n        }\r\n        s = ActedSet::act(s,\
+    \ x);\r\n      }\r\n      if (failed) return -1;\r\n      failed = 1;\r\n    }\r\
+    \n    s = s1;\r\n  }\r\n  return -1;\r\n}\r\n\r\n// \u7FA4 X \u306B\u304A\u3051\
+    \u308B log_a b \u306E\u8A08\u7B97\r\n// \u30CF\u30C3\u30B7\u30E5\u95A2\u6570 H\
+    \ : X -> long long \u3092\u6301\u305F\u305B\u308B\r\n// [lb, ub) \u306E\u6700\u521D\
+    \u306E\u89E3\u3092\u304B\u3048\u3059\u3001\u306A\u3051\u308C\u3070 -1\r\ntemplate\
+    \ <typename Monoid, typename F>\r\nll discrete_log_monoid(typename Monoid::X a,\
+    \ typename Monoid::X b, F H, ll lb,\r\n                       ll ub) {\r\n  using\
+    \ AM = ActedSet_From_Monoid<Monoid>;\r\n  return discrete_log_acted<AM>(a, Monoid::unit(),\
+    \ b, H, lb, ub);\r\n}\r\n#line 8 \"test_atcoder/abc270_g.test.cpp\"\n\nusing mint\
+    \ = dmint;\n\nvoid solve() {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n  using\
+    \ AS = ActedSet_Affine<mint>;\n  auto h = [&](mint x) -> ll { return x.val; };\n\
+    \n  ll ANS = discrete_log_acted<AS, decltype(h), 18>({A, B}, S, G, h, 0, P);\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
+    \  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n#include \"alg/acted_set/affine.hpp\"\n\
@@ -504,7 +504,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:27:49+09:00'
+  timestamp: '2024-01-27 11:52:36+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp

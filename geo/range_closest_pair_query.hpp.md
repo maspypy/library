@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/range_closest_pair.test.cpp
     title: test/mytest/range_closest_pair.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf
@@ -90,49 +90,47 @@ data:
     \ y);\n  }\n  void add_query(int L, int R) {\n    assert(R - L >= 2);\n    query.eb(L,\
     \ R);\n  }\n  ll dist(int i, int j) {\n    ll dx = point[i].fi - point[j].fi;\n\
     \    ll dy = point[i].se - point[j].se;\n    return dx * dx + dy * dy;\n  }\n\n\
-    \  vc<ll> calc() {\n    static HashMap<int, 20, true> MP;\n    MP.reset();\n \
-    \   const int K = LOG;\n    const int N = len(point), Q = len(query);\n    using\
-    \ A9 = array<int, 9>;\n    // \u305D\u308C\u305E\u308C\u306E\u30EC\u30D9\u30EB\
-    \u306E\u3068\u304D\u306E\u30BB\u30EB\u756A\u53F7\n    vv(int, IDX, K, N, -1);\n\
-    \    // \u5404\u30BB\u30EB\u756A\u53F7\u306B\u5BFE\u3059\u308B\u8FD1\u508D\n \
-    \   vc<A9> nbd;\n    FOR(k, 1, K) {\n      MP.reset();\n      auto to_64 = [&](int\
-    \ x, int y) -> u64 { return u64(x) << 30 | y; };\n      int off = len(nbd);\n\
-    \      int p = off;\n      FOR(i, N) {\n        int x = point[i].fi >> (k);\n\
-    \        int y = point[i].se >> (k);\n        u64 key = to_64(x, y);\n       \
-    \ int idx = MP.index(key);\n        if (!MP.used[idx]) {\n          MP.used[idx]\
-    \ = 1, MP.IDS.eb(idx), MP.key[idx] = key,\n          MP.val[idx] = p++;\n    \
-    \    }\n        IDX[k][i] = MP.val[idx];\n      }\n      nbd.resize(p);\n    \
-    \  FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
+    \  vc<ll> calc() {\n    const int K = LOG;\n    const int N = len(point), Q =\
+    \ len(query);\n    using A9 = array<int, 9>;\n    // \u305D\u308C\u305E\u308C\u306E\
+    \u30EC\u30D9\u30EB\u306E\u3068\u304D\u306E\u30BB\u30EB\u756A\u53F7\n    vv(int,\
+    \ IDX, K, N, -1);\n    // \u5404\u30BB\u30EB\u756A\u53F7\u306B\u5BFE\u3059\u308B\
+    \u8FD1\u508D\n    vc<A9> nbd;\n    FOR(k, 1, K) {\n      HashMap<int> MP(N);\n\
+    \      auto to_64 = [&](int x, int y) -> u64 { return u64(x) << 30 | y; };\n \
+    \     int off = len(nbd);\n      int p = off;\n      FOR(i, N) {\n        int\
+    \ x = point[i].fi >> (k);\n        int y = point[i].se >> (k);\n        u64 key\
+    \ = to_64(x, y);\n        int idx = MP.index(key);\n        if (!MP.used[idx])\
+    \ {\n          MP.used[idx] = 1, MP.key[idx] = key, MP.cap -= 1, MP.val[idx] =\
+    \ p++;\n        }\n        IDX[k][i] = MP.val[idx];\n      }\n      nbd.resize(p);\n\
+    \      FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
     \ >> (k);\n        int me = MP[to_64(x, y)];\n        int s = 0;\n        FOR(dx,\
     \ -1, 2) FOR(dy, -1, 2) {\n          u64 key = to_64(x + dx, y + dy);\n      \
-    \    nbd[me][s++] = (MP.count(key) ? MP[key] : -1);\n        }\n      }\n    }\n\
-    \n    vc<array<int, 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});\n   \
-    \ auto add = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n      for\
-    \ (auto&& j: dat[idx]) {\n        if (j == -1) {\n          j = i;\n         \
-    \ return;\n        }\n      }\n    };\n    auto rm = [&](int k, int i) -> void\
-    \ {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx]) {\n        if\
-    \ (j == i) {\n          j = -1;\n          return;\n        }\n      }\n    };\n\
-    \n    auto solve_level = [&](int k, int i) -> vc<pair<int, ll>> {\n      // \u30EC\
-    \u30D9\u30EB k \u306E\u70B9\u7FA4\u306B\u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\
-    \n      vc<pair<int, ll>> res;\n      int me = IDX[k][i];\n      for (auto&& idx:\
-    \ nbd[me]) {\n        if (idx == -1) continue;\n        for (auto&& j: dat[idx])\
-    \ {\n          if (j == -1) continue;\n          res.eb(j, dist(i, j));\n    \
-    \    }\n      }\n      return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n\
-    \    vc<int> LEVEL(N, -1);\n    auto get_lv = [&](ll d) -> int {\n      if (d\
-    \ == 0) return 0;\n      return topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n\
-    \    vvc<int> query_at(N);\n    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n\
-    \      left[qid] = L;\n      query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\
-    \n    FOR(R, N) {\n      // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\
-    \u7B54\u306E\u66F4\u65B0\n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n\
-    \        auto res = solve_level(k, R);\n        upd.insert(upd.end(), all(res));\n\
-    \      }\n\n      for (auto [i, d]: upd) {\n        int lv = get_lv(d);\n    \
-    \    if (seg.get(i) < d) continue;\n        // \u7B54\u3048\u306E\u66F4\u65B0\n\
-    \        seg.apply(0, i + 1, d);\n        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\
-    \n        while (i >= 0 && LEVEL[i] > lv) {\n          rm(LEVEL[i], i);\n    \
-    \      LEVEL[i] = lv;\n          if (lv) add(lv, i);\n          --i;\n       \
-    \ }\n      }\n      LEVEL[R] = K - 1;\n      add(K - 1, R);\n      for (auto&&\
-    \ qid: query_at[R]) { ANS[qid] = seg.get(left[qid]); }\n    }\n    return ANS;\n\
-    \  }\n};\n"
+    \    nbd[me][s++] = MP.get(key, -1);\n        }\n      }\n    }\n\n    vc<array<int,\
+    \ 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});\n    auto add = [&](int\
+    \ k, int i) -> void {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx])\
+    \ {\n        if (j == -1) {\n          j = i;\n          return;\n        }\n\
+    \      }\n    };\n    auto rm = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n\
+    \      for (auto&& j: dat[idx]) {\n        if (j == i) {\n          j = -1;\n\
+    \          return;\n        }\n      }\n    };\n\n    auto solve_level = [&](int\
+    \ k, int i) -> vc<pair<int, ll>> {\n      // \u30EC\u30D9\u30EB k \u306E\u70B9\
+    \u7FA4\u306B\u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\n      vc<pair<int, ll>>\
+    \ res;\n      int me = IDX[k][i];\n      for (auto&& idx: nbd[me]) {\n       \
+    \ if (idx == -1) continue;\n        for (auto&& j: dat[idx]) {\n          if (j\
+    \ == -1) continue;\n          res.eb(j, dist(i, j));\n        }\n      }\n   \
+    \   return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n    vc<int>\
+    \ LEVEL(N, -1);\n    auto get_lv = [&](ll d) -> int {\n      if (d == 0) return\
+    \ 0;\n      return topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n    vvc<int>\
+    \ query_at(N);\n    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n      left[qid]\
+    \ = L;\n      query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\n    FOR(R, N)\
+    \ {\n      // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\u7B54\u306E\u66F4\
+    \u65B0\n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n        auto res =\
+    \ solve_level(k, R);\n        upd.insert(upd.end(), all(res));\n      }\n\n  \
+    \    for (auto [i, d]: upd) {\n        int lv = get_lv(d);\n        if (seg.get(i)\
+    \ < d) continue;\n        // \u7B54\u3048\u306E\u66F4\u65B0\n        seg.apply(0,\
+    \ i + 1, d);\n        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\n        while (i\
+    \ >= 0 && LEVEL[i] > lv) {\n          rm(LEVEL[i], i);\n          LEVEL[i] = lv;\n\
+    \          if (lv) add(lv, i);\n          --i;\n        }\n      }\n      LEVEL[R]\
+    \ = K - 1;\n      add(K - 1, R);\n      for (auto&& qid: query_at[R]) { ANS[qid]\
+    \ = seg.get(left[qid]); }\n    }\n    return ANS;\n  }\n};\n"
   code: "#include \"ds/hashmap.hpp\"\n#include \"ds/segtree/dual_segtree.hpp\"\n#include\
     \ \"alg/monoid/min.hpp\"\n\n// \u70B9\u7FA4 {p_i | i in [l, r)} \u306B\u5BFE\u3059\
     \u308B\u6700\u8FD1\u70B9\u5BFE\u306E\u8A08\u7B97\u3092\u884C\u3046\u30AF\u30A8\
@@ -156,49 +154,47 @@ data:
     \ y);\n  }\n  void add_query(int L, int R) {\n    assert(R - L >= 2);\n    query.eb(L,\
     \ R);\n  }\n  ll dist(int i, int j) {\n    ll dx = point[i].fi - point[j].fi;\n\
     \    ll dy = point[i].se - point[j].se;\n    return dx * dx + dy * dy;\n  }\n\n\
-    \  vc<ll> calc() {\n    static HashMap<int, 20, true> MP;\n    MP.reset();\n \
-    \   const int K = LOG;\n    const int N = len(point), Q = len(query);\n    using\
-    \ A9 = array<int, 9>;\n    // \u305D\u308C\u305E\u308C\u306E\u30EC\u30D9\u30EB\
-    \u306E\u3068\u304D\u306E\u30BB\u30EB\u756A\u53F7\n    vv(int, IDX, K, N, -1);\n\
-    \    // \u5404\u30BB\u30EB\u756A\u53F7\u306B\u5BFE\u3059\u308B\u8FD1\u508D\n \
-    \   vc<A9> nbd;\n    FOR(k, 1, K) {\n      MP.reset();\n      auto to_64 = [&](int\
-    \ x, int y) -> u64 { return u64(x) << 30 | y; };\n      int off = len(nbd);\n\
-    \      int p = off;\n      FOR(i, N) {\n        int x = point[i].fi >> (k);\n\
-    \        int y = point[i].se >> (k);\n        u64 key = to_64(x, y);\n       \
-    \ int idx = MP.index(key);\n        if (!MP.used[idx]) {\n          MP.used[idx]\
-    \ = 1, MP.IDS.eb(idx), MP.key[idx] = key,\n          MP.val[idx] = p++;\n    \
-    \    }\n        IDX[k][i] = MP.val[idx];\n      }\n      nbd.resize(p);\n    \
-    \  FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
+    \  vc<ll> calc() {\n    const int K = LOG;\n    const int N = len(point), Q =\
+    \ len(query);\n    using A9 = array<int, 9>;\n    // \u305D\u308C\u305E\u308C\u306E\
+    \u30EC\u30D9\u30EB\u306E\u3068\u304D\u306E\u30BB\u30EB\u756A\u53F7\n    vv(int,\
+    \ IDX, K, N, -1);\n    // \u5404\u30BB\u30EB\u756A\u53F7\u306B\u5BFE\u3059\u308B\
+    \u8FD1\u508D\n    vc<A9> nbd;\n    FOR(k, 1, K) {\n      HashMap<int> MP(N);\n\
+    \      auto to_64 = [&](int x, int y) -> u64 { return u64(x) << 30 | y; };\n \
+    \     int off = len(nbd);\n      int p = off;\n      FOR(i, N) {\n        int\
+    \ x = point[i].fi >> (k);\n        int y = point[i].se >> (k);\n        u64 key\
+    \ = to_64(x, y);\n        int idx = MP.index(key);\n        if (!MP.used[idx])\
+    \ {\n          MP.used[idx] = 1, MP.key[idx] = key, MP.cap -= 1, MP.val[idx] =\
+    \ p++;\n        }\n        IDX[k][i] = MP.val[idx];\n      }\n      nbd.resize(p);\n\
+    \      FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
     \ >> (k);\n        int me = MP[to_64(x, y)];\n        int s = 0;\n        FOR(dx,\
     \ -1, 2) FOR(dy, -1, 2) {\n          u64 key = to_64(x + dx, y + dy);\n      \
-    \    nbd[me][s++] = (MP.count(key) ? MP[key] : -1);\n        }\n      }\n    }\n\
-    \n    vc<array<int, 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});\n   \
-    \ auto add = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n      for\
-    \ (auto&& j: dat[idx]) {\n        if (j == -1) {\n          j = i;\n         \
-    \ return;\n        }\n      }\n    };\n    auto rm = [&](int k, int i) -> void\
-    \ {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx]) {\n        if\
-    \ (j == i) {\n          j = -1;\n          return;\n        }\n      }\n    };\n\
-    \n    auto solve_level = [&](int k, int i) -> vc<pair<int, ll>> {\n      // \u30EC\
-    \u30D9\u30EB k \u306E\u70B9\u7FA4\u306B\u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\
-    \n      vc<pair<int, ll>> res;\n      int me = IDX[k][i];\n      for (auto&& idx:\
-    \ nbd[me]) {\n        if (idx == -1) continue;\n        for (auto&& j: dat[idx])\
-    \ {\n          if (j == -1) continue;\n          res.eb(j, dist(i, j));\n    \
-    \    }\n      }\n      return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n\
-    \    vc<int> LEVEL(N, -1);\n    auto get_lv = [&](ll d) -> int {\n      if (d\
-    \ == 0) return 0;\n      return topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n\
-    \    vvc<int> query_at(N);\n    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n\
-    \      left[qid] = L;\n      query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\
-    \n    FOR(R, N) {\n      // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\
-    \u7B54\u306E\u66F4\u65B0\n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n\
-    \        auto res = solve_level(k, R);\n        upd.insert(upd.end(), all(res));\n\
-    \      }\n\n      for (auto [i, d]: upd) {\n        int lv = get_lv(d);\n    \
-    \    if (seg.get(i) < d) continue;\n        // \u7B54\u3048\u306E\u66F4\u65B0\n\
-    \        seg.apply(0, i + 1, d);\n        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\
-    \n        while (i >= 0 && LEVEL[i] > lv) {\n          rm(LEVEL[i], i);\n    \
-    \      LEVEL[i] = lv;\n          if (lv) add(lv, i);\n          --i;\n       \
-    \ }\n      }\n      LEVEL[R] = K - 1;\n      add(K - 1, R);\n      for (auto&&\
-    \ qid: query_at[R]) { ANS[qid] = seg.get(left[qid]); }\n    }\n    return ANS;\n\
-    \  }\n};"
+    \    nbd[me][s++] = MP.get(key, -1);\n        }\n      }\n    }\n\n    vc<array<int,\
+    \ 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});\n    auto add = [&](int\
+    \ k, int i) -> void {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx])\
+    \ {\n        if (j == -1) {\n          j = i;\n          return;\n        }\n\
+    \      }\n    };\n    auto rm = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n\
+    \      for (auto&& j: dat[idx]) {\n        if (j == i) {\n          j = -1;\n\
+    \          return;\n        }\n      }\n    };\n\n    auto solve_level = [&](int\
+    \ k, int i) -> vc<pair<int, ll>> {\n      // \u30EC\u30D9\u30EB k \u306E\u70B9\
+    \u7FA4\u306B\u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\n      vc<pair<int, ll>>\
+    \ res;\n      int me = IDX[k][i];\n      for (auto&& idx: nbd[me]) {\n       \
+    \ if (idx == -1) continue;\n        for (auto&& j: dat[idx]) {\n          if (j\
+    \ == -1) continue;\n          res.eb(j, dist(i, j));\n        }\n      }\n   \
+    \   return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n    vc<int>\
+    \ LEVEL(N, -1);\n    auto get_lv = [&](ll d) -> int {\n      if (d == 0) return\
+    \ 0;\n      return topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n    vvc<int>\
+    \ query_at(N);\n    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n      left[qid]\
+    \ = L;\n      query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\n    FOR(R, N)\
+    \ {\n      // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\u7B54\u306E\u66F4\
+    \u65B0\n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n        auto res =\
+    \ solve_level(k, R);\n        upd.insert(upd.end(), all(res));\n      }\n\n  \
+    \    for (auto [i, d]: upd) {\n        int lv = get_lv(d);\n        if (seg.get(i)\
+    \ < d) continue;\n        // \u7B54\u3048\u306E\u66F4\u65B0\n        seg.apply(0,\
+    \ i + 1, d);\n        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\n        while (i\
+    \ >= 0 && LEVEL[i] > lv) {\n          rm(LEVEL[i], i);\n          LEVEL[i] = lv;\n\
+    \          if (lv) add(lv, i);\n          --i;\n        }\n      }\n      LEVEL[R]\
+    \ = K - 1;\n      add(K - 1, R);\n      for (auto&& qid: query_at[R]) { ANS[qid]\
+    \ = seg.get(left[qid]); }\n    }\n    return ANS;\n  }\n};"
   dependsOn:
   - ds/hashmap.hpp
   - ds/segtree/dual_segtree.hpp
@@ -206,8 +202,8 @@ data:
   isVerificationFile: false
   path: geo/range_closest_pair_query.hpp
   requiredBy: []
-  timestamp: '2024-01-27 11:27:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-27 11:52:36+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/range_closest_pair.test.cpp
 documentation_of: geo/range_closest_pair_query.hpp

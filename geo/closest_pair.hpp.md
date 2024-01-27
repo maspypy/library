@@ -10,20 +10,20 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -116,29 +116,9 @@ data:
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"random/hash_pair.hpp\"\n\
     \ntemplate <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base\
     \ = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi\
-    \ + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\n\ntemplate <typename T, int LOG\
-    \ = 20>\npair<int, int> closest_pair(vc<Point<T>> points) {\n  static HashMap<int,\
-    \ LOG, true> MP;\n  MP.reset();\n  int N = len(points);\n  assert(N >= 2 && N\
-    \ < (1 << LOG));\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n  points\
-    \ = rearrange(points, I);\n\n  auto calc = [&](int i, int j) -> T {\n    return\
-    \ (points[j] - points[i]).dot(points[j] - points[i]);\n  };\n\n  T best = calc(0,\
-    \ 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\n  vc<int> nxt(N,\
-    \ -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
-    \ / w, points[i].y / w});\n    nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\
-    \n  auto query = [&](int i) -> bool {\n    ll a = points[i].x / w;\n    ll b =\
-    \ points[i].y / w;\n    bool upd = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n \
-    \     u64 k = hash_pair<ll>({a + dx, b + dy});\n      int j = MP.get(k, -1);\n\
-    \      while (j != -1) {\n        if (chmin(best, calc(i, j))) { upd = 1, res\
-    \ = {i, j}, w = sqrtl(best); }\n        j = nxt[j];\n      }\n    }\n    return\
-    \ upd;\n  };\n\n  insert(0), insert(1);\n  FOR(i, 2, N) {\n    if (query(i)) {\n\
-    \      if (best == T(0)) break;\n      MP.reset();\n      FOR(j, i) insert(j);\n\
-    \    }\n    insert(i);\n  }\n  res.fi = I[res.fi], res.se = I[res.se];\n  return\
-    \ res;\n}\n"
-  code: "#include \"geo/base.hpp\"\n#include \"random/base.hpp\"\n#include \"random/shuffle.hpp\"\
-    \n#include \"ds/hashmap.hpp\"\n#include \"random/hash_pair.hpp\"\n\ntemplate <typename\
-    \ T, int LOG = 20>\npair<int, int> closest_pair(vc<Point<T>> points) {\n  static\
-    \ HashMap<int, LOG, true> MP;\n  MP.reset();\n  int N = len(points);\n  assert(N\
-    \ >= 2 && N < (1 << LOG));\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n\
+    \ + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\n\ntemplate <typename T>\npair<int,\
+    \ int> closest_pair(vc<Point<T>> points) {\n  int N = len(points);\n  assert(N\
+    \ >= 2);\n  HashMap<int> MP(N);\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n\
     \  points = rearrange(points, I);\n\n  auto calc = [&](int i, int j) -> T {\n\
     \    return (points[j] - points[i]).dot(points[j] - points[i]);\n  };\n\n  T best\
     \ = calc(0, 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\n  vc<int>\
@@ -150,7 +130,25 @@ data:
     \      while (j != -1) {\n        if (chmin(best, calc(i, j))) { upd = 1, res\
     \ = {i, j}, w = sqrtl(best); }\n        j = nxt[j];\n      }\n    }\n    return\
     \ upd;\n  };\n\n  insert(0), insert(1);\n  FOR(i, 2, N) {\n    if (query(i)) {\n\
-    \      if (best == T(0)) break;\n      MP.reset();\n      FOR(j, i) insert(j);\n\
+    \      if (best == T(0)) break;\n      MP.build(N);\n      FOR(j, i) insert(j);\n\
+    \    }\n    insert(i);\n  }\n  res.fi = I[res.fi], res.se = I[res.se];\n  return\
+    \ res;\n}\n"
+  code: "#include \"geo/base.hpp\"\n#include \"random/base.hpp\"\n#include \"random/shuffle.hpp\"\
+    \n#include \"ds/hashmap.hpp\"\n#include \"random/hash_pair.hpp\"\n\ntemplate <typename\
+    \ T>\npair<int, int> closest_pair(vc<Point<T>> points) {\n  int N = len(points);\n\
+    \  assert(N >= 2);\n  HashMap<int> MP(N);\n  vc<int> I(N);\n  iota(all(I), 0);\n\
+    \  shuffle(I);\n  points = rearrange(points, I);\n\n  auto calc = [&](int i, int\
+    \ j) -> T {\n    return (points[j] - points[i]).dot(points[j] - points[i]);\n\
+    \  };\n\n  T best = calc(0, 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\
+    \n  vc<int> nxt(N, -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
+    \ / w, points[i].y / w});\n    nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\
+    \n  auto query = [&](int i) -> bool {\n    ll a = points[i].x / w;\n    ll b =\
+    \ points[i].y / w;\n    bool upd = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n \
+    \     u64 k = hash_pair<ll>({a + dx, b + dy});\n      int j = MP.get(k, -1);\n\
+    \      while (j != -1) {\n        if (chmin(best, calc(i, j))) { upd = 1, res\
+    \ = {i, j}, w = sqrtl(best); }\n        j = nxt[j];\n      }\n    }\n    return\
+    \ upd;\n  };\n\n  insert(0), insert(1);\n  FOR(i, 2, N) {\n    if (query(i)) {\n\
+    \      if (best == T(0)) break;\n      MP.build(N);\n      FOR(j, i) insert(j);\n\
     \    }\n    insert(i);\n  }\n  res.fi = I[res.fi], res.se = I[res.se];\n  return\
     \ res;\n}"
   dependsOn:
@@ -162,8 +160,8 @@ data:
   isVerificationFile: false
   path: geo/closest_pair.hpp
   requiredBy: []
-  timestamp: '2024-01-27 11:27:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-27 11:52:36+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/CGL_5_A.test.cpp
 documentation_of: geo/closest_pair.hpp
