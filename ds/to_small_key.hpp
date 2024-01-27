@@ -8,11 +8,8 @@ struct To_Small_Key {
   To_Small_Key(u32 n = 0) : MP(n) {}
 
   int set_key(u64 x) {
-    int idx = MP.index(x);
-    if (!MP.used[idx]) {
-      MP.used[idx] = 1, MP.key[idx] = x, MP.val[idx] = kind++, --MP.cap;
-    }
-    return MP.val[idx];
+    if (!MP.count(x)) MP[x] = kind++;
+    return MP[x];
   }
 
   int query(u64 x) { return MP.get(x, -1); }
