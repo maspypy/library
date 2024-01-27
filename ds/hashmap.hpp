@@ -3,11 +3,6 @@
 // u64 -> Val
 template <typename Val>
 struct HashMap {
-  u32 cap, mask;
-  vc<u64> key;
-  vc<Val> val;
-  vc<bool> used;
-
   HashMap(u32 n = 0) { build(n); }
   void build(u32 n) {
     u32 k = 8;
@@ -48,6 +43,11 @@ struct HashMap {
   }
 
 private:
+  u32 cap, mask;
+  vc<u64> key;
+  vc<Val> val;
+  vc<bool> used;
+
   u64 hash(u64 x) {
     static const u64 FIXED_RANDOM
         = std::chrono::steady_clock::now().time_since_epoch().count();
