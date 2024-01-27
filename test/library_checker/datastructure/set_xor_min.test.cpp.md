@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -250,8 +250,7 @@ data:
     \ = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w = c->width;\n\
     \        res += prefix_count_rec(c, ht - w, LIM, xor_val, val << w | c->val);\n\
     \      }\n    }\n    return res;\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\n\r\n//\
-    \ u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  u32 cap, mask;\r\
-    \n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  HashMap(u32 n\
+    \ u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32 n\
     \ = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k\
     \ * 0.8 < n) k *= 2;\r\n    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k),\
     \ val.resize(k), used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n\
@@ -265,15 +264,16 @@ data:
     \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
     \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
     \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n     \
-    \   = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x +=\
-    \ FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x\
-    \ ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\n\
-    \  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
+    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
+    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n  \
+    \      = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x\
+    \ += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\
+    \n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
     \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
-    \n    }\r\n    build(2 * len(used));\r\n    for (auto& [a, b]: dat) (*this)[a]\
+    \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
     \ = b;\r\n  }\r\n};\n#line 6 \"test/library_checker/datastructure/set_xor_min.test.cpp\"\
-    \n\nvoid solve() {\n  INT(Q);\n  HashMap<bool> MP(Q);\n  Binary_Trie<30, false,\
+    \n\nvoid solve() {\n  INT(Q);\n  HashMap<char> MP(Q);\n  Binary_Trie<30, false,\
     \ 1'000'000, int, int> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\
     \  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] == 0) {\n    \
     \    MP[x] = 1;\n        root = X.add(root, x, 1);\n      }\n    }\n    if (t\
@@ -282,7 +282,7 @@ data:
     \nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/set_xor_min\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/binary_trie.hpp\"\
-    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  INT(Q);\n  HashMap<bool> MP(Q);\n\
+    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  INT(Q);\n  HashMap<char> MP(Q);\n\
     \  Binary_Trie<30, false, 1'000'000, int, int> X;\n  using np = decltype(X)::np;\n\
     \  np root = nullptr;\n  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if\
     \ (MP[x] == 0) {\n        MP[x] = 1;\n        root = X.add(root, x, 1);\n    \
@@ -297,8 +297,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 12:03:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-27 13:31:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
 layout: document

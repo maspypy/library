@@ -265,8 +265,7 @@ data:
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
-    \ntemplate <typename Val>\r\nstruct HashMap {\r\n  u32 cap, mask;\r\n  vc<u64>\
-    \ key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  HashMap(u32 n = 0) { build(n);\
+    \ntemplate <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32 n = 0) { build(n);\
     \ }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k * 0.8 < n) k *=\
     \ 2;\r\n    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
     \ used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n  int size() {\
@@ -280,12 +279,13 @@ data:
     \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
     \n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\
     \n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\
-    \n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\
+    \r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
     \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
-    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(used));\r\n    for (auto&\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 4 \"graph/vs_to_es.hpp\"\n\n\
     template <typename GT>\nvc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice\
     \ = false) {\n  assert(!vs.empty());\n\n  HashMap<int> MP(G.M);\n  vc<int> nxt(G.M,\
@@ -355,7 +355,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/eulerwalk_ud.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:52:36+09:00'
+  timestamp: '2024-01-27 13:31:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/eulerwalk_ud.test.cpp

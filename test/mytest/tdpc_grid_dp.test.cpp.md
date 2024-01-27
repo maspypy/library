@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -16,20 +16,20 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -117,8 +117,7 @@ data:
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n#endif\n#line 3 \"test/mytest/tdpc_grid_dp.test.cpp\"\n\n#line\
     \ 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct\
-    \ HashMap {\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\n\
+    \ HashMap {\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\n\
     \    u32 k = 8;\r\n    while (k * 0.8 < n) k *= 2;\r\n    cap = k * 0.8, mask\
     \ = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\n\
     \  void clear() { build(0); }\r\n  int size() { return len(used) - cap; }\r\n\r\
@@ -131,13 +130,14 @@ data:
     \  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
     \ used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
     \ F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i],\
-    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u64 hash(u64 x) {\r\n    static const u64\
+    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val>\
+    \ val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64\
     \ FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
     \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
-    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(used));\r\n    for (auto&\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"random/hash_vector.hpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
     \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
@@ -321,10 +321,9 @@ data:
     \        bool cl = 1;\n          FOR(p, i + 1, j) if (nxt[p] == -1) cl = 0;\n\
     \          if (cl) close++;\n        }\n        return a - close == after;\n \
     \     }(now, nxt, convert);\n      if (!ok) continue;\n      u64 h = hash_vector<int>(nxt);\n\
-    \      int idx = MP.index(h);\n      if (!MP.used[idx]) {\n        MP.used[idx]\
-    \ = 1, MP.key[idx] = h, MP.val[idx] = len(states), MP.capa--;\n        states.eb(nxt);\n\
-    \      }\n      edges.eb(p, MP.val[idx]);\n    }\n  }\n  return {states, edges};\n\
-    }\n} // namespace connected_dp_squares\n#line 8 \"test/mytest/tdpc_grid_dp.test.cpp\"\
+    \      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt);\n\
+    \      }\n      edges.eb(p, MP[h]);\n    }\n  }\n  return {states, edges};\n}\n\
+    } // namespace connected_dp_squares\n#line 8 \"test/mytest/tdpc_grid_dp.test.cpp\"\
     \n\nusing mint = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMap<int>\
     \ MP;\n\n  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash =\
     \ [&](vc<int> a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n\
@@ -376,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 12:26:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-27 13:40:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
 layout: document

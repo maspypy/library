@@ -115,8 +115,7 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/hashmap.hpp\"\
-    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  u32 cap,\
-    \ mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  HashMap(u32\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32\
     \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
     \ (k * 0.8 < n) k *= 2;\r\n    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k),\
     \ val.resize(k), used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n\
@@ -130,13 +129,14 @@ data:
     \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
     \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
     \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n     \
-    \   = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x +=\
-    \ FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x\
-    \ ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\n\
-    \  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
+    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
+    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n  \
+    \      = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x\
+    \ += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x =\
+    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\
+    \n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
     \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
-    \n    }\r\n    build(2 * len(used));\r\n    for (auto& [a, b]: dat) (*this)[a]\
+    \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
     \ = b;\r\n  }\r\n};\n#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename\
     \ Monoid>\nstruct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
     \  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n\
@@ -189,39 +189,38 @@ data:
     \      auto to_64 = [&](int x, int y) -> u64 { return u64(x) << 30 | y; };\n \
     \     int off = len(nbd);\n      int p = off;\n      FOR(i, N) {\n        int\
     \ x = point[i].fi >> (k);\n        int y = point[i].se >> (k);\n        u64 key\
-    \ = to_64(x, y);\n        int idx = MP.index(key);\n        if (!MP.used[idx])\
-    \ {\n          MP.used[idx] = 1, MP.key[idx] = key, MP.cap -= 1, MP.val[idx] =\
-    \ p++;\n        }\n        IDX[k][i] = MP.val[idx];\n      }\n      nbd.resize(p);\n\
-    \      FOR(i, N) {\n        int x = point[i].fi >> (k);\n        int y = point[i].se\
-    \ >> (k);\n        int me = MP[to_64(x, y)];\n        int s = 0;\n        FOR(dx,\
-    \ -1, 2) FOR(dy, -1, 2) {\n          u64 key = to_64(x + dx, y + dy);\n      \
-    \    nbd[me][s++] = MP.get(key, -1);\n        }\n      }\n    }\n\n    vc<array<int,\
-    \ 8>> dat(len(nbd), {-1, -1, -1, -1, -1, -1, -1, -1});\n    auto add = [&](int\
-    \ k, int i) -> void {\n      int idx = IDX[k][i];\n      for (auto&& j: dat[idx])\
-    \ {\n        if (j == -1) {\n          j = i;\n          return;\n        }\n\
-    \      }\n    };\n    auto rm = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n\
-    \      for (auto&& j: dat[idx]) {\n        if (j == i) {\n          j = -1;\n\
-    \          return;\n        }\n      }\n    };\n\n    auto solve_level = [&](int\
-    \ k, int i) -> vc<pair<int, ll>> {\n      // \u30EC\u30D9\u30EB k \u306E\u70B9\
-    \u7FA4\u306B\u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\n      vc<pair<int, ll>>\
-    \ res;\n      int me = IDX[k][i];\n      for (auto&& idx: nbd[me]) {\n       \
-    \ if (idx == -1) continue;\n        for (auto&& j: dat[idx]) {\n          if (j\
-    \ == -1) continue;\n          res.eb(j, dist(i, j));\n        }\n      }\n   \
-    \   return res;\n    };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n    vc<int>\
-    \ LEVEL(N, -1);\n    auto get_lv = [&](ll d) -> int {\n      if (d == 0) return\
-    \ 0;\n      return topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n    vvc<int>\
-    \ query_at(N);\n    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n      left[qid]\
-    \ = L;\n      query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\n    FOR(R, N)\
-    \ {\n      // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\u7B54\u306E\u66F4\
-    \u65B0\n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n        auto res =\
-    \ solve_level(k, R);\n        upd.insert(upd.end(), all(res));\n      }\n\n  \
-    \    for (auto [i, d]: upd) {\n        int lv = get_lv(d);\n        if (seg.get(i)\
-    \ < d) continue;\n        // \u7B54\u3048\u306E\u66F4\u65B0\n        seg.apply(0,\
-    \ i + 1, d);\n        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\n        while (i\
-    \ >= 0 && LEVEL[i] > lv) {\n          rm(LEVEL[i], i);\n          LEVEL[i] = lv;\n\
-    \          if (lv) add(lv, i);\n          --i;\n        }\n      }\n      LEVEL[R]\
-    \ = K - 1;\n      add(K - 1, R);\n      for (auto&& qid: query_at[R]) { ANS[qid]\
-    \ = seg.get(left[qid]); }\n    }\n    return ANS;\n  }\n};\n#line 5 \"test/mytest/range_closest_pair.test.cpp\"\
+    \ = to_64(x, y);\n        if (!MP.count(key)) { MP[key] = p++; }\n        IDX[k][i]\
+    \ = MP[key];\n      }\n      nbd.resize(p);\n      FOR(i, N) {\n        int x\
+    \ = point[i].fi >> (k);\n        int y = point[i].se >> (k);\n        int me =\
+    \ MP[to_64(x, y)];\n        int s = 0;\n        FOR(dx, -1, 2) FOR(dy, -1, 2)\
+    \ {\n          u64 key = to_64(x + dx, y + dy);\n          nbd[me][s++] = MP.get(key,\
+    \ -1);\n        }\n      }\n    }\n\n    vc<array<int, 8>> dat(len(nbd), {-1,\
+    \ -1, -1, -1, -1, -1, -1, -1});\n    auto add = [&](int k, int i) -> void {\n\
+    \      int idx = IDX[k][i];\n      for (auto&& j: dat[idx]) {\n        if (j ==\
+    \ -1) {\n          j = i;\n          return;\n        }\n      }\n    };\n   \
+    \ auto rm = [&](int k, int i) -> void {\n      int idx = IDX[k][i];\n      for\
+    \ (auto&& j: dat[idx]) {\n        if (j == i) {\n          j = -1;\n         \
+    \ return;\n        }\n      }\n    };\n\n    auto solve_level = [&](int k, int\
+    \ i) -> vc<pair<int, ll>> {\n      // \u30EC\u30D9\u30EB k \u306E\u70B9\u7FA4\u306B\
+    \u5BFE\u3059\u308B\u7B54\u306E\u8A08\u7B97\n      vc<pair<int, ll>> res;\n   \
+    \   int me = IDX[k][i];\n      for (auto&& idx: nbd[me]) {\n        if (idx ==\
+    \ -1) continue;\n        for (auto&& j: dat[idx]) {\n          if (j == -1) continue;\n\
+    \          res.eb(j, dist(i, j));\n        }\n      }\n      return res;\n   \
+    \ };\n    Dual_SegTree<Monoid_Min<ll>> seg(N);\n    vc<int> LEVEL(N, -1);\n  \
+    \  auto get_lv = [&](ll d) -> int {\n      if (d == 0) return 0;\n      return\
+    \ topbit(d) / 2 + 1;\n    };\n\n    vc<int> left(Q);\n    vvc<int> query_at(N);\n\
+    \    FOR(qid, Q) {\n      auto [L, R] = query[qid];\n      left[qid] = L;\n  \
+    \    query_at[--R].eb(qid);\n    }\n\n    vi ANS(Q);\n\n    FOR(R, N) {\n    \
+    \  // R \u756A\u76EE\u306E\u70B9\u3092\u7528\u3044\u305F\u7B54\u306E\u66F4\u65B0\
+    \n      vc<pair<int, ll>> upd;\n      FOR(k, 1, K) {\n        auto res = solve_level(k,\
+    \ R);\n        upd.insert(upd.end(), all(res));\n      }\n\n      for (auto [i,\
+    \ d]: upd) {\n        int lv = get_lv(d);\n        if (seg.get(i) < d) continue;\n\
+    \        // \u7B54\u3048\u306E\u66F4\u65B0\n        seg.apply(0, i + 1, d);\n\
+    \        // \u30EC\u30D9\u30EB\u306E\u66F4\u65B0\n        while (i >= 0 && LEVEL[i]\
+    \ > lv) {\n          rm(LEVEL[i], i);\n          LEVEL[i] = lv;\n          if\
+    \ (lv) add(lv, i);\n          --i;\n        }\n      }\n      LEVEL[R] = K - 1;\n\
+    \      add(K - 1, R);\n      for (auto&& qid: query_at[R]) { ANS[qid] = seg.get(left[qid]);\
+    \ }\n    }\n    return ANS;\n  }\n};\n#line 5 \"test/mytest/range_closest_pair.test.cpp\"\
     \n\nvoid test() {\n  FOR(N, 2, 100) {\n    FOR(Q, 1, 100) {\n      vc<pair<int,\
     \ int>> point(N), query(Q);\n      FOR(i, N) {\n        int x = RNG(0, 20);\n\
     \        int y = RNG(0, 20);\n        point[i] = {x, y};\n      }\n      FOR(q,\
@@ -264,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/mytest/range_closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:52:36+09:00'
+  timestamp: '2024-01-27 13:31:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/range_closest_pair.test.cpp

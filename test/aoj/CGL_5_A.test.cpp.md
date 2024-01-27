@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -266,10 +266,9 @@ data:
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
     \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
     \ A[RNG(0, i + 1)]);\n}\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate\
-    \ <typename Val>\r\nstruct HashMap {\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n\
-    \  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  HashMap(u32 n = 0) { build(n); }\r\
-    \n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k * 0.8 < n) k *= 2;\r\
-    \n    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32 n = 0) { build(n); }\r\n\
+    \  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k * 0.8 < n) k *= 2;\r\n\
+    \    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k,\
     \ 0);\r\n  }\r\n  void clear() { build(0); }\r\n  int size() { return len(used)\
     \ - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i\
     \ = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\
@@ -280,13 +279,14 @@ data:
     \ : default_value);\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i =\
     \ index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\
     \n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\n  u64 hash(u64 x)\
+    \ if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\
+    \n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x)\
     \ {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
     \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
-    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(used));\r\n    for (auto&\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"random/hash_pair.hpp\"\n\
     \ntemplate <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base\
     \ = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi\
@@ -328,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 11:52:36+09:00'
+  timestamp: '2024-01-27 13:31:52+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_5_A.test.cpp
