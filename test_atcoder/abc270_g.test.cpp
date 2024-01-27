@@ -14,15 +14,12 @@ void solve() {
   using AS = ActedSet_Affine<mint>;
   auto h = [&](mint x) -> ll { return x.val; };
 
-  ll ANS = discrete_log_acted<AS, decltype(h), 18>({A, B}, S, G, h, 0, P);
+  ll ANS = discrete_log_acted<AS, decltype(h)>({A, B}, S, G, h, 0, P);
   print(ANS);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
   LL(T);
   FOR(T) solve();
-
   return 0;
 }
