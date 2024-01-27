@@ -109,6 +109,9 @@ data:
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick01.test.cpp
+    title: test/mytest/fenwick01.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -261,6 +264,7 @@ data:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/fenwick_raq.test.cpp
+  - test/mytest/fenwick01.test.cpp
   - test/yukicoder/1490.test.cpp
   - test/yukicoder/2338.test.cpp
   - test/yukicoder/1270.test.cpp

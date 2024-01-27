@@ -250,27 +250,31 @@ data:
     \ == 1) add(k);\n    if (x == -1) remove(k);\n  }\n\n  void add(int k) {\n   \
     \ dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int\
     \ k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n\
-    \  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T>\
-    \ A) {\n  int N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n  FenwickTree_01\
-    \ bit(N);\n  auto I = argsort(A);\n  for (auto& i: I) {\n    ANS += bit.sum_all()\
-    \ - bit.sum(i);\n    bit.add(i, 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\
-    \uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B rotate \u3057\
-    \u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate <typename T, bool SMALL =\
-    \ false>\nvi inversion_rotate(vc<T>& A) {\n  const int N = len(A);\n  if (!SMALL)\
-    \ {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&& x: A) x = LB(key, x);\n\
-    \  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n\
-    \  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n\
-    \  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS\
-    \ + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n}\n\n// inv[i][j]\
-    \ = inversion A[i:j) \u3067\u3042\u308B\u3088\u3046\u306A (N+1, N+1) \u30C6\u30FC\
-    \u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(vc<T>& A) {\n\
-    \  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R, L +\
-    \ 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R - 1];\n\
-    \    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n#line 5 \"test_atcoder/abc190f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate<int,\
-    \ 1>(A);\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \  }\n\n  int kth(int k) {\n    assert(k < sum_all());\n    int r = 0;\n    int\
+    \ idx = bit.max_right([&](int s) -> int {\n      if (s <= k) r = k - s;\n    \
+    \  return s <= k;\n    });\n    u64 x = dat[idx];\n    int p = popcnt(x);\n  \
+    \  k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= r; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n};\n#line 3\
+    \ \"seq/inversion.hpp\"\n\ntemplate <typename T>\nll inversion(vc<T> A) {\n  int\
+    \ N = len(A);\n  if (A.empty()) return 0;\n  ll ANS = 0;\n  FenwickTree_01 bit(N);\n\
+    \  auto I = argsort(A);\n  for (auto& i: I) {\n    ANS += bit.sum_all() - bit.sum(i);\n\
+    \    bit.add(i, 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\
+    \u5148\u982D\u306B\u306A\u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\
+    \u306E\u8EE2\u5012\u6570\ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>&\
+    \ A) {\n  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
+    \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS =\
+    \ 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
+    \ bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n \
+    \   res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n\
+    \  }\n  return res;\n}\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\
+    \u3046\u306A (N+1, N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int>\
+    \ all_range_inversion(vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N +\
+    \ 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] +\
+    \ dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n\
+    \  return dp;\n}\n#line 5 \"test_atcoder/abc190f.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate<int, 1>(A);\n  for (auto&&\
+    \ x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc190/tasks/abc190_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/inversion.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate<int,\
@@ -287,7 +291,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc190f.test.cpp
   requiredBy: []
-  timestamp: '2024-01-26 19:57:58+09:00'
+  timestamp: '2024-01-28 04:43:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc190f.test.cpp

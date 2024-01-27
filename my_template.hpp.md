@@ -1009,6 +1009,9 @@ data:
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick01.test.cpp
+    title: test/mytest/fenwick01.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2757,6 +2760,7 @@ data:
   - test/mytest/rbst.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/palindrome_decomposition_dp.test.cpp
+  - test/mytest/fenwick01.test.cpp
   - test/mytest/summax_assign.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/rbst_am.test.cpp

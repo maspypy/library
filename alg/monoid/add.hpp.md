@@ -277,6 +277,9 @@ data:
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick01.test.cpp
+    title: test/mytest/fenwick01.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -564,6 +567,7 @@ data:
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/minmax_add.test.cpp
+  - test/mytest/fenwick01.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/rbst_am_2.test.cpp
   - test/mytest/maxidx_add.test.cpp

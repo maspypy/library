@@ -22,6 +22,9 @@ data:
     path: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/fenwick01.test.cpp
+    title: test/mytest/fenwick01.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
   - icon: ':heavy_check_mark:'
@@ -92,7 +95,11 @@ data:
     \ == 1) add(k);\n    if (x == -1) remove(k);\n  }\n\n  void add(int k) {\n   \
     \ dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int\
     \ k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n\
-    \  }\n};\n"
+    \  }\n\n  int kth(int k) {\n    assert(k < sum_all());\n    int r = 0;\n    int\
+    \ idx = bit.max_right([&](int s) -> int {\n      if (s <= k) r = k - s;\n    \
+    \  return s <= k;\n    });\n    u64 x = dat[idx];\n    int p = popcnt(x);\n  \
+    \  k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= r; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n};\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\nstruct FenwickTree_01 {\n\
     \  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>> bit;\n  FenwickTree_01()\
     \ {}\n  FenwickTree_01(int n) { build(n); }\n  template <typename F>\n  FenwickTree_01(int\
@@ -111,7 +118,11 @@ data:
     \ == 1) add(k);\n    if (x == -1) remove(k);\n  }\n\n  void add(int k) {\n   \
     \ dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int\
     \ k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n\
-    \  }\n};"
+    \  }\n\n  int kth(int k) {\n    assert(k < sum_all());\n    int r = 0;\n    int\
+    \ idx = bit.max_right([&](int s) -> int {\n      if (s <= k) r = k - s;\n    \
+    \  return s <= k;\n    });\n    u64 x = dat[idx];\n    int p = popcnt(x);\n  \
+    \  k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= r; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n};"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
@@ -119,9 +130,10 @@ data:
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
   - seq/inversion.hpp
-  timestamp: '2024-01-26 14:07:48+09:00'
+  timestamp: '2024-01-28 04:43:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/fenwick01.test.cpp
   - test/yukicoder/694.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp

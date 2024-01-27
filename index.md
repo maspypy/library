@@ -2888,6 +2888,9 @@ data:
       path: test/mytest/factorial_digit.test.cpp
       title: test/mytest/factorial_digit.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/fenwick01.test.cpp
+      title: test/mytest/fenwick01.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/fenwick_raq.test.cpp
       title: test/mytest/fenwick_raq.test.cpp
     - icon: ':heavy_check_mark:'
