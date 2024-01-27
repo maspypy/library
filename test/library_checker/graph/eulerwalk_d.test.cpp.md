@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/eulerian_trail_directed
@@ -265,59 +265,62 @@ data:
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 2 \"graph/vs_to_es.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
-    \ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap\
-    \ {\r\n  static constexpr int N = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n\
-    \  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n  const u64 r =\
-    \ 11995408973635179863ULL;\r\n  HashMap() : key(new u64[N]), val(new Val[N]),\
-    \ shift(64 - LOG) {}\r\n  u32 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\
-    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
-    \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
-    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
-    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
-    \ {\r\n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\
-    \n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
-    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
-    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
-    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
-    \  }\r\n};\r\n#line 4 \"graph/vs_to_es.hpp\"\n\ntemplate <typename GT>\nvc<int>\
-    \ vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice = false) {\n  assert(!vs.empty());\n\
-    \n  static HashMap<int, 20, true> MP;\n  MP.reset();\n  vc<int> nxt(G.M, -1);\n\
-    \n  auto get = [&](ll a, ll b) -> u64 {\n    if (!GT::is_directed && a > b) swap(a,\
-    \ b);\n    return a * G.N + b;\n  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm,\
-    \ G.edges[eid].to);\n    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n\
-    \  }\n  int n = len(vs);\n  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k =\
-    \ get(vs[i], vs[i + 1]);\n    int eid = MP.get(k, -1);\n    assert(eid != -1);\n\
-    \    es[i] = eid;\n    if (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return\
-    \ es;\n}\n#line 4 \"graph/eulerwalk.hpp\"\n\r\n// (vs, es) or empty\r\ntemplate\
-    \ <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {\r\n\
-    \  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\n  assert(N > 0);\r\
-    \n\r\n  if (s == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\
-    \n      if constexpr (GT::is_directed) {\r\n        deg[e.frm]++, deg[e.to]--;\r\
-    \n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n      }\r\n    }\r\n\
-    \    if constexpr (GT::is_directed) {\r\n      s = max_element(all(deg)) - deg.begin();\r\
-    \n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n\
-    \      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n \
-    \       return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\
-    \r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st =\
-    \ {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty())\
-    \ {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];\r\n \
-    \   if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\
-    \n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n\
-    \    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\
-    \n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return {{}, {}};\r\n \
-    \ if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es =\
-    \ vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n\r\ntemplate <typename\
-    \ GT>\r\nbool has_euler_walk(GT& G, int s = -1) {\r\n  int N = G.N, M = G.M;\r\
-    \n  if (M == 0) return true;\r\n  if constexpr (!GT::is_directed) {\r\n    vc<int>\
-    \ odd(N);\r\n    for (auto& e: G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;\r\n \
-    \   int n_odd = 0;\r\n    for (auto x: odd) n_odd += x;\r\n\r\n    if (n_odd >=\
-    \ 4) return false;\r\n    if (s != -1 && n_odd == 2 && !odd[s]) return false;\r\
-    \n    UnionFind uf(N);\r\n    for (auto& e: G.edges) uf.merge(e.frm, e.to);\r\n\
-    \    vector<int> cnt_edge(N);\r\n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\
+    \ntemplate <typename Val>\r\nstruct HashMap {\r\n  u32 cap, mask;\r\n  vc<u64>\
+    \ key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  HashMap(u32 n = 0) { build(n);\
+    \ }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k * 0.8 < n) k *=\
+    \ 2;\r\n    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
+    \ used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n  int size() {\
+    \ return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i =\
+    \ 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\
+    \n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap\
+    \ == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1,\
+    \ key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val\
+    \ get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n    return\
+    \ (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const u64& k)\
+    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
+    \n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\
+    \n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\
+    \n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(used));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 4 \"graph/vs_to_es.hpp\"\n\n\
+    template <typename GT>\nvc<int> vs_to_es(GT& G, vc<int>& vs, bool allow_use_twice\
+    \ = false) {\n  assert(!vs.empty());\n\n  static HashMap<int, 20, true> MP;\n\
+    \  MP.reset();\n  vc<int> nxt(G.M, -1);\n\n  auto get = [&](ll a, ll b) -> u64\
+    \ {\n    if (!GT::is_directed && a > b) swap(a, b);\n    return a * G.N + b;\n\
+    \  };\n\n  FOR(eid, G.M) {\n    u64 k = get(G.edges[eid].frm, G.edges[eid].to);\n\
+    \    int x = MP.get(k, -1);\n    nxt[eid] = x, MP[k] = eid;\n  }\n  int n = len(vs);\n\
+    \  vc<int> es(n - 1);\n  FOR(i, n - 1) {\n    u64 k = get(vs[i], vs[i + 1]);\n\
+    \    int eid = MP.get(k, -1);\n    assert(eid != -1);\n    es[i] = eid;\n    if\
+    \ (!allow_use_twice) { MP[k] = nxt[eid]; }\n  }\n  return es;\n}\n#line 4 \"graph/eulerwalk.hpp\"\
+    \n\r\n// (vs, es) or empty\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>>\
+    \ euler_walk(GT& G, int s = -1) {\r\n  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\
+    \n  assert(N > 0);\r\n\r\n  if (s == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&&\
+    \ e: G.edges) {\r\n      if constexpr (GT::is_directed) {\r\n        deg[e.frm]++,\
+    \ deg[e.to]--;\r\n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n   \
+    \   }\r\n    }\r\n    if constexpr (GT::is_directed) {\r\n      s = max_element(all(deg))\
+    \ - deg.begin();\r\n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\
+    \n    } else {\r\n      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1)\
+    \ return v;\r\n        return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n\
+    \    }\r\n  }\r\n\r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N),\
+    \ eu(M), vs, st = {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n \
+    \ while (!st.empty()) {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x\
+    \ + 1];\r\n    if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n\
+    \      continue;\r\n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to,\
+    \ e = ee.id;\r\n    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\
+    \n      st.eb(y);\r\n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return\
+    \ {{}, {}};\r\n  if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\
+    \n  auto es = vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n\r\ntemplate\
+    \ <typename GT>\r\nbool has_euler_walk(GT& G, int s = -1) {\r\n  int N = G.N,\
+    \ M = G.M;\r\n  if (M == 0) return true;\r\n  if constexpr (!GT::is_directed)\
+    \ {\r\n    vc<int> odd(N);\r\n    for (auto& e: G.edges) odd[e.frm] ^= 1, odd[e.to]\
+    \ ^= 1;\r\n    int n_odd = 0;\r\n    for (auto x: odd) n_odd += x;\r\n\r\n   \
+    \ if (n_odd >= 4) return false;\r\n    if (s != -1 && n_odd == 2 && !odd[s]) return\
+    \ false;\r\n    UnionFind uf(N);\r\n    for (auto& e: G.edges) uf.merge(e.frm,\
+    \ e.to);\r\n    vector<int> cnt_edge(N);\r\n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\
     \n    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\
     \u3042\u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for\
     \ (int v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\
@@ -352,8 +355,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/eulerwalk_d.test.cpp
   requiredBy: []
-  timestamp: '2024-01-21 23:27:58+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-27 11:27:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/eulerwalk_d.test.cpp
 layout: document

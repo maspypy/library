@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2264.test.cpp
     title: test/yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2578.test.cpp
     title: test/yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -96,29 +96,33 @@ data:
     \ n, vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p =\
     \ lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
     \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"ds/hashmap.hpp\"\n\
-    \r\n// u64 -> Val\r\ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\
-    \nstruct HashMap {\r\n  static constexpr int N = (1 << LOG);\r\n  u64* key;\r\n\
-    \  Val* val;\r\n  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n\
-    \  const u64 r = 11995408973635179863ULL;\r\n  HashMap() : key(new u64[N]), val(new\
-    \ Val[N]), shift(64 - LOG) {}\r\n  u32 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\
-    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
-    \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
-    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
-    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
-    \ {\r\n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\
-    \n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
-    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
-    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
-    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
-    \  }\r\n};\r\n#line 3 \"nt/array_on_divisors.hpp\"\n\ntemplate <typename T>\n\
-    struct Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T> dat;\n\
-    \  HashMap<int, 20, true> MP;\n\n  Array_On_Divisors(ll N = 1) { build(N); }\n\
-    \  Array_On_Divisors(vc<pair<ll, int>> pf) { build(pf); }\n\n  void build(ll N)\
-    \ { build(factor(N)); }\n  void build(vc<pair<ll, int>> pfs) {\n    if (!pf.empty()\
+    \r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  u32 cap,\
+    \ mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  HashMap(u32\
+    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
+    \ (k * 0.8 < n) k *= 2;\r\n    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n\
+    \  int size() { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\
+    \n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1)\
+    \ & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\
+    \n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) {\
+    \ used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
+    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
+    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
+    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
+    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
+    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
+    private:\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n     \
+    \   = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x +=\
+    \ FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x\
+    \ ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\n\
+    \  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
+    \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
+    \n    }\r\n    build(2 * len(used));\r\n    for (auto& [a, b]: dat) (*this)[a]\
+    \ = b;\r\n  }\r\n};\n#line 3 \"nt/array_on_divisors.hpp\"\n\ntemplate <typename\
+    \ T>\nstruct Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T>\
+    \ dat;\n  HashMap<int, 20, true> MP;\n\n  Array_On_Divisors(ll N = 1) { build(N);\
+    \ }\n  Array_On_Divisors(vc<pair<ll, int>> pf) { build(pf); }\n\n  void build(ll\
+    \ N) { build(factor(N)); }\n  void build(vc<pair<ll, int>> pfs) {\n    if (!pf.empty()\
     \ && pf == pfs) return;\n    pf = pfs;\n    ll n = 1;\n    for (auto&& [p, e]:\
     \ pf) n *= (e + 1);\n    divs.assign(n, 1);\n    dat.assign(n, T{});\n    int\
     \ nxt = 1;\n    for (auto&& [p, e]: pf) {\n      int L = nxt;\n      ll q = p;\n\
@@ -223,8 +227,8 @@ data:
   isVerificationFile: false
   path: nt/array_on_divisors.hpp
   requiredBy: []
-  timestamp: '2024-01-19 02:38:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-27 11:27:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2264.test.cpp
   - test/yukicoder/2578.test.cpp

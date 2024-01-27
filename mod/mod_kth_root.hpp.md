@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
@@ -143,87 +143,91 @@ data:
     \n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a /\
     \ b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u\
     \ += mod;\r\n  return u;\r\n}\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
-    \ntemplate <typename Val, int LOG = 20, bool KEEP_IDS = false>\r\nstruct HashMap\
-    \ {\r\n  static constexpr int N = (1 << LOG);\r\n  u64* key;\r\n  Val* val;\r\n\
-    \  vc<int> IDS;\r\n  bitset<N> used;\r\n  const int shift;\r\n  const u64 r =\
-    \ 11995408973635179863ULL;\r\n  HashMap() : key(new u64[N]), val(new Val[N]),\
-    \ shift(64 - LOG) {}\r\n  u32 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\
-    \n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\n \
-    \   return (u64(x + FIXED_RANDOM) * r) >> shift;\r\n  }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ (i += 1) &= (N - 1)) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    if (!used[i]) {\r\n      used[i] =\
-    \ 1, key[i] = k, val[i] = Val{};\r\n      if constexpr (KEEP_IDS) IDS.eb(i);\r\
-    \n    }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value)\
-    \ {\r\n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\
-    \n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
-    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  void reset() {\r\n    static_assert(KEEP_IDS);\r\
-    \n    for (auto&& i: IDS) used[i] = 0;\r\n    IDS.clear();\r\n  }\r\n\r\n  //\
-    \ f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\n  \
-    \  static_assert(KEEP_IDS);\r\n    for (auto&& i: IDS) f(key[i], val[i]);\r\n\
-    \  }\r\n};\r\n#line 5 \"mod/mod_kth_root.hpp\"\n\r\n// mod \u306F int\r\nint mod_kth_root(ll\
-    \ k, ll a, int mod) {\r\n  static HashMap<int, 20, true> MP;\r\n  MP.reset();\r\
-    \n  assert(primetest(mod) && 0 <= a && a < mod);\r\n  if (k == 0) return (a ==\
-    \ 1 ? 1 : -1);\r\n  if (a == 0) return 0;\r\n  if (mod == 2) return a;\r\n  k\
-    \ %= mod - 1;\r\n  Barrett bt(mod);\r\n\r\n  ll g = gcd(k, mod - 1);\r\n  if (mod_pow(a,\
-    \ (mod - 1) / g, mod) != 1) return -1;\r\n\r\n  ll c = mod_inv(k / g, (mod - 1)\
-    \ / g);\r\n  a = mod_pow(a, c, mod);\r\n  k = (k * c) % (mod - 1);\r\n  if (k\
-    \ == 0) return 1;\r\n\r\n  g = primitive_root(mod);\r\n\r\n  auto solve_pp = [&](ll\
-    \ p, int e, ll a) -> ll {\r\n    int f = 0;\r\n    ll pf = 1;\r\n    while ((mod\
-    \ - 1) % (pf * p) == 0) ++f, pf *= p;\r\n    ll m = (mod - 1) / pf;\r\n    /*\r\
-    \n    \u30FB\u4F4D\u6570 Qm \u306E\u5DE1\u56DE\u7FA4\r\n    \u30FBa \u306E p^e\
-    \ \u4E57\u6839\u3092\u3068\u308A\u305F\u3044\u3002\u6301\u3064\u3053\u3068\u306F\
-    \u5206\u304B\u3063\u3066\u3044\u308B\r\n    \u30FBa / x^{p^e} = b \u3092\u7DAD\
-    \u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b \u304C p \u3067\u5272\u308C\u308B\
-    \u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\u304F\u3002\r\n    */\r\n   \
-    \ ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1\r\n    int pc = 1;\r\n    FOR(c)\
-    \ pc *= p;\r\n    int pe = 1;\r\n    FOR(e) pe *= p;\r\n    // \u5FC5\u8981\u306A\
-    \u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\u95A2\u3059\u308B\u96E2\u6563\u5BFE\
-    \u6570\u554F\u984C\u306E\u30BB\u30C3\u30C8\u30A2\u30C3\u30D7\r\n    ll G = mod_pow(g,\
-    \ (mod - 1) / p, mod);\r\n    int M = 0;\r\n    MP.reset();\r\n    ll GM_inv =\
-    \ -1;\r\n    if (c) {\r\n      while (M * M < p) ++M;\r\n      ll Gpow = 1;\r\n\
-    \      FOR(m, M) {\r\n        MP[Gpow] = m;\r\n        Gpow = bt.mul(Gpow, G);\r\
-    \n      }\r\n      GM_inv = mod_pow(Gpow, mod - 2, mod);\r\n    }\r\n\r\n    while\
-    \ (c) {\r\n      /*\r\n      b^{mp^c} = 1 \u304C\u5206\u304B\u3063\u3066\u3044\
-    \u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1 \u306B\u3057\u305F\u3044\u3002\r\n   \
-    \   x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\u63A2\u3059\u3002\u539F\u59CB p \u4E57\
-    \u6839 B, G \u306B\u5BFE\u3059\u308B B = G^k \u306B\u5E30\u7740\u3002\r\n    \
-    \  */\r\n      ll B = mod_pow(b, m * pc / p, mod);\r\n      int k = [&](ll B)\
-    \ -> int {\r\n        FOR(m, M + 1) {\r\n          if (MP.count(B)) return m *\
-    \ M + MP[B];\r\n          B = bt.mul(B, GM_inv);\r\n        }\r\n        return\
-    \ -1;\r\n      }(B);\r\n      x = bt.mul(x, mod_pow(g, pf / pc / pe * k, mod));\r\
-    \n      ll exp = pf / pc * k % (mod - 1);\r\n      b = bt.mul(b, mod_pow(g, mod\
-    \ - 1 - exp, mod));\r\n      --c;\r\n      pc /= p;\r\n    }\r\n    int k = pe\
-    \ - mod_inv(m, pe);\r\n    k = (k * m + 1) / pe;\r\n    ll y = mod_pow(b, k, mod);\r\
-    \n    x = bt.mul(x, y);\r\n    return x;\r\n  };\r\n\r\n  auto pf = factor(k);\r\
-    \n  for (auto&& [p, e]: pf) a = solve_pp(p, e, a);\r\n  return a;\r\n}\r\n\r\n\
-    ll mod_kth_root_64(ll k, ll a, ll mod) {\r\n  static HashMap<ll, 20, true> MP;\r\
-    \n  MP.reset();\r\n\r\n  assert(primetest(mod) && 0 <= a && a < mod);\r\n  if\
-    \ (k == 0) return (a == 1 ? 1 : -1);\r\n  if (a == 0) return 0;\r\n  if (mod ==\
-    \ 2) return a;\r\n  k %= mod - 1;\r\n\r\n  ll g = gcd(k, mod - 1);\r\n  if (mod_pow_64(a,\
-    \ (mod - 1) / g, mod) != 1) return -1;\r\n\r\n  ll c = mod_inv(k / g, (mod - 1)\
-    \ / g);\r\n  a = mod_pow_64(a, c, mod);\r\n  k = i128(k) * c % (mod - 1);\r\n\
-    \  if (k == 0) return 1;\r\n\r\n  g = primitive_root_64(mod);\r\n\r\n  auto solve_pp\
-    \ = [&](ll p, ll e, ll a) -> ll {\r\n    ll f = 0;\r\n    ll pf = 1;\r\n    while\
-    \ (((mod - 1) / pf) % p == 0) ++f, pf *= p;\r\n    ll m = (mod - 1) / pf;\r\n\
-    \    /*\r\n    \u30FB\u4F4D\u6570 Qm \u306E\u5DE1\u56DE\u7FA4\r\n    \u30FBa \u306E\
-    \ p^e \u4E57\u6839\u3092\u3068\u308A\u305F\u3044\u3002\u6301\u3064\u3053\u3068\
-    \u306F\u5206\u304B\u3063\u3066\u3044\u308B\r\n    \u30FBa / x^{p^e} = b \u3092\
-    \u7DAD\u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b \u304C p \u3067\u5272\u308C\
-    \u308B\u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\u304F\u3002\r\n    */\r\
-    \n    ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1\r\n    ll pc = 1;\r\n    FOR(c)\
-    \ pc *= p;\r\n    ll pe = 1;\r\n    FOR(e) pe *= p;\r\n    // \u5FC5\u8981\u306A\
-    \u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\u95A2\u3059\u308B\u96E2\u6563\u5BFE\
-    \u6570\u554F\u984C\u306E\u30BB\u30C3\u30C8\u30A2\u30C3\u30D7\r\n    ll G = mod_pow_64(g,\
-    \ (mod - 1) / p, mod);\r\n    ll M = 0;\r\n    ll GM_inv = -1;\r\n    if (c) {\r\
-    \n      while (M * M < p) ++M;\r\n      MP.reset();\r\n      ll Gpow = 1;\r\n\
-    \      FOR(m, M) {\r\n        MP[Gpow] = m;\r\n        Gpow = i128(Gpow) * G %\
-    \ mod;\r\n      }\r\n      GM_inv = mod_pow_64(Gpow, mod - 2, mod);\r\n    }\r\
-    \n\r\n    while (c) {\r\n      /*\r\n      b^{mp^c} = 1 \u304C\u5206\u304B\u3063\
-    \u3066\u3044\u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1 \u306B\u3057\u305F\u3044\u3002\
-    \r\n      x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\u63A2\u3059\u3002\u539F\u59CB\
-    \ p \u4E57\u6839 B, G \u306B\u5BFE\u3059\u308B B = G^k \u306B\u5E30\u7740\u3002\
-    \r\n      */\r\n      ll B = mod_pow_64(b, pc / p * m, mod);\r\n      ll k = [&](ll\
+    \ntemplate <typename Val>\r\nstruct HashMap {\r\n  u32 cap, mask;\r\n  vc<u64>\
+    \ key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  HashMap(u32 n = 0) { build(n);\
+    \ }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k * 0.8 < n) k *=\
+    \ 2;\r\n    cap = k * 0.8, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
+    \ used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n  int size() {\
+    \ return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i =\
+    \ 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\
+    \n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap\
+    \ == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1,\
+    \ key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val\
+    \ get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n    return\
+    \ (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const u64& k)\
+    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
+    \n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\
+    \n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\
+    \n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(used));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 5 \"mod/mod_kth_root.hpp\"\n\
+    \r\n// mod \u306F int\r\nint mod_kth_root(ll k, ll a, int mod) {\r\n  static HashMap<int,\
+    \ 20, true> MP;\r\n  MP.reset();\r\n  assert(primetest(mod) && 0 <= a && a < mod);\r\
+    \n  if (k == 0) return (a == 1 ? 1 : -1);\r\n  if (a == 0) return 0;\r\n  if (mod\
+    \ == 2) return a;\r\n  k %= mod - 1;\r\n  Barrett bt(mod);\r\n\r\n  ll g = gcd(k,\
+    \ mod - 1);\r\n  if (mod_pow(a, (mod - 1) / g, mod) != 1) return -1;\r\n\r\n \
+    \ ll c = mod_inv(k / g, (mod - 1) / g);\r\n  a = mod_pow(a, c, mod);\r\n  k =\
+    \ (k * c) % (mod - 1);\r\n  if (k == 0) return 1;\r\n\r\n  g = primitive_root(mod);\r\
+    \n\r\n  auto solve_pp = [&](ll p, int e, ll a) -> ll {\r\n    int f = 0;\r\n \
+    \   ll pf = 1;\r\n    while ((mod - 1) % (pf * p) == 0) ++f, pf *= p;\r\n    ll\
+    \ m = (mod - 1) / pf;\r\n    /*\r\n    \u30FB\u4F4D\u6570 Qm \u306E\u5DE1\u56DE\
+    \u7FA4\r\n    \u30FBa \u306E p^e \u4E57\u6839\u3092\u3068\u308A\u305F\u3044\u3002\
+    \u6301\u3064\u3053\u3068\u306F\u5206\u304B\u3063\u3066\u3044\u308B\r\n    \u30FB\
+    a / x^{p^e} = b \u3092\u7DAD\u6301\u3059\u308B\u3002\u307E\u305A\u306F\u3001b\
+    \ \u304C p \u3067\u5272\u308C\u308B\u56DE\u6570\u3092\u5897\u3084\u3057\u3066\u3044\
+    \u304F\u3002\r\n    */\r\n    ll x = 1, b = a, c = f - e; // b ^ {mp^c} = 1\r\n\
+    \    int pc = 1;\r\n    FOR(c) pc *= p;\r\n    int pe = 1;\r\n    FOR(e) pe *=\
+    \ p;\r\n    // \u5FC5\u8981\u306A\u3089\u3070\u539F\u59CB p \u4E57\u6839\u306B\
+    \u95A2\u3059\u308B\u96E2\u6563\u5BFE\u6570\u554F\u984C\u306E\u30BB\u30C3\u30C8\
+    \u30A2\u30C3\u30D7\r\n    ll G = mod_pow(g, (mod - 1) / p, mod);\r\n    int M\
+    \ = 0;\r\n    MP.reset();\r\n    ll GM_inv = -1;\r\n    if (c) {\r\n      while\
+    \ (M * M < p) ++M;\r\n      ll Gpow = 1;\r\n      FOR(m, M) {\r\n        MP[Gpow]\
+    \ = m;\r\n        Gpow = bt.mul(Gpow, G);\r\n      }\r\n      GM_inv = mod_pow(Gpow,\
+    \ mod - 2, mod);\r\n    }\r\n\r\n    while (c) {\r\n      /*\r\n      b^{mp^c}\
+    \ = 1 \u304C\u5206\u304B\u3063\u3066\u3044\u308B\u3002(b/x^{p^e}})^{mp^{c-1}}\
+    \ = 1 \u306B\u3057\u305F\u3044\u3002\r\n      x = g^{p^{f-c-e}*k} \u3068\u3057\
+    \u3066\u63A2\u3059\u3002\u539F\u59CB p \u4E57\u6839 B, G \u306B\u5BFE\u3059\u308B\
+    \ B = G^k \u306B\u5E30\u7740\u3002\r\n      */\r\n      ll B = mod_pow(b, m *\
+    \ pc / p, mod);\r\n      int k = [&](ll B) -> int {\r\n        FOR(m, M + 1) {\r\
+    \n          if (MP.count(B)) return m * M + MP[B];\r\n          B = bt.mul(B,\
+    \ GM_inv);\r\n        }\r\n        return -1;\r\n      }(B);\r\n      x = bt.mul(x,\
+    \ mod_pow(g, pf / pc / pe * k, mod));\r\n      ll exp = pf / pc * k % (mod - 1);\r\
+    \n      b = bt.mul(b, mod_pow(g, mod - 1 - exp, mod));\r\n      --c;\r\n     \
+    \ pc /= p;\r\n    }\r\n    int k = pe - mod_inv(m, pe);\r\n    k = (k * m + 1)\
+    \ / pe;\r\n    ll y = mod_pow(b, k, mod);\r\n    x = bt.mul(x, y);\r\n    return\
+    \ x;\r\n  };\r\n\r\n  auto pf = factor(k);\r\n  for (auto&& [p, e]: pf) a = solve_pp(p,\
+    \ e, a);\r\n  return a;\r\n}\r\n\r\nll mod_kth_root_64(ll k, ll a, ll mod) {\r\
+    \n  static HashMap<ll, 20, true> MP;\r\n  MP.reset();\r\n\r\n  assert(primetest(mod)\
+    \ && 0 <= a && a < mod);\r\n  if (k == 0) return (a == 1 ? 1 : -1);\r\n  if (a\
+    \ == 0) return 0;\r\n  if (mod == 2) return a;\r\n  k %= mod - 1;\r\n\r\n  ll\
+    \ g = gcd(k, mod - 1);\r\n  if (mod_pow_64(a, (mod - 1) / g, mod) != 1) return\
+    \ -1;\r\n\r\n  ll c = mod_inv(k / g, (mod - 1) / g);\r\n  a = mod_pow_64(a, c,\
+    \ mod);\r\n  k = i128(k) * c % (mod - 1);\r\n  if (k == 0) return 1;\r\n\r\n \
+    \ g = primitive_root_64(mod);\r\n\r\n  auto solve_pp = [&](ll p, ll e, ll a) ->\
+    \ ll {\r\n    ll f = 0;\r\n    ll pf = 1;\r\n    while (((mod - 1) / pf) % p ==\
+    \ 0) ++f, pf *= p;\r\n    ll m = (mod - 1) / pf;\r\n    /*\r\n    \u30FB\u4F4D\
+    \u6570 Qm \u306E\u5DE1\u56DE\u7FA4\r\n    \u30FBa \u306E p^e \u4E57\u6839\u3092\
+    \u3068\u308A\u305F\u3044\u3002\u6301\u3064\u3053\u3068\u306F\u5206\u304B\u3063\
+    \u3066\u3044\u308B\r\n    \u30FBa / x^{p^e} = b \u3092\u7DAD\u6301\u3059\u308B\
+    \u3002\u307E\u305A\u306F\u3001b \u304C p \u3067\u5272\u308C\u308B\u56DE\u6570\u3092\
+    \u5897\u3084\u3057\u3066\u3044\u304F\u3002\r\n    */\r\n    ll x = 1, b = a, c\
+    \ = f - e; // b ^ {mp^c} = 1\r\n    ll pc = 1;\r\n    FOR(c) pc *= p;\r\n    ll\
+    \ pe = 1;\r\n    FOR(e) pe *= p;\r\n    // \u5FC5\u8981\u306A\u3089\u3070\u539F\
+    \u59CB p \u4E57\u6839\u306B\u95A2\u3059\u308B\u96E2\u6563\u5BFE\u6570\u554F\u984C\
+    \u306E\u30BB\u30C3\u30C8\u30A2\u30C3\u30D7\r\n    ll G = mod_pow_64(g, (mod -\
+    \ 1) / p, mod);\r\n    ll M = 0;\r\n    ll GM_inv = -1;\r\n    if (c) {\r\n  \
+    \    while (M * M < p) ++M;\r\n      MP.reset();\r\n      ll Gpow = 1;\r\n   \
+    \   FOR(m, M) {\r\n        MP[Gpow] = m;\r\n        Gpow = i128(Gpow) * G % mod;\r\
+    \n      }\r\n      GM_inv = mod_pow_64(Gpow, mod - 2, mod);\r\n    }\r\n\r\n \
+    \   while (c) {\r\n      /*\r\n      b^{mp^c} = 1 \u304C\u5206\u304B\u3063\u3066\
+    \u3044\u308B\u3002(b/x^{p^e}})^{mp^{c-1}} = 1 \u306B\u3057\u305F\u3044\u3002\r\
+    \n      x = g^{p^{f-c-e}*k} \u3068\u3057\u3066\u63A2\u3059\u3002\u539F\u59CB p\
+    \ \u4E57\u6839 B, G \u306B\u5BFE\u3059\u308B B = G^k \u306B\u5E30\u7740\u3002\r\
+    \n      */\r\n      ll B = mod_pow_64(b, pc / p * m, mod);\r\n      ll k = [&](ll\
     \ B) -> ll {\r\n        FOR(m, M + 1) {\r\n          if (MP.count(B)) return m\
     \ * M + MP[B];\r\n          B = i128(B) * GM_inv % mod;\r\n        }\r\n     \
     \   return -1;\r\n      }(B);\r\n      x = i128(x) * mod_pow_64(g, pf / pc / pe\
@@ -320,8 +324,8 @@ data:
   isVerificationFile: false
   path: mod/mod_kth_root.hpp
   requiredBy: []
-  timestamp: '2024-01-19 02:38:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-27 11:27:49+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/kth_root_mod.test.cpp
 documentation_of: mod/mod_kth_root.hpp
