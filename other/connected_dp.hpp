@@ -155,7 +155,7 @@ pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
         MP[h] = len(states);
         states.eb(nxt);
       }
-      edges.eb(p, MP.val[idx]);
+      edges.eb(p, MP[h]);
     }
   }
   return {states, edges};
