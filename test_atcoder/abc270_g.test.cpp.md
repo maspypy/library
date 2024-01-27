@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_set/from_monoid.hpp
     title: alg/acted_set/from_monoid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc270/tasks/abc270_g
@@ -471,18 +471,16 @@ data:
     \ b, H, lb, ub);\r\n}\r\n#line 8 \"test_atcoder/abc270_g.test.cpp\"\n\nusing mint\
     \ = dmint;\n\nvoid solve() {\n  LL(P, A, B, S, G);\n  mint::set_mod(P);\n  using\
     \ AS = ActedSet_Affine<mint>;\n  auto h = [&](mint x) -> ll { return x.val; };\n\
-    \n  ll ANS = discrete_log_acted<AS, decltype(h), 18>({A, B}, S, G, h, 0, P);\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
-    \  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n  ll ANS = discrete_log_acted<AS, decltype(h)>({A, B}, S, G, h, 0, P);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc270/tasks/abc270_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/affine.hpp\"\
     \n#include \"mod/dynamic_modint.hpp\"\n#include \"alg/acted_set/affine.hpp\"\n\
     #include \"nt/discrete_log.hpp\"\n\nusing mint = dmint;\n\nvoid solve() {\n  LL(P,\
     \ A, B, S, G);\n  mint::set_mod(P);\n  using AS = ActedSet_Affine<mint>;\n  auto\
     \ h = [&](mint x) -> ll { return x.val; };\n\n  ll ANS = discrete_log_acted<AS,\
-    \ decltype(h), 18>({A, B}, S, G, h, 0, P);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n  FOR(T) solve();\n\n \
-    \ return 0;\n}"
+    \ decltype(h)>({A, B}, S, G, h, 0, P);\n  print(ANS);\n}\n\nsigned main() {\n\
+    \  LL(T);\n  FOR(T) solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -504,8 +502,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc270_g.test.cpp
   requiredBy: []
-  timestamp: '2024-01-27 13:31:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-28 03:56:57+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc270_g.test.cpp
 layout: document
