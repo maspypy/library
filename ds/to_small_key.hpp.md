@@ -5,22 +5,22 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_freq.test.cpp
     title: test/library_checker/datastructure/static_range_freq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_frequency.test.cpp
     title: test/library_checker/datastructure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_mode_query.test.cpp
     title: test/library_checker/datastructure/static_range_mode_query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -47,21 +47,23 @@ data:
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\
     \n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
-    \  HashMap<int> MP;\n\n  To_Small_Key(u32 n = 0) : MP(n) {}\n\n  int set_key(u64\
-    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
-    \ query(u64 x) { return MP.get(x, -1); }\n};\n"
+    \  HashMap<int> MP;\n\n  To_Small_Key(u32 n = 0) : MP(n) {}\n\n  void reserve(u32\
+    \ n) { MP.build(n); }\n\n  int set_key(u64 x) {\n    if (!MP.count(x)) MP[x] =\
+    \ kind++;\n    return MP[x];\n  }\n\n  int query(u64 x) { return MP.get(x, -1);\
+    \ }\n};\n"
   code: "#include \"ds/hashmap.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct\
     \ To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n\n  To_Small_Key(u32 n\
-    \ = 0) : MP(n) {}\n\n  int set_key(u64 x) {\n    if (!MP.count(x)) MP[x] = kind++;\n\
-    \    return MP[x];\n  }\n\n  int query(u64 x) { return MP.get(x, -1); }\n};"
+    \ = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int set_key(u64\
+    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
+    \ query(u64 x) { return MP.get(x, -1); }\n};"
   dependsOn:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
   - ds/static_range_frequency.hpp
-  timestamp: '2024-01-27 13:31:52+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-01-28 03:03:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/static_range_frequency.test.cpp
   - test/library_checker/datastructure/static_range_mode_query.test.cpp
