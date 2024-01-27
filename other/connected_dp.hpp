@@ -94,7 +94,7 @@ pair<vvc<int>, vc<pair<int, int>>> connedted_dp_graph(int N,
 // 状態：-1 が選んでいない。0,1,2,3 等は同じ成分には同じ値が入る。
 // [states, edges]
 pair<vvc<int>, vc<pair<int, int>>> polygon_dp_graph(int N) {
-  HashMap MP;
+  HashMap<int> MP;
   vvc<int> states;
   vc<pair<int, int>> edges;
 

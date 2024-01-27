@@ -14,7 +14,6 @@ void solve() {
 
   vi ANS(N);
   Centroid_Decomposition<decltype(G)> CD(G);
-  HashMap<vc<int>, 20, true> MP;
 
   FOR(root, N) {
     vc<int> conv;
@@ -37,7 +36,7 @@ void solve() {
     }
 
     // 色 -> 頂点集合
-    MP.reset();
+    HashMap<vc<int>> MP(N - 1);
     FOR(v, 1, N) if (A[v] != A[0]) MP[A[v]].eb(v);
 
     // 根の次の点 -> 頂点の個数

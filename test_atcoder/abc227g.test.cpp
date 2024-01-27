@@ -11,7 +11,7 @@ using mint = modint998;
 
 void solve() {
   LL(N, K);
-  HashMap<int, 20, 1> MP;
+  HashMap<int> MP;
   factor_interval(1, K + 1, [&](int i, ll p) -> void { MP[p]--; });
   factor_interval(N - K + 1, N + 1, [&](int i, ll p) -> void { MP[p]++; });
   mint ANS = 1;

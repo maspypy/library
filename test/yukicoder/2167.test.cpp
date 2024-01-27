@@ -5,10 +5,8 @@
 #include "random/base.hpp"
 #include "random/hash_pair.hpp"
 
-HashMap<ll, 20, true> MP;
-
 void solve() {
-  MP.reset();
+  HashMap<ll> MP;
   LL(N, LIM);
   VEC(ll, A, N);
 

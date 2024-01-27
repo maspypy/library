@@ -6,7 +6,7 @@
 void solve() {
   LL(N, K, M);
 
-  HashMap<int, 21, true> MP;
+  HashMap<int> MP(1 << 20);
   FOR(A, 1, 1 << 20) {
     vi X;
     ll prod = A;

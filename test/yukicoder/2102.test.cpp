@@ -6,11 +6,9 @@
 #include "ds/hashmap.hpp"
 
 void solve() {
-  HashMap<bool, 21> MP;
-
   RollingHash RH;
-
   LL(N);
+  HashMap<bool> MP(N);
   FOR(N) {
     STR(S);
     ll n = len(S);
