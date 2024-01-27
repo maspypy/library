@@ -17,7 +17,7 @@ struct Static_Range_Frequency {
 
   template <typename F>
   void build(int N, F f) {
-    S.build(N);
+    S.reserve(N);
     pos.resize(N);
     vc<int> cnt(N + 1), dat(N);
     FOR(i, N) {
