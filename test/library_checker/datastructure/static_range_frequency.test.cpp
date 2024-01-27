@@ -8,7 +8,7 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Static_Range_Frequency<20> X(A);
+  Static_Range_Frequency X(A);
   FOR(Q) {
     INT(l, r, x);
     print(X.query(l, r, x));

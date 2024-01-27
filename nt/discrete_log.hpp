@@ -30,7 +30,7 @@ ll discrete_log_acted(typename ActedSet::A x, typename ActedSet::S s,
 
   ll K = sqrt(LIM) + 1;
 
-  HashMap<bool> MP(K);
+  HashMap<char> MP(K);
 
   FOR(k, K) {
     t = ActedSet::act(t, x);

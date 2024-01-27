@@ -8,7 +8,7 @@
 void solve() {
   U32(N, Q);
   VEC(u32, A, N);
-  To_Small_Key<20, false> X;
+  To_Small_Key X;
   for (auto& x: A) x = X.set_key(x);
 
   vvc<int> IDS(X.kind);

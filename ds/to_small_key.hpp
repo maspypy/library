@@ -5,7 +5,7 @@ struct To_Small_Key {
   int kind = 0;
   HashMap<int> MP;
 
-  To_Small_Key(u32 n) : MP(n) {}
+  To_Small_Key(u32 n = 0) : MP(n) {}
 
   int set_key(u64 x) {
     int idx = MP.index(x);
