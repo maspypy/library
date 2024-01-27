@@ -1,6 +1,6 @@
 #include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"
-#include "linalg/spmat_det.hpp"
+#include "linalg/blackbox/det.hpp"
 
 /*
 ひとつ選んだ辺から始めて全ての点・辺を通る closed walk を数える.
@@ -33,7 +33,11 @@ mint BEST_theorem(GT& G, vc<int> edge_multiplicity = {}) {
     if (a < N - 1 && b < N - 1) mat.eb(a, b, -x);
     if (a < N - 1) mat.eb(a, a, x);
   }
-  mint d = spmat_det(N - 1, mat);
+  auto apply = [&](vc<mint> A) -> vc<mint> {
+    vc<mint> B(N - 1);
+    for (auto& [a, b, c]: mat) B[b] += A[a] * c;
+  };
+  mint d = blackbox_det(N - 1, apply);
   for (auto& x: outdeg) { d *= fact<mint>(x - 1); }
   return d;
 }
