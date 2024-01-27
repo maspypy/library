@@ -1,10 +1,9 @@
 
 #include "ds/to_small_key.hpp"
 
-template <int LOG, bool USE_RESET = false>
 struct Static_Range_Frequency {
   vc<int> pos, indptr;
-  To_Small_Key<LOG, USE_RESET> S;
+  To_Small_Key S;
 
   template <typename T>
   Static_Range_Frequency(vc<T>& A) {
@@ -18,6 +17,7 @@ struct Static_Range_Frequency {
 
   template <typename F>
   void build(int N, F f) {
+    S.build(N);
     pos.resize(N);
     vc<int> cnt(N + 1), dat(N);
     FOR(i, N) {
@@ -37,10 +37,5 @@ struct Static_Range_Frequency {
     auto nl = lower_bound(pos.begin() + a, pos.begin() + b, L);
     auto nr = lower_bound(pos.begin() + a, pos.begin() + b, R);
     return nr - nl;
-  }
-
-  void reset() {
-    static_assert(USE_RESET);
-    S.reset();
   }
 };
