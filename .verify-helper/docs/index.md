@@ -1,5 +1,5 @@
-ライブラリ整備を支援したい場合 / To support developping this library
-→ https://github.com/sponsors/maspypy
+ライブラリ整備を支援する / Support developping this library
+- https://github.com/sponsors/maspypy
 
 ----
 
