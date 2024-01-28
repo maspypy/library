@@ -3,7 +3,7 @@
 
 #include "random/base.hpp"
 #include "poly/composition_f_log_1_minus_x.hpp"
-#include "poly/fps_composition.hpp"
+#include "poly/composition.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
@@ -19,7 +19,7 @@ void test() {
     vc<mint> g(n + 1);
     FOR(i, 1, n + 1) g[i] = -inv<mint>(i);
     vc<mint> F = composition_f_log_1_minus_x(f);
-    vc<mint> G = fps_composition(f, g);
+    vc<mint> G = composition(f, g);
     assert(F == G);
   }
 }
