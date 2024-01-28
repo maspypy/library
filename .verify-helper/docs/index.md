@@ -1,3 +1,6 @@
+ライブラリ整備を支援したい場合 / To support developping this library
+→ https://github.com/sponsors/maspypy
+
 ご自由にどうぞ。
 - 破壊的な設計変更もよくしているので注意してください。
 - バグってたらごめん＋教えてくれると助かります。
