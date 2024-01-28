@@ -23,7 +23,7 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -32,12 +32,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
@@ -163,6 +166,9 @@ data:
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -246,15 +252,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_1_minus_ex.test.cpp
-    title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_ex_minus_1.test.cpp
-    title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_log_1_minus_x.test.cpp
-    title: test/mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
@@ -473,6 +470,7 @@ data:
   - poly/product_of_one_plus_xn.hpp
   - poly/fps_exp.hpp
   - poly/product_of_pow_of_linear.hpp
+  - poly/compositional_inverse.hpp
   - poly/multipoint.hpp
   - poly/prefix_sum_of_polynomial.hpp
   - poly/sum_of_exp_bx.hpp
@@ -515,10 +513,8 @@ data:
   verifiedWith:
   - test/mytest/online_exp.test.cpp
   - test/mytest/simple_perm.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/count_bipartite.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/graph_count.test.cpp
@@ -526,7 +522,6 @@ data:
   - test/mytest/poly_root_finding.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/online_log.test.cpp
@@ -600,6 +595,7 @@ data:
   - test/library_checker/polynomial/polynomial_division.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test_atcoder/abc331g.test.cpp
   - test_atcoder/arc160d.test.cpp
   - test_atcoder/arc154f.test.cpp

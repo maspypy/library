@@ -81,6 +81,9 @@ data:
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/composition.hpp
+    title: poly/composition.hpp
+  - icon: ':warning:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -92,12 +95,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -119,9 +125,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/fps_composition.hpp
-    title: poly/fps_composition.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
@@ -478,8 +481,8 @@ data:
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/composition_of_fps.test.cpp
-    title: test/library_checker/polynomial/composition_of_fps.test.cpp
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
@@ -606,15 +609,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_1_minus_ex.test.cpp
-    title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_ex_minus_1.test.cpp
-    title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_log_1_minus_x.test.cpp
-    title: test/mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
@@ -1320,9 +1314,9 @@ data:
   - poly/fps_exp.hpp
   - poly/convolution_huge.hpp
   - poly/product_of_pow_of_linear.hpp
+  - poly/compositional_inverse.hpp
   - poly/multipoint.hpp
   - poly/sum_of_rationals.hpp
-  - poly/fps_composition.hpp
   - poly/convolution.hpp
   - poly/prefix_sum_of_polynomial.hpp
   - poly/multivar_convolution.hpp
@@ -1355,6 +1349,7 @@ data:
   - poly/online/online_pow.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/composition_f_a_plus_bx.hpp
+  - poly/composition.hpp
   - poly/composed_sum.hpp
   - poly/multivar_convolution_cyclic.hpp
   - poly/fps_pow.hpp
@@ -1406,14 +1401,12 @@ data:
   - test/mytest/online_exp.test.cpp
   - test/mytest/mo_on_tree.test.cpp
   - test/mytest/simple_perm.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/count_bipartite.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/bigint.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/count_unlabeled_tree.test.cpp
@@ -1432,7 +1425,6 @@ data:
   - test/mytest/splay_monoid.test.cpp
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/online_division.test.cpp
@@ -1617,7 +1609,6 @@ data:
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
@@ -1625,6 +1616,7 @@ data:
   - test/library_checker/polynomial/polynomial_division.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp

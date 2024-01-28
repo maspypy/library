@@ -48,6 +48,9 @@ data:
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -78,6 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
@@ -504,6 +510,7 @@ data:
   path: poly/fps_div.hpp
   requiredBy:
   - poly/sum_of_power_of_roots.hpp
+  - poly/compositional_inverse.hpp
   - poly/prefix_sum_of_polynomial.hpp
   - poly/slice_rational_fps.hpp
   - poly/composed_product.hpp
@@ -544,6 +551,7 @@ data:
   - test/yukicoder/2305.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/bernoulli.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test_atcoder/arc154f.test.cpp
   - test_atcoder/abc260h.test.cpp
   - test_atcoder/agc013e.test.cpp

@@ -17,9 +17,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
@@ -67,6 +70,9 @@ data:
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps.test.cpp
     title: test/library_checker/polynomial/exp_of_fps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,9 +108,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell_number.test.cpp
     title: test/mytest/bell_number.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_log_1_minus_x.test.cpp
-    title: test/mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
@@ -200,6 +203,7 @@ data:
   - poly/product_of_one_plus_xn.hpp
   - poly/fps_exp.hpp
   - poly/product_of_pow_of_linear.hpp
+  - poly/compositional_inverse.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/fps_sqrt.hpp
   - poly/composed_product.hpp
@@ -218,7 +222,6 @@ data:
   verifiedWith:
   - test/mytest/online_exp.test.cpp
   - test/mytest/count_bipartite.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
@@ -250,6 +253,7 @@ data:
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test_atcoder/abc331g.test.cpp
   - test_atcoder/arc160d.test.cpp
   - test_atcoder/abc285h.test.cpp

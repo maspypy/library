@@ -28,20 +28,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/composition_of_fps.test.cpp
-    title: test/library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_1_minus_ex.test.cpp
-    title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_ex_minus_1.test.cpp
-    title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/composition_log_1_minus_x.test.cpp
-    title: test/mytest/composition_log_1_minus_x.test.cpp
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -315,7 +309,7 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/fps_composition.hpp\"\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/composition.hpp\"\
     \n\r\ntemplate <typename mint>\r\nvc<mint> fps_composition(vc<mint>& Q, vc<mint>&\
     \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
     \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
@@ -352,19 +346,17 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   isVerificationFile: false
-  path: poly/fps_composition.hpp
-  requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
+  path: poly/composition.hpp
+  requiredBy:
+  - poly/compositional_inverse.hpp
+  timestamp: '2024-01-28 22:40:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
-documentation_of: poly/fps_composition.hpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
+documentation_of: poly/composition.hpp
 layout: document
 redirect_from:
-- /library/poly/fps_composition.hpp
-- /library/poly/fps_composition.hpp.html
-title: poly/fps_composition.hpp
+- /library/poly/composition.hpp
+- /library/poly/composition.hpp.html
+title: poly/composition.hpp
 ---
