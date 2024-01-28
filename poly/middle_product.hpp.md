@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
@@ -96,15 +96,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc333f.test.cpp
+    title: test_atcoder/abc333f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\
@@ -236,7 +239,7 @@ data:
   - string/wildcard_pattern_matching.hpp
   - seq/count_grid_path.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/typical_dc.test.cpp
   - test/mytest/partial_frac.test.cpp
@@ -261,6 +264,7 @@ data:
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc241h.test.cpp
+  - test_atcoder/abc333f.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
@@ -51,6 +51,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/mul_modp_conv.test.cpp
+    title: test/library_checker/convolution/mul_modp_conv.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2613.test.cpp
     title: test/yukicoder/2613.test.cpp
@@ -469,6 +472,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2613.test.cpp
+  - test/library_checker/convolution/mul_modp_conv.test.cpp
 documentation_of: mod/multiplicative_convolution_mod_p.hpp
 layout: document
 redirect_from:

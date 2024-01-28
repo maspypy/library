@@ -107,7 +107,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/remove_one_edge_connectivity.hpp
     title: graph/ds/remove_one_edge_connectivity.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
   - icon: ':heavy_check_mark:'
@@ -765,6 +765,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc319g.test.cpp
     title: test_atcoder/abc319g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc334g.test.cpp
+    title: test_atcoder/abc334g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
@@ -1153,6 +1156,7 @@ data:
   - test_atcoder/abc269ex2.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc245g.test.cpp
+  - test_atcoder/abc334g.test.cpp
   - test_atcoder/abc209e.test.cpp
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc298ex.test.cpp

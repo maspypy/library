@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':warning:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -69,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/convolution/mul_modp_conv.test.cpp
+    title: test/library_checker/convolution/mul_modp_conv.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
@@ -189,15 +192,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_g.test.cpp
     title: test_atcoder/abc270_g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc335g.test.cpp
+    title: test_atcoder/abc335g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
@@ -288,6 +294,7 @@ data:
   - test/yukicoder/2120.test.cpp
   - test/library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/library_checker/convolution/mul_modp_conv.test.cpp
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/library_checker/math/sqrt_mod.test.cpp
   - test/library_checker/math/gaussian_integers.test.cpp
@@ -310,6 +317,7 @@ data:
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
+  - test_atcoder/abc335g.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc270_g.test.cpp
