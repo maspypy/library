@@ -6,8 +6,8 @@ struct HashMap {
   HashMap(u32 n = 0) { build(n); }
   void build(u32 n) {
     u32 k = 8;
-    while (k * 0.8 < n) k *= 2;
-    cap = k * 0.8, mask = k - 1;
+    while (k < n * 2) k *= 2;
+    cap = k / 2, mask = k - 1;
     key.resize(k), val.resize(k), used.assign(k, 0);
   }
   void clear() { build(0); }
