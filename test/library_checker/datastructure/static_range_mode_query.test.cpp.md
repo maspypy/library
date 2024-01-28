@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -218,7 +218,7 @@ data:
     \        query(qid);\n        rollback();\n        l = LMAX;\n      }\n    }\n\
     \  }\n};\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
     \ Val>\r\nstruct HashMap {\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32\
-    \ n) {\r\n    u32 k = 8;\r\n    while (k * 0.8 < n) k *= 2;\r\n    cap = k * 0.8,\
+    \ n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2,\
     \ mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\
     \n  void clear() { build(0); }\r\n  int size() { return len(used) - cap; }\r\n\
     \r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i]\
@@ -284,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_mode_query.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 03:03:58+09:00'
+  timestamp: '2024-01-28 16:26:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_mode_query.test.cpp
