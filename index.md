@@ -248,13 +248,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -504,7 +504,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_weighted_unionfind.hpp
       title: ds/unionfind/rollback_weighted_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -672,7 +672,7 @@ data:
       title: geo3d/base.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -726,7 +726,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/eulerwalk.hpp
       title: graph/eulerwalk.hpp
     - icon: ':heavy_check_mark:'
@@ -858,7 +858,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/vs_to_es.hpp
       title: graph/vs_to_es.hpp
   - name: graph/blackbox
@@ -975,7 +975,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/remove_one_edge_connectivity.hpp
       title: graph/ds/remove_one_edge_connectivity.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/remove_one_vertex_connectivity.hpp
       title: graph/ds/remove_one_vertex_connectivity.hpp
     - icon: ':heavy_check_mark:'
@@ -1138,13 +1138,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
     - icon: ':heavy_check_mark:'
@@ -1180,7 +1180,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -1189,7 +1189,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
     - icon: ':heavy_check_mark:'
@@ -1198,19 +1198,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mongomery_modint.hpp
       title: mod/mongomery_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1239,7 +1239,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1255,7 +1255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/array_on_divisors.hpp
       title: nt/array_on_divisors.hpp
     - icon: ':heavy_check_mark:'
@@ -1282,7 +1282,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
@@ -1330,7 +1330,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -1380,7 +1380,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/golden_search.hpp
       title: other/golden_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1436,7 +1436,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_log_1_minus_x.hpp
       title: poly/composition_f_log_1_minus_x.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1448,25 +1448,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution_huge.hpp
       title: poly/convolution_huge.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_karatsuba.hpp
       title: poly/convolution_karatsuba.hpp
     - icon: ':heavy_check_mark:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
     - icon: ':heavy_check_mark:'
       path: poly/convolution_u64.hpp
       title: poly/convolution_u64.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/count_terms.hpp
       title: poly/count_terms.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':heavy_check_mark:'
@@ -1478,7 +1478,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/fps_div.hpp
       title: poly/fps_div.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/fps_exp.hpp
       title: poly/fps_exp.hpp
     - icon: ':heavy_check_mark:'
@@ -1499,13 +1499,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/from_log_differentiation.hpp
       title: poly/from_log_differentiation.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
     - icon: ':heavy_check_mark:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/middle_product.hpp
       title: poly/middle_product.hpp
     - icon: ':heavy_check_mark:'
@@ -1517,7 +1517,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':heavy_check_mark:'
@@ -1547,7 +1547,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
     - icon: ':heavy_check_mark:'
@@ -1577,7 +1577,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/typical_divide_conquer.hpp
       title: poly/typical_divide_conquer.hpp
   - name: poly/online
@@ -1605,7 +1605,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -4223,7 +4223,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc272_h.test.cpp
       title: test_atcoder/abc272_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc273_e.test.cpp
       title: test_atcoder/abc273_e.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4313,16 +4313,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc326g.test.cpp
       title: test_atcoder/abc326g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc331g.test.cpp
       title: test_atcoder/abc331g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc333f.test.cpp
       title: test_atcoder/abc333f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc334g.test.cpp
       title: test_atcoder/abc334g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc335g.test.cpp
       title: test_atcoder/abc335g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4367,7 +4367,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/arc154f.test.cpp
       title: test_atcoder/arc154f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/arc157a.test.cpp
       title: test_atcoder/arc157a.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4378,44 +4378,50 @@ data:
       title: test_atcoder/arc162f.test.cpp
 layout: toppage
 ---
-ご自由にどうぞ。
-- 破壊的な設計変更もよくしているので注意してください。
-- バグってたらごめん＋教えてくれると助かります。
-- 他の人が使いやすい想定で作っていないので、使いにくい可能性が割とあります。
-- 例えば、単体でコピペしてもダメで、テンプレの一部を上手く拾ってこないと動かないことはよくあります。
+ライブラリ整備を支援したい場合 / To support developping this library
+→ https://github.com/sponsors/maspypy
+
+----
+
+コピペ使用等，ご自由に利用してください．
+- 破壊的な設計変更もよくしているので注意してください．
+- バグってたらごめん＋教えてくれると助かります．
+- 他の人が使いやすい想定で作っていないので，使いにくい可能性が割とあります．
+- 例えば，単体でコピペしてもダメで，テンプレの一部を上手く拾ってこないと動かないことはよくあります．
+- verify しているコードをテンプレごとコピペすると利用しやすいかもしれません．
 
 <details>
     <summary>こういうライブラリまとめの作り方</summary>
     
 <ul>
-    <li>「online-judge-tools/verification-helper」を使う。</li>
-    <li> https://github.com/online-judge-tools/verification-helper/blob/master/README.ja.md を見て頑張ります。</li>
-    <li>公開テストケースをダウンロードして、出力が正しいかを判定してくれる</li>
+    <li>「online-judge-tools/verification-helper」を使う．</li>
+    <li> https://github.com/online-judge-tools/verification-helper/blob/master/README.ja.md を見て頑張ります．</li>
+    <li>公開テストケースをダウンロードして，出力が正しいかを判定してくれる</li>
     <li>Library Checker の問題だと特殊ジャッジも対応可</li>
     <li>Library Checker, yukicoder はかなり安定して使える</li>
     <li>AOJ の問題はときどき上手くダウンロードできないようだが割と使える</li>
-    <li>AtCoder の問題は、dropbox (https://atcoder.jp/posts/20) にあれば割とできる？</li>
+    <li>AtCoder の問題は，dropbox (https://atcoder.jp/posts/20) にあれば割とできる？</li>
 </ul>
 
-困ったら聞いてもらえると分かる範囲で助けます（が、分かる範囲があまり大きくないです）
+困ったら聞いてもらえると分かる範囲で助けます（が，分かる範囲があまり大きくないです）
 </details>
 
 <details>
     <summary>雑多なメモ</summary>
 
 <ul>
-    <li>一度なんか壊れたのでコピーして別レポジトリとして再生した。パソコンわからない。</li>
-    <li>workflow：oj の導入方法の解説に従った場合、不要なものまでいろいろインストールするが、結構減らせる。他の人の verify.yml を見ながら調整するとよい。</li>
+    <li>一度なんか壊れたのでコピーして別レポジトリとして再生した．パソコンわからない．</li>
+    <li>workflow：oj の導入方法の解説に従った場合，不要なものまでいろいろインストールするが，結構減らせる．他の人の verify.yml を見ながら調整するとよい．</li>
     <li> https://github.com/maspypy/library/blob/main/.github/workflows/verify.yml</li>
-    <li>github の使い方：私も無知よりですが、add, commit, pull, push だけ使えるようになればあまり困らないっぽいです。</li>
-    <li>github actions による 自動verify：oj 側か github 側どちらの意図か知らないが、1 push あたり 10 分くらいで verify が止まる。empty commit を push するなどして続きを動かすようにしている。</li>
-    <li> ~/.bashrc に alias empty_c='git commit --allow-empty -m "empty";git push' と書いている</li>
-    <li>atcoder の dropbox 内のものを verify に使う場合には、define PROBLEM の URL 指定を適当にいじると上手くいくことがあるっぽい？</li>
+    <li>github の使い方：私も無知よりですが， add, commit, pull, push だけ使えるようになればあまり困らないっぽいです．</li>
+    <li>github actions による 自動verify：oj 側か github 側どちらの意図か知らないが， 1 push あたり 10 分くらいで verify が止まる．empty commit を push するなどして続きを動かすようにしている．</li>
+    <li> ~/.bashrc に alias empty_c='git commit --allow-empty -m "empty";git push' と書いている．</li>
+    <li>atcoder の dropbox 内のものを verify に使う場合には，場合によっては define PROBLEM の URL 指定を適当にいじる必要がある．</li>
     <li>abcxxx_h → abcxxx_Ex</li>
     <li>AGCxxx_x → agcxxx_x</li>
-    <li>atcoder：一度上手くいったものがまた落ちることがある？こまめに DROPBOX_TOKEN を設定しなおす必要があるかも？</li>
+    <li>DROPBOX_TOKEN は数時間で寿命になるので必要に応じて設定しなおす．</li>
     <li>誤差ジャッジ：#define ERROR を指定するとできる</li>
-    <li>「ココ」の文章：https://github.com/maspypy/library/blob/main/.verify-helper/docs/index.md に書く</li>
+    <li>「ココ」の文章：https://github.com/maspypy/library/blob/main/.verify-helper/docs/index.md に書く．</li>
 </ul>
 
 </details>
