@@ -262,6 +262,15 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_1_minus_ex.test.cpp
+    title: test/mytest/composition_1_minus_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_ex_minus_1.test.cpp
+    title: test/mytest/composition_ex_minus_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_log_1_minus_x.test.cpp
+    title: test/mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -802,6 +811,7 @@ data:
   - test/mytest/segtree_xor_prod.test.cpp
   - test/mytest/online_exp.test.cpp
   - test/mytest/mo_on_tree.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/binary_trie.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
@@ -816,6 +826,7 @@ data:
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/bigint.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/summin_assign.test.cpp
@@ -851,6 +862,7 @@ data:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/seg2d.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/count_K4.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp

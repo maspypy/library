@@ -712,6 +712,9 @@ data:
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/composition_of_fps.test.cpp
+    title: test/library_checker/polynomial/composition_of_fps.test.cpp
+  - icon: ':x:'
     path: test/library_checker/polynomial/compositional_inverse.test.cpp
     title: test/library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -931,6 +934,15 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_1_minus_ex.test.cpp
+    title: test/mytest/composition_1_minus_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_ex_minus_1.test.cpp
+    title: test/mytest/composition_ex_minus_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_log_1_minus_x.test.cpp
+    title: test/mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
   - icon: ':heavy_check_mark:'
@@ -954,6 +966,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_connected.test.cpp
+    title: test/mytest/count_labeled_connected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
@@ -2472,9 +2487,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://trap.jp/post/1224/
@@ -2642,7 +2657,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2023-10-29 16:21:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/dynamic_segtree_sparse.test.cpp
   - test/mytest/multinomial.test.cpp
@@ -2654,6 +2669,7 @@ data:
   - test/mytest/online_exp.test.cpp
   - test/mytest/mo_on_tree.test.cpp
   - test/mytest/simple_perm.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/binary_trie.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
@@ -2670,6 +2686,7 @@ data:
   - test/mytest/manhattan_nns.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/bigint.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/primesum_mod4.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/vandermonde.test.cpp
@@ -2695,6 +2712,7 @@ data:
   - test/mytest/max_max.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/incremental_ch.test.cpp
+  - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/matching_line_graph.test.cpp
   - test/mytest/chirp_z.test.cpp
@@ -2717,6 +2735,7 @@ data:
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/seg2d.test.cpp
   - test/mytest/tutte.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/count_K4.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
@@ -3172,6 +3191,7 @@ data:
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
