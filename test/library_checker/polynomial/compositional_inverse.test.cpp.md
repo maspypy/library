@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series
@@ -558,14 +558,15 @@ data:
     \ G1 = composition(FF, GG);\n      G2 = composition(DFF, G);\n    }\n    G1 =\
     \ {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n\
     \    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n#line\
-    \ 8 \"test/library_checker/polynomial/compositional_inverse.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N);\n  VEC(mint, F, N);\n  vc<mint> G = compositional_inverse(F);\n\
-    \  print(G);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ 8 \"test/library_checker/polynomial/compositional_inverse.test.cpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(mint, F, N);\n  vc<mint>\
+    \ G = compositional_inverse(F);\n  print(G);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n#include \"poly/compositional_inverse.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(mint,\
-    \ F, N);\n  vc<mint> G = compositional_inverse(F);\n  print(G);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \n#include \"poly/compositional_inverse.hpp\"\n\nusing mint = modint998;\n\nvoid\
+    \ solve() {\n  LL(N);\n  VEC(mint, F, N);\n  vc<mint> G = compositional_inverse(F);\n\
+    \  print(G);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -587,8 +588,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/compositional_inverse.test.cpp
   requiredBy: []
-  timestamp: '2024-01-29 21:47:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-30 04:44:03+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/compositional_inverse.test.cpp
 layout: document
