@@ -5,7 +5,7 @@
 // connected = false: https://oeis.org/A047864
 // connected = true: https://oeis.org/A001832
 template <typename mint>
-vc<mint> count_bipartite(int N, bool connected) {
+vc<mint> count_labeled_bipartite(int N, bool connected) {
   Power_Query<Monoid_Mul<mint>> POW2(mint(2));
   Power_Query<Monoid_Mul<mint>> iPOW2(inv<mint>(2));
 
