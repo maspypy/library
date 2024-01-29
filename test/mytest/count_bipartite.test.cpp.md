@@ -680,21 +680,21 @@ data:
     \ = false: https://oeis.org/A047864\n// connected = true: https://oeis.org/A001832\n\
     template <typename mint>\nvc<mint> count_labeled_bipartite(int N, bool connected)\
     \ {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] =\
-    \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i] * ipow, ipow *= inv<mint>(2);\n  FOR(i, N\
-    \ + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N + 1);\n\
-    \  mint pow = 1, c = 1;\n  FOR(i, 1, N + 1) F[i] *= c, c *= pow, pow += pow;\n\
-    \n  // colored bipartite connected\n  if (connected) {\n    F = fps_log(F);\n\
-    \    FOR(i, N + 1) F[i] *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \    return F;\n  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \  return F;\n}\n#line 6 \"test/mytest/count_bipartite.test.cpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10,\
-    \ true);\n  vc<mint> B = {0LL,    1LL,     1LL,       3LL,        19LL,      \
-    \  195LL,\n                3031LL, 67263LL, 2086099LL, 89224635LL, 5254054111LL};\n\
-    \  assert(A == B);\n  A = count_labeled_bipartite<mint>(10, false);\n  B = {1LL,\
-    \    1LL,      2LL,       7LL,         41LL,        376LL,\n       5177LL, 103237LL,\
-    \ 2922446LL, 116011231LL, 6433447397LL};\n  assert(A == B);\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n  FOR(i,\
+    \ N + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N +\
+    \ 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow,\
+    \ print(i, c);\n\n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i]\
+    \ *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n\
+    \  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n\
+    }\n#line 6 \"test/mytest/count_bipartite.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10, true);\n  vc<mint>\
+    \ B = {0LL,    1LL,     1LL,       3LL,        19LL,        195LL,\n         \
+    \       3031LL, 67263LL, 2086099LL, 89224635LL, 5254054111LL};\n  assert(A ==\
+    \ B);\n  A = count_labeled_bipartite<mint>(10, false);\n  B = {1LL,    1LL,  \
+    \    2LL,       7LL,         41LL,        376LL,\n       5177LL, 103237LL, 2922446LL,\
+    \ 116011231LL, 6433447397LL};\n  assert(A == B);\n}\n\nvoid solve() {\n  int a,\
+    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"graph/count/count_labeled_bipartite.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10,\
@@ -735,7 +735,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_bipartite.test.cpp
   requiredBy: []
-  timestamp: '2024-01-30 02:03:40+09:00'
+  timestamp: '2024-01-30 02:52:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_bipartite.test.cpp

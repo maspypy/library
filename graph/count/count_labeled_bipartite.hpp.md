@@ -595,24 +595,24 @@ data:
     \ = false: https://oeis.org/A047864\n// connected = true: https://oeis.org/A001832\n\
     template <typename mint>\nvc<mint> count_labeled_bipartite(int N, bool connected)\
     \ {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] =\
-    \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i] * ipow, ipow *= inv<mint>(2);\n  FOR(i, N\
-    \ + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N + 1);\n\
-    \  mint pow = 1, c = 1;\n  FOR(i, 1, N + 1) F[i] *= c, c *= pow, pow += pow;\n\
-    \n  // colored bipartite connected\n  if (connected) {\n    F = fps_log(F);\n\
-    \    FOR(i, N + 1) F[i] *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \    return F;\n  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \  return F;\n}\n"
+    \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n  FOR(i,\
+    \ N + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N +\
+    \ 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow,\
+    \ print(i, c);\n\n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i]\
+    \ *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n\
+    \  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n\
+    }\n"
   code: "#include \"poly/fps_log.hpp\"\n#include \"poly/fps_sqrt.hpp\"\n#include \"\
     ds/power_query.hpp\"\n\n// connected = false: https://oeis.org/A047864\n// connected\
     \ = true: https://oeis.org/A001832\ntemplate <typename mint>\nvc<mint> count_labeled_bipartite(int\
     \ N, bool connected) {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow\
-    \ = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i] * ipow, ipow *= inv<mint>(2);\n\
+    \ = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n\
     \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N\
-    \ + 1);\n  mint pow = 1, c = 1;\n  FOR(i, 1, N + 1) F[i] *= c, c *= pow, pow +=\
-    \ pow;\n\n  // colored bipartite connected\n  if (connected) {\n    F = fps_log(F);\n\
-    \    FOR(i, N + 1) F[i] *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \    return F;\n  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
-    \  return F;\n}"
+    \ + 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow,\
+    \ print(i, c);\n\n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i]\
+    \ *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n\
+    \  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n\
+    }"
   dependsOn:
   - poly/fps_log.hpp
   - poly/fps_inv.hpp
@@ -641,7 +641,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_bipartite.hpp
   requiredBy: []
-  timestamp: '2024-01-30 00:36:07+09:00'
+  timestamp: '2024-01-30 02:52:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_bipartite.test.cpp
