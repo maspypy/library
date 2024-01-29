@@ -6,15 +6,16 @@
 // connected = true: https://oeis.org/A001832
 template <typename mint>
 vc<mint> count_labeled_bipartite(int N, bool connected) {
-  Power_Query<Monoid_Mul<mint>> POW2(mint(2));
-  Power_Query<Monoid_Mul<mint>> iPOW2(inv<mint>(2));
-
   // colored bipartite
   vc<mint> F(N + 1);
-  FOR(i, N + 1) F[i] = fact_inv<mint>(i) * iPOW2[i * (i - 1) / 2];
+  mint ipow = 1;
+  F[0] = 1;
+  FOR(i, 1, N + 1) F[i] = F[i] * ipow, ipow *= inv<mint>(2);
+  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);
   F = convolution(F, F);
   F.resize(N + 1);
-  FOR(i, N + 1) F[i] *= POW2[i * (i - 1) / 2];
+  mint pow = 1, c = 1;
+  FOR(i, 1, N + 1) F[i] *= c, c *= pow, pow += pow;
 
   // colored bipartite connected
   if (connected) {
