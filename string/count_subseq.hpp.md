@@ -34,8 +34,8 @@ data:
   timestamp: '2023-10-17 19:59:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/string/number_of_subsequences.test.cpp
   - test/yukicoder/1493.test.cpp
+  - test/library_checker/string/number_of_subsequences.test.cpp
 documentation_of: string/count_subseq.hpp
 layout: document
 redirect_from:

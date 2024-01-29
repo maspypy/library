@@ -56,6 +56,9 @@ data:
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/fps_pow.hpp
+    title: poly/fps_pow.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -473,26 +476,83 @@ data:
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 4 \"graph/count/count_labeled_bridgeless.hpp\"\
-    \n\n// \u6A4B\u306E\u306A\u3044\u9023\u7D50\u30B0\u30E9\u30D5\n// https://oeis.org/A095983\n\
-    // N=1: 1\ntemplate <typename mint>\nvc<mint> count_labeled_bridgeless(int N)\
-    \ {\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i] *=\
-    \ fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i] = mint(i) *\
-    \ C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n  E.pop_back();\n\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 5 \"poly/fps_pow.hpp\"\n\r\n// fps\
+    \ \u306E k \u4E57\u3092\u6C42\u3081\u308B\u3002k >= 0 \u306E\u524D\u63D0\u3067\
+    \u3042\u308B\u3002\r\n// \u5B9A\u6570\u9805\u304C 1 \u3067\u3001k \u304C mint\
+    \ \u306E\u5834\u5408\u306B\u306F\u3001fps_pow_1 \u3092\u4F7F\u3046\u3053\u3068\
+    \u3002\r\n// \u30FBdense \u306A\u5834\u5408\uFF1A log, exp \u3092\u4F7F\u3046\
+    \ O(NlogN)\r\n// \u30FBsparse \u306A\u5834\u5408\uFF1A O(NK)\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_pow(const vc<mint>& f, ll k) {\r\n  assert(0 <= k);\r\n\
+    \  int n = len(f);\r\n  if (k == 0) {\r\n    vc<mint> g(n);\r\n    g[0] = mint(1);\r\
+    \n    return g;\r\n  }\r\n  int d = n;\r\n  FOR_R(i, n) if (f[i] != 0) d = i;\r\
+    \n  // d * k >= n\r\n  if (d >= ceil<ll>(n, k)) {\r\n    vc<mint> g(n);\r\n  \
+    \  return g;\r\n  }\r\n  ll off = d * k;\r\n  mint c = f[d];\r\n  mint c_inv =\
+    \ mint(1) / mint(c);\r\n  vc<mint> g(n - off);\r\n  FOR(i, n - off) g[i] = f[d\
+    \ + i] * c_inv;\r\n  g = fps_pow_1(g, mint(k));\r\n  vc<mint> h(n);\r\n  c = c.pow(k);\r\
+    \n  FOR(i, len(g)) h[off + i] = g[i] * c;\r\n  return h;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_pow_1_sparse(const vc<mint>& f, mint K) {\r\n\
+    \  int N = len(f);\r\n  assert(N == 0 || f[0] == mint(1));\r\n  vc<pair<int, mint>>\
+    \ dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\
+    \n  g[0] = 1;\r\n  FOR(n, N - 1) {\r\n    mint& x = g[n + 1];\r\n    for (auto&&\
+    \ [d, cf]: dat) {\r\n      if (d > n + 1) break;\r\n      mint t = cf * g[n -\
+    \ d + 1];\r\n      x += t * (K * mint(d) - mint(n - d + 1));\r\n    }\r\n    x\
+    \ *= inv<mint>(n + 1);\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> fps_pow_1_dense(const vc<mint>& f, mint K) {\r\n  assert(f[0] == mint(1));\r\
+    \n  auto log_f = fps_log(f);\r\n  FOR(i, len(f)) log_f[i] *= K;\r\n  return fps_exp_dense(log_f);\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_pow_1(const vc<mint>& f, mint\
+    \ K) {\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 100 : 1300);\r\
+    \n  return (n <= t ? fps_pow_1_sparse(f, K) : fps_pow_1_dense(f, K));\r\n}\r\n\
+    \r\n// f^e, sparse, O(NMK)\r\ntemplate <typename mint>\r\nvvc<mint> fps_pow_1_sparse_2d(vvc<mint>\
+    \ f, mint n) {\r\n  assert(f[0][0] == mint(1));\r\n  int N = len(f), M = len(f[0]);\r\
+    \n  vv(mint, dp, N, M);\r\n  dp[0] = fps_pow_1_sparse<mint>(f[0], n);\r\n\r\n\
+    \  vc<tuple<int, int, mint>> dat;\r\n  FOR(i, N) FOR(j, M) {\r\n    if ((i > 0\
+    \ || j > 0) && f[i][j] != mint(0)) dat.eb(i, j, f[i][j]);\r\n  }\r\n  FOR(i, 1,\
+    \ N) {\r\n    FOR(j, M) {\r\n      // F = f^n, f dF = n df F\r\n      // [x^{i-1}y^j]\r\
+    \n      mint lhs = 0, rhs = 0;\r\n      for (auto&& [a, b, c]: dat) {\r\n    \
+    \    if (a < i && b <= j) lhs += dp[i - a][j - b] * mint(i - a);\r\n        if\
+    \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
+    \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
+    \n}\r\n#line 5 \"graph/count/count_labeled_bridgeless.hpp\"\n\n// \u6A4B\u306E\
+    \u306A\u3044\u9023\u7D50\u30B0\u30E9\u30D5\n// https://oeis.org/A095983\n// N=1:\
+    \ 1\n// O(N^2)\ntemplate <typename mint>\nvc<mint> count_labeled_bridgeless(int\
+    \ N) {\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i]\
+    \ *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i] = mint(i)\
+    \ * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n  E.pop_back();\n\
     \n  // D(x)=B(E(x))\n  vc<mint> IE = compositional_inverse(E);\n  vc<mint> B =\
     \ composition(D, IE);\n\n  vc<mint> A(N + 1);\n  FOR(i, 1, N + 1) A[i] = B[i]\
     \ * inv<mint>(i);\n\n  FOR(i, 1, N + 1) A[i] *= fact<mint>(i);\n  return A;\n\
-    }\n"
+    }\n\n// https://oeis.org/A095983\n// N \u3067\u306E\u5024\u306E\u307F, O(NlogN)\n\
+    template <typename mint>\nmint count_labeled_bridgeless_single(int N) {\n  if\
+    \ (N == 0) return 0;\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i,\
+    \ N + 1) C[i] *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i]\
+    \ = mint(i) * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n\
+    \  E.pop_back();\n\n  // D(x)=B(E(x))\n  // [x^N]B(x) \u3092\u6C42\u3081\u305F\
+    \u3044\n  // Lagrange Inversion\n  // N[x^N]D(IE(x))=[x^{-1}]D'(x)E(x)^{-N}\n\
+    \  // =[x^{N-1}]D'(x)(E(x)/x)^{-N}\n\n  E.erase(E.begin());\n  E = fps_pow_1<mint>(E,\
+    \ -N);\n  D = differentiate(D);\n  mint ANS = 0;\n  FOR(i, N) ANS += D[i] * E[N\
+    \ - 1 - i];\n  ANS *= inv<mint>(N);\n\n  // [x^N]B(x) \u304C\u51FA\u305F\n  ANS\
+    \ *= inv<mint>(N);\n  ANS *= fact<mint>(N);\n  return ANS;\n}\n"
   code: "#include \"graph/count/count_labeled_connected.hpp\"\n#include \"poly/compositional_inverse.hpp\"\
-    \n#include \"poly/fps_exp.hpp\"\n\n// \u6A4B\u306E\u306A\u3044\u9023\u7D50\u30B0\
-    \u30E9\u30D5\n// https://oeis.org/A095983\n// N=1: 1\ntemplate <typename mint>\n\
-    vc<mint> count_labeled_bridgeless(int N) {\n  vc<mint> C = count_labeled_connected<mint>(N);\n\
-    \  FOR(i, N + 1) C[i] *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i,\
-    \ N + 1) D[i] = mint(i) * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(),\
-    \ mint(0));\n  E.pop_back();\n\n  // D(x)=B(E(x))\n  vc<mint> IE = compositional_inverse(E);\n\
-    \  vc<mint> B = composition(D, IE);\n\n  vc<mint> A(N + 1);\n  FOR(i, 1, N + 1)\
-    \ A[i] = B[i] * inv<mint>(i);\n\n  FOR(i, 1, N + 1) A[i] *= fact<mint>(i);\n \
-    \ return A;\n}"
+    \n#include \"poly/fps_exp.hpp\"\n#include \"poly/fps_pow.hpp\"\n\n// \u6A4B\u306E\
+    \u306A\u3044\u9023\u7D50\u30B0\u30E9\u30D5\n// https://oeis.org/A095983\n// N=1:\
+    \ 1\n// O(N^2)\ntemplate <typename mint>\nvc<mint> count_labeled_bridgeless(int\
+    \ N) {\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i]\
+    \ *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i] = mint(i)\
+    \ * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n  E.pop_back();\n\
+    \n  // D(x)=B(E(x))\n  vc<mint> IE = compositional_inverse(E);\n  vc<mint> B =\
+    \ composition(D, IE);\n\n  vc<mint> A(N + 1);\n  FOR(i, 1, N + 1) A[i] = B[i]\
+    \ * inv<mint>(i);\n\n  FOR(i, 1, N + 1) A[i] *= fact<mint>(i);\n  return A;\n\
+    }\n\n// https://oeis.org/A095983\n// N \u3067\u306E\u5024\u306E\u307F, O(NlogN)\n\
+    template <typename mint>\nmint count_labeled_bridgeless_single(int N) {\n  if\
+    \ (N == 0) return 0;\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i,\
+    \ N + 1) C[i] *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i]\
+    \ = mint(i) * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n\
+    \  E.pop_back();\n\n  // D(x)=B(E(x))\n  // [x^N]B(x) \u3092\u6C42\u3081\u305F\
+    \u3044\n  // Lagrange Inversion\n  // N[x^N]D(IE(x))=[x^{-1}]D'(x)E(x)^{-N}\n\
+    \  // =[x^{N-1}]D'(x)(E(x)/x)^{-N}\n\n  E.erase(E.begin());\n  E = fps_pow_1<mint>(E,\
+    \ -N);\n  D = differentiate(D);\n  mint ANS = 0;\n  FOR(i, N) ANS += D[i] * E[N\
+    \ - 1 - i];\n  ANS *= inv<mint>(N);\n\n  // [x^N]B(x) \u304C\u51FA\u305F\n  ANS\
+    \ *= inv<mint>(N);\n  ANS *= fact<mint>(N);\n  return ANS;\n}"
   dependsOn:
   - graph/count/count_labeled_connected.hpp
   - graph/count/count_labeled_undirected.hpp
@@ -514,10 +574,11 @@ data:
   - poly/fps_div.hpp
   - poly/fps_exp.hpp
   - poly/integrate.hpp
+  - poly/fps_pow.hpp
   isVerificationFile: false
   path: graph/count/count_labeled_bridgeless.hpp
   requiredBy: []
-  timestamp: '2024-01-30 00:36:07+09:00'
+  timestamp: '2024-01-30 03:47:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_labeled_bridgeless.test.cpp
