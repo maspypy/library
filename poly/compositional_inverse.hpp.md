@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   _extendedVerifiedWith:
@@ -57,6 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_biconnected.test.cpp
     title: test/mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_bridgeless.test.cpp
+    title: test/mytest/count_labeled_bridgeless.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -427,8 +430,9 @@ data:
   timestamp: '2024-01-29 21:47:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/count_labeled_biconnected.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
 documentation_of: poly/compositional_inverse.hpp
 layout: document
 redirect_from:

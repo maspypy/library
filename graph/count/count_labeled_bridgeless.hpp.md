@@ -62,10 +62,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_bridgeless.test.cpp
+    title: test/mytest/count_labeled_bridgeless.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A095983
@@ -515,8 +518,9 @@ data:
   path: graph/count/count_labeled_bridgeless.hpp
   requiredBy: []
   timestamp: '2024-01-30 00:36:07+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/count_labeled_bridgeless.test.cpp
 documentation_of: graph/count/count_labeled_bridgeless.hpp
 layout: document
 redirect_from:

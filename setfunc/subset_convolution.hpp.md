@@ -91,13 +91,13 @@ data:
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2507.test.cpp
-  - test/library_checker/convolution/subset_convolution.test.cpp
-  - test/library_checker/math/sps_exp.test.cpp
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test_atcoder/abc236h.test.cpp
   - test_atcoder/abc253h.test.cpp
   - test_atcoder/arc105.test.cpp
+  - test/library_checker/convolution/subset_convolution.test.cpp
+  - test/library_checker/math/sps_exp.test.cpp
+  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test/yukicoder/2507.test.cpp
 documentation_of: setfunc/subset_convolution.hpp
 layout: document
 redirect_from:

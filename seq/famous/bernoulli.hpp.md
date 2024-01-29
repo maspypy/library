@@ -397,9 +397,9 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2580.test.cpp
-  - test/yukicoder/1357.test.cpp
   - test/library_checker/math/bernoulli.test.cpp
+  - test/yukicoder/1357.test.cpp
+  - test/yukicoder/2580.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:

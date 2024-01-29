@@ -138,11 +138,11 @@ data:
   timestamp: '2024-01-28 04:43:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/694.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
   - test_atcoder/abc190f.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/694.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

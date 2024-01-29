@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':heavy_check_mark:'
@@ -132,6 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_biconnected.test.cpp
     title: test/mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_bridgeless.test.cpp
+    title: test/mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
@@ -544,17 +547,17 @@ data:
   isVerificationFile: false
   path: poly/fps_log.hpp
   requiredBy:
+  - graph/count/count_labeled_connected.hpp
+  - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_labeled_eulerian.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_bipartite.hpp
+  - poly/fps_sqrt.hpp
+  - poly/fps_pow.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/composition_f_log_1_minus_x.hpp
-  - poly/fps_sqrt.hpp
-  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - poly/fps_pow.hpp
-  - graph/count/count_labeled_unicyclic.hpp
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bipartite.hpp
-  - graph/count/count_labeled_connected.hpp
-  - graph/count/count_labeled_eulerian.hpp
-  - graph/count/count_labeled_bridgeless.hpp
   - seq/sum_of_powers.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/stirling_number_1.hpp
@@ -562,45 +565,46 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_bipartite.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/graph_count.test.cpp
-  - test/mytest/count_labeled_connected.test.cpp
-  - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/mytest/count_labeled_eulerian.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/mytest/online_square.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/2097.test.cpp
-  - test/yukicoder/2583.test.cpp
-  - test/yukicoder/2459.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1549.test.cpp
-  - test/yukicoder/1321.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/log_of_fps.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test_atcoder/arc153f.test.cpp
   - test_atcoder/arc160d.test.cpp
   - test_atcoder/abc285h.test.cpp
-  - test_atcoder/arc153f.test.cpp
-  - test_atcoder/abc222h.test.cpp
   - test_atcoder/abc288ex.test.cpp
+  - test_atcoder/abc222h.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/log_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/2097.test.cpp
+  - test/yukicoder/1321.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/2583.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1575.test.cpp
+  - test/yukicoder/1939.test.cpp
+  - test/yukicoder/2459.test.cpp
+  - test/mytest/count_labeled_eulerian.test.cpp
+  - test/mytest/sparse_pow_2d.test.cpp
+  - test/mytest/count_labeled_connected.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/count_bipartite.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/bell.test.cpp
+  - test/mytest/online_square.test.cpp
+  - test/mytest/online_log.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/graph_count.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
 documentation_of: poly/fps_log.hpp
 layout: document
 redirect_from:

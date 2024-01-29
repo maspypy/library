@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_biconnected.test.cpp
     title: test/mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_bridgeless.test.cpp
+    title: test/mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
@@ -44,17 +47,18 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_undirected.hpp
   requiredBy:
-  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_connected.hpp
   - graph/count/count_labeled_eulerian.hpp
+  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-01-29 21:47:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/count_labeled_eulerian.test.cpp
   - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/count_labeled_undirected.test.cpp
-  - test/mytest/count_labeled_eulerian.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
 documentation_of: graph/count/count_labeled_undirected.hpp
 layout: document
 redirect_from:

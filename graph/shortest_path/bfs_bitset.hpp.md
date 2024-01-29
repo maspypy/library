@@ -153,8 +153,8 @@ data:
   timestamp: '2024-01-24 23:45:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/1400.test.cpp
+  - test/yukicoder/1400_2.test.cpp
 documentation_of: graph/shortest_path/bfs_bitset.hpp
 layout: document
 redirect_from:
