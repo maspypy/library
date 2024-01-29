@@ -1,4 +1,3 @@
-
 // https://oeis.org/A000272
 template <typename mint>
 vc<mint> count_labeled_tree(ll nmax) {
