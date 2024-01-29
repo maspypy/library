@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
@@ -49,38 +49,38 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A001832
@@ -597,22 +597,20 @@ data:
     \ {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] =\
     \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n  FOR(i,\
     \ N + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N +\
-    \ 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow,\
-    \ print(i, c);\n\n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i]\
-    \ *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n\
-    \  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n\
-    }\n"
+    \ 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n\
+    \n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i] *= inv<mint>(2);\n\
+    \    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n  }\n  F = fps_sqrt(F);\n\
+    \  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n"
   code: "#include \"poly/fps_log.hpp\"\n#include \"poly/fps_sqrt.hpp\"\n#include \"\
     ds/power_query.hpp\"\n\n// connected = false: https://oeis.org/A047864\n// connected\
     \ = true: https://oeis.org/A001832\ntemplate <typename mint>\nvc<mint> count_labeled_bipartite(int\
     \ N, bool connected) {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow\
     \ = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n\
     \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N\
-    \ + 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow,\
-    \ print(i, c);\n\n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i]\
-    \ *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n\
-    \  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n\
-    }"
+    \ + 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n\
+    \n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i] *= inv<mint>(2);\n\
+    \    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n  }\n  F = fps_sqrt(F);\n\
+    \  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}"
   dependsOn:
   - poly/fps_log.hpp
   - poly/fps_inv.hpp
@@ -641,8 +639,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_bipartite.hpp
   requiredBy: []
-  timestamp: '2024-01-30 02:52:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-30 03:04:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_bipartite.test.cpp
 documentation_of: graph/count/count_labeled_bipartite.hpp

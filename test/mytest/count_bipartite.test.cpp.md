@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':question:'
@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
@@ -55,35 +55,35 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -682,19 +682,18 @@ data:
     \ {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] =\
     \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n  FOR(i,\
     \ N + 1) F[i] *= fact_inv<mint>(i);\n  F = convolution(F, F);\n  F.resize(N +\
-    \ 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow,\
-    \ print(i, c);\n\n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i]\
-    \ *= inv<mint>(2);\n    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n\
-    \  }\n  F = fps_sqrt(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n\
-    }\n#line 6 \"test/mytest/count_bipartite.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10, true);\n  vc<mint>\
-    \ B = {0LL,    1LL,     1LL,       3LL,        19LL,        195LL,\n         \
-    \       3031LL, 67263LL, 2086099LL, 89224635LL, 5254054111LL};\n  assert(A ==\
-    \ B);\n  A = count_labeled_bipartite<mint>(10, false);\n  B = {1LL,    1LL,  \
-    \    2LL,       7LL,         41LL,        376LL,\n       5177LL, 103237LL, 2922446LL,\
-    \ 116011231LL, 6433447397LL};\n  assert(A == B);\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ 1);\n  mint pow = 1, c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n\
+    \n  if (connected) {\n    F = fps_log(F);\n    FOR(i, N + 1) F[i] *= inv<mint>(2);\n\
+    \    FOR(i, N + 1) F[i] *= fact<mint>(i);\n    return F;\n  }\n  F = fps_sqrt(F);\n\
+    \  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n#line 6 \"test/mytest/count_bipartite.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10,\
+    \ true);\n  vc<mint> B = {0LL,    1LL,     1LL,       3LL,        19LL,      \
+    \  195LL,\n                3031LL, 67263LL, 2086099LL, 89224635LL, 5254054111LL};\n\
+    \  assert(A == B);\n  A = count_labeled_bipartite<mint>(10, false);\n  B = {1LL,\
+    \    1LL,      2LL,       7LL,         41LL,        376LL,\n       5177LL, 103237LL,\
+    \ 2922446LL, 116011231LL, 6433447397LL};\n  assert(A == B);\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"graph/count/count_labeled_bipartite.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_bipartite<mint>(10,\
@@ -735,8 +734,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_bipartite.test.cpp
   requiredBy: []
-  timestamp: '2024-01-30 02:52:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-30 03:04:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_bipartite.test.cpp
 layout: document

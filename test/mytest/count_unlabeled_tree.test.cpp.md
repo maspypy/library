@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':question:'
@@ -34,17 +34,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -434,18 +434,18 @@ data:
     \ ANS = f;\n  FOR(i, N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i, N + 1) {\n\
     \    if (2 * i <= N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return ANS;\n\
     }\n#line 5 \"test/mytest/count_unlabeled_tree.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10);\n  vc<mint> B = {mint(0),\
-    \ mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n                mint(6), mint(11),\
-    \ mint(23), mint(47), mint(106)};\n  assert(A == B);\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n \
-    \ test();\n  solve();\n  return 0;\n}\n"
+    \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10, false);\n  vc<mint>\
+    \ B = {mint(0), mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n           \
+    \     mint(6), mint(11), mint(23), mint(47), mint(106)};\n  assert(A == B);\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n\
+    }\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/count/count_unlabeled_tree.hpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10);\n  vc<mint> B = {mint(0),\
-    \ mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n                mint(6), mint(11),\
-    \ mint(23), mint(47), mint(106)};\n  assert(A == B);\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n \
-    \ test();\n  solve();\n  return 0;\n}"
+    \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10, false);\n  vc<mint>\
+    \ B = {mint(0), mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n           \
+    \     mint(6), mint(11), mint(23), mint(47), mint(106)};\n  assert(A == B);\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n\
+    }\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - graph/count/count_unlabeled_tree.hpp
@@ -463,8 +463,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-01-30 02:03:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-30 03:05:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_unlabeled_tree.test.cpp
 layout: document
