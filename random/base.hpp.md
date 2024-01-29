@@ -23,9 +23,9 @@ data:
   - icon: ':warning:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
@@ -285,9 +285,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_P3P4P5.test.cpp
     title: test/mytest/count_P3P4P5.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
@@ -788,7 +785,7 @@ data:
   - poly/finding_root_of_polynomial.hpp
   - graph/find_path_through_specified.hpp
   - graph/count/BEST.hpp
-  - graph/count/count_bipartite.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - graph/tree_dp/subtree_hash.hpp
   - graph/maximum_matching_size.hpp
   - graph/chromatic.hpp
@@ -818,7 +815,6 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/sortable_array.test.cpp
   - test/mytest/coprime_factorization.test.cpp

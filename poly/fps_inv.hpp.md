@@ -32,15 +32,18 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
+  - icon: ':question:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_unicyclic.hpp
-    title: graph/count/count_unicyclic.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_unicyclic.hpp
+    title: graph/count/count_labeled_unicyclic.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
@@ -80,7 +83,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':heavy_check_mark:'
@@ -258,18 +261,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/graph_count.test.cpp
-    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
@@ -802,9 +802,10 @@ data:
   - poly/fps_pow.hpp
   - poly/composition_f_1_minus_ex.hpp
   - poly/finding_root_of_polynomial.hpp
-  - graph/count/count_unicyclic.hpp
+  - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_connected.hpp
-  - graph/count/count_bipartite.hpp
   - linalg/blackbox/vandermonde.hpp
   - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp
@@ -822,11 +823,9 @@ data:
   - test/mytest/simple_perm.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/graph_count.test.cpp
   - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/poly_root_finding.test.cpp
@@ -839,6 +838,7 @@ data:
   - test/mytest/bell.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/online_square.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1392.test.cpp

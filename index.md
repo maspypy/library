@@ -905,9 +905,6 @@ data:
       path: graph/count/count_P3_P4_P5.hpp
       title: graph/count/count_P3_P4_P5.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/count/count_bipartite.hpp
-      title: graph/count/count_bipartite.hpp
-    - icon: ':heavy_check_mark:'
       path: graph/count/count_clique.hpp
       title: graph/count/count_clique.hpp
     - icon: ':warning:'
@@ -917,23 +914,32 @@ data:
       path: graph/count/count_cycle.hpp
       title: graph/count/count_cycle.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/count/count_forest.hpp
-      title: graph/count/count_forest.hpp
-    - icon: ':heavy_check_mark:'
       path: graph/count/count_independent_set.hpp
       title: graph/count/count_independent_set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
+      path: graph/count/count_labeled_biconnected.hpp
+      title: graph/count/count_labeled_biconnected.hpp
+    - icon: ':warning:'
+      path: graph/count/count_labeled_bipartite.hpp
+      title: graph/count/count_labeled_bipartite.hpp
+    - icon: ':question:'
       path: graph/count/count_labeled_connected.hpp
       title: graph/count/count_labeled_connected.hpp
+    - icon: ':warning:'
+      path: graph/count/count_labeled_forest.hpp
+      title: graph/count/count_labeled_forest.hpp
+    - icon: ':x:'
+      path: graph/count/count_labeled_tree.hpp
+      title: graph/count/count_labeled_tree.hpp
     - icon: ':heavy_check_mark:'
-      path: graph/count/count_tree.hpp
-      title: graph/count/count_tree.hpp
+      path: graph/count/count_labeled_undirected.hpp
+      title: graph/count/count_labeled_undirected.hpp
+    - icon: ':warning:'
+      path: graph/count/count_labeled_unicyclic.hpp
+      title: graph/count/count_labeled_unicyclic.hpp
     - icon: ':warning:'
       path: graph/count/count_tree_by_root_degree.hpp
       title: graph/count/count_tree_by_root_degree.hpp
-    - icon: ':heavy_check_mark:'
-      path: graph/count/count_unicyclic.hpp
-      title: graph/count/count_unicyclic.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_unlabeled_tree.hpp
       title: graph/count/count_unlabeled_tree.hpp
@@ -1493,7 +1499,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/fps_inv_2d.hpp
       title: poly/fps_inv_2d.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/fps_log.hpp
       title: poly/fps_log.hpp
     - icon: ':heavy_check_mark:'
@@ -1505,7 +1511,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/from_log_differentiation.hpp
       title: poly/from_log_differentiation.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/integrate.hpp
       title: poly/integrate.hpp
     - icon: ':heavy_check_mark:'
@@ -2842,7 +2848,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_P3P4P5.test.cpp
       title: test/mytest/count_P3P4P5.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/count_bipartite.test.cpp
       title: test/mytest/count_bipartite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2851,9 +2857,15 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_indep_set.test.cpp
       title: test/mytest/count_indep_set.test.cpp
+    - icon: ':x:'
+      path: test/mytest/count_labeled_biconnected.test.cpp
+      title: test/mytest/count_labeled_biconnected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_connected.test.cpp
       title: test/mytest/count_labeled_connected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/count_labeled_undirected.test.cpp
+      title: test/mytest/count_labeled_undirected.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_points_in_triangles.test.cpp
       title: test/mytest/count_points_in_triangles.test.cpp
@@ -2935,7 +2947,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/geometric_sequence_sum.test.cpp
       title: test/mytest/geometric_sequence_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/graph_count.test.cpp
       title: test/mytest/graph_count.test.cpp
     - icon: ':heavy_check_mark:'

@@ -43,11 +43,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/library_checker/polynomial/compositional_inverse.test.cpp
     title: test/library_checker/polynomial/compositional_inverse.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -373,29 +379,28 @@ data:
     \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
     \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/compositional_inverse.hpp\"\
-    \n\nusing mint = modint998;\n\nvc<mint> compositional_inverse(const vc<mint>&\
-    \ F) {\n  const int N = len(F);\n  assert(N <= 0 || F[0] == mint(0));\n  assert(N\
+    \n\ntemplate <typename mint>\nvc<mint> compositional_inverse(const vc<mint>& F)\
+    \ {\n  const int N = len(F);\n  assert(N <= 0 || F[0] == mint(0));\n  assert(N\
     \ <= 1 || F[1] != mint(0));\n  vc<mint> DF = differentiate(F);\n\n  vc<mint> G(2);\n\
     \  G[1] = mint(1) / F[1];\n  while (len(G) < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n\
     \    int n = len(G);\n    vc<mint> G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2\
     \ * n), DFF(n);\n      FOR(i, min<int>(len(F), 2 * n)) FF[i] = F[i];\n      FOR(i,\
     \ min<int>(len(DF), n)) DFF[i] = DF[i];\n      FOR(i, n) GG[i] = G[i];\n     \
-    \ G1 = fps_composition(FF, GG);\n      G2 = fps_composition(DFF, G);\n    }\n\
-    \    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    G.resize(2\
-    \ * n);\n    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n\
-    }\n"
+    \ G1 = composition(FF, GG);\n      G2 = composition(DFF, G);\n    }\n    G1 =\
+    \ {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n\
+    \    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n"
   code: "#include \"poly/differentiate.hpp\"\n#include \"poly/composition.hpp\"\n\
-    #include \"poly/fps_div.hpp\"\n\nusing mint = modint998;\n\nvc<mint> compositional_inverse(const\
+    #include \"poly/fps_div.hpp\"\n\ntemplate <typename mint>\nvc<mint> compositional_inverse(const\
     \ vc<mint>& F) {\n  const int N = len(F);\n  assert(N <= 0 || F[0] == mint(0));\n\
     \  assert(N <= 1 || F[1] != mint(0));\n  vc<mint> DF = differentiate(F);\n\n \
     \ vc<mint> G(2);\n  G[1] = mint(1) / F[1];\n  while (len(G) < N) {\n    // G:=\
     \ G(x)-(F(G(x))-x)/DF(G(x))\n    int n = len(G);\n    vc<mint> G1, G2;\n    {\n\
     \      vc<mint> FF(2 * n), GG(2 * n), DFF(n);\n      FOR(i, min<int>(len(F), 2\
     \ * n)) FF[i] = F[i];\n      FOR(i, min<int>(len(DF), n)) DFF[i] = DF[i];\n  \
-    \    FOR(i, n) GG[i] = G[i];\n      G1 = fps_composition(FF, GG);\n      G2 =\
-    \ fps_composition(DFF, G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n    G1\
-    \ = fps_div(G1, G2);\n    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n\
-    \  }\n  G.resize(N);\n  return G;\n}"
+    \    FOR(i, n) GG[i] = G[i];\n      G1 = composition(FF, GG);\n      G2 = composition(DFF,\
+    \ G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n\
+    \    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n\
+    \  return G;\n}"
   dependsOn:
   - poly/differentiate.hpp
   - poly/composition.hpp
@@ -413,10 +418,12 @@ data:
   - poly/fps_inv.hpp
   isVerificationFile: false
   path: poly/compositional_inverse.hpp
-  requiredBy: []
-  timestamp: '2024-01-28 23:14:35+09:00'
+  requiredBy:
+  - graph/count/count_labeled_biconnected.hpp
+  timestamp: '2024-01-29 21:47:23+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
 documentation_of: poly/compositional_inverse.hpp
 layout: document

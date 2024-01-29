@@ -37,19 +37,19 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
@@ -102,9 +102,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
@@ -610,14 +607,13 @@ data:
   - poly/composition_f_log_1_minus_x.hpp
   - poly/fps_sqrt.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - graph/count/count_bipartite.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp

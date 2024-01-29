@@ -1,0 +1,36 @@
+---
+data:
+  _extendedDependsOn: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_undirected.test.cpp
+    title: test/mytest/count_labeled_undirected.test.cpp
+  _isVerificationFailed: false
+  _pathExtension: hpp
+  _verificationStatusIcon: ':heavy_check_mark:'
+  attributes:
+    links:
+    - https://oeis.org/A006125
+  bundledCode: "#line 1 \"graph/count/count_labeled_undirected.hpp\"\n// https://oeis.org/A006125\n\
+    template <typename mint>\nvc<mint> count_labeled_undirected(int N) {\n  vc<mint>\
+    \ F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1]\
+    \ * pow2, pow2 += pow2;\n  return F;\n}\n"
+  code: "// https://oeis.org/A006125\ntemplate <typename mint>\nvc<mint> count_labeled_undirected(int\
+    \ N) {\n  vc<mint> F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1)\
+    \ F[i] = F[i - 1] * pow2, pow2 += pow2;\n  return F;\n}\n"
+  dependsOn: []
+  isVerificationFile: false
+  path: graph/count/count_labeled_undirected.hpp
+  requiredBy: []
+  timestamp: '2024-01-29 21:47:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/mytest/count_labeled_undirected.test.cpp
+documentation_of: graph/count/count_labeled_undirected.hpp
+layout: document
+redirect_from:
+- /library/graph/count/count_labeled_undirected.hpp
+- /library/graph/count/count_labeled_undirected.hpp.html
+title: graph/count/count_labeled_undirected.hpp
+---

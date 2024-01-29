@@ -5,9 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
@@ -178,9 +178,6 @@ data:
     path: test/mytest/31bit_modint.test.cpp
     title: test/mytest/31bit_modint.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -345,13 +342,12 @@ data:
   - nt/four_square.hpp
   - poly/fps_sqrt.hpp
   - poly/multivar_convolution_cyclic.hpp
-  - graph/count/count_bipartite.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - graph/chromatic.hpp
   - seq/famous/stirling_number_query.hpp
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/three_triangular.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/31bit_modint.test.cpp

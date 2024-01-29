@@ -9,23 +9,26 @@ data:
     path: bigint/binary.hpp
     title: bigint/binary.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
   - icon: ':heavy_check_mark:'
-    path: graph/count/count_forest.hpp
-    title: graph/count/count_forest.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
+  - icon: ':question:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_unicyclic.hpp
-    title: graph/count/count_unicyclic.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_forest.hpp
+    title: graph/count/count_labeled_forest.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_unicyclic.hpp
+    title: graph/count/count_labeled_unicyclic.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
@@ -149,7 +152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':heavy_check_mark:'
@@ -643,17 +646,20 @@ data:
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_undirected.test.cpp
+    title: test/mytest/count_labeled_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
@@ -678,9 +684,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/graph_count.test.cpp
-    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
@@ -1366,13 +1369,14 @@ data:
   - poly/sparse_exp_of_div.hpp
   - poly/convolution_all.hpp
   - poly/finding_root_of_polynomial.hpp
-  - graph/count/count_forest.hpp
-  - graph/count/count_unicyclic.hpp
+  - graph/count/count_labeled_forest.hpp
+  - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_unlabeled_tree.hpp
   - graph/count/count_independent_set.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_connected.hpp
-  - graph/count/count_bipartite.hpp
   - graph/count_matching_on_tree.hpp
   - graph/tree_all_distances.hpp
   - graph/tree_walk_generating_function.hpp
@@ -1413,7 +1417,6 @@ data:
   - test/mytest/typical_dc.test.cpp
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/conv_leq.test.cpp
   - test/mytest/bigint.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
@@ -1422,7 +1425,6 @@ data:
   - test/mytest/count_unlabeled_tree.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/enumerate_products.test.cpp
-  - test/mytest/graph_count.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/pascal.test.cpp
@@ -1452,6 +1454,7 @@ data:
   - test/mytest/prime_sum.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
+  - test/mytest/count_labeled_undirected.test.cpp
   - test/mytest/qbinom.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/rbst_monoid.test.cpp
@@ -1462,6 +1465,7 @@ data:
   - test/mytest/all_inverse.test.cpp
   - test/mytest/bell_number.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/online_square.test.cpp
   - test/yukicoder/1755.test.cpp
   - test/yukicoder/1720.test.cpp

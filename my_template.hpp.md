@@ -958,17 +958,20 @@ data:
     path: test/mytest/count_P3P4P5.test.cpp
     title: test/mytest/count_P3P4P5.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_undirected.test.cpp
+    title: test/mytest/count_labeled_undirected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
@@ -1050,9 +1053,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/geometric_sequence_sum.test.cpp
     title: test/mytest/geometric_sequence_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/graph_count.test.cpp
-    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/gray_code.test.cpp
     title: test/mytest/gray_code.test.cpp
@@ -2677,7 +2677,6 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/partial_frac.test.cpp
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/sortable_array.test.cpp
   - test/mytest/coprime_factorization.test.cpp
@@ -2708,7 +2707,6 @@ data:
   - test/mytest/four_square.test.cpp
   - test/mytest/dual_fenwick.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
-  - test/mytest/graph_count.test.cpp
   - test/mytest/max_max.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/incremental_ch.test.cpp
@@ -2773,6 +2771,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
+  - test/mytest/count_labeled_undirected.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/count_P3P4P5.test.cpp
   - test/mytest/minmax_add.test.cpp
@@ -2815,6 +2814,7 @@ data:
   - test/mytest/summin_add.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/enum_partitions.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/mytest/online_square.test.cpp
   - test/yukicoder/1868.test.cpp

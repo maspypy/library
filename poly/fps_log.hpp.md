@@ -35,15 +35,18 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
+  - icon: ':question:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_unicyclic.hpp
-    title: graph/count/count_unicyclic.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_unicyclic.hpp
+    title: graph/count/count_labeled_unicyclic.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
@@ -117,15 +120,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/graph_count.test.cpp
-    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
@@ -183,9 +183,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -534,24 +534,24 @@ data:
   - poly/fps_sqrt.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/fps_pow.hpp
-  - graph/count/count_unicyclic.hpp
+  - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_connected.hpp
-  - graph/count/count_bipartite.hpp
   - seq/sum_of_powers.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/graph_count.test.cpp
   - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/online_square.test.cpp
   - test/yukicoder/1392.test.cpp
   - test/yukicoder/1145.test.cpp

@@ -31,19 +31,19 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_forest.hpp
-    title: graph/count/count_forest.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_forest.hpp
+    title: graph/count/count_labeled_forest.hpp
   - icon: ':warning:'
     path: poly/composed_product.hpp
     title: poly/composed_product.hpp
@@ -138,12 +138,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/graph_count.test.cpp
-    title: test/mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
@@ -610,8 +604,8 @@ data:
   - poly/composed_sum.hpp
   - poly/fps_pow.hpp
   - poly/product_of_one_minus_xn.hpp
-  - graph/count/count_forest.hpp
-  - graph/count/count_bipartite.hpp
+  - graph/count/count_labeled_forest.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/bell_number.hpp
   - seq/famous/stirling_number_1.hpp
@@ -620,10 +614,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/online_exp.test.cpp
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/graph_count.test.cpp
   - test/mytest/sparse_pow_2d.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp

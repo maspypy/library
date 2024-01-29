@@ -35,6 +35,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
@@ -87,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
@@ -516,6 +522,7 @@ data:
   - poly/composed_product.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/composed_sum.hpp
+  - graph/count/count_labeled_biconnected.hpp
   - linalg/blackbox/vandermonde.hpp
   - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp
@@ -529,6 +536,7 @@ data:
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/yukicoder/578.test.cpp
   - test/yukicoder/2580.test.cpp
   - test/yukicoder/1962.test.cpp

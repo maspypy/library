@@ -8,9 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_bipartite.hpp
-    title: graph/count/count_bipartite.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bipartite.hpp
+    title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
@@ -51,9 +51,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
@@ -127,13 +124,12 @@ data:
   - poly/sum_of_C_negative.hpp
   - poly/from_log_differentiation.hpp
   - poly/sparse_exp_of_div.hpp
-  - graph/count/count_bipartite.hpp
+  - graph/count/count_labeled_bipartite.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_bipartite.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/yukicoder/2166.test.cpp

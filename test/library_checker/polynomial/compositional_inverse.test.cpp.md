@@ -548,18 +548,18 @@ data:
     \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
     \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/compositional_inverse.hpp\"\
-    \n\nusing mint = modint998;\n\nvc<mint> compositional_inverse(const vc<mint>&\
-    \ F) {\n  const int N = len(F);\n  assert(N <= 0 || F[0] == mint(0));\n  assert(N\
+    \n\ntemplate <typename mint>\nvc<mint> compositional_inverse(const vc<mint>& F)\
+    \ {\n  const int N = len(F);\n  assert(N <= 0 || F[0] == mint(0));\n  assert(N\
     \ <= 1 || F[1] != mint(0));\n  vc<mint> DF = differentiate(F);\n\n  vc<mint> G(2);\n\
     \  G[1] = mint(1) / F[1];\n  while (len(G) < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n\
     \    int n = len(G);\n    vc<mint> G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2\
     \ * n), DFF(n);\n      FOR(i, min<int>(len(F), 2 * n)) FF[i] = F[i];\n      FOR(i,\
     \ min<int>(len(DF), n)) DFF[i] = DF[i];\n      FOR(i, n) GG[i] = G[i];\n     \
-    \ G1 = fps_composition(FF, GG);\n      G2 = fps_composition(DFF, G);\n    }\n\
-    \    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    G.resize(2\
-    \ * n);\n    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n\
-    }\n#line 8 \"test/library_checker/polynomial/compositional_inverse.test.cpp\"\n\
-    \nvoid solve() {\n  LL(N);\n  VEC(mint, F, N);\n  vc<mint> G = compositional_inverse(F);\n\
+    \ G1 = composition(FF, GG);\n      G2 = composition(DFF, G);\n    }\n    G1 =\
+    \ {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n\
+    \    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n#line\
+    \ 8 \"test/library_checker/polynomial/compositional_inverse.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N);\n  VEC(mint, F, N);\n  vc<mint> G = compositional_inverse(F);\n\
     \  print(G);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/compositional_inverse_of_formal_power_series\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
@@ -587,7 +587,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/compositional_inverse.test.cpp
   requiredBy: []
-  timestamp: '2024-01-28 23:14:35+09:00'
+  timestamp: '2024-01-29 21:47:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/compositional_inverse.test.cpp
