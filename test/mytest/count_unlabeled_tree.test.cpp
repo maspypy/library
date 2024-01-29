@@ -6,7 +6,7 @@
 using mint = modint998;
 
 void test() {
-  auto A = count_unlabeled_tree<mint>(10);
+  auto A = count_unlabeled_tree<mint>(10, false);
   vc<mint> B = {mint(0), mint(1),  mint(1),  mint(1),  mint(2),  mint(3),
                 mint(6), mint(11), mint(23), mint(47), mint(106)};
   assert(A == B);
