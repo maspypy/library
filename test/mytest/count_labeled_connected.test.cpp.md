@@ -450,13 +450,14 @@ data:
     \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return\
     \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 3\
-    \ \"graph/count/count_labeled_connected.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ count_labeled_connected(int N) {\n  vc<mint> F = count_labeled_undirected<mint>(N);\n\
-    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_log(F);\n  FOR(i, N + 1)\
-    \ F[i] *= fact<mint>(i);\n  return F;\n}\n#line 7 \"test/mytest/count_labeled_connected.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_connected<mint>(10);\n\
-    \  vi ANS = {0,\n            1,\n            1,\n            4,\n            38,\n\
-    \            728,\n            26704,\n            1866256,\n            251548592,\n\
+    \ \"graph/count/count_labeled_connected.hpp\"\n\n// https://oeis.org/A001187\n\
+    template <typename mint>\nvc<mint> count_labeled_connected(int N) {\n  vc<mint>\
+    \ F = count_labeled_undirected<mint>(N);\n  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n\
+    \  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n#line\
+    \ 7 \"test/mytest/count_labeled_connected.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  vc<mint> F = count_labeled_connected<mint>(10);\n  vi ANS =\
+    \ {0,\n            1,\n            1,\n            4,\n            38,\n     \
+    \       728,\n            26704,\n            1866256,\n            251548592,\n\
     \            66296291072,\n            34496488594816};\n  FOR(n, 11) { assert(F[n]\
     \ == mint(ANS[n])); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
     \ << a + b << '\\n';\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
@@ -489,7 +490,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_labeled_connected.test.cpp
   requiredBy: []
-  timestamp: '2024-01-29 22:12:20+09:00'
+  timestamp: '2024-01-29 22:33:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_labeled_connected.test.cpp

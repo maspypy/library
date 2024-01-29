@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':x:'
+    path: graph/count/count_labeled_tree.hpp
+    title: graph/count/count_labeled_tree.hpp
   - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
@@ -370,14 +373,19 @@ data:
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"graph/count/count_labeled_forest.hpp\"\
-    \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_forest(ll\
-    \ nmax) {\n  vc<mint> f = count_tree<mint>(nmax);\n  FOR(i, len(f)) f[i] *= fact_inv<mint>(i);\n\
-    \  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n  return f;\n}\n"
-  code: "#include \"poly/fps_exp.hpp\"\n\n// https://oeis.org/A001858\ntemplate <typename\
-    \ mint>\nvc<mint> count_forest(ll nmax) {\n  vc<mint> f = count_tree<mint>(nmax);\n\
-    \  FOR(i, len(f)) f[i] *= fact_inv<mint>(i);\n  f = fps_exp(f);\n  FOR(i, len(f))\
-    \ f[i] *= fact<mint>(i);\n  return f;\n}"
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 1 \"graph/count/count_labeled_tree.hpp\"\
+    \n// https://oeis.org/A000272\ntemplate <typename mint>\nvc<mint> count_labeled_tree(ll\
+    \ nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1)\
+    \ : mint(n).pow(n - 2)); }\n  return f;\n}\n#line 3 \"graph/count/count_labeled_forest.hpp\"\
+    \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_labeled_forest(int\
+    \ N) {\n  vc<mint> f = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *=\
+    \ fact_inv<mint>(i);\n  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n\
+    \  return f;\n}\n"
+  code: "#include \"poly/fps_exp.hpp\"\n#include \"graph/count/count_labeled_tree.hpp\"\
+    \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_labeled_forest(int\
+    \ N) {\n  vc<mint> f = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *=\
+    \ fact_inv<mint>(i);\n  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n\
+    \  return f;\n}\n"
   dependsOn:
   - poly/fps_exp.hpp
   - poly/convolution.hpp
@@ -392,10 +400,11 @@ data:
   - poly/integrate.hpp
   - poly/differentiate.hpp
   - poly/count_terms.hpp
+  - graph/count/count_labeled_tree.hpp
   isVerificationFile: false
   path: graph/count/count_labeled_forest.hpp
   requiredBy: []
-  timestamp: '2024-01-29 21:47:23+09:00'
+  timestamp: '2024-01-29 22:33:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count/count_labeled_forest.hpp

@@ -384,30 +384,31 @@ data:
     \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return\
     \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 3\
-    \ \"graph/count/count_labeled_connected.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ count_labeled_connected(int N) {\n  vc<mint> F = count_labeled_undirected<mint>(N);\n\
-    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_log(F);\n  FOR(i, N + 1)\
-    \ F[i] *= fact<mint>(i);\n  return F;\n}\n#line 1 \"graph/count/count_labeled_tree.hpp\"\
-    \n\n// https://oeis.org/A000272\ntemplate <typename mint>\nvc<mint> count_labeled_tree(ll\
-    \ nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1)\
-    \ : mint(n).pow(n - 2)); }\n  return f;\n}\n#line 2 \"poly/differentiate.hpp\"\
-    \n\ntemplate <typename mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if\
-    \ (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] =\
-    \ f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/composition.hpp\"\n\r\
-    \ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>& Q, vc<mint>& P) {\r\
-    \n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while\
-    \ (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n\
-    \  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] =\
-    \ convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
-    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
-    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
-    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
-    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
-    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
-    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
-    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n#line 2 \"poly/fps_div.hpp\"\
-    \n\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\
-    \u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
+    \ \"graph/count/count_labeled_connected.hpp\"\n\n// https://oeis.org/A001187\n\
+    template <typename mint>\nvc<mint> count_labeled_connected(int N) {\n  vc<mint>\
+    \ F = count_labeled_undirected<mint>(N);\n  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n\
+    \  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n#line\
+    \ 1 \"graph/count/count_labeled_tree.hpp\"\n// https://oeis.org/A000272\ntemplate\
+    \ <typename mint>\nvc<mint> count_labeled_tree(ll nmax) {\n  vc<mint> f(nmax +\
+    \ 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1) : mint(n).pow(n - 2));\
+    \ }\n  return f;\n}\n#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename\
+    \ mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if (len(f) <= 1) return\
+    \ {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] = f[i + 1] * mint(i +\
+    \ 1);\n  return g;\n}\n#line 2 \"poly/composition.hpp\"\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> composition(vc<mint>& Q, vc<mint>& P) {\r\n  int n = len(P);\r\
+    \n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while (k * k < n) ++k;\r\n\
+    \  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0] = {1};\r\n\
+    \  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i -\
+    \ 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\
+    \n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i]\
+    \ = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint>\
+    \ ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n  \
+    \    if (k * i + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n      \
+    \  FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n   \
+    \ f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d, n) ANS[d] +=\
+    \ f[d];\r\n  }\r\n  return ANS;\r\n}\r\n#line 2 \"poly/fps_div.hpp\"\n\n#line\
+    \ 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\
+    \u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
     \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
     \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
     \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
@@ -500,7 +501,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_biconnected.hpp
   requiredBy: []
-  timestamp: '2024-01-29 22:12:20+09:00'
+  timestamp: '2024-01-29 22:33:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_labeled_biconnected.test.cpp

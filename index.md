@@ -2864,6 +2864,9 @@ data:
       path: test/mytest/count_labeled_connected.test.cpp
       title: test/mytest/count_labeled_connected.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/count_labeled_forest.test.cpp
+      title: test/mytest/count_labeled_forest.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_undirected.test.cpp
       title: test/mytest/count_labeled_undirected.test.cpp
     - icon: ':heavy_check_mark:'

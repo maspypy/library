@@ -55,7 +55,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
-    links: []
+    links:
+    - https://oeis.org/A001187
   bundledCode: "#line 1 \"graph/count/count_labeled_undirected.hpp\"\n// https://oeis.org/A006125\n\
     template <typename mint>\nvc<mint> count_labeled_undirected(int N) {\n  vc<mint>\
     \ F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1]\
@@ -369,14 +370,15 @@ data:
     \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return\
     \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 3\
-    \ \"graph/count/count_labeled_connected.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ count_labeled_connected(int N) {\n  vc<mint> F = count_labeled_undirected<mint>(N);\n\
-    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_log(F);\n  FOR(i, N + 1)\
-    \ F[i] *= fact<mint>(i);\n  return F;\n}\n"
-  code: "#include \"graph/count/count_labeled_undirected.hpp\"\n#include \"poly/fps_log.hpp\"\
-    \n\ntemplate <typename mint>\nvc<mint> count_labeled_connected(int N) {\n  vc<mint>\
+    \ \"graph/count/count_labeled_connected.hpp\"\n\n// https://oeis.org/A001187\n\
+    template <typename mint>\nvc<mint> count_labeled_connected(int N) {\n  vc<mint>\
     \ F = count_labeled_undirected<mint>(N);\n  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n\
     \  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n"
+  code: "#include \"graph/count/count_labeled_undirected.hpp\"\n#include \"poly/fps_log.hpp\"\
+    \n\n// https://oeis.org/A001187\ntemplate <typename mint>\nvc<mint> count_labeled_connected(int\
+    \ N) {\n  vc<mint> F = count_labeled_undirected<mint>(N);\n  FOR(i, N + 1) F[i]\
+    \ *= fact_inv<mint>(i);\n  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n\
+    \  return F;\n}\n"
   dependsOn:
   - graph/count/count_labeled_undirected.hpp
   - poly/fps_log.hpp
@@ -395,7 +397,7 @@ data:
   path: graph/count/count_labeled_connected.hpp
   requiredBy:
   - graph/count/count_labeled_biconnected.hpp
-  timestamp: '2024-01-29 22:12:20+09:00'
+  timestamp: '2024-01-29 22:33:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_labeled_connected.test.cpp
