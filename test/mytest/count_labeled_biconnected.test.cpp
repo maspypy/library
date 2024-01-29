@@ -8,9 +8,21 @@
 using mint = modint998;
 
 void test() {
-  vc<mint> A = count_labeled_biconnected<mint>(10);
-  vi OEIS013922 = {};
-  FOR(i, 11) { assert(A[i] == mint(OEIS013922[i])); }
+  vc<mint> F = count_labeled_biconnected<mint>(10);
+  vi ANS = {
+      0,
+      0,
+      1,
+      1,
+      10,
+      238,
+      11368,
+      1014888,
+      166537616,
+      50680432112,
+      29107809374336,
+  };
+  FOR(i, 11) assert(F[i] == mint(ANS[i]));
 }
 
 void solve() {
