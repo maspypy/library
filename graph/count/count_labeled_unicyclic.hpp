@@ -2,7 +2,7 @@
 
 // https://oeis.org/A057500
 template <typename mint>
-vc<mint> count_unicyclic(ll nmax) {
+vc<mint> count_labeled_unicyclic(ll nmax) {
   // サイクルの大きさが k であるもの：長さ k の根付き木の列を (2k) で割る
   // sum f^{k} / (2k) の形になるので、log で数えられる
   vc<mint> f(nmax + 1);
