@@ -236,6 +236,7 @@
 "test/library_checker/matrix/solve_linear.test.cpp": "2024-01-19 02:38:11 +0900",
 "test/library_checker/matrix/sparse_matrix_det.test.cpp": "2024-01-23 16:01:42 +0900",
 "test/library_checker/polynomial/composition_of_fps.test.cpp": "2024-01-28 23:14:35 +0900",
+"test/library_checker/polynomial/compositional_inverse.test.cpp": "2024-01-30 04:44:03 +0900",
 "test/library_checker/polynomial/exp_of_fps.test.cpp": "2023-12-29 16:32:29 +0900",
 "test/library_checker/polynomial/exp_of_fps_dmint.test.cpp": "2023-12-29 16:32:29 +0900",
 "test/library_checker/polynomial/exp_of_fps_sparse.test.cpp": "2023-12-29 16:32:29 +0900",
