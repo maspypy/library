@@ -38,6 +38,9 @@ data:
   - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
@@ -523,6 +526,7 @@ data:
   - poly/coef_of_rational_fps.hpp
   - poly/composed_sum.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   - linalg/blackbox/vandermonde.hpp
   - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp

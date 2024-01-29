@@ -38,9 +38,15 @@ data:
   - icon: ':warning:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':question:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_eulerian.hpp
+    title: graph/count/count_labeled_eulerian.hpp
   - icon: ':warning:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
@@ -267,6 +273,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_eulerian.test.cpp
+    title: test/mytest/count_labeled_eulerian.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -806,6 +815,8 @@ data:
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_connected.hpp
+  - graph/count/count_labeled_eulerian.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   - linalg/blackbox/vandermonde.hpp
   - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp
@@ -837,6 +848,7 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
+  - test/mytest/count_labeled_eulerian.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/online_square.test.cpp

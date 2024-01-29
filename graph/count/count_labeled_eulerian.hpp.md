@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/count/count_labeled_undirected.hpp
+    title: graph/count/count_labeled_undirected.hpp
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
@@ -13,9 +16,6 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
-    path: poly/composition.hpp
-    title: poly/composition.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
@@ -29,46 +29,35 @@ data:
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
-    path: poly/differentiate.hpp
-    title: poly/differentiate.hpp
-  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
-    path: poly/fps_div.hpp
-    title: poly/fps_div.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
+    path: poly/fps_log.hpp
+    title: poly/fps_log.hpp
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: graph/count/count_labeled_biconnected.hpp
-    title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':warning:'
-    path: graph/count/count_labeled_bridgeless.hpp
-    title: graph/count/count_labeled_bridgeless.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/polynomial/compositional_inverse.test.cpp
-    title: test/library_checker/polynomial/compositional_inverse.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_labeled_biconnected.test.cpp
-    title: test/mytest/count_labeled_biconnected.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_eulerian.test.cpp
+    title: test/mytest/count_labeled_eulerian.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ differentiate(const vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint>\
-    \ g(len(f) - 1);\n  FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n\
-    }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    links:
+    - https://oeis.org/A033678
+  bundledCode: "#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
+    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
+    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -333,80 +322,62 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/composition.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>& Q, vc<mint>&\
-    \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
-    \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
-    \ 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i]\
-    \ = convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
-    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
-    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
-    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
-    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
-    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
-    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
-    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n#line 2 \"poly/fps_div.hpp\"\
-    \n\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
-    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
-    \n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int,\
-    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
-    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n\
-    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
-    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
-    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const\
-    \ vc<mint>& F) {\r\n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\
-    \n  G.reserve(N);\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n\
-    \    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f,\
-    \ false), ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
-    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
-    \n    ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
-    \n  }\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const\
-    \ vc<mint>& F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const\
-    \ int N = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int\
-    \ m = 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m\
-    \ + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p =\
-    \ convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i]\
-    \ + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
-    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
-    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
-    \n}\r\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\
-    \u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint>\
-    \ fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return\
-    \ fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
-    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\
-    \u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint> fps_div_sparse(vc<mint>\
-    \ f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n\
-    \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
-    \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
-    \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/compositional_inverse.hpp\"\
-    \n\ntemplate <typename mint>\nvc<mint> compositional_inverse(const vc<mint>& F)\
-    \ {\n  const int N = len(F);\n  assert(N <= 0 || F[0] == mint(0));\n  assert(N\
-    \ <= 1 || F[1] != mint(0));\n  vc<mint> DF = differentiate(F);\n\n  vc<mint> G(2);\n\
-    \  G[1] = mint(1) / F[1];\n  while (len(G) < N) {\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n\
-    \    int n = len(G);\n    vc<mint> G1, G2;\n    {\n      vc<mint> FF(2 * n), GG(2\
-    \ * n), DFF(n);\n      FOR(i, min<int>(len(F), 2 * n)) FF[i] = F[i];\n      FOR(i,\
-    \ min<int>(len(DF), n)) DFF[i] = DF[i];\n      FOR(i, n) GG[i] = G[i];\n     \
-    \ G1 = composition(FF, GG);\n      G2 = composition(DFF, G);\n    }\n    G1 =\
-    \ {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    G.resize(2 * n);\n\
-    \    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n"
-  code: "#include \"poly/differentiate.hpp\"\n#include \"poly/composition.hpp\"\n\
-    #include \"poly/fps_div.hpp\"\n\ntemplate <typename mint>\nvc<mint> compositional_inverse(const\
-    \ vc<mint>& F) {\n  const int N = len(F);\n  assert(N <= 0 || F[0] == mint(0));\n\
-    \  assert(N <= 1 || F[1] != mint(0));\n  vc<mint> DF = differentiate(F);\n\n \
-    \ vc<mint> G(2);\n  G[1] = mint(1) / F[1];\n  while (len(G) < N) {\n    // G:=\
-    \ G(x)-(F(G(x))-x)/DF(G(x))\n    int n = len(G);\n    vc<mint> G1, G2;\n    {\n\
-    \      vc<mint> FF(2 * n), GG(2 * n), DFF(n);\n      FOR(i, min<int>(len(F), 2\
-    \ * n)) FF[i] = F[i];\n      FOR(i, min<int>(len(DF), n)) DFF[i] = DF[i];\n  \
-    \    FOR(i, n) GG[i] = G[i];\n      G1 = composition(FF, GG);\n      G2 = composition(DFF,\
-    \ G);\n    }\n    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n\
-    \    G.resize(2 * n);\n    FOR(i, n) G[n + i] -= G1[i];\n  }\n  G.resize(N);\n\
-    \  return G;\n}"
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\
+    \n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] !=\
+    \ mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\
+    \n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
+    \ fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n  \
+    \  }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\n  vc<mint> G = {mint(1)\
+    \ / F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\n  while (n < N) {\r\
+    \n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\
+    \n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g, false);\r\n    FOR(i,\
+    \ 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] = 0;\r\n   \
+    \ ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n \
+    \   FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\n  }\r\n  return G;\r\
+    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const vc<mint>&\
+    \ F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const int N\
+    \ = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m =\
+    \ 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\
+    \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
+    \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
+    \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
+    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 5\
+    \ \"poly/fps_log.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_log_dense(const\
+    \ vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  ll N = len(f);\r\n  vc<mint>\
+    \ df = f;\r\n  FOR(i, N) df[i] *= mint(i);\r\n  df.erase(df.begin());\r\n  auto\
+    \ f_inv = fps_inv(f);\r\n  auto g = convolution(df, f_inv);\r\n  g.resize(N -\
+    \ 1);\r\n  g.insert(g.begin(), 0);\r\n  FOR(i, N) g[i] *= inv<mint>(i);\r\n  return\
+    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_log_sparse(const vc<mint>&\
+    \ f) {\r\n  int N = f.size();\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N)\
+    \ if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> F(N);\r\n  vc<mint> g(N\
+    \ - 1);\r\n  for (int n = 0; n < N - 1; ++n) {\r\n    mint rhs = mint(n + 1) *\
+    \ f[n + 1];\r\n    for (auto&& [i, fi]: dat) {\r\n      if (i > n) break;\r\n\
+    \      rhs -= fi * g[n - i];\r\n    }\r\n    g[n] = rhs;\r\n    F[n + 1] = rhs\
+    \ * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
+    \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return\
+    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 1\
+    \ \"graph/count/count_labeled_undirected.hpp\"\n// https://oeis.org/A006125\n\
+    template <typename mint>\nvc<mint> count_labeled_undirected(int N) {\n  vc<mint>\
+    \ F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1]\
+    \ * pow2, pow2 += pow2;\n  return F;\n}\n#line 3 \"graph/count/count_labeled_eulerian.hpp\"\
+    \n\n// https://oeis.org/A033678\ntemplate <typename mint>\nvc<mint> count_labeled_eulerian(int\
+    \ N) {\n  if (N == 0) return vc<mint>({mint(1)});\n  vc<mint> F = count_labeled_undirected<mint>(N\
+    \ - 1);\n  F.insert(F.begin(), mint(1));\n  FOR(n, N + 1) F[n] *= fact_inv<mint>(n);\n\
+    \  F = fps_log(F);\n  FOR(n, N + 1) F[n] *= fact<mint>(n);\n  return F;\n}\n"
+  code: "#include \"poly/fps_log.hpp\"\n#include \"graph/count/count_labeled_undirected.hpp\"\
+    \n\n// https://oeis.org/A033678\ntemplate <typename mint>\nvc<mint> count_labeled_eulerian(int\
+    \ N) {\n  if (N == 0) return vc<mint>({mint(1)});\n  vc<mint> F = count_labeled_undirected<mint>(N\
+    \ - 1);\n  F.insert(F.begin(), mint(1));\n  FOR(n, N + 1) F[n] *= fact_inv<mint>(n);\n\
+    \  F = fps_log(F);\n  FOR(n, N + 1) F[n] *= fact<mint>(n);\n  return F;\n}\n"
   dependsOn:
-  - poly/differentiate.hpp
-  - poly/composition.hpp
+  - poly/fps_log.hpp
+  - poly/fps_inv.hpp
+  - poly/count_terms.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -416,23 +387,18 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/fps_div.hpp
-  - poly/count_terms.hpp
-  - poly/fps_inv.hpp
+  - graph/count/count_labeled_undirected.hpp
   isVerificationFile: false
-  path: poly/compositional_inverse.hpp
-  requiredBy:
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  timestamp: '2024-01-29 21:47:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  path: graph/count/count_labeled_eulerian.hpp
+  requiredBy: []
+  timestamp: '2024-01-30 00:36:07+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
-documentation_of: poly/compositional_inverse.hpp
+  - test/mytest/count_labeled_eulerian.test.cpp
+documentation_of: graph/count/count_labeled_eulerian.hpp
 layout: document
 redirect_from:
-- /library/poly/compositional_inverse.hpp
-- /library/poly/compositional_inverse.hpp.html
-title: poly/compositional_inverse.hpp
+- /library/graph/count/count_labeled_eulerian.hpp
+- /library/graph/count/count_labeled_eulerian.hpp.html
+title: graph/count/count_labeled_eulerian.hpp
 ---

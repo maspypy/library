@@ -32,6 +32,9 @@ data:
   - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':x:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
@@ -368,6 +371,7 @@ data:
   requiredBy:
   - poly/compositional_inverse.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-01-28 23:14:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

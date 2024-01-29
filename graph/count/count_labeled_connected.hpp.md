@@ -44,6 +44,9 @@ data:
   - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/mytest/count_labeled_biconnected.test.cpp
@@ -397,6 +400,7 @@ data:
   path: graph/count/count_labeled_connected.hpp
   requiredBy:
   - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-01-29 22:33:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

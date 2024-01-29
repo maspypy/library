@@ -9,6 +9,9 @@ data:
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':warning:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
+  - icon: ':warning:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
   - icon: ':warning:'
@@ -217,6 +220,7 @@ data:
   - graph/count/count_labeled_forest.hpp
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bipartite.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/bell_number.hpp
   - seq/famous/stirling_number_1.hpp

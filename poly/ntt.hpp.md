@@ -20,9 +20,15 @@ data:
   - icon: ':warning:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':question:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_eulerian.hpp
+    title: graph/count/count_labeled_eulerian.hpp
   - icon: ':warning:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
@@ -511,6 +517,9 @@ data:
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_eulerian.test.cpp
+    title: test/mytest/count_labeled_eulerian.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -996,6 +1005,8 @@ data:
   - graph/count/count_independent_set.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_connected.hpp
+  - graph/count/count_labeled_eulerian.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   - graph/count_matching_on_tree.hpp
   - graph/tree_all_distances.hpp
   - graph/tree_walk_generating_function.hpp
@@ -1055,6 +1066,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/factorial_998.test.cpp
   - test/mytest/bell_number.test.cpp
+  - test/mytest/count_labeled_eulerian.test.cpp
   - test/mytest/enum_partitions.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/online_square.test.cpp

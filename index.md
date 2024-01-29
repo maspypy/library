@@ -922,9 +922,15 @@ data:
     - icon: ':warning:'
       path: graph/count/count_labeled_bipartite.hpp
       title: graph/count/count_labeled_bipartite.hpp
+    - icon: ':warning:'
+      path: graph/count/count_labeled_bridgeless.hpp
+      title: graph/count/count_labeled_bridgeless.hpp
     - icon: ':question:'
       path: graph/count/count_labeled_connected.hpp
       title: graph/count/count_labeled_connected.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/count/count_labeled_eulerian.hpp
+      title: graph/count/count_labeled_eulerian.hpp
     - icon: ':warning:'
       path: graph/count/count_labeled_forest.hpp
       title: graph/count/count_labeled_forest.hpp
@@ -2861,8 +2867,14 @@ data:
       path: test/mytest/count_labeled_biconnected.test.cpp
       title: test/mytest/count_labeled_biconnected.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/mytest/count_labeled_bridgeless.test.cpp
+      title: test/mytest/count_labeled_bridgeless.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_connected.test.cpp
       title: test/mytest/count_labeled_connected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/count_labeled_eulerian.test.cpp
+      title: test/mytest/count_labeled_eulerian.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_forest.test.cpp
       title: test/mytest/count_labeled_forest.test.cpp

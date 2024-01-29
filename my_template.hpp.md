@@ -970,6 +970,9 @@ data:
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_eulerian.test.cpp
+    title: test/mytest/count_labeled_eulerian.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_undirected.test.cpp
     title: test/mytest/count_labeled_undirected.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2810,6 +2813,7 @@ data:
   - test/mytest/bell_number.test.cpp
   - test/mytest/enumerate_unlabeled_tree.test.cpp
   - test/mytest/primesum_mod6.test.cpp
+  - test/mytest/count_labeled_eulerian.test.cpp
   - test/mytest/pytagorean_triples.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/partizan.test.cpp

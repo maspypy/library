@@ -5,9 +5,15 @@ data:
   - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':warning:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':question:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_eulerian.hpp
+    title: graph/count/count_labeled_eulerian.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/mytest/count_labeled_biconnected.test.cpp
@@ -15,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_eulerian.test.cpp
+    title: test/mytest/count_labeled_eulerian.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_undirected.test.cpp
     title: test/mytest/count_labeled_undirected.test.cpp
@@ -37,11 +46,14 @@ data:
   requiredBy:
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_connected.hpp
+  - graph/count/count_labeled_eulerian.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-01-29 21:47:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/count_labeled_undirected.test.cpp
+  - test/mytest/count_labeled_eulerian.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
 documentation_of: graph/count/count_labeled_undirected.hpp
 layout: document
