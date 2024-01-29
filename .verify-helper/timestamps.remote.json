@@ -325,7 +325,6 @@
 "test/mytest/count_labeled_forest.test.cpp": "2024-01-29 22:33:16 +0900",
 "test/mytest/count_labeled_undirected.test.cpp": "2024-01-29 22:12:20 +0900",
 "test/mytest/count_points_in_triangles.test.cpp": "2024-01-23 05:58:02 +0900",
-"test/mytest/count_unlabeled_tree.test.cpp": "2023-12-29 16:32:29 +0900",
 "test/mytest/datetime.test.cpp": "2023-11-07 20:28:52 +0900",
 "test/mytest/digit_sum.test.cpp": "2023-11-09 01:44:55 +0900",
 "test/mytest/dual_fenwick.test.cpp": "2024-01-23 05:58:02 +0900",
