@@ -15,7 +15,7 @@ vc<mint> count_labeled_bipartite(int N, bool connected) {
   F = convolution(F, F);
   F.resize(N + 1);
   mint pow = 1, c = 1;
-  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow, print(i, c);
+  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;
 
   if (connected) {
     F = fps_log(F);
