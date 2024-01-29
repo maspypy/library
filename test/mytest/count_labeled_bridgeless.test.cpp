@@ -21,6 +21,11 @@ void test() {
       29180467201536,
   };
   FOR(i, 11) assert(A[i] == mint(ANS[i]));
+
+  FOR(i, 11) {
+    mint a = count_labeled_bridgeless_single<mint>(i);
+    assert(a == mint(ANS[i]));
+  }
 }
 
 void solve() {
