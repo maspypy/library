@@ -23,6 +23,10 @@ void test() {
       29107809374336,
   };
   FOR(i, 11) assert(F[i] == mint(ANS[i]));
+  FOR(i, 11) {
+    mint a = count_labeled_biconnected_single<mint>(i);
+    assert(a == mint(ANS[i]));
+  }
 }
 
 void solve() {
