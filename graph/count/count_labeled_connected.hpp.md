@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: graph/count/count_labeled_undirected.hpp
+    title: graph/count/count_labeled_undirected.hpp
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
@@ -53,13 +56,16 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
-    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
-    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
-    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
-    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+  bundledCode: "#line 1 \"graph/count/count_labeled_undirected.hpp\"\n// https://oeis.org/A006125\n\
+    template <typename mint>\nvc<mint> count_labeled_undirected(int N) {\n  vc<mint>\
+    \ F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1]\
+    \ * pow2, pow2 += pow2;\n  return F;\n}\n#line 2 \"poly/fps_log.hpp\"\n\r\n#line\
+    \ 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
+    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -362,18 +368,17 @@ data:
     \ * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate <typename mint>\r\
     \nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\n  int\
     \ n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 : 1200);\r\n  return\
-    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 2\
+    \ (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\n}\r\n#line 3\
     \ \"graph/count/count_labeled_connected.hpp\"\n\ntemplate <typename mint>\nvc<mint>\
-    \ count_labeled_connected(int N) {\n  vc<mint> F(N + 1);\n  mint pow = 1;\n  F[0]\
-    \ = 1;\n  FOR(n, 1, N + 1) { F[n] = F[n - 1] * pow, pow += pow; }\n  // F: \u4EFB\
-    \u610F\u306E labeled graph\n  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F =\
-    \ fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n"
-  code: "#include \"poly/fps_log.hpp\"\n\ntemplate <typename mint>\nvc<mint> count_labeled_connected(int\
-    \ N) {\n  vc<mint> F(N + 1);\n  mint pow = 1;\n  F[0] = 1;\n  FOR(n, 1, N + 1)\
-    \ { F[n] = F[n - 1] * pow, pow += pow; }\n  // F: \u4EFB\u610F\u306E labeled graph\n\
+    \ count_labeled_connected(int N) {\n  vc<mint> F = count_labeled_undirected<mint>(N);\n\
     \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_log(F);\n  FOR(i, N + 1)\
-    \ F[i] *= fact<mint>(i);\n  return F;\n}"
+    \ F[i] *= fact<mint>(i);\n  return F;\n}\n"
+  code: "#include \"graph/count/count_labeled_undirected.hpp\"\n#include \"poly/fps_log.hpp\"\
+    \n\ntemplate <typename mint>\nvc<mint> count_labeled_connected(int N) {\n  vc<mint>\
+    \ F = count_labeled_undirected<mint>(N);\n  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n\
+    \  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n"
   dependsOn:
+  - graph/count/count_labeled_undirected.hpp
   - poly/fps_log.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -390,7 +395,7 @@ data:
   path: graph/count/count_labeled_connected.hpp
   requiredBy:
   - graph/count/count_labeled_biconnected.hpp
-  timestamp: '2024-01-28 23:14:35+09:00'
+  timestamp: '2024-01-29 22:12:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_labeled_connected.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
   - icon: ':question:'
@@ -178,10 +178,10 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 1 \"graph/count/count_labeled_undirected.hpp\"\n// https://oeis.org/A006125\n\
-    template <typename mint>\nvc<mint> count_labeled_undirected(int N) {\n  vc<mint>\
-    \ F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1]\
-    \ * pow2, pow2 += pow2;\n  return F;\n}\n#line 7 \"test/mytest/count_labeled_undirected.test.cpp\"\
+    #line 6 \"test/mytest/count_labeled_undirected.test.cpp\"\n\n#line 1 \"graph/count/count_labeled_undirected.hpp\"\
+    \n// https://oeis.org/A006125\ntemplate <typename mint>\nvc<mint> count_labeled_undirected(int\
+    \ N) {\n  vc<mint> F(N + 1);\n  mint pow2 = 1;\n  F[0] = 1;\n  FOR(i, 1, N + 1)\
+    \ F[i] = F[i - 1] * pow2, pow2 += pow2;\n  return F;\n}\n#line 8 \"test/mytest/count_labeled_undirected.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_undirected<mint>(10);\n\
     \  vi ANS = {1,\n            1,\n            2,\n            8,\n            64,\n\
     \            1024,\n            32768,\n            2097152,\n            268435456,\n\
@@ -190,7 +190,7 @@ data:
     \ << a + b << '\\n';\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"graph/count/count_labeled_undirected.hpp\"\
+    my_template.hpp\"\n\n#include \"mod/modint.hpp\"\n\n#include \"graph/count/count_labeled_undirected.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_undirected<mint>(10);\n\
     \  vi ANS = {1,\n            1,\n            2,\n            8,\n            64,\n\
     \            1024,\n            32768,\n            2097152,\n            268435456,\n\
@@ -206,7 +206,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_labeled_undirected.test.cpp
   requiredBy: []
-  timestamp: '2024-01-29 21:47:23+09:00'
+  timestamp: '2024-01-29 22:12:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_labeled_undirected.test.cpp
