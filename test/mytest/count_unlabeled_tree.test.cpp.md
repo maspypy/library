@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':question:'
@@ -34,17 +34,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -421,24 +421,24 @@ data:
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
     \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 4 \"graph/count/count_unlabeled_tree.hpp\"\
-    \n\n// https://oeis.org/A000055\n// 0, 1, 1, 1, 2, 3, 6, 11, ...\ntemplate <typename\
-    \ mint>\nvc<mint> count_unlabeled_tree(int N) {\n  // f: rooted tree\n  // f(x)\
-    \ = x prod (1+x^n+x^{2n}+...)^f_n\n  // g(x) = f(x)/x\n  // log g(x) = sum f[n]log(1+x^n+x^{2n}+...)\n\
-    \  // f[n] given -> [x^n]g(x) given -> f[n+1] given\n  vc<mint> f(N + 1);\n  vc<mint>\
-    \ log_g(N);\n  Online_Exp<mint> X;\n  FOR(n, 1, N + 1) {\n    f[n] = X.query(n\
-    \ - 1, log_g[n - 1]);\n    // -log(1-x)=x+xx/2+...\n    FOR(k, 1, (N - 1) / n\
-    \ + 1) { log_g[n * k] += f[n] * inv<mint>(k); }\n  }\n  // \u3053\u306E\u6642\u70B9\
-    \u3067 f \u306F unlabeled rooted tree (OEIS A000081)\n  // unlabeled tree \u306E\
-    \u6BCD\u95A2\u6570\u306F f(x) - 1/2(f(x)^2-f(x^2))\n  // \u3068\u306A\u308B\u306E\
-    \u3060\u304C\uFF0C\u8A3C\u660E\u306F\u304B\u306A\u308A\u30C6\u30AF\u30CB\u30AB\
-    \u30EB.\n  vc<mint> ff = convolution<mint>(f, f);\n  vc<mint> ANS = f;\n  FOR(i,\
-    \ N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i, N + 1) {\n    if (2 * i <=\
-    \ N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return ANS;\n}\n#line 5 \"test/mytest/count_unlabeled_tree.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10);\n\
-    \  vc<mint> B = {mint(0), mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n \
-    \               mint(6), mint(11), mint(23), mint(47), mint(106)};\n  assert(A\
-    \ == B);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
-    \ << '\\n';\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \n\n// https://oeis.org/A000055\n// https://oeis.org/A000081\ntemplate <typename\
+    \ mint>\nvc<mint> count_unlabeled_tree(int N, bool rooted) {\n  // f: rooted tree\n\
+    \  // f(x) = x prod (1+x^n+x^{2n}+...)^f_n\n  // g(x) = f(x)/x\n  // log g(x)\
+    \ = sum f[n]log(1+x^n+x^{2n}+...)\n  // f[n] given -> [x^n]g(x) given -> f[n+1]\
+    \ given\n  vc<mint> f(N + 1);\n  vc<mint> log_g(N);\n  Online_Exp<mint> X;\n \
+    \ FOR(n, 1, N + 1) {\n    f[n] = X.query(n - 1, log_g[n - 1]);\n    // -log(1-x)=x+xx/2+...\n\
+    \    FOR(k, 1, (N - 1) / n + 1) { log_g[n * k] += f[n] * inv<mint>(k); }\n  }\n\
+    \  if (rooted) return f;\n  // \u3053\u306E\u6642\u70B9\u3067 f \u306F unlabeled\
+    \ rooted tree (OEIS A000081)\n  // unlabeled tree \u306E\u6BCD\u95A2\u6570\u306F\
+    \ f(x) - 1/2(f(x)^2-f(x^2))\n  vc<mint> ff = convolution<mint>(f, f);\n  vc<mint>\
+    \ ANS = f;\n  FOR(i, N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i, N + 1) {\n\
+    \    if (2 * i <= N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return ANS;\n\
+    }\n#line 5 \"test/mytest/count_unlabeled_tree.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10);\n  vc<mint> B = {mint(0),\
+    \ mint(1),  mint(1),  mint(1),  mint(2),  mint(3),\n                mint(6), mint(11),\
+    \ mint(23), mint(47), mint(106)};\n  assert(A == B);\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n \
+    \ test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/count/count_unlabeled_tree.hpp\"\n\nusing mint = modint998;\n\
     \nvoid test() {\n  auto A = count_unlabeled_tree<mint>(10);\n  vc<mint> B = {mint(0),\
@@ -463,8 +463,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-01-30 02:03:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_unlabeled_tree.test.cpp
 layout: document

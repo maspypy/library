@@ -28,23 +28,24 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://oeis.org/A000055
+    - https://oeis.org/A000081
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
     \ a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
     \n  const int mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\
@@ -335,34 +336,33 @@ data:
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
     \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 4 \"graph/count/count_unlabeled_tree.hpp\"\
-    \n\n// https://oeis.org/A000055\n// 0, 1, 1, 1, 2, 3, 6, 11, ...\ntemplate <typename\
-    \ mint>\nvc<mint> count_unlabeled_tree(int N) {\n  // f: rooted tree\n  // f(x)\
-    \ = x prod (1+x^n+x^{2n}+...)^f_n\n  // g(x) = f(x)/x\n  // log g(x) = sum f[n]log(1+x^n+x^{2n}+...)\n\
-    \  // f[n] given -> [x^n]g(x) given -> f[n+1] given\n  vc<mint> f(N + 1);\n  vc<mint>\
-    \ log_g(N);\n  Online_Exp<mint> X;\n  FOR(n, 1, N + 1) {\n    f[n] = X.query(n\
-    \ - 1, log_g[n - 1]);\n    // -log(1-x)=x+xx/2+...\n    FOR(k, 1, (N - 1) / n\
-    \ + 1) { log_g[n * k] += f[n] * inv<mint>(k); }\n  }\n  // \u3053\u306E\u6642\u70B9\
-    \u3067 f \u306F unlabeled rooted tree (OEIS A000081)\n  // unlabeled tree \u306E\
-    \u6BCD\u95A2\u6570\u306F f(x) - 1/2(f(x)^2-f(x^2))\n  // \u3068\u306A\u308B\u306E\
-    \u3060\u304C\uFF0C\u8A3C\u660E\u306F\u304B\u306A\u308A\u30C6\u30AF\u30CB\u30AB\
-    \u30EB.\n  vc<mint> ff = convolution<mint>(f, f);\n  vc<mint> ANS = f;\n  FOR(i,\
-    \ N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i, N + 1) {\n    if (2 * i <=\
-    \ N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return ANS;\n}\n"
+    \n\n// https://oeis.org/A000055\n// https://oeis.org/A000081\ntemplate <typename\
+    \ mint>\nvc<mint> count_unlabeled_tree(int N, bool rooted) {\n  // f: rooted tree\n\
+    \  // f(x) = x prod (1+x^n+x^{2n}+...)^f_n\n  // g(x) = f(x)/x\n  // log g(x)\
+    \ = sum f[n]log(1+x^n+x^{2n}+...)\n  // f[n] given -> [x^n]g(x) given -> f[n+1]\
+    \ given\n  vc<mint> f(N + 1);\n  vc<mint> log_g(N);\n  Online_Exp<mint> X;\n \
+    \ FOR(n, 1, N + 1) {\n    f[n] = X.query(n - 1, log_g[n - 1]);\n    // -log(1-x)=x+xx/2+...\n\
+    \    FOR(k, 1, (N - 1) / n + 1) { log_g[n * k] += f[n] * inv<mint>(k); }\n  }\n\
+    \  if (rooted) return f;\n  // \u3053\u306E\u6642\u70B9\u3067 f \u306F unlabeled\
+    \ rooted tree (OEIS A000081)\n  // unlabeled tree \u306E\u6BCD\u95A2\u6570\u306F\
+    \ f(x) - 1/2(f(x)^2-f(x^2))\n  vc<mint> ff = convolution<mint>(f, f);\n  vc<mint>\
+    \ ANS = f;\n  FOR(i, N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i, N + 1) {\n\
+    \    if (2 * i <= N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return ANS;\n\
+    }\n"
   code: "#include \"poly/online/online_exp.hpp\"\n#include \"mod/modint.hpp\"\n#include\
-    \ \"poly/convolution.hpp\"\n\n// https://oeis.org/A000055\n// 0, 1, 1, 1, 2, 3,\
-    \ 6, 11, ...\ntemplate <typename mint>\nvc<mint> count_unlabeled_tree(int N) {\n\
+    \ \"poly/convolution.hpp\"\n\n// https://oeis.org/A000055\n// https://oeis.org/A000081\n\
+    template <typename mint>\nvc<mint> count_unlabeled_tree(int N, bool rooted) {\n\
     \  // f: rooted tree\n  // f(x) = x prod (1+x^n+x^{2n}+...)^f_n\n  // g(x) = f(x)/x\n\
     \  // log g(x) = sum f[n]log(1+x^n+x^{2n}+...)\n  // f[n] given -> [x^n]g(x) given\
     \ -> f[n+1] given\n  vc<mint> f(N + 1);\n  vc<mint> log_g(N);\n  Online_Exp<mint>\
     \ X;\n  FOR(n, 1, N + 1) {\n    f[n] = X.query(n - 1, log_g[n - 1]);\n    // -log(1-x)=x+xx/2+...\n\
     \    FOR(k, 1, (N - 1) / n + 1) { log_g[n * k] += f[n] * inv<mint>(k); }\n  }\n\
-    \  // \u3053\u306E\u6642\u70B9\u3067 f \u306F unlabeled rooted tree (OEIS A000081)\n\
-    \  // unlabeled tree \u306E\u6BCD\u95A2\u6570\u306F f(x) - 1/2(f(x)^2-f(x^2))\n\
-    \  // \u3068\u306A\u308B\u306E\u3060\u304C\uFF0C\u8A3C\u660E\u306F\u304B\u306A\
-    \u308A\u30C6\u30AF\u30CB\u30AB\u30EB.\n  vc<mint> ff = convolution<mint>(f, f);\n\
-    \  vc<mint> ANS = f;\n  FOR(i, N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i,\
-    \ N + 1) {\n    if (2 * i <= N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return\
-    \ ANS;\n}\n"
+    \  if (rooted) return f;\n  // \u3053\u306E\u6642\u70B9\u3067 f \u306F unlabeled\
+    \ rooted tree (OEIS A000081)\n  // unlabeled tree \u306E\u6BCD\u95A2\u6570\u306F\
+    \ f(x) - 1/2(f(x)^2-f(x^2))\n  vc<mint> ff = convolution<mint>(f, f);\n  vc<mint>\
+    \ ANS = f;\n  FOR(i, N + 1) ANS[i] -= inv<mint>(2) * ff[i];\n  FOR(i, N + 1) {\n\
+    \    if (2 * i <= N) ANS[2 * i] += inv<mint>(2) * f[i];\n  }\n  return ANS;\n\
+    }\n"
   dependsOn:
   - poly/online/online_exp.hpp
   - poly/online/online_convolution.hpp
@@ -378,8 +378,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_unlabeled_tree.hpp
   requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-01-30 02:03:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_unlabeled_tree.test.cpp
 documentation_of: graph/count/count_unlabeled_tree.hpp

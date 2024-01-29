@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':question:'
@@ -460,8 +460,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1145.test.cpp
-  - test/yukicoder/2459.test.cpp
   - test/yukicoder/1575.test.cpp
+  - test/yukicoder/2459.test.cpp
 documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:

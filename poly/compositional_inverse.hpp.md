@@ -427,8 +427,8 @@ data:
   timestamp: '2024-01-29 21:47:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/count_labeled_biconnected.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
 documentation_of: poly/compositional_inverse.hpp
 layout: document
 redirect_from:

@@ -60,8 +60,8 @@ data:
   isVerificationFile: false
   path: nt/mobius_table.hpp
   requiredBy:
-  - nt/mertens.hpp
   - nt/range_rational_count.hpp
+  - nt/mertens.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

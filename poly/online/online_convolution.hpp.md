@@ -11,13 +11,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   - icon: ':heavy_check_mark:'
@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,9 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc315h.test.cpp
     title: test_atcoder/abc315h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -238,26 +238,26 @@ data:
   isVerificationFile: false
   path: poly/online/online_convolution.hpp
   requiredBy:
-  - poly/online/online_division.hpp
-  - poly/online/online_inv.hpp
-  - poly/online/online_log.hpp
-  - poly/online/online_exp.hpp
-  - poly/online/online_pow.hpp
   - graph/count/count_unlabeled_tree.hpp
+  - poly/online/online_division.hpp
+  - poly/online/online_exp.hpp
+  - poly/online/online_inv.hpp
+  - poly/online/online_pow.hpp
+  - poly/online/online_log.hpp
   - seq/famous/simple_permutations.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/simple_perm.test.cpp
-  - test/mytest/count_unlabeled_tree.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/online_inv.test.cpp
-  - test/mytest/online_division.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/library_checker/convolution/online_convolution.test.cpp
   - test_atcoder/abc230h.test.cpp
   - test_atcoder/abc315h.test.cpp
+  - test/library_checker/convolution/online_convolution.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/count_unlabeled_tree.test.cpp
+  - test/mytest/online_exp.test.cpp
+  - test/mytest/online_inv.test.cpp
+  - test/mytest/online_log.test.cpp
+  - test/mytest/simple_perm.test.cpp
+  - test/mytest/online_division.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document
 redirect_from:

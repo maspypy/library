@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -112,10 +112,10 @@ data:
   timestamp: '2023-12-22 20:53:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
+  - test/yukicoder/2231.test.cpp
   - test/yukicoder/263.test.cpp
   - test/yukicoder/2102.test.cpp
-  - test/yukicoder/2231.test.cpp
-  - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 documentation_of: string/rollinghash.hpp
 layout: document
 redirect_from:
