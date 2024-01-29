@@ -6,6 +6,8 @@
 #include "mod/modint.hpp"
 #include "poly/compositional_inverse.hpp"
 
+using mint = modint998;
+
 void solve() {
   LL(N);
   VEC(mint, F, N);
