@@ -30,8 +30,8 @@ data:
   timestamp: '2023-10-30 01:33:52+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/factori998.test.cpp
   - test/mytest/factorial_998.test.cpp
+  - test/library_checker/math/factori998.test.cpp
 documentation_of: mod/factorial998.hpp
 layout: document
 redirect_from:

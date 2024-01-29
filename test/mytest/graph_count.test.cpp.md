@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_tree.hpp
     title: graph/count/count_labeled_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
   - icon: ':question:'
@@ -60,9 +60,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -470,7 +470,7 @@ data:
     \  F = fps_log(F);\n  FOR(i, nmax + 1) F[i] = -F[i];\n  // k = 1\n  FOR(i, nmax\
     \ + 1) F[i] -= f[i];\n  // k = 2\n  f = convolution(f, f);\n  FOR(i, nmax + 1)\
     \ F[i] -= f[i] * inv<mint>(2);\n  FOR(i, nmax + 1) F[i] *= fact<mint>(i) * inv<mint>(2);\n\
-    \  return F;\n}\n#line 1 \"graph/count/count_labeled_tree.hpp\"\n// https://oeis.org/A000272\n\
+    \  return F;\n}\n#line 2 \"graph/count/count_labeled_tree.hpp\"\n\n// https://oeis.org/A000272\n\
     template <typename mint>\nvc<mint> count_labeled_tree(ll nmax) {\n  vc<mint> f(nmax\
     \ + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1) : mint(n).pow(n - 2));\
     \ }\n  return f;\n}\n#line 2 \"poly/integrate.hpp\"\n\n// \u4E0D\u5B9A\u7A4D\u5206\
@@ -524,10 +524,7 @@ data:
     \n    m += m;\r\n  }\r\n  f.resize(L);\r\n  return f;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
-    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 1 \"graph/count/count_labeled_tree.hpp\"\
-    \n// https://oeis.org/A000272\ntemplate <typename mint>\nvc<mint> count_labeled_tree(ll\
-    \ nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1)\
-    \ : mint(n).pow(n - 2)); }\n  return f;\n}\n#line 3 \"graph/count/count_labeled_forest.hpp\"\
+    \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 3 \"graph/count/count_labeled_forest.hpp\"\
     \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_labeled_forest(int\
     \ N) {\n  vc<mint> f = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *=\
     \ fact_inv<mint>(i);\n  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n\
@@ -576,8 +573,8 @@ data:
   isVerificationFile: true
   path: test/mytest/graph_count.test.cpp
   requiredBy: []
-  timestamp: '2024-01-30 02:03:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-30 02:35:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/graph_count.test.cpp
 layout: document

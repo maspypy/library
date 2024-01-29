@@ -2,33 +2,33 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A000272
-  bundledCode: "#line 1 \"graph/count/count_labeled_tree.hpp\"\n// https://oeis.org/A000272\n\
+  bundledCode: "#line 2 \"graph/count/count_labeled_tree.hpp\"\n\n// https://oeis.org/A000272\n\
     template <typename mint>\nvc<mint> count_labeled_tree(ll nmax) {\n  vc<mint> f(nmax\
     \ + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1) : mint(n).pow(n - 2));\
     \ }\n  return f;\n}\n"
-  code: "// https://oeis.org/A000272\ntemplate <typename mint>\nvc<mint> count_labeled_tree(ll\
-    \ nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1)\
-    \ : mint(n).pow(n - 2)); }\n  return f;\n}"
+  code: "#pragma once\n\n// https://oeis.org/A000272\ntemplate <typename mint>\nvc<mint>\
+    \ count_labeled_tree(ll nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n, 1, nmax + 1)\
+    \ { f[n] = (n == 1 ? mint(1) : mint(n).pow(n - 2)); }\n  return f;\n}"
   dependsOn: []
   isVerificationFile: false
   path: graph/count/count_labeled_tree.hpp
   requiredBy:
   - graph/count/count_labeled_forest.hpp
-  timestamp: '2024-01-29 22:33:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-01-30 02:35:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/graph_count.test.cpp
 documentation_of: graph/count/count_labeled_tree.hpp

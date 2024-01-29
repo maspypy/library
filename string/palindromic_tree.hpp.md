@@ -78,10 +78,10 @@ data:
   timestamp: '2023-12-25 02:06:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/palindrome_decomposition_dp.test.cpp
+  - test/yukicoder/263.test.cpp
   - test/yukicoder/465.test.cpp
   - test/yukicoder/2606.test.cpp
-  - test/yukicoder/263.test.cpp
-  - test/mytest/palindrome_decomposition_dp.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:
