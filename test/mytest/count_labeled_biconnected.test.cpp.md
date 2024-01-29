@@ -1,16 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':x:'
-    path: graph/count/count_labeled_tree.hpp
-    title: graph/count/count_labeled_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
   - icon: ':question:'
@@ -31,7 +28,7 @@ data:
   - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':question:'
@@ -58,10 +55,10 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -69,9 +66,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -475,27 +472,23 @@ data:
     template <typename mint>\nvc<mint> count_labeled_connected(int N) {\n  vc<mint>\
     \ F = count_labeled_undirected<mint>(N);\n  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n\
     \  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n#line\
-    \ 1 \"graph/count/count_labeled_tree.hpp\"\n// https://oeis.org/A000272\ntemplate\
-    \ <typename mint>\nvc<mint> count_labeled_tree(ll nmax) {\n  vc<mint> f(nmax +\
-    \ 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1) : mint(n).pow(n - 2));\
-    \ }\n  return f;\n}\n#line 2 \"poly/differentiate.hpp\"\n\ntemplate <typename\
-    \ mint>\nvc<mint> differentiate(const vc<mint>& f) {\n  if (len(f) <= 1) return\
-    \ {};\n  vc<mint> g(len(f) - 1);\n  FOR(i, len(g)) g[i] = f[i + 1] * mint(i +\
-    \ 1);\n  return g;\n}\n#line 2 \"poly/composition.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> composition(vc<mint>& Q, vc<mint>& P) {\r\n  int n = len(P);\r\
-    \n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while (k * k < n) ++k;\r\n\
-    \  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0] = {1};\r\n\
-    \  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i -\
-    \ 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\
-    \n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i]\
-    \ = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint>\
-    \ ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n  \
-    \    if (k * i + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n      \
-    \  FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n   \
-    \ f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d, n) ANS[d] +=\
-    \ f[d];\r\n  }\r\n  return ANS;\r\n}\r\n#line 2 \"poly/fps_div.hpp\"\n\n#line\
-    \ 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\
-    \u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
+    \ 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint> differentiate(const\
+    \ vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n \
+    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/composition.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>& Q, vc<mint>&\
+    \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
+    \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
+    \ 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i]\
+    \ = convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
+    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
+    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
+    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
+    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
+    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
+    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
+    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n#line 2 \"poly/fps_div.hpp\"\
+    \n\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\
+    \u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
     \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
     \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
     \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
@@ -523,36 +516,28 @@ data:
     \ mint>\nmint integrate(const vc<mint>& f, mint L, mint R) {\n  mint I = 0;\n\
     \  mint pow_L = 1, pow_R = 1;\n  FOR(i, len(f)) {\n    pow_L *= L, pow_R *= R;\n\
     \    I += inv<mint>(i + 1) * f[i] * (pow_R - pow_L);\n  }\n  return I;\n}\n#line\
-    \ 6 \"graph/count/count_labeled_biconnected.hpp\"\n\ntemplate <typename mint>\n\
-    vc<mint> count_labeled_biconnected(int N) {\n  // \u3059\u3079\u3066\u6307\u6570\
-    \u578B\n  // F1(x): labeled connected\n  vc<mint> F1 = count_labeled_connected<mint>(N);\n\
-    \  FOR(i, N + 1) F1[i] *= fact_inv<mint>(i);\n\n  // labeled connected \u304B\u3089\
-    \u9802\u70B9 0 \u3092\u524A\u9664\u3057\u305F\u3068\u304D\u306E\u9023\u7D50\u6210\
-    \u5206\u3092\u8003\u3048\u308B\n  // F1'(x) = exp(F2'(x)) \u306E\u5F62\u306E\u5F0F\
-    \u304C\u51FA\u3066\u304F\u308B\n  // F2 \u306F 2 \u9802\u70B9\u4EE5\u4E0A labeled\
-    \ connected \u3067\u9802\u70B9 0 \u304C\u95A2\u7BC0\u70B9\u3067\u306F\u306A\u3044\
-    \u3082\u306E\n  vc<mint> DF2 = fps_log(differentiate(F1));\n\n  // F3 \u306F rooted\
-    \ labeled connected\n  vc<mint> F3(N + 1);\n  FOR(i, N + 1) F3[i] = F1[i] * mint(i);\n\
-    \  POP(F3);\n\n  // F(x): labeled biconnected.\n  // F2'(x) \u3092\u9802\u70B9\
-    \ 0 \u306E component \u306B\u3088\u3063\u3066\u6570\u3048\u308B\n  // F2'\uFF1A\
-    rooted connected \u305F\u3061\u306E root \u540C\u58EB\u3092 biconnected \u306B\
-    \u306A\u308B\u3088\u3046\u306B\u3064\u306A\u3050\n  // F3(x)^n/n! \u304B\u3089\
-    \u3001F2'(x) \u306E\u3046\u3061\u9802\u70B9 0 \u306E\u6210\u5206\u306E\u5927\u304D\
-    \u3055\u304C n \u306E\u3082\u306E\u304C\u51FA\u3066\u304F\u308B\n  // \u7D50\u5C40\
-    \ F'(F3(x))=F2'(x) \u304C\u5206\u304B\u308A, F'(x)=F2'(IF3(x)) \u306B\u3088\u308A\
-    \ F \u304C\u6C42\u307E\u308B\n  vc<mint> IF3 = compositional_inverse(F3);\n  vc<mint>\
-    \ DF = composition(DF2, IF3);\n  vc<mint> F = integrate(DF);\n  FOR(i, N + 1)\
-    \ F[i] *= fact<mint>(i);\n  return F;\n}\n#line 7 \"test/mytest/count_labeled_biconnected.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_biconnected<mint>(10);\n\
-    \  vi OEIS013922 = {};\n  FOR(i, 11) { assert(A[i] == mint(OEIS013922[i])); }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n\
-    }\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ 4 \"graph/count/count_labeled_biconnected.hpp\"\n\n// https://oeis.org/A013922\n\
+    template <typename mint>\nvc<mint> count_labeled_biconnected(int N) {\n  vc<mint>\
+    \ C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i] *= fact_inv<mint>(i);\n\
+    \n  vc<mint> D(N);\n  FOR(i, N) D[i] = C[i + 1] * mint(i + 1);\n\n  vc<mint> E(N);\n\
+    \  FOR(i, N) E[i] = C[i] * mint(i);\n\n  vc<mint> G = fps_log(D);\n\n  vc<mint>\
+    \ IE = compositional_inverse(E);\n  vc<mint> B = composition(G, IE);\n  vc<mint>\
+    \ A = integrate(B);\n\n  FOR(i, N + 1) A[i] *= fact<mint>(i);\n  return A;\n}\n\
+    #line 7 \"test/mytest/count_labeled_biconnected.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  vc<mint> F = count_labeled_biconnected<mint>(10);\n  vi ANS\
+    \ = {\n      0,\n      0,\n      1,\n      1,\n      10,\n      238,\n      11368,\n\
+    \      1014888,\n      166537616,\n      50680432112,\n      29107809374336,\n\
+    \  };\n  FOR(i, 11) assert(F[i] == mint(ANS[i]));\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n \
+    \ test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"graph/count/count_labeled_biconnected.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> A = count_labeled_biconnected<mint>(10);\n\
-    \  vi OEIS013922 = {};\n  FOR(i, 11) { assert(A[i] == mint(OEIS013922[i])); }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n\
-    }\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_biconnected<mint>(10);\n\
+    \  vi ANS = {\n      0,\n      0,\n      1,\n      1,\n      10,\n      238,\n\
+    \      11368,\n      1014888,\n      166537616,\n      50680432112,\n      29107809374336,\n\
+    \  };\n  FOR(i, 11) assert(F[i] == mint(ANS[i]));\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n \
+    \ test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -570,7 +555,6 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - graph/count/count_labeled_tree.hpp
   - poly/compositional_inverse.hpp
   - poly/differentiate.hpp
   - poly/composition.hpp
@@ -579,8 +563,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_labeled_biconnected.test.cpp
   requiredBy: []
-  timestamp: '2024-01-29 22:33:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-01-30 01:41:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_labeled_biconnected.test.cpp
 layout: document

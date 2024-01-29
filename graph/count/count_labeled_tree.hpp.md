@@ -2,19 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: graph/count/count_labeled_biconnected.hpp
-    title: graph/count/count_labeled_biconnected.hpp
   - icon: ':warning:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/count_labeled_biconnected.test.cpp
-    title: test/mytest/count_labeled_biconnected.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://oeis.org/A000272
@@ -30,11 +24,9 @@ data:
   path: graph/count/count_labeled_tree.hpp
   requiredBy:
   - graph/count/count_labeled_forest.hpp
-  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2024-01-29 22:33:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/mytest/count_labeled_biconnected.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/count/count_labeled_tree.hpp
 layout: document
 redirect_from:
