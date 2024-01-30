@@ -929,6 +929,9 @@ data:
       path: graph/count/count_labeled_connected.hpp
       title: graph/count/count_labeled_connected.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/count/count_labeled_dag.hpp
+      title: graph/count/count_labeled_dag.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/count/count_labeled_eulerian.hpp
       title: graph/count/count_labeled_eulerian.hpp
     - icon: ':heavy_check_mark:'
@@ -2872,6 +2875,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_connected.test.cpp
       title: test/mytest/count_labeled_connected.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/count_labeled_dag.test.cpp
+      title: test/mytest/count_labeled_dag.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_eulerian.test.cpp
       title: test/mytest/count_labeled_eulerian.test.cpp

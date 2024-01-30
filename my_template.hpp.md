@@ -976,6 +976,9 @@ data:
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_dag.test.cpp
+    title: test/mytest/count_labeled_dag.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_eulerian.test.cpp
     title: test/mytest/count_labeled_eulerian.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2761,6 +2764,7 @@ data:
   - test/mytest/online_log.test.cpp
   - test/mytest/xor_transpose.test.cpp
   - test/mytest/magic_square.test.cpp
+  - test/mytest/count_labeled_dag.test.cpp
   - test/mytest/max_min.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/dynamic_lazy_segtree.test.cpp

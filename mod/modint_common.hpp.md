@@ -27,6 +27,9 @@ data:
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_dag.hpp
+    title: graph/count/count_labeled_dag.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
   - icon: ':heavy_check_mark:'
@@ -669,6 +672,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_connected.test.cpp
     title: test/mytest/count_labeled_connected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_dag.test.cpp
+    title: test/mytest/count_labeled_dag.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_eulerian.test.cpp
     title: test/mytest/count_labeled_eulerian.test.cpp
@@ -1393,6 +1399,7 @@ data:
   - graph/count/count_clique.hpp
   - graph/count/count_unlabeled_tree.hpp
   - graph/count/count_independent_set.hpp
+  - graph/count/count_labeled_dag.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_connected.hpp
   - graph/count/count_labeled_eulerian.hpp
@@ -1466,6 +1473,7 @@ data:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/online_division.test.cpp
   - test/mytest/online_log.test.cpp
+  - test/mytest/count_labeled_dag.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/bell.test.cpp
