@@ -1,4 +1,6 @@
 #include "poly/fps_inv.hpp"
+
+// https://oeis.org/A054946
 template <typename mint>
 vc<mint> count_labeled_strong_tournament(int N) {
   vc<mint> F(N + 1, 1);

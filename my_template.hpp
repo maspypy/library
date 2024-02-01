@@ -1,8 +1,11 @@
 #if defined(LOCAL)
 #include <my_template_compiled.hpp>
 #else
-#pragma GCC optimize("Ofast")
-#pragma GCC optimize("unroll-loops")
+
+// 参考 https://codeforces.com/blog/entry/96344
+// bmi,bmi2,lzcnt は ucup でコンパイルエラー
+#pragma GCC optimize("Ofast,unroll-loops")
+#pragma GCC target("avx2,popcnt")
 
 #include <bits/stdc++.h>
 
