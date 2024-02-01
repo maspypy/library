@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_K4.test.cpp
     title: test/mytest/count_K4.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/count/count_K4.hpp\"\n\n// M^{1.5} + M^2/w\n// simple\
@@ -49,7 +49,7 @@ data:
   path: graph/count/count_K4.hpp
   requiredBy: []
   timestamp: '2024-01-01 04:08:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_K4.test.cpp
 documentation_of: graph/count/count_K4.hpp
