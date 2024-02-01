@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: knapsack/knapsack01.hpp
     title: knapsack/knapsack01.hpp
   - icon: ':question:'
@@ -199,7 +199,7 @@ data:
     \  for (auto&& [w, v]: dp) {\n    while (len(res) && res.back().fi == w) res.pop_back();\n\
     \    if (len(res) && res.back().se >= v) continue;\n    res.eb(w, v);\n  }\n \
     \ return res;\n}\n\ntemplate <typename WT, typename VAL>\nVAL knapsack01(vc<WT>\
-    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM<WT>(weight));\n  int n = len(weight);\n\
+    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM<WT>(weight));\n  ll n = len(weight);\n\
     \  assert(len(val) == n);\n\n  // \u534A\u5206\u5168\u5217\u6319 + \u5C3A\u53D6\
     \u308A\u6CD5\n  // O(2^{N/2})\n  auto sol_1 = [&]() -> VAL {\n    vc<WT> wt_l\
     \ = {weight.begin(), weight.begin() + n / 2};\n    vc<WT> wt_r = {weight.begin()\
@@ -240,7 +240,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-02 05:06:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_B.test.cpp

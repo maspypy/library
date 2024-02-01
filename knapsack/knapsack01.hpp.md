@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_B.test.cpp
     title: test/aoj/DPL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_F.test.cpp
     title: test/aoj/DPL_1_F.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_H.test.cpp
     title: test/aoj/DPL_1_H.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"knapsack/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\
@@ -30,7 +30,7 @@ data:
     \  for (auto&& [w, v]: dp) {\n    while (len(res) && res.back().fi == w) res.pop_back();\n\
     \    if (len(res) && res.back().se >= v) continue;\n    res.eb(w, v);\n  }\n \
     \ return res;\n}\n\ntemplate <typename WT, typename VAL>\nVAL knapsack01(vc<WT>\
-    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM<WT>(weight));\n  int n = len(weight);\n\
+    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM<WT>(weight));\n  ll n = len(weight);\n\
     \  assert(len(val) == n);\n\n  // \u534A\u5206\u5168\u5217\u6319 + \u5C3A\u53D6\
     \u308A\u6CD5\n  // O(2^{N/2})\n  auto sol_1 = [&]() -> VAL {\n    vc<WT> wt_l\
     \ = {weight.begin(), weight.begin() + n / 2};\n    vc<WT> wt_r = {weight.begin()\
@@ -65,7 +65,7 @@ data:
     \  for (auto&& [w, v]: dp) {\n    while (len(res) && res.back().fi == w) res.pop_back();\n\
     \    if (len(res) && res.back().se >= v) continue;\n    res.eb(w, v);\n  }\n \
     \ return res;\n}\n\ntemplate <typename WT, typename VAL>\nVAL knapsack01(vc<WT>\
-    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM<WT>(weight));\n  int n = len(weight);\n\
+    \ weight, vc<VAL> val, WT LIM) {\n  chmin(LIM, SUM<WT>(weight));\n  ll n = len(weight);\n\
     \  assert(len(val) == n);\n\n  // \u534A\u5206\u5168\u5217\u6319 + \u5C3A\u53D6\
     \u308A\u6CD5\n  // O(2^{N/2})\n  auto sol_1 = [&]() -> VAL {\n    vc<WT> wt_l\
     \ = {weight.begin(), weight.begin() + n / 2};\n    vc<WT> wt_r = {weight.begin()\
@@ -91,8 +91,8 @@ data:
   isVerificationFile: false
   path: knapsack/knapsack01.hpp
   requiredBy: []
-  timestamp: '2022-10-21 17:08:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-02-02 05:06:39+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/DPL_1_F.test.cpp
   - test/aoj/DPL_1_H.test.cpp

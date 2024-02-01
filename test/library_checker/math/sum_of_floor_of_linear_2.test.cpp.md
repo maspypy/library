@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/monoid_for_floor_sum.hpp
     title: alg/monoid/monoid_for_floor_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':x:'
