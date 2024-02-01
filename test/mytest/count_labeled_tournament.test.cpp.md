@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: graph/count/count_labeled_strong_digraph.hpp
-    title: graph/count/count_labeled_strong_digraph.hpp
+    path: graph/count/count_labeled_strong_tournament.hpp
+    title: graph/count/count_labeled_strong_tournament.hpp
   - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
@@ -41,9 +41,6 @@ data:
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/fps_log.hpp
-    title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -56,10 +53,10 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/count_labeled_strong.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC optimize(\"\
-    Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
+  bundledCode: "#line 1 \"test/mytest/count_labeled_tournament.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n#pragma GCC\
+    \ optimize(\"Ofast\")\n#pragma GCC optimize(\"unroll-loops\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
     \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
     using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
@@ -220,11 +217,11 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/mytest/count_labeled_strong.test.cpp\"\n\n#line\
-    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
-    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ yes(!t); }\r\n#line 5 \"test/mytest/count_labeled_tournament.test.cpp\"\n\n\
+    #line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -515,57 +512,34 @@ data:
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
-    \ \"poly/fps_log.hpp\"\n\r\n#line 5 \"poly/fps_log.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_log_dense(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\
-    \n  ll N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i] *= mint(i);\r\n\
-    \  df.erase(df.begin());\r\n  auto f_inv = fps_inv(f);\r\n  auto g = convolution(df,\
-    \ f_inv);\r\n  g.resize(N - 1);\r\n  g.insert(g.begin(), 0);\r\n  FOR(i, N) g[i]\
-    \ *= inv<mint>(i);\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_log_sparse(const vc<mint>& f) {\r\n  int N = f.size();\r\n  vc<pair<int,\
-    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
-    \ F(N);\r\n  vc<mint> g(N - 1);\r\n  for (int n = 0; n < N - 1; ++n) {\r\n   \
-    \ mint rhs = mint(n + 1) * f[n + 1];\r\n    for (auto&& [i, fi]: dat) {\r\n  \
-    \    if (i > n) break;\r\n      rhs -= fi * g[n - i];\r\n    }\r\n    g[n] = rhs;\r\
-    \n    F[n + 1] = rhs * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] ==\
-    \ mint(1));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 :\
-    \ 1200);\r\n  return (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\
-    \n}\r\n#line 3 \"graph/count/count_labeled_strong_digraph.hpp\"\n\n// https://oeis.org/A003030\n\
-    template <typename mint>\nvc<mint> count_labeled_strong_digraph(int N) {\n  vc<mint>\
-    \ F(N + 1, 1);\n  // 2^n(n-1)\u500D\u3057\u305F\u3042\u3068 2^nC2 \u3067\u5272\
-    \u308B\n  mint pow = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * pow, pow += pow;\n\
-    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  pow =\
-    \ 1;\n  mint c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n  F = fps_log(F);\n\
-    \  FOR(i, N + 1) F[i] = -F[i] * fact<mint>(i);\n  return F;\n}\n#line 8 \"test/mytest/count_labeled_strong.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_strong_digraph<mint>(10);\n\
-    \  vc<string> ANS = {\"0\",\n                    \"1\",\n                    \"\
-    1\",\n                    \"18\",\n                    \"1606\",\n           \
-    \         \"565080\",\n                    \"734774776\",\n                  \
-    \  \"3523091615568\",\n                    \"63519209389664176\",\n          \
-    \          \"4400410978376102609280\",\n                    \"1190433705317814685295399296\"\
-    };\n  FOR(n, 11) {\n    mint ans = 0;\n    for (auto& x: ANS[n]) ans = mint(10)\
-    \ * ans + mint(x - '0');\n    assert(F[n] == ans);\n  }\n}\n\nvoid solve() {\n\
-    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ \"graph/count/count_labeled_strong_tournament.hpp\"\ntemplate <typename mint>\n\
+    vc<mint> count_labeled_strong_tournament(int N) {\n  vc<mint> F(N + 1, 1);\n \
+    \ mint pow = 1;\n  FOR(n, 1, N + 1) F[n] = F[n - 1] * pow, pow += pow;\n  FOR(n,\
+    \ N + 1) F[n] *= fact_inv<mint>(n);\n  F = fps_inv(F);\n  F[0] = 0;\n  FOR(n,\
+    \ N + 1) F[n] = -F[n] * fact<mint>(n);\n  return F;\n}\n#line 8 \"test/mytest/count_labeled_tournament.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  int N = 10;\n  vc<mint> F = count_labeled_strong_tournament<mint>(N);\n\
+    \  vi ANS = {0,\n            1,\n            0,\n            2,\n            24,\n\
+    \            544,\n            22320,\n            1677488,\n            236522496,\n\
+    \            64026088576,\n            33832910196480};\n  FOR(n, 1, 11) assert(F[n]\
+    \ == mint(ANS[n]));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n\
-    #include \"graph/count/count_labeled_strong_digraph.hpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  vc<mint> F = count_labeled_strong_digraph<mint>(10);\n  vc<string>\
-    \ ANS = {\"0\",\n                    \"1\",\n                    \"1\",\n    \
-    \                \"18\",\n                    \"1606\",\n                    \"\
-    565080\",\n                    \"734774776\",\n                    \"3523091615568\"\
-    ,\n                    \"63519209389664176\",\n                    \"4400410978376102609280\"\
-    ,\n                    \"1190433705317814685295399296\"};\n  FOR(n, 11) {\n  \
-    \  mint ans = 0;\n    for (auto& x: ANS[n]) ans = mint(10) * ans + mint(x - '0');\n\
-    \    assert(F[n] == ans);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}"
+    #include \"graph/count/count_labeled_strong_tournament.hpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  int N = 10;\n  vc<mint> F = count_labeled_strong_tournament<mint>(N);\n\
+    \  vi ANS = {0,\n            1,\n            0,\n            2,\n            24,\n\
+    \            544,\n            22320,\n            1677488,\n            236522496,\n\
+    \            64026088576,\n            33832910196480};\n  FOR(n, 1, 11) assert(F[n]\
+    \ == mint(ANS[n]));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - graph/count/count_labeled_strong_digraph.hpp
+  - graph/count/count_labeled_strong_tournament.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
   - poly/convolution.hpp
@@ -575,17 +549,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/fps_log.hpp
   isVerificationFile: true
-  path: test/mytest/count_labeled_strong.test.cpp
+  path: test/mytest/count_labeled_tournament.test.cpp
   requiredBy: []
   timestamp: '2024-02-01 17:20:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/count_labeled_strong.test.cpp
+documentation_of: test/mytest/count_labeled_tournament.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/count_labeled_strong.test.cpp
-- /verify/test/mytest/count_labeled_strong.test.cpp.html
-title: test/mytest/count_labeled_strong.test.cpp
+- /verify/test/mytest/count_labeled_tournament.test.cpp
+- /verify/test/mytest/count_labeled_tournament.test.cpp.html
+title: test/mytest/count_labeled_tournament.test.cpp
 ---

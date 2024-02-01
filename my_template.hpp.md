@@ -982,6 +982,12 @@ data:
     path: test/mytest/count_labeled_eulerian.test.cpp
     title: test/mytest/count_labeled_eulerian.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_strong.test.cpp
+    title: test/mytest/count_labeled_strong.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_tournament.test.cpp
+    title: test/mytest/count_labeled_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_undirected.test.cpp
     title: test/mytest/count_labeled_undirected.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3441,6 +3447,7 @@ data:
   - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/stern_brocot.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/count_labeled_tournament.test.cpp
   - test/mytest/non_adj.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/count_P3P4P5.test.cpp
@@ -3501,6 +3508,7 @@ data:
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/kdtree_monoid.test.cpp
   - test/mytest/factorial_digit.test.cpp
+  - test/mytest/count_labeled_strong.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/tournament.test.cpp
   - test/mytest/scc_tournament.test.cpp

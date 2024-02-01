@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_strong_digraph.hpp
     title: graph/count/count_labeled_strong_digraph.hpp
   - icon: ':heavy_check_mark:'
@@ -144,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_eulerian.test.cpp
     title: test/mytest/count_labeled_eulerian.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_strong.test.cpp
+    title: test/mytest/count_labeled_strong.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
@@ -609,6 +612,7 @@ data:
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/count_labeled_strong.test.cpp
 documentation_of: poly/fps_log.hpp
 layout: document
 redirect_from:

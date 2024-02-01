@@ -50,9 +50,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_strong_digraph.hpp
     title: graph/count/count_labeled_strong_digraph.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_strong_tournament.hpp
+    title: graph/count/count_labeled_strong_tournament.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
@@ -291,6 +294,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_eulerian.test.cpp
     title: test/mytest/count_labeled_eulerian.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_strong.test.cpp
+    title: test/mytest/count_labeled_strong.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_tournament.test.cpp
+    title: test/mytest/count_labeled_tournament.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
@@ -809,6 +818,7 @@ data:
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_dag.hpp
+  - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_labeled_bipartite.hpp
   - poly/sum_of_power_of_roots.hpp
   - poly/composition_f_1_minus_ex.hpp
@@ -941,6 +951,7 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/count_labeled_tournament.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/vandermonde.test.cpp
@@ -949,6 +960,7 @@ data:
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/poly_root_finding.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/count_labeled_strong.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document
 redirect_from:

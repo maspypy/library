@@ -35,9 +35,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_strong_digraph.hpp
     title: graph/count/count_labeled_strong_digraph.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_strong_tournament.hpp
+    title: graph/count/count_labeled_strong_tournament.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
@@ -681,6 +684,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_eulerian.test.cpp
     title: test/mytest/count_labeled_eulerian.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_strong.test.cpp
+    title: test/mytest/count_labeled_strong.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_tournament.test.cpp
+    title: test/mytest/count_labeled_tournament.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_undirected.test.cpp
     title: test/mytest/count_labeled_undirected.test.cpp
@@ -1344,6 +1353,7 @@ data:
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_dag.hpp
+  - graph/count/count_labeled_strong_tournament.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_independent_set.hpp
@@ -1724,6 +1734,7 @@ data:
   - test/mytest/count_clique.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/count_labeled_tournament.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/powerquery.test.cpp
   - test/mytest/splay.test.cpp
@@ -1749,6 +1760,7 @@ data:
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
+  - test/mytest/count_labeled_strong.test.cpp
   - test/mytest/multinomial.test.cpp
   - test/mytest/enumerate_multisets.test.cpp
 documentation_of: mod/modint_common.hpp

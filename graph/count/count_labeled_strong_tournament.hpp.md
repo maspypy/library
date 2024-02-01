@@ -32,22 +32,18 @@ data:
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/fps_log.hpp
-    title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/mytest/count_labeled_strong.test.cpp
-    title: test/mytest/count_labeled_strong.test.cpp
+    path: test/mytest/count_labeled_tournament.test.cpp
+    title: test/mytest/count_labeled_tournament.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links:
-    - https://oeis.org/A003030
+    links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
     \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
     \n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
@@ -342,35 +338,15 @@ data:
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
     \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
-    \ \"poly/fps_log.hpp\"\n\r\n#line 5 \"poly/fps_log.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_log_dense(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\
-    \n  ll N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i] *= mint(i);\r\n\
-    \  df.erase(df.begin());\r\n  auto f_inv = fps_inv(f);\r\n  auto g = convolution(df,\
-    \ f_inv);\r\n  g.resize(N - 1);\r\n  g.insert(g.begin(), 0);\r\n  FOR(i, N) g[i]\
-    \ *= inv<mint>(i);\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ fps_log_sparse(const vc<mint>& f) {\r\n  int N = f.size();\r\n  vc<pair<int,\
-    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
-    \ F(N);\r\n  vc<mint> g(N - 1);\r\n  for (int n = 0; n < N - 1; ++n) {\r\n   \
-    \ mint rhs = mint(n + 1) * f[n + 1];\r\n    for (auto&& [i, fi]: dat) {\r\n  \
-    \    if (i > n) break;\r\n      rhs -= fi * g[n - i];\r\n    }\r\n    g[n] = rhs;\r\
-    \n    F[n + 1] = rhs * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] ==\
-    \ mint(1));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 :\
-    \ 1200);\r\n  return (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\
-    \n}\r\n#line 3 \"graph/count/count_labeled_strong_digraph.hpp\"\n\n// https://oeis.org/A003030\n\
-    template <typename mint>\nvc<mint> count_labeled_strong_digraph(int N) {\n  vc<mint>\
-    \ F(N + 1, 1);\n  // 2^n(n-1)\u500D\u3057\u305F\u3042\u3068 2^nC2 \u3067\u5272\
-    \u308B\n  mint pow = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * pow, pow += pow;\n\
-    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  pow =\
-    \ 1;\n  mint c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n  F = fps_log(F);\n\
-    \  FOR(i, N + 1) F[i] = -F[i] * fact<mint>(i);\n  return F;\n}\n"
-  code: "#include \"poly/fps_inv.hpp\"\n#include \"poly/fps_log.hpp\"\n\n// https://oeis.org/A003030\n\
-    template <typename mint>\nvc<mint> count_labeled_strong_digraph(int N) {\n  vc<mint>\
-    \ F(N + 1, 1);\n  // 2^n(n-1)\u500D\u3057\u305F\u3042\u3068 2^nC2 \u3067\u5272\
-    \u308B\n  mint pow = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * pow, pow += pow;\n\
-    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  pow =\
-    \ 1;\n  mint c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n  F = fps_log(F);\n\
-    \  FOR(i, N + 1) F[i] = -F[i] * fact<mint>(i);\n  return F;\n}"
+    \ \"graph/count/count_labeled_strong_tournament.hpp\"\ntemplate <typename mint>\n\
+    vc<mint> count_labeled_strong_tournament(int N) {\n  vc<mint> F(N + 1, 1);\n \
+    \ mint pow = 1;\n  FOR(n, 1, N + 1) F[n] = F[n - 1] * pow, pow += pow;\n  FOR(n,\
+    \ N + 1) F[n] *= fact_inv<mint>(n);\n  F = fps_inv(F);\n  F[0] = 0;\n  FOR(n,\
+    \ N + 1) F[n] = -F[n] * fact<mint>(n);\n  return F;\n}\n"
+  code: "#include \"poly/fps_inv.hpp\"\ntemplate <typename mint>\nvc<mint> count_labeled_strong_tournament(int\
+    \ N) {\n  vc<mint> F(N + 1, 1);\n  mint pow = 1;\n  FOR(n, 1, N + 1) F[n] = F[n\
+    \ - 1] * pow, pow += pow;\n  FOR(n, N + 1) F[n] *= fact_inv<mint>(n);\n  F = fps_inv(F);\n\
+    \  F[0] = 0;\n  FOR(n, N + 1) F[n] = -F[n] * fact<mint>(n);\n  return F;\n}\n"
   dependsOn:
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -383,18 +359,17 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/fps_log.hpp
   isVerificationFile: false
-  path: graph/count/count_labeled_strong_digraph.hpp
+  path: graph/count/count_labeled_strong_tournament.hpp
   requiredBy: []
   timestamp: '2024-02-01 17:20:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_labeled_strong.test.cpp
-documentation_of: graph/count/count_labeled_strong_digraph.hpp
+  - test/mytest/count_labeled_tournament.test.cpp
+documentation_of: graph/count/count_labeled_strong_tournament.hpp
 layout: document
 redirect_from:
-- /library/graph/count/count_labeled_strong_digraph.hpp
-- /library/graph/count/count_labeled_strong_digraph.hpp.html
-title: graph/count/count_labeled_strong_digraph.hpp
+- /library/graph/count/count_labeled_strong_tournament.hpp
+- /library/graph/count/count_labeled_strong_tournament.hpp.html
+title: graph/count/count_labeled_strong_tournament.hpp
 ---

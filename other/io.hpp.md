@@ -883,6 +883,12 @@ data:
     path: test/mytest/bell_number.test.cpp
     title: test/mytest/bell_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_strong.test.cpp
+    title: test/mytest/count_labeled_strong.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_tournament.test.cpp
+    title: test/mytest/count_labeled_tournament.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_min.test.cpp
     title: test/mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2880,7 +2886,9 @@ data:
   - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/mytest/bell_number.test.cpp
   - test/mytest/primesum_mod4.test.cpp
+  - test/mytest/count_labeled_tournament.test.cpp
   - test/mytest/min_min.test.cpp
+  - test/mytest/count_labeled_strong.test.cpp
 documentation_of: other/io.hpp
 layout: document
 redirect_from:
