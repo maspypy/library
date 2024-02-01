@@ -32,35 +32,24 @@ data:
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/fps_log.hpp
+    title: poly/fps_log.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_divmod.hpp
-    title: poly/poly_divmod.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-    title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/poly_root_finding.test.cpp
-    title: test/mytest/poly_root_finding.test.cpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links:
-    - https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf
-  bundledCode: "#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
-    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
-    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2\
-    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
-    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    links: []
+  bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
+    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -348,100 +337,37 @@ data:
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
-    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 4\
-    \ \"poly/poly_divmod.hpp\"\ntemplate <typename mint>\r\npair<vc<mint>, vc<mint>>\
-    \ poly_divmod(vc<mint> f, vc<mint> g) {\r\n  assert(g.back() != 0);\r\n  if (len(f)\
-    \ < len(g)) { return {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)),\
-    \ reverse(all(rg));\r\n  ll deg = len(rf) - len(rg) + 1;\r\n  rf.resize(deg),\
-    \ rg.resize(deg);\r\n  rg = fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n\
-    \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
-    \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
-    \n  return {q, f};\r\n}\r\n#line 2 \"poly/poly_gcd.hpp\"\n\r\n// https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf\r\
-    \nnamespace half_gcd {\r\ntemplate <typename T>\r\nusing arr = array<vc<T>, 2>;\r\
-    \n\r\ntemplate <typename T>\r\nusing mat = array<vc<T>, 4>;\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid shrink(vc<T>& a) {\r\n  while (len(a) && a.back() == 0) a.pop_back();\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvc<T> operator+(const vc<T>& a, const vc<T>&\
-    \ b) {\r\n  vc<T> c(max(len(a), len(b)));\r\n  FOR(i, len(a)) c[i] += a[i];\r\n\
-    \  FOR(i, len(b)) c[i] += b[i];\r\n  shrink(c);\r\n  return c;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvc<T> operator-(const vc<T>& a, const vc<T>& b) {\r\n  vc<T>\
-    \ c(max(len(a), len(b)));\r\n  FOR(i, len(a)) c[i] += a[i];\r\n  FOR(i, len(b))\
-    \ c[i] -= b[i];\r\n  shrink(c);\r\n  return c;\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> operator*(const vc<T>& a, const vc<T>& b) {\r\n  return convolution(a,\
-    \ b);\r\n}\r\n\r\ntemplate <typename T>\r\nmat<T> operator*(const mat<T>& A, const\
-    \ mat<T>& B) {\r\n  return {A[0] * B[0] + A[1] * B[2], A[0] * B[1] + A[1] * B[3],\r\
-    \n          A[2] * B[0] + A[3] * B[2], A[2] * B[1] + A[3] * B[3]};\r\n}\r\n\r\n\
-    template <typename T>\r\nmat<T> step(const vc<T> q) {\r\n  mat<T> Q;\r\n  Q[1]\
-    \ = {1}, Q[2] = {1};\r\n  Q[3] = Q[3] - q;\r\n  return Q;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\narr<T> operator*(const mat<T>& A, const arr<T>& b) {\r\n  return\
-    \ {A[0] * b[0] + A[1] * b[1], A[2] * b[0] + A[3] * b[1]};\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nmat<T> hgcd(arr<T> a) {\r\n  assert(len(a[0]) > len(a[1]) &&\
-    \ len(a[1]) > 0);\r\n  int m = len(a[0]) / 2;\r\n  if (len(a[1]) <= m) {\r\n \
-    \   mat<T> M;\r\n    M[0] = {1}, M[3] = {1};\r\n    return M;\r\n  }\r\n  auto\
-    \ R = hgcd(arr<T>({vc<T>(a[0].begin() + m, a[0].end()),\r\n                  \
-    \      vc<T>(a[1].begin() + m, a[1].end())}));\r\n  a = R * a;\r\n  if (len(a[1])\
-    \ <= m) return R;\r\n  mat<T> Q = step(poly_divmod(a[0], a[1]).fi);\r\n  R = Q\
-    \ * R, a = Q * a;\r\n  if (len(a[1]) <= m) return R;\r\n  int k = 2 * m + 1 -\
-    \ len(a[0]);\r\n  auto H = hgcd(arr<T>({vc<T>(a[0].begin() + k, a[0].end()),\r\
-    \n                        vc<T>(a[1].begin() + k, a[1].end())}));\r\n  return\
-    \ H * R;\r\n}\r\n\r\ntemplate <typename T>\r\nmat<T> cgcd(arr<T> a) {\r\n  assert(a[0].size()\
-    \ > a[1].size() && !a[1].empty());\r\n  auto m0 = hgcd(a);\r\n  a = m0 * a;\r\n\
-    \  if (a[1].empty()) return m0;\r\n  mat<T> Q = step(poly_divmod(a[0], a[1]).fi);\r\
-    \n  m0 = Q * m0, a = Q * a;\r\n  if (a[1].empty()) return m0;\r\n  return cgcd(a)\
-    \ * m0;\r\n}\r\n\r\n// gcd == f * fi + g * gi \u3068\u306A\u308B (gcd, fi, gi)\r\
-    \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>&\
-    \ f, const vc<T>& g) {\r\n  mat<T> Q = step(poly_divmod(f, g).fi);\r\n  auto m\
-    \ = Q;\r\n  auto ap = Q * arr<T>{f, g};\r\n  if (!ap[1].empty()) m = cgcd(ap)\
-    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> poly_gcd(vc<T> f, vc<T> g) {\r\n  while (len(f) && f.back() == T(0))\
-    \ POP(f);\r\n  while (len(g) && g.back() == T(0)) POP(g);\r\n  if (f.empty())\
-    \ return g;\r\n  if (g.empty()) return f;\r\n  auto F = get<0>(poly_extgcd(f,\
-    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
-    \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
-    \n"
-  code: "#include \"poly/poly_divmod.hpp\"\r\n\r\n// https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf\r\
-    \nnamespace half_gcd {\r\ntemplate <typename T>\r\nusing arr = array<vc<T>, 2>;\r\
-    \n\r\ntemplate <typename T>\r\nusing mat = array<vc<T>, 4>;\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid shrink(vc<T>& a) {\r\n  while (len(a) && a.back() == 0) a.pop_back();\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvc<T> operator+(const vc<T>& a, const vc<T>&\
-    \ b) {\r\n  vc<T> c(max(len(a), len(b)));\r\n  FOR(i, len(a)) c[i] += a[i];\r\n\
-    \  FOR(i, len(b)) c[i] += b[i];\r\n  shrink(c);\r\n  return c;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvc<T> operator-(const vc<T>& a, const vc<T>& b) {\r\n  vc<T>\
-    \ c(max(len(a), len(b)));\r\n  FOR(i, len(a)) c[i] += a[i];\r\n  FOR(i, len(b))\
-    \ c[i] -= b[i];\r\n  shrink(c);\r\n  return c;\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> operator*(const vc<T>& a, const vc<T>& b) {\r\n  return convolution(a,\
-    \ b);\r\n}\r\n\r\ntemplate <typename T>\r\nmat<T> operator*(const mat<T>& A, const\
-    \ mat<T>& B) {\r\n  return {A[0] * B[0] + A[1] * B[2], A[0] * B[1] + A[1] * B[3],\r\
-    \n          A[2] * B[0] + A[3] * B[2], A[2] * B[1] + A[3] * B[3]};\r\n}\r\n\r\n\
-    template <typename T>\r\nmat<T> step(const vc<T> q) {\r\n  mat<T> Q;\r\n  Q[1]\
-    \ = {1}, Q[2] = {1};\r\n  Q[3] = Q[3] - q;\r\n  return Q;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\narr<T> operator*(const mat<T>& A, const arr<T>& b) {\r\n  return\
-    \ {A[0] * b[0] + A[1] * b[1], A[2] * b[0] + A[3] * b[1]};\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nmat<T> hgcd(arr<T> a) {\r\n  assert(len(a[0]) > len(a[1]) &&\
-    \ len(a[1]) > 0);\r\n  int m = len(a[0]) / 2;\r\n  if (len(a[1]) <= m) {\r\n \
-    \   mat<T> M;\r\n    M[0] = {1}, M[3] = {1};\r\n    return M;\r\n  }\r\n  auto\
-    \ R = hgcd(arr<T>({vc<T>(a[0].begin() + m, a[0].end()),\r\n                  \
-    \      vc<T>(a[1].begin() + m, a[1].end())}));\r\n  a = R * a;\r\n  if (len(a[1])\
-    \ <= m) return R;\r\n  mat<T> Q = step(poly_divmod(a[0], a[1]).fi);\r\n  R = Q\
-    \ * R, a = Q * a;\r\n  if (len(a[1]) <= m) return R;\r\n  int k = 2 * m + 1 -\
-    \ len(a[0]);\r\n  auto H = hgcd(arr<T>({vc<T>(a[0].begin() + k, a[0].end()),\r\
-    \n                        vc<T>(a[1].begin() + k, a[1].end())}));\r\n  return\
-    \ H * R;\r\n}\r\n\r\ntemplate <typename T>\r\nmat<T> cgcd(arr<T> a) {\r\n  assert(a[0].size()\
-    \ > a[1].size() && !a[1].empty());\r\n  auto m0 = hgcd(a);\r\n  a = m0 * a;\r\n\
-    \  if (a[1].empty()) return m0;\r\n  mat<T> Q = step(poly_divmod(a[0], a[1]).fi);\r\
-    \n  m0 = Q * m0, a = Q * a;\r\n  if (a[1].empty()) return m0;\r\n  return cgcd(a)\
-    \ * m0;\r\n}\r\n\r\n// gcd == f * fi + g * gi \u3068\u306A\u308B (gcd, fi, gi)\r\
-    \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>&\
-    \ f, const vc<T>& g) {\r\n  mat<T> Q = step(poly_divmod(f, g).fi);\r\n  auto m\
-    \ = Q;\r\n  auto ap = Q * arr<T>{f, g};\r\n  if (!ap[1].empty()) m = cgcd(ap)\
-    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> poly_gcd(vc<T> f, vc<T> g) {\r\n  while (len(f) && f.back() == T(0))\
-    \ POP(f);\r\n  while (len(g) && g.back() == T(0)) POP(g);\r\n  if (f.empty())\
-    \ return g;\r\n  if (g.empty()) return f;\r\n  auto F = get<0>(poly_extgcd(f,\
-    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
-    \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
-    \n"
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 2\
+    \ \"poly/fps_log.hpp\"\n\r\n#line 5 \"poly/fps_log.hpp\"\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> fps_log_dense(const vc<mint>& f) {\r\n  assert(f[0] == mint(1));\r\
+    \n  ll N = len(f);\r\n  vc<mint> df = f;\r\n  FOR(i, N) df[i] *= mint(i);\r\n\
+    \  df.erase(df.begin());\r\n  auto f_inv = fps_inv(f);\r\n  auto g = convolution(df,\
+    \ f_inv);\r\n  g.resize(N - 1);\r\n  g.insert(g.begin(), 0);\r\n  FOR(i, N) g[i]\
+    \ *= inv<mint>(i);\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ fps_log_sparse(const vc<mint>& f) {\r\n  int N = f.size();\r\n  vc<pair<int,\
+    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
+    \ F(N);\r\n  vc<mint> g(N - 1);\r\n  for (int n = 0; n < N - 1; ++n) {\r\n   \
+    \ mint rhs = mint(n + 1) * f[n + 1];\r\n    for (auto&& [i, fi]: dat) {\r\n  \
+    \    if (i > n) break;\r\n      rhs -= fi * g[n - i];\r\n    }\r\n    g[n] = rhs;\r\
+    \n    F[n + 1] = rhs * inv<mint>(n + 1);\r\n  }\r\n  return F;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> fps_log(const vc<mint>& f) {\r\n  assert(f[0] ==\
+    \ mint(1));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 200 :\
+    \ 1200);\r\n  return (n <= t ? fps_log_sparse<mint>(f) : fps_log_dense<mint>(f));\r\
+    \n}\r\n#line 3 \"graph/count/count_labeled_strong_digraph.hpp\"\n\ntemplate <typename\
+    \ mint>\nvc<mint> count_labeled_strong_digraph(int N) {\n  vc<mint> F(N + 1, 1);\n\
+    \  // 2^n(n-1)\u500D\u3057\u305F\u3042\u3068 2^nC2 \u3067\u5272\u308B\n  mint\
+    \ pow = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * pow, pow += pow;\n  FOR(i, N\
+    \ + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  pow = 1;\n  mint\
+    \ c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n  F = fps_log(F);\n\
+    \  FOR(i, N + 1) F[i] = -F[i] * fact<mint>(i);\n  return F;\n}\n"
+  code: "#include \"poly/fps_inv.hpp\"\n#include \"poly/fps_log.hpp\"\n\ntemplate\
+    \ <typename mint>\nvc<mint> count_labeled_strong_digraph(int N) {\n  vc<mint>\
+    \ F(N + 1, 1);\n  // 2^n(n-1)\u500D\u3057\u305F\u3042\u3068 2^nC2 \u3067\u5272\
+    \u308B\n  mint pow = 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * pow, pow += pow;\n\
+    \  FOR(i, N + 1) F[i] *= fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  pow =\
+    \ 1;\n  mint c = 1;\n  FOR(i, N + 1) F[i] *= c, c *= pow, pow += pow;\n  F = fps_log(F);\n\
+    \  FOR(i, N + 1) F[i] = -F[i] * fact<mint>(i);\n  return F;\n}"
   dependsOn:
-  - poly/poly_divmod.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
   - poly/convolution.hpp
@@ -453,19 +379,17 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
+  - poly/fps_log.hpp
   isVerificationFile: false
-  path: poly/poly_gcd.hpp
-  requiredBy:
-  - poly/finding_root_of_polynomial.hpp
-  timestamp: '2024-01-19 02:38:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/mytest/poly_root_finding.test.cpp
-documentation_of: poly/poly_gcd.hpp
+  path: graph/count/count_labeled_strong_digraph.hpp
+  requiredBy: []
+  timestamp: '2024-02-01 17:05:40+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/count/count_labeled_strong_digraph.hpp
 layout: document
 redirect_from:
-- /library/poly/poly_gcd.hpp
-- /library/poly/poly_gcd.hpp.html
-title: poly/poly_gcd.hpp
+- /library/graph/count/count_labeled_strong_digraph.hpp
+- /library/graph/count/count_labeled_strong_digraph.hpp.html
+title: graph/count/count_labeled_strong_digraph.hpp
 ---

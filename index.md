@@ -937,6 +937,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/count/count_labeled_forest.hpp
       title: graph/count/count_labeled_forest.hpp
+    - icon: ':warning:'
+      path: graph/count/count_labeled_strong_digraph.hpp
+      title: graph/count/count_labeled_strong_digraph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_labeled_tree.hpp
       title: graph/count/count_labeled_tree.hpp
@@ -2884,6 +2887,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_forest.test.cpp
       title: test/mytest/count_labeled_forest.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/count_labeled_strong.test.cpp
+      title: test/mytest/count_labeled_strong.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_undirected.test.cpp
       title: test/mytest/count_labeled_undirected.test.cpp
