@@ -31,7 +31,7 @@ vc<pair<WT, VAL>> knapsack01_gen_all(vc<WT> weight, vc<VAL> val,
 template <typename WT, typename VAL>
 VAL knapsack01(vc<WT> weight, vc<VAL> val, WT LIM) {
   chmin(LIM, SUM<WT>(weight));
-  int n = len(weight);
+  ll n = len(weight);
   assert(len(val) == n);
 
   // 半分全列挙 + 尺取り法
