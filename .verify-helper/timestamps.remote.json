@@ -323,6 +323,7 @@
 "test/mytest/count_labeled_biconnected.test.cpp": "2024-01-30 03:59:10 +0900",
 "test/mytest/count_labeled_bridgeless.test.cpp": "2024-01-30 03:47:34 +0900",
 "test/mytest/count_labeled_connected.test.cpp": "2024-01-29 22:33:16 +0900",
+"test/mytest/count_labeled_dag.test.cpp": "2024-01-30 14:33:24 +0900",
 "test/mytest/count_labeled_eulerian.test.cpp": "2024-01-30 00:36:07 +0900",
 "test/mytest/count_labeled_forest.test.cpp": "2024-01-29 22:33:16 +0900",
 "test/mytest/count_labeled_undirected.test.cpp": "2024-01-29 22:12:20 +0900",
