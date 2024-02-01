@@ -1,6 +1,7 @@
 #include "poly/fps_inv.hpp"
 #include "poly/fps_log.hpp"
 
+// https://oeis.org/A003030
 template <typename mint>
 vc<mint> count_labeled_strong_digraph(int N) {
   vc<mint> F(N + 1, 1);
