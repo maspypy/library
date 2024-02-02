@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':heavy_check_mark:'
@@ -102,7 +102,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/eulerwalk_ud.test.cpp
     title: test/library_checker/graph/eulerwalk_ud.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':x:'
