@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':x:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_dst.test.cpp
     title: test/library_checker/datastructure/staticrmq_dst.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/yukicoder/2005.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate\
@@ -94,7 +94,7 @@ data:
   - graph/ds/static_tree_monoid.hpp
   - ds/static_range_product.hpp
   timestamp: '2023-04-08 01:03:35+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/datastructure/staticrmq.test.cpp
