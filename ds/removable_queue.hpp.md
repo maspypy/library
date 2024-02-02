@@ -10,6 +10,9 @@ data:
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/772.test.cpp
+    title: test/yukicoder/772.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
   - icon: ':x:'
@@ -56,6 +59,7 @@ data:
   - test_atcoder/abc314g.test.cpp
   - test_atcoder/abc312f.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
+  - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document

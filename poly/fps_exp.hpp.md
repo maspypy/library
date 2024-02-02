@@ -117,10 +117,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -153,6 +153,9 @@ data:
   - icon: ':x:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_forest.test.cpp
+    title: test/mytest/count_labeled_forest.test.cpp
   - icon: ':x:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
@@ -219,6 +222,9 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc331g.test.cpp
     title: test_atcoder/abc331g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/arc133f.test.cpp
+    title: test_atcoder/arc133f.test.cpp
   - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
@@ -638,6 +644,7 @@ data:
   - test_atcoder/abc331g.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/arc160d.test.cpp
+  - test_atcoder/arc133f.test.cpp
   - test_atcoder/abc285h.test.cpp
   - test_atcoder/abc288ex.test.cpp
   - test_atcoder/abc222h.test.cpp
@@ -677,6 +684,7 @@ data:
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/count_labeled_forest.test.cpp
 documentation_of: poly/fps_exp.hpp
 layout: document
 redirect_from:

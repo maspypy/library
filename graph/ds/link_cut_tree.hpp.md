@@ -25,6 +25,9 @@ data:
     path: test/yukicoder/2296.test.cpp
     title: test/yukicoder/2296.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/772.test.cpp
+    title: test/yukicoder/772.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
   _isVerificationFailed: true
@@ -239,6 +242,7 @@ data:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/yukicoder/2296.test.cpp
+  - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp
   - test/yukicoder/2295.test.cpp
 documentation_of: graph/ds/link_cut_tree.hpp

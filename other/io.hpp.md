@@ -732,52 +732,52 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps.test.cpp
     title: test/library_checker/polynomial/log_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps.test.cpp
     title: test/library_checker/polynomial/pow_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -882,6 +882,9 @@ data:
   - icon: ':x:'
     path: test/mytest/bell_number.test.cpp
     title: test/mytest/bell_number.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_forest.test.cpp
+    title: test/mytest/count_labeled_forest.test.cpp
   - icon: ':x:'
     path: test/mytest/count_labeled_strong.test.cpp
     title: test/mytest/count_labeled_strong.test.cpp
@@ -1642,6 +1645,9 @@ data:
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
   - icon: ':x:'
+    path: test/yukicoder/772.test.cpp
+    title: test/yukicoder/772.test.cpp
+  - icon: ':x:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
   - icon: ':x:'
@@ -2008,6 +2014,9 @@ data:
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':x:'
+    path: test_atcoder/arc133f.test.cpp
+    title: test_atcoder/arc133f.test.cpp
+  - icon: ':x:'
     path: test_atcoder/arc144d.test.cpp
     title: test_atcoder/arc144d.test.cpp
   - icon: ':x:'
@@ -2311,6 +2320,7 @@ data:
   - test_atcoder/abc314g.test.cpp
   - test_atcoder/abc253h.test.cpp
   - test_atcoder/abc141e.test.cpp
+  - test_atcoder/arc133f.test.cpp
   - test_atcoder/abc285h.test.cpp
   - test_atcoder/abc217e.test.cpp
   - test_atcoder/abc241e.test.cpp
@@ -2676,6 +2686,7 @@ data:
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/2342.test.cpp
+  - test/yukicoder/772.test.cpp
   - test/yukicoder/2108.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/263.test.cpp
@@ -2889,6 +2900,7 @@ data:
   - test/mytest/count_labeled_tournament.test.cpp
   - test/mytest/min_min.test.cpp
   - test/mytest/count_labeled_strong.test.cpp
+  - test/mytest/count_labeled_forest.test.cpp
 documentation_of: other/io.hpp
 layout: document
 redirect_from:

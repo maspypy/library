@@ -46,6 +46,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/mytest/count_labeled_forest.test.cpp
+    title: test/mytest/count_labeled_forest.test.cpp
+  - icon: ':x:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
   _isVerificationFailed: true
@@ -411,6 +414,7 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/graph_count.test.cpp
+  - test/mytest/count_labeled_forest.test.cpp
 documentation_of: graph/count/count_labeled_forest.hpp
 layout: document
 redirect_from:
