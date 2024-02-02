@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/gray_code.test.cpp
     title: test/mytest/gray_code.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/famous/gray_code.hpp\"\n// 0, ..., 2^{LOG}-1 \u306E\u9806\
@@ -25,7 +25,7 @@ data:
   path: seq/famous/gray_code.hpp
   requiredBy: []
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/gray_code.test.cpp
 documentation_of: seq/famous/gray_code.hpp

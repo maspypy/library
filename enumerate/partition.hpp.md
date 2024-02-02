@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/enum_partitions.test.cpp
     title: test/mytest/enum_partitions.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test_atcoder/abc226f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/partition.hpp\"\n/*\npartition \u306F\u3001\u300C\
@@ -49,7 +49,7 @@ data:
   path: enumerate/partition.hpp
   requiredBy: []
   timestamp: '2023-01-23 21:38:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc226f.test.cpp
   - test/yukicoder/1881.test.cpp

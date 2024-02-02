@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/longest_common_substring.test.cpp
     title: test/library_checker/string/longest_common_substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
   - icon: ':x:'
