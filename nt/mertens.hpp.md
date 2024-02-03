@@ -4,29 +4,29 @@ data:
   - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2266.test.cpp
     title: test/yukicoder/2266.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat = {dp[1],\
@@ -103,7 +103,7 @@ data:
   requiredBy:
   - nt/range_rational_count.hpp
   timestamp: '2023-11-24 15:08:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2266.test.cpp
 documentation_of: nt/mertens.hpp
