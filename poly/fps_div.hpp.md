@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':question:'
@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
@@ -77,7 +77,7 @@ data:
   - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
@@ -141,19 +141,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2459.test.cpp
     title: test/yukicoder/2459.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2583.test.cpp
     title: test/yukicoder/2583.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
   - icon: ':x:'
