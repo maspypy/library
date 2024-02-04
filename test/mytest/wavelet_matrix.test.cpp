@@ -1,6 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
-#include "ds/wavelet_matrix.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix.hpp"
 #include "random/base.hpp"
 
 void test_compress() {

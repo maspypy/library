@@ -1,3 +1,5 @@
+#include "ds/bit_vector.hpp"
+
 template <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>
 struct Wavelet_Matrix_2D_Range_Static_AbelGroup {
   // 点群を Y 昇順に並べる.
