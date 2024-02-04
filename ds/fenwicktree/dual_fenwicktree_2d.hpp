@@ -18,7 +18,7 @@ struct Dual_FenwickTree_2D {
     if constexpr (SMALL_X) {
       return clamp<int>(x - min_X, 0, N);
     } else {
-      LB(keyX, x);
+      return LB(keyX, x);
     }
   }
   inline int nxt(int i) { return i + ((i + 1) & -(i + 1)); }
