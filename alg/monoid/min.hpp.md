@@ -75,6 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
+    title: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
@@ -214,6 +217,7 @@ data:
   - test/library_checker/datastructure/staticrmq.test.cpp
   - test/library_checker/datastructure/staticrmq_dst.test.cpp
   - test/library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1720.test.cpp

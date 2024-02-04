@@ -450,6 +450,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
     title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
+    title: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
@@ -1923,22 +1926,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc279b.test.cpp
     title: test_atcoder/abc279b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc280f.test.cpp
     title: test_atcoder/abc280f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281e.test.cpp
     title: test_atcoder/abc281e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281e_2.test.cpp
     title: test_atcoder/abc281e_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc283f.test.cpp
     title: test_atcoder/abc283f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc285h.test.cpp
     title: test_atcoder/abc285h.test.cpp
   - icon: ':x:'
@@ -2572,6 +2575,7 @@ data:
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/double_ended_pq.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
+  - test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/segment_add_get_min.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
