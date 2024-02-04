@@ -1,3 +1,6 @@
+#include "ds/segtree/segtree.hpp"
+#include "ds/bit_vector.hpp"
+
 template <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>
 struct Wavelet_Matrix_2D_Range_Dynamic_Monoid {
   // 点群を Y 昇順に並べる.
@@ -119,6 +122,19 @@ struct Wavelet_Matrix_2D_Range_Dynamic_Monoid {
       dat[d].set(i, x);
     }
   }
+  void multiply(int i, X x) {
+    assert(0 <= i && i < N);
+    i = new_idx[i];
+    int a = A[i];
+    FOR_R(d, lg) {
+      if (a >> d & 1) {
+        i = mid[d] + bv[d].rank(i, 1);
+      } else {
+        i = bv[d].rank(i, 0);
+      }
+      dat[d].multiply(i, x);
+    }
+  }
 
 private:
   int prefix_count(int L, int R, int x) {
@@ -148,39 +164,3 @@ private:
              d - 1, res);
   }
 };
-
-void solve() {
-  LL(N, Q);
-  vc<u32> X(N), Y(N);
-  vc<u64> W(N);
-  FOR(i, N) read(X[i], Y[i], W[i]);
-  using QQ = tuple<u32, u32, u32, u32>;
-  vc<QQ> query(Q);
-  FOR(q, Q) {
-    LL(t);
-    if (t == 0) {
-      U32(x, y, w);
-      X.eb(x);
-      Y.eb(y);
-      W.eb(0);
-      query[q] = mt(-1, x, y, w);
-    } else {
-      U32(a, b, c, d);
-      query[q] = mt(a, c, b, d);
-    }
-  }
-
-  Wavelet_Matrix_2D_Range_Dynamic_Monoid<Monoid_Add<ll>, int, false, false> WM(
-      len(X), [&](int i) -> tuple<int, int, ll> {
-        return {X[i], Y[i], W[i]};
-      });
-  int idx = N;
-  FOR(q, Q) {
-    auto [a, b, c, d] = query[q];
-    if (a == u32(-1)) {
-      WM.set(idx++, d);
-    } else {
-      print(WM.prod(a, b, c, d));
-    }
-  }
-}
