@@ -589,6 +589,9 @@ data:
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/xor_transpose.test.cpp
     title: test/mytest/xor_transpose.test.cpp
   - icon: ':heavy_check_mark:'
@@ -917,6 +920,7 @@ data:
   - test/mytest/kdtree_am.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/mod_sum_of_linear.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/is_substring.test.cpp
   - test/mytest/three_triangular.test.cpp

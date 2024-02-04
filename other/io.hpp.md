@@ -393,10 +393,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -838,6 +838,9 @@ data:
     path: test/library_checker/string/online_z.test.cpp
     title: test/library_checker/string/online_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/string/prefix_substring_lcs.test.cpp
+    title: test/library_checker/string/prefix_substring_lcs.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/run_enumerate.test.cpp
     title: test/library_checker/string/run_enumerate.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1059,6 +1062,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1332.test.cpp
+    title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1339.test.cpp
     title: test/yukicoder/1339.test.cpp
@@ -1779,19 +1785,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc228f.test.cpp
     title: test_atcoder/abc228f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc229h.test.cpp
     title: test_atcoder/abc229h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc230e.test.cpp
     title: test_atcoder/abc230e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc233c.test.cpp
     title: test_atcoder/abc233c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234ex.test.cpp
     title: test_atcoder/abc234ex.test.cpp
   - icon: ':x:'
@@ -2406,6 +2412,7 @@ data:
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp
+  - test/library_checker/string/prefix_substring_lcs.test.cpp
   - test/library_checker/string/lyndon.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
@@ -2692,6 +2699,7 @@ data:
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/1891.test.cpp
+  - test/yukicoder/1332.test.cpp
   - test/yukicoder/1676.test.cpp
   - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/1726.test.cpp

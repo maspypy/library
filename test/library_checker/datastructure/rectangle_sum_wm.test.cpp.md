@@ -4,7 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
+    path: ds/bit_vector.hpp
+    title: ds/bit_vector.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - icon: ':question:'
@@ -15,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -190,8 +193,14 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
-    \ntemplate <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct\
+    \ yes(!t); }\r\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
+    \ u32>> dat;\n  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n\n \
+    \ void set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n\n  void build()\
+    \ {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n\
+    \  }\n\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int rank(int k, bool\
+    \ f = 1) {\n    auto [a, b] = dat[k >> 5];\n    int ret = b + popcnt(a & ((u32(1)\
+    \ << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n  }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
+    \n\ntemplate <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct\
     \ Wavelet_Matrix_2D_Range_Static_AbelGroup {\n  // \u70B9\u7FA4\u3092 Y \u6607\
     \u9806\u306B\u4E26\u3079\u308B.\n  // X \u3092\u6574\u6570\u306B\u306A\u304A\u3057\
     \u3066 binary trie \u307F\u305F\u3044\u306B\u632F\u308A\u5206\u3051\u308B\n  using\
@@ -260,12 +269,13 @@ data:
   - my_template.hpp
   - other/io.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
+  - ds/bit_vector.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   requiredBy: []
-  timestamp: '2024-02-04 21:27:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-02-04 22:24:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
 layout: document
