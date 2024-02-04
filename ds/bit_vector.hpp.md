@@ -9,6 +9,9 @@ data:
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919_2.test.cpp
     title: test/yukicoder/1919_2.test.cpp
@@ -90,6 +96,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
   - string/prefix_substring_LCS.hpp
   timestamp: '2022-12-12 13:31:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -106,6 +113,7 @@ data:
   - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1332.test.cpp
+  - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1919_2.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/mytest/wavelet_matrix.test.cpp

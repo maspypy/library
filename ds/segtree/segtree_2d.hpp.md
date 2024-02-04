@@ -13,9 +13,6 @@ data:
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1625_2.test.cpp
-    title: test/yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266h.test.cpp
     title: test_atcoder/abc266h.test.cpp
   - icon: ':x:'
@@ -198,7 +195,6 @@ data:
   - test_atcoder/abc324g2.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/yukicoder/1600.test.cpp
-  - test/yukicoder/1625_2.test.cpp
   - test/mytest/seg2d.test.cpp
 documentation_of: ds/segtree/segtree_2d.hpp
 layout: document

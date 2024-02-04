@@ -15,6 +15,9 @@ data:
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -99,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
@@ -219,6 +225,7 @@ data:
   - ds/offline_query/uniqueproductquery.hpp
   - ds/offline_query/range_mex_query.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
   - geo/manhattan_nns.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -245,6 +252,7 @@ data:
   - test/yukicoder/1435.test.cpp
   - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2361.test.cpp
+  - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/529.test.cpp
   - test/aoj/ITP2_3_B.test.cpp
