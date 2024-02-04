@@ -1,4 +1,4 @@
-#include "ds/wavelet_matrix.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix.hpp"
 
 // https://codeforces.com/blog/entry/111625
 struct Prefix_Substring_LCS {

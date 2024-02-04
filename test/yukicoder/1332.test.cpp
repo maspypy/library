@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1332"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/wavelet_matrix.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix.hpp"
 
 void solve() {
   LL(N);
