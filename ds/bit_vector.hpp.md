@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   _extendedVerifiedWith:
@@ -18,12 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
@@ -48,11 +45,10 @@ data:
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   timestamp: '2022-12-12 13:31:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
 documentation_of: ds/bit_vector.hpp
 layout: document
 redirect_from:

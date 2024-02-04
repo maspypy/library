@@ -2,10 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
@@ -106,8 +112,10 @@ data:
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   requiredBy: []
   timestamp: '2024-02-04 20:58:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
 layout: document
 redirect_from:

@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':x:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
@@ -106,7 +103,6 @@ data:
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/datastructure/staticrmq.test.cpp
   - test/library_checker/datastructure/staticrmq_dst.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp

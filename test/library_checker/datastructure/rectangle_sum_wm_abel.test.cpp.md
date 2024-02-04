@@ -23,7 +23,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
     links:
     - https://judge.yosupo.jp/problem/rectangle_sum
-  bundledCode: "#line 1 \"test/library_checker/datastructure/rectangle_sum_wm.test.cpp\"\
+  bundledCode: "#line 1 \"test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#line 1\
     \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// \u53C2\u8003 https://codeforces.com/blog/entry/96344\n// bmi,bmi2,lzcnt\
@@ -242,7 +242,7 @@ data:
     \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
     \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
     \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/rectangle_sum_wm.test.cpp\"\
+    \ bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
     \ Y[i], W[i]);\n  Wavelet_Matrix_2D_Range_Static_AbelGroup<Monoid_Add<ll>, int,\
     \ false, false>\n      WM(N, [&](int i) -> tuple<int, int, ll> {\n        return\
@@ -262,15 +262,15 @@ data:
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   requiredBy: []
   timestamp: '2024-02-04 21:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+documentation_of: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-- /verify/test/library_checker/datastructure/rectangle_sum_wm.test.cpp.html
-title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+- /verify/test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+- /verify/test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp.html
+title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
 ---

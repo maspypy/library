@@ -236,7 +236,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -305,7 +305,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_frequency.hpp
       title: ds/static_range_frequency.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
     - icon: ':heavy_check_mark:'
@@ -518,10 +518,10 @@ data:
     - icon: ':warning:'
       path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
       title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
       title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
-    - icon: ':x:'
+    - icon: ':warning:'
       path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
       title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - name: enumerate
@@ -2299,6 +2299,9 @@ data:
     - icon: ':x:'
       path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
       title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+      title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/segment_add_get_min.test.cpp
       title: test/library_checker/datastructure/segment_add_get_min.test.cpp

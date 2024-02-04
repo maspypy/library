@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -228,6 +228,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
@@ -580,6 +583,7 @@ data:
   - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/1311.test.cpp

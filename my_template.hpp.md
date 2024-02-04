@@ -393,6 +393,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min.test.cpp
@@ -3015,6 +3018,7 @@ data:
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/persistent_unionfind.test.cpp
