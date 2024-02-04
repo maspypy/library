@@ -96,7 +96,7 @@ struct Wavelet_Matrix_2D_Range_Dynamic_AbelGroup {
   int count(XY x1, XY x2, XY y1, XY y2) {
     x1 = XtoI(x1), x2 = XtoI(x2);
     y1 = YtoI(y1), y2 = YtoI(y2);
-    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);
+    return count_inner(y1, y2, x2) - count_inner(y1, y2, x1);
   }
 
   X prod(XY x1, XY x2, XY y1, XY y2) { return sum(x1, x2, y1, y2); }
@@ -104,10 +104,13 @@ struct Wavelet_Matrix_2D_Range_Dynamic_AbelGroup {
     assert(x1 <= x2 && y1 <= y2);
     x1 = XtoI(x1), x2 = XtoI(x2);
     y1 = YtoI(y1), y2 = YtoI(y2);
-    X add = prefix_sum(y1, y2, x2);
-    X sub = prefix_sum(y1, y2, x1);
+    X add = sum_inner(y1, y2, x2);
+    X sub = sum_inner(y1, y2, x1);
     return MX::op(add, MX::inverse(sub));
   }
+
+  X prefix_prod(XY x, XY y) { return prefix_sum(x, y); }
+  X prefix_sum(XY x, XY y) { return sum_inner(0, YtoI(y), XtoI(x)); }
 
   // 最初に与えた点群の index
   void add(int i, X x) {
@@ -125,7 +128,7 @@ struct Wavelet_Matrix_2D_Range_Dynamic_AbelGroup {
   }
 
 private:
-  int prefix_count(int L, int R, int x) {
+  int count_inner(int L, int R, int x) {
     int cnt = 0;
     FOR_R(d, lg) {
       int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
@@ -138,7 +141,8 @@ private:
     return cnt;
   }
 
-  X prefix_sum(int L, int R, int x) {
+  X sum_inner(int L, int R, int x) {
+    if (x == 0) return MX::unit();
     X sm = MX::unit();
     FOR_R(d, lg) {
       int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
