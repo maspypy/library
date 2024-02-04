@@ -13,20 +13,21 @@ struct FenwickTree_2D {
   vc<E> dat;
 
   FenwickTree_2D(vc<XY>& X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }
-  FenwickTree_2D(vc<XY>& X, vc<XY>& Y) {
-    vc<E> wt(len(X), G::unit());
-    build(X, Y, wt);
-  }
+  FenwickTree_2D(vc<XY>& X, vc<XY>& Y) { build(X, Y); }
 
   inline int xtoi(XY x) {
-    return (SMALL_X ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));
+    if constexpr (SMALL_X) {
+      return clamp<int>(x - min_X, 0, N);
+    } else {
+      return LB(keyX, x);
+    }
   }
   inline int nxt(int i) { return i + ((i + 1) & -(i + 1)); }
   inline int prev(int i) { return i - ((i + 1) & -(i + 1)); }
 
-  void build(vc<XY>& X, vc<XY>& Y, vc<E> wt) {
-    assert(len(X) == len(Y) && len(X) == len(wt));
-    if (!SMALL_X) {
+  void build(vc<XY> X, vc<XY> Y, vc<E> wt) {
+    assert(len(X) == len(Y));
+    if constexpr (!SMALL_X) {
       keyX = X;
       UNIQUE(keyX);
       N = len(keyX);
@@ -36,30 +37,40 @@ struct FenwickTree_2D {
       keyX.resize(N);
       FOR(i, N) keyX[i] = min_X + i;
     }
-    vvc<XY> keyY_raw(N);
-    vvc<E> dat_raw(N);
-    for (auto&& i: argsort(Y)) {
-      int ix = xtoi(X[i]);
+
+    auto I = argsort(Y);
+    X = rearrange(X, I), Y = rearrange(Y, I), wt = rearrange(wt, I);
+
+    FOR(i, len(X)) X[i] = xtoi(X[i]);
+
+    vc<XY> last_y(N, -infty<XY> - 1);
+    indptr.assign(N + 1, 0);
+    FOR(i, len(X)) {
+      int ix = X[i];
       XY y = Y[i];
       while (ix < N) {
-        auto& KY = keyY_raw[ix];
-        if (len(KY) == 0 || KY.back() < y) {
-          KY.eb(y);
-          dat_raw[ix].eb(wt[i]);
+        if (last_y[ix] == y) break;
+        last_y[ix] = y, indptr[ix + 1]++, ix = nxt(ix);
+      }
+    }
+    FOR(i, N) indptr[i + 1] += indptr[i];
+    keyY.resize(indptr.back());
+    dat.assign(indptr.back(), G::unit());
+    fill(all(last_y), -infty<XY> - 1);
+    vc<int> prog = indptr;
+    FOR(i, len(X)) {
+      int ix = X[i];
+      XY y = Y[i];
+      E w = wt[i];
+      while (ix < N) {
+        if (last_y[ix] != y) {
+          last_y[ix] = y, keyY[prog[ix]] = y, dat[prog[ix]] = w;
+          prog[ix]++;
         } else {
-          dat_raw[ix].back() = G::op(dat_raw[ix].back(), wt[i]);
+          dat[prog[ix] - 1] = G::op(dat[prog[ix] - 1], w);
         }
         ix = nxt(ix);
       }
-    }
-
-    indptr.assign(N + 1, 0);
-    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);
-    keyY.resize(indptr.back());
-    dat.resize(indptr.back());
-    FOR(i, N) FOR(j, indptr[i + 1] - indptr[i]) {
-      keyY[indptr[i] + j] = keyY_raw[i][j];
-      dat[indptr[i] + j] = dat_raw[i][j];
     }
     FOR(i, N) {
       int n = indptr[i + 1] - indptr[i];
@@ -67,6 +78,49 @@ struct FenwickTree_2D {
         int k = nxt(j);
         if (k < n)
           dat[indptr[i] + k] = G::op(dat[indptr[i] + k], dat[indptr[i] + j]);
+      }
+    }
+  }
+
+  void build(vc<XY> X, vc<XY> Y) {
+    assert(len(X) == len(Y));
+    if constexpr (!SMALL_X) {
+      keyX = X;
+      UNIQUE(keyX);
+      N = len(keyX);
+    } else {
+      min_X = (len(X) == 0 ? 0 : MIN(X));
+      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;
+      keyX.resize(N);
+      FOR(i, N) keyX[i] = min_X + i;
+    }
+
+    auto I = argsort(Y);
+    X = rearrange(X, I), Y = rearrange(Y, I);
+
+    FOR(i, len(X)) X[i] = xtoi(X[i]);
+
+    vc<XY> last_y(N, -infty<XY> - 1);
+    indptr.assign(N + 1, 0);
+    FOR(i, len(X)) {
+      int ix = X[i];
+      XY y = Y[i];
+      while (ix < N) {
+        if (last_y[ix] == y) break;
+        last_y[ix] = y, indptr[ix + 1]++, ix = nxt(ix);
+      }
+    }
+    FOR(i, N) indptr[i + 1] += indptr[i];
+    keyY.resize(indptr.back());
+    dat.assign(indptr.back(), G::unit());
+    fill(all(last_y), -infty<XY> - 1);
+    vc<int> prog = indptr;
+    FOR(i, len(X)) {
+      int ix = X[i];
+      XY y = Y[i];
+      while (ix < N) {
+        if (last_y[ix] == y) break;
+        last_y[ix] = y, keyY[prog[ix]++] = y, ix = nxt(ix);
       }
     }
   }
