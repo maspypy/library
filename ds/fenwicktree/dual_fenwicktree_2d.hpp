@@ -15,14 +15,18 @@ struct Dual_FenwickTree_2D {
   Dual_FenwickTree_2D(vc<XY>& X, vc<XY>& Y) { build(X, Y); }
 
   inline int xtoi(XY x) {
-    return (SMALL_X ? clamp<int>(x - min_X, 0, N) : LB(keyX, x));
+    if constexpr (SMALL_X) {
+      return clamp<int>(x - min_X, 0, N);
+    } else {
+      LB(keyX, x);
+    }
   }
   inline int nxt(int i) { return i + ((i + 1) & -(i + 1)); }
   inline int prev(int i) { return i - ((i + 1) & -(i + 1)); }
 
-  void build(vc<XY>& X, vc<XY>& Y) {
+  void build(vc<XY> X, vc<XY> Y) {
     assert(len(X) == len(Y));
-    if (!SMALL_X) {
+    if constexpr (!SMALL_X) {
       keyX = X;
       UNIQUE(keyX);
       N = len(keyX);
@@ -32,23 +36,34 @@ struct Dual_FenwickTree_2D {
       keyX.resize(N);
       FOR(i, N) keyX[i] = min_X + i;
     }
-    vvc<XY> keyY_raw(N);
-    for (auto&& i: argsort(Y)) {
-      int ix = xtoi(X[i]);
+
+    auto I = argsort(Y);
+    X = rearrange(X, I), Y = rearrange(Y, I);
+
+    FOR(i, len(X)) X[i] = xtoi(X[i]);
+
+    vc<XY> last_y(N, -infty<XY> - 1);
+    indptr.assign(N + 1, 0);
+    FOR(i, len(X)) {
+      int ix = X[i];
       XY y = Y[i];
       while (ix < N) {
-        auto& KY = keyY_raw[ix];
-        if (len(KY) == 0 || KY.back() < y) { KY.eb(y); }
-        ix = nxt(ix);
+        if (last_y[ix] == y) break;
+        last_y[ix] = y, indptr[ix + 1]++, ix = nxt(ix);
       }
     }
-
-    indptr.assign(N + 1, 0);
-    FOR(i, N) indptr[i + 1] = indptr[i] + len(keyY_raw[i]);
+    FOR(i, N) indptr[i + 1] += indptr[i];
     keyY.resize(indptr.back());
     dat.assign(indptr.back(), G::unit());
-    FOR(i, N) FOR(j, indptr[i + 1] - indptr[i]) {
-      keyY[indptr[i] + j] = keyY_raw[i][j];
+    fill(all(last_y), -infty<XY> - 1);
+    vc<int> prog = indptr;
+    FOR(i, len(X)) {
+      int ix = X[i];
+      XY y = Y[i];
+      while (ix < N) {
+        if (last_y[ix] == y) break;
+        last_y[ix] = y, keyY[prog[ix]++] = y, ix = nxt(ix);
+      }
     }
   }
 
