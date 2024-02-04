@@ -2,9 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
+  - icon: ':x:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
@@ -21,6 +24,9 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
@@ -118,6 +124,7 @@ data:
   requiredBy:
   - graph/fast_lca.hpp
   - ds/static_range_product.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - string/suffix_tree.hpp
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
@@ -133,6 +140,7 @@ data:
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/datastructure/staticrmq.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/mytest/longest_common_substr.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -237,7 +237,7 @@ data:
     \  vector<mint> build(const STRING& s) const {\n    int sz = s.size();\n    vector<mint>\
     \ hashed(sz + 1, mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] =\
     \ hashed[i] * base + s[i]; }\n    return hashed;\n  }\n\n  template <typename\
-    \ STRING>\n  mint eval(string& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
+    \ STRING>\n  mint eval(STRING& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
     \ = base * x + ch;\n    return x;\n  }\n\n  mint query(const vc<mint>& s, int\
     \ l, int r) {\n    assert(0 <= l && l <= r && r < len(s));\n    expand(r - l);\n\
     \    return (s[r] - s[l] * power[r - l]);\n  }\n\n  mint combine(mint h1, mint\
@@ -269,8 +269,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-04 20:58:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 layout: document

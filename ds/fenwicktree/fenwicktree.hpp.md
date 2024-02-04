@@ -27,6 +27,9 @@ data:
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
+    title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/predecessor_problem_2.test.cpp
     title: test/library_checker/datastructure/predecessor_problem_2.test.cpp
@@ -253,6 +259,7 @@ data:
   - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - ds/range_add_range_sum.hpp
   - seq/factorial_digit_system.hpp
   - seq/inversion.hpp
@@ -263,6 +270,7 @@ data:
   - test_atcoder/abc190f.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp

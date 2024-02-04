@@ -1,20 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/106668
@@ -124,11 +130,13 @@ data:
   - ds/sparse_table/disjoint_sparse_table.hpp
   isVerificationFile: false
   path: ds/static_range_product.hpp
-  requiredBy: []
+  requiredBy:
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   timestamp: '2023-11-04 19:28:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/staticrmq.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document
 redirect_from:

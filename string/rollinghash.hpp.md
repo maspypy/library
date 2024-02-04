@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -9,21 +9,21 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2102.test.cpp
     title: test/yukicoder/2102.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -70,7 +70,7 @@ data:
     \  vector<mint> build(const STRING& s) const {\n    int sz = s.size();\n    vector<mint>\
     \ hashed(sz + 1, mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] =\
     \ hashed[i] * base + s[i]; }\n    return hashed;\n  }\n\n  template <typename\
-    \ STRING>\n  mint eval(string& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
+    \ STRING>\n  mint eval(STRING& s) {\n    mint x = 0;\n    for (auto& ch: s) x\
     \ = base * x + ch;\n    return x;\n  }\n\n  mint query(const vc<mint>& s, int\
     \ l, int r) {\n    assert(0 <= l && l <= r && r < len(s));\n    expand(r - l);\n\
     \    return (s[r] - s[l] * power[r - l]);\n  }\n\n  mint combine(mint h1, mint\
@@ -91,7 +91,7 @@ data:
     \ base(base), power{1} {}\n\n  template <typename STRING>\n  vector<mint> build(const\
     \ STRING& s) const {\n    int sz = s.size();\n    vector<mint> hashed(sz + 1,\
     \ mint(0));\n    for (int i = 0; i < sz; i++) { hashed[i + 1] = hashed[i] * base\
-    \ + s[i]; }\n    return hashed;\n  }\n\n  template <typename STRING>\n  mint eval(string&\
+    \ + s[i]; }\n    return hashed;\n  }\n\n  template <typename STRING>\n  mint eval(STRING&\
     \ s) {\n    mint x = 0;\n    for (auto& ch: s) x = base * x + ch;\n    return\
     \ x;\n  }\n\n  mint query(const vc<mint>& s, int l, int r) {\n    assert(0 <=\
     \ l && l <= r && r < len(s));\n    expand(r - l);\n    return (s[r] - s[l] * power[r\
@@ -109,8 +109,8 @@ data:
   isVerificationFile: false
   path: string/rollinghash.hpp
   requiredBy: []
-  timestamp: '2023-12-22 20:53:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-02-04 20:58:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/yukicoder/2231.test.cpp

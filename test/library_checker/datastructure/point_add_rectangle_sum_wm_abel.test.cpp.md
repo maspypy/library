@@ -2,20 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: mod/modint61.hpp
-    title: mod/modint61.hpp
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':question:'
+    path: ds/bit_vector.hpp
+    title: ds/bit_vector.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fenwicktree/fenwicktree.hpp
+    title: ds/fenwicktree/fenwicktree.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/rollinghash_2d.hpp
-    title: string/rollinghash_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,12 +26,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
+    PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_14_C.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/point_add_rectangle_sum
+  bundledCode: "#line 1 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// \u53C2\u8003 https://codeforces.com/blog/entry/96344\n// bmi,bmi2,lzcnt\
     \ \u306F ucup \u3067\u30B3\u30F3\u30D1\u30A4\u30EB\u30A8\u30E9\u30FC\n#pragma\
     \ GCC optimize(\"Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n\n\
@@ -193,84 +196,146 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/aoj/ALDS1_14_C.test.cpp\"\n\n#line 2 \"mod/modint61.hpp\"\
-    \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
-    \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
-    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
-    \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
-    \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
-    \n                                              : x) {}\r\n  static constexpr\
-    \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
-    \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
-    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
-    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const\
-    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
-    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
-    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
-    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
-    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
-    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
-    #endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
-    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n              \
-    \       chrono::high_resolution_clock::now().time_since_epoch())\n           \
-    \          .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n \
-    \ return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 3 \"string/rollinghash_2d.hpp\"\
-    \n\nstruct RollingHash_2D {\n  using M61 = modint61;\n  const M61 b1, b2;\n  vc<M61>\
-    \ pow1;\n  vc<M61> pow2;\n\n  RollingHash_2D()\n      : b1(generate_base()), b2(generate_base()),\
-    \ pow1{M61(1)}, pow2{M61(1)} {}\n\n  template <typename STRING>\n  vvc<M61> build(const\
-    \ vc<STRING>& S) {\n    int H = len(S);\n    int W = len(S[0]);\n    vv(M61, res,\
-    \ H + 1, W + 1);\n    FOR(x, H) {\n      FOR(y, W) { res[x + 1][y + 1] = res[x\
-    \ + 1][y] * b2 + M61(S[x][y] + 1); }\n      FOR(y, W + 1) res[x + 1][y] += b1\
-    \ * res[x][y];\n    }\n    expand(pow1, b1, H);\n    expand(pow2, b2, W);\n  \
-    \  return res;\n  }\n\n  M61 query(const vvc<M61>& A, int xl, int xr, int yl,\
-    \ int yr) {\n    assert(0 <= xl && xl <= xr && xr <= len(A));\n    assert(0 <=\
-    \ yl && yl <= yr && yr <= len(A[0]));\n    M61 a = A[xr][yr] - A[xr][yl] * pow2[yr\
-    \ - yl];\n    M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];\n    return a - b\
-    \ * pow1[xr - xl];\n  }\n\nprivate:\n  static inline u64 generate_base() { return\
-    \ RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n\
-    \    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n#line 8 \"test/aoj/ALDS1_14_C.test.cpp\"\
-    \n\nvoid solve() {\n  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n\
-    \  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n\
-    \  auto b = RH.query(BH, 0, H2, 0, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2\
-    \ + 1) {\n    auto a = RH.query(AH, x, x + H2, y, y + W2);\n    if (a == b) {\
-    \ print(x, y); }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint61.hpp\"\
-    \n#include \"string/rollinghash_2d.hpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
-    \ A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string,\
-    \ B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH, 0, H2, 0, W2);\n\n\
-    \  FOR(x, H - H2 + 1) FOR(y, W - W2 + 1) {\n    auto a = RH.query(AH, x, x + H2,\
-    \ y, y + W2);\n    if (a == b) { print(x, y); }\n  }\n}\n\nsigned main() {\n \
-    \ solve();\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
+    \n\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32, u32>> dat;\n\
+    \  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n\n  void set(int\
+    \ i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n\n  void build() {\n    FOR(i,\
+    \ len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\n  // [0,\
+    \ k) \u5185\u306E 1 \u306E\u500B\u6570\n  int rank(int k, bool f = 1) {\n    auto\
+    \ [a, b] = dat[k >> 5];\n    int ret = b + popcnt(a & ((u32(1) << (k & 31)) -\
+    \ 1));\n    return (f ? ret : k - ret);\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
+    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
+    \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
+    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
+    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
+    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
+    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total;\
+    \ }\n  E sum_all() { return total; }\n  E sum(int k) { return prefix_sum(k); }\n\
+    \  E prod(int k) { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k);\
+    \ }\n  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for\
+    \ (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n\
+    \  E sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
+    \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
+    \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
+    \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
+    \ = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
+    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
+    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
+    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
+    \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
+    \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
+    \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
+    \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
+    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
+    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
+    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
+    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
+    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
+    \ k; });\n  }\n};\n#line 3 \"ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp\"\
+    \n\ntemplate <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct\
+    \ Wavelet_Matrix_2D_Range_Dynamic_AbelGroup {\n  // \u70B9\u7FA4\u3092 Y \u6607\
+    \u9806\u306B\u4E26\u3079\u308B.\n  // X \u3092\u6574\u6570\u306B\u306A\u304A\u3057\
+    \u3066 binary trie \u307F\u305F\u3044\u306B\u632F\u308A\u5206\u3051\u308B\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n  static_assert(MX::commute);\n\
+    \n  template <bool SMALL>\n  struct TO_IDX {\n    vc<XY> key;\n    XY mi, ma;\n\
+    \    vc<int> dat;\n\n    void build(vc<XY>& X) {\n      if constexpr (SMALL) {\n\
+    \        mi = (X.empty() ? 0 : MIN(X));\n        ma = (X.empty() ? 0 : MAX(X));\n\
+    \        dat.assign(ma - mi + 2, 0);\n        for (auto& x: X) { dat[x - mi +\
+    \ 1]++; }\n        FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n      } else {\n\
+    \        key = X;\n        sort(all(key));\n      }\n    }\n    int operator()(XY\
+    \ x) {\n      if constexpr (SMALL) {\n        return dat[clamp<XY>(x - mi, 0,\
+    \ ma - mi + 1)];\n      } else {\n        return LB(key, x);\n      }\n    }\n\
+    \  };\n\n  TO_IDX<SMALL_X> XtoI;\n  TO_IDX<SMALL_Y> YtoI;\n\n  int N, lg;\n  vector<int>\
+    \ mid;\n  vector<Bit_Vector> bv;\n  vc<int> new_idx;\n  vc<int> A;\n  // \u5404\
+    \u6BB5\u306B fenwick tree\n  vc<FenwickTree<Monoid>> dat;\n\n  template <typename\
+    \ F>\n  Wavelet_Matrix_2D_Range_Dynamic_AbelGroup(int N, F f) {\n    build(N,\
+    \ f);\n  }\n\n  template <typename F>\n  void build(int N_, F f) {\n    N = N_;\n\
+    \    if (N == 0) {\n      lg = 0;\n      return;\n    }\n    vc<XY> tmp(N), Y(N);\n\
+    \    vc<X> S(N);\n    FOR(i, N) tie(tmp[i], Y[i], S[i]) = f(i);\n    auto I =\
+    \ argsort(Y);\n    tmp = rearrange(tmp, I), Y = rearrange(Y, I), S = rearrange(S,\
+    \ I);\n    XtoI.build(tmp), YtoI.build(Y);\n    new_idx.resize(N);\n    FOR(i,\
+    \ N) new_idx[I[i]] = i;\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\n    lg\
+    \ = __lg(XtoI(MAX(tmp) + 1)) + 1;\n    mid.resize(lg), bv.assign(lg, Bit_Vector(N));\n\
+    \    dat.resize(lg);\n    A.resize(N);\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n\n\
+    \    vc<int> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n    FOR_R(d, lg) {\n    \
+    \  int p0 = 0, p1 = 0;\n      FOR(i, N) {\n        bool f = (A[i] >> d & 1);\n\
+    \        if (!f) { S0[p0] = S[i], A0[p0] = A[i], p0++; }\n        if (f) { S1[p1]\
+    \ = S[i], A1[p1] = A[i], bv[d].set(i), p1++; }\n      }\n      mid[d] = p0;\n\
+    \      bv[d].build();\n      swap(A, A0), swap(S, S0);\n      FOR(i, p1) A[p0\
+    \ + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N, [&](int i) -> X { return\
+    \ S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n  }\n\n  int count(XY\
+    \ x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1),\
+    \ y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);\n\
+    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) { return sum(x1, x2, y1, y2); }\n\
+    \  X sum(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2 && y1 <= y2);\n  \
+    \  x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X add\
+    \ = prefix_sum(y1, y2, x2);\n    X sub = prefix_sum(y1, y2, x1);\n    return MX::op(add,\
+    \ MX::inverse(sub));\n  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\
+    \u306E index\n  void add(int i, X x) {\n    assert(0 <= i && i < N);\n    i =\
+    \ new_idx[i];\n    int a = A[i];\n    FOR_R(d, lg) {\n      if (a >> d & 1) {\n\
+    \        i = mid[d] + bv[d].rank(i, 1);\n      } else {\n        i = bv[d].rank(i,\
+    \ 0);\n      }\n      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int prefix_count(int\
+    \ L, int R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
+    \ L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n\
+    \      }\n    }\n    return cnt;\n  }\n\n  X prefix_sum(int L, int R, int x) {\n\
+    \    X sm = MX::unit();\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0),\
+    \ r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        sm = MX::op(sm, dat[d].sum(l0,\
+    \ r0));\n        L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n       \
+    \ L = l0, R = r0;\n      }\n    }\n    return sm;\n  }\n};\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N);\n  vc<u64> W(N);\n  FOR(i,\
+    \ N) read(X[i], Y[i], W[i]);\n  using QQ = tuple<u32, u32, u32, u32>;\n  vc<QQ>\
+    \ query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      U32(x, y, w);\n\
+    \      X.eb(x);\n      Y.eb(y);\n      W.eb(0);\n      query[q] = mt(-1, x, y,\
+    \ w);\n    } else {\n      U32(a, b, c, d);\n      query[q] = mt(a, c, b, d);\n\
+    \    }\n  }\n\n  Wavelet_Matrix_2D_Range_Dynamic_AbelGroup<Monoid_Add<ll>, int,\
+    \ false, false>\n      WM(len(X), [&](int i) -> tuple<int, int, ll> {\n      \
+    \  return {X[i], Y[i], W[i]};\n      });\n  int idx = N;\n  FOR(q, Q) {\n    auto\
+    \ [a, b, c, d] = query[q];\n    if (a == u32(-1)) {\n      WM.add(idx++, d);\n\
+    \    } else {\n      print(WM.sum(a, b, c, d));\n    }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N);\n  vc<u64> W(N);\n  FOR(i,\
+    \ N) read(X[i], Y[i], W[i]);\n  using QQ = tuple<u32, u32, u32, u32>;\n  vc<QQ>\
+    \ query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      U32(x, y, w);\n\
+    \      X.eb(x);\n      Y.eb(y);\n      W.eb(0);\n      query[q] = mt(-1, x, y,\
+    \ w);\n    } else {\n      U32(a, b, c, d);\n      query[q] = mt(a, c, b, d);\n\
+    \    }\n  }\n\n  Wavelet_Matrix_2D_Range_Dynamic_AbelGroup<Monoid_Add<ll>, int,\
+    \ false, false>\n      WM(len(X), [&](int i) -> tuple<int, int, ll> {\n      \
+    \  return {X[i], Y[i], W[i]};\n      });\n  int idx = N;\n  FOR(q, Q) {\n    auto\
+    \ [a, b, c, d] = query[q];\n    if (a == u32(-1)) {\n      WM.add(idx++, d);\n\
+    \    } else {\n      print(WM.sum(a, b, c, d));\n    }\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint61.hpp
-  - string/rollinghash_2d.hpp
-  - random/base.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - ds/bit_vector.hpp
+  - ds/fenwicktree/fenwicktree.hpp
+  - alg/monoid/add.hpp
   isVerificationFile: true
-  path: test/aoj/ALDS1_14_C.test.cpp
+  path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-04 20:58:47+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/ALDS1_14_C.test.cpp
+documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/ALDS1_14_C.test.cpp
-- /verify/test/aoj/ALDS1_14_C.test.cpp.html
-title: test/aoj/ALDS1_14_C.test.cpp
+- /verify/test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
+- /verify/test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp.html
+title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
 ---
