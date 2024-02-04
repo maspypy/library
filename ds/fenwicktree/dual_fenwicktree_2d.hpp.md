@@ -6,12 +6,12 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rect_add_pt_get.test.cpp
     title: test/library_checker/datastructure/rect_add_pt_get.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -25,22 +25,22 @@ data:
     \  int N;\n  vc<XY> keyX;\n  XY min_X;\n  vc<int> indptr;\n  vc<XY> keyY;\n  vc<E>\
     \ dat;\n\n  Dual_FenwickTree_2D(vc<XY>& X, vc<XY>& Y) { build(X, Y); }\n\n  inline\
     \ int xtoi(XY x) {\n    if constexpr (SMALL_X) {\n      return clamp<int>(x -\
-    \ min_X, 0, N);\n    } else {\n      LB(keyX, x);\n    }\n  }\n  inline int nxt(int\
-    \ i) { return i + ((i + 1) & -(i + 1)); }\n  inline int prev(int i) { return i\
-    \ - ((i + 1) & -(i + 1)); }\n\n  void build(vc<XY> X, vc<XY> Y) {\n    assert(len(X)\
-    \ == len(Y));\n    if constexpr (!SMALL_X) {\n      keyX = X;\n      UNIQUE(keyX);\n\
-    \      N = len(keyX);\n    } else {\n      min_X = (len(X) == 0 ? 0 : MIN(X));\n\
-    \      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\n      keyX.resize(N);\n  \
-    \    FOR(i, N) keyX[i] = min_X + i;\n    }\n\n    auto I = argsort(Y);\n    X\
-    \ = rearrange(X, I), Y = rearrange(Y, I);\n\n    FOR(i, len(X)) X[i] = xtoi(X[i]);\n\
-    \n    vc<XY> last_y(N, -infty<XY> - 1);\n    indptr.assign(N + 1, 0);\n    FOR(i,\
-    \ len(X)) {\n      int ix = X[i];\n      XY y = Y[i];\n      while (ix < N) {\n\
-    \        if (last_y[ix] == y) break;\n        last_y[ix] = y, indptr[ix + 1]++,\
-    \ ix = nxt(ix);\n      }\n    }\n    FOR(i, N) indptr[i + 1] += indptr[i];\n \
-    \   keyY.resize(indptr.back());\n    dat.assign(indptr.back(), G::unit());\n \
-    \   fill(all(last_y), -infty<XY> - 1);\n    vc<int> prog = indptr;\n    FOR(i,\
-    \ len(X)) {\n      int ix = X[i];\n      XY y = Y[i];\n      while (ix < N) {\n\
-    \        if (last_y[ix] == y) break;\n        last_y[ix] = y, keyY[prog[ix]++]\
+    \ min_X, 0, N);\n    } else {\n      return LB(keyX, x);\n    }\n  }\n  inline\
+    \ int nxt(int i) { return i + ((i + 1) & -(i + 1)); }\n  inline int prev(int i)\
+    \ { return i - ((i + 1) & -(i + 1)); }\n\n  void build(vc<XY> X, vc<XY> Y) {\n\
+    \    assert(len(X) == len(Y));\n    if constexpr (!SMALL_X) {\n      keyX = X;\n\
+    \      UNIQUE(keyX);\n      N = len(keyX);\n    } else {\n      min_X = (len(X)\
+    \ == 0 ? 0 : MIN(X));\n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\n   \
+    \   keyX.resize(N);\n      FOR(i, N) keyX[i] = min_X + i;\n    }\n\n    auto I\
+    \ = argsort(Y);\n    X = rearrange(X, I), Y = rearrange(Y, I);\n\n    FOR(i, len(X))\
+    \ X[i] = xtoi(X[i]);\n\n    vc<XY> last_y(N, -infty<XY> - 1);\n    indptr.assign(N\
+    \ + 1, 0);\n    FOR(i, len(X)) {\n      int ix = X[i];\n      XY y = Y[i];\n \
+    \     while (ix < N) {\n        if (last_y[ix] == y) break;\n        last_y[ix]\
+    \ = y, indptr[ix + 1]++, ix = nxt(ix);\n      }\n    }\n    FOR(i, N) indptr[i\
+    \ + 1] += indptr[i];\n    keyY.resize(indptr.back());\n    dat.assign(indptr.back(),\
+    \ G::unit());\n    fill(all(last_y), -infty<XY> - 1);\n    vc<int> prog = indptr;\n\
+    \    FOR(i, len(X)) {\n      int ix = X[i];\n      XY y = Y[i];\n      while (ix\
+    \ < N) {\n        if (last_y[ix] == y) break;\n        last_y[ix] = y, keyY[prog[ix]++]\
     \ = y, ix = nxt(ix);\n      }\n    }\n  }\n\n  E get(XY x, XY y) {\n    E val\
     \ = G::unit();\n    int i = xtoi(x);\n    assert(keyX[i] == x);\n    while (i\
     \ < N) { val = G::op(val, get_i(i, y)), i = nxt(i); }\n    return val;\n  }\n\n\
@@ -63,9 +63,9 @@ data:
     \  vc<XY> keyX;\n  XY min_X;\n  vc<int> indptr;\n  vc<XY> keyY;\n  vc<E> dat;\n\
     \n  Dual_FenwickTree_2D(vc<XY>& X, vc<XY>& Y) { build(X, Y); }\n\n  inline int\
     \ xtoi(XY x) {\n    if constexpr (SMALL_X) {\n      return clamp<int>(x - min_X,\
-    \ 0, N);\n    } else {\n      LB(keyX, x);\n    }\n  }\n  inline int nxt(int i)\
-    \ { return i + ((i + 1) & -(i + 1)); }\n  inline int prev(int i) { return i -\
-    \ ((i + 1) & -(i + 1)); }\n\n  void build(vc<XY> X, vc<XY> Y) {\n    assert(len(X)\
+    \ 0, N);\n    } else {\n      return LB(keyX, x);\n    }\n  }\n  inline int nxt(int\
+    \ i) { return i + ((i + 1) & -(i + 1)); }\n  inline int prev(int i) { return i\
+    \ - ((i + 1) & -(i + 1)); }\n\n  void build(vc<XY> X, vc<XY> Y) {\n    assert(len(X)\
     \ == len(Y));\n    if constexpr (!SMALL_X) {\n      keyX = X;\n      UNIQUE(keyX);\n\
     \      N = len(keyX);\n    } else {\n      min_X = (len(X) == 0 ? 0 : MIN(X));\n\
     \      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\n      keyX.resize(N);\n  \
@@ -100,8 +100,8 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/dual_fenwicktree_2d.hpp
   requiredBy: []
-  timestamp: '2024-02-04 20:58:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-02-04 22:09:44+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/rect_add_pt_get.test.cpp
 documentation_of: ds/fenwicktree/dual_fenwicktree_2d.hpp
