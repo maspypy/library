@@ -57,10 +57,6 @@ struct Wavelet_Matrix_2D_Range_Static_Monoid {
   template <typename F>
   void build(int N_, F f) {
     N = N_;
-    if (N == 0) {
-      lg = 0;
-      return;
-    }
     vc<XY> tmp(N), Y(N);
     vc<X> S(N);
     FOR(i, N) tie(tmp[i], Y[i], S[i]) = f(i);
@@ -71,7 +67,7 @@ struct Wavelet_Matrix_2D_Range_Static_Monoid {
     FOR(i, N) new_idx[I[i]] = i;
 
     // あとは普通に
-    lg = __lg(XtoI(MAX(tmp) + 1)) + 1;
+    lg = tmp.empty() ? 0 : __lg(XtoI(MAX(tmp) + 1)) + 1;
     mid.resize(lg), bv.assign(lg, Bit_Vector(N));
     dat.resize(lg);
     A.resize(N);
