@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -96,6 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1549.test.cpp
     title: test/yukicoder/1549.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
@@ -240,6 +243,7 @@ data:
   - test/yukicoder/426.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1435.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/yukicoder/1549.test.cpp
   - test/yukicoder/529.test.cpp

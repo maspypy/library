@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -382,6 +382,9 @@ data:
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
@@ -641,6 +644,7 @@ data:
   - test/yukicoder/1441.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/2342.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/924.test.cpp

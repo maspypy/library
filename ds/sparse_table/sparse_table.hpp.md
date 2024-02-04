@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
@@ -138,6 +141,7 @@ data:
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/datastructure/staticrmq.test.cpp
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/mytest/suffix_tree.test.cpp

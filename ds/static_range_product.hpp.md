@@ -8,13 +8,16 @@ data:
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -133,6 +136,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/staticrmq.test.cpp
+  - test/yukicoder/1600_2.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document
 redirect_from:

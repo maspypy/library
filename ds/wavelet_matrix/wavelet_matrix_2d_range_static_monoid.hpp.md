@@ -20,10 +20,13 @@ data:
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
@@ -172,36 +175,35 @@ data:
     \ = Static_Range_Product<Monoid, ST, 4>;\n  vc<SEG> dat;\n\n  template <typename\
     \ F>\n  Wavelet_Matrix_2D_Range_Static_Monoid(int N, F f) {\n    build(N, f);\n\
     \  }\n\n  template <typename F>\n  void build(int N_, F f) {\n    N = N_;\n  \
-    \  if (N == 0) {\n      lg = 0;\n      return;\n    }\n    vc<XY> tmp(N), Y(N);\n\
-    \    vc<X> S(N);\n    FOR(i, N) tie(tmp[i], Y[i], S[i]) = f(i);\n    auto I =\
-    \ argsort(Y);\n    tmp = rearrange(tmp, I), Y = rearrange(Y, I), S = rearrange(S,\
-    \ I);\n    XtoI.build(tmp), YtoI.build(Y);\n    new_idx.resize(N);\n    FOR(i,\
-    \ N) new_idx[I[i]] = i;\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\n    lg\
-    \ = __lg(XtoI(MAX(tmp) + 1)) + 1;\n    mid.resize(lg), bv.assign(lg, Bit_Vector(N));\n\
-    \    dat.resize(lg);\n    A.resize(N);\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n\n\
-    \    vc<int> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n    FOR_R(d, lg) {\n    \
-    \  int p0 = 0, p1 = 0;\n      FOR(i, N) {\n        bool f = (A[i] >> d & 1);\n\
-    \        if (!f) { S0[p0] = S[i], A0[p0] = A[i], p0++; }\n        if (f) { S1[p1]\
-    \ = S[i], A1[p1] = A[i], bv[d].set(i), p1++; }\n      }\n      mid[d] = p0;\n\
-    \      bv[d].build();\n      swap(A, A0), swap(S, S0);\n      FOR(i, p1) A[p0\
-    \ + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N, [&](int i) -> X { return\
-    \ S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n  }\n\n  int count(XY\
-    \ x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1),\
-    \ y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);\n\
-    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2 && y1 <= y2);\n\
-    \    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X res\
-    \ = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return res;\n\
-    \  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt = 0;\n\
-    \    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n\
-    \      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d]\
-    \ - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n\
-    \  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n    chmax(x1,\
-    \ 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n    assert(0 <=\
-    \ x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2 == (1 << (d +\
-    \ 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n      return;\n   \
-    \ }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n    prod_dfs(l0, r0,\
-    \ x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d] - r0, x1 - (1\
-    \ << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
+    \  vc<XY> tmp(N), Y(N);\n    vc<X> S(N);\n    FOR(i, N) tie(tmp[i], Y[i], S[i])\
+    \ = f(i);\n    auto I = argsort(Y);\n    tmp = rearrange(tmp, I), Y = rearrange(Y,\
+    \ I), S = rearrange(S, I);\n    XtoI.build(tmp), YtoI.build(Y);\n    new_idx.resize(N);\n\
+    \    FOR(i, N) new_idx[I[i]] = i;\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\
+    \n    lg = tmp.empty() ? 0 : __lg(XtoI(MAX(tmp) + 1)) + 1;\n    mid.resize(lg),\
+    \ bv.assign(lg, Bit_Vector(N));\n    dat.resize(lg);\n    A.resize(N);\n    FOR(i,\
+    \ N) A[i] = XtoI(tmp[i]);\n\n    vc<int> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n\
+    \    FOR_R(d, lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) {\n        bool\
+    \ f = (A[i] >> d & 1);\n        if (!f) { S0[p0] = S[i], A0[p0] = A[i], p0++;\
+    \ }\n        if (f) { S1[p1] = S[i], A1[p1] = A[i], bv[d].set(i), p1++; }\n  \
+    \    }\n      mid[d] = p0;\n      bv[d].build();\n      swap(A, A0), swap(S, S0);\n\
+    \      FOR(i, p1) A[p0 + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N,\
+    \ [&](int i) -> X { return S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n\
+    \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n\
+    \    y1 = YtoI(y1), y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1,\
+    \ y2, x1);\n  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2\
+    \ && y1 <= y2);\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n\
+    \    X res = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return\
+    \ res;\n  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt\
+    \ = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \ 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R +=\
+    \ mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return\
+    \ cnt;\n  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n\
+    \    chmax(x1, 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n \
+    \   assert(0 <= x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2\
+    \ == (1 << (d + 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n    \
+    \  return;\n    }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n   \
+    \ prod_dfs(l0, r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d]\
+    \ - r0, x1 - (1 << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
   code: "#include \"ds/bit_vector.hpp\"\n#include \"ds/segtree/segtree.hpp\"\n#include\
     \ \"alg/monoid/add.hpp\"\n#include \"ds/static_range_product.hpp\"\n\ntemplate\
     \ <typename Monoid, typename ST, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct\
@@ -222,36 +224,35 @@ data:
     \ = Static_Range_Product<Monoid, ST, 4>;\n  vc<SEG> dat;\n\n  template <typename\
     \ F>\n  Wavelet_Matrix_2D_Range_Static_Monoid(int N, F f) {\n    build(N, f);\n\
     \  }\n\n  template <typename F>\n  void build(int N_, F f) {\n    N = N_;\n  \
-    \  if (N == 0) {\n      lg = 0;\n      return;\n    }\n    vc<XY> tmp(N), Y(N);\n\
-    \    vc<X> S(N);\n    FOR(i, N) tie(tmp[i], Y[i], S[i]) = f(i);\n    auto I =\
-    \ argsort(Y);\n    tmp = rearrange(tmp, I), Y = rearrange(Y, I), S = rearrange(S,\
-    \ I);\n    XtoI.build(tmp), YtoI.build(Y);\n    new_idx.resize(N);\n    FOR(i,\
-    \ N) new_idx[I[i]] = i;\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\n    lg\
-    \ = __lg(XtoI(MAX(tmp) + 1)) + 1;\n    mid.resize(lg), bv.assign(lg, Bit_Vector(N));\n\
-    \    dat.resize(lg);\n    A.resize(N);\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n\n\
-    \    vc<int> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n    FOR_R(d, lg) {\n    \
-    \  int p0 = 0, p1 = 0;\n      FOR(i, N) {\n        bool f = (A[i] >> d & 1);\n\
-    \        if (!f) { S0[p0] = S[i], A0[p0] = A[i], p0++; }\n        if (f) { S1[p1]\
-    \ = S[i], A1[p1] = A[i], bv[d].set(i), p1++; }\n      }\n      mid[d] = p0;\n\
-    \      bv[d].build();\n      swap(A, A0), swap(S, S0);\n      FOR(i, p1) A[p0\
-    \ + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N, [&](int i) -> X { return\
-    \ S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n  }\n\n  int count(XY\
-    \ x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1),\
-    \ y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);\n\
-    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2 && y1 <= y2);\n\
-    \    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X res\
-    \ = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return res;\n\
-    \  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt = 0;\n\
-    \    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n\
-    \      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d]\
-    \ - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n\
-    \  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n    chmax(x1,\
-    \ 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n    assert(0 <=\
-    \ x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2 == (1 << (d +\
-    \ 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n      return;\n   \
-    \ }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n    prod_dfs(l0, r0,\
-    \ x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d] - r0, x1 - (1\
-    \ << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
+    \  vc<XY> tmp(N), Y(N);\n    vc<X> S(N);\n    FOR(i, N) tie(tmp[i], Y[i], S[i])\
+    \ = f(i);\n    auto I = argsort(Y);\n    tmp = rearrange(tmp, I), Y = rearrange(Y,\
+    \ I), S = rearrange(S, I);\n    XtoI.build(tmp), YtoI.build(Y);\n    new_idx.resize(N);\n\
+    \    FOR(i, N) new_idx[I[i]] = i;\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\
+    \n    lg = tmp.empty() ? 0 : __lg(XtoI(MAX(tmp) + 1)) + 1;\n    mid.resize(lg),\
+    \ bv.assign(lg, Bit_Vector(N));\n    dat.resize(lg);\n    A.resize(N);\n    FOR(i,\
+    \ N) A[i] = XtoI(tmp[i]);\n\n    vc<int> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n\
+    \    FOR_R(d, lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) {\n        bool\
+    \ f = (A[i] >> d & 1);\n        if (!f) { S0[p0] = S[i], A0[p0] = A[i], p0++;\
+    \ }\n        if (f) { S1[p1] = S[i], A1[p1] = A[i], bv[d].set(i), p1++; }\n  \
+    \    }\n      mid[d] = p0;\n      bv[d].build();\n      swap(A, A0), swap(S, S0);\n\
+    \      FOR(i, p1) A[p0 + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N,\
+    \ [&](int i) -> X { return S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n\
+    \  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n\
+    \    y1 = YtoI(y1), y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1,\
+    \ y2, x1);\n  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2\
+    \ && y1 <= y2);\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n\
+    \    X res = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return\
+    \ res;\n  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt\
+    \ = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \ 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R +=\
+    \ mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return\
+    \ cnt;\n  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n\
+    \    chmax(x1, 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n \
+    \   assert(0 <= x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2\
+    \ == (1 << (d + 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n    \
+    \  return;\n    }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n   \
+    \ prod_dfs(l0, r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d]\
+    \ - r0, x1 - (1 << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
   dependsOn:
   - ds/bit_vector.hpp
   - ds/segtree/segtree.hpp
@@ -262,9 +263,10 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   requiredBy: []
-  timestamp: '2024-02-04 20:58:47+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-02-04 23:59:28+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/yukicoder/1600_2.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
 layout: document
 redirect_from:

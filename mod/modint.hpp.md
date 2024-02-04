@@ -62,7 +62,7 @@ data:
   - icon: ':question:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -889,6 +889,9 @@ data:
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1618.test.cpp
     title: test/yukicoder/1618.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1149,7 +1152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
   - icon: ':x:'
@@ -1664,6 +1667,7 @@ data:
   - test/yukicoder/2293.test.cpp
   - test/yukicoder/2578.test.cpp
   - test/yukicoder/2342.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2108.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/749.test.cpp

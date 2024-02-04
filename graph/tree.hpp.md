@@ -74,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   _extendedVerifiedWith:
@@ -181,6 +181,9 @@ data:
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,7 +243,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
   - icon: ':x:'
@@ -545,6 +548,7 @@ data:
   - test/yukicoder/1790.test.cpp
   - test/yukicoder/1976.test.cpp
   - test/yukicoder/2342.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/2587.test.cpp

@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
@@ -104,6 +107,7 @@ data:
   - test/library_checker/datastructure/staticrmq.test.cpp
   - test/library_checker/datastructure/staticrmq_dst.test.cpp
   - test/yukicoder/2005.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp
