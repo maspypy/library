@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_3.test.cpp
     title: test/yukicoder/1036_3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1036_4.test.cpp
+    title: test/yukicoder/1036_4.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -32,6 +35,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1036_2.test.cpp
+  - test/yukicoder/1036_4.test.cpp
   - test/yukicoder/1036.test.cpp
   - test/yukicoder/1036_3.test.cpp
 documentation_of: alg/monoid/gcd.hpp

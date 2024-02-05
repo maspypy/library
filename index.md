@@ -311,6 +311,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
+    - icon: ':warning:'
+      path: ds/static_rmq.hpp
+      title: ds/static_rmq.hpp
     - icon: ':heavy_check_mark:'
       path: ds/to_small_key.hpp
       title: ds/to_small_key.hpp
@@ -386,6 +389,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
+    - icon: ':warning:'
+      path: ds/offline_query/static_monoid_products.hpp
+      title: ds/offline_query/static_monoid_products.hpp
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/uniqueproductquery.hpp
       title: ds/offline_query/uniqueproductquery.hpp
@@ -3335,6 +3341,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1036_3.test.cpp
       title: test/yukicoder/1036_3.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/yukicoder/1036_4.test.cpp
+      title: test/yukicoder/1036_4.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1038.test.cpp
       title: test/yukicoder/1038.test.cpp

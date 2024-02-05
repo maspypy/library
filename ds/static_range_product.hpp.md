@@ -65,17 +65,17 @@ data:
     \ L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n        FOR(j, m, R - 1) v[j\
     \ + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int\
     \ L, int R) {\r\n    if (L == R) return MX::unit();\r\n    --R;\r\n    if (L ==\
-    \ R) return dat[0][L];\r\n    int k = 31 - __builtin_clz(L ^ R);\r\n    return\
-    \ MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const\
-    \ F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n\
-    \    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1\
-    \ < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
-    \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
-    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 3 \"ds/static_range_product.hpp\"\
+    \ R) return dat[0][L];\r\n    int k = topbit(L ^ R);\r\n    return MX::op(dat[k][L],\
+    \ dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const F check,\
+    \ int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n    if (L\
+    \ == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\
+    \n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\n     \
+    \ if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\
+    \n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n    assert(0\
+    \ <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return 0;\r\n    int\
+    \ ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k = (ok + ng) / 2;\r\
+    \n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\n      if (!bl)\
+    \ ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 3 \"ds/static_range_product.hpp\"\
     \n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\u9577\u3055\
     \ 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\u30D6\u30ED\
     \u30C3\u30AF\u5185\u306E prefix, suffix \u3092\u6301\u3064\uFF0E\n\u30D6\u30ED\
@@ -132,7 +132,7 @@ data:
   path: ds/static_range_product.hpp
   requiredBy:
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-  timestamp: '2023-11-04 19:28:51+09:00'
+  timestamp: '2024-02-06 01:35:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/staticrmq.test.cpp
