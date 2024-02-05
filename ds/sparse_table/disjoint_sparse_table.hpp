@@ -44,7 +44,7 @@ struct Disjoint_Sparse_Table {
     if (L == R) return MX::unit();
     --R;
     if (L == R) return dat[0][L];
-    int k = 31 - __builtin_clz(L ^ R);
+    int k = topbit(L ^ R);
     return MX::op(dat[k][L], dat[k][R]);
   }
 
