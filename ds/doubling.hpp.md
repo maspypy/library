@@ -91,8 +91,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc241e.test.cpp
-  - test/yukicoder/1097.test.cpp
   - test/yukicoder/1977.test.cpp
+  - test/yukicoder/1097.test.cpp
   - test/yukicoder/2242.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document

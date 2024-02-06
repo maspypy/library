@@ -69,6 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc127f_1.test.cpp
     title: test_atcoder/abc127f_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc324g.test.cpp
+    title: test_atcoder/abc324g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -92,31 +95,32 @@ data:
   isVerificationFile: false
   path: ds/bit_vector.hpp
   requiredBy:
-  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
-  - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
+  - ds/wavelet_matrix/wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
   timestamp: '2022-12-12 13:31:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc324g.test.cpp
   - test_atcoder/abc127f_1.test.cpp
-  - test/library_checker/string/prefix_substring_lcs.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-  - test/yukicoder/919.test.cpp
-  - test/yukicoder/1600_2.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1332.test.cpp
-  - test/yukicoder/1625_2.test.cpp
-  - test/yukicoder/1919_2.test.cpp
-  - test/yukicoder/2065.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
+  - test/yukicoder/2065.test.cpp
+  - test/yukicoder/1332.test.cpp
+  - test/yukicoder/1919_2.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/1600_2.test.cpp
+  - test/yukicoder/919.test.cpp
+  - test/library_checker/string/prefix_substring_lcs.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/bit_vector.hpp
 layout: document
 redirect_from:

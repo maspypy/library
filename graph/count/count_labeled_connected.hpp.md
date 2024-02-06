@@ -402,8 +402,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_connected.hpp
   requiredBy:
-  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2024-01-29 22:33:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

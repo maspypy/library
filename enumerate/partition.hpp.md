@@ -52,9 +52,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc226f.test.cpp
+  - test/mytest/enum_partitions.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1263.test.cpp
-  - test/mytest/enum_partitions.test.cpp
 documentation_of: enumerate/partition.hpp
 layout: document
 redirect_from:

@@ -121,9 +121,9 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2491.test.cpp
-  - test/yukicoder/2338.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
+  - test/yukicoder/2338.test.cpp
+  - test/yukicoder/2491.test.cpp
 documentation_of: ds/offline_query/rectangle_add_point_sum.hpp
 layout: document
 redirect_from:
