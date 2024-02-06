@@ -64,6 +64,7 @@ struct SQRT_Tree {
   X prod(int L, int R) {
     assert(0 <= L && L <= R && R <= N);
     if (L == R) return MX::unit();
+    if (L + 1 == R) return A[L];
     --R;
     int k = BIT_TO_LAYER[topbit(L ^ R)];
     if (k == 0) {
