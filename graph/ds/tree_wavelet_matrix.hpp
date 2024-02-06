@@ -1,5 +1,5 @@
 
-#include "ds/wavelet_matrix.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix.hpp"
 #include "graph/tree.hpp"
 
 // https://atcoder.jp/contests/pakencamp-2022-day1/tasks/pakencamp_2022_day1_j
