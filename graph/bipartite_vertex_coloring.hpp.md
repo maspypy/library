@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -161,27 +161,27 @@ data:
   isVerificationFile: false
   path: graph/bipartite_vertex_coloring.hpp
   requiredBy:
+  - graph/bipartite_edge_coloring.hpp
+  - graph/maximum_antichain.hpp
   - flow/rank_maximal_bipartite_matching.hpp
   - flow/bipartite.hpp
-  - graph/maximum_antichain.hpp
-  - graph/bipartite_edge_coloring.hpp
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc274g.test.cpp
   - test_atcoder/abc237ex.test.cpp
+  - test_atcoder/abc274g.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1615.test.cpp
+  - test/aoj/1566.test.cpp
+  - test/aoj/2251_2.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_ve.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/yukicoder/1615.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1911.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
 documentation_of: graph/bipartite_vertex_coloring.hpp
 layout: document
 redirect_from:

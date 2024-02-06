@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
@@ -156,8 +156,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc151_e.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

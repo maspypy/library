@@ -41,10 +41,10 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2293.test.cpp
   - test/yukicoder/2294.test.cpp
-  - test/yukicoder/1641.test.cpp
+  - test/yukicoder/2293.test.cpp
   - test/yukicoder/1790.test.cpp
+  - test/yukicoder/1641.test.cpp
   - test/yukicoder/1602.test.cpp
 documentation_of: alg/monoid/xor.hpp
 layout: document

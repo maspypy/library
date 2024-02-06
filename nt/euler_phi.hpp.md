@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':heavy_check_mark:'
@@ -144,9 +144,9 @@ data:
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/NTL_1_D.test.cpp
-  - test/yukicoder/1262.test.cpp
   - test/library_checker/math/tetration.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

@@ -190,8 +190,8 @@ data:
   timestamp: '2024-01-14 14:14:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc217e.test.cpp
   - test_atcoder/abc237g1.test.cpp
+  - test_atcoder/abc217e.test.cpp
   - test/mytest/sortable_array.test.cpp
 documentation_of: ds/sortable_array.hpp
 layout: document

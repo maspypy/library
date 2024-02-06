@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -121,8 +121,8 @@ data:
   timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1868.test.cpp
   - test/yukicoder/1170.test.cpp
+  - test/yukicoder/1868.test.cpp
 documentation_of: graph/range_to_range_graph.hpp
 layout: document
 redirect_from:

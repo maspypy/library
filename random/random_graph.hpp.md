@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -227,18 +227,18 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/remove_one_edge.test.cpp
-  - test/mytest/incremental_scc.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/count_clique.test.cpp
-  - test/mytest/count_K4.test.cpp
-  - test/mytest/count_indep_set.test.cpp
-  - test/mytest/find_C4.test.cpp
-  - test/mytest/matching_ve.test.cpp
+  - test/mytest/remove_one_vertex.test.cpp
+  - test/mytest/incremental_scc.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/st_numbering.test.cpp
-  - test/mytest/remove_one_vertex.test.cpp
+  - test/mytest/count_indep_set.test.cpp
+  - test/mytest/count_clique.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
   - test/mytest/count_P3P4P5.test.cpp
+  - test/mytest/matching_ve.test.cpp
+  - test/mytest/find_C4.test.cpp
+  - test/mytest/count_K4.test.cpp
 documentation_of: random/random_graph.hpp
 layout: document
 redirect_from:

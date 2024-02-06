@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -121,8 +121,8 @@ data:
   timestamp: '2023-11-07 22:29:27+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_clique.test.cpp
   - test/mytest/count_indep_set.test.cpp
+  - test/mytest/count_clique.test.cpp
 documentation_of: graph/path_cycle.hpp
 layout: document
 redirect_from:
