@@ -8,6 +8,9 @@ data:
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/ds/tree_wavelet_matrix.hpp
+    title: graph/ds/tree_wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
@@ -351,6 +354,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix.hpp
   requiredBy:
+  - graph/ds/tree_wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
   timestamp: '2024-02-04 20:58:47+09:00'
   verificationStatus: LIBRARY_ALL_AC

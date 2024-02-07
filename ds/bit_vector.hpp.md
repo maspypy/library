@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+  - icon: ':warning:'
+    path: graph/ds/tree_wavelet_matrix.hpp
+    title: graph/ds/tree_wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
@@ -95,6 +98,7 @@ data:
   isVerificationFile: false
   path: ds/bit_vector.hpp
   requiredBy:
+  - graph/ds/tree_wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp

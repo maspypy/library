@@ -41,6 +41,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
+  - icon: ':warning:'
+    path: graph/ds/tree_wavelet_matrix.hpp
+    title: graph/ds/tree_wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
@@ -499,6 +502,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/functional.hpp
   - graph/ds/lazy_tree_monoid.hpp
+  - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_abelgroup.hpp

@@ -110,6 +110,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
+  - icon: ':warning:'
+    path: graph/ds/tree_wavelet_matrix.hpp
+    title: graph/ds/tree_wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
@@ -532,6 +535,7 @@ data:
   path: alg/monoid/add.hpp
   requiredBy:
   - graph/count/count_connected_intervals.hpp
+  - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_abelgroup.hpp
   - graph/ds/range_edge_connected_component_query.hpp
