@@ -73,8 +73,7 @@ struct FenwickTree {
     assert(check(G::unit()));
     int i = 0;
     E s = G::unit();
-    int k = 1;
-    while (2 * k <= n) k *= 2;
+    int k = 1 << topbit(n);
     while (k) {
       if (i + k - 1 < len(dat)) {
         E t = G::op(s, dat[i + k - 1]);
@@ -85,25 +84,62 @@ struct FenwickTree {
     return i;
   }
 
-  // check(i, x)
   template <class F>
-  int max_right_with_index(const F check) {
-    assert(check(0, G::unit()));
-    int i = 0;
+  int max_right(const F check, int L = 0) {
+    assert(check(G::unit()));
     E s = G::unit();
-    int k = 1;
-    while (2 * k <= n) k *= 2;
-    while (k) {
-      if (i + k - 1 < len(dat)) {
-        E t = G::op(s, dat[i + k - 1]);
-        if (check(i + k, t)) { i += k, s = t; }
+    int i = L;
+    // 2^k 進むとダメ
+    int k = [&]() {
+      while (1) {
+        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }
+        if (i == 0) { return topbit(n) + 1; }
+        int k = lowbit(i) - 1;
+        if (i + (1 << k) > n) return k;
+        E t = G::op(s, dat[i + (1 << k) - 1]);
+        if (!check(t)) { return k; }
+        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;
       }
-      k >>= 1;
+    }();
+    while (k) {
+      --k;
+      if (i + (1 << k) - 1 < len(dat)) {
+        E t = G::op(s, dat[i + (1 << k) - 1]);
+        if (check(t)) { i += (1 << k), s = t; }
+      }
     }
     return i;
   }
 
-  int kth(E k) {
-    return max_right([&k](E x) -> bool { return x <= k; });
+  // check(i, x)
+  template <class F>
+  int max_right_with_index(const F check, int L = 0) {
+    assert(check(L, G::unit()));
+    E s = G::unit();
+    int i = L;
+    // 2^k 進むとダメ
+    int k = [&]() {
+      while (1) {
+        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }
+        if (i == 0) { return topbit(n) + 1; }
+        int k = lowbit(i) - 1;
+        if (i + (1 << k) > n) return k;
+        E t = G::op(s, dat[i + (1 << k) - 1]);
+        if (!check(i + (1 << k), t)) { return k; }
+        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;
+      }
+    }();
+    while (k) {
+      --k;
+      if (i + (1 << k) - 1 < len(dat)) {
+        E t = G::op(s, dat[i + (1 << k) - 1]);
+        if (check(i + (1 << k), t)) { i += (1 << k), s = t; }
+      }
+    }
+    return i;
+  }
+
+  int kth(E k, int L = 0) {
+    return max_right([&k](E x) -> bool { return x <= k; }, L);
   }
 };
