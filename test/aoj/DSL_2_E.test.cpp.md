@@ -223,38 +223,53 @@ data:
     \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
     \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
     \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
-    \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
-    \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
-    \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
-    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
-    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
-    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
-    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
-    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
-    \ k; });\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct Range_Add_Range_Sum {\n  using MX = Monoid;\n  using E = typename\
-    \ MX::value_type;\n\n  struct Mono {\n    using value_type = pair<E, E>;\n   \
-    \ using X = value_type;\n    static X op(X x, X y) { return {MX::op(x.fi, y.fi),\
-    \ MX::op(x.se, y.se)}; }\n    static constexpr X unit() { return {MX::unit(),\
-    \ MX::unit()}; }\n    static constexpr bool commute = 1;\n  };\n  FenwickTree<Mono>\
-    \ bit;\n\n  Range_Add_Range_Sum() {}\n  Range_Add_Range_Sum(int n) { build(n);\
-    \ }\n  template <typename F>\n  Range_Add_Range_Sum(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  Range_Add_Range_Sum(const vc<E>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> E { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    bit.build(m, [&](int i) -> pair<E,\
-    \ E> { return {f(i), MX::unit()}; });\n  }\n\n  void add(int L, int R, E a) {\n\
-    \    E b = MX::inverse(a);\n    bit.add(L, {MX::power(b, L), a});\n    bit.add(R,\
-    \ {MX::power(a, R), b});\n  }\n\n  E sum(int L, int R) {\n    auto [x0, x1] =\
-    \ bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n    E x = MX::op(MX::power(x1,\
-    \ L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n    return MX::op(MX::inverse(x),\
-    \ y);\n  }\n};\n#line 6 \"test/aoj/DSL_2_E.test.cpp\"\n\r\nvoid solve() {\r\n\
-    \  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>> bit(N);\r\n  FOR(Q) {\r\n\
-    \    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n      bit.add(--L, R,\
-    \ x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.sum(L - 1, L));\r\n \
-    \   }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n\
-    }\r\n"
+    \ i = 0;\n    E s = G::unit();\n    int k = 1 << topbit(n);\n    while (k) {\n\
+    \      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n\
+    \        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n  \
+    \  return i;\n  }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L = 0) {\n    assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n\
+    \    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1)\
+    \ {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n\
+    \        if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
+    \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
+    \ k) - 1]);\n        if (!check(t)) { return k; }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (check(t)) { i += (1 << k), s = t; }\n      }\n    }\n  \
+    \  return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) + 1; }\n        int\
+    \ k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n\
+    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
+    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t))\
+    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  int kth(E\
+    \ k, int L = 0) {\n    return max_right([&k](E x) -> bool { return x <= k; },\
+    \ L);\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct Range_Add_Range_Sum {\n  using MX = Monoid;\n  using E = typename MX::value_type;\n\
+    \n  struct Mono {\n    using value_type = pair<E, E>;\n    using X = value_type;\n\
+    \    static X op(X x, X y) { return {MX::op(x.fi, y.fi), MX::op(x.se, y.se)};\
+    \ }\n    static constexpr X unit() { return {MX::unit(), MX::unit()}; }\n    static\
+    \ constexpr bool commute = 1;\n  };\n  FenwickTree<Mono> bit;\n\n  Range_Add_Range_Sum()\
+    \ {}\n  Range_Add_Range_Sum(int n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Sum(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Sum(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> E { return MX::unit();\
+    \ });\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E\
+    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
+    \    bit.build(m, [&](int i) -> pair<E, E> { return {f(i), MX::unit()}; });\n\
+    \  }\n\n  void add(int L, int R, E a) {\n    E b = MX::inverse(a);\n    bit.add(L,\
+    \ {MX::power(b, L), a});\n    bit.add(R, {MX::power(a, R), b});\n  }\n\n  E sum(int\
+    \ L, int R) {\n    auto [x0, x1] = bit.sum(L);\n    auto [y0, y1] = bit.sum(R);\n\
+    \    E x = MX::op(MX::power(x1, L), x0);\n    E y = MX::op(MX::power(y1, R), y0);\n\
+    \    return MX::op(MX::inverse(x), y);\n  }\n};\n#line 6 \"test/aoj/DSL_2_E.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>> bit(N);\r\
+    \n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\n    \
+    \  bit.add(--L, R, x);\r\n    } else {\r\n      LL(L);\r\n      print(bit.sum(L\
+    \ - 1, L));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n\
+    \  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_E\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/range_add_range_sum.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  Range_Add_Range_Sum<Monoid_Add<ll>>\
@@ -271,7 +286,7 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_E.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-11 04:36:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_E.test.cpp

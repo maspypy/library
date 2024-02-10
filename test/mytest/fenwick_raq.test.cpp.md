@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -207,33 +207,49 @@ data:
     \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
     \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
     \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
-    \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
-    \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
-    \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
-    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
-    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
-    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
-    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
-    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
-    \ k; });\n  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n//\
-    \ \u9045\u5EF6\u30BB\u30B0\u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\
-    \n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n// https://codeforces.com/contest/860/submission/228355081\n\
-    template <typename AbelGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelGroup;\n\
-    \  using E = typename AbelGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n\
-    \  FenwickTree<G> bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int\
-    \ n) { build(n); }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F\
-    \ f) {\n    build(n, f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    n = m;\n    bit0.build(n), bit1.build(n);\n\
-    \  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m;\n    bit0.build(m, f);\n    bit1.build(m);\n  }\n\n  void add_at(int i, E\
-    \ val) { bit0.add(i, val); }\n\n  void add(int L, int R, E val) {\n    bit0.add(L,\
-    \ G::power(val, -L));\n    bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n\
-    \    bit1.add(R, G::inverse(val));\n  }\n\n  E prod(int L, int R) {\n    E prod_R\
-    \ = G::op(G::power(bit1.prod(R), R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L),\
-    \ L), bit0.prod(L));\n    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ i = 0;\n    E s = G::unit();\n    int k = 1 << topbit(n);\n    while (k) {\n\
+    \      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n\
+    \        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n  \
+    \  return i;\n  }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L = 0) {\n    assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n\
+    \    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1)\
+    \ {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n\
+    \        if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
+    \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
+    \ k) - 1]);\n        if (!check(t)) { return k; }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (check(t)) { i += (1 << k), s = t; }\n      }\n    }\n  \
+    \  return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) + 1; }\n        int\
+    \ k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n\
+    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
+    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t))\
+    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  int kth(E\
+    \ k, int L = 0) {\n    return max_right([&k](E x) -> bool { return x <= k; },\
+    \ L);\n  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n\n// \u9045\
+    \u5EF6\u30BB\u30B0\u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
+    // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
+    \ AbelGroup>\nstruct FenwickTree_Range_Add {\n  using G = AbelGroup;\n  using\
+    \ E = typename AbelGroup::value_type;\n  int n;\n  FenwickTree<G> bit0;\n  FenwickTree<G>\
+    \ bit1;\n\n  FenwickTree_Range_Add() {}\n  FenwickTree_Range_Add(int n) { build(n);\
+    \ }\n  template <typename F>\n  FenwickTree_Range_Add(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  FenwickTree_Range_Add(const vc<E>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    n = m;\n    bit0.build(n), bit1.build(n);\n  }\n  void build(const\
+    \ vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    bit0.build(m, f);\n\
+    \    bit1.build(m);\n  }\n\n  void add_at(int i, E val) { bit0.add(i, val); }\n\
+    \n  void add(int L, int R, E val) {\n    bit0.add(L, G::power(val, -L));\n   \
+    \ bit0.add(R, G::power(val, R));\n    bit1.add(L, val);\n    bit1.add(R, G::inverse(val));\n\
+    \  }\n\n  E prod(int L, int R) {\n    E prod_R = G::op(G::power(bit1.prod(R),\
+    \ R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L), L), bit0.prod(L));\n\
+    \    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -290,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-11 04:36:45+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/fenwick_raq.test.cpp

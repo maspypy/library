@@ -238,18 +238,34 @@ data:
     \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
     \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
     \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
-    \ i = 0;\n    E s = G::unit();\n    int k = 1;\n    while (2 * k <= n) k *= 2;\n\
-    \    while (k) {\n      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i\
-    \ + k - 1]);\n        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n\
-    \    }\n    return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
-    \ F check) {\n    assert(check(0, G::unit()));\n    int i = 0;\n    E s = G::unit();\n\
-    \    int k = 1;\n    while (2 * k <= n) k *= 2;\n    while (k) {\n      if (i\
-    \ + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n        if (check(i\
-    \ + k, t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n    return i;\n\
-    \  }\n\n  int kth(E k) {\n    return max_right([&k](E x) -> bool { return x <=\
-    \ k; });\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\
-    \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
-    \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Conneced_Component_Query\
+    \ i = 0;\n    E s = G::unit();\n    int k = 1 << topbit(n);\n    while (k) {\n\
+    \      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n\
+    \        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n  \
+    \  return i;\n  }\n\n  template <class F>\n  int max_right(const F check, int\
+    \ L = 0) {\n    assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n\
+    \    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1)\
+    \ {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n\
+    \        if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
+    \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
+    \ k) - 1]);\n        if (!check(t)) { return k; }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (check(t)) { i += (1 << k), s = t; }\n      }\n    }\n  \
+    \  return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) + 1; }\n        int\
+    \ k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n\
+    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
+    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t))\
+    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  int kth(E\
+    \ k, int L = 0) {\n    return max_right([&k](E x) -> bool { return x <= k; },\
+    \ L);\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\n\
+    \n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) = #\
+    \ of component if edge L,...,R-1 are used.\nstruct Range_Edge_Conneced_Component_Query\
     \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Conneced_Component_Query(Graph<int,\
     \ 0>& G) : G(G) {}\n\n  void add_query(int l, int r) { query.eb(l, r); }\n\n \
     \ using Mono = Monoid_Min<int>;\n  using Node = LCT_Node_Commutative_Monoid<Mono>;\n\
@@ -294,7 +310,7 @@ data:
   isVerificationFile: false
   path: graph/ds/range_edge_connected_component_query.hpp
   requiredBy: []
-  timestamp: '2024-01-23 05:58:02+09:00'
+  timestamp: '2024-02-11 04:36:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/range_edge_connected_component_query.hpp
