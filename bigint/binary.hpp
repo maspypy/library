@@ -4,7 +4,7 @@ struct BigInteger_Binary {
   static constexpr int LOG = 30;
   static constexpr int MOD = 1 << LOG;
   using bint = BigInteger_Binary;
-  int sgn; // +1 or -1. 内部状態で -0 を許容する.
+  int sgn;
   vc<int> dat;
 
   BigInteger_Binary() : sgn(0) {}
@@ -14,12 +14,10 @@ struct BigInteger_Binary {
       return;
     }
     sgn = 1;
-    if (val != 0) {
-      if (val < 0) sgn = -1, val = -val;
-      while (val > 0) {
-        dat.eb(val % MOD);
-        val /= MOD;
-      }
+    if (val < 0) sgn = -1, val = -val;
+    while (val > 0) {
+      dat.eb(val % MOD);
+      val /= MOD;
     }
   }
   BigInteger_Binary(string s) {
@@ -62,7 +60,7 @@ struct BigInteger_Binary {
   bool operator>(const bint &p) const { return p < *this; }
   bool operator<=(const bint &p) const { return !(*this > p); }
   bool operator>=(const bint &p) const { return !(*this < p); }
-  bint &operator+=(const bint &p) {
+  bint &operator+=(const bint p) {
     if (sgn == 0) { return *this = p; }
     if (p.sgn == 0) { return *this; }
     if (sgn != p.sgn) {
@@ -78,7 +76,7 @@ struct BigInteger_Binary {
     while (len(dat) && dat.back() == 0) dat.pop_back();
     return *this;
   }
-  bint &operator-=(const bint &p) {
+  bint &operator-=(const bint p) {
     if (sgn == 0) return *this = (-p);
     if (p.sgn == 0) return *this;
     if (sgn != p.sgn) {
@@ -212,12 +210,32 @@ struct BigInteger_Binary {
     return res;
   }
 
-#ifdef FASTIO
-  void write() { fastio::printer.write(to_string()); }
-  void read() {
-    string s;
-    fastio::scanner.read(s);
-    *this = bint(s);
+  void add_power_of_2(int k) {
+    int q = k / LOG, r = k % LOG;
+    if (sgn == 0) sgn = 1;
+    if (q >= len(dat)) dat.resize(q + 1);
+    if (sgn == 1) {
+      dat[q] += 1 << r;
+      while (dat[q] >= MOD) {
+        dat[q] -= MOD;
+        if (q + 1 >= len(dat)) dat.resize(q + 2);
+        dat[q + 1] += 1;
+        q += 1;
+      }
+    } else {
+      dat[q] += 1 << r;
+      while (dat[q] >= MOD) {
+        dat[q] -= MOD;
+        if (q + 1 >= len(dat)) dat.resize(q + 2);
+        dat[q + 1] += 1;
+        q += 1;
+      }
+    }
   }
-#endif
+
+  void substract_power_of_2(int k) {}
 };
+
+#ifdef FASTIO
+void wt(BigInteger_Binary x) { fastio::wt(x.to_string()); }
+#endif
