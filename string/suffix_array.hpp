@@ -6,15 +6,15 @@
 // 辞書順 i 番目の suffix が j 文字目始まりであるとき、
 // SA[i] = j, ISA[j] = i
 // |S|>0 を前提（そうでない場合 dummy 文字を追加して利用せよ）
-template <bool USE_LCP_QUERY = 0>
 struct Suffix_Array {
   vc<int> SA;
   vc<int> ISA;
   vc<int> LCP;
   Sparse_Table<Monoid_Min<int>> seg;
-  // DisjointSparse<Monoid_Min<int>> seg;
+  bool build_seg;
 
   Suffix_Array(string& s) {
+    build_seg = 0;
     assert(len(s) > 0);
     char first = 127, last = 0;
     for (auto&& c: s) {
@@ -23,19 +23,21 @@ struct Suffix_Array {
     }
     SA = calc_suffix_array(s, first, last);
     calc_LCP(s);
-    if (USE_LCP_QUERY) seg.build(LCP);
   }
 
   Suffix_Array(vc<int>& s) {
+    build_seg = 0;
     assert(len(s) > 0);
     SA = calc_suffix_array(s);
     calc_LCP(s);
-    if (USE_LCP_QUERY) seg.build(LCP);
   }
 
   // lcp(S[i:], S[j:])
   int lcp(int i, int j) {
-    static_assert(USE_LCP_QUERY);
+    if (!build_seg) {
+      build_seg = true;
+      seg.build(LCP);
+    }
     int n = len(SA);
     if (i == n || j == n) return 0;
     if (i == j) return n - i;
@@ -46,7 +48,10 @@ struct Suffix_Array {
 
   // S[i:] との lcp が n 以上であるような半開区間
   pair<int, int> lcp_range(int i, int n) {
-    static_assert(USE_LCP_QUERY);
+    if (!build_seg) {
+      build_seg = true;
+      seg.build(LCP);
+    }
     i = ISA[i];
     int a = seg.min_left([&](auto e) -> bool { return e >= n; }, i);
     int b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);

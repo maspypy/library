@@ -6,7 +6,12 @@ vector<int> ConvexHull(vector<pair<T, T>>& XY, string mode = "full",
   assert(mode == "full" || mode == "lower" || mode == "upper");
   ll N = XY.size();
   if (N == 1) return {0};
-  if (N == 2) return {0, 1};
+  if (N == 2) {
+    if (XY[0] < XY[1]) return {0, 1};
+    if (XY[1] < XY[0]) return {1, 0};
+    if (inclusive) return {0, 1};
+    return {0};
+  }
   vc<int> I = argsort(XY);
 
   auto check = [&](ll i, ll j, ll k) -> bool {
@@ -55,7 +60,12 @@ vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full",
   assert(mode == "full" || mode == "lower" || mode == "upper");
   ll N = XY.size();
   if (N == 1) return {0};
-  if (N == 2) return {0, 1};
+  if (N == 2) {
+    if (XY[0] < XY[1]) return {0, 1};
+    if (XY[1] < XY[0]) return {1, 0};
+    if (inclusive) return {0, 1};
+    return {0};
+  }
   vc<int> I = argsort(XY);
 
   auto check = [&](ll i, ll j, ll k) -> bool {
