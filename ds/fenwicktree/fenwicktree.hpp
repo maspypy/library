@@ -69,22 +69,6 @@ struct FenwickTree {
   }
 
   template <class F>
-  int max_right(const F check) {
-    assert(check(G::unit()));
-    int i = 0;
-    E s = G::unit();
-    int k = 1 << topbit(n);
-    while (k) {
-      if (i + k - 1 < len(dat)) {
-        E t = G::op(s, dat[i + k - 1]);
-        if (check(t)) { i += k, s = t; }
-      }
-      k >>= 1;
-    }
-    return i;
-  }
-
-  template <class F>
   int max_right(const F check, int L = 0) {
     assert(check(G::unit()));
     E s = G::unit();
@@ -137,6 +121,32 @@ struct FenwickTree {
       }
     }
     return i;
+  }
+
+  template <class F>
+  int min_left(const F check, int R) {
+    assert(check(G::unit()));
+    E s = G::unit();
+    int i = R;
+    // false になるところまで戻る
+    int k = 0;
+    while (i > 0 && check(s)) {
+      s = G::op(s, dat[i - 1]);
+      k = lowbit(i);
+      i -= i & -i;
+    }
+    if (check(s)) {
+      assert(i == 0);
+      return 0;
+    }
+    // 2^k 進むと ok になる
+    // false を維持して進む
+    while (k) {
+      --k;
+      E t = G::op(s, G::inverse(dat[i + (1 << k) - 1]));
+      if (!check(t)) { i += (1 << k), s = t; }
+    }
+    return i + 1;
   }
 
   int kth(E k, int L = 0) {
