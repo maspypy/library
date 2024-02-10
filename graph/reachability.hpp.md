@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -93,35 +93,45 @@ data:
     \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 3 \"graph/reachability.hpp\"\
     \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
     \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
-    \ reachability(GT& G, vc<P> query) {\n  auto [C, comp] = strongly_connected_component(G);\n\
-    \  Graph<int, 1> DAG(C);\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm],\
-    \ b = comp[e.to];\n    assert(a <= b);\n    if (a < b) DAG.add(a, b);\n  }\n \
-    \ DAG.build();\n\n  int Q = len(query);\n  vc<u64> dp(C);\n  vc<int> res(Q);\n\
-    \  for (int l = 0; l < Q; l += 64) {\n    int r = min(l + 64, Q);\n    fill(all(dp),\
-    \ u64(0));\n\n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].fi];\n   \
-    \   dp[v] |= u64(1) << (qid - l);\n    }\n    FOR(v, C) for (auto&& e: DAG[v])\
-    \ { dp[e.to] |= dp[v]; }\n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].se];\n\
-    \      if (dp[v] & (u64(1) << (qid - l))) res[qid] = 1;\n    }\n  }\n  return\
-    \ res;\n}\n"
+    \ reachability(GT& G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\
+    \n  auto [C, comp] = strongly_connected_component(G);\n\n  vc<pair<int, int>>\
+    \ edges;\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
+    \    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n  UNIQUE(edges);\n\
+    \  for (auto& [a, b]: query) a = comp[a], b = comp[b];\n\n  int Q = len(query);\n\
+    \  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n  FOR(q, Q) {\n    auto\
+    \ [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] = (a == b);\n      continue;\n\
+    \    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n  UNIQUE(S);\n  vc<U> dp(C);\n\
+    \  int p = 0;\n  for (int l = 0; l < len(S); l += W) {\n    int r = min<int>(l\
+    \ + W, len(S));\n    fill(dp.begin() + S[l], dp.end(), U(0));\n    FOR(i, r -\
+    \ l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges) && edges[p].fi\
+    \ < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |= dp[edges[i].fi];\
+    \ }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for (auto& qid: QID[s])\
+    \ {\n        int t = query[qid].se;\n        ANS[qid] = dp[t] >> i & 1;\n    \
+    \  }\n    }\n  }\n  return ANS;\n}\n"
   code: "#pragma once\n#include \"graph/strongly_connected_component.hpp\"\n\n// \u6709\
     \u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\
     \u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int> reachability(GT&\
-    \ G, vc<P> query) {\n  auto [C, comp] = strongly_connected_component(G);\n  Graph<int,\
-    \ 1> DAG(C);\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n\
-    \    assert(a <= b);\n    if (a < b) DAG.add(a, b);\n  }\n  DAG.build();\n\n \
-    \ int Q = len(query);\n  vc<u64> dp(C);\n  vc<int> res(Q);\n  for (int l = 0;\
-    \ l < Q; l += 64) {\n    int r = min(l + 64, Q);\n    fill(all(dp), u64(0));\n\
-    \n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].fi];\n      dp[v] |= u64(1)\
-    \ << (qid - l);\n    }\n    FOR(v, C) for (auto&& e: DAG[v]) { dp[e.to] |= dp[v];\
-    \ }\n    FOR3(qid, l, r) {\n      auto v = comp[query[qid].se];\n      if (dp[v]\
-    \ & (u64(1) << (qid - l))) res[qid] = 1;\n    }\n  }\n  return res;\n}"
+    \ G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\n  auto [C, comp]\
+    \ = strongly_connected_component(G);\n\n  vc<pair<int, int>> edges;\n  for (auto&&\
+    \ e: G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n    assert(a <= b);\n\
+    \    if (a < b) edges.eb(a, b);\n  }\n  UNIQUE(edges);\n  for (auto& [a, b]: query)\
+    \ a = comp[a], b = comp[b];\n\n  int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int>\
+    \ S;\n  vvc<int> QID(C);\n  FOR(q, Q) {\n    auto [a, b] = query[q];\n    if (a\
+    \ >= b) {\n      ANS[q] = (a == b);\n      continue;\n    }\n    QID[a].eb(q);\n\
+    \    S.eb(a);\n  }\n\n  UNIQUE(S);\n  vc<U> dp(C);\n  int p = 0;\n  for (int l\
+    \ = 0; l < len(S); l += W) {\n    int r = min<int>(l + W, len(S));\n    fill(dp.begin()\
+    \ + S[l], dp.end(), U(0));\n    FOR(i, r - l) { dp[S[l + i]] |= U(1) << i; }\n\
+    \    while (p < len(edges) && edges[p].fi < S[l]) ++p;\n    FOR(i, p, len(edges))\
+    \ { dp[edges[i].se] |= dp[edges[i].fi]; }\n    FOR(i, r - l) {\n      int s =\
+    \ S[l + i];\n      for (auto& qid: QID[s]) {\n        int t = query[qid].se;\n\
+    \        ANS[qid] = dp[t] >> i & 1;\n      }\n    }\n  }\n  return ANS;\n}"
   dependsOn:
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   isVerificationFile: false
   path: graph/reachability.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
+  timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/0275.test.cpp

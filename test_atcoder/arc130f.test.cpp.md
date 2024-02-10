@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc130/tasks/arc130_f
@@ -338,31 +338,34 @@ data:
     \ T>>& XY, string mode = \"full\",\n                       bool inclusive = false,\
     \ bool sorted = false) {\n  assert(mode == \"full\" || mode == \"lower\" || mode\
     \ == \"upper\");\n  ll N = XY.size();\n  if (N == 1) return {0};\n  if (N == 2)\
-    \ return {0, 1};\n  vc<int> I = argsort(XY);\n\n  auto check = [&](ll i, ll j,\
-    \ ll k) -> bool {\n    auto xi = XY[i].fi, yi = XY[i].se;\n    auto xj = XY[j].fi,\
-    \ yj = XY[j].se;\n    auto xk = XY[k].fi, yk = XY[k].se;\n    auto dx1 = xj -\
-    \ xi, dy1 = yj - yi;\n    auto dx2 = xk - xj, dy2 = yk - yj;\n    T det = dx1\
-    \ * dy2 - dy1 * dx2;\n    return (inclusive ? det >= 0 : det > 0);\n  };\n\n \
-    \ auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n      while\
-    \ (P.size() > 1) {\n        auto i = P[P.size() - 2];\n        auto j = P[P.size()\
-    \ - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n      }\n\
-    \      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode == \"\
-    full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
-    \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
-    \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
-    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2\
-    \ && P[0] == P.back()) P.pop_back();\n  return P;\n}\n\ntemplate <typename T>\n\
-    vector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"full\",\n       \
-    \                bool inclusive = false, bool sorted = false) {\n  assert(mode\
-    \ == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n\
-    \  if (N == 1) return {0};\n  if (N == 2) return {0, 1};\n  vc<int> I = argsort(XY);\n\
-    \n  auto check = [&](ll i, ll j, ll k) -> bool {\n    auto xi = XY[i].x, yi =\
-    \ XY[i].y;\n    auto xj = XY[j].x, yj = XY[j].y;\n    auto xk = XY[k].x, yk =\
-    \ XY[k].y;\n    auto dx1 = xj - xi, dy1 = yj - yi;\n    auto dx2 = xk - xj, dy2\
-    \ = yk - yj;\n    T det = dx1 * dy2 - dy1 * dx2;\n    return (inclusive ? det\
-    \ >= 0 : det > 0);\n  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for\
-    \ (auto&& k: I) {\n      while (P.size() > 1) {\n        auto i = P[P.size() -\
-    \ 2];\n        auto j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n\
+    \ {\n    if (XY[0] < XY[1]) return {0, 1};\n    if (XY[1] < XY[0]) return {1,\
+    \ 0};\n    if (inclusive) return {0, 1};\n    return {0};\n  }\n  vc<int> I =\
+    \ argsort(XY);\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    auto xi\
+    \ = XY[i].fi, yi = XY[i].se;\n    auto xj = XY[j].fi, yj = XY[j].se;\n    auto\
+    \ xk = XY[k].fi, yk = XY[k].se;\n    auto dx1 = xj - xi, dy1 = yj - yi;\n    auto\
+    \ dx2 = xk - xj, dy2 = yk - yj;\n    T det = dx1 * dy2 - dy1 * dx2;\n    return\
+    \ (inclusive ? det >= 0 : det > 0);\n  };\n\n  auto calc = [&]() {\n    vector<int>\
+    \ P;\n    for (auto&& k: I) {\n      while (P.size() > 1) {\n        auto i =\
+    \ P[P.size() - 2];\n        auto j = P[P.size() - 1];\n        if (check(i, j,\
+    \ k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n    }\n    return\
+    \ P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode == \"lower\") {\n \
+    \   vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n\
+    \    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] == P.back()) P.pop_back();\n\
+    \  return P;\n}\n\ntemplate <typename T>\nvector<int> ConvexHull(vector<Point<T>>&\
+    \ XY, string mode = \"full\",\n                       bool inclusive = false,\
+    \ bool sorted = false) {\n  assert(mode == \"full\" || mode == \"lower\" || mode\
+    \ == \"upper\");\n  ll N = XY.size();\n  if (N == 1) return {0};\n  if (N == 2)\
+    \ {\n    if (XY[0] < XY[1]) return {0, 1};\n    if (XY[1] < XY[0]) return {1,\
+    \ 0};\n    if (inclusive) return {0, 1};\n    return {0};\n  }\n  vc<int> I =\
+    \ argsort(XY);\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    auto xi\
+    \ = XY[i].x, yi = XY[i].y;\n    auto xj = XY[j].x, yj = XY[j].y;\n    auto xk\
+    \ = XY[k].x, yk = XY[k].y;\n    auto dx1 = xj - xi, dy1 = yj - yi;\n    auto dx2\
+    \ = xk - xj, dy2 = yk - yj;\n    T det = dx1 * dy2 - dy1 * dx2;\n    return (inclusive\
+    \ ? det >= 0 : det > 0);\n  };\n\n  auto calc = [&]() {\n    vector<int> P;\n\
+    \    for (auto&& k: I) {\n      while (P.size() > 1) {\n        auto i = P[P.size()\
+    \ - 2];\n        auto j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n\
     \        P.pop_back();\n      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n\
     \  vc<int> P;\n  if (mode == \"full\" || mode == \"lower\") {\n    vc<int> Q =\
     \ calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"full\" || mode\
@@ -445,8 +448,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-11 04:08:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp
 layout: document

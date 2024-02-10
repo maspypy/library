@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -471,8 +471,8 @@ data:
   timestamp: '2024-01-21 22:42:40+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/convolution/mul_modp_conv.test.cpp
   - test/yukicoder/2613.test.cpp
+  - test/library_checker/convolution/mul_modp_conv.test.cpp
 documentation_of: mod/multiplicative_convolution_mod_p.hpp
 layout: document
 redirect_from:

@@ -14,13 +14,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
@@ -63,18 +63,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
+  bundledCode: "#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
     \u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002\
     disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\n\
     struct Sparse_Table {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
@@ -99,16 +99,16 @@ data:
     \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
     \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
     \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n"
-  code: "\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\
-    \u3092\u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\
-    \ntemplate <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using\
-    \ X = typename MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table()\
-    \ {}\n  Sparse_Table(int n) { build(n); }\n  template <typename F>\n  Sparse_Table(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
-    \ });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X\
-    \ { return v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n\
-    \    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
+  code: "#pragma once\n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\
+    \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x\
+    \ \u500D\u9AD8\u901F\ntemplate <class Monoid>\nstruct Sparse_Table {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n  int n, log;\n  vvc<X>\
+    \ dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) { build(n); }\n  template\
+    \ <typename F>\n  Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n  Sparse_Table(const\
+    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
+    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
+    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    dat.resize(log);\n\
     \    dat[0].resize(n);\n    FOR(i, n) dat[0][i] = f(i);\n\n    FOR(i, log - 1)\
     \ {\n      dat[i + 1].resize(len(dat[i]) - (1 << i));\n      FOR(j, len(dat[i])\
     \ - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n\
@@ -128,31 +128,31 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/sparse_table.hpp
   requiredBy:
-  - graph/fast_lca.hpp
-  - ds/static_range_product.hpp
   - ds/static_rmq.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+  - ds/static_range_product.hpp
+  - string/sort_substrings.hpp
   - string/suffix_tree.hpp
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
-  - string/sort_substrings.hpp
-  timestamp: '2023-04-08 01:03:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - graph/fast_lca.hpp
+  timestamp: '2024-02-11 04:08:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp
-  - test/library_checker/tree/lca_fast.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/string/longest_common_substring.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/datastructure/staticrmq.test.cpp
-  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - test/yukicoder/1600_2.test.cpp
+  - test/mytest/suffix_tree.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/yukicoder/1036_4.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
-  - test/mytest/suffix_tree.test.cpp
+  - test/yukicoder/1600_2.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/longest_common_substring.test.cpp
+  - test/library_checker/datastructure/staticrmq.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/library_checker/tree/lca_fast.test.cpp
 documentation_of: ds/sparse_table/sparse_table.hpp
 layout: document
 redirect_from:

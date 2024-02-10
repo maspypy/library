@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -460,8 +460,8 @@ data:
   timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/mytest/poly_root_finding.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
 documentation_of: poly/poly_gcd.hpp
 layout: document
 redirect_from:

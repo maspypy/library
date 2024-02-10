@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -392,16 +392,16 @@ data:
   path: poly/poly_divmod.hpp
   requiredBy:
   - poly/finding_root_of_polynomial.hpp
-  - poly/poly_mod_pow.hpp
   - poly/poly_gcd.hpp
+  - poly/poly_mod_pow.hpp
   timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/agc058d2.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/yukicoder/2583.test.cpp
   - test/mytest/poly_root_finding.test.cpp
+  - test/yukicoder/2583.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/polynomial_division.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
 redirect_from:

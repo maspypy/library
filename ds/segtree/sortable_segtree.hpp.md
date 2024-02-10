@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -237,8 +237,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc237g.test.cpp
-  - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/sort_segtree.test.cpp
+  - test/library_checker/datastructure/sort_segtree_1.test.cpp
 documentation_of: ds/segtree/sortable_segtree.hpp
 layout: document
 redirect_from:

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -337,7 +337,7 @@ data:
     \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
     \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
     \n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n//\
+    \ commute = true;\r\n};\r\n#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\n//\
     \ \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
     \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
     \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
@@ -393,7 +393,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/lca_fast.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/tree/lca_fast.test.cpp

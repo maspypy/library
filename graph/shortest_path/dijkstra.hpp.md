@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -36,12 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc064c.test.cpp
     title: test_atcoder/arc064c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -162,17 +162,17 @@ data:
   - graph/shortest_path/K_shortest_walk.hpp
   - graph/shortest_path/nonzero_group_product_shortest_path.hpp
   timestamp: '2023-11-07 22:29:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc064c.test.cpp
   - test_atcoder/arc151_e.test.cpp
-  - test/library_checker/graph/K_shortest_walk.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
+  - test/aoj/0275.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/2251_2.test.cpp
   - test/yukicoder/1601.test.cpp
   - test/yukicoder/1602.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/aoj/2251_2.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

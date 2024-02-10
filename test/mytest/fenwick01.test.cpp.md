@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -159,7 +159,7 @@ data:
     \ n, F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    N = m;\n    n\
     \ = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n    bit.build(n);\n  }\n\
     \n  template <typename F>\n  void build(int m, F f) {\n    N = m;\n    n = ceil<int>(N\
-    \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(1)\
+    \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(f(i))\
     \ << (i % 64); }\n    bit.build(n, [&](int i) -> int { return popcnt(dat[i]);\
     \ });\n  }\n\n  int sum_all() { return bit.sum_all(); }\n  int sum(int k) { return\
     \ prefix_sum(k); }\n  int prefix_sum(int k) {\n    int ans = bit.sum(k / 64);\n\
@@ -207,7 +207,7 @@ data:
   isVerificationFile: true
   path: test/mytest/fenwick01.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/fenwick01.test.cpp

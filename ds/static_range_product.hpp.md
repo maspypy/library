@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
@@ -24,7 +24,7 @@ data:
   attributes:
     links:
     - https://judge.yosupo.jp/submission/106668
-  bundledCode: "#line 1 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
+  bundledCode: "#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
     \u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002\
     disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\n\
     struct Sparse_Table {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
@@ -132,11 +132,11 @@ data:
   path: ds/static_range_product.hpp
   requiredBy:
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-  timestamp: '2024-02-06 01:35:38+09:00'
+  timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/staticrmq.test.cpp
   - test/yukicoder/1600_2.test.cpp
+  - test/library_checker/datastructure/staticrmq.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document
 redirect_from:

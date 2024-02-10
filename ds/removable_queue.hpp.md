@@ -56,11 +56,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc281e.test.cpp
-  - test_atcoder/abc314g.test.cpp
   - test_atcoder/abc312f.test.cpp
-  - test/library_checker/datastructure/double_ended_pq.test.cpp
+  - test_atcoder/abc314g.test.cpp
   - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp
+  - test/library_checker/datastructure/double_ended_pq.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document
 redirect_from:

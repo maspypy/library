@@ -12,12 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2276.test.cpp
     title: test/yukicoder/2276.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2627.test.cpp
+    title: test/yukicoder/2627.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/fibonacci_search.hpp\"\n// returns: {fx, x}\n// [L,\
@@ -55,11 +58,12 @@ data:
   requiredBy:
   - convex/monge.hpp
   timestamp: '2024-01-01 07:01:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2276.test.cpp
-  - test/yukicoder/705.test.cpp
   - test/mytest/fibonacci_search.test.cpp
+  - test/yukicoder/2627.test.cpp
+  - test/yukicoder/705.test.cpp
+  - test/yukicoder/2276.test.cpp
 documentation_of: other/fibonacci_search.hpp
 layout: document
 redirect_from:

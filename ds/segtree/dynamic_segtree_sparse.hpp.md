@@ -24,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2627.test.cpp
+    title: test/yukicoder/2627.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
@@ -33,9 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281e_2.test.cpp
     title: test_atcoder/abc281e_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/671/D
@@ -200,17 +203,18 @@ data:
   requiredBy:
   - ds/my_multiset.hpp
   timestamp: '2023-12-21 22:18:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc281e_2.test.cpp
   - test_atcoder/abc241d.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
-  - test/library_checker/datastructure/double_ended_pq_2.test.cpp
-  - test/yukicoder/1649_2.test.cpp
+  - test/mytest/dynamic_segtree_sparse.test.cpp
+  - test/yukicoder/2627.test.cpp
   - test/yukicoder/1826_2.test.cpp
+  - test/yukicoder/1649_2.test.cpp
   - test/yukicoder/789_3.test.cpp
   - test/yukicoder/2242.test.cpp
-  - test/mytest/dynamic_segtree_sparse.test.cpp
+  - test/library_checker/datastructure/double_ended_pq_2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
 documentation_of: ds/segtree/dynamic_segtree_sparse.hpp
 layout: document
 redirect_from:

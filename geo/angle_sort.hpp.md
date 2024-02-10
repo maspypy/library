@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -129,19 +129,19 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
-  - graph/planar_graph.hpp
-  - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
+  - geo/max_norm_sum.hpp
+  - graph/planar_graph.hpp
   timestamp: '2023-12-21 22:18:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc202_f.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/yukicoder/1777.test.cpp
+  - test_atcoder/abc139f.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test/yukicoder/1777.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

@@ -13,13 +13,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -498,17 +498,16 @@ data:
     \ x) { fastio::wt(x.to_string()); }\nvoid rd(BigInteger &x) {\n  string s;\n \
     \ fastio::rd(s);\n  x = BigInteger(s);\n}\n#endif\n#line 2 \"bigint/binary.hpp\"\
     \n\nstruct BigInteger_Binary {\n  static constexpr int LOG = 30;\n  static constexpr\
-    \ int MOD = 1 << LOG;\n  using bint = BigInteger_Binary;\n  int sgn; // +1 or\
-    \ -1. \u5185\u90E8\u72B6\u614B\u3067 -0 \u3092\u8A31\u5BB9\u3059\u308B.\n  vc<int>\
+    \ int MOD = 1 << LOG;\n  using bint = BigInteger_Binary;\n  int sgn;\n  vc<int>\
     \ dat;\n\n  BigInteger_Binary() : sgn(0) {}\n  BigInteger_Binary(i128 val) {\n\
     \    if (val == 0) {\n      sgn = 0;\n      return;\n    }\n    sgn = 1;\n   \
-    \ if (val != 0) {\n      if (val < 0) sgn = -1, val = -val;\n      while (val\
-    \ > 0) {\n        dat.eb(val % MOD);\n        val /= MOD;\n      }\n    }\n  }\n\
-    \  BigInteger_Binary(string s) {\n    assert(!s.empty());\n    sgn = 1;\n    if\
-    \ (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n      assert(!s.empty());\n\
-    \    }\n    if (s[0] == '0') {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n\
-    \    int n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i,\
-    \ n) { dat[i / LOG] += ((s[i] - '0') << (i % LOG)); }\n  }\n  bint &operator=(const\
+    \ if (val < 0) sgn = -1, val = -val;\n    while (val > 0) {\n      dat.eb(val\
+    \ % MOD);\n      val /= MOD;\n    }\n  }\n  BigInteger_Binary(string s) {\n  \
+    \  assert(!s.empty());\n    sgn = 1;\n    if (s[0] == '-') {\n      sgn = -1;\n\
+    \      s.erase(s.begin());\n      assert(!s.empty());\n    }\n    if (s[0] ==\
+    \ '0') {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n    int\
+    \ n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i, n)\
+    \ { dat[i / LOG] += ((s[i] - '0') << (i % LOG)); }\n  }\n  bint &operator=(const\
     \ bint &p) {\n    sgn = p.sgn;\n    dat = p.dat;\n    return *this;\n  }\n  bool\
     \ operator<(const bint &p) const {\n    if (sgn != p.sgn) return sgn < p.sgn;\n\
     \    if (sgn == 0) return false;\n    if (len(dat) != len(p.dat)) {\n      if\
@@ -518,13 +517,13 @@ data:
     \ return dat[i] > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const\
     \ bint &p) const { return p < *this; }\n  bool operator<=(const bint &p) const\
     \ { return !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this\
-    \ < p); }\n  bint &operator+=(const bint &p) {\n    if (sgn == 0) { return *this\
+    \ < p); }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) { return *this\
     \ = p; }\n    if (p.sgn == 0) { return *this; }\n    if (sgn != p.sgn) {\n   \
     \   *this -= (-p);\n      return *this;\n    }\n    int n = max(len(dat), len(p.dat));\n\
     \    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat)) dat[i] +=\
     \ p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n    }\n\
     \    while (len(dat) && dat.back() == 0) dat.pop_back();\n    return *this;\n\
-    \  }\n  bint &operator-=(const bint &p) {\n    if (sgn == 0) return *this = (-p);\n\
+    \  }\n  bint &operator-=(const bint p) {\n    if (sgn == 0) return *this = (-p);\n\
     \    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn) {\n      *this += (-p);\n\
     \      return *this;\n    }\n    if ((sgn == 1 && *this < p) || (sgn == -1 &&\
     \ *this > p)) {\n      *this = p - *this;\n      sgn = -sgn;\n      return *this;\n\
@@ -570,14 +569,21 @@ data:
     \ && A.back() == u32(0)) POP(A);\n      if (A.empty()) break;\n      u64 rm =\
     \ 0;\n      FOR_R(i, len(A)) {\n        rm = rm * MOD + A[i];\n        A[i] =\
     \ rm / p;\n        rm %= p;\n      }\n      res.eb(rm);\n    }\n    reverse(all(res));\n\
-    \    return res;\n  }\n\n#ifdef FASTIO\n  void write() { fastio::printer.write(to_string());\
-    \ }\n  void read() {\n    string s;\n    fastio::scanner.read(s);\n    *this =\
-    \ bint(s);\n  }\n#endif\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
-    \ static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/bigint.test.cpp\"\
+    \    return res;\n  }\n\n  void add_power_of_2(int k) {\n    int q = k / LOG,\
+    \ r = k % LOG;\n    if (sgn == 0) sgn = 1;\n    if (q >= len(dat)) dat.resize(q\
+    \ + 1);\n    if (sgn == 1) {\n      dat[q] += 1 << r;\n      while (dat[q] >=\
+    \ MOD) {\n        dat[q] -= MOD;\n        if (q + 1 >= len(dat)) dat.resize(q\
+    \ + 2);\n        dat[q + 1] += 1;\n        q += 1;\n      }\n    } else {\n  \
+    \    dat[q] += 1 << r;\n      while (dat[q] >= MOD) {\n        dat[q] -= MOD;\n\
+    \        if (q + 1 >= len(dat)) dat.resize(q + 2);\n        dat[q + 1] += 1;\n\
+    \        q += 1;\n      }\n    }\n  }\n\n  void substract_power_of_2(int k) {}\n\
+    };\n\n#ifdef FASTIO\nvoid wt(BigInteger_Binary x) { fastio::wt(x.to_string());\
+    \ }\n#endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
+    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
+    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
+    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
+    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/bigint.test.cpp\"\
     \n\ntemplate <typename B>\nvoid test() {\n  int x = 0, y = 0;\n  B X(x), Y(y);\n\
     \  FOR(100) {\n    FOR(1000) {\n      int a = RNG(-3, 4);\n      int b = RNG(-3,\
     \ 4);\n      if (RNG(0, 2)) {\n        x += a, y += b;\n        X += a, Y += b;\n\
@@ -618,7 +624,7 @@ data:
   isVerificationFile: true
   path: test/mytest/bigint.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/bigint.test.cpp

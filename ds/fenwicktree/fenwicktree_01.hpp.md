@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/predecessor_problem_4.test.cpp
+    title: test/library_checker/datastructure/predecessor_problem_4.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
@@ -30,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/694.test.cpp
     title: test/yukicoder/694.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -83,7 +86,7 @@ data:
     \ n, F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    N = m;\n    n\
     \ = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n    bit.build(n);\n  }\n\
     \n  template <typename F>\n  void build(int m, F f) {\n    N = m;\n    n = ceil<int>(N\
-    \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(1)\
+    \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(f(i))\
     \ << (i % 64); }\n    bit.build(n, [&](int i) -> int { return popcnt(dat[i]);\
     \ });\n  }\n\n  int sum_all() { return bit.sum_all(); }\n  int sum(int k) { return\
     \ prefix_sum(k); }\n  int prefix_sum(int k) {\n    int ans = bit.sum(k / 64);\n\
@@ -106,7 +109,7 @@ data:
     \ n, F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    N = m;\n    n\
     \ = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n    bit.build(n);\n  }\n\
     \n  template <typename F>\n  void build(int m, F f) {\n    N = m;\n    n = ceil<int>(N\
-    \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(1)\
+    \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(f(i))\
     \ << (i % 64); }\n    bit.build(n, [&](int i) -> int { return popcnt(dat[i]);\
     \ });\n  }\n\n  int sum_all() { return bit.sum_all(); }\n  int sum(int k) { return\
     \ prefix_sum(k); }\n  int prefix_sum(int k) {\n    int ans = bit.sum(k / 64);\n\
@@ -130,16 +133,17 @@ data:
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
   - seq/inversion.hpp
-  timestamp: '2024-01-28 04:43:34+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-02-11 04:08:39+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc190f.test.cpp
-  - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/yukicoder/694.test.cpp
+  - test/mytest/fenwick01.test.cpp
   - test/aoj/ALDS1_5.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
-  - test/mytest/fenwick01.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/694.test.cpp
+  - test/library_checker/datastructure/predecessor_problem_4.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

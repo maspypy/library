@@ -28,6 +28,9 @@ data:
     path: test/yukicoder/1848.test.cpp
     title: test/yukicoder/1848.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2626_2.test.cpp
+    title: test/yukicoder/2626_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -55,19 +58,20 @@ data:
   isVerificationFile: false
   path: string/zalgorithm.hpp
   requiredBy:
-  - seq/interpolate_periodic_sequence.hpp
-  - string/is_substring.hpp
   - string/run_enumerate.hpp
+  - string/is_substring.hpp
+  - seq/interpolate_periodic_sequence.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc279b.test.cpp
+  - test_atcoder/abc237ex.test.cpp
+  - test/mytest/is_substring.test.cpp
+  - test/yukicoder/1848.test.cpp
+  - test/yukicoder/2626_2.test.cpp
   - test/library_checker/string/zalgorithm.test.cpp
   - test/library_checker/string/run_enumerate.test.cpp
   - test/library_checker/string/run_enumerate_vec.test.cpp
-  - test/yukicoder/1848.test.cpp
-  - test/mytest/is_substring.test.cpp
 documentation_of: string/zalgorithm.hpp
 layout: document
 redirect_from:
