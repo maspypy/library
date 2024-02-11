@@ -46,40 +46,44 @@ data:
     \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
     \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
     \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
-    \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
-    \ i = 0;\n    E s = G::unit();\n    int k = 1 << topbit(n);\n    while (k) {\n\
-    \      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n\
-    \        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n  \
-    \  return i;\n  }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L = 0) {\n    assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n\
-    \    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1)\
-    \ {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n\
-    \        if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
+    \ F>\n  int max_right(const F check, int L = 0) {\n    assert(check(G::unit()));\n\
+    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
+    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) +\
+    \ 1; }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) { return\
+    \ k; }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n\
+    \    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat))\
+    \ {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(t)) { i\
+    \ += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n\
+    \  template <class F>\n  int max_right_with_index(const F check, int L = 0) {\n\
+    \    assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
+    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
+    \        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n \
+    \       if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
     \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
-    \ k) - 1]);\n        if (!check(t)) { return k; }\n        s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
-    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (check(t)) { i += (1 << k), s = t; }\n      }\n    }\n  \
-    \  return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
-    \ F check, int L = 0) {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
-    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
-    \ {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) + 1; }\n        int\
-    \ k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n\
-    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
-    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
-    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t))\
-    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  int kth(E\
-    \ k, int L = 0) {\n    return max_right([&k](E x) -> bool { return x <= k; },\
-    \ L);\n  }\n};\n#line 2 \"seq/factorial_digit_system.hpp\"\n\n// \u53F3\u306B\u3042\
-    \u308B\u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570 [2,0,3,1] \u2192 [2,0,1,0]\n\
-    vc<int> to_factorial_digit_system(vc<int>& A) {\n  int N = len(A);\n  for (auto&&\
-    \ x: A) assert(0 <= x && x < N);\n  FenwickTree<Monoid_Add<int>> bit(N);\n  vc<int>\
-    \ B(N);\n  FOR_R(i, N) B[i] = bit.sum(0, A[i]), bit.add(A[i], 1);\n  return B;\n\
-    }\n\n// \u53F3\u306B\u3042\u308B\u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570\
-    \ [2,0,1,0] \u2192 [2,0,3,1]\nvc<int> from_factorial_digit_system(vc<int>& A)\
-    \ {\n  int N = len(A);\n  for (auto&& x: A) assert(0 <= x && x < N);\n  vc<int>\
+    \ k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n        s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n\
+    \      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t)) { i += (1 << k),\
+    \ s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) {\n    assert(check(G::unit()));\n    E s = G::unit();\n\
+    \    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\u307E\u3067\
+    \u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n      s = G::op(s,\
+    \ dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n    }\n    if (check(s))\
+    \ {\n      assert(i == 0);\n      return 0;\n    }\n    // 2^k \u9032\u3080\u3068\
+    \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
+    \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
+    \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
+    \ bool { return x <= k; }, L);\n  }\n};\n#line 2 \"seq/factorial_digit_system.hpp\"\
+    \n\n// \u53F3\u306B\u3042\u308B\u5C0F\u3055\u3044\u3084\u3064\u306E\u500B\u6570\
+    \ [2,0,3,1] \u2192 [2,0,1,0]\nvc<int> to_factorial_digit_system(vc<int>& A) {\n\
+    \  int N = len(A);\n  for (auto&& x: A) assert(0 <= x && x < N);\n  FenwickTree<Monoid_Add<int>>\
+    \ bit(N);\n  vc<int> B(N);\n  FOR_R(i, N) B[i] = bit.sum(0, A[i]), bit.add(A[i],\
+    \ 1);\n  return B;\n}\n\n// \u53F3\u306B\u3042\u308B\u5C0F\u3055\u3044\u3084\u3064\
+    \u306E\u500B\u6570 [2,0,1,0] \u2192 [2,0,3,1]\nvc<int> from_factorial_digit_system(vc<int>&\
+    \ A) {\n  int N = len(A);\n  for (auto&& x: A) assert(0 <= x && x < N);\n  vc<int>\
     \ ANS(N);\n  FenwickTree<Monoid_Add<int>> bit(N, [&](int i) -> int { return 1;\
     \ });\n  FOR(i, N) {\n    ANS[i] = bit.kth(A[i]);\n    bit.add(ANS[i], -1);\n\
     \  }\n  return ANS;\n}\n"
@@ -100,7 +104,7 @@ data:
   isVerificationFile: false
   path: seq/factorial_digit_system.hpp
   requiredBy: []
-  timestamp: '2024-02-11 04:36:45+09:00'
+  timestamp: '2024-02-11 04:52:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/factorial_digit.test.cpp

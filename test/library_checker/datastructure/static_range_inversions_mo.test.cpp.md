@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
   - icon: ':question:'
@@ -223,54 +223,59 @@ data:
     \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
     \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
     \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
-    \ F>\n  int max_right(const F check) {\n    assert(check(G::unit()));\n    int\
-    \ i = 0;\n    E s = G::unit();\n    int k = 1 << topbit(n);\n    while (k) {\n\
-    \      if (i + k - 1 < len(dat)) {\n        E t = G::op(s, dat[i + k - 1]);\n\
-    \        if (check(t)) { i += k, s = t; }\n      }\n      k >>= 1;\n    }\n  \
-    \  return i;\n  }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L = 0) {\n    assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n\
-    \    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1)\
-    \ {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n\
-    \        if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
+    \ F>\n  int max_right(const F check, int L = 0) {\n    assert(check(G::unit()));\n\
+    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
+    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) +\
+    \ 1; }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) { return\
+    \ k; }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n\
+    \    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat))\
+    \ {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(t)) { i\
+    \ += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n\
+    \  template <class F>\n  int max_right_with_index(const F check, int L = 0) {\n\
+    \    assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
+    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
+    \        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n \
+    \       if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
     \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
-    \ k) - 1]);\n        if (!check(t)) { return k; }\n        s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
-    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
-    \ - 1]);\n        if (check(t)) { i += (1 << k), s = t; }\n      }\n    }\n  \
-    \  return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
-    \ F check, int L = 0) {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
-    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
-    \ {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i\
-    \ - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) + 1; }\n        int\
-    \ k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n\
-    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
-    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
-    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t))\
-    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  int kth(E\
-    \ k, int L = 0) {\n    return max_right([&k](E x) -> bool { return x <= k; },\
-    \ L);\n  }\n};\n#line 1 \"ds/offline_query/mo.hpp\"\n// Nsqrt(Q)\r\nstruct Mo\
-    \ {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int R) { LR.emplace_back(L,\
-    \ R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int, int>> LR) {\r\n    int\
-    \ N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N, r);\r\n    int Q\
-    \ = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3) * N / sqrt(2\
-    \ * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I), 0);\r\n\
-    \    sort(all(I), [&](int a, int b) {\r\n      int aa = LR[a].fi / bs, bb = LR[b].fi\
-    \ / bs;\r\n      if (aa != bb) return aa < bb;\r\n      return (aa & 1) ? LR[a].se\
-    \ > LR[b].se : LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto cost = [&](int\
-    \ a, int b) -> int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se\
-    \ - LR[I[b]].se);\r\n    };\r\n\r\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\
-    \u30B9\u3067\u6570\u30D1\u30FC\u30BB\u30F3\u30C8\r\n    FOR(k, Q - 5) {\r\n  \
-    \    if (cost(k, k + 2) + cost(k + 1, k + 3)\r\n          < cost(k, k + 1) + cost(k\
-    \ + 2, k + 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n      }\r\n      if (cost(k,\
-    \ k + 3) + cost(k + 1, k + 4)\r\n          < cost(k, k + 1) + cost(k + 3, k +\
-    \ 4)) {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\n    }\r\n    return\
-    \ I;\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5>\r\n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query)\
-    \ {\r\n    auto I = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\n    for (auto\
-    \ idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se)\
-    \ add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se)\
-    \ rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
+    \ k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n        s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n\
+    \      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t)) { i += (1 << k),\
+    \ s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) {\n    assert(check(G::unit()));\n    E s = G::unit();\n\
+    \    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\u307E\u3067\
+    \u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n      s = G::op(s,\
+    \ dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n    }\n    if (check(s))\
+    \ {\n      assert(i == 0);\n      return 0;\n    }\n    // 2^k \u9032\u3080\u3068\
+    \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
+    \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
+    \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
+    \ bool { return x <= k; }, L);\n  }\n};\n#line 1 \"ds/offline_query/mo.hpp\"\n\
+    // Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int\
+    \ R) { LR.emplace_back(L, R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int,\
+    \ int>> LR) {\r\n    int N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N,\
+    \ r);\r\n    int Q = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3)\
+    \ * N / sqrt(2 * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I),\
+    \ 0);\r\n    sort(all(I), [&](int a, int b) {\r\n      int aa = LR[a].fi / bs,\
+    \ bb = LR[b].fi / bs;\r\n      if (aa != bb) return aa < bb;\r\n      return (aa\
+    \ & 1) ? LR[a].se > LR[b].se : LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto\
+    \ cost = [&](int a, int b) -> int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi)\
+    \ + abs(LR[I[a]].se - LR[I[b]].se);\r\n    };\r\n\r\n    // \u30E9\u30F3\u30C0\
+    \u30E0\u30B1\u30FC\u30B9\u3067\u6570\u30D1\u30FC\u30BB\u30F3\u30C8\r\n    FOR(k,\
+    \ Q - 5) {\r\n      if (cost(k, k + 2) + cost(k + 1, k + 3)\r\n          < cost(k,\
+    \ k + 1) + cost(k + 2, k + 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n    \
+    \  }\r\n      if (cost(k, k + 3) + cost(k + 1, k + 4)\r\n          < cost(k, k\
+    \ + 1) + cost(k + 3, k + 4)) {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\
+    \n    }\r\n    return I;\r\n  }\r\n\r\n  template <typename F1, typename F2, typename\
+    \ F3, typename F4, typename F5>\r\n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4\
+    \ rm_r, F5 query) {\r\n    auto I = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\
+    \n    for (auto idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n    \
+    \  while (r < LR[idx].se) add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\
+    \n      while (r > LR[idx].se) rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\
+    \n};\r\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
     \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
     \n  FenwickTree<Monoid_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n \
@@ -311,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2024-02-11 04:36:45+09:00'
+  timestamp: '2024-02-11 04:52:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
