@@ -271,12 +271,22 @@ data:
     \  void add(int k, int x) {\n    if (x == 1) add(k);\n    if (x == -1) remove(k);\n\
     \  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
     \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
-    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k) {\n    assert(k < sum_all());\n\
-    \    int r = 0;\n    int idx = bit.max_right([&](int s) -> int {\n      if (s\
-    \ <= k) r = k - s;\n      return s <= k;\n    });\n    u64 x = dat[idx];\n   \
-    \ int p = popcnt(x);\n    k = binary_search([&](int n) -> bool { return (p - popcnt(x\
-    \ >> n)) <= r; },\n                      0, 64, 0);\n    return 64 * idx + k;\n\
-    \  }\n};\n#line 7 \"test/library_checker/datastructure/predecessor_problem_4.test.cpp\"\
+    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
+    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
+    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
+    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
+    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
+    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
+    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
+    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
+    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
+    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
+    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
+    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
+    \  return 64 * idx + topbit(dat[idx]);\n  }\n};\n#line 7 \"test/library_checker/datastructure/predecessor_problem_4.test.cpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  STR(T);\n\n  FenwickTree_01 bit(N, [&](int\
     \ i) -> int { return T[i] - '0'; });\n  FOR(Q) {\n    INT(t, k);\n    if (t ==\
     \ 0) {\n      if (bit.sum(k, k + 1) == 0) bit.add(k, 1);\n    }\n    if (t ==\
@@ -308,7 +318,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/predecessor_problem_4.test.cpp
   requiredBy: []
-  timestamp: '2024-02-11 04:52:18+09:00'
+  timestamp: '2024-02-12 02:02:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/predecessor_problem_4.test.cpp

@@ -118,12 +118,22 @@ data:
     \  void add(int k, int x) {\n    if (x == 1) add(k);\n    if (x == -1) remove(k);\n\
     \  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
     \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
-    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k) {\n    assert(k < sum_all());\n\
-    \    int r = 0;\n    int idx = bit.max_right([&](int s) -> int {\n      if (s\
-    \ <= k) r = k - s;\n      return s <= k;\n    });\n    u64 x = dat[idx];\n   \
-    \ int p = popcnt(x);\n    k = binary_search([&](int n) -> bool { return (p - popcnt(x\
-    \ >> n)) <= r; },\n                      0, 64, 0);\n    return 64 * idx + k;\n\
-    \  }\n};\n"
+    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
+    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
+    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
+    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
+    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
+    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
+    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
+    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
+    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
+    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
+    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
+    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
+    \  return 64 * idx + topbit(dat[idx]);\n  }\n};\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\n\nstruct FenwickTree_01 {\n\
     \  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>> bit;\n  FenwickTree_01()\
     \ {}\n  FenwickTree_01(int n) { build(n); }\n  template <typename F>\n  FenwickTree_01(int\
@@ -142,11 +152,21 @@ data:
     \ == 1) add(k);\n    if (x == -1) remove(k);\n  }\n\n  void add(int k) {\n   \
     \ dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int\
     \ k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n\
-    \  }\n\n  int kth(int k) {\n    assert(k < sum_all());\n    int r = 0;\n    int\
-    \ idx = bit.max_right([&](int s) -> int {\n      if (s <= k) r = k - s;\n    \
-    \  return s <= k;\n    });\n    u64 x = dat[idx];\n    int p = popcnt(x);\n  \
-    \  k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= r; },\n\
-    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n};"
+    \  }\n\n  int kth(int k, int L = 0) {\n    if (k >= sum_all()) return N;\n   \
+    \ k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int\
+    \ mid = 0;\n    auto check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid,\
+    \ e);\n      return e <= k;\n    };\n    int idx = bit.max_right(check, L);\n\
+    \    if (idx == n) return N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p\
+    \ = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search([&](int n) ->\
+    \ bool { return (p - popcnt(x >> n)) <= k; },\n                      0, 64, 0);\n\
+    \    return 64 * idx + k;\n  }\n\n  int next(int k) {\n    int idx = k / 64;\n\
+    \    k %= 64;\n    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return\
+    \ 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx + 1);\n    if (idx == n || !dat[idx])\
+    \ return N;\n    return 64 * idx + lowbit(dat[idx]);\n  }\n\n  int prev(int k)\
+    \ {\n    if (k == N) --k;\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n\
+    \    if (k < 63) x &= (u64(1) << (k + 1)) - 1;\n    if (x) return 64 * idx + topbit(x);\n\
+    \    idx = bit.min_left([&](auto e) -> bool { return e <= 0; }, idx) - 1;\n  \
+    \  if (idx == -1) return -1;\n    return 64 * idx + topbit(dat[idx]);\n  }\n};"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
@@ -154,7 +174,7 @@ data:
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
   - seq/inversion.hpp
-  timestamp: '2024-02-11 04:52:18+09:00'
+  timestamp: '2024-02-12 02:02:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc190f.test.cpp

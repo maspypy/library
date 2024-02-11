@@ -208,6 +208,9 @@ data:
     path: test/library_checker/datastructure/predecessor_problem_4.test.cpp
     title: test/library_checker/datastructure/predecessor_problem_4.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/predecessor_problem_5.test.cpp
+    title: test/library_checker/datastructure/predecessor_problem_5.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -698,6 +701,7 @@ data:
   - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - test/library_checker/datastructure/predecessor_problem_5.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp

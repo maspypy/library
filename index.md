@@ -97,7 +97,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
     - icon: ':heavy_check_mark:'
@@ -432,7 +432,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_segtree.hpp
       title: ds/segtree/dynamic_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_segtree_sparse.hpp
       title: ds/segtree/dynamic_segtree_sparse.hpp
     - icon: ':heavy_check_mark:'
@@ -1421,7 +1421,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/dice.hpp
       title: other/dice.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
     - icon: ':heavy_check_mark:'
@@ -2263,6 +2263,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/predecessor_problem_4.test.cpp
       title: test/library_checker/datastructure/predecessor_problem_4.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/datastructure/predecessor_problem_5.test.cpp
+      title: test/library_checker/datastructure/predecessor_problem_5.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
       title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
@@ -4016,7 +4019,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2626_2.test.cpp
       title: test/yukicoder/2626_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/2627.test.cpp
       title: test/yukicoder/2627.test.cpp
     - icon: ':heavy_check_mark:'

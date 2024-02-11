@@ -76,6 +76,9 @@ data:
     path: test/library_checker/datastructure/predecessor_problem_4.test.cpp
     title: test/library_checker/datastructure/predecessor_problem_4.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/predecessor_problem_5.test.cpp
+    title: test/library_checker/datastructure/predecessor_problem_5.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - icon: ':heavy_check_mark:'
@@ -348,6 +351,7 @@ data:
   - test/library_checker/datastructure/predecessor_problem_4.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - test/library_checker/datastructure/predecessor_problem_5.test.cpp
   - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp

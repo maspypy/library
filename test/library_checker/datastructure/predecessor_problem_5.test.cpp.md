@@ -4,9 +4,9 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/segtree/dynamic_segtree_sparse.hpp
-    title: ds/segtree/dynamic_segtree_sparse.hpp
+  - icon: ':question:'
+    path: ds/fenwicktree/fenwicktree.hpp
+    title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,12 +20,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
+    PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
     links:
-    - https://judge.yosupo.jp/problem/double_ended_priority_queue
-  bundledCode: "#line 1 \"test/library_checker/datastructure/double_ended_pq_2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/predecessor_problem
+  bundledCode: "#line 1 \"test/library_checker/datastructure/predecessor_problem_5.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// \u53C2\u8003 https://codeforces.com/blog/entry/96344\n// bmi,bmi2,lzcnt\
     \ \u306F ucup \u3067\u30B3\u30F3\u30D1\u30A4\u30EB\u30A8\u30E9\u30FC\n#pragma\
     \ GCC optimize(\"Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n\n\
@@ -190,129 +190,104 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\
-    \u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\
-    \u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\
-    \u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\
-    \u985E\u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\
-    \u822C\u306B\u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\u3044\
-    \u5834\u5408\u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\u308B\
-    \u3053\u3068\u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\ntemplate <typename\
-    \ Monoid, bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n    ll\
-    \ idx;\n    Node *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n  vc<np> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
-    \ L0, ll R0) : L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n\n\
-    \  // \u6728 dp \u306E\u30DE\u30FC\u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\
-    \u7528\u3059\u308B\u3068 MLE \u56DE\u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\
-    \u308B\n  // https://codeforces.com/problemset/problem/671/D\n  void free_subtree(np\
-    \ c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs,\
-    \ c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs,\
-    \ c);\n  }\n\n  np new_root() { return nullptr; }\n\n  np new_node(ll idx, const\
-    \ X x) {\n    if (!FREE.empty()) {\n      np c = POP(FREE);\n      c->idx = idx,\
-    \ c->l = c->r = nullptr;\n      c->prod = c->x = x;\n      return c;\n    }\n\
-    \    pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
-    \ = pool[pid].prod = x;\n    return &(pool[pid++]);\n  }\n\n  X prod(np root,\
-    \ ll l, ll r) {\n    assert(L0 <= l && l <= r && r <= R0);\n    if (l == r) return\
-    \ MX::unit();\n    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n \
-    \   return x;\n  }\n\n  X prod_all(np root) { return prod(root, L0, R0); }\n\n\
-    \  np set(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return\
-    \ set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i, const X &x)\
-    \ {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root, L0, R0, i,\
-    \ x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check, ll L)\
-    \ {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
-    \    return max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename\
-    \ F>\n  ll min_left(np root, F check, ll R) {\n    assert(L0 <= R && R <= R0 &&\
-    \ check(MX::unit()));\n    X x = MX::unit();\n    return min_left_rec(root, check,\
-    \ L0, R0, R, x);\n  }\n\n  void reset() { pid = 0; }\n\n  vc<pair<ll, X>> get_all(np\
-    \ root) {\n    vc<pair<ll, X>> res;\n    auto dfs = [&](auto &dfs, np c) -> void\
-    \ {\n      if (!c) return;\n      dfs(dfs, c->l);\n      res.eb(c->idx, c->x);\n\
-    \      dfs(dfs, c->r);\n    };\n    dfs(dfs, root);\n    return res;\n  }\n\n\
-    \  X get(np root, ll idx) {\n    auto dfs = [&](auto &dfs, np c) -> X {\n    \
-    \  if (!c) return Monoid::unit();\n      if (idx == c->idx) return c->x;\n   \
-    \   if (idx < (c->idx)) return dfs(dfs, c->l);\n      return dfs(dfs, c->r);\n\
-    \    };\n    return dfs(dfs, root);\n  }\n\nprivate:\n  void update(np c) {\n\
-    \    c->prod = c->x;\n    if (c->l) c->prod = MX::op(c->l->prod, c->prod);\n \
-    \   if (c->r) c->prod = MX::op(c->prod, c->r->prod);\n  }\n\n  np copy_node(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].idx = c->idx;\n  \
-    \  pool[pid].l = c->l;\n    pool[pid].r = c->r;\n    pool[pid].x = c->x;\n   \
-    \ pool[pid].prod = c->prod;\n    return &(pool[pid++]);\n  }\n\n  np set_rec(np\
-    \ c, ll l, ll r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n    \
-    \  return c;\n    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x\
-    \ = x;\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n  \
-    \  if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n     \
-    \ c->l = set_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < c->idx)\
-    \ swap(c->idx, i), swap(c->x, x);\n      c->r = set_rec(c->r, m, r, i, x);\n \
-    \   }\n    update(c);\n    return c;\n  }\n\n  np multiply_rec(np c, ll l, ll\
-    \ r, ll i, X x) {\n    if (!c) {\n      c = new_node(i, x);\n      return c;\n\
-    \    }\n    c = copy_node(c);\n    if (c->idx == i) {\n      c->x = MX::op(c->x,\
-    \ x);\n      update(c);\n      return c;\n    }\n    ll m = (l + r) / 2;\n   \
-    \ if (i < m) {\n      if (c->idx < i) swap(c->idx, i), swap(c->x, x);\n      c->l\
-    \ = multiply_rec(c->l, l, m, i, x);\n    }\n    if (m <= i) {\n      if (i < c->idx)\
-    \ swap(c->idx, i), swap(c->x, x);\n      c->r = multiply_rec(c->r, m, r, i, x);\n\
-    \    }\n    update(c);\n    return c;\n  }\n\n  void prod_rec(np c, ll l, ll r,\
-    \ ll ql, ll qr, X &x) {\n    chmax(ql, l);\n    chmin(qr, r);\n    if (ql >= qr\
-    \ || !c) return;\n    if (l == ql && r == qr) {\n      x = MX::op(x, c->prod);\n\
-    \      return;\n    }\n    ll m = (l + r) / 2;\n    prod_rec(c->l, l, m, ql, qr,\
-    \ x);\n    if (ql <= (c->idx) && (c->idx) < qr) x = MX::op(x, c->x);\n    prod_rec(c->r,\
-    \ m, r, ql, qr, x);\n  }\n\n  template <typename F>\n  ll max_right_rec(np c,\
-    \ const F &check, ll l, ll r, ll ql, X &x) {\n    if (!c || r <= ql) return R0;\n\
-    \    if (check(MX::op(x, c->prod))) {\n      x = MX::op(x, c->prod);\n      return\
-    \ R0;\n    }\n    ll m = (l + r) / 2;\n    ll k = max_right_rec(c->l, check, l,\
-    \ m, ql, x);\n    if (k != R0) return k;\n    if (ql <= (c->idx)) {\n      x =\
-    \ MX::op(x, c->x);\n      if (!check(x)) return c->idx;\n    }\n    return max_right_rec(c->r,\
-    \ check, m, r, ql, x);\n  }\n\n  template <typename F>\n  ll min_left_rec(np c,\
-    \ const F &check, ll l, ll r, ll qr, X &x) {\n    if (!c || qr <= l) return L0;\n\
-    \    if (check(MX::op(c->prod, x))) {\n      x = MX::op(c->prod, x);\n      return\
-    \ L0;\n    }\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check, m,\
-    \ r, qr, x);\n    if (k != L0) return k;\n    if (c->idx < qr) {\n      x = MX::op(c->x,\
-    \ x);\n      if (!check(x)) return c->idx + 1;\n    }\n    return min_left_rec(c->l,\
-    \ check, l, m, qr, x);\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
-    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
-    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
-    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/double_ended_pq_2.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  const int LIM = 1'000'000'000;\n\
-    \n  Dynamic_SegTree_Sparse<Monoid_Add<int>, false, 1'000'000> seg(-LIM, LIM +\
-    \ 1);\n  using np = typename decltype(seg)::np;\n  np root = nullptr;\n  for (auto&&\
-    \ a: A) root = seg.multiply(root, a, 1);\n\n  FOR(Q) {\n    LL(t);\n    if (t\
-    \ == 0) {\n      LL(x);\n      root = seg.multiply(root, x, 1);\n    }\n    if\
-    \ (t == 1) {\n      auto check = [&](auto e) -> bool { return e == 0; };\n   \
-    \   int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n      root\
-    \ = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto check =\
-    \ [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
-    \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
-    \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree_sparse.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A,\
-    \ N);\n  const int LIM = 1'000'000'000;\n\n  Dynamic_SegTree_Sparse<Monoid_Add<int>,\
-    \ false, 1'000'000> seg(-LIM, LIM + 1);\n  using np = typename decltype(seg)::np;\n\
-    \  np root = nullptr;\n  for (auto&& a: A) root = seg.multiply(root, a, 1);\n\n\
-    \  FOR(Q) {\n    LL(t);\n    if (t == 0) {\n      LL(x);\n      root = seg.multiply(root,\
-    \ x, 1);\n    }\n    if (t == 1) {\n      auto check = [&](auto e) -> bool { return\
-    \ e == 0; };\n      int ANS = seg.max_right(root, check, -LIM);\n      print(ANS);\n\
-    \      root = seg.multiply(root, ANS, -1);\n    }\n    if (t == 2) {\n      auto\
-    \ check = [&](auto e) -> bool { return e == 0; };\n      int ANS = seg.min_left(root,\
-    \ check, LIM + 1) - 1;\n      print(ANS);\n      root = seg.multiply(root, ANS,\
-    \ -1);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/predecessor_problem_5.test.cpp\"\
+    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
+    \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
+    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
+    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
+    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
+    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total;\
+    \ }\n  E sum_all() { return total; }\n  E sum(int k) { return prefix_sum(k); }\n\
+    \  E prod(int k) { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k);\
+    \ }\n  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for\
+    \ (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n\
+    \  E sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
+    \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
+    \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
+    \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
+    \ = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
+    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
+    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
+    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
+    \ F>\n  int max_right(const F check, int L = 0) {\n    assert(check(G::unit()));\n\
+    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
+    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) +\
+    \ 1; }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) { return\
+    \ k; }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n\
+    \    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat))\
+    \ {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(t)) { i\
+    \ += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n\
+    \  template <class F>\n  int max_right_with_index(const F check, int L = 0) {\n\
+    \    assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
+    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
+    \        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n \
+    \       if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
+    \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
+    \ k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n        s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n\
+    \      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t)) { i += (1 << k),\
+    \ s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) {\n    assert(check(G::unit()));\n    E s = G::unit();\n\
+    \    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\u307E\u3067\
+    \u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n      s = G::op(s,\
+    \ dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n    }\n    if (check(s))\
+    \ {\n      assert(i == 0);\n      return 0;\n    }\n    // 2^k \u9032\u3080\u3068\
+    \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
+    \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
+    \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
+    \ bool { return x <= k; }, L);\n  }\n};\n#line 7 \"test/library_checker/datastructure/predecessor_problem_5.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N, Q);\n  STR(T);\n\n  FenwickTree<Monoid_Add<int>>\
+    \ bit(N, [&](int i) -> int { return T[i] - '0'; });\n  FOR(Q) {\n    INT(t, k);\n\
+    \    if (t == 0) {\n      if (bit.sum(k, k + 1) == 0) bit.add(k, 1);\n    }\n\
+    \    if (t == 1) {\n      if (bit.sum(k, k + 1)) bit.add(k, -1);\n    }\n    if\
+    \ (t == 2) {\n      int ans = bit.sum(k, k + 1);\n      print(ans);\n    }\n \
+    \   if (t == 3) {\n      int ans = bit.kth(0, k);\n      if (ans == N) ans = -1;\n\
+    \      print(ans);\n    }\n    if (t == 4) {\n      int ans = bit.min_left([&](int\
+    \ x) -> bool { return x <= 0; }, k + 1) - 1;\n      print(ans);\n    }\n  }\n\
+    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\nvoid solve() {\n  INT(N, Q);\n  STR(T);\n\n  FenwickTree<Monoid_Add<int>>\
+    \ bit(N, [&](int i) -> int { return T[i] - '0'; });\n  FOR(Q) {\n    INT(t, k);\n\
+    \    if (t == 0) {\n      if (bit.sum(k, k + 1) == 0) bit.add(k, 1);\n    }\n\
+    \    if (t == 1) {\n      if (bit.sum(k, k + 1)) bit.add(k, -1);\n    }\n    if\
+    \ (t == 2) {\n      int ans = bit.sum(k, k + 1);\n      print(ans);\n    }\n \
+    \   if (t == 3) {\n      int ans = bit.kth(0, k);\n      if (ans == N) ans = -1;\n\
+    \      print(ans);\n    }\n    if (t == 4) {\n      int ans = bit.min_left([&](int\
+    \ x) -> bool { return x <= 0; }, k + 1) - 1;\n      print(ans);\n    }\n  }\n\
+    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/segtree/dynamic_segtree_sparse.hpp
+  - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
+  path: test/library_checker/datastructure/predecessor_problem_5.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-12 02:02:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/double_ended_pq_2.test.cpp
+documentation_of: test/library_checker/datastructure/predecessor_problem_5.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/double_ended_pq_2.test.cpp
-- /verify/test/library_checker/datastructure/double_ended_pq_2.test.cpp.html
-title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
+- /verify/test/library_checker/datastructure/predecessor_problem_5.test.cpp
+- /verify/test/library_checker/datastructure/predecessor_problem_5.test.cpp.html
+title: test/library_checker/datastructure/predecessor_problem_5.test.cpp
 ---
