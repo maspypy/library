@@ -57,17 +57,45 @@ struct FenwickTree_01 {
     bit.add(k / 64, -1);
   }
 
-  int kth(int k) {
-    assert(k < sum_all());
-    int r = 0;
-    int idx = bit.max_right([&](int s) -> int {
-      if (s <= k) r = k - s;
-      return s <= k;
-    });
+  int kth(int k, int L = 0) {
+    if (k >= sum_all()) return N;
+    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));
+    L /= 64;
+    int mid = 0;
+    auto check = [&](auto e) -> bool {
+      if (e <= k) chmax(mid, e);
+      return e <= k;
+    };
+    int idx = bit.max_right(check, L);
+    if (idx == n) return N;
+    k -= mid;
     u64 x = dat[idx];
     int p = popcnt(x);
-    k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= r; },
+    if (p <= k) return N;
+    k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },
                       0, 64, 0);
     return 64 * idx + k;
+  }
+
+  int next(int k) {
+    int idx = k / 64;
+    k %= 64;
+    u64 x = dat[idx] & ~((u64(1) << k) - 1);
+    if (x) return 64 * idx + lowbit(x);
+    idx = bit.kth(0, idx + 1);
+    if (idx == n || !dat[idx]) return N;
+    return 64 * idx + lowbit(dat[idx]);
+  }
+
+  int prev(int k) {
+    if (k == N) --k;
+    int idx = k / 64;
+    k %= 64;
+    u64 x = dat[idx];
+    if (k < 63) x &= (u64(1) << (k + 1)) - 1;
+    if (x) return 64 * idx + topbit(x);
+    idx = bit.min_left([&](auto e) -> bool { return e <= 0; }, idx) - 1;
+    if (idx == -1) return -1;
+    return 64 * idx + topbit(dat[idx]);
   }
 };
