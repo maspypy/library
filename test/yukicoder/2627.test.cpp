@@ -38,7 +38,8 @@ void solve() {
   }
   // FOR(k, K + K) print("dat", k, dat[k]);
 
-  auto [q, r] = divmod(U - L + 1, K);
+  ll q, r;
+  tie(q, r) = divmod(U - L + 1, K);
   ll LIM = ceil<ll>(1LL << 40, K);
   Dynamic_SegTree_Sparse<Monoid_Add_Pair<ll>, false, 2000000> seg(0, LIM);
   using np = decltype(seg)::np;
