@@ -2,6 +2,7 @@
 
 // ほとんどテストされていないのであやしい
 // n=2 は現状サポートしていない
+// 同一直線上に複数の点があると正しく動かない説がある
 template <typename T>
 struct ConvexPolygon {
   using P = Point<T>;
