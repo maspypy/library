@@ -264,12 +264,6 @@ struct My_Bitset {
     FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);
   }
 
-  string to_string() const {
-    string S;
-    FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);
-    return S;
-  }
-
   // bitset に仕様を合わせる
   void set(int i) { (*this)[i] = 1; }
   void reset(int i) { (*this)[i] = 0; }
@@ -296,4 +290,22 @@ struct My_Bitset {
 
   int _Find_first() { return next(0); }
   int _Find_next(int p) { return next(p + 1); }
+
+  static string TO_STR[256];
+  string to_string() const {
+    if (TO_STR[0].empty()) precompute();
+    string S;
+    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }
+    S.resize(N);
+    return S;
+  }
+
+  static void precompute() {
+    FOR(s, 256) {
+      string x;
+      FOR(i, 8) x += '0' + (s >> i & 1);
+      TO_STR[s] = x;
+    }
+  }
 };
+string My_Bitset::TO_STR[256];
