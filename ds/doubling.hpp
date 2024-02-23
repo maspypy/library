@@ -62,6 +62,7 @@ struct Doubling {
     assert(check(x));
     FOR_R(k, LOG) {
       int j = TO[k][i];
+      if (j == -1) continue;
       X y = Monoid::op(x, DP[k][i]);
       if (check(y)) {
         step |= 1LL << k;
