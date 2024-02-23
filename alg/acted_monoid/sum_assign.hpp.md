@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -61,9 +61,9 @@ data:
   verifiedWith:
   - test_atcoder/abc256ex2.test.cpp
   - test_atcoder/abc256ex.test.cpp
-  - test/mytest/range_assign.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
   - test/yukicoder/2292.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/mytest/range_assign.test.cpp
 documentation_of: alg/acted_monoid/sum_assign.hpp
 layout: document
 redirect_from:

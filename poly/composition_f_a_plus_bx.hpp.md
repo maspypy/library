@@ -379,8 +379,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc133f.test.cpp
-  - test/yukicoder/2583.test.cpp
   - test/yukicoder/2580.test.cpp
+  - test/yukicoder/2583.test.cpp
 documentation_of: poly/composition_f_a_plus_bx.hpp
 layout: document
 redirect_from:

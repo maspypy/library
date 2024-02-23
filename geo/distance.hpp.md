@@ -163,8 +163,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc314.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
 documentation_of: geo/distance.hpp
 layout: document
 redirect_from:

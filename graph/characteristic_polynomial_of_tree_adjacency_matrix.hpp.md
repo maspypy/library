@@ -409,9 +409,9 @@ data:
   timestamp: '2023-12-15 23:42:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/2587.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
 documentation_of: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
 layout: document
 redirect_from:

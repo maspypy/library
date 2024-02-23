@@ -66,8 +66,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/static_range_freq.test.cpp
-  - test/library_checker/datastructure/static_range_frequency.test.cpp
   - test/library_checker/datastructure/static_range_mode_query.test.cpp
+  - test/library_checker/datastructure/static_range_frequency.test.cpp
 documentation_of: ds/to_small_key.hpp
 layout: document
 redirect_from:

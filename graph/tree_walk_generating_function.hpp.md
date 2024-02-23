@@ -696,9 +696,9 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/2587.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
 documentation_of: graph/tree_walk_generating_function.hpp
 layout: document
 redirect_from:

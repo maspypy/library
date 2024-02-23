@@ -149,17 +149,20 @@ data:
     \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
     \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
     \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
-    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  string to_string() const {\n    string\
-    \ S;\n    FOR(i, N) S += '0' + (dat[i >> 6] >> (i & 63) & 1);\n    return S;\n\
-    \  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int\
-    \ i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int\
-    \ i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat), u64(-1));\n  \
-    \  resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void flip() {\n \
-    \   FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat)\
-    \ - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n      flip(64\
-    \ * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i])\
-    \ return true;\n    }\n    return false;\n  }\n\n  int _Find_first() { return\
-    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n};\n"
+    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\
+    \u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i)\
+    \ { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n  void set()\
+    \ {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat),\
+    \ 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i];\
+    \ }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size())\
+    \ break;\n      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat))\
+    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
+    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n"
   code: "#pragma once\n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
     // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
     \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
@@ -251,40 +254,43 @@ data:
     \ dat[i] = u64(0);\n  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int\
     \ R) {\n    while (L < R && (L & 63)) { flip(L++); }\n    while (L < R && (R &\
     \ 63)) { flip(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n\
-    \  string to_string() const {\n    string S;\n    FOR(i, N) S += '0' + (dat[i\
-    \ >> 6] >> (i & 63) & 1);\n    return S;\n  }\n\n  // bitset \u306B\u4ED5\u69D8\
-    \u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void\
-    \ reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n\
-    \  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset()\
-    \ { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] =\
-    \ u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64\
-    \ * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n  bool any()\
-    \ {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n    return\
-    \ false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n};"
+    \  // bitset \u306B\u4ED5\u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int\
+    \ i) { (*this)[i] = 1; }\n  void reset(int i) { (*this)[i] = 0; }\n  void flip(int\
+    \ i) { (*this)[i].flip(); }\n  void set() {\n    fill(all(dat), u64(-1));\n  \
+    \  resize(N);\n  }\n  void reset() { fill(all(dat), 0); }\n  void flip() {\n \
+    \   FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat)\
+    \ - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size()) break;\n      flip(64\
+    \ * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i])\
+    \ return true;\n    }\n    return false;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static string\
+    \ TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n\
+    \    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) &\
+    \ 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute()\
+    \ {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i &\
+    \ 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];"
   dependsOn: []
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
-  - ds/counter.hpp
+  - graph/shortest_path/bfs_bitset.hpp
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/mat_inv.hpp
-  - graph/shortest_path/bfs_bitset.hpp
+  - ds/counter.hpp
   - knapsack/subset_sum.hpp
-  timestamp: '2024-01-24 23:45:08+09:00'
+  timestamp: '2024-02-23 19:58:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/subset_sum.test.cpp
-  - test/mytest/mybitset.test.cpp
   - test/yukicoder/1421.test.cpp
-  - test/yukicoder/421.test.cpp
-  - test/yukicoder/421_2.test.cpp
-  - test/yukicoder/4_2.test.cpp
-  - test/yukicoder/142.test.cpp
+  - test/yukicoder/1400.test.cpp
   - test/yukicoder/2490.test.cpp
   - test/yukicoder/2626_2.test.cpp
+  - test/yukicoder/4_2.test.cpp
+  - test/yukicoder/142.test.cpp
   - test/yukicoder/1400_2.test.cpp
-  - test/yukicoder/1400.test.cpp
+  - test/yukicoder/421.test.cpp
+  - test/yukicoder/421_2.test.cpp
+  - test/mytest/subset_sum.test.cpp
+  - test/mytest/mybitset.test.cpp
 documentation_of: ds/my_bitset.hpp
 layout: document
 redirect_from:

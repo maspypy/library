@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -141,9 +141,9 @@ data:
   timestamp: '2024-02-11 04:52:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/rect_add_pt_sum.test.cpp
   - test/yukicoder/2338.test.cpp
   - test/yukicoder/2491.test.cpp
+  - test/mytest/rect_add_pt_sum.test.cpp
 documentation_of: ds/offline_query/rectangle_add_point_sum.hpp
 layout: document
 redirect_from:

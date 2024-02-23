@@ -75,7 +75,9 @@ data:
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
     #line 2 \"geo/convex_polygon.hpp\"\n\n// \u307B\u3068\u3093\u3069\u30C6\u30B9\u30C8\
     \u3055\u308C\u3066\u3044\u306A\u3044\u306E\u3067\u3042\u3084\u3057\u3044\n// n=2\
-    \ \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\ntemplate\
+    \ \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\n//\
+    \ \u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u8907\u6570\u306E\u70B9\u304C\u3042\u308B\
+    \u3068\u6B63\u3057\u304F\u52D5\u304B\u306A\u3044\u8AAC\u304C\u3042\u308B\ntemplate\
     \ <typename T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int n;\n  vc<P>\
     \ point;\n\n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {\n\
     \    assert(n >= 3);\n    // counter clockwise \u306B\u306A\u304A\u3059\n    if\
@@ -104,7 +106,9 @@ data:
     \ p) {}\n};\n"
   code: "#include \"geo/base.hpp\"\n\n// \u307B\u3068\u3093\u3069\u30C6\u30B9\u30C8\
     \u3055\u308C\u3066\u3044\u306A\u3044\u306E\u3067\u3042\u3084\u3057\u3044\n// n=2\
-    \ \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\ntemplate\
+    \ \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\n//\
+    \ \u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u8907\u6570\u306E\u70B9\u304C\u3042\u308B\
+    \u3068\u6B63\u3057\u304F\u52D5\u304B\u306A\u3044\u8AAC\u304C\u3042\u308B\ntemplate\
     \ <typename T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int n;\n  vc<P>\
     \ point;\n\n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {\n\
     \    assert(n >= 3);\n    // counter clockwise \u306B\u306A\u304A\u3059\n    if\
@@ -136,7 +140,7 @@ data:
   isVerificationFile: false
   path: geo/convex_polygon.hpp
   requiredBy: []
-  timestamp: '2024-01-22 21:51:00+09:00'
+  timestamp: '2024-02-23 19:58:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp

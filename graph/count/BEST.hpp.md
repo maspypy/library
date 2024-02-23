@@ -122,51 +122,49 @@ data:
     \ = (len(f) == N + 1 ? f[0] : mint(0));\r\n  if (N & 1) det *= -1;\r\n  det /=\
     \ r;\r\n  return det;\r\n}\r\n#line 4 \"graph/count/BEST.hpp\"\n\n/*\n\u3072\u3068\
     \u3064\u9078\u3093\u3060\u8FBA\u304B\u3089\u59CB\u3081\u3066\u5168\u3066\u306E\
-    \u70B9\u30FB\u8FBA\u3092\u901A\u308B closed walk \u3092\u6570\u3048\u308B.\n\u591A\
-    \u91CD\u8FBA\u306F vc<int>(eid) \u3067\u6E21\u3059\uFF0C\u306A\u3051\u308C\u3070\
-    \u3059\u3079\u3066 1. e.cost \u306F\u53C2\u7167\u3057\u306A\u3044.\n\u8FBA\u306F\
-    \u30E9\u30D9\u30EB\u4ED8\u304D\u3067\u8003\u3048\u308B. \u591A\u91CD\u8FBA\u3092\
-    \u540C\u4E00\u8996\u3059\u308B\u5834\u5408\u306A\u3069\u306F\u5F8C\u3067\u968E\
-    \u4E57\u3067\u5272\u308B\u3053\u3068.\nO(N^2+NM) \uFF08 + \u6700\u5F8C\u306B\u91CD\
-    \u8907\u5EA6\u306E\u968E\u4E57\u3092\u304B\u3051\u308B\uFF09\uFF0E\n*/\ntemplate\
-    \ <typename mint, typename GT>\nmint BEST_theorem(GT& G, vc<int> edge_multiplicity\
-    \ = {}) {\n  static_assert(GT::is_directed);\n  int N = G.N, M = G.M;\n  if (M\
-    \ == 0) return 0;\n  if (edge_multiplicity.empty()) edge_multiplicity.assign(M,\
-    \ 1);\n\n  // \u3084\u3089\u306A\u304F\u3066\u3082 0 \u306B\u306A\u308B\u306F\u305A\
-    \u3060\u304C\u4E00\u5FDC\n  UnionFind uf(N);\n  vc<int> indeg(N), outdeg(N);\n\
-    \  FOR(i, M) {\n    int a = G.edges[i].frm, b = G.edges[i].to, x = edge_multiplicity[i];\n\
-    \    if (!x) continue;\n    outdeg[a] += x, indeg[b] += x;\n    uf.merge(a, b);\n\
-    \  }\n  if (uf.n_comp != 1) return 0;\n  FOR(v, N) if (indeg[v] != outdeg[v])\
-    \ return 0;\n\n  vc<tuple<int, int, mint>> mat;\n  FOR(i, M) {\n    int a = G.edges[i].frm,\
-    \ b = G.edges[i].to, x = edge_multiplicity[i];\n    if (a < N - 1 && b < N - 1)\
-    \ mat.eb(a, b, -x);\n    if (a < N - 1) mat.eb(a, a, x);\n  }\n  auto apply =\
-    \ [&](vc<mint> A) -> vc<mint> {\n    vc<mint> B(N - 1);\n    for (auto& [a, b,\
-    \ c]: mat) B[b] += A[a] * c;\n  };\n  mint d = blackbox_det(N - 1, apply);\n \
-    \ for (auto& x: outdeg) { d *= fact<mint>(x - 1); }\n  return d;\n}\n"
+    \u8FBA\u3092\u901A\u308B closed walk \u3092\u6570\u3048\u308B.\n\u591A\u91CD\u8FBA\
+    \u306F vc<int>(eid) \u3067\u6E21\u3059\uFF0C\u306A\u3051\u308C\u3070\u3059\u3079\
+    \u3066 1. e.cost \u306F\u53C2\u7167\u3057\u306A\u3044.\n\u8FBA\u306F\u30E9\u30D9\
+    \u30EB\u4ED8\u304D\u3067\u8003\u3048\u308B. \u591A\u91CD\u8FBA\u3092\u540C\u4E00\
+    \u8996\u3059\u308B\u5834\u5408\u306A\u3069\u306F\u5F8C\u3067\u968E\u4E57\u3067\
+    \u5272\u308B\u3053\u3068.\nO(N^2+NM) \uFF08 + \u6700\u5F8C\u306B\u91CD\u8907\u5EA6\
+    \u306E\u968E\u4E57\u3092\u304B\u3051\u308B\uFF09\uFF0E\n*/\ntemplate <typename\
+    \ mint, typename GT>\nmint BEST_theorem(GT G, vc<int> edge_multiplicity = {})\
+    \ {\n  static_assert(GT::is_directed);\n  int N = G.N, M = G.M;\n  if (M == 0)\
+    \ return 0;\n  if (edge_multiplicity.empty()) edge_multiplicity.assign(M, 1);\n\
+    \  vc<int> vs;\n  for (auto& e: G.edges) {\n    if (edge_multiplicity[e.id] ==\
+    \ 0) continue;\n    vs.eb(e.frm), vs.eb(e.to);\n  }\n\n  UNIQUE(vs);\n  G = G.rearrange(vs,\
+    \ true);\n  N = G.N;\n\n  vc<int> indeg(N), outdeg(N);\n  vc<tuple<int, int, mint>>\
+    \ mat;\n  for (auto& e: G.edges) {\n    int a = e.frm, b = e.to, x = edge_multiplicity[e.id];\n\
+    \    outdeg[a] += x, indeg[b] += x;\n    if (a < N - 1 && b < N - 1) mat.eb(a,\
+    \ b, -x);\n    if (a < N - 1) mat.eb(a, a, x);\n  }\n  FOR(v, N) if (indeg[v]\
+    \ != outdeg[v]) return 0;\n\n  auto apply = [&](vc<mint> A) -> vc<mint> {\n  \
+    \  vc<mint> B(N - 1);\n    for (auto& [a, b, c]: mat) B[b] += A[a] * c;\n    return\
+    \ B;\n  };\n  mint d = blackbox_det<mint>(N - 1, apply);\n  for (auto& x: outdeg)\
+    \ { d *= fact<mint>(x - 1); }\n  return d;\n}\n"
   code: "#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
     \ \"linalg/blackbox/det.hpp\"\n\n/*\n\u3072\u3068\u3064\u9078\u3093\u3060\u8FBA\
-    \u304B\u3089\u59CB\u3081\u3066\u5168\u3066\u306E\u70B9\u30FB\u8FBA\u3092\u901A\
-    \u308B closed walk \u3092\u6570\u3048\u308B.\n\u591A\u91CD\u8FBA\u306F vc<int>(eid)\
-    \ \u3067\u6E21\u3059\uFF0C\u306A\u3051\u308C\u3070\u3059\u3079\u3066 1. e.cost\
-    \ \u306F\u53C2\u7167\u3057\u306A\u3044.\n\u8FBA\u306F\u30E9\u30D9\u30EB\u4ED8\u304D\
-    \u3067\u8003\u3048\u308B. \u591A\u91CD\u8FBA\u3092\u540C\u4E00\u8996\u3059\u308B\
-    \u5834\u5408\u306A\u3069\u306F\u5F8C\u3067\u968E\u4E57\u3067\u5272\u308B\u3053\
-    \u3068.\nO(N^2+NM) \uFF08 + \u6700\u5F8C\u306B\u91CD\u8907\u5EA6\u306E\u968E\u4E57\
-    \u3092\u304B\u3051\u308B\uFF09\uFF0E\n*/\ntemplate <typename mint, typename GT>\n\
-    mint BEST_theorem(GT& G, vc<int> edge_multiplicity = {}) {\n  static_assert(GT::is_directed);\n\
-    \  int N = G.N, M = G.M;\n  if (M == 0) return 0;\n  if (edge_multiplicity.empty())\
-    \ edge_multiplicity.assign(M, 1);\n\n  // \u3084\u3089\u306A\u304F\u3066\u3082\
-    \ 0 \u306B\u306A\u308B\u306F\u305A\u3060\u304C\u4E00\u5FDC\n  UnionFind uf(N);\n\
-    \  vc<int> indeg(N), outdeg(N);\n  FOR(i, M) {\n    int a = G.edges[i].frm, b\
-    \ = G.edges[i].to, x = edge_multiplicity[i];\n    if (!x) continue;\n    outdeg[a]\
-    \ += x, indeg[b] += x;\n    uf.merge(a, b);\n  }\n  if (uf.n_comp != 1) return\
-    \ 0;\n  FOR(v, N) if (indeg[v] != outdeg[v]) return 0;\n\n  vc<tuple<int, int,\
-    \ mint>> mat;\n  FOR(i, M) {\n    int a = G.edges[i].frm, b = G.edges[i].to, x\
-    \ = edge_multiplicity[i];\n    if (a < N - 1 && b < N - 1) mat.eb(a, b, -x);\n\
-    \    if (a < N - 1) mat.eb(a, a, x);\n  }\n  auto apply = [&](vc<mint> A) -> vc<mint>\
-    \ {\n    vc<mint> B(N - 1);\n    for (auto& [a, b, c]: mat) B[b] += A[a] * c;\n\
-    \  };\n  mint d = blackbox_det(N - 1, apply);\n  for (auto& x: outdeg) { d *=\
-    \ fact<mint>(x - 1); }\n  return d;\n}\n"
+    \u304B\u3089\u59CB\u3081\u3066\u5168\u3066\u306E\u8FBA\u3092\u901A\u308B closed\
+    \ walk \u3092\u6570\u3048\u308B.\n\u591A\u91CD\u8FBA\u306F vc<int>(eid) \u3067\
+    \u6E21\u3059\uFF0C\u306A\u3051\u308C\u3070\u3059\u3079\u3066 1. e.cost \u306F\u53C2\
+    \u7167\u3057\u306A\u3044.\n\u8FBA\u306F\u30E9\u30D9\u30EB\u4ED8\u304D\u3067\u8003\
+    \u3048\u308B. \u591A\u91CD\u8FBA\u3092\u540C\u4E00\u8996\u3059\u308B\u5834\u5408\
+    \u306A\u3069\u306F\u5F8C\u3067\u968E\u4E57\u3067\u5272\u308B\u3053\u3068.\nO(N^2+NM)\
+    \ \uFF08 + \u6700\u5F8C\u306B\u91CD\u8907\u5EA6\u306E\u968E\u4E57\u3092\u304B\u3051\
+    \u308B\uFF09\uFF0E\n*/\ntemplate <typename mint, typename GT>\nmint BEST_theorem(GT\
+    \ G, vc<int> edge_multiplicity = {}) {\n  static_assert(GT::is_directed);\n  int\
+    \ N = G.N, M = G.M;\n  if (M == 0) return 0;\n  if (edge_multiplicity.empty())\
+    \ edge_multiplicity.assign(M, 1);\n  vc<int> vs;\n  for (auto& e: G.edges) {\n\
+    \    if (edge_multiplicity[e.id] == 0) continue;\n    vs.eb(e.frm), vs.eb(e.to);\n\
+    \  }\n\n  UNIQUE(vs);\n  G = G.rearrange(vs, true);\n  N = G.N;\n\n  vc<int> indeg(N),\
+    \ outdeg(N);\n  vc<tuple<int, int, mint>> mat;\n  for (auto& e: G.edges) {\n \
+    \   int a = e.frm, b = e.to, x = edge_multiplicity[e.id];\n    outdeg[a] += x,\
+    \ indeg[b] += x;\n    if (a < N - 1 && b < N - 1) mat.eb(a, b, -x);\n    if (a\
+    \ < N - 1) mat.eb(a, a, x);\n  }\n  FOR(v, N) if (indeg[v] != outdeg[v]) return\
+    \ 0;\n\n  auto apply = [&](vc<mint> A) -> vc<mint> {\n    vc<mint> B(N - 1);\n\
+    \    for (auto& [a, b, c]: mat) B[b] += A[a] * c;\n    return B;\n  };\n  mint\
+    \ d = blackbox_det<mint>(N - 1, apply);\n  for (auto& x: outdeg) { d *= fact<mint>(x\
+    \ - 1); }\n  return d;\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/unionfind/unionfind.hpp
@@ -177,7 +175,7 @@ data:
   isVerificationFile: false
   path: graph/count/BEST.hpp
   requiredBy: []
-  timestamp: '2024-01-28 02:50:42+09:00'
+  timestamp: '2024-02-23 19:59:00+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count/BEST.hpp

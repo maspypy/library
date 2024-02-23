@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -178,13 +178,13 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc190f.test.cpp
-  - test/mytest/fenwick01.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/694.test.cpp
   - test/library_checker/datastructure/predecessor_problem_4.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/mytest/fenwick01.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

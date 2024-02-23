@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc241e.test.cpp
     title: test_atcoder/abc241e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -50,11 +50,12 @@ data:
     \n        i = TO[k][i];\r\n      }\r\n    }\r\n    return {i, x};\r\n  }\r\n\r\
     \n  template <typename F>\r\n  ll max_step(F check, int i) {\r\n    assert(is_prepared);\r\
     \n    X x = Monoid::unit();\r\n    ll step = 0;\r\n    assert(check(x));\r\n \
-    \   FOR_R(k, LOG) {\r\n      int j = TO[k][i];\r\n      X y = Monoid::op(x, DP[k][i]);\r\
-    \n      if (check(y)) {\r\n        step |= 1LL << k;\r\n        i = j;\r\n   \
-    \     x = y;\r\n        assert(i != -1);\r\n      }\r\n    }\r\n    return step;\r\
-    \n  }\r\n\r\n  void debug() {\r\n    print(\"TO\");\r\n    FOR(k, LOG) print(TO[k]);\r\
-    \n    print(\"DP\");\r\n    FOR(k, LOG) print(DP[k]);\r\n  }\r\n};\r\n"
+    \   FOR_R(k, LOG) {\r\n      int j = TO[k][i];\r\n      if (j == -1) continue;\r\
+    \n      X y = Monoid::op(x, DP[k][i]);\r\n      if (check(y)) {\r\n        step\
+    \ |= 1LL << k;\r\n        i = j;\r\n        x = y;\r\n        assert(i != -1);\r\
+    \n      }\r\n    }\r\n    return step;\r\n  }\r\n\r\n  void debug() {\r\n    print(\"\
+    TO\");\r\n    FOR(k, LOG) print(TO[k]);\r\n    print(\"DP\");\r\n    FOR(k, LOG)\
+    \ print(DP[k]);\r\n  }\r\n};\r\n"
   code: "#include \"alg/monoid/add.hpp\"\r\n\r\n// \u72B6\u614B a \u304B\u3089 1 \u56DE\
     \u64CD\u4F5C\u3059\u308B\u3068\u3001\u72B6\u614B b \u306B\u9077\u79FB\u3057\u3001\
     \u30E2\u30CE\u30A4\u30C9\u306E\u5143 x \u3092\u52A0\u3048\u308B\u3002\r\n// \u884C\
@@ -77,23 +78,23 @@ data:
     \n    return {i, x};\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_step(F\
     \ check, int i) {\r\n    assert(is_prepared);\r\n    X x = Monoid::unit();\r\n\
     \    ll step = 0;\r\n    assert(check(x));\r\n    FOR_R(k, LOG) {\r\n      int\
-    \ j = TO[k][i];\r\n      X y = Monoid::op(x, DP[k][i]);\r\n      if (check(y))\
-    \ {\r\n        step |= 1LL << k;\r\n        i = j;\r\n        x = y;\r\n     \
-    \   assert(i != -1);\r\n      }\r\n    }\r\n    return step;\r\n  }\r\n\r\n  void\
-    \ debug() {\r\n    print(\"TO\");\r\n    FOR(k, LOG) print(TO[k]);\r\n    print(\"\
-    DP\");\r\n    FOR(k, LOG) print(DP[k]);\r\n  }\r\n};\r\n"
+    \ j = TO[k][i];\r\n      if (j == -1) continue;\r\n      X y = Monoid::op(x, DP[k][i]);\r\
+    \n      if (check(y)) {\r\n        step |= 1LL << k;\r\n        i = j;\r\n   \
+    \     x = y;\r\n        assert(i != -1);\r\n      }\r\n    }\r\n    return step;\r\
+    \n  }\r\n\r\n  void debug() {\r\n    print(\"TO\");\r\n    FOR(k, LOG) print(TO[k]);\r\
+    \n    print(\"DP\");\r\n    FOR(k, LOG) print(DP[k]);\r\n  }\r\n};\r\n"
   dependsOn:
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/doubling.hpp
   requiredBy: []
-  timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-02-23 19:52:25+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc241e.test.cpp
   - test/yukicoder/1977.test.cpp
-  - test/yukicoder/1097.test.cpp
   - test/yukicoder/2242.test.cpp
+  - test/yukicoder/1097.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document
 redirect_from:
