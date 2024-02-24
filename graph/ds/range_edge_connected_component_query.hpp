@@ -3,7 +3,7 @@
 #include "graph/ds/lct_node_commutative_monoid.hpp"
 #include "alg/monoid/min.hpp"
 #include "graph/base.hpp"
-#include "ds/fenwicktree/fenwicktree.hpp"
+#include "ds/fenwicktree/fenwicktree_01.hpp"
 
 // https://codeforces.com/problemset/problem/1386/C (TLE)
 // query(L,R) = # of component if edge L,...,R-1 are used.
@@ -30,7 +30,7 @@ struct Range_Edge_Conneced_Component_Query {
       if (r) QID[r - 1].eb(q);
     }
 
-    FenwickTree<Monoid_Add<int>> bit(M);
+    FenwickTree_01 bit(M);
     FOR(i, M) {
       int a = G.edges[i].frm, b = G.edges[i].to;
       if (a != b && LCT.get_root(a) == LCT.get_root(b)) {
