@@ -1,3 +1,5 @@
+#pragma once
+
 template <typename QUE_TYPE>
 struct Removable_Queue {
   using QUE = QUE_TYPE;

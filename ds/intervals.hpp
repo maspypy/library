@@ -174,6 +174,8 @@ struct Intervals {
   }
 
   void set(X L, X R, T t) {
+    assert(L <= R);
+    if (L == R) return;
     enumerate_range(
         L, R, [](int l, int r, T x) -> void {}, true);
     dat[L] = t;
