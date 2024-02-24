@@ -114,18 +114,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -251,7 +251,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - ds/rectangle_union.hpp
   timestamp: '2023-05-21 00:13:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc234g.test.cpp
   - test_atcoder/abc318b.test.cpp

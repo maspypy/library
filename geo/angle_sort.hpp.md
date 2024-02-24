@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
+  - icon: ':warning:'
+    path: geo/minkowski_sum.hpp
+    title: geo/minkowski_sum.hpp
   - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
@@ -131,6 +134,7 @@ data:
   requiredBy:
   - graph/planar_graph.hpp
   - geo/max_norm_sum.hpp
+  - geo/minkowski_sum.hpp
   - geo/count_points_in_triangles.hpp
   timestamp: '2023-12-21 22:18:31+09:00'
   verificationStatus: LIBRARY_ALL_AC

@@ -8,6 +8,9 @@ data:
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/ds/range_edge_connected_component_query.hpp
+    title: graph/ds/range_edge_connected_component_query.hpp
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
@@ -173,6 +176,7 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
+  - graph/ds/range_edge_connected_component_query.hpp
   - seq/inversion.hpp
   timestamp: '2024-02-12 02:02:30+09:00'
   verificationStatus: LIBRARY_ALL_AC

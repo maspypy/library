@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2654.test.cpp
+    title: test/yukicoder/2654.test.cpp
+  - icon: ':x:'
     path: test_atcoder/abc281e.test.cpp
     title: test_atcoder/abc281e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314g.test.cpp
     title: test_atcoder/abc314g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/removable_queue.hpp\"\ntemplate <typename QUE_TYPE>\n\
+  bundledCode: "#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
     struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = typename QUE::value_type;\n\
     \n  QUE que, rm_que;\n\n  Removable_Queue() {}\n  Removable_Queue(vc<T>& dat)\
     \ : que(all(dat)) {}\n\n  void push(T x) { que.push(x); }\n  int size() { return\
@@ -70,12 +73,13 @@ data:
   isVerificationFile: false
   path: ds/slide_split_sum.hpp
   requiredBy: []
-  timestamp: '2023-09-22 01:21:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-02-24 23:26:31+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc314g.test.cpp
   - test_atcoder/abc281e.test.cpp
   - test_atcoder/abc312f.test.cpp
+  - test/yukicoder/2654.test.cpp
 documentation_of: ds/slide_split_sum.hpp
 layout: document
 redirect_from:

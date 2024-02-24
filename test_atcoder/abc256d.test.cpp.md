@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc256/tasks/abc256_d
@@ -282,18 +282,19 @@ data:
     \    while (1) {\n      if ((*p).fi >= R) break;\n      auto q = next(p);\n  \
     \    T t = (*p).se;\n      f((*p).fi, (*q).fi, t);\n      if (t != none_val) --total_num,\
     \ total_len -= (*q).fi - (*p).fi;\n      p = dat.erase(p);\n    }\n    dat[L]\
-    \ = none_val;\n  }\n\n  void set(X L, X R, T t) {\n    enumerate_range(\n    \
-    \    L, R, [](int l, int r, T x) -> void {}, true);\n    dat[L] = t;\n    if (t\
-    \ != none_val) total_num++, total_len += R - L;\n    merge_at(L);\n    merge_at(R);\n\
-    \  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n    enumerate_range(LLIM,\
-    \ RLIM, f, false);\n  }\n\n  void merge_at(X p) {\n    if (p == LLIM || RLIM ==\
-    \ p) return;\n    auto itp = dat.lower_bound(p);\n    assert((*itp).fi == p);\n\
-    \    auto itq = prev(itp);\n    if ((*itp).se == (*itq).se) {\n      if ((*itp).se\
-    \ != none_val) --total_num;\n      dat.erase(itp);\n    }\n  }\n};\n#line 5 \"\
-    test_atcoder/abc256d.test.cpp\"\n\nvoid solve() {\n  Intervals<ll, int> I(0);\n\
-    \  LL(N);\n  FOR(N) {\n    LL(l, r);\n    I.set(l, r, 1);\n  }\n  I.enumerate_all([&](ll\
-    \ l, ll r, int x) -> void {\n    if (x) print(l, r);\n  });\n}\n\nsigned main()\
-    \ {\n  solve();\n\n  return 0;\n}\n"
+    \ = none_val;\n  }\n\n  void set(X L, X R, T t) {\n    assert(L <= R);\n    if\
+    \ (L == R) return;\n    enumerate_range(\n        L, R, [](int l, int r, T x)\
+    \ -> void {}, true);\n    dat[L] = t;\n    if (t != none_val) total_num++, total_len\
+    \ += R - L;\n    merge_at(L);\n    merge_at(R);\n  }\n\n  template <typename F>\n\
+    \  void enumerate_all(F f) {\n    enumerate_range(LLIM, RLIM, f, false);\n  }\n\
+    \n  void merge_at(X p) {\n    if (p == LLIM || RLIM == p) return;\n    auto itp\
+    \ = dat.lower_bound(p);\n    assert((*itp).fi == p);\n    auto itq = prev(itp);\n\
+    \    if ((*itp).se == (*itq).se) {\n      if ((*itp).se != none_val) --total_num;\n\
+    \      dat.erase(itp);\n    }\n  }\n};\n#line 5 \"test_atcoder/abc256d.test.cpp\"\
+    \n\nvoid solve() {\n  Intervals<ll, int> I(0);\n  LL(N);\n  FOR(N) {\n    LL(l,\
+    \ r);\n    I.set(l, r, 1);\n  }\n  I.enumerate_all([&](ll l, ll r, int x) -> void\
+    \ {\n    if (x) print(l, r);\n  });\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc256/tasks/abc256_d\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/intervals.hpp\"\
     \n\nvoid solve() {\n  Intervals<ll, int> I(0);\n  LL(N);\n  FOR(N) {\n    LL(l,\
@@ -308,8 +309,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc256d.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-24 23:26:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc256d.test.cpp
 layout: document

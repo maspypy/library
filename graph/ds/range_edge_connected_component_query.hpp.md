@@ -11,6 +11,9 @@ data:
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/fenwicktree/fenwicktree_01.hpp
+    title: ds/fenwicktree/fenwicktree_01.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -267,7 +270,40 @@ data:
     \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
     \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
-    \ bool { return x <= k; }, L);\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\
+    \ bool { return x <= k; }, L);\n  }\n};\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\
+    \n\nstruct FenwickTree_01 {\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
+    \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
+    \ build(int m) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
+    \ u64(0));\n    bit.build(n);\n  }\n\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n\
+    \    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }\n    bit.build(n, [&](int\
+    \ i) -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return bit.sum_all();\
+    \ }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int k) {\n \
+    \   int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1) << (k\
+    \ % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    if (L ==\
+    \ 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L / 64] &\
+    \ ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1) << (R\
+    \ % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n  }\n\n\
+    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    if (x == -1) remove(k);\n\
+    \  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
+    \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
+    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
+    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
+    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
+    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
+    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
+    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
+    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
+    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
+    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
+    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
+    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
+    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
+    \  return 64 * idx + topbit(dat[idx]);\n  }\n};\n#line 7 \"graph/ds/range_edge_connected_component_query.hpp\"\
     \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
     \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Conneced_Component_Query\
     \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Conneced_Component_Query(Graph<int,\
@@ -276,9 +312,9 @@ data:
     \n  vc<int> calc() {\n    int N = G.N, M = G.M;\n    Link_Cut_Tree<Node> LCT(N\
     \ + M);\n    int Q = len(query);\n    vc<int> ANS(Q);\n    vvc<int> QID(M);\n\
     \    FOR(q, Q) {\n      auto [l, r] = query[q];\n      assert(0 <= l && l <= r\
-    \ && r <= M);\n      if (r) QID[r - 1].eb(q);\n    }\n\n    FenwickTree<Monoid_Add<int>>\
-    \ bit(M);\n    FOR(i, M) {\n      int a = G.edges[i].frm, b = G.edges[i].to;\n\
-    \      if (a != b && LCT.get_root(a) == LCT.get_root(b)) {\n        int k = LCT.prod_path(a,\
+    \ && r <= M);\n      if (r) QID[r - 1].eb(q);\n    }\n\n    FenwickTree_01 bit(M);\n\
+    \    FOR(i, M) {\n      int a = G.edges[i].frm, b = G.edges[i].to;\n      if (a\
+    \ != b && LCT.get_root(a) == LCT.get_root(b)) {\n        int k = LCT.prod_path(a,\
     \ b);\n        int c = G.edges[k].frm, d = G.edges[k].to;\n        bit.add(k,\
     \ -1);\n        LCT.cut(c, N + k), LCT.cut(d, N + k);\n      }\n      if (a !=\
     \ b) {\n        LCT.set(N + i, i);\n        LCT.link(a, N + i), LCT.link(b, N\
@@ -286,7 +322,7 @@ data:
     \    auto [l, r] = query[q];\n        ANS[q] = N - bit.sum(l, r);\n      }\n \
     \   }\n    return ANS;\n  }\n};\n"
   code: "\n#include \"graph/ds/link_cut_tree.hpp\"\n#include \"graph/ds/lct_node_commutative_monoid.hpp\"\
-    \n#include \"alg/monoid/min.hpp\"\n#include \"graph/base.hpp\"\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n#include \"alg/monoid/min.hpp\"\n#include \"graph/base.hpp\"\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\
     \n\n// https://codeforces.com/problemset/problem/1386/C (TLE)\n// query(L,R) =\
     \ # of component if edge L,...,R-1 are used.\nstruct Range_Edge_Conneced_Component_Query\
     \ {\n  Graph<int, 0>& G;\n  vc<pair<int, int>> query;\n\n  Range_Edge_Conneced_Component_Query(Graph<int,\
@@ -295,9 +331,9 @@ data:
     \n  vc<int> calc() {\n    int N = G.N, M = G.M;\n    Link_Cut_Tree<Node> LCT(N\
     \ + M);\n    int Q = len(query);\n    vc<int> ANS(Q);\n    vvc<int> QID(M);\n\
     \    FOR(q, Q) {\n      auto [l, r] = query[q];\n      assert(0 <= l && l <= r\
-    \ && r <= M);\n      if (r) QID[r - 1].eb(q);\n    }\n\n    FenwickTree<Monoid_Add<int>>\
-    \ bit(M);\n    FOR(i, M) {\n      int a = G.edges[i].frm, b = G.edges[i].to;\n\
-    \      if (a != b && LCT.get_root(a) == LCT.get_root(b)) {\n        int k = LCT.prod_path(a,\
+    \ && r <= M);\n      if (r) QID[r - 1].eb(q);\n    }\n\n    FenwickTree_01 bit(M);\n\
+    \    FOR(i, M) {\n      int a = G.edges[i].frm, b = G.edges[i].to;\n      if (a\
+    \ != b && LCT.get_root(a) == LCT.get_root(b)) {\n        int k = LCT.prod_path(a,\
     \ b);\n        int c = G.edges[k].frm, d = G.edges[k].to;\n        bit.add(k,\
     \ -1);\n        LCT.cut(c, N + k), LCT.cut(d, N + k);\n      }\n      if (a !=\
     \ b) {\n        LCT.set(N + i, i);\n        LCT.link(a, N + i), LCT.link(b, N\
@@ -309,12 +345,13 @@ data:
   - graph/ds/lct_node_commutative_monoid.hpp
   - alg/monoid/min.hpp
   - graph/base.hpp
+  - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: graph/ds/range_edge_connected_component_query.hpp
   requiredBy: []
-  timestamp: '2024-02-11 04:52:18+09:00'
+  timestamp: '2024-02-24 23:27:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/range_edge_connected_component_query.hpp

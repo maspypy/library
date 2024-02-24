@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
+  - icon: ':warning:'
+    path: geo/minkowski_sum.hpp
+    title: geo/minkowski_sum.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
@@ -160,6 +163,7 @@ data:
   path: geo/convex_hull.hpp
   requiredBy:
   - convex/fenchel.hpp
+  - geo/minkowski_sum.hpp
   timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   - icon: ':question:'
@@ -187,7 +187,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"ds/removable_queue.hpp\"\ntemplate <typename QUE_TYPE>\n\
+    \ yes(!t); }\r\n#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
     struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = typename QUE::value_type;\n\
     \n  QUE que, rm_que;\n\n  Removable_Queue() {}\n  Removable_Queue(vc<T>& dat)\
     \ : que(all(dat)) {}\n\n  void push(T x) { que.push(x); }\n  int size() { return\
@@ -217,7 +217,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-24 23:26:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_pq.test.cpp

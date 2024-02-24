@@ -12,12 +12,18 @@ data:
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
+    path: linalg/bitset/det.hpp
+    title: linalg/bitset/det.hpp
+  - icon: ':warning:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/matrix_product_mod2.test.cpp
+    title: test/library_checker/matrix/matrix_product_mod2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
@@ -274,6 +280,7 @@ data:
   requiredBy:
   - graph/shortest_path/bfs_bitset.hpp
   - linalg/bitset/solve_linear.hpp
+  - linalg/bitset/det.hpp
   - linalg/bitset/mat_inv.hpp
   - ds/counter.hpp
   - knapsack/subset_sum.hpp
@@ -289,6 +296,7 @@ data:
   - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/421.test.cpp
   - test/yukicoder/421_2.test.cpp
+  - test/library_checker/matrix/matrix_product_mod2.test.cpp
   - test/mytest/subset_sum.test.cpp
   - test/mytest/mybitset.test.cpp
 documentation_of: ds/my_bitset.hpp

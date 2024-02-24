@@ -44,6 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
+  - icon: ':warning:'
+    path: geo/minkowski_sum.hpp
+    title: geo/minkowski_sum.hpp
   - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
@@ -275,6 +278,7 @@ data:
   - geo/projection.hpp
   - geo/distance.hpp
   - geo/dynamicupperhull.hpp
+  - geo/minkowski_sum.hpp
   - geo/angle_sort.hpp
   - geo/count_points_in_triangles.hpp
   - geo/apollonian_circle.hpp

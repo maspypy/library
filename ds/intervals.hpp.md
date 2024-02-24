@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256d.test.cpp
     title: test_atcoder/abc256d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1638/problem/E
@@ -114,14 +114,15 @@ data:
     \    while (1) {\n      if ((*p).fi >= R) break;\n      auto q = next(p);\n  \
     \    T t = (*p).se;\n      f((*p).fi, (*q).fi, t);\n      if (t != none_val) --total_num,\
     \ total_len -= (*q).fi - (*p).fi;\n      p = dat.erase(p);\n    }\n    dat[L]\
-    \ = none_val;\n  }\n\n  void set(X L, X R, T t) {\n    enumerate_range(\n    \
-    \    L, R, [](int l, int r, T x) -> void {}, true);\n    dat[L] = t;\n    if (t\
-    \ != none_val) total_num++, total_len += R - L;\n    merge_at(L);\n    merge_at(R);\n\
-    \  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n    enumerate_range(LLIM,\
-    \ RLIM, f, false);\n  }\n\n  void merge_at(X p) {\n    if (p == LLIM || RLIM ==\
-    \ p) return;\n    auto itp = dat.lower_bound(p);\n    assert((*itp).fi == p);\n\
-    \    auto itq = prev(itp);\n    if ((*itp).se == (*itq).se) {\n      if ((*itp).se\
-    \ != none_val) --total_num;\n      dat.erase(itp);\n    }\n  }\n};\n"
+    \ = none_val;\n  }\n\n  void set(X L, X R, T t) {\n    assert(L <= R);\n    if\
+    \ (L == R) return;\n    enumerate_range(\n        L, R, [](int l, int r, T x)\
+    \ -> void {}, true);\n    dat[L] = t;\n    if (t != none_val) total_num++, total_len\
+    \ += R - L;\n    merge_at(L);\n    merge_at(R);\n  }\n\n  template <typename F>\n\
+    \  void enumerate_all(F f) {\n    enumerate_range(LLIM, RLIM, f, false);\n  }\n\
+    \n  void merge_at(X p) {\n    if (p == LLIM || RLIM == p) return;\n    auto itp\
+    \ = dat.lower_bound(p);\n    assert((*itp).fi == p);\n    auto itq = prev(itp);\n\
+    \    if ((*itp).se == (*itq).se) {\n      if ((*itp).se != none_val) --total_num;\n\
+    \      dat.erase(itp);\n    }\n  }\n};\n"
   code: "#include \"ds/fastset.hpp\"\n\n// FastSet \u3067\u9AD8\u901F\u5316\u3057\u305F\
     \u3082\u306E\ntemplate <typename T>\nstruct Intervals_Fast {\n  const int LLIM,\
     \ RLIM;\n  const T none_val;\n  // none_val \u3067\u306A\u3044\u533A\u9593\u306E\
@@ -181,21 +182,22 @@ data:
     \    while (1) {\n      if ((*p).fi >= R) break;\n      auto q = next(p);\n  \
     \    T t = (*p).se;\n      f((*p).fi, (*q).fi, t);\n      if (t != none_val) --total_num,\
     \ total_len -= (*q).fi - (*p).fi;\n      p = dat.erase(p);\n    }\n    dat[L]\
-    \ = none_val;\n  }\n\n  void set(X L, X R, T t) {\n    enumerate_range(\n    \
-    \    L, R, [](int l, int r, T x) -> void {}, true);\n    dat[L] = t;\n    if (t\
-    \ != none_val) total_num++, total_len += R - L;\n    merge_at(L);\n    merge_at(R);\n\
-    \  }\n\n  template <typename F>\n  void enumerate_all(F f) {\n    enumerate_range(LLIM,\
-    \ RLIM, f, false);\n  }\n\n  void merge_at(X p) {\n    if (p == LLIM || RLIM ==\
-    \ p) return;\n    auto itp = dat.lower_bound(p);\n    assert((*itp).fi == p);\n\
-    \    auto itq = prev(itp);\n    if ((*itp).se == (*itq).se) {\n      if ((*itp).se\
-    \ != none_val) --total_num;\n      dat.erase(itp);\n    }\n  }\n};\n"
+    \ = none_val;\n  }\n\n  void set(X L, X R, T t) {\n    assert(L <= R);\n    if\
+    \ (L == R) return;\n    enumerate_range(\n        L, R, [](int l, int r, T x)\
+    \ -> void {}, true);\n    dat[L] = t;\n    if (t != none_val) total_num++, total_len\
+    \ += R - L;\n    merge_at(L);\n    merge_at(R);\n  }\n\n  template <typename F>\n\
+    \  void enumerate_all(F f) {\n    enumerate_range(LLIM, RLIM, f, false);\n  }\n\
+    \n  void merge_at(X p) {\n    if (p == LLIM || RLIM == p) return;\n    auto itp\
+    \ = dat.lower_bound(p);\n    assert((*itp).fi == p);\n    auto itq = prev(itp);\n\
+    \    if ((*itp).se == (*itq).se) {\n      if ((*itp).se != none_val) --total_num;\n\
+    \      dat.erase(itp);\n    }\n  }\n};\n"
   dependsOn:
   - ds/fastset.hpp
   isVerificationFile: false
   path: ds/intervals.hpp
   requiredBy: []
-  timestamp: '2024-01-14 14:14:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-02-24 23:26:31+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc256d.test.cpp
   - test_atcoder/abc256ex2.test.cpp

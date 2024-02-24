@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/slide_split_sum.hpp
     title: ds/slide_split_sum.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc312/tasks/abc312_f
@@ -189,8 +189,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test_atcoder/abc312f.test.cpp\"\n\n#line 1 \"ds/removable_queue.hpp\"\
-    \ntemplate <typename QUE_TYPE>\nstruct Removable_Queue {\n  using QUE = QUE_TYPE;\n\
+    \ yes(!t); }\r\n#line 4 \"test_atcoder/abc312f.test.cpp\"\n\n#line 2 \"ds/removable_queue.hpp\"\
+    \n\ntemplate <typename QUE_TYPE>\nstruct Removable_Queue {\n  using QUE = QUE_TYPE;\n\
     \  using T = typename QUE::value_type;\n\n  QUE que, rm_que;\n\n  Removable_Queue()\
     \ {}\n  Removable_Queue(vc<T>& dat) : que(all(dat)) {}\n\n  void push(T x) { que.push(x);\
     \ }\n  int size() { return len(que) - len(rm_que); }\n  bool empty() { return\
@@ -246,8 +246,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc312f.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-24 23:26:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc312f.test.cpp
 layout: document

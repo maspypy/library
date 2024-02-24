@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -495,10 +495,10 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc241e.test.cpp
     title: test_atcoder/abc241e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
   - icon: ':heavy_check_mark:'

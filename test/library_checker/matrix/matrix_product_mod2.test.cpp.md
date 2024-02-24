@@ -1,18 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/acted_monoid/sum_assign.hpp
-    title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':question:'
-    path: alg/monoid/assign.hpp
-    title: alg/monoid/assign.hpp
-  - icon: ':question:'
-    path: ds/segtree/lazy_segtree.hpp
-    title: ds/segtree/lazy_segtree.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/my_bitset.hpp
+    title: ds/my_bitset.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -26,11 +17,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I
-  bundledCode: "#line 1 \"test/aoj/DSL_2_I.test.cpp\"\n#define PROBLEM \\\r\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I\"\r\n\r\n#line\
+    - https://judge.yosupo.jp/problem/matrix_product_mod_2
+  bundledCode: "#line 1 \"test/library_checker/matrix/matrix_product_mod2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n#line\
     \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// \u53C2\u8003 https://codeforces.com/blog/entry/96344\n// bmi,bmi2,lzcnt\
     \ \u306F ucup \u3067\u30B3\u30F3\u30D1\u30A4\u30EB\u30A8\u30E9\u30FC\n#pragma\
@@ -196,111 +187,142 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/assign.hpp\"\
-    \n\r\ntemplate <typename X, int none_val>\r\nstruct Monoid_Assign {\r\n  using\
-    \ value_type = X;\r\n  static X op(X x, X y) { return (y == X(none_val) ? x :\
-    \ y); }\r\n  static constexpr X unit() { return X(none_val); }\r\n  static constexpr\
-    \ bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/sum_assign.hpp\"\n\
-    \r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_Sum_Assign {\r\n \
-    \ using Monoid_X = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Assign<E, none_val>;\r\
-    \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
-    \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
-    \ (a == Monoid_A::unit()) return x;\r\n    return a * E(size);\r\n  }\r\n};\r\n\
-    #line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\nstruct\
-    \ Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
-    \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
-    \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
-    \ laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n); }\n  template\
-    \ <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n  }\n  Lazy_SegTree(const\
-    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
-    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
-    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    dat.assign(size << 1, MX::unit());\n    laz.assign(size, MA::unit());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void\
-    \ set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
-    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i\
-    \ <= log; i++) update(p >> i);\n  }\n  void multiply(int p, const X& x) {\n  \
-    \  assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for (int i = 1; i <= log;\
-    \ i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
-    \ dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k); }\n    return\
-    \ {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r)\
-    \ {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return MX::unit();\n\
-    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
-    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while (l < r) {\n\
-    \      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r],\
-    \ xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X\
-    \ prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
-    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
-    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int\
-    \ l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n \
-    \     if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2,\
-    \ r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) !=\
-    \ l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n\
-    \    }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l)\
-    \ {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n    if (l\
-    \ == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >>\
-    \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
-    \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
-    \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 8 \"test/aoj/DSL_2_I.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll, 12345>;\r\n  Lazy_SegTree<AM>\
-    \ seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\n    if (t == 0) {\r\
-    \n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else {\r\n      print(seg.prod(L,\
-    \ R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T =\
-    \ 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_I\"\
-    \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
-    \ \"alg/acted_monoid/sum_assign.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  using AM = ActedMonoid_Sum_Assign<ll,\
-    \ 12345>;\r\n  Lazy_SegTree<AM> seg(N);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n\
-    \    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n\
-    \    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
-    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/matrix/matrix_product_mod2.test.cpp\"\
+    \n\n#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
+    // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
+    \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
+    \u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\u3057\u305F\u304F\u306A\u3044\u3068\
+    \u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\u8981\u306A\u3068\u304D\u306B\u4F7F\
+    \u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n  int N;\n  vc<u64> dat;\n\
+    \n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int N = 0, int x = 0) : N(N) {\n\
+    \    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
+    \ + 63) >> 6, v);\n    if (N) dat.back() >>= (64 * len(dat) - N);\n  }\n\n  int\
+    \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
+    \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
+    \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
+    \    }\n    N = size;\n  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n\
+    \    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator bool() const\
+    \ { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64\
+    \ value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n      dat[index\
+    \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
+    \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
+    \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
+    \ operator[](int i) { return Proxy(dat, i); }\n\n  bool operator==(const T &p)\
+    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return\
+    \ false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
+    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
+    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
+    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
+    \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
+    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
+    \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
+    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
+    \ 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n\
+    \      int s = i & 63;\n      x = (x >> s) << s;\n      if (x) return (k << 6)\
+    \ | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] ==\
+    \ 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n    }\n    return\
+    \ N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if (i <= -1) return\
+    \ -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64 x = dat[k];\n\
+    \      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n\
+    \      --k;\n    }\n    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n\
+    \      return (idx << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n \
+    \ My_Bitset range(int L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n\
+    \    int rm = (R - L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R\
+    \ - 1]);\n      --R;\n    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n\
+    \    int lo = 64 - hi;\n    int s = L >> 6;\n    if (hi == 0) {\n      FOR(i,\
+    \ n) { p.dat[i] ^= dat[s + i]; }\n    } else {\n      FOR(i, n) { p.dat[i] ^=\
+    \ (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }\n    }\n    return p;\n  }\n\n\
+    \  int count_range(int L, int R) {\n    assert(L <= R);\n    int cnt = 0;\n  \
+    \  while ((L < R) && (L & 63)) cnt += (*this)[L++];\n    while ((L < R) && (R\
+    \ & 63)) cnt += (*this)[--R];\n    int l = L >> 6, r = R >> 6;\n    FOR(i, l,\
+    \ r) cnt += popcnt(dat[i]);\n    return cnt;\n  }\n\n  // [L,R) \u306B p \u3092\
+    \u4EE3\u5165\n  void assign_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N\
+    \ == R - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) { (*this)[L++]\
+    \ = bool(p[a++]); }\n    while (L < R && (R & 63)) { (*this)[--R] = bool(p[--b]);\
+    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
+    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
+    \ n) dat[l + i] = p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int\
+    \ lo = 64 - hi;\n      FOR(i, n) dat[l + i] = (p.dat[s + i] >> hi) | (p.dat[1\
+    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 xor\n  void xor_to_range(int\
+    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
+    \    while (L < R && (L & 63)) {\n      dat[L >> 6] ^= u64(p[a]) << (L & 63);\n\
+    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
+    \    dat[R >> 6] ^= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
+    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
+    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] ^= p.dat[s\
+    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
+    \ FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
+    \   }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R,\
+    \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
+    \ (L < R && (L & 63)) {\n      if (!p[a++]) (*this)[L++] = 0;\n    }\n    while\
+    \ (L < R && (R & 63)) {\n      if (!p[--b]) (*this)[--R] = 0;\n    }\n    // p[a:b]\
+    \ \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t\
+    \ = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l +\
+    \ i] &= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64\
+    \ - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i] >> hi) | (p.dat[1 + s + i]\
+    \ << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 or\n  void or_to_range(int\
+    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
+    \    while (L < R && (L & 63)) {\n      dat[L >> 6] |= u64(p[a]) << (L & 63);\n\
+    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
+    \    dat[R >> 6] |= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
+    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
+    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
+    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
+    \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
+    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
+    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
+    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
+    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
+    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
+    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
+    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
+    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
+    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\
+    \u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i)\
+    \ { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n  void set()\
+    \ {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat),\
+    \ 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i];\
+    \ }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size())\
+    \ break;\n      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat))\
+    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
+    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 6 \"test/library_checker/matrix/matrix_product_mod2.test.cpp\"\n\nusing\
+    \ BS = My_Bitset;\n\nvoid solve() {\n  INT(N, M, K);\n\n  vc<BS> A(N, BS(M));\n\
+    \  vc<BS> B(M, BS(K));\n  vc<BS> C(N, BS(K));\n\n  FOR(i, N) {\n    FOR(j, M)\
+    \ {\n      CHAR(ch);\n      A[i][j] = ch - '0';\n    }\n  }\n  FOR(j, M) {\n \
+    \   FOR(k, K) {\n      CHAR(ch);\n      B[j][k] = ch - '0';\n    }\n  }\n  FOR(i,\
+    \ N) FOR(j, M) {\n    if (A[i][j]) C[i] ^= B[j];\n  }\n  FOR(i, N) { print(C[i].to_string());\
+    \ }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_bitset.hpp\"\
+    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  INT(N, M, K);\n\n  vc<BS> A(N,\
+    \ BS(M));\n  vc<BS> B(M, BS(K));\n  vc<BS> C(N, BS(K));\n\n  FOR(i, N) {\n   \
+    \ FOR(j, M) {\n      CHAR(ch);\n      A[i][j] = ch - '0';\n    }\n  }\n  FOR(j,\
+    \ M) {\n    FOR(k, K) {\n      CHAR(ch);\n      B[j][k] = ch - '0';\n    }\n \
+    \ }\n  FOR(i, N) FOR(j, M) {\n    if (A[i][j]) C[i] ^= B[j];\n  }\n  FOR(i, N)\
+    \ { print(C[i].to_string()); }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/acted_monoid/sum_assign.hpp
-  - alg/monoid/add.hpp
-  - alg/monoid/assign.hpp
-  - ds/segtree/lazy_segtree.hpp
+  - ds/my_bitset.hpp
   isVerificationFile: true
-  path: test/aoj/DSL_2_I.test.cpp
+  path: test/library_checker/matrix/matrix_product_mod2.test.cpp
   requiredBy: []
-  timestamp: '2024-02-02 01:26:23+09:00'
+  timestamp: '2024-02-24 23:27:05+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/DSL_2_I.test.cpp
+documentation_of: test/library_checker/matrix/matrix_product_mod2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/DSL_2_I.test.cpp
-- /verify/test/aoj/DSL_2_I.test.cpp.html
-title: test/aoj/DSL_2_I.test.cpp
+- /verify/test/library_checker/matrix/matrix_product_mod2.test.cpp
+- /verify/test/library_checker/matrix/matrix_product_mod2.test.cpp.html
+title: test/library_checker/matrix/matrix_product_mod2.test.cpp
 ---
