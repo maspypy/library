@@ -2,8 +2,7 @@
 #include <my_template_compiled.hpp>
 #else
 
-// 参考 https://codeforces.com/blog/entry/96344
-// bmi,bmi2,lzcnt は ucup でコンパイルエラー
+// https://codeforces.com/blog/entry/96344
 #pragma GCC optimize("Ofast,unroll-loops")
 #pragma GCC target("avx2,popcnt")
 
