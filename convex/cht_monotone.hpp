@@ -1,4 +1,3 @@
-// 挿入しながら query_monotone を使う場合、直線の挿入順と同じ方向の単調性が必要
 template <typename T, bool isMin>
 struct CHT_monotone {
   struct Line {
