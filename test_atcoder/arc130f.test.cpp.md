@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc130/tasks/arc130_f
@@ -37,28 +37,26 @@ data:
     - https://atcoder.jp/contests/arc130/tasks/arc130_f
   bundledCode: "#line 1 \"test_atcoder/arc130f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// \u53C2\u8003 https://codeforces.com/blog/entry/96344\n// bmi,bmi2,lzcnt\
-    \ \u306F ucup \u3067\u30B3\u30F3\u30D1\u30A4\u30EB\u30A8\u30E9\u30FC\n#pragma\
-    \ GCC optimize(\"Ofast,unroll-loops\")\n#pragma GCC target(\"avx2,popcnt\")\n\n\
-    #include <bits/stdc++.h>\n\nusing namespace std;\n\nusing ll = long long;\nusing\
-    \ u32 = unsigned int;\nusing u64 = unsigned long long;\nusing i128 = __int128;\n\
-    using u128 = unsigned __int128;\nusing f128 = __float128;\n\ntemplate <class T>\n\
-    constexpr T infty = 0;\ntemplate <>\nconstexpr int infty<int> = 1'000'000'000;\n\
-    template <>\nconstexpr ll infty<ll> = ll(infty<int>) * infty<int> * 2;\ntemplate\
-    \ <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64 infty<u64>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\n\
-    template <>\nconstexpr double infty<double> = infty<ll>;\ntemplate <>\nconstexpr\
-    \ long double infty<long double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing\
-    \ vi = vector<ll>;\ntemplate <class T>\nusing vc = vector<T>;\ntemplate <class\
-    \ T>\nusing vvc = vector<vc<T>>;\ntemplate <class T>\nusing vvvc = vector<vvc<T>>;\n\
-    template <class T>\nusing vvvvc = vector<vvvc<T>>;\ntemplate <class T>\nusing\
-    \ vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing pq = priority_queue<T>;\n\
-    template <class T>\nusing pqg = priority_queue<T, vector<T>, greater<T>>;\n\n\
-    #define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))\n\
-    #define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>> name(\
-    \ \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>> name( \\\
-    \n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    )\n#pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
+    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
+    \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
+    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
+    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
+    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
+    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
+    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
+    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
+    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
     \ ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define FOR4(i,\
@@ -385,48 +383,45 @@ data:
     \    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
     \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
     \ hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return res;\n}\n#line 1 \"convex/cht_monotone.hpp\"\
-    \n// \u633F\u5165\u3057\u306A\u304C\u3089 query_monotone \u3092\u4F7F\u3046\u5834\
-    \u5408\u3001\u76F4\u7DDA\u306E\u633F\u5165\u9806\u3068\u540C\u3058\u65B9\u5411\
-    \u306E\u5358\u8ABF\u6027\u304C\u5FC5\u8981\r\ntemplate <typename T, bool isMin>\r\
-    \nstruct CHT_monotone {\r\n  struct Line {\r\n    T a, b;\r\n    int idx;\r\n\
-    \  };\r\n  deque<Line> H;\r\n  int nxt_idx = 0;\r\n\r\n  CHT_monotone() = default;\r\
-    \n\r\n  bool empty() const { return H.empty(); }\r\n  void clear() { H.clear();\
-    \ }\r\n\r\n  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1 : 1); }\r\n\
-    \  using D = long double;\r\n  inline bool check(const Line &a, const Line &b,\
-    \ const Line &c) {\r\n    if (b.b == a.b || c.b == b.b)\r\n      return sgn(b.a\
-    \ - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\r\n    // return\
-    \ (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\n    return D(b.a - a.a) * sgn(c.b\
-    \ - b.b) / D(abs(b.b - a.b))\r\n           >= D(c.a - b.a) * sgn(b.b - a.b) /\
-    \ D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T a, T b, int idx = -1) {\r\n  \
-    \  if (idx == -1) { idx = nxt_idx++; }\r\n    if (!isMin) a *= -1, b *= -1;\r\n\
-    \    Line L{a, b, idx};\r\n    if (empty()) {\r\n      H.emplace_front(L);\r\n\
-    \      return;\r\n    }\r\n    if (H.front().a <= a) {\r\n      if (H.front().a\
-    \ == a) {\r\n        if (H.front().b <= b) return;\r\n        H.pop_front();\r\
-    \n      }\r\n      while (H.size() >= 2 && check(L, H.front(), H[1])) { H.pop_front();\
-    \ }\r\n      H.emplace_front(L);\r\n    } else {\r\n      assert(a <= H.back().a);\r\
-    \n      if (H.back().a == a) {\r\n        if (H.back().b <= b) return;\r\n   \
-    \     H.pop_back();\r\n      }\r\n      while (H.size() >= 2 && check(H[H.size()\
-    \ - 2], H.back(), L)) H.pop_back();\r\n      H.emplace_back(L);\r\n    }\r\n \
-    \ }\r\n\r\n  inline T get_y(const Line &a, const T &x) { return a.a * x + a.b;\
-    \ }\r\n\r\n  pair<T, int> query(T x) {\r\n    assert(!empty());\r\n    int l =\
-    \ -1, r = H.size() - 1;\r\n    while (l + 1 < r) {\r\n      int m = (l + r) >>\
-    \ 1;\r\n      if (get_y(H[m], x) >= get_y(H[m + 1], x))\r\n        l = m;\r\n\
-    \      else\r\n        r = m;\r\n    }\r\n    if (isMin) return {get_y(H[r], x),\
-    \ H[r].idx};\r\n    return {-get_y(H[r], x), H[r].idx};\r\n  }\r\n\r\n  pair<T,\
-    \ int> query_monotone_inc(T x) {\r\n    assert(!empty());\r\n    while (H.size()\
-    \ >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n      H.pop_front();\r\n \
-    \   if (isMin) return {get_y(H.front(), x), H.front().idx};\r\n    return {-get_y(H.front(),\
-    \ x), H.front().idx};\r\n  }\r\n\r\n  pair<T, int> query_monotone_dec(T x) {\r\
-    \n    assert(!empty());\r\n    while (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size()\
-    \ - 2], x))\r\n      H.pop_back();\r\n    if (isMin) return {get_y(H.back(), x),\
-    \ H.back().idx};\r\n    return {-get_y(H.back(), x), H.back().idx};\r\n  }\r\n\
-    };\n#line 8 \"test_atcoder/arc130f.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
-    \ solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>> XY(N);\n  FOR(i, N) XY[i]\
-    \ = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n  for (auto&& [L, R, a, b]:\
-    \ Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>) { cht.add(L, b - a\
-    \ * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a * (R - 1)); }\n  }\n\
-    \n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n  struct Line\
+    \ {\r\n    T a, b;\r\n    int idx;\r\n  };\r\n  deque<Line> H;\r\n  int nxt_idx\
+    \ = 0;\r\n\r\n  CHT_monotone() = default;\r\n\r\n  bool empty() const { return\
+    \ H.empty(); }\r\n  void clear() { H.clear(); }\r\n\r\n  inline int sgn(T x) {\
+    \ return x == 0 ? 0 : (x < 0 ? -1 : 1); }\r\n  using D = long double;\r\n  inline\
+    \ bool check(const Line &a, const Line &b, const Line &c) {\r\n    if (b.b ==\
+    \ a.b || c.b == b.b)\r\n      return sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a\
+    \ - b.a) * sgn(b.b - a.b);\r\n    // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\
+    \n    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b))\r\n           >=\
+    \ D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T\
+    \ a, T b, int idx = -1) {\r\n    if (idx == -1) { idx = nxt_idx++; }\r\n    if\
+    \ (!isMin) a *= -1, b *= -1;\r\n    Line L{a, b, idx};\r\n    if (empty()) {\r\
+    \n      H.emplace_front(L);\r\n      return;\r\n    }\r\n    if (H.front().a <=\
+    \ a) {\r\n      if (H.front().a == a) {\r\n        if (H.front().b <= b) return;\r\
+    \n        H.pop_front();\r\n      }\r\n      while (H.size() >= 2 && check(L,\
+    \ H.front(), H[1])) { H.pop_front(); }\r\n      H.emplace_front(L);\r\n    } else\
+    \ {\r\n      assert(a <= H.back().a);\r\n      if (H.back().a == a) {\r\n    \
+    \    if (H.back().b <= b) return;\r\n        H.pop_back();\r\n      }\r\n    \
+    \  while (H.size() >= 2 && check(H[H.size() - 2], H.back(), L)) H.pop_back();\r\
+    \n      H.emplace_back(L);\r\n    }\r\n  }\r\n\r\n  inline T get_y(const Line\
+    \ &a, const T &x) { return a.a * x + a.b; }\r\n\r\n  pair<T, int> query(T x) {\r\
+    \n    assert(!empty());\r\n    int l = -1, r = H.size() - 1;\r\n    while (l +\
+    \ 1 < r) {\r\n      int m = (l + r) >> 1;\r\n      if (get_y(H[m], x) >= get_y(H[m\
+    \ + 1], x))\r\n        l = m;\r\n      else\r\n        r = m;\r\n    }\r\n   \
+    \ if (isMin) return {get_y(H[r], x), H[r].idx};\r\n    return {-get_y(H[r], x),\
+    \ H[r].idx};\r\n  }\r\n\r\n  pair<T, int> query_monotone_inc(T x) {\r\n    assert(!empty());\r\
+    \n    while (H.size() >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n     \
+    \ H.pop_front();\r\n    if (isMin) return {get_y(H.front(), x), H.front().idx};\r\
+    \n    return {-get_y(H.front(), x), H.front().idx};\r\n  }\r\n\r\n  pair<T, int>\
+    \ query_monotone_dec(T x) {\r\n    assert(!empty());\r\n    while (H.size() >=\
+    \ 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\r\n      H.pop_back();\r\
+    \n    if (isMin) return {get_y(H.back(), x), H.back().idx};\r\n    return {-get_y(H.back(),\
+    \ x), H.back().idx};\r\n  }\r\n};\n#line 8 \"test_atcoder/arc130f.test.cpp\"\n\
+    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>>\
+    \ XY(N);\n  FOR(i, N) XY[i] = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n \
+    \ for (auto&& [L, R, a, b]: Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>)\
+    \ { cht.add(L, b - a * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a *\
+    \ (R - 1)); }\n  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"convex/fenchel.hpp\"\n#include \"convex/cht_monotone.hpp\"\n\nusing\
@@ -448,8 +443,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2024-02-11 04:08:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-02-26 23:25:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp
 layout: document
