@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/or_convolution.hpp
     title: setfunc/or_convolution.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
     title: test/library_checker/convolution/bitwise_or_convolution.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/arc105.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>&\
@@ -56,7 +56,7 @@ data:
   - setfunc/or_convolution.hpp
   - setfunc/and_convolution.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc105.test.cpp
   - test/library_checker/convolution/bitwise_and_convolution.test.cpp
