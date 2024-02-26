@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':x:'
     path: graph/ds/lct_node_monoid.hpp
     title: graph/ds/lct_node_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'

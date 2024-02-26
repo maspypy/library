@@ -33,7 +33,7 @@ data:
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: test_atcoder/abc315h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -246,7 +246,7 @@ data:
   - poly/online/online_pow.hpp
   - seq/famous/simple_permutations.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc315h.test.cpp
   - test_atcoder/abc230h.test.cpp
