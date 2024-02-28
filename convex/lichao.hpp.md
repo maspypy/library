@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1867.test.cpp
     title: test/yukicoder/1867.test.cpp
   - icon: ':x:'
