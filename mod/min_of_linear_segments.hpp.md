@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/first_mod_range_of_linear.hpp
     title: mod/first_mod_range_of_linear.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
   - icon: ':question:'
@@ -15,13 +15,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/first_mod_range_of_linear.test.cpp
     title: test/mytest/first_mod_range_of_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
   - icon: ':x:'
