@@ -33,4 +33,10 @@ struct UnionFind {
     dat[x] += dat[y], dat[y] = x, n_comp--;
     return true;
   }
+
+  vc<int> get_all() {
+    vc<int> A(n);
+    FOR(i, n) A[i] = (*this)[i];
+    return A;
+  }
 };
