@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc217e.test.cpp
     title: test_atcoder/abc217e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237g1.test.cpp
     title: test_atcoder/abc237g1.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63)\
@@ -188,7 +188,7 @@ data:
   path: ds/sortable_array.hpp
   requiredBy: []
   timestamp: '2024-01-14 14:14:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc237g1.test.cpp
   - test_atcoder/abc217e.test.cpp
