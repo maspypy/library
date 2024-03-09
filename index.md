@@ -242,7 +242,7 @@ data:
     - icon: ':warning:'
       path: ds/counter.hpp
       title: ds/counter.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/cumsum_2d.hpp
       title: ds/cumsum_2d.hpp
     - icon: ':question:'
@@ -450,7 +450,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/segtree_2d.hpp
       title: ds/segtree/segtree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d_dense.hpp
       title: ds/segtree/segtree_2d_dense.hpp
     - icon: ':heavy_check_mark:'
@@ -550,7 +550,7 @@ data:
     - icon: ':x:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/partition.hpp
       title: enumerate/partition.hpp
     - icon: ':question:'
@@ -567,7 +567,7 @@ data:
       title: enumerate/xor_range.hpp
   - name: flow
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/bflow.hpp
       title: flow/bflow.hpp
     - icon: ':question:'
@@ -582,7 +582,7 @@ data:
     - icon: ':warning:'
       path: flow/cyclic_bflow.hpp
       title: flow/cyclic_bflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/dual_mcf.hpp
       title: flow/dual_mcf.hpp
     - icon: ':heavy_check_mark:'
@@ -1338,7 +1338,7 @@ data:
     - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor_interval.hpp
       title: nt/factor_interval.hpp
     - icon: ':heavy_check_mark:'
@@ -4237,16 +4237,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc223h.test.cpp
       title: test_atcoder/abc223h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc224h.test.cpp
       title: test_atcoder/abc224h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc226f.test.cpp
       title: test_atcoder/abc226f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc227g.test.cpp
       title: test_atcoder/abc227g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc228f.test.cpp
       title: test_atcoder/abc228f.test.cpp
     - icon: ':x:'
