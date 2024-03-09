@@ -165,9 +165,10 @@ data:
     \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 3 \"graph/optimal_product_on_tree.hpp\"\n\n\
-    // \u6728\u306E\u5404\u9802\u70B9\u306B\u5168\u9806\u5E8F\u30E2\u30CE\u30A4\u30C9\
-    \u306E\u5143\u304C\u7F6E\u304B\u308C\u3066\u3044\u308B\uFF08x<=y -> axb<=ayb\uFF09\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"graph/optimal_product_on_tree.hpp\"\
+    \n\n// \u6728\u306E\u5404\u9802\u70B9\u306B\u5168\u9806\u5E8F\u30E2\u30CE\u30A4\
+    \u30C9\u306E\u5143\u304C\u7F6E\u304B\u308C\u3066\u3044\u308B\uFF08x<=y -> axb<=ayb\uFF09\
     \n// topological \u9806\u5E8F\u3067\u304B\u3051\u308B\u3068\u304D\uFF0C\u7D50\u679C\
     \u3092\u6700\u5927\u5316\u3059\u308B\n// https://atcoder.jp/contests/agc023/tasks/agc023_f\n\
     // https://qoj.ac/problem/6561\n// \u3044\u3084\u62BD\u8C61\u5316\u304C\u8DB3\u308A\
@@ -220,7 +221,7 @@ data:
   isVerificationFile: false
   path: graph/optimal_product_on_tree.hpp
   requiredBy: []
-  timestamp: '2023-11-30 16:31:51+09:00'
+  timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/agc023f.test.cpp

@@ -12,12 +12,12 @@ data:
     title: graph/bipartite_vertex_coloring.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1615.test.cpp
     title: test/yukicoder/1615.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://qoj.ac/contest/1388/problem/6546
@@ -89,19 +89,20 @@ data:
     \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
     \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
-    #line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n// \u4E8C\u90E8\u30B0\u30E9\
-    \u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\u306F empty\r\ntemplate\
-    \ <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT& G) {\r\n  assert(!GT::is_directed);\r\
-    \n  assert(G.is_prepared());\r\n\r\n  int n = G.N;\r\n  UnionFind uf(2 * n);\r\
-    \n  for (auto&& e: G.edges) {\r\n    int u = e.frm, v = e.to;\r\n    uf.merge(u\
-    \ + n, v), uf.merge(u, v + n);\r\n  }\r\n\r\n  vc<int> color(2 * n, -1);\r\n \
-    \ FOR(v, n) if (uf[v] == v && color[uf[v]] < 0) {\r\n    color[uf[v]] = 0;\r\n\
-    \    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v, n) color[v] = color[uf[v]];\r\n\
-    \  color.resize(n);\r\n  FOR(v, n) if (uf[v] == uf[v + n]) return {};\r\n  return\
-    \ color;\r\n}\r\n#line 3 \"flow/rank_maximal_bipartite_matching.hpp\"\n\n// (N1,\
-    \ N2) bipartite graph with edge-weight 0, 1, ..., K - 1.\n// find a matching s.t.\
-    \ (# of K-1, # of K-2, ...) is lex max.\n// https://yukicoder.me/problems/no/1615\n\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 5 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n\
+    // \u4E8C\u90E8\u30B0\u30E9\u30D5\u3067\u306A\u304B\u3063\u305F\u5834\u5408\u306B\
+    \u306F empty\r\ntemplate <typename GT>\r\nvc<int> bipartite_vertex_coloring(GT&\
+    \ G) {\r\n  assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\n  int\
+    \ n = G.N;\r\n  UnionFind uf(2 * n);\r\n  for (auto&& e: G.edges) {\r\n    int\
+    \ u = e.frm, v = e.to;\r\n    uf.merge(u + n, v), uf.merge(u, v + n);\r\n  }\r\
+    \n\r\n  vc<int> color(2 * n, -1);\r\n  FOR(v, n) if (uf[v] == v && color[uf[v]]\
+    \ < 0) {\r\n    color[uf[v]] = 0;\r\n    color[uf[v + n]] = 1;\r\n  }\r\n  FOR(v,\
+    \ n) color[v] = color[uf[v]];\r\n  color.resize(n);\r\n  FOR(v, n) if (uf[v] ==\
+    \ uf[v + n]) return {};\r\n  return color;\r\n}\r\n#line 3 \"flow/rank_maximal_bipartite_matching.hpp\"\
+    \n\n// (N1, N2) bipartite graph with edge-weight 0, 1, ..., K - 1.\n// find a\
+    \ matching s.t. (# of K-1, # of K-2, ...) is lex max.\n// https://yukicoder.me/problems/no/1615\n\
     // https://qoj.ac/contest/1388/problem/6546\n\ntemplate <typename GT>\nstruct\
     \ Rank_Maximal_Bipartite_Matching {\n  int N, K;\n  GT& G;\n  vc<int> color;\n\
     \  vc<int> dist, match;\n  vc<int> que;\n  vc<bool> vis;\n  vc<bool> vcover;\n\
@@ -201,8 +202,8 @@ data:
   isVerificationFile: false
   path: flow/rank_maximal_bipartite_matching.hpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-10 03:27:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1615.test.cpp
 documentation_of: flow/rank_maximal_bipartite_matching.hpp

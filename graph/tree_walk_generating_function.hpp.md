@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':question:'
@@ -54,15 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree_walk_generating_function.hpp\"\n\n#line 2 \"\
@@ -284,42 +284,43 @@ data:
     \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
     \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
-    #line 4 \"graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp\"\n\n//\
-    \ det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\u5F0F\u306E reverse \u306B\
-    \u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1AA[i][j]\n// \u5076\u6570\u6B21\
-    \u3060\u3051\u3057\u304B\u51FA\u3066\u3053\u306A\u3044\u306E\u3067 loop \u3042\
-    \u308A\u3088\u308A\u9AD8\u901F\ntemplate <typename mint, typename F>\nvc<mint>\
-    \ characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(\n    Graph<int,\
-    \ 0>& G, F weight) {\n  // int N = G.N;\n  // vv(mint, A, N, N);\n  // vv(mint,\
-    \ B, N, N);\n  // FOR(i, N) A[i][i] = 1;\n  // FOR(i, N) {\n  //   for (auto&\
-    \ e: G[i]) { B[i][e.to] = -weight(i, e.to); }\n  // }\n  // return det_A_plus_xB(A,\
-    \ B);\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n  Static_TopTree<decltype(tree)>\
-    \ STT(tree);\n\n  using Data = array<array<poly, 2>, 2>;\n  auto add = [&](poly&\
-    \ f, poly& g, int s, mint wt = 1) -> void {\n    if (g.empty()) return;\n    if\
-    \ (len(f) < len(g) + s) f.resize(len(g) + s);\n    FOR(i, len(g)) f[s + i] +=\
-    \ g[i] * wt;\n  };\n  auto from_vertex = [&](int v) -> Data {\n    Data X;\n \
-    \   X[0][0] = poly{mint(1)};\n    return X;\n  };\n  auto add_vertex = [&](Data&\
-    \ X, int v) -> Data { return X; };\n  auto add_edge = [&](Data& X, int u, int\
-    \ v) -> Data {\n    mint wt = -weight(u, v) * weight(v, u);\n    Data Y;\n   \
-    \ FOR(a, 2) {\n      add(Y[0][0], X[a][0], 0);\n      add(Y[1][1], X[a][0], 1,\
-    \ wt);\n      add(Y[0][0], X[a][1], 0);\n    }\n    return Y;\n  };\n  auto merge_light\
-    \ = [&](Data& X, Data& Y) -> Data {\n    poly &X0 = X[0][0], &X1 = X[1][1];\n\
-    \    poly &Y0 = Y[0][0], &Y1 = Y[1][1];\n    poly A = convolution(X0, Y0);\n \
-    \   poly B = convolution(X0, Y1);\n    poly C = convolution(X1, Y0);\n    Data\
-    \ Z;\n    add(Z[0][0], A, 0), add(Z[1][1], B, 0), add(Z[1][1], C, 0);\n    return\
-    \ Z;\n  };\n  auto merge_heavy\n      = [&](Data& X, Data& Y, int va, int vb,\
-    \ int vc, int vd) -> Data {\n    Data Z;\n    mint wt = -weight(vb, vc) * weight(vc,\
-    \ vb);\n    FOR(a, 2) FOR(d, 2) {\n      poly f0 = X[a][0], &f1 = X[a][1];\n \
-    \     poly g0 = Y[0][d], &g1 = Y[1][d];\n      // \u8FBA\u3092\u4F7F\u3046\n \
-    \     poly f = convolution(f0, g0);\n      int x = (va != vb ? a : 1);\n     \
-    \ int y = (vc != vd ? d : 1);\n      add(Z[x][y], f, 1, wt);\n      // \u8FBA\u3092\
-    \u4F7F\u308F\u306A\u3044\n      add(f0, f1, 0), add(g0, g1, 0);\n      f = convolution(f0,\
-    \ g0);\n      add(Z[a][d], f, 0);\n    }\n    return Z;\n  };\n\n  Data X = STT.tree_dp<Data>(from_vertex,\
-    \ add_vertex, add_edge, merge_light,\n                             merge_heavy);\n\
-    \  vc<mint> ANS(G.N + 1);\n  FOR(a, 2) FOR(b, 2) {\n    FOR(i, len(X[a][b])) {\
-    \ ANS[2 * i] += X[a][b][i]; }\n  }\n  return ANS;\n}\n\ntemplate <typename mint,\
-    \ typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(\n\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 4 \"graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp\"\
+    \n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\u5F0F\u306E reverse\
+    \ \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1AA[i][j]\n// \u5076\
+    \u6570\u6B21\u3060\u3051\u3057\u304B\u51FA\u3066\u3053\u306A\u3044\u306E\u3067\
+    \ loop \u3042\u308A\u3088\u308A\u9AD8\u901F\ntemplate <typename mint, typename\
+    \ F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(\n\
+    \    Graph<int, 0>& G, F weight) {\n  // int N = G.N;\n  // vv(mint, A, N, N);\n\
+    \  // vv(mint, B, N, N);\n  // FOR(i, N) A[i][i] = 1;\n  // FOR(i, N) {\n  //\
+    \   for (auto& e: G[i]) { B[i][e.to] = -weight(i, e.to); }\n  // }\n  // return\
+    \ det_A_plus_xB(A, B);\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n\
+    \  Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data = array<array<poly,\
+    \ 2>, 2>;\n  auto add = [&](poly& f, poly& g, int s, mint wt = 1) -> void {\n\
+    \    if (g.empty()) return;\n    if (len(f) < len(g) + s) f.resize(len(g) + s);\n\
+    \    FOR(i, len(g)) f[s + i] += g[i] * wt;\n  };\n  auto from_vertex = [&](int\
+    \ v) -> Data {\n    Data X;\n    X[0][0] = poly{mint(1)};\n    return X;\n  };\n\
+    \  auto add_vertex = [&](Data& X, int v) -> Data { return X; };\n  auto add_edge\
+    \ = [&](Data& X, int u, int v) -> Data {\n    mint wt = -weight(u, v) * weight(v,\
+    \ u);\n    Data Y;\n    FOR(a, 2) {\n      add(Y[0][0], X[a][0], 0);\n      add(Y[1][1],\
+    \ X[a][0], 1, wt);\n      add(Y[0][0], X[a][1], 0);\n    }\n    return Y;\n  };\n\
+    \  auto merge_light = [&](Data& X, Data& Y) -> Data {\n    poly &X0 = X[0][0],\
+    \ &X1 = X[1][1];\n    poly &Y0 = Y[0][0], &Y1 = Y[1][1];\n    poly A = convolution(X0,\
+    \ Y0);\n    poly B = convolution(X0, Y1);\n    poly C = convolution(X1, Y0);\n\
+    \    Data Z;\n    add(Z[0][0], A, 0), add(Z[1][1], B, 0), add(Z[1][1], C, 0);\n\
+    \    return Z;\n  };\n  auto merge_heavy\n      = [&](Data& X, Data& Y, int va,\
+    \ int vb, int vc, int vd) -> Data {\n    Data Z;\n    mint wt = -weight(vb, vc)\
+    \ * weight(vc, vb);\n    FOR(a, 2) FOR(d, 2) {\n      poly f0 = X[a][0], &f1 =\
+    \ X[a][1];\n      poly g0 = Y[0][d], &g1 = Y[1][d];\n      // \u8FBA\u3092\u4F7F\
+    \u3046\n      poly f = convolution(f0, g0);\n      int x = (va != vb ? a : 1);\n\
+    \      int y = (vc != vd ? d : 1);\n      add(Z[x][y], f, 1, wt);\n      // \u8FBA\
+    \u3092\u4F7F\u308F\u306A\u3044\n      add(f0, f1, 0), add(g0, g1, 0);\n      f\
+    \ = convolution(f0, g0);\n      add(Z[a][d], f, 0);\n    }\n    return Z;\n  };\n\
+    \n  Data X = STT.tree_dp<Data>(from_vertex, add_vertex, add_edge, merge_light,\n\
+    \                             merge_heavy);\n  vc<mint> ANS(G.N + 1);\n  FOR(a,\
+    \ 2) FOR(b, 2) {\n    FOR(i, len(X[a][b])) { ANS[2 * i] += X[a][b][i]; }\n  }\n\
+    \  return ANS;\n}\n\ntemplate <typename mint, typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(\n\
     \    Graph<int, 0>& G, F weight) {\n  // \u70B9\u3068\u30DE\u30C3\u30C1\u30F3\u30B0\
     \u306B\u5206\u89E3\n  // \u30DE\u30C3\u30C1\u30F3\u30B0\uFF1A-w[i][j]w[j][i]x^2\n\
     \  // \u70B9\uFF1A1-w[i][i]x\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>>\
@@ -693,8 +694,8 @@ data:
   isVerificationFile: false
   path: graph/tree_walk_generating_function.hpp
   requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-10 03:27:25+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/2587_2.test.cpp

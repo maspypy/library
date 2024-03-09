@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':heavy_check_mark:'
@@ -224,30 +224,32 @@ data:
     \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
     \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
     \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n};\n#line 5 \"random/random_graph.hpp\"\n\nvoid random_relabel(int\
-    \ N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int> A(N);\n  FOR(i, N) A[i]\
-    \ = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a], b = A[b];\n}\n\ntemplate\
-    \ <int DIRECTED>\nvc<pair<int, int>> random_graph(int n, bool simple) {\n  vc<pair<int,\
-    \ int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n    if (simple && a == b) continue;\n\
-    \    if (!DIRECTED && a > b) continue;\n    cand.eb(a, b);\n  }\n  int m = RNG(0,\
-    \ len(cand) + 1);\n  set<int> ss;\n  FOR(m) {\n    while (1) {\n      int i =\
-    \ RNG(0, len(cand));\n      if (simple && ss.count(i)) continue;\n      ss.insert(i);\n\
-    \      auto [a, b] = cand[i];\n      G.eb(a, b);\n      break;\n    }\n  }\n \
-    \ random_relabel(n, G);\n  return G;\n}\n\nvc<pair<int, int>> random_tree(int\
-    \ n) {\n  vc<pair<int, int>> G;\n  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n,\
-    \ G);\n  return G;\n}\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\
-    \u30A4\u30AF\u30EB\uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\
-    \u305F\u306F\u8FBA\uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\
-    \u4E00\u306E\u30B5\u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\
-    \u307E\u305F\u306F\u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE)\
-    \ {\n  if (!EDGE) {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\
-    \u4E0A\u306B\u5206\u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int>\
-    \ S(n, 1);\n    int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0,\
-    \ n);\n      if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest\
-    \ = 0;\n        } else {\n          S[k] += 2, rest -= 2;\n        }\n      }\
-    \ else {\n        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p\
-    \ = 0;\n    FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n\
-    \      A.eb(C);\n      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"random/random_graph.hpp\"\
+    \n\nvoid random_relabel(int N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int>\
+    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a],\
+    \ b = A[b];\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_graph(int\
+    \ n, bool simple) {\n  vc<pair<int, int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n\
+    \    if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n\
+    \    cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n \
+    \ FOR(m) {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple\
+    \ && ss.count(i)) continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n\
+    \      G.eb(a, b);\n      break;\n    }\n  }\n  random_relabel(n, G);\n  return\
+    \ G;\n}\n\nvc<pair<int, int>> random_tree(int n) {\n  vc<pair<int, int>> G;\n\
+    \  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n, G);\n  return G;\n\
+    }\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\u30A4\u30AF\u30EB\
+    \uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\u8FBA\
+    \uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\u4E00\u306E\u30B5\
+    \u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\
+    \u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE) {\n  if (!EDGE)\
+    \ {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\u4E0A\u306B\u5206\
+    \u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int> S(n, 1);\n  \
+    \  int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0, n);\n     \
+    \ if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest = 0;\n \
+    \       } else {\n          S[k] += 2, rest -= 2;\n        }\n      } else {\n\
+    \        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p = 0;\n  \
+    \  FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n      A.eb(C);\n\
+    \      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
     \    vc<pair<int, int>> G;\n    FOR(i, m) {\n      vc<int>& V = A[i];\n      if\
     \ (len(V) == 1) continue;\n      FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]);\
     \ }\n    }\n    for (auto& [c1, c2]: H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
@@ -365,7 +367,7 @@ data:
   isVerificationFile: true
   path: test/mytest/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2024-02-26 23:25:37+09:00'
+  timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/st_numbering.test.cpp

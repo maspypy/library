@@ -258,12 +258,13 @@ data:
     \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
     \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
-    #line 3 \"geo/manhattan_mst.hpp\"\n\n// \u6700\u5C0F\u5168\u57DF\u6728\u3092\u4F5C\
-    \u308B\u306E\u3067\u3001\u7279\u306B\u5404\u70B9\u304B\u3089\u306E\u6700\u8FD1\
-    \u70B9\u3092\u3068\u308B\u76EE\u7684\u3067\u4F7F\u3046\u3053\u3068\u3082\u3067\
-    \u304D\u308B\ntemplate <typename T>\nGraph<T, 0> manhattan_mst(vc<pair<T, T>>&\
-    \ XY) {\n  int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 3 \"geo/manhattan_mst.hpp\"\n\n// \u6700\u5C0F\u5168\
+    \u57DF\u6728\u3092\u4F5C\u308B\u306E\u3067\u3001\u7279\u306B\u5404\u70B9\u304B\
+    \u3089\u306E\u6700\u8FD1\u70B9\u3092\u3068\u308B\u76EE\u7684\u3067\u4F7F\u3046\
+    \u3053\u3068\u3082\u3067\u304D\u308B\ntemplate <typename T>\nGraph<T, 0> manhattan_mst(vc<pair<T,\
+    \ T>>& XY) {\n  int N = XY.size();\n  vc<tuple<T, int, int>> dat;\n  dat.reserve(4\
     \ * N);\n  vc<int> idx(N);\n  iota(all(idx), 0);\n\n  FOR(a, 2) {\n    for (auto&&\
     \ [x, y]: XY) x = -x;\n    FOR(b, 2) {\n      for (auto&& [x, y]: XY) swap(x,\
     \ y);\n      sort(all(idx), [&](const int& i, const int& j) -> bool {\n      \
@@ -297,7 +298,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/manhattan_mst.test.cpp
   requiredBy: []
-  timestamp: '2024-02-26 23:25:37+09:00'
+  timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/manhattan_mst.test.cpp

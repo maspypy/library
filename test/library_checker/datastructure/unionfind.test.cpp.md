@@ -194,11 +194,13 @@ data:
     \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
     \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n};\n\
-    #line 6 \"test/library_checker/datastructure/unionfind.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  UnionFind uf(N);\n  FOR(Q) {\n    LL(t, a, b);\n    if (t\
-    \ == 0) {\n      uf.merge(a, b);\n    } else {\n      print(uf[a] == uf[b] ? 1\
-    \ : 0);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 6 \"test/library_checker/datastructure/unionfind.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  UnionFind uf(N);\n  FOR(Q) {\n    LL(t, a,\
+    \ b);\n    if (t == 0) {\n      uf.merge(a, b);\n    } else {\n      print(uf[a]\
+    \ == uf[b] ? 1 : 0);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/unionfind/unionfind.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  UnionFind uf(N);\n  FOR(Q) {\n    LL(t, a,\
@@ -212,7 +214,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-02-26 23:25:37+09:00'
+  timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/unionfind.test.cpp
