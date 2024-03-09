@@ -67,7 +67,7 @@ struct Wavelet_Matrix_2D_Range_Static_AbelGroup {
     dat.assign(1 + lg, vc<X>(N + 1, MX::unit()));
     FOR(i, N) A[i] = XtoI(A[i]);
 
-    vc<int> A0(N), A1(N);
+    vc<XY> A0(N), A1(N);
     vc<X> S0(N), S1(N);
     FOR_R(d, -1, lg) {
       int p0 = 0, p1 = 0;

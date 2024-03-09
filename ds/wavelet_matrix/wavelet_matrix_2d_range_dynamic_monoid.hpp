@@ -75,7 +75,7 @@ struct Wavelet_Matrix_2D_Range_Dynamic_Monoid {
     A.resize(N);
     FOR(i, N) A[i] = XtoI(tmp[i]);
 
-    vc<int> A0(N), A1(N);
+    vc<XY> A0(N), A1(N);
     vc<X> S0(N), S1(N);
     FOR_R(d, lg) {
       int p0 = 0, p1 = 0;
