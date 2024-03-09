@@ -58,9 +58,12 @@ struct Tree_AbelGroup {
     return MX::op(x1, x2);
   }
 
-  X prod_subtree(int u) {
+  X prod_subtree(int u, int root = -1) {
     static_assert(subtree_query);
     int l = tree.LID[u], r = tree.RID[u];
-    return bit_subtree.prod(l + edge, r);
+    if (root == -1) return bit_subtree.prod(l + edge, r);
+    if (root == u) return bit_subtree.prod_all();
+    if (tree.in_subtree(u, root)) return bit_subtree.prod(l + edge, r);
+    return MX::op(bit_subtree.prod(0, l + 1), bit_subtree.prod(r, N));
   }
 };

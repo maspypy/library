@@ -11,6 +11,7 @@ struct Vector_Space {
   }
 
   int size() { return dat.size(); }
+  int dim() { return dat.size(); }
 
   bool add_element(UINT v) {
     for (auto&& e: dat) {
