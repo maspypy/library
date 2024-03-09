@@ -246,14 +246,17 @@ data:
     \    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) +\
     \ 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
     \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
-    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    static_assert(subtree_query);\r\
-    \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return bit_subtree.prod(l +\
-    \ edge, r);\r\n  }\r\n};\r\n#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n\
-    // space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\
-    \n  int n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) {\
-    \ build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  template <typename F>\r\
-    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
-    \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
+    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int root = -1) {\r\n \
+    \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
+    \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
+    \ bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0, l +\
+    \ 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n#line 2 \"ds/fastset.hpp\"\n\r\n\
+    // 64-ary tree\r\n// space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr\
+    \ u32 B = 64;\r\n  int n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int\
+    \ n) { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  template <typename\
+    \ F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int\
+    \ m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
     \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
     \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
     \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
@@ -344,7 +347,7 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2024-02-11 04:52:18+09:00'
+  timestamp: '2024-03-09 20:17:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2636.test.cpp

@@ -363,16 +363,16 @@ data:
   timestamp: '2023-11-30 16:31:51+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc301h.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/tree/mst.test.cpp
+  - test_atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/mytest/mo_on_tree.test.cpp
+  - test/yukicoder/1212.test.cpp
+  - test/yukicoder/529.test.cpp
+  - test/library_checker/tree/mst.test.cpp
+  - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
 documentation_of: graph/ds/tree_monoid.hpp
 layout: document
 redirect_from:

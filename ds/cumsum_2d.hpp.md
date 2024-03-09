@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1141.test.cpp
     title: test/yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
   - icon: ':x:'
@@ -75,8 +75,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc228f.test.cpp
-  - test/yukicoder/1141.test.cpp
   - test/yukicoder/655.test.cpp
+  - test/yukicoder/1141.test.cpp
 documentation_of: ds/cumsum_2d.hpp
 layout: document
 redirect_from:

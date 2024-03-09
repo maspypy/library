@@ -114,8 +114,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc274_h.test.cpp
-  - test/yukicoder/1776.test.cpp
   - test/yukicoder/1775.test.cpp
+  - test/yukicoder/1776.test.cpp
 documentation_of: nt/GF2.hpp
 layout: document
 redirect_from:

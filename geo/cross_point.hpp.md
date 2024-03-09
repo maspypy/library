@@ -187,10 +187,10 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc314.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_2_C.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
 redirect_from:

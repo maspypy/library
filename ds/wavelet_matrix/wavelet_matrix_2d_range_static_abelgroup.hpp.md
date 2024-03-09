@@ -46,7 +46,7 @@ data:
     \ = rearrange(A, I), Y = rearrange(Y, I), S = rearrange(S, I);\n    XtoI.build(A),\
     \ YtoI.build(Y);\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\n    lg = __lg(XtoI(MAX(A)\
     \ + 1)) + 1;\n    mid.resize(lg), bv.assign(lg, Bit_Vector(N));\n    dat.assign(1\
-    \ + lg, vc<X>(N + 1, MX::unit()));\n    FOR(i, N) A[i] = XtoI(A[i]);\n\n    vc<int>\
+    \ + lg, vc<X>(N + 1, MX::unit()));\n    FOR(i, N) A[i] = XtoI(A[i]);\n\n    vc<XY>\
     \ A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n    FOR_R(d, -1, lg) {\n      int p0\
     \ = 0, p1 = 0;\n      FOR(i, N) { dat[d + 1][i + 1] = MX::op(dat[d + 1][i], S[i]);\
     \ }\n      if (d == -1) break;\n      FOR(i, N) {\n        bool f = (A[i] >> d\
@@ -93,7 +93,7 @@ data:
     \ I);\n    XtoI.build(A), YtoI.build(Y);\n\n    // \u3042\u3068\u306F\u666E\u901A\
     \u306B\n    lg = __lg(XtoI(MAX(A) + 1)) + 1;\n    mid.resize(lg), bv.assign(lg,\
     \ Bit_Vector(N));\n    dat.assign(1 + lg, vc<X>(N + 1, MX::unit()));\n    FOR(i,\
-    \ N) A[i] = XtoI(A[i]);\n\n    vc<int> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n\
+    \ N) A[i] = XtoI(A[i]);\n\n    vc<XY> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n\
     \    FOR_R(d, -1, lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) { dat[d +\
     \ 1][i + 1] = MX::op(dat[d + 1][i], S[i]); }\n      if (d == -1) break;\n    \
     \  FOR(i, N) {\n        bool f = (A[i] >> d & 1);\n        if (!f) { S0[p0] =\
@@ -122,7 +122,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   requiredBy: []
-  timestamp: '2024-02-04 22:24:14+09:00'
+  timestamp: '2024-03-09 20:16:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_wm.test.cpp

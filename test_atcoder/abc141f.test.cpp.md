@@ -203,17 +203,17 @@ data:
     \n\ntemplate <typename UINT>\nstruct Vector_Space {\n#define SP Vector_Space\n\
     \  vc<UINT> dat;\n\n  Vector_Space() {}\n  Vector_Space(vc<UINT> dat, bool is_reduced\
     \ = false) : dat(dat) {\n    if (!is_reduced) reduce();\n  }\n\n  int size() {\
-    \ return dat.size(); }\n\n  bool add_element(UINT v) {\n    for (auto&& e: dat)\
-    \ {\n      if (e == 0 || v == 0) break;\n      chmin(v, v ^ e);\n    }\n    if\
-    \ (v) {\n      dat.eb(v);\n      return true;\n    }\n    return false;\n  }\n\
-    \n  bool contain(UINT v) {\n    for (auto&& w: dat) {\n      if (v == 0) break;\n\
-    \      chmin(v, v ^ w);\n    }\n    return v == 0;\n  }\n\n  UINT get_max(UINT\
-    \ xor_val = 0) {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmax(res,\
-    \ res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val) {\n    UINT\
-    \ res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n    return res;\n\
-    \  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y)) swap(x, y);\n\
-    \    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n  }\n\n  static\
-    \ SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
+    \ return dat.size(); }\n  int dim() { return dat.size(); }\n\n  bool add_element(UINT\
+    \ v) {\n    for (auto&& e: dat) {\n      if (e == 0 || v == 0) break;\n      chmin(v,\
+    \ v ^ e);\n    }\n    if (v) {\n      dat.eb(v);\n      return true;\n    }\n\
+    \    return false;\n  }\n\n  bool contain(UINT v) {\n    for (auto&& w: dat) {\n\
+    \      if (v == 0) break;\n      chmin(v, v ^ w);\n    }\n    return v == 0;\n\
+    \  }\n\n  UINT get_max(UINT xor_val = 0) {\n    UINT res = xor_val;\n    for (auto&&\
+    \ x: dat) chmax(res, res ^ x);\n    return res;\n  }\n\n  UINT get_min(UINT xor_val)\
+    \ {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n \
+    \   return res;\n  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y))\
+    \ swap(x, y);\n    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n\
+    \  }\n\n  static SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
     \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
     \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
     \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
@@ -245,7 +245,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc141f.test.cpp
   requiredBy: []
-  timestamp: '2024-02-26 23:25:37+09:00'
+  timestamp: '2024-03-09 20:17:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc141f.test.cpp

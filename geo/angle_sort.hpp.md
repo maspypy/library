@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
   - icon: ':warning:'
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
   - icon: ':x:'
@@ -139,13 +139,13 @@ data:
   timestamp: '2023-12-21 22:18:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc139f.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test/yukicoder/1777.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

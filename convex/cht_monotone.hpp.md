@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1297.test.cpp
     title: test/yukicoder/1297.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
   - icon: ':x:'
@@ -92,8 +92,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc130f.test.cpp
-  - test/yukicoder/1297.test.cpp
   - test/yukicoder/913.test.cpp
+  - test/yukicoder/1297.test.cpp
 documentation_of: convex/cht_monotone.hpp
 layout: document
 redirect_from:

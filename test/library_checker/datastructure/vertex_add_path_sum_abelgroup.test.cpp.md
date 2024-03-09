@@ -415,9 +415,12 @@ data:
     \    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) +\
     \ 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
     \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
-    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    static_assert(subtree_query);\r\
-    \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return bit_subtree.prod(l +\
-    \ edge, r);\r\n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
+    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int root = -1) {\r\n \
+    \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
+    \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
+    \ bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0, l +\
+    \ 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
     \ G.read_tree(0, 0);\r\n\r\n  Tree tree(G);\r\n  Tree_AbelGroup<decltype(tree),\
     \ Monoid_Add<ll>, 0, 1, 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n  \
@@ -446,7 +449,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2024-02-26 23:25:37+09:00'
+  timestamp: '2024-03-09 20:17:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp

@@ -61,9 +61,9 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc280f.test.cpp
-  - test/yukicoder/1502.test.cpp
-  - test/yukicoder/2294.test.cpp
   - test/aoj/DSL_1_B.test.cpp
+  - test/yukicoder/2294.test.cpp
+  - test/yukicoder/1502.test.cpp
 documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document
 redirect_from:

@@ -220,7 +220,7 @@ data:
     \ = rearrange(A, I), Y = rearrange(Y, I), S = rearrange(S, I);\n    XtoI.build(A),\
     \ YtoI.build(Y);\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\n    lg = __lg(XtoI(MAX(A)\
     \ + 1)) + 1;\n    mid.resize(lg), bv.assign(lg, Bit_Vector(N));\n    dat.assign(1\
-    \ + lg, vc<X>(N + 1, MX::unit()));\n    FOR(i, N) A[i] = XtoI(A[i]);\n\n    vc<int>\
+    \ + lg, vc<X>(N + 1, MX::unit()));\n    FOR(i, N) A[i] = XtoI(A[i]);\n\n    vc<XY>\
     \ A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n    FOR_R(d, -1, lg) {\n      int p0\
     \ = 0, p1 = 0;\n      FOR(i, N) { dat[d + 1][i + 1] = MX::op(dat[d + 1][i], S[i]);\
     \ }\n      if (d == -1) break;\n      FOR(i, N) {\n        bool f = (A[i] >> d\
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-02-26 23:25:37+09:00'
+  timestamp: '2024-03-09 20:16:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
