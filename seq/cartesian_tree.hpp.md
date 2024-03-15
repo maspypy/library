@@ -99,10 +99,10 @@ data:
   - test_atcoder/abc234g.test.cpp
   - test/aoj/DPL_3_B.test.cpp
   - test/aoj/DPL_3_C.test.cpp
-  - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/tree/cartesian_tree.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/yukicoder/2574.test.cpp
-  - test/library_checker/tree/cartesian_tree.test.cpp
+  - test/mytest/suffix_tree.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document
 redirect_from:

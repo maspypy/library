@@ -237,13 +237,13 @@ data:
   verifiedWith:
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc240ex.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
-  - test/yukicoder/2361.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/yukicoder/2361.test.cpp
+  - test/mytest/suffix_tree.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

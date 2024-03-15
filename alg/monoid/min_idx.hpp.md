@@ -54,10 +54,10 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc301h.test.cpp
+  - test/yukicoder/2361.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/manhattan_nns.test.cpp
-  - test/yukicoder/2361.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

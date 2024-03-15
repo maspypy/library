@@ -299,17 +299,17 @@ data:
   path: graph/ds/static_toptree.hpp
   requiredBy:
   - graph/ds/dynamic_tree_dp.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/tree_walk_generating_function.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   timestamp: '2023-12-03 00:05:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc269ex2.test.cpp
-  - test/mytest/tree_walk_gf.test.cpp
-  - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/2258.test.cpp
   - test/yukicoder/2587.test.cpp
+  - test/yukicoder/2587_2.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:

@@ -74,11 +74,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc200f.test.cpp
+  - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
+  - test/library_checker/datastructure/range_set_range_composite.test.cpp
+  - test/yukicoder/2362.test.cpp
   - test/mytest/floor_sum_of_polynomial.test.cpp
   - test/mytest/range_assign.test.cpp
-  - test/yukicoder/2362.test.cpp
-  - test/library_checker/datastructure/range_set_range_composite.test.cpp
-  - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
 documentation_of: alg/monoid_pow.hpp
 layout: document
 redirect_from:

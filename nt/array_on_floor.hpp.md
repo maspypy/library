@@ -55,8 +55,8 @@ data:
   timestamp: '2023-11-24 15:08:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2266.test.cpp
   - test/library_checker/math/enumerate_quotients2.test.cpp
+  - test/yukicoder/2266.test.cpp
 documentation_of: nt/array_on_floor.hpp
 layout: document
 redirect_from:

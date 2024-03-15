@@ -45,8 +45,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
   - test/aoj/CGL_7_C.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
   - test/yukicoder/2602.test.cpp
 documentation_of: geo/triangle_area.hpp
 layout: document

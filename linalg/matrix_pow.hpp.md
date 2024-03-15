@@ -152,9 +152,9 @@ data:
   timestamp: '2023-11-21 19:08:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/matix/pow_of_matrix.test.cpp
   - test/yukicoder/1750.test.cpp
   - test/yukicoder/1810.test.cpp
-  - test/library_checker/matix/pow_of_matrix.test.cpp
 documentation_of: linalg/matrix_pow.hpp
 layout: document
 redirect_from:

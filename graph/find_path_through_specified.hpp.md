@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'
@@ -182,8 +182,8 @@ data:
   timestamp: '2023-11-30 16:32:50+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1775.test.cpp
   - test/yukicoder/1776.test.cpp
+  - test/yukicoder/1775.test.cpp
 documentation_of: graph/find_path_through_specified.hpp
 layout: document
 redirect_from:
