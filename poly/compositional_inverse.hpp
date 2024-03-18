@@ -3,29 +3,6 @@
 #include "poly/fps_div.hpp"
 #include "poly/coef_of_fps_pows.hpp"
 
-// https://noshi91.hatenablog.com/entry/2024/03/16/224034
-// O(Nlog^2N)
-template <typename mint>
-vc<mint> compositional_inverse(vc<mint> f) {
-  const int n = len(f) - 1;
-  if (n == -1) return {};
-  assert(f[0] == mint(0));
-  if (n == 0) return f;
-  assert(f[1] != mint(0));
-  mint c = f[1];
-  for (auto& x: f) x /= c;
-
-  vc<mint> A = coef_of_fps_pows<mint>(f, n, n);
-  for (auto& x: A) x *= mint(n);
-  vc<mint> h(n);
-  FOR(k, 1, n + 1) { h[n - k] = A[k] * inv<mint>(k); }
-  h = fps_pow_1<mint>(h, -inv<mint>(n));
-  h.insert(h.begin(), 0);
-  mint pow = 1;
-  FOR(i, len(h)) h[i] *= pow, pow /= c;
-  return h;
-}
-
 // O(N^2)
 template <typename mint>
 vc<mint> compositional_inverse_old(const vc<mint>& F) {
@@ -57,6 +34,29 @@ vc<mint> compositional_inverse_old(const vc<mint>& F) {
   }
   G.resize(N);
   return G;
+}
+
+// https://noshi91.hatenablog.com/entry/2024/03/16/224034
+// O(Nlog^2N)
+template <typename mint>
+vc<mint> compositional_inverse(vc<mint> f) {
+  const int n = len(f) - 1;
+  if (n == -1) return {};
+  assert(f[0] == mint(0));
+  if (n == 0) return f;
+  assert(f[1] != mint(0));
+  mint c = f[1];
+  for (auto& x: f) x /= c;
+
+  vc<mint> A = coef_of_fps_pows<mint>(f, n, n);
+  for (auto& x: A) x *= mint(n);
+  vc<mint> h(n);
+  FOR(k, 1, n + 1) { h[n - k] = A[k] * inv<mint>(k); }
+  h = fps_pow_1<mint>(h, -inv<mint>(n));
+  h.insert(h.begin(), 0);
+  mint pow = 1;
+  FOR(i, len(h)) h[i] *= pow, pow /= c;
+  return h;
 }
 
 // G->F(G), G->DF(G) を与える

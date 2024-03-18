@@ -2,6 +2,43 @@
 #include "poly/convolution2d.hpp"
 #include "poly/poly_taylor_shift.hpp"
 
+template <typename mint>
+vc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {
+  int n = len(P);
+  assert(len(P) == len(Q));
+  int k = 1;
+  while (k * k < n) ++k;
+  // compute powers of P
+  vv(mint, pow1, k + 1);
+  pow1[0] = {1};
+  pow1[1] = P;
+  FOR3(i, 2, k + 1) {
+    pow1[i] = convolution(pow1[i - 1], pow1[1]);
+    pow1[i].resize(n);
+  }
+  vv(mint, pow2, k + 1);
+  pow2[0] = {1};
+  pow2[1] = pow1[k];
+  FOR3(i, 2, k + 1) {
+    pow2[i] = convolution(pow2[i - 1], pow2[1]);
+    pow2[i].resize(n);
+  }
+  vc<mint> ANS(n);
+  FOR(i, k + 1) {
+    vc<mint> f(n);
+    FOR(j, k) {
+      if (k * i + j < len(Q)) {
+        mint coef = Q[k * i + j];
+        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;
+      }
+    }
+    f = convolution(f, pow2[i]);
+    f.resize(n);
+    FOR(d, n) ANS[d] += f[d];
+  }
+  return ANS;
+}
+
 // https://noshi91.hatenablog.com/entry/2024/03/16/224034
 // O(Nlog^2N), N=100000 1.5sec
 template <typename mint>
@@ -67,42 +104,5 @@ vc<mint> composition(vc<mint> f, vc<mint> g) {
 
   vc<mint> ANS(N + 1);
   FOR(i, N + 1) ANS[i] = F[i][0];
-  return ANS;
-}
-
-template <typename mint>
-vc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {
-  int n = len(P);
-  assert(len(P) == len(Q));
-  int k = 1;
-  while (k * k < n) ++k;
-  // compute powers of P
-  vv(mint, pow1, k + 1);
-  pow1[0] = {1};
-  pow1[1] = P;
-  FOR3(i, 2, k + 1) {
-    pow1[i] = convolution(pow1[i - 1], pow1[1]);
-    pow1[i].resize(n);
-  }
-  vv(mint, pow2, k + 1);
-  pow2[0] = {1};
-  pow2[1] = pow1[k];
-  FOR3(i, 2, k + 1) {
-    pow2[i] = convolution(pow2[i - 1], pow2[1]);
-    pow2[i].resize(n);
-  }
-  vc<mint> ANS(n);
-  FOR(i, k + 1) {
-    vc<mint> f(n);
-    FOR(j, k) {
-      if (k * i + j < len(Q)) {
-        mint coef = Q[k * i + j];
-        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;
-      }
-    }
-    f = convolution(f, pow2[i]);
-    f.resize(n);
-    FOR(d, n) ANS[d] += f[d];
-  }
   return ANS;
 }
