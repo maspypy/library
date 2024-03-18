@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
   - icon: ':question:'
@@ -69,9 +69,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -524,8 +524,19 @@ data:
     \ = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W * x + y] = g[x][y];\r\n  auto hh\
     \ = convolution(ff, gg);\r\n  vc<vc<T>> h(H, vc<T>(W));\r\n  FOR(x, H) FOR(y,\
     \ W) h[x][y] = hh[W * x + y];\r\n  return h;\r\n}\r\n\r\n#line 4 \"poly/composition.hpp\"\
-    \n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\n// O(Nlog^2N),\
-    \ N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>&\
+    \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
+    \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
+    \ 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i]\
+    \ = convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
+    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
+    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
+    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
+    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
+    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
+    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
+    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\
+    \n// O(Nlog^2N), N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
     \ f, vc<mint> g) {\r\n  const int N = len(f) - 1;\r\n  if (N == -1) return {};\r\
     \n  assert(len(f) == N + 1 && len(g) == N + 1);\r\n\r\n  // \u3072\u3068\u307E\
     \u305A\u3044\u307E\u306E\u5B9F\u88C5\u3060\u3068 256 \u304F\u3089\u3044\u307E\u3067\
@@ -549,27 +560,15 @@ data:
     \ >> k) + 1);\r\n    FOR(i, len(F)) F[i].resize(d + 1);\r\n\r\n    sm_deg -= len(G[0])\
     \ - 1;\r\n    int s = d - sm_deg;\r\n    FOR(i, len(F)) {\r\n      if (s > 0)\
     \ F[i] = {F[i].begin() + s, F[i].end()};\r\n    }\r\n  }\r\n\r\n  vc<mint> ANS(N\
-    \ + 1);\r\n  FOR(i, N + 1) ANS[i] = F[i][0];\r\n  return ANS;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {\r\n\
-    \  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while (k\
-    \ * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0]\
-    \ = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i\
-    \ - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\
-    \n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i]\
-    \ = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint>\
-    \ ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n  \
-    \    if (k * i + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n      \
-    \  FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n   \
-    \ f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d, n) ANS[d] +=\
-    \ f[d];\r\n  }\r\n  return ANS;\r\n}\r\n#line 8 \"test/mytest/composition_ex_minus_1.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  auto gen = [&](int n) -> vc<mint>\
-    \ {\n    vc<mint> f(n + 1);\n    FOR(i, n + 1) f[i] = RNG(mint::get_mod());\n\
-    \    return f;\n  };\n  FOR(n, 100) {\n    vc<mint> f = gen(n);\n    vc<mint>\
-    \ g(n + 1);\n    FOR(i, 1, n + 1) g[i] = fact_inv<mint>(i);\n    vc<mint> F =\
-    \ composition_f_ex_minus_1(f);\n    vc<mint> G = composition(f, g);\n    assert(F\
-    \ == G);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
-    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
-    }\n"
+    \ + 1);\r\n  FOR(i, N + 1) ANS[i] = F[i][0];\r\n  return ANS;\r\n}\r\n#line 8\
+    \ \"test/mytest/composition_ex_minus_1.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  auto gen = [&](int n) -> vc<mint> {\n    vc<mint> f(n + 1);\n\
+    \    FOR(i, n + 1) f[i] = RNG(mint::get_mod());\n    return f;\n  };\n  FOR(n,\
+    \ 100) {\n    vc<mint> f = gen(n);\n    vc<mint> g(n + 1);\n    FOR(i, 1, n +\
+    \ 1) g[i] = fact_inv<mint>(i);\n    vc<mint> F = composition_f_ex_minus_1(f);\n\
+    \    vc<mint> G = composition(f, g);\n    assert(F == G);\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"poly/composition_f_ex_minus_1.hpp\"\
     \n#include \"poly/composition.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
@@ -606,8 +605,8 @@ data:
   isVerificationFile: true
   path: test/mytest/composition_ex_minus_1.test.cpp
   requiredBy: []
-  timestamp: '2024-03-18 21:27:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-18 22:38:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/composition_ex_minus_1.test.cpp
 layout: document

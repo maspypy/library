@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':question:'
@@ -51,9 +51,9 @@ data:
     title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/composition_of_formal_power_series
@@ -527,7 +527,19 @@ data:
     \n  FOR(i, N) f[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\
     \n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(f));\r\n  f = convolution(f,\
     \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
-    \n  return f;\r\n}\r\n#line 4 \"poly/composition.hpp\"\n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\
+    \n  return f;\r\n}\r\n#line 4 \"poly/composition.hpp\"\n\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {\r\n  int n = len(P);\r\
+    \n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while (k * k < n) ++k;\r\n\
+    \  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0] = {1};\r\n\
+    \  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i -\
+    \ 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\
+    \n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i]\
+    \ = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint>\
+    \ ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n  \
+    \    if (k * i + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n      \
+    \  FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n   \
+    \ f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d, n) ANS[d] +=\
+    \ f[d];\r\n  }\r\n  return ANS;\r\n}\r\n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\
     \n// O(Nlog^2N), N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
     \ f, vc<mint> g) {\r\n  const int N = len(f) - 1;\r\n  if (N == -1) return {};\r\
     \n  assert(len(f) == N + 1 && len(g) == N + 1);\r\n\r\n  // \u3072\u3068\u307E\
@@ -552,22 +564,11 @@ data:
     \ >> k) + 1);\r\n    FOR(i, len(F)) F[i].resize(d + 1);\r\n\r\n    sm_deg -= len(G[0])\
     \ - 1;\r\n    int s = d - sm_deg;\r\n    FOR(i, len(F)) {\r\n      if (s > 0)\
     \ F[i] = {F[i].begin() + s, F[i].end()};\r\n    }\r\n  }\r\n\r\n  vc<mint> ANS(N\
-    \ + 1);\r\n  FOR(i, N + 1) ANS[i] = F[i][0];\r\n  return ANS;\r\n}\r\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {\r\n\
-    \  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while (k\
-    \ * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0]\
-    \ = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i\
-    \ - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\
-    \n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i]\
-    \ = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint>\
-    \ ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n  \
-    \    if (k * i + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n      \
-    \  FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n   \
-    \ f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d, n) ANS[d] +=\
-    \ f[d];\r\n  }\r\n  return ANS;\r\n}\r\n#line 6 \"test/library_checker/polynomial/composition_of_fps.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ Q, N);\r\n  VEC(mint, P, N);\r\n  auto F = composition(Q, P);\r\n  print(F);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ + 1);\r\n  FOR(i, N + 1) ANS[i] = F[i][0];\r\n  return ANS;\r\n}\r\n#line 6\
+    \ \"test/library_checker/polynomial/composition_of_fps.test.cpp\"\n\r\nusing mint\
+    \ = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint, Q, N);\r\n  VEC(mint,\
+    \ P, N);\r\n  auto F = composition(Q, P);\r\n  print(F);\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/composition_of_formal_power_series\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"poly/composition.hpp\"\
     \r\n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
@@ -593,8 +594,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/composition_of_fps.test.cpp
   requiredBy: []
-  timestamp: '2024-03-18 21:27:46+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-18 22:38:49+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/composition_of_fps.test.cpp
 layout: document
