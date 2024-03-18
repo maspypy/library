@@ -510,7 +510,7 @@ data:
     \u304B\u3089\u5B9A\u307E\u308B\u4F55\u3089\u304B\u306E G_k(x,y) \u3068\u7573\u307F\
     \u8FBC\u3080\r\n  \u3000\u30FB\u9069\u5207\u306A\u90E8\u5206\u3092\u629C\u304D\
     \u51FA\u3059\r\n\r\n  \u3088\u3063\u3066\u5408\u6210\u306F\u6B21\u306E\u8A08\u7B97\
-    \u306B\u3088\u308B\r\n  \u30FB\u6B21\u3092 k=m,...,2,1,0 \u3067\u7E70\u308A\u8FD4\
+    \u306B\u3088\u308B\r\n  \u30FB\u6B21\u3092 k=K,...,2,1,0 \u3067\u7E70\u308A\u8FD4\
     \u3059\r\n  \u3000\u30FB\u9069\u5207\u306A\u90E8\u5206\u306B\u5165\u308C\u308B\
     \r\n  \u3000\u30FBG_k(x,y) \u3068\u306E\u7573\u307F\u8FBC\u307F\u306E\u8EE2\u7F6E\
     \u3067\u3046\u3064\u3059\r\n  \u30FBreverse \u3057\u3066\u51FA\u529B\u3059\u308B\
@@ -769,7 +769,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_biconnected.hpp
   requiredBy: []
-  timestamp: '2024-03-19 02:44:25+09:00'
+  timestamp: '2024-03-19 03:00:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_labeled_biconnected.test.cpp
