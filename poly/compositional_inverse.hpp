@@ -40,6 +40,16 @@ vc<mint> compositional_inverse_old(const vc<mint>& F) {
 // O(Nlog^2N)
 template <typename mint>
 vc<mint> compositional_inverse(vc<mint> f) {
+  /*
+  仮定：[x^1]f = c は 0 ではない.
+  f を改めて cf と書く. f の逆関数を g とすれば
+  g(cf(x)/c)=x なので g(x/c) が求めるもの．よって [x^1]f=1 に帰着.
+
+  f, g は n 次とする. Lagrange inversion formula
+  n[x^n]f(x)^i = [x^{n-i}] i(g(x)/x)^{-n}
+  左辺を i=1,...,n で求めると (g(x)/x)^{-n} が n-1 次まで求まる.
+  [x^1]g=1 に帰着していたので -1/n 乗根がとれて, g(x)/x が n-1 次まで求まる.
+  */
   const int n = len(f) - 1;
   if (n == -1) return {};
   assert(f[0] == mint(0));
@@ -49,14 +59,14 @@ vc<mint> compositional_inverse(vc<mint> f) {
   for (auto& x: f) x /= c;
 
   vc<mint> A = coef_of_fps_pows<mint>(f, n, n);
-  for (auto& x: A) x *= mint(n);
-  vc<mint> h(n);
-  FOR(k, 1, n + 1) { h[n - k] = A[k] * inv<mint>(k); }
-  h = fps_pow_1<mint>(h, -inv<mint>(n));
-  h.insert(h.begin(), 0);
+  vc<mint> g(n);
+  FOR(i, 1, n + 1) g[n - i] = mint(n) * A[i] * inv<mint>(i);
+  g = fps_pow_1<mint>(g, -inv<mint>(n));
+  g.insert(g.begin(), 0);
+
   mint pow = 1;
-  FOR(i, len(h)) h[i] *= pow, pow /= c;
-  return h;
+  FOR(i, len(g)) g[i] *= pow, pow /= c;
+  return g;
 }
 
 // G->F(G), G->DF(G) を与える
