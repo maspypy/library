@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/zeta.hpp
     title: setfunc/zeta.hpp
   _extendedRequiredBy: []
