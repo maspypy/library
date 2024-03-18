@@ -20,6 +20,12 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
+    path: mod/powertable.hpp
+    title: mod/powertable.hpp
+  - icon: ':question:'
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
+  - icon: ':question:'
     path: poly/coef_of_fps_pows.hpp
     title: poly/coef_of_fps_pows.hpp
   - icon: ':x:'
@@ -70,6 +76,9 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':question:'
+    path: poly/poly_taylor_shift.hpp
+    title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -400,9 +409,43 @@ data:
     \  F = fps_log(F);\n  FOR(i, N + 1) F[i] *= fact<mint>(i);\n  return F;\n}\n#line\
     \ 2 \"poly/differentiate.hpp\"\n\ntemplate <typename mint>\nvc<mint> differentiate(const\
     \ vc<mint>& f) {\n  if (len(f) <= 1) return {};\n  vc<mint> g(len(f) - 1);\n \
-    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/composition.hpp\"\
-    \n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\n// O(Nlog^2N),\
-    \ N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
+    \ FOR(i, len(g)) g[i] = f[i + 1] * mint(i + 1);\n  return g;\n}\n#line 2 \"poly/convolution2d.hpp\"\
+    \n\r\ntemplate <typename T>\r\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>&\
+    \ g) {\r\n  auto shape = [&](vc<vc<T>>& f) -> pi {\r\n    ll H = len(f);\r\n \
+    \   ll W = (H == 0 ? 0 : len(f[0]));\r\n    return {H, W};\r\n  };\r\n  auto [H1,\
+    \ W1] = shape(f);\r\n  auto [H2, W2] = shape(g);\r\n  ll H = H1 + H2 - 1;\r\n\
+    \  ll W = W1 + W2 - 1;\r\n\r\n  vc<T> ff(H1 * W);\r\n  vc<T> gg(H2 * W);\r\n \
+    \ FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W\
+    \ * x + y] = g[x][y];\r\n  auto hh = convolution(ff, gg);\r\n  vc<vc<T>> h(H,\
+    \ vc<T>(W));\r\n  FOR(x, H) FOR(y, W) h[x][y] = hh[W * x + y];\r\n  return h;\r\
+    \n}\r\n\r\n#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\
+    \n\ntemplate <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const\
+    \ int S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S\
+    \ + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S\
+    \ + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM)\
+    \ * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n\
+    \      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for (int j = i\
+    \ * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1;\
+    \ L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p, idx]:\
+    \ cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n\
+    \      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n\
+    \  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 3 \"mod/powertable.hpp\"\n\r\n// a^0, ..., a^N\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> powertable_1(mint a, ll N) {\r\n  // table of a^i\r\n  vc<mint>\
+    \ f(N + 1, 1);\r\n  FOR(i, N) f[i + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n\
+    // 0^e, ..., N^e\r\ntemplate <typename mint>\r\nvc<mint> powertable_2(ll e, ll\
+    \ N) {\r\n  auto primes = primetable(N);\r\n  vc<mint> f(N + 1, 1);\r\n  f[0]\
+    \ = mint(0).pow(e);\r\n  for (auto&& p: primes) {\r\n    if (p > N) break;\r\n\
+    \    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\n    while (pp <= N) {\r\n\
+    \      ll i = pp;\r\n      while (i <= N) {\r\n        f[i] *= xp;\r\n       \
+    \ i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n  }\r\n  return f;\r\n}\r\n\
+    #line 5 \"poly/poly_taylor_shift.hpp\"\n\r\n// f(x) -> f(x+c)\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> poly_taylor_shift(vc<mint> f, mint c) {\r\n  ll N = len(f);\r\
+    \n  FOR(i, N) f[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\
+    \n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(f));\r\n  f = convolution(f,\
+    \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
+    \n  return f;\r\n}\r\n#line 4 \"poly/composition.hpp\"\n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\
+    \n// O(Nlog^2N), N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
     \ f, vc<mint> g) {\r\n  const int N = len(f) - 1;\r\n  if (N == -1) return {};\r\
     \n  assert(len(f) == N + 1 && len(g) == N + 1);\r\n\r\n  // \u3072\u3068\u307E\
     \u305A\u3044\u307E\u306E\u5B9F\u88C5\u3060\u3068 256 \u304F\u3089\u3044\u307E\u3067\
@@ -636,16 +679,19 @@ data:
   - poly/compositional_inverse.hpp
   - poly/differentiate.hpp
   - poly/composition.hpp
+  - poly/convolution2d.hpp
+  - poly/poly_taylor_shift.hpp
+  - mod/powertable.hpp
+  - nt/primetable.hpp
   - poly/fps_div.hpp
   - poly/coef_of_fps_pows.hpp
-  - poly/convolution2d.hpp
   - poly/fps_pow.hpp
   - poly/fps_exp.hpp
   - poly/integrate.hpp
   isVerificationFile: false
   path: graph/count/count_labeled_biconnected.hpp
   requiredBy: []
-  timestamp: '2024-03-18 21:07:27+09:00'
+  timestamp: '2024-03-18 21:27:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_labeled_biconnected.test.cpp

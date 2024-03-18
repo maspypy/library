@@ -35,6 +35,9 @@ data:
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':question:'
+    path: poly/convolution2d.hpp
+    title: poly/convolution2d.hpp
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
   - icon: ':question:'
@@ -512,9 +515,17 @@ data:
     \ mint(k));\n  return sum_of_exp_bx(N, AB);\n}\n#line 4 \"poly/composition_f_1_minus_ex.hpp\"\
     \n\n// f(1-e^x)\ntemplate <typename mint>\nvc<mint> composition_1_minus_ex(vc<mint>\
     \ f) {\n  f = poly_taylor_shift<mint>(f, 1);\n  FOR(i, len(f)) if (i & 1) f[i]\
-    \ = -f[i];\n  return composition_f_ex<mint>(f);\n}\n#line 2 \"poly/composition.hpp\"\
-    \n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\n// O(Nlog^2N),\
-    \ N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
+    \ = -f[i];\n  return composition_f_ex<mint>(f);\n}\n#line 2 \"poly/convolution2d.hpp\"\
+    \n\r\ntemplate <typename T>\r\nvc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>&\
+    \ g) {\r\n  auto shape = [&](vc<vc<T>>& f) -> pi {\r\n    ll H = len(f);\r\n \
+    \   ll W = (H == 0 ? 0 : len(f[0]));\r\n    return {H, W};\r\n  };\r\n  auto [H1,\
+    \ W1] = shape(f);\r\n  auto [H2, W2] = shape(g);\r\n  ll H = H1 + H2 - 1;\r\n\
+    \  ll W = W1 + W2 - 1;\r\n\r\n  vc<T> ff(H1 * W);\r\n  vc<T> gg(H2 * W);\r\n \
+    \ FOR(x, H1) FOR(y, W1) ff[W * x + y] = f[x][y];\r\n  FOR(x, H2) FOR(y, W2) gg[W\
+    \ * x + y] = g[x][y];\r\n  auto hh = convolution(ff, gg);\r\n  vc<vc<T>> h(H,\
+    \ vc<T>(W));\r\n  FOR(x, H) FOR(y, W) h[x][y] = hh[W * x + y];\r\n  return h;\r\
+    \n}\r\n\r\n#line 4 \"poly/composition.hpp\"\n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\
+    \n// O(Nlog^2N), N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
     \ f, vc<mint> g) {\r\n  const int N = len(f) - 1;\r\n  if (N == -1) return {};\r\
     \n  assert(len(f) == N + 1 && len(g) == N + 1);\r\n\r\n  // \u3072\u3068\u307E\
     \u305A\u3044\u307E\u306E\u5B9F\u88C5\u3060\u3068 256 \u304F\u3089\u3044\u307E\u3067\
@@ -591,10 +602,11 @@ data:
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
   - poly/composition.hpp
+  - poly/convolution2d.hpp
   isVerificationFile: true
   path: test/mytest/composition_1_minus_ex.test.cpp
   requiredBy: []
-  timestamp: '2024-03-18 21:07:27+09:00'
+  timestamp: '2024-03-18 21:27:46+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/composition_1_minus_ex.test.cpp

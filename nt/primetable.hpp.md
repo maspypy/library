@@ -2,6 +2,12 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':x:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
@@ -54,6 +60,9 @@ data:
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':x:'
+    path: poly/composition.hpp
+    title: poly/composition.hpp
+  - icon: ':x:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':question:'
@@ -68,6 +77,9 @@ data:
   - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':x:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
@@ -120,6 +132,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/totient_sum.test.cpp
     title: test/library_checker/math/totient_sum.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/composition_of_fps.test.cpp
+    title: test/library_checker/polynomial/composition_of_fps.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
@@ -135,6 +153,15 @@ data:
   - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':x:'
+    path: test/mytest/compositional_inverset.test.cpp
+    title: test/mytest/compositional_inverset.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_bridgeless.test.cpp
+    title: test/mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/eulerian_number.test.cpp
     title: test/mytest/eulerian_number.test.cpp
@@ -284,11 +311,15 @@ data:
   - nt/multiplicative_sum.hpp
   - poly/composition_f_1_minus_ex.hpp
   - poly/poly_taylor_shift.hpp
+  - poly/composition.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_a_plus_bx.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+  - poly/compositional_inverse.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - linalg/det_A_plus_xB.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   - mod/tetration.hpp
   - mod/powertable.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
@@ -302,6 +333,8 @@ data:
   - test_atcoder/abc249_ex.test.cpp
   - test_atcoder/abc152e.test.cpp
   - test/aoj/NTL_1_D.test.cpp
+  - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/gcd_convolution.test.cpp
@@ -336,10 +369,13 @@ data:
   - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/primesum_mod6.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
   - test/mytest/eulerian_number.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/primesum_mod4.test.cpp
