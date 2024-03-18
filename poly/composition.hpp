@@ -1,4 +1,6 @@
 #include "poly/convolution.hpp"
+#include "poly/convolution2d.hpp"
+#include "poly/poly_taylor_shift.hpp"
 
 // https://noshi91.hatenablog.com/entry/2024/03/16/224034
 // O(Nlog^2N), N=100000 1.5sec
