@@ -1,3 +1,5 @@
+#pragma once
+
 #include "poly/convolution.hpp"
 
 template <typename T>
@@ -21,4 +23,3 @@ vc<vc<T>> convolution2d(vc<vc<T>>& f, vc<vc<T>>& g) {
   FOR(x, H) FOR(y, W) h[x][y] = hh[W * x + y];
   return h;
 }
-
