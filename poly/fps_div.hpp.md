@@ -35,15 +35,18 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
+  - icon: ':question:'
+    path: poly/coef_of_fps_pows.hpp
+    title: poly/coef_of_fps_pows.hpp
   - icon: ':question:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
@@ -53,7 +56,7 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
@@ -87,16 +90,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/compositional_inverse.test.cpp
     title: test/library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/coef_of_fps_pows.test.cpp
+    title: test/mytest/coef_of_fps_pows.test.cpp
+  - icon: ':x:'
+    path: test/mytest/compositional_inverset.test.cpp
+    title: test/mytest/compositional_inverset.test.cpp
+  - icon: ':x:'
     path: test/mytest/count_labeled_biconnected.test.cpp
     title: test/mytest/count_labeled_biconnected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
@@ -529,6 +538,7 @@ data:
   - poly/coef_of_rational_fps.hpp
   - poly/slice_rational_fps.hpp
   - poly/composed_sum.hpp
+  - poly/coef_of_fps_pows.hpp
   - poly/composed_product.hpp
   - poly/sum_of_power_of_roots.hpp
   - poly/compositional_inverse.hpp
@@ -570,8 +580,10 @@ data:
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/bell.test.cpp
+  - test/mytest/coef_of_fps_pows.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document

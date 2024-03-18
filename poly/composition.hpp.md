@@ -29,42 +29,46 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/composition_of_fps.test.cpp
     title: test/library_checker/polynomial/composition_of_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/compositional_inverse.test.cpp
     title: test/library_checker/polynomial/compositional_inverse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/mytest/compositional_inverset.test.cpp
+    title: test/mytest/compositional_inverset.test.cpp
+  - icon: ':x:'
     path: test/mytest/count_labeled_biconnected.test.cpp
     title: test/mytest/count_labeled_biconnected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
+    links:
+    - https://noshi91.hatenablog.com/entry/2024/03/16/224034
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
     \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -334,31 +338,82 @@ data:
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
     \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/composition.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>& Q, vc<mint>&\
-    \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
-    \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
-    \ 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i]\
-    \ = convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
-    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
-    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
-    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
-    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
-    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
-    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
-    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n"
-  code: "#include \"poly/convolution.hpp\"\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ composition(vc<mint>& Q, vc<mint>& P) {\r\n  int n = len(P);\r\n  assert(len(P)\
-    \ == len(Q));\r\n  int k = 1;\r\n  while (k * k < n) ++k;\r\n  // compute powers\
-    \ of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n \
-    \ FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i - 1], pow1[1]);\r\n\
-    \    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\n  pow2[0] = {1};\r\
-    \n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i] = convolution(pow2[i\
-    \ - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint> ANS(n);\r\n \
-    \ FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n      if (k * i\
-    \ + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n        FOR(d, len(pow1[j]))\
-    \ f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\
-    \n    f.resize(n);\r\n    FOR(d, n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n\
-    }\r\n"
+    \n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\n// O(Nlog^2N),\
+    \ N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
+    \ f, vc<mint> g) {\r\n  const int N = len(f) - 1;\r\n  if (N == -1) return {};\r\
+    \n  assert(len(f) == N + 1 && len(g) == N + 1);\r\n\r\n  // \u3072\u3068\u307E\
+    \u305A\u3044\u307E\u306E\u5B9F\u88C5\u3060\u3068 256 \u304F\u3089\u3044\u307E\u3067\
+    \u306F\u65E7\u5B9F\u88C5\u306E\u65B9\u304C\u9AD8\u901F\r\n  if (N < 256) return\
+    \ composition_old<mint>(f, g);\r\n\r\n  mint c = g[0];\r\n  g[0] = 0;\r\n  f =\
+    \ poly_taylor_shift<mint>(f, c);\r\n\r\n  // [y^0]f(y^{-1})/1-g(x)y\r\n  using\
+    \ poly = vvc<mint>;\r\n  vc<poly> Gs;\r\n  // 1-g(x)y = G0(x,y)G1(x^2,y)G2(x^4,y)...\r\
+    \n  vv(mint, A, N + 1, 2);\r\n  A[0][0] = 1;\r\n  FOR(i, N + 1) A[i][1] = -g[i];\r\
+    \n  while (1) {\r\n    int H = len(A), W = len(A[0]);\r\n    if (H == 1) { break;\
+    \ }\r\n    vvc<mint> B = A;\r\n    FOR(i, H) {\r\n      if (i % 2 == 0) continue;\r\
+    \n      FOR(j, W) B[i][j] = -B[i][j];\r\n    }\r\n    Gs.eb(B);\r\n    A = convolution2d(A,\
+    \ B);\r\n    FOR(i, (H + 1) / 2) A[i] = A[2 * i];\r\n    A.resize((H + 1) / 2);\r\
+    \n  }\r\n  int sm_deg = 0;\r\n  for (auto& G: Gs) sm_deg += len(G[0]) - 1;\r\n\
+    \r\n  // middle product \u304C\u4F7F\u3048\u308B\u306F\u305A\u3060\u304C\u3068\
+    \u308A\u3042\u3048\u305A\r\n  reverse(all(f));\r\n  vv(mint, F, 1, N + 1);\r\n\
+    \  F[0] = f;\r\n  FOR_R(k, len(Gs)) {\r\n    int d = len(F[0]) - 1;\r\n    auto&\
+    \ G = Gs[k];\r\n    F.resize(len(F) * 2);\r\n    POP(F);\r\n    FOR(i, len(F))\
+    \ F[i].resize(d + 1);\r\n    FOR_R(i, len(F)) {\r\n      if (i % 2 == 0) F[i]\
+    \ = F[i / 2];\r\n      if (i % 2 != 0) fill(all(F[i]), mint(0));\r\n    }\r\n\
+    \    F = convolution2d(F, Gs[k]);\r\n    if (len(F) - 1 > (N >> k)) F.resize((N\
+    \ >> k) + 1);\r\n    FOR(i, len(F)) F[i].resize(d + 1);\r\n\r\n    sm_deg -= len(G[0])\
+    \ - 1;\r\n    int s = d - sm_deg;\r\n    FOR(i, len(F)) {\r\n      if (s > 0)\
+    \ F[i] = {F[i].begin() + s, F[i].end()};\r\n    }\r\n  }\r\n\r\n  vc<mint> ANS(N\
+    \ + 1);\r\n  FOR(i, N + 1) ANS[i] = F[i][0];\r\n  return ANS;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {\r\n\
+    \  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while (k\
+    \ * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0]\
+    \ = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i\
+    \ - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\
+    \n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i]\
+    \ = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint>\
+    \ ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n  \
+    \    if (k * i + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n      \
+    \  FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n   \
+    \ f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d, n) ANS[d] +=\
+    \ f[d];\r\n  }\r\n  return ANS;\r\n}\r\n"
+  code: "#include \"poly/convolution.hpp\"\r\n\r\n// https://noshi91.hatenablog.com/entry/2024/03/16/224034\r\
+    \n// O(Nlog^2N), N=100000 1.5sec\r\ntemplate <typename mint>\r\nvc<mint> composition(vc<mint>\
+    \ f, vc<mint> g) {\r\n  const int N = len(f) - 1;\r\n  if (N == -1) return {};\r\
+    \n  assert(len(f) == N + 1 && len(g) == N + 1);\r\n\r\n  // \u3072\u3068\u307E\
+    \u305A\u3044\u307E\u306E\u5B9F\u88C5\u3060\u3068 256 \u304F\u3089\u3044\u307E\u3067\
+    \u306F\u65E7\u5B9F\u88C5\u306E\u65B9\u304C\u9AD8\u901F\r\n  if (N < 256) return\
+    \ composition_old<mint>(f, g);\r\n\r\n  mint c = g[0];\r\n  g[0] = 0;\r\n  f =\
+    \ poly_taylor_shift<mint>(f, c);\r\n\r\n  // [y^0]f(y^{-1})/1-g(x)y\r\n  using\
+    \ poly = vvc<mint>;\r\n  vc<poly> Gs;\r\n  // 1-g(x)y = G0(x,y)G1(x^2,y)G2(x^4,y)...\r\
+    \n  vv(mint, A, N + 1, 2);\r\n  A[0][0] = 1;\r\n  FOR(i, N + 1) A[i][1] = -g[i];\r\
+    \n  while (1) {\r\n    int H = len(A), W = len(A[0]);\r\n    if (H == 1) { break;\
+    \ }\r\n    vvc<mint> B = A;\r\n    FOR(i, H) {\r\n      if (i % 2 == 0) continue;\r\
+    \n      FOR(j, W) B[i][j] = -B[i][j];\r\n    }\r\n    Gs.eb(B);\r\n    A = convolution2d(A,\
+    \ B);\r\n    FOR(i, (H + 1) / 2) A[i] = A[2 * i];\r\n    A.resize((H + 1) / 2);\r\
+    \n  }\r\n  int sm_deg = 0;\r\n  for (auto& G: Gs) sm_deg += len(G[0]) - 1;\r\n\
+    \r\n  // middle product \u304C\u4F7F\u3048\u308B\u306F\u305A\u3060\u304C\u3068\
+    \u308A\u3042\u3048\u305A\r\n  reverse(all(f));\r\n  vv(mint, F, 1, N + 1);\r\n\
+    \  F[0] = f;\r\n  FOR_R(k, len(Gs)) {\r\n    int d = len(F[0]) - 1;\r\n    auto&\
+    \ G = Gs[k];\r\n    F.resize(len(F) * 2);\r\n    POP(F);\r\n    FOR(i, len(F))\
+    \ F[i].resize(d + 1);\r\n    FOR_R(i, len(F)) {\r\n      if (i % 2 == 0) F[i]\
+    \ = F[i / 2];\r\n      if (i % 2 != 0) fill(all(F[i]), mint(0));\r\n    }\r\n\
+    \    F = convolution2d(F, Gs[k]);\r\n    if (len(F) - 1 > (N >> k)) F.resize((N\
+    \ >> k) + 1);\r\n    FOR(i, len(F)) F[i].resize(d + 1);\r\n\r\n    sm_deg -= len(G[0])\
+    \ - 1;\r\n    int s = d - sm_deg;\r\n    FOR(i, len(F)) {\r\n      if (s > 0)\
+    \ F[i] = {F[i].begin() + s, F[i].end()};\r\n    }\r\n  }\r\n\r\n  vc<mint> ANS(N\
+    \ + 1);\r\n  FOR(i, N + 1) ANS[i] = F[i][0];\r\n  return ANS;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {\r\n\
+    \  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n  while (k\
+    \ * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0]\
+    \ = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i\
+    \ - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\
+    \n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i]\
+    \ = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint>\
+    \ ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n  \
+    \    if (k * i + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n      \
+    \  FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n   \
+    \ f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d, n) ANS[d] +=\
+    \ f[d];\r\n  }\r\n  return ANS;\r\n}\r\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -375,8 +430,8 @@ data:
   - poly/compositional_inverse.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
-  timestamp: '2024-01-28 23:14:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-18 21:07:27+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
@@ -384,6 +439,7 @@ data:
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
 documentation_of: poly/composition.hpp
 layout: document

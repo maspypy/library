@@ -28,14 +28,41 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':x:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
+  - icon: ':question:'
+    path: poly/coef_of_fps_pows.hpp
+    title: poly/coef_of_fps_pows.hpp
+  - icon: ':x:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/coef_of_fps_pows.test.cpp
+    title: test/mytest/coef_of_fps_pows.test.cpp
+  - icon: ':x:'
+    path: test/mytest/compositional_inverset.test.cpp
+    title: test/mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
+  - icon: ':x:'
+    path: test/mytest/count_labeled_bridgeless.test.cpp
+    title: test/mytest/count_labeled_bridgeless.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -337,11 +364,20 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: poly/convolution2d.hpp
-  requiredBy: []
+  requiredBy:
+  - poly/coef_of_fps_pows.hpp
+  - poly/compositional_inverse.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/conv2d.test.cpp
+  - test/mytest/coef_of_fps_pows.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
 documentation_of: poly/convolution2d.hpp
 layout: document
 redirect_from:

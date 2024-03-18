@@ -262,14 +262,20 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/coef_of_fps_pows.test.cpp
+    title: test/mytest/coef_of_fps_pows.test.cpp
+  - icon: ':x:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':x:'
+    path: test/mytest/compositional_inverset.test.cpp
+    title: test/mytest/compositional_inverset.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv2d.test.cpp
     title: test/mytest/conv2d.test.cpp
@@ -932,6 +938,7 @@ data:
   - test/mytest/31bit_modint.test.cpp
   - test/mytest/rbst.test.cpp
   - test/mytest/summin_assign.test.cpp
+  - test/mytest/coef_of_fps_pows.test.cpp
   - test/mytest/max_assign.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/count_K4.test.cpp
@@ -988,6 +995,7 @@ data:
   - test/mytest/rbst_monoid_2.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/four_square.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/count_P3P4P5.test.cpp
   - test/mytest/partial_frac.test.cpp
