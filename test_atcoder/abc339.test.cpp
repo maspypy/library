@@ -24,14 +24,6 @@ void solve() {
     }
   };
 
-  auto rm = [&](int i, ll x) -> void {
-    i += N;
-    while (i) {
-      ROOT[i] = seg.multiply(ROOT[i], x, -x);
-      i /= 2;
-    }
-  };
-
   auto query = [&](int L, int R, ll x) -> ll {
     ll ANS = 0;
     L += N, R += N;
