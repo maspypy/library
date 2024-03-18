@@ -1,16 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_biconnected.hpp
+    title: graph/count/count_labeled_biconnected.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_labeled_bridgeless.hpp
+    title: graph/count/count_labeled_bridgeless.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/composition.hpp
+    title: poly/composition.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/compositional_inverse.hpp
+    title: poly/compositional_inverse.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -37,6 +49,12 @@ data:
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/composition_of_fps.test.cpp
+    title: test/library_checker/polynomial/composition_of_fps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/library_checker/polynomial/compositional_inverse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - icon: ':heavy_check_mark:'
@@ -55,8 +73,23 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_1_minus_ex.test.cpp
+    title: test/mytest/composition_1_minus_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/composition_ex_minus_1.test.cpp
+    title: test/mytest/composition_ex_minus_1.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/compositional_inverset.test.cpp
+    title: test/mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_biconnected.test.cpp
+    title: test/mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/count_labeled_bridgeless.test.cpp
+    title: test/mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
@@ -236,11 +269,15 @@ data:
   - seq/count_grid_path.hpp
   - poly/multipoint.hpp
   - poly/slice_rational_fps.hpp
+  - poly/composition.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/typical_divide_conquer.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - poly/compositional_inverse.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - linalg/blackbox/vandermonde.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -251,6 +288,8 @@ data:
   - test_atcoder/abc333f.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc267g.test.cpp
+  - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
@@ -264,10 +303,15 @@ data:
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/2626.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/vandermonde.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
