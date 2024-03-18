@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -748,6 +748,12 @@ data:
     path: test_atcoder/abc335g.test.cpp
     title: test_atcoder/abc335g.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc336g.test.cpp
+    title: test_atcoder/abc336g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc339f.test.cpp
+    title: test_atcoder/abc339f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: false
@@ -821,11 +827,13 @@ data:
   - test_atcoder/abc335g.test.cpp
   - test_atcoder/abc222g.test.cpp
   - test_atcoder/abc274_h.test.cpp
+  - test_atcoder/abc336g.test.cpp
   - test_atcoder/abc151f.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc220g.test.cpp
   - test_atcoder/abc212g.test.cpp
+  - test_atcoder/abc339f.test.cpp
   - test_atcoder/abc152e.test.cpp
   - test/aoj/NTL_1_D.test.cpp
   - test/aoj/ALDS1_14_C.test.cpp

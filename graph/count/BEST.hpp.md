@@ -20,10 +20,13 @@ data:
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc336g.test.cpp
+    title: test_atcoder/abc336g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -177,8 +180,9 @@ data:
   path: graph/count/BEST.hpp
   requiredBy: []
   timestamp: '2024-03-10 03:27:25+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_atcoder/abc336g.test.cpp
 documentation_of: graph/count/BEST.hpp
 layout: document
 redirect_from:

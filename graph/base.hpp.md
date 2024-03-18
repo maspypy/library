@@ -53,7 +53,7 @@ data:
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -775,6 +775,9 @@ data:
     path: test_atcoder/abc334g.test.cpp
     title: test_atcoder/abc334g.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc336g.test.cpp
+    title: test_atcoder/abc336g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1025,6 +1028,7 @@ data:
   - test_atcoder/abc223d.test.cpp
   - test_atcoder/abc269ex2.test.cpp
   - test_atcoder/arc064c.test.cpp
+  - test_atcoder/abc336g.test.cpp
   - test_atcoder/abc301h.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc270_f.test.cpp

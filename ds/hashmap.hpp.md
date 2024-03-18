@@ -144,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc335g.test.cpp
     title: test_atcoder/abc335g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc339f.test.cpp
+    title: test_atcoder/abc339f.test.cpp
   - icon: ':x:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
@@ -224,6 +227,7 @@ data:
   - test_atcoder/abc220g.test.cpp
   - test_atcoder/abc273_e.test.cpp
   - test_atcoder/abc212g.test.cpp
+  - test_atcoder/abc339f.test.cpp
   - test/aoj/CGL_5_A.test.cpp
   - test/library_checker/math/discrete_logarithm_mod.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
