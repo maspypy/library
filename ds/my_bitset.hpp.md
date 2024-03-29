@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: graph/shortest_path/bfs_bitset.hpp
     title: graph/shortest_path/bfs_bitset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -24,10 +24,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_product_mod2.test.cpp
     title: test/library_checker/matrix/matrix_product_mod2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/subset_sum.test.cpp
     title: test/mytest/subset_sum.test.cpp
   - icon: ':x:'
