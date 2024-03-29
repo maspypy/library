@@ -176,7 +176,7 @@ data:
       title: alg/monoid_pow.hpp
   - name: bigint
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: bigint/base.hpp
       title: bigint/base.hpp
     - icon: ':x:'
@@ -1194,16 +1194,16 @@ data:
     - icon: ':x:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':x:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/dynamic_modint.hpp
       title: mod/dynamic_modint.hpp
     - icon: ':warning:'
@@ -1236,7 +1236,7 @@ data:
     - icon: ':x:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':x:'
@@ -1245,7 +1245,7 @@ data:
     - icon: ':x:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
     - icon: ':x:'
@@ -1281,7 +1281,7 @@ data:
     - icon: ':x:'
       path: mod/prefix_sum_of_binom.hpp
       title: mod/prefix_sum_of_binom.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
     - icon: ':x:'
@@ -1335,7 +1335,7 @@ data:
     - icon: ':question:'
       path: nt/euler_phi.hpp
       title: nt/euler_phi.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
     - icon: ':question:'
@@ -1501,7 +1501,7 @@ data:
     - icon: ':x:'
       path: poly/compositional_inverse.hpp
       title: poly/compositional_inverse.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
     - icon: ':x:'
@@ -1510,19 +1510,19 @@ data:
     - icon: ':x:'
       path: poly/convolution_all.hpp
       title: poly/convolution_all.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_huge.hpp
       title: poly/convolution_huge.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution_karatsuba.hpp
       title: poly/convolution_karatsuba.hpp
     - icon: ':x:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_u64.hpp
       title: poly/convolution_u64.hpp
     - icon: ':x:'
@@ -1531,7 +1531,7 @@ data:
     - icon: ':x:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':x:'
@@ -1579,7 +1579,7 @@ data:
     - icon: ':x:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':x:'
@@ -1790,7 +1790,7 @@ data:
       title: seq/famous/surjection.hpp
   - name: setfunc
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/and_convolution.hpp
       title: setfunc/and_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1799,10 +1799,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/for_nck.hpp
       title: setfunc/for_nck.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/hadamard.hpp
       title: setfunc/hadamard.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
     - icon: ':x:'
@@ -1823,10 +1823,10 @@ data:
     - icon: ':x:'
       path: setfunc/transposed_sps_composition.hpp
       title: setfunc/transposed_sps_composition.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/xor_convolution.hpp
       title: setfunc/xor_convolution.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/zeta.hpp
       title: setfunc/zeta.hpp
   - name: string
@@ -2110,56 +2110,56 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_D.test.cpp
       title: test/aoj/NTL_1_D.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_1_E.test.cpp
       title: test/aoj/NTL_1_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_2_A.test.cpp
       title: test/aoj/NTL_2_A.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_2_B.test.cpp
       title: test/aoj/NTL_2_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/aoj/NTL_2_C.test.cpp
       title: test/aoj/NTL_2_C.test.cpp
   - name: test/library_checker/bigint
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
       title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
       title: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - name: test/library_checker/convolution
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
       title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
       title: test/library_checker/convolution/bitwise_or_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
       title: test/library_checker/convolution/bitwise_xor_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_huge.test.cpp
       title: test/library_checker/convolution/convolution_huge.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod.test.cpp
       title: test/library_checker/convolution/convolution_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_107.test.cpp
       title: test/library_checker/convolution/convolution_mod_107.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
       title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_2_64.test.cpp
       title: test/library_checker/convolution/convolution_mod_2_64.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
       title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
       title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
     - icon: ':x:'
