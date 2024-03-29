@@ -1,4 +1,5 @@
 #include "geo/base.hpp"
+#include "geo/convex_hull.hpp"
 
 // ほとんどテストされていないのであやしい
 // n=2 は現状サポートしていない
@@ -9,8 +10,12 @@ struct ConvexPolygon {
   int n;
   vc<P> point;
 
-  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {
-    assert(n >= 3);
+  ConvexPolygon(vc<P> point_, bool is_conv) : n(len(point_)), point(point_) {
+    if (!is_conv) {
+      vc<int> I = ConvexHull<T>(point_, "full");
+      point = rearrange(point_, I);
+    }
+    // assert(n >= 3);
     // counter clockwise になおす
     if (n >= 3) {
       if ((point[1] - point[0]).det(point[2] - point[0]) < 0) {

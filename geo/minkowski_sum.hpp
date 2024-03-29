@@ -27,5 +27,5 @@ ConvexPolygon<T> minkowski_sum(ConvexPolygon<T> A, ConvexPolygon<T> B) {
   for (auto& x: point) x = x + add;
   I = ConvexHull(point);
   point = rearrange(point, I);
-  return ConvexPolygon(point);
+  return ConvexPolygon<T>(point, true);
 }

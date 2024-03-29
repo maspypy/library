@@ -1,3 +1,5 @@
+#pragma once
+
 #include "geo/base.hpp"
 
 template <typename T>

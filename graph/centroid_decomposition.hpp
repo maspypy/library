@@ -206,6 +206,7 @@ void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,
 // color in [-1,0,1], color=-1: virtual
 template <int MODE, typename GT, typename F>
 void centroid_decomposition(GT& G, F f) {
+  static_assert(!GT::is_directed);
   const int N = G.N;
   if (N == 1) return;
   vc<int> V(N), par(N, -1);

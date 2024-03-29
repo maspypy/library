@@ -8,7 +8,7 @@ add_root = true の場合：最後に全部をマージして、根 N+Q を追�
 */
 Graph<int, 1> tree_of_unionfind(int N, vc<pair<int, int>> query,
                                 bool add_root) {
-  UnionFind uf(N + len(query));
+  UnionFind uf(N);
   vc<int> root(N);
   iota(all(root), 0);
   int Q = len(query);
@@ -20,8 +20,7 @@ Graph<int, 1> tree_of_unionfind(int N, vc<pair<int, int>> query,
     G.add(v, root[a]);
     if (b != a) G.add(v, root[b]);
     uf.merge(a, b);
-    uf.merge(b, v);
-    root[uf[v]] = v;
+    root[uf[a]] = v;
   }
   if (add_root) {
     int r = N + Q;

@@ -66,9 +66,9 @@ using CHT_max = LineContainer<T, false>;
 
 /*
 long long / double で動くと思う。クエリあたり O(log N)
-・add(a, b)：ax + by の追加
-・get_max(x,y)：max_{a,b} (ax + by)
-・get_min(x,y)：max_{a,b} (ax + by)
+・add(a, b, i=-1)：ax + by の追加 (index=i)
+・get_max(x,y)：(ax + by,i)
+・get_min(x,y)：(ax + by,i)
 */
 template <typename T>
 struct CHT_xy {
@@ -77,33 +77,53 @@ struct CHT_xy {
   CHT_max<ld> cht_max;
   T amax = -infty<T>, amin = infty<T>;
   T bmax = -infty<T>, bmin = infty<T>;
+  int amax_idx = -1, amin_idx = -1;
+  int bmax_idx = -1, bmin_idx = -1;
   bool empty = true;
+  map<pair<T, T>, int> MP;
 
   void clear() {
     empty = true;
     cht_min.clear();
     cht_max.clear();
   }
-  void add(T a, T b) {
+  void add(T a, T b, int i = -1) {
     empty = false;
     cht_min.add(b, a);
     cht_max.add(b, a);
-    chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);
+    pair<T, T> p = {a, b};
+    MP[p] = i;
+
+    if (chmax(amax, a)) amax_idx = i;
+    if (chmin(amin, a)) amin_idx = i;
+    if (chmax(bmax, b)) bmax_idx = i;
+    if (chmin(bmin, b)) bmin_idx = i;
   }
 
-  T get_max(T x, T y) {
-    if (cht_min.empty()) return -infty<T>;
-    if (x == 0) { return max(bmax * y, bmin * y); }
+  pair<T, int> get_max(T x, T y) {
+    if (cht_min.empty()) return {-infty<T>, -1};
+
+    if (x == 0) {
+      if (bmax * y > bmin * y) { return {bmax * y, bmax_idx}; }
+      return {bmin * y, bmin_idx};
+    }
     ld z = ld(y) / x;
     if (x > 0) {
       auto l = cht_max.lower_bound(z);
-      ll a = l->m, b = l->k;
-      return a * x + b * y;
+      T a = l->m, b = l->k;
+      pair<T, T> p = {a, b};
+      int idx = MP[p];
+      return {a * x + b * y, idx};
     }
     auto l = cht_min.lower_bound(z);
-    ll a = -(l->m), b = -(l->k);
-    return a * x + b * y;
+    T a = -(l->m), b = -(l->k);
+    pair<T, T> p = {a, b};
+    int idx = MP[p];
+    return {a * x + b * y, idx};
   }
 
-  T get_min(T x, T y) { return -get_max(-x, -y); }
+  pair<T, int> get_min(T x, T y) {
+    auto [f, i] = get_max(-x, -y);
+    return {-f, i};
+  }
 };
