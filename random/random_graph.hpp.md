@@ -15,7 +15,7 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_K4.test.cpp
     title: test/mytest/count_K4.test.cpp
   - icon: ':x:'
@@ -56,7 +56,7 @@ data:
     title: test/mytest/tree_walk_gf.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -226,7 +226,7 @@ data:
   path: random/random_graph.hpp
   requiredBy: []
   timestamp: '2024-03-10 03:27:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/count_indep_set.test.cpp
   - test/mytest/matching_ve.test.cpp
