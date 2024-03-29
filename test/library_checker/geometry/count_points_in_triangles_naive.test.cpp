@@ -14,7 +14,7 @@ void solve() {
   LL(Q);
   FOR(Q) {
     LL(a, b, c);
-    ConvexPolygon<ll> X({A[a], A[b], A[c]});
+    ConvexPolygon<ll> X({A[a], A[b], A[c]}, true);
     int ans = 0;
     FOR(i, M) { ans += (X.side(B[i]) == 1); }
     print(ans);
