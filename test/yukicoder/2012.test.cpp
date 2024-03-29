@@ -9,16 +9,11 @@ void solve() {
   VEC(pi, XY, N);
   ll ANS = 0;
   for (auto&& [a, b]: XY) cht.add(a, -b);
-  for (auto&& [x, y]: XY) { chmax(ANS, cht.get_max(y, x)); }
+  for (auto&& [x, y]: XY) { chmax(ANS, cht.get_max(y, x).fi); }
   print(ANS);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
