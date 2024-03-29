@@ -1,6 +1,7 @@
 #include "graph/base.hpp"
 
 // worst N*1.381^N だが、N=100 程度でも使える可能性がある。
+// 特殊最大80頂点爆速 https://codeforces.com/contest/1578/problem/K
 template <int MAX_V, typename GT>
 vc<int> maximum_independent_set(GT& G) {
   using BS = bitset<MAX_V>;
