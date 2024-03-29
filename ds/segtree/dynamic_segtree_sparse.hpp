@@ -84,7 +84,10 @@ struct Dynamic_SegTree_Sparse {
     return min_left_rec(root, check, L0, R0, R, x);
   }
 
-  void reset() { pid = 0; }
+  void reset() {
+    pid = 0;
+    FREE.clear();
+  }
 
   vc<pair<ll, X>> get_all(np root) {
     vc<pair<ll, X>> res;

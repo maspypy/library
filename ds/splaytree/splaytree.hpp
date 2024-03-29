@@ -7,15 +7,28 @@ struct SplayTree {
   using np = Node *;
   using X = typename Node::value_type;
   using A = typename Node::operator_type;
+  vc<np> FREE;
 
   SplayTree() : pid(0) { pool = new Node[NODES]; }
 
-  void reset() { pid = 0; }
+  void free_subtree(np c) {
+    auto dfs = [&](auto &dfs, np c) -> void {
+      if (c->l) dfs(dfs, c->l);
+      if (c->r) dfs(dfs, c->r);
+      FREE.eb(c);
+    };
+    dfs(dfs, c);
+  }
+
+  void reset() {
+    pid = 0;
+    FREE.clear();
+  }
 
   np new_root() { return nullptr; }
 
   np new_node(const X &x) {
-    np n = &(pool[pid++]);
+    np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));
     Node::new_node(n, x);
     return n;
   }
