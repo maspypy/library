@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/coef_of_fps_pows.hpp
     title: poly/coef_of_fps_pows.hpp
   - icon: ':question:'
