@@ -13,7 +13,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/contest/1578/problem/K
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -74,44 +75,44 @@ data:
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 2 \"graph/maximum_independent_set.hpp\"\n\r\n// worst N*1.381^N \u3060\u304C\
     \u3001N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\u6027\u304C\
-    \u3042\u308B\u3002\r\ntemplate <int MAX_V, typename GT>\r\nvc<int> maximum_independent_set(GT&\
-    \ G) {\r\n  using BS = bitset<MAX_V>;\r\n  const int N = G.N;\r\n  assert(N <=\
-    \ MAX_V);\r\n  vc<BS> nbd(N);\r\n  FOR(v, N) for (auto&& e: G[v]) nbd[v][e.to]\
-    \ = 1;\r\n\r\n  int best = 0;\r\n  BS res;\r\n\r\n  auto dfs = [&](auto& dfs,\
-    \ BS now, BS rest) -> void {\r\n    pair<int, int> p = {-1, -1}; // (v, d)\r\n\
-    \    while (1) {\r\n      bool upd = 0;\r\n      FOR(v, N) if (rest[v]) {\r\n\
-    \        int d = (nbd[v] & rest).count();\r\n        if (chmax(p.se, d)) p.fi\
-    \ = v;\r\n        if (d <= 1) { rest[v] = 0, rest &= ~nbd[v], now[v] = 1, upd\
-    \ = 1; }\r\n      }\r\n      if (!upd) break;\r\n      p = {-1, -1};\r\n    }\r\
-    \n    int a = now.count(), b = rest.count();\r\n    if (chmax(best, a)) res =\
-    \ now;\r\n    if (b == 0 || a + b <= best) return;\r\n    int v = p.fi;\r\n  \
-    \  rest[v] = 0;\r\n    if (p.se >= 3) dfs(dfs, now, rest);\r\n    now[v] = 1;\r\
-    \n    dfs(dfs, now, rest & ~(nbd[v]));\r\n  };\r\n  BS now, rest;\r\n  FOR(v,\
-    \ N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\n  vc<int> ANS;\r\n  FOR(v, N) if\
-    \ (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}\n"
+    \u3042\u308B\u3002\r\n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\u901F https://codeforces.com/contest/1578/problem/K\r\
+    \ntemplate <int MAX_V, typename GT>\r\nvc<int> maximum_independent_set(GT& G)\
+    \ {\r\n  using BS = bitset<MAX_V>;\r\n  const int N = G.N;\r\n  assert(N <= MAX_V);\r\
+    \n  vc<BS> nbd(N);\r\n  FOR(v, N) for (auto&& e: G[v]) nbd[v][e.to] = 1;\r\n\r\
+    \n  int best = 0;\r\n  BS res;\r\n\r\n  auto dfs = [&](auto& dfs, BS now, BS rest)\
+    \ -> void {\r\n    pair<int, int> p = {-1, -1}; // (v, d)\r\n    while (1) {\r\
+    \n      bool upd = 0;\r\n      FOR(v, N) if (rest[v]) {\r\n        int d = (nbd[v]\
+    \ & rest).count();\r\n        if (chmax(p.se, d)) p.fi = v;\r\n        if (d <=\
+    \ 1) { rest[v] = 0, rest &= ~nbd[v], now[v] = 1, upd = 1; }\r\n      }\r\n   \
+    \   if (!upd) break;\r\n      p = {-1, -1};\r\n    }\r\n    int a = now.count(),\
+    \ b = rest.count();\r\n    if (chmax(best, a)) res = now;\r\n    if (b == 0 ||\
+    \ a + b <= best) return;\r\n    int v = p.fi;\r\n    rest[v] = 0;\r\n    if (p.se\
+    \ >= 3) dfs(dfs, now, rest);\r\n    now[v] = 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\
+    \n  };\r\n  BS now, rest;\r\n  FOR(v, N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\
+    \n  vc<int> ANS;\r\n  FOR(v, N) if (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// worst N*1.381^N \u3060\u304C\u3001\
     N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\u6027\u304C\u3042\
-    \u308B\u3002\r\ntemplate <int MAX_V, typename GT>\r\nvc<int> maximum_independent_set(GT&\
-    \ G) {\r\n  using BS = bitset<MAX_V>;\r\n  const int N = G.N;\r\n  assert(N <=\
-    \ MAX_V);\r\n  vc<BS> nbd(N);\r\n  FOR(v, N) for (auto&& e: G[v]) nbd[v][e.to]\
-    \ = 1;\r\n\r\n  int best = 0;\r\n  BS res;\r\n\r\n  auto dfs = [&](auto& dfs,\
-    \ BS now, BS rest) -> void {\r\n    pair<int, int> p = {-1, -1}; // (v, d)\r\n\
-    \    while (1) {\r\n      bool upd = 0;\r\n      FOR(v, N) if (rest[v]) {\r\n\
-    \        int d = (nbd[v] & rest).count();\r\n        if (chmax(p.se, d)) p.fi\
-    \ = v;\r\n        if (d <= 1) { rest[v] = 0, rest &= ~nbd[v], now[v] = 1, upd\
-    \ = 1; }\r\n      }\r\n      if (!upd) break;\r\n      p = {-1, -1};\r\n    }\r\
-    \n    int a = now.count(), b = rest.count();\r\n    if (chmax(best, a)) res =\
-    \ now;\r\n    if (b == 0 || a + b <= best) return;\r\n    int v = p.fi;\r\n  \
-    \  rest[v] = 0;\r\n    if (p.se >= 3) dfs(dfs, now, rest);\r\n    now[v] = 1;\r\
-    \n    dfs(dfs, now, rest & ~(nbd[v]));\r\n  };\r\n  BS now, rest;\r\n  FOR(v,\
-    \ N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\n  vc<int> ANS;\r\n  FOR(v, N) if\
-    \ (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}"
+    \u308B\u3002\r\n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\u901F https://codeforces.com/contest/1578/problem/K\r\
+    \ntemplate <int MAX_V, typename GT>\r\nvc<int> maximum_independent_set(GT& G)\
+    \ {\r\n  using BS = bitset<MAX_V>;\r\n  const int N = G.N;\r\n  assert(N <= MAX_V);\r\
+    \n  vc<BS> nbd(N);\r\n  FOR(v, N) for (auto&& e: G[v]) nbd[v][e.to] = 1;\r\n\r\
+    \n  int best = 0;\r\n  BS res;\r\n\r\n  auto dfs = [&](auto& dfs, BS now, BS rest)\
+    \ -> void {\r\n    pair<int, int> p = {-1, -1}; // (v, d)\r\n    while (1) {\r\
+    \n      bool upd = 0;\r\n      FOR(v, N) if (rest[v]) {\r\n        int d = (nbd[v]\
+    \ & rest).count();\r\n        if (chmax(p.se, d)) p.fi = v;\r\n        if (d <=\
+    \ 1) { rest[v] = 0, rest &= ~nbd[v], now[v] = 1, upd = 1; }\r\n      }\r\n   \
+    \   if (!upd) break;\r\n      p = {-1, -1};\r\n    }\r\n    int a = now.count(),\
+    \ b = rest.count();\r\n    if (chmax(best, a)) res = now;\r\n    if (b == 0 ||\
+    \ a + b <= best) return;\r\n    int v = p.fi;\r\n    rest[v] = 0;\r\n    if (p.se\
+    \ >= 3) dfs(dfs, now, rest);\r\n    now[v] = 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\
+    \n  };\r\n  BS now, rest;\r\n  FOR(v, N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\
+    \n  vc<int> ANS;\r\n  FOR(v, N) if (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/maximum_independent_set.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
+  timestamp: '2024-03-30 02:51:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/maximum_independent_set.test.cpp

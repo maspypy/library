@@ -8,7 +8,7 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
@@ -17,11 +17,11 @@ data:
   - icon: ':warning:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test_atcoder/abc269ex2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://www.mathenachia.blog/mergetech-and-logn/
@@ -196,45 +196,32 @@ data:
     \n  \u30FBheavy \u306A\u3089 heavy path \u3092\u8FBA\u3067\u7D50\u5408\u3057\u305F\
     \u3082\u306E\n  \u30FBlight \u306A\u3089 light edge \u305F\u3061\u306E\u30DE\u30FC\
     \u30B8\n*/\ntemplate <typename TREE>\nstruct Static_TopTree {\n  TREE &tree;\n\
-    \n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n  vc<int> v_to_k;\n\n  vc<Data>\
-    \ dp;\n\n  Static_TopTree(TREE &tree) : tree(tree) {}\n\n  void init() {\n   \
-    \ int root = tree.V[0];\n    build(root);\n    // relabel\n    int n = len(par);\n\
-    \    reverse(all(par)), reverse(all(lch)), reverse(all(rch)), reverse(all(A)),\n\
-    \        reverse(all(B)), reverse(all(heavy));\n    for (auto &x: par) x = (x\
-    \ == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1 ? -1 : n - 1 -\
-    \ x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n    dp.resize(n);\n\
-    \    v_to_k.resize(n, -1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\
-    \u5024\u3092\u5F97\u308B\n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x,\
-    \ u, v)  : u \u304C\u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b,\
-    \ c, d)  : [a,b] + [c,d] = [a,d]\n  template <typename Data, typename F1, typename\
-    \ F2, typename F3, typename F4,\n            typename F5>\n  Data init_dp(F1 from_vertex,\
-    \ F2 add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy)\
-    \ {\n    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 &&\
-    \ rch[k] == -1) {\n        v_to_k[A[k]] = k;\n        return dp[k] = from_vertex(A[k]);\n\
-    \      }\n      if (rch[k] == -1) {\n        Data x = dfs(dfs, lch[k]);\n    \
-    \    if (heavy[k]) {\n          v_to_k[A[k]] = k;\n          return dp[k] = add_vertex(x,\
-    \ A[k]);\n        } else {\n          return dp[k] = add_edge(x, A[k], B[lch[k]]);\n\
-    \        }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        return dp[k]\n               = merge_heavy(x,\
-    \ y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return dp[k]\
-    \ = merge_light(x, y);\n    };\n    return dfs(dfs, 0);\n  }\n\n  Data update(int\
-    \ v, F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n           \
-    \   F5 merge_heavy) {\n    int k = v_to_k[v];\n    assert(k != -1);\n    for (k\
-    \ = v_to_k[v]; k != -1; k = par[k]) {\n      if (lch[k] == -1 && rch[k] == -1)\
-    \ {\n        dp[k] = from_vertex(A[k]);\n        continue;\n      }\n      if\
-    \ (rch[k] == -1) {\n        Data x = dp[lch[k]];\n        if (heavy[k]) {\n  \
-    \        v_to_k[A[k]] = k;\n          dp[k] = add_vertex(x, A[k]);\n        }\
-    \ else {\n          dp[k] = add_edge(x, A[k], B[lch[k]]);\n        }\n       \
-    \ continue;\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        dp[k] = merge_heavy(x, y, A[lch[k]],\
-    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n        continue;\n      }\n      dp[k] =\
-    \ merge_light(x, y);\n    }\n    return dp[0];\n  }\n\nprivate:\n  int add_node(int\
-    \ l, int r, int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1),\
-    \ lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l]\
-    \ = ret;\n    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int\
-    \ v) {\n    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\
-    \u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\
-    \u30C9\u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
+    \n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE &tree)\
+    \ : tree(tree) {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n\
+    \    int n = len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)),\
+    \ reverse(all(A)),\n        reverse(all(B)), reverse(all(heavy));\n    for (auto\
+    \ &x: par) x = (x == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1\
+    \ ? -1 : n - 1 - x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n\
+    \  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\
+    \n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x, u, v)  : u \u304C\
+    \u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b, c, d)  : [a,b] +\
+    \ [c,d] = [a,d]\n  template <typename Data, typename F1, typename F2, typename\
+    \ F3, typename F4,\n            typename F5>\n  Data tree_dp(F1 from_vertex, F2\
+    \ add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy) {\n\
+    \    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 && rch[k]\
+    \ == -1) { return from_vertex(A[k]); }\n      if (rch[k] == -1) {\n        Data\
+    \ x = dfs(dfs, lch[k]);\n        if (heavy[k]) {\n          return add_vertex(x,\
+    \ A[k]);\n        } else {\n          return add_edge(x, A[k], B[lch[k]]);\n \
+    \       }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
+    \ rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x, y, A[lch[k]],\
+    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x, y);\n\
+    \    };\n    return dfs(dfs, 0);\n  }\n\nprivate:\n  int add_node(int l, int r,\
+    \ int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1), lch.eb(l),\
+    \ rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l] = ret;\n\
+    \    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int v) {\n\
+    \    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\u3068\
+    \u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
+    \u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
     \    reverse(all(path));\n\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
     \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
     \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
@@ -247,16 +234,7 @@ data:
     \ auto [s2, y] = POP(que);\n        int z = add_node(x, y, me, me, false);\n \
     \       que.emplace(s1 + s2, z);\n      }\n      auto [s, x] = POP(que);\n   \
     \   return add_node(x, -1, me, me, true);\n    };\n    return dfs(dfs, 0, len(path));\n\
-    \  }\n\nprivate:\n  template <typename Data, typename F1, typename F2, typename\
-    \ F3, typename F4,\n            typename F5>\n  Data calc_at(int k, F1 from_vertex,\
-    \ F2 add_vertex, F3 add_edge,\n               F4 merge_light, F5 merge_heavy)\
-    \ {\n    if (lch[k] == -1 && rch[k] == -1) { return dp[k] = from_vertex(A[k]);\
-    \ }\n    if (rch[k] == -1) {\n      Data x = dfs(dfs, lch[k]);\n      if (heavy[k])\
-    \ {\n        return dp[k] = add_vertex(x, A[k]);\n      } else {\n        return\
-    \ dp[k] = add_edge(x, A[k], B[lch[k]]);\n      }\n    }\n    Data x = dfs(dfs,\
-    \ lch[k]);\n    Data y = dfs(dfs, rch[k]);\n    if (heavy[k]) {\n      return\
-    \ dp[k]\n             = merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);\n\
-    \    }\n    return dp[k] = merge_light(x, y);\n  }\n};\n"
+    \  }\n};\n"
   code: "#include \"graph/tree.hpp\"\n\n/*\ntute \u3055\u3093\u306E\u5B9F\u88C5 https://yukicoder.me/submissions/838092\
     \ \u3092\u53C2\u8003\u306B\u3057\u3066\u3044\u308B.\n\u3044\u308F\u3086\u308B\
     \ toptree \uFF08\u8FBA\u304B\u3089\u306F\u3058\u3081\u3066\u30DE\u30FC\u30B8\u904E\
@@ -275,45 +253,32 @@ data:
     \ \u3064\n  \u30FBheavy \u306A\u3089 heavy path \u3092\u8FBA\u3067\u7D50\u5408\
     \u3057\u305F\u3082\u306E\n  \u30FBlight \u306A\u3089 light edge \u305F\u3061\u306E\
     \u30DE\u30FC\u30B8\n*/\ntemplate <typename TREE>\nstruct Static_TopTree {\n  TREE\
-    \ &tree;\n\n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n  vc<int> v_to_k;\n\
-    \n  vc<Data> dp;\n\n  Static_TopTree(TREE &tree) : tree(tree) {}\n\n  void init()\
-    \ {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n    int n =\
-    \ len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)), reverse(all(A)),\n\
-    \        reverse(all(B)), reverse(all(heavy));\n    for (auto &x: par) x = (x\
-    \ == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1 ? -1 : n - 1 -\
-    \ x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n    dp.resize(n);\n\
-    \    v_to_k.resize(n, -1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\
-    \u5024\u3092\u5F97\u308B\n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x,\
-    \ u, v)  : u \u304C\u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b,\
-    \ c, d)  : [a,b] + [c,d] = [a,d]\n  template <typename Data, typename F1, typename\
-    \ F2, typename F3, typename F4,\n            typename F5>\n  Data init_dp(F1 from_vertex,\
-    \ F2 add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy)\
-    \ {\n    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 &&\
-    \ rch[k] == -1) {\n        v_to_k[A[k]] = k;\n        return dp[k] = from_vertex(A[k]);\n\
-    \      }\n      if (rch[k] == -1) {\n        Data x = dfs(dfs, lch[k]);\n    \
-    \    if (heavy[k]) {\n          v_to_k[A[k]] = k;\n          return dp[k] = add_vertex(x,\
-    \ A[k]);\n        } else {\n          return dp[k] = add_edge(x, A[k], B[lch[k]]);\n\
-    \        }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        return dp[k]\n               = merge_heavy(x,\
-    \ y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return dp[k]\
-    \ = merge_light(x, y);\n    };\n    return dfs(dfs, 0);\n  }\n\n  Data update(int\
-    \ v, F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n           \
-    \   F5 merge_heavy) {\n    int k = v_to_k[v];\n    assert(k != -1);\n    for (k\
-    \ = v_to_k[v]; k != -1; k = par[k]) {\n      if (lch[k] == -1 && rch[k] == -1)\
-    \ {\n        dp[k] = from_vertex(A[k]);\n        continue;\n      }\n      if\
-    \ (rch[k] == -1) {\n        Data x = dp[lch[k]];\n        if (heavy[k]) {\n  \
-    \        v_to_k[A[k]] = k;\n          dp[k] = add_vertex(x, A[k]);\n        }\
-    \ else {\n          dp[k] = add_edge(x, A[k], B[lch[k]]);\n        }\n       \
-    \ continue;\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        dp[k] = merge_heavy(x, y, A[lch[k]],\
-    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n        continue;\n      }\n      dp[k] =\
-    \ merge_light(x, y);\n    }\n    return dp[0];\n  }\n\nprivate:\n  int add_node(int\
-    \ l, int r, int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1),\
-    \ lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l]\
-    \ = ret;\n    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int\
-    \ v) {\n    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\
-    \u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\
-    \u30C9\u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
+    \ &tree;\n\n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE\
+    \ &tree) : tree(tree) {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n\
+    \    int n = len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)),\
+    \ reverse(all(A)),\n        reverse(all(B)), reverse(all(heavy));\n    for (auto\
+    \ &x: par) x = (x == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1\
+    \ ? -1 : n - 1 - x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n\
+    \  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\
+    \n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x, u, v)  : u \u304C\
+    \u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b, c, d)  : [a,b] +\
+    \ [c,d] = [a,d]\n  template <typename Data, typename F1, typename F2, typename\
+    \ F3, typename F4,\n            typename F5>\n  Data tree_dp(F1 from_vertex, F2\
+    \ add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy) {\n\
+    \    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 && rch[k]\
+    \ == -1) { return from_vertex(A[k]); }\n      if (rch[k] == -1) {\n        Data\
+    \ x = dfs(dfs, lch[k]);\n        if (heavy[k]) {\n          return add_vertex(x,\
+    \ A[k]);\n        } else {\n          return add_edge(x, A[k], B[lch[k]]);\n \
+    \       }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
+    \ rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x, y, A[lch[k]],\
+    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x, y);\n\
+    \    };\n    return dfs(dfs, 0);\n  }\n\nprivate:\n  int add_node(int l, int r,\
+    \ int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1), lch.eb(l),\
+    \ rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l] = ret;\n\
+    \    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int v) {\n\
+    \    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\u3068\
+    \u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
+    \u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
     \    reverse(all(path));\n\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
     \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
     \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
@@ -326,16 +291,7 @@ data:
     \ auto [s2, y] = POP(que);\n        int z = add_node(x, y, me, me, false);\n \
     \       que.emplace(s1 + s2, z);\n      }\n      auto [s, x] = POP(que);\n   \
     \   return add_node(x, -1, me, me, true);\n    };\n    return dfs(dfs, 0, len(path));\n\
-    \  }\n\nprivate:\n  template <typename Data, typename F1, typename F2, typename\
-    \ F3, typename F4,\n            typename F5>\n  Data calc_at(int k, F1 from_vertex,\
-    \ F2 add_vertex, F3 add_edge,\n               F4 merge_light, F5 merge_heavy)\
-    \ {\n    if (lch[k] == -1 && rch[k] == -1) { return dp[k] = from_vertex(A[k]);\
-    \ }\n    if (rch[k] == -1) {\n      Data x = dfs(dfs, lch[k]);\n      if (heavy[k])\
-    \ {\n        return dp[k] = add_vertex(x, A[k]);\n      } else {\n        return\
-    \ dp[k] = add_edge(x, A[k], B[lch[k]]);\n      }\n    }\n    Data x = dfs(dfs,\
-    \ lch[k]);\n    Data y = dfs(dfs, rch[k]);\n    if (heavy[k]) {\n      return\
-    \ dp[k]\n             = merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);\n\
-    \    }\n    return dp[k] = merge_light(x, y);\n  }\n};"
+    \  }\n};"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -346,8 +302,8 @@ data:
   - graph/tree_walk_generating_function.hpp
   - graph/count_matching_on_tree.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-03-30 02:57:05+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc269ex2.test.cpp
   - test/yukicoder/2258.test.cpp
