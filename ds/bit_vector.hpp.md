@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - icon: ':x:'
@@ -36,10 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':x:'
