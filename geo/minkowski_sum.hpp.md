@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   _extendedRequiredBy: []
@@ -80,49 +80,7 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 2 \"geo/convex_polygon.hpp\"\n\n// \u307B\u3068\u3093\u3069\u30C6\u30B9\u30C8\
-    \u3055\u308C\u3066\u3044\u306A\u3044\u306E\u3067\u3042\u3084\u3057\u3044\n// n=2\
-    \ \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\n//\
-    \ \u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u8907\u6570\u306E\u70B9\u304C\u3042\u308B\
-    \u3068\u6B63\u3057\u304F\u52D5\u304B\u306A\u3044\u8AAC\u304C\u3042\u308B\ntemplate\
-    \ <typename T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int n;\n  vc<P>\
-    \ point;\n\n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {\n\
-    \    assert(n >= 3);\n    // counter clockwise \u306B\u306A\u304A\u3059\n    if\
-    \ (n >= 3) {\n      if ((point[1] - point[0]).det(point[2] - point[0]) < 0) {\n\
-    \        reverse(all(point));\n      }\n    }\n  }\n\n  // \u6BD4\u8F03\u95A2\u6570\
-    \ comp(i,j)\n  template <typename F>\n  int periodic_min_comp(F comp) {\n    int\
-    \ L = 0, M = n, R = n + n;\n    while (1) {\n      if (R - L == 2) break;\n  \
-    \    int L1 = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1, M)) { R =\
-    \ M, M = L1; }\n      elif (comp(R1, M)) { L = M, M = R1; }\n      else {\n  \
-    \      L = L1, R = R1;\n      }\n    }\n    return M % n;\n  }\n\n  int nxt_idx(int\
-    \ i) { return (i + 1 == n ? 0 : i + 1); }\n  int prev_idx(int i) { return (i ==\
-    \ 0 ? n - 1 : i - 1); }\n\n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A\
-    -1\n  int side(P p) {\n    int L = 1, R = n - 1;\n    T a = (point[L] - point[0]).det(p\
-    \ - point[0]);\n    T b = (point[R] - point[0]).det(p - point[0]);\n    if (a\
-    \ < 0 || b > 0) return -1;\n    // p \u306F 0 \u304B\u3089\u898B\u3066 [L,R] \u65B9\
-    \u5411\n    while (R - L >= 2) {\n      int M = (L + R) / 2;\n      T c = (point[M]\
-    \ - point[0]).det(p - point[0]);\n      if (c < 0)\n        R = M, b = c;\n  \
-    \    else\n        L = M, a = c;\n    }\n    T c = (point[R] - point[L]).det(p\
-    \ - point[L]);\n    T x = min({a, -b, c});\n    if (x < 0) return -1;\n    if\
-    \ (x > 0) return 1;\n    return 0;\n  }\n\n  pair<int, T> min_dot(P p) {\n   \
-    \ int idx = periodic_min_comp([&](int i, int j) -> bool {\n      return point[i\
-    \ % n].dot(p) < point[j % n].dot(p);\n    });\n    return {idx, point[idx].dot(p)};\n\
-    \  }\n  pair<int, T> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i,\
-    \ int j) -> bool {\n      return point[i % n].dot(p) > point[j % n].dot(p);\n\
-    \    });\n    return {idx, point[idx].dot(p)};\n  }\n  // pair<int, int> visible_range(P\
-    \ p) {}\n};\n#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\
-    \n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n  vector<int>\
-    \ lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\
-    \n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 &&\
-    \ P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower),\
-    \ [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper),\
-    \ [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\
-    \n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return\
-    \ I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
-    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n\
-    \  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n\
-    \  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"geo/convex_hull.hpp\"\n\ntemplate\
+    #line 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\n\ntemplate\
     \ <typename T>\nvector<int> ConvexHull(vector<pair<T, T>>& XY, string mode = \"\
     full\",\n                       bool inclusive = false, bool sorted = false) {\n\
     \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
@@ -160,8 +118,52 @@ data:
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
     \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
     \  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] ==\
-    \ P.back()) P.pop_back();\n  return P;\n}\n#line 4 \"geo/minkowski_sum.hpp\"\n\
-    \n// https://codeforces.com/contest/87/problem/E\ntemplate <typename T>\nConvexPolygon<T>\
+    \ P.back()) P.pop_back();\n  return P;\n}\n#line 3 \"geo/convex_polygon.hpp\"\n\
+    \n// \u307B\u3068\u3093\u3069\u30C6\u30B9\u30C8\u3055\u308C\u3066\u3044\u306A\u3044\
+    \u306E\u3067\u3042\u3084\u3057\u3044\n// n=2 \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\
+    \u30C8\u3057\u3066\u3044\u306A\u3044\n// \u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u8907\
+    \u6570\u306E\u70B9\u304C\u3042\u308B\u3068\u6B63\u3057\u304F\u52D5\u304B\u306A\
+    \u3044\u8AAC\u304C\u3042\u308B\ntemplate <typename T>\nstruct ConvexPolygon {\n\
+    \  using P = Point<T>;\n  int n;\n  vc<P> point;\n\n  ConvexPolygon(vc<P> point_,\
+    \ bool is_conv) : n(len(point_)), point(point_) {\n    if (!is_conv) {\n     \
+    \ vc<int> I = ConvexHull<T>(point_, \"full\");\n      point = rearrange(point_,\
+    \ I);\n    }\n    // assert(n >= 3);\n    // counter clockwise \u306B\u306A\u304A\
+    \u3059\n    if (n >= 3) {\n      if ((point[1] - point[0]).det(point[2] - point[0])\
+    \ < 0) {\n        reverse(all(point));\n      }\n    }\n  }\n\n  // \u6BD4\u8F03\
+    \u95A2\u6570 comp(i,j)\n  template <typename F>\n  int periodic_min_comp(F comp)\
+    \ {\n    int L = 0, M = n, R = n + n;\n    while (1) {\n      if (R - L == 2)\
+    \ break;\n      int L1 = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1,\
+    \ M)) { R = M, M = L1; }\n      elif (comp(R1, M)) { L = M, M = R1; }\n      else\
+    \ {\n        L = L1, R = R1;\n      }\n    }\n    return M % n;\n  }\n\n  int\
+    \ nxt_idx(int i) { return (i + 1 == n ? 0 : i + 1); }\n  int prev_idx(int i) {\
+    \ return (i == 0 ? n - 1 : i - 1); }\n\n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A\
+    0, \u5916\uFF1A-1\n  int side(P p) {\n    int L = 1, R = n - 1;\n    T a = (point[L]\
+    \ - point[0]).det(p - point[0]);\n    T b = (point[R] - point[0]).det(p - point[0]);\n\
+    \    if (a < 0 || b > 0) return -1;\n    // p \u306F 0 \u304B\u3089\u898B\u3066\
+    \ [L,R] \u65B9\u5411\n    while (R - L >= 2) {\n      int M = (L + R) / 2;\n \
+    \     T c = (point[M] - point[0]).det(p - point[0]);\n      if (c < 0)\n     \
+    \   R = M, b = c;\n      else\n        L = M, a = c;\n    }\n    T c = (point[R]\
+    \ - point[L]).det(p - point[L]);\n    T x = min({a, -b, c});\n    if (x < 0) return\
+    \ -1;\n    if (x > 0) return 1;\n    return 0;\n  }\n\n  pair<int, T> min_dot(P\
+    \ p) {\n    int idx = periodic_min_comp([&](int i, int j) -> bool {\n      return\
+    \ point[i % n].dot(p) < point[j % n].dot(p);\n    });\n    return {idx, point[idx].dot(p)};\n\
+    \  }\n  pair<int, T> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i,\
+    \ int j) -> bool {\n      return point[i % n].dot(p) > point[j % n].dot(p);\n\
+    \    });\n    return {idx, point[idx].dot(p)};\n  }\n  // pair<int, int> visible_range(P\
+    \ p) {}\n};\n#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\
+    \n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
+    \ <typename T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n  vector<int>\
+    \ lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\
+    \n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 &&\
+    \ P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower),\
+    \ [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper),\
+    \ [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\
+    \n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return\
+    \ I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
+    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n\
+    \  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n\
+    \  return angle_sort<T>(tmp);\r\n}\r\n#line 4 \"geo/minkowski_sum.hpp\"\n\n//\
+    \ https://codeforces.com/contest/87/problem/E\ntemplate <typename T>\nConvexPolygon<T>\
     \ minkowski_sum(ConvexPolygon<T> A, ConvexPolygon<T> B) {\n  using P = Point<T>;\n\
     \  vc<P> F;\n  P p(0, 0);\n  FOR(2) {\n    swap(A, B);\n    vc<P> point = A.point;\n\
     \    int n = len(point);\n    FOR(i, n) {\n      int j = (i + 1) % n;\n      F.eb(point[j]\
@@ -169,7 +171,7 @@ data:
     \  int n = len(I);\n  F = rearrange(F, I);\n  vc<P> point(n);\n  FOR(i, n - 1)\
     \ point[i + 1] = point[i] + F[i];\n  P add = p - MIN(point);\n  for (auto& x:\
     \ point) x = x + add;\n  I = ConvexHull(point);\n  point = rearrange(point, I);\n\
-    \  return ConvexPolygon(point);\n}\n"
+    \  return ConvexPolygon<T>(point, true);\n}\n"
   code: "#include \"geo/convex_polygon.hpp\"\n#include \"geo/angle_sort.hpp\"\n#include\
     \ \"geo/convex_hull.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
     template <typename T>\nConvexPolygon<T> minkowski_sum(ConvexPolygon<T> A, ConvexPolygon<T>\
@@ -179,16 +181,16 @@ data:
     \ p + MIN(point);\n  }\n  auto I = angle_sort(F);\n  int n = len(I);\n  F = rearrange(F,\
     \ I);\n  vc<P> point(n);\n  FOR(i, n - 1) point[i + 1] = point[i] + F[i];\n  P\
     \ add = p - MIN(point);\n  for (auto& x: point) x = x + add;\n  I = ConvexHull(point);\n\
-    \  point = rearrange(point, I);\n  return ConvexPolygon(point);\n}\n"
+    \  point = rearrange(point, I);\n  return ConvexPolygon<T>(point, true);\n}\n"
   dependsOn:
   - geo/convex_polygon.hpp
   - geo/base.hpp
-  - geo/angle_sort.hpp
   - geo/convex_hull.hpp
+  - geo/angle_sort.hpp
   isVerificationFile: false
   path: geo/minkowski_sum.hpp
   requiredBy: []
-  timestamp: '2024-02-24 23:27:05+09:00'
+  timestamp: '2024-03-29 11:46:13+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minkowski_sum.hpp

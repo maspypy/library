@@ -1,76 +1,83 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: alg/monoid/monoid_reverse.hpp
+    title: alg/monoid/monoid_reverse.hpp
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_5_E.test.cpp
     title: test/aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1197.test.cpp
     title: test/yukicoder/1197.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
-    struct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
-    \  using MA = typename AM::Monoid_A;\n  using X = typename MX::value_type;\n \
-    \ using A = typename MA::value_type;\n  int n, log, size;\n  vc<X> dat;\n  vc<A>\
-    \ laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n); }\n  template\
-    \ <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n  }\n  Lazy_SegTree(const\
-    \ vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) ->\
-    \ X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v),\
-    \ [&](int i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size\
-    \ = 1 << log;\n    dat.assign(size << 1, MX::unit());\n    laz.assign(size, MA::unit());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
-    \  void update(int k) { dat[k] = MX::op(dat[2 * k], dat[2 * k + 1]); }\n  void\
-    \ set(int p, X x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
-    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = x;\n    for (int i = 1; i\
-    \ <= log; i++) update(p >> i);\n  }\n  void multiply(int p, const X& x) {\n  \
-    \  assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for (int i = 1; i <= log;\
-    \ i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
-    \ dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k); }\n    return\
-    \ {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int l, int r)\
-    \ {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return MX::unit();\n\
-    \    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
+  bundledCode: "#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\ntemplate <class Monoid>\r\
+    \nstruct Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\
+    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\
+    \ return Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
+    \ }\r\n  static const bool commute = Monoid::commute;\r\n};\r\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
+    \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
+    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
+    \ log, size;\n  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n  \
+    \  build(n, f);\n  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int\
+    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
+    \    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
+    \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
+    \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
+    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
+    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n  void multiply(int\
+    \ p, const X& x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
+    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for\
+    \ (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
+    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
+    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k);\
+    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
+    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
+    \ MX::unit();\n    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n\
+    \      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r)\
+    \ push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while\
+    \ (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr\
+    \ = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl,\
+    \ xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r,\
+    \ A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n \
+    \   l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
     \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while (l < r) {\n\
-    \      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr = MX::op(dat[--r],\
-    \ xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl, xr);\n  }\n\n  X\
-    \ prod_all() { return dat[1]; }\n\n  void apply(int l, int r, A a) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
-    \    for (int i = log; i >= 1; i--) {\n      if (((l >> i) << i) != l) push(l\
-    \ >> i);\n      if (((r >> i) << i) != r) push((r - 1) >> i);\n    }\n    int\
-    \ l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1) apply_at(l++, a);\n \
-    \     if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>= 1;\n    }\n    l = l2,\
-    \ r = r2;\n    for (int i = 1; i <= log; i++) {\n      if (((l >> i) << i) !=\
-    \ l) update(l >> i);\n      if (((r >> i) << i) != r) update((r - 1) >> i);\n\
-    \    }\n  }\n\n  template <typename F>\n  int max_right(const F check, int l)\
-    \ {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n    if (l\
-    \ == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--) push(l >>\
-    \ i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l >>= 1;\n \
-    \     if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n        \
-    \  push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
+    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
+    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
+    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
+    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
+    \ - 1) >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F\
+    \ check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
+    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
+    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
+    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
+    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
     \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
     \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
     \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
@@ -219,55 +226,67 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 3 \"graph/ds/lazy_tree_monoid.hpp\"\n\r\n\
+    \n    return P;\r\n  }\r\n};\r\n#line 4 \"graph/ds/lazy_tree_monoid.hpp\"\n\r\n\
     template <typename TREE, typename ActedMonoid, bool edge>\r\nstruct Lazy_Tree_Monoid\
     \ {\r\n  using MX = typename ActedMonoid::Monoid_X;\r\n  using MA = typename ActedMonoid::Monoid_A;\r\
-    \n  static_assert(MX::commute);\r\n  using X = typename MX::value_type;\r\n  using\
-    \ A = typename MA::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid>\
-    \ seg;\r\n\r\n  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\r\n   \
-    \ build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Lazy_Tree_Monoid(TREE\
+    \n  using X = typename MX::value_type;\r\n  using A = typename MA::value_type;\r\
+    \n  struct RevAM {\r\n    using Monoid_X = Monoid_Reverse<MX>;\r\n    using Monoid_A\
+    \ = MA;\r\n    using X = typename Monoid_X::value_type;\r\n    using A = typename\
+    \ Monoid_A::value_type;\r\n    static X act(const X &x, const A &a, const ll &size)\
+    \ {\r\n      return ActedMonoid::act(x, a, size);\r\n    }\r\n  };\r\n\r\n  TREE\
+    \ &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid> seg;\r\n  Lazy_SegTree<RevAM>\
+    \ seg_r;\r\n\r\n  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\r\n \
+    \   build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Lazy_Tree_Monoid(TREE\
     \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X {\
     \ return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Lazy_Tree_Monoid(TREE\
     \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> seg_raw(N, MX::unit());\r\n\
-    \    if (!edge) {\r\n      seg.build(N, [&](int i) -> X { return f(tree.V[i]);\
-    \ });\r\n    } else {\r\n      seg.build(N, [&](int i) -> X {\r\n        return\
-    \ (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\n      });\r\n    }\r\n\
-    \  }\r\n\r\n  void set(int i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\
-    \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n  }\r\n\r\n  X get(int v) { return\
-    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\
-    \n    if (!edge) {\r\n      vc<X> res(N);\r\n      FOR(v, N) res[v] = dat[tree.LID[v]];\r\
-    \n      return res;\r\n    } else {\r\n      vc<X> res(N - 1);\r\n      FOR(i,\
-    \ N - 1) { res[i] = dat[tree.LID[tree.e_to_v(i)]]; }\r\n      return res;\r\n\
-    \    }\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n  \
-    \    X x = get_prod(a, b);\r\n      val = MX::op(val, x);\r\n    }\r\n    return\
-    \ val;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r =\
-    \ tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_all()\
-    \ { return seg.prod_all(); }\r\n\r\n  void apply_path(int u, int v, A a) {\r\n\
-    \    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[x,\
-    \ y]: pd) {\r\n      int l = min(x, y), r = max(x, y);\r\n      seg.apply(l, r\
-    \ + 1, a);\r\n    }\r\n  }\r\n\r\n  void apply_subtree(int u, A a) {\r\n    int\
-    \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, a);\r\
-    \n  }\r\n\r\n  void apply_outtree(int u, A a) {\r\n    int l = tree.LID[u], r\
-    \ = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n    seg.apply(r,\
-    \ N, a);\r\n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u,\
-    \ int v) {\r\n    if constexpr (edge) return max_path_edge(check, u, v);\r\n \
-    \   if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n  \
-    \    X x = get_prod(a, b);\r\n      if (check(MX::op(val, x))) {\r\n        val\
-    \ = MX::op(val, x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n     \
-    \ }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x));\
-    \ };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
-    \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
-    \      // \u4E0A\u308A\r\n        auto i = seg.min_left(check_tmp, a + 1);\r\n\
-    \        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n      }\r\n\
-    \    }\r\n    return v;\r\n  }\r\n\r\n  // closed range [a,b] \u3092 heavy path\
-    \ \u306E\u5F62\u5F0F\u306B\u5FDC\u3058\u3066\r\n  inline X get_prod(int a, int\
-    \ b) {\r\n    return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));\r\n \
-    \ }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F &check, int\
-    \ u, int v) {\r\n    assert(edge);\r\n    if (!check(MX::unit())) return -1;\r\
-    \n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ <typename F>\r\n  void build(F f) {\r\n    if (!edge) {\r\n      auto f_v =\
+    \ [&](int i) -> X { return f(tree.V[i]); };\r\n      seg.build(N, f_v);\r\n  \
+    \    if constexpr (!MX::commute) { seg_r.build(N, f_v); }\r\n    } else {\r\n\
+    \      auto f_e = [&](int i) -> X {\r\n        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\
+    \n      };\r\n      seg.build(N, f_e);\r\n      if constexpr (!MX::commute) {\
+    \ seg_r.build(N, f_e); }\r\n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n \
+    \   if constexpr (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i,\
+    \ x);\r\n    if constexpr (!MX::commute) { seg_r.set(i, x); }\r\n  }\r\n\r\n \
+    \ X get(int v) { return seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n   \
+    \ vc<X> dat = seg.get_all();\r\n    if (!edge) {\r\n      vc<X> res(N);\r\n  \
+    \    FOR(v, N) res[v] = dat[tree.LID[v]];\r\n      return res;\r\n    } else {\r\
+    \n      vc<X> res(N - 1);\r\n      FOR(i, N - 1) { res[i] = dat[tree.LID[tree.e_to_v(i)]];\
+    \ }\r\n      return res;\r\n    }\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\
+    \n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    X val = MX::unit();\r\
+    \n    for (auto &&[a, b]: pd) { val = MX::op(val, get_prod(a, b)); }\r\n    return\
+    \ val;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    static_assert(MX::commute);\r\
+    \n    int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\
+    \n  }\r\n\r\n  X prod_all() {\r\n    static_assert(MX::commute);\r\n    return\
+    \ seg.prod_all();\r\n  }\r\n\r\n  void apply_path(int u, int v, A a) {\r\n   \
+    \ auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[x, y]:\
+    \ pd) {\r\n      int l = min(x, y), r = max(x, y);\r\n      seg.apply(l, r + 1,\
+    \ a);\r\n      if constexpr (!MX::commute) { seg_r.apply(l, r + 1, a); }\r\n \
+    \   }\r\n  }\r\n\r\n  void apply_subtree(int u, A a) {\r\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\r\n    seg.apply(l + edge, r, a);\r\n    if constexpr (!MX::commute)\
+    \ { seg_r.apply(l + edge, r, a); }\r\n  }\r\n\r\n  void apply_outtree(int u, A\
+    \ a) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 + edge,\
+    \ l + edge, a);\r\n    seg.apply(r, N, a);\r\n    if constexpr (!MX::commute)\
+    \ {\r\n      seg_r.apply(0 + edge, l + edge, a);\r\n      seg_r.apply(r, N, a);\r\
+    \n    }\r\n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u, int\
+    \ v) {\r\n    static_assert(MX::commute); // \u305F\u3060\u306E\u3055\u307C\u308A\
+    \r\n    if constexpr (edge) return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u,\
+    \ u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n\
+    \    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = get_prod(a,\
+    \ b);\r\n      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\
+    \n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
+    \ = [&](X x) -> bool { return check(MX::op(val, x)); };\r\n      if (a <= b) {\r\
+    \n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp, a);\r\n\
+    \        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n        //\
+    \ \u4E0A\u308A\r\n        auto i = seg.min_left(check_tmp, a + 1);\r\n       \
+    \ if (i == a + 1) return u;\r\n        return tree.V[i];\r\n      }\r\n    }\r\
+    \n    return v;\r\n  }\r\n\r\n  // closed range [a,b] \u3092 heavy path \u306E\
+    \u5F62\u5F0F\u306B\u5FDC\u3058\u3066\r\n  inline X get_prod(int a, int b) {\r\n\
+    \    if constexpr (MX::commute)\r\n      return (a <= b ? seg.prod(a, b + 1) :\
+    \ seg.prod(b, a + 1));\r\n    return (a <= b ? seg.prod(a, b + 1) : seg_r.prod(b,\
+    \ a + 1));\r\n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F\
+    \ &check, int u, int v) {\r\n    assert(edge);\r\n    if (!check(MX::unit()))\
+    \ return -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
     \ lca, edge);\r\n    X val = MX::unit();\r\n\r\n    // climb\r\n    for (auto\
     \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = seg.prod(b, a + 1);\r\
     \n      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\n    \
@@ -281,55 +300,67 @@ data:
     \     }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val,\
     \ x)); };\r\n      auto i = seg.max_right(check_tmp, a);\r\n      return (i ==\
     \ a ? u : tree.V[i - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
-  code: "#include \"ds/segtree/lazy_segtree.hpp\"\r\n#include \"graph/tree.hpp\"\r\
-    \n\r\ntemplate <typename TREE, typename ActedMonoid, bool edge>\r\nstruct Lazy_Tree_Monoid\
-    \ {\r\n  using MX = typename ActedMonoid::Monoid_X;\r\n  using MA = typename ActedMonoid::Monoid_A;\r\
-    \n  static_assert(MX::commute);\r\n  using X = typename MX::value_type;\r\n  using\
-    \ A = typename MA::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid>\
-    \ seg;\r\n\r\n  Lazy_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\r\n   \
-    \ build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Lazy_Tree_Monoid(TREE\
-    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X {\
-    \ return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Lazy_Tree_Monoid(TREE\
-    \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> seg_raw(N, MX::unit());\r\n\
-    \    if (!edge) {\r\n      seg.build(N, [&](int i) -> X { return f(tree.V[i]);\
-    \ });\r\n    } else {\r\n      seg.build(N, [&](int i) -> X {\r\n        return\
-    \ (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\n      });\r\n    }\r\n\
-    \  }\r\n\r\n  void set(int i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\
-    \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n  }\r\n\r\n  X get(int v) { return\
-    \ seg.get(tree.LID[v]); }\r\n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\
-    \n    if (!edge) {\r\n      vc<X> res(N);\r\n      FOR(v, N) res[v] = dat[tree.LID[v]];\r\
-    \n      return res;\r\n    } else {\r\n      vc<X> res(N - 1);\r\n      FOR(i,\
-    \ N - 1) { res[i] = dat[tree.LID[tree.e_to_v(i)]]; }\r\n      return res;\r\n\
-    \    }\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n  \
-    \    X x = get_prod(a, b);\r\n      val = MX::op(val, x);\r\n    }\r\n    return\
-    \ val;\r\n  }\r\n\r\n  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r =\
-    \ tree.RID[u];\r\n    return seg.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_all()\
-    \ { return seg.prod_all(); }\r\n\r\n  void apply_path(int u, int v, A a) {\r\n\
-    \    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[x,\
-    \ y]: pd) {\r\n      int l = min(x, y), r = max(x, y);\r\n      seg.apply(l, r\
-    \ + 1, a);\r\n    }\r\n  }\r\n\r\n  void apply_subtree(int u, A a) {\r\n    int\
-    \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, a);\r\
-    \n  }\r\n\r\n  void apply_outtree(int u, A a) {\r\n    int l = tree.LID[u], r\
-    \ = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n    seg.apply(r,\
-    \ N, a);\r\n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u,\
-    \ int v) {\r\n    if constexpr (edge) return max_path_edge(check, u, v);\r\n \
-    \   if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n  \
-    \    X x = get_prod(a, b);\r\n      if (check(MX::op(val, x))) {\r\n        val\
-    \ = MX::op(val, x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n     \
-    \ }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x));\
-    \ };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
-    \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
-    \      // \u4E0A\u308A\r\n        auto i = seg.min_left(check_tmp, a + 1);\r\n\
-    \        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n      }\r\n\
-    \    }\r\n    return v;\r\n  }\r\n\r\n  // closed range [a,b] \u3092 heavy path\
-    \ \u306E\u5F62\u5F0F\u306B\u5FDC\u3058\u3066\r\n  inline X get_prod(int a, int\
-    \ b) {\r\n    return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));\r\n \
-    \ }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F &check, int\
-    \ u, int v) {\r\n    assert(edge);\r\n    if (!check(MX::unit())) return -1;\r\
-    \n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
+  code: "#include \"alg/monoid/monoid_reverse.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
+    \r\n#include \"graph/tree.hpp\"\r\n\r\ntemplate <typename TREE, typename ActedMonoid,\
+    \ bool edge>\r\nstruct Lazy_Tree_Monoid {\r\n  using MX = typename ActedMonoid::Monoid_X;\r\
+    \n  using MA = typename ActedMonoid::Monoid_A;\r\n  using X = typename MX::value_type;\r\
+    \n  using A = typename MA::value_type;\r\n  struct RevAM {\r\n    using Monoid_X\
+    \ = Monoid_Reverse<MX>;\r\n    using Monoid_A = MA;\r\n    using X = typename\
+    \ Monoid_X::value_type;\r\n    using A = typename Monoid_A::value_type;\r\n  \
+    \  static X act(const X &x, const A &a, const ll &size) {\r\n      return ActedMonoid::act(x,\
+    \ a, size);\r\n    }\r\n  };\r\n\r\n  TREE &tree;\r\n  int N;\r\n  Lazy_SegTree<ActedMonoid>\
+    \ seg;\r\n  Lazy_SegTree<RevAM> seg_r;\r\n\r\n  Lazy_Tree_Monoid(TREE &tree) :\
+    \ tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::unit(); });\r\
+    \n  }\r\n\r\n  Lazy_Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
+    \ {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template\
+    \ <typename F>\r\n  Lazy_Tree_Monoid(TREE &tree, F f) : tree(tree), N(tree.N)\
+    \ {\r\n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(F f)\
+    \ {\r\n    if (!edge) {\r\n      auto f_v = [&](int i) -> X { return f(tree.V[i]);\
+    \ };\r\n      seg.build(N, f_v);\r\n      if constexpr (!MX::commute) { seg_r.build(N,\
+    \ f_v); }\r\n    } else {\r\n      auto f_e = [&](int i) -> X {\r\n        return\
+    \ (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\n      };\r\n      seg.build(N,\
+    \ f_e);\r\n      if constexpr (!MX::commute) { seg_r.build(N, f_e); }\r\n    }\r\
+    \n  }\r\n\r\n  void set(int i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\
+    \n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n    if constexpr (!MX::commute)\
+    \ { seg_r.set(i, x); }\r\n  }\r\n\r\n  X get(int v) { return seg.get(tree.LID[v]);\
+    \ }\r\n  vc<X> get_all() {\r\n    vc<X> dat = seg.get_all();\r\n    if (!edge)\
+    \ {\r\n      vc<X> res(N);\r\n      FOR(v, N) res[v] = dat[tree.LID[v]];\r\n \
+    \     return res;\r\n    } else {\r\n      vc<X> res(N - 1);\r\n      FOR(i, N\
+    \ - 1) { res[i] = dat[tree.LID[tree.e_to_v(i)]]; }\r\n      return res;\r\n  \
+    \  }\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) { val =\
+    \ MX::op(val, get_prod(a, b)); }\r\n    return val;\r\n  }\r\n\r\n  X prod_subtree(int\
+    \ u) {\r\n    static_assert(MX::commute);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    return seg.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_all() {\r\n    static_assert(MX::commute);\r\
+    \n    return seg.prod_all();\r\n  }\r\n\r\n  void apply_path(int u, int v, A a)\
+    \ {\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto\
+    \ &&[x, y]: pd) {\r\n      int l = min(x, y), r = max(x, y);\r\n      seg.apply(l,\
+    \ r + 1, a);\r\n      if constexpr (!MX::commute) { seg_r.apply(l, r + 1, a);\
+    \ }\r\n    }\r\n  }\r\n\r\n  void apply_subtree(int u, A a) {\r\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\r\n    seg.apply(l + edge, r, a);\r\n    if constexpr (!MX::commute)\
+    \ { seg_r.apply(l + edge, r, a); }\r\n  }\r\n\r\n  void apply_outtree(int u, A\
+    \ a) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n    seg.apply(0 + edge,\
+    \ l + edge, a);\r\n    seg.apply(r, N, a);\r\n    if constexpr (!MX::commute)\
+    \ {\r\n      seg_r.apply(0 + edge, l + edge, a);\r\n      seg_r.apply(r, N, a);\r\
+    \n    }\r\n  }\r\n\r\n  template <class F>\r\n  int max_path(F check, int u, int\
+    \ v) {\r\n    static_assert(MX::commute); // \u305F\u3060\u306E\u3055\u307C\u308A\
+    \r\n    if constexpr (edge) return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u,\
+    \ u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n\
+    \    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = get_prod(a,\
+    \ b);\r\n      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\
+    \n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
+    \ = [&](X x) -> bool { return check(MX::op(val, x)); };\r\n      if (a <= b) {\r\
+    \n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp, a);\r\n\
+    \        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n        //\
+    \ \u4E0A\u308A\r\n        auto i = seg.min_left(check_tmp, a + 1);\r\n       \
+    \ if (i == a + 1) return u;\r\n        return tree.V[i];\r\n      }\r\n    }\r\
+    \n    return v;\r\n  }\r\n\r\n  // closed range [a,b] \u3092 heavy path \u306E\
+    \u5F62\u5F0F\u306B\u5FDC\u3058\u3066\r\n  inline X get_prod(int a, int b) {\r\n\
+    \    if constexpr (MX::commute)\r\n      return (a <= b ? seg.prod(a, b + 1) :\
+    \ seg.prod(b, a + 1));\r\n    return (a <= b ? seg.prod(a, b + 1) : seg_r.prod(b,\
+    \ a + 1));\r\n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F\
+    \ &check, int u, int v) {\r\n    assert(edge);\r\n    if (!check(MX::unit()))\
+    \ return -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
     \ lca, edge);\r\n    X val = MX::unit();\r\n\r\n    // climb\r\n    for (auto\
     \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = seg.prod(b, a + 1);\r\
     \n      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\n    \
@@ -344,14 +375,15 @@ data:
     \ x)); };\r\n      auto i = seg.max_right(check_tmp, a);\r\n      return (i ==\
     \ a ? u : tree.V[i - 1]);\r\n    }\r\n    return v;\r\n  }\r\n};\r\n"
   dependsOn:
+  - alg/monoid/monoid_reverse.hpp
   - ds/segtree/lazy_segtree.hpp
   - graph/tree.hpp
   - graph/base.hpp
   isVerificationFile: false
   path: graph/ds/lazy_tree_monoid.hpp
   requiredBy: []
-  timestamp: '2023-11-30 16:31:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/GRL_5_E.test.cpp
   - test/yukicoder/235.test.cpp

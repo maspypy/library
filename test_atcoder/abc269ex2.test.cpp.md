@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc269/tasks/abc269_Ex
@@ -56,24 +56,25 @@ data:
   bundledCode: "#line 1 \"test_atcoder/abc269ex2.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc269/tasks/abc269_Ex\"\
     \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
-    )\n#pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
-    \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
-    \ long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128\
-    \ = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
-    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
-    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
-    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
-    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
-    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
-    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
+    \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
+    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
+    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
+    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
+    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
     \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
@@ -640,32 +641,45 @@ data:
     \n  \u30FBheavy \u306A\u3089 heavy path \u3092\u8FBA\u3067\u7D50\u5408\u3057\u305F\
     \u3082\u306E\n  \u30FBlight \u306A\u3089 light edge \u305F\u3061\u306E\u30DE\u30FC\
     \u30B8\n*/\ntemplate <typename TREE>\nstruct Static_TopTree {\n  TREE &tree;\n\
-    \n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE &tree)\
-    \ : tree(tree) {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n\
-    \    int n = len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)),\
-    \ reverse(all(A)),\n        reverse(all(B)), reverse(all(heavy));\n    for (auto\
-    \ &x: par) x = (x == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1\
-    \ ? -1 : n - 1 - x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n\
-    \  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\
-    \n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x, u, v)  : u \u304C\
-    \u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b, c, d)  : [a,b] +\
-    \ [c,d] = [a,d]\n  template <typename Data, typename F1, typename F2, typename\
-    \ F3, typename F4,\n            typename F5>\n  Data tree_dp(F1 from_vertex, F2\
-    \ add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy) {\n\
-    \    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 && rch[k]\
-    \ == -1) { return from_vertex(A[k]); }\n      if (rch[k] == -1) {\n        Data\
-    \ x = dfs(dfs, lch[k]);\n        if (heavy[k]) {\n          return add_vertex(x,\
-    \ A[k]);\n        } else {\n          return add_edge(x, A[k], B[lch[k]]);\n \
-    \       }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x, y, A[lch[k]],\
-    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x, y);\n\
-    \    };\n    return dfs(dfs, 0);\n  }\n\nprivate:\n  int add_node(int l, int r,\
-    \ int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1), lch.eb(l),\
-    \ rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l] = ret;\n\
-    \    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int v) {\n\
-    \    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\u3068\
-    \u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
-    \u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
+    \n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n  vc<int> v_to_k;\n\n  vc<Data>\
+    \ dp;\n\n  Static_TopTree(TREE &tree) : tree(tree) {}\n\n  void init() {\n   \
+    \ int root = tree.V[0];\n    build(root);\n    // relabel\n    int n = len(par);\n\
+    \    reverse(all(par)), reverse(all(lch)), reverse(all(rch)), reverse(all(A)),\n\
+    \        reverse(all(B)), reverse(all(heavy));\n    for (auto &x: par) x = (x\
+    \ == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1 ? -1 : n - 1 -\
+    \ x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n    dp.resize(n);\n\
+    \    v_to_k.resize(n, -1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\
+    \u5024\u3092\u5F97\u308B\n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x,\
+    \ u, v)  : u \u304C\u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b,\
+    \ c, d)  : [a,b] + [c,d] = [a,d]\n  template <typename Data, typename F1, typename\
+    \ F2, typename F3, typename F4,\n            typename F5>\n  Data init_dp(F1 from_vertex,\
+    \ F2 add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy)\
+    \ {\n    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 &&\
+    \ rch[k] == -1) {\n        v_to_k[A[k]] = k;\n        return dp[k] = from_vertex(A[k]);\n\
+    \      }\n      if (rch[k] == -1) {\n        Data x = dfs(dfs, lch[k]);\n    \
+    \    if (heavy[k]) {\n          v_to_k[A[k]] = k;\n          return dp[k] = add_vertex(x,\
+    \ A[k]);\n        } else {\n          return dp[k] = add_edge(x, A[k], B[lch[k]]);\n\
+    \        }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
+    \ rch[k]);\n      if (heavy[k]) {\n        return dp[k]\n               = merge_heavy(x,\
+    \ y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return dp[k]\
+    \ = merge_light(x, y);\n    };\n    return dfs(dfs, 0);\n  }\n\n  Data update(int\
+    \ v, F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n           \
+    \   F5 merge_heavy) {\n    int k = v_to_k[v];\n    assert(k != -1);\n    for (k\
+    \ = v_to_k[v]; k != -1; k = par[k]) {\n      if (lch[k] == -1 && rch[k] == -1)\
+    \ {\n        dp[k] = from_vertex(A[k]);\n        continue;\n      }\n      if\
+    \ (rch[k] == -1) {\n        Data x = dp[lch[k]];\n        if (heavy[k]) {\n  \
+    \        v_to_k[A[k]] = k;\n          dp[k] = add_vertex(x, A[k]);\n        }\
+    \ else {\n          dp[k] = add_edge(x, A[k], B[lch[k]]);\n        }\n       \
+    \ continue;\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
+    \ rch[k]);\n      if (heavy[k]) {\n        dp[k] = merge_heavy(x, y, A[lch[k]],\
+    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n        continue;\n      }\n      dp[k] =\
+    \ merge_light(x, y);\n    }\n    return dp[0];\n  }\n\nprivate:\n  int add_node(int\
+    \ l, int r, int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1),\
+    \ lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l]\
+    \ = ret;\n    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int\
+    \ v) {\n    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\
+    \u3068\u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\
+    \u30C9\u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
     \    reverse(all(path));\n\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
     \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
     \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
@@ -678,27 +692,37 @@ data:
     \ auto [s2, y] = POP(que);\n        int z = add_node(x, y, me, me, false);\n \
     \       que.emplace(s1 + s2, z);\n      }\n      auto [s, x] = POP(que);\n   \
     \   return add_node(x, -1, me, me, true);\n    };\n    return dfs(dfs, 0, len(path));\n\
-    \  }\n};\n#line 9 \"test_atcoder/abc269ex2.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(--p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Static_TopTree<decltype(tree)>\
-    \ STT(tree);\n\n  // \u5168\u90E8\u306E\u6570\u3048\u4E0A\u3052\n  // heavy path\
-    \ \u4E0A\u306B\u306A\u3044\u5834\u5408\u306E\u6570\u3048\u4E0A\u3052 (if heavy)\n\
-    \  using poly = vc<mint>;\n  using Data = pair<poly, poly>;\n  auto from_vertex\
-    \ = [&](int v) -> Data {\n    poly f = {1, 1};\n    poly g = {1, 0};\n    return\
-    \ {f, g};\n  };\n  auto add_vertex = [&](Data &x, int v) -> Data {\n    auto &[f,\
-    \ g] = x;\n    g = f;\n    f[1] += 1;\n    return {f, g};\n  };\n  auto add_edge\
-    \ = [&](Data &x, int u, int v) -> Data { return x; };\n  auto merge_light = [&](Data\
-    \ &x, Data &y) -> Data {\n    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n \
-    \   poly f = convolution<mint>(f1, f2);\n    return {f, g1};\n  };\n  auto merge_heavy\
-    \ = [&](Data &x, Data &y, int a, int b, int c, int d) -> Data {\n    auto &[f1,\
-    \ g1] = x;\n    auto &[f2, g2] = y;\n    // f := (f1-1)g2 + f2\n    // g := g1g2\n\
-    \    f1[0] -= 1;\n    poly f = convolution<mint>(f1, g2);\n    FOR(i, len(f2))\
-    \ f[i] += f2[i];\n    poly g = convolution<mint>(g1, g2);\n    return {f, g};\n\
-    \  };\n\n  auto res = STT.tree_dp<Data>(from_vertex, add_vertex, add_edge, merge_light,\n\
-    \                               merge_heavy);\n  vc<mint> ANS = res.fi;\n  FOR(k,\
-    \ 1, N + 1) {\n    mint x = (k < len(ANS) ? ANS[k] : 0);\n    print(x);\n  }\n\
-    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
+    \  }\n\nprivate:\n  template <typename Data, typename F1, typename F2, typename\
+    \ F3, typename F4,\n            typename F5>\n  Data calc_at(int k, F1 from_vertex,\
+    \ F2 add_vertex, F3 add_edge,\n               F4 merge_light, F5 merge_heavy)\
+    \ {\n    if (lch[k] == -1 && rch[k] == -1) { return dp[k] = from_vertex(A[k]);\
+    \ }\n    if (rch[k] == -1) {\n      Data x = dfs(dfs, lch[k]);\n      if (heavy[k])\
+    \ {\n        return dp[k] = add_vertex(x, A[k]);\n      } else {\n        return\
+    \ dp[k] = add_edge(x, A[k], B[lch[k]]);\n      }\n    }\n    Data x = dfs(dfs,\
+    \ lch[k]);\n    Data y = dfs(dfs, rch[k]);\n    if (heavy[k]) {\n      return\
+    \ dp[k]\n             = merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);\n\
+    \    }\n    return dp[k] = merge_light(x, y);\n  }\n};\n#line 9 \"test_atcoder/abc269ex2.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n\
+    \  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)>\
+    \ tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n\n  // \u5168\u90E8\u306E\
+    \u6570\u3048\u4E0A\u3052\n  // heavy path \u4E0A\u306B\u306A\u3044\u5834\u5408\
+    \u306E\u6570\u3048\u4E0A\u3052 (if heavy)\n  using poly = vc<mint>;\n  using Data\
+    \ = pair<poly, poly>;\n  auto from_vertex = [&](int v) -> Data {\n    poly f =\
+    \ {1, 1};\n    poly g = {1, 0};\n    return {f, g};\n  };\n  auto add_vertex =\
+    \ [&](Data &x, int v) -> Data {\n    auto &[f, g] = x;\n    g = f;\n    f[1] +=\
+    \ 1;\n    return {f, g};\n  };\n  auto add_edge = [&](Data &x, int u, int v) ->\
+    \ Data { return x; };\n  auto merge_light = [&](Data &x, Data &y) -> Data {\n\
+    \    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n    poly f = convolution<mint>(f1,\
+    \ f2);\n    return {f, g1};\n  };\n  auto merge_heavy = [&](Data &x, Data &y,\
+    \ int a, int b, int c, int d) -> Data {\n    auto &[f1, g1] = x;\n    auto &[f2,\
+    \ g2] = y;\n    // f := (f1-1)g2 + f2\n    // g := g1g2\n    f1[0] -= 1;\n   \
+    \ poly f = convolution<mint>(f1, g2);\n    FOR(i, len(f2)) f[i] += f2[i];\n  \
+    \  poly g = convolution<mint>(g1, g2);\n    return {f, g};\n  };\n\n  auto res\
+    \ = STT.tree_dp<Data>(from_vertex, add_vertex, add_edge, merge_light,\n      \
+    \                         merge_heavy);\n  vc<mint> ANS = res.fi;\n  FOR(k, 1,\
+    \ N + 1) {\n    mint x = (k < len(ANS) ? ANS[k] : 0);\n    print(x);\n  }\n}\n\
+    \nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc269/tasks/abc269_Ex\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"poly/convolution.hpp\"\n#include \"graph/ds/static_toptree.hpp\"\n\
@@ -741,8 +765,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc269ex2.test.cpp
   requiredBy: []
-  timestamp: '2024-02-26 23:25:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc269ex2.test.cpp
 layout: document

@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1297.test.cpp
     title: test/yukicoder/1297.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc244h.test.cpp
     title: test_atcoder/abc244h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/cht.hpp\"\nnamespace CHT {\r\ntemplate <typename\
@@ -45,21 +45,28 @@ data:
     \ CHT\r\n\r\nusing namespace CHT;\r\ntemplate <typename T>\r\nusing CHT_min =\
     \ LineContainer<T, true>;\r\ntemplate <typename T>\r\nusing CHT_max = LineContainer<T,\
     \ false>;\r\n\r\n/*\r\nlong long / double \u3067\u52D5\u304F\u3068\u601D\u3046\
-    \u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FBadd(a, b)\uFF1Aax\
-    \ + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1Amax_{a,b} (ax + by)\r\n\u30FB\
-    get_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate <typename T>\r\nstruct\
-    \ CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld>\
-    \ cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax = -infty<T>,\
-    \ bmin = infty<T>;\r\n  bool empty = true;\r\n\r\n  void clear() {\r\n    empty\
-    \ = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\n  }\r\n  void add(T\
-    \ a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b,\
-    \ a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b), chmin(bmin, b);\r\
-    \n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty()) return -infty<T>;\r\
-    \n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n    ld z = ld(y) / x;\r\
-    \n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      ll a = l->m,\
-    \ b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
-    \n    ll a = -(l->m), b = -(l->k);\r\n    return a * x + b * y;\r\n  }\r\n\r\n\
-    \  T get_min(T x, T y) { return -get_max(-x, -y); }\r\n};\r\n"
+    \u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FBadd(a, b, i=-1)\uFF1A\
+    ax + by \u306E\u8FFD\u52A0 (index=i)\r\n\u30FBget_max(x,y)\uFF1A(ax + by,i)\r\n\
+    \u30FBget_min(x,y)\uFF1A(ax + by,i)\r\n*/\r\ntemplate <typename T>\r\nstruct CHT_xy\
+    \ {\r\n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld> cht_max;\r\
+    \n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax = -infty<T>, bmin = infty<T>;\r\
+    \n  int amax_idx = -1, amin_idx = -1;\r\n  int bmax_idx = -1, bmin_idx = -1;\r\
+    \n  bool empty = true;\r\n  map<pair<T, T>, int> MP;\r\n\r\n  void clear() {\r\
+    \n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\n  }\r\n\
+    \  void add(T a, T b, int i = -1) {\r\n    empty = false;\r\n    cht_min.add(b,\
+    \ a);\r\n    cht_max.add(b, a);\r\n    pair<T, T> p = {a, b};\r\n    MP[p] = i;\r\
+    \n\r\n    if (chmax(amax, a)) amax_idx = i;\r\n    if (chmin(amin, a)) amin_idx\
+    \ = i;\r\n    if (chmax(bmax, b)) bmax_idx = i;\r\n    if (chmin(bmin, b)) bmin_idx\
+    \ = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T x, T y) {\r\n    if (cht_min.empty())\
+    \ return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n      if (bmax * y > bmin\
+    \ * y) { return {bmax * y, bmax_idx}; }\r\n      return {bmin * y, bmin_idx};\r\
+    \n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
+    \n      T a = l->m, b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx\
+    \ = MP[p];\r\n      return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
+    \n    T a = -(l->m), b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx\
+    \ = MP[p];\r\n    return {a * x + b * y, idx};\r\n  }\r\n\r\n  pair<T, int> get_min(T\
+    \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
+    \ }\r\n};\r\n"
   code: "namespace CHT {\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T\
     \ k, m, p;\r\n  bool operator<(const Line& o) const { return k < o.k; }\r\n  bool\
     \ operator<(T x) const { return p < x; }\r\n};\r\n\r\ntemplate <typename T>\r\n\
@@ -85,27 +92,34 @@ data:
     using CHT_min = LineContainer<T, true>;\r\ntemplate <typename T>\r\nusing CHT_max\
     \ = LineContainer<T, false>;\r\n\r\n/*\r\nlong long / double \u3067\u52D5\u304F\
     \u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FB\
-    add(a, b)\uFF1Aax + by \u306E\u8FFD\u52A0\r\n\u30FBget_max(x,y)\uFF1Amax_{a,b}\
-    \ (ax + by)\r\n\u30FBget_min(x,y)\uFF1Amax_{a,b} (ax + by)\r\n*/\r\ntemplate <typename\
+    add(a, b, i=-1)\uFF1Aax + by \u306E\u8FFD\u52A0 (index=i)\r\n\u30FBget_max(x,y)\uFF1A\
+    (ax + by,i)\r\n\u30FBget_min(x,y)\uFF1A(ax + by,i)\r\n*/\r\ntemplate <typename\
     \ T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\
     \n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax\
-    \ = -infty<T>, bmin = infty<T>;\r\n  bool empty = true;\r\n\r\n  void clear()\
-    \ {\r\n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\n \
-    \ }\r\n  void add(T a, T b) {\r\n    empty = false;\r\n    cht_min.add(b, a);\r\
-    \n    cht_max.add(b, a);\r\n    chmax(amax, a), chmin(amin, a), chmax(bmax, b),\
-    \ chmin(bmin, b);\r\n  }\r\n\r\n  T get_max(T x, T y) {\r\n    if (cht_min.empty())\
-    \ return -infty<T>;\r\n    if (x == 0) { return max(bmax * y, bmin * y); }\r\n\
-    \    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      ll a = l->m, b = l->k;\r\n      return a * x + b * y;\r\n    }\r\n   \
-    \ auto l = cht_min.lower_bound(z);\r\n    ll a = -(l->m), b = -(l->k);\r\n   \
-    \ return a * x + b * y;\r\n  }\r\n\r\n  T get_min(T x, T y) { return -get_max(-x,\
-    \ -y); }\r\n};\r\n"
+    \ = -infty<T>, bmin = infty<T>;\r\n  int amax_idx = -1, amin_idx = -1;\r\n  int\
+    \ bmax_idx = -1, bmin_idx = -1;\r\n  bool empty = true;\r\n  map<pair<T, T>, int>\
+    \ MP;\r\n\r\n  void clear() {\r\n    empty = true;\r\n    cht_min.clear();\r\n\
+    \    cht_max.clear();\r\n  }\r\n  void add(T a, T b, int i = -1) {\r\n    empty\
+    \ = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b, a);\r\n    pair<T,\
+    \ T> p = {a, b};\r\n    MP[p] = i;\r\n\r\n    if (chmax(amax, a)) amax_idx = i;\r\
+    \n    if (chmin(amin, a)) amin_idx = i;\r\n    if (chmax(bmax, b)) bmax_idx =\
+    \ i;\r\n    if (chmin(bmin, b)) bmin_idx = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T\
+    \ x, T y) {\r\n    if (cht_min.empty()) return {-infty<T>, -1};\r\n\r\n    if\
+    \ (x == 0) {\r\n      if (bmax * y > bmin * y) { return {bmax * y, bmax_idx};\
+    \ }\r\n      return {bmin * y, bmin_idx};\r\n    }\r\n    ld z = ld(y) / x;\r\n\
+    \    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      T a = l->m,\
+    \ b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx = MP[p];\r\n    \
+    \  return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
+    \n    T a = -(l->m), b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx\
+    \ = MP[p];\r\n    return {a * x + b * y, idx};\r\n  }\r\n\r\n  pair<T, int> get_min(T\
+    \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
+    \ }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: convex/cht.hpp
   requiredBy: []
-  timestamp: '2023-09-08 00:56:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc244h.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
