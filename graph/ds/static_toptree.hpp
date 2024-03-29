@@ -21,13 +21,8 @@ struct Static_TopTree {
 
   vc<int> par, lch, rch, A, B;
   vc<bool> heavy;
-  vc<int> v_to_k;
 
-  vc<Data> dp;
-
-  Static_TopTree(TREE &tree) : tree(tree) {}
-
-  void init() {
+  Static_TopTree(TREE &tree) : tree(tree) {
     int root = tree.V[0];
     build(root);
     // relabel
@@ -37,8 +32,6 @@ struct Static_TopTree {
     for (auto &x: par) x = (x == -1 ? -1 : n - 1 - x);
     for (auto &x: lch) x = (x == -1 ? -1 : n - 1 - x);
     for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);
-    dp.resize(n);
-    v_to_k.resize(n, -1);
   }
 
   // 木全体での集約値を得る
@@ -49,61 +42,26 @@ struct Static_TopTree {
   // merge_heavy(x, y, a, b, c, d)  : [a,b] + [c,d] = [a,d]
   template <typename Data, typename F1, typename F2, typename F3, typename F4,
             typename F5>
-  Data init_dp(F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,
+  Data tree_dp(F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,
                F5 merge_heavy) {
     auto dfs = [&](auto &dfs, int k) -> Data {
-      if (lch[k] == -1 && rch[k] == -1) {
-        v_to_k[A[k]] = k;
-        return dp[k] = from_vertex(A[k]);
-      }
+      if (lch[k] == -1 && rch[k] == -1) { return from_vertex(A[k]); }
       if (rch[k] == -1) {
         Data x = dfs(dfs, lch[k]);
         if (heavy[k]) {
-          v_to_k[A[k]] = k;
-          return dp[k] = add_vertex(x, A[k]);
+          return add_vertex(x, A[k]);
         } else {
-          return dp[k] = add_edge(x, A[k], B[lch[k]]);
+          return add_edge(x, A[k], B[lch[k]]);
         }
       }
       Data x = dfs(dfs, lch[k]);
       Data y = dfs(dfs, rch[k]);
       if (heavy[k]) {
-        return dp[k]
-               = merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);
+        return merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);
       }
-      return dp[k] = merge_light(x, y);
+      return merge_light(x, y);
     };
     return dfs(dfs, 0);
-  }
-
-  Data update(int v, F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,
-              F5 merge_heavy) {
-    int k = v_to_k[v];
-    assert(k != -1);
-    for (k = v_to_k[v]; k != -1; k = par[k]) {
-      if (lch[k] == -1 && rch[k] == -1) {
-        dp[k] = from_vertex(A[k]);
-        continue;
-      }
-      if (rch[k] == -1) {
-        Data x = dp[lch[k]];
-        if (heavy[k]) {
-          v_to_k[A[k]] = k;
-          dp[k] = add_vertex(x, A[k]);
-        } else {
-          dp[k] = add_edge(x, A[k], B[lch[k]]);
-        }
-        continue;
-      }
-      Data x = dfs(dfs, lch[k]);
-      Data y = dfs(dfs, rch[k]);
-      if (heavy[k]) {
-        dp[k] = merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);
-        continue;
-      }
-      dp[k] = merge_light(x, y);
-    }
-    return dp[0];
   }
 
 private:
@@ -149,28 +107,5 @@ private:
       return add_node(x, -1, me, me, true);
     };
     return dfs(dfs, 0, len(path));
-  }
-
-private:
-  template <typename Data, typename F1, typename F2, typename F3, typename F4,
-            typename F5>
-  Data calc_at(int k, F1 from_vertex, F2 add_vertex, F3 add_edge,
-               F4 merge_light, F5 merge_heavy) {
-    if (lch[k] == -1 && rch[k] == -1) { return dp[k] = from_vertex(A[k]); }
-    if (rch[k] == -1) {
-      Data x = dfs(dfs, lch[k]);
-      if (heavy[k]) {
-        return dp[k] = add_vertex(x, A[k]);
-      } else {
-        return dp[k] = add_edge(x, A[k], B[lch[k]]);
-      }
-    }
-    Data x = dfs(dfs, lch[k]);
-    Data y = dfs(dfs, rch[k]);
-    if (heavy[k]) {
-      return dp[k]
-             = merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);
-    }
-    return dp[k] = merge_light(x, y);
   }
 };
