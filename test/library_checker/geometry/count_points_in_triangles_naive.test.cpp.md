@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
@@ -325,14 +325,14 @@ data:
     \ p) {}\n};\n#line 7 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
     \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
     \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
-    \ X({A[a], A[b], A[c]});\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
+    \ X({A[a], A[b], A[c]}, true);\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
     \ == 1); }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_polygon.hpp\"\
     \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
     \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
-    \ X({A[a], A[b], A[c]});\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
+    \ X({A[a], A[b], A[c]}, true);\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
     \ == 1); }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }"
   dependsOn:
@@ -344,8 +344,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-30 00:47:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
 layout: document
