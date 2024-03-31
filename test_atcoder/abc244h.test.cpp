@@ -10,7 +10,7 @@ void solve() {
   FOR(Q) {
     LL(a, b, x, y);
     cht.add(a, b);
-    print(cht.get_max(x, y));
+    print(cht.get_max(x, y).fi);
   }
 }
 
