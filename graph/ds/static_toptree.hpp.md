@@ -33,12 +33,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex2.test.cpp
     title: test_atcoder/abc269ex2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://www.mathenachia.blog/mergetech-and-logn/
@@ -303,7 +303,7 @@ data:
   - graph/count_matching_on_tree.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   timestamp: '2024-03-30 02:57:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc269ex2.test.cpp
   - test/yukicoder/2258.test.cpp
