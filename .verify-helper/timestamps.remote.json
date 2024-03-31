@@ -791,5 +791,12 @@
 "test_atcoder/abc256d.test.cpp": "2024-03-29 11:46:13 +0900",
 "test_atcoder/abc256ex.test.cpp": "2024-03-29 11:46:13 +0900",
 "test_atcoder/abc256ex2.test.cpp": "2024-03-29 11:46:13 +0900",
-"test_atcoder/abc259g.test.cpp": "2024-03-29 11:46:13 +0900"
+"test_atcoder/abc259g.test.cpp": "2024-03-29 11:46:13 +0900",
+"test_atcoder/abc260h.test.cpp": "2024-03-29 11:46:13 +0900",
+"test_atcoder/abc266c.test.cpp": "2024-03-29 11:46:13 +0900",
+"test_atcoder/abc266f.test.cpp": "2024-03-29 11:46:13 +0900",
+"test_atcoder/abc266h.test.cpp": "2024-03-29 11:46:13 +0900",
+"test_atcoder/abc266h_2.test.cpp": "2024-03-29 11:46:13 +0900",
+"test_atcoder/abc267g.test.cpp": "2024-03-29 11:46:13 +0900",
+"test_atcoder/abc267h.test.cpp": "2024-03-29 11:46:13 +0900"
 }
