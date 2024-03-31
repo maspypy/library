@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/cht.hpp
     title: convex/cht.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
@@ -234,12 +234,12 @@ data:
     \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
     \ }\r\n};\r\n#line 6 \"test_atcoder/abc244h.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n\
     \  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n    cht.add(a, b);\n    print(cht.get_max(x,\
-    \ y));\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ y).fi);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/cht.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
-    \    cht.add(a, b);\n    print(cht.get_max(x, y));\n  }\n}\n\nsigned main() {\n\
-    \  solve();\n\n  return 0;\n}\n"
+    \    cht.add(a, b);\n    print(cht.get_max(x, y).fi);\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -247,8 +247,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-31 14:26:18+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc244h.test.cpp
 layout: document
