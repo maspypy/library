@@ -284,13 +284,13 @@ data:
     - icon: ':question:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
     - icon: ':heavy_check_mark:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/slide_split_sum.hpp
       title: ds/slide_split_sum.hpp
     - icon: ':question:'
@@ -872,7 +872,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree_diameter.hpp
       title: graph/tree_diameter.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -1662,7 +1662,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/online/online_pow.hpp
       title: poly/online/online_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_square.hpp
       title: poly/online/online_square.hpp
   - name: random
@@ -4414,13 +4414,13 @@ data:
     - icon: ':x:'
       path: test_atcoder/abc301h.test.cpp
       title: test_atcoder/abc301h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc312f.test.cpp
       title: test_atcoder/abc312f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc314.test.cpp
       title: test_atcoder/abc314.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc314f.test.cpp
       title: test_atcoder/abc314f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4429,13 +4429,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc315h.test.cpp
       title: test_atcoder/abc315h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc315h2.test.cpp
       title: test_atcoder/abc315h2.test.cpp
     - icon: ':x:'
       path: test_atcoder/abc318b.test.cpp
       title: test_atcoder/abc318b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318g.test.cpp
       title: test_atcoder/abc318g.test.cpp
     - icon: ':x:'

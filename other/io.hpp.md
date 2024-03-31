@@ -1983,13 +1983,13 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1998,13 +1998,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc315h.test.cpp
     title: test_atcoder/abc315h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc315h2.test.cpp
     title: test_atcoder/abc315h2.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
   - icon: ':x:'
