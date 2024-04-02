@@ -1,6 +1,7 @@
 #include "graph/ds/static_toptree.hpp"
 #include "graph/shortest_path/bfs01.hpp"
 #include "ds/unionfind/unionfind.hpp"
+#include "poly/convolution.hpp"
 
 // det(I-xA) の計算 (固有多項式の reverse になっている)
 // weight(i,j)：A[i][j]
