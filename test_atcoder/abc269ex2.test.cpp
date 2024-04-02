@@ -1,11 +1,8 @@
-#define PROBLEM "https://atcoder.jp/contests/abc269/tasks/abc269_Ex"
-
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "mod/modint.hpp"
-#include "poly/convolution.hpp"
 #include "graph/ds/static_toptree.hpp"
+#include "poly/convolution.hpp"
 
 using mint = modint998;
 
@@ -20,48 +17,52 @@ void solve() {
 
   Tree<decltype(G)> tree(G);
   Static_TopTree<decltype(tree)> STT(tree);
-
-  // 全部の数え上げ
-  // heavy path 上にない場合の数え上げ (if heavy)
+  /*
+  heavy path 上の点なし・あり
+  */
   using poly = vc<mint>;
   using Data = pair<poly, poly>;
-  auto from_vertex = [&](int v) -> Data {
-    poly f = {1, 1};
-    poly g = {1, 0};
+
+  auto single = [&](int v) -> Data {
+    poly f = {1};
+    poly g = {0, 1};
     return {f, g};
   };
-  auto add_vertex = [&](Data &x, int v) -> Data {
-    auto &[f, g] = x;
-    g = f;
-    f[1] += 1;
-    return {f, g};
+
+  auto rake = [&](Data &x, Data &y, int u, int v) -> Data {
+    auto &[f1, g1] = x;
+    auto &[f2, g2] = y;
+    if (v == -1) {
+      if (len(f1) < len(g1)) swap(f1, g1);
+      if (len(f2) < len(g2)) swap(f2, g2);
+      FOR(i, len(g1)) f1[i] += g1[i];
+      FOR(i, len(g2)) f2[i] += g2[i];
+      poly f = convolution<mint>(f1, f2);
+      return {f, {}};
+    }
+    if (len(f2) < len(g2)) swap(f2, g2);
+    FOR(i, len(g2)) f2[i] += g2[i];
+    poly g = f2;
+    g.insert(g.begin(), 0);
+    return {f2, g};
   };
-  auto add_edge = [&](Data &x, int u, int v) -> Data { return x; };
-  auto merge_light = [&](Data &x, Data &y) -> Data {
+
+  auto compress = [&](Data &x, Data &y, int a, int b, int c) -> Data {
     auto &[f1, g1] = x;
     auto &[f2, g2] = y;
     poly f = convolution<mint>(f1, f2);
-    return {f, g1};
-  };
-  auto merge_heavy = [&](Data &x, Data &y, int a, int b, int c, int d) -> Data {
-    auto &[f1, g1] = x;
-    auto &[f2, g2] = y;
-    // f := (f1-1)g2 + f2
-    // g := g1g2
-    f1[0] -= 1;
-    poly f = convolution<mint>(f1, g2);
-    FOR(i, len(f2)) f[i] += f2[i];
-    poly g = convolution<mint>(g1, g2);
+    // g1(x) + f1(x)g2(x)
+    poly g = convolution<mint>(f1, g2);
+    FOR(i, len(g1)) g[i] += g1[i];
+
     return {f, g};
   };
 
-  auto res = STT.tree_dp<Data>(from_vertex, add_vertex, add_edge, merge_light,
-                               merge_heavy);
-  vc<mint> ANS = res.fi;
-  FOR(k, 1, N + 1) {
-    mint x = (k < len(ANS) ? ANS[k] : 0);
-    print(x);
-  }
+  auto [f, g] = STT.tree_dp<Data>(single, rake, compress);
+  vc<mint> ANS(N + 1);
+  FOR(i, len(f)) ANS[i] += f[i];
+  FOR(i, len(g)) ANS[i] += g[i];
+  FOR(i, 1, N + 1) print(ANS[i]);
 }
 
 signed main() {

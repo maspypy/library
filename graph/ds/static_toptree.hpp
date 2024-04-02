@@ -1,110 +1,85 @@
 #include "graph/tree.hpp"
 
 /*
-tute さんの実装 https://yukicoder.me/submissions/838092 を参考にしている.
-いわゆる toptree （辺からはじめてマージ過程を木にする）とは少し異なるはず.
-木を「heavy path 上の辺で分割」「根を virtual にする」
-「light edges の分割」「light edge を消す」で頂点に分割していく.
-逆にたどれば，1 頂点からはじめて木全体を作る高さ O(logN) の木になる.
-高さについて：https://www.mathenachia.blog/mergetech-and-logn/
-・lch == rch == -1：頂点
-・rch == -1：
-  ・heavy なら light の集約に頂点を付加したもの
-  ・light なら 根付き木に light edge を付加したもの
-・子が 2 つ
-  ・heavy なら heavy path を辺で結合したもの
-  ・light なら light edge たちのマージ
+参考 joitour tatyam
+クラスタとは根が欠けた状態
+N 個の (頂+辺) をマージしていって，木全体＋根から親への辺とする．
+single(v) : v とその親辺を合わせたクラスタ
+rake(x, y, u, v) uv(top down) が boundary になるように rake (maybe v=-1)
+compress(x,y,a,b,c)  (top-down) 順に (a,b] + (b,c]
 */
 template <typename TREE>
 struct Static_TopTree {
+  int N;
   TREE &tree;
+  vc<int> par, lch, rch, A, B; // A, B boundary (top-down)
+  vc<bool> is_compress;
 
-  vc<int> par, lch, rch, A, B;
-  vc<bool> heavy;
+  Static_TopTree(TREE &tree) : tree(tree) { build(); }
 
-  Static_TopTree(TREE &tree) : tree(tree) {
-    int root = tree.V[0];
-    build(root);
-    // relabel
-    int n = len(par);
-    reverse(all(par)), reverse(all(lch)), reverse(all(rch)), reverse(all(A)),
-        reverse(all(B)), reverse(all(heavy));
-    for (auto &x: par) x = (x == -1 ? -1 : n - 1 - x);
-    for (auto &x: lch) x = (x == -1 ? -1 : n - 1 - x);
-    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);
+  void build() {
+    N = tree.N;
+    par.assign(N, -1), lch.assign(N, -1), rch.assign(N, -1), A.assign(N, -1),
+        B.assign(N, -1), is_compress.assign(N, 0);
+    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }
+    build_dfs(tree.V[0]);
+    assert(len(par) == 2 * N - 1);
   }
 
   // 木全体での集約値を得る
-  // from_vertex(v)
-  // add_vertex(x, v)
-  // add_edge(x, u, v)  : u が親
-  // merge_light(x, y)
-  // merge_heavy(x, y, a, b, c, d)  : [a,b] + [c,d] = [a,d]
-  template <typename Data, typename F1, typename F2, typename F3, typename F4,
-            typename F5>
-  Data tree_dp(F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,
-               F5 merge_heavy) {
+  // single(v) : v とその親辺を合わせたクラスタ
+  // rake(x, y, u, v) uv(top down) が boundary になるように rake (maybe v=-1)
+  // compress(x,y,a,b,c)  (top-down) 順に (a,b] + (b,c]
+  template <typename Data, typename F1, typename F2, typename F3>
+  Data tree_dp(F1 single, F2 rake, F3 compress) {
     auto dfs = [&](auto &dfs, int k) -> Data {
-      if (lch[k] == -1 && rch[k] == -1) { return from_vertex(A[k]); }
-      if (rch[k] == -1) {
-        Data x = dfs(dfs, lch[k]);
-        if (heavy[k]) {
-          return add_vertex(x, A[k]);
-        } else {
-          return add_edge(x, A[k], B[lch[k]]);
-        }
+      if (0 <= k && k < N) return single(k);
+      Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);
+      if (is_compress[k]) {
+        assert(B[lch[k]] == A[rch[k]]);
+        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);
       }
-      Data x = dfs(dfs, lch[k]);
-      Data y = dfs(dfs, rch[k]);
-      if (heavy[k]) {
-        return merge_heavy(x, y, A[lch[k]], B[lch[k]], A[rch[k]], B[rch[k]]);
-      }
-      return merge_light(x, y);
+      return rake(x, y, A[k], B[k]);
     };
-    return dfs(dfs, 0);
+    return dfs(dfs, 2 * N - 2);
   }
 
 private:
-  int add_node(int l, int r, int a, int b, bool h) {
-    int ret = len(par);
-    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);
-    if (l != -1) par[l] = ret;
-    if (r != -1) par[r] = ret;
-    return ret;
+  int new_node(int l, int r, int a, int b, bool c) {
+    int v = len(par);
+    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);
+    par[l] = par[r] = v;
+    return v;
   }
-
-  int build(int v) {
-    // v は heavy path の根なので v を根とする部分木に対応するノードを作る
+  int build_dfs(int v) {
     assert(tree.head[v] == v);
     auto path = tree.heavy_path_at(v);
-    reverse(all(path));
-
     auto dfs = [&](auto &dfs, int l, int r) -> int {
       // path[l:r)
       if (l + 1 < r) {
         int m = (l + r) / 2;
         int x = dfs(dfs, l, m);
         int y = dfs(dfs, m, r);
-        return add_node(x, y, path[l], path[r - 1], true);
+        return new_node(x, y, A[x], B[y], true);
       }
       assert(r == l + 1);
-      int me = path[l];
+      if (l == 0) { return path[l]; }
       // sz, idx
       pqg<pair<int, int>> que;
-      for (auto &to: tree.collect_light(me)) {
-        int x = build(to);
-        int y = add_node(x, -1, me, me, false);
-        que.emplace(tree.subtree_size(to), y);
+      int p = path[l - 1];
+      for (auto &to: tree.collect_light(p)) {
+        int x = build_dfs(to);
+        que.emplace(tree.subtree_size(to), x);
       }
-      if (que.empty()) { return add_node(-1, -1, me, me, true); }
+      if (que.empty()) { return path[l]; }
       while (len(que) >= 2) {
         auto [s1, x] = POP(que);
         auto [s2, y] = POP(que);
-        int z = add_node(x, y, me, me, false);
+        int z = new_node(x, y, p, -1, false);
         que.emplace(s1 + s2, z);
       }
       auto [s, x] = POP(que);
-      return add_node(x, -1, me, me, true);
+      return new_node(path[l], x, p, path[l], false);
     };
     return dfs(dfs, 0, len(path));
   }
