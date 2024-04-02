@@ -24,7 +24,7 @@ data:
   - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2258.test.cpp
     title: test/yukicoder/2258.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test_atcoder/abc269ex2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -266,7 +266,7 @@ data:
   - graph/count_matching_on_tree.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   timestamp: '2024-04-02 23:34:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc269ex2.test.cpp
   - test/yukicoder/2258.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':question:'
@@ -18,6 +18,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1172/problem/E
+    - https://codeforces.com/contest/1942/problem/H
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
@@ -193,57 +194,47 @@ data:
     \      }\n      auto [s, x] = POP(que);\n      return new_node(path[l], x, p,\
     \ path[l], false);\n    };\n    return dfs(dfs, 0, len(path));\n  }\n};\n#line\
     \ 2 \"graph/ds/dynamic_tree_dp.hpp\"\n\n// https://codeforces.com/contest/1172/problem/E\n\
-    // function \u3092\u6301\u305F\u305B\u308B\u3068 1.5 \u500D\u9045\u3044\u3093\u3060\
-    \u304C\u3069\u3046\u3057\u3088\u3046\ntemplate <typename TREE, typename Data>\n\
-    struct Dynamic_Tree_Dp {\n  Static_TopTree<TREE> STT;\n  int n;\n  vc<Data> dp;\n\
-    \  vc<int> v_to_k;\n\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5>\n  Dynamic_Tree_Dp(TREE& tree, F1 from_vertex, F2 add_vertex,\
-    \ F3 add_edge,\n                  F4 merge_light, F5 merge_heavy)\n      : STT(tree)\
-    \ {\n    n = len(STT.par);\n    dp.resize(n);\n    FOR_R(i, n) {\n      upd(i,\
-    \ from_vertex, add_vertex, add_edge, merge_light, merge_heavy);\n    }\n    int\
-    \ N = tree.N;\n    v_to_k.assign(N, -1);\n    FOR(k, n) {\n      if (STT.lch[k]\
-    \ == -1 && STT.rch[k] == -1) { v_to_k[STT.A[k]] = k; }\n      elif (STT.rch[k]\
-    \ == -1 && STT.heavy[k]) { v_to_k[STT.A[k]] = k; }\n    }\n  }\n\n  template <typename\
-    \ F1, typename F2, typename F3, typename F4, typename F5>\n  void upd(int k, F1\
-    \ from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n           F5 merge_heavy)\
-    \ {\n    int l = STT.lch[k], r = STT.rch[k], a = STT.A[k];\n    if (l == -1 &&\
-    \ r == -1) { dp[k] = from_vertex(a); }\n    elif (r == -1) {\n      if (STT.heavy[k])\
-    \ {\n        dp[k] = add_vertex(dp[l], a);\n      } else {\n        dp[k] = add_edge(dp[l],\
-    \ a, STT.B[l]);\n      }\n    }\n    else {\n      if (STT.heavy[k]) {\n     \
-    \   dp[k]\n            = merge_heavy(dp[l], dp[r], STT.A[l], STT.B[l], STT.A[r],\
-    \ STT.B[r]);\n      } else {\n        dp[k] = merge_light(dp[l], dp[r]);\n   \
-    \   }\n    }\n  }\n\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5>\n  void recalc_vertex(int v, F1 from_vertex, F2 add_vertex,\
-    \ F3 add_edge,\n                     F4 merge_light, F5 merge_heavy) {\n    int\
-    \ k = v_to_k[v];\n    while (k != -1) {\n      upd(k, from_vertex, add_vertex,\
-    \ add_edge, merge_light, merge_heavy),\n          k = STT.par[k];\n    }\n  }\n\
-    \n  Data get() { return dp[0]; }\n};\n"
+    // https://codeforces.com/contest/1942/problem/H\n// single(v) : v \u3068\u305D\
+    \u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n// rake(x,\
+    \ y, u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
+    \ (maybe v=-1)\n// compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
+    template <typename TREE, typename Data>\nstruct Dynamic_Tree_Dp {\n  Static_TopTree<TREE>\
+    \ STT;\n  vc<Data> dp;\n\n  Dynamic_Tree_Dp(TREE& tree) : STT(tree) {}\n\n  template\
+    \ <typename F1, typename F2, typename F3>\n  Data init_dp(F1 single, F2 rake,\
+    \ F3 compress) {\n    int n = len(STT.par);\n    dp.resize(n);\n    FOR(i, n)\
+    \ { upd(i, single, rake, compress); }\n    return dp.back();\n  }\n\n  template\
+    \ <typename F1, typename F2, typename F3>\n  Data recalc(int v, F1 single, F2\
+    \ rake, F3 compress) {\n    assert(!dp.empty());\n    for (int k = v; k != -1;\
+    \ k = STT.par[k]) { upd(k, single, rake, compress); }\n    return dp.back();\n\
+    \  }\n\n  Data get() { return dp.back(); }\n\nprivate:\n  template <typename F1,\
+    \ typename F2, typename F3>\n  void upd(int k, F1 single, F2 rake, F3 compress)\
+    \ {\n    if (0 <= k && k < STT.N) {\n      dp[k] = single(k);\n      return;\n\
+    \    }\n    int l = STT.lch[k], r = STT.rch[k];\n    if (STT.is_compress[k]) {\n\
+    \      int a = STT.A[l], b = STT.B[l];\n      int c = STT.A[r], d = STT.B[r];\n\
+    \      assert(b == c);\n      dp[k] = compress(dp[l], dp[r], a, b, d);\n    }\
+    \ else {\n      dp[k] = rake(dp[l], dp[r], STT.A[k], STT.B[k]);\n    }\n  }\n\
+    };\n"
   code: "#include \"graph/ds/static_toptree.hpp\"\n\n// https://codeforces.com/contest/1172/problem/E\n\
-    // function \u3092\u6301\u305F\u305B\u308B\u3068 1.5 \u500D\u9045\u3044\u3093\u3060\
-    \u304C\u3069\u3046\u3057\u3088\u3046\ntemplate <typename TREE, typename Data>\n\
-    struct Dynamic_Tree_Dp {\n  Static_TopTree<TREE> STT;\n  int n;\n  vc<Data> dp;\n\
-    \  vc<int> v_to_k;\n\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5>\n  Dynamic_Tree_Dp(TREE& tree, F1 from_vertex, F2 add_vertex,\
-    \ F3 add_edge,\n                  F4 merge_light, F5 merge_heavy)\n      : STT(tree)\
-    \ {\n    n = len(STT.par);\n    dp.resize(n);\n    FOR_R(i, n) {\n      upd(i,\
-    \ from_vertex, add_vertex, add_edge, merge_light, merge_heavy);\n    }\n    int\
-    \ N = tree.N;\n    v_to_k.assign(N, -1);\n    FOR(k, n) {\n      if (STT.lch[k]\
-    \ == -1 && STT.rch[k] == -1) { v_to_k[STT.A[k]] = k; }\n      elif (STT.rch[k]\
-    \ == -1 && STT.heavy[k]) { v_to_k[STT.A[k]] = k; }\n    }\n  }\n\n  template <typename\
-    \ F1, typename F2, typename F3, typename F4, typename F5>\n  void upd(int k, F1\
-    \ from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,\n           F5 merge_heavy)\
-    \ {\n    int l = STT.lch[k], r = STT.rch[k], a = STT.A[k];\n    if (l == -1 &&\
-    \ r == -1) { dp[k] = from_vertex(a); }\n    elif (r == -1) {\n      if (STT.heavy[k])\
-    \ {\n        dp[k] = add_vertex(dp[l], a);\n      } else {\n        dp[k] = add_edge(dp[l],\
-    \ a, STT.B[l]);\n      }\n    }\n    else {\n      if (STT.heavy[k]) {\n     \
-    \   dp[k]\n            = merge_heavy(dp[l], dp[r], STT.A[l], STT.B[l], STT.A[r],\
-    \ STT.B[r]);\n      } else {\n        dp[k] = merge_light(dp[l], dp[r]);\n   \
-    \   }\n    }\n  }\n\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5>\n  void recalc_vertex(int v, F1 from_vertex, F2 add_vertex,\
-    \ F3 add_edge,\n                     F4 merge_light, F5 merge_heavy) {\n    int\
-    \ k = v_to_k[v];\n    while (k != -1) {\n      upd(k, from_vertex, add_vertex,\
-    \ add_edge, merge_light, merge_heavy),\n          k = STT.par[k];\n    }\n  }\n\
-    \n  Data get() { return dp[0]; }\n};"
+    // https://codeforces.com/contest/1942/problem/H\n// single(v) : v \u3068\u305D\
+    \u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n// rake(x,\
+    \ y, u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
+    \ (maybe v=-1)\n// compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
+    template <typename TREE, typename Data>\nstruct Dynamic_Tree_Dp {\n  Static_TopTree<TREE>\
+    \ STT;\n  vc<Data> dp;\n\n  Dynamic_Tree_Dp(TREE& tree) : STT(tree) {}\n\n  template\
+    \ <typename F1, typename F2, typename F3>\n  Data init_dp(F1 single, F2 rake,\
+    \ F3 compress) {\n    int n = len(STT.par);\n    dp.resize(n);\n    FOR(i, n)\
+    \ { upd(i, single, rake, compress); }\n    return dp.back();\n  }\n\n  template\
+    \ <typename F1, typename F2, typename F3>\n  Data recalc(int v, F1 single, F2\
+    \ rake, F3 compress) {\n    assert(!dp.empty());\n    for (int k = v; k != -1;\
+    \ k = STT.par[k]) { upd(k, single, rake, compress); }\n    return dp.back();\n\
+    \  }\n\n  Data get() { return dp.back(); }\n\nprivate:\n  template <typename F1,\
+    \ typename F2, typename F3>\n  void upd(int k, F1 single, F2 rake, F3 compress)\
+    \ {\n    if (0 <= k && k < STT.N) {\n      dp[k] = single(k);\n      return;\n\
+    \    }\n    int l = STT.lch[k], r = STT.rch[k];\n    if (STT.is_compress[k]) {\n\
+    \      int a = STT.A[l], b = STT.B[l];\n      int c = STT.A[r], d = STT.B[r];\n\
+    \      assert(b == c);\n      dp[k] = compress(dp[l], dp[r], a, b, d);\n    }\
+    \ else {\n      dp[k] = rake(dp[l], dp[r], STT.A[k], STT.B[k]);\n    }\n  }\n\
+    };"
   dependsOn:
   - graph/ds/static_toptree.hpp
   - graph/tree.hpp
@@ -251,7 +242,7 @@ data:
   isVerificationFile: false
   path: graph/ds/dynamic_tree_dp.hpp
   requiredBy: []
-  timestamp: '2024-04-02 23:34:08+09:00'
+  timestamp: '2024-04-03 01:19:08+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/dynamic_tree_dp.hpp
