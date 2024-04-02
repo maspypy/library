@@ -9,6 +9,9 @@ data:
     path: bigint/binary.hpp
     title: bigint/binary.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -816,7 +819,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1251,7 +1254,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc333f.test.cpp
     title: test_atcoder/abc333f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc334g.test.cpp
     title: test_atcoder/abc334g.test.cpp
   - icon: ':x:'
@@ -1474,6 +1477,7 @@ data:
   - graph/count/count_labeled_connected.hpp
   - graph/tree_walk_generating_function.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - mod/dynamic_modint.hpp
   - mod/mod_log.hpp
   - mod/multiplicative_convolution_mod_2n.hpp
