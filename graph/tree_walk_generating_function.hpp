@@ -2,8 +2,8 @@
 #include "graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp"
 #include "poly/convolution_all.hpp"
 
-// ループなし：1700ms(N=10^5)
-// ループあり：3900ms(N=10^5)
+// ループなし：1600ms(N=10^5)
+// ループあり：3300ms(N=10^5)
 template <bool ALLOW_LOOP, typename mint, typename F>
 pair<vc<mint>, vc<mint>> tree_walk_generating_function(Graph<int, 0>& G, int s,
                                                        int t, F weight) {
