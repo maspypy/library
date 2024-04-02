@@ -1,62 +1,49 @@
 #include "graph/ds/static_toptree.hpp"
 
 // https://codeforces.com/contest/1172/problem/E
-// function を持たせると 1.5 倍遅いんだがどうしよう
+// https://codeforces.com/contest/1942/problem/H
+// single(v) : v とその親辺を合わせたクラスタ
+// rake(x, y, u, v) uv(top down) が boundary になるように rake (maybe v=-1)
+// compress(x,y,a,b,c)  (top-down) 順に (a,b] + (b,c]
 template <typename TREE, typename Data>
 struct Dynamic_Tree_Dp {
   Static_TopTree<TREE> STT;
-  int n;
   vc<Data> dp;
-  vc<int> v_to_k;
 
-  template <typename F1, typename F2, typename F3, typename F4, typename F5>
-  Dynamic_Tree_Dp(TREE& tree, F1 from_vertex, F2 add_vertex, F3 add_edge,
-                  F4 merge_light, F5 merge_heavy)
-      : STT(tree) {
-    n = len(STT.par);
+  Dynamic_Tree_Dp(TREE& tree) : STT(tree) {}
+
+  template <typename F1, typename F2, typename F3>
+  Data init_dp(F1 single, F2 rake, F3 compress) {
+    int n = len(STT.par);
     dp.resize(n);
-    FOR_R(i, n) {
-      upd(i, from_vertex, add_vertex, add_edge, merge_light, merge_heavy);
-    }
-    int N = tree.N;
-    v_to_k.assign(N, -1);
-    FOR(k, n) {
-      if (STT.lch[k] == -1 && STT.rch[k] == -1) { v_to_k[STT.A[k]] = k; }
-      elif (STT.rch[k] == -1 && STT.heavy[k]) { v_to_k[STT.A[k]] = k; }
-    }
+    FOR(i, n) { upd(i, single, rake, compress); }
+    return dp.back();
   }
 
-  template <typename F1, typename F2, typename F3, typename F4, typename F5>
-  void upd(int k, F1 from_vertex, F2 add_vertex, F3 add_edge, F4 merge_light,
-           F5 merge_heavy) {
-    int l = STT.lch[k], r = STT.rch[k], a = STT.A[k];
-    if (l == -1 && r == -1) { dp[k] = from_vertex(a); }
-    elif (r == -1) {
-      if (STT.heavy[k]) {
-        dp[k] = add_vertex(dp[l], a);
-      } else {
-        dp[k] = add_edge(dp[l], a, STT.B[l]);
-      }
-    }
-    else {
-      if (STT.heavy[k]) {
-        dp[k]
-            = merge_heavy(dp[l], dp[r], STT.A[l], STT.B[l], STT.A[r], STT.B[r]);
-      } else {
-        dp[k] = merge_light(dp[l], dp[r]);
-      }
-    }
+  template <typename F1, typename F2, typename F3>
+  Data recalc(int v, F1 single, F2 rake, F3 compress) {
+    assert(!dp.empty());
+    for (int k = v; k != -1; k = STT.par[k]) { upd(k, single, rake, compress); }
+    return dp.back();
   }
 
-  template <typename F1, typename F2, typename F3, typename F4, typename F5>
-  void recalc_vertex(int v, F1 from_vertex, F2 add_vertex, F3 add_edge,
-                     F4 merge_light, F5 merge_heavy) {
-    int k = v_to_k[v];
-    while (k != -1) {
-      upd(k, from_vertex, add_vertex, add_edge, merge_light, merge_heavy),
-          k = STT.par[k];
+  Data get() { return dp.back(); }
+
+private:
+  template <typename F1, typename F2, typename F3>
+  void upd(int k, F1 single, F2 rake, F3 compress) {
+    if (0 <= k && k < STT.N) {
+      dp[k] = single(k);
+      return;
+    }
+    int l = STT.lch[k], r = STT.rch[k];
+    if (STT.is_compress[k]) {
+      int a = STT.A[l], b = STT.B[l];
+      int c = STT.A[r], d = STT.B[r];
+      assert(b == c);
+      dp[k] = compress(dp[l], dp[r], a, b, d);
+    } else {
+      dp[k] = rake(dp[l], dp[r], STT.A[k], STT.B[k]);
     }
   }
-
-  Data get() { return dp[0]; }
 };
