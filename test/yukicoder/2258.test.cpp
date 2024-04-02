@@ -35,30 +35,17 @@ void solve() {
   vvc<ll> Ac(n);
   {
     auto dfs = [&](auto& dfs, int k) -> void {
-      int l = STT.lch[k], r = STT.rch[k], a = STT.A[k];
-      if (l != -1) dfs(dfs, l);
-      if (r != -1) dfs(dfs, r);
-      if (l == -1 && r == -1) {
-        V[k] = {a};
+      if (k < N) {
+        V[k] = {k};
         return;
       }
-      if (r == -1) {
-        if (STT.heavy[k]) {
-          vc<int> B = {a};
-          auto [C, left] = merge(V[l], B);
-          V[k] = C;
-          LEFT[k] = left;
-          return;
-        }
-        V[k] = V[l];
-        LEFT[k] = vc<int>(len(V[k]), 1);
-        return;
-      }
+      int l = STT.lch[k], r = STT.rch[k];
+      dfs(dfs, l), dfs(dfs, r);
       auto [C, left] = merge(V[l], V[r]);
       V[k] = C;
       LEFT[k] = left;
     };
-    dfs(dfs, 0);
+    dfs(dfs, 2 * N - 2);
   }
 
   FOR(i, n) {
@@ -67,21 +54,26 @@ void solve() {
     LEFT[i] = cumsum<int>(LEFT[i]);
   }
 
-  auto get = [&](int k, ll K, ll L, ll R, ll delta) -> ll {
-    ll cnt = R - L;
-    ll sm = Ac[k][R] - Ac[k][L];
-    ll val = K * cnt + sm;
-    val = 10 * val + (delta != -1);
-    return val;
-  };
-
+  auto &lch = STT.lch, &rch = STT.rch;
+  // print("lch", lch);
+  // print("rch", rch);
   auto solve = [&](ll L, ll R, ll delta, ll K) -> int {
-    ll total = get(0, K, L, R, true);
-    ll need = ceil<ll>(total, 2);
-    auto dfs = [&](auto& dfs, int k, ll L, ll R, ll d, ll need_path) -> int {
-      if (get(k, K, L, R, d) < need_path) return -1;
-      int l = STT.lch[k], r = STT.rch[k], a = STT.A[k], b = STT.B[k];
-      if (l == -1 && r == -1) { return a; }
+    auto get = [&](int k, ll L, ll R, ll delta) -> ll {
+      // この集合の中で [L,R) 番目に注目
+      // K+A[v] 重みでクラスタの重み和を求める
+      ll cnt = R - L;
+      ll sm = Ac[k][R] - Ac[k][L];
+      ll val = K * cnt + sm;
+      val = 10 * val + (delta != -1);
+      return val;
+    };
+    ll total = get(2 * N - 2, L, R, delta);
+    // print("ques", L, R, K, delta), flush();
+    // print("tot", total);
+    ll large = ceil<ll>(total, 2);
+    auto dfs = [&](auto& dfs, int k, ll L, ll R, ll d, ll cu, ll cv) -> int {
+      if (cu >= large || cv >= large) return -1;
+      if (k < N) { return k; }
       ll L1 = LEFT[k][L], R1 = LEFT[k][R];
       ll L2 = L - L1, R2 = R - R1;
       ll d1 = -1, d2 = -1;
@@ -92,28 +84,28 @@ void solve() {
           d2 = d - LEFT[k][d];
         }
       }
-      if (r == -1) {
-        if (STT.heavy[k]) {
-          // light に根を足したもの
-          int v = dfs(dfs, l, L1, R1, d1, need);
-          if (v != -1) return v;
-          return a;
+      int l = lch[k], r = rch[k];
+      ll a = get(l, L1, R1, d1), b = get(r, L2, R2, d2);
+      assert(cu + cv + a + b == total);
+      if (STT.is_compress[k]) {
+        if (cu + a > cv + b) {
+          return dfs(dfs, l, L1, R1, d1, cu, cv + b);
+        } else {
+          return dfs(dfs, r, L2, R2, d2, cu + a, cv);
         }
-        // heavy に light edge を足したもの
-        return dfs(dfs, l, L1, R1, d1, need);
       }
-      if (STT.heavy[k]) {
-        // heavy path をマージしたもの
-        int v1 = dfs(dfs, l, L1, R1, d1, need_path);
-        if (v1 != -1) return v1;
-        return dfs(dfs, r, L2, R2, d2, need_path - get(l, K, L1, R1, d1));
+      if (STT.B[k] == -1) {
+        if (a > b) {
+          return dfs(dfs, l, L1, R1, d1, cu + b, 0);
+        } else {
+          return dfs(dfs, r, L2, R2, d2, cu + a, 0);
+        }
       }
-      // light をマージしたもの
-      int v = dfs(dfs, l, L1, R1, d1, need);
-      if (v != -1) return v;
-      return dfs(dfs, r, L2, R2, d2, need);
+      if (a + cv >= large) { return lch[k]; }
+      int kk = dfs(dfs, r, L2, R2, d2, cu + cv + a, 0);
+      return (kk == -1 ? STT.A[k] : kk);
     };
-    return dfs(dfs, 0, L, R, delta, need);
+    return dfs(dfs, 2 * N - 2, L, R, delta, 0, 0);
   };
 
   ll X_SUM = 0;
@@ -130,6 +122,7 @@ void solve() {
     ll X = solve(L, R, delta, K);
     // print(X, ",", L, R, K, delta);
     print(X);
+    flush();
     X_SUM += X;
   }
 }
