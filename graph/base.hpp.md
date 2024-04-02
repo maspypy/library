@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -110,7 +110,7 @@ data:
   - icon: ':question:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -209,7 +209,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':heavy_check_mark:'
@@ -269,7 +269,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -284,7 +284,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/dice.hpp
     title: other/dice.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -522,7 +522,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -672,7 +672,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2258.test.cpp
     title: test/yukicoder/2258.test.cpp
   - icon: ':heavy_check_mark:'
@@ -699,10 +699,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2507.test.cpp
     title: test/yukicoder/2507.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -747,7 +747,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc269ex2.test.cpp
     title: test_atcoder/abc269ex2.test.cpp
   - icon: ':heavy_check_mark:'

@@ -7,19 +7,19 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':question:'
@@ -67,17 +67,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -359,83 +359,65 @@ data:
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
     \n    return P;\r\n  }\r\n};\r\n#line 2 \"graph/ds/static_toptree.hpp\"\n\n/*\n\
-    tute \u3055\u3093\u306E\u5B9F\u88C5 https://yukicoder.me/submissions/838092 \u3092\
-    \u53C2\u8003\u306B\u3057\u3066\u3044\u308B.\n\u3044\u308F\u3086\u308B toptree\
-    \ \uFF08\u8FBA\u304B\u3089\u306F\u3058\u3081\u3066\u30DE\u30FC\u30B8\u904E\u7A0B\
-    \u3092\u6728\u306B\u3059\u308B\uFF09\u3068\u306F\u5C11\u3057\u7570\u306A\u308B\
-    \u306F\u305A.\n\u6728\u3092\u300Cheavy path \u4E0A\u306E\u8FBA\u3067\u5206\u5272\
-    \u300D\u300C\u6839\u3092 virtual \u306B\u3059\u308B\u300D\n\u300Clight edges \u306E\
-    \u5206\u5272\u300D\u300Clight edge \u3092\u6D88\u3059\u300D\u3067\u9802\u70B9\u306B\
-    \u5206\u5272\u3057\u3066\u3044\u304F.\n\u9006\u306B\u305F\u3069\u308C\u3070\uFF0C\
-    1 \u9802\u70B9\u304B\u3089\u306F\u3058\u3081\u3066\u6728\u5168\u4F53\u3092\u4F5C\
-    \u308B\u9AD8\u3055 O(logN) \u306E\u6728\u306B\u306A\u308B.\n\u9AD8\u3055\u306B\
-    \u3064\u3044\u3066\uFF1Ahttps://www.mathenachia.blog/mergetech-and-logn/\n\u30FB\
-    lch == rch == -1\uFF1A\u9802\u70B9\n\u30FBrch == -1\uFF1A\n  \u30FBheavy \u306A\
-    \u3089 light \u306E\u96C6\u7D04\u306B\u9802\u70B9\u3092\u4ED8\u52A0\u3057\u305F\
-    \u3082\u306E\n  \u30FBlight \u306A\u3089 \u6839\u4ED8\u304D\u6728\u306B light\
-    \ edge \u3092\u4ED8\u52A0\u3057\u305F\u3082\u306E\n\u30FB\u5B50\u304C 2 \u3064\
-    \n  \u30FBheavy \u306A\u3089 heavy path \u3092\u8FBA\u3067\u7D50\u5408\u3057\u305F\
-    \u3082\u306E\n  \u30FBlight \u306A\u3089 light edge \u305F\u3061\u306E\u30DE\u30FC\
-    \u30B8\n*/\ntemplate <typename TREE>\nstruct Static_TopTree {\n  TREE &tree;\n\
-    \n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE &tree)\
-    \ : tree(tree) {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n\
-    \    int n = len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)),\
-    \ reverse(all(A)),\n        reverse(all(B)), reverse(all(heavy));\n    for (auto\
-    \ &x: par) x = (x == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1\
-    \ ? -1 : n - 1 - x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n\
-    \  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\
-    \n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x, u, v)  : u \u304C\
-    \u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b, c, d)  : [a,b] +\
-    \ [c,d] = [a,d]\n  template <typename Data, typename F1, typename F2, typename\
-    \ F3, typename F4,\n            typename F5>\n  Data tree_dp(F1 from_vertex, F2\
-    \ add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy) {\n\
-    \    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 && rch[k]\
-    \ == -1) { return from_vertex(A[k]); }\n      if (rch[k] == -1) {\n        Data\
-    \ x = dfs(dfs, lch[k]);\n        if (heavy[k]) {\n          return add_vertex(x,\
-    \ A[k]);\n        } else {\n          return add_edge(x, A[k], B[lch[k]]);\n \
-    \       }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x, y, A[lch[k]],\
-    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x, y);\n\
-    \    };\n    return dfs(dfs, 0);\n  }\n\nprivate:\n  int add_node(int l, int r,\
-    \ int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1), lch.eb(l),\
-    \ rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l] = ret;\n\
-    \    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int v) {\n\
-    \    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\u3068\
-    \u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
-    \u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
-    \    reverse(all(path));\n\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
-    \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
-    \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
-    \ add_node(x, y, path[l], path[r - 1], true);\n      }\n      assert(r == l +\
-    \ 1);\n      int me = path[l];\n      // sz, idx\n      pqg<pair<int, int>> que;\n\
-    \      for (auto &to: tree.collect_light(me)) {\n        int x = build(to);\n\
-    \        int y = add_node(x, -1, me, me, false);\n        que.emplace(tree.subtree_size(to),\
-    \ y);\n      }\n      if (que.empty()) { return add_node(-1, -1, me, me, true);\
-    \ }\n      while (len(que) >= 2) {\n        auto [s1, x] = POP(que);\n       \
-    \ auto [s2, y] = POP(que);\n        int z = add_node(x, y, me, me, false);\n \
-    \       que.emplace(s1 + s2, z);\n      }\n      auto [s, x] = POP(que);\n   \
-    \   return add_node(x, -1, me, me, true);\n    };\n    return dfs(dfs, 0, len(path));\n\
-    \  }\n};\n#line 3 \"graph/shortest_path/bfs01.hpp\"\n\ntemplate <typename T, typename\
-    \ GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int>\
-    \ que;\n\n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n   \
-    \ auto v = que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n  \
-    \    if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n    \
-    \    dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] = e.frm;\n        if\
-    \ (e.cost == 0)\n          que.push_front(e.to);\n        else\n          que.push_back(e.to);\n\
-    \      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> bfs01(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n \
-    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
-    \ -1);\n  deque<int> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v]\
-    \ = v;\n    que.push_front(v);\n  }\n\n  while (!que.empty()) {\n    auto v =\
+    \u53C2\u8003 joitour tatyam\n\u30AF\u30E9\u30B9\u30BF\u3068\u306F\u6839\u304C\u6B20\
+    \u3051\u305F\u72B6\u614B\nN \u500B\u306E (\u9802+\u8FBA) \u3092\u30DE\u30FC\u30B8\
+    \u3057\u3066\u3044\u3063\u3066\uFF0C\u6728\u5168\u4F53\uFF0B\u6839\u304B\u3089\
+    \u89AA\u3078\u306E\u8FBA\u3068\u3059\u308B\uFF0E\nsingle(v) : v \u3068\u305D\u306E\
+    \u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\nrake(x, y,\
+    \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
+    \ (maybe v=-1)\ncompress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n*/\n\
+    template <typename TREE>\nstruct Static_TopTree {\n  int N;\n  TREE &tree;\n \
+    \ vc<int> par, lch, rch, A, B; // A, B boundary (top-down)\n  vc<bool> is_compress;\n\
+    \n  Static_TopTree(TREE &tree) : tree(tree) { build(); }\n\n  void build() {\n\
+    \    N = tree.N;\n    par.assign(N, -1), lch.assign(N, -1), rch.assign(N, -1),\
+    \ A.assign(N, -1),\n        B.assign(N, -1), is_compress.assign(N, 0);\n    FOR(v,\
+    \ N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n    assert(len(par)\
+    \ == 2 * N - 1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\
+    \u3092\u5F97\u308B\n  // single(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\
+    \u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y, u, v) uv(top down)\
+    \ \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake (maybe v=-1)\n  //\
+    \ compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n  template <typename\
+    \ Data, typename F1, typename F2, typename F3>\n  Data tree_dp(F1 single, F2 rake,\
+    \ F3 compress) {\n    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (0\
+    \ <= k && k < N) return single(k);\n      Data x = dfs(dfs, lch[k]), y = dfs(dfs,\
+    \ rch[k]);\n      if (is_compress[k]) {\n        assert(B[lch[k]] == A[rch[k]]);\n\
+    \        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);\n      }\n  \
+    \    return rake(x, y, A[k], B[k]);\n    };\n    return dfs(dfs, 2 * N - 2);\n\
+    \  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool c) {\n    int\
+    \ v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n\
+    \    par[l] = par[r] = v;\n    return v;\n  }\n  int build_dfs(int v) {\n    assert(tree.head[v]\
+    \ == v);\n    auto path = tree.heavy_path_at(v);\n    auto dfs = [&](auto &dfs,\
+    \ int l, int r) -> int {\n      // path[l:r)\n      if (l + 1 < r) {\n       \
+    \ int m = (l + r) / 2;\n        int x = dfs(dfs, l, m);\n        int y = dfs(dfs,\
+    \ m, r);\n        return new_node(x, y, A[x], B[y], true);\n      }\n      assert(r\
+    \ == l + 1);\n      if (l == 0) { return path[l]; }\n      // sz, idx\n      pqg<pair<int,\
+    \ int>> que;\n      int p = path[l - 1];\n      for (auto &to: tree.collect_light(p))\
+    \ {\n        int x = build_dfs(to);\n        que.emplace(tree.subtree_size(to),\
+    \ x);\n      }\n      if (que.empty()) { return path[l]; }\n      while (len(que)\
+    \ >= 2) {\n        auto [s1, x] = POP(que);\n        auto [s2, y] = POP(que);\n\
+    \        int z = new_node(x, y, p, -1, false);\n        que.emplace(s1 + s2, z);\n\
+    \      }\n      auto [s, x] = POP(que);\n      return new_node(path[l], x, p,\
+    \ path[l], false);\n    };\n    return dfs(dfs, 0, len(path));\n  }\n};\n#line\
+    \ 3 \"graph/shortest_path/bfs01.hpp\"\n\ntemplate <typename T, typename GT>\n\
+    pair<vc<T>, vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n  int\
+    \ N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int> que;\n\
+    \n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n    auto v =\
     \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
     \ == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
-    \ + e.cost;\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n \
-    \       if (e.cost == 0)\n          que.push_front(e.to);\n        else\n    \
-    \      que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par, root};\n\
-    }\n#line 4 \"graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp\"\n\n\
-    // det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\u5F0F\u306E reverse\
+    \ + e.cost;\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n\
+    \        else\n          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
+    template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs01(GT& G,\
+    \ vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
+    \  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
+    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
+    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
+    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
+    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 4 \"graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp\"\
+    \n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\u5F0F\u306E reverse\
     \ \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1AA[i][j]\n// \u5076\
     \u6570\u6B21\u3060\u3051\u3057\u304B\u51FA\u3066\u3053\u306A\u3044\u306E\u3067\
     \ loop \u3042\u308A\u3088\u308A\u9AD8\u901F\ntemplate <typename mint, typename\
@@ -897,8 +879,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tree_walk_gf.test.cpp
   requiredBy: []
-  timestamp: '2024-03-30 02:57:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-02 23:34:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tree_walk_gf.test.cpp
 layout: document

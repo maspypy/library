@@ -5,7 +5,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -138,7 +138,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,7 +210,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2258.test.cpp
     title: test/yukicoder/2258.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,10 +228,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2491.test.cpp
     title: test/yukicoder/2491.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -252,7 +252,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex.test.cpp
     title: test_atcoder/abc269ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc269ex2.test.cpp
     title: test_atcoder/abc269ex2.test.cpp
   - icon: ':heavy_check_mark:'

@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedVerifiedWith:
@@ -54,15 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -84,7 +84,7 @@ data:
   - geo/minimum_enclosing_circle.hpp
   - random/random_graph.hpp
   timestamp: '2023-02-17 09:47:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
   - test/aoj/CGL_5_A.test.cpp

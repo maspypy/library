@@ -119,10 +119,10 @@ data:
   - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   - icon: ':heavy_check_mark:'
@@ -582,7 +582,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tournament.test.cpp
     title: test/mytest/tournament.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'

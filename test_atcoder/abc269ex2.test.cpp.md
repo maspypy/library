@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':question:'
@@ -45,16 +45,13 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc269/tasks/abc269_Ex
-    links:
-    - https://atcoder.jp/contests/abc269/tasks/abc269_Ex
-  bundledCode: "#line 1 \"test_atcoder/abc269ex2.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc269/tasks/abc269_Ex\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    links: []
+  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -218,102 +215,276 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test_atcoder/abc269ex2.test.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
-    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
-    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
-    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
-    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
-    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
-    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
-    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
-    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
-    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
-    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
-    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
-    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
-    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
-    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
-    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
-    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
-    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
-    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
-    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
-    \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
-    \ large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int\
-    \ mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod\
-    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
-    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
-    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
-    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
-    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
-    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
-    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
-    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
-    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
-    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
-    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
-    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
-    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
-    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
-    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
-    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
-    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
-    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
-    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
-    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
-    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
-    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
-    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
-    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
-    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
-    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
-    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
-    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
-    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
-    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
-    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
-    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long\
-    \ \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\
-    \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\
-    \u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod\
-    \ == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val\
-    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
-    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
-    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 1 \"mod/crt3.hpp\"\n\nconstexpr\
-    \ u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n\
-    \  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n\
-    \  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64\
-    \ a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr\
-    \ u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64 x01_2\
-    \ = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  u64 c = (a1 - a0 + p1)\
-    \ * x0_1 % p1;\n  u64 a = a0 + c * p0;\n  c = (a2 - a % p2 + p2) * x01_2 % p2;\n\
-    \  return T(a) + T(c) * T(p0) * T(p1);\n}\n#line 2 \"poly/convolution_naive.hpp\"\
-    \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
-    \nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()),\
-    \ m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b, a);\r\n  if\
-    \ (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m)\
-    \ ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class T, typename\
-    \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ yes(!t); }\r\n#line 3 \"test_atcoder/abc269ex2.test.cpp\"\n\n#line 2 \"graph/tree.hpp\"\
+    \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
+    \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
+    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
+    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
+    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
+    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
+    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
+    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
+    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
+    \    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n  void read_tree(bool wt = false,\
+    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
+    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
+    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
+    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
+    \   }\n    build();\n  }\n#endif\n\n  void build() {\n    assert(!prepared);\n\
+    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
+    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
+    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
+    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
+    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
+    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
+    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
+    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
+    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
+    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
+    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
+    \n#ifdef FASTIO\n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n\
+    \      print(\"frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n      print(\"\
+    frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
+    \  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n\
+    \    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) != M)\
+    \ used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n\
+    \    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for\
+    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
+    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
+    \          history.eb(e.id);\n          used_e[e.id] = 1;\n          int eid =\
+    \ (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost, eid);\n\
+    \        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&&\
+    \ eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n\
+    \  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n   \
+    \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 4 \"graph/tree.hpp\"\n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\
+    \u308D\u3044\u308D\u3002\r\ntemplate <typename GT>\r\nstruct Tree {\r\n  using\
+    \ Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\n  int\
+    \ N;\r\n  vector<int> LID, RID, head, V, parent, VtoE;\r\n  vc<int> depth;\r\n\
+    \  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int r = 0, bool hld = 1) : G(G)\
+    \ { build(r, hld); }\r\n\r\n  void build(int r = 0, bool hld = 1) {\r\n    if\
+    \ (r == -1) return; // build \u3092\u9045\u5EF6\u3057\u305F\u3044\u3068\u304D\r\
+    \n    N = G.N;\r\n    LID.assign(N, -1), RID.assign(N, -1), head.assign(N, r);\r\
+    \n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);\r\n    depth.assign(N,\
+    \ -1), depth_weighted.assign(N, 0);\r\n    assert(G.is_prepared());\r\n    int\
+    \ t1 = 0;\r\n    dfs_sz(r, -1, hld);\r\n    dfs_hld(r, t1);\r\n  }\r\n\r\n  void\
+    \ dfs_sz(int v, int p, bool hld) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\
+    \n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l\
+    \ = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    //\
+    \ \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n\
+    \    for (int i = r - 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to]\
+    \ == -1) swap(csr[i], csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for\
+    \ (int i = l; i < r; ++i) {\r\n      auto e = csr[i];\r\n      if (depth[e.to]\
+    \ != -1) continue;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
+    \n      VtoE[e.to] = e.id;\r\n      dfs_sz(e.to, v, hld);\r\n      sz[v] += sz[e.to];\r\
+    \n      if (hld && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\
+    \n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\
+    \n    RID[v] += LID[v];\r\n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n  \
+    \  for (auto &&e: G[v]) {\r\n      if (depth[e.to] <= depth[v]) continue;\r\n\
+    \      head[e.to] = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n    \
+    \  dfs_hld(e.to, times);\r\n    }\r\n  }\r\n\r\n  vc<int> heavy_path_at(int v)\
+    \ {\r\n    vc<int> P = {v};\r\n    while (1) {\r\n      int a = P.back();\r\n\
+    \      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a] && head[e.to] ==\
+    \ v) {\r\n          P.eb(e.to);\r\n          break;\r\n        }\r\n      }\r\n\
+    \      if (P.back() == a) break;\r\n    }\r\n    return P;\r\n  }\r\n\r\n  int\
+    \ heavy_child(int v) {\r\n    int k = LID[v] + 1;\r\n    if (k == N) return -1;\r\
+    \n    int w = V[k];\r\n    return (parent[w] == v ? w : -1);\r\n  }\r\n\r\n  int\
+    \ e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return (parent[e.frm]\
+    \ == e.to ? e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return VtoE[v]; }\r\
+    \n\r\n  int ELID(int v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v)\
+    \ { return 2 * RID[v] - depth[v] - 1; }\r\n\r\n  // \u76EE\u6A19\u5730\u70B9\u3078\
+    \u9032\u3080\u500B\u6570\u304C k\r\n  int LA(int v, int k) {\r\n    assert(k <=\
+    \ depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
+    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
+    \      v = parent[u];\r\n    }\r\n  }\r\n  int la(int u, int v) { return LA(u,\
+    \ v); }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\
+    \n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
+    \ u;\r\n    }\r\n  }\r\n  // root \u3092\u6839\u3068\u3057\u305F\u5834\u5408\u306E\
+    \ lca\r\n  int LCA_root(int u, int v, int root) {\r\n    return LCA(u, v) ^ LCA(u,\
+    \ root) ^ LCA(v, root);\r\n  }\r\n  int lca(int u, int v) { return LCA(u, v);\
+    \ }\r\n  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }\r\
+    \n\r\n  int subtree_size(int v, int root = -1) {\r\n    if (root == -1) return\
+    \ RID[v] - LID[v];\r\n    if (v == root) return N;\r\n    int x = jump(v, root,\
+    \ 1);\r\n    if (in_subtree(v, x)) return RID[v] - LID[v];\r\n    return N - RID[x]\
+    \ + LID[x];\r\n  }\r\n\r\n  int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\
+    \n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist_weighted(int\
+    \ a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b]\
+    \ - WT(2) * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n  bool in_subtree(int\
+    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int\
+    \ a, int b, ll k) {\r\n    if (k == 1) {\r\n      if (a == b) return -1;\r\n \
+    \     return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\
+    \n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a] - depth[c];\r\n \
+    \   int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc) return -1;\r\n\
+    \    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac + d_bc - k);\r\n\
+    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
+    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
+    \n  }\r\n\r\n  vc<int> collect_light(int v) {\r\n    vc<int> res;\r\n    bool\
+    \ skip = true;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v]) {\r\
+    \n        if (!skip) res.eb(e.to);\r\n        skip = false;\r\n      }\r\n   \
+    \ return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u,\
+    \ int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\
+    \u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n\
+    \      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n    \
+    \    down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n      }\
+    \ else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
+    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
+    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
+    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
+    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
+    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
+    \n    return P;\r\n  }\r\n};\r\n#line 2 \"graph/ds/static_toptree.hpp\"\n\n/*\n\
+    \u53C2\u8003 joitour tatyam\n\u30AF\u30E9\u30B9\u30BF\u3068\u306F\u6839\u304C\u6B20\
+    \u3051\u305F\u72B6\u614B\nN \u500B\u306E (\u9802+\u8FBA) \u3092\u30DE\u30FC\u30B8\
+    \u3057\u3066\u3044\u3063\u3066\uFF0C\u6728\u5168\u4F53\uFF0B\u6839\u304B\u3089\
+    \u89AA\u3078\u306E\u8FBA\u3068\u3059\u308B\uFF0E\nsingle(v) : v \u3068\u305D\u306E\
+    \u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\nrake(x, y,\
+    \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
+    \ (maybe v=-1)\ncompress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n*/\n\
+    template <typename TREE>\nstruct Static_TopTree {\n  int N;\n  TREE &tree;\n \
+    \ vc<int> par, lch, rch, A, B; // A, B boundary (top-down)\n  vc<bool> is_compress;\n\
+    \n  Static_TopTree(TREE &tree) : tree(tree) { build(); }\n\n  void build() {\n\
+    \    N = tree.N;\n    par.assign(N, -1), lch.assign(N, -1), rch.assign(N, -1),\
+    \ A.assign(N, -1),\n        B.assign(N, -1), is_compress.assign(N, 0);\n    FOR(v,\
+    \ N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n    assert(len(par)\
+    \ == 2 * N - 1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\
+    \u3092\u5F97\u308B\n  // single(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\
+    \u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y, u, v) uv(top down)\
+    \ \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake (maybe v=-1)\n  //\
+    \ compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n  template <typename\
+    \ Data, typename F1, typename F2, typename F3>\n  Data tree_dp(F1 single, F2 rake,\
+    \ F3 compress) {\n    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (0\
+    \ <= k && k < N) return single(k);\n      Data x = dfs(dfs, lch[k]), y = dfs(dfs,\
+    \ rch[k]);\n      if (is_compress[k]) {\n        assert(B[lch[k]] == A[rch[k]]);\n\
+    \        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);\n      }\n  \
+    \    return rake(x, y, A[k], B[k]);\n    };\n    return dfs(dfs, 2 * N - 2);\n\
+    \  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool c) {\n    int\
+    \ v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n\
+    \    par[l] = par[r] = v;\n    return v;\n  }\n  int build_dfs(int v) {\n    assert(tree.head[v]\
+    \ == v);\n    auto path = tree.heavy_path_at(v);\n    auto dfs = [&](auto &dfs,\
+    \ int l, int r) -> int {\n      // path[l:r)\n      if (l + 1 < r) {\n       \
+    \ int m = (l + r) / 2;\n        int x = dfs(dfs, l, m);\n        int y = dfs(dfs,\
+    \ m, r);\n        return new_node(x, y, A[x], B[y], true);\n      }\n      assert(r\
+    \ == l + 1);\n      if (l == 0) { return path[l]; }\n      // sz, idx\n      pqg<pair<int,\
+    \ int>> que;\n      int p = path[l - 1];\n      for (auto &to: tree.collect_light(p))\
+    \ {\n        int x = build_dfs(to);\n        que.emplace(tree.subtree_size(to),\
+    \ x);\n      }\n      if (que.empty()) { return path[l]; }\n      while (len(que)\
+    \ >= 2) {\n        auto [s1, x] = POP(que);\n        auto [s2, y] = POP(que);\n\
+    \        int z = new_node(x, y, p, -1, false);\n        que.emplace(s1 + s2, z);\n\
+    \      }\n      auto [s, x] = POP(que);\n      return new_node(path[l], x, p,\
+    \ path[l], false);\n    };\n    return dfs(dfs, 0, len(path));\n  }\n};\n#line\
+    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
+    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
+    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
+    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
+    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
+    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
+    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
+    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
+    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
+    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
+    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
+    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
+    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
+    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
+    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
+    \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
+    \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
+    \r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
+    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
+    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
+    #line 1 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32\
+    \ mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res *\
+    \ a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename\
+    \ T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0\
+    \ < p1 && p1 < p2);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 -\
+    \ 2, p1);\n  static constexpr u64 x01_2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  u64 a = a0 + c * p0;\n\
+    \  c = (a2 - a % p2 + p2) * x01_2 % p2;\n  return T(a) + T(c) * T(p0) * T(p1);\n\
+    }\n#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
+    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\r\n  if (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n)\
+    \ FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class\
+    \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
     \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
@@ -487,263 +658,69 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"graph/tree.hpp\"\
-    \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
-    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
-    \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
-    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
-    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
-    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
-    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
-    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
-    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
-    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
-    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
-    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
-    \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
-    \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
-    \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
-    \    if (i == -1) i = M;\n    auto e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n\
-    \    ++M;\n  }\n\n#ifdef FASTIO\n  // wt, off\n  void read_tree(bool wt = false,\
-    \ int off = 1) { read_graph(N - 1, wt, off); }\n\n  void read_graph(int M, bool\
-    \ wt = false, int off = 1) {\n    for (int m = 0; m < M; ++m) {\n      INT(a,\
-    \ b);\n      a -= off, b -= off;\n      if (!wt) {\n        add(a, b);\n     \
-    \ } else {\n        T c;\n        read(c);\n        add(a, b, c);\n      }\n \
-    \   }\n    build();\n  }\n#endif\n\n  void build() {\n    assert(!prepared);\n\
-    \    prepared = true;\n    indptr.assign(N + 1, 0);\n    for (auto&& e: edges)\
-    \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
-    \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
-    \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n#ifdef FASTIO\n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n\
-    \      print(\"frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to,\
-    \ e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n      print(\"\
-    frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to,\
-    \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
-    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
-    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
-    \  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n\
-    \    if (len(new_idx) != N) new_idx.assign(N, -1);\n    if (len(used_e) != M)\
-    \ used_e.assign(M, 0);\n    int n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n\
-    \    Graph<T, directed> G(n);\n    vc<int> history;\n    FOR(i, n) {\n      for\
-    \ (auto&& e: (*this)[V[i]]) {\n        if (used_e[e.id]) continue;\n        int\
-    \ a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] != -1) {\n\
-    \          history.eb(e.id);\n          used_e[e.id] = 1;\n          int eid =\
-    \ (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost, eid);\n\
-    \        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for (auto&&\
-    \ eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\nprivate:\n\
-    \  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n   \
-    \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 4 \"graph/tree.hpp\"\n\r\n// HLD euler tour \u3092\u3068\u3063\u3066\u3044\
-    \u308D\u3044\u308D\u3002\r\ntemplate <typename GT>\r\nstruct Tree {\r\n  using\
-    \ Graph_type = GT;\r\n  GT &G;\r\n  using WT = typename GT::cost_type;\r\n  int\
-    \ N;\r\n  vector<int> LID, RID, head, V, parent, VtoE;\r\n  vc<int> depth;\r\n\
-    \  vc<WT> depth_weighted;\r\n\r\n  Tree(GT &G, int r = 0, bool hld = 1) : G(G)\
-    \ { build(r, hld); }\r\n\r\n  void build(int r = 0, bool hld = 1) {\r\n    if\
-    \ (r == -1) return; // build \u3092\u9045\u5EF6\u3057\u305F\u3044\u3068\u304D\r\
-    \n    N = G.N;\r\n    LID.assign(N, -1), RID.assign(N, -1), head.assign(N, r);\r\
-    \n    V.assign(N, -1), parent.assign(N, -1), VtoE.assign(N, -1);\r\n    depth.assign(N,\
-    \ -1), depth_weighted.assign(N, 0);\r\n    assert(G.is_prepared());\r\n    int\
-    \ t1 = 0;\r\n    dfs_sz(r, -1, hld);\r\n    dfs_hld(r, t1);\r\n  }\r\n\r\n  void\
-    \ dfs_sz(int v, int p, bool hld) {\r\n    auto &sz = RID;\r\n    parent[v] = p;\r\
-    \n    depth[v] = (p == -1 ? 0 : depth[p] + 1);\r\n    sz[v] = 1;\r\n    int l\
-    \ = G.indptr[v], r = G.indptr[v + 1];\r\n    auto &csr = G.csr_edges;\r\n    //\
-    \ \u4F7F\u3046\u8FBA\u304C\u3042\u308C\u3070\u5148\u982D\u306B\u3059\u308B\r\n\
-    \    for (int i = r - 2; i >= l; --i) {\r\n      if (hld && depth[csr[i + 1].to]\
-    \ == -1) swap(csr[i], csr[i + 1]);\r\n    }\r\n    int hld_sz = 0;\r\n    for\
-    \ (int i = l; i < r; ++i) {\r\n      auto e = csr[i];\r\n      if (depth[e.to]\
-    \ != -1) continue;\r\n      depth_weighted[e.to] = depth_weighted[v] + e.cost;\r\
-    \n      VtoE[e.to] = e.id;\r\n      dfs_sz(e.to, v, hld);\r\n      sz[v] += sz[e.to];\r\
-    \n      if (hld && chmax(hld_sz, sz[e.to]) && l < i) { swap(csr[l], csr[i]); }\r\
-    \n    }\r\n  }\r\n\r\n  void dfs_hld(int v, int &times) {\r\n    LID[v] = times++;\r\
-    \n    RID[v] += LID[v];\r\n    V[LID[v]] = v;\r\n    bool heavy = true;\r\n  \
-    \  for (auto &&e: G[v]) {\r\n      if (depth[e.to] <= depth[v]) continue;\r\n\
-    \      head[e.to] = (heavy ? head[v] : e.to);\r\n      heavy = false;\r\n    \
-    \  dfs_hld(e.to, times);\r\n    }\r\n  }\r\n\r\n  vc<int> heavy_path_at(int v)\
-    \ {\r\n    vc<int> P = {v};\r\n    while (1) {\r\n      int a = P.back();\r\n\
-    \      for (auto &&e: G[a]) {\r\n        if (e.to != parent[a] && head[e.to] ==\
-    \ v) {\r\n          P.eb(e.to);\r\n          break;\r\n        }\r\n      }\r\n\
-    \      if (P.back() == a) break;\r\n    }\r\n    return P;\r\n  }\r\n\r\n  int\
-    \ heavy_child(int v) {\r\n    int k = LID[v] + 1;\r\n    if (k == N) return -1;\r\
-    \n    int w = V[k];\r\n    return (parent[w] == v ? w : -1);\r\n  }\r\n\r\n  int\
-    \ e_to_v(int eid) {\r\n    auto e = G.edges[eid];\r\n    return (parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n  }\r\n  int v_to_e(int v) { return VtoE[v]; }\r\
-    \n\r\n  int ELID(int v) { return 2 * LID[v] - depth[v]; }\r\n  int ERID(int v)\
-    \ { return 2 * RID[v] - depth[v] - 1; }\r\n\r\n  // \u76EE\u6A19\u5730\u70B9\u3078\
-    \u9032\u3080\u500B\u6570\u304C k\r\n  int LA(int v, int k) {\r\n    assert(k <=\
-    \ depth[v]);\r\n    while (1) {\r\n      int u = head[v];\r\n      if (LID[v]\
-    \ - k >= LID[u]) return V[LID[v] - k];\r\n      k -= LID[v] - LID[u] + 1;\r\n\
-    \      v = parent[u];\r\n    }\r\n  }\r\n  int la(int u, int v) { return LA(u,\
-    \ v); }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\
-    \n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
-    \ u;\r\n    }\r\n  }\r\n  // root \u3092\u6839\u3068\u3057\u305F\u5834\u5408\u306E\
-    \ lca\r\n  int LCA_root(int u, int v, int root) {\r\n    return LCA(u, v) ^ LCA(u,\
-    \ root) ^ LCA(v, root);\r\n  }\r\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\r\n  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }\r\
-    \n\r\n  int subtree_size(int v, int root = -1) {\r\n    if (root == -1) return\
-    \ RID[v] - LID[v];\r\n    if (v == root) return N;\r\n    int x = jump(v, root,\
-    \ 1);\r\n    if (in_subtree(v, x)) return RID[v] - LID[v];\r\n    return N - RID[x]\
-    \ + LID[x];\r\n  }\r\n\r\n  int dist(int a, int b) {\r\n    int c = LCA(a, b);\r\
-    \n    return depth[a] + depth[b] - 2 * depth[c];\r\n  }\r\n\r\n  WT dist_weighted(int\
-    \ a, int b) {\r\n    int c = LCA(a, b);\r\n    return depth_weighted[a] + depth_weighted[b]\
-    \ - WT(2) * depth_weighted[c];\r\n  }\r\n\r\n  // a is in b\r\n  bool in_subtree(int\
-    \ a, int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\r\n\r\n  int jump(int\
-    \ a, int b, ll k) {\r\n    if (k == 1) {\r\n      if (a == b) return -1;\r\n \
-    \     return (in_subtree(b, a) ? LA(b, depth[b] - depth[a] - 1) : parent[a]);\r\
-    \n    }\r\n    int c = LCA(a, b);\r\n    int d_ac = depth[a] - depth[c];\r\n \
-    \   int d_bc = depth[b] - depth[c];\r\n    if (k > d_ac + d_bc) return -1;\r\n\
-    \    if (k <= d_ac) return LA(a, k);\r\n    return LA(b, d_ac + d_bc - k);\r\n\
-    \  }\r\n\r\n  vc<int> collect_child(int v) {\r\n    vc<int> res;\r\n    for (auto\
-    \ &&e: G[v])\r\n      if (e.to != parent[v]) res.eb(e.to);\r\n    return res;\r\
-    \n  }\r\n\r\n  vc<int> collect_light(int v) {\r\n    vc<int> res;\r\n    bool\
-    \ skip = true;\r\n    for (auto &&e: G[v])\r\n      if (e.to != parent[v]) {\r\
-    \n        if (!skip) res.eb(e.to);\r\n        skip = false;\r\n      }\r\n   \
-    \ return res;\r\n  }\r\n\r\n  vc<pair<int, int>> get_path_decomposition(int u,\
-    \ int v, bool edge) {\r\n    // [\u59CB\u70B9, \u7D42\u70B9] \u306E\"\u9589\"\u533A\
-    \u9593\u5217\u3002\r\n    vc<pair<int, int>> up, down;\r\n    while (1) {\r\n\
-    \      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n    \
-    \    down.eb(LID[head[v]], LID[v]);\r\n        v = parent[head[v]];\r\n      }\
-    \ else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
-    \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
-    \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
-    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
-    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
-    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 2 \"graph/ds/static_toptree.hpp\"\n\n/*\n\
-    tute \u3055\u3093\u306E\u5B9F\u88C5 https://yukicoder.me/submissions/838092 \u3092\
-    \u53C2\u8003\u306B\u3057\u3066\u3044\u308B.\n\u3044\u308F\u3086\u308B toptree\
-    \ \uFF08\u8FBA\u304B\u3089\u306F\u3058\u3081\u3066\u30DE\u30FC\u30B8\u904E\u7A0B\
-    \u3092\u6728\u306B\u3059\u308B\uFF09\u3068\u306F\u5C11\u3057\u7570\u306A\u308B\
-    \u306F\u305A.\n\u6728\u3092\u300Cheavy path \u4E0A\u306E\u8FBA\u3067\u5206\u5272\
-    \u300D\u300C\u6839\u3092 virtual \u306B\u3059\u308B\u300D\n\u300Clight edges \u306E\
-    \u5206\u5272\u300D\u300Clight edge \u3092\u6D88\u3059\u300D\u3067\u9802\u70B9\u306B\
-    \u5206\u5272\u3057\u3066\u3044\u304F.\n\u9006\u306B\u305F\u3069\u308C\u3070\uFF0C\
-    1 \u9802\u70B9\u304B\u3089\u306F\u3058\u3081\u3066\u6728\u5168\u4F53\u3092\u4F5C\
-    \u308B\u9AD8\u3055 O(logN) \u306E\u6728\u306B\u306A\u308B.\n\u9AD8\u3055\u306B\
-    \u3064\u3044\u3066\uFF1Ahttps://www.mathenachia.blog/mergetech-and-logn/\n\u30FB\
-    lch == rch == -1\uFF1A\u9802\u70B9\n\u30FBrch == -1\uFF1A\n  \u30FBheavy \u306A\
-    \u3089 light \u306E\u96C6\u7D04\u306B\u9802\u70B9\u3092\u4ED8\u52A0\u3057\u305F\
-    \u3082\u306E\n  \u30FBlight \u306A\u3089 \u6839\u4ED8\u304D\u6728\u306B light\
-    \ edge \u3092\u4ED8\u52A0\u3057\u305F\u3082\u306E\n\u30FB\u5B50\u304C 2 \u3064\
-    \n  \u30FBheavy \u306A\u3089 heavy path \u3092\u8FBA\u3067\u7D50\u5408\u3057\u305F\
-    \u3082\u306E\n  \u30FBlight \u306A\u3089 light edge \u305F\u3061\u306E\u30DE\u30FC\
-    \u30B8\n*/\ntemplate <typename TREE>\nstruct Static_TopTree {\n  TREE &tree;\n\
-    \n  vc<int> par, lch, rch, A, B;\n  vc<bool> heavy;\n\n  Static_TopTree(TREE &tree)\
-    \ : tree(tree) {\n    int root = tree.V[0];\n    build(root);\n    // relabel\n\
-    \    int n = len(par);\n    reverse(all(par)), reverse(all(lch)), reverse(all(rch)),\
-    \ reverse(all(A)),\n        reverse(all(B)), reverse(all(heavy));\n    for (auto\
-    \ &x: par) x = (x == -1 ? -1 : n - 1 - x);\n    for (auto &x: lch) x = (x == -1\
-    \ ? -1 : n - 1 - x);\n    for (auto &x: rch) x = (x == -1 ? -1 : n - 1 - x);\n\
-    \  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\
-    \n  // from_vertex(v)\n  // add_vertex(x, v)\n  // add_edge(x, u, v)  : u \u304C\
-    \u89AA\n  // merge_light(x, y)\n  // merge_heavy(x, y, a, b, c, d)  : [a,b] +\
-    \ [c,d] = [a,d]\n  template <typename Data, typename F1, typename F2, typename\
-    \ F3, typename F4,\n            typename F5>\n  Data tree_dp(F1 from_vertex, F2\
-    \ add_vertex, F3 add_edge, F4 merge_light,\n               F5 merge_heavy) {\n\
-    \    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (lch[k] == -1 && rch[k]\
-    \ == -1) { return from_vertex(A[k]); }\n      if (rch[k] == -1) {\n        Data\
-    \ x = dfs(dfs, lch[k]);\n        if (heavy[k]) {\n          return add_vertex(x,\
-    \ A[k]);\n        } else {\n          return add_edge(x, A[k], B[lch[k]]);\n \
-    \       }\n      }\n      Data x = dfs(dfs, lch[k]);\n      Data y = dfs(dfs,\
-    \ rch[k]);\n      if (heavy[k]) {\n        return merge_heavy(x, y, A[lch[k]],\
-    \ B[lch[k]], A[rch[k]], B[rch[k]]);\n      }\n      return merge_light(x, y);\n\
-    \    };\n    return dfs(dfs, 0);\n  }\n\nprivate:\n  int add_node(int l, int r,\
-    \ int a, int b, bool h) {\n    int ret = len(par);\n    par.eb(-1), lch.eb(l),\
-    \ rch.eb(r), A.eb(a), B.eb(b), heavy.eb(h);\n    if (l != -1) par[l] = ret;\n\
-    \    if (r != -1) par[r] = ret;\n    return ret;\n  }\n\n  int build(int v) {\n\
-    \    // v \u306F heavy path \u306E\u6839\u306A\u306E\u3067 v \u3092\u6839\u3068\
-    \u3059\u308B\u90E8\u5206\u6728\u306B\u5BFE\u5FDC\u3059\u308B\u30CE\u30FC\u30C9\
-    \u3092\u4F5C\u308B\n    assert(tree.head[v] == v);\n    auto path = tree.heavy_path_at(v);\n\
-    \    reverse(all(path));\n\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
-    \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
-    \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
-    \ add_node(x, y, path[l], path[r - 1], true);\n      }\n      assert(r == l +\
-    \ 1);\n      int me = path[l];\n      // sz, idx\n      pqg<pair<int, int>> que;\n\
-    \      for (auto &to: tree.collect_light(me)) {\n        int x = build(to);\n\
-    \        int y = add_node(x, -1, me, me, false);\n        que.emplace(tree.subtree_size(to),\
-    \ y);\n      }\n      if (que.empty()) { return add_node(-1, -1, me, me, true);\
-    \ }\n      while (len(que) >= 2) {\n        auto [s1, x] = POP(que);\n       \
-    \ auto [s2, y] = POP(que);\n        int z = add_node(x, y, me, me, false);\n \
-    \       que.emplace(s1 + s2, z);\n      }\n      auto [s, x] = POP(que);\n   \
-    \   return add_node(x, -1, me, me, true);\n    };\n    return dfs(dfs, 0, len(path));\n\
-    \  }\n};\n#line 9 \"test_atcoder/abc269ex2.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(--p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Static_TopTree<decltype(tree)>\
-    \ STT(tree);\n\n  // \u5168\u90E8\u306E\u6570\u3048\u4E0A\u3052\n  // heavy path\
-    \ \u4E0A\u306B\u306A\u3044\u5834\u5408\u306E\u6570\u3048\u4E0A\u3052 (if heavy)\n\
-    \  using poly = vc<mint>;\n  using Data = pair<poly, poly>;\n  auto from_vertex\
-    \ = [&](int v) -> Data {\n    poly f = {1, 1};\n    poly g = {1, 0};\n    return\
-    \ {f, g};\n  };\n  auto add_vertex = [&](Data &x, int v) -> Data {\n    auto &[f,\
-    \ g] = x;\n    g = f;\n    f[1] += 1;\n    return {f, g};\n  };\n  auto add_edge\
-    \ = [&](Data &x, int u, int v) -> Data { return x; };\n  auto merge_light = [&](Data\
-    \ &x, Data &y) -> Data {\n    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n \
-    \   poly f = convolution<mint>(f1, f2);\n    return {f, g1};\n  };\n  auto merge_heavy\
-    \ = [&](Data &x, Data &y, int a, int b, int c, int d) -> Data {\n    auto &[f1,\
-    \ g1] = x;\n    auto &[f2, g2] = y;\n    // f := (f1-1)g2 + f2\n    // g := g1g2\n\
-    \    f1[0] -= 1;\n    poly f = convolution<mint>(f1, g2);\n    FOR(i, len(f2))\
-    \ f[i] += f2[i];\n    poly g = convolution<mint>(g1, g2);\n    return {f, g};\n\
-    \  };\n\n  auto res = STT.tree_dp<Data>(from_vertex, add_vertex, add_edge, merge_light,\n\
-    \                               merge_heavy);\n  vc<mint> ANS = res.fi;\n  FOR(k,\
-    \ 1, N + 1) {\n    mint x = (k < len(ANS) ? ANS[k] : 0);\n    print(x);\n  }\n\
-    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc269/tasks/abc269_Ex\"\n\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n#include \"poly/convolution.hpp\"\n#include \"graph/ds/static_toptree.hpp\"\n\
-    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 6 \"test_atcoder/abc269ex2.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n\
     \  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)>\
-    \ tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n\n  // \u5168\u90E8\u306E\
-    \u6570\u3048\u4E0A\u3052\n  // heavy path \u4E0A\u306B\u306A\u3044\u5834\u5408\
-    \u306E\u6570\u3048\u4E0A\u3052 (if heavy)\n  using poly = vc<mint>;\n  using Data\
-    \ = pair<poly, poly>;\n  auto from_vertex = [&](int v) -> Data {\n    poly f =\
-    \ {1, 1};\n    poly g = {1, 0};\n    return {f, g};\n  };\n  auto add_vertex =\
-    \ [&](Data &x, int v) -> Data {\n    auto &[f, g] = x;\n    g = f;\n    f[1] +=\
-    \ 1;\n    return {f, g};\n  };\n  auto add_edge = [&](Data &x, int u, int v) ->\
-    \ Data { return x; };\n  auto merge_light = [&](Data &x, Data &y) -> Data {\n\
-    \    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n    poly f = convolution<mint>(f1,\
-    \ f2);\n    return {f, g1};\n  };\n  auto merge_heavy = [&](Data &x, Data &y,\
-    \ int a, int b, int c, int d) -> Data {\n    auto &[f1, g1] = x;\n    auto &[f2,\
-    \ g2] = y;\n    // f := (f1-1)g2 + f2\n    // g := g1g2\n    f1[0] -= 1;\n   \
-    \ poly f = convolution<mint>(f1, g2);\n    FOR(i, len(f2)) f[i] += f2[i];\n  \
-    \  poly g = convolution<mint>(g1, g2);\n    return {f, g};\n  };\n\n  auto res\
-    \ = STT.tree_dp<Data>(from_vertex, add_vertex, add_edge, merge_light,\n      \
-    \                         merge_heavy);\n  vc<mint> ANS = res.fi;\n  FOR(k, 1,\
-    \ N + 1) {\n    mint x = (k < len(ANS) ? ANS[k] : 0);\n    print(x);\n  }\n}\n\
-    \nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
-    }\n"
+    \ tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n  /*\n  heavy path \u4E0A\
+    \u306E\u70B9\u306A\u3057\u30FB\u3042\u308A\n  */\n  using poly = vc<mint>;\n \
+    \ using Data = pair<poly, poly>;\n\n  auto single = [&](int v) -> Data {\n   \
+    \ poly f = {1};\n    poly g = {0, 1};\n    return {f, g};\n  };\n\n  auto rake\
+    \ = [&](Data &x, Data &y, int u, int v) -> Data {\n    auto &[f1, g1] = x;\n \
+    \   auto &[f2, g2] = y;\n    if (v == -1) {\n      if (len(f1) < len(g1)) swap(f1,\
+    \ g1);\n      if (len(f2) < len(g2)) swap(f2, g2);\n      FOR(i, len(g1)) f1[i]\
+    \ += g1[i];\n      FOR(i, len(g2)) f2[i] += g2[i];\n      poly f = convolution<mint>(f1,\
+    \ f2);\n      return {f, {}};\n    }\n    if (len(f2) < len(g2)) swap(f2, g2);\n\
+    \    FOR(i, len(g2)) f2[i] += g2[i];\n    poly g = f2;\n    g.insert(g.begin(),\
+    \ 0);\n    return {f2, g};\n  };\n\n  auto compress = [&](Data &x, Data &y, int\
+    \ a, int b, int c) -> Data {\n    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n\
+    \    poly f = convolution<mint>(f1, f2);\n    // g1(x) + f1(x)g2(x)\n    poly\
+    \ g = convolution<mint>(f1, g2);\n    FOR(i, len(g1)) g[i] += g1[i];\n\n    return\
+    \ {f, g};\n  };\n\n  auto [f, g] = STT.tree_dp<Data>(single, rake, compress);\n\
+    \  vc<mint> ANS(N + 1);\n  FOR(i, len(f)) ANS[i] += f[i];\n  FOR(i, len(g)) ANS[i]\
+    \ += g[i];\n  FOR(i, 1, N + 1) print(ANS[i]);\n}\n\nsigned main() {\n  int T =\
+    \ 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/static_toptree.hpp\"\
+    \n#include \"poly/convolution.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
+    \ {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p,\
+    \ v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Static_TopTree<decltype(tree)>\
+    \ STT(tree);\n  /*\n  heavy path \u4E0A\u306E\u70B9\u306A\u3057\u30FB\u3042\u308A\
+    \n  */\n  using poly = vc<mint>;\n  using Data = pair<poly, poly>;\n\n  auto single\
+    \ = [&](int v) -> Data {\n    poly f = {1};\n    poly g = {0, 1};\n    return\
+    \ {f, g};\n  };\n\n  auto rake = [&](Data &x, Data &y, int u, int v) -> Data {\n\
+    \    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n    if (v == -1) {\n      if\
+    \ (len(f1) < len(g1)) swap(f1, g1);\n      if (len(f2) < len(g2)) swap(f2, g2);\n\
+    \      FOR(i, len(g1)) f1[i] += g1[i];\n      FOR(i, len(g2)) f2[i] += g2[i];\n\
+    \      poly f = convolution<mint>(f1, f2);\n      return {f, {}};\n    }\n   \
+    \ if (len(f2) < len(g2)) swap(f2, g2);\n    FOR(i, len(g2)) f2[i] += g2[i];\n\
+    \    poly g = f2;\n    g.insert(g.begin(), 0);\n    return {f2, g};\n  };\n\n\
+    \  auto compress = [&](Data &x, Data &y, int a, int b, int c) -> Data {\n    auto\
+    \ &[f1, g1] = x;\n    auto &[f2, g2] = y;\n    poly f = convolution<mint>(f1,\
+    \ f2);\n    // g1(x) + f1(x)g2(x)\n    poly g = convolution<mint>(f1, g2);\n \
+    \   FOR(i, len(g1)) g[i] += g1[i];\n\n    return {f, g};\n  };\n\n  auto [f, g]\
+    \ = STT.tree_dp<Data>(single, rake, compress);\n  vc<mint> ANS(N + 1);\n  FOR(i,\
+    \ len(f)) ANS[i] += f[i];\n  FOR(i, len(g)) ANS[i] += g[i];\n  FOR(i, 1, N + 1)\
+    \ print(ANS[i]);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - graph/ds/static_toptree.hpp
+  - graph/tree.hpp
+  - graph/base.hpp
+  - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - poly/convolution.hpp
   - mod/mod_inv.hpp
   - mod/crt3.hpp
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - graph/ds/static_toptree.hpp
-  - graph/tree.hpp
-  - graph/base.hpp
   isVerificationFile: true
   path: test_atcoder/abc269ex2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-30 02:57:05+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-02 23:34:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc269ex2.test.cpp
 layout: document

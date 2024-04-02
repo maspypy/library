@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':x:'
@@ -59,13 +59,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedVerifiedWith:
@@ -147,7 +147,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,10 +210,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2296.test.cpp
     title: test/yukicoder/2296.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
