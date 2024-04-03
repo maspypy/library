@@ -80,8 +80,8 @@ data:
   timestamp: '2023-11-10 12:47:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc144d.test.cpp
   - test_atcoder/arc160d.test.cpp
+  - test_atcoder/arc144d.test.cpp
 documentation_of: poly/sum_of_C_negative.hpp
 layout: document
 redirect_from:
