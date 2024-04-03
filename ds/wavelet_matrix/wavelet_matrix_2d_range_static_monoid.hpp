@@ -96,12 +96,14 @@ struct Wavelet_Matrix_2D_Range_Static_Monoid {
   }
 
   int count(XY x1, XY x2, XY y1, XY y2) {
+    if (N == 0) return 0;
     x1 = XtoI(x1), x2 = XtoI(x2);
     y1 = YtoI(y1), y2 = YtoI(y2);
     return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);
   }
 
   X prod(XY x1, XY x2, XY y1, XY y2) {
+    if (N == 0) return MX::unit();
     assert(x1 <= x2 && y1 <= y2);
     x1 = XtoI(x1), x2 = XtoI(x2);
     y1 = YtoI(y1), y2 = YtoI(y2);
