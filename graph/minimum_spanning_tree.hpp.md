@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -405,9 +405,9 @@ data:
   timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/library_checker/tree/mst.test.cpp
-  - test_atcoder/abc270_f.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp
 layout: document
 redirect_from:

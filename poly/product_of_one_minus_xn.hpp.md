@@ -22,19 +22,19 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -411,9 +411,9 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/product_of_one_pm_xn.test.cpp
   - test_atcoder/abc331g.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test/mytest/product_of_one_pm_xn.test.cpp
 documentation_of: poly/product_of_one_minus_xn.hpp
 layout: document
 redirect_from:

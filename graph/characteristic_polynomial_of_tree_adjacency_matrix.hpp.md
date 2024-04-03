@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -670,9 +670,9 @@ data:
   timestamp: '2024-04-03 03:17:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/2587.test.cpp
   - test/yukicoder/2587_2.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
 documentation_of: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
 layout: document
 redirect_from:

@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -68,7 +68,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -222,12 +222,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -573,70 +573,70 @@ data:
   requiredBy:
   - seq/sum_of_powers.hpp
   - seq/famous/surjection.hpp
-  - seq/famous/stirling_number_2.hpp
   - seq/famous/stirling_number_1.hpp
-  - graph/count/count_labeled_connected.hpp
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bipartite.hpp
-  - graph/count/count_labeled_strong_digraph.hpp
-  - graph/count/count_labeled_eulerian.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  - graph/count/count_labeled_unicyclic.hpp
-  - poly/fps_sqrt.hpp
-  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - poly/fps_pow.hpp
+  - seq/famous/stirling_number_2.hpp
   - poly/product_of_f_rk_x.hpp
+  - poly/fps_sqrt.hpp
   - poly/coef_of_fps_pows.hpp
+  - poly/fps_pow.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/compositional_inverse.hpp
   - poly/composition_f_log_1_minus_x.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_eulerian.hpp
+  - graph/count/count_labeled_bipartite.hpp
+  - graph/count/count_labeled_strong_digraph.hpp
+  - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_connected.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/pow_of_fps.test.cpp
-  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test_atcoder/abc285h.test.cpp
+  - test_atcoder/abc288ex.test.cpp
+  - test_atcoder/arc133f.test.cpp
+  - test_atcoder/arc153f.test.cpp
+  - test_atcoder/arc160d.test.cpp
+  - test_atcoder/abc222h.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/log_of_fps.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/library_checker/polynomial/pow_of_fps.test.cpp
+  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/mytest/count_labeled_connected.test.cpp
-  - test/mytest/count_bipartite.test.cpp
-  - test/mytest/graph_count.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/count_labeled_strong.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/mytest/count_labeled_eulerian.test.cpp
-  - test/mytest/coef_of_fps_pows.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/online_square.test.cpp
-  - test/mytest/sparse_pow_2d.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/2459.test.cpp
-  - test/yukicoder/1939.test.cpp
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1533.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/yukicoder/2097.test.cpp
-  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1575.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/2583.test.cpp
   - test/yukicoder/1321.test.cpp
-  - test_atcoder/arc160d.test.cpp
-  - test_atcoder/arc153f.test.cpp
-  - test_atcoder/arc133f.test.cpp
-  - test_atcoder/abc285h.test.cpp
-  - test_atcoder/abc222h.test.cpp
-  - test_atcoder/abc288ex.test.cpp
+  - test/yukicoder/1145.test.cpp
+  - test/yukicoder/1549.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/2459.test.cpp
+  - test/yukicoder/1939.test.cpp
+  - test/mytest/count_bipartite.test.cpp
+  - test/mytest/graph_count.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/online_square.test.cpp
+  - test/mytest/count_labeled_strong.test.cpp
+  - test/mytest/online_pow.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/bell.test.cpp
+  - test/mytest/coef_of_fps_pows.test.cpp
+  - test/mytest/count_labeled_eulerian.test.cpp
+  - test/mytest/online_log.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/count_labeled_connected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
+  - test/mytest/sparse_pow_2d.test.cpp
 documentation_of: poly/fps_log.hpp
 layout: document
 redirect_from:

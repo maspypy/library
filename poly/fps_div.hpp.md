@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -189,12 +189,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -530,61 +530,61 @@ data:
   isVerificationFile: false
   path: poly/fps_div.hpp
   requiredBy:
-  - linalg/blackbox/vandermonde.hpp
+  - seq/interpolate_linear_rec.hpp
   - seq/sum_of_powers.hpp
+  - seq/famous/bernoulli.hpp
   - seq/famous/bell_number_large.hpp
   - seq/famous/riemann_zeta_even.hpp
-  - seq/famous/bernoulli.hpp
-  - seq/interpolate_linear_rec.hpp
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  - poly/composed_sum.hpp
-  - poly/sum_of_power_of_roots.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/prefix_sum_of_polynomial.hpp
   - poly/coef_of_rational_fps.hpp
-  - poly/composed_product.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/composed_sum.hpp
   - poly/coef_of_fps_pows.hpp
+  - poly/composed_product.hpp
+  - poly/sum_of_power_of_roots.hpp
   - poly/compositional_inverse.hpp
+  - poly/prefix_sum_of_polynomial.hpp
+  - linalg/blackbox/vandermonde.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc281g.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/arc154f.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/math/bernoulli.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/bell.test.cpp
-  - test/mytest/coef_of_fps_pows.test.cpp
-  - test/mytest/tree_walk_gf.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/2305.test.cpp
-  - test/yukicoder/2459.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1547.test.cpp
+  - test/yukicoder/1575.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/1357.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/2583.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1844.test.cpp
   - test/yukicoder/2587.test.cpp
   - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1533.test.cpp
-  - test/yukicoder/2587_2.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/2580.test.cpp
-  - test/yukicoder/2583.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/yukicoder/1357.test.cpp
+  - test/yukicoder/579.test.cpp
   - test/yukicoder/541.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test_atcoder/arc154f.test.cpp
-  - test_atcoder/agc013e.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc281g.test.cpp
+  - test/yukicoder/2587_2.test.cpp
+  - test/yukicoder/1533.test.cpp
+  - test/yukicoder/2459.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/bell.test.cpp
+  - test/mytest/coef_of_fps_pows.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
+  - test/mytest/slice_rational_fps.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:
