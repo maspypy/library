@@ -117,7 +117,6 @@ struct Lazy_Tree_Monoid {
 
   template <class F>
   int max_path(F check, int u, int v) {
-    static_assert(MX::commute); // ただのさぼり
     if constexpr (edge) return max_path_edge(check, u, v);
     if (!check(prod_path(u, u))) return -1;
     auto pd = tree.get_path_decomposition(u, v, edge);
@@ -136,7 +135,9 @@ struct Lazy_Tree_Monoid {
         return (i == a ? u : tree.V[i - 1]);
       } else {
         // 上り
-        auto i = seg.min_left(check_tmp, a + 1);
+        int i = 0;
+        if constexpr (MX::commute) i = seg.min_left(check_tmp, a + 1);
+        if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a + 1);
         if (i == a + 1) return u;
         return tree.V[i];
       }
@@ -153,8 +154,8 @@ struct Lazy_Tree_Monoid {
 
 private:
   template <class F>
-  int max_path_edge(F &check, int u, int v) {
-    assert(edge);
+  int max_path_edge(F check, int u, int v) {
+    static_assert(edge);
     if (!check(MX::unit())) return -1;
     int lca = tree.lca(u, v);
     auto pd = tree.get_path_decomposition(u, lca, edge);
@@ -163,14 +164,16 @@ private:
     // climb
     for (auto &&[a, b]: pd) {
       assert(a >= b);
-      X x = seg.prod(b, a + 1);
+      X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
         val = MX::op(val, x);
         u = (tree.parent[tree.V[b]]);
         continue;
       }
       auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };
-      auto i = seg.min_left(check_tmp, a + 1);
+      int i = 0;
+      if constexpr (MX::commute) i = seg.min_left(check_tmp, a + 1);
+      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a + 1);
       if (i == a + 1) return u;
       return tree.parent[tree.V[i]];
     }
@@ -178,7 +181,7 @@ private:
     pd = tree.get_path_decomposition(lca, v, edge);
     for (auto &&[a, b]: pd) {
       assert(a <= b);
-      X x = seg.prod(a, b + 1);
+      X x = get_prod(a, b);
       if (check(MX::op(val, x))) {
         val = MX::op(val, x);
         u = (tree.V[b]);
