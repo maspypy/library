@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/O1_inverse.hpp
     title: mod/O1_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -19,29 +19,29 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -373,7 +373,7 @@ data:
     \  test<dmint>();\n  dmint::set_mod(5);\n  test<dmint>();\n  dmint::set_mod(1'000'003);\n\
     \  test<dmint>();\n  dmint::set_mod(1'048'573);\n  test<dmint>();\n  dmint::set_mod(1'048'583);\n\
     \  test<dmint>();\n  dmint::set_mod(2097143);\n  test<dmint>();\n  dmint::set_mod(2097169);\n\
-    \  test<dmint>();\n}\n"
+    \  test<dmint>();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"mod/modint.hpp\"\n#include \"mod/dynamic_modint.hpp\"\n#include\
     \ \"random/base.hpp\"\n#include \"mod/O1_inverse.hpp\"\n\ntemplate <typename mint>\n\
@@ -385,7 +385,8 @@ data:
     \  dmint::set_mod(3);\n  test<dmint>();\n  dmint::set_mod(5);\n  test<dmint>();\n\
     \  dmint::set_mod(1'000'003);\n  test<dmint>();\n  dmint::set_mod(1'048'573);\n\
     \  test<dmint>();\n  dmint::set_mod(1'048'583);\n  test<dmint>();\n  dmint::set_mod(2097143);\n\
-    \  test<dmint>();\n  dmint::set_mod(2097169);\n  test<dmint>();\n}\n"
+    \  test<dmint>();\n  dmint::set_mod(2097169);\n  test<dmint>();\n  solve();\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -402,8 +403,8 @@ data:
   isVerificationFile: true
   path: test/mytest/O1_inv.test.cpp
   requiredBy: []
-  timestamp: '2024-04-04 04:49:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-04 05:20:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/O1_inv.test.cpp
 layout: document
