@@ -112,6 +112,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/bitwise_function.hpp
       title: alg/monoid/bitwise_function.hpp
+    - icon: ':x:'
+      path: alg/monoid/dihedral.hpp
+      title: alg/monoid/dihedral.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/gcd.hpp
       title: alg/monoid/gcd.hpp
@@ -4513,6 +4516,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/arc153b.test.cpp
       title: test_atcoder/arc153b.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/arc153b2.test.cpp
+      title: test_atcoder/arc153b2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/arc153f.test.cpp
       title: test_atcoder/arc153f.test.cpp
