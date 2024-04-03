@@ -1,57 +1,60 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    PROBLEM: https://atcoder.jp/contests/abc269/tasks/abc269_Ex
+    links:
+    - https://atcoder.jp/contests/abc269/tasks/abc269_Ex
+  bundledCode: "#line 1 \"test_atcoder/abc269ex2.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc269/tasks/abc269_Ex\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -215,7 +218,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 3 \"test_atcoder/abc269ex2.test.cpp\"\n\n#line 2 \"graph/tree.hpp\"\
+    \ yes(!t); }\r\n#line 5 \"test_atcoder/abc269ex2.test.cpp\"\n\n#line 2 \"graph/tree.hpp\"\
     \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
     \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
     \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -658,7 +661,7 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 6 \"test_atcoder/abc269ex2.test.cpp\"\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 8 \"test_atcoder/abc269ex2.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n\
     \  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)>\
     \ tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n  /*\n  heavy path \u4E0A\
@@ -679,7 +682,8 @@ data:
     \  vc<mint> ANS(N + 1);\n  FOR(i, len(f)) ANS[i] += f[i];\n  FOR(i, len(g)) ANS[i]\
     \ += g[i];\n  FOR(i, 1, N + 1) print(ANS[i]);\n}\n\nsigned main() {\n  int T =\
     \ 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/static_toptree.hpp\"\
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc269/tasks/abc269_Ex\"\n\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/static_toptree.hpp\"\
     \n#include \"poly/convolution.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
     \ {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p,\
     \ v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Static_TopTree<decltype(tree)>\
@@ -719,8 +723,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc269ex2.test.cpp
   requiredBy: []
-  timestamp: '2024-04-02 23:34:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-03 13:31:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc269ex2.test.cpp
 layout: document
