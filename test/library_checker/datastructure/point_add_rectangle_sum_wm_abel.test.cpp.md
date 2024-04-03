@@ -295,27 +295,29 @@ data:
     \      bv[d].build();\n      swap(A, A0), swap(S, S0);\n      FOR(i, p1) A[p0\
     \ + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N, [&](int i) -> X { return\
     \ S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n  }\n\n  int count(XY\
-    \ x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1),\
-    \ y2 = YtoI(y2);\n    return count_inner(y1, y2, x2) - count_inner(y1, y2, x1);\n\
-    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) { return sum(x1, x2, y1, y2); }\n\
-    \  X sum(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2 && y1 <= y2);\n  \
-    \  x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X add\
-    \ = sum_inner(y1, y2, x2);\n    X sub = sum_inner(y1, y2, x1);\n    return MX::op(add,\
-    \ MX::inverse(sub));\n  }\n\n  X prefix_prod(XY x, XY y) { return prefix_sum(x,\
-    \ y); }\n  X prefix_sum(XY x, XY y) { return sum_inner(0, YtoI(y), XtoI(x)); }\n\
-    \n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void add(int\
-    \ i, X x) {\n    assert(0 <= i && i < N);\n    i = new_idx[i];\n    int a = A[i];\n\
-    \    FOR_R(d, lg) {\n      if (a >> d & 1) {\n        i = mid[d] + bv[d].rank(i,\
-    \ 1);\n      } else {\n        i = bv[d].rank(i, 0);\n      }\n      dat[d].add(i,\
-    \ x);\n    }\n  }\n\nprivate:\n  int count_inner(int L, int R, int x) {\n    int\
-    \ cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
-    \ 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R +=\
-    \ mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return\
-    \ cnt;\n  }\n\n  X sum_inner(int L, int R, int x) {\n    if (x == 0) return MX::unit();\n\
-    \    X sm = MX::unit();\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0),\
-    \ r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        sm = MX::op(sm, dat[d].sum(l0,\
-    \ r0));\n        L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n       \
-    \ L = l0, R = r0;\n      }\n    }\n    return sm;\n  }\n};\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
+    \ x1, XY x2, XY y1, XY y2) {\n    if (N == 0) return 0;\n    x1 = XtoI(x1), x2\
+    \ = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    return count_inner(y1, y2,\
+    \ x2) - count_inner(y1, y2, x1);\n  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2)\
+    \ { return sum(x1, x2, y1, y2); }\n  X sum(XY x1, XY x2, XY y1, XY y2) {\n   \
+    \ if (N == 0) return MX::unit();\n    assert(x1 <= x2 && y1 <= y2);\n    x1 =\
+    \ XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X add = sum_inner(y1,\
+    \ y2, x2);\n    X sub = sum_inner(y1, y2, x1);\n    return MX::op(add, MX::inverse(sub));\n\
+    \  }\n\n  X prefix_prod(XY x, XY y) { return prefix_sum(x, y); }\n  X prefix_sum(XY\
+    \ x, XY y) {\n    if (N == 0) return MX::unit();\n    return sum_inner(0, YtoI(y),\
+    \ XtoI(x));\n  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E\
+    \ index\n  void add(int i, X x) {\n    assert(0 <= i && i < N);\n    i = new_idx[i];\n\
+    \    int a = A[i];\n    FOR_R(d, lg) {\n      if (a >> d & 1) {\n        i = mid[d]\
+    \ + bv[d].rank(i, 1);\n      } else {\n        i = bv[d].rank(i, 0);\n      }\n\
+    \      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int count_inner(int L, int\
+    \ R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
+    \ L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n\
+    \      }\n    }\n    return cnt;\n  }\n\n  X sum_inner(int L, int R, int x) {\n\
+    \    if (x == 0) return MX::unit();\n    X sm = MX::unit();\n    FOR_R(d, lg)\
+    \ {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x >> d\
+    \ & 1) {\n        sm = MX::op(sm, dat[d].sum(l0, r0));\n        L += mid[d] -\
+    \ l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n  \
+    \  }\n    return sm;\n  }\n};\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N);\n  vc<u64> W(N);\n  FOR(i,\
     \ N) read(X[i], Y[i], W[i]);\n  using QQ = tuple<u32, u32, u32, u32>;\n  vc<QQ>\
     \ query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      U32(x, y, w);\n\
@@ -350,7 +352,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-04 05:27:34+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp

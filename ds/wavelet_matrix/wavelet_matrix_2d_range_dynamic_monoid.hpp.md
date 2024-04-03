@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -95,9 +95,10 @@ data:
     \      bv[d].build();\n      swap(A, A0), swap(S, S0);\n      FOR(i, p1) A[p0\
     \ + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N, [&](int i) -> X { return\
     \ S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n  }\n\n  int count(XY\
-    \ x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1),\
-    \ y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);\n\
-    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2 && y1 <= y2);\n\
+    \ x1, XY x2, XY y1, XY y2) {\n    if (N == 0) return 0;\n    x1 = XtoI(x1), x2\
+    \ = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    return prefix_count(y1,\
+    \ y2, x2) - prefix_count(y1, y2, x1);\n  }\n\n  X prod(XY x1, XY x2, XY y1, XY\
+    \ y2) {\n    if (N == 0) return MX::unit();\n    assert(x1 <= x2 && y1 <= y2);\n\
     \    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X res\
     \ = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return res;\n\
     \  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void\
@@ -151,9 +152,10 @@ data:
     \      bv[d].build();\n      swap(A, A0), swap(S, S0);\n      FOR(i, p1) A[p0\
     \ + i] = A1[i], S[p0 + i] = S1[i];\n      dat[d].build(N, [&](int i) -> X { return\
     \ S[i]; });\n    }\n    FOR(i, N) A[i] = XtoI(tmp[i]);\n  }\n\n  int count(XY\
-    \ x1, XY x2, XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1),\
-    \ y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);\n\
-    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2 && y1 <= y2);\n\
+    \ x1, XY x2, XY y1, XY y2) {\n    if (N == 0) return 0;\n    x1 = XtoI(x1), x2\
+    \ = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    return prefix_count(y1,\
+    \ y2, x2) - prefix_count(y1, y2, x1);\n  }\n\n  X prod(XY x1, XY x2, XY y1, XY\
+    \ y2) {\n    if (N == 0) return MX::unit();\n    assert(x1 <= x2 && y1 <= y2);\n\
     \    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X res\
     \ = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return res;\n\
     \  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void\
@@ -181,7 +183,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
   requiredBy: []
-  timestamp: '2024-03-09 20:16:55+09:00'
+  timestamp: '2024-04-04 05:27:34+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1625_2.test.cpp

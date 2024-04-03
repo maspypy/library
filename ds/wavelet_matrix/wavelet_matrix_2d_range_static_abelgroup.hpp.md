@@ -40,10 +40,10 @@ data:
     \  };\n\n  TO_IDX<SMALL_X> XtoI;\n  TO_IDX<SMALL_Y> YtoI;\n\n  int N, lg;\n  vector<int>\
     \ mid;\n  vector<Bit_Vector> bv;\n  vvc<X> dat;\n\n  template <typename F>\n \
     \ Wavelet_Matrix_2D_Range_Static_AbelGroup(int N, F f) {\n    build(N, f);\n \
-    \ }\n\n  template <typename F>\n  void build(int N, F f) {\n    if (N == 0) {\n\
-    \      lg = 0;\n      return;\n    }\n    vc<XY> A(N), Y(N);\n    vc<X> S(N);\n\
-    \    FOR(i, N) tie(A[i], Y[i], S[i]) = f(i);\n    auto I = argsort(Y);\n    A\
-    \ = rearrange(A, I), Y = rearrange(Y, I), S = rearrange(S, I);\n    XtoI.build(A),\
+    \ }\n\n  template <typename F>\n  void build(int N0, F f) {\n    N = N0;\n   \
+    \ if (N == 0) {\n      lg = 0;\n      return;\n    }\n    vc<XY> A(N), Y(N);\n\
+    \    vc<X> S(N);\n    FOR(i, N) tie(A[i], Y[i], S[i]) = f(i);\n    auto I = argsort(Y);\n\
+    \    A = rearrange(A, I), Y = rearrange(Y, I), S = rearrange(S, I);\n    XtoI.build(A),\
     \ YtoI.build(Y);\n\n    // \u3042\u3068\u306F\u666E\u901A\u306B\n    lg = __lg(XtoI(MAX(A)\
     \ + 1)) + 1;\n    mid.resize(lg), bv.assign(lg, Bit_Vector(N));\n    dat.assign(1\
     \ + lg, vc<X>(N + 1, MX::unit()));\n    FOR(i, N) A[i] = XtoI(A[i]);\n\n    vc<XY>\
@@ -54,22 +54,23 @@ data:
     \ { S1[p1] = S[i], A1[p1] = A[i], bv[d].set(i), p1++; }\n      }\n      mid[d]\
     \ = p0;\n      bv[d].build();\n      swap(A, A0), swap(S, S0);\n      FOR(i, p1)\
     \ A[p0 + i] = A1[i], S[p0 + i] = S1[i];\n    }\n  }\n\n  int count(XY x1, XY x2,\
-    \ XY y1, XY y2) {\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 =\
-    \ YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);\n\
-    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) { return sum(x1, x2, y1, y2); }\n\
-    \  X sum(XY x1, XY x2, XY y1, XY y2) {\n    assert(x1 <= x2 && y1 <= y2);\n  \
-    \  x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X add\
-    \ = prefix_sum(y1, y2, x2);\n    X sub = prefix_sum(y1, y2, x1);\n    return MX::op(add,\
-    \ MX::inverse(sub));\n  }\n\nprivate:\n  int prefix_count(int L, int R, int x)\
-    \ {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0\
-    \ = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d]\
-    \ - l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n\
-    \    }\n    return cnt;\n  }\n\n  X prefix_sum(int L, int R, int x) {\n    X add\
-    \ = MX::unit(), sub = MX::unit();\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        add = MX::op(add,\
-    \ dat[d][r0]);\n        sub = MX::op(sub, dat[d][l0]);\n        L += mid[d] -\
-    \ l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n  \
-    \  }\n    return MX::op(add, MX::inverse(sub));\n  }\n};\n"
+    \ XY y1, XY y2) {\n    if (N == 0) return 0;\n    x1 = XtoI(x1), x2 = XtoI(x2);\n\
+    \    y1 = YtoI(y1), y2 = YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1,\
+    \ y2, x1);\n  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) { return sum(x1, x2, y1,\
+    \ y2); }\n  X sum(XY x1, XY x2, XY y1, XY y2) {\n    if (N == 0) return MX::unit();\n\
+    \    assert(x1 <= x2 && y1 <= y2);\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1\
+    \ = YtoI(y1), y2 = YtoI(y2);\n    X add = prefix_sum(y1, y2, x2);\n    X sub =\
+    \ prefix_sum(y1, y2, x1);\n    return MX::op(add, MX::inverse(sub));\n  }\n\n\
+    private:\n  int prefix_count(int L, int R, int x) {\n    int cnt = 0;\n    FOR_R(d,\
+    \ lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x\
+    \ >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d] - r0;\n \
+    \     } else {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n  }\n\
+    \n  X prefix_sum(int L, int R, int x) {\n    X add = MX::unit(), sub = MX::unit();\n\
+    \    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n\
+    \      if (x >> d & 1) {\n        add = MX::op(add, dat[d][r0]);\n        sub\
+    \ = MX::op(sub, dat[d][l0]);\n        L += mid[d] - l0, R += mid[d] - r0;\n  \
+    \    } else {\n        L = l0, R = r0;\n      }\n    }\n    return MX::op(add,\
+    \ MX::inverse(sub));\n  }\n};\n"
   code: "#include \"ds/bit_vector.hpp\"\n\ntemplate <typename Monoid, typename XY,\
     \ bool SMALL_X, bool SMALL_Y>\nstruct Wavelet_Matrix_2D_Range_Static_AbelGroup\
     \ {\n  // \u70B9\u7FA4\u3092 Y \u6607\u9806\u306B\u4E26\u3079\u308B.\n  // X \u3092\
@@ -87,42 +88,43 @@ data:
     \ YtoI;\n\n  int N, lg;\n  vector<int> mid;\n  vector<Bit_Vector> bv;\n  vvc<X>\
     \ dat;\n\n  template <typename F>\n  Wavelet_Matrix_2D_Range_Static_AbelGroup(int\
     \ N, F f) {\n    build(N, f);\n  }\n\n  template <typename F>\n  void build(int\
-    \ N, F f) {\n    if (N == 0) {\n      lg = 0;\n      return;\n    }\n    vc<XY>\
-    \ A(N), Y(N);\n    vc<X> S(N);\n    FOR(i, N) tie(A[i], Y[i], S[i]) = f(i);\n\
-    \    auto I = argsort(Y);\n    A = rearrange(A, I), Y = rearrange(Y, I), S = rearrange(S,\
-    \ I);\n    XtoI.build(A), YtoI.build(Y);\n\n    // \u3042\u3068\u306F\u666E\u901A\
-    \u306B\n    lg = __lg(XtoI(MAX(A) + 1)) + 1;\n    mid.resize(lg), bv.assign(lg,\
-    \ Bit_Vector(N));\n    dat.assign(1 + lg, vc<X>(N + 1, MX::unit()));\n    FOR(i,\
-    \ N) A[i] = XtoI(A[i]);\n\n    vc<XY> A0(N), A1(N);\n    vc<X> S0(N), S1(N);\n\
-    \    FOR_R(d, -1, lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) { dat[d +\
-    \ 1][i + 1] = MX::op(dat[d + 1][i], S[i]); }\n      if (d == -1) break;\n    \
-    \  FOR(i, N) {\n        bool f = (A[i] >> d & 1);\n        if (!f) { S0[p0] =\
-    \ S[i], A0[p0] = A[i], p0++; }\n        if (f) { S1[p1] = S[i], A1[p1] = A[i],\
+    \ N0, F f) {\n    N = N0;\n    if (N == 0) {\n      lg = 0;\n      return;\n \
+    \   }\n    vc<XY> A(N), Y(N);\n    vc<X> S(N);\n    FOR(i, N) tie(A[i], Y[i],\
+    \ S[i]) = f(i);\n    auto I = argsort(Y);\n    A = rearrange(A, I), Y = rearrange(Y,\
+    \ I), S = rearrange(S, I);\n    XtoI.build(A), YtoI.build(Y);\n\n    // \u3042\
+    \u3068\u306F\u666E\u901A\u306B\n    lg = __lg(XtoI(MAX(A) + 1)) + 1;\n    mid.resize(lg),\
+    \ bv.assign(lg, Bit_Vector(N));\n    dat.assign(1 + lg, vc<X>(N + 1, MX::unit()));\n\
+    \    FOR(i, N) A[i] = XtoI(A[i]);\n\n    vc<XY> A0(N), A1(N);\n    vc<X> S0(N),\
+    \ S1(N);\n    FOR_R(d, -1, lg) {\n      int p0 = 0, p1 = 0;\n      FOR(i, N) {\
+    \ dat[d + 1][i + 1] = MX::op(dat[d + 1][i], S[i]); }\n      if (d == -1) break;\n\
+    \      FOR(i, N) {\n        bool f = (A[i] >> d & 1);\n        if (!f) { S0[p0]\
+    \ = S[i], A0[p0] = A[i], p0++; }\n        if (f) { S1[p1] = S[i], A1[p1] = A[i],\
     \ bv[d].set(i), p1++; }\n      }\n      mid[d] = p0;\n      bv[d].build();\n \
     \     swap(A, A0), swap(S, S0);\n      FOR(i, p1) A[p0 + i] = A1[i], S[p0 + i]\
-    \ = S1[i];\n    }\n  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    x1 =\
-    \ XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    return prefix_count(y1,\
-    \ y2, x2) - prefix_count(y1, y2, x1);\n  }\n\n  X prod(XY x1, XY x2, XY y1, XY\
-    \ y2) { return sum(x1, x2, y1, y2); }\n  X sum(XY x1, XY x2, XY y1, XY y2) {\n\
-    \    assert(x1 <= x2 && y1 <= y2);\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1\
-    \ = YtoI(y1), y2 = YtoI(y2);\n    X add = prefix_sum(y1, y2, x2);\n    X sub =\
-    \ prefix_sum(y1, y2, x1);\n    return MX::op(add, MX::inverse(sub));\n  }\n\n\
-    private:\n  int prefix_count(int L, int R, int x) {\n    int cnt = 0;\n    FOR_R(d,\
+    \ = S1[i];\n    }\n  }\n\n  int count(XY x1, XY x2, XY y1, XY y2) {\n    if (N\
+    \ == 0) return 0;\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 =\
+    \ YtoI(y2);\n    return prefix_count(y1, y2, x2) - prefix_count(y1, y2, x1);\n\
+    \  }\n\n  X prod(XY x1, XY x2, XY y1, XY y2) { return sum(x1, x2, y1, y2); }\n\
+    \  X sum(XY x1, XY x2, XY y1, XY y2) {\n    if (N == 0) return MX::unit();\n \
+    \   assert(x1 <= x2 && y1 <= y2);\n    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 =\
+    \ YtoI(y1), y2 = YtoI(y2);\n    X add = prefix_sum(y1, y2, x2);\n    X sub = prefix_sum(y1,\
+    \ y2, x1);\n    return MX::op(add, MX::inverse(sub));\n  }\n\nprivate:\n  int\
+    \ prefix_count(int L, int R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n\
+    \      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1)\
+    \ {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d] - r0;\n      } else\
+    \ {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n  }\n\n  X prefix_sum(int\
+    \ L, int R, int x) {\n    X add = MX::unit(), sub = MX::unit();\n    FOR_R(d,\
     \ lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x\
-    \ >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d] - r0;\n \
-    \     } else {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n  }\n\
-    \n  X prefix_sum(int L, int R, int x) {\n    X add = MX::unit(), sub = MX::unit();\n\
-    \    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n\
-    \      if (x >> d & 1) {\n        add = MX::op(add, dat[d][r0]);\n        sub\
-    \ = MX::op(sub, dat[d][l0]);\n        L += mid[d] - l0, R += mid[d] - r0;\n  \
-    \    } else {\n        L = l0, R = r0;\n      }\n    }\n    return MX::op(add,\
-    \ MX::inverse(sub));\n  }\n};"
+    \ >> d & 1) {\n        add = MX::op(add, dat[d][r0]);\n        sub = MX::op(sub,\
+    \ dat[d][l0]);\n        L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n\
+    \        L = l0, R = r0;\n      }\n    }\n    return MX::op(add, MX::inverse(sub));\n\
+    \  }\n};"
   dependsOn:
   - ds/bit_vector.hpp
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   requiredBy: []
-  timestamp: '2024-03-09 20:16:55+09:00'
+  timestamp: '2024-04-04 05:35:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
