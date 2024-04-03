@@ -49,7 +49,8 @@ struct Wavelet_Matrix_2D_Range_Static_AbelGroup {
   }
 
   template <typename F>
-  void build(int N, F f) {
+  void build(int N0, F f) {
+    N = N0;
     if (N == 0) {
       lg = 0;
       return;
