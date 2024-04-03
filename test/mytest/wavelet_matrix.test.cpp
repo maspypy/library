@@ -4,7 +4,7 @@
 #include "random/base.hpp"
 
 void test_compress() {
-  int N = RNG(1, 64);
+  int N = RNG(0, 64);
   int MAX = RNG(2, 1 << 10);
   vc<int> A(N);
   vc<int> X(N);
@@ -15,10 +15,9 @@ void test_compress() {
 
   int Q = 100;
   FOR(Q) {
-    int L = RNG(0, N);
-    int R = RNG(0, N);
+    int L = RNG(0, max(1, N));
+    int R = RNG(0, max(1, N + 1));
     if (L > R) swap(L, R);
-    ++R;
     int lo = RNG(0, MAX);
     int hi = RNG(0, MAX);
     if (lo > hi) swap(lo, hi);
@@ -43,6 +42,7 @@ void test_compress() {
       assert(WM.sum(L, R, k1, k2) == sm);
     }
     if (t == 2) { // kth
+      if (L == R) continue;
       int k = RNG(R - L);
       sort(all(B));
       assert(WM.kth(L, R, k) == B[k]);
@@ -77,7 +77,7 @@ void test_compress() {
 }
 
 void test_not_compress() {
-  int N = RNG(1, 64);
+  int N = RNG(0, 64);
   int log = RNG(1, 7);
   int MAX = 1 << log;
   vc<int> A(N);
@@ -88,10 +88,9 @@ void test_not_compress() {
 
   int Q = 100;
   FOR(Q) {
-    int L = RNG(0, N);
-    int R = RNG(0, N);
+    int L = RNG(0, max(1, N));
+    int R = RNG(0, max(1, N + 1));
     if (L > R) swap(L, R);
-    ++R;
     int lo = RNG(0, MAX);
     int hi = RNG(0, MAX);
     int xor_val = RNG(0, MAX);
@@ -119,6 +118,7 @@ void test_not_compress() {
       assert(WM.sum(L, R, k1, k2, xor_val) == sm);
     }
     if (t == 2) { // kth
+      if (L == R) continue;
       int k = RNG(R - L);
       sort(all(B));
       assert(WM.kth(L, R, k, xor_val) == B[k]);

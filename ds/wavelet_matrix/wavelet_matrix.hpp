@@ -24,6 +24,10 @@ struct Wavelet_Matrix {
 
   void build(vc<T> A, vc<X> SUM_data = {}, int log = -1) {
     N = len(A), lg = log, set_log = (log != -1);
+    if (N == 0) {
+      lg = 0;
+      return;
+    }
     bool MAKE_SUM = !(SUM_data.empty());
     vc<X>& S = SUM_data;
     if (COMPRESS) {
@@ -80,10 +84,11 @@ struct Wavelet_Matrix {
 
   // xor した結果で、[L, R) の中で k>=0 番目と prefix sum
   pair<T, X> kth_value_and_sum(int L, int R, int k, T xor_val = 0) {
-    assert(!cumsum.empty());
-    if (xor_val != 0) assert(set_log);
     assert(0 <= k && k <= R - L);
+    if (L == R) return {infty<T>, MX::unit()};
     if (k == R - L) { return {infty<T>, sum_all(L, R)}; }
+    if (xor_val != 0) assert(set_log);
+    assert(!cumsum.empty());
     int cnt = 0;
     X sm = MX::unit();
     T ret = 0;
@@ -223,6 +228,8 @@ struct Wavelet_Matrix {
 
   // xor した結果で [k1, k2) 番目であるところの SUM_data の和
   X sum(int L, int R, int k1, int k2, T xor_val = 0) {
+    assert(0 <= k1 && k1 <= k2 && k2 <= R - L);
+    if (k1 == k2) return MX::unit();
     X add = prefix_sum(L, R, k2, xor_val);
     X sub = prefix_sum(L, R, k1, xor_val);
     return MX::op(add, MX::inverse(sub));
@@ -241,6 +248,7 @@ struct Wavelet_Matrix {
   pair<int, X> max_right(F check, int L, int R, T xor_val = 0) {
     assert(check(0, MX::unit()));
     if (xor_val != 0) assert(set_log);
+    if (L == R) return {R - L, MX::unit()};
     if (check(R - L, get(lg, L, R))) return {R - L, get(lg, L, R)};
     int cnt = 0;
     X sm = MX::unit();

@@ -57,6 +57,10 @@ struct Wavelet_Matrix_2D_Range_Static_Monoid {
   template <typename F>
   void build(int N_, F f) {
     N = N_;
+    if (N == 0) {
+      lg = 0;
+      return;
+    }
     vc<XY> tmp(N), Y(N);
     vc<X> S(N);
     FOR(i, N) tie(tmp[i], Y[i], S[i]) = f(i);
