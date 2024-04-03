@@ -43,4 +43,5 @@ signed main() {
   test<dmint>();
   dmint::set_mod(2097169);
   test<dmint>();
+  solve();
 }
