@@ -912,6 +912,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
+  - icon: ':x:'
+    path: test/mytest/O1_inv.test.cpp
+    title: test/mytest/O1_inv.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
@@ -3471,6 +3474,7 @@ data:
   - test/mytest/rect_add_pt_sum.test.cpp
   - test/mytest/minmax_add.test.cpp
   - test/mytest/online_square.test.cpp
+  - test/mytest/O1_inv.test.cpp
   - test/mytest/count_labeled_strong.test.cpp
   - test/mytest/online_pow.test.cpp
   - test/mytest/find_C4.test.cpp

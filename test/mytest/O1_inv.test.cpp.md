@@ -1,9 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/hashmap.hpp
-    title: ds/hashmap.hpp
+  - icon: ':x:'
+    path: mod/O1_inverse.hpp
+    title: mod/O1_inverse.hpp
+  - icon: ':question:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':question:'
+    path: mod/dynamic_modint.hpp
+    title: mod/dynamic_modint.hpp
+  - icon: ':question:'
+    path: mod/mod_pow.hpp
+    title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -14,11 +23,11 @@ data:
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
+    path: mod/primitive_root.hpp
+    title: mod/primitive_root.hpp
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/array_on_divisors.hpp
-    title: nt/array_on_divisors.hpp
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
@@ -26,22 +35,19 @@ data:
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
-  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2578
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://yukicoder.me/problems/no/2578
-  bundledCode: "#line 1 \"test/yukicoder/2578.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2578\"\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/O1_inv.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -122,100 +128,16 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
-    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
-    \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
-    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
-    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
-    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
-    \ {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf\
-    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
-    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
-    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
-    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
-    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
-    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
-    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
-    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
-    \ do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if\
-    \ constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-')\
-    \ { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c) { x\
-    \ = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
-    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
-    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
-    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
-    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
-    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
-    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
-    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
-    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
-    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
-    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
-    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
-    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
-    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
-    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
-    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
-    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
-    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
-    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
-    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
-    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
-    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
-    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
-    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
-    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
-    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/yukicoder/2578.test.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
-    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
-    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
-    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
-    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
-    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
-    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
-    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
-    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  return B;\n}\n#endif\n#line 3 \"test/mytest/O1_inv.test.cpp\"\n\n#line 2 \"\
+    mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n  static\
+    \ auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template <class\
+    \ T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\n\
+    class has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\
+    \ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %=\
+    \ mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k\
+    \ - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n\
+    }\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
     \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
     \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
@@ -280,8 +202,9 @@ data:
     template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
     \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"\
-    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    using modint998 = modint<998244353>;\n#line 2 \"mod/dynamic_modint.hpp\"\n\n#line\
+    \ 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -340,115 +263,152 @@ data:
     \  }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll\
     \ n, vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p =\
     \ lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
-    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"ds/hashmap.hpp\"\n\
-    \r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32\
-    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
-    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n\
-    \  int size() { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\
-    \n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1)\
-    \ & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\
-    \n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) {\
-    \ used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
-    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
-    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n  \
-    \      = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x\
-    \ += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x =\
-    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\
-    \n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
-    \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
-    \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
-    \ = b;\r\n  }\r\n};\n#line 3 \"nt/array_on_divisors.hpp\"\n\ntemplate <typename\
-    \ T>\nstruct Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T>\
-    \ dat;\n  HashMap<int> MP;\n\n  Array_On_Divisors(ll N = 1) { build(N); }\n  Array_On_Divisors(vc<pair<ll,\
-    \ int>> pf) { build(pf); }\n\n  void build(ll N) { build(factor(N)); }\n  void\
-    \ build(vc<pair<ll, int>> pfs) {\n    if (!pf.empty() && pf == pfs) return;\n\
-    \    pf = pfs;\n    ll n = 1;\n    for (auto&& [p, e]: pf) n *= (e + 1);\n   \
-    \ divs.assign(n, 1);\n    dat.assign(n, T{});\n    int nxt = 1;\n    for (auto&&\
-    \ [p, e]: pf) {\n      int L = nxt;\n      ll q = p;\n      FOR(e) {\n       \
-    \ FOR(i, L) { divs[nxt++] = divs[i] * q; }\n        q *= p;\n      }\n    }\n\
-    \    MP.build(n);\n    FOR(i, n) MP[divs[i]] = i;\n  }\n\n  T& operator[](ll d)\
-    \ { return dat[MP[d]]; }\n\n  // f(p, k) \u3092\u4E0E\u3048\u308B \u2192 \u4E57\
-    \u6CD5\u7684\u306B\u62E1\u5F35\n  template <typename F>\n  void set_multiplicative(F\
-    \ f) {\n    dat.reserve(len(divs));\n    dat = {T(1)};\n    for (auto&& [p, e]:\
-    \ pf) {\n      int n = len(divs);\n      FOR(k, 1, e + 1) { FOR(i, n) dat.eb(dat[i]\
-    \ * f(p, k)); }\n    }\n  }\n\n  void set_euler_phi() {\n    dat.resize(len(divs));\n\
-    \    FOR(i, len(divs)) dat[i] = T(divs[i]);\n    divisor_mobius();\n  }\n\n  void\
-    \ set_mobius() {\n    set_multiplicative([&](ll p, int k) -> T {\n      if (k\
-    \ >= 2) return T(0);\n      return (k == 1 ? T(-1) : T(0));\n    });\n  }\n\n\
-    \  void multiplier_zeta() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n  \
-    \    ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j,\
-    \ mod - k) { dat[mod * i + j] += dat[mod * i + j + k]; }\n      }\n      k *=\
-    \ (e + 1);\n    }\n  }\n\n  void multiplier_mobius() {\n    ll k = 1;\n    for\
-    \ (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) /\
-    \ mod) {\n        FOR(j, mod - k) { dat[mod * i + j] -= dat[mod * i + j + k];\
-    \ }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void divisor_zeta() {\n   \
-    \ ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n    \
-    \  FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod * i + j + k] +=\
-    \ dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void divisor_mobius()\
-    \ {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n\
-    \      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j\
-    \ + k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  //\
-    \ SUB(T&a,Tb)->void : a-=b\n  template <typename F>\n  void divisor_mobius(F SUB)\
-    \ {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n\
-    \      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { SUB(dat[mod * i\
-    \ + j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\n\
-    \  // ADD(T&a,Tb)->void : a+=b\n  template <typename F>\n  void multiplier_zeta(F\
-    \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { ADD(dat[mod\
-    \ * i + j], dat[mod * i + j + k]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // SUB(T&a,Tb)->void : a-=b\n  template <typename F>\n  void multiplier_mobius(F\
-    \ SUB) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { SUB(dat[mod\
-    \ * i + j], dat[mod * i + j + k]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // ADD(T&a,Tb)->void : a+=b\n  template <typename F>\n  void divisor_zeta(F\
-    \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { ADD(dat[mod\
-    \ * i + j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // (d, fd)\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
-    \ { f(divs[i], dat[i]); }\n  }\n};\n#line 7 \"test/yukicoder/2578.test.cpp\"\n\
-    \nusing mint = modint998;\n\nll M;\nArray_On_Divisors<mint> X;\n\nvoid solve()\
-    \ {\n  LL(N);\n  mint B, C, D;\n  read(B, C, D);\n  mint W = B;\n\n  fill(all(X.dat),\
-    \ mint(1));\n  FOR(N) {\n    LL(a);\n    if (M % a == 0) { X[a] *= W + mint(1);\
-    \ }\n    W = W * C + D;\n  }\n\n  X.divisor_zeta([&](mint& a, mint b) -> void\
-    \ { a *= b; });\n  for (auto& x: X.dat) x -= mint(1);\n  X.divisor_mobius();\n\
-    \  print(X[M]);\n}\n\nsigned main() {\n  LL(T);\n  read(M);\n  X.build(M);\n \
-    \ FOR(T) solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/2578\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"nt/array_on_divisors.hpp\"\
-    \n\nusing mint = modint998;\n\nll M;\nArray_On_Divisors<mint> X;\n\nvoid solve()\
-    \ {\n  LL(N);\n  mint B, C, D;\n  read(B, C, D);\n  mint W = B;\n\n  fill(all(X.dat),\
-    \ mint(1));\n  FOR(N) {\n    LL(a);\n    if (M % a == 0) { X[a] *= W + mint(1);\
-    \ }\n    W = W * C + D;\n  }\n\n  X.divisor_zeta([&](mint& a, mint b) -> void\
-    \ { a *= b; });\n  for (auto& x: X.dat) x -= mint(1);\n  X.divisor_mobius();\n\
-    \  print(X[M]);\n}\n\nsigned main() {\n  LL(T);\n  read(M);\n  X.build(M);\n \
-    \ FOR(T) solve();\n  return 0;\n}\n"
+    \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"mod/mod_pow.hpp\"\n\
+    \r\n#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
+    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
+    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
+    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
+    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
+    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
+    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
+    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
+    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
+    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
+    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
+    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
+    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
+    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
+    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 5 \"\
+    mod/mod_pow.hpp\"\n\r\nu32 mod_pow(int a, ll n, int mod) {\r\n  assert(n >= 0);\r\
+    \n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod & 1) && (mod < (1 << 30)))\
+    \ {\r\n    using mint = Mongomery_modint_32<202311021>;\r\n    mint::set_mod(mod);\r\
+    \n    return mint(a).pow(n).val();\r\n  }\r\n  Barrett bt(mod);\r\n  int r = 1;\r\
+    \n  while (n) {\r\n    if (n & 1) r = bt.mul(r, a);\r\n    a = bt.mul(a, a), n\
+    \ >>= 1;\r\n  }\r\n  return r;\r\n}\r\n\r\nu64 mod_pow_64(ll a, ll n, u64 mod)\
+    \ {\r\n  assert(n >= 0);\r\n  a = ((a %= mod) < 0 ? a + mod : a);\r\n  if ((mod\
+    \ & 1) && (mod < (u64(1) << 62))) {\r\n    using mint = Mongomery_modint_64<202311021>;\r\
+    \n    mint::set_mod(mod);\r\n    return mint(a).pow(n).val();\r\n  }\r\n  Barrett_64\
+    \ bt(mod);\r\n  ll r = 1;\r\n  while (n) {\r\n    if (n & 1) r = bt.mul(r, a);\r\
+    \n    a = bt.mul(a, a), n >>= 1;\r\n  }\r\n  return r;\r\n}\n#line 6 \"mod/primitive_root.hpp\"\
+    \n\r\n// int\r\nint primitive_root(int p) {\r\n  auto pf = factor(p - 1);\r\n\
+    \  auto is_ok = [&](int g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\n      if\
+    \ (mod_pow(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\n  };\r\
+    \n  while (1) {\r\n    int x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\n \
+    \ }\r\n  return -1;\r\n}\r\n\r\nll primitive_root_64(ll p) {\r\n  auto pf = factor(p\
+    \ - 1);\r\n  auto is_ok = [&](ll g) -> bool {\r\n    for (auto&& [q, e]: pf)\r\
+    \n      if (mod_pow_64(g, (p - 1) / q, p) == 1) return false;\r\n    return true;\r\
+    \n  };\r\n  while (1) {\r\n    ll x = RNG(1, p);\r\n    if (is_ok(x)) return x;\r\
+    \n  }\r\n  return -1;\r\n}\r\n#line 6 \"mod/dynamic_modint.hpp\"\n\ntemplate <int\
+    \ id>\nstruct Dynamic_Modint {\n  static constexpr bool is_modint = true;\n  using\
+    \ mint = Dynamic_Modint;\n  u32 val;\n  static Barrett bt;\n  static u32 umod()\
+    \ { return bt.umod(); }\n\n  static int get_mod() { return (int)(bt.umod()); }\n\
+    \  static void set_mod(int m) {\n    assert(1 <= m);\n    bt = Barrett(m);\n \
+    \ }\n\n  static Dynamic_Modint raw(u32 v) {\n    Dynamic_Modint x;\n    x.val\
+    \ = v;\n    return x;\n  }\n  Dynamic_Modint() : val(0) {}\n  Dynamic_Modint(u32\
+    \ x) : val(bt.modulo(x)) {}\n  Dynamic_Modint(u64 x) : val(bt.modulo(x)) {}\n\
+    \  Dynamic_Modint(int x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\
+    \  Dynamic_Modint(ll x) : val((x %= get_mod()) < 0 ? x + get_mod() : x) {}\n\n\
+    \  mint& operator+=(const mint& rhs) {\n    val = (val += rhs.val) < umod() ?\
+    \ val : val - umod();\n    return *this;\n  }\n  mint& operator-=(const mint&\
+    \ rhs) {\n    val = (val += umod() - rhs.val) < umod() ? val : val - umod();\n\
+    \    return *this;\n  }\n  mint& operator*=(const mint& rhs) {\n    val = bt.mul(val,\
+    \ rhs.val);\n    return *this;\n  }\n  mint& operator/=(const mint& rhs) { return\
+    \ *this = *this * rhs.inverse(); }\n  mint operator-() const { return mint() -\
+    \ *this; }\n  mint pow(ll n) const {\n    assert(0 <= n);\n    mint x = *this,\
+    \ r = 1;\n    while (n) {\n      if (n & 1) r *= x;\n      x *= x, n >>= 1;\n\
+    \    }\n    return r;\n  }\n  mint inverse() const {\n    int x = val, mod = get_mod();\n\
+    \    int a = x, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a /\
+    \ b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    if (u < 0) u\
+    \ += mod;\n    return u;\n  }\n\n  friend mint operator+(const mint& lhs, const\
+    \ mint& rhs) {\n    return mint(lhs) += rhs;\n  }\n  friend mint operator-(const\
+    \ mint& lhs, const mint& rhs) {\n    return mint(lhs) -= rhs;\n  }\n  friend mint\
+    \ operator*(const mint& lhs, const mint& rhs) {\n    return mint(lhs) *= rhs;\n\
+    \  }\n  friend mint operator/(const mint& lhs, const mint& rhs) {\n    return\
+    \ mint(lhs) /= rhs;\n  }\n  friend bool operator==(const mint& lhs, const mint&\
+    \ rhs) {\n    return lhs.val == rhs.val;\n  }\n  friend bool operator!=(const\
+    \ mint& lhs, const mint& rhs) {\n    return lhs.val != rhs.val;\n  }\n  static\
+    \ pair<int, int>& get_ntt() {\n    static pair<int, int> p = {-1, -1};\n    return\
+    \ p;\n  }\n  static void set_ntt_info() {\n    int mod = get_mod();\n    int k\
+    \ = lowbit(mod - 1);\n    int r = primitive_root(mod);\n    r = mod_pow(r, (mod\
+    \ - 1) >> k, mod);\n    get_ntt() = {k, r};\n  }\n  static pair<int, int> ntt_info()\
+    \ { return get_ntt(); }\n  static bool can_ntt() { return ntt_info().fi != -1;\
+    \ }\n};\n\n#ifdef FASTIO\ntemplate <int id>\nvoid rd(Dynamic_Modint<id>& x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int\
+    \ id>\nvoid wt(Dynamic_Modint<id> x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing\
+    \ dmint = Dynamic_Modint<-1>;\ntemplate <int id>\nBarrett Dynamic_Modint<id>::bt;\n\
+    #line 1 \"mod/O1_inverse.hpp\"\n\n// https://qoj.ac/problem/5\n// precompute O(p^{2/3}),\
+    \ query O(1)\n// 10^8 query: 3sec\ntemplate <typename mint>\nmint O1_inverse(int\
+    \ a) {\n  /*\n  n^3>=p \u3068\u306A\u308B\u3088\u3046\u306B n \u3092\u3068\u308A\
+    , n^2\u307E\u3067\u306F\u524D\u8A08\u7B97.\n  a/p \u3092\u6709\u7406\u6570\u8FD1\
+    \u4F3C\u3059\u308B x/y. |a/p-x/y|<=|1/ny \u3068\u306A\u308B\u3068\n  |ay-px|<=p/n<=n^2\
+    \ \u3088\u308A(ay)^{-1}\u304C\u524D\u8A08\u7B97\u3055\u308C\u3066\u3044\u308B\u306E\
+    \u3067\u3067\u304D\u308B.\n\n  x/y \u306F\u5206\u6BCD n \u672A\u6E80\u306E Farey\
+    \ \u6570\u5217\u306E\u524D\u5F8C\u3069\u3061\u3089\u304B\u304C\u6E80\u305F\u3059\
+    .\n  n^2 bucket \u306B\u5206\u5272\u3057\u3066\u304A\u304F\u3068 bucket \u3054\
+    \u3068\u306E\u6709\u7406\u6570\u306F distinct.\n  \u524D\u5F8C\u306E\u3046\u3061\
+    \u826F\u3044\u65B9\u3092\u9078\u3079\u3070\u3088\u3044.\n  */\n  static int p\
+    \ = 0;\n  static double cp = 0.0;\n  static vc<int> FRAC;\n  static vc<mint> invs;\n\
+    \  if (p != mint::get_mod()) {\n    p = mint::get_mod();\n    int k = min(2 <<\
+    \ 20, p);\n    invs.resize(k);\n    invs[1] = 1;\n    FOR(i, 2, k) {\n      int\
+    \ q = (p + i - 1) / i;\n      invs[i] = invs[i * q - p] * mint::raw(q);\n    }\n\
+    \    assert(p <= (1 << 30));\n    FRAC.assign(1 << 20, -1);\n    cp = 1.0 * (1\
+    \ << 20) / p;\n    for (int y = 1023; y >= 1; --y) {\n      for (int x = 0; x\
+    \ < y; ++x) { FRAC[(x << 20) / y] = {x << 10 | y}; }\n    }\n    FOR(i, 1, len(FRAC))\
+    \ if (FRAC[i] == -1) FRAC[i] = FRAC[i - 1];\n    int nxt = 1025;\n    FOR_R(i,\
+    \ 1, len(FRAC)) {\n      if (FRAC[i] != FRAC[i - 1]) {\n        nxt = FRAC[i];\n\
+    \        continue;\n      }\n      int x1 = FRAC[i] >> 10, y1 = FRAC[i] & 1023;\n\
+    \      int x2 = nxt >> 10, y2 = nxt & 1023;\n      int c1 = i * y1 - (x1 << 20);\n\
+    \      int c2 = i * y2 - (x2 << 20);\n      if (abs(c2) < abs(c1)) FRAC[i] = nxt;\n\
+    \    }\n  }\n  assert(0 <= a && a < p);\n  if (a < len(invs)) return invs[a];\n\
+    \n  int k = a * cp;\n  ll x = FRAC[k] >> 10, y = FRAC[k] & 1023;\n  int c = ll(a)\
+    \ * y - ll(p) * x;\n  if (c < 0) c = -c, y = -y;\n  return invs[c] * mint(y);\n\
+    }\n#line 8 \"test/mytest/O1_inv.test.cpp\"\n\ntemplate <typename mint>\nvoid test()\
+    \ {\n  FOR(10000000) {\n    int x = RNG(1, mint::get_mod());\n    mint v = O1_inverse<mint>(x);\n\
+    \    mint prd = v * mint::raw(x);\n    assert(prd == mint(1));\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test<modint998>();\n  test<modint107>();\n  dmint::set_mod(998244353);\n\
+    \  test<dmint>();\n  dmint::set_mod(2);\n  test<dmint>();\n  dmint::set_mod(3);\n\
+    \  test<dmint>();\n  dmint::set_mod(5);\n  test<dmint>();\n  dmint::set_mod(1'000'003);\n\
+    \  test<dmint>();\n  dmint::set_mod(1'048'573);\n  test<dmint>();\n  dmint::set_mod(1'048'583);\n\
+    \  test<dmint>();\n  dmint::set_mod(2097143);\n  test<dmint>();\n  dmint::set_mod(2097169);\n\
+    \  test<dmint>();\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"mod/modint.hpp\"\n#include \"mod/dynamic_modint.hpp\"\n#include\
+    \ \"random/base.hpp\"\n#include \"mod/O1_inverse.hpp\"\n\ntemplate <typename mint>\n\
+    void test() {\n  FOR(10000000) {\n    int x = RNG(1, mint::get_mod());\n    mint\
+    \ v = O1_inverse<mint>(x);\n    mint prd = v * mint::raw(x);\n    assert(prd ==\
+    \ mint(1));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test<modint998>();\n  test<modint107>();\n\
+    \  dmint::set_mod(998244353);\n  test<dmint>();\n  dmint::set_mod(2);\n  test<dmint>();\n\
+    \  dmint::set_mod(3);\n  test<dmint>();\n  dmint::set_mod(5);\n  test<dmint>();\n\
+    \  dmint::set_mod(1'000'003);\n  test<dmint>();\n  dmint::set_mod(1'048'573);\n\
+    \  test<dmint>();\n  dmint::set_mod(1'048'583);\n  test<dmint>();\n  dmint::set_mod(2097143);\n\
+    \  test<dmint>();\n  dmint::set_mod(2097169);\n  test<dmint>();\n}\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - nt/array_on_divisors.hpp
+  - mod/dynamic_modint.hpp
+  - mod/primitive_root.hpp
   - nt/factor.hpp
   - random/base.hpp
   - nt/primetest.hpp
   - mod/mongomery_modint.hpp
-  - ds/hashmap.hpp
+  - mod/mod_pow.hpp
+  - mod/barrett.hpp
+  - mod/O1_inverse.hpp
   isVerificationFile: true
-  path: test/yukicoder/2578.test.cpp
+  path: test/mytest/O1_inv.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-04 04:49:51+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/2578.test.cpp
+documentation_of: test/mytest/O1_inv.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/2578.test.cpp
-- /verify/test/yukicoder/2578.test.cpp.html
-title: test/yukicoder/2578.test.cpp
+- /verify/test/mytest/O1_inv.test.cpp
+- /verify/test/mytest/O1_inv.test.cpp.html
+title: test/mytest/O1_inv.test.cpp
 ---
