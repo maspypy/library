@@ -45,7 +45,7 @@ struct Dihedral {
       rotate(A.begin(), A.begin() + n - x, A.end());
       return A;
     }
-    reverse(all(A));
+    std::reverse(all(A));
     rotate(A.begin(), A.begin() + (n - 1 - x), A.end());
     return A;
   }
