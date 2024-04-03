@@ -73,9 +73,9 @@ data:
   timestamp: '2024-01-28 16:26:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/arc157a.test.cpp
   - test/library_checker/graph/eulerwalk_d.test.cpp
   - test/library_checker/graph/eulerwalk_ud.test.cpp
+  - test_atcoder/arc157a.test.cpp
 documentation_of: graph/vs_to_es.hpp
 layout: document
 redirect_from:

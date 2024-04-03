@@ -233,10 +233,10 @@ data:
   timestamp: '2023-11-30 16:31:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc301h.test.cpp
-  - test_atcoder/abc270_f.test.cpp
   - test/aoj/GRL_2_A.test.cpp
   - test/library_checker/tree/mst.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc301h.test.cpp
 documentation_of: graph/ds/dual_tree_monoid.hpp
 layout: document
 redirect_from:

@@ -132,8 +132,8 @@ data:
   timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc283f.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
+  - test_atcoder/abc283f.test.cpp
 documentation_of: geo/manhattan_mst.hpp
 layout: document
 redirect_from:

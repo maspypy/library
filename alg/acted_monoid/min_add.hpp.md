@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy:
@@ -66,8 +66,8 @@ data:
   - test/aoj/DSL_2_H.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1720.test.cpp
   - test/yukicoder/1234.test.cpp
+  - test/yukicoder/1720.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document
 redirect_from:

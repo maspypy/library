@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':heavy_check_mark:'
@@ -70,7 +70,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy:
@@ -772,15 +772,15 @@ data:
   isVerificationFile: false
   path: poly/compositional_inverse.hpp
   requiredBy:
-  - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-03-19 03:00:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/compositional_inverset.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
 documentation_of: poly/compositional_inverse.hpp
 layout: document
 redirect_from:

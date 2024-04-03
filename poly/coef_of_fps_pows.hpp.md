@@ -558,17 +558,17 @@ data:
   isVerificationFile: false
   path: poly/coef_of_fps_pows.hpp
   requiredBy:
-  - poly/compositional_inverse.hpp
-  - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - poly/compositional_inverse.hpp
   timestamp: '2024-03-18 23:24:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
   - test/mytest/coef_of_fps_pows.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
-  - test/mytest/compositional_inverset.test.cpp
 documentation_of: poly/coef_of_fps_pows.hpp
 layout: document
 redirect_from:

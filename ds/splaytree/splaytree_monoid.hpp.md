@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
@@ -198,9 +198,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/1508.test.cpp
-  - test/yukicoder/1441.test.cpp
-  - test/mytest/splay_monoid.test.cpp
   - test/mytest/splay.test.cpp
+  - test/mytest/splay_monoid.test.cpp
+  - test/yukicoder/1441.test.cpp
 documentation_of: ds/splaytree/splaytree_monoid.hpp
 layout: document
 redirect_from:

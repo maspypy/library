@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -55,10 +55,10 @@ data:
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc152e.test.cpp
   - test/yukicoder/1575.test.cpp
   - test/yukicoder/1411.test.cpp
   - test/yukicoder/1881.test.cpp
+  - test_atcoder/abc152e.test.cpp
 documentation_of: nt/lpf_table.hpp
 layout: document
 redirect_from:

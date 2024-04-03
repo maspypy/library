@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -50,10 +50,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -123,12 +123,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc133f.test.cpp
     title: test_atcoder/arc133f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\
@@ -447,39 +447,39 @@ data:
   isVerificationFile: false
   path: poly/poly_taylor_shift.hpp
   requiredBy:
+  - linalg/det_A_plus_xB.hpp
   - seq/famous/stirling_number_1.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_1_minus_ex.hpp
   - poly/composition.hpp
-  - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_a_plus_bx.hpp
-  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+  - poly/composition_f_ex_minus_1.hpp
   - poly/compositional_inverse.hpp
   - poly/composition_f_log_1_minus_x.hpp
-  - linalg/det_A_plus_xB.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc133f.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/composition_1_minus_ex.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/yukicoder/1907.test.cpp
+  - test/yukicoder/2587.test.cpp
+  - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/2580.test.cpp
   - test/yukicoder/2583.test.cpp
   - test/yukicoder/1303.test.cpp
-  - test/yukicoder/2587.test.cpp
   - test/yukicoder/1875.test.cpp
-  - test/yukicoder/2587_2.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
+  - test_atcoder/arc133f.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document
 redirect_from:
