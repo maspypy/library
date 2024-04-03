@@ -302,6 +302,7 @@
 "test/library_checker/tree/tree_diameter.test.cpp": "2024-03-29 11:46:13 +0900",
 "test/mytest/31bit_modint.test.cpp": "2024-03-29 11:46:13 +0900",
 "test/mytest/ARC30D.test.cpp": "2024-03-29 11:46:13 +0900",
+"test/mytest/O1_inv.test.cpp": "2024-04-04 05:20:26 +0900",
 "test/mytest/QOJ5445.test.cpp": "2024-03-29 11:46:13 +0900",
 "test/mytest/add_chmin.test.cpp": "2024-03-29 11:46:13 +0900",
 "test/mytest/add_chmin_chmax.test.cpp": "2024-03-29 11:46:13 +0900",
