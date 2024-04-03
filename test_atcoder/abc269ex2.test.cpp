@@ -1,3 +1,5 @@
+#define PROBLEM "https://atcoder.jp/contests/abc269/tasks/abc269_Ex"
+
 #include "my_template.hpp"
 #include "other/io.hpp"
 
