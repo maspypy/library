@@ -77,7 +77,7 @@ struct Binary_Optimization {
 
 private:
   void add_base(T t) {
-    base_cost += x0;
+    base_cost += t;
     assert(abs(base_cost) < infty<T>);
   }
   void add_edge(int i, int j, T t) {
