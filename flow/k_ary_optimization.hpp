@@ -63,7 +63,7 @@ struct K_ary_Optimization {
 private:
   void add_base(T x) {
     base_cost += x;
-    assert(abs(base_cost) <= infty<T>);
+    assert(-infty<T> < base_cost && base_cost < infty<T>);
   }
 
   void add_edge(int i, int j, T t) {
