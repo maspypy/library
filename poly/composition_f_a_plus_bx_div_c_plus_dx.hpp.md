@@ -554,8 +554,8 @@ data:
   timestamp: '2024-02-02 17:31:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2583.test.cpp
   - test_atcoder/arc133f.test.cpp
+  - test/yukicoder/2583.test.cpp
 documentation_of: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
 layout: document
 redirect_from:

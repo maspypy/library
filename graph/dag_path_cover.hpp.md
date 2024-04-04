@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
     \ for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\u52A0\u3057\
+    #line 2 \"flow/maxflow.hpp\"\n\n// incremental \u306B\u8FBA\u3092\u8FFD\u52A0\u3057\
     \u3066\u3088\u3044\ntemplate <typename Cap>\nstruct MaxFlow {\n  struct Edge {\n\
     \    int to, rev;\n    Cap cap;\n    Cap flow = 0;\n  };\n\n  const int N, source,\
     \ sink;\n  vvc<Edge> edges;\n  vc<int> prog, level;\n  vc<int> que;\n  bool calculated;\n\
@@ -171,7 +171,7 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2024-03-10 03:27:25+09:00'
+  timestamp: '2024-04-04 22:23:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2251_1.test.cpp

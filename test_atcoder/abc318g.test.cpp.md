@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -185,7 +185,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\
+    \ yes(!t); }\r\n#line 2 \"flow/maxflow.hpp\"\n\n// incremental \u306B\u8FBA\u3092\
     \u8FFD\u52A0\u3057\u3066\u3088\u3044\ntemplate <typename Cap>\nstruct MaxFlow\
     \ {\n  struct Edge {\n    int to, rev;\n    Cap cap;\n    Cap flow = 0;\n  };\n\
     \n  const int N, source, sink;\n  vvc<Edge> edges;\n  vc<int> prog, level;\n \
@@ -257,7 +257,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc318g.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-04 22:23:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc318g.test.cpp
