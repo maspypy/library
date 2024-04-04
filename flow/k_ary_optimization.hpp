@@ -30,14 +30,7 @@ struct K_ary_Optimization {
     if (!MINIMIZE) {
       for (auto& x: cost) x = -x;
     }
-    add_base(cost[0]);
-    FOR_R(j, ks[i]) cost[j] -= cost[0];
-    FOR(j, 1, ks[i]) {
-      T x = cost[j] - cost[j - 1];
-      // j 以上にすると x
-      if (x > 0) add_edge(idx[i][j], sink, x);
-      if (x < 0) add_base(x), add_edge(source, idx[i][j], -x);
-    }
+    _add_1(i, cost);
   }
 
   void add_2(int i, int j, vvc<T> cost) {
@@ -46,17 +39,7 @@ struct K_ary_Optimization {
     assert(len(cost) == H);
     FOR(a, H) assert(len(cost[a]) == W);
     if (!MINIMIZE) { FOR(a, H) FOR(b, W) cost[a][b] = -cost[a][b]; }
-    add_1(j, cost[0]);
-    FOR_R(a, H) FOR(b, W) cost[a][b] -= cost[0][b];
-    vc<T> tmp(H);
-    FOR(a, H) tmp[a] = cost[a][W - 1];
-    add_1(i, tmp);
-    FOR(a, H) FOR(b, W) cost[a][b] -= tmp[a];
-    FOR(a, 1, H) FOR(b, W - 1) {
-      T x = cost[a][b] + cost[a - 1][b + 1] - cost[a - 1][b] - cost[a][b + 1];
-      assert(x >= 0); // monge
-      add_edge(idx[i][a], idx[j][b + 1], x);
-    }
+    _add_2(i, j, cost);
   }
 
   // 最小値および、[0,k) 列を返す
@@ -73,6 +56,7 @@ struct K_ary_Optimization {
     FOR(i, n) {
       FOR(j, 1, ks[i]) { ANS[i] += 1 - cut[idx[i][j]]; }
     }
+    if (!MINIMIZE) val = -val;
     return {val, ANS};
   }
 
@@ -88,5 +72,30 @@ private:
     pair<int, int> key = mp(i, j);
     edges[key] += t;
     assert(edges[key] <= infty<T>);
+  }
+
+  void _add_1(int i, vc<T> cost) {
+    add_base(cost[0]);
+    FOR_R(j, ks[i]) cost[j] -= cost[0];
+    FOR(j, 1, ks[i]) {
+      T x = cost[j] - cost[j - 1];
+      // j 以上にすると x
+      if (x > 0) add_edge(idx[i][j], sink, x);
+      if (x < 0) add_base(x), add_edge(source, idx[i][j], -x);
+    }
+  }
+  void _add_2(int i, int j, vvc<T> cost) {
+    int H = ks[i], W = ks[j];
+    _add_1(j, cost[0]);
+    FOR_R(a, H) FOR(b, W) cost[a][b] -= cost[0][b];
+    vc<T> tmp(H);
+    FOR(a, H) tmp[a] = cost[a][W - 1];
+    _add_1(i, tmp);
+    FOR(a, H) FOR(b, W) cost[a][b] -= tmp[a];
+    FOR(a, 1, H) FOR(b, W - 1) {
+      T x = cost[a][b] + cost[a - 1][b + 1] - cost[a - 1][b] - cost[a][b + 1];
+      assert(x >= 0); // monge
+      add_edge(idx[i][a], idx[j][b + 1], x);
+    }
   }
 };
