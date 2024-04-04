@@ -6,21 +6,21 @@ data:
     title: flow/maxflow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2320.test.cpp
     title: test/yukicoder/2320.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc193f.test.cpp
     title: test_atcoder/abc193f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc259g.test.cpp
     title: test_atcoder/abc259g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/maxflow.hpp\"\n\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -106,7 +106,7 @@ data:
     \ infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val,\
     \ cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"\
     source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]: edges) print(key,\
-    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += x0;\n    assert(abs(base_cost)\
+    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += t;\n    assert(abs(base_cost)\
     \ < infty<T>);\n  }\n  void add_edge(int i, int j, T t) {\n    assert(t >= 0);\n\
     \    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key] +=\
     \ t;\n    assert(edges[key] <= infty<T>);\n  }\n\n  void _add_1(int i, T x0, T\
@@ -168,7 +168,7 @@ data:
     \ infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val,\
     \ cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"\
     source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]: edges) print(key,\
-    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += x0;\n    assert(abs(base_cost)\
+    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += t;\n    assert(abs(base_cost)\
     \ < infty<T>);\n  }\n  void add_edge(int i, int j, T t) {\n    assert(t >= 0);\n\
     \    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key] +=\
     \ t;\n    assert(edges[key] <= infty<T>);\n  }\n\n  void _add_1(int i, T x0, T\
@@ -201,8 +201,8 @@ data:
   isVerificationFile: false
   path: flow/binary_optimization.hpp
   requiredBy: []
-  timestamp: '2024-04-04 22:23:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-04 23:46:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/abc259g.test.cpp

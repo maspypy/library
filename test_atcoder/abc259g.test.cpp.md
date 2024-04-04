@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc259/tasks/abc259_g
@@ -271,7 +271,7 @@ data:
     \ infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val,\
     \ cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"\
     source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]: edges) print(key,\
-    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += x0;\n    assert(abs(base_cost)\
+    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += t;\n    assert(abs(base_cost)\
     \ < infty<T>);\n  }\n  void add_edge(int i, int j, T t) {\n    assert(t >= 0);\n\
     \    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key] +=\
     \ t;\n    assert(edges[key] <= infty<T>);\n  }\n\n  void _add_1(int i, T x0, T\
@@ -327,8 +327,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc259g.test.cpp
   requiredBy: []
-  timestamp: '2024-04-04 22:23:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-04 23:46:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc259g.test.cpp
 layout: document

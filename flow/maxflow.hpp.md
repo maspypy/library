@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
   - icon: ':heavy_check_mark:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_6_A.test.cpp
     title: test/aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1541.test.cpp
     title: test/yukicoder/1541.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,10 +27,10 @@ data:
   - icon: ':x:'
     path: test/yukicoder/2320.test.cpp
     title: test/yukicoder/2320.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc193f.test.cpp
     title: test_atcoder/abc193f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc259g.test.cpp
     title: test_atcoder/abc259g.test.cpp
   - icon: ':heavy_check_mark:'
