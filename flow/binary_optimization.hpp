@@ -76,20 +76,24 @@ struct Binary_Optimization {
   }
 
 private:
+  void add_base(T t) {
+    base_cost += x0;
+    assert(abs(base_cost) < infty<T>);
+  }
   void add_edge(int i, int j, T t) {
     assert(t >= 0);
     if (t == 0) return;
     pair<int, int> key = mp(i, j);
     edges[key] += t;
-    chmin(edges[key], infty<T>);
+    assert(edges[key] <= infty<T>);
   }
 
   void _add_1(int i, T x0, T x1) {
     if (x0 <= x1) {
-      base_cost += x0;
+      add_base(x0);
       add_edge(source, i, x1 - x0);
     } else {
-      base_cost += x1;
+      add_base(x1);
       add_edge(i, sink, x0 - x1);
     }
   }
@@ -105,7 +109,7 @@ private:
               T x101, T x110, T x111) {
     T p = x000 - x100 - x010 - x001 + x110 + x101 + x011 - x111;
     if (p > 0) {
-      base_cost += x000;
+      add_base(x000);
       _add_1(i, 0, x100 - x000);
       _add_1(j, 0, x010 - x000);
       _add_1(k, 0, x001 - x000);
@@ -113,7 +117,7 @@ private:
       _add_2(i, k, 0, 0, 0, x000 + x101 - x100 - x001);
       _add_2(j, k, 0, 0, 0, x000 + x011 - x010 - x001);
       // あとは、111 のときに利得 p を追加する
-      base_cost -= p;
+      add_base(-p);
       // 111 以外だとコスト p
       add_edge(i, nxt, p);
       add_edge(j, nxt, p);
@@ -122,7 +126,7 @@ private:
       ++nxt;
     } else {
       p = -p;
-      base_cost += x111;
+      add_base(x111);
       _add_1(i, x011 - x111, 0);
       _add_1(i, x101 - x111, 0);
       _add_1(i, x110 - x111, 0);
@@ -130,7 +134,7 @@ private:
       _add_2(i, k, x111 + x010 - x011 - x110, 0, 0, 0);
       _add_2(j, k, x111 + x100 - x101 - x110, 0, 0, 0);
       // 000 のときに利得 p を追加する
-      base_cost -= p;
+      add_base(-p);
       // 000 以外だとコスト p
       add_edge(nxt, i, p);
       add_edge(nxt, j, p);
@@ -138,5 +142,6 @@ private:
       add_edge(source, nxt, p);
       ++nxt;
     }
+    assert(abs(base_cost) < infty<T>);
   }
 };

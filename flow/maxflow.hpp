@@ -1,3 +1,5 @@
+#pragma once
+
 // incremental に辺を追加してよい
 template <typename Cap>
 struct MaxFlow {
