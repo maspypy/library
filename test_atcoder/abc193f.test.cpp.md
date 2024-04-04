@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -271,46 +271,45 @@ data:
     \ infty<T>);\n    cut.resize(n);\n    if (!MINIMIZE) val = -val;\n    return {val,\
     \ cut};\n  }\n\n  void debug() {\n    print(\"base_cost\", base_cost);\n    print(\"\
     source=\", source, \"sink=\", sink);\n    for (auto&& [key, cap]: edges) print(key,\
-    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += t;\n    assert(abs(base_cost)\
-    \ < infty<T>);\n  }\n  void add_edge(int i, int j, T t) {\n    assert(t >= 0);\n\
-    \    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key] +=\
-    \ t;\n    assert(edges[key] <= infty<T>);\n  }\n\n  void _add_1(int i, T x0, T\
-    \ x1) {\n    if (x0 <= x1) {\n      add_base(x0);\n      add_edge(source, i, x1\
-    \ - x0);\n    } else {\n      add_base(x1);\n      add_edge(i, sink, x0 - x1);\n\
-    \    }\n  }\n\n  void _add_2(int i, int j, T x00, T x01, T x10, T x11) {\n   \
-    \ assert(x00 + x11 <= x01 + x10);\n    _add_1(i, x00, x10);\n    _add_1(j, 0,\
-    \ x11 - x10);\n    add_edge(i, j, x01 + x10 - x00 - x11);\n  }\n\n  void _add_3(int\
-    \ i, int j, int k, T x000, T x001, T x010, T x011, T x100,\n              T x101,\
-    \ T x110, T x111) {\n    T p = x000 - x100 - x010 - x001 + x110 + x101 + x011\
-    \ - x111;\n    if (p > 0) {\n      add_base(x000);\n      _add_1(i, 0, x100 -\
-    \ x000);\n      _add_1(j, 0, x010 - x000);\n      _add_1(k, 0, x001 - x000);\n\
-    \      _add_2(i, j, 0, 0, 0, x000 + x110 - x100 - x010);\n      _add_2(i, k, 0,\
-    \ 0, 0, x000 + x101 - x100 - x001);\n      _add_2(j, k, 0, 0, 0, x000 + x011 -\
-    \ x010 - x001);\n      // \u3042\u3068\u306F\u3001111 \u306E\u3068\u304D\u306B\
-    \u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      add_base(-p);\n      // 111\
-    \ \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(i, nxt, p);\n \
-    \     add_edge(j, nxt, p);\n      add_edge(k, nxt, p);\n      add_edge(nxt, sink,\
-    \ p);\n      ++nxt;\n    } else {\n      p = -p;\n      add_base(x111);\n    \
-    \  _add_1(i, x011 - x111, 0);\n      _add_1(i, x101 - x111, 0);\n      _add_1(i,\
+    \ cap);\n  }\n\nprivate:\n  void add_base(T t) {\n    base_cost += t;\n    assert(-infty<T>\
+    \ < base_cost && base_cost < infty<T>);\n  }\n  void add_edge(int i, int j, T\
+    \ t) {\n    assert(t >= 0);\n    if (t == 0) return;\n    pair<int, int> key =\
+    \ mp(i, j);\n    edges[key] += t;\n    assert(edges[key] <= infty<T>);\n  }\n\n\
+    \  void _add_1(int i, T x0, T x1) {\n    if (x0 <= x1) {\n      add_base(x0);\n\
+    \      add_edge(source, i, x1 - x0);\n    } else {\n      add_base(x1);\n    \
+    \  add_edge(i, sink, x0 - x1);\n    }\n  }\n\n  void _add_2(int i, int j, T x00,\
+    \ T x01, T x10, T x11) {\n    assert(x00 + x11 <= x01 + x10);\n    _add_1(i, x00,\
+    \ x10);\n    _add_1(j, 0, x11 - x10);\n    add_edge(i, j, x01 + x10 - x00 - x11);\n\
+    \  }\n\n  void _add_3(int i, int j, int k, T x000, T x001, T x010, T x011, T x100,\n\
+    \              T x101, T x110, T x111) {\n    T p = x000 - x100 - x010 - x001\
+    \ + x110 + x101 + x011 - x111;\n    if (p > 0) {\n      add_base(x000);\n    \
+    \  _add_1(i, 0, x100 - x000);\n      _add_1(j, 0, x010 - x000);\n      _add_1(k,\
+    \ 0, x001 - x000);\n      _add_2(i, j, 0, 0, 0, x000 + x110 - x100 - x010);\n\
+    \      _add_2(i, k, 0, 0, 0, x000 + x101 - x100 - x001);\n      _add_2(j, k, 0,\
+    \ 0, 0, x000 + x011 - x010 - x001);\n      // \u3042\u3068\u306F\u3001111 \u306E\
+    \u3068\u304D\u306B\u5229\u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      add_base(-p);\n\
+    \      // 111 \u4EE5\u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(i,\
+    \ nxt, p);\n      add_edge(j, nxt, p);\n      add_edge(k, nxt, p);\n      add_edge(nxt,\
+    \ sink, p);\n      ++nxt;\n    } else {\n      p = -p;\n      add_base(x111);\n\
+    \      _add_1(i, x011 - x111, 0);\n      _add_1(i, x101 - x111, 0);\n      _add_1(i,\
     \ x110 - x111, 0);\n      _add_2(i, j, x111 + x001 - x011 - x101, 0, 0, 0);\n\
     \      _add_2(i, k, x111 + x010 - x011 - x110, 0, 0, 0);\n      _add_2(j, k, x111\
     \ + x100 - x101 - x110, 0, 0, 0);\n      // 000 \u306E\u3068\u304D\u306B\u5229\
     \u5F97 p \u3092\u8FFD\u52A0\u3059\u308B\n      add_base(-p);\n      // 000 \u4EE5\
     \u5916\u3060\u3068\u30B3\u30B9\u30C8 p\n      add_edge(nxt, i, p);\n      add_edge(nxt,\
     \ j, p);\n      add_edge(nxt, k, p);\n      add_edge(source, nxt, p);\n      ++nxt;\n\
-    \    }\n    assert(abs(base_cost) < infty<T>);\n  }\n};\n#line 5 \"test_atcoder/abc193f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  const int INF = infty<int>;\n\
-    \  Binary_Optimization<ll, 0> X(N * N);\n  auto idx = [&](int i, int j) -> int\
-    \ { return N * i + j; };\n\n  FOR(i, N) FOR(j, N) {\n    int sgn = (i + j) % 2;\n\
-    \    if (G[i][j] == 'B' && sgn == 0) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j]\
-    \ == 'W' && sgn == 1) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j] == 'B' &&\
-    \ sgn == 1) X.add_1(idx(i, j), 0, -INF);\n    if (G[i][j] == 'W' && sgn == 0)\
-    \ X.add_1(idx(i, j), 0, -INF);\n  }\n\n  int dx[] = {0, 1};\n  int dy[] = {1,\
-    \ 0};\n\n  FOR(x, N) FOR(y, N) {\n    FOR(d, 2) {\n      int nx = x + dx[d], ny\
-    \ = y + dy[d];\n      if (nx >= N || ny >= N) continue;\n      int a = idx(x,\
-    \ y), b = idx(nx, ny);\n      X.add_2(a, b, 1, 0, 0, 1);\n    }\n  }\n\n  ll ANS\
-    \ = X.calc().fi;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \    }\n  }\n};\n#line 5 \"test_atcoder/abc193f.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N);\n  VEC(string, G, N);\n  const int INF = infty<int>;\n  Binary_Optimization<ll,\
+    \ 0> X(N * N);\n  auto idx = [&](int i, int j) -> int { return N * i + j; };\n\
+    \n  FOR(i, N) FOR(j, N) {\n    int sgn = (i + j) % 2;\n    if (G[i][j] == 'B'\
+    \ && sgn == 0) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j] == 'W' && sgn ==\
+    \ 1) X.add_1(idx(i, j), -INF, 0);\n    if (G[i][j] == 'B' && sgn == 1) X.add_1(idx(i,\
+    \ j), 0, -INF);\n    if (G[i][j] == 'W' && sgn == 0) X.add_1(idx(i, j), 0, -INF);\n\
+    \  }\n\n  int dx[] = {0, 1};\n  int dy[] = {1, 0};\n\n  FOR(x, N) FOR(y, N) {\n\
+    \    FOR(d, 2) {\n      int nx = x + dx[d], ny = y + dy[d];\n      if (nx >= N\
+    \ || ny >= N) continue;\n      int a = idx(x, y), b = idx(nx, ny);\n      X.add_2(a,\
+    \ b, 1, 0, 0, 1);\n    }\n  }\n\n  ll ANS = X.calc().fi;\n  print(ANS);\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc193/tasks/abc193_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/binary_optimization.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  const int INF = infty<int>;\n\
@@ -333,7 +332,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc193f.test.cpp
   requiredBy: []
-  timestamp: '2024-04-04 23:46:22+09:00'
+  timestamp: '2024-04-05 00:41:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc193f.test.cpp
