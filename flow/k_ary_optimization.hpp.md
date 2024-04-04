@@ -5,10 +5,13 @@ data:
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/arc107.test.cpp
+    title: test_atcoder/arc107.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/k_ary_optimization.hpp\"\n\n#line 2 \"flow/maxflow.hpp\"\
@@ -71,29 +74,32 @@ data:
     \    }\n  }\n\n  // xi \u3092 0, 1, ..., k-1 \u306B\u3059\u308B\u3068\u304D\u306B\
     \u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\u3002\n  void\
     \ add_1(int i, vc<T> cost) {\n    assert(0 <= i && i < n && len(cost) == ks[i]);\n\
-    \    if (!MINIMIZE) {\n      for (auto& x: cost) x = -x;\n    }\n    add_base(cost[0]);\n\
-    \    FOR_R(j, ks[i]) cost[j] -= cost[0];\n    FOR(j, 1, ks[i]) {\n      T x =\
-    \ cost[j] - cost[j - 1];\n      // j \u4EE5\u4E0A\u306B\u3059\u308B\u3068 x\n\
-    \      if (x > 0) add_edge(idx[i][j], sink, x);\n      if (x < 0) add_base(x),\
-    \ add_edge(source, idx[i][j], -x);\n    }\n  }\n\n  void add_2(int i, int j, vvc<T>\
-    \ cost) {\n    assert(0 <= i && i < n && 0 <= j && j < n && i != j);\n    int\
-    \ H = ks[i], W = ks[j];\n    assert(len(cost) == H);\n    FOR(a, H) assert(len(cost[a])\
-    \ == W);\n    if (!MINIMIZE) { FOR(a, H) FOR(b, W) cost[a][b] = -cost[a][b]; }\n\
-    \    add_1(j, cost[0]);\n    FOR_R(a, H) FOR(b, W) cost[a][b] -= cost[0][b];\n\
-    \    vc<T> tmp(H);\n    FOR(a, H) tmp[a] = cost[a][W - 1];\n    add_1(i, tmp);\n\
+    \    if (!MINIMIZE) {\n      for (auto& x: cost) x = -x;\n    }\n    _add_1(i,\
+    \ cost);\n  }\n\n  void add_2(int i, int j, vvc<T> cost) {\n    assert(0 <= i\
+    \ && i < n && 0 <= j && j < n && i != j);\n    int H = ks[i], W = ks[j];\n   \
+    \ assert(len(cost) == H);\n    FOR(a, H) assert(len(cost[a]) == W);\n    if (!MINIMIZE)\
+    \ { FOR(a, H) FOR(b, W) cost[a][b] = -cost[a][b]; }\n    _add_2(i, j, cost);\n\
+    \  }\n\n  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u3001[0,k) \u5217\u3092\u8FD4\
+    \u3059\n  pair<T, vc<int>> calc() {\n    MaxFlow<T> G(nxt, source, sink);\n  \
+    \  for (auto&& [key, cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm,\
+    \ to, cap);\n    }\n\n    auto [val, cut] = G.cut();\n    val += base_cost;\n\
+    \    vc<int> ANS(n);\n    FOR(i, n) {\n      FOR(j, 1, ks[i]) { ANS[i] += 1 -\
+    \ cut[idx[i][j]]; }\n    }\n    if (!MINIMIZE) val = -val;\n    return {val, ANS};\n\
+    \  }\n\nprivate:\n  void add_base(T x) {\n    base_cost += x;\n    assert(abs(base_cost)\
+    \ <= infty<T>);\n  }\n\n  void add_edge(int i, int j, T t) {\n    assert(t >=\
+    \ 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key]\
+    \ += t;\n    assert(edges[key] <= infty<T>);\n  }\n\n  void _add_1(int i, vc<T>\
+    \ cost) {\n    add_base(cost[0]);\n    FOR_R(j, ks[i]) cost[j] -= cost[0];\n \
+    \   FOR(j, 1, ks[i]) {\n      T x = cost[j] - cost[j - 1];\n      // j \u4EE5\u4E0A\
+    \u306B\u3059\u308B\u3068 x\n      if (x > 0) add_edge(idx[i][j], sink, x);\n \
+    \     if (x < 0) add_base(x), add_edge(source, idx[i][j], -x);\n    }\n  }\n \
+    \ void _add_2(int i, int j, vvc<T> cost) {\n    int H = ks[i], W = ks[j];\n  \
+    \  _add_1(j, cost[0]);\n    FOR_R(a, H) FOR(b, W) cost[a][b] -= cost[0][b];\n\
+    \    vc<T> tmp(H);\n    FOR(a, H) tmp[a] = cost[a][W - 1];\n    _add_1(i, tmp);\n\
     \    FOR(a, H) FOR(b, W) cost[a][b] -= tmp[a];\n    FOR(a, 1, H) FOR(b, W - 1)\
     \ {\n      T x = cost[a][b] + cost[a - 1][b + 1] - cost[a - 1][b] - cost[a][b\
     \ + 1];\n      assert(x >= 0); // monge\n      add_edge(idx[i][a], idx[j][b +\
-    \ 1], x);\n    }\n  }\n\n  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u3001[0,k)\
-    \ \u5217\u3092\u8FD4\u3059\n  pair<T, vc<int>> calc() {\n    MaxFlow<T> G(nxt,\
-    \ source, sink);\n    for (auto&& [key, cap]: edges) {\n      auto [frm, to] =\
-    \ key;\n      G.add(frm, to, cap);\n    }\n\n    auto [val, cut] = G.cut();\n\
-    \    val += base_cost;\n    vc<int> ANS(n);\n    FOR(i, n) {\n      FOR(j, 1,\
-    \ ks[i]) { ANS[i] += 1 - cut[idx[i][j]]; }\n    }\n    return {val, ANS};\n  }\n\
-    \nprivate:\n  void add_base(T x) {\n    base_cost += x;\n    assert(abs(base_cost)\
-    \ <= infty<T>);\n  }\n\n  void add_edge(int i, int j, T t) {\n    assert(t >=\
-    \ 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key]\
-    \ += t;\n    assert(edges[key] <= infty<T>);\n  }\n};\n"
+    \ 1], x);\n    }\n  }\n};\n"
   code: "\n#include \"flow/maxflow.hpp\"\n\n// ABC347G\ntemplate <typename T, bool\
     \ MINIMIZE>\nstruct K_ary_Optimization {\n  int n;\n  vc<int> ks;\n  vvc<int>\
     \ idx;\n  map<pair<int, int>, T> edges;\n  int source, sink, nxt;\n  T base_cost;\n\
@@ -105,37 +111,41 @@ data:
     \    }\n  }\n\n  // xi \u3092 0, 1, ..., k-1 \u306B\u3059\u308B\u3068\u304D\u306B\
     \u304B\u304B\u308B\u30B3\u30B9\u30C8\u3092\u8FFD\u52A0\u3059\u308B\u3002\n  void\
     \ add_1(int i, vc<T> cost) {\n    assert(0 <= i && i < n && len(cost) == ks[i]);\n\
-    \    if (!MINIMIZE) {\n      for (auto& x: cost) x = -x;\n    }\n    add_base(cost[0]);\n\
-    \    FOR_R(j, ks[i]) cost[j] -= cost[0];\n    FOR(j, 1, ks[i]) {\n      T x =\
-    \ cost[j] - cost[j - 1];\n      // j \u4EE5\u4E0A\u306B\u3059\u308B\u3068 x\n\
-    \      if (x > 0) add_edge(idx[i][j], sink, x);\n      if (x < 0) add_base(x),\
-    \ add_edge(source, idx[i][j], -x);\n    }\n  }\n\n  void add_2(int i, int j, vvc<T>\
-    \ cost) {\n    assert(0 <= i && i < n && 0 <= j && j < n && i != j);\n    int\
-    \ H = ks[i], W = ks[j];\n    assert(len(cost) == H);\n    FOR(a, H) assert(len(cost[a])\
-    \ == W);\n    if (!MINIMIZE) { FOR(a, H) FOR(b, W) cost[a][b] = -cost[a][b]; }\n\
-    \    add_1(j, cost[0]);\n    FOR_R(a, H) FOR(b, W) cost[a][b] -= cost[0][b];\n\
-    \    vc<T> tmp(H);\n    FOR(a, H) tmp[a] = cost[a][W - 1];\n    add_1(i, tmp);\n\
+    \    if (!MINIMIZE) {\n      for (auto& x: cost) x = -x;\n    }\n    _add_1(i,\
+    \ cost);\n  }\n\n  void add_2(int i, int j, vvc<T> cost) {\n    assert(0 <= i\
+    \ && i < n && 0 <= j && j < n && i != j);\n    int H = ks[i], W = ks[j];\n   \
+    \ assert(len(cost) == H);\n    FOR(a, H) assert(len(cost[a]) == W);\n    if (!MINIMIZE)\
+    \ { FOR(a, H) FOR(b, W) cost[a][b] = -cost[a][b]; }\n    _add_2(i, j, cost);\n\
+    \  }\n\n  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u3001[0,k) \u5217\u3092\u8FD4\
+    \u3059\n  pair<T, vc<int>> calc() {\n    MaxFlow<T> G(nxt, source, sink);\n  \
+    \  for (auto&& [key, cap]: edges) {\n      auto [frm, to] = key;\n      G.add(frm,\
+    \ to, cap);\n    }\n\n    auto [val, cut] = G.cut();\n    val += base_cost;\n\
+    \    vc<int> ANS(n);\n    FOR(i, n) {\n      FOR(j, 1, ks[i]) { ANS[i] += 1 -\
+    \ cut[idx[i][j]]; }\n    }\n    if (!MINIMIZE) val = -val;\n    return {val, ANS};\n\
+    \  }\n\nprivate:\n  void add_base(T x) {\n    base_cost += x;\n    assert(abs(base_cost)\
+    \ <= infty<T>);\n  }\n\n  void add_edge(int i, int j, T t) {\n    assert(t >=\
+    \ 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key]\
+    \ += t;\n    assert(edges[key] <= infty<T>);\n  }\n\n  void _add_1(int i, vc<T>\
+    \ cost) {\n    add_base(cost[0]);\n    FOR_R(j, ks[i]) cost[j] -= cost[0];\n \
+    \   FOR(j, 1, ks[i]) {\n      T x = cost[j] - cost[j - 1];\n      // j \u4EE5\u4E0A\
+    \u306B\u3059\u308B\u3068 x\n      if (x > 0) add_edge(idx[i][j], sink, x);\n \
+    \     if (x < 0) add_base(x), add_edge(source, idx[i][j], -x);\n    }\n  }\n \
+    \ void _add_2(int i, int j, vvc<T> cost) {\n    int H = ks[i], W = ks[j];\n  \
+    \  _add_1(j, cost[0]);\n    FOR_R(a, H) FOR(b, W) cost[a][b] -= cost[0][b];\n\
+    \    vc<T> tmp(H);\n    FOR(a, H) tmp[a] = cost[a][W - 1];\n    _add_1(i, tmp);\n\
     \    FOR(a, H) FOR(b, W) cost[a][b] -= tmp[a];\n    FOR(a, 1, H) FOR(b, W - 1)\
     \ {\n      T x = cost[a][b] + cost[a - 1][b + 1] - cost[a - 1][b] - cost[a][b\
     \ + 1];\n      assert(x >= 0); // monge\n      add_edge(idx[i][a], idx[j][b +\
-    \ 1], x);\n    }\n  }\n\n  // \u6700\u5C0F\u5024\u304A\u3088\u3073\u3001[0,k)\
-    \ \u5217\u3092\u8FD4\u3059\n  pair<T, vc<int>> calc() {\n    MaxFlow<T> G(nxt,\
-    \ source, sink);\n    for (auto&& [key, cap]: edges) {\n      auto [frm, to] =\
-    \ key;\n      G.add(frm, to, cap);\n    }\n\n    auto [val, cut] = G.cut();\n\
-    \    val += base_cost;\n    vc<int> ANS(n);\n    FOR(i, n) {\n      FOR(j, 1,\
-    \ ks[i]) { ANS[i] += 1 - cut[idx[i][j]]; }\n    }\n    return {val, ANS};\n  }\n\
-    \nprivate:\n  void add_base(T x) {\n    base_cost += x;\n    assert(abs(base_cost)\
-    \ <= infty<T>);\n  }\n\n  void add_edge(int i, int j, T t) {\n    assert(t >=\
-    \ 0);\n    if (t == 0) return;\n    pair<int, int> key = mp(i, j);\n    edges[key]\
-    \ += t;\n    assert(edges[key] <= infty<T>);\n  }\n};"
+    \ 1], x);\n    }\n  }\n};"
   dependsOn:
   - flow/maxflow.hpp
   isVerificationFile: false
   path: flow/k_ary_optimization.hpp
   requiredBy: []
-  timestamp: '2024-04-04 22:23:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-04-04 22:51:03+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test_atcoder/arc107.test.cpp
 documentation_of: flow/k_ary_optimization.hpp
 layout: document
 redirect_from:

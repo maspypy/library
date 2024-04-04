@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
   - icon: ':heavy_check_mark:'
@@ -36,9 +36,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc326g.test.cpp
     title: test_atcoder/abc326g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/arc107.test.cpp
+    title: test_atcoder/arc107.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -154,6 +157,7 @@ data:
   verifiedWith:
   - test_atcoder/abc326g.test.cpp
   - test_atcoder/abc193f.test.cpp
+  - test_atcoder/arc107.test.cpp
   - test_atcoder/abc318g.test.cpp
   - test_atcoder/abc259g.test.cpp
   - test/aoj/2251_1.test.cpp
