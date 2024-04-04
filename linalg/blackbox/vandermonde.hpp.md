@@ -528,8 +528,8 @@ data:
   timestamp: '2024-01-21 21:06:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc260h.test.cpp
   - test/mytest/vandermonde.test.cpp
+  - test_atcoder/abc260h.test.cpp
 documentation_of: linalg/blackbox/vandermonde.hpp
 layout: document
 redirect_from:

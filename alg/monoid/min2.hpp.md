@@ -1,11 +1,17 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: graph/shortest_path/top2_dijkstra.hpp
+    title: graph/shortest_path/top2_dijkstra.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc245g.test.cpp
     title: test_atcoder/abc245g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc245g2.test.cpp
+    title: test_atcoder/abc245g2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -38,11 +44,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: alg/monoid/min2.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/shortest_path/top2_dijkstra.hpp
   timestamp: '2023-12-23 11:53:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc245g.test.cpp
+  - test_atcoder/abc245g2.test.cpp
 documentation_of: alg/monoid/min2.hpp
 layout: document
 redirect_from:

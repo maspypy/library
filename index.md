@@ -1082,6 +1082,9 @@ data:
       path: graph/shortest_path/restore_path.hpp
       title: graph/shortest_path/restore_path.hpp
     - icon: ':heavy_check_mark:'
+      path: graph/shortest_path/top2_dijkstra.hpp
+      title: graph/shortest_path/top2_dijkstra.hpp
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/warshall_floyd.hpp
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
@@ -1823,6 +1826,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_exp.hpp
       title: setfunc/sps_exp.hpp
+    - icon: ':heavy_check_mark:'
+      path: setfunc/sps_inv.hpp
+      title: setfunc/sps_inv.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
@@ -4322,6 +4328,9 @@ data:
       path: test_atcoder/abc245g.test.cpp
       title: test_atcoder/abc245g.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc245g2.test.cpp
+      title: test_atcoder/abc245g2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc249_ex.test.cpp
       title: test_atcoder/abc249_ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4426,6 +4435,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc301h.test.cpp
       title: test_atcoder/abc301h.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc306h.test.cpp
+      title: test_atcoder/abc306h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc312f.test.cpp
       title: test_atcoder/abc312f.test.cpp

@@ -795,7 +795,7 @@ data:
     \    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    FOR(i, n)\
     \ G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n#line 5 \"graph/count/count_labeled_bridgeless.hpp\"\
     \n\n// \u6A4B\u306E\u306A\u3044\u9023\u7D50\u30B0\u30E9\u30D5\n// https://oeis.org/A095983\n\
-    // N=1: 1\n// O(N^2)\ntemplate <typename mint>\nvc<mint> count_labeled_bridgeless(int\
+    // N=1: 1\n// O(Nlog^2N)\ntemplate <typename mint>\nvc<mint> count_labeled_bridgeless(int\
     \ N) {\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i]\
     \ *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i] = mint(i)\
     \ * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n  E.pop_back();\n\
@@ -862,7 +862,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_labeled_bridgeless.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-04 19:08:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_labeled_bridgeless.test.cpp

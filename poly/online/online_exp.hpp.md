@@ -200,8 +200,8 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/online_exp.test.cpp
   - test/mytest/count_unlabeled_tree.test.cpp
+  - test/mytest/online_exp.test.cpp
 documentation_of: poly/online/online_exp.hpp
 layout: document
 redirect_from:
