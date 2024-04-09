@@ -1,17 +1,24 @@
 #include "string/palindromic_tree.hpp"
 
-// dp[i] := すべての n 個への分割に対する x^n の総和
-// dp[j] = sum_i dp[i]*x if [i,j) palindrome
-// https://arxiv.org/pdf/1403.2431.pdf
-// 偶数長のものに制限してやる：https://codeforces.com/contest/932/problem/G
-template <typename T, typename F1, typename F2>
-vc<T> palindrome_decomposition_dp(string S, T add_unit, T mul_unit, F1 add,
-                                  F2 mul_x) {
+/*
+https://arxiv.org/pdf/1403.2431.pdf
+回文に分割する dp は O(nlog n) time, O(n) space になる
+同じところに遷移するものをまとめたもの gdp
+・dp[i] := dp_init[i]
+・F(i, dp[i], gdp[j]): dp[i] に gdp[j] からの遷移を追加
+・gdp[i] := gdp_unit
+・G(i, gdp[j], dp[i]): gdp[j] に dp[i] からの遷移をまとめる
+偶数長のものに制限してやることもある
+この場合 i が奇数のときの F は何もしなければよい
+https://codeforces.com/contest/932/problem/G
+https://codeforces.com/problemset/problem/906/E
+*/
+template <typename DP, typename GDP, typename F1, typename F2>
+vc<DP> palindrome_decomposition_dp(string S, vc<DP> dp_init, GDP gdp_unit, F1 F,
+                                   F2 G) {
   int N = len(S);
   Palindromic_Tree<26> X(S, 'a');
   int n = len(X.nodes);
-  // even length に制限
-
   /*
   各ノードに対して
   suffix との長さの差分
@@ -29,10 +36,9 @@ vc<T> palindrome_decomposition_dp(string S, T add_unit, T mul_unit, F1 add,
     up[v] = (diff[v] == diff[w] ? up[w] : w);
   }
 
-  vc<T> dp(N + 1, add_unit);
-  vc<T> gdp(N + 1, add_unit);
-  dp[0] = mul_unit;
-
+  vc<DP>& dp = dp_init;
+  assert(len(dp) == N + 1);
+  vc<GDP> gdp(N + 1);
   auto& path = X.path;
   FOR(j, 1, N + 1) {
     int v = path[j];
@@ -40,12 +46,14 @@ vc<T> palindrome_decomposition_dp(string S, T add_unit, T mul_unit, F1 add,
     while (v >= 2) {
       if (step[v] == 1) {
         // 1 項だけからなる等差数列の集約で初期化
-        gdp[i] = dp[i];
+        gdp[i] = gdp_unit;
+        gdp[i] = G(i, gdp[i], dp[i]);
       } else {
         // 等差数列の末尾を追加
-        gdp[i] = add(gdp[i], dp[i + diff[v] * (step[v] - 1)]);
+        int idx = i + diff[v] * (step[v] - 1);
+        gdp[i] = G(idx, gdp[i], dp[idx]);
       }
-      dp[j] = add(dp[j], mul_x(gdp[i])), i += diff[v] * step[v], v = up[v];
+      dp[j] = F(j, dp[j], gdp[i]), i += diff[v] * step[v], v = up[v];
     }
   }
   return dp;

@@ -61,6 +61,12 @@ struct FenwickTree {
     return G::op(pos, G::inverse(neg));
   }
 
+  vc<E> get_all() {
+    vc<E> res(n);
+    FOR(i, n) res[i] = prod(i, i + 1);
+    return res;
+  }
+
   void add(int k, E x) { multiply(k, x); }
   void multiply(int k, E x) {
     static_assert(G::commute);

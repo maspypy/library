@@ -4,7 +4,7 @@
 // given polynomial L_i, R_i, f.
 // For each i, calculate [x^n]f(x)L(x)R(x)
 // L(x) = prod_{j<i}L_j(x)
-// R(x) = prod_{i<=j}R_j(x)
+// R(x) = prod_{i<j}R_j(x)
 // set しなかった L_i, R_i には 1 が入る
 template <typename mint>
 struct Typical_Divide_Conquer {

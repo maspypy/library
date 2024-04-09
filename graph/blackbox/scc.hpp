@@ -1,8 +1,9 @@
 
 // G とその reverse graph に対して dfs を行う
-// 探索で見た辺を集めても scc_dag は得られないので注意
+// topo順は正しいが, 探索で見た辺を集めても scc_dag は得られないので注意
 // set_used(int v, bool rev)
 // find_used(int v, bool rev)
+// find は set よりあとに呼ばれる
 template <typename F1, typename F2>
 pair<int, vc<int>> blackbox_scc(int N, F1 set_used, F2 find_unused) {
   vc<int> ord(N);
@@ -29,6 +30,7 @@ pair<int, vc<int>> blackbox_scc(int N, F1 set_used, F2 find_unused) {
     vis[v] = 1, comp[v] = nc, set_used(v, true);
     while (1) {
       int to = find_unused(v, true);
+      assert(to < N);
       if (to == -1) break;
       dfs(dfs, to);
     }

@@ -2,7 +2,7 @@
 #include "geo/angle_sort.hpp"
 #include "geo/base.hpp"
 #include "random/base.hpp"
-#include "ds/fenwicktree/fenwicktree.hpp"
+#include "ds/fenwicktree/fenwicktree_01.hpp"
 
 // 点群 A, B を入力 （Point<ll>）
 // query(i,j,k)：三角形 AiAjAk 内部の Bl の個数（非負）を返す
@@ -75,7 +75,7 @@ private:
       C = rearrange(C, I);
       vc<int> rk(m);
       FOR(k, m) rk[I[k]] = k;
-      FenwickTree<Monoid_Add<int>> bit(m);
+      FenwickTree_01 bit(m);
 
       int k = m;
       FOR_R(i, j) {
