@@ -1,6 +1,7 @@
 #include "mod/min_of_linear_segments.hpp"
 
 // min_{x in [L, R)} (ax+b mod)
+// {x, f(x)}
 pair<ll, int> min_of_linear(ll L, ll R, int a, int b, int mod) {
   a %= mod;
   if (a < 0) a += mod;

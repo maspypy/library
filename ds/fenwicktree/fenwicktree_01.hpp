@@ -1,3 +1,5 @@
+#pragma once
+
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 struct FenwickTree_01 {

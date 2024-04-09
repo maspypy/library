@@ -31,9 +31,13 @@ void test_min_palindrome_decomposition() {
             if (is_pal[L][R]) chmin(DP[R], DP[L] + 1);
           }
         }
-        vc<int> dp = palindrome_decomposition_dp<int>(
-            S, infty<int>, 0, [&](int x, int y) -> int { return min(x, y); },
-            [&](int x) -> int { return x + 1; });
+        vc<int> dp_init(N + 1, infty<int>);
+        dp_init[0] = 0;
+        auto F = [&](int i, int a, int g) -> int { return min(a, g + 1); };
+        auto G = [&](int i, int g, int a) -> int { return min(g, a); };
+
+        vc<int> dp = palindrome_decomposition_dp<int, int>(S, dp_init,
+                                                           infty<int>, F, G);
         assert(dp == DP);
       }
     }
@@ -66,9 +70,12 @@ void test_cnt_palindrome_decomposition() {
             if (is_pal[L][R]) DP[R] += DP[L];
           }
         }
-        vc<int> dp = palindrome_decomposition_dp<int>(
-            S, 0, 1, [&](int x, int y) -> int { return x + y; },
-            [&](int x) -> int { return x; });
+        vc<int> dp_init(N + 1);
+        dp_init[0] = 1;
+        auto F = [&](int i, int a, int g) -> int { return a + g; };
+        auto G = [&](int i, int g, int a) -> int { return g + a; };
+
+        vc<int> dp = palindrome_decomposition_dp<int, int>(S, dp_init, 0, F, G);
         assert(dp == DP);
       }
     }
