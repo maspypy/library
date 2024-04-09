@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/465.test.cpp
     title: test/yukicoder/465.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromic_tree.hpp\"\n// palindromic tree \u3092\
@@ -76,12 +76,12 @@ data:
   requiredBy:
   - string/palindrome_decomposition_dp.hpp
   timestamp: '2023-12-25 02:06:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/263.test.cpp
-  - test/yukicoder/465.test.cpp
-  - test/yukicoder/2606.test.cpp
   - test/mytest/palindrome_decomposition_dp.test.cpp
+  - test/yukicoder/263.test.cpp
+  - test/yukicoder/2606.test.cpp
+  - test/yukicoder/465.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:

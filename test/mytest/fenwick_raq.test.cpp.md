@@ -4,22 +4,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -202,40 +202,41 @@ data:
     \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
     \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
     \ = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
-    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
-    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
-    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
-    \ F>\n  int max_right(const F check, int L = 0) {\n    assert(check(G::unit()));\n\
-    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
-    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s,\
-    \ G::inverse(dat[i - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) +\
-    \ 1; }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
-    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) { return\
-    \ k; }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n\
-    \    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat))\
-    \ {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(t)) { i\
-    \ += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n\
-    \  template <class F>\n  int max_right_with_index(const F check, int L = 0) {\n\
-    \    assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
-    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
-    \        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n \
-    \       if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
-    \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
-    \ k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n        s = G::op(s,\
-    \ G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n\
-    \      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t)) { i += (1 << k),\
-    \ s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) {\n    assert(check(G::unit()));\n    E s = G::unit();\n\
-    \    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\u307E\u3067\
-    \u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n      s = G::op(s,\
-    \ dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n    }\n    if (check(s))\
-    \ {\n      assert(i == 0);\n      return 0;\n    }\n    // 2^k \u9032\u3080\u3068\
-    \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
-    \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
-    \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
-    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
-    \ bool { return x <= k; }, L);\n  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\
+    \  }\n\n  vc<E> get_all() {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
+    \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
+    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
+    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
+    \  }\n\n  template <class F>\n  int max_right(const F check, int L = 0) {\n  \
+    \  assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n    // 2^k\
+    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
+    \     if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n    \
+    \    if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n \
+    \       if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
+    \ k) - 1]);\n        if (!check(t)) { return k; }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (check(t)) { i += (1 << k), s = t; }\n      }\n    }\n  \
+    \  return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) + 1; }\n        int\
+    \ k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n\
+    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
+    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t))\
+    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  template\
+    \ <class F>\n  int min_left(const F check, int R) {\n    assert(check(G::unit()));\n\
+    \    E s = G::unit();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
+    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
+    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
+    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
+    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
+    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
+    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) { i += (1 << k), s\
+    \ = t; }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return\
+    \ max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\
     \n\n// \u9045\u5EF6\u30BB\u30B0\u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\
     \uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
     // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
@@ -310,7 +311,7 @@ data:
   isVerificationFile: true
   path: test/mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-09 15:17:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/fenwick_raq.test.cpp

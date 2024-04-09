@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   _extendedRequiredBy: []
@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2259.test.cpp
     title: test/yukicoder/2259.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
@@ -37,28 +37,28 @@ data:
     \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
     \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
     \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 2 \"mod/min_of_linear.hpp\"\
-    \n\n// min_{x in [L, R)} (ax+b mod)\npair<ll, int> min_of_linear(ll L, ll R, int\
-    \ a, int b, int mod) {\n  a %= mod;\n  if (a < 0) a += mod;\n  ll n = R - L;\n\
-    \  b = (b + a * L) % mod;\n  if (b < 0) b += mod;\n  auto [X, DX] = min_of_linear_segments(a,\
+    \n\n// min_{x in [L, R)} (ax+b mod)\n// {x, f(x)}\npair<ll, int> min_of_linear(ll\
+    \ L, ll R, int a, int b, int mod) {\n  a %= mod;\n  if (a < 0) a += mod;\n  ll\
+    \ n = R - L;\n  b = (b + a * L) % mod;\n  if (b < 0) b += mod;\n  auto [X, DX]\
+    \ = min_of_linear_segments(a, b, mod);\n  int x = 0;\n  for (int i = 0; i < int(X.size())\
+    \ - 1; ++i) {\n    int xl = X[i], xr = X[i + 1];\n    if (xr < n) {\n      x =\
+    \ xr;\n      continue;\n    }\n    x = xl + (n - 1 - x) / DX[i] * DX[i];\n   \
+    \ break;\n  }\n  int y = (ll(a) * x + b) % mod;\n  return {L + x, y};\n}\n"
+  code: "#include \"mod/min_of_linear_segments.hpp\"\n\n// min_{x in [L, R)} (ax+b\
+    \ mod)\n// {x, f(x)}\npair<ll, int> min_of_linear(ll L, ll R, int a, int b, int\
+    \ mod) {\n  a %= mod;\n  if (a < 0) a += mod;\n  ll n = R - L;\n  b = (b + a *\
+    \ L) % mod;\n  if (b < 0) b += mod;\n  auto [X, DX] = min_of_linear_segments(a,\
     \ b, mod);\n  int x = 0;\n  for (int i = 0; i < int(X.size()) - 1; ++i) {\n  \
     \  int xl = X[i], xr = X[i + 1];\n    if (xr < n) {\n      x = xr;\n      continue;\n\
     \    }\n    x = xl + (n - 1 - x) / DX[i] * DX[i];\n    break;\n  }\n  int y =\
     \ (ll(a) * x + b) % mod;\n  return {L + x, y};\n}\n"
-  code: "#include \"mod/min_of_linear_segments.hpp\"\n\n// min_{x in [L, R)} (ax+b\
-    \ mod)\npair<ll, int> min_of_linear(ll L, ll R, int a, int b, int mod) {\n  a\
-    \ %= mod;\n  if (a < 0) a += mod;\n  ll n = R - L;\n  b = (b + a * L) % mod;\n\
-    \  if (b < 0) b += mod;\n  auto [X, DX] = min_of_linear_segments(a, b, mod);\n\
-    \  int x = 0;\n  for (int i = 0; i < int(X.size()) - 1; ++i) {\n    int xl = X[i],\
-    \ xr = X[i + 1];\n    if (xr < n) {\n      x = xr;\n      continue;\n    }\n \
-    \   x = xl + (n - 1 - x) / DX[i] * DX[i];\n    break;\n  }\n  int y = (ll(a) *\
-    \ x + b) % mod;\n  return {L + x, y};\n}\n"
   dependsOn:
   - mod/min_of_linear_segments.hpp
   isVerificationFile: false
   path: mod/min_of_linear.hpp
   requiredBy: []
-  timestamp: '2023-04-08 02:18:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-09 15:17:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/yukicoder/2259.test.cpp

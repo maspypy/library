@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
@@ -34,7 +34,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
@@ -512,27 +512,27 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps.hpp
   requiredBy:
-  - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/agc058d2.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/2587.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/2587_2.test.cpp
-  - test/yukicoder/2305.test.cpp
   - test/mytest/bell.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/2587.test.cpp
+  - test/yukicoder/2587_2.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test_atcoder/agc058d2.test.cpp
 documentation_of: poly/coef_of_rational_fps.hpp
 layout: document
 redirect_from:

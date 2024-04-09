@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear.hpp
     title: mod/min_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -209,16 +209,17 @@ data:
     \    x += q * k;\n      X.eb(x);\n      DX.eb(q);\n    }\n    k = det_l / det_r;\n\
     \    det_l -= k * det_r;\n    p += k * r;\n    q += k * s;\n    assert(min({p,\
     \ q, r, s}) >= 0);\n  }\n  return {X, DX};\n}\n#line 2 \"mod/min_of_linear.hpp\"\
-    \n\n// min_{x in [L, R)} (ax+b mod)\npair<ll, int> min_of_linear(ll L, ll R, int\
-    \ a, int b, int mod) {\n  a %= mod;\n  if (a < 0) a += mod;\n  ll n = R - L;\n\
-    \  b = (b + a * L) % mod;\n  if (b < 0) b += mod;\n  auto [X, DX] = min_of_linear_segments(a,\
-    \ b, mod);\n  int x = 0;\n  for (int i = 0; i < int(X.size()) - 1; ++i) {\n  \
-    \  int xl = X[i], xr = X[i + 1];\n    if (xr < n) {\n      x = xr;\n      continue;\n\
-    \    }\n    x = xl + (n - 1 - x) / DX[i] * DX[i];\n    break;\n  }\n  int y =\
-    \ (ll(a) * x + b) % mod;\n  return {L + x, y};\n}\n#line 6 \"test/library_checker/math/min_of_mod_of_linear.test.cpp\"\
-    \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto [x, fx] = min_of_linear(0, n, a,\
-    \ b, m);\n  print(fx);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\n// min_{x in [L, R)} (ax+b mod)\n// {x, f(x)}\npair<ll, int> min_of_linear(ll\
+    \ L, ll R, int a, int b, int mod) {\n  a %= mod;\n  if (a < 0) a += mod;\n  ll\
+    \ n = R - L;\n  b = (b + a * L) % mod;\n  if (b < 0) b += mod;\n  auto [X, DX]\
+    \ = min_of_linear_segments(a, b, mod);\n  int x = 0;\n  for (int i = 0; i < int(X.size())\
+    \ - 1; ++i) {\n    int xl = X[i], xr = X[i + 1];\n    if (xr < n) {\n      x =\
+    \ xr;\n      continue;\n    }\n    x = xl + (n - 1 - x) / DX[i] * DX[i];\n   \
+    \ break;\n  }\n  int y = (ll(a) * x + b) % mod;\n  return {L + x, y};\n}\n#line\
+    \ 6 \"test/library_checker/math/min_of_mod_of_linear.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(n, m, a, b);\n  auto [x, fx] = min_of_linear(0, n, a, b, m);\n  print(fx);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n  FOR(T)\
+    \ solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/min_of_linear.hpp\"\
     \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto [x, fx] = min_of_linear(0, n, a,\
@@ -232,7 +233,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/min_of_mod_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-09 15:17:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/min_of_mod_of_linear.test.cpp

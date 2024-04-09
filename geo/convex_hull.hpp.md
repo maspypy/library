@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -168,14 +168,14 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
-  - convex/fenchel.hpp
-  - geo/convex_polygon.hpp
   - geo/minkowski_sum.hpp
+  - geo/convex_polygon.hpp
+  - convex/fenchel.hpp
   timestamp: '2024-03-29 11:46:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc130f.test.cpp
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+  - test_atcoder/arc130f.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

@@ -1,19 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: ds/fenwicktree/fenwicktree_01.hpp
+    title: ds/fenwicktree/fenwicktree_01.hpp
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -24,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/13/problem/D
@@ -109,14 +112,14 @@ data:
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
-    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\
+    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
     \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
     \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
     \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
@@ -136,40 +139,74 @@ data:
     \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
     \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
     \ = G::op(neg, dat[L - 1]), L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n\
-    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
-    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
-    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
-    \ F>\n  int max_right(const F check, int L = 0) {\n    assert(check(G::unit()));\n\
-    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
-    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s,\
-    \ G::inverse(dat[i - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) +\
-    \ 1; }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
-    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) { return\
-    \ k; }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n\
-    \    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat))\
-    \ {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(t)) { i\
-    \ += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n\
-    \  template <class F>\n  int max_right_with_index(const F check, int L = 0) {\n\
-    \    assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
-    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
-    \        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n \
-    \       if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
-    \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
-    \ k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n        s = G::op(s,\
-    \ G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n\
-    \      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s,\
-    \ dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t)) { i += (1 << k),\
-    \ s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) {\n    assert(check(G::unit()));\n    E s = G::unit();\n\
-    \    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\u307E\u3067\
-    \u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n      s = G::op(s,\
-    \ dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n    }\n    if (check(s))\
-    \ {\n      assert(i == 0);\n      return 0;\n    }\n    // 2^k \u9032\u3080\u3068\
-    \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
-    \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
-    \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
-    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
-    \ bool { return x <= k; }, L);\n  }\n};\n#line 6 \"geo/count_points_in_triangles.hpp\"\
+    \  }\n\n  vc<E> get_all() {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i,\
+    \ i + 1);\n    return res;\n  }\n\n  void add(int k, E x) { multiply(k, x); }\n\
+    \  void multiply(int k, E x) {\n    static_assert(G::commute);\n    total = G::op(total,\
+    \ x);\n    for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n\
+    \  }\n\n  template <class F>\n  int max_right(const F check, int L = 0) {\n  \
+    \  assert(check(G::unit()));\n    E s = G::unit();\n    int i = L;\n    // 2^k\
+    \ \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n   \
+    \     if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n    \
+    \    if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n \
+    \       if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
+    \ k) - 1]);\n        if (!check(t)) { return k; }\n        s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n      --k;\n     \
+    \ if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s, dat[i + (1 << k)\
+    \ - 1]);\n        if (check(t)) { i += (1 << k), s = t; }\n      }\n    }\n  \
+    \  return i;\n  }\n\n  // check(i, x)\n  template <class F>\n  int max_right_with_index(const\
+    \ F check, int L = 0) {\n    assert(check(L, G::unit()));\n    E s = G::unit();\n\
+    \    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]()\
+    \ {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i\
+    \ - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) + 1; }\n        int\
+    \ k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n\
+    \        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n\
+    \    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n     \
+    \   E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t))\
+    \ { i += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  template\
+    \ <class F>\n  int min_left(const F check, int R) {\n    assert(check(G::unit()));\n\
+    \    E s = G::unit();\n    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\
+    \u308D\u307E\u3067\u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s))\
+    \ {\n      s = G::op(s, dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n\
+    \    }\n    if (check(s)) {\n      assert(i == 0);\n      return 0;\n    }\n \
+    \   // 2^k \u9032\u3080\u3068 ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\
+    \u6301\u3057\u3066\u9032\u3080\n    while (k) {\n      --k;\n      E t = G::op(s,\
+    \ G::inverse(dat[i + (1 << k) - 1]));\n      if (!check(t)) { i += (1 << k), s\
+    \ = t; }\n    }\n    return i + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return\
+    \ max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line 4 \"ds/fenwicktree/fenwicktree_01.hpp\"\
+    \n\nstruct FenwickTree_01 {\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
+    \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
+    \ build(int m) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
+    \ u64(0));\n    bit.build(n);\n  }\n\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n\
+    \    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }\n    bit.build(n, [&](int\
+    \ i) -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return bit.sum_all();\
+    \ }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int k) {\n \
+    \   int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1) << (k\
+    \ % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    if (L ==\
+    \ 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L / 64] &\
+    \ ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1) << (R\
+    \ % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n  }\n\n\
+    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    if (x == -1) remove(k);\n\
+    \  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
+    \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
+    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
+    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
+    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
+    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
+    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
+    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
+    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
+    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
+    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
+    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
+    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
+    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
+    \  return 64 * idx + topbit(dat[idx]);\n  }\n};\n#line 6 \"geo/count_points_in_triangles.hpp\"\
     \n\n// \u70B9\u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\
     \u4E09\u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\
     \u8CA0\uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\
@@ -202,21 +239,20 @@ data:
     \    FOR(k, m) C[k] = B[k] - A[j];\n      vc<int> I(m);\n      FOR(i, m) I[i]\
     \ = i;\n      sort(all(I),\n           [&](auto& a, auto& b) -> bool { return\
     \ C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n      vc<int> rk(m);\n\
-    \      FOR(k, m) rk[I[k]] = k;\n      FenwickTree<Monoid_Add<int>> bit(m);\n\n\
-    \      int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k -\
-    \ 1]) > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int lb\
-    \ = binary_search(\n            [&](int n) -> bool {\n              return (n\
-    \ == 0 ? true : C[n - 1].det(p) > 0);\n            },\n            0, m + 1);\n\
-    \        int ub = binary_search(\n            [&](int n) -> bool {\n         \
-    \     return (n == 0 ? true : C[n - 1].det(p) >= 0);\n            },\n       \
-    \     0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
-    \      }\n    }\n  }\n};\n"
+    \      FOR(k, m) rk[I[k]] = k;\n      FenwickTree_01 bit(m);\n\n      int k =\
+    \ m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k - 1]) > 0) { bit.add(rk[--k],\
+    \ 1); }\n        P p = A[i] - A[j];\n        int lb = binary_search(\n       \
+    \     [&](int n) -> bool {\n              return (n == 0 ? true : C[n - 1].det(p)\
+    \ > 0);\n            },\n            0, m + 1);\n        int ub = binary_search(\n\
+    \            [&](int n) -> bool {\n              return (n == 0 ? true : C[n -\
+    \ 1].det(p) >= 0);\n            },\n            0, m + 1);\n        seg[i][j]\
+    \ += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n      }\n    }\n  }\n};\n"
   code: "\n#include \"geo/angle_sort.hpp\"\n#include \"geo/base.hpp\"\n#include \"\
-    random/base.hpp\"\n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\n// \u70B9\u7FA4\
-    \ A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\u4E09\u89D2\
-    \u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\u8CA0\uFF09\
-    \u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\u30EA O(1)\n\
-    // https://codeforces.com/contest/13/problem/D\nstruct Count_Points_In_Triangles\
+    random/base.hpp\"\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n// \u70B9\
+    \u7FA4 A, B \u3092\u5165\u529B \uFF08Point<ll>\uFF09\n// query(i,j,k)\uFF1A\u4E09\
+    \u89D2\u5F62 AiAjAk \u5185\u90E8\u306E Bl \u306E\u500B\u6570\uFF08\u975E\u8CA0\
+    \uFF09\u3092\u8FD4\u3059\n// \u524D\u8A08\u7B97 O(NMlogM)\u3001\u30AF\u30A8\u30EA\
+    \ O(1)\n// https://codeforces.com/contest/13/problem/D\nstruct Count_Points_In_Triangles\
     \ {\n  using P = Point<ll>;\n  const int LIM = 1'000'000'000 + 10;\n  vc<P> A,\
     \ B;\n  vc<int> new_idx; // O \u304B\u3089\u898B\u305F\u504F\u89D2\u30BD\u30FC\
     \u30C8\u9806\u3092\u7BA1\u7406\n  vc<int> point;   // A[i] \u3068\u4E00\u81F4\u3059\
@@ -245,30 +281,30 @@ data:
     \    FOR(k, m) C[k] = B[k] - A[j];\n      vc<int> I(m);\n      FOR(i, m) I[i]\
     \ = i;\n      sort(all(I),\n           [&](auto& a, auto& b) -> bool { return\
     \ C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n      vc<int> rk(m);\n\
-    \      FOR(k, m) rk[I[k]] = k;\n      FenwickTree<Monoid_Add<int>> bit(m);\n\n\
-    \      int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k -\
-    \ 1]) > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int lb\
-    \ = binary_search(\n            [&](int n) -> bool {\n              return (n\
-    \ == 0 ? true : C[n - 1].det(p) > 0);\n            },\n            0, m + 1);\n\
-    \        int ub = binary_search(\n            [&](int n) -> bool {\n         \
-    \     return (n == 0 ? true : C[n - 1].det(p) >= 0);\n            },\n       \
-    \     0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
-    \      }\n    }\n  }\n};"
+    \      FOR(k, m) rk[I[k]] = k;\n      FenwickTree_01 bit(m);\n\n      int k =\
+    \ m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k - 1]) > 0) { bit.add(rk[--k],\
+    \ 1); }\n        P p = A[i] - A[j];\n        int lb = binary_search(\n       \
+    \     [&](int n) -> bool {\n              return (n == 0 ? true : C[n - 1].det(p)\
+    \ > 0);\n            },\n            0, m + 1);\n        int ub = binary_search(\n\
+    \            [&](int n) -> bool {\n              return (n == 0 ? true : C[n -\
+    \ 1].det(p) >= 0);\n            },\n            0, m + 1);\n        seg[i][j]\
+    \ += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n      }\n    }\n  }\n};"
   dependsOn:
   - geo/angle_sort.hpp
   - geo/base.hpp
   - random/base.hpp
+  - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: geo/count_points_in_triangles.hpp
   requiredBy: []
-  timestamp: '2024-02-11 04:52:18+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-09 15:17:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc202_f.test.cpp
   - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

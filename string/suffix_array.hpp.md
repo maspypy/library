@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
@@ -230,20 +230,20 @@ data:
   path: string/suffix_array.hpp
   requiredBy:
   - string/longest_common_substring.hpp
-  - string/sort_substrings.hpp
   - string/suffix_tree.hpp
+  - string/sort_substrings.hpp
   timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc151_e.test.cpp
-  - test_atcoder/abc240ex.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
-  - test/yukicoder/2361.test.cpp
-  - test/mytest/suffix_tree.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
   - test/mytest/longest_common_substr.test.cpp
+  - test/mytest/suffix_tree.test.cpp
+  - test/yukicoder/2361.test.cpp
+  - test_atcoder/arc151_e.test.cpp
+  - test_atcoder/abc240ex.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

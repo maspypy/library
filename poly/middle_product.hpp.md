@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,7 +132,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc333f.test.cpp
     title: test_atcoder/abc333f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,9 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\
@@ -265,54 +265,54 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
+  - linalg/blackbox/vandermonde.hpp
   - string/wildcard_pattern_matching.hpp
   - seq/count_grid_path.hpp
-  - poly/multipoint.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/composition.hpp
-  - poly/partial_frac_decomposition_1.hpp
-  - poly/typical_divide_conquer.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/compositional_inverse.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - linalg/blackbox/vandermonde.hpp
-  - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - poly/composition.hpp
+  - poly/multipoint.hpp
+  - poly/compositional_inverse.hpp
+  - poly/typical_divide_conquer.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc241h.test.cpp
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/agc013e.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc333f.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc267g.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/yukicoder/2231.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/1796_1.test.cpp
-  - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2626.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/chirp_z.test.cpp
   - test/mytest/typical_dc.test.cpp
-  - test/mytest/vandermonde.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/compositional_inverset.test.cpp
   - test/mytest/partial_frac.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/chirp_z.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
+  - test/yukicoder/2231.test.cpp
+  - test/yukicoder/1575.test.cpp
+  - test/yukicoder/2243.test.cpp
+  - test/yukicoder/1796_1.test.cpp
+  - test/yukicoder/2626.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc241h.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/abc333f.test.cpp
+  - test_atcoder/abc272_h.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

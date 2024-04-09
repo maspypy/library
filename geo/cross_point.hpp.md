@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
@@ -186,11 +186,11 @@ data:
   timestamp: '2023-12-21 22:18:31+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc314.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_2_C.test.cpp
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_2_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test_atcoder/abc314.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
 redirect_from:

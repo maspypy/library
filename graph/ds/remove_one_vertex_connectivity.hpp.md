@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -153,8 +153,8 @@ data:
   timestamp: '2024-01-01 16:47:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc334g.test.cpp
   - test/mytest/remove_one_vertex.test.cpp
+  - test_atcoder/abc334g.test.cpp
 documentation_of: graph/ds/remove_one_vertex_connectivity.hpp
 layout: document
 redirect_from:

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -218,9 +218,9 @@ data:
   timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc157a.test.cpp
   - test/library_checker/graph/eulerwalk_d.test.cpp
   - test/library_checker/graph/eulerwalk_ud.test.cpp
+  - test_atcoder/arc157a.test.cpp
 documentation_of: graph/eulerwalk.hpp
 layout: document
 redirect_from:

@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -244,14 +244,14 @@ data:
   isVerificationFile: false
   path: nt/three_square.hpp
   requiredBy:
-  - nt/three_triangular.hpp
   - nt/four_square.hpp
+  - nt/three_triangular.hpp
   timestamp: '2023-11-02 05:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/three_triangular.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/three_square.test.cpp
+  - test/mytest/three_triangular.test.cpp
 documentation_of: nt/three_square.hpp
 layout: document
 redirect_from:
