@@ -2,23 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/monoid/mul.hpp
-    title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/power_query.hpp
-    title: ds/power_query.hpp
-  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
+  - icon: ':heavy_check_mark:'
+    path: mod/prefix_sum_of_binom.hpp
+    title: mod/prefix_sum_of_binom.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -29,28 +23,29 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/powerquery.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
-    )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
-    \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
-    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
-    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
-    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
-    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
-    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
-    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+  bundledCode: "#line 1 \"test/mytest/prefix_sum_of_binom.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
+    \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
+    \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned long\
+    \ long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 =\
+    \ __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
+    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
+    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
+    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
+    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
+    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
+    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
     \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
@@ -110,30 +105,11 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"test/mytest/powerquery.test.cpp\"\
-    \n\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
-    \ {\r\n  using value_type = T;\r\n  using X = T;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x * y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return X(1) / x; }\r\n  static constexpr X unit() { return\
-    \ X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/power_query.hpp\"\
-    \n\n// \u5B9A\u6570\u3092\u3079\u304D\u4E57\u3059\u308B\u30AF\u30A8\u30EA\u3002\
-    \ B \u4E57\u5206\u305A\u3064\u524D\u8A08\u7B97\u3002\ntemplate <typename Mono,\
-    \ int B = 1024>\nstruct Power_Query {\n  using X = typename Mono::value_type;\n\
-    \  vvc<X> dat;\n\n  Power_Query(X a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll\
-    \ n) {\n    X res = Mono::unit();\n    int k = 0;\n    while (n) {\n      int\
-    \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
-    \ - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n\
-    \    return res;\n  }\n\n  X operator[](ll n) { return (*this)(n); }\n\nprivate:\n\
-    \  vc<X> make_pow(X a) {\n    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
-    \ a)); }\n    return res;\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
-    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \  return B;\n}\n#endif\n#line 3 \"test/mytest/prefix_sum_of_binom.test.cpp\"\n\
+    \n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -204,37 +180,55 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 7 \"test/mytest/powerquery.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
-    \ test() {\n  mint base = RNG(0, mint::get_mod());\n  Power_Query<Monoid_Mul<mint>>\
-    \ X(base);\n  FOR(1000) {\n    ll exp = RNG(0, 1'000'000'000'000'000'000);\n \
-    \   mint a = base.pow(exp);\n    mint b = X(exp);\n    assert(a == b);\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  FOR(10) test();\n  solve();\n  return 0;\n}\n"
+    #line 1 \"mod/prefix_sum_of_binom.hpp\"\ntemplate <typename mint>\nstruct Prefix_Sum_Of_Binom\
+    \ {\n  static constexpr u32 mod = mint::get_mod();\n  const int MAX_N;\n  const\
+    \ int B;\n  vc<mint> POW;\n  vvc<mint> dat;\n\n  Prefix_Sum_Of_Binom(int MAX_N)\
+    \ : MAX_N(MAX_N), B(sqrt(MAX_N + 1)) {\n    assert(MAX_N >= 0);\n    int K = ceil(MAX_N,\
+    \ B + B) + 2;\n    int p = max(MAX_N, K * B);\n    POW.assign(p + 1, mint(1));\n\
+    \    FOR(i, p) POW[i + 1] = POW[i] + POW[i];\n    dat.resize(K);\n    FOR(k, 0,\
+    \ K) {\n      // [0, kB] \u3067\u306E closed sum\n      vc<mint> &f = dat[k];\n\
+    \      if (MAX_N + 1 - k * B <= 0) continue;\n      f.resize(MAX_N + 1 - k * B);\n\
+    \      int m = k * B;\n      f[0] = POW[m] * fact<mint>(m);\n      FOR(i, MAX_N\
+    \ - m) {\n        f[i + 1] = f[i] + f[i] - fact<mint>(i + m) * fact_inv<mint>(i);\n\
+    \      }\n    }\n  }\n\n  // \\sum_{k=0}^{m-1} binom(n,k)\n  mint query(int n,\
+    \ int m) {\n    assert(0 <= m);\n    chmin(m, n + 1);\n    if (m == 0) return\
+    \ mint(0);\n    if (m + m > n + 1) return POW[n] - query(n, n + 1 - m);\n    --m;\n\
+    \    int a = m / B;\n\n    if (m <= a * B + B / 2) {\n      u128 t = 0;\n    \
+    \  FOR(i, a * B + 1, m + 1) {\n        t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n\
+    \ - i).val);\n      }\n      return _get(n, a) + mint::raw(t % mod) * fact<mint>(n);\n\
+    \    } else {\n      u128 t = 0;\n      FOR(i, m + 1, (a + 1) * B + 1) {\n   \
+    \     t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n - i).val);\n      }\n\
+    \      return _get(n, a + 1) - mint::raw(t % mod) * fact<mint>(n);\n    }\n  \
+    \  return 0;\n  }\n\nprivate:\n  mint _get(int n, int k) {\n    if (n <= k * B)\
+    \ return POW[n];\n    return dat[k][n - k * B] * fact_inv<mint>(k * B);\n  }\n\
+    };\n#line 6 \"test/mytest/prefix_sum_of_binom.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_Of_Binom<mint> X(LIM);\n\
+    \    FOR(N, LIM + 1) {\n      mint sm = 0;\n      FOR(k, N + 10) {\n        assert(sm\
+    \ == X.query(N, k));\n        sm += C<mint>(N, k);\n      }\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"random/base.hpp\"\n\n#include \"ds/power_query.hpp\"\n#include \"\
-    mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  mint base = RNG(0,\
-    \ mint::get_mod());\n  Power_Query<Monoid_Mul<mint>> X(base);\n  FOR(1000) {\n\
-    \    ll exp = RNG(0, 1'000'000'000'000'000'000);\n    mint a = base.pow(exp);\n\
-    \    mint b = X(exp);\n    assert(a == b);\n  }\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10)\
-    \ test();\n  solve();\n  return 0;\n}\n"
+    \n\n#include \"mod/modint.hpp\"\n#include \"mod/prefix_sum_of_binom.hpp\"\n\n\
+    using mint = modint998;\n\nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_Of_Binom<mint>\
+    \ X(LIM);\n    FOR(N, LIM + 1) {\n      mint sm = 0;\n      FOR(k, N + 10) {\n\
+    \        assert(sm == X.query(N, k));\n        sm += C<mint>(N, k);\n      }\n\
+    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - random/base.hpp
-  - ds/power_query.hpp
-  - alg/monoid/mul.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
+  - mod/prefix_sum_of_binom.hpp
   isVerificationFile: true
-  path: test/mytest/powerquery.test.cpp
+  path: test/mytest/prefix_sum_of_binom.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-12 12:45:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/powerquery.test.cpp
+documentation_of: test/mytest/prefix_sum_of_binom.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/powerquery.test.cpp
-- /verify/test/mytest/powerquery.test.cpp.html
-title: test/mytest/powerquery.test.cpp
+- /verify/test/mytest/prefix_sum_of_binom.test.cpp
+- /verify/test/mytest/prefix_sum_of_binom.test.cpp.html
+title: test/mytest/prefix_sum_of_binom.test.cpp
 ---

@@ -1249,6 +1249,9 @@ data:
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/prefix_sum_of_binom.test.cpp
+    title: test/mytest/prefix_sum_of_binom.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/prime_sum.test.cpp
     title: test/mytest/prime_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2295,7 +2298,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2433,10 +2436,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3188,6 +3191,7 @@ data:
   - test/mytest/add_chmin.test.cpp
   - test/mytest/three_square.test.cpp
   - test/mytest/three_triangular.test.cpp
+  - test/mytest/prefix_sum_of_binom.test.cpp
   - test/mytest/cf940f.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp

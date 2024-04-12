@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -225,16 +225,22 @@ data:
     \ -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(T, b, N2, N3);\r\n\
     \  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\n  FOR(n,\
     \ N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\
-    \n\r\n// square-matrix defined as array\r\ntemplate <class T, int N>\r\narray<array<T,\
+    \n\r\n// square-matrix defined as array\r\ntemplate <class T, int N,\r\n     \
+    \     typename enable_if<has_mod<T>::value>::type* = nullptr>\r\narray<array<T,\
     \ N>, N> matrix_mul(const array<array<T, N>, N>& A,\r\n                      \
     \           const array<array<T, N>, N>& B) {\r\n  array<array<T, N>, N> C{};\r\
     \n\r\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\r\n    FOR(i, N) FOR(k, N)\
     \ {\r\n      u64 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
     \n      C[i][k] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(k, N) {\r\n\
     \      u128 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
-    \n      C[i][k] = sm;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 7 \"test/mytest/min_poly.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n\
-    \  A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
+    \n      C[i][k] = sm;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\n// square-matrix\
+    \ defined as array\r\ntemplate <class T, int N,\r\n          typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
+    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
+    \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
+    \ * B[j][k];\r\n  return C;\r\n}\r\n#line 7 \"test/mytest/min_poly.test.cpp\"\n\
+    \nusing mint = modint998;\n\nvoid test() {\n  vc<tuple<int, int, mint>> A;\n \
+    \ A.eb(0, 0, 1);\n  A.eb(0, 1, 2);\n  A.eb(1, 0, 3);\n  A.eb(1, 1, 4);\n  vc<mint>\
     \ f = blackbox_min_poly<mint>(2, [&](vc<mint> f) -> vc<mint> {\n    vc<mint> g(2);\n\
     \    for (auto& [a, b, c]: A) g[b] += f[a] * c;\n    return g;\n  });\n  assert(f\
     \ == vc<mint>({mint(-2), mint(-5), mint(1)}));\n\n  A.clear();\n  A.eb(0, 1, 1);\n\
@@ -304,7 +310,7 @@ data:
   isVerificationFile: true
   path: test/mytest/min_poly.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-12 12:45:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/min_poly.test.cpp

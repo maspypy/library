@@ -255,27 +255,27 @@ data:
     \ G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\n  for (auto&&\
     \ e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\n  return\
     \ G1;\r\n}\r\n#line 2 \"graph/dominator_tree.hpp\"\n\n// parent (idom) \u306E\u5217\
-    \u3092\u8FD4\u3059. -1 if unreachable.\ntemplate <typename GT>\nvc<int> dominator_tree(GT&\
-    \ G, int root) {\n  static_assert(GT::is_directed);\n  const int N = G.N;\n\n\
-    \  vc<int> par(N, -1), ord(N, -1), V;\n  V.reserve(N);\n  auto dfs = [&](auto&\
-    \ dfs, int v) -> void {\n    ord[v] = len(V);\n    V.eb(v);\n    for (auto&& e:\
-    \ G[v]) {\n      if (ord[e.to] == -1) par[e.to] = v, dfs(dfs, e.to);\n    }\n\
-    \  };\n  dfs(dfs, root);\n\n  auto RG = reverse_graph(G);\n\n  vc<int> sdom(N,\
-    \ -1);\n  FOR(v, N) sdom[v] = v;\n  vc<int> mi = sdom;\n  vc<int> anc(N, -1);\n\
-    \  vc<int> us(N);\n\n  auto find = [&](auto& find, int v) -> int {\n    auto&\
-    \ a = anc[v];\n    if (a == -1) return v;\n    int b = find(find, a);\n    if\
-    \ (ord[sdom[mi[a]]] < ord[sdom[mi[v]]]) mi[v] = mi[a];\n    return anc[v] = b;\n\
-    \  };\n\n  vvc<int> bucket(N);\n\n  FOR_R(i, 1, len(V)) {\n    int w = V[i];\n\
-    \    for (auto&& e: RG[w]) {\n      int v = e.to;\n      if (ord[v] == -1) continue;\n\
-    \      find(find, v);\n      if (ord[sdom[mi[v]]] < ord[sdom[w]]) sdom[w] = sdom[mi[v]];\n\
-    \    }\n    bucket[sdom[w]].eb(w);\n\n    for (auto&& v: bucket[par[w]]) { find(find,\
-    \ v), us[v] = mi[v]; }\n    bucket[par[w]].clear();\n    anc[w] = par[w];\n  }\n\
-    \  vc<int> idom(N, -1);\n  FOR(i, 1, len(V)) {\n    int w = V[i];\n    idom[w]\
-    \ = (sdom[w] == sdom[us[w]] ? sdom[w] : idom[us[w]]);\n  }\n  return idom;\n}\n\
-    #line 6 \"test/library_checker/graph/domninator_tree.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, M, root);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n  auto\
-    \ idom = dominator_tree(G, root);\n  idom[root] = root;\n  print(idom);\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \u3092\u8FD4\u3059. -1 if unreachable.\n// https://codeforces.com/contest/757/problem/F\n\
+    template <typename GT>\nvc<int> dominator_tree(GT& G, int root) {\n  static_assert(GT::is_directed);\n\
+    \  const int N = G.N;\n\n  vc<int> par(N, -1), ord(N, -1), V;\n  V.reserve(N);\n\
+    \  auto dfs = [&](auto& dfs, int v) -> void {\n    ord[v] = len(V);\n    V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (ord[e.to] == -1) par[e.to] = v, dfs(dfs,\
+    \ e.to);\n    }\n  };\n  dfs(dfs, root);\n\n  auto RG = reverse_graph(G);\n\n\
+    \  vc<int> sdom(N, -1);\n  FOR(v, N) sdom[v] = v;\n  vc<int> mi = sdom;\n  vc<int>\
+    \ anc(N, -1);\n  vc<int> us(N);\n\n  auto find = [&](auto& find, int v) -> int\
+    \ {\n    auto& a = anc[v];\n    if (a == -1) return v;\n    int b = find(find,\
+    \ a);\n    if (ord[sdom[mi[a]]] < ord[sdom[mi[v]]]) mi[v] = mi[a];\n    return\
+    \ anc[v] = b;\n  };\n\n  vvc<int> bucket(N);\n\n  FOR_R(i, 1, len(V)) {\n    int\
+    \ w = V[i];\n    for (auto&& e: RG[w]) {\n      int v = e.to;\n      if (ord[v]\
+    \ == -1) continue;\n      find(find, v);\n      if (ord[sdom[mi[v]]] < ord[sdom[w]])\
+    \ sdom[w] = sdom[mi[v]];\n    }\n    bucket[sdom[w]].eb(w);\n\n    for (auto&&\
+    \ v: bucket[par[w]]) { find(find, v), us[v] = mi[v]; }\n    bucket[par[w]].clear();\n\
+    \    anc[w] = par[w];\n  }\n  vc<int> idom(N, -1);\n  FOR(i, 1, len(V)) {\n  \
+    \  int w = V[i];\n    idom[w] = (sdom[w] == sdom[us[w]] ? sdom[w] : idom[us[w]]);\n\
+    \  }\n  return idom;\n}\n#line 6 \"test/library_checker/graph/domninator_tree.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, M, root);\n  Graph<int, 1> G(N);\n  G.read_graph(M,\
+    \ 0, 0);\n  auto idom = dominator_tree(G, root);\n  idom[root] = root;\n  print(idom);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dominatortree\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/dominator_tree.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, root);\n  Graph<int, 1> G(N);\n  G.read_graph(M,\
@@ -290,7 +290,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/domninator_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-12 12:45:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/domninator_tree.test.cpp

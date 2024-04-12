@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -116,23 +116,28 @@ data:
     \ -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(T, b, N2, N3);\r\n\
     \  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\n  FOR(n,\
     \ N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\
-    \n\r\n// square-matrix defined as array\r\ntemplate <class T, int N>\r\narray<array<T,\
+    \n\r\n// square-matrix defined as array\r\ntemplate <class T, int N,\r\n     \
+    \     typename enable_if<has_mod<T>::value>::type* = nullptr>\r\narray<array<T,\
     \ N>, N> matrix_mul(const array<array<T, N>, N>& A,\r\n                      \
     \           const array<array<T, N>, N>& B) {\r\n  array<array<T, N>, N> C{};\r\
     \n\r\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\r\n    FOR(i, N) FOR(k, N)\
     \ {\r\n      u64 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
     \n      C[i][k] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(k, N) {\r\n\
     \      u128 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
-    \n      C[i][k] = sm;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 2 \"linalg/matrix_pow.hpp\"\
-    \n\r\ntemplate <typename T>\r\nvc<vc<T>> matrix_pow(vc<vc<T>> A, ll n) {\r\n \
-    \ int N = len(A);\r\n  vv(T, ret, N, N);\r\n  FOR(i, N) ret[i][i] = T(1);\r\n\
-    \  while (n) {\r\n    if (n & 1) ret = matrix_mul(ret, A, N, N, N);\r\n    n /=\
-    \ 2;\r\n    if (n) A = matrix_mul(A, A, N, N, N);\r\n  }\r\n  return ret;\r\n\
-    }\r\n\r\ntemplate <typename T, int N>\r\narray<array<T, N>, N> matrix_pow(array<array<T,\
-    \ N>, N> A, ll n) {\r\n  array<array<T, N>, N> ret{};\r\n  FOR(i, N) ret[i][i]\
-    \ = T(1);\r\n  while (n) {\r\n    if (n & 1) ret = matrix_mul<T, N>(ret, A);\r\
-    \n    n /= 2;\r\n    if (n) A = matrix_mul<T, N>(A, A);\r\n  }\r\n  return ret;\r\
-    \n}\n"
+    \n      C[i][k] = sm;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\n// square-matrix\
+    \ defined as array\r\ntemplate <class T, int N,\r\n          typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
+    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
+    \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
+    \ * B[j][k];\r\n  return C;\r\n}\r\n#line 2 \"linalg/matrix_pow.hpp\"\n\r\ntemplate\
+    \ <typename T>\r\nvc<vc<T>> matrix_pow(vc<vc<T>> A, ll n) {\r\n  int N = len(A);\r\
+    \n  vv(T, ret, N, N);\r\n  FOR(i, N) ret[i][i] = T(1);\r\n  while (n) {\r\n  \
+    \  if (n & 1) ret = matrix_mul(ret, A, N, N, N);\r\n    n /= 2;\r\n    if (n)\
+    \ A = matrix_mul(A, A, N, N, N);\r\n  }\r\n  return ret;\r\n}\r\n\r\ntemplate\
+    \ <typename T, int N>\r\narray<array<T, N>, N> matrix_pow(array<array<T, N>, N>\
+    \ A, ll n) {\r\n  array<array<T, N>, N> ret{};\r\n  FOR(i, N) ret[i][i] = T(1);\r\
+    \n  while (n) {\r\n    if (n & 1) ret = matrix_mul<T, N>(ret, A);\r\n    n /=\
+    \ 2;\r\n    if (n) A = matrix_mul<T, N>(A, A);\r\n  }\r\n  return ret;\r\n}\n"
   code: "#include \"linalg/matrix_mul.hpp\"\r\n\r\ntemplate <typename T>\r\nvc<vc<T>>\
     \ matrix_pow(vc<vc<T>> A, ll n) {\r\n  int N = len(A);\r\n  vv(T, ret, N, N);\r\
     \n  FOR(i, N) ret[i][i] = T(1);\r\n  while (n) {\r\n    if (n & 1) ret = matrix_mul(ret,\
@@ -149,7 +154,7 @@ data:
   isVerificationFile: false
   path: linalg/matrix_pow.hpp
   requiredBy: []
-  timestamp: '2023-11-21 19:08:32+09:00'
+  timestamp: '2024-04-12 12:45:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matix/pow_of_matrix.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -158,14 +158,20 @@ data:
     \ = len(B), N3 = len(B[0]); }\r\n  vv(T, b, N2, N3);\r\n  FOR(i, N2) FOR(j, N3)\
     \ b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\n  FOR(n, N1) FOR(m, N2) FOR(k,\
     \ N3) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n\r\n// square-matrix\
-    \ defined as array\r\ntemplate <class T, int N>\r\narray<array<T, N>, N> matrix_mul(const\
-    \ array<array<T, N>, N>& A,\r\n                                 const array<array<T,\
-    \ N>, N>& B) {\r\n  array<array<T, N>, N> C{};\r\n\r\n  if ((T::get_mod() < (1\
-    \ << 30)) && N <= 16) {\r\n    FOR(i, N) FOR(k, N) {\r\n      u64 sm = 0;\r\n\
-    \      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\
-    \n    }\r\n  } else {\r\n    FOR(i, N) FOR(k, N) {\r\n      u128 sm = 0;\r\n \
-    \     FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\
-    \n    }\r\n  }\r\n  return C;\r\n}\r\n#line 1 \"linalg/matrix_inv.hpp\"\n// (det,\
+    \ defined as array\r\ntemplate <class T, int N,\r\n          typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
+    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
+    \  array<array<T, N>, N> C{};\r\n\r\n  if ((T::get_mod() < (1 << 30)) && N <=\
+    \ 16) {\r\n    FOR(i, N) FOR(k, N) {\r\n      u64 sm = 0;\r\n      FOR(j, N) sm\
+    \ += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\n    }\r\n  }\
+    \ else {\r\n    FOR(i, N) FOR(k, N) {\r\n      u128 sm = 0;\r\n      FOR(j, N)\
+    \ sm += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\n    }\r\n\
+    \  }\r\n  return C;\r\n}\r\n\r\n// square-matrix defined as array\r\ntemplate\
+    \ <class T, int N,\r\n          typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
+    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
+    \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
+    \ * B[j][k];\r\n  return C;\r\n}\r\n#line 1 \"linalg/matrix_inv.hpp\"\n// (det,\
     \ invA) \u3092\u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T, vc<vc<T>>>\
     \ matrix_inv(vc<vc<T>> A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n  vv(T, B,\
     \ N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i]\
@@ -460,7 +466,7 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
+  timestamp: '2024-04-12 12:45:20+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1907.test.cpp
