@@ -37,7 +37,8 @@ vc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,
 }
 
 // square-matrix defined as array
-template <class T, int N>
+template <class T, int N,
+          typename enable_if<has_mod<T>::value>::type* = nullptr>
 array<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,
                                  const array<array<T, N>, N>& B) {
   array<array<T, N>, N> C{};
@@ -55,5 +56,15 @@ array<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,
       C[i][k] = sm;
     }
   }
+  return C;
+}
+
+// square-matrix defined as array
+template <class T, int N,
+          typename enable_if<!has_mod<T>::value>::type* = nullptr>
+array<array<T, N>, N> matrix_mul(const array<array<T, N>, N>& A,
+                                 const array<array<T, N>, N>& B) {
+  array<array<T, N>, N> C{};
+  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j] * B[j][k];
   return C;
 }
