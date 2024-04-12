@@ -21,15 +21,12 @@ struct BFS_Numbering {
   void bfs() {
     deque<int> que = {root};
     while (!que.empty()) {
-      int v = que.front();
-      que.pop_front();
+      int v = POP(que);
       ID[v] = V.size();
       V.eb(v);
       for (auto&& [frm, to, cost, id]: G[v]) {
         if (to == parent[v]) continue;
-        que.emplace_back(to);
-        parent[to] = v;
-        depth[to] = depth[v] + 1;
+        que.eb(to), parent[to] = v, depth[to] = depth[v] + 1;
       }
     }
   }
@@ -47,10 +44,7 @@ struct BFS_Numbering {
     int N = G.N;
     V.reserve(N);
     parent.assign(N, -1);
-    ID.assign(N, 0);
-    LID.assign(N, 0);
-    RID.assign(N, 0);
-    depth.assign(N, 0);
+    ID.assign(N, 0), LID.assign(N, 0), RID.assign(N, 0), depth.assign(N, 0);
     bfs();
     dfs(root);
     int D = MAX(depth);
@@ -70,6 +64,23 @@ struct BFS_Numbering {
     int a = bs(L - 1, R, l);
     int b = bs(L - 1, R, r);
     return {a, b};
+  }
+
+  // dist(p,v)<=r
+  vc<pair<int, int>> disk_range(int v, int r) {
+    if (r < 0) return {};
+    vc<pair<int, int>> res;
+    int d = depth[v];
+    FOR(k, r + 1) {
+      if (v == -1) break;
+      int hi = d + r - k;
+      int lo = hi - 1;
+      chmax(lo, d);
+      if (parent[v] == -1) lo = 0;
+      FOR(i, lo, hi + 1) { res.eb(calc_range(v, i)); }
+      v = parent[v], d = d - 1;
+    }
+    return res;
   }
 
 private:
