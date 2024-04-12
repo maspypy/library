@@ -82,23 +82,28 @@ data:
     \  vector<int> LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFS_Numbering(Graph&\
     \ G, int root = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs()\
     \ {\r\n    deque<int> que = {root};\r\n    while (!que.empty()) {\r\n      int\
-    \ v = que.front();\r\n      que.pop_front();\r\n      ID[v] = V.size();\r\n  \
-    \    V.eb(v);\r\n      for (auto&& [frm, to, cost, id]: G[v]) {\r\n        if\
-    \ (to == parent[v]) continue;\r\n        que.emplace_back(to);\r\n        parent[to]\
-    \ = v;\r\n        depth[to] = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n\
-    \  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for (auto&& [frm, to, cost,\
-    \ id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\n      dfs(to);\r\n \
-    \   }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n    int N = G.N;\r\
-    \n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N, 0);\r\n \
-    \   LID.assign(N, 0);\r\n    RID.assign(N, 0);\r\n    depth.assign(N, 0);\r\n\
-    \    bfs();\r\n    dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D\
-    \ + 2);\r\n    FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d\
-    \ + 1] += dep_ids[d];\r\n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\
+    \ v = POP(que);\r\n      ID[v] = V.size();\r\n      V.eb(v);\r\n      for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\r\n        if (to == parent[v]) continue;\r\n \
+    \       que.eb(to), parent[to] = v, depth[to] = depth[v] + 1;\r\n      }\r\n \
+    \   }\r\n  }\r\n\r\n  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\n   \
+    \   dfs(to);\r\n    }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n\
+    \    int N = G.N;\r\n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N,\
+    \ 0), LID.assign(N, 0), RID.assign(N, 0), depth.assign(N, 0);\r\n    bfs();\r\n\
+    \    dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n \
+    \   FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] +=\
+    \ dep_ids[d];\r\n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\
     \n  }\r\n\r\n  // dep \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\r\n  pair<int,\
     \ int> calc_range(int v, int dep) {\r\n    assert(dep >= depth[v]);\r\n    if\
     \ (dep >= len(dep_ids) - 1) return {0, 0};\r\n    int l = LID[v], r = RID[v];\r\
     \n    int L = dep_ids[dep], R = dep_ids[dep + 1];\r\n    int a = bs(L - 1, R,\
-    \ l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\nprivate:\r\
+    \ l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\n  //\
+    \ dist(p,v)<=r\r\n  vc<pair<int, int>> disk_range(int v, int r) {\r\n    if (r\
+    \ < 0) return {};\r\n    vc<pair<int, int>> res;\r\n    int d = depth[v];\r\n\
+    \    FOR(k, r + 1) {\r\n      if (v == -1) break;\r\n      int hi = d + r - k;\r\
+    \n      int lo = hi - 1;\r\n      chmax(lo, d);\r\n      if (parent[v] == -1)\
+    \ lo = 0;\r\n      FOR(i, lo, hi + 1) { res.eb(calc_range(v, i)); }\r\n      v\
+    \ = parent[v], d = d - 1;\r\n    }\r\n    return res;\r\n  }\r\n\r\nprivate:\r\
     \n  int bs(int L, int R, int x) {\r\n    while (L + 1 < R) {\r\n      int M =\
     \ (L + R) / 2;\r\n      if (LID_seq[M] >= x)\r\n        R = M;\r\n      else\r\
     \n        L = M;\r\n    }\r\n    return R;\r\n  }\r\n};\r\n"
@@ -112,23 +117,28 @@ data:
     \  vector<int> LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFS_Numbering(Graph&\
     \ G, int root = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs()\
     \ {\r\n    deque<int> que = {root};\r\n    while (!que.empty()) {\r\n      int\
-    \ v = que.front();\r\n      que.pop_front();\r\n      ID[v] = V.size();\r\n  \
-    \    V.eb(v);\r\n      for (auto&& [frm, to, cost, id]: G[v]) {\r\n        if\
-    \ (to == parent[v]) continue;\r\n        que.emplace_back(to);\r\n        parent[to]\
-    \ = v;\r\n        depth[to] = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n\
-    \  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for (auto&& [frm, to, cost,\
-    \ id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\n      dfs(to);\r\n \
-    \   }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n    int N = G.N;\r\
-    \n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N, 0);\r\n \
-    \   LID.assign(N, 0);\r\n    RID.assign(N, 0);\r\n    depth.assign(N, 0);\r\n\
-    \    bfs();\r\n    dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D\
-    \ + 2);\r\n    FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d\
-    \ + 1] += dep_ids[d];\r\n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\
+    \ v = POP(que);\r\n      ID[v] = V.size();\r\n      V.eb(v);\r\n      for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\r\n        if (to == parent[v]) continue;\r\n \
+    \       que.eb(to), parent[to] = v, depth[to] = depth[v] + 1;\r\n      }\r\n \
+    \   }\r\n  }\r\n\r\n  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for (auto&&\
+    \ [frm, to, cost, id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\n   \
+    \   dfs(to);\r\n    }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n\
+    \    int N = G.N;\r\n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N,\
+    \ 0), LID.assign(N, 0), RID.assign(N, 0), depth.assign(N, 0);\r\n    bfs();\r\n\
+    \    dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n \
+    \   FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] +=\
+    \ dep_ids[d];\r\n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\
     \n  }\r\n\r\n  // dep \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\r\n  pair<int,\
     \ int> calc_range(int v, int dep) {\r\n    assert(dep >= depth[v]);\r\n    if\
     \ (dep >= len(dep_ids) - 1) return {0, 0};\r\n    int l = LID[v], r = RID[v];\r\
     \n    int L = dep_ids[dep], R = dep_ids[dep + 1];\r\n    int a = bs(L - 1, R,\
-    \ l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\nprivate:\r\
+    \ l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\n  //\
+    \ dist(p,v)<=r\r\n  vc<pair<int, int>> disk_range(int v, int r) {\r\n    if (r\
+    \ < 0) return {};\r\n    vc<pair<int, int>> res;\r\n    int d = depth[v];\r\n\
+    \    FOR(k, r + 1) {\r\n      if (v == -1) break;\r\n      int hi = d + r - k;\r\
+    \n      int lo = hi - 1;\r\n      chmax(lo, d);\r\n      if (parent[v] == -1)\
+    \ lo = 0;\r\n      FOR(i, lo, hi + 1) { res.eb(calc_range(v, i)); }\r\n      v\
+    \ = parent[v], d = d - 1;\r\n    }\r\n    return res;\r\n  }\r\n\r\nprivate:\r\
     \n  int bs(int L, int R, int x) {\r\n    while (L + 1 < R) {\r\n      int M =\
     \ (L + R) / 2;\r\n      if (LID_seq[M] >= x)\r\n        R = M;\r\n      else\r\
     \n        L = M;\r\n    }\r\n    return R;\r\n  }\r\n};\r\n"
@@ -137,7 +147,7 @@ data:
   isVerificationFile: false
   path: graph/ds/bfs_numbering.hpp
   requiredBy: []
-  timestamp: '2023-11-07 22:29:27+09:00'
+  timestamp: '2024-04-13 00:54:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/899.test.cpp
