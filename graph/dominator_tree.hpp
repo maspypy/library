@@ -1,6 +1,7 @@
 #include "graph/reverse_graph.hpp"
 
 // parent (idom) の列を返す. -1 if unreachable.
+// https://codeforces.com/contest/757/problem/F
 template <typename GT>
 vc<int> dominator_tree(GT& G, int root) {
   static_assert(GT::is_directed);
