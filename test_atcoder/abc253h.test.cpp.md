@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/transposed_sps_composition.hpp
     title: setfunc/transposed_sps_composition.hpp
   _extendedRequiredBy: []
