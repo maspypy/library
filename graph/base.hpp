@@ -152,13 +152,13 @@ struct Graph {
   // {G, es}
   Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {
     if (len(new_idx) != N) new_idx.assign(N, -1);
-    if (len(used_e) != M) used_e.assign(M, 0);
     int n = len(V);
     FOR(i, n) new_idx[V[i]] = i;
     Graph<T, directed> G(n);
     vc<int> history;
     FOR(i, n) {
       for (auto&& e: (*this)[V[i]]) {
+        if (len(used_e) <= e.id) used_e.resize(e.id + 1);
         if (used_e[e.id]) continue;
         int a = e.frm, b = e.to;
         if (new_idx[a] != -1 && new_idx[b] != -1) {
