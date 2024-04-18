@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -15,10 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/cartesian_tree.test.cpp
     title: test/library_checker/tree/cartesian_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/cartesian_tree.hpp\"\n/*\r\n\u8F9E\u66F8\u9806\u3067\
@@ -94,14 +94,14 @@ data:
   requiredBy:
   - string/suffix_tree.hpp
   timestamp: '2023-04-14 22:08:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DPL_3_B.test.cpp
-  - test/aoj/DPL_3_C.test.cpp
-  - test/library_checker/tree/cartesian_tree.test.cpp
   - test/mytest/suffix_tree.test.cpp
-  - test/yukicoder/2361.test.cpp
   - test/yukicoder/2574.test.cpp
+  - test/yukicoder/2361.test.cpp
+  - test/aoj/DPL_3_C.test.cpp
+  - test/aoj/DPL_3_B.test.cpp
+  - test/library_checker/tree/cartesian_tree.test.cpp
   - test_atcoder/abc234g.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document

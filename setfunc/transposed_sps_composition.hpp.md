@@ -1,20 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: poly/convolution_naive.hpp
+    title: poly/convolution_naive.hpp
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/library_checker/math/powproj_sps.test.cpp
+    title: test/library_checker/math/powproj_sps.test.cpp
+  - icon: ':x:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
@@ -43,9 +49,25 @@ data:
     \n  int n = topbit(len(RA));\r\n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g\
     \ = RB[s];\r\n    FOR_R(d, n + 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x\
     \ += f[i] * g[d - i];\r\n      f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T,\
-    \ LIM>(RA);\r\n}\r\n#line 2 \"setfunc/transposed_sps_composition.hpp\"\n\n// for\
-    \ fixed sps s, consider linear map F:a->b = subset-conv(a,s)\n// given x, calculate\
-    \ transpose(F)(x)\ntemplate <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
+    \ LIM>(RA);\r\n}\r\n#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class\
+    \ T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
+    \n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m) ans[i + j] += a[i] * b[j];\r\
+    \n  return ans;\r\n}\r\n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
+    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\r\n  if (n == 0) return {};\r\n  vc<T> ans(n + m - 1);\r\n  if (n <= 16\
+    \ && (T::get_mod() < (1 << 30))) {\r\n    for (int k = 0; k < n + m - 1; ++k)\
+    \ {\r\n      int s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n  \
+    \    u64 sm = 0;\r\n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) *\
+    \ (b[k - i].val); }\r\n      ans[k] = sm;\r\n    }\r\n  } else {\r\n    for (int\
+    \ k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\n      int\
+    \ t = min(n, k + 1);\r\n      u128 sm = 0;\r\n      for (int i = s; i < t; ++i)\
+    \ { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = T::raw(sm % T::get_mod());\r\
+    \n    }\r\n  }\r\n  return ans;\r\n}\r\n#line 3 \"setfunc/transposed_sps_composition.hpp\"\
+    \n\n// for fixed sps s, consider linear map F:a->b = subset-conv(a,s)\n// given\
+    \ x, calculate transpose(F)(x)\ntemplate <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
     \ s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
     \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
     \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
@@ -60,10 +82,18 @@ data:
     \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
     \ transposed_subset_convolution<mint, LIM>(a, b);\n      FOR(k, len(b)) newdp[k]\
     \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
-    \ y;\n}\n"
-  code: "#include \"setfunc/subset_convolution.hpp\"\n\n// for fixed sps s, consider\
-    \ linear map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\n\
-    template <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
+    \ y;\n}\n\n// for fixed sps s s.t. s[0] == 0.\n// consider linear map F:f->t=f(s)\
+    \ for polynomial f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate\
+    \ sum_i x_i(s^k/k!)_i for k=0,1,...,M-1\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ transposed_sps_composition_poly(vc<mint> s, vc<mint> x, int M) {\n  const int\
+    \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && len(x) == (1 << N));\n \
+    \ mint c = s[0];\n  s[0] -= c;\n  x = transposed_sps_composition_egf<mint, LIM>(s,\
+    \ x);\n  vc<mint> g(M);\n  mint pow = 1;\n  FOR(i, M) { g[i] = pow * fact_inv<mint>(i),\
+    \ pow *= c; }\n  x = convolution_naive<mint>(x, g);\n  x.resize(M);\n  FOR(i,\
+    \ M) x[i] *= fact<mint>(i);\n  return x;\n}\n"
+  code: "#include \"setfunc/subset_convolution.hpp\"\n#include \"poly/convolution_naive.hpp\"\
+    \n\n// for fixed sps s, consider linear map F:a->b = subset-conv(a,s)\n// given\
+    \ x, calculate transpose(F)(x)\ntemplate <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
     \ s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
     \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
     \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
@@ -78,16 +108,26 @@ data:
     \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
     \ transposed_subset_convolution<mint, LIM>(a, b);\n      FOR(k, len(b)) newdp[k]\
     \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
-    \ y;\n}\n"
+    \ y;\n}\n\n// for fixed sps s s.t. s[0] == 0.\n// consider linear map F:f->t=f(s)\
+    \ for polynomial f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate\
+    \ sum_i x_i(s^k/k!)_i for k=0,1,...,M-1\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ transposed_sps_composition_poly(vc<mint> s, vc<mint> x, int M) {\n  const int\
+    \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && len(x) == (1 << N));\n \
+    \ mint c = s[0];\n  s[0] -= c;\n  x = transposed_sps_composition_egf<mint, LIM>(s,\
+    \ x);\n  vc<mint> g(M);\n  mint pow = 1;\n  FOR(i, M) { g[i] = pow * fact_inv<mint>(i),\
+    \ pow *= c; }\n  x = convolution_naive<mint>(x, g);\n  x.resize(M);\n  FOR(i,\
+    \ M) x[i] *= fact<mint>(i);\n  return x;\n}\n"
   dependsOn:
   - setfunc/subset_convolution.hpp
   - setfunc/ranked_zeta.hpp
+  - poly/convolution_naive.hpp
   isVerificationFile: false
   path: setfunc/transposed_sps_composition.hpp
   requiredBy: []
-  timestamp: '2023-09-23 23:33:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/library_checker/math/powproj_sps.test.cpp
   - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/transposed_sps_composition.hpp
 layout: document

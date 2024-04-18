@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,12 +57,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -87,27 +87,27 @@ data:
   isVerificationFile: false
   path: seq/find_linear_rec.hpp
   requiredBy:
-  - linalg/blackbox/det.hpp
-  - linalg/blackbox/min_poly.hpp
-  - seq/interpolate_linear_rec.hpp
   - graph/count/BEST.hpp
+  - linalg/blackbox/min_poly.hpp
+  - linalg/blackbox/det.hpp
+  - seq/interpolate_linear_rec.hpp
   timestamp: '2022-05-11 21:07:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/min_poly.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1755.test.cpp
+  - test/yukicoder/310.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/541.test.cpp
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
-  - test/mytest/min_poly.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/310.test.cpp
-  - test/yukicoder/2305.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/yukicoder/1755.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/1844.test.cpp
   - test_atcoder/abc336g.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document

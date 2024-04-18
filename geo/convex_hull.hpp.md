@@ -168,8 +168,8 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
-  - geo/minkowski_sum.hpp
   - geo/convex_polygon.hpp
+  - geo/minkowski_sum.hpp
   - convex/fenchel.hpp
   timestamp: '2024-03-29 11:46:13+09:00'
   verificationStatus: LIBRARY_ALL_AC

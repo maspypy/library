@@ -102,8 +102,8 @@ data:
   timestamp: '2022-10-16 14:15:12+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/stern-brocot.test.cpp
   - test/mytest/stern_brocot.test.cpp
+  - test/library_checker/math/stern-brocot.test.cpp
 documentation_of: nt/stern_brocot_tree.hpp
 layout: document
 redirect_from:

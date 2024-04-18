@@ -2,19 +2,19 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':warning:'
@@ -29,143 +29,146 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2995.test.cpp
     title: test/aoj/2995.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/directed_mst.test.cpp
     title: test/library_checker/graph/directed_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/eulerwalk_d.test.cpp
     title: test/library_checker/graph/eulerwalk_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/eulerwalk_ud.test.cpp
     title: test/library_checker/graph/eulerwalk_ud.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/mst.test.cpp
     title: test/library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_K4.test.cpp
     title: test/mytest/count_K4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_P3P4P5.test.cpp
     title: test/mytest/count_P3P4P5.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_clique.test.cpp
     title: test/mytest/count_clique.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_indep_set.test.cpp
     title: test/mytest/count_indep_set.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/enumerate_unlabeled_tree.test.cpp
     title: test/mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/find_C4.test.cpp
     title: test/mytest/find_C4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/mytest/find_even_cycle.test.cpp
+    title: test/mytest/find_even_cycle.test.cpp
+  - icon: ':x:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/incremental_scc.test.cpp
     title: test/mytest/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/remove_one_edge.test.cpp
     title: test/mytest/remove_one_edge.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/remove_one_vertex.test.cpp
     title: test/mytest/remove_one_vertex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/114.test.cpp
     title: test/yukicoder/114.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1170_2.test.cpp
     title: test/yukicoder/1170_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
   - icon: ':heavy_check_mark:'
@@ -174,34 +177,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1615.test.cpp
     title: test/yukicoder/1615.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1911.test.cpp
     title: test/yukicoder/1911.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -210,48 +213,48 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2296.test.cpp
     title: test/yukicoder/2296.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237ex.test.cpp
     title: test_atcoder/abc237ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266f.test.cpp
     title: test_atcoder/abc266f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc283f.test.cpp
     title: test_atcoder/abc283f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -279,91 +282,92 @@ data:
   isVerificationFile: false
   path: ds/unionfind/unionfind.hpp
   requiredBy:
+  - random/random_graph.hpp
   - geo/manhattan_mst.hpp
-  - graph/bipartite_edge_coloring.hpp
-  - graph/functional.hpp
-  - graph/tree_walk_generating_function.hpp
-  - graph/tree_of_unionfind.hpp
-  - graph/count/BEST.hpp
-  - graph/eulerwalk.hpp
-  - graph/bipartite_vertex_coloring.hpp
-  - graph/dag_path_cover.hpp
-  - graph/minimum_spanning_tree.hpp
-  - graph/unicyclic.hpp
-  - graph/maximum_antichain.hpp
-  - graph/optimal_product_on_tree.hpp
-  - graph/blackbox/mst.hpp
-  - graph/blackbox/interval_graph_unionfind.hpp
-  - graph/blackbox/complement_graph_unionfind.hpp
-  - graph/blackbox/unionfind.hpp
-  - graph/directed_mst.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - flow/bipartite.hpp
   - flow/rank_maximal_bipartite_matching.hpp
-  - random/random_graph.hpp
+  - graph/tree_of_unionfind.hpp
+  - graph/blackbox/complement_graph_unionfind.hpp
+  - graph/blackbox/interval_graph_unionfind.hpp
+  - graph/blackbox/unionfind.hpp
+  - graph/blackbox/mst.hpp
+  - graph/eulerwalk.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
+  - graph/minimum_spanning_tree.hpp
+  - graph/bipartite_vertex_coloring.hpp
+  - graph/count/BEST.hpp
+  - graph/maximum_antichain.hpp
+  - graph/bipartite_edge_coloring.hpp
+  - graph/directed_mst.hpp
+  - graph/tree_walk_generating_function.hpp
+  - graph/optimal_product_on_tree.hpp
+  - graph/functional.hpp
+  - graph/dag_path_cover.hpp
+  - graph/unicyclic.hpp
   timestamp: '2024-03-10 03:27:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/2995.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/library_checker/datastructure/unionfind.test.cpp
-  - test/library_checker/tree/mst.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/manhattan_mst.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/library_checker/graph/directed_mst.test.cpp
-  - test/library_checker/graph/eulerwalk_d.test.cpp
-  - test/library_checker/graph/eulerwalk_ud.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/count_K4.test.cpp
-  - test/mytest/st_numbering.test.cpp
-  - test/mytest/matching_ve.test.cpp
-  - test/mytest/count_indep_set.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/mytest/remove_one_edge.test.cpp
   - test/mytest/remove_one_vertex.test.cpp
-  - test/mytest/find_C4.test.cpp
-  - test/mytest/count_P3P4P5.test.cpp
+  - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/incremental_scc.test.cpp
-  - test/mytest/enumerate_unlabeled_tree.test.cpp
+  - test/mytest/matching_ve.test.cpp
+  - test/mytest/find_C4.test.cpp
   - test/mytest/count_clique.test.cpp
-  - test/mytest/find_odd_cycle.test.cpp
-  - test/yukicoder/1242.test.cpp
-  - test/yukicoder/2296.test.cpp
-  - test/yukicoder/1983.test.cpp
-  - test/yukicoder/2587.test.cpp
-  - test/yukicoder/1254.test.cpp
-  - test/yukicoder/1451.test.cpp
-  - test/yukicoder/1392.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/yukicoder/2587_2.test.cpp
-  - test/yukicoder/1211.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1911.test.cpp
-  - test/yukicoder/1170_2.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1600.test.cpp
-  - test/yukicoder/2122.test.cpp
-  - test/yukicoder/114.test.cpp
-  - test/yukicoder/1600_2.test.cpp
+  - test/mytest/find_even_cycle.test.cpp
+  - test/mytest/remove_one_edge.test.cpp
+  - test/mytest/enumerate_unlabeled_tree.test.cpp
+  - test/mytest/count_indep_set.test.cpp
+  - test/mytest/count_P3P4P5.test.cpp
+  - test/mytest/st_numbering.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/count_K4.test.cpp
+  - test/mytest/tutte.test.cpp
   - test/yukicoder/590.test.cpp
-  - test/yukicoder/2295.test.cpp
+  - test/yukicoder/2587_2.test.cpp
+  - test/yukicoder/1600_2.test.cpp
+  - test/yukicoder/1211.test.cpp
+  - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1451.test.cpp
+  - test/yukicoder/2296.test.cpp
+  - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1911.test.cpp
+  - test/yukicoder/1744.test.cpp
+  - test/yukicoder/1170_2.test.cpp
+  - test/yukicoder/114.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1983.test.cpp
   - test/yukicoder/1615.test.cpp
-  - test_atcoder/arc157a.test.cpp
-  - test_atcoder/abc314f.test.cpp
-  - test_atcoder/abc336g.test.cpp
-  - test_atcoder/abc270_f.test.cpp
-  - test_atcoder/abc274g.test.cpp
-  - test_atcoder/abc266f.test.cpp
-  - test_atcoder/abc237ex.test.cpp
-  - test_atcoder/abc301h.test.cpp
-  - test_atcoder/abc283f.test.cpp
+  - test/yukicoder/1392.test.cpp
+  - test/yukicoder/2587.test.cpp
+  - test/yukicoder/1242.test.cpp
+  - test/yukicoder/1254.test.cpp
+  - test/yukicoder/2295.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/1600.test.cpp
+  - test/aoj/2995.test.cpp
+  - test/aoj/1566.test.cpp
+  - test/aoj/2251_1.test.cpp
+  - test/aoj/2251_2.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/library_checker/graph/directed_mst.test.cpp
+  - test/library_checker/graph/eulerwalk_ud.test.cpp
+  - test/library_checker/graph/manhattan_mst.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/library_checker/graph/eulerwalk_d.test.cpp
+  - test/library_checker/datastructure/unionfind.test.cpp
+  - test/library_checker/tree/mst.test.cpp
   - test_atcoder/agc023f.test.cpp
+  - test_atcoder/abc314f.test.cpp
+  - test_atcoder/arc157a.test.cpp
+  - test_atcoder/abc266f.test.cpp
+  - test_atcoder/abc301h.test.cpp
+  - test_atcoder/abc237ex.test.cpp
+  - test_atcoder/abc283f.test.cpp
+  - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc336g.test.cpp
+  - test_atcoder/abc274g.test.cpp
 documentation_of: ds/unionfind/unionfind.hpp
 layout: document
 redirect_from:

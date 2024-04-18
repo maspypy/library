@@ -2,28 +2,28 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':warning:'
     path: ds/static_rmq.hpp
     title: ds/static_rmq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -45,33 +45,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/lca_fast.test.cpp
     title: test/library_checker/tree/lca_fast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_4.test.cpp
     title: test/yukicoder/1036_4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
@@ -128,29 +128,29 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/sparse_table.hpp
   requiredBy:
-  - ds/static_range_product.hpp
+  - graph/fast_lca.hpp
+  - string/suffix_array.hpp
+  - string/sort_substrings.hpp
+  - string/longest_common_substring.hpp
+  - string/suffix_tree.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/static_rmq.hpp
-  - string/longest_common_substring.hpp
-  - string/suffix_array.hpp
-  - string/suffix_tree.hpp
-  - string/sort_substrings.hpp
-  - graph/fast_lca.hpp
+  - ds/static_range_product.hpp
   timestamp: '2024-02-11 04:08:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/longest_common_substring.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - test/library_checker/datastructure/staticrmq.test.cpp
-  - test/library_checker/tree/lca_fast.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/yukicoder/1036_4.test.cpp
-  - test/yukicoder/2361.test.cpp
   - test/yukicoder/1600_2.test.cpp
+  - test/yukicoder/2361.test.cpp
+  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/library_checker/datastructure/staticrmq.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/longest_common_substring.test.cpp
+  - test/library_checker/tree/lca_fast.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc240ex.test.cpp
 documentation_of: ds/sparse_table/sparse_table.hpp

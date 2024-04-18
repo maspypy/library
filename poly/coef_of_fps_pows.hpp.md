@@ -25,31 +25,31 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -558,17 +558,17 @@ data:
   isVerificationFile: false
   path: poly/coef_of_fps_pows.hpp
   requiredBy:
+  - poly/compositional_inverse.hpp
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
-  - poly/compositional_inverse.hpp
   timestamp: '2024-03-18 23:24:05+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/compositional_inverset.test.cpp
   - test/mytest/coef_of_fps_pows.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/compositional_inverset.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
 documentation_of: poly/coef_of_fps_pows.hpp
 layout: document
 redirect_from:

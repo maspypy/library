@@ -13,23 +13,26 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: poly/convolution_naive.hpp
+    title: poly/convolution_naive.hpp
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/transposed_sps_composition.hpp
     title: setfunc/transposed_sps_composition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc253/tasks/abc253_Ex
@@ -307,9 +310,26 @@ data:
     \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
     \ + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(), dp.begin()\
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
-    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 2 \"setfunc/transposed_sps_composition.hpp\"\
-    \n\n// for fixed sps s, consider linear map F:a->b = subset-conv(a,s)\n// given\
-    \ x, calculate transpose(F)(x)\ntemplate <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
+    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 2 \"poly/convolution_naive.hpp\"\
+    \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
+    \nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()),\
+    \ m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b, a);\r\n  if\
+    \ (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m)\
+    \ ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class T, typename\
+    \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
+    \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
+    \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
+    \    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\
+    \n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for (int i = s; i\
+    \ < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = sm;\r\n\
+    \    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int\
+    \ s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128 sm = 0;\r\
+    \n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\
+    \n      ans[k] = T::raw(sm % T::get_mod());\r\n    }\r\n  }\r\n  return ans;\r\
+    \n}\r\n#line 3 \"setfunc/transposed_sps_composition.hpp\"\n\n// for fixed sps\
+    \ s, consider linear map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\n\
+    template <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
     \ s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
     \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
     \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
@@ -324,17 +344,26 @@ data:
     \     vc<mint> b = {dp.begin() + (1 << j), dp.begin() + (2 << j)};\n      b =\
     \ transposed_subset_convolution<mint, LIM>(a, b);\n      FOR(k, len(b)) newdp[k]\
     \ += b[k];\n    }\n    swap(dp, newdp);\n    y[1 + i] = dp[0];\n  }\n  return\
-    \ y;\n}\n#line 9 \"test_atcoder/abc253h.test.cpp\"\n\nconst int LIM = 14;\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n\n  vv(int, mat, N, N);\n\
-    \  FOR(M) {\n    INT(a, b);\n    --a, --b;\n    mat[a][b]++, mat[b][a]++;\n  }\n\
-    \n  // count tree\n  vc<mint> dp(1 << N);\n  dp[0] = 0;\n  FOR(i, N) {\n    vc<mint>\
-    \ a = {dp.begin(), dp.begin() + (1 << i)};\n    FOR(s, 1 << i) {\n      int k\
-    \ = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n      a[s] *= mint(k);\n\
-    \    }\n    a = sps_exp<mint, LIM>(a);\n    copy(all(a), dp.begin() + (1 << i));\n\
-    \  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n  auto y = transposed_sps_composition_egf<mint,\
-    \ LIM>(dp, x);\n\n  FOR(k, 1, N) {\n    // k edges = N-k component\n    mint ans\
-    \ = y[N - k];\n    ans *= inv<mint>(M).pow(k) * fact<mint>(k);\n    print(ans);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ y;\n}\n\n// for fixed sps s s.t. s[0] == 0.\n// consider linear map F:f->t=f(s)\
+    \ for polynomial f.\n// given x, calcuate transpose(F)(x)\n// equivalent: calculate\
+    \ sum_i x_i(s^k/k!)_i for k=0,1,...,M-1\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ transposed_sps_composition_poly(vc<mint> s, vc<mint> x, int M) {\n  const int\
+    \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && len(x) == (1 << N));\n \
+    \ mint c = s[0];\n  s[0] -= c;\n  x = transposed_sps_composition_egf<mint, LIM>(s,\
+    \ x);\n  vc<mint> g(M);\n  mint pow = 1;\n  FOR(i, M) { g[i] = pow * fact_inv<mint>(i),\
+    \ pow *= c; }\n  x = convolution_naive<mint>(x, g);\n  x.resize(M);\n  FOR(i,\
+    \ M) x[i] *= fact<mint>(i);\n  return x;\n}\n#line 9 \"test_atcoder/abc253h.test.cpp\"\
+    \n\nconst int LIM = 14;\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n\
+    \n  vv(int, mat, N, N);\n  FOR(M) {\n    INT(a, b);\n    --a, --b;\n    mat[a][b]++,\
+    \ mat[b][a]++;\n  }\n\n  // count tree\n  vc<mint> dp(1 << N);\n  dp[0] = 0;\n\
+    \  FOR(i, N) {\n    vc<mint> a = {dp.begin(), dp.begin() + (1 << i)};\n    FOR(s,\
+    \ 1 << i) {\n      int k = 0;\n      FOR(j, i) if (s >> j & 1) k += mat[i][j];\n\
+    \      a[s] *= mint(k);\n    }\n    a = sps_exp<mint, LIM>(a);\n    copy(all(a),\
+    \ dp.begin() + (1 << i));\n  }\n\n  vc<mint> x(1 << N);\n  x.back() = mint(1);\n\
+    \  auto y = transposed_sps_composition_egf<mint, LIM>(dp, x);\n\n  FOR(k, 1, N)\
+    \ {\n    // k edges = N-k component\n    mint ans = y[N - k];\n    ans *= inv<mint>(M).pow(k)\
+    \ * fact<mint>(k);\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc253/tasks/abc253_Ex\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_exp.hpp\"\n#include \"setfunc/transposed_sps_composition.hpp\"\
@@ -358,11 +387,12 @@ data:
   - setfunc/subset_convolution.hpp
   - setfunc/ranked_zeta.hpp
   - setfunc/transposed_sps_composition.hpp
+  - poly/convolution_naive.hpp
   isVerificationFile: true
   path: test_atcoder/abc253h.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc253h.test.cpp
 layout: document

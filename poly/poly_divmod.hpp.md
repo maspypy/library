@@ -22,13 +22,13 @@ data:
   - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
@@ -392,15 +392,15 @@ data:
   path: poly/poly_divmod.hpp
   requiredBy:
   - poly/poly_mod_pow.hpp
-  - poly/poly_gcd.hpp
   - poly/finding_root_of_polynomial.hpp
+  - poly/poly_gcd.hpp
   timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/mytest/poly_root_finding.test.cpp
   - test/yukicoder/2583.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/polynomial_division.test.cpp
   - test_atcoder/agc058d2.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document

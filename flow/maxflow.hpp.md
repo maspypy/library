@@ -5,14 +5,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc326g.test.cpp
     title: test_atcoder/abc326g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc107.test.cpp
     title: test_atcoder/arc107.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/maxflow.hpp\"\n\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -149,22 +149,22 @@ data:
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy:
-  - graph/dag_path_cover.hpp
   - flow/k_ary_optimization.hpp
   - flow/binary_optimization.hpp
+  - graph/dag_path_cover.hpp
   timestamp: '2024-04-04 22:23:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/2320.test.cpp
+  - test/yukicoder/1541.test.cpp
+  - test/yukicoder/177.test.cpp
   - test/aoj/GRL_6_A.test.cpp
   - test/aoj/2251_1.test.cpp
-  - test/yukicoder/1541.test.cpp
-  - test/yukicoder/2320.test.cpp
-  - test/yukicoder/177.test.cpp
-  - test_atcoder/abc318g.test.cpp
-  - test_atcoder/arc107.test.cpp
   - test_atcoder/abc326g.test.cpp
-  - test_atcoder/abc259g.test.cpp
   - test_atcoder/abc193f.test.cpp
+  - test_atcoder/abc259g.test.cpp
+  - test_atcoder/arc107.test.cpp
+  - test_atcoder/abc318g.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document
 redirect_from:

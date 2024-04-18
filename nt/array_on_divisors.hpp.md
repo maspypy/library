@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -231,11 +231,11 @@ data:
   timestamp: '2024-01-28 16:26:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/2264.test.cpp
   - test/yukicoder/2578.test.cpp
+  - test/yukicoder/2264.test.cpp
   - test/yukicoder/1728.test.cpp
-  - test_atcoder/abc335g.test.cpp
   - test_atcoder/abc212g.test.cpp
+  - test_atcoder/abc335g.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:

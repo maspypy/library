@@ -523,19 +523,19 @@ data:
   isVerificationFile: false
   path: poly/prefix_product_of_poly.hpp
   requiredBy:
-  - seq/kth_term_of_p_recursive.hpp
-  - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
+  - poly/sparse_exp_of_div.hpp
+  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2024-04-12 12:45:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/math/factorial.test.cpp
   - test/mytest/factorial_998.test.cpp
-  - test/yukicoder/502_2.test.cpp
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1080_2.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/library_checker/math/factorial.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp
 layout: document

@@ -302,8 +302,8 @@ data:
   timestamp: '2024-04-09 15:17:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document

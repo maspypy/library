@@ -58,9 +58,9 @@ data:
   timestamp: '2023-06-23 23:19:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/add_remove_query.test.cpp
-  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/yukicoder/2293.test.cpp
+  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/library_checker/datastructure/add_remove_query.test.cpp
 documentation_of: ds/rollback_array.hpp
 layout: document
 redirect_from:

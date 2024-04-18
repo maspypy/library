@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy:
@@ -98,8 +98,8 @@ data:
   verifiedWith:
   - test/library_checker/math/composition_sps.test.cpp
   - test_atcoder/abc321g.test.cpp
-  - test_atcoder/abc213g.test.cpp
   - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc213g.test.cpp
 documentation_of: setfunc/sps_composition.hpp
 layout: document
 redirect_from:

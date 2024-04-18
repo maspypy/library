@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   - icon: ':heavy_check_mark:'
@@ -172,8 +172,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc321g.test.cpp
-  - test_atcoder/abc213g.test.cpp
   - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc213g.test.cpp
 documentation_of: setfunc/sps_log.hpp
 layout: document
 redirect_from:

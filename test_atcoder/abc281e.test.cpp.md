@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/slide_split_sum.hpp
     title: ds/slide_split_sum.hpp
   - icon: ':question:'

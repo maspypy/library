@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -258,10 +258,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
-  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/1397.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/578.test.cpp
-  - test/yukicoder/1397.test.cpp
+  - test/yukicoder/1561.test.cpp
   - test/yukicoder/541.test.cpp
 documentation_of: other/connected_dp.hpp
 layout: document
