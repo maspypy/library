@@ -55,27 +55,25 @@ int count_cross(Segment<T> S1, Segment<T> S2, bool include_ends) {
   return (ok1 && ok2 ? 1 : 0);
 }
 
+// https://codeforces.com/contest/607/problem/E
 template <typename REAL, typename T>
 vc<Point<REAL>> cross_point(const Circle<T> C, const Line<T> L) {
   T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y) + L.c;
   T r = C.r;
-  // ax+by+c=0, x^2+y^2=r^2
-  if (a == 0) {
-    REAL y = REAL(-c) / b;
-    REAL bbxx = b * b * r * r - c * c;
-    if (bbxx < 0) return {};
-    if (bbxx == 0) return {Point<REAL>(0 + C.O.x, y + C.O.y)};
-    REAL x = sqrtl(bbxx) / b;
-    return {Point<REAL>(-x + C.O.x, y + C.O.y),
-            Point<REAL>(+x + C.O.x, y + C.O.y)};
+  bool SW = 0;
+  if (abs(a) < abs(b)) {
+    swap(a, b);
+    SW = 1;
   }
-  T D = 4 * a * a * b * b - 4 * (a * a + b * b) * (c * c - a * a * r * r);
+  // ax+by+c=0, x^2+y^2=r^2
+  T D = 4 * c * c * b * b - 4 * (a * a + b * b) * (c * c - a * a * r * r);
   if (D < 0) return {};
   REAL sqD = sqrtl(D);
-  REAL y1 = (-2 * a * c + sqD) / (2 * (a * a + b * b));
-  REAL y2 = (-2 * a * c - sqD) / (2 * (a * a + b * b));
+  REAL y1 = (-2 * b * c + sqD) / (2 * (a * a + b * b));
+  REAL y2 = (-2 * b * c - sqD) / (2 * (a * a + b * b));
   REAL x1 = (-b * y1 - c) / a;
   REAL x2 = (-b * y2 - c) / a;
+  if (SW) swap(x1, y1), swap(x2, y2);
   x1 += C.O.x, x2 += C.O.x;
   y1 += C.O.y, y2 += C.O.y;
   if (D == 0) return {Point<REAL>(x1, y1)};

@@ -28,3 +28,8 @@ REAL distance(Segment<T> S1, Segment<T> S2) {
   chmin(res, distance<REAL, T, T>(S2, S1.B));
   return res;
 }
+
+template <typename REAL, typename T>
+REAL distance(Point<T> P, Line<T> L) {
+  return abs(L.a * P.x + L.b * P.y + L.c) / sqrt(L.a * L.a + L.b * L.b);
+}
