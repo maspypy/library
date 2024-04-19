@@ -34,6 +34,9 @@ data:
     path: test/aoj/2677.test.cpp
     title: test/aoj/2677.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/aoj/2835.test.cpp
+    title: test/aoj/2835.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/2842.test.cpp
     title: test/aoj/2842.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2250,7 +2253,7 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc193f.test.cpp
     title: test_atcoder/abc193f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2391,7 +2394,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc259g.test.cpp
     title: test_atcoder/abc259g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2505,7 +2508,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc318g.test.cpp
     title: test_atcoder/abc318g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2523,7 +2526,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g2.test.cpp
     title: test_atcoder/abc324g2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc326g.test.cpp
     title: test_atcoder/abc326g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3219,6 +3222,7 @@ data:
   - test/aoj/2677.test.cpp
   - test/aoj/2995.test.cpp
   - test/aoj/NTL_1_E.test.cpp
+  - test/aoj/2835.test.cpp
   - test/aoj/DPL_3_C.test.cpp
   - test/aoj/ITP1_11_A.test.cpp
   - test/aoj/GRL_6_A.test.cpp
