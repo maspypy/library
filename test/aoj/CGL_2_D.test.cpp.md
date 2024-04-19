@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':question:'
@@ -274,21 +274,19 @@ data:
     \ b1) swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n\n\
     \  if (include_ends) {\n    ok1 = (a1 <= 0) && (0 <= b1);\n    ok2 = (a2 <= 0)\
     \ && (0 <= b2);\n  } else {\n    ok1 = (a1 < 0) && (0 < b1);\n    ok2 = (a2 <\
-    \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\ntemplate <typename\
-    \ REAL, typename T>\nvc<Point<REAL>> cross_point(const Circle<T> C, const Line<T>\
-    \ L) {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y) + L.c;\n  T r\
-    \ = C.r;\n  // ax+by+c=0, x^2+y^2=r^2\n  if (a == 0) {\n    REAL y = REAL(-c)\
-    \ / b;\n    REAL bbxx = b * b * r * r - c * c;\n    if (bbxx < 0) return {};\n\
-    \    if (bbxx == 0) return {Point<REAL>(0 + C.O.x, y + C.O.y)};\n    REAL x =\
-    \ sqrtl(bbxx) / b;\n    return {Point<REAL>(-x + C.O.x, y + C.O.y),\n        \
-    \    Point<REAL>(+x + C.O.x, y + C.O.y)};\n  }\n  T D = 4 * a * a * b * b - 4\
-    \ * (a * a + b * b) * (c * c - a * a * r * r);\n  if (D < 0) return {};\n  REAL\
-    \ sqD = sqrtl(D);\n  REAL y1 = (-2 * a * c + sqD) / (2 * (a * a + b * b));\n \
-    \ REAL y2 = (-2 * a * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1\
-    \ - c) / a;\n  REAL x2 = (-b * y2 - c) / a;\n  x1 += C.O.x, x2 += C.O.x;\n  y1\
-    \ += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1, y1)};\n  return\
-    \ {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
-    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
+    \ 0) && (0 < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\n// https://codeforces.com/contest/607/problem/E\n\
+    template <typename REAL, typename T>\nvc<Point<REAL>> cross_point(const Circle<T>\
+    \ C, const Line<T> L) {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y)\
+    \ + L.c;\n  T r = C.r;\n  bool SW = 0;\n  if (abs(a) < abs(b)) {\n    swap(a,\
+    \ b);\n    SW = 1;\n  }\n  // ax+by+c=0, x^2+y^2=r^2\n  T D = 4 * c * c * b *\
+    \ b - 4 * (a * a + b * b) * (c * c - a * a * r * r);\n  if (D < 0) return {};\n\
+    \  REAL sqD = sqrtl(D);\n  REAL y1 = (-2 * b * c + sqD) / (2 * (a * a + b * b));\n\
+    \  REAL y2 = (-2 * b * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1\
+    \ - c) / a;\n  REAL x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2,\
+    \ y2);\n  x1 += C.O.x, x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0)\
+    \ return {Point<REAL>(x1, y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2,\
+    \ y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\ntemplate <typename\
+    \ REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
     \ C1, Circle<T> C2) {\n  using P = Point<T>;\n  P O{0, 0};\n  P A = C1.O, B =\
     \ C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
     \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
@@ -308,6 +306,8 @@ data:
     \ S2, true)) return REAL(0);\n  REAL res = distance<REAL, T, T>(S1, S2.A);\n \
     \ chmin(res, distance<REAL, T, T>(S1, S2.B));\n  chmin(res, distance<REAL, T,\
     \ T>(S2, S1.A));\n  chmin(res, distance<REAL, T, T>(S2, S1.B));\n  return res;\n\
+    }\n\ntemplate <typename REAL, typename T>\nREAL distance(Point<T> P, Line<T> L)\
+    \ {\n  return abs(L.a * P.x + L.b * P.y + L.c) / sqrt(L.a * L.a + L.b * L.b);\n\
     }\n#line 7 \"test/aoj/CGL_2_D.test.cpp\"\n\nusing Re = double;\n\nvoid solve()\
     \ {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a,\
     \ b, c, d);\n    Segment<ll> S2(e, f, g, h);\n    Re x = distance<Re, ll>(S1,\
@@ -329,7 +329,7 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-19 22:50:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_D.test.cpp

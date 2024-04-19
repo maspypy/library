@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc326/tasks/abc326_g
@@ -197,14 +197,13 @@ data:
     \ int source, int sink)\n      : N(N),\n        source(source),\n        sink(sink),\n\
     \        edges(N),\n        calculated(0),\n        flow_ans(0) {}\n\n  void add(int\
     \ frm, int to, Cap cap, Cap rev_cap = 0) {\n    calculated = 0;\n    assert(0\
-    \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(frm != to);\n\
-    \    assert(Cap(0) <= cap);\n    if (frm == to) return;\n    int a = len(edges[frm]);\n\
-    \    int b = len(edges[to]);\n    pos.eb(frm, a);\n    edges[frm].eb(Edge{to,\
-    \ b, cap, 0});\n    edges[to].eb(Edge{frm, a, rev_cap, 0});\n  }\n\n  void change_capacity(int\
-    \ i, Cap before, Cap after) {\n    if (before == after) return;\n    auto [frm,\
-    \ idx] = pos[i];\n    auto& e = edges[frm][idx];\n    assert(e.cap + e.flow ==\
-    \ before);\n    if (before < after) {\n      calculated = (e.cap > 0);\n     \
-    \ e.cap += after - before;\n      return;\n    }\n    e.cap = after - e.flow;\n\
+    \ <= frm && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= cap);\n\
+    \    int a = len(edges[frm]);\n    int b = (frm == to ? a + 1 : len(edges[to]));\n\
+    \    pos.eb(frm, a);\n    edges[frm].eb(Edge{to, b, cap, 0});\n    edges[to].eb(Edge{frm,\
+    \ a, rev_cap, 0});\n  }\n\n  void change_capacity(int i, Cap after) {\n    auto\
+    \ [frm, idx] = pos[i];\n    auto& e = edges[frm][idx];\n    Cap before = e.cap\
+    \ + e.flow;\n    if (before < after) {\n      calculated = (e.cap > 0);\n    \
+    \  e.cap += after - before;\n      return;\n    }\n    e.cap = after - e.flow;\n\
     \    // \u5DEE\u5206\u3092\u62BC\u3057\u623B\u3059\u51E6\u7406\u767A\u751F\n \
     \   if (e.cap < 0) flow_push_back(e);\n  }\n\n  void flow_push_back(Edge& e0)\
     \ {\n    auto& re0 = edges[e0.to][e0.rev];\n    int a = re0.to;\n    int b = e0.to;\n\
@@ -233,52 +232,53 @@ data:
     \ += c;\n    flow_ans -= c;\n  }\n\n  // frm, to, flow\n  vc<tuple<int, int, Cap>>\
     \ get_flow_edges() {\n    vc<tuple<int, int, Cap>> res;\n    FOR(frm, N) {\n \
     \     for (auto&& e: edges[frm]) {\n        if (e.flow <= 0) continue;\n     \
-    \   res.eb(frm, e.to, e.flow);\n      }\n    }\n    return res;\n  }\n\n  // \u5DEE\
-    \u5206\u3067\u306F\u306A\u304F\u3053\u308C\u307E\u3067\u306E\u7DCF\u91CF\n  Cap\
-    \ flow() {\n    if (calculated) return flow_ans;\n    calculated = true;\n   \
-    \ while (set_level()) {\n      prog.assign(N, 0);\n      while (1) {\n       \
-    \ Cap x = flow_dfs(source, infty<Cap>);\n        if (x == 0) break;\n        flow_ans\
-    \ += x;\n        chmin(flow_ans, infty<Cap>);\n        if (flow_ans == infty<Cap>)\
-    \ return flow_ans;\n      }\n    }\n    return flow_ans;\n  }\n\n  // \u6700\u5C0F\
-    \u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\u30C3\u30C8\u3092\
-    \u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>> cut() {\n    flow();\n\
-    \    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v] >= 0 ? 0 : 1);\n    return\
-    \ {flow_ans, res};\n  }\n\n  // O(F(N+M)) \u304F\u3089\u3044\u4F7F\u3063\u3066\
-    \u7D4C\u8DEF\u5FA9\u5143\n  // simple path \u306B\u306A\u308B\n  vvc<int> path_decomposition()\
-    \ {\n    flow();\n    auto edges = get_flow_edges();\n    vvc<int> TO(N);\n  \
-    \  for (auto&& [frm, to, flow]: edges) { FOR(flow) TO[frm].eb(to); }\n    vvc<int>\
-    \ res;\n    vc<int> vis(N);\n\n    FOR(flow_ans) {\n      vc<int> path = {source};\n\
-    \      vis[source] = 1;\n      while (path.back() != sink) {\n        int to =\
-    \ POP(TO[path.back()]);\n        while (vis[to]) { vis[POP(path)] = 0; }\n   \
-    \     path.eb(to), vis[to] = 1;\n      }\n      for (auto&& v: path) vis[v] =\
-    \ 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\n  void debug() {\n \
-    \   print(\"source\", source);\n    print(\"sink\", sink);\n    print(\"edges\
-    \ (frm, to, cap, flow)\");\n    FOR(v, N) {\n      for (auto& e: edges[v]) {\n\
-    \        if (e.cap == 0 && e.flow == 0) continue;\n        print(v, e.to, e.cap,\
-    \ e.flow);\n      }\n    }\n  }\n\nprivate:\n  Cap flow_ans;\n\n  bool set_level()\
-    \ {\n    que.resize(N);\n    level.assign(N, -1);\n    level[source] = 0;\n  \
-    \  int l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n      int v\
-    \ = que[l++];\n      for (auto&& e: edges[v]) {\n        if (e.cap > 0 && level[e.to]\
-    \ == -1) {\n          level[e.to] = level[v] + 1;\n          if (e.to == sink)\
-    \ return true;\n          que[r++] = e.to;\n        }\n      }\n    }\n    return\
-    \ false;\n  }\n\n  Cap flow_dfs(int v, Cap lim) {\n    if (v == sink) return lim;\n\
-    \    Cap res = 0;\n    for (int& i = prog[v]; i < len(edges[v]); ++i) {\n    \
-    \  auto& e = edges[v][i];\n      if (e.cap > 0 && level[e.to] == level[v] + 1)\
-    \ {\n        Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if (a > 0) {\n\
-    \          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow\
-    \ -= a;\n          res += a;\n          lim -= a;\n          if (lim == 0) break;\n\
-    \        }\n      }\n    }\n    return res;\n  }\n};\n#line 6 \"test_atcoder/abc326g.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, C, N);\n  VEC(ll, A, M);\n\n  int s\
-    \ = 0;\n  int t = 1;\n  auto idx = [&](int i, int j) -> int {\n    if (j == 0)\
-    \ return s;\n    if (j == 5) return t;\n    return 2 + 4 * i + (j - 1);\n  };\n\
-    \  auto idx_a = [&](int i) -> int { return idx(N, 1) + i; };\n\n  MaxFlow<ll>\
-    \ G(idx_a(M), s, t);\n\n  FOR(i, N) {\n    FOR(j, 5) G.add(idx(i, j + 1), idx(i,\
-    \ j), infty<ll>);\n    FOR(j, 1, 5) G.add(idx(i, j), idx(i, j + 1), C[i] * j);\n\
-    \  }\n\n  FOR(j, M) { G.add(s, idx_a(j), A[j]); }\n\n  FOR(j, M) FOR(i, N) {\n\
-    \    INT(x);\n    if (x == 1) continue;\n    G.add(idx_a(j), idx(i, x - 1), infty<ll>);\n\
-    \  }\n\n  // G.debug();\n\n  ll ANS = SUM<ll>(A);\n  ANS -= G.flow();\n  // print(G.flow_ans);\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    \   res.eb(frm, e.to, e.flow);\n      }\n    }\n    return res;\n  }\n\n  vc<bool>\
+    \ vis;\n\n  // \u5DEE\u5206\u3067\u306F\u306A\u304F\u3053\u308C\u307E\u3067\u306E\
+    \u7DCF\u91CF\n  Cap flow() {\n    if (calculated) return flow_ans;\n    calculated\
+    \ = true;\n    while (set_level()) {\n      prog.assign(N, 0);\n      while (1)\
+    \ {\n        Cap x = flow_dfs(source, infty<Cap>);\n        if (x == 0) break;\n\
+    \        flow_ans += x;\n        chmin(flow_ans, infty<Cap>);\n        if (flow_ans\
+    \ == infty<Cap>) return flow_ans;\n      }\n    }\n    return flow_ans;\n  }\n\
+    \n  // \u6700\u5C0F\u30AB\u30C3\u30C8\u306E\u5024\u304A\u3088\u3073\u3001\u30AB\
+    \u30C3\u30C8\u3092\u8868\u3059 01 \u5217\u3092\u8FD4\u3059\n  pair<Cap, vc<int>>\
+    \ cut() {\n    flow();\n    vc<int> res(N);\n    FOR(v, N) res[v] = (level[v]\
+    \ >= 0 ? 0 : 1);\n    return {flow_ans, res};\n  }\n\n  // O(F(N+M)) \u304F\u3089\
+    \u3044\u4F7F\u3063\u3066\u7D4C\u8DEF\u5FA9\u5143\n  // simple path \u306B\u306A\
+    \u308B\n  vvc<int> path_decomposition() {\n    flow();\n    auto edges = get_flow_edges();\n\
+    \    vvc<int> TO(N);\n    for (auto&& [frm, to, flow]: edges) { FOR(flow) TO[frm].eb(to);\
+    \ }\n    vvc<int> res;\n    vc<int> vis(N);\n\n    FOR(flow_ans) {\n      vc<int>\
+    \ path = {source};\n      vis[source] = 1;\n      while (path.back() != sink)\
+    \ {\n        int to = POP(TO[path.back()]);\n        while (vis[to]) { vis[POP(path)]\
+    \ = 0; }\n        path.eb(to), vis[to] = 1;\n      }\n      for (auto&& v: path)\
+    \ vis[v] = 0;\n      res.eb(path);\n    }\n    return res;\n  }\n\n  void debug()\
+    \ {\n    print(\"source\", source);\n    print(\"sink\", sink);\n    print(\"\
+    edges (frm, to, cap, flow)\");\n    FOR(v, N) {\n      for (auto& e: edges[v])\
+    \ {\n        if (e.cap == 0 && e.flow == 0) continue;\n        print(v, e.to,\
+    \ e.cap, e.flow);\n      }\n    }\n  }\n\nprivate:\n  Cap flow_ans;\n\n  bool\
+    \ set_level() {\n    que.resize(N);\n    level.assign(N, -1);\n    level[source]\
+    \ = 0;\n    int l = 0, r = 0;\n    que[r++] = source;\n    while (l < r) {\n \
+    \     int v = que[l++];\n      for (auto&& e: edges[v]) {\n        if (e.cap >\
+    \ 0 && level[e.to] == -1) {\n          level[e.to] = level[v] + 1;\n         \
+    \ if (e.to == sink) return true;\n          que[r++] = e.to;\n        }\n    \
+    \  }\n    }\n    return false;\n  }\n\n  Cap flow_dfs(int v, Cap lim) {\n    if\
+    \ (v == sink) return lim;\n    Cap res = 0;\n    for (int& i = prog[v]; i < len(edges[v]);\
+    \ ++i) {\n      auto& e = edges[v][i];\n      if (e.cap > 0 && level[e.to] ==\
+    \ level[v] + 1) {\n        Cap a = flow_dfs(e.to, min(lim, e.cap));\n        if\
+    \ (a > 0) {\n          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap\
+    \ += a, edges[e.to][e.rev].flow -= a;\n          res += a;\n          lim -= a;\n\
+    \          if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n\
+    \  }\n};\n#line 6 \"test_atcoder/abc326g.test.cpp\"\n\nvoid solve() {\n  LL(N,\
+    \ M);\n  VEC(ll, C, N);\n  VEC(ll, A, M);\n\n  int s = 0;\n  int t = 1;\n  auto\
+    \ idx = [&](int i, int j) -> int {\n    if (j == 0) return s;\n    if (j == 5)\
+    \ return t;\n    return 2 + 4 * i + (j - 1);\n  };\n  auto idx_a = [&](int i)\
+    \ -> int { return idx(N, 1) + i; };\n\n  MaxFlow<ll> G(idx_a(M), s, t);\n\n  FOR(i,\
+    \ N) {\n    FOR(j, 5) G.add(idx(i, j + 1), idx(i, j), infty<ll>);\n    FOR(j,\
+    \ 1, 5) G.add(idx(i, j), idx(i, j + 1), C[i] * j);\n  }\n\n  FOR(j, M) { G.add(s,\
+    \ idx_a(j), A[j]); }\n\n  FOR(j, M) FOR(i, N) {\n    INT(x);\n    if (x == 1)\
+    \ continue;\n    G.add(idx_a(j), idx(i, x - 1), infty<ll>);\n  }\n\n  // G.debug();\n\
+    \n  ll ANS = SUM<ll>(A);\n  ANS -= G.flow();\n  // print(G.flow_ans);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc326/tasks/abc326_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"flow/maxflow.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  VEC(ll, C, N);\n  VEC(ll, A, M);\n\n  int s\
@@ -299,8 +299,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc326g.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 12:20:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-19 22:50:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc326g.test.cpp
 layout: document
