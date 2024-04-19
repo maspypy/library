@@ -1,20 +1,20 @@
-#pragma once
-
 // incremental に辺を追加してよい
+// 辺の容量の変更が可能
+// 変更する capacity が F のとき、O((N+M)|F|) 時間で更新
 template <typename Cap>
 struct MaxFlow {
   struct Edge {
     int to, rev;
-    Cap cap;
+    Cap cap; // 残っている容量. したがって cap+flow が定数.
     Cap flow = 0;
   };
 
   const int N, source, sink;
   vvc<Edge> edges;
+  vc<pair<int, int>> pos;
   vc<int> prog, level;
   vc<int> que;
   bool calculated;
-  Cap flow_ans;
 
   MaxFlow(int N, int source, int sink)
       : N(N),
@@ -33,8 +33,82 @@ struct MaxFlow {
     if (frm == to) return;
     int a = len(edges[frm]);
     int b = len(edges[to]);
+    pos.eb(frm, a);
     edges[frm].eb(Edge{to, b, cap, 0});
     edges[to].eb(Edge{frm, a, rev_cap, 0});
+  }
+
+  void change_capacity(int i, Cap before, Cap after) {
+    if (before == after) return;
+    auto [frm, idx] = pos[i];
+    auto& e = edges[frm][idx];
+    assert(e.cap + e.flow == before);
+    if (before < after) {
+      calculated = (e.cap > 0);
+      e.cap += after - before;
+      return;
+    }
+    e.cap = after - e.flow;
+    // 差分を押し戻す処理発生
+    if (e.cap < 0) flow_push_back(e);
+  }
+
+  void flow_push_back(Edge& e0) {
+    auto& re0 = edges[e0.to][e0.rev];
+    int a = re0.to;
+    int b = e0.to;
+    /*
+    辺 e0 の容量が正になるように戻す
+    path-cycle 分解を考えれば、
+    - uv 辺を含むサイクルを消す
+    - suvt パスを消す
+    前者は残余グラフで ab パス（flow_ans が変わらない）
+    後者は残余グラフで tb, as パス
+    */
+
+    auto find_path = [&](int s, int t, Cap lim) -> Cap {
+      vc<bool> vis(N);
+      prog.assign(N, 0);
+      auto dfs = [&](auto& dfs, int v, Cap f) -> Cap {
+        if (v == t) return f;
+        for (int& i = prog[v]; i < len(edges[v]); ++i) {
+          auto& e = edges[v][i];
+          if (vis[e.to] || e.cap <= Cap(0)) continue;
+          vis[e.to] = 1;
+          Cap a = dfs(dfs, e.to, min(f, e.cap));
+          assert(a >= 0);
+          if (a == Cap(0)) continue;
+          e.cap -= a, e.flow += a;
+          edges[e.to][e.rev].cap += a, edges[e.to][e.rev].flow -= a;
+          return a;
+        }
+        return 0;
+      };
+      return dfs(dfs, s, lim);
+    };
+
+    while (e0.cap < 0) {
+      Cap x = find_path(a, b, -e0.cap);
+      if (x == Cap(0)) break;
+      e0.cap += x, e0.flow -= x;
+      re0.cap -= x, re0.flow += x;
+    }
+    Cap c = -e0.cap;
+    while (c > 0 && a != source) {
+      Cap x = find_path(a, source, c);
+      assert(x > 0);
+      c -= x;
+    }
+    c = -e0.cap;
+    while (c > 0 && b != sink) {
+      Cap x = find_path(sink, b, c);
+      assert(x > 0);
+      c -= x;
+    }
+    c = -e0.cap;
+    e0.cap += c, e0.flow -= c;
+    re0.cap -= c, re0.flow += c;
+    flow_ans -= c;
   }
 
   // frm, to, flow
@@ -111,6 +185,8 @@ struct MaxFlow {
   }
 
 private:
+  Cap flow_ans;
+
   bool set_level() {
     que.resize(N);
     level.assign(N, -1);
