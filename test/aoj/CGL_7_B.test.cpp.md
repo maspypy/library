@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':heavy_check_mark:'

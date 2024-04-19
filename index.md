@@ -573,7 +573,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/bflow.hpp
       title: flow/bflow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/binary_optimization.hpp
       title: flow/binary_optimization.hpp
     - icon: ':heavy_check_mark:'
@@ -628,7 +628,7 @@ data:
     - icon: ':warning:'
       path: geo/apollonian_circle.hpp
       title: geo/apollonian_circle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
@@ -643,13 +643,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':heavy_check_mark:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':heavy_check_mark:'
@@ -1451,7 +1451,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/golden_search.hpp
       title: other/golden_search.hpp
     - icon: ':warning:'
@@ -4225,7 +4225,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc190f.test.cpp
       title: test_atcoder/abc190f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc193f.test.cpp
       title: test_atcoder/abc193f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4366,7 +4366,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc256ex2.test.cpp
       title: test_atcoder/abc256ex2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4462,7 +4462,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc312f.test.cpp
       title: test_atcoder/abc312f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc314.test.cpp
       title: test_atcoder/abc314.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4480,7 +4480,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318b.test.cpp
       title: test_atcoder/abc318b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318g.test.cpp
       title: test_atcoder/abc318g.test.cpp
     - icon: ':heavy_check_mark:'
