@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
   - icon: ':heavy_check_mark:'
@@ -52,7 +52,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

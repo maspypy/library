@@ -628,7 +628,7 @@ data:
     - icon: ':warning:'
       path: geo/apollonian_circle.hpp
       title: geo/apollonian_circle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
@@ -827,7 +827,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/optimal_product_on_tree.hpp
       title: graph/optimal_product_on_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -869,7 +869,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -930,7 +930,7 @@ data:
       title: graph/blackbox/unionfind.hpp
   - name: graph/count
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/BEST.hpp
       title: graph/count/BEST.hpp
     - icon: ':heavy_check_mark:'
@@ -1037,7 +1037,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/remove_one_edge_connectivity.hpp
       title: graph/ds/remove_one_edge_connectivity.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/remove_one_vertex_connectivity.hpp
       title: graph/ds/remove_one_vertex_connectivity.hpp
     - icon: ':heavy_check_mark:'
@@ -1137,10 +1137,10 @@ data:
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/det.hpp
       title: linalg/blackbox/det.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/min_poly.hpp
       title: linalg/blackbox/min_poly.hpp
     - icon: ':heavy_check_mark:'
@@ -1588,7 +1588,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/middle_product.hpp
       title: poly/middle_product.hpp
     - icon: ':heavy_check_mark:'
@@ -1660,7 +1660,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/typical_divide_conquer.hpp
       title: poly/typical_divide_conquer.hpp
   - name: poly/online
@@ -1688,7 +1688,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1720,7 +1720,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/factorial_digit_system.hpp
       title: seq/factorial_digit_system.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':heavy_check_mark:'
@@ -4504,16 +4504,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc331g.test.cpp
       title: test_atcoder/abc331g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc333f.test.cpp
       title: test_atcoder/abc333f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc334g.test.cpp
       title: test_atcoder/abc334g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc335g.test.cpp
       title: test_atcoder/abc335g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc336g.test.cpp
       title: test_atcoder/abc336g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4522,7 +4522,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/agc023f.test.cpp
       title: test_atcoder/agc023f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4531,7 +4531,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/agc058d2.test.cpp
       title: test_atcoder/agc058d2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/arc064c.test.cpp
       title: test_atcoder/arc064c.test.cpp
     - icon: ':heavy_check_mark:'

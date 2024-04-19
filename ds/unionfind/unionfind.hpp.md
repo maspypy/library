@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -243,10 +243,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
   - icon: ':x:'

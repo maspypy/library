@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
