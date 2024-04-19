@@ -254,7 +254,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':question:'
@@ -600,7 +600,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/mincostflow.hpp
       title: flow/mincostflow.hpp
     - icon: ':heavy_check_mark:'
@@ -797,7 +797,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/incremental_scc.hpp
       title: graph/incremental_scc.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':heavy_check_mark:'
@@ -863,7 +863,7 @@ data:
     - icon: ':warning:'
       path: graph/to_directed_tree.hpp
       title: graph/to_directed_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/toposort.hpp
       title: graph/toposort.hpp
     - icon: ':heavy_check_mark:'
@@ -1098,7 +1098,7 @@ data:
     - icon: ':question:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: graph/tree_dp/subtree_depth_sum.hpp
       title: graph/tree_dp/subtree_depth_sum.hpp
     - icon: ':warning:'
@@ -1867,7 +1867,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/is_substring.hpp
       title: string/is_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -1936,7 +1936,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
   verificationCategories:
@@ -4255,7 +4255,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc213g.test.cpp
       title: test_atcoder/abc213g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc214h.test.cpp
       title: test_atcoder/abc214h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4267,7 +4267,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc218c.test.cpp
       title: test_atcoder/abc218c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc220f.test.cpp
       title: test_atcoder/abc220f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4279,10 +4279,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h.test.cpp
       title: test_atcoder/abc222h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc222h_2.test.cpp
       title: test_atcoder/abc222h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc223d.test.cpp
       title: test_atcoder/abc223d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4321,7 +4321,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc236h.test.cpp
       title: test_atcoder/abc236h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc237ex.test.cpp
       title: test_atcoder/abc237ex.test.cpp
     - icon: ':heavy_check_mark:'
