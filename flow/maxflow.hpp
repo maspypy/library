@@ -28,21 +28,18 @@ struct MaxFlow {
     calculated = 0;
     assert(0 <= frm && frm < N);
     assert(0 <= to && to < N);
-    assert(frm != to);
     assert(Cap(0) <= cap);
-    if (frm == to) return;
     int a = len(edges[frm]);
-    int b = len(edges[to]);
+    int b = (frm == to ? a + 1 : len(edges[to]));
     pos.eb(frm, a);
     edges[frm].eb(Edge{to, b, cap, 0});
     edges[to].eb(Edge{frm, a, rev_cap, 0});
   }
 
-  void change_capacity(int i, Cap before, Cap after) {
-    if (before == after) return;
+  void change_capacity(int i, Cap after) {
     auto [frm, idx] = pos[i];
     auto& e = edges[frm][idx];
-    assert(e.cap + e.flow == before);
+    Cap before = e.cap + e.flow;
     if (before < after) {
       calculated = (e.cap > 0);
       e.cap += after - before;
@@ -122,6 +119,8 @@ struct MaxFlow {
     }
     return res;
   }
+
+  vc<bool> vis;
 
   // 差分ではなくこれまでの総量
   Cap flow() {
