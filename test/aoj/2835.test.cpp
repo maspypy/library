@@ -22,11 +22,11 @@ void solve() {
   FOR(i, M) {
     auto [a, b, c] = dat[i];
     if (c == 1) {
-      G.change_capacity(2 * i + 0, 1, 0);
-      G.change_capacity(2 * i + 1, 1, 0);
+      G.change_capacity(2 * i + 0, 0);
+      G.change_capacity(2 * i + 1, 0);
       chmin(ans, G.flow());
-      G.change_capacity(2 * i + 0, 0, 1);
-      G.change_capacity(2 * i + 1, 0, 1);
+      G.change_capacity(2 * i + 0, 1);
+      G.change_capacity(2 * i + 1, 1);
     }
   }
   if (ans > LIM) return print(-1);
