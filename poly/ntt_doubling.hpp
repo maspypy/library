@@ -2,11 +2,11 @@
 
 template <typename mint>
 void ntt_doubling(vector<mint>& a) {
-  const int rank2 = mint::ntt_info().fi;
   static array<mint, 30> root;
   static bool prepared = 0;
   if (!prepared) {
     prepared = 1;
+    const int rank2 = mint::ntt_info().fi;
     root[rank2] = mint::ntt_info().se;
     FOR_R(i, rank2) { root[i] = root[i + 1] * root[i + 1]; }
   }

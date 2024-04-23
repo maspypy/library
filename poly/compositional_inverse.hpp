@@ -1,7 +1,8 @@
 #include "poly/differentiate.hpp"
 #include "poly/composition.hpp"
 #include "poly/fps_div.hpp"
-#include "poly/coef_of_fps_pows.hpp"
+#include "poly/fps_pow.hpp"
+#include "poly/power_projection.hpp"
 
 // O(N^2)
 template <typename mint>
@@ -56,16 +57,19 @@ vc<mint> compositional_inverse(vc<mint> f) {
   if (n == 0) return f;
   assert(f[1] != mint(0));
   mint c = f[1];
-  for (auto& x: f) x /= c;
+  mint ic = c.inverse();
+  for (auto& x: f) x *= ic;
+  vc<mint> wt(n + 1);
+  wt[n] = 1;
 
-  vc<mint> A = coef_of_fps_pows<mint>(f, n, n);
+  vc<mint> A = power_projection<mint>(f, wt, n);
   vc<mint> g(n);
   FOR(i, 1, n + 1) g[n - i] = mint(n) * A[i] * inv<mint>(i);
   g = fps_pow_1<mint>(g, -inv<mint>(n));
   g.insert(g.begin(), 0);
 
   mint pow = 1;
-  FOR(i, len(g)) g[i] *= pow, pow /= c;
+  FOR(i, len(g)) g[i] *= pow, pow *= ic;
   return g;
 }
 
