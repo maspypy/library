@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':heavy_check_mark:'
@@ -101,7 +101,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':heavy_check_mark:'
@@ -264,9 +264,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/coef_of_fps_pows.test.cpp
-    title: test/mytest/coef_of_fps_pows.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
@@ -468,6 +465,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
+  - icon: ':x:'
+    path: test/mytest/power_projection.test.cpp
+    title: test/mytest/power_projection.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
@@ -711,13 +711,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/4_1.test.cpp
     title: test/yukicoder/4_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
@@ -759,12 +759,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -826,8 +826,9 @@ data:
   - other/connected_dp.hpp
   - ds/unionfind/parallel_unionfind.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/power_projection.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/splay_cm.test.cpp
@@ -853,7 +854,6 @@ data:
   - test/mytest/online_inv.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
-  - test/mytest/coef_of_fps_pows.test.cpp
   - test/mytest/incremental_scc.test.cpp
   - test/mytest/matching_ve.test.cpp
   - test/mytest/splay_monoid.test.cpp

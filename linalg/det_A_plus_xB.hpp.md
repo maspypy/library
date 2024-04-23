@@ -10,43 +10,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -422,15 +422,16 @@ data:
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
     \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 5 \"poly/poly_taylor_shift.hpp\"\
     \n\r\n// f(x) -> f(x+c)\r\ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint>\
-    \ f, mint c) {\r\n  ll N = len(f);\r\n  FOR(i, N) f[i] *= fact<mint>(i);\r\n \
-    \ auto b = powertable_1<mint>(c, N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\
-    \n  reverse(all(f));\r\n  f = convolution(f, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\
-    \n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n#line 6 \"linalg/det_A_plus_xB.hpp\"\
-    \n\n// O(N^3) time\n// det(A + xB) = f(x) \u3068\u306A\u308B N \u6B21\u591A\u9805\
-    \u5F0F f \u3092\u8FD4\u3059\n// \u78BA\u7387 N / mod \u3067\u6B63\u3057\u304F\u89E3\
-    \u3051\u308B\ntemplate <typename mint>\nvc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint>\
-    \ B) {\n  int N = len(A);\n  vc<mint> f(N + 1);\n  mint a = RNG(mint::get_mod());\n\
-    \  FOR(i, N) FOR(j, N) A[i][j] += a * B[i][j];\n  auto [det_A, inv_A] = matrix_inv(A);\n\
+    \ f, mint c) {\r\n  if (c == mint(0)) return f;\r\n  ll N = len(f);\r\n  FOR(i,\
+    \ N) f[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
+    \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(f));\r\n  f = convolution(f,\
+    \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
+    \n  return f;\r\n}\r\n#line 6 \"linalg/det_A_plus_xB.hpp\"\n\n// O(N^3) time\n\
+    // det(A + xB) = f(x) \u3068\u306A\u308B N \u6B21\u591A\u9805\u5F0F f \u3092\u8FD4\
+    \u3059\n// \u78BA\u7387 N / mod \u3067\u6B63\u3057\u304F\u89E3\u3051\u308B\ntemplate\
+    \ <typename mint>\nvc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint> B) {\n  int N\
+    \ = len(A);\n  vc<mint> f(N + 1);\n  mint a = RNG(mint::get_mod());\n  FOR(i,\
+    \ N) FOR(j, N) A[i][j] += a * B[i][j];\n  auto [det_A, inv_A] = matrix_inv(A);\n\
     \  if (det_A == 0) { return f; }\n  B = matrix_mul(B, inv_A);\n  FOR(i, N) FOR(j,\
     \ N) B[i][j] = -B[i][j];\n  f = characteristic_poly(B);\n  reverse(all(f));\n\
     \  for (auto&& x: f) x *= det_A;\n  f = poly_taylor_shift(f, -a);\n  return f;\n\
@@ -466,7 +467,7 @@ data:
   isVerificationFile: false
   path: linalg/det_A_plus_xB.hpp
   requiredBy: []
-  timestamp: '2024-04-12 12:45:20+09:00'
+  timestamp: '2024-04-23 20:14:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1303.test.cpp

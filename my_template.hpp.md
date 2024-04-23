@@ -967,9 +967,6 @@ data:
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/coef_of_fps_pows.test.cpp
-    title: test/mytest/coef_of_fps_pows.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1254,6 +1251,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
+  - icon: ':x:'
+    path: test/mytest/power_projection.test.cpp
+    title: test/mytest/power_projection.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/powerquery.test.cpp
     title: test/mytest/powerquery.test.cpp
@@ -2085,10 +2085,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2583.test.cpp
     title: test/yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2157,13 +2157,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2556,7 +2556,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2574,7 +2574,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc133f.test.cpp
     title: test_atcoder/arc133f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2604,9 +2604,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/96344
@@ -2778,10 +2778,11 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/multinomial.test.cpp
   - test/mytest/floor_ceil_ranges.test.cpp
+  - test/mytest/power_projection.test.cpp
   - test/mytest/pascal.test.cpp
   - test/mytest/conv2d.test.cpp
   - test/mytest/splay_cm.test.cpp
@@ -2816,7 +2817,6 @@ data:
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/partizan.test.cpp
-  - test/mytest/coef_of_fps_pows.test.cpp
   - test/mytest/incremental_scc.test.cpp
   - test/mytest/bell_number.test.cpp
   - test/mytest/matching_ve.test.cpp
