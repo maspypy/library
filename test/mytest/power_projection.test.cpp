@@ -19,7 +19,7 @@ void test() {
         vc<mint> h = fps_pow<mint>(f, n);
         FOR(i, K + 1) A[n] += wt[i] * h[i];
       }
-      vc<mint> B = power_projection<mint>(f, wt, N);
+      vc<mint> B = power_projection<mint>(wt, f, N);
       assert(A == B);
     }
   }
