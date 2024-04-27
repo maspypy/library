@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/unlabeled_tree.hpp
     title: enumerate/unlabeled_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -330,9 +330,10 @@ data:
     \n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]]\
     \ = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right = f_ee(prod_right,\
     \ ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n \
-    \   }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\ntemplate <typename\
-    \ TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n  vc<u64>\
-    \ dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
+    \   }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n// \u8907\u6570\
+    \u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate <typename TREE>\n\
+    struct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n  vc<u64> dp,\
+    \ dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
     \    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\n    auto f_ee =\
     \ [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n    auto f_ev\
     \ = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](T\
@@ -417,7 +418,7 @@ data:
   isVerificationFile: true
   path: test/mytest/enumerate_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
+  timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/enumerate_unlabeled_tree.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc223/tasks/abc223_d
@@ -279,16 +279,17 @@ data:
     \   continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\n      for (int g\
     \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += topbit(seg[g][i /\
     \ B]);\r\n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n\
-    \  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
-    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
-    \  string to_string() {\r\n    string s(n, '?');\r\n    for (int i = 0; i < n;\
-    \ ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n};\n#line 3\
-    \ \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\u9806\u6700\u5C0F\u306E toposort \u3092\
-    \u8FD4\u3059\ntemplate <typename GT>\nvc<int> toposort(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n\
-    \  FastSet que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n\
-    \  while (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v),\
-    \ V.eb(v);\n    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \  bool any(int l, int r) { return next(l) < r; }\r\n\r\n  // [l, r)\r\n  template\
+    \ <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    for (int x = next(l);\
+    \ x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n  string to_string() {\r\n    string\
+    \ s(n, '?');\r\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\
+    \n    return s;\r\n  }\r\n};\n#line 3 \"graph/toposort.hpp\"\n\n// \u8F9E\u66F8\
+    \u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\n\
+    vc<int> toposort(GT& G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n\
+    \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
+    \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
+    \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n#line 5 \"test_atcoder/abc223d.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M);\n \
     \ auto I = toposort(G);\n  if (I.empty()) return print(-1);\n  for (auto&& x:\
@@ -307,8 +308,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc223d.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-04-27 11:55:26+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc223d.test.cpp
 layout: document

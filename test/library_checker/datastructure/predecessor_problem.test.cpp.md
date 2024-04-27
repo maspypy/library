@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -216,17 +216,17 @@ data:
     \   continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\n      for (int g\
     \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += topbit(seg[g][i /\
     \ B]);\r\n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n\
-    \  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
-    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
-    \  string to_string() {\r\n    string s(n, '?');\r\n    for (int i = 0; i < n;\
-    \ ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n};\n#line 5\
-    \ \"test/library_checker/datastructure/predecessor_problem.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n    if (S[x]\
-    \ == '1') ss.insert(x);\n  }\n\n  FOR(Q) {\n    LL(t, k);\n    if (t == 0) { ss.insert(k);\
-    \ }\n    elif (t == 1) { ss.erase(k); }\n    elif (t == 2) { print(ss[k]); }\n\
-    \    elif (t == 3) {\n      ll x = ss.next(k);\n      if (x == N) x = -1;\n  \
-    \    print(x);\n    }\n    elif (t == 4) { print(ss.prev(k)); }\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}\n"
+    \  bool any(int l, int r) { return next(l) < r; }\r\n\r\n  // [l, r)\r\n  template\
+    \ <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    for (int x = next(l);\
+    \ x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n  string to_string() {\r\n    string\
+    \ s(n, '?');\r\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\
+    \n    return s;\r\n  }\r\n};\n#line 5 \"test/library_checker/datastructure/predecessor_problem.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n\
+    \    if (S[x] == '1') ss.insert(x);\n  }\n\n  FOR(Q) {\n    LL(t, k);\n    if\
+    \ (t == 0) { ss.insert(k); }\n    elif (t == 1) { ss.erase(k); }\n    elif (t\
+    \ == 2) { print(ss[k]); }\n    elif (t == 3) {\n      ll x = ss.next(k);\n   \
+    \   if (x == N) x = -1;\n      print(x);\n    }\n    elif (t == 4) { print(ss.prev(k));\
+    \ }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/fastset.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  FastSet ss(N);\n  STR(S);\n  FOR(x, N) {\n\
@@ -242,7 +242,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/predecessor_problem.test.cpp

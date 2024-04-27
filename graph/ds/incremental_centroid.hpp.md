@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -282,19 +282,20 @@ data:
     \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
     \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
     \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ -1;\r\n  }\r\n\r\n  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int\
-    \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
-    \n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 3 \"graph/ds/incremental_centroid.hpp\"\n\n// \u6728\u306F\u56FA\u5B9A\
-    \u3002\u9802\u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\u308B\u3002\n// cent: \u91CD\
-    \u5FC3\n// max_subtree\ntemplate <typename TREE>\nstruct Incremental_Centroid\
-    \ {\n  TREE& tree;\n  int N;\n  int cent;\n  pair<int, int> max_subtree; // (adj,\
-    \ size)\n  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>, 0, 0, 1> TA;\n\
-    \  FastSet ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n  \
-    \      N(tree.N),\n        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n\
-    \        TA(tree),\n        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v\
-    \ != cent);\n    // cent \u304B\u3089\u898B\u3066 v \u65B9\u5411\n    if (tree.in_subtree(v,\
+    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
+    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
+    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
+    \  string to_string() {\r\n    string s(n, '?');\r\n    for (int i = 0; i < n;\
+    \ ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n};\n#line 3\
+    \ \"graph/ds/incremental_centroid.hpp\"\n\n// \u6728\u306F\u56FA\u5B9A\u3002\u9802\
+    \u70B9\u91CD\u307F\u3092 +1 \u3067\u304D\u308B\u3002\n// cent: \u91CD\u5FC3\n\
+    // max_subtree\ntemplate <typename TREE>\nstruct Incremental_Centroid {\n  TREE&\
+    \ tree;\n  int N;\n  int cent;\n  pair<int, int> max_subtree; // (adj, size)\n\
+    \  int wt_sm;\n  Tree_AbelGroup<TREE, Monoid_Add<int>, 0, 0, 1> TA;\n  FastSet\
+    \ ss;\n\n  Incremental_Centroid(TREE& tree)\n      : tree(tree),\n        N(tree.N),\n\
+    \        cent(0),\n        max_subtree(0, 0),\n        wt_sm(0),\n        TA(tree),\n\
+    \        ss(N) {}\n\n  int get_subtree_wt(int v) {\n    assert(v != cent);\n \
+    \   // cent \u304B\u3089\u898B\u3066 v \u65B9\u5411\n    if (tree.in_subtree(v,\
     \ cent)) {\n      return TA.prod_subtree(tree.jump(cent, v, 1));\n    }\n    return\
     \ wt_sm - TA.prod_subtree(cent);\n  }\n\n  int move_to(int v) {\n    // \u5727\
     \u7E2E\u6728\u4E0A\u3067 cent \u304B\u3089 v \u306B\u9032\u3080\n    if (tree.in_subtree(v,\
@@ -348,7 +349,7 @@ data:
   isVerificationFile: false
   path: graph/ds/incremental_centroid.hpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
+  timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/2636.test.cpp

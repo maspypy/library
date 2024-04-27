@@ -5,9 +5,12 @@ data:
   - icon: ':warning:'
     path: ds/counter.hpp
     title: ds/counter.hpp
-  - icon: ':heavy_check_mark:'
-    path: graph/shortest_path/bfs_bitset.hpp
-    title: graph/shortest_path/bfs_bitset.hpp
+  - icon: ':warning:'
+    path: graph/bitset/bfs_bitset.hpp
+    title: graph/bitset/bfs_bitset.hpp
+  - icon: ':warning:'
+    path: graph/bitset/reachability_bitset.hpp
+    title: graph/bitset/reachability_bitset.hpp
   - icon: ':heavy_check_mark:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
@@ -30,12 +33,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/subset_sum.test.cpp
     title: test/mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1400.test.cpp
-    title: test/yukicoder/1400.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1400_2.test.cpp
-    title: test/yukicoder/1400_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/142.test.cpp
     title: test/yukicoder/142.test.cpp
@@ -278,7 +275,8 @@ data:
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
-  - graph/shortest_path/bfs_bitset.hpp
+  - graph/bitset/bfs_bitset.hpp
+  - graph/bitset/reachability_bitset.hpp
   - knapsack/subset_sum.hpp
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/mat_inv.hpp
@@ -289,14 +287,12 @@ data:
   verifiedWith:
   - test/mytest/mybitset.test.cpp
   - test/mytest/subset_sum.test.cpp
-  - test/yukicoder/1400_2.test.cpp
   - test/yukicoder/1421.test.cpp
   - test/yukicoder/421_2.test.cpp
   - test/yukicoder/421.test.cpp
   - test/yukicoder/4_2.test.cpp
   - test/yukicoder/2626_2.test.cpp
   - test/yukicoder/2490.test.cpp
-  - test/yukicoder/1400.test.cpp
   - test/yukicoder/142.test.cpp
   - test/library_checker/matrix/matrix_product_mod2.test.cpp
 documentation_of: ds/my_bitset.hpp

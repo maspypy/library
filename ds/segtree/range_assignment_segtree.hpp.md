@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -105,14 +105,15 @@ data:
     \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
     \      i -= __builtin_clzll(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n\
     \        i *= B;\r\n        i += topbit(seg[g][i / B]);\r\n      }\r\n      return\
-    \ i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  // [l, r)\r\n  template <typename\
-    \ F>\r\n  void enumerate(int l, int r, F f) {\r\n    for (int x = next(l); x <\
-    \ r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n  string to_string() {\r\n    string\
-    \ s(n, '?');\r\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\
-    \n    return s;\r\n  }\r\n};\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct Range_Assignment_SegTree {\n  using MX\
-    \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n\
-    \  FastSet cut;\n  vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
+    \ i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return\
+    \ next(l) < r; }\r\n\r\n  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int\
+    \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
+    \n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
+    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
+    };\n#line 4 \"ds/segtree/range_assignment_segtree.hpp\"\n\ntemplate <typename\
+    \ Monoid>\nstruct Range_Assignment_SegTree {\n  using MX = Monoid;\n  using X\
+    \ = typename MX::value_type;\n  int n;\n  SegTree<MX> seg;\n  FastSet cut;\n \
+    \ vc<X> dat;\n\n  Range_Assignment_SegTree() {}\n  Range_Assignment_SegTree(int\
     \ n) { build(n); }\n  template <typename F>\n  Range_Assignment_SegTree(int n,\
     \ F f) {\n    build(n, f);\n  }\n  Range_Assignment_SegTree(const vc<X> &v) {\
     \ build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return MX::unit();\
@@ -158,7 +159,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_assignment_segtree.hpp
   requiredBy: []
-  timestamp: '2024-01-23 14:37:36+09:00'
+  timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/range_assign.test.cpp

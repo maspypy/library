@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -226,9 +226,10 @@ data:
     \n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]]\
     \ = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right = f_ee(prod_right,\
     \ ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n \
-    \   }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\ntemplate <typename\
-    \ TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n  vc<u64>\
-    \ dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
+    \   }\r\n  }\r\n};\r\n#line 6 \"graph/tree_dp/subtree_hash.hpp\"\n\n// \u8907\u6570\
+    \u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate <typename TREE>\n\
+    struct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n  vc<u64> dp,\
+    \ dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int N = tree.N;\n\
     \    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\n    auto f_ee =\
     \ [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n    auto f_ev\
     \ = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto f_ve = [&](T\
@@ -245,12 +246,13 @@ data:
     \    return dat[k];\n  }\n};\n"
   code: "#include \"mod/modint61.hpp\"\n#include \"graph/base.hpp\"\n#include \"graph/tree.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"graph/tree_dp/rerooting_dp.hpp\"\n\n\
-    template <typename TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n  TREE&\
-    \ tree;\n  vc<u64> dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree)\
-    \ {\n    int N = tree.N;\n    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\
-    \n    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se};\
-    \ };\n    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n   \
-    \ auto f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
+    // \u8907\u6570\u306E\u6728\u3067\u4F7F\u3063\u3066\u5927\u4E08\u592B\ntemplate\
+    \ <typename TREE>\nstruct SubTree_Hash {\n  using mint = modint61;\n  TREE& tree;\n\
+    \  vc<u64> dp, dp_1, dp_2;\n\n  SubTree_Hash(TREE& tree) : tree(tree) {\n    int\
+    \ N = tree.N;\n    using T = pair<int, mint>;\n    T unit = {0, mint(1)};\n\n\
+    \    auto f_ee = [&](T A, T B) -> T { return {max(A.fi, B.fi), A.se * B.se}; };\n\
+    \    auto f_ev = [&](T A, int v) -> T { return {A.fi + 1, A.se}; };\n    auto\
+    \ f_ve = [&](T A, const auto& e) -> T {\n      return {A.fi, A.se + hash_base(A.fi)};\n\
     \    };\n\n    Rerooting_dp<TREE, T> DP(tree, f_ee, f_ev, f_ve, unit);\n    dp.resize(N),\
     \ dp_1.resize(N), dp_2.resize(N);\n    FOR(v, N) dp[v] = DP.dp[v].se.val;\n  \
     \  FOR(v, N) dp_1[v] = DP.dp_1[v].se.val;\n    FOR(v, N) dp_2[v] = DP.dp_2[v].se.val;\n\
@@ -270,7 +272,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_hash.hpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
+  timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/enumerate_unlabeled_tree.test.cpp

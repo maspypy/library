@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -115,16 +115,17 @@ data:
     \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
     \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
     \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ -1;\r\n  }\r\n\r\n  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int\
-    \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
-    \n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 4 \"graph/blackbox/complement_graph_unionfind.hpp\"\n\ntemplate <typename\
-    \ GT>\nUnionFind complement_graph_unionfind(GT& G) {\n  const int N = G.N;\n \
-    \ UnionFind uf(N);\n  FastSet ss(N);\n  FOR(v, N) ss.insert(v);\n\n  vc<int> que;\n\
-    \  FOR(v, N) {\n    if (!ss[v]) continue;\n    que.eb(v);\n    while (len(que))\
-    \ {\n      int a = POP(que);\n      vc<int> tmp;\n      for (auto&& e: G[a]) {\n\
-    \        if (ss[e.to]) tmp.eb(e.to);\n      }\n      for (auto&& x: tmp) ss.erase(x);\n\
+    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
+    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
+    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
+    \  string to_string() {\r\n    string s(n, '?');\r\n    for (int i = 0; i < n;\
+    \ ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n};\n#line 4\
+    \ \"graph/blackbox/complement_graph_unionfind.hpp\"\n\ntemplate <typename GT>\n\
+    UnionFind complement_graph_unionfind(GT& G) {\n  const int N = G.N;\n  UnionFind\
+    \ uf(N);\n  FastSet ss(N);\n  FOR(v, N) ss.insert(v);\n\n  vc<int> que;\n  FOR(v,\
+    \ N) {\n    if (!ss[v]) continue;\n    que.eb(v);\n    while (len(que)) {\n  \
+    \    int a = POP(que);\n      vc<int> tmp;\n      for (auto&& e: G[a]) {\n   \
+    \     if (ss[e.to]) tmp.eb(e.to);\n      }\n      for (auto&& x: tmp) ss.erase(x);\n\
     \      ss.enumerate(0, N, [&](int to) -> void {\n        ss.erase(to);\n     \
     \   que.eb(to);\n        uf.merge(a, to);\n      });\n      for (auto&& x: tmp)\
     \ ss.insert(x);\n    }\n  }\n  return uf;\n}\n"
@@ -145,7 +146,7 @@ data:
   isVerificationFile: false
   path: graph/blackbox/complement_graph_unionfind.hpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
+  timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/blackbox/complement_graph_unionfind.hpp

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/bitset/scc_bitset.hpp
+    title: graph/bitset/scc_bitset.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -46,7 +49,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: graph/blackbox/scc.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/bitset/scc_bitset.hpp
   timestamp: '2024-04-09 15:17:41+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

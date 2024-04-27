@@ -5,18 +5,13 @@ data:
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1400.test.cpp
-    title: test/yukicoder/1400.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1400_2.test.cpp
-    title: test/yukicoder/1400_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/contest/641/problem/F
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
     // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
     \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
@@ -122,46 +117,28 @@ data:
     \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
     \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
     \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"graph/shortest_path/bfs_bitset.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\
-    \u91CD\u307F\u306A\u3057\u6700\u77ED\u8DEF\u554F\u984C\n// 01 \u884C\u5217\u3092\
-    \ vc<bitset> \u306E\u5F62\u3067\u6E21\u3059\n// O(N^2/w)\n// \u53C2\u8003\uFF1A\
-    (4000,4000) \u3092 4000 \u56DE\u3067 2 \u79D2\u4EE5\u5185\uFF1F\ntemplate <typename\
-    \ BITSET>\nvc<int> bfs_bitset(vc<BITSET>& G, int s) {\n  const int N = len(G);\n\
-    \  assert(0 <= s && s < N);\n  vc<int> dist(N, -1);\n  BITSET unused, que;\n \
-    \ if constexpr (is_same_v<BITSET, My_Bitset>) {\n    unused = BITSET(N, 1);\n\
-    \    que = BITSET(N, 0);\n  }\n  FOR(v, N) unused[v] = 1;\n  que[s] = 1;\n\n \
-    \ int d = 0;\n  while (1) {\n    int p = que._Find_first();\n    if (p >= N) break;\n\
-    \    BITSET nxt;\n    if constexpr (is_same_v<BITSET, My_Bitset>) { nxt = BITSET(N);\
-    \ }\n    while (p < N) {\n      dist[p] = d;\n      unused[p] = 0;\n      nxt\
-    \ |= G[p];\n      p = que._Find_next(p);\n    }\n    que = nxt & unused;\n   \
-    \ ++d;\n  }\n  return dist;\n}\n"
-  code: "#include \"ds/my_bitset.hpp\"\n\n// \u5BC6\u30B0\u30E9\u30D5\u306E\u91CD\u307F\
-    \u306A\u3057\u6700\u77ED\u8DEF\u554F\u984C\n// 01 \u884C\u5217\u3092 vc<bitset>\
-    \ \u306E\u5F62\u3067\u6E21\u3059\n// O(N^2/w)\n// \u53C2\u8003\uFF1A(4000,4000)\
-    \ \u3092 4000 \u56DE\u3067 2 \u79D2\u4EE5\u5185\uFF1F\ntemplate <typename BITSET>\n\
-    vc<int> bfs_bitset(vc<BITSET>& G, int s) {\n  const int N = len(G);\n  assert(0\
-    \ <= s && s < N);\n  vc<int> dist(N, -1);\n  BITSET unused, que;\n  if constexpr\
-    \ (is_same_v<BITSET, My_Bitset>) {\n    unused = BITSET(N, 1);\n    que = BITSET(N,\
-    \ 0);\n  }\n  FOR(v, N) unused[v] = 1;\n  que[s] = 1;\n\n  int d = 0;\n  while\
-    \ (1) {\n    int p = que._Find_first();\n    if (p >= N) break;\n    BITSET nxt;\n\
-    \    if constexpr (is_same_v<BITSET, My_Bitset>) { nxt = BITSET(N); }\n    while\
-    \ (p < N) {\n      dist[p] = d;\n      unused[p] = 0;\n      nxt |= G[p];\n  \
-    \    p = que._Find_next(p);\n    }\n    que = nxt & unused;\n    ++d;\n  }\n \
-    \ return dist;\n}\n"
+    #line 2 \"graph/bitset/reachability_bitset.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
+    vc<My_Bitset> reachability_bitset(vc<My_Bitset> G) {\n  int N = len(G);\n  FOR(i,\
+    \ N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k] and G[k][j]\n    FOR(i, N) {\n\
+    \      if (!G[i][k]) continue;\n      G[i] |= G[k];\n    }\n  }\n  return G;\n\
+    }\n"
+  code: "#include \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
+    vc<My_Bitset> reachability_bitset(vc<My_Bitset> G) {\n  int N = len(G);\n  FOR(i,\
+    \ N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k] and G[k][j]\n    FOR(i, N) {\n\
+    \      if (!G[i][k]) continue;\n      G[i] |= G[k];\n    }\n  }\n  return G;\n\
+    }\n"
   dependsOn:
   - ds/my_bitset.hpp
   isVerificationFile: false
-  path: graph/shortest_path/bfs_bitset.hpp
+  path: graph/bitset/reachability_bitset.hpp
   requiredBy: []
-  timestamp: '2024-02-23 19:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/yukicoder/1400_2.test.cpp
-  - test/yukicoder/1400.test.cpp
-documentation_of: graph/shortest_path/bfs_bitset.hpp
+  timestamp: '2024-04-27 11:55:26+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/bitset/reachability_bitset.hpp
 layout: document
 redirect_from:
-- /library/graph/shortest_path/bfs_bitset.hpp
-- /library/graph/shortest_path/bfs_bitset.hpp.html
-title: graph/shortest_path/bfs_bitset.hpp
+- /library/graph/bitset/reachability_bitset.hpp
+- /library/graph/bitset/reachability_bitset.hpp.html
+title: graph/bitset/reachability_bitset.hpp
 ---
