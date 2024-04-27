@@ -79,6 +79,12 @@ struct Link_Cut_Tree {
 
   int lca(int u, int v) { return lca(&nodes[u], &nodes[v])->idx; }
 
+  // 辺の個数
+  int dist(int u, int v) {
+    evert(u), expose(v);
+    return ((*this)[v]->size) - 1;
+  }
+
   Node *jump(Node *u, Node *v, int k) {
     evert(v);
     expose(u);
