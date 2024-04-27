@@ -23,12 +23,12 @@ void solve() {
     auto dist = bfs_bitset<BS>(G, s);
     if (T % 2 == 0) {
       FOR(t, N) {
-        if (dist[t] > T) return No();
+        if (dist[t] == infty<int> || dist[t] > T) return No();
       }
     }
     if (T % 2 == 1) {
       FOR(t, N, N + N) {
-        if (dist[t] > T) return No();
+        if (dist[t] == infty<int> || dist[t] > T) return No();
       }
     }
   }
