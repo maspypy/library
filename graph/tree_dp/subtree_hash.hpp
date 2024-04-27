@@ -4,6 +4,7 @@
 #include "random/base.hpp"
 #include "graph/tree_dp/rerooting_dp.hpp"
 
+// 複数の木で使って大丈夫
 template <typename TREE>
 struct SubTree_Hash {
   using mint = modint61;

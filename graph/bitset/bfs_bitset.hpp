@@ -8,7 +8,7 @@ template <typename BITSET>
 vc<int> bfs_bitset(vc<BITSET>& G, int s) {
   const int N = len(G);
   assert(0 <= s && s < N);
-  vc<int> dist(N, -1);
+  vc<int> dist(N, infty<int>);
   BITSET unused, que;
   if constexpr (is_same_v<BITSET, My_Bitset>) {
     unused = BITSET(N, 1);

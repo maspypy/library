@@ -97,6 +97,8 @@ struct FastSet {
     return -1;
   }
 
+  bool any(int l, int r) { return next(l) < r; }
+
   // [l, r)
   template <typename F>
   void enumerate(int l, int r, F f) {
