@@ -2,18 +2,20 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/shortest_path/bfs_bitset.hpp"
+#include "ds/my_bitset.hpp"
+#include "graph/bitset/bfs_bitset.hpp"
 
-using BS = bitset<4000>;
+using BS = My_Bitset;
 
 void solve() {
   LL(N, T);
-  vc<BS> G(N + N);
+  vc<BS> G(N + N, BS(N + N));
   FOR(i, N) {
     STR(S);
     FOR(j, N) {
       if (S[j] == '0') continue;
-      G[i][j + N] = G[i + N][j] = 1;
+      G[i][j + N] = 1;
+      G[i + N][j] = 1;
     }
   }
 
@@ -21,12 +23,12 @@ void solve() {
     auto dist = bfs_bitset<BS>(G, s);
     if (T % 2 == 0) {
       FOR(t, N) {
-        if (dist[t] == -1 || dist[t] > T) return No();
+        if (dist[t] > T) return No();
       }
     }
     if (T % 2 == 1) {
       FOR(t, N, N + N) {
-        if (dist[t] == -1 || dist[t] > T) return No();
+        if (dist[t] > T) return No();
       }
     }
   }
@@ -34,11 +36,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
