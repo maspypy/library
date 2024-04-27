@@ -598,7 +598,7 @@ data:
     \ + 1);\n      vc<mint> wt(K + 1);\n      FOR(k, K + 1) f[k] = RNG(0, 5), wt[k]\
     \ = RNG(0, 5);\n      vc<mint> A(N + 1);\n      FOR(n, N + 1) {\n        vc<mint>\
     \ h = fps_pow<mint>(f, n);\n        FOR(i, K + 1) A[n] += wt[i] * h[i];\n    \
-    \  }\n      vc<mint> B = power_projection<mint>(f, wt, N);\n      assert(A ==\
+    \  }\n      vc<mint> B = power_projection<mint>(wt, f, N);\n      assert(A ==\
     \ B);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
     \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
@@ -608,9 +608,9 @@ data:
     \ + 1);\n      vc<mint> wt(K + 1);\n      FOR(k, K + 1) f[k] = RNG(0, 5), wt[k]\
     \ = RNG(0, 5);\n      vc<mint> A(N + 1);\n      FOR(n, N + 1) {\n        vc<mint>\
     \ h = fps_pow<mint>(f, n);\n        FOR(i, K + 1) A[n] += wt[i] * h[i];\n    \
-    \  }\n      vc<mint> B = power_projection<mint>(f, wt, N);\n      assert(A ==\
+    \  }\n      vc<mint> B = power_projection<mint>(wt, f, N);\n      assert(A ==\
     \ B);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -634,7 +634,7 @@ data:
   isVerificationFile: true
   path: test/mytest/power_projection.test.cpp
   requiredBy: []
-  timestamp: '2024-04-23 20:14:58+09:00'
+  timestamp: '2024-04-27 20:07:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/power_projection.test.cpp
