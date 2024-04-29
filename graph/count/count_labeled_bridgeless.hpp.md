@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
   - icon: ':question:'
@@ -19,16 +19,16 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':question:'
@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -70,23 +70,23 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://oeis.org/A095983
@@ -647,10 +647,10 @@ data:
     \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
     \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
     \n}\r\n#line 1 \"poly/power_projection.hpp\"\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
-    template <typename mint>\nvc<mint> power_projection(vc<mint> f, vc<mint> wt, int\
+    template <typename mint>\nvc<mint> power_projection(vc<mint> wt, vc<mint> f, int\
     \ m) {\n  assert(len(f) == len(wt));\n  if (f.empty()) { return vc<mint>(m + 1,\
     \ mint(0)); }\n  if (f[0] != mint(0)) {\n    mint c = f[0];\n    f[0] = 0;\n \
-    \   vc<mint> A = power_projection(f, wt, m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n\
+    \   vc<mint> A = power_projection(wt, f, m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n\
     \    vc<mint> B(m + 1);\n    mint pow = 1;\n    FOR(q, m + 1) B[q] = pow * fact_inv<mint>(q),\
     \ pow *= c;\n    A = convolution<mint>(A, B);\n    A.resize(m + 1);\n    FOR(i,\
     \ m + 1) A[i] *= fact<mint>(i);\n    return A;\n  }\n\n  int n = 1;\n  while (n\
@@ -796,8 +796,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_bridgeless.hpp
   requiredBy: []
-  timestamp: '2024-04-23 20:14:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-04-29 18:22:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_labeled_bridgeless.test.cpp
 documentation_of: graph/count/count_labeled_bridgeless.hpp

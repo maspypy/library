@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/compositional_inverse.test.cpp
     title: test/library_checker/polynomial/compositional_inverse.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/compositional_inverset.test.cpp
     title: test/mytest/compositional_inverset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_labeled_biconnected.test.cpp
     title: test/mytest/count_labeled_biconnected.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
   - icon: ':x:'
@@ -29,14 +29,14 @@ data:
     title: test/mytest/power_projection.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/power_projection.hpp\"\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
-    template <typename mint>\nvc<mint> power_projection(vc<mint> f, vc<mint> wt, int\
+    template <typename mint>\nvc<mint> power_projection(vc<mint> wt, vc<mint> f, int\
     \ m) {\n  assert(len(f) == len(wt));\n  if (f.empty()) { return vc<mint>(m + 1,\
     \ mint(0)); }\n  if (f[0] != mint(0)) {\n    mint c = f[0];\n    f[0] = 0;\n \
-    \   vc<mint> A = power_projection(f, wt, m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n\
+    \   vc<mint> A = power_projection(wt, f, m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n\
     \    vc<mint> B(m + 1);\n    mint pow = 1;\n    FOR(q, m + 1) B[q] = pow * fact_inv<mint>(q),\
     \ pow *= c;\n    A = convolution<mint>(A, B);\n    A.resize(m + 1);\n    FOR(i,\
     \ m + 1) A[i] *= fact<mint>(i);\n    return A;\n  }\n\n  int n = 1;\n  while (n\
@@ -75,10 +75,10 @@ data:
     \ / mint(k);\n  for (auto& x: P) x *= c;\n  ntt(P, 1);\n  reverse(all(P));\n \
     \ P.resize(m + 1);\n  return P;\n}\n"
   code: "// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\ntemplate <typename mint>\nvc<mint>\
-    \ power_projection(vc<mint> f, vc<mint> wt, int m) {\n  assert(len(f) == len(wt));\n\
+    \ power_projection(vc<mint> wt, vc<mint> f, int m) {\n  assert(len(f) == len(wt));\n\
     \  if (f.empty()) { return vc<mint>(m + 1, mint(0)); }\n  if (f[0] != mint(0))\
-    \ {\n    mint c = f[0];\n    f[0] = 0;\n    vc<mint> A = power_projection(f, wt,\
-    \ m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n    vc<mint> B(m + 1);\n\
+    \ {\n    mint c = f[0];\n    f[0] = 0;\n    vc<mint> A = power_projection(wt,\
+    \ f, m);\n    FOR(p, m + 1) A[p] *= fact_inv<mint>(p);\n    vc<mint> B(m + 1);\n\
     \    mint pow = 1;\n    FOR(q, m + 1) B[q] = pow * fact_inv<mint>(q), pow *= c;\n\
     \    A = convolution<mint>(A, B);\n    A.resize(m + 1);\n    FOR(i, m + 1) A[i]\
     \ *= fact<mint>(i);\n    return A;\n  }\n\n  int n = 1;\n  while (n < len(f))\
@@ -123,8 +123,8 @@ data:
   - poly/compositional_inverse.hpp
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
-  timestamp: '2024-04-23 20:14:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-04-29 18:22:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/power_projection.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
