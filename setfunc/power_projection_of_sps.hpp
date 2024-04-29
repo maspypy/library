@@ -1,5 +1,5 @@
 #include "setfunc/subset_convolution.hpp"
-#include "poly/convolution_naive.hpp"
+#include "poly/convolution.hpp"
 
 // for fixed sps s, consider linear map F:a->b = subset-conv(a,s)
 // given x, calculate transpose(F)(x)
@@ -17,17 +17,15 @@ vc<mint> transposed_subset_convolution(vc<mint> s, vc<mint> x) {
   return x;
 }
 
-// for fixed sps s s.t. s[0] == 0.
-// consider linear map F:f->t=f(s) for egf f.
-// given x, calcuate transpose(F)(x)
-// equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,N
+// assume s[0]==0
+// calculate sum_i wt_i(s^k/k!)_i for k=0,1,...,N
 template <typename mint, int LIM>
-vc<mint> transposed_sps_composition_egf(vc<mint>& s, vc<mint> x) {
+vc<mint> power_projection_of_sps_egf(vc<mint> wt, vc<mint>& s) {
   const int N = topbit(len(s));
-  assert(len(s) == (1 << N) && len(x) == (1 << N) && s[0] == mint(0));
+  assert(len(s) == (1 << N) && len(wt) == (1 << N) && s[0] == mint(0));
   vc<mint> y(N + 1);
-  y[0] = x[0];
-  auto& dp = x;
+  y[0] = wt[0];
+  auto& dp = wt;
   FOR(i, N) {
     vc<mint> newdp(1 << (N - 1 - i));
     FOR(j, N - i) {
@@ -42,21 +40,18 @@ vc<mint> transposed_sps_composition_egf(vc<mint>& s, vc<mint> x) {
   return y;
 }
 
-// for fixed sps s s.t. s[0] == 0.
-// consider linear map F:f->t=f(s) for polynomial f.
-// given x, calcuate transpose(F)(x)
-// equivalent: calculate sum_i x_i(s^k/k!)_i for k=0,1,...,M-1
+// calculate sum_i x_i(s^k)_i for k=0,1,...,M-1
 template <typename mint, int LIM>
-vc<mint> transposed_sps_composition_poly(vc<mint> s, vc<mint> x, int M) {
+vc<mint> power_projection_of_sps(vc<mint> wt, vc<mint> s, int M) {
   const int N = topbit(len(s));
-  assert(len(s) == (1 << N) && len(x) == (1 << N));
+  assert(len(s) == (1 << N) && len(wt) == (1 << N));
   mint c = s[0];
   s[0] -= c;
-  x = transposed_sps_composition_egf<mint, LIM>(s, x);
+  vc<mint> x = power_projection_of_sps_egf<mint, LIM>(wt, s);
   vc<mint> g(M);
   mint pow = 1;
   FOR(i, M) { g[i] = pow * fact_inv<mint>(i), pow *= c; }
-  x = convolution_naive<mint>(x, g);
+  x = convolution<mint>(x, g);
   x.resize(M);
   FOR(i, M) x[i] *= fact<mint>(i);
   return x;
