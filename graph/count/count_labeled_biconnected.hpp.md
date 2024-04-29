@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -31,49 +31,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   - icon: ':heavy_check_mark:'
@@ -646,7 +646,7 @@ data:
     \    if (a < i && b <= j) lhs += dp[i - a][j - b] * mint(i - a);\r\n        if\
     \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
     \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
-    \n}\r\n#line 1 \"poly/power_projection.hpp\"\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
+    \n}\r\n#line 2 \"poly/power_projection.hpp\"\n\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
     template <typename mint>\nvc<mint> power_projection(vc<mint> wt, vc<mint> f, int\
     \ m) {\n  assert(len(f) == len(wt));\n  if (f.empty()) { return vc<mint>(m + 1,\
     \ mint(0)); }\n  if (f[0] != mint(0)) {\n    mint c = f[0];\n    f[0] = 0;\n \
@@ -788,7 +788,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_biconnected.hpp
   requiredBy: []
-  timestamp: '2024-04-29 18:33:23+09:00'
+  timestamp: '2024-04-29 18:52:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_labeled_biconnected.test.cpp
