@@ -1,12 +1,12 @@
 // \sum_j[x^j]f^i を i=0,1,...,m
 template <typename mint>
-vc<mint> power_projection(vc<mint> f, vc<mint> wt, int m) {
+vc<mint> power_projection(vc<mint> wt, vc<mint> f, int m) {
   assert(len(f) == len(wt));
   if (f.empty()) { return vc<mint>(m + 1, mint(0)); }
   if (f[0] != mint(0)) {
     mint c = f[0];
     f[0] = 0;
-    vc<mint> A = power_projection(f, wt, m);
+    vc<mint> A = power_projection(wt, f, m);
     FOR(p, m + 1) A[p] *= fact_inv<mint>(p);
     vc<mint> B(m + 1);
     mint pow = 1;
