@@ -62,7 +62,7 @@ vc<mint> compositional_inverse(vc<mint> f) {
   vc<mint> wt(n + 1);
   wt[n] = 1;
 
-  vc<mint> A = power_projection<mint>(f, wt, n);
+  vc<mint> A = power_projection<mint>(wt, f, n);
   vc<mint> g(n);
   FOR(i, 1, n + 1) g[n - i] = mint(n) * A[i] * inv<mint>(i);
   g = fps_pow_1<mint>(g, -inv<mint>(n));
