@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_connected.hpp
     title: graph/count/count_labeled_connected.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
   - icon: ':question:'
@@ -22,19 +22,19 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':question:'
@@ -55,7 +55,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -76,20 +76,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -800,7 +800,7 @@ data:
     \u308B.\n  */\n  const int n = len(f) - 1;\n  if (n == -1) return {};\n  assert(f[0]\
     \ == mint(0));\n  if (n == 0) return f;\n  assert(f[1] != mint(0));\n  mint c\
     \ = f[1];\n  mint ic = c.inverse();\n  for (auto& x: f) x *= ic;\n  vc<mint> wt(n\
-    \ + 1);\n  wt[n] = 1;\n\n  vc<mint> A = power_projection<mint>(f, wt, n);\n  vc<mint>\
+    \ + 1);\n  wt[n] = 1;\n\n  vc<mint> A = power_projection<mint>(wt, f, n);\n  vc<mint>\
     \ g(n);\n  FOR(i, 1, n + 1) g[n - i] = mint(n) * A[i] * inv<mint>(i);\n  g = fps_pow_1<mint>(g,\
     \ -inv<mint>(n));\n  g.insert(g.begin(), 0);\n\n  mint pow = 1;\n  FOR(i, len(g))\
     \ g[i] *= pow, pow *= ic;\n  return g;\n}\n\n// G->F(G), G->DF(G) \u3092\u4E0E\
@@ -881,8 +881,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_labeled_bridgeless.test.cpp
   requiredBy: []
-  timestamp: '2024-04-29 18:22:59+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-29 18:33:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_labeled_bridgeless.test.cpp
 layout: document

@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':question:'
@@ -40,7 +40,7 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -61,38 +61,38 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/compositional_inverse.test.cpp
     title: test/library_checker/polynomial/compositional_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/compositional_inverset.test.cpp
     title: test/mytest/compositional_inverset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_biconnected.test.cpp
     title: test/mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2024/03/16/224034
@@ -710,7 +710,7 @@ data:
     \u308B.\n  */\n  const int n = len(f) - 1;\n  if (n == -1) return {};\n  assert(f[0]\
     \ == mint(0));\n  if (n == 0) return f;\n  assert(f[1] != mint(0));\n  mint c\
     \ = f[1];\n  mint ic = c.inverse();\n  for (auto& x: f) x *= ic;\n  vc<mint> wt(n\
-    \ + 1);\n  wt[n] = 1;\n\n  vc<mint> A = power_projection<mint>(f, wt, n);\n  vc<mint>\
+    \ + 1);\n  wt[n] = 1;\n\n  vc<mint> A = power_projection<mint>(wt, f, n);\n  vc<mint>\
     \ g(n);\n  FOR(i, 1, n + 1) g[n - i] = mint(n) * A[i] * inv<mint>(i);\n  g = fps_pow_1<mint>(g,\
     \ -inv<mint>(n));\n  g.insert(g.begin(), 0);\n\n  mint pow = 1;\n  FOR(i, len(g))\
     \ g[i] *= pow, pow *= ic;\n  return g;\n}\n\n// G->F(G), G->DF(G) \u3092\u4E0E\
@@ -750,7 +750,7 @@ data:
     \u308B.\n  */\n  const int n = len(f) - 1;\n  if (n == -1) return {};\n  assert(f[0]\
     \ == mint(0));\n  if (n == 0) return f;\n  assert(f[1] != mint(0));\n  mint c\
     \ = f[1];\n  mint ic = c.inverse();\n  for (auto& x: f) x *= ic;\n  vc<mint> wt(n\
-    \ + 1);\n  wt[n] = 1;\n\n  vc<mint> A = power_projection<mint>(f, wt, n);\n  vc<mint>\
+    \ + 1);\n  wt[n] = 1;\n\n  vc<mint> A = power_projection<mint>(wt, f, n);\n  vc<mint>\
     \ g(n);\n  FOR(i, 1, n + 1) g[n - i] = mint(n) * A[i] * inv<mint>(i);\n  g = fps_pow_1<mint>(g,\
     \ -inv<mint>(n));\n  g.insert(g.begin(), 0);\n\n  mint pow = 1;\n  FOR(i, len(g))\
     \ g[i] *= pow, pow *= ic;\n  return g;\n}\n\n// G->F(G), G->DF(G) \u3092\u4E0E\
@@ -763,7 +763,7 @@ data:
     \ F[1];\n  while (len(G) < N) {\n    int n = len(G);\n    // G:= G(x)-(F(G(x))-x)/DF(G(x))\n\
     \    vc<mint> G2 = comp_DF(G);\n    G.resize(2 * n);\n    vc<mint> G1 = comp_F(G);\n\
     \    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    FOR(i, n)\
-    \ G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}"
+    \ G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n"
   dependsOn:
   - poly/differentiate.hpp
   - poly/composition.hpp
@@ -793,8 +793,8 @@ data:
   requiredBy:
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
-  timestamp: '2024-04-29 18:22:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-04-29 18:33:23+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
