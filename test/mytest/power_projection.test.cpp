@@ -1,8 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 
-#include "other/io.hpp"
-
 #include "random/base.hpp"
 #include "poly/power_projection.hpp"
 #include "mod/modint.hpp"
