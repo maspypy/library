@@ -5,7 +5,7 @@
 
 #include "mod/modint.hpp"
 #include "setfunc/sps_exp.hpp"
-#include "setfunc/transposed_sps_composition.hpp"
+#include "setfunc/power_projection_of_sps.hpp"
 
 const int LIM = 14;
 using mint = modint998;
@@ -36,7 +36,7 @@ void solve() {
 
   vc<mint> x(1 << N);
   x.back() = mint(1);
-  auto y = transposed_sps_composition_egf<mint, LIM>(dp, x);
+  auto y = power_projection_of_sps_egf<mint, LIM>(x, dp);
 
   FOR(k, 1, N) {
     // k edges = N-k component
