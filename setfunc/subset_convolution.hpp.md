@@ -9,11 +9,11 @@ data:
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':heavy_check_mark:'
+    path: setfunc/power_projection_of_sps.hpp
+    title: setfunc/power_projection_of_sps.hpp
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':heavy_check_mark:'
-    path: setfunc/transposed_sps_composition.hpp
-    title: setfunc/transposed_sps_composition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
@@ -33,9 +33,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc236h.test.cpp
     title: test_atcoder/abc236h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc253h.test.cpp
-    title: test_atcoder/abc253h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
@@ -89,7 +86,7 @@ data:
   path: setfunc/subset_convolution.hpp
   requiredBy:
   - setfunc/sps_exp.hpp
-  - setfunc/transposed_sps_composition.hpp
+  - setfunc/power_projection_of_sps.hpp
   - linalg/hafnian.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -101,7 +98,6 @@ data:
   - test/library_checker/math/powproj_sps.test.cpp
   - test_atcoder/abc236h.test.cpp
   - test_atcoder/arc105.test.cpp
-  - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/subset_convolution.hpp
 layout: document
 redirect_from:

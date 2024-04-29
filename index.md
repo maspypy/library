@@ -1838,6 +1838,9 @@ data:
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
     - icon: ':heavy_check_mark:'
+      path: setfunc/power_projection_of_sps.hpp
+      title: setfunc/power_projection_of_sps.hpp
+    - icon: ':heavy_check_mark:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
     - icon: ':heavy_check_mark:'
@@ -1855,9 +1858,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
-    - icon: ':heavy_check_mark:'
-      path: setfunc/transposed_sps_composition.hpp
-      title: setfunc/transposed_sps_composition.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/xor_convolution.hpp
       title: setfunc/xor_convolution.hpp
@@ -4362,7 +4362,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc249_ex.test.cpp
       title: test_atcoder/abc249_ex.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc253h.test.cpp
       title: test_atcoder/abc253h.test.cpp
     - icon: ':heavy_check_mark:'

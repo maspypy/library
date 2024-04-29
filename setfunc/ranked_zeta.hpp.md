@@ -6,6 +6,9 @@ data:
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':heavy_check_mark:'
+    path: setfunc/power_projection_of_sps.hpp
+    title: setfunc/power_projection_of_sps.hpp
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   - icon: ':heavy_check_mark:'
@@ -20,9 +23,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: setfunc/transposed_sps_composition.hpp
-    title: setfunc/transposed_sps_composition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
@@ -48,9 +48,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc236h.test.cpp
     title: test_atcoder/abc236h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc253h.test.cpp
-    title: test_atcoder/abc253h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc306h.test.cpp
     title: test_atcoder/abc306h.test.cpp
@@ -101,8 +98,8 @@ data:
   requiredBy:
   - setfunc/sps_exp.hpp
   - setfunc/sps_log.hpp
+  - setfunc/power_projection_of_sps.hpp
   - setfunc/sps_composition.hpp
-  - setfunc/transposed_sps_composition.hpp
   - setfunc/subset_convolution.hpp
   - setfunc/sps_inv.hpp
   - linalg/hafnian.hpp
@@ -119,7 +116,6 @@ data:
   - test_atcoder/abc236h.test.cpp
   - test_atcoder/abc321g.test.cpp
   - test_atcoder/arc105.test.cpp
-  - test_atcoder/abc253h.test.cpp
   - test_atcoder/abc213g.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document

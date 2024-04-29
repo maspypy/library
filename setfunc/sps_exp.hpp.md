@@ -24,9 +24,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc236h.test.cpp
     title: test_atcoder/abc236h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc253h.test.cpp
-    title: test_atcoder/abc253h.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -86,7 +83,6 @@ data:
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
   - test_atcoder/abc236h.test.cpp
-  - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/sps_exp.hpp
 layout: document
 redirect_from:

@@ -309,6 +309,9 @@ data:
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   - icon: ':heavy_check_mark:'
+    path: setfunc/power_projection_of_sps.hpp
+    title: setfunc/power_projection_of_sps.hpp
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   - icon: ':heavy_check_mark:'
@@ -1174,9 +1177,6 @@ data:
     path: test_atcoder/abc249_ex.test.cpp
     title: test_atcoder/abc249_ex.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc253h.test.cpp
-    title: test_atcoder/abc253h.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1463,6 +1463,7 @@ data:
   - poly/sum_of_power_of_roots.hpp
   - new_poly/base.hpp
   - setfunc/sps_log.hpp
+  - setfunc/power_projection_of_sps.hpp
   - graph/tree_all_distances.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/count/count_labeled_forest.hpp
@@ -1820,7 +1821,6 @@ data:
   - test_atcoder/abc227g.test.cpp
   - test_atcoder/abc336g.test.cpp
   - test_atcoder/arc105.test.cpp
-  - test_atcoder/abc253h.test.cpp
   - test_atcoder/abc260h.test.cpp
   - test_atcoder/agc058d.test.cpp
   - test_atcoder/abc213g.test.cpp

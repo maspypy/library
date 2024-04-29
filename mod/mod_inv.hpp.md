@@ -278,6 +278,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
+  - icon: ':heavy_check_mark:'
+    path: setfunc/power_projection_of_sps.hpp
+    title: setfunc/power_projection_of_sps.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_A.test.cpp
@@ -348,6 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/powproj_sps.test.cpp
+    title: test/library_checker/math/powproj_sps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
@@ -923,6 +929,7 @@ data:
   - poly/prefix_product_of_poly.hpp
   - poly/sum_of_power_of_roots.hpp
   - new_poly/base.hpp
+  - setfunc/power_projection_of_sps.hpp
   - graph/tree_all_distances.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/count/count_labeled_forest.hpp
@@ -1084,6 +1091,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/bernoulli.test.cpp
   - test/library_checker/math/factorial.test.cpp
+  - test/library_checker/math/powproj_sps.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
