@@ -1,3 +1,5 @@
+#include "poly/convolution.hpp"
+
 // \sum_j[x^j]f^i を i=0,1,...,m
 template <typename mint>
 vc<mint> power_projection(vc<mint> wt, vc<mint> f, int m) {
