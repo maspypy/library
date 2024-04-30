@@ -1,116 +1,116 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796_1.test.cpp
     title: test/yukicoder/1796_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2626.test.cpp
     title: test/yukicoder/2626.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc333f.test.cpp
     title: test_atcoder/abc333f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\
@@ -181,21 +181,15 @@ data:
     \   ntt(fa, 1);\n    fa.resize(len(a));\n    fa.erase(fa.begin(), fa.begin() +\
     \ len(b) - 1);\n    return fa;\n  }\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_garner(vc<mint>&\
     \ a, vc<mint> b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  static const long long nttprimes[] = {754974721, 167772161, 469762049};\n \
-    \ using mint0 = modint<754974721>;\n  using mint1 = modint<167772161>;\n  using\
-    \ mint2 = modint<469762049>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
-    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
-    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
-    \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
-    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  const long long m01 = 1LL\
-    \ * nttprimes[0] * nttprimes[1];\n  const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;\n\
-    \  const long long m01_inv_m2 = mint2(m01).inverse().val;\n  const int mod = mint::get_mod();\n\
-    \  auto garner = [&](mint0 x0, mint1 x1, mint2 x2) -> mint {\n    int r0 = x0.val,\
-    \ r1 = x1.val, r2 = x2.val;\n    int v1 = (m0_inv_m1 * (r1 + nttprimes[1] - r0))\
-    \ % nttprimes[1];\n    auto v2 = (mint2(r2) - r0 - mint2(nttprimes[0]) * v1) *\
-    \ mint2(m01_inv_m2);\n    return mint(r0 + 1LL * nttprimes[0] * v1 + m01 % mod\
-    \ * v2.val);\n  };\n  vc<mint> c(len(c0));\n  FOR(i, len(c)) c[i] = garner(c0[i],\
-    \ c1[i], c2[i]);\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
+    \  static constexpr int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n\
+    \  static constexpr int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using\
+    \ mint1 = modint<p1>;\n  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n\
+    \  vc<mint1> a1(n), b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val,\
+    \ a1[i] = a[i].val, a2[i] = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val,\
+    \ b2[i] = b[i].val;\n  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
+    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n \
+    \ FOR(i, n + m - 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
+    \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
     \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
     \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n"
   code: "#pragma once\n\n#include \"poly/ntt.hpp\"\n\n// n, m \u6B21\u591A\u9805\u5F0F\
@@ -210,21 +204,15 @@ data:
     \    fa.resize(len(a));\n    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\n\
     \    return fa;\n  }\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_garner(vc<mint>&\
     \ a, vc<mint> b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  static const long long nttprimes[] = {754974721, 167772161, 469762049};\n \
-    \ using mint0 = modint<754974721>;\n  using mint1 = modint<167772161>;\n  using\
-    \ mint2 = modint<469762049>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
-    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
-    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
-    \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
-    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  const long long m01 = 1LL\
-    \ * nttprimes[0] * nttprimes[1];\n  const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;\n\
-    \  const long long m01_inv_m2 = mint2(m01).inverse().val;\n  const int mod = mint::get_mod();\n\
-    \  auto garner = [&](mint0 x0, mint1 x1, mint2 x2) -> mint {\n    int r0 = x0.val,\
-    \ r1 = x1.val, r2 = x2.val;\n    int v1 = (m0_inv_m1 * (r1 + nttprimes[1] - r0))\
-    \ % nttprimes[1];\n    auto v2 = (mint2(r2) - r0 - mint2(nttprimes[0]) * v1) *\
-    \ mint2(m01_inv_m2);\n    return mint(r0 + 1LL * nttprimes[0] * v1 + m01 % mod\
-    \ * v2.val);\n  };\n  vc<mint> c(len(c0));\n  FOR(i, len(c)) c[i] = garner(c0[i],\
-    \ c1[i], c2[i]);\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
+    \  static constexpr int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n\
+    \  static constexpr int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using\
+    \ mint1 = modint<p1>;\n  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n\
+    \  vc<mint1> a1(n), b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val,\
+    \ a1[i] = a[i].val, a2[i] = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val,\
+    \ b2[i] = b[i].val;\n  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
+    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n \
+    \ FOR(i, n + m - 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
+    \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
     \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
     \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}"
   dependsOn:
@@ -241,8 +229,8 @@ data:
   - string/wildcard_pattern_matching.hpp
   - linalg/blackbox/vandermonde.hpp
   - seq/count_grid_path.hpp
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-01 06:03:41+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/chirp_z.test.cpp
   - test/mytest/slice_rational_fps.test.cpp
