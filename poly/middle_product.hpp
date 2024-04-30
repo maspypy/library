@@ -31,10 +31,12 @@ template <typename mint>
 vc<mint> middle_product_garner(vc<mint>& a, vc<mint> b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
-  static const long long nttprimes[] = {754974721, 167772161, 469762049};
-  using mint0 = modint<754974721>;
-  using mint1 = modint<167772161>;
-  using mint2 = modint<469762049>;
+  static constexpr int p0 = 167772161;
+  static constexpr int p1 = 469762049;
+  static constexpr int p2 = 754974721;
+  using mint0 = modint<p0>;
+  using mint1 = modint<p1>;
+  using mint2 = modint<p2>;
   vc<mint0> a0(n), b0(m);
   vc<mint1> a1(n), b1(m);
   vc<mint2> a2(n), b2(m);
@@ -43,18 +45,10 @@ vc<mint> middle_product_garner(vc<mint>& a, vc<mint> b) {
   auto c0 = middle_product<mint0>(a0, b0);
   auto c1 = middle_product<mint1>(a1, b1);
   auto c2 = middle_product<mint2>(a2, b2);
-  const long long m01 = 1LL * nttprimes[0] * nttprimes[1];
-  const long long m0_inv_m1 = mint1(nttprimes[0]).inverse().val;
-  const long long m01_inv_m2 = mint2(m01).inverse().val;
-  const int mod = mint::get_mod();
-  auto garner = [&](mint0 x0, mint1 x1, mint2 x2) -> mint {
-    int r0 = x0.val, r1 = x1.val, r2 = x2.val;
-    int v1 = (m0_inv_m1 * (r1 + nttprimes[1] - r0)) % nttprimes[1];
-    auto v2 = (mint2(r2) - r0 - mint2(nttprimes[0]) * v1) * mint2(m01_inv_m2);
-    return mint(r0 + 1LL * nttprimes[0] * v1 + m01 % mod * v2.val);
-  };
   vc<mint> c(len(c0));
-  FOR(i, len(c)) c[i] = garner(c0[i], c1[i], c2[i]);
+  FOR(i, n + m - 1) {
+    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
+  }
   return c;
 }
 

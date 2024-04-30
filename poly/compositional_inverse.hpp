@@ -37,20 +37,8 @@ vc<mint> compositional_inverse_old(const vc<mint>& F) {
   return G;
 }
 
-// https://noshi91.hatenablog.com/entry/2024/03/16/224034
-// O(Nlog^2N)
 template <typename mint>
 vc<mint> compositional_inverse(vc<mint> f) {
-  /*
-  仮定：[x^1]f = c は 0 ではない.
-  f を改めて cf と書く. f の逆関数を g とすれば
-  g(cf(x)/c)=x なので g(x/c) が求めるもの．よって [x^1]f=1 に帰着.
-
-  f, g は n 次とする. Lagrange inversion formula
-  n[x^n]f(x)^i = [x^{n-i}] i(g(x)/x)^{-n}
-  左辺を i=1,...,n で求めると (g(x)/x)^{-n} が n-1 次まで求まる.
-  [x^1]g=1 に帰着していたので -1/n 乗根がとれて, g(x)/x が n-1 次まで求まる.
-  */
   const int n = len(f) - 1;
   if (n == -1) return {};
   assert(f[0] == mint(0));
