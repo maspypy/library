@@ -28,7 +28,7 @@ data:
   - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':question:'
@@ -73,7 +73,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':question:'
@@ -85,14 +85,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -727,17 +727,20 @@ data:
     \ (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\n  vc<mint>\
     \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k +\
     \ i);\r\n\r\n  return res;\r\n}\r\n#line 5 \"poly/composition_f_log_1_minus_x.hpp\"\
-    \n\n// f(log(1-x))\ntemplate <typename mint>\nvc<mint> composition_f_log_1_minus_x(vc<mint>\
-    \ f) {\n  int N = len(f) - 1;\n  FOR(i, N + 1) f[i] *= fact<mint>(i);\n  vc<mint>\
-    \ S = stirling_number_1_n<mint>(N + 1, true);\n  reverse(all(S));\n  f = convolution<mint>(f,\
-    \ S);\n  f.resize(N + 1);\n  vc<mint> A(N + 1);\n  FOR(i, N + 1) A[i] = mint::raw(i);\n\
-    \  f = partial_frac_decomposition_1(f, A);\n  FOR(i, len(f)) if (i & 1) f[i] =\
-    \ -f[i];\n  f = poly_taylor_shift<mint>(f, -1);\n  return f;\n}\n#line 2 \"poly/composition.hpp\"\
-    \n\r\n#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>&\
-    \ a, bool inverse) {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n\
-    \  const int mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n \
-    \ static array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\
-    \n  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static bool prepared\
+    \n\n/*\nf(log(1-x))\n2024/05/01 noshi\u5408\u6210\u306E\u65B9\u304C\u5C11\u3057\
+    \u9AD8\u901F\u306A\u306E\u3067\u4F7F\u308F\u306A\u3044\u304C\nmultipoint \u3092\
+    \u9AD8\u901F\u5316\u3059\u308B\u3068\u4F7F\u3048\u308B\u304B\u3082\n*/\ntemplate\
+    \ <typename mint>\nvc<mint> composition_f_log_1_minus_x(vc<mint> f) {\n  int N\
+    \ = len(f) - 1;\n  FOR(i, N + 1) f[i] *= fact<mint>(i);\n  vc<mint> S = stirling_number_1_n<mint>(N\
+    \ + 1, true);\n  reverse(all(S));\n  f = convolution<mint>(f, S);\n  f.resize(N\
+    \ + 1);\n  vc<mint> A(N + 1);\n  FOR(i, N + 1) A[i] = mint::raw(i);\n  f = partial_frac_decomposition_1(f,\
+    \ A);\n  FOR(i, len(f)) if (i & 1) f[i] = -f[i];\n  f = poly_taylor_shift<mint>(f,\
+    \ -1);\n  return f;\n}\n#line 2 \"poly/composition.hpp\"\n\r\n#line 2 \"poly/transposed_ntt.hpp\"\
+    \n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>& a, bool inverse)\
+    \ {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n  const\
+    \ int mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n  static\
+    \ array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\n\
+    \  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static bool prepared\
     \ = 0;\n  if (!prepared) {\n    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n\
     \    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i]\
     \ = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n\
@@ -932,8 +935,8 @@ data:
   isVerificationFile: true
   path: test/mytest/composition_log_1_minus_x.test.cpp
   requiredBy: []
-  timestamp: '2024-05-01 12:55:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-01 15:38:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/composition_log_1_minus_x.test.cpp
 layout: document
