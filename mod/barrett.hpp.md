@@ -103,6 +103,9 @@ data:
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/composition_dmint.test.cpp
+    title: test/library_checker/polynomial/composition_dmint.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,10 +126,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -322,6 +325,7 @@ data:
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/composition_dmint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
