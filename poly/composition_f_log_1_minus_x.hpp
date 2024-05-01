@@ -3,7 +3,11 @@
 #include "poly/partial_frac_decomposition_1.hpp"
 #include "seq/famous/stirling_number_1.hpp"
 
-// f(log(1-x))
+/*
+f(log(1-x))
+2024/05/01 noshi合成の方が少し高速なので使わないが
+multipoint を高速化すると使えるかも
+*/
 template <typename mint>
 vc<mint> composition_f_log_1_minus_x(vc<mint> f) {
   int N = len(f) - 1;
