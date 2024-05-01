@@ -43,15 +43,9 @@ vc<mint> composition_old(vc<mint>& Q, vc<mint>& P) {
 
 // f(g(x)), O(Nlog^2N)
 template <typename mint>
-vc<mint> composition(vc<mint> f, vc<mint> g) {
+vc<mint> composition_0_ntt(vc<mint> f, vc<mint> g) {
   assert(len(f) == len(g));
   if (f.empty()) return {};
-
-  // [x^0]g=0 に帰着しておく
-  if (g[0] != mint(0)) {
-    f = poly_taylor_shift<mint>(f, g[0]);
-    g[0] = 0;
-  }
 
   int n0 = len(f);
   int n = 1;
@@ -163,4 +157,86 @@ vc<mint> composition(vc<mint> f, vc<mint> g) {
   reverse(all(p));
   p.resize(n0);
   return p;
+}
+
+template <typename mint>
+vc<mint> composition_0_garner(vc<mint> f, vc<mint> g) {
+  constexpr u32 ps[] = {167772161, 469762049, 754974721};
+  using mint0 = modint<ps[0]>;
+  using mint1 = modint<ps[1]>;
+  using mint2 = modint<ps[2]>;
+
+  auto rec = [&](auto& rec, int n, int k, vc<mint> Q) -> vc<mint> {
+    if (n == 1) {
+      vc<mint> p(2 * k);
+      reverse(all(f));
+      FOR(i, k) p[2 * i] = f[i];
+      return p;
+    }
+    vc<mint0> Q0(4 * n * k), R0(4 * n * k), p0(4 * n * k);
+    vc<mint1> Q1(4 * n * k), R1(4 * n * k), p1(4 * n * k);
+    vc<mint2> Q2(4 * n * k), R2(4 * n * k), p2(4 * n * k);
+    FOR(i, 2 * n * k) {
+      Q0[i] = Q[i].val, R0[i] = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);
+      Q1[i] = Q[i].val, R1[i] = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);
+      Q2[i] = Q[i].val, R2[i] = (i % 2 == 0 ? Q[i].val : (-Q[i]).val);
+    }
+    ntt(Q0, 0), ntt(Q1, 0), ntt(Q2, 0), ntt(R0, 0), ntt(R1, 0), ntt(R2, 0);
+    FOR(i, 4 * n * k) Q0[i] *= R0[i], Q1[i] *= R1[i], Q2[i] *= R2[i];
+    ntt(Q0, 1), ntt(Q1, 1), ntt(Q2, 1);
+    vc<mint> QQ(4 * n * k);
+    FOR(i, 4 * n * k) {
+      QQ[i] = CRT3<mint, ps[0], ps[1], ps[2]>(Q0[i].val, Q1[i].val, Q2[i].val);
+    }
+    FOR(i, 0, 2 * n * k, 2) { QQ[2 * n * k + i] += Q[i] + Q[i]; }
+    vc<mint> nxt_Q(2 * n * k);
+    FOR(j, 2 * k) FOR(i, n / 2) {
+      nxt_Q[n * j + i] = QQ[(2 * n) * j + (2 * i + 0)];
+    }
+
+    vc<mint> nxt_p = rec(rec, n / 2, k * 2, nxt_Q);
+    vc<mint> pq(4 * n * k);
+    FOR(j, 2 * k) FOR(i, n / 2) {
+      pq[(2 * n) * j + (2 * i + 1)] += nxt_p[n * j + i];
+    }
+
+    vc<mint> p(2 * n * k);
+    FOR(i, 2 * n * k) { p[i] += pq[2 * n * k + i]; }
+    FOR(i, 4 * n * k) {
+      p0[i] += pq[i].val, p1[i] += pq[i].val, p2[i] += pq[i].val;
+    }
+    transposed_ntt(p0, 1), transposed_ntt(p1, 1), transposed_ntt(p2, 1);
+    FOR(i, 4 * n * k) p0[i] *= R0[i], p1[i] *= R1[i], p2[i] *= R2[i];
+    transposed_ntt(p0, 0), transposed_ntt(p1, 0), transposed_ntt(p2, 0);
+    FOR(i, 2 * n * k) {
+      p[i] += CRT3<mint, ps[0], ps[1], ps[2]>(p0[i].val, p1[i].val, p2[i].val);
+    }
+    return p;
+  };
+  assert(len(f) == len(g));
+  int n = 1;
+  while (n < len(f)) n *= 2;
+  int out_len = len(f);
+  f.resize(n), g.resize(n);
+  int k = 1;
+  vc<mint> Q(2 * n);
+  FOR(i, n) Q[i] = -g[i];
+  vc<mint> p = rec(rec, n, k, Q);
+
+  vc<mint> output(n);
+  FOR(i, n) output[i] = p[i];
+  reverse(all(output));
+  output.resize(out_len);
+  return output;
+}
+
+template <typename mint>
+vc<mint> composition(vc<mint> f, vc<mint> g) {
+  // [x^0]g=0 に帰着しておく
+  if (g[0] != mint(0)) {
+    f = poly_taylor_shift<mint>(f, g[0]);
+    g[0] = 0;
+  }
+  if (mint::can_ntt()) { return composition_0_ntt(f, g); }
+  return composition_0_garner(f, g);
 }
