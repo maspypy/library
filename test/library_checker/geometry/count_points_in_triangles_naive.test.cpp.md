@@ -1,34 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
     links:
     - https://judge.yosupo.jp/problem/count_points_in_triangle
   bundledCode: "#line 1 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/count_points_in_triangle\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -328,8 +327,8 @@ data:
     \ X({A[a], A[b], A[c]}, true);\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
     \ == 1); }\n    print(ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_polygon.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/count_points_in_triangle\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_polygon.hpp\"\
     \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
     \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
     \ X({A[a], A[b], A[c]}, true);\n    int ans = 0;\n    FOR(i, M) { ans += (X.side(B[i])\
@@ -344,8 +343,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   requiredBy: []
-  timestamp: '2024-03-30 00:47:55+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
 layout: document

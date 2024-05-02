@@ -1,41 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
-  bundledCode: "#line 1 \"test/aoj/DSL_4_A.test.cpp\"\n#define PROBLEM \\\r\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\"\r\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/aoj/DSL_4_A.test.cpp\"\n// competitive-verifier: PROBLEM\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -287,19 +286,18 @@ data:
     \      int a = (ord_x[i] & 1 ? -1 : 1);\r\n      seg.apply(rk_y[2 * k], rk_y[2\
     \ * k + 1], a);\r\n      auto [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE\
     \ dy = total - (min == 0 ? mincnt : 0);\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\
-    \n      ANS += dx * dy;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 6 \"\
-    test/aoj/DSL_4_A.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N);\r\n  Rectangle_Union<int>\
-    \ RU;\r\n  FOR(N) {\r\n    LL(a, b, c, d);\r\n    RU.add_rect(a, c, b, d);\r\n\
-    \  }\r\n  print(RU.calc());\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
-    \ = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/rectangle_union.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  Rectangle_Union<int> RU;\r\n  FOR(N) {\r\
-    \n    LL(a, b, c, d);\r\n    RU.add_rect(a, c, b, d);\r\n  }\r\n  print(RU.calc());\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n      ANS += dx * dy;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 5 \"\
+    test/aoj/DSL_4_A.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  Rectangle_Union<int>\
+    \ RU;\n  FOR(N) {\n    LL(a, b, c, d);\n    RU.add_rect(a, c, b, d);\n  }\n  print(RU.calc());\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n \
+    \ return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/rectangle_union.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Rectangle_Union<int> RU;\n  FOR(N) {\n    LL(a,\
+    \ b, c, d);\n    RU.add_rect(a, c, b, d);\n  }\n  print(RU.calc());\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -311,8 +309,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_4_A.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_4_A.test.cpp
 layout: document

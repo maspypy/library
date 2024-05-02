@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
     links:
     - https://judge.yosupo.jp/problem/kth_root_integer
   bundledCode: "#line 1 \"test/library_checker/math/kth_root_integer.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\r\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/kth_root_integer\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -195,14 +194,13 @@ data:
     \ while (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\n\
     \    }\r\n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1 / double(k),\
     \ 0));\r\n  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return res;\r\n}\r\
-    \n#line 5 \"test/library_checker/math/kth_root_integer.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"nt/integer_kth_root.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n\
-    }\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\
-    \n}\r\n"
+    \n#line 5 \"test/library_checker/math/kth_root_integer.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(a, k);\n  print(integer_kth_root(k, a));\n}\n\nsigned main() {\n  LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/kth_root_integer\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/integer_kth_root.hpp\"\
+    \n\nvoid solve() {\n  LL(a, k);\n  print(integer_kth_root(k, a));\n}\n\nsigned\
+    \ main() {\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -210,8 +208,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_integer.test.cpp
 layout: document

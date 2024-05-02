@@ -1,34 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
     links:
     - https://judge.yosupo.jp/problem/rectangle_sum
   bundledCode: "#line 1 \"test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/rectangle_sum\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -257,8 +256,8 @@ data:
     \ false, false>\n      WM(N, [&](int i) -> tuple<int, int, ll> {\n        return\
     \ {X[i], Y[i], W[i]};\n      });\n  FOR(q, Q) {\n    LL(a, c, b, d);\n    print(WM.prod(a,\
     \ b, c, d));\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/rectangle_sum\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N),\
     \ Y(N), W(N);\n  FOR(i, N) read(X[i], Y[i], W[i]);\n  Wavelet_Matrix_2D_Range_Static_AbelGroup<Monoid_Add<ll>,\
     \ int, false, false>\n      WM(N, [&](int i) -> tuple<int, int, ll> {\n      \
@@ -274,8 +273,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-04-04 05:35:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
 layout: document

@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':x:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -53,12 +53,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/composition_f_x_plus_1x.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/composition_f_x_plus_1x.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -452,12 +451,12 @@ data:
     \ f[i] * C<mint>(i, j); }\n    }\n    vc<mint> G = composition_f_x_plus_1x<mint>(f);\n\
     \    assert(F == G);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
     \  cout << a + b << \"\\n\";\n};\n\nsigned main() {\n  test();\n  solve();\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"poly/composition_f_x_plus_1x.hpp\"\n#include \"random/base.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(N, 0, 1000) {\n    vc<mint>\
-    \ f(N + 1);\n    FOR(i, N + 1) f[i] = RNG(0, mint::get_mod());\n    vc<mint> F(2\
-    \ * N + 1);\n    FOR(i, N + 1) {\n      FOR(j, i + 1) { F[N + j - (i - j)] +=\
-    \ f[i] * C<mint>(i, j); }\n    }\n    vc<mint> G = composition_f_x_plus_1x<mint>(f);\n\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n\n#include \"poly/composition_f_x_plus_1x.hpp\"\n\
+    #include \"random/base.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  FOR(N,\
+    \ 0, 1000) {\n    vc<mint> f(N + 1);\n    FOR(i, N + 1) f[i] = RNG(0, mint::get_mod());\n\
+    \    vc<mint> F(2 * N + 1);\n    FOR(i, N + 1) {\n      FOR(j, i + 1) { F[N +\
+    \ j - (i - j)] += f[i] * C<mint>(i, j); }\n    }\n    vc<mint> G = composition_f_x_plus_1x<mint>(f);\n\
     \    assert(F == G);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
     \  cout << a + b << \"\\n\";\n};\n\nsigned main() {\n  test();\n  solve();\n}\n"
   dependsOn:
@@ -479,7 +478,7 @@ data:
   isVerificationFile: true
   path: test/mytest/composition_f_x_plus_1x.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
+  timestamp: '2024-05-03 05:27:28+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/composition_f_x_plus_1x.test.cpp

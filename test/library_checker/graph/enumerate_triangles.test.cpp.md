@@ -1,30 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_triangles
     links:
     - https://judge.yosupo.jp/problem/enumerate_triangles
   bundledCode: "#line 1 \"test/library_checker/graph/enumerate_triangles.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_triangles\"\r\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_triangles\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -258,18 +257,18 @@ data:
     \ e: H[a]) {\r\n      int b = e.to;\r\n      for (auto&& f: H[b]) {\r\n      \
     \  int c = f.to;\r\n        if (table[c]) query(a, b, c);\r\n      }\r\n    }\r\
     \n    for (auto&& e: H[a]) { table[e.to] = 0; }\r\n  }\r\n}\r\n#line 5 \"test/library_checker/graph/enumerate_triangles.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
-    \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int\
-    \ a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G,\
-    \ query);\r\n  int ANS = sum % 998244353;\r\n  print(ANS);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_triangles\"\r\
-    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"enumerate/triangle.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
-    \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int\
-    \ a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G,\
-    \ query);\r\n  int ANS = sum % 998244353;\r\n  print(ANS);\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n\nvoid solve() {\n  LL(N, M);\n  VEC(int, A, N);\n  Graph G(N);\n  G.read_graph(M,\
+    \ 0, 0);\n  i128 sum = 0;\n  auto query\n      = [&](int a, int b, int c) -> void\
+    \ { sum += i128(A[a]) * A[b] * A[c]; };\n  enumerate_triangle(G, query);\n  int\
+    \ ANS = sum % 998244353;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n\
+    \  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_triangles\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"enumerate/triangle.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  VEC(int, A, N);\n  Graph G(N);\n  G.read_graph(M,\
+    \ 0, 0);\n  i128 sum = 0;\n  auto query\n      = [&](int a, int b, int c) -> void\
+    \ { sum += i128(A[a]) * A[b] * A[c]; };\n  enumerate_triangle(G, query);\n  int\
+    \ ANS = sum % 998244353;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -278,8 +277,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/enumerate_triangles.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/enumerate_triangles.test.cpp
 layout: document

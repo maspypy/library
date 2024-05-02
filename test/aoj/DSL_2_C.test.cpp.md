@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/kdtree/kdtree.hpp
     title: ds/kdtree/kdtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C
-  bundledCode: "#line 1 \"test/aoj/DSL_2_C.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/aoj/DSL_2_C.test.cpp\"\n// competitive-verifier: PROBLEM\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -234,14 +234,14 @@ data:
     \ * i + 0, x, y);\n    T d1 = best_dist_squared<T>(2 * i + 1, x, y);\n    if (d0\
     \ < d1) {\n      nns_rec(2 * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);\n\
     \    } else {\n      nns_rec(2 * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);\n\
-    \    }\n  }\n};\n#line 6 \"test/aoj/DSL_2_C.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \    }\n  }\n};\n#line 5 \"test/aoj/DSL_2_C.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
     \  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n    LL(x, y);\n    X.eb(x);\n\
     \    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree<ll> KDT(X, Y);\n\n  LL(Q);\n \
     \ FOR(Q) {\n    LL(xl, xr, yl, yr);\n    auto ids = KDT.collect_rect(xl, xr +\
     \ 1, yl, yr + 1);\n    sort(all(ids));\n    for (auto& x: ids) print(x);\n   \
     \ print();\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree/kdtree.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_C\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/kdtree/kdtree.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  vi X, Y;\n  vvc<int> idx(N);\n  FOR(i, N) {\n\
     \    LL(x, y);\n    X.eb(x);\n    Y.eb(y);\n    idx[i].eb(i);\n  }\n  KDTree<ll>\
     \ KDT(X, Y);\n\n  LL(Q);\n  FOR(Q) {\n    LL(xl, xr, yl, yr);\n    auto ids =\
@@ -255,8 +255,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_C.test.cpp
 layout: document

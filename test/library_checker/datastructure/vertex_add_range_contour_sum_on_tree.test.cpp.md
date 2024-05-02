@@ -1,43 +1,42 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
     links:
     - https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree
   bundledCode: "#line 1 \"test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -201,7 +200,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 6 \"test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp\"\
     \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -447,8 +446,8 @@ data:
     \ res;\n  }\n\n  vc<int> get_indices(int v) {\n    vc<int> res;\n    FOR(k, info_indptr[v],\
     \ info_indptr[v + 1]) {\n      int idx = info_idx[k];\n      int p = comp[idx];\n\
     \      res.eb(comp_range[p] + dep[idx]);\n    }\n    return res;\n  }\n};\n#line\
-    \ 9 \"test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp\"\
-    \n\n#line 11 \"test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp\"\
+    \ 8 \"test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp\"\
+    \n\n#line 10 \"test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  VEC(ll, A, N);\n  Graph<int, 0> G(N);\n  G.read_tree(0,\
     \ 0);\n  Contour_Query_Range<decltype(G), false> CQ(G);\n  vi dat_raw(len(CQ));\n\
     \  FOR(v, N) {\n    for (auto& p: CQ.get_indices(v)) { dat_raw[p] += A[v]; }\n\
@@ -458,8 +457,8 @@ data:
     \ = 0;\n      if (l <= 0 && 0 < r) ans += A[v];\n      for (auto& [a, b]: CQ.get_contour_range(v,\
     \ l, r)) {\n        ans += bit.sum(a, b);\n      }\n      print(ans);\n    }\n\
     \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_range_contour_sum_on_tree\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
     \n#include \"graph/ds/contour_query_range.hpp\"\n\n#include \"alg/monoid/add.hpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  VEC(ll, A, N);\n  Graph<int, 0> G(N);\n  G.read_tree(0,\
     \ 0);\n  Contour_Query_Range<decltype(G), false> CQ(G);\n  vi dat_raw(len(CQ));\n\
@@ -482,8 +481,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
 layout: document

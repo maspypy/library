@@ -1,35 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/shortest_path
     links:
     - https://judge.yosupo.jp/problem/shortest_path
-  bundledCode: "#line 1 \"test/library_checker/graph/shortest_path.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\r\n\r\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/library_checker/graph/shortest_path.test.cpp\"\n//\
+    \ competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/shortest_path\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -193,10 +192,10 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 5 \"test/library_checker/graph/shortest_path.test.cpp\"\n\
-    \r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
-    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
-    \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
-    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
+    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
+    \ false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
     \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
     \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
     \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
@@ -280,19 +279,19 @@ data:
     \ restore_path(vector<int> par, int t){\r\n  vector<int> pth = {t};\r\n  while\
     \ (par[pth.back()] != -1) pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n\
     \  return pth;\r\n}\n#line 8 \"test/library_checker/graph/shortest_path.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M, s, t);\r\n  Graph<ll, true> G(N);\r\n  G.read_graph(M,\
-    \ 1, 0);\r\n\r\n  auto [dist, par] = dijkstra<ll>(G, s);\r\n  if (dist[t] == infty<ll>)\
-    \ return print(-1);\r\n\r\n  vector<int> pth = restore_path(par, t);\r\n  print(dist[t],\
-    \ len(pth) - 1);\r\n  FOR(i, len(pth) - 1) print(pth[i], pth[i + 1]);\r\n}\r\n\
-    \r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/shortest_path\"\r\n\r\n\
-    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"graph/shortest_path/dijkstra.hpp\"\
-    \r\n#include \"graph/shortest_path/restore_path.hpp\"\r\n\r\nvoid solve() {\r\n\
-    \  LL(N, M, s, t);\r\n  Graph<ll, true> G(N);\r\n  G.read_graph(M, 1, 0);\r\n\r\
-    \n  auto [dist, par] = dijkstra<ll>(G, s);\r\n  if (dist[t] == infty<ll>) return\
-    \ print(-1);\r\n\r\n  vector<int> pth = restore_path(par, t);\r\n  print(dist[t],\
-    \ len(pth) - 1);\r\n  FOR(i, len(pth) - 1) print(pth[i], pth[i + 1]);\r\n}\r\n\
-    \r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \n\nvoid solve() {\n  LL(N, M, s, t);\n  Graph<ll, true> G(N);\n  G.read_graph(M,\
+    \ 1, 0);\n\n  auto [dist, par] = dijkstra<ll>(G, s);\n  if (dist[t] == infty<ll>)\
+    \ return print(-1);\n\n  vector<int> pth = restore_path(par, t);\n  print(dist[t],\
+    \ len(pth) - 1);\n  FOR(i, len(pth) - 1) print(pth[i], pth[i + 1]);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/shortest_path\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/shortest_path/dijkstra.hpp\"\
+    \n#include \"graph/shortest_path/restore_path.hpp\"\n\nvoid solve() {\n  LL(N,\
+    \ M, s, t);\n  Graph<ll, true> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist,\
+    \ par] = dijkstra<ll>(G, s);\n  if (dist[t] == infty<ll>) return print(-1);\n\n\
+    \  vector<int> pth = restore_path(par, t);\n  print(dist[t], len(pth) - 1);\n\
+    \  FOR(i, len(pth) - 1) print(pth[i], pth[i + 1]);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -302,8 +301,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/shortest_path.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/shortest_path.test.cpp
 layout: document

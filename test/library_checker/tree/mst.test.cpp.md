@@ -1,57 +1,56 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/minimum_spanning_tree
     links:
     - https://judge.yosupo.jp/problem/minimum_spanning_tree
-  bundledCode: "#line 1 \"test/library_checker/tree/mst.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/library_checker/tree/mst.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/minimum_spanning_tree\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
@@ -535,8 +534,8 @@ data:
     \  auto [cost, in_mst, MST] = minimum_spanning_tree<ll>(G);\n  vc<int> ANS;\n\
     \  FOR(i, M) if (in_mst[i]) ANS.eb(i);\n  print(cost);\n  print(ANS);\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/minimum_spanning_tree\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/minimum_spanning_tree.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/minimum_spanning_tree\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/minimum_spanning_tree.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 1, 0);\n\
     \  auto [cost, in_mst, MST] = minimum_spanning_tree<ll>(G);\n  vc<int> ANS;\n\
     \  FOR(i, M) if (in_mst[i]) ANS.eb(i);\n  print(cost);\n  print(ANS);\n}\n\nsigned\
@@ -558,8 +557,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/mst.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/mst.test.cpp
 layout: document

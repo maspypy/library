@@ -1,34 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/primesum_mod4.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/primesum_mod4.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -251,21 +250,21 @@ data:
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
     ;\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\n  return\
     \ 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"nt/primesum_mod4.hpp\"\n\nvoid test_count()\
-    \ {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 1) { A1[p]++; }\n  for (auto&& p: primetable(LIM))\n    if (p\
-    \ % 4 == 3) { A3[p]++; }\n  A1 = cumsum<int>(A1, 0);\n  A3 = cumsum<int>(A3, 0);\n\
-    \n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_count();\n    FOR(K,\
-    \ 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid\
-    \ test_sum() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for (auto&&\
-    \ p: primetable(LIM))\n    if (p % 4 == 1) { A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n\
-    \    if (p % 4 == 3) { A3[p] += p; }\n  A1 = cumsum<int>(A1, 0);\n  A3 = cumsum<int>(A3,\
-    \ 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n \
-    \   FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test_count();\n  test_sum();\n  solve();\n\n  return\
-    \ 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/primesum_mod4.hpp\"\
+    \n\nvoid test_count() {\n  ll LIM = 10000;\n  vc<int> A1(LIM), A3(LIM);\n  for\
+    \ (auto&& p: primetable(LIM))\n    if (p % 4 == 1) { A1[p]++; }\n  for (auto&&\
+    \ p: primetable(LIM))\n    if (p % 4 == 3) { A3[p]++; }\n  A1 = cumsum<int>(A1,\
+    \ 0);\n  A3 = cumsum<int>(A3, 0);\n\n  FOR(N, LIM) {\n    PrimeSum_Mod_4<int>\
+    \ X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == mp(A1[N\
+    \ / K], A3[N / K])); }\n  }\n}\n\nvoid test_sum() {\n  ll LIM = 10000;\n  vc<int>\
+    \ A1(LIM), A3(LIM);\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 1) {\
+    \ A1[p] += p; }\n  for (auto&& p: primetable(LIM))\n    if (p % 4 == 3) { A3[p]\
+    \ += p; }\n  A1 = cumsum<int>(A1, 0);\n  A3 = cumsum<int>(A3, 0);\n\n  FOR(N,\
+    \ LIM) {\n    PrimeSum_Mod_4<int> X(N);\n    X.calc_sum();\n    FOR(K, 1, N +\
+    \ 10) { assert(X[N / K] == mp(A1[N / K], A3[N / K])); }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test_count();\n  test_sum();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -275,8 +274,8 @@ data:
   isVerificationFile: true
   path: test/mytest/primesum_mod4.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/primesum_mod4.test.cpp
 layout: document

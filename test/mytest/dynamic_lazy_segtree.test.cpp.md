@@ -1,37 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/dynamic_lazy_segtree.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/dynamic_lazy_segtree.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -237,14 +236,15 @@ data:
     \ L));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
     \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
     \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"alg/acted_monoid/summax_assign.hpp\"\n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\
-    \n#include \"random/base.hpp\"\n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int,\
-    \ -1>;\n  using P = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\
-    \n    vc<int> A(N, 10);\n    Dynamic_Lazy_SegTree<AM, false, 2000> X(0, N, [](ll\
-    \ l, ll r) -> P {\n      return {10 * (r - l), 10};\n    });\n\n    int Q = RNG(1,\
-    \ 1000);\n    auto root = X.new_node(0, N);\n\n    FOR(Q) {\n      int t = RNG(0,\
-    \ 4);\n      int L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L,\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"alg/acted_monoid/summax_assign.hpp\"\n\
+    #include \"ds/segtree/dynamic_lazy_segtree.hpp\"\n#include \"random/base.hpp\"\
+    \n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int, -1>;\n  using P\
+    \ = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\n    vc<int>\
+    \ A(N, 10);\n    Dynamic_Lazy_SegTree<AM, false, 2000> X(0, N, [](ll l, ll r)\
+    \ -> P {\n      return {10 * (r - l), 10};\n    });\n\n    int Q = RNG(1, 1000);\n\
+    \    auto root = X.new_node(0, N);\n\n    FOR(Q) {\n      int t = RNG(0, 4);\n\
+    \      int L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L,\
     \ R);\n      ++R;\n      if (t == 0) {\n        int i = RNG(0, N);\n        int\
     \ x = RNG(1, 100);\n        root = X.set(root, i, {x, x});\n        A[i] = x;\n\
     \      }\n      if (t == 1) {\n        vc<int> B = {A.begin() + L, A.begin() +\
@@ -269,8 +269,8 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_lazy_segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/dynamic_lazy_segtree.test.cpp
 layout: document

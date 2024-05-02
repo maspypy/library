@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B
-  bundledCode: "#line 1 \"test/aoj/DPL_3_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/aoj/DPL_3_B.test.cpp\"\n// competitive-verifier: PROBLEM\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -212,15 +212,15 @@ data:
     \ count_subrectangle(bool baseline) {\r\n    assert(IS_MIN);\r\n    ll res = 0;\r\
     \n    FOR(i, n) {\r\n      auto [l, r, h] = maximum_rectangle(i);\r\n      ll\
     \ x = (baseline ? h : h * (h + 1) / 2);\r\n      res += x * (i - l + 1) * (r -\
-    \ i);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 6 \"test/aoj/DPL_3_B.test.cpp\"\
+    \ i);\r\n    }\r\n    return res;\r\n  }\r\n};\r\n#line 5 \"test/aoj/DPL_3_B.test.cpp\"\
     \n\nvoid solve() {\n  LL(H, W);\n  vi A(W);\n  ll ANS = 0;\n  FOR(i, H) {\n  \
     \  FOR(j, W) {\n      LL(x);\n      A[j] = (x == 0 ? A[j] + 1 : 0);\n    }\n \
     \   CartesianTree<ll, 1> CT(A);\n    chmax(ANS, CT.max_rectangle_area());\n  }\n\
     \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/cartesian_tree.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_3_B\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/cartesian_tree.hpp\"\
     \n\nvoid solve() {\n  LL(H, W);\n  vi A(W);\n  ll ANS = 0;\n  FOR(i, H) {\n  \
     \  FOR(j, W) {\n      LL(x);\n      A[j] = (x == 0 ? A[j] + 1 : 0);\n    }\n \
     \   CartesianTree<ll, 1> CT(A);\n    chmax(ANS, CT.max_rectangle_area());\n  }\n\
@@ -234,8 +234,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_3_B.test.cpp
 layout: document

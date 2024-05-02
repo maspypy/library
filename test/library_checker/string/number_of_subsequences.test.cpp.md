@@ -1,33 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/number_of_subsequences
     links:
     - https://judge.yosupo.jp/problem/number_of_subsequences
   bundledCode: "#line 1 \"test/library_checker/string/number_of_subsequences.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/number_of_subsequences\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -275,8 +274,8 @@ data:
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
     \ mint ANS = count_subseq<mint>(A);\n  ANS -= mint(1);\n  print(ANS);\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/number_of_subsequences\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/number_of_subsequences\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
     \n#include \"string/count_subseq.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
     \ {\n  LL(N);\n  VEC(int, A, N);\n  mint ANS = count_subseq<mint>(A);\n  ANS -=\
     \ mint(1);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
@@ -289,8 +288,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_subsequences.test.cpp
 layout: document

@@ -1,37 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/queue_operate_all_composite
     links:
     - https://judge.yosupo.jp/problem/queue_operate_all_composite
   bundledCode: "#line 1 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/queue_operate_all_composite\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -196,7 +195,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n\r\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\
+    \n\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\
     \u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K,\
     \ K>;\n  using value_type = F;\n  using X = value_type;\n  static constexpr F\
     \ op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second\
@@ -310,25 +309,23 @@ data:
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 8 \"test/library_checker/datastructure/queue_operate_all_composite.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  using Mono\
-    \ = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\n\r\n  Sliding_Window_Aggregation<Mono>\
-    \ swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(a,\
-    \ b);\r\n      swag.push(F({a, b}));\r\n    }\r\n    elif (t == 1) { swag.pop();\
-    \ }\r\n    elif (t == 2) {\r\n      LL(x);\r\n      F f = swag.prod();\r\n   \
-    \   print(Mono::eval(f, x));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n \
-    \ cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/queue_operate_all_composite\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"alg/monoid/affine.hpp\"\r\n#include \"ds/sliding_window_aggregation.hpp\"\r\
-    \n#include \"mod/modint.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid solve()\
-    \ {\r\n  LL(Q);\r\n  using Mono = Monoid_Affine<mint>;\r\n  using F = Mono::value_type;\r\
-    \n\r\n  Sliding_Window_Aggregation<Mono> swag;\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\
-    \n    if (t == 0) {\r\n      LL(a, b);\r\n      swag.push(F({a, b}));\r\n    }\r\
-    \n    elif (t == 1) { swag.pop(); }\r\n    elif (t == 2) {\r\n      LL(x);\r\n\
-    \      F f = swag.prod();\r\n      print(Mono::eval(f, x));\r\n    }\r\n  }\r\n\
-    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(Q);\n  using Mono = Monoid_Affine<mint>;\n\
+    \  using F = Mono::value_type;\n\n  Sliding_Window_Aggregation<Mono> swag;\n\n\
+    \  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b);\n      swag.push(F({a,\
+    \ b}));\n    }\n    elif (t == 1) { swag.pop(); }\n    elif (t == 2) {\n     \
+    \ LL(x);\n      F f = swag.prod();\n      print(Mono::eval(f, x));\n    }\n  }\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/queue_operate_all_composite\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/affine.hpp\"\
+    \n#include \"ds/sliding_window_aggregation.hpp\"\n#include \"mod/modint.hpp\"\n\
+    \nusing mint = modint998;\n\nvoid solve() {\n  LL(Q);\n  using Mono = Monoid_Affine<mint>;\n\
+    \  using F = Mono::value_type;\n\n  Sliding_Window_Aggregation<Mono> swag;\n\n\
+    \  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(a, b);\n      swag.push(F({a,\
+    \ b}));\n    }\n    elif (t == 1) { swag.pop(); }\n    elif (t == 2) {\n     \
+    \ LL(x);\n      F f = swag.prod();\n      print(Mono::eval(f, x));\n    }\n  }\n\
+    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
+    \ << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -339,8 +336,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
 layout: document

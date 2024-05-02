@@ -1,37 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/polynomial_composite_set_power_series
     links:
     - https://judge.yosupo.jp/problem/polynomial_composite_set_power_series
-  bundledCode: "#line 1 \"test/library_checker/math/composition_sps.test.cpp\"\n#define\
-    \ PROBLEM \\\n  \"https://judge.yosupo.jp/problem/polynomial_composite_set_power_series\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/library_checker/math/composition_sps.test.cpp\"\n//\
+    \ competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_composite_set_power_series\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -195,7 +194,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/library_checker/math/composition_sps.test.cpp\"\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/math/composition_sps.test.cpp\"\
     \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -307,12 +306,12 @@ data:
     \ * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ? mint(0) : pow[j\
     \ - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D + 1) g[j] *= factorial,\
     \ factorial *= mint(j + 1);\n  return sps_composition_egf<mint, LIM>(g, s);\n\
-    }\n#line 8 \"test/library_checker/math/composition_sps.test.cpp\"\n\nusing mint\
+    }\n#line 7 \"test/library_checker/math/composition_sps.test.cpp\"\n\nusing mint\
     \ = modint998;\nvoid solve() {\n  LL(M, N);\n  VEC(mint, f, M);\n  VEC(mint, s,\
     \ 1 << N);\n  s = sps_composition_poly<mint, 20>(f, s);\n  print(s);\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/polynomial_composite_set_power_series\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/polynomial_composite_set_power_series\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_composition.hpp\"\n\nusing mint = modint998;\nvoid solve()\
     \ {\n  LL(M, N);\n  VEC(mint, f, M);\n  VEC(mint, s, 1 << N);\n  s = sps_composition_poly<mint,\
     \ 20>(f, s);\n  print(s);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
@@ -326,8 +325,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/composition_sps.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/composition_sps.test.cpp
 layout: document

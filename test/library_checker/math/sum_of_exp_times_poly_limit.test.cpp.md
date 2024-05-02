@@ -1,40 +1,39 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
     links:
     - https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit
   bundledCode: "#line 1 \"test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp\"\
-    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\"\
-    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -300,19 +299,19 @@ data:
     \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
     \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
     \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
-    \  }\r\n  return f;\r\n}\r\n#line 7 \"test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  mint r;\r\n  read(r);\r\n\
-    \  LL(d);\r\n  int L = d + 5;\r\n  vc<mint> a = powertable_2<mint>(d, L - 1);\r\
-    \n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i] *= p;\r\n    p *= r;\r\n  }\r\n \
-    \ a = cumsum<mint>(a, 0);\r\n  print(limit_poly_exp_sum(a, r));\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"seq/limit_poly_exp_sum.hpp\"\
-    \r\n#include \"mod/powertable.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
-    \ {\r\n  mint r;\r\n  read(r);\r\n  LL(d);\r\n  int L = d + 5;\r\n  vc<mint> a\
-    \ = powertable_2<mint>(d, L - 1);\r\n  mint p = 1;\r\n  FOR(i, L) {\r\n    a[i]\
-    \ *= p;\r\n    p *= r;\r\n  }\r\n  a = cumsum<mint>(a, 0);\r\n  print(limit_poly_exp_sum(a,\
-    \ r));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \  }\r\n  return f;\r\n}\r\n#line 6 \"test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp\"\
+    \n\nusing mint = modint998;\nvoid solve() {\n  mint r;\n  read(r);\n  LL(d);\n\
+    \  int L = d + 5;\n  vc<mint> a = powertable_2<mint>(d, L - 1);\n  mint p = 1;\n\
+    \  FOR(i, L) {\n    a[i] *= p;\n    p *= r;\n  }\n  a = cumsum<mint>(a, 0);\n\
+    \  print(limit_poly_exp_sum(a, r));\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/sum_of_exponential_times_polynomial_limit\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/limit_poly_exp_sum.hpp\"\
+    \n#include \"mod/powertable.hpp\"\n\nusing mint = modint998;\nvoid solve() {\n\
+    \  mint r;\n  read(r);\n  LL(d);\n  int L = d + 5;\n  vc<mint> a = powertable_2<mint>(d,\
+    \ L - 1);\n  mint p = 1;\n  FOR(i, L) {\n    a[i] *= p;\n    p *= r;\n  }\n  a\
+    \ = cumsum<mint>(a, 0);\n  print(limit_poly_exp_sum(a, r));\n}\n\nsigned main()\
+    \ {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -324,8 +323,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
 layout: document

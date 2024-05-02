@@ -1,42 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/bipartite_edge_coloring
     links:
     - https://judge.yosupo.jp/problem/bipartite_edge_coloring
   bundledCode: "#line 1 \"test/library_checker/graph/bipartite_edge_coloring.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/bipartite_edge_coloring\"\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bipartite_edge_coloring\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -420,8 +419,8 @@ data:
     \   G.add(a, L + b);\n  }\n  G.build();\n  auto [C, color] = bipartite_edge_coloring(G);\n\
     \  print(C);\n  for (auto&& x: color) print(x);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/bipartite_edge_coloring\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/bipartite_edge_coloring.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/bipartite_edge_coloring\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/bipartite_edge_coloring.hpp\"\
     \n\nvoid solve() {\n  LL(L, R, M);\n  Graph<bool, 0> G(L + R);\n  FOR(M) {\n \
     \   LL(a, b);\n    G.add(a, L + b);\n  }\n  G.build();\n  auto [C, color] = bipartite_edge_coloring(G);\n\
     \  print(C);\n  for (auto&& x: color) print(x);\n}\n\nsigned main() {\n  solve();\n\
@@ -438,8 +437,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/bipartite_edge_coloring.test.cpp
 layout: document

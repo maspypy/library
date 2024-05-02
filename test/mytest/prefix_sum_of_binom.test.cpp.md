@@ -1,31 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/prefix_sum_of_binom.hpp
     title: mod/prefix_sum_of_binom.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/prefix_sum_of_binom.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/prefix_sum_of_binom.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -207,9 +206,9 @@ data:
     \ == X.query(N, k));\n        sm += C<mint>(N, k);\n      }\n    }\n  }\n}\n\n\
     void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
     \nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"mod/modint.hpp\"\n#include \"mod/prefix_sum_of_binom.hpp\"\n\n\
-    using mint = modint998;\n\nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_Of_Binom<mint>\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"mod/prefix_sum_of_binom.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid test() {\n  FOR(LIM, 0, 500) {\n    Prefix_Sum_Of_Binom<mint>\
     \ X(LIM);\n    FOR(N, LIM + 1) {\n      mint sm = 0;\n      FOR(k, N + 10) {\n\
     \        assert(sm == X.query(N, k));\n        sm += C<mint>(N, k);\n      }\n\
     \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
@@ -222,8 +221,8 @@ data:
   isVerificationFile: true
   path: test/mytest/prefix_sum_of_binom.test.cpp
   requiredBy: []
-  timestamp: '2024-04-12 12:45:20+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/prefix_sum_of_binom.test.cpp
 layout: document

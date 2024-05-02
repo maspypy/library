@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B
-  bundledCode: "#line 1 \"test/aoj/GRL_6_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/GRL_6_B.test.cpp\"\n// competitive-verifier: PROBLEM\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\n\n#line 1\
+    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -290,13 +290,13 @@ data:
     \ c;\n      }\n      Cost d = -dual_dist[source].first;\n      flow += c;\n  \
     \    cost += c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n\
     \      result.push_back({flow, cost});\n      prev_cost_per_flow = d;\n    }\n\
-    \    return result;\n  }\n};\n#line 7 \"test/aoj/GRL_6_B.test.cpp\"\n\nvoid solve()\
+    \    return result;\n  }\n};\n#line 6 \"test/aoj/GRL_6_B.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(N, M, F);\n  Min_Cost_Flow<int, ll, 0> G(N, 0, N - 1);\n  FOR(M) {\n\
     \    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x] = G.flow(F);\n\
     \  if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned main() {\n \
     \ solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_B\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"flow/mincostflow.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, F);\n  Min_Cost_Flow<int, ll, 0> G(N, 0, N - 1);\n\
     \  FOR(M) {\n    LL(a, b, c, d);\n    G.add(a, b, c, d);\n  }\n\n  auto [f, x]\
     \ = G.flow(F);\n  if (f < F)\n    print(-1);\n  else\n    print(x);\n}\n\nsigned\
@@ -308,8 +308,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_B.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_B.test.cpp
 layout: document

@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/knapsack01.hpp
     title: knapsack/knapsack01.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_H
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_H
-  bundledCode: "#line 1 \"test/aoj/DPL_1_H.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_H\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/aoj/DPL_1_H.test.cpp\"\n// competitive-verifier: PROBLEM\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_H\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -219,14 +219,14 @@ data:
     \ (dp[i] <= LIM) ANS = i;\n    return ANS;\n  };\n\n  double t1 = log(2) * n *\
     \ 0.5;\n  double t2 = log((n + 1) * (LIM + 1));\n  double t3 = log((n + 1) * (SUM<WT>(val)\
     \ + 1));\n  double t = min({t1, t2, t3});\n  if (t == t1) return sol_1();\n  if\
-    \ (t == t2) return sol_2();\n  return sol_3();\n}\n#line 6 \"test/aoj/DPL_1_H.test.cpp\"\
+    \ (t == t2) return sol_2();\n  return sol_3();\n}\n#line 5 \"test/aoj/DPL_1_H.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, W);\n  vc<ll> wt, val;\n  FOR(i, N) {\n    LL(b, a);\n\
     \    wt.eb(a), val.eb(b);\n  }\n  print(knapsack01<ll, ll>(wt, val, W));\n}\n\n\
     signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
     \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return\
     \ 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_H\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"knapsack/knapsack01.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_H\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"knapsack/knapsack01.hpp\"\
     \n\nvoid solve() {\n  LL(N, W);\n  vc<ll> wt, val;\n  FOR(i, N) {\n    LL(b, a);\n\
     \    wt.eb(a), val.eb(b);\n  }\n  print(knapsack01<ll, ll>(wt, val, W));\n}\n\n\
     signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
@@ -239,8 +239,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_H.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_H.test.cpp
 layout: document

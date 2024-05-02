@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/coprime_factorization.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/coprime_factorization.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -138,12 +137,12 @@ data:
     \ exp]: pfs[i]) { FOR(exp) x *= basis[pid]; }\n      assert(x == dat[i]);\n  \
     \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
     \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"random/base.hpp\"\n#include \"nt/coprime_factorization.hpp\"\n\n\
-    void test() {\n  FOR(N, 0, 100) {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i] =\
-    \ RNG(1, infty<ll>);\n    auto [basis, pfs] = coprime_factorization(dat);\n  \
-    \  FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }\n  \
-    \  FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid, exp]: pfs[i]) { FOR(exp)\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n\n#include \"random/base.hpp\"\n#include \"nt/coprime_factorization.hpp\"\
+    \n\nvoid test() {\n  FOR(N, 0, 100) {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i]\
+    \ = RNG(1, infty<ll>);\n    auto [basis, pfs] = coprime_factorization(dat);\n\
+    \    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i], basis[j]) == 1); }\n\
+    \    FOR(i, N) {\n      ll x = 1;\n      for (auto&& [pid, exp]: pfs[i]) { FOR(exp)\
     \ x *= basis[pid]; }\n      assert(x == dat[i]);\n    }\n  }\n\n  FOR(N, 0, 100)\
     \ {\n    vc<ll> dat(N);\n    FOR(i, N) dat[i] = RNG(1, 20);\n    auto [basis,\
     \ pfs] = coprime_factorization(dat);\n    FOR(j, len(basis)) FOR(i, j) { assert(gcd(basis[i],\
@@ -158,8 +157,8 @@ data:
   isVerificationFile: true
   path: test/mytest/coprime_factorization.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/coprime_factorization.test.cpp
 layout: document

@@ -1,51 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/binomial_coefficient
     links:
     - https://judge.yosupo.jp/problem/binomial_coefficient
   bundledCode: "#line 1 \"test/library_checker/math/binomial_coefficient.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient\"\r\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/binomial_coefficient\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -211,7 +210,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/math/binomial_coefficient.test.cpp\"\
-    \n\r\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line\
+    \n\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2 \"nt/factor.hpp\"\n\n#line\
     \ 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
@@ -357,14 +356,14 @@ data:
     \ < 0 || k > n) return 0;\r\n    int ANS = 0;\r\n    FOR(s, len(crt_coef)) {\r\
     \n      ANS = bt.modulo(ANS + u64(BPP[s].C(n, k)) * crt_coef[s]);\r\n    }\r\n\
     \    return ANS;\r\n  }\r\n};\n#line 6 \"test/library_checker/math/binomial_coefficient.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  INT(T, mod);\r\n  Binomial X(mod);\r\n  FOR(T) {\r\n\
-    \    LL(n, k);\r\n    print(X.C(n, k));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
-    \  solve();\r\n\r\n  return 0;\r\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/binomial_coefficient\"\r\
-    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
-    mod/binomial.hpp\"\r\n\r\nvoid solve() {\r\n  INT(T, mod);\r\n  Binomial X(mod);\r\
-    \n  FOR(T) {\r\n    LL(n, k);\r\n    print(X.C(n, k));\r\n  }\r\n}\r\n\r\nsigned\
-    \ main() {\r\n  solve();\r\n\r\n  return 0;\r\n}"
+    \n\nvoid solve() {\n  INT(T, mod);\n  Binomial X(mod);\n  FOR(T) {\n    LL(n,\
+    \ k);\n    print(X.C(n, k));\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/binomial_coefficient\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/binomial.hpp\"\
+    \n\nvoid solve() {\n  INT(T, mod);\n  Binomial X(mod);\n  FOR(T) {\n    LL(n,\
+    \ k);\n    print(X.C(n, k));\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -380,8 +379,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/binomial_coefficient.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/binomial_coefficient.test.cpp
 layout: document

@@ -1,55 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':x:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -59,12 +59,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/product_of_one_pm_xn.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/product_of_one_pm_xn.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -496,18 +495,19 @@ data:
     \ g[i];\n        }\n      }\n    }\n    assert(F == f);\n    assert(G == g);\n\
     \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
     \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\n#include \"poly/product_of_one_minus_xn.hpp\"\
-    \n#include \"poly/product_of_one_plus_xn.hpp\"\n\nusing mint = modint998;\n\n\
-    vc<int> gen(int N, int M) {\n  vc<int> A(M);\n  FOR(i, M) { A[i] = RNG(0, N +\
-    \ 2); }\n  return A;\n}\n\nvoid test() {\n  FOR(N, 100) FOR(M, 100) {\n    vc<int>\
-    \ A = gen(N, M);\n    auto F = product_of_one_minus_xn<mint>(A, N);\n    auto\
-    \ G = product_of_one_plus_xn<mint>(A, N);\n\n    vc<mint> f(N + 1), g(N + 1);\n\
-    \    f[0] = 1, g[0] = 1;\n    for (auto&& a: A) {\n      FOR_R(i, N + 1) {\n \
-    \       if (i + a <= N) {\n          f[i + a] -= f[i];\n          g[i + a] +=\
-    \ g[i];\n        }\n      }\n    }\n    assert(F == f);\n    assert(G == g);\n\
-    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
-    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
+    \n#include \"poly/product_of_one_minus_xn.hpp\"\n#include \"poly/product_of_one_plus_xn.hpp\"\
+    \n\nusing mint = modint998;\n\nvc<int> gen(int N, int M) {\n  vc<int> A(M);\n\
+    \  FOR(i, M) { A[i] = RNG(0, N + 2); }\n  return A;\n}\n\nvoid test() {\n  FOR(N,\
+    \ 100) FOR(M, 100) {\n    vc<int> A = gen(N, M);\n    auto F = product_of_one_minus_xn<mint>(A,\
+    \ N);\n    auto G = product_of_one_plus_xn<mint>(A, N);\n\n    vc<mint> f(N +\
+    \ 1), g(N + 1);\n    f[0] = 1, g[0] = 1;\n    for (auto&& a: A) {\n      FOR_R(i,\
+    \ N + 1) {\n        if (i + a <= N) {\n          f[i + a] -= f[i];\n         \
+    \ g[i + a] += g[i];\n        }\n      }\n    }\n    assert(F == f);\n    assert(G\
+    \ == g);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
+    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -529,7 +529,7 @@ data:
   isVerificationFile: true
   path: test/mytest/product_of_one_pm_xn.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
+  timestamp: '2024-05-03 05:27:28+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/product_of_one_pm_xn.test.cpp

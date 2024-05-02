@@ -1,27 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/manacher.hpp
     title: string/manacher.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/enumerate_palindromes
     links:
     - https://judge.yosupo.jp/problem/enumerate_palindromes
   bundledCode: "#line 1 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\r\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_palindromes\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -199,14 +198,14 @@ data:
     \ {\r\n    if (dp[i] == 0) continue;\r\n    int l = (i - dp[i] + 1) / 2;\r\n \
     \   int r = (i + dp[i] + 1) / 2;\r\n    res.eb(l, r);\r\n  }\r\n  return res;\r\
     \n}\r\n#line 5 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\n\
-    \r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
-    \ * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"string/manacher.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
-    \ * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\r\n  print(ANS);\r\
-    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \nvoid solve() {\n  STR(S);\n  auto LR = manacher(S);\n  vc<int> ANS(len(S) *\
+    \ 2 - 1);\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/enumerate_palindromes\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/manacher.hpp\"\
+    \n\nvoid solve() {\n  STR(S);\n  auto LR = manacher(S);\n  vc<int> ANS(len(S)\
+    \ * 2 - 1);\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -214,8 +213,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/enumerate_palindromes.test.cpp
 layout: document

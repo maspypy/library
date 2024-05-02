@@ -1,31 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/two_edge_connected_components
     links:
     - https://judge.yosupo.jp/problem/two_edge_connected_components
   bundledCode: "#line 1 \"test/library_checker/graph/two_edge_component.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/two_edge_connected_components\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -260,18 +259,16 @@ data:
     \ v); }\r\n  FOR_R(i, N) {\r\n    if (par[V[i]] != -1) dp[par[V[i]]] += dp[V[i]];\r\
     \n  }\r\n  for (auto&& v: V) comp[v] = (dp[v] == 0 ? n_comp++ : comp[par[v]]);\r\
     \n  return {n_comp, comp};\r\n}\n#line 5 \"test/library_checker/graph/two_edge_component.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph G(N);\r\n  G.read_graph(M, false,\
-    \ 0);\r\n\r\n  auto [C, comp] = two_edge_component(G);\r\n  vc<vc<int>> ANS(C);\r\
-    \n  FOR(v, N) ANS[comp[v]].eb(v);\r\n  print(len(ANS));\r\n  for (auto&& ans:\
-    \ ANS) print(len(ans), ans);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n\
-    \  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/two_edge_connected_components\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"graph/two_edge_component.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  Graph G(N);\r\n  G.read_graph(M, false,\
-    \ 0);\r\n\r\n  auto [C, comp] = two_edge_component(G);\r\n  vc<vc<int>> ANS(C);\r\
-    \n  FOR(v, N) ANS[comp[v]].eb(v);\r\n  print(len(ANS));\r\n  for (auto&& ans:\
-    \ ANS) print(len(ans), ans);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n\
-    \  return 0;\r\n}\r\n"
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, false, 0);\n\
+    \n  auto [C, comp] = two_edge_component(G);\n  vc<vc<int>> ANS(C);\n  FOR(v, N)\
+    \ ANS[comp[v]].eb(v);\n  print(len(ANS));\n  for (auto&& ans: ANS) print(len(ans),\
+    \ ans);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/two_edge_connected_components\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/two_edge_component.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  Graph G(N);\n  G.read_graph(M, false, 0);\n\
+    \n  auto [C, comp] = two_edge_component(G);\n  vc<vc<int>> ANS(C);\n  FOR(v, N)\
+    \ ANS[comp[v]].eb(v);\n  print(len(ANS));\n  for (auto&& ans: ANS) print(len(ans),\
+    \ ans);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -280,8 +277,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/two_edge_component.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/two_edge_component.test.cpp
 layout: document

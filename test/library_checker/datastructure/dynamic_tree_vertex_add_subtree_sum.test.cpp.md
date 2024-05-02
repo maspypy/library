@@ -1,34 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum
   bundledCode: "#line 1 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -192,7 +191,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
     \n\n#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092 head\
     \ \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\u3088\u3046\u306B splay tree\
     \ \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\u76F4\u63A5\u547C\u3076\u53EF\
@@ -319,7 +318,7 @@ data:
     \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, c->x);\n  }\n  void erase_light(np\
     \ c) {\n    if constexpr (SUBTREE) mid = MX::op(mid, MX::inverse(c->x));\n  }\n\
     \n  // b->x \u306B subtree value \u304C\u5165\u3063\u3066\u3044\u308B.\n  void\
-    \ change_light(np a, np b) {}\n};\n#line 9 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
+    \ change_light(np a, np b) {}\n};\n#line 8 \"test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp\"\
     \n\nusing Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>, true>;\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n\n  VEC(ll, A, N);\n  FOR(i,\
     \ N) { LCT.set(i, A[i]); }\n  FOR(N - 1) {\n    INT(a, b);\n    LCT.link(a, b);\n\
@@ -328,8 +327,8 @@ data:
     \ LL(i, x);\n      A[i] += x;\n      LCT.set(i, A[i]);\n    }\n    if (t == 2)\
     \ {\n      LL(a, b);\n      print(LCT.prod_subtree(a, b));\n    }\n  }\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_vertex_add_subtree_sum\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n#include \"graph/ds/lct_node_commutative_monoid.hpp\"\
     \n\nusing Node = LCT_Node_Commutative_Monoid<Monoid_Add<ll>, true>;\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Link_Cut_Tree<Node> LCT(N);\n\n  VEC(ll, A, N);\n  FOR(i,\
@@ -348,8 +347,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
 layout: document

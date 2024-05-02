@@ -1,31 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/minplus_convex.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/minplus_convex.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -158,24 +157,24 @@ data:
     \ B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  int\
     \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
     \  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"random/base.hpp\"\n#include \"convex/minplus_convolution.hpp\"\n\n\
-    vc<int> gen(int L, int N, int R, bool convex) {\n  vc<int> A(N);\n  FOR(i, N)\
-    \ A[i] = RNG(-100, 100);\n  if (!convex) return A;\n  sort(all(A));\n  A = cumsum<int>(A);\n\
-    \  FOR(L) A.insert(A.begin(), infty<int>);\n  FOR(R) A.insert(A.end(), infty<int>);\n\
-    \  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int N = len(A), M\
-    \ = len(B);\n  vc<int> C(N + M - 1, infty<int>);\n  FOR(i, N) FOR(j, M) {\n  \
-    \  if (A[i] == infty<int> || B[j] == infty<int>) continue;\n    chmin(C[i + j],\
-    \ A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1, 1,\
-    \ 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1, true);\n    FOR(a2, 5) FOR(b2,\
-    \ 1, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2, true);\n      vc<int>\
-    \ C = minplus_convolution<int, 1, 1>(A, B);\n      assert(naive(A, B) == C);\n\
-    \    }\n  }\n  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1,\
-    \ b1, c1, true);\n    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {\n      vc<int> B\
-    \ = gen(a2, b2, c2, false);\n      vc<int> C = minplus_convolution<int, 1, false>(A,\
-    \ B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"random/base.hpp\"\n#include \"convex/minplus_convolution.hpp\"\
+    \n\nvc<int> gen(int L, int N, int R, bool convex) {\n  vc<int> A(N);\n  FOR(i,\
+    \ N) A[i] = RNG(-100, 100);\n  if (!convex) return A;\n  sort(all(A));\n  A =\
+    \ cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), infty<int>);\n  FOR(R) A.insert(A.end(),\
+    \ infty<int>);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int\
+    \ N = len(A), M = len(B);\n  vc<int> C(N + M - 1, infty<int>);\n  FOR(i, N) FOR(j,\
+    \ M) {\n    if (A[i] == infty<int> || B[j] == infty<int>) continue;\n    chmin(C[i\
+    \ + j], A[i] + B[j]);\n  }\n  return C;\n}\n\nvoid test() {\n  FOR(a1, 5) FOR(b1,\
+    \ 1, 10) FOR(c1, 5) {\n    vc<int> A = gen(a1, b1, c1, true);\n    FOR(a2, 5)\
+    \ FOR(b2, 1, 10) FOR(c2, 5) {\n      vc<int> B = gen(a2, b2, c2, true);\n    \
+    \  vc<int> C = minplus_convolution<int, 1, 1>(A, B);\n      assert(naive(A, B)\
+    \ == C);\n    }\n  }\n  FOR(a1, 5) FOR(b1, 1, 10) FOR(c1, 5) {\n    vc<int> A\
+    \ = gen(a1, b1, c1, true);\n    FOR(a2, 5) FOR(b2, 1, 10) FOR(c2, 5) {\n     \
+    \ vc<int> B = gen(a2, b2, c2, false);\n      vc<int> C = minplus_convolution<int,\
+    \ 1, false>(A, B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -184,8 +183,8 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_convex.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/minplus_convex.test.cpp
 layout: document

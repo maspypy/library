@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
     links:
     - https://judge.yosupo.jp/problem/matrix_product_mod_2
   bundledCode: "#line 1 \"test/library_checker/matrix/matrix_product_mod2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_product_mod_2\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -299,7 +298,7 @@ data:
     \   FOR(k, K) {\n      CHAR(ch);\n      B[j][k] = ch - '0';\n    }\n  }\n  FOR(i,\
     \ N) FOR(j, M) {\n    if (A[i][j]) C[i] ^= B[j];\n  }\n  FOR(i, N) { print(C[i].to_string());\
     \ }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product_mod_2\"\n\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_product_mod_2\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_bitset.hpp\"\
     \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  INT(N, M, K);\n\n  vc<BS> A(N,\
     \ BS(M));\n  vc<BS> B(M, BS(K));\n  vc<BS> C(N, BS(K));\n\n  FOR(i, N) {\n   \
@@ -315,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/matrix_product_mod2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/matrix/matrix_product_mod2.test.cpp
 layout: document

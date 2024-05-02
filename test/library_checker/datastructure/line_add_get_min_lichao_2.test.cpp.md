@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
     links:
     - https://judge.yosupo.jp/problem/line_add_get_min
   bundledCode: "#line 1 \"test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/line_add_get_min\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -234,8 +233,8 @@ data:
     \  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, a,\
     \ b]: query) {\n    if (t == 0) X.add_line({a, b});\n    if (t == 1) print(X.query(a).fi);\n\
     \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/line_add_get_min\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
     \n\nstruct F {\n  using value_type = ll;\n  int a;\n  ll b;\n  ll operator()(ll\
     \ x) { return a * x + b; }\n};\n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int,\
     \ int, ll>;\n  vc<T> query;\n  query.reserve(N + Q);\n  FOR(N) {\n    LL(a, b);\n\
@@ -252,8 +251,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
 layout: document

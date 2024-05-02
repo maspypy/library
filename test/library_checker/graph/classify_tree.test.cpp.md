@@ -1,43 +1,42 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
     links:
     - https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification
-  bundledCode: "#line 1 \"test/library_checker/graph/classify_tree.test.cpp\"\n#define\
-    \ PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/library_checker/graph/classify_tree.test.cpp\"\n//\
+    \ competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -415,14 +414,14 @@ data:
     \ == v) return dp[v];\n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\n\
     \    int w = tree.jump(v, root, 1);\n    return dp_2[w];\n  }\n\n  static mint\
     \ hash_base(int k) {\n    static vc<mint> dat;\n    while (len(dat) <= k) dat.eb(RNG(mint::get_mod()));\n\
-    \    return dat[k];\n  }\n};\n#line 7 \"test/library_checker/graph/classify_tree.test.cpp\"\
+    \    return dat[k];\n  }\n};\n#line 6 \"test/library_checker/graph/classify_tree.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
     \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
     \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
     \  UNIQUE(key);\n  for (auto&& x: ANS) x = LB(key, x);\n  print(MAX(ANS) + 1);\n\
     \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/tree_dp/subtree_hash.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/rooted_tree_isomorphism_classification\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/tree_dp/subtree_hash.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 0> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
     \    G.add(p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  SubTree_Hash<decltype(tree)>\
     \ X(tree);\n\n  vi ANS(N);\n  FOR(v, N) ANS[v] = X.get(v, 0);\n  vi key = ANS;\n\
@@ -440,8 +439,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/classify_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/classify_tree.test.cpp
 layout: document

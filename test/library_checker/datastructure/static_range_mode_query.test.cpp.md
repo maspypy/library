@@ -1,33 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rollback_mo.hpp
     title: ds/offline_query/rollback_mo.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/static_range_mode_query
     links:
     - https://judge.yosupo.jp/problem/static_range_mode_query
   bundledCode: "#line 1 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_mode_query\"\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_mode_query\n\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -259,8 +258,8 @@ data:
     \ max_key = save_key;\n  };\n\n  auto query = [&](int q) -> void { ANS[q] = {key[max_key],\
     \ max_cnt}; };\n\n  mo.calc(add, add, reset, save, rb, query);\n  for (auto& x:\
     \ ANS) print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_mode_query\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/offline_query/rollback_mo.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_mode_query\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/offline_query/rollback_mo.hpp\"\
     \n#include \"ds/to_small_key.hpp\"\n\nvoid solve() {\n  INT(N, Q);\n  VEC(int,\
     \ A, N);\n  vc<int> key = A;\n  UNIQUE(key);\n  for (auto& x: A) x = LB(key, x);\n\
     \n  Rollback_Mo mo;\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L, R);\n  }\n  vc<pair<int,\
@@ -285,8 +284,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_mode_query.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_mode_query.test.cpp
 layout: document

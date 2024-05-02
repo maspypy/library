@@ -1,34 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/palindrome_decomposition_dp.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/palindrome_decomposition_dp.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -280,23 +279,23 @@ data:
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
     ;\n}\n\nsigned main() {\n  test_min_palindrome_decomposition();\n  test_cnt_palindrome_decomposition();\n\
     \  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\n#include \"string/palindrome_decomposition_dp.hpp\"\
-    \n\nvoid test_min_palindrome_decomposition() {\n  FOR(N, 30) {\n    FOR(K, 1,\
-    \ 5) {\n      FOR(10) {\n        string S;\n        FOR(N) {\n          char c\
-    \ = 'a' + RNG(0, K);\n          S += c;\n        }\n        vv(int, is_pal, N\
-    \ + 1, N + 1);\n        FOR_R(L, N + 1) {\n          FOR(R, N + 1) {\n       \
-    \     if (R - L <= 1) {\n              is_pal[L][R] = 1;\n              continue;\n\
-    \            }\n            is_pal[L][R] = (S[L] == S[R - 1]) && is_pal[L + 1][R\
-    \ - 1];\n          }\n        }\n        vc<int> DP(N + 1, infty<int>);\n    \
-    \    DP[0] = 0;\n        FOR(R, 1, N + 1) {\n          FOR(L, R) {\n         \
-    \   if (is_pal[L][R]) chmin(DP[R], DP[L] + 1);\n          }\n        }\n     \
-    \   vc<int> dp_init(N + 1, infty<int>);\n        dp_init[0] = 0;\n        auto\
-    \ F = [&](int i, int a, int g) -> int { return min(a, g + 1); };\n        auto\
-    \ G = [&](int i, int g, int a) -> int { return min(g, a); };\n\n        vc<int>\
-    \ dp = palindrome_decomposition_dp<int, int>(S, dp_init,\n                   \
-    \                                        infty<int>, F, G);\n        assert(dp\
-    \ == DP);\n      }\n    }\n  }\n}\n\nvoid test_cnt_palindrome_decomposition()\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\
+    \n#include \"string/palindrome_decomposition_dp.hpp\"\n\nvoid test_min_palindrome_decomposition()\
+    \ {\n  FOR(N, 30) {\n    FOR(K, 1, 5) {\n      FOR(10) {\n        string S;\n\
+    \        FOR(N) {\n          char c = 'a' + RNG(0, K);\n          S += c;\n  \
+    \      }\n        vv(int, is_pal, N + 1, N + 1);\n        FOR_R(L, N + 1) {\n\
+    \          FOR(R, N + 1) {\n            if (R - L <= 1) {\n              is_pal[L][R]\
+    \ = 1;\n              continue;\n            }\n            is_pal[L][R] = (S[L]\
+    \ == S[R - 1]) && is_pal[L + 1][R - 1];\n          }\n        }\n        vc<int>\
+    \ DP(N + 1, infty<int>);\n        DP[0] = 0;\n        FOR(R, 1, N + 1) {\n   \
+    \       FOR(L, R) {\n            if (is_pal[L][R]) chmin(DP[R], DP[L] + 1);\n\
+    \          }\n        }\n        vc<int> dp_init(N + 1, infty<int>);\n       \
+    \ dp_init[0] = 0;\n        auto F = [&](int i, int a, int g) -> int { return min(a,\
+    \ g + 1); };\n        auto G = [&](int i, int g, int a) -> int { return min(g,\
+    \ a); };\n\n        vc<int> dp = palindrome_decomposition_dp<int, int>(S, dp_init,\n\
+    \                                                           infty<int>, F, G);\n\
+    \        assert(dp == DP);\n      }\n    }\n  }\n}\n\nvoid test_cnt_palindrome_decomposition()\
     \ {\n  FOR(N, 30) {\n    FOR(K, 1, 5) {\n      FOR(10) {\n        string S;\n\
     \        FOR(N) {\n          char c = 'a' + RNG(0, K);\n          S += c;\n  \
     \      }\n        vv(int, is_pal, N + 1, N + 1);\n        FOR_R(L, N + 1) {\n\
@@ -321,8 +320,8 @@ data:
   isVerificationFile: true
   path: test/mytest/palindrome_decomposition_dp.test.cpp
   requiredBy: []
-  timestamp: '2024-04-09 15:17:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/palindrome_decomposition_dp.test.cpp
 layout: document

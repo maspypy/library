@@ -1,49 +1,48 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/range_assign.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/range_assign.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -326,28 +325,28 @@ data:
     ; 1.563 sec\n  // cout << b << \"\\n\"; 1.376 sec\n}\n\nvoid solve() {\n  int\
     \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
     \  test();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"ds/segtree/range_assignment_segtree.hpp\"\n#include \"ds/segtree/lazy_segtree.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n#include \"alg/acted_monoid/sum_assign.hpp\"\
-    \n#include \"random/base.hpp\"\n\nstruct PROB {\n  int N, Q;\n  vc<ll> INIT;\n\
-    \  vc<tuple<int, int, int>> QUERY;\n};\n\nPROB gen(int N, int Q) {\n  PROB p;\n\
-    \  p.N = N, p.Q = Q;\n  FOR(N) { p.INIT.eb(RNG(0, 1 << 30)); }\n  FOR(Q) {\n \
-    \   int t = RNG(0, 2);\n    int l = RNG(0, N), r = RNG(0, N);\n    int x = RNG(0,\
-    \ 1 << 30);\n    if (l > r) swap(l, r);\n    ++r;\n    if (t == 0) p.QUERY.eb(l,\
-    \ r, x);\n    if (t == 1) p.QUERY.eb(l, r, -1);\n  }\n  return p;\n}\n\nvi sol_1(PROB\
-    \ p) {\n  vi ANS;\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll, -1>> seg(p.INIT);\n\
-    \  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n      ANS.eb(seg.prod(l,\
-    \ r));\n    } else {\n      seg.apply(l, r, x);\n    }\n  }\n  return ANS;\n}\n\
-    \nvi sol_2(PROB p) {\n  vi ANS;\n  Range_Assignment_SegTree<Monoid_Add<ll>> seg(p.INIT);\n\
-    \  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n      ANS.eb(seg.prod(l,\
-    \ r));\n    } else {\n      seg.assign(l, r, x);\n    }\n  }\n  return ANS;\n\
-    }\n\nvoid test() {\n  int N = 1 << 22, Q = 1 << 22;\n  PROB p = gen(N, Q);\n \
-    \ double a = clock();\n  vi A = sol_1(p);\n  double b = clock();\n  vi B = sol_2(p);\n\
-    \  double c = clock();\n  a = (b - a) / CLOCKS_PER_SEC;\n  b = (c - b) / CLOCKS_PER_SEC;\n\
-    \  assert(A == B);\n  // cout << a << \"\\n\"; 1.563 sec\n  // cout << b << \"\
-    \\n\"; 1.376 sec\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
-    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
-    }"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n\n#include \"ds/segtree/range_assignment_segtree.hpp\"\
+    \n#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/monoid/add.hpp\"\n\
+    #include \"alg/acted_monoid/sum_assign.hpp\"\n#include \"random/base.hpp\"\n\n\
+    struct PROB {\n  int N, Q;\n  vc<ll> INIT;\n  vc<tuple<int, int, int>> QUERY;\n\
+    };\n\nPROB gen(int N, int Q) {\n  PROB p;\n  p.N = N, p.Q = Q;\n  FOR(N) { p.INIT.eb(RNG(0,\
+    \ 1 << 30)); }\n  FOR(Q) {\n    int t = RNG(0, 2);\n    int l = RNG(0, N), r =\
+    \ RNG(0, N);\n    int x = RNG(0, 1 << 30);\n    if (l > r) swap(l, r);\n    ++r;\n\
+    \    if (t == 0) p.QUERY.eb(l, r, x);\n    if (t == 1) p.QUERY.eb(l, r, -1);\n\
+    \  }\n  return p;\n}\n\nvi sol_1(PROB p) {\n  vi ANS;\n  Lazy_SegTree<ActedMonoid_Sum_Assign<ll,\
+    \ -1>> seg(p.INIT);\n  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n\
+    \      ANS.eb(seg.prod(l, r));\n    } else {\n      seg.apply(l, r, x);\n    }\n\
+    \  }\n  return ANS;\n}\n\nvi sol_2(PROB p) {\n  vi ANS;\n  Range_Assignment_SegTree<Monoid_Add<ll>>\
+    \ seg(p.INIT);\n  for (auto& [l, r, x]: p.QUERY) {\n    if (x == -1) {\n     \
+    \ ANS.eb(seg.prod(l, r));\n    } else {\n      seg.assign(l, r, x);\n    }\n \
+    \ }\n  return ANS;\n}\n\nvoid test() {\n  int N = 1 << 22, Q = 1 << 22;\n  PROB\
+    \ p = gen(N, Q);\n  double a = clock();\n  vi A = sol_1(p);\n  double b = clock();\n\
+    \  vi B = sol_2(p);\n  double c = clock();\n  a = (b - a) / CLOCKS_PER_SEC;\n\
+    \  b = (c - b) / CLOCKS_PER_SEC;\n  assert(A == B);\n  // cout << a << \"\\n\"\
+    ; 1.563 sec\n  // cout << b << \"\\n\"; 1.376 sec\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - ds/segtree/range_assignment_segtree.hpp
@@ -362,8 +361,8 @@ data:
   isVerificationFile: true
   path: test/mytest/range_assign.test.cpp
   requiredBy: []
-  timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/range_assign.test.cpp
 layout: document

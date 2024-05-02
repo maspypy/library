@@ -1,25 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/associative_array
     links:
     - https://judge.yosupo.jp/problem/associative_array
   bundledCode: "#line 1 \"test/library_checker/datastructure/associative_array.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/associative_array\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -198,8 +197,8 @@ data:
     \  } else {\n      print(A[k]);\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
     \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  // sol_1();\n\
     \  // sol_2();\n  sol_3();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/associative_array\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\nvoid sol_1() {\n  LL(Q);\n\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/associative_array\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\nvoid sol_1() {\n  LL(Q);\n\
     \  map<ll, ll> A;\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(k, v);\n\
     \      A[k] = v;\n    } else {\n      LL(k);\n      print(A[k]);\n    }\n  }\n\
     }\n\nvoid sol_2() {\n  LL(Q);\n  unordered_map<ll, ll> A;\n  A.reserve(Q);\n \
@@ -220,8 +219,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/associative_array.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/associative_array.test.cpp
 layout: document

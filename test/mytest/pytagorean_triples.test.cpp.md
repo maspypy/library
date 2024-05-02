@@ -1,25 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/pytagorean_triple.hpp
     title: nt/pytagorean_triple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/pytagorean_triples.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/pytagorean_triples.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -125,18 +124,18 @@ data:
     \  });\n  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
     \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"nt/pytagorean_triple.hpp\"\n\nvoid test() {\n\
-    \  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n    FOR(x, 1, y)\
-    \ {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n      if\
-    \ (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x, y) == 1;\n\
-    \    }\n  }\n  enumerate_pytagorean_triple<false>(LIM, [&](int a, int b, int c)\
-    \ -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM && a * a + b *\
-    \ b == c * c);\n    --A;\n  });\n  enumerate_pytagorean_triple<true>(LIM, [&](int\
-    \ a, int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM\
-    \ && a * a + b * b == c * c);\n    assert(gcd(a, b) == 1);\n    --B;\n  });\n\
-    \  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    \n#include \"my_template.hpp\"\n\n#include \"nt/pytagorean_triple.hpp\"\n\nvoid\
+    \ test() {\n  int LIM = 10000;\n  int A = 0, B = 0;\n  FOR(y, 1, LIM) {\n    FOR(x,\
+    \ 1, y) {\n      int z = sqrtl(x * x + y * y);\n      if (z > LIM) break;\n  \
+    \    if (x * x + y * y != z * z) continue;\n      A += 1;\n      B += gcd(x, y)\
+    \ == 1;\n    }\n  }\n  enumerate_pytagorean_triple<false>(LIM, [&](int a, int\
+    \ b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c && c <= LIM && a\
+    \ * a + b * b == c * c);\n    --A;\n  });\n  enumerate_pytagorean_triple<true>(LIM,\
+    \ [&](int a, int b, int c) -> void {\n    assert(0 <= a && a <= b && b <= c &&\
+    \ c <= LIM && a * a + b * b == c * c);\n    assert(gcd(a, b) == 1);\n    --B;\n\
+    \  });\n  assert(A == 0 && B == 0);\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \  return 0;\n}"
   dependsOn:
   - my_template.hpp
@@ -144,8 +143,8 @@ data:
   isVerificationFile: true
   path: test/mytest/pytagorean_triples.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/pytagorean_triples.test.cpp
 layout: document

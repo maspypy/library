@@ -1,37 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/longest_common_substring
     links:
     - https://judge.yosupo.jp/problem/longest_common_substring
   bundledCode: "#line 1 \"test/library_checker/string/longest_common_substring.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/longest_common_substring\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/longest_common_substring\n\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -308,8 +307,8 @@ data:
     \    }\n  }\n  return res;\n}\n#line 7 \"test/library_checker/string/longest_common_substring.test.cpp\"\
     \n\nvoid solve() {\n  STR(A, B);\n  print(longest_common_substring(A, B));\n}\n\
     \nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_common_substring\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/longest_common_substring.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/longest_common_substring\n\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/longest_common_substring.hpp\"\
     \n\nvoid solve() {\n  STR(A, B);\n  print(longest_common_substring(A, B));\n}\n\
     \nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
@@ -322,8 +321,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/longest_common_substring.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 01:43:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/longest_common_substring.test.cpp
 layout: document

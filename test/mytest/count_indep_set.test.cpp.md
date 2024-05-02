@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
@@ -13,43 +13,43 @@ data:
   - icon: ':x:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -59,12 +59,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/count_indep_set.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/count_indep_set.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -636,20 +635,20 @@ data:
     \ 0);\n      assert(len(Y) == n + 1);\n      FOR(i, n + 1) assert(Y[i] == 0);\n\
     \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
     \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"random/random_graph.hpp\"\n#include \"graph/base.hpp\"\n#include\
-    \ \"graph/count/count_independent_set.hpp\"\n\nvoid test() {\n  FOR(100) {\n \
-    \   FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<0>(n,\
-    \ true)) G.add(a, b);\n      G.build();\n      vv(int, adj, n, n);\n\n      for\
-    \ (auto&& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm] = 1;\n      auto X =\
-    \ count_independent_set<decltype(G)>(G);\n      auto Y = count_independent_set_by_size<decltype(G)>(G);\n\
-    \      FOR(s, 1 << n) {\n        bool ok = 1;\n        FOR(i, n) FOR(j, n) {\n\
-    \          if ((s >> i & 1) && (s >> j & 1) && adj[i][j]) ok = 0;\n        }\n\
-    \        if (!ok) continue;\n        --X;\n        --Y[popcnt(s)];\n      }\n\
-    \      assert(X == 0);\n      assert(len(Y) == n + 1);\n      FOR(i, n + 1) assert(Y[i]\
-    \ == 0);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"\
+    graph/base.hpp\"\n#include \"graph/count/count_independent_set.hpp\"\n\nvoid test()\
+    \ {\n  FOR(100) {\n    FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto&\
+    \ [a, b]: random_graph<0>(n, true)) G.add(a, b);\n      G.build();\n      vv(int,\
+    \ adj, n, n);\n\n      for (auto&& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm]\
+    \ = 1;\n      auto X = count_independent_set<decltype(G)>(G);\n      auto Y =\
+    \ count_independent_set_by_size<decltype(G)>(G);\n      FOR(s, 1 << n) {\n   \
+    \     bool ok = 1;\n        FOR(i, n) FOR(j, n) {\n          if ((s >> i & 1)\
+    \ && (s >> j & 1) && adj[i][j]) ok = 0;\n        }\n        if (!ok) continue;\n\
+    \        --X;\n        --Y[popcnt(s)];\n      }\n      assert(X == 0);\n     \
+    \ assert(len(Y) == n + 1);\n      FOR(i, n + 1) assert(Y[i] == 0);\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -671,7 +670,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_indep_set.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
+  timestamp: '2024-05-03 05:27:28+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_indep_set.test.cpp

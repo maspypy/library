@@ -1,30 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_independent_set_weighted.hpp
     title: graph/maximum_independent_set_weighted.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/maximum_independent_set
     links:
     - https://judge.yosupo.jp/problem/maximum_independent_set
   bundledCode: "#line 1 \"test/library_checker/graph/maximum_independent_set2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/maximum_independent_set\"\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/maximum_independent_set\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -272,8 +271,8 @@ data:
     \  vc<int> wt(N, 1);\n  vc<int> V = maximum_independent_set_weighted(G, wt);\n\
     \  print(len(V));\n  print(V);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
     }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/maximum_independent_set\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/maximum_independent_set_weighted.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/maximum_independent_set\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/maximum_independent_set_weighted.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M, 0, 0);\n\
     \  vc<int> wt(N, 1);\n  vc<int> V = maximum_independent_set_weighted(G, wt);\n\
     \  print(len(V));\n  print(V);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -286,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/maximum_independent_set2.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/maximum_independent_set2.test.cpp
 layout: document

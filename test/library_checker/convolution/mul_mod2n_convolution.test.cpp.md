@@ -1,54 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/mul_mod2n_convolution
     links:
     - https://judge.yosupo.jp/problem/mul_mod2n_convolution
   bundledCode: "#line 1 \"test/library_checker/convolution/mul_mod2n_convolution.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/mul_mod2n_convolution\"\r\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/mul_mod2n_convolution\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -214,7 +213,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/convolution/mul_mod2n_convolution.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -515,17 +514,15 @@ data:
     \n    int x = (1 << n) & mask;\r\n    auto &c = CC[n];\r\n    FOR(j, W) {\r\n\
     \      C[x] = c[0][j];\r\n      if (H == 2) { C[(1 << N) - x] = c[1][j]; }\r\n\
     \      x = (5 * x) & mask;\r\n    }\r\n  }\r\n  return C;\r\n}\n#line 7 \"test/library_checker/convolution/mul_mod2n_convolution.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = multiplicative_convolution_mod_2n(A,\
-    \ B);\r\n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\
-    \n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/mul_mod2n_convolution\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"mod/modint.hpp\"\r\n#include \"mod/multiplicative_convolution_mod_2n.hpp\"\
-    \r\n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
-    \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto C = multiplicative_convolution_mod_2n(A,\
-    \ B);\r\n  print(C);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\
-    \n}"
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(mint, A, 1 << N);\n\
+    \  VEC(mint, B, 1 << N);\n  auto C = multiplicative_convolution_mod_2n(A, B);\n\
+    \  print(C);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/mul_mod2n_convolution\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"mod/multiplicative_convolution_mod_2n.hpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(N);\n  VEC(mint, A, 1 << N);\n  VEC(mint, B, 1 << N);\n\
+    \  auto C = multiplicative_convolution_mod_2n(A, B);\n  print(C);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -542,8 +539,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/convolution/mul_mod2n_convolution.test.cpp
 layout: document

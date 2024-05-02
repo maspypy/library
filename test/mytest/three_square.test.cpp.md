@@ -1,46 +1,45 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/three_square.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/three_square.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -295,17 +294,17 @@ data:
     \    auto [a, b, c] = three_square(N);\n    assert(a * a + b * b + c * c == N);\n\
     \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
     \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"nt/three_square.hpp\"\n#include \"random/base.hpp\"\n\nvoid test()\
-    \ {\n  FOR(N, 1, 1000000) {\n    if (N % 4 == 0) continue;\n    ll n = N;\n  \
-    \  while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n    auto [a, b,\
-    \ c] = three_square(N);\n    assert(N == a * a + b * b + c * c);\n  }\n  vi TEN\
-    \ = {1};\n  FOR(18) TEN.eb(TEN.back() * 10);\n  FOR(100000) {\n    ll K = RNG(0,\
-    \ 18);\n    ll N = RNG(TEN[K], TEN[K + 1]);\n    ll n = N;\n    while (n % 4 ==\
-    \ 0) n /= 4;\n    if (n % 8 == 7) continue;\n    auto [a, b, c] = three_square(N);\n\
-    \    assert(a * a + b * b + c * c == N);\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n\n  return 0;\n}"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n\n#include \"nt/three_square.hpp\"\n#include \"\
+    random/base.hpp\"\n\nvoid test() {\n  FOR(N, 1, 1000000) {\n    if (N % 4 == 0)\
+    \ continue;\n    ll n = N;\n    while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7)\
+    \ continue;\n    auto [a, b, c] = three_square(N);\n    assert(N == a * a + b\
+    \ * b + c * c);\n  }\n  vi TEN = {1};\n  FOR(18) TEN.eb(TEN.back() * 10);\n  FOR(100000)\
+    \ {\n    ll K = RNG(0, 18);\n    ll N = RNG(TEN[K], TEN[K + 1]);\n    ll n = N;\n\
+    \    while (n % 4 == 0) n /= 4;\n    if (n % 8 == 7) continue;\n    auto [a, b,\
+    \ c] = three_square(N);\n    assert(a * a + b * b + c * c == N);\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - nt/three_square.hpp
@@ -319,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/mytest/three_square.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/three_square.test.cpp
 layout: document

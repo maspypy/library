@@ -1,32 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convex_layers
     links:
     - https://judge.yosupo.jp/problem/convex_layers
   bundledCode: "#line 1 \"test/library_checker/geometry/convex_layers.test.cpp\"\n\
-    #define PROBLEM \"https://judge.yosupo.jp/problem/convex_layers\"\r\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/convex_layers\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -310,26 +309,24 @@ data:
     \    FOR(i, len(P)) print(i, P[i].x, P[i].y);\r\n    print(\"seg\");\r\n    FOR(i,\
     \ len(seg)) print(i, seg[i].l, seg[i].r, seg[i].bl, seg[i].br);\r\n    print(\"\
     get\");\r\n    print(get());\r\n  }\r\n};\r\n#line 5 \"test/library_checker/geometry/convex_layers.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> pts(N);\r\n  FOR(i, N) read(pts[i].x),\
-    \ read(pts[i].y);\r\n  DynamicUpperHull DUH(pts, 1);\r\n  FOR(i, N) pts[i] = -pts[i];\r\
-    \n  DynamicUpperHull DLH(pts, 1);\r\n  vc<int> ANS(N, -1);\r\n  int done = 0;\r\
-    \n  int k = 0;\r\n  while (done < N) {\r\n    ++k;\r\n    auto A = DUH.get();\r\
-    \n    auto B = DLH.get();\r\n    A.insert(A.end(), all(B));\r\n    for (auto&&\
-    \ i: A)\r\n      if (ANS[i] == -1) {\r\n        ++done;\r\n        ANS[i] = k;\r\
-    \n        DUH.erase(i);\r\n        DLH.erase(i);\r\n      }\r\n  }\r\n  for (auto&&\
-    \ x: ANS) print(x);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
-    \ 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convex_layers\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"geo/dynamicupperhull.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> pts(N);\r\n  FOR(i, N) read(pts[i].x),\
-    \ read(pts[i].y);\r\n  DynamicUpperHull DUH(pts, 1);\r\n  FOR(i, N) pts[i] = -pts[i];\r\
-    \n  DynamicUpperHull DLH(pts, 1);\r\n  vc<int> ANS(N, -1);\r\n  int done = 0;\r\
-    \n  int k = 0;\r\n  while (done < N) {\r\n    ++k;\r\n    auto A = DUH.get();\r\
-    \n    auto B = DLH.get();\r\n    A.insert(A.end(), all(B));\r\n    for (auto&&\
-    \ i: A)\r\n      if (ANS[i] == -1) {\r\n        ++done;\r\n        ANS[i] = k;\r\
-    \n        DUH.erase(i);\r\n        DLH.erase(i);\r\n      }\r\n  }\r\n  for (auto&&\
-    \ x: ANS) print(x);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return\
-    \ 0;\r\n}\r\n"
+    \n\nvoid solve() {\n  LL(N);\n  vc<Point<ll>> pts(N);\n  FOR(i, N) read(pts[i].x),\
+    \ read(pts[i].y);\n  DynamicUpperHull DUH(pts, 1);\n  FOR(i, N) pts[i] = -pts[i];\n\
+    \  DynamicUpperHull DLH(pts, 1);\n  vc<int> ANS(N, -1);\n  int done = 0;\n  int\
+    \ k = 0;\n  while (done < N) {\n    ++k;\n    auto A = DUH.get();\n    auto B\
+    \ = DLH.get();\n    A.insert(A.end(), all(B));\n    for (auto&& i: A)\n      if\
+    \ (ANS[i] == -1) {\n        ++done;\n        ANS[i] = k;\n        DUH.erase(i);\n\
+    \        DLH.erase(i);\n      }\n  }\n  for (auto&& x: ANS) print(x);\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/convex_layers\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"geo/dynamicupperhull.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  vc<Point<ll>> pts(N);\n  FOR(i, N) read(pts[i].x),\
+    \ read(pts[i].y);\n  DynamicUpperHull DUH(pts, 1);\n  FOR(i, N) pts[i] = -pts[i];\n\
+    \  DynamicUpperHull DLH(pts, 1);\n  vc<int> ANS(N, -1);\n  int done = 0;\n  int\
+    \ k = 0;\n  while (done < N) {\n    ++k;\n    auto A = DUH.get();\n    auto B\
+    \ = DLH.get();\n    A.insert(A.end(), all(B));\n    for (auto&& i: A)\n      if\
+    \ (ANS[i] == -1) {\n        ++done;\n        ANS[i] = k;\n        DUH.erase(i);\n\
+    \        DLH.erase(i);\n      }\n  }\n  for (auto&& x: ANS) print(x);\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -338,8 +335,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/convex_layers.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/geometry/convex_layers.test.cpp
 layout: document

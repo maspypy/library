@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/incremental_ch.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/incremental_ch.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -233,26 +232,26 @@ data:
     \ 1)) == 0);\n    assert(X.side(Point<ll>(7, 1)) == -1);\n  }\n}\n\nvoid solve()\
     \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
     \ {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"geo/incremental_convexhull.hpp\"\n\n// geocon2013 c sample \u3088\
-    \u308A\nvoid test() {\n  {\n    Incremental_ConvexHull<ll> X;\n    assert(X.area_2()\
-    \ == 0);\n    assert(X.side(Point<ll>(2, 2)) == -1);\n    assert(X.side(Point<ll>(1,\
-    \ 2)) == -1);\n    assert(X.side(Point<ll>(1, 1)) == -1);\n    assert(X.side(Point<ll>(2,\
-    \ 1)) == -1);\n    X.add(Point<ll>(1, 1));\n    assert(X.side(Point<ll>(2, 2))\
-    \ == -1);\n    assert(X.side(Point<ll>(1, 2)) == -1);\n    assert(X.side(Point<ll>(1,\
-    \ 1)) == 0);\n    assert(X.side(Point<ll>(2, 1)) == -1);\n    X.add(Point<ll>(5,\
-    \ 1));\n    assert(X.area_2() == 0);\n    assert(X.side(Point<ll>(2, 2)) == -1);\n\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"geo/incremental_convexhull.hpp\"\n\n\
+    // geocon2013 c sample \u3088\u308A\nvoid test() {\n  {\n    Incremental_ConvexHull<ll>\
+    \ X;\n    assert(X.area_2() == 0);\n    assert(X.side(Point<ll>(2, 2)) == -1);\n\
     \    assert(X.side(Point<ll>(1, 2)) == -1);\n    assert(X.side(Point<ll>(1, 1))\
-    \ == 0);\n    assert(X.side(Point<ll>(2, 1)) == 0);\n    X.add(Point<ll>(1, 5));\n\
-    \    assert(X.area_2() == 16);\n    assert(X.side(Point<ll>(2, 2)) == 1);\n  \
-    \  assert(X.side(Point<ll>(1, 2)) == 0);\n    assert(X.side(Point<ll>(1, 1)) ==\
-    \ 0);\n    assert(X.side(Point<ll>(2, 1)) == 0);\n  }\n  {\n    Incremental_ConvexHull<ll>\
-    \ X;\n    X.add(Point<ll>(2, 1));\n    X.add(Point<ll>(4, 1));\n    X.add(Point<ll>(6,\
-    \ 1));\n    assert(X.side(Point<ll>(1, 1)) == -1);\n    assert(X.side(Point<ll>(3,\
-    \ 1)) == 0);\n    assert(X.side(Point<ll>(5, 1)) == 0);\n    assert(X.side(Point<ll>(7,\
-    \ 1)) == -1);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ == -1);\n    assert(X.side(Point<ll>(2, 1)) == -1);\n    X.add(Point<ll>(1,\
+    \ 1));\n    assert(X.side(Point<ll>(2, 2)) == -1);\n    assert(X.side(Point<ll>(1,\
+    \ 2)) == -1);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == -1);\n    X.add(Point<ll>(5, 1));\n    assert(X.area_2() == 0);\n   \
+    \ assert(X.side(Point<ll>(2, 2)) == -1);\n    assert(X.side(Point<ll>(1, 2)) ==\
+    \ -1);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == 0);\n    X.add(Point<ll>(1, 5));\n    assert(X.area_2() == 16);\n   \
+    \ assert(X.side(Point<ll>(2, 2)) == 1);\n    assert(X.side(Point<ll>(1, 2)) ==\
+    \ 0);\n    assert(X.side(Point<ll>(1, 1)) == 0);\n    assert(X.side(Point<ll>(2,\
+    \ 1)) == 0);\n  }\n  {\n    Incremental_ConvexHull<ll> X;\n    X.add(Point<ll>(2,\
+    \ 1));\n    X.add(Point<ll>(4, 1));\n    X.add(Point<ll>(6, 1));\n    assert(X.side(Point<ll>(1,\
+    \ 1)) == -1);\n    assert(X.side(Point<ll>(3, 1)) == 0);\n    assert(X.side(Point<ll>(5,\
+    \ 1)) == 0);\n    assert(X.side(Point<ll>(7, 1)) == -1);\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - geo/incremental_convexhull.hpp
@@ -260,8 +259,8 @@ data:
   isVerificationFile: true
   path: test/mytest/incremental_ch.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/incremental_ch.test.cpp
 layout: document

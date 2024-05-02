@@ -1,27 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/stern_brocot_tree.hpp
     title: nt/stern_brocot_tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
     links:
     - https://judge.yosupo.jp/problem/stern_brocot_tree
-  bundledCode: "#line 1 \"test/library_checker/math/stern-brocot.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/library_checker/math/stern-brocot.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/stern_brocot_tree\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
@@ -242,8 +241,8 @@ data:
     \    }\n  }\n  if (S == \"RANGE\") {\n    LL(a, b);\n    auto [x, y] = SBT::range({a,\
     \ b});\n    print(x, y);\n  }\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\n  solve();\n\
     \  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/stern_brocot_tree.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/stern_brocot_tree\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/stern_brocot_tree.hpp\"\
     \n\nvoid solve() {\n  using SBT = Stern_Brocot_Tree;\n  STR(S);\n  if (S == \"\
     DECODE_PATH\") {\n    INT(n);\n    vi A;\n    FOR(n) {\n      CHAR(s);\n     \
     \ INT(x);\n      if (A.empty() && s == 'L') { A.eb(0); }\n      A.eb(x);\n   \
@@ -265,8 +264,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stern-brocot.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/stern-brocot.test.cpp
 layout: document

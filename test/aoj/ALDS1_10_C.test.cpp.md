@@ -1,28 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/longest_common_subsequence.hpp
     title: string/longest_common_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
-  bundledCode: "#line 1 \"test/aoj/ALDS1_10_C.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/ALDS1_10_C.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -200,7 +199,7 @@ data:
     \ 1], dp[j] + 1);\n    }\n  }\n  vc<pair<int, int>> res;\n  int n = N, m = M;\n\
     \  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m]) { --n; }\n    elif (DP[n][m]\
     \ == DP[n][m - 1]) { --m; }\n    else {\n      --n, --m;\n      res.eb(n, m);\n\
-    \    }\n  }\n  reverse(all(res));\n  return res;\n}\n#line 6 \"test/aoj/ALDS1_10_C.test.cpp\"\
+    \    }\n  }\n  reverse(all(res));\n  return res;\n}\n#line 5 \"test/aoj/ALDS1_10_C.test.cpp\"\
     \n\nvoid solve() {\n  STR(S, T);\n  ll LCS = longest_common_subsequence(S, T);\n\
     \  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S, T);\n  assert(len(pairs)\
     \ == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i] == T[j]);\n  FOR(i, LCS -\
@@ -208,8 +207,8 @@ data:
     \ + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n \
     \ ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  LL(T);\n  FOR(_,\
     \ T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/longest_common_subsequence.hpp\"\
+  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/longest_common_subsequence.hpp\"\
     \n\nvoid solve() {\n  STR(S, T);\n  ll LCS = longest_common_subsequence(S, T);\n\
     \  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S, T);\n  assert(len(pairs)\
     \ == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i] == T[j]);\n  FOR(i, LCS -\
@@ -224,8 +223,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_10_C.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_10_C.test.cpp
 layout: document

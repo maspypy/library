@@ -1,27 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
     links:
     - https://judge.yosupo.jp/problem/zalgorithm
-  bundledCode: "#line 1 \"test/library_checker/string/zalgorithm.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/library_checker/string/zalgorithm.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/zalgorithm\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
@@ -186,22 +185,22 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/string/zalgorithm.test.cpp\"\n\r\
-    \n#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  // string, vector\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/string/zalgorithm.test.cpp\"\n\n\
+    #line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  // string, vector\
     \ \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const STRING& s) {\n\
     \  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int> z(n);\n  z[0]\
     \ = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n    k = (j\
     \ + z[j] <= i) ? 0 : min(j + z[j] - i, z[i - j]);\n    while (i + k < n && s[k]\
     \ == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n \
-    \ return z;\n}\n#line 6 \"test/library_checker/string/zalgorithm.test.cpp\"\n\r\
-    \nvoid solve() {\r\n  STR(S);\r\n  auto Z = zalgorithm(S);\r\n  print(Z);\r\n\
-    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
-    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/zalgorithm.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto Z = zalgorithm(S);\r\n  print(Z);\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ return z;\n}\n#line 6 \"test/library_checker/string/zalgorithm.test.cpp\"\n\n\
+    void solve() {\n  STR(S);\n  auto Z = zalgorithm(S);\n  print(Z);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/zalgorithm\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/zalgorithm.hpp\"\
+    \n\nvoid solve() {\n  STR(S);\n  auto Z = zalgorithm(S);\n  print(Z);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -209,8 +208,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm.test.cpp
 layout: document

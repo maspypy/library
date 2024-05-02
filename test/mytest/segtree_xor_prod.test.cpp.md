@@ -1,31 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/segtree_xor_prod.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/segtree_xor_prod.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -167,19 +166,19 @@ data:
     \        assert(sm == seg.xor_prod(L, R, xor_val));\n      }\n    }\n  }\n}\n\n\
     void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
     \nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n#include \"random/base.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
-    \n\nvoid test() {\n  FOR(100) {\n    int n = RNG(0, 5);\n    int N = 1 << n;\n\
-    \    using Mono = Monoid_Add<int>;\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0,\
-    \ 10);\n    SegTree<Mono> seg(A);\n    FOR(100) {\n      int t = RNG(0, 2);\n\
-    \      if (t == 0) {\n        int i = RNG(0, N);\n        int x = RNG(0, 10);\n\
-    \        seg.set(i, x);\n        A[i] = x;\n      }\n      if (t == 1) {\n   \
-    \     int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L > R) swap(L,\
-    \ R);\n        ++R;\n        int xor_val = RNG(0, N);\n        int sm = 0;\n \
-    \       FOR(i, L, R) sm += A[i ^ xor_val];\n        assert(sm == seg.xor_prod(L,\
-    \ R, xor_val));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"alg/monoid/add.hpp\"\n#include \"random/base.hpp\"\
+    \n#include \"ds/segtree/segtree.hpp\"\n\nvoid test() {\n  FOR(100) {\n    int\
+    \ n = RNG(0, 5);\n    int N = 1 << n;\n    using Mono = Monoid_Add<int>;\n   \
+    \ vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0, 10);\n    SegTree<Mono> seg(A);\n\
+    \    FOR(100) {\n      int t = RNG(0, 2);\n      if (t == 0) {\n        int i\
+    \ = RNG(0, N);\n        int x = RNG(0, 10);\n        seg.set(i, x);\n        A[i]\
+    \ = x;\n      }\n      if (t == 1) {\n        int L = RNG(0, N);\n        int\
+    \ R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n        int xor_val\
+    \ = RNG(0, N);\n        int sm = 0;\n        FOR(i, L, R) sm += A[i ^ xor_val];\n\
+    \        assert(sm == seg.xor_prod(L, R, xor_val));\n      }\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - alg/monoid/add.hpp
@@ -188,8 +187,8 @@ data:
   isVerificationFile: true
   path: test/mytest/segtree_xor_prod.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/segtree_xor_prod.test.cpp
 layout: document

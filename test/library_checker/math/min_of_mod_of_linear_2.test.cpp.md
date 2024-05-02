@@ -1,31 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
     links:
     - https://judge.yosupo.jp/problem/min_of_mod_of_linear
   bundledCode: "#line 1 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/min_of_mod_of_linear\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -212,7 +211,7 @@ data:
     \ range_freq_of_linear<i128, ll>(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
     \ 0, m));\n}\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n\
     }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/min_of_mod_of_linear\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/range_freq_of_linear.hpp\"\
     \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n \
     \   return range_freq_of_linear<i128, ll>(0, n, a, b, m, 0, k) == 0;\n  };\n \
@@ -226,8 +225,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 layout: document

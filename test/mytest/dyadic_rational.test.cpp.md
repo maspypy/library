@@ -1,25 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/dyadic_rational.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/dyadic_rational.test.cpp\"\n// competitive-verifier:\
+    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -154,18 +153,19 @@ data:
     \ X(-5, 4));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
     \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
     }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"game/dyadic_rational.hpp\"\n\nvoid test() {\n  using X = Dyadic_Rational<ll>;\n\
-    \  // \u8DB3\u3057\n  assert(X(1) + X(2) == X(3));\n  assert(X(-3) + X(2) == X(-1));\n\
-    \  assert(X(-3) + X(3) == X(0));\n  assert(X(3, 8) + X(1, 2) == X(7, 8));\n  assert(X(3,\
-    \ 8) + X(3, 8) == X(3, 4));\n  assert(X(3, 8) + X(-3, 8) == X(0));\n  assert(X(2,\
-    \ 8) + X(-1, 4) == X(0));\n  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n\
-    \  assert(X(-3) - X(2) == X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3,\
-    \ 8) - X(1, 2) == X(-1, 8));\n  assert(X(3, 8) - X(3, 8) == X(0, 1));\n  assert(X(3,\
-    \ 8) - X(-3, 8) == X(3, 4));\n  assert(X(2, 8) - X(-1, 4) == X(1, 2));\n  // \u4E0D\
-    \u7B49\u53F7\n  assert(X(1) < X(2));\n  assert(X(-3) < X(2));\n  assert(X(-3)\
-    \ < X(3));\n  assert(X(3, 8) < X(1, 2));\n  assert(X(3, 8) == X(3, 8));\n  assert(X(3,\
-    \ 8) > X(-3, 8));\n  assert(X(2, 8) > X(-1, 4));\n  // {x|y}\n  assert(X::simplest(X(1),\
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
+    #include \"my_template.hpp\"\n#include \"game/dyadic_rational.hpp\"\n\nvoid test()\
+    \ {\n  using X = Dyadic_Rational<ll>;\n  // \u8DB3\u3057\n  assert(X(1) + X(2)\
+    \ == X(3));\n  assert(X(-3) + X(2) == X(-1));\n  assert(X(-3) + X(3) == X(0));\n\
+    \  assert(X(3, 8) + X(1, 2) == X(7, 8));\n  assert(X(3, 8) + X(3, 8) == X(3, 4));\n\
+    \  assert(X(3, 8) + X(-3, 8) == X(0));\n  assert(X(2, 8) + X(-1, 4) == X(0));\n\
+    \  // \u5F15\u304D\n  assert(X(1) - X(2) == X(-1));\n  assert(X(-3) - X(2) ==\
+    \ X(-5));\n  assert(X(-3) - X(3) == X(-6));\n  assert(X(3, 8) - X(1, 2) == X(-1,\
+    \ 8));\n  assert(X(3, 8) - X(3, 8) == X(0, 1));\n  assert(X(3, 8) - X(-3, 8) ==\
+    \ X(3, 4));\n  assert(X(2, 8) - X(-1, 4) == X(1, 2));\n  // \u4E0D\u7B49\u53F7\
+    \n  assert(X(1) < X(2));\n  assert(X(-3) < X(2));\n  assert(X(-3) < X(3));\n \
+    \ assert(X(3, 8) < X(1, 2));\n  assert(X(3, 8) == X(3, 8));\n  assert(X(3, 8)\
+    \ > X(-3, 8));\n  assert(X(2, 8) > X(-1, 4));\n  // {x|y}\n  assert(X::simplest(X(1),\
     \ X(2)) == X(3, 2));\n  assert(X::simplest(X(-3), X(0)) == X(-1));\n  assert(X::simplest(X(1),\
     \ X(5)) == X(2));\n  assert(X::simplest(X(-3), X(1)) == X(0));\n  assert(X::simplest(X(9,\
     \ 16), X(5, 8)) == X(19, 32));\n  assert(X::simplest(X(1, 2), X(2, 1)) == X(1));\n\
@@ -179,8 +179,8 @@ data:
   isVerificationFile: true
   path: test/mytest/dyadic_rational.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/dyadic_rational.test.cpp
 layout: document

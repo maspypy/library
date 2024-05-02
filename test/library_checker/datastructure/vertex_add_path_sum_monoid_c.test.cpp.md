@@ -1,42 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_path_sum
     links:
     - https://judge.yosupo.jp/problem/vertex_add_path_sum
   bundledCode: "#line 1 \"test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_path_sum\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -202,7 +201,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp\"\
-    \n\r\n#line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\
+    \n\n#line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\
     \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
     \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
     \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
@@ -445,25 +444,23 @@ data:
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
-    \ G.read_tree(0, 0);\r\n\r\n  Tree tree(G);\r\n  const bool is_edge = false;\r\
-    \n  using Mono = Monoid_Add<ll>;\r\n  Tree_Monoid<decltype(tree), Mono, is_edge>\
-    \ TM(tree, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n   \
-    \   LL(v, x);\r\n      A[v] += x;\r\n      TM.set(v, A[v]);\r\n    } else {\r\n\
-    \      LL(u, v);\r\n      print(TM.prod_path(u, v));\r\n    }\r\n  }\r\n}\r\n\r\
-    \nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n\
-    \  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_path_sum\"\r\
-    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
-    graph/ds/tree_monoid.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n  G.read_tree(0, 0);\r\
-    \n\r\n  Tree tree(G);\r\n  const bool is_edge = false;\r\n  using Mono = Monoid_Add<ll>;\r\
-    \n  Tree_Monoid<decltype(tree), Mono, is_edge> TM(tree, A);\r\n\r\n  FOR(_, Q)\
-    \ {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(v, x);\r\n      A[v] += x;\r\
-    \n      TM.set(v, A[v]);\r\n    } else {\r\n      LL(u, v);\r\n      print(TM.prod_path(u,\
-    \ v));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
-    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
-    \n\r\n  return 0;\r\n}\r\n"
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Graph G(N);\n  G.read_tree(0,\
+    \ 0);\n\n  Tree tree(G);\n  const bool is_edge = false;\n  using Mono = Monoid_Add<ll>;\n\
+    \  Tree_Monoid<decltype(tree), Mono, is_edge> TM(tree, A);\n\n  FOR(_, Q) {\n\
+    \    LL(t);\n    if (t == 0) {\n      LL(v, x);\n      A[v] += x;\n      TM.set(v,\
+    \ A[v]);\n    } else {\n      LL(u, v);\n      print(TM.prod_path(u, v));\n  \
+    \  }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_path_sum\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/tree_monoid.hpp\"\
+    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A,\
+    \ N);\n  Graph G(N);\n  G.read_tree(0, 0);\n\n  Tree tree(G);\n  const bool is_edge\
+    \ = false;\n  using Mono = Monoid_Add<ll>;\n  Tree_Monoid<decltype(tree), Mono,\
+    \ is_edge> TM(tree, A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n    \
+    \  LL(v, x);\n      A[v] += x;\n      TM.set(v, A[v]);\n    } else {\n      LL(u,\
+    \ v);\n      print(TM.prod_path(u, v));\n    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -476,8 +473,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
 layout: document

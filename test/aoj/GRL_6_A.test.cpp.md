@@ -1,29 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
-  bundledCode: "#line 1 \"test/aoj/GRL_6_A.test.cpp\"\n#define PROBLEM \\\r\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\r\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/aoj/GRL_6_A.test.cpp\"\n// competitive-verifier: PROBLEM\
+    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -186,7 +185,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/aoj/GRL_6_A.test.cpp\"\n\r\n#line 1 \"flow/maxflow.hpp\"\
+    \ yes(!t); }\r\n#line 4 \"test/aoj/GRL_6_A.test.cpp\"\n\n#line 1 \"flow/maxflow.hpp\"\
     \n// incremental \u306B\u8FBA\u3092\u8FFD\u52A0\u3057\u3066\u3088\u3044\n// \u8FBA\
     \u306E\u5BB9\u91CF\u306E\u5909\u66F4\u304C\u53EF\u80FD\n// \u5909\u66F4\u3059\u308B\
     \ capacity \u304C F \u306E\u3068\u304D\u3001O((N+M)|F|) \u6642\u9593\u3067\u66F4\
@@ -268,16 +267,15 @@ data:
     \ (a > 0) {\n          e.cap -= a, e.flow += a;\n          edges[e.to][e.rev].cap\
     \ += a, edges[e.to][e.rev].flow -= a;\n          res += a;\n          lim -= a;\n\
     \          if (lim == 0) break;\n        }\n      }\n    }\n    return res;\n\
-    \  }\n};\n#line 7 \"test/aoj/GRL_6_A.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N,\
-    \ M);\r\n  MaxFlow<int> G(N, 0, N - 1);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n\
-    \    G.add(a, b, c);\r\n  }\r\n  print(G.flow());\r\n}\r\n\r\nsigned main() {\r\
-    \n  solve();\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"flow/maxflow.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  MaxFlow<int>\
-    \ G(N, 0, N - 1);\r\n  FOR(M) {\r\n    LL(a, b, c);\r\n    G.add(a, b, c);\r\n\
-    \  }\r\n  print(G.flow());\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return\
-    \ 0;\r\n}\r\n"
+    \  }\n};\n#line 6 \"test/aoj/GRL_6_A.test.cpp\"\n\nvoid solve() {\n  LL(N, M);\n\
+    \  MaxFlow<int> G(N, 0, N - 1);\n  FOR(M) {\n    LL(a, b, c);\n    G.add(a, b,\
+    \ c);\n  }\n  print(G.flow());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"flow/maxflow.hpp\"\
+    \n\nvoid solve() {\n  LL(N, M);\n  MaxFlow<int> G(N, 0, N - 1);\n  FOR(M) {\n\
+    \    LL(a, b, c);\n    G.add(a, b, c);\n  }\n  print(G.flow());\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -285,8 +283,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 22:50:36+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/GRL_6_A.test.cpp
 layout: document

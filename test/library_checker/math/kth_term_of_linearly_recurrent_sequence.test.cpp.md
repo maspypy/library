@@ -1,67 +1,66 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
     links:
     - https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence
   bundledCode: "#line 1 \"test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -225,8 +224,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -578,18 +577,18 @@ data:
     \ {\r\n    if (n <= 10) {\r\n      return coef_of_rational_fps_small(P, Q, N);\r\
     \n    } else {\r\n      return coef_of_rational_fps_ntt(P, Q, N);\r\n    }\r\n\
     \  }\r\n  return (n <= 16 ? coef_of_rational_fps_small(P, Q, N)\r\n          \
-    \        : coef_of_rational_fps_convolution(P, Q, N));\r\n}\n#line 8 \"test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, K);\r\n  VEC(mint,\
-    \ A, N);\r\n  VEC(mint, g, N);\r\n  for (auto&& x: g) x = -x;\r\n  g.insert(g.begin(),\
-    \ 1);\r\n  auto f = convolution(A, g);\r\n  f.resize(N);\r\n  print(coef_of_rational_fps(f,\
-    \ g, K));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
-    \ \"mod/modint.hpp\"\r\n#include \"poly/coef_of_rational_fps.hpp\"\r\n\r\nusing\
-    \ mint = modint998;\r\nvoid solve() {\r\n  LL(N, K);\r\n  VEC(mint, A, N);\r\n\
-    \  VEC(mint, g, N);\r\n  for (auto&& x: g) x = -x;\r\n  g.insert(g.begin(), 1);\r\
-    \n  auto f = convolution(A, g);\r\n  f.resize(N);\r\n  print(coef_of_rational_fps(f,\
-    \ g, K));\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \        : coef_of_rational_fps_convolution(P, Q, N));\r\n}\n#line 7 \"test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp\"\
+    \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, K);\n  VEC(mint, A, N);\n\
+    \  VEC(mint, g, N);\n  for (auto&& x: g) x = -x;\n  g.insert(g.begin(), 1);\n\
+    \  auto f = convolution(A, g);\n  f.resize(N);\n  print(coef_of_rational_fps(f,\
+    \ g, K));\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/kth_term_of_linearly_recurrent_sequence\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"poly/coef_of_rational_fps.hpp\"\n\nusing mint = modint998;\nvoid\
+    \ solve() {\n  LL(N, K);\n  VEC(mint, A, N);\n  VEC(mint, g, N);\n  for (auto&&\
+    \ x: g) x = -x;\n  g.insert(g.begin(), 1);\n  auto f = convolution(A, g);\n  f.resize(N);\n\
+    \  print(coef_of_rational_fps(f, g, K));\n}\n\nsigned main() {\n  solve();\n\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -610,8 +609,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-03 05:27:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 layout: document
