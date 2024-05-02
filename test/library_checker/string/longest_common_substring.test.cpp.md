@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
@@ -247,14 +247,14 @@ data:
     \ }, i);\n    int b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);\n\
     \    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1)\
     \ = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n  int compare(int L1, int R1, int\
-    \ L2, int R2) {\n    int N = len(SA);\n    int n1 = R1 - L1, n2 = R2 - L2;\n \
-    \   int n = lcp(L1, L2);\n    if (n == n1 && n == n2) return 0;\n    if (n ==\
-    \ n1) return -1;\n    if (n == n2) return 1;\n    return (ISA[L1 + n] > ISA[L2\
-    \ + n] ? 1 : -1);\n  }\n\nprivate:\n  void induced_sort(const vc<int>& vect, int\
-    \ val_range, vc<int>& SA,\n                    const vc<bool>& sl, const vc<int>&\
-    \ lms_idx) {\n    vc<int> l(val_range, 0), r(val_range, 0);\n    for (int c: vect)\
-    \ {\n      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(),\
-    \ l.end(), l.begin());\n    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(),\
+    \ L2, int R2) {\n    int n1 = R1 - L1, n2 = R2 - L2;\n    int n = lcp(L1, L2);\n\
+    \    if (n == n1 && n == n2) return 0;\n    if (n == n1) return -1;\n    if (n\
+    \ == n2) return 1;\n    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\n\
+    private:\n  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,\n\
+    \                    const vc<bool>& sl, const vc<int>& lms_idx) {\n    vc<int>\
+    \ l(val_range, 0), r(val_range, 0);\n    for (int c: vect) {\n      if (c + 1\
+    \ < val_range) ++l[c + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(), l.end(),\
+    \ l.begin());\n    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(),\
     \ SA.end(), -1);\n    for (int i = (int)lms_idx.size() - 1; i >= 0; --i)\n   \
     \   SA[--r[vect[lms_idx[i]]]] = lms_idx[i];\n    for (int i: SA)\n      if (i\
     \ >= 1 && sl[i - 1]) SA[l[vect[i - 1]]++] = i - 1;\n    fill(r.begin(), r.end(),\
@@ -322,7 +322,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/longest_common_substring.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-05-03 01:43:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/longest_common_substring.test.cpp
