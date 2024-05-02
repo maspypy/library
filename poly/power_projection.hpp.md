@@ -57,6 +57,9 @@ data:
   - icon: ':x:'
     path: test/mytest/power_projection.test.cpp
     title: test/mytest/power_projection.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc345g.test.cpp
+    title: test_atcoder/abc345g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -528,6 +531,7 @@ data:
   - test/mytest/compositional_inverset.test.cpp
   - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test_atcoder/abc345g.test.cpp
 documentation_of: poly/power_projection.hpp
 layout: document
 redirect_from:

@@ -34,10 +34,10 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy:
@@ -51,7 +51,7 @@ data:
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/composition_dmint.test.cpp
     title: test/library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':x:'
@@ -83,7 +83,7 @@ data:
     title: test/mytest/count_labeled_bridgeless.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/composition.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -651,7 +651,7 @@ data:
   - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp

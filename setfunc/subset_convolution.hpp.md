@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':question:'
@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/powproj_sps.test.cpp
     title: test/library_checker/math/powproj_sps.test.cpp
   - icon: ':heavy_check_mark:'

@@ -255,7 +255,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_modp_conv.test.cpp
     title: test/library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/multivariate_convolution.test.cpp
     title: test/library_checker/convolution/multivariate_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -264,7 +264,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
@@ -576,7 +576,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/bernoulli.test.cpp
     title: test/library_checker/math/bernoulli.test.cpp
   - icon: ':heavy_check_mark:'
@@ -603,7 +603,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/factori998.test.cpp
     title: test/library_checker/math/factori998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/factorial.test.cpp
     title: test/library_checker/math/factorial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -627,7 +627,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_root_mod.test.cpp
     title: test/library_checker/math/kth_root_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -642,16 +642,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/nim_product.test.cpp
     title: test/library_checker/math/nim_product.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/powproj_sps.test.cpp
     title: test/library_checker/math/powproj_sps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -660,7 +660,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/primitive_root.test.cpp
     title: test/library_checker/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/library_checker/math/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -678,16 +678,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_mod_p_2.test.cpp
     title: test/library_checker/math/stirling_mod_p_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -738,7 +738,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/composition_dmint.test.cpp
     title: test/library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':x:'
@@ -2062,6 +2062,9 @@ data:
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':x:'
+    path: test_atcoder/abc345g.test.cpp
+    title: test_atcoder/abc345g.test.cpp
+  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3004,6 +3007,7 @@ data:
   - test_atcoder/abc196_E.test.cpp
   - test_atcoder/abc298ex.test.cpp
   - test_atcoder/abc285h.test.cpp
+  - test_atcoder/abc345g.test.cpp
   - test_atcoder/abc228f.test.cpp
 documentation_of: other/io.hpp
 layout: document
