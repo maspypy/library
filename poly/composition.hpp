@@ -232,6 +232,8 @@ vc<mint> composition_0_garner(vc<mint> f, vc<mint> g) {
 
 template <typename mint>
 vc<mint> composition(vc<mint> f, vc<mint> g) {
+  assert(len(f) == len(g));
+  if (f.empty()) return {};
   // [x^0]g=0 に帰着しておく
   if (g[0] != mint(0)) {
     f = poly_taylor_shift<mint>(f, g[0]);
