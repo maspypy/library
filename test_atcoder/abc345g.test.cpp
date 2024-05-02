@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "poly/coef_of_fps_pows.hpp"
+#include "poly/power_projection.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
@@ -13,8 +13,8 @@ void solve() {
   mint p = mint(1) / mint(K);
   vc<mint> f(N);
   FOR(i, N) if (1 <= i && i <= K) f[i] = p;
-  vc<mint> g(N, 1);
-  vc<mint> A = coef_of_fps_pows<mint>(f, N - 1, N, g);
+  vc<mint> wt(N, 1);
+  vc<mint> A = power_projection<mint>(wt, f, N);
   FOR(n, 1, N + 1) { print(A[n - 1] - A[n]); }
 }
 
