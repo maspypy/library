@@ -1,29 +1,30 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_unionfind
     links:
     - https://judge.yosupo.jp/problem/persistent_unionfind
   bundledCode: "#line 1 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/persistent_unionfind\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -189,7 +190,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
-    \n\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT,\
+    \n\r\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT,\
     \ int NODES>\r\nstruct Dynamic_Array {\r\n  static constexpr int LOG = 4;\r\n\
     \  static constexpr int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n    T x;\r\
     \n    Node* ch[1 << LOG] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
@@ -220,22 +221,24 @@ data:
     \ x) == new_sz);\r\n    c = PA.set(c, y, x);\r\n    assert(PA.get(c, y) == x);\r\
     \n    return {c, true};\r\n  }\r\n\r\n  ll size(np c, int x) { return -PA.get(c,\
     \ root(c, x)); }\r\n};\r\n#line 6 \"test/library_checker/datastructure/persistent_unionfind.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n\n  Dynamic_UnionFind<true, 1'500'000> uf;\n\
-    \  using np = typename decltype(uf)::np;\n  vc<np> roots;\n\n  roots.eb(uf.new_root());\n\
-    \n  FOR(Q) {\n    LL(t, k, u, v);\n    ++k;\n    auto root = roots[k];\n    if\
-    \ (t == 0) {\n      root = uf.merge(root, u, v).fi;\n    } else {\n      bool\
-    \ ok = uf.root(root, u) == uf.root(root, v);\n      print(ok ? 1 : 0);\n    }\n\
-    \    roots.eb(root);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/persistent_unionfind\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/unionfind/dynamic_unionfind.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n\n  Dynamic_UnionFind<true, 1'500'000> uf;\n\
-    \  using np = typename decltype(uf)::np;\n  vc<np> roots;\n\n  roots.eb(uf.new_root());\n\
-    \n  FOR(Q) {\n    LL(t, k, u, v);\n    ++k;\n    auto root = roots[k];\n    if\
-    \ (t == 0) {\n      root = uf.merge(root, u, v).fi;\n    } else {\n      bool\
-    \ ok = uf.root(root, u) == uf.root(root, v);\n      print(ok ? 1 : 0);\n    }\n\
-    \    roots.eb(root);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  Dynamic_UnionFind<true, 1'500'000>\
+    \ uf;\r\n  using np = typename decltype(uf)::np;\r\n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_root());\r\
+    \n\r\n  FOR(Q) {\r\n    LL(t, k, u, v);\r\n    ++k;\r\n    auto root = roots[k];\r\
+    \n    if (t == 0) {\r\n      root = uf.merge(root, u, v).fi;\r\n    } else {\r\
+    \n      bool ok = uf.root(root, u) == uf.root(root, v);\r\n      print(ok ? 1\
+    \ : 0);\r\n    }\r\n    roots.eb(root);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n\
+    \  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\
+    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
+    ds/unionfind/dynamic_unionfind.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\
+    \n  Dynamic_UnionFind<true, 1'500'000> uf;\r\n  using np = typename decltype(uf)::np;\r\
+    \n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_root());\r\n\r\n  FOR(Q) {\r\n    LL(t,\
+    \ k, u, v);\r\n    ++k;\r\n    auto root = roots[k];\r\n    if (t == 0) {\r\n\
+    \      root = uf.merge(root, u, v).fi;\r\n    } else {\r\n      bool ok = uf.root(root,\
+    \ u) == uf.root(root, v);\r\n      print(ok ? 1 : 0);\r\n    }\r\n    roots.eb(root);\r\
+    \n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -244,8 +247,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_unionfind.test.cpp
 layout: document

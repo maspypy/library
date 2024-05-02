@@ -1,45 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum
   bundledCode: "#line 1 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -203,7 +204,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
     \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -437,7 +438,7 @@ data:
     \ a, size);\n    lazy = Monoid_A::op(lazy, a);\n  }\n  void reverse() {\n    swap(l,\
     \ r);\n    rev ^= 1;\n  }\n};\ntemplate <typename ActedMonoid, int NODES>\nusing\
     \ SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>, NODES>;\n} // namespace\
-    \ SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedMonoid;\n#line 8 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
+    \ SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_ActedMonoid;\n#line 9 \"test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  using AM = ActedMonoid_Sum_Affine<mint>;\n\
     \  SplayTree_ActedMonoid<AM, 1'000'000> X;\n  using P = typename AM::X;\n\n  INT(N,\
     \ Q);\n  VEC(mint, dat, N);\n  auto root = X.new_node(dat);\n\n  FOR(Q) {\n  \
@@ -449,8 +450,8 @@ data:
     \ L, R, {mint(b), mint(c)});\n    }\n    if (t == 4) {\n      INT(L, R);\n   \
     \   print(X.prod(root, L, R));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/sum_affine.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/acted_monoid/sum_affine.hpp\"\
     \n#include \"mod/modint.hpp\"\n#include \"ds/splaytree/splaytree_acted_monoid.hpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  using AM = ActedMonoid_Sum_Affine<mint>;\n\
     \  SplayTree_ActedMonoid<AM, 1'000'000> X;\n  using P = typename AM::X;\n\n  INT(N,\
@@ -476,8 +477,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-30 00:47:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
 layout: document

@@ -1,38 +1,39 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
     links:
     - https://judge.yosupo.jp/problem/static_range_frequency
   bundledCode: "#line 1 \"test/library_checker/datastructure/static_range_frequency.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_frequency\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -315,8 +316,8 @@ data:
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Static_Range_Frequency X(A);\n\
     \  FOR(Q) {\n    INT(l, r, x);\n    print(X.query(l, r, x));\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_frequency\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"ds/static_range_frequency.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
     \  VEC(int, A, N);\n  Static_Range_Frequency X(A);\n  FOR(Q) {\n    INT(l, r,\
     \ x);\n    print(X.query(l, r, x));\n  }\n}\n\nsigned main() {\n  solve();\n \
@@ -332,8 +333,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_frequency.test.cpp
 layout: document

@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A
-  bundledCode: "#line 1 \"test/aoj/CGL_2_A.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/CGL_2_A.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -185,7 +185,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/aoj/CGL_2_A.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
+    \ yes(!t); }\r\n#line 6 \"test/aoj/CGL_2_A.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
     \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
     \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
     \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
@@ -244,14 +244,14 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 7 \"test/aoj/CGL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n\
+    #line 8 \"test/aoj/CGL_2_A.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n\
     \    LL(a, b, c, d);\n    Line<ll> A(a, b, c, d);\n    LL(e, f, g, h);\n    Line<ll>\
     \ B(e, f, g, h);\n    bool p = A.is_parallel(B);\n    bool o = A.is_orthogonal(B);\n\
     \    if (p) print(2);\n    elif (o) print(1);\n    else print(0);\n  }\n}\n\n\
     signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
     \  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\n\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_A\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\
     \n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c, d);\n    Line<ll> A(a,\
     \ b, c, d);\n    LL(e, f, g, h);\n    Line<ll> B(e, f, g, h);\n    bool p = A.is_parallel(B);\n\
     \    bool o = A.is_orthogonal(B);\n    if (p) print(2);\n    elif (o) print(1);\n\
@@ -264,8 +264,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_A.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_A.test.cpp
 layout: document

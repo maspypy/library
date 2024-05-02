@@ -1,40 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/k_shortest_walk
     links:
     - https://judge.yosupo.jp/problem/k_shortest_walk
   bundledCode: "#line 1 \"test/library_checker/graph/K_shortest_walk.test.cpp\"\n\
-    // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/k_shortest_walk\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -333,9 +334,9 @@ data:
     \  auto ANS = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1, s, t, K);\n  for\
     \ (auto &&x: ANS) {\n    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/k_shortest_walk\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\
-    \n#include \"graph/shortest_path/K_shortest_walk.hpp\"\n\nvoid solve() {\n  INT(N,\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n\
+    #include \"graph/shortest_path/K_shortest_walk.hpp\"\n\nvoid solve() {\n  INT(N,\
     \ M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n  auto ANS\
     \ = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1, s, t, K);\n  for (auto &&x:\
     \ ANS) {\n    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\nsigned main()\
@@ -351,8 +352,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/K_shortest_walk.test.cpp
 layout: document

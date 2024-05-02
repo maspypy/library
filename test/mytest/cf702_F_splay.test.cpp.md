@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/cf702_F_splay.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/cf702_F_splay.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -275,36 +276,36 @@ data:
     \ query);\n  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  int\
     \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
     \  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"alg/monoid/add_pair.hpp\"\n#include \"\
-    ds/splaytree/splaytree_acted_set.hpp\"\n\n// (\u6240\u6301\u91D1, \u64CD\u4F5C\
-    \u56DE\u6570, query index)\nstruct AS {\n  using Monoid_A = Monoid_Add_Pair<int>;\n\
-    \  using A = Monoid_A::value_type;\n  using S = tuple<int, int, int>;\n  static\
-    \ S act(const S& s, const A& x) {\n    auto [a, b, c] = s;\n    return {a + x.fi,\
-    \ b + x.se, c};\n  }\n};\n\nvc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int>\
-    \ query) {\n  const int Q = len(query);\n  sort(all(CQ), [&](auto& a, auto& b)\
-    \ -> bool {\n    if (a.se != b.se) return a.se > b.se;\n    return a.fi < b.fi;\n\
-    \  });\n  using T = tuple<int, int, int>;\n  vc<T> dat(Q);\n  FOR(q, Q) {\n  \
-    \  int x = query[q];\n    dat[q] = {x, 0, q};\n  }\n  sort(all(dat));\n\n  const\
-    \ int MAX = 500'000;\n\n  SplayTree_ActedSet<AS, MAX> X;\n  using np = decltype(X)::np;\n\
-    \  using S = typename AS::S;\n  np root = X.new_node(dat);\n\n  FOR(i, len(CQ))\
-    \ {\n    ll c = CQ[i].fi;\n    np nm, nr;\n    tie(root, nr)\n        = X.split_max_right(root,\
-    \ [&](S& s) { return get<0>(s) < c; });\n    X.apply(nr, {-c, 1});\n    tie(nm,\
-    \ nr) = X.split_max_right(nr, [&](S& s) { return get<0>(s) < c; });\n    for (auto&&\
-    \ [aa, bb, cc]: X.get_all(nm)) assert(aa < c);\n    for (auto&& [aa, bb, cc]:\
-    \ X.get_all(nr)) assert(aa >= c);\n    for (auto [val, cnt, idx]: X.get_all(nm))\
-    \ {\n      ll t = val;\n      auto [l_root, r_root]\n          = X.split_max_right(root,\
-    \ [&](S& s) { return get<0>(s) < t; });\n      root = X.merge(l_root, X.new_node({val,\
-    \ cnt, idx}));\n      root = X.merge(root, r_root);\n    }\n    root = X.merge(root,\
-    \ nr);\n  }\n  vc<int> ANS(Q);\n  for (auto [val, cnt, idx]: X.get_all(root))\
-    \ { ANS[idx] = cnt; }\n  return ANS;\n}\n\nvoid test_1() {\n  vc<pair<int, int>>\
-    \ CQ;\n  CQ.eb(7, 5);\n  CQ.eb(3, 5);\n  CQ.eb(4, 3);\n  vc<int> query = {13,\
-    \ 14};\n  vc<int> ANS = solve_cf702F(CQ, query);\n  assert(ANS == vc<int>({2,\
-    \ 3}));\n}\n\nvoid test_2() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(100, 500);\n\
-    \  CQ.eb(50, 499);\n  vc<int> query = {50, 200, 150, 100};\n  vc<int> ANS = solve_cf702F(CQ,\
-    \ query);\n  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test_1();\n  test_2();\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"alg/monoid/add_pair.hpp\"\n#include \"ds/splaytree/splaytree_acted_set.hpp\"\
+    \n\n// (\u6240\u6301\u91D1, \u64CD\u4F5C\u56DE\u6570, query index)\nstruct AS\
+    \ {\n  using Monoid_A = Monoid_Add_Pair<int>;\n  using A = Monoid_A::value_type;\n\
+    \  using S = tuple<int, int, int>;\n  static S act(const S& s, const A& x) {\n\
+    \    auto [a, b, c] = s;\n    return {a + x.fi, b + x.se, c};\n  }\n};\n\nvc<int>\
+    \ solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {\n  const int Q = len(query);\n\
+    \  sort(all(CQ), [&](auto& a, auto& b) -> bool {\n    if (a.se != b.se) return\
+    \ a.se > b.se;\n    return a.fi < b.fi;\n  });\n  using T = tuple<int, int, int>;\n\
+    \  vc<T> dat(Q);\n  FOR(q, Q) {\n    int x = query[q];\n    dat[q] = {x, 0, q};\n\
+    \  }\n  sort(all(dat));\n\n  const int MAX = 500'000;\n\n  SplayTree_ActedSet<AS,\
+    \ MAX> X;\n  using np = decltype(X)::np;\n  using S = typename AS::S;\n  np root\
+    \ = X.new_node(dat);\n\n  FOR(i, len(CQ)) {\n    ll c = CQ[i].fi;\n    np nm,\
+    \ nr;\n    tie(root, nr)\n        = X.split_max_right(root, [&](S& s) { return\
+    \ get<0>(s) < c; });\n    X.apply(nr, {-c, 1});\n    tie(nm, nr) = X.split_max_right(nr,\
+    \ [&](S& s) { return get<0>(s) < c; });\n    for (auto&& [aa, bb, cc]: X.get_all(nm))\
+    \ assert(aa < c);\n    for (auto&& [aa, bb, cc]: X.get_all(nr)) assert(aa >= c);\n\
+    \    for (auto [val, cnt, idx]: X.get_all(nm)) {\n      ll t = val;\n      auto\
+    \ [l_root, r_root]\n          = X.split_max_right(root, [&](S& s) { return get<0>(s)\
+    \ < t; });\n      root = X.merge(l_root, X.new_node({val, cnt, idx}));\n     \
+    \ root = X.merge(root, r_root);\n    }\n    root = X.merge(root, nr);\n  }\n \
+    \ vc<int> ANS(Q);\n  for (auto [val, cnt, idx]: X.get_all(root)) { ANS[idx] =\
+    \ cnt; }\n  return ANS;\n}\n\nvoid test_1() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(7,\
+    \ 5);\n  CQ.eb(3, 5);\n  CQ.eb(4, 3);\n  vc<int> query = {13, 14};\n  vc<int>\
+    \ ANS = solve_cf702F(CQ, query);\n  assert(ANS == vc<int>({2, 3}));\n}\n\nvoid\
+    \ test_2() {\n  vc<pair<int, int>> CQ;\n  CQ.eb(100, 500);\n  CQ.eb(50, 499);\n\
+    \  vc<int> query = {50, 200, 150, 100};\n  vc<int> ANS = solve_cf702F(CQ, query);\n\
+    \  assert(ANS == vc<int>({1, 2, 2, 1}));\n}\n\nvoid solve() {\n  int a, b;\n \
+    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_1();\n\
+    \  test_2();\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - alg/monoid/add_pair.hpp
@@ -313,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-30 00:47:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/cf702_F_splay.test.cpp
 layout: document

@@ -1,52 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -56,11 +56,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence
     links:
     - https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence
   bundledCode: "#line 1 \"test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -224,7 +225,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp\"\
     \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -603,13 +604,13 @@ data:
     \n  FOR(i, 1, n) {\r\n    g[i] = tPOW[i] * sn * iS[i] * iS[n - i];\r\n    if (i\
     \ % 2 == 1) g[i] = -g[i];\r\n  }\r\n  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\
     \n\r\n  reverse(all(f));\r\n  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i,\
-    \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 7 \"test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp\"\
+    \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 8 \"test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M, a, r);\n  VEC(mint,\
     \ f, N);\n  vc<mint> X(M);\n  X[0] = a;\n  FOR(i, M - 1) X[i + 1] = X[i] * r;\n\
     \n  auto Y = multipoint_eval(f, X);\n  print(Y);\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"poly/multipoint.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
     \ {\n  LL(N, M, a, r);\n  VEC(mint, f, N);\n  vc<mint> X(M);\n  X[0] = a;\n  FOR(i,\
     \ M - 1) X[i + 1] = X[i] * r;\n\n  auto Y = multipoint_eval(f, X);\n  print(Y);\n\
@@ -634,7 +635,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
+  timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp

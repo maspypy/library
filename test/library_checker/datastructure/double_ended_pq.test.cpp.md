@@ -1,27 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
     links:
     - https://judge.yosupo.jp/problem/double_ended_priority_queue
   bundledCode: "#line 1 \"test/library_checker/datastructure/double_ended_pq.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/double_ended_priority_queue\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -200,8 +201,8 @@ data:
     \ if (t == 1) {\n      int x = que1.pop();\n      print(x), que2.remove(x);\n\
     \    }\n    if (t == 2) {\n      int x = que2.pop();\n      print(x), que1.remove(x);\n\
     \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/double_ended_priority_queue\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/removable_queue.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/removable_queue.hpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
     \ que1(A);\n  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n  \
     \  if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n   \
@@ -215,8 +216,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_pq.test.cpp
 layout: document

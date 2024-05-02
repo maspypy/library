@@ -1,46 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':x:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':x:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':x:'
@@ -52,7 +52,7 @@ data:
   - icon: ':x:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -62,11 +62,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/poly_root_finding.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/poly_root_finding.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -541,28 +542,28 @@ data:
     \ { assert(binary_search(all(ANS), r)); }\n    }\n  }\n}\n\nvoid solve() {\n \
     \ int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
     \ {\n  test_1();\n  test_2();\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n\n#include \"poly/finding_root_of_polynomial.hpp\"\
-    \n#include \"poly/convolution_all.hpp\"\n\n// \u76F8\u7570\u306A\u308B 1 \u6B21\
-    \u5F0F\u306E\u7A4D\u3001\u91CD\u8907\u5EA6\u307E\u3042\u307E\u3042\u3042\u308B\
-    \u304B\u3082\nvoid test_1() {\n  using mint = modint998;\n  using poly = vc<mint>;\n\
-    \  int p = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10) {\n      vc<mint> S;\n\
-    \      FOR(10) S.eb(RNG(0, p));\n      vc<poly> polys;\n      vc<mint> roots;\n\
-    \      FOR(N) {\n        mint a = S[RNG(0, 10)];\n        roots.eb(a);\n     \
-    \   polys.eb(poly({-mint(a), mint(1)}));\n      }\n      UNIQUE(roots);\n    \
-    \  poly f = convolution_all(polys);\n      auto ANS = finding_root_of_polynomial(f);\n\
-    \      sort(all(ANS));\n      assert(roots == ANS);\n    }\n  }\n}\n\n// test_1\
-    \ \u306B\u3082\u3046\u3072\u3068\u3064 N \u6B21\u5F0F\u3092\u304B\u3051\u308B\n\
-    void test_2() {\n  using mint = modint998;\n  using poly = vc<mint>;\n  int p\
-    \ = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10) {\n      vc<mint> S;\n     \
-    \ FOR(10) S.eb(RNG(0, p));\n      vc<poly> polys;\n      vc<mint> roots;\n   \
-    \   FOR(N) {\n        mint a = S[RNG(0, 10)];\n        roots.eb(a);\n        polys.eb(poly({-mint(a),\
-    \ mint(1)}));\n      }\n      UNIQUE(roots);\n      poly f = convolution_all(polys);\n\
-    \      vc<mint> g(N + 1);\n      FOR(i, N + 1) g[i] = RNG(0, p);\n      f = convolution(f,\
-    \ g);\n      auto ANS = finding_root_of_polynomial(f);\n      for (auto& r: roots)\
-    \ { assert(binary_search(all(ANS), r)); }\n    }\n  }\n}\n\nvoid solve() {\n \
-    \ int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test_1();\n  test_2();\n  solve();\n  return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"poly/finding_root_of_polynomial.hpp\"\n#include \"poly/convolution_all.hpp\"\
+    \n\n// \u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\u3001\u91CD\u8907\u5EA6\
+    \u307E\u3042\u307E\u3042\u3042\u308B\u304B\u3082\nvoid test_1() {\n  using mint\
+    \ = modint998;\n  using poly = vc<mint>;\n  int p = mint::get_mod();\n  FOR(N,\
+    \ 50) {\n    FOR(10) {\n      vc<mint> S;\n      FOR(10) S.eb(RNG(0, p));\n  \
+    \    vc<poly> polys;\n      vc<mint> roots;\n      FOR(N) {\n        mint a =\
+    \ S[RNG(0, 10)];\n        roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n\
+    \      }\n      UNIQUE(roots);\n      poly f = convolution_all(polys);\n     \
+    \ auto ANS = finding_root_of_polynomial(f);\n      sort(all(ANS));\n      assert(roots\
+    \ == ANS);\n    }\n  }\n}\n\n// test_1 \u306B\u3082\u3046\u3072\u3068\u3064 N\
+    \ \u6B21\u5F0F\u3092\u304B\u3051\u308B\nvoid test_2() {\n  using mint = modint998;\n\
+    \  using poly = vc<mint>;\n  int p = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10)\
+    \ {\n      vc<mint> S;\n      FOR(10) S.eb(RNG(0, p));\n      vc<poly> polys;\n\
+    \      vc<mint> roots;\n      FOR(N) {\n        mint a = S[RNG(0, 10)];\n    \
+    \    roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n      }\n   \
+    \   UNIQUE(roots);\n      poly f = convolution_all(polys);\n      vc<mint> g(N\
+    \ + 1);\n      FOR(i, N + 1) g[i] = RNG(0, p);\n      f = convolution(f, g);\n\
+    \      auto ANS = finding_root_of_polynomial(f);\n      for (auto& r: roots) {\
+    \ assert(binary_search(all(ANS), r)); }\n    }\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test_1();\n  test_2();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - poly/finding_root_of_polynomial.hpp
@@ -585,7 +586,7 @@ data:
   isVerificationFile: true
   path: test/mytest/poly_root_finding.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
+  timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/poly_root_finding.test.cpp

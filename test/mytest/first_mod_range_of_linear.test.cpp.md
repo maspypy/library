@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/first_mod_range_of_linear.hpp
     title: mod/first_mod_range_of_linear.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/first_mod_range_of_linear.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/first_mod_range_of_linear.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -153,21 +154,20 @@ data:
     \  ll Y = first_mod_range_of_linear(L, R, a, b, mod);\n    assert(X == Y);\n \
     \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
     \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n\n#include \"mod/first_mod_range_of_linear.hpp\"\
-    \n#include \"random/base.hpp\"\n\nll naive(ll L, ll R, ll a, ll b, ll mod) {\n\
-    \  FOR(x, mod) {\n    FOR(y, L, R) {\n      if (((a * x + b) - y) % mod == 0)\
-    \ return x;\n    }\n  }\n  return -1;\n}\n\nvoid test() {\n  ll K = 15;\n  FOR(L,\
-    \ -K, K) {\n    FOR(R, L, K) {\n      FOR(mod, 1, K) {\n        FOR(a, -K, K)\
-    \ {\n          FOR(b, -K, K) {\n            ll X = naive(L, R, a, b, mod);\n \
-    \           ll Y = first_mod_range_of_linear(L, R, a, b, mod);\n            assert(X\
-    \ == Y);\n          }\n        }\n      }\n    }\n  }\n\n  K = 10000;\n  FOR(100)\
-    \ {\n    ll L = RNG(-K, K);\n    ll R = RNG(-K, K);\n    if (L > R) swap(L, R);\n\
-    \    ll mod = RNG(1, K);\n    ll a = RNG(-K, K);\n    ll b = RNG(-K, K);\n   \
-    \ ll X = naive(L, R, a, b, mod);\n    ll Y = first_mod_range_of_linear(L, R, a,\
-    \ b, mod);\n    assert(X == Y);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
-    \ solve();\n  return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"mod/first_mod_range_of_linear.hpp\"\n#include \"random/base.hpp\"\
+    \n\nll naive(ll L, ll R, ll a, ll b, ll mod) {\n  FOR(x, mod) {\n    FOR(y, L,\
+    \ R) {\n      if (((a * x + b) - y) % mod == 0) return x;\n    }\n  }\n  return\
+    \ -1;\n}\n\nvoid test() {\n  ll K = 15;\n  FOR(L, -K, K) {\n    FOR(R, L, K) {\n\
+    \      FOR(mod, 1, K) {\n        FOR(a, -K, K) {\n          FOR(b, -K, K) {\n\
+    \            ll X = naive(L, R, a, b, mod);\n            ll Y = first_mod_range_of_linear(L,\
+    \ R, a, b, mod);\n            assert(X == Y);\n          }\n        }\n      }\n\
+    \    }\n  }\n\n  K = 10000;\n  FOR(100) {\n    ll L = RNG(-K, K);\n    ll R =\
+    \ RNG(-K, K);\n    if (L > R) swap(L, R);\n    ll mod = RNG(1, K);\n    ll a =\
+    \ RNG(-K, K);\n    ll b = RNG(-K, K);\n    ll X = naive(L, R, a, b, mod);\n  \
+    \  ll Y = first_mod_range_of_linear(L, R, a, b, mod);\n    assert(X == Y);\n \
+    \ }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - mod/first_mod_range_of_linear.hpp
@@ -176,8 +176,8 @@ data:
   isVerificationFile: true
   path: test/mytest/first_mod_range_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/first_mod_range_of_linear.test.cpp
 layout: document

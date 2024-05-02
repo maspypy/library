@@ -1,39 +1,39 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D
-  bundledCode: "#line 1 \"test/aoj/ITP1_D_D.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/ITP1_D_D.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -265,12 +265,12 @@ data:
     \r\n// sort \u306F\u3057\u306A\u3044\r\nvc<ll> divisors(ll N) {\r\n  auto pf =\
     \ factor(N);\r\n  return divisors_by_pf(pf);\r\n}\r\n\r\n// sort \u306F\u3057\u306A\
     \u3044\r\nvc<ll> divisors_by_lpf(ll N, vc<int>& lpf) {\r\n  auto pf = factor_by_lpf(N,\
-    \ lpf);\r\n  return divisors_by_pf(pf);\r\n}\n#line 5 \"test/aoj/ITP1_D_D.test.cpp\"\
+    \ lpf);\r\n  return divisors_by_pf(pf);\r\n}\n#line 6 \"test/aoj/ITP1_D_D.test.cpp\"\
     \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n\
     \  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/divisors.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_3_D\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/divisors.hpp\"\
     \n\nvoid solve() {\n  LL(a, b, c);\n  auto divs = divisors(c);\n  ll ANS = 0;\n\
     \  for (auto&& d: divs)\n    if (a <= d && d <= b) ++ANS;\n  print(ANS);\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}"
@@ -285,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_D_D.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_D_D.test.cpp
 layout: document

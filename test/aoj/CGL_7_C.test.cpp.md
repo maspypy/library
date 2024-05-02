@@ -1,34 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.000001'
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C
-  bundledCode: "#line 1 \"test/aoj/CGL_7_C.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\n// competitive-verifier:\
-    \ ERROR 0.000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/aoj/CGL_7_C.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\"\
+    \n#define ERROR 0.000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -271,19 +272,19 @@ data:
     \ det = 0;\n  det += mat[0][0] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]);\n\
     \  det += mat[0][1] * (mat[1][2] * mat[2][0] - mat[1][0] * mat[2][2]);\n  det\
     \ += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);\n  if (det ==\
-    \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 7 \"test/aoj/CGL_7_C.test.cpp\"\
+    \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 8 \"test/aoj/CGL_7_C.test.cpp\"\
     \n\nvoid solve() {\n  using Re = double;\n  LL(a, b, c, d, e, f);\n  Point<ll>\
     \ A(a, b);\n  Point<ll> B(c, d);\n  Point<ll> C(e, f);\n  auto O = outcircle<Re>(A,\
     \ B, C);\n  print(O.O.x, O.O.y, O.r);\n}\n\nsigned main() {\n  cout << fixed <<\
     \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
     \ 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\n\
-    // competitive-verifier: ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include\
-    \ \"other/io.hpp\"\n#include \"geo/outcircle.hpp\"\n\nvoid solve() {\n  using\
-    \ Re = double;\n  LL(a, b, c, d, e, f);\n  Point<ll> A(a, b);\n  Point<ll> B(c,\
-    \ d);\n  Point<ll> C(e, f);\n  auto O = outcircle<Re>(A, B, C);\n  print(O.O.x,\
-    \ O.O.y, O.r);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n\
-    \  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_7_C\"\
+    \n#define ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
+    \n#include \"geo/outcircle.hpp\"\n\nvoid solve() {\n  using Re = double;\n  LL(a,\
+    \ b, c, d, e, f);\n  Point<ll> A(a, b);\n  Point<ll> B(c, d);\n  Point<ll> C(e,\
+    \ f);\n  auto O = outcircle<Re>(A, B, C);\n  print(O.O.x, O.O.y, O.r);\n}\n\n\
+    signed main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -293,8 +294,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_7_C.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_7_C.test.cpp
 layout: document

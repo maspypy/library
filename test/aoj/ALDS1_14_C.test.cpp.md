@@ -1,33 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C
-  bundledCode: "#line 1 \"test/aoj/ALDS1_14_C.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/ALDS1_14_C.test.cpp\"\n#define PROBLEM \\\n  \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -191,7 +192,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/aoj/ALDS1_14_C.test.cpp\"\n\n#line 2 \"mod/modint61.hpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/aoj/ALDS1_14_C.test.cpp\"\n\n#line 2 \"mod/modint61.hpp\"\
     \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
     \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
     \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
@@ -239,14 +240,14 @@ data:
     \ - yl];\n    M61 b = A[xl][yr] - A[xl][yl] * pow2[yr - yl];\n    return a - b\
     \ * pow1[xr - xl];\n  }\n\nprivate:\n  static inline u64 generate_base() { return\
     \ RNG(M61::get_mod()); }\n\n  void expand(vc<M61>& pow, const M61& b, int n) {\n\
-    \    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n#line 7 \"test/aoj/ALDS1_14_C.test.cpp\"\
+    \    while (len(pow) <= n) pow.eb(pow.back() * b);\n  }\n};\n#line 8 \"test/aoj/ALDS1_14_C.test.cpp\"\
     \n\nvoid solve() {\n  LL(H, W);\n  VEC(string, A, H);\n  RollingHash_2D RH;\n\
     \  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string, B, H2);\n  auto BH = RH.build(B);\n\
     \  auto b = RH.query(BH, 0, H2, 0, W2);\n\n  FOR(x, H - H2 + 1) FOR(y, W - W2\
     \ + 1) {\n    auto a = RH.query(AH, x, x + H2, y, y + W2);\n    if (a == b) {\
     \ print(x, y); }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint61.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_14_C\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint61.hpp\"\
     \n#include \"string/rollinghash_2d.hpp\"\n\nvoid solve() {\n  LL(H, W);\n  VEC(string,\
     \ A, H);\n  RollingHash_2D RH;\n  auto AH = RH.build(A);\n  LL(H2, W2);\n  VEC(string,\
     \ B, H2);\n  auto BH = RH.build(B);\n  auto b = RH.query(BH, 0, H2, 0, W2);\n\n\
@@ -262,8 +263,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_14_C.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_14_C.test.cpp
 layout: document

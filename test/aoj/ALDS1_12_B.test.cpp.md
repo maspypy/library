@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B
-  bundledCode: "#line 1 \"test/aoj/ALDS1_12_B.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/ALDS1_12_B.test.cpp\"\n#define PROBLEM \\\n  \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B\"\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -264,14 +265,14 @@ data:
     \ (dw < dist[w]) {\r\n          par[w] = v;\r\n          rm(w);\r\n          dist[w]\
     \ = dw;\r\n          add(w);\r\n        }\r\n      }\r\n      v = nxt[v];\r\n\
     \    }\r\n  }\r\n  FOR(v, N) if (dist[v] > N * W) dist[v] = -1;\r\n  return {dist,\
-    \ par};\r\n}\n#line 5 \"test/aoj/ALDS1_12_B.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \ par};\r\n}\n#line 6 \"test/aoj/ALDS1_12_B.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
     \  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n    assert(u == v);\n    LL(k);\n\
     \    FOR(k) {\n      LL(a, b);\n      G.add(v, a, b);\n    }\n  }\n  G.build();\n\
     \  auto [dist, par] = dial(G, 0);\n  FOR(v, N) print(v, dist[v]);\n}\n\nsigned\
     \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/dial.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_12_B\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/dial.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, N) {\n    LL(u);\n\
     \    assert(u == v);\n    LL(k);\n    FOR(k) {\n      LL(a, b);\n      G.add(v,\
     \ a, b);\n    }\n  }\n  G.build();\n  auto [dist, par] = dial(G, 0);\n  FOR(v,\
@@ -286,8 +287,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_12_B.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_12_B.test.cpp
 layout: document

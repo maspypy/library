@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -44,10 +44,11 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb_128bit
     links:
     - https://judge.yosupo.jp/problem/many_aplusb_128bit
-  bundledCode: "#line 1 \"test/library_checker/sample/aplusb128.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/library_checker/sample/aplusb128.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb_128bit\"\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
@@ -580,7 +581,7 @@ data:
     \n\nusing bint = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n\
     \  print(a + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
     \ 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/many_aplusb_128bit\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb_128bit\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"bigint/base.hpp\"\
     \n\nusing bint = BigInteger;\n\nvoid solve() {\n  bint a, b;\n  read(a), read(b);\n\
     \  print(a + b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
@@ -601,7 +602,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/sample/aplusb128.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
+  timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/sample/aplusb128.test.cpp

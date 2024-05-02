@@ -1,48 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/matching_line_graph.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/matching_line_graph.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -313,25 +314,24 @@ data:
     \        if (ei.to == ej.to) ok = 1;\n        assert(ok);\n      }\n    }\n  }\n\
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
     ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"\
-    graph/maximum_matching_size.hpp\"\n#include \"graph/maximum_matching_of_line_graph.hpp\"\
-    \n\nvoid test() {\n  FOR(100) {\n    FOR(n, 10) {\n      Graph<int, 0> G(n);\n\
-    \      for (auto& [a, b]: random_graph<false>(n, true)) G.add(a, b);\n      G.build();\n\
-    \      int m = G.M;\n      Graph<int, 0> LG(m);\n      FOR(i, m) FOR(j, i) if\
-    \ (i != j) {\n        auto ei = G.edges[i];\n        auto ej = G.edges[j];\n \
-    \       bool ok = 0;\n        if (ei.frm == ej.frm) ok = 1;\n        if (ei.frm\
-    \ == ej.to) ok = 1;\n        if (ei.to == ej.frm) ok = 1;\n        if (ei.to ==\
-    \ ej.to) ok = 1;\n        if (ok) LG.add(i, j);\n      }\n      LG.build();\n\
-    \      vc<pair<int, int>> res = maximum_matching_of_line_graph(G);\n      assert(len(res)\
-    \ == maximum_matching_size(LG));\n      vc<int> done(m);\n      for (auto&& [a,\
-    \ b]: res) {\n        assert(!done[a]);\n        assert(!done[b]);\n        done[a]\
-    \ = done[b] = 1;\n        auto ei = G.edges[a];\n        auto ej = G.edges[b];\n\
-    \        bool ok = 0;\n        if (ei.frm == ej.frm) ok = 1;\n        if (ei.frm\
-    \ == ej.to) ok = 1;\n        if (ei.to == ej.frm) ok = 1;\n        if (ei.to ==\
-    \ ej.to) ok = 1;\n        assert(ok);\n      }\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n  return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"random/random_graph.hpp\"\n#include \"graph/maximum_matching_size.hpp\"\
+    \n#include \"graph/maximum_matching_of_line_graph.hpp\"\n\nvoid test() {\n  FOR(100)\
+    \ {\n    FOR(n, 10) {\n      Graph<int, 0> G(n);\n      for (auto& [a, b]: random_graph<false>(n,\
+    \ true)) G.add(a, b);\n      G.build();\n      int m = G.M;\n      Graph<int,\
+    \ 0> LG(m);\n      FOR(i, m) FOR(j, i) if (i != j) {\n        auto ei = G.edges[i];\n\
+    \        auto ej = G.edges[j];\n        bool ok = 0;\n        if (ei.frm == ej.frm)\
+    \ ok = 1;\n        if (ei.frm == ej.to) ok = 1;\n        if (ei.to == ej.frm)\
+    \ ok = 1;\n        if (ei.to == ej.to) ok = 1;\n        if (ok) LG.add(i, j);\n\
+    \      }\n      LG.build();\n      vc<pair<int, int>> res = maximum_matching_of_line_graph(G);\n\
+    \      assert(len(res) == maximum_matching_size(LG));\n      vc<int> done(m);\n\
+    \      for (auto&& [a, b]: res) {\n        assert(!done[a]);\n        assert(!done[b]);\n\
+    \        done[a] = done[b] = 1;\n        auto ei = G.edges[a];\n        auto ej\
+    \ = G.edges[b];\n        bool ok = 0;\n        if (ei.frm == ej.frm) ok = 1;\n\
+    \        if (ei.frm == ej.to) ok = 1;\n        if (ei.to == ej.frm) ok = 1;\n\
+    \        if (ei.to == ej.to) ok = 1;\n        assert(ok);\n      }\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -346,8 +346,8 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/matching_line_graph.test.cpp
 layout: document

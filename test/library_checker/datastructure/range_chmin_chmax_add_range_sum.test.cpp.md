@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_summinmax_chminchmax.hpp
     title: ds/segtree/beats_summinmax_chminchmax.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
     links:
     - https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum
   bundledCode: "#line 1 \"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\n\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
+    \r\n\r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -281,21 +282,23 @@ data:
     \r\n  void chmin(int l, int r, T x) { seg.apply(l, r, {0, x, -infty<T>}); }\r\n\
     \  void chmax(int l, int r, T x) { seg.apply(l, r, {0, infty<T>, x}); }\r\n  void\
     \ add(int l, int r, T x) { seg.apply(l, r, {x, infty<T>, -infty<T>}); }\r\n};\r\
-    \n#line 6 \"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Beats_SumMinMax_ChminChmax<ll>\
-    \ seg(A);\n  FOR(_, Q) {\n    LL(t, L, R);\n    if (t == 0) {\n      LL(x);\n\
-    \      seg.chmin(L, R, x);\n    }\n    elif (t == 1) {\n      LL(x);\n      seg.chmax(L,\
-    \ R, x);\n    }\n    elif (t == 2) {\n      LL(x);\n      seg.add(L, R, x);\n\
-    \    }\n    elif (t == 3) { print(get<0>(seg.prod(L, R))); }\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\n\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/beats_summinmax_chminchmax.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Beats_SumMinMax_ChminChmax<ll>\
-    \ seg(A);\n  FOR(_, Q) {\n    LL(t, L, R);\n    if (t == 0) {\n      LL(x);\n\
-    \      seg.chmin(L, R, x);\n    }\n    elif (t == 1) {\n      LL(x);\n      seg.chmax(L,\
-    \ R, x);\n    }\n    elif (t == 2) {\n      LL(x);\n      seg.add(L, R, x);\n\
-    \    }\n    elif (t == 3) { print(get<0>(seg.prod(L, R))); }\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \n#line 7 \"test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Beats_SumMinMax_ChminChmax<ll>\
+    \ seg(A);\r\n  FOR(_, Q) {\r\n    LL(t, L, R);\r\n    if (t == 0) {\r\n      LL(x);\r\
+    \n      seg.chmin(L, R, x);\r\n    }\r\n    elif (t == 1) {\r\n      LL(x);\r\n\
+    \      seg.chmax(L, R, x);\r\n    }\r\n    elif (t == 2) {\r\n      LL(x);\r\n\
+    \      seg.add(L, R, x);\r\n    }\r\n    elif (t == 3) { print(get<0>(seg.prod(L,\
+    \ R))); }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n\
+    }\r\n"
+  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/range_chmin_chmax_add_range_sum\"\
+    \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
+    \ \"ds/segtree/beats_summinmax_chminchmax.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N,\
+    \ Q);\r\n  VEC(ll, A, N);\r\n  Beats_SumMinMax_ChminChmax<ll> seg(A);\r\n  FOR(_,\
+    \ Q) {\r\n    LL(t, L, R);\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.chmin(L,\
+    \ R, x);\r\n    }\r\n    elif (t == 1) {\r\n      LL(x);\r\n      seg.chmax(L,\
+    \ R, x);\r\n    }\r\n    elif (t == 2) {\r\n      LL(x);\r\n      seg.add(L, R,\
+    \ x);\r\n    }\r\n    elif (t == 3) { print(get<0>(seg.prod(L, R))); }\r\n  }\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -304,8 +307,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 layout: document

@@ -1,42 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
     links:
     - https://judge.yosupo.jp/problem/vertex_add_subtree_sum
   bundledCode: "#line 1 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_subtree_sum\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\r\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -201,7 +202,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n\n#line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\
+    \n\r\n#line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\
     \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
     \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
     \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
@@ -444,23 +445,25 @@ data:
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  Graph<int, 1> G(N);\n  FOR3(v,\
-    \ 1, N) {\n    LL(p);\n    G.add(p, v);\n  }\n  G.build();\n\n  Tree tree(G);\n\
-    \  using Mono = Monoid_Add<ll>;\n\n  Tree_Monoid<decltype(tree), Mono, false>\
-    \ TM(tree, A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(v, x);\n\
-    \      A[v] += x;\n      TM.set(v, A[v]);\n    } else {\n      LL(u);\n      print(TM.prod_subtree(u));\n\
-    \    }\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/vertex_add_subtree_sum\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/tree_monoid.hpp\"\
-    \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A,\
-    \ N);\n  Graph<int, 1> G(N);\n  FOR3(v, 1, N) {\n    LL(p);\n    G.add(p, v);\n\
-    \  }\n  G.build();\n\n  Tree tree(G);\n  using Mono = Monoid_Add<ll>;\n\n  Tree_Monoid<decltype(tree),\
-    \ Mono, false> TM(tree, A);\n\n  FOR(_, Q) {\n    LL(t);\n    if (t == 0) {\n\
-    \      LL(v, x);\n      A[v] += x;\n      TM.set(v, A[v]);\n    } else {\n   \
-    \   LL(u);\n      print(TM.prod_subtree(u));\n    }\n  }\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph<int, 1> G(N);\r\
+    \n  FOR3(v, 1, N) {\r\n    LL(p);\r\n    G.add(p, v);\r\n  }\r\n  G.build();\r\
+    \n\r\n  Tree tree(G);\r\n  using Mono = Monoid_Add<ll>;\r\n\r\n  Tree_Monoid<decltype(tree),\
+    \ Mono, false> TM(tree, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t ==\
+    \ 0) {\r\n      LL(v, x);\r\n      A[v] += x;\r\n      TM.set(v, A[v]);\r\n  \
+    \  } else {\r\n      LL(u);\r\n      print(TM.prod_subtree(u));\r\n    }\r\n \
+    \ }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/vertex_add_subtree_sum\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
+    \ \"graph/ds/tree_monoid.hpp\"\r\n#include \"alg/monoid/add.hpp\"\r\n\r\nvoid\
+    \ solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph<int, 1> G(N);\r\n  FOR3(v,\
+    \ 1, N) {\r\n    LL(p);\r\n    G.add(p, v);\r\n  }\r\n  G.build();\r\n\r\n  Tree\
+    \ tree(G);\r\n  using Mono = Monoid_Add<ll>;\r\n\r\n  Tree_Monoid<decltype(tree),\
+    \ Mono, false> TM(tree, A);\r\n\r\n  FOR(_, Q) {\r\n    LL(t);\r\n    if (t ==\
+    \ 0) {\r\n      LL(v, x);\r\n      A[v] += x;\r\n      TM.set(v, A[v]);\r\n  \
+    \  } else {\r\n      LL(u);\r\n      print(TM.prod_subtree(u));\r\n    }\r\n \
+    \ }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -473,8 +476,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
 layout: document

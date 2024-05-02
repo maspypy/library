@@ -1,27 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_queue
     links:
     - https://judge.yosupo.jp/problem/persistent_queue
   bundledCode: "#line 1 \"test/library_checker/datastructure/persistent_queue.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/persistent_queue\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_queue\"\r\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -186,7 +187,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/persistent_queue.test.cpp\"\
-    \n\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT,\
+    \n\r\n#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT,\
     \ int NODES>\r\nstruct Dynamic_Array {\r\n  static constexpr int LOG = 4;\r\n\
     \  static constexpr int MASK = (1 << LOG) - 1;\r\n  struct Node {\r\n    T x;\r\
     \n    Node* ch[1 << LOG] = {};\r\n  };\r\n  Node* pool;\r\n  int pid;\r\n  using\
@@ -204,25 +205,27 @@ data:
     \  }\r\n\r\nprivate:\r\n  np copy_node(np c, bool make_copy) {\r\n    if (!make_copy\
     \ || !PERSISTENT) return c;\r\n    pool[pid].x = c->x;\r\n    FOR(k, (1 << LOG))\
     \ pool[pid].ch[k] = c->ch[k];\r\n    return &(pool[pid++]);\r\n  }\r\n};\r\n#line\
-    \ 6 \"test/library_checker/datastructure/persistent_queue.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(Q);\n  vc<int> L, R;\n\n  Dynamic_Array<int, true, 2'000'000> X(0);\n\
-    \  using np = typename decltype(X)::np;\n  vc<np> roots;\n\n  roots.eb(X.new_root());\n\
-    \  L.eb(0), R.eb(0);\n\n  FOR(Q) {\n    LL(t, k);\n    ++k;\n    np root = roots[k];\n\
-    \    int l = L[k], r = R[k];\n\n    if (t == 0) {\n      INT(x);\n      root =\
-    \ X.set(root, r++, x);\n    }\n    if (t == 1) { print(X.get(root, l++)); }\n\
-    \    roots.eb(root);\n    L.eb(l), R.eb(r);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/persistent_queue\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/dynamic_array.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  vc<int> L, R;\n\n  Dynamic_Array<int, true, 2'000'000>\
-    \ X(0);\n  using np = typename decltype(X)::np;\n  vc<np> roots;\n\n  roots.eb(X.new_root());\n\
-    \  L.eb(0), R.eb(0);\n\n  FOR(Q) {\n    LL(t, k);\n    ++k;\n    np root = roots[k];\n\
-    \    int l = L[k], r = R[k];\n\n    if (t == 0) {\n      INT(x);\n      root =\
-    \ X.set(root, r++, x);\n    }\n    if (t == 1) { print(X.get(root, l++)); }\n\
-    \    roots.eb(root);\n    L.eb(l), R.eb(r);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \ 6 \"test/library_checker/datastructure/persistent_queue.test.cpp\"\n\r\nvoid\
+    \ solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int, true, 2'000'000>\
+    \ X(0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np> roots;\r\n\r\n \
+    \ roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q) {\r\n    LL(t,\
+    \ k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k], r = R[k];\r\n\
+    \r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root, r++, x);\r\n\
+    \    }\r\n    if (t == 1) { print(X.get(root, l++)); }\r\n    roots.eb(root);\r\
+    \n    L.eb(l), R.eb(r);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_queue\"\r\n\
+    #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"ds/dynamic_array.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  LL(Q);\r\n  vc<int> L, R;\r\n\r\n  Dynamic_Array<int,\
+    \ true, 2'000'000> X(0);\r\n  using np = typename decltype(X)::np;\r\n  vc<np>\
+    \ roots;\r\n\r\n  roots.eb(X.new_root());\r\n  L.eb(0), R.eb(0);\r\n\r\n  FOR(Q)\
+    \ {\r\n    LL(t, k);\r\n    ++k;\r\n    np root = roots[k];\r\n    int l = L[k],\
+    \ r = R[k];\r\n\r\n    if (t == 0) {\r\n      INT(x);\r\n      root = X.set(root,\
+    \ r++, x);\r\n    }\r\n    if (t == 1) { print(X.get(root, l++)); }\r\n    roots.eb(root);\r\
+    \n    L.eb(l), R.eb(r);\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -230,8 +233,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/persistent_queue.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/persistent_queue.test.cpp
 layout: document

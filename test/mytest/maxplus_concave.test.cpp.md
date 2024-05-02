@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/maxplus_convolution.hpp
     title: convex/maxplus_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/maxplus_concave.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/maxplus_concave.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -157,10 +158,10 @@ data:
     \ 1, false>(A, B);\n      assert(naive(A, B) == C);\n    }\n  }\n}\n\nvoid solve()\
     \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
     \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"random/base.hpp\"\n#include \"convex/maxplus_convolution.hpp\"\
-    \n\nvc<int> gen(int L, int N, int R, bool concave) {\n  vc<int> A(N);\n  FOR(i,\
-    \ N) A[i] = RNG(-100, 100);\n  if (!concave) return A;\n  sort(all(A));\n  reverse(all(A));\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"random/base.hpp\"\n#include \"convex/maxplus_convolution.hpp\"\n\n\
+    vc<int> gen(int L, int N, int R, bool concave) {\n  vc<int> A(N);\n  FOR(i, N)\
+    \ A[i] = RNG(-100, 100);\n  if (!concave) return A;\n  sort(all(A));\n  reverse(all(A));\n\
     \  A = cumsum<int>(A);\n  FOR(L) A.insert(A.begin(), -infty<int>);\n  FOR(R) A.insert(A.end(),\
     \ -infty<int>);\n  return A;\n}\n\nvc<int> naive(vc<int> A, vc<int> B) {\n  int\
     \ N = len(A), M = len(B);\n  vc<int> C(N + M - 1, -infty<int>);\n  FOR(i, N) FOR(j,\
@@ -183,8 +184,8 @@ data:
   isVerificationFile: true
   path: test/mytest/maxplus_concave.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/maxplus_concave.test.cpp
 layout: document

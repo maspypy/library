@@ -1,56 +1,57 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/mytest/dynamic_lazy_segtree_persistent.test.cpp\"\n\
-    // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line\
-    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
-    )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
-    \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
-    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
-    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
-    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
-    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
-    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
-    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
+    \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
+    \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned long\
+    \ long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 =\
+    \ __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
+    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
+    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
+    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
+    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
+    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
+    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
     \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
@@ -239,24 +240,23 @@ data:
     \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
     \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
     }\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"alg/acted_monoid/summax_assign.hpp\"\n\
-    #include \"ds/segtree/dynamic_lazy_segtree.hpp\"\n#include \"random/base.hpp\"\
-    \n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int, -1>;\n  using P\
-    \ = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\n    vvc<int>\
-    \ AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true, 30000> X(0,\
-    \ N, [](ll l, ll r) -> P {\n      return {10 * (r - l), 10};\n    });\n    using\
-    \ np = typename decltype(X)::np;\n\n    int Q = RNG(1, 1000);\n    vc<np> roots;\n\
-    \    roots.eb(X.new_node(0, N));\n\n    FOR(Q) {\n      int time = RNG(0, len(roots));\n\
-    \      vc<int> A = AA[time];\n      np root = roots[time];\n      int L = RNG(0,\
-    \ N);\n      int R = RNG(0, N);\n      if (L > R) swap(L, R);\n      ++R;\n\n\
-    \      int t = RNG(0, 4);\n      if (t == 0) {\n        int i = RNG(0, N);\n \
-    \       int x = RNG(1, 100);\n        root = X.set(root, i, {x, x});\n       \
-    \ A[i] = x;\n      }\n      if (t == 1) {\n        vc<int> B = {A.begin() + L,\
-    \ A.begin() + R};\n        assert(X.prod(root, L, R).fi == SUM<int>(B));\n   \
-    \     assert(X.prod(root, L, R).se == MAX(B));\n      }\n      if (t == 2) {\n\
-    \        int x = RNG(1, 100);\n        FOR(i, L, R) A[i] = x;\n        root =\
-    \ X.apply(root, L, R, x);\n      }\n      if (t == 3) {\n        // max_right\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"alg/acted_monoid/summax_assign.hpp\"\n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\
+    \n#include \"random/base.hpp\"\n\nvoid test() {\n  using AM = ActedMonoid_SumMax_Assign<int,\
+    \ -1>;\n  using P = typename AM::X;\n\n  FOR(100) {\n    int N = RNG(1, 1000);\n\
+    \n    vvc<int> AA;\n    AA.eb(vc<int>(N, 10));\n    Dynamic_Lazy_SegTree<AM, true,\
+    \ 30000> X(0, N, [](ll l, ll r) -> P {\n      return {10 * (r - l), 10};\n   \
+    \ });\n    using np = typename decltype(X)::np;\n\n    int Q = RNG(1, 1000);\n\
+    \    vc<np> roots;\n    roots.eb(X.new_node(0, N));\n\n    FOR(Q) {\n      int\
+    \ time = RNG(0, len(roots));\n      vc<int> A = AA[time];\n      np root = roots[time];\n\
+    \      int L = RNG(0, N);\n      int R = RNG(0, N);\n      if (L > R) swap(L,\
+    \ R);\n      ++R;\n\n      int t = RNG(0, 4);\n      if (t == 0) {\n        int\
+    \ i = RNG(0, N);\n        int x = RNG(1, 100);\n        root = X.set(root, i,\
+    \ {x, x});\n        A[i] = x;\n      }\n      if (t == 1) {\n        vc<int> B\
+    \ = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root, L, R).fi == SUM<int>(B));\n\
+    \        assert(X.prod(root, L, R).se == MAX(B));\n      }\n      if (t == 2)\
+    \ {\n        int x = RNG(1, 100);\n        FOR(i, L, R) A[i] = x;\n        root\
+    \ = X.apply(root, L, R, x);\n      }\n      if (t == 3) {\n        // max_right\n\
     \        int LIM = R;\n        auto check = [&](auto e) -> bool { return e.se\
     \ <= LIM; };\n        int naive = [&]() -> int {\n          ll mx = 0;\n     \
     \     FOR(i, L, N) {\n            chmax(mx, A[i]);\n            if (mx > LIM)\
@@ -275,8 +275,8 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
 layout: document

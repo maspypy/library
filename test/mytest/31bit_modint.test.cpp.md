@@ -1,51 +1,52 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/31bit_modint.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/31bit_modint.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -347,18 +348,17 @@ data:
     \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  constexpr\
     \ u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
     \  test<dmint>();\n\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"mod/dynamic_modint.hpp\"\n\ntemplate <typename mint>\nvoid test()\
-    \ {\n  const u32 mod = mint::get_mod();\n  auto check = [&](ll x, ll y) -> void\
-    \ {\n    mint mx = x, my = y;\n    assert((x + y) % mod == (mx + my).val);\n \
-    \   assert((x + mod - y) % mod == (mx - my).val);\n    assert((x * y) % mod ==\
-    \ (mx * my).val);\n    mint mz = mx / my;\n    ll z = mz.val;\n    assert(y *\
-    \ z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0, mint::get_mod());\n\
-    \    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n  }\n  FOR(i, 1, 100)\
-    \ FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  constexpr\
-    \ u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"random/base.hpp\"\n#include \"mod/modint.hpp\"\n#include \"mod/dynamic_modint.hpp\"\
+    \n\ntemplate <typename mint>\nvoid test() {\n  const u32 mod = mint::get_mod();\n\
+    \  auto check = [&](ll x, ll y) -> void {\n    mint mx = x, my = y;\n    assert((x\
+    \ + y) % mod == (mx + my).val);\n    assert((x + mod - y) % mod == (mx - my).val);\n\
+    \    assert((x * y) % mod == (mx * my).val);\n    mint mz = mx / my;\n    ll z\
+    \ = mz.val;\n    assert(y * z % mod == x);\n  };\n  FOR(10000) {\n    ll x = RNG(0,\
+    \ mint::get_mod());\n    ll y = RNG(0, mint::get_mod());\n    check(x, y);\n \
+    \ }\n  FOR(i, 1, 100) FOR(j, 1, 100) { check(mod - i, mod - j); }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  constexpr u32 mod = (u32(1) << 31) - 19;\n  dmint::set_mod(mod);\n  test<modint<mod>>();\n\
     \  test<dmint>();\n\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
@@ -375,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/mytest/31bit_modint.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-01 06:03:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/31bit_modint.test.cpp
 layout: document

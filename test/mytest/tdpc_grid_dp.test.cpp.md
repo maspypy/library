@@ -1,42 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/tdpc_grid_dp.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/tdpc_grid_dp.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -342,17 +343,17 @@ data:
     \ 5).val == 950397139);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
     \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
     \ 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n\n#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\
-    \n#include \"mod/modint.hpp\"\n#include \"other/connected_dp.hpp\"\n\nusing mint\
-    \ = modint107;\n\nmint calc_tdpc_grid(int H, int W) {\n  HashMap<int> MP;\n\n\
-    \  using P = pair<vc<int>, int>;\n  vc<P> states;\n\n  auto get_hash = [&](vc<int>\
-    \ a, int b) -> ll {\n    a.eb(b);\n    return hash_vector<int>(a);\n  };\n\n \
-    \ vc<int> init(H, -1);\n  init[0] = 0;\n  states.eb(init, 0);\n  vc<int> end(H,\
-    \ -1);\n  end[H - 1] = H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n    auto\
-    \ [a, b] = states[i];\n    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\n  vc<pi>\
-    \ edges;\n\n  int p = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states))\
-    \ break;\n    auto [now, r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now))\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"ds/hashmap.hpp\"\n#include \"random/hash_vector.hpp\"\n#include\
+    \ \"mod/modint.hpp\"\n#include \"other/connected_dp.hpp\"\n\nusing mint = modint107;\n\
+    \nmint calc_tdpc_grid(int H, int W) {\n  HashMap<int> MP;\n\n  using P = pair<vc<int>,\
+    \ int>;\n  vc<P> states;\n\n  auto get_hash = [&](vc<int> a, int b) -> ll {\n\
+    \    a.eb(b);\n    return hash_vector<int>(a);\n  };\n\n  vc<int> init(H, -1);\n\
+    \  init[0] = 0;\n  states.eb(init, 0);\n  vc<int> end(H, -1);\n  end[H - 1] =\
+    \ H - 1;\n  states.eb(end, H - 1);\n  FOR(i, 2) {\n    auto [a, b] = states[i];\n\
+    \    ll h = get_hash(a, b);\n    MP[h] = i;\n  }\n\n  vc<pi> edges;\n\n  int p\
+    \ = -1;\n  while (1) {\n    ++p;\n    if (p >= len(states)) break;\n    auto [now,\
+    \ r] = states[p];\n    for (auto&& [nxt, convert]: connected_dp_squares::next_states(now))\
     \ {\n      int s = convert[r];\n      if (s == -1) continue;\n      ll h = get_hash(nxt,\
     \ s);\n      if (!MP.count(h)) {\n        MP[h] = len(states);\n        states.eb(nxt,\
     \ s);\n      }\n      edges.eb(p, MP[h]);\n    }\n  }\n\n  int S = len(states);\n\
@@ -375,8 +376,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tdpc_grid_dp.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/tdpc_grid_dp.test.cpp
 layout: document

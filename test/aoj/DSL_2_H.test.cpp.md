@@ -1,36 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H
-  bundledCode: "#line 1 \"test/aoj/DSL_2_H.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\n\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/DSL_2_H.test.cpp\"\n#define PROBLEM \\\r\n  \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\r\n\r\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -264,21 +265,24 @@ data:
     \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
     \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
     \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 7 \"test/aoj/DSL_2_H.test.cpp\"\n\nvoid solve()\
-    \ {\n  using AM = ActedMonoid_Min_Add<ll>;\n  LL(N, Q);\n  vi A(N);\n  Lazy_SegTree<AM>\
-    \ seg(A);\n  FOR(Q) {\n    LL(t, L, R);\n    ++R;\n    if (t == 0) {\n      LL(x);\n\
-    \      seg.apply(L, R, x);\n    } else {\n      print(seg.prod(L, R));\n    }\n\
-    \  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\n\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/acted_monoid/min_add.hpp\"\
-    \n#include \"ds/segtree/lazy_segtree.hpp\"\n\nvoid solve() {\n  using AM = ActedMonoid_Min_Add<ll>;\n\
-    \  LL(N, Q);\n  vi A(N);\n  Lazy_SegTree<AM> seg(A);\n  FOR(Q) {\n    LL(t, L,\
-    \ R);\n    ++R;\n    if (t == 0) {\n      LL(x);\n      seg.apply(L, R, x);\n\
-    \    } else {\n      print(seg.prod(L, R));\n    }\n  }\n}\n\nsigned main() {\n\
-    \  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ = MA::unit();\n  }\n};\n#line 8 \"test/aoj/DSL_2_H.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  using AM = ActedMonoid_Min_Add<ll>;\r\n  LL(N, Q);\r\n  vi A(N);\r\n\
+    \  Lazy_SegTree<AM> seg(A);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\n    ++R;\r\n\
+    \    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\n    } else\
+    \ {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
+    \n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n\
+    }\r\n"
+  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_H\"\
+    \r\n\r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include\
+    \ \"alg/acted_monoid/min_add.hpp\"\r\n#include \"ds/segtree/lazy_segtree.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  using AM = ActedMonoid_Min_Add<ll>;\r\n  LL(N, Q);\r\
+    \n  vi A(N);\r\n  Lazy_SegTree<AM> seg(A);\r\n  FOR(Q) {\r\n    LL(t, L, R);\r\
+    \n    ++R;\r\n    if (t == 0) {\r\n      LL(x);\r\n      seg.apply(L, R, x);\r\
+    \n    } else {\r\n      print(seg.prod(L, R));\r\n    }\r\n  }\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
+    \ << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -289,8 +293,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_H.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_H.test.cpp
 layout: document

@@ -1,33 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix
     links:
     - https://judge.yosupo.jp/problem/inverse_matrix
   bundledCode: "#line 1 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\n\
-    // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/inverse_matrix\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\r\n#line 1\
+    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -275,18 +276,18 @@ data:
     \ c;\r\n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N) if (i != k) {\r\n      T\
     \ c = A[k][i];\r\n      FOR(j, i, N) A[k][j] -= A[i][j] * c;\r\n      FOR(j, N)\
     \ B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return {det, B};\r\n}\r\n#line\
-    \ 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\n\nusing mint = modint998;\n\
-    void solve() {\n  LL(N);\n  VV(mint, A, N, N);\n  auto [det, inv] = matrix_inv(A);\n\
-    \  if (inv.empty()) return print(-1);\n  FOR(n, N) print(inv[n]);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/inverse_matrix\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"linalg/matrix_inv.hpp\"\n\nusing mint = modint998;\nvoid solve()\
-    \ {\n  LL(N);\n  VV(mint, A, N, N);\n  auto [det, inv] = matrix_inv(A);\n  if\
-    \ (inv.empty()) return print(-1);\n  FOR(n, N) print(inv[n]);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \ 6 \"test/library_checker/matrix/inverse_matrix.test.cpp\"\n\r\nusing mint =\
+    \ modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto [det,\
+    \ inv] = matrix_inv(A);\r\n  if (inv.empty()) return print(-1);\r\n  FOR(n, N)\
+    \ print(inv[n]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix\"\r\n#include\
+    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
+    \r\n#include \"linalg/matrix_inv.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid\
+    \ solve() {\r\n  LL(N);\r\n  VV(mint, A, N, N);\r\n  auto [det, inv] = matrix_inv(A);\r\
+    \n  if (inv.empty()) return print(-1);\r\n  FOR(n, N) print(inv[n]);\r\n}\r\n\r\
+    \nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n\
+    \  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -296,8 +297,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/inverse_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/inverse_matrix.test.cpp
 layout: document

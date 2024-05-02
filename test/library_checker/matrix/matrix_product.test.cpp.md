@@ -1,33 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/matrix_product
     links:
     - https://judge.yosupo.jp/problem/matrix_product
   bundledCode: "#line 1 \"test/library_checker/matrix/matrix_product.test.cpp\"\n\
-    // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_product\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\r\n#line 1\
+    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -192,7 +193,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/matrix/matrix_product.test.cpp\"\
-    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -296,15 +297,16 @@ data:
     \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
     \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
     \ * B[j][k];\r\n  return C;\r\n}\r\n#line 7 \"test/library_checker/matrix/matrix_product.test.cpp\"\
-    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M, K);\n  VV(mint, A, N,\
-    \ M);\n  VV(mint, B, M, K);\n  auto C = matrix_mul(A, B);\n  FOR(n, len(C)) print(C[n]);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/matrix_product\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n#include \"linalg/matrix_mul.hpp\"\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(N, M, K);\n  VV(mint, A, N, M);\n  VV(mint, B, M, K);\n  auto C = matrix_mul(A,\
-    \ B);\n  FOR(n, len(C)) print(C[n]);\n}\n\nsigned main() {\n  solve();\n  return\
-    \ 0;\n}"
+    \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M, K);\r\n  VV(mint,\
+    \ A, N, M);\r\n  VV(mint, B, M, K);\r\n  auto C = matrix_mul(A, B);\r\n  FOR(n,\
+    \ len(C)) print(C[n]);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\
+    \n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/matrix_product\"\r\n#include\
+    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"mod/modint.hpp\"\
+    \r\n#include \"linalg/matrix_mul.hpp\"\r\nusing mint = modint998;\r\n\r\nvoid\
+    \ solve() {\r\n  LL(N, M, K);\r\n  VV(mint, A, N, M);\r\n  VV(mint, B, M, K);\r\
+    \n  auto C = matrix_mul(A, B);\r\n  FOR(n, len(C)) print(C[n]);\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  solve();\r\n  return 0;\r\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -314,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/matrix_product.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-12 12:45:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/matrix_product.test.cpp
 layout: document

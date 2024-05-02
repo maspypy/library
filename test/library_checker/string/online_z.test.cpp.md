@@ -1,26 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/online_z_algorithm.hpp
     title: string/online_z_algorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
     links:
     - https://judge.yosupo.jp/problem/zalgorithm
-  bundledCode: "#line 1 \"test/library_checker/string/online_z.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/zalgorithm\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/library_checker/string/online_z.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
@@ -204,8 +205,8 @@ data:
     \  vc<int> ANS(N, -1);\n\n  FOR(i, N) {\n    auto end = X.add(i, S[i]);\n    for\
     \ (auto& j: end) { ANS[j] = i - j; }\n  }\n  FOR(i, N) if (ANS[i] == -1) ANS[i]\
     \ = N - i;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/zalgorithm\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/online_z_algorithm.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/online_z_algorithm.hpp\"\
     \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  Online_Z_Algorithm<char> X;\n\
     \  vc<int> ANS(N, -1);\n\n  FOR(i, N) {\n    auto end = X.add(i, S[i]);\n    for\
     \ (auto& j: end) { ANS[j] = i - j; }\n  }\n  FOR(i, N) if (ANS[i] == -1) ANS[i]\
@@ -217,8 +218,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/online_z.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/online_z.test.cpp
 layout: document

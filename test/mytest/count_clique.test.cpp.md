@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
@@ -16,43 +16,43 @@ data:
   - icon: ':x:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -62,11 +62,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/count_clique.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/count_clique.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -652,18 +653,18 @@ data:
     \ += ok;\n      }\n      assert(n == count_clique(G));\n    }\n  }\n}\n\nvoid\
     \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
     signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    \n#include \"my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include\
-    \ \"graph/count/count_clique.hpp\"\n\nvoid test() {\n  FOR(N, 15) {\n    FOR(100)\
-    \ {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N, true))\
-    \ G.add(a, b);\n      G.build();\n      vc<int> nbd(N);\n      for (auto& e: G.edges)\
-    \ {\n        nbd[e.frm] |= 1 << e.to;\n        nbd[e.to] |= 1 << e.frm;\n    \
-    \  }\n      u64 n = 0;\n      FOR(s, 1 << N) {\n        int ok = 1;\n        FOR(j,\
-    \ N) FOR(i, j) {\n          if ((s >> i & 1) && (s >> j & 1)) {\n            if\
-    \ (!(nbd[i] >> j & 1)) ok = 0;\n          }\n        }\n        n += ok;\n   \
-    \   }\n      assert(n == count_clique(G));\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n  return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include \"graph/count/count_clique.hpp\"\
+    \n\nvoid test() {\n  FOR(N, 15) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n\
+    \      for (auto& [a, b]: random_graph<0>(N, true)) G.add(a, b);\n      G.build();\n\
+    \      vc<int> nbd(N);\n      for (auto& e: G.edges) {\n        nbd[e.frm] |=\
+    \ 1 << e.to;\n        nbd[e.to] |= 1 << e.frm;\n      }\n      u64 n = 0;\n  \
+    \    FOR(s, 1 << N) {\n        int ok = 1;\n        FOR(j, N) FOR(i, j) {\n  \
+    \        if ((s >> i & 1) && (s >> j & 1)) {\n            if (!(nbd[i] >> j &\
+    \ 1)) ok = 0;\n          }\n        }\n        n += ok;\n      }\n      assert(n\
+    \ == count_clique(G));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -686,7 +687,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_clique.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
+  timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/count_clique.test.cpp

@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/dice.hpp
     title: other/dice.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A
-  bundledCode: "#line 1 \"test/aoj/ITP1_11_A.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/ITP1_11_A.test.cpp\"\n#define PROBLEM \\\n  \"\
+    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\"\n#line 1\
+    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -188,7 +189,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/aoj/ITP1_11_A.test.cpp\"\n\n#line 2 \"graph/base.hpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/aoj/ITP1_11_A.test.cpp\"\n\n#line 2 \"graph/base.hpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
     };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
     \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
@@ -274,13 +275,13 @@ data:
     \ dat[i];\n      for (char ch: {'U', 'F', 'R', 'L', 'B', 'D'}) {\n        Dice<X>\
     \ d(A);\n        d.rotate(ch);\n        int idx = -1;\n        FOR(j, N) if (dat[j]\
     \ == d.A) idx = j;\n        assert(idx != -1);\n        if (i < idx) G.add(i,\
-    \ idx);\n      }\n    }\n    G.build();\n    return G;\n  }\n};\n#line 6 \"test/aoj/ITP1_11_A.test.cpp\"\
+    \ idx);\n      }\n    }\n    G.build();\n    return G;\n  }\n};\n#line 7 \"test/aoj/ITP1_11_A.test.cpp\"\
     \n\nvoid solve() {\n  array<int, 6> A;\n  FOR(i, 6) read(A[i]);\n  Dice<int> X(A);\n\
     \  STR(S);\n  for (auto&& s: S) { X.rotate(s); }\n  print(X.U());\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
     \  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"other/dice.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"other/dice.hpp\"\
     \n\nvoid solve() {\n  array<int, 6> A;\n  FOR(i, 6) read(A[i]);\n  Dice<int> X(A);\n\
     \  STR(S);\n  for (auto&& s: S) { X.rotate(s); }\n  print(X.U());\n}\n\nsigned\
     \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
@@ -293,8 +294,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_11_A.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_11_A.test.cpp
 layout: document

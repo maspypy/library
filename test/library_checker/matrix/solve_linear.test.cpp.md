@@ -1,36 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/system_of_linear_equations
     links:
     - https://judge.yosupo.jp/problem/system_of_linear_equations
-  bundledCode: "#line 1 \"test/library_checker/matrix/solve_linear.test.cpp\"\n//\
-    \ competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/system_of_linear_equations\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/library_checker/matrix/solve_linear.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\r\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -294,21 +295,22 @@ data:
     \ if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
     \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
     \ a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 7\
-    \ \"test/library_checker/matrix/solve_linear.test.cpp\"\n\nusing mint = modint998;\n\
-    void solve() {\n  LL(N, M);\n  VV(mint, A, N, M);\n  VEC(mint, b, N);\n  auto\
-    \ xs = solve_linear(A, b);\n  if (len(xs) == 0) return print(-1);\n\n  assert(len(xs)\
-    \ - 1 == M - matrix_rank(A));\n\n  print(len(xs) - 1);\n  FOR(r, len(xs)) print(xs[r]);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/system_of_linear_equations\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"linalg/solve_linear.hpp\"\n#include \"linalg/matrix_rank.hpp\"\n\n\
-    using mint = modint998;\nvoid solve() {\n  LL(N, M);\n  VV(mint, A, N, M);\n \
-    \ VEC(mint, b, N);\n  auto xs = solve_linear(A, b);\n  if (len(xs) == 0) return\
-    \ print(-1);\n\n  assert(len(xs) - 1 == M - matrix_rank(A));\n\n  print(len(xs)\
-    \ - 1);\n  FOR(r, len(xs)) print(xs[r]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \ \"test/library_checker/matrix/solve_linear.test.cpp\"\n\r\nusing mint = modint998;\r\
+    \nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint, A, N, M);\r\n  VEC(mint, b, N);\r\
+    \n  auto xs = solve_linear(A, b);\r\n  if (len(xs) == 0) return print(-1);\r\n\
+    \r\n  assert(len(xs) - 1 == M - matrix_rank(A));\r\n\r\n  print(len(xs) - 1);\r\
+    \n  FOR(r, len(xs)) print(xs[r]);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/system_of_linear_equations\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
+    \r\n#include \"linalg/solve_linear.hpp\"\r\n#include \"linalg/matrix_rank.hpp\"\
+    \r\n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N, M);\r\n  VV(mint,\
+    \ A, N, M);\r\n  VEC(mint, b, N);\r\n  auto xs = solve_linear(A, b);\r\n  if (len(xs)\
+    \ == 0) return print(-1);\r\n\r\n  assert(len(xs) - 1 == M - matrix_rank(A));\r\
+    \n\r\n  print(len(xs) - 1);\r\n  FOR(r, len(xs)) print(xs[r]);\r\n}\r\n\r\nsigned\
+    \ main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout\
+    \ << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -319,8 +321,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/matrix/solve_linear.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/matrix/solve_linear.test.cpp
 layout: document

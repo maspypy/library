@@ -1,31 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.00000001'
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C
-  bundledCode: "#line 1 \"test/aoj/CGL_2_C.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\n// competitive-verifier:\
-    \ ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/aoj/CGL_2_C.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n#define ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -289,19 +290,18 @@ data:
     \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
     \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
     \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
-    }\n#line 7 \"test/aoj/CGL_2_C.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
+    }\n#line 8 \"test/aoj/CGL_2_C.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q)\
     \ {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll>\
     \ S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_Line(), S2.to_Line());\n\
     \    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\n\
-    // competitive-verifier: ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include\
-    \ \"other/io.hpp\"\n#include \"geo/cross_point.hpp\"\n\nvoid solve() {\n  LL(Q);\n\
-    \  FOR(Q) {\n    LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n\
-    \    Segment<ll> S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_Line(),\
-    \ S2.to_Line());\n    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n  cout <<\
-    \ fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_2_C\"\
+    \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
+    \n#include \"geo/cross_point.hpp\"\n\nvoid solve() {\n  LL(Q);\n  FOR(Q) {\n \
+    \   LL(a, b, c, d, e, f, g, h);\n    Segment<ll> S1(a, b, c, d);\n    Segment<ll>\
+    \ S2(e, f, g, h);\n    Point<double> pt = cross_point<double>(S1.to_Line(), S2.to_Line());\n\
+    \    print(pt.x, pt.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -310,8 +310,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_2_C.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 22:50:36+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_2_C.test.cpp
 layout: document

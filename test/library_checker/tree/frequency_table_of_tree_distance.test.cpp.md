@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -53,11 +53,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
     links:
     - https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
   bundledCode: "#line 1 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
+    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -221,8 +222,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
-    \n\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\
+    \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
     \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
     \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
     \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
@@ -657,16 +658,18 @@ data:
     \n    FOR(i, 1 + n1, 1 + n1 + n2) g[dist[i]]++;\r\n    while (len(f) && f.back()\
     \ == 0) POP(f);\r\n    while (len(g) && g.back() == 0) POP(g);\r\n    f = convolution(f,\
     \ g);\r\n    FOR(i, len(f)) ANS[i] += f[i] * 2;\r\n  };\r\n  centroid_decomposition<1>(G,\
-    \ f);\r\n  ANS[0] = N, ANS[1] = 2 * (N - 1);\r\n  return ANS;\r\n}\r\n#line 6\
-    \ \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\n\n\
-    void solve() {\n  LL(N);\n  Graph<int> G(N);\n  G.read_tree(0, 0);\n\n  vi ANS\
-    \ = tree_all_distances(G);\n  ANS.erase(ANS.begin());\n  for (auto&& x: ANS) x\
-    \ /= 2;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/tree_all_distances.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  Graph<int> G(N);\n  G.read_tree(0, 0);\n\n  vi\
-    \ ANS = tree_all_distances(G);\n  ANS.erase(ANS.begin());\n  for (auto&& x: ANS)\
-    \ x /= 2;\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ f);\r\n  ANS[0] = N, ANS[1] = 2 * (N - 1);\r\n  return ANS;\r\n}\r\n#line 7\
+    \ \"test/library_checker/tree/frequency_table_of_tree_distance.test.cpp\"\n\r\n\
+    void solve() {\r\n  LL(N);\r\n  Graph<int> G(N);\r\n  G.read_tree(0, 0);\r\n\r\
+    \n  vi ANS = tree_all_distances(G);\r\n  ANS.erase(ANS.begin());\r\n  for (auto&&\
+    \ x: ANS) x /= 2;\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
+    \n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \\\r\n  \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
+    \ \"graph/tree_all_distances.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  Graph<int>\
+    \ G(N);\r\n  G.read_tree(0, 0);\r\n\r\n  vi ANS = tree_all_distances(G);\r\n \
+    \ ANS.erase(ANS.begin());\r\n  for (auto&& x: ANS) x /= 2;\r\n  print(ANS);\r\n\
+    }\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -686,7 +689,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
+  timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp

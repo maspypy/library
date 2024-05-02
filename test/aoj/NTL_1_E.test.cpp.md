@@ -1,27 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/extgcd.hpp
     title: nt/extgcd.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
-  bundledCode: "#line 1 \"test/aoj/NTL_1_E.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\n\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/aoj/NTL_1_E.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -198,12 +198,12 @@ data:
     \ y2] = Farey_lr(a, b);\r\n  tie(x1, y1) = mp(y1, -x1);\r\n  tie(x2, y2) = mp(-y2,\
     \ x2);\r\n  ll g = a * x1 + b * y1;\r\n\r\n  pi key1 = mp(abs(x1) + abs(y1), x1);\r\
     \n  pi key2 = mp(abs(x2) + abs(y2), x2);\r\n  return (key1 < key2 ? mt(x1, y1,\
-    \ g) : mt(x2, y2, g));\r\n}\r\n#line 6 \"test/aoj/NTL_1_E.test.cpp\"\n\nvoid solve()\
+    \ g) : mt(x2, y2, g));\r\n}\r\n#line 7 \"test/aoj/NTL_1_E.test.cpp\"\n\nvoid solve()\
     \ {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x, y);\n}\n\nsigned\
     \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\n\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/extgcd.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/extgcd.hpp\"\
     \n\nvoid solve() {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x,\
     \ y);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
@@ -215,8 +215,8 @@ data:
   isVerificationFile: true
   path: test/aoj/NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/NTL_1_E.test.cpp
 layout: document

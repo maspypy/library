@@ -1,43 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.000001'
+    PROBLEM: https://atcoder.jp/contests/abc151/tasks/abc151_f
     links:
     - https://atcoder.jp/contests/abc151/tasks/abc151_f
-  bundledCode: "#line 1 \"test_atcoder/abc151f.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://atcoder.jp/contests/abc151/tasks/abc151_f\n// competitive-verifier:\
-    \ ERROR 0.000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test_atcoder/abc151f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc151/tasks/abc151_f\"\
+    \n#define ERROR 0.000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -309,14 +310,14 @@ data:
     \ r = dist<Re>(points[i], points[j]);\n    print(r / 2);\n  } else {\n    auto\
     \ c = outcircle<Re>(points[i], points[j], points[k]);\n    print(c.r);\n  }\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://atcoder.jp/contests/abc151/tasks/abc151_f\n\
-    // competitive-verifier: ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include\
-    \ \"other/io.hpp\"\n#include \"geo/minimum_enclosing_circle.hpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  using Re = double;\n  using P = Point<Re>;\n  VEC(P, points,\
-    \ N);\n  auto [i, j, k] = minimum_enclosing_circle(points);\n  if (k == -1) {\n\
-    \    Re r = dist<Re>(points[i], points[j]);\n    print(r / 2);\n  } else {\n \
-    \   auto c = outcircle<Re>(points[i], points[j], points[k]);\n    print(c.r);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc151/tasks/abc151_f\"\n#define\
+    \ ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\
+    #include \"geo/minimum_enclosing_circle.hpp\"\n\nvoid solve() {\n  LL(N);\n  using\
+    \ Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i, j, k]\
+    \ = minimum_enclosing_circle(points);\n  if (k == -1) {\n    Re r = dist<Re>(points[i],\
+    \ points[j]);\n    print(r / 2);\n  } else {\n    auto c = outcircle<Re>(points[i],\
+    \ points[j], points[k]);\n    print(c.r);\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -329,8 +330,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc151f.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc151f.test.cpp
 layout: document

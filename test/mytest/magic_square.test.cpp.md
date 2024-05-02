@@ -1,24 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/magic_square.hpp
     title: other/magic_square.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/magic_square.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/magic_square.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -115,13 +116,13 @@ data:
     \ N);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
     \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
     }\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"other/magic_square.hpp\"\n\nvoid test()\
-    \ {\n  vc<int> ns = {1, 3, 5, 7, 9};\n\n  for (auto&& N: ns) {\n    auto A = magic_square(N);\n\
-    \    vc<int> SM;\n    FOR(i, N) {\n      ll sm = 0;\n      FOR(j, N) sm += A[i][j];\n\
-    \      SM.eb(sm);\n    }\n    FOR(j, N) {\n      ll sm = 0;\n      FOR(i, N) sm\
-    \ += A[i][j];\n      SM.eb(sm);\n    }\n    ll sm1 = 0, sm2 = 0;\n    FOR(i, N)\
-    \ {\n      sm1 += A[i][i];\n      sm2 += A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"other/magic_square.hpp\"\n\nvoid test() {\n  vc<int> ns = {1, 3,\
+    \ 5, 7, 9};\n\n  for (auto&& N: ns) {\n    auto A = magic_square(N);\n    vc<int>\
+    \ SM;\n    FOR(i, N) {\n      ll sm = 0;\n      FOR(j, N) sm += A[i][j];\n   \
+    \   SM.eb(sm);\n    }\n    FOR(j, N) {\n      ll sm = 0;\n      FOR(i, N) sm +=\
+    \ A[i][j];\n      SM.eb(sm);\n    }\n    ll sm1 = 0, sm2 = 0;\n    FOR(i, N) {\n\
+    \      sm1 += A[i][i];\n      sm2 += A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n\
     \    SM.eb(sm2);\n    assert(MIN(SM) == MAX(SM));\n    vc<int> done(N * N + 1);\n\
     \    FOR(i, N) FOR(j, N) done[A[i][j]] = 1;\n    assert(SUM<int>(done) == N *\
     \ N);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
@@ -132,8 +133,8 @@ data:
   isVerificationFile: true
   path: test/mytest/magic_square.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/magic_square.test.cpp
 layout: document

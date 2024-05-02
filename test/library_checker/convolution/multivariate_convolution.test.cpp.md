@@ -1,54 +1,55 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/multivariate_convolution
     links:
     - https://judge.yosupo.jp/problem/multivariate_convolution
   bundledCode: "#line 1 \"test/library_checker/convolution/multivariate_convolution.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multivariate_convolution\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
+    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -213,7 +214,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/convolution/multivariate_convolution.test.cpp\"\
-    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
@@ -507,19 +508,20 @@ data:
     \ W) F[x + H * y] = f[x][y];\r\n  FOR(x, H) FOR(y, W) G[x + H * y] = g[x][y];\r\
     \n  F = multivar_convolution(vc<int>({H, W}), F, G);\r\n  vv(mint, h, H, W);\r\
     \n  FOR(x, H) FOR(y, W) h[x][y] = F[x + H * y];\r\n  return h;\r\n}\r\n#line 6\
-    \ \"test/library_checker/convolution/multivariate_convolution.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(K);\n  VEC(int, ns, K);\n  ll N =\
-    \ 1;\n  FOR(k, K) N *= ns[k];\n  VEC(mint, f, N);\n  VEC(mint, g, N);\n\n  auto\
-    \ h = multivar_convolution(ns, f, g);\n  print(h);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/multivariate_convolution\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/multivar_convolution.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(K);\n  VEC(int, ns, K);\n\
-    \  ll N = 1;\n  FOR(k, K) N *= ns[k];\n  VEC(mint, f, N);\n  VEC(mint, g, N);\n\
-    \n  auto h = multivar_convolution(ns, f, g);\n  print(h);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
+    \ \"test/library_checker/convolution/multivariate_convolution.test.cpp\"\n\r\n\
+    using mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(K);\r\n  VEC(int, ns, K);\r\
+    \n  ll N = 1;\r\n  FOR(k, K) N *= ns[k];\r\n  VEC(mint, f, N);\r\n  VEC(mint,\
+    \ g, N);\r\n\r\n  auto h = multivar_convolution(ns, f, g);\r\n  print(h);\r\n\
+    }\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/multivariate_convolution\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
+    \ \"poly/multivar_convolution.hpp\"\r\n\r\nusing mint = modint998;\r\n\r\nvoid\
+    \ solve() {\r\n  LL(K);\r\n  VEC(int, ns, K);\r\n  ll N = 1;\r\n  FOR(k, K) N\
+    \ *= ns[k];\r\n  VEC(mint, f, N);\r\n  VEC(mint, g, N);\r\n\r\n  auto h = multivar_convolution(ns,\
+    \ f, g);\r\n  print(h);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n\
+    \  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -536,8 +538,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/multivariate_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-03 04:27:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/multivariate_convolution.test.cpp
 layout: document

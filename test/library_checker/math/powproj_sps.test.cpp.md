@@ -1,60 +1,61 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/power_projection_of_set_power_series
     links:
     - https://judge.yosupo.jp/problem/power_projection_of_set_power_series
-  bundledCode: "#line 1 \"test/library_checker/math/powproj_sps.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/power_projection_of_set_power_series\n\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/library_checker/math/powproj_sps.test.cpp\"\n#define\
+    \ PROBLEM \\\n  \"https://judge.yosupo.jp/problem/power_projection_of_set_power_series\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -218,7 +219,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/library_checker/math/powproj_sps.test.cpp\"\n\n\
+    \ yes(!t); }\r\n#line 6 \"test/library_checker/math/powproj_sps.test.cpp\"\n\n\
     #line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
     \n\r\ntemplate <typename T, int LIM>\r\nvc<array<T, LIM + 1>> ranked_zeta(const\
     \ vc<T>& f) {\r\n  int n = topbit(len(f));\r\n  assert(n <= LIM);\r\n  assert(len(f)\
@@ -535,12 +536,12 @@ data:
     \ = power_projection_of_sps_egf<mint, LIM>(wt, s);\n  vc<mint> g(M);\n  mint pow\
     \ = 1;\n  FOR(i, M) { g[i] = pow * fact_inv<mint>(i), pow *= c; }\n  x = convolution<mint>(x,\
     \ g);\n  x.resize(M);\n  FOR(i, M) x[i] *= fact<mint>(i);\n  return x;\n}\n#line\
-    \ 8 \"test/library_checker/math/powproj_sps.test.cpp\"\n\nusing mint = modint998;\n\
+    \ 9 \"test/library_checker/math/powproj_sps.test.cpp\"\n\nusing mint = modint998;\n\
     \nvoid solve() {\n  LL(N, M);\n  VEC(mint, s, 1 << N);\n  VEC(mint, wt, 1 << N);\n\
     \  vc<mint> ANS = power_projection_of_sps<mint, 20>(wt, s, M);\n  print(ANS);\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/power_projection_of_set_power_series\n\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"setfunc/power_projection_of_sps.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/power_projection_of_set_power_series\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"setfunc/power_projection_of_sps.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
     \ LL(N, M);\n  VEC(mint, s, 1 << N);\n  VEC(mint, wt, 1 << N);\n  vc<mint> ANS\
     \ = power_projection_of_sps<mint, 20>(wt, s, M);\n  print(ANS);\n}\n\nsigned main()\
@@ -563,8 +564,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/powproj_sps.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-03 04:27:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/powproj_sps.test.cpp
 layout: document

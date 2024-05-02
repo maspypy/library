@@ -1,34 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
     links:
     - https://judge.yosupo.jp/problem/zalgorithm
   bundledCode: "#line 1 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/zalgorithm\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -192,10 +193,10 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\
-    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \n\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n  \
+    \    = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                \
+    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
+    \        .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
     \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
     \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\n\r\
     \nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64\
@@ -247,15 +248,16 @@ data:
     \ + 1;\n    while (high - low > 1) {\n      int mid = (low + high) / 2;\n    \
     \  if (query(a, l1, l1 + mid) == query(b, l2, l2 + mid))\n        low = mid;\n\
     \      else\n        high = mid;\n    }\n    return low;\n  }\n};\n#line 6 \"\
-    test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\n\nvoid solve()\
-    \ {\n  STR(S);\n  ll N = len(S);\n  RollingHash RH;\n  auto RS = RH.build(S);\n\
-    \  vi Z(N);\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0, N, RS, i, N); }\n  print(Z);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/zalgorithm\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/rollinghash.hpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  ll N = len(S);\n  RollingHash RH;\n  auto RS\
-    \ = RH.build(S);\n  vi Z(N);\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0, N, RS, i, N);\
-    \ }\n  print(Z);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    test/library_checker/string/zalgorithm_by_rollinghash.test.cpp\"\n\r\nvoid solve()\
+    \ {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\n  auto RS = RH.build(S);\r\
+    \n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0, N, RS, i, N); }\r\n  print(Z);\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/zalgorithm\"\r\n#include\
+    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/rollinghash.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  ll N = len(S);\r\n  RollingHash RH;\r\
+    \n  auto RS = RH.build(S);\r\n  vi Z(N);\r\n  FOR(i, N) { Z[i] = RH.lcp(RS, 0,\
+    \ N, RS, i, N); }\r\n  print(Z);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\n\
+    \  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -265,8 +267,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
 layout: document

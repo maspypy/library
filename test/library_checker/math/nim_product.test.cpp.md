@@ -1,26 +1,27 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/nim_product.hpp
     title: nt/nim_product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/nim_product_64
     links:
     - https://judge.yosupo.jp/problem/nim_product_64
-  bundledCode: "#line 1 \"test/library_checker/math/nim_product.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/nim_product_64\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/library_checker/math/nim_product.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/nim_product_64\"\r\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
@@ -201,12 +202,14 @@ data:
     \ = naive_nim_product(v, x);\r\n    }\r\n  } // end prepare\r\n\r\n  u64 v = 0;\r\
     \n  FOR(a, 8) FOR(b, 8) {\r\n    v ^= memo2[a][b][memo1[(x >> (8 * a)) & 255][(y\
     \ >> (8 * b)) & 255]];\r\n  }\r\n  return v;\r\n}\n#line 5 \"test/library_checker/math/nim_product.test.cpp\"\
-    \n\nvoid solve() {\n  u64 a, b;\n  read(a, b);\n  print(nim_product(a, b));\n\
-    }\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/nim_product_64\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/nim_product.hpp\"\
-    \n\nvoid solve() {\n  u64 a, b;\n  read(a, b);\n  print(nim_product(a, b));\n\
-    }\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\r\nvoid solve() {\r\n  u64 a, b;\r\n  read(a, b);\r\n  print(nim_product(a,\
+    \ b));\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return\
+    \ 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/nim_product_64\"\r\n#include\
+    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"nt/nim_product.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  u64 a, b;\r\n  read(a, b);\r\n  print(nim_product(a,\
+    \ b));\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return\
+    \ 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -214,8 +217,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/nim_product.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/nim_product.test.cpp
 layout: document

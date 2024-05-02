@@ -1,27 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum
     links:
     - https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum
   bundledCode: "#line 1 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -185,7 +186,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
     \n\n#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092 head\
     \ \u304C\u5DE6, tail \u304C\u53F3\u3068\u306A\u308B\u3088\u3046\u306B splay tree\
     \ \u3067\u6301\u3064.\n\u30E6\u30FC\u30B6\u30FC\u304C\u76F4\u63A5\u547C\u3076\u53EF\
@@ -284,7 +285,7 @@ data:
     \u308F\u308B\n        pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n\
     \    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n \
     \   if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r ==\
-    \ n) return -1;\n    return 0;\n  }\n};\n#line 6 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
+    \ n) return -1;\n    return 0;\n  }\n};\n#line 7 \"test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp\"\
     \n\n/*\nsm \u306F lazy \u53CD\u6620\u6E08\n\u305F\u3060\u3057 light edge \u304B\
     \u3089\u306E lazy_light - cancel \u306F\u672A\u53CD\u6620\n*/\nstruct Node {\n\
     \  using np = Node *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int\
@@ -319,8 +320,8 @@ data:
     \      LCT.link(v, p);\n    }\n    if (t == 2) {\n      LL(c, p);\n      LCT.cut(c,\
     \ p);\n      print(LCT[c]->x.sum);\n      LCT.link(c, p);\n    }\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_tree_subtree_add_subtree_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/link_cut_tree.hpp\"\
     \n\n/*\nsm \u306F lazy \u53CD\u6620\u6E08\n\u305F\u3060\u3057 light edge \u304B\
     \u3089\u306E lazy_light - cancel \u306F\u672A\u53CD\u6620\n*/\nstruct Node {\n\
     \  using np = Node *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int\
@@ -362,8 +363,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-27 11:55:26+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
 layout: document

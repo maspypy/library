@@ -1,49 +1,49 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   _extendedRequiredBy: []
@@ -53,11 +53,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/enum_partitions.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/enum_partitions.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -472,12 +473,12 @@ data:
     \ assert(a == b);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
     \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
     \n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"random/base.hpp\"\n\n#include \"enumerate/partition.hpp\"\
-    \n#include \"seq/famous/partition_number.hpp\"\n\nusing mint = modint998;\n\n\
-    void test() {\n  FOR(N, 1, 10) {\n    vc<mint> P = partition_number<mint>(N);\n\
-    \    set<vc<int>> ss;\n    auto f = [&](vc<int>& P) -> void {\n      assert(SUM<int>(P)\
-    \ == N);\n      assert(!ss.count(P));\n      ss.insert(P);\n    };\n    enumerate_partition<decltype(f)>(N,\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"random/base.hpp\"\n\n#include \"enumerate/partition.hpp\"\n#include\
+    \ \"seq/famous/partition_number.hpp\"\n\nusing mint = modint998;\n\nvoid test()\
+    \ {\n  FOR(N, 1, 10) {\n    vc<mint> P = partition_number<mint>(N);\n    set<vc<int>>\
+    \ ss;\n    auto f = [&](vc<int>& P) -> void {\n      assert(SUM<int>(P) == N);\n\
+    \      assert(!ss.count(P));\n      ss.insert(P);\n    };\n    enumerate_partition<decltype(f)>(N,\
     \ f);\n    assert(P[N] == len(ss));\n  }\n  FOR(N, 1, 10) {\n    FOR(LIM_len,\
     \ 10) FOR(LIM_val, 10) {\n      int a = 0;\n      auto f = [&](vc<int>& P) ->\
     \ void {\n        if (len(P) <= LIM_len && MAX(P) <= LIM_val) ++a;\n      };\n\
@@ -506,7 +507,7 @@ data:
   isVerificationFile: true
   path: test/mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
+  timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/enum_partitions.test.cpp

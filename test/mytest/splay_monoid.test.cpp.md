@@ -1,39 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/splay_monoid.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/splay_monoid.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -356,29 +357,28 @@ data:
     \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
     \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
     }\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"alg/monoid/assign.hpp\"\n#include \"\
-    mod/modint.hpp\"\n#include \"ds/splaytree/splaytree_monoid.hpp\"\n#include \"\
-    random/base.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  using Mono =\
-    \ Monoid_Assign<int, -1>;\n  SplayTree_Monoid<Mono, 100> X;\n\n  FOR(1000) {\n\
-    \    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int>\
-    \ A(N);\n    FOR(i, N) A[i] = RNG(0, 100);\n    auto root = X.new_node(A);\n\n\
-    \    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0,\
-    \ len(cand))];\n      if (t == 0) {\n        int i = RNG(0, N);\n        assert(A[i]\
-    \ == X.get(root, i));\n      }\n      if (t == 1) {\n        int i = RNG(0, N);\n\
-    \        int x = RNG(0, 100);\n        X.set(root, i, x);\n        A[i] = x;\n\
-    \      }\n      if (t == 2) {\n        int i = RNG(0, N);\n        int x = RNG(0,\
-    \ 100);\n        X.multiply(root, i, x);\n        A[i] = Mono::op(A[i], x);\n\
-    \      }\n      if (t == 3) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
-    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        vc<int> B = {A.begin()\
-    \ + L, A.begin() + R};\n        assert(X.prod(root, L, R) == B.back());\n    \
-    \  }\n      if (t == 4) {\n        int L = RNG(0, N);\n        int R = RNG(0,\
-    \ N);\n        if (L > R) swap(L, R);\n        ++R;\n        X.reverse(root, L,\
-    \ R);\n        reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t ==\
-    \ 5) {\n        vc<int> B = X.get_all(root);\n        assert(A == B);\n      }\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"alg/monoid/assign.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
+    ds/splaytree/splaytree_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
+    \ = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int, -1>;\n  SplayTree_Monoid<Mono,\
+    \ 100> X;\n\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q\
+    \ = RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(0, 100);\n    auto\
+    \ root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4,\
+    \ 5};\n      int t = cand[RNG(0, len(cand))];\n      if (t == 0) {\n        int\
+    \ i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n      if (t\
+    \ == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n        X.set(root,\
+    \ i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n        int i = RNG(0,\
+    \ N);\n        int x = RNG(0, 100);\n        X.multiply(root, i, x);\n       \
+    \ A[i] = Mono::op(A[i], x);\n      }\n      if (t == 3) {\n        int L = RNG(0,\
+    \ N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n\
+    \        vc<int> B = {A.begin() + L, A.begin() + R};\n        assert(X.prod(root,\
+    \ L, R) == B.back());\n      }\n      if (t == 4) {\n        int L = RNG(0, N);\n\
+    \        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n  \
+    \      X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin() + R);\n\
+    \      }\n      if (t == 5) {\n        vc<int> B = X.get_all(root);\n        assert(A\
+    \ == B);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - alg/monoid/assign.hpp
@@ -390,8 +390,8 @@ data:
   isVerificationFile: true
   path: test/mytest/splay_monoid.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-30 00:47:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/splay_monoid.test.cpp
 layout: document

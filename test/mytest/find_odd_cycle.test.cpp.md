@@ -1,45 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/find_odd_cycle.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/find_odd_cycle.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -307,29 +308,29 @@ data:
     \ && e.to == b);\n      }\n      UNIQUE(vs);\n      assert(len(vs) == n);\n  \
     \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
     \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    \n#include \"my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include\
-    \ \"graph/bipartite_vertex_coloring.hpp\"\n#include \"graph/find_odd_cycle.hpp\"\
-    \n\nvc<int> find_odd_cycle_naive(Graph<int, 1> G) {\n  int N = G.N;\n  vc<int>\
-    \ used_v(N);\n  vc<int> path;\n  vc<int> ANS;\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    if (!ANS.empty()) return;\n    for (auto& e: G[v]) {\n   \
-    \   if (e.to == path[0] && len(path) % 2 == 1) {\n        ANS = path;\n      \
-    \  return;\n      }\n      if (!used_v[e.to]) {\n        used_v[e.to] = 1;\n \
-    \       path.eb(e.to);\n        dfs(dfs, e.to);\n        POP(path);\n        used_v[e.to]\
-    \ = 0;\n      }\n    }\n  };\n  FOR(v, N) {\n    used_v[v] = 1;\n    path.eb(v);\n\
-    \    dfs(dfs, v);\n    used_v[v] = 0;\n    path.pop_back();\n  }\n  return ANS;\n\
-    }\n\nvoid test() {\n  FOR(N, 1, 30) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n\
-    \      for (auto& [a, b]: random_graph<0>(N, false)) G.add(a, b);\n      G.build();\n\
-    \      auto color = bipartite_vertex_coloring(G);\n      if (!color.empty()) continue;\n\
-    \      auto [vs, es] = find_odd_cycle(G);\n      int n = len(es);\n      assert(n\
-    \ % 2 == 1);\n      assert(len(vs) == 1 + n);\n      assert(vs[0] == vs[n]);\n\
-    \      FOR(i, n) {\n        int a = vs[i], b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n\
-    \        assert((e.frm == a && e.to == b) || (e.frm == b && e.to == a));\n   \
-    \   }\n      UNIQUE(vs);\n      assert(len(vs) == n);\n    }\n  }\n  FOR(N, 1,\
-    \ 20) {\n    FOR(100) {\n      Graph<int, 1> G(N);\n      for (auto& [a, b]: random_graph<1>(N,\
-    \ false)) G.add(a, b);\n      G.build();\n      auto [vs, es] = find_odd_cycle(G);\n\
-    \      vc<int> ans = find_odd_cycle_naive(G);\n      if (vs.empty()) {\n     \
-    \   assert(ans.empty());\n        continue;\n      }\n      assert(!ans.empty());\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    my_template.hpp\"\n#include \"random/random_graph.hpp\"\n#include \"graph/bipartite_vertex_coloring.hpp\"\
+    \n#include \"graph/find_odd_cycle.hpp\"\n\nvc<int> find_odd_cycle_naive(Graph<int,\
+    \ 1> G) {\n  int N = G.N;\n  vc<int> used_v(N);\n  vc<int> path;\n  vc<int> ANS;\n\
+    \  auto dfs = [&](auto& dfs, int v) -> void {\n    if (!ANS.empty()) return;\n\
+    \    for (auto& e: G[v]) {\n      if (e.to == path[0] && len(path) % 2 == 1) {\n\
+    \        ANS = path;\n        return;\n      }\n      if (!used_v[e.to]) {\n \
+    \       used_v[e.to] = 1;\n        path.eb(e.to);\n        dfs(dfs, e.to);\n \
+    \       POP(path);\n        used_v[e.to] = 0;\n      }\n    }\n  };\n  FOR(v,\
+    \ N) {\n    used_v[v] = 1;\n    path.eb(v);\n    dfs(dfs, v);\n    used_v[v] =\
+    \ 0;\n    path.pop_back();\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(N, 1,\
+    \ 30) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N,\
+    \ false)) G.add(a, b);\n      G.build();\n      auto color = bipartite_vertex_coloring(G);\n\
+    \      if (!color.empty()) continue;\n      auto [vs, es] = find_odd_cycle(G);\n\
+    \      int n = len(es);\n      assert(n % 2 == 1);\n      assert(len(vs) == 1\
+    \ + n);\n      assert(vs[0] == vs[n]);\n      FOR(i, n) {\n        int a = vs[i],\
+    \ b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n        assert((e.frm ==\
+    \ a && e.to == b) || (e.frm == b && e.to == a));\n      }\n      UNIQUE(vs);\n\
+    \      assert(len(vs) == n);\n    }\n  }\n  FOR(N, 1, 20) {\n    FOR(100) {\n\
+    \      Graph<int, 1> G(N);\n      for (auto& [a, b]: random_graph<1>(N, false))\
+    \ G.add(a, b);\n      G.build();\n      auto [vs, es] = find_odd_cycle(G);\n \
+    \     vc<int> ans = find_odd_cycle_naive(G);\n      if (vs.empty()) {\n      \
+    \  assert(ans.empty());\n        continue;\n      }\n      assert(!ans.empty());\n\
     \      int n = len(es);\n\n      assert(n % 2 == 1);\n      assert(len(vs) ==\
     \ 1 + n);\n      assert(vs[0] == vs[n]);\n      FOR(i, n) {\n        int a = vs[i],\
     \ b = vs[i + 1];\n        auto& e = G.edges[es[i]];\n        assert(e.frm == a\
@@ -349,8 +350,8 @@ data:
   isVerificationFile: true
   path: test/mytest/find_odd_cycle.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/find_odd_cycle.test.cpp
 layout: document

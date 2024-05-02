@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D
-  bundledCode: "#line 1 \"test/aoj/DPL_1_D.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/aoj/DPL_1_D.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -192,11 +192,11 @@ data:
     \ vc<T> dp(N, infty<T>);\n  int lis = 0;\n  vc<int> lis_rank(N);\n  FOR(i, N)\
     \ {\n    int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));\n    dp[j] = A[i];\n\
     \    lis_rank[i] = j + 1;\n    chmax(lis, j + 1);\n  }\n  return {lis, lis_rank};\n\
-    }\n#line 5 \"test/aoj/DPL_1_D.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll,\
+    }\n#line 6 \"test/aoj/DPL_1_D.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll,\
     \ A, N);\n  print(longest_increasing_subsequence(A).fi);\n}\n\nsigned main() {\n\
     \  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/longest_increasing_subsequence.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/longest_increasing_subsequence.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  print(longest_increasing_subsequence(A).fi);\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
@@ -206,8 +206,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_D.test.cpp
 layout: document

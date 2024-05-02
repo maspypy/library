@@ -1,32 +1,33 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/directedmst
     links:
     - https://judge.yosupo.jp/problem/directedmst
-  bundledCode: "#line 1 \"test/library_checker/graph/directed_mst.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/directedmst\n#line 1 \"my_template.hpp\"\
+  bundledCode: "#line 1 \"test/library_checker/graph/directed_mst.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/directedmst\"\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
@@ -304,8 +305,8 @@ data:
     \ par(N, -1);\n  par[s] = s;\n  for (auto &idx: I) {\n    auto &e = G.edges[idx];\n\
     \    par[e.to] = e.frm;\n  }\n  print(cost);\n  print(par);\n}\n\nsigned main()\
     \ {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/directedmst\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/directed_mst.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/directedmst\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/directed_mst.hpp\"\
     \n\nvoid solve() {\n  INT(N, M, s);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1,\
     \ 0);\n  auto [cost, I] = directed_mst<decltype(G), 200'000>(G, s);\n  vc<int>\
     \ par(N, -1);\n  par[s] = s;\n  for (auto &idx: I) {\n    auto &e = G.edges[idx];\n\
@@ -320,8 +321,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/directed_mst.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/graph/directed_mst.test.cpp
 layout: document

@@ -1,31 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
-  bundledCode: "#line 1 \"test/aoj/GRL_1_B.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/aoj/GRL_1_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -260,15 +260,15 @@ data:
     \     if (before > after) {\n          par[e.to] = v;\n          upd = 1;\n  \
     \        if (loop >= N) after = -infty<T>;\n          dist[e.to] = after;\n  \
     \      }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n}\n\
-    #line 5 \"test/aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int,\
+    #line 6 \"test/aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int,\
     \ 1> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist, par] = BellmanFord<int>(G,\
     \ s);\n  if (MIN(dist) == -infty<int>) { return print(\"NEGATIVE CYCLE\"); }\n\
     \  for (auto&& x: dist) {\n    if (x == infty<int>)\n      print(\"INF\");\n \
     \   else\n      print(x);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
     \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
     \n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/bellmanford.hpp\"\
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/bellmanford.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1,\
     \ 0);\n\n  auto [dist, par] = BellmanFord<int>(G, s);\n  if (MIN(dist) == -infty<int>)\
     \ { return print(\"NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x ==\
@@ -283,8 +283,8 @@ data:
   isVerificationFile: true
   path: test/aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/GRL_1_B.test.cpp
 layout: document

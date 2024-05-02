@@ -1,27 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/xor_transpose.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/xor_transpose.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -131,19 +132,19 @@ data:
     \ m, A));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
     \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_32();\n  solve();\n  return\
     \ 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n#include \"random/base.hpp\"\n#include \"linalg/xor/transpose.hpp\"\
-    \n\ntemplate <typename UINT>\nvc<UINT> naive(int n, int m, vc<UINT> mat) {\n \
-    \ vc<UINT> after(m);\n  FOR(i, n) FOR(j, m) if (mat[i] >> j & 1) after[j] |= UINT(1)\
-    \ << i;\n  return after;\n}\n\nvoid test_32() {\n  FOR(100) {\n    FOR(n, 33)\
-    \ FOR(m, 33) {\n      vc<u32> A(n);\n      FOR(i, n) FOR(j, m) {\n        u32\
-    \ x = RNG(2);\n        A[i] |= x << j;\n      }\n      assert(transpose<u32>(n,\
-    \ m, A) == naive<u32>(n, m, A));\n    }\n  }\n}\n\nvoid test_64() {\n  FOR(100)\
-    \ {\n    FOR(n, 65) FOR(m, 65) {\n      vc<u64> A(n);\n      FOR(i, n) FOR(j,\
-    \ m) {\n        u64 x = RNG(2);\n        A[i] |= x << j;\n      }\n      assert(transpose<u64>(n,\
-    \ m, A) == naive<u64>(n, m, A));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_32();\n\
-    \  solve();\n  return 0;\n}"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n#include \"random/base.hpp\"\n#include \"linalg/xor/transpose.hpp\"\n\ntemplate\
+    \ <typename UINT>\nvc<UINT> naive(int n, int m, vc<UINT> mat) {\n  vc<UINT> after(m);\n\
+    \  FOR(i, n) FOR(j, m) if (mat[i] >> j & 1) after[j] |= UINT(1) << i;\n  return\
+    \ after;\n}\n\nvoid test_32() {\n  FOR(100) {\n    FOR(n, 33) FOR(m, 33) {\n \
+    \     vc<u32> A(n);\n      FOR(i, n) FOR(j, m) {\n        u32 x = RNG(2);\n  \
+    \      A[i] |= x << j;\n      }\n      assert(transpose<u32>(n, m, A) == naive<u32>(n,\
+    \ m, A));\n    }\n  }\n}\n\nvoid test_64() {\n  FOR(100) {\n    FOR(n, 65) FOR(m,\
+    \ 65) {\n      vc<u64> A(n);\n      FOR(i, n) FOR(j, m) {\n        u64 x = RNG(2);\n\
+    \        A[i] |= x << j;\n      }\n      assert(transpose<u64>(n, m, A) == naive<u64>(n,\
+    \ m, A));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_32();\n  solve();\n  return\
+    \ 0;\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -151,8 +152,8 @@ data:
   isVerificationFile: true
   path: test/mytest/xor_transpose.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/xor_transpose.test.cpp
 layout: document

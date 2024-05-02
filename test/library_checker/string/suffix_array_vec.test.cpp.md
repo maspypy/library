@@ -1,34 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/suffixarray
     links:
     - https://judge.yosupo.jp/problem/suffixarray
   bundledCode: "#line 1 \"test/library_checker/string/suffix_array_vec.test.cpp\"\n\
-    // competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/suffixarray\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\r\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -192,8 +193,8 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/string/suffix_array_vec.test.cpp\"\
-    \n\n#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\n\r\n\
-    template <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
+    \n\r\n#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\n\r\
+    \ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
     \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
     \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
     \ bool commute = true;\r\n};\r\n#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\
@@ -293,14 +294,16 @@ data:
     \      }\n      int j = SA[ISA[i] + 1];\n      while (i + k < n && j + k < n &&\
     \ s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n    }\n    LCP.resize(n\
     \ - 1);\n  }\n};\n#line 6 \"test/library_checker/string/suffix_array_vec.test.cpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  auto A = s_to_vi(S, 'a');\n  Suffix_Array sa(S);\n\
-    \  print(sa.SA);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/suffixarray\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"string/suffix_array.hpp\"\
-    \n\nvoid solve() {\n  STR(S);\n  auto A = s_to_vi(S, 'a');\n  Suffix_Array sa(S);\n\
-    \  print(sa.SA);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto A = s_to_vi(S, 'a');\r\n  Suffix_Array\
+    \ sa(S);\r\n  print(sa.SA);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/suffixarray\"\r\n#include\
+    \ \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"string/suffix_array.hpp\"\
+    \r\n\r\nvoid solve() {\r\n  STR(S);\r\n  auto A = s_to_vi(S, 'a');\r\n  Suffix_Array\
+    \ sa(S);\r\n  print(sa.SA);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -310,8 +313,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/suffix_array_vec.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-03 01:43:19+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/suffix_array_vec.test.cpp
 layout: document

@@ -1,45 +1,46 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
     links:
     - https://judge.yosupo.jp/problem/count_points_in_triangle
   bundledCode: "#line 1 \"test/library_checker/geometry/count_points_in_triangles.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/count_points_in_triangle\n\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -420,8 +421,8 @@ data:
     \  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles\
     \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b,\
     \ c));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/count_points_in_triangle\n\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/count_points_in_triangles.hpp\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/count_points_in_triangles.hpp\"\
     \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> A(N);\n  FOR(i,\
     \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles\
     \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b,\
@@ -439,8 +440,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-09 15:17:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/count_points_in_triangles.test.cpp
 layout: document

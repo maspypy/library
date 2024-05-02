@@ -1,42 +1,43 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_P3_P4_P5.hpp
     title: graph/count/count_P3_P4_P5.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/count_P3P4P5.test.cpp\"\n// competitive-verifier:\
-    \ PROBLEM https://judge.yosupo.jp/problem/aplusb\n#line 1 \"my_template.hpp\"\n\
-    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/count_P3P4P5.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -286,24 +287,23 @@ data:
     \      assert(A == X);\n      assert(B == Y);\n      assert(C == Z);\n    }\n\
     \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
     \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/aplusb\n\
-    #include \"my_template.hpp\"\n\n#include \"random/random_graph.hpp\"\n#include\
-    \ \"graph/count/count_P3_P4_P5.hpp\"\n\nvoid test() {\n  FOR(N, 20) {\n    FOR(50)\
-    \ {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<false>(N,\
-    \ true)) G.add(a, b);\n      G.build();\n      vv(int, adj, N, N);\n      for\
-    \ (auto& e: G.edges) adj[e.frm][e.to] += 1, adj[e.to][e.frm] += 1;\n      vi A(N),\
-    \ B(N), C(N);\n      FOR(a, N) FOR(b, N) FOR(c, N) {\n        int s = (1 << a)\
-    \ | (1 << b) | (1 << c);\n        if (popcnt(s) != 3) continue;\n        A[a]\
-    \ += adj[a][b] * adj[b][c];\n      }\n      FOR(a, N) FOR(b, N) FOR(c, N) FOR(d,\
-    \ N) {\n        int s = (1 << a) | (1 << b) | (1 << c) | (1 << d);\n        if\
-    \ (popcnt(s) != 4) continue;\n        B[a] += adj[a][b] * adj[b][c] * adj[c][d];\n\
-    \      }\n      FOR(a, N) FOR(b, N) FOR(c, N) FOR(d, N) FOR(e, N) {\n        int\
-    \ s = (1 << a) | (1 << b) | (1 << c) | (1 << d) | (1 << e);\n        if (popcnt(s)\
-    \ != 5) continue;\n        C[a] += adj[a][b] * adj[b][c] * adj[c][d] * adj[d][e];\n\
-    \      }\n      auto [X, Y, Z] = count_P3_P4_P5_pointwise(G);\n      assert(A\
-    \ == X);\n      assert(B == Y);\n      assert(C == Z);\n    }\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"random/random_graph.hpp\"\n#include \"graph/count/count_P3_P4_P5.hpp\"\
+    \n\nvoid test() {\n  FOR(N, 20) {\n    FOR(50) {\n      Graph<int, 0> G(N);\n\
+    \      for (auto& [a, b]: random_graph<false>(N, true)) G.add(a, b);\n      G.build();\n\
+    \      vv(int, adj, N, N);\n      for (auto& e: G.edges) adj[e.frm][e.to] += 1,\
+    \ adj[e.to][e.frm] += 1;\n      vi A(N), B(N), C(N);\n      FOR(a, N) FOR(b, N)\
+    \ FOR(c, N) {\n        int s = (1 << a) | (1 << b) | (1 << c);\n        if (popcnt(s)\
+    \ != 3) continue;\n        A[a] += adj[a][b] * adj[b][c];\n      }\n      FOR(a,\
+    \ N) FOR(b, N) FOR(c, N) FOR(d, N) {\n        int s = (1 << a) | (1 << b) | (1\
+    \ << c) | (1 << d);\n        if (popcnt(s) != 4) continue;\n        B[a] += adj[a][b]\
+    \ * adj[b][c] * adj[c][d];\n      }\n      FOR(a, N) FOR(b, N) FOR(c, N) FOR(d,\
+    \ N) FOR(e, N) {\n        int s = (1 << a) | (1 << b) | (1 << c) | (1 << d) |\
+    \ (1 << e);\n        if (popcnt(s) != 5) continue;\n        C[a] += adj[a][b]\
+    \ * adj[b][c] * adj[c][d] * adj[d][e];\n      }\n      auto [X, Y, Z] = count_P3_P4_P5_pointwise(G);\n\
+    \      assert(A == X);\n      assert(B == Y);\n      assert(C == Z);\n    }\n\
+    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/random_graph.hpp
@@ -316,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/mytest/count_P3P4P5.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-19 02:20:22+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_P3P4P5.test.cpp
 layout: document

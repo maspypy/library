@@ -1,33 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_range_inversions_query
     links:
     - https://judge.yosupo.jp/problem/static_range_inversions_query
   bundledCode: "#line 1 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_inversions_query\n\
-    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
+    \r\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -192,7 +193,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
-    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
+    \n\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
@@ -275,35 +276,37 @@ data:
     \  while (r < LR[idx].se) add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\
     \n      while (r > LR[idx].se) rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\
     \n};\r\n#line 7 \"test/library_checker/datastructure/static_range_inversions_mo.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n  vi key = A;\n  UNIQUE(key);\n\
-    \n  for (auto&& x: A) x = LB(key, x);\n  ll K = len(key);\n  FenwickTree<Monoid_Add<int>>\
-    \ bit(K);\n\n  Mo mo;\n  vi ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L,\
-    \ R);\n  }\n\n  ll inv = 0;\n  auto add_l = [&](int i) -> void {\n    int x =\
-    \ A[i];\n    inv += bit.sum(x);\n    bit.add(x, +1);\n  };\n  auto rm_l = [&](int\
-    \ i) -> void {\n    int x = A[i];\n    bit.add(x, -1);\n    inv -= bit.sum(x);\n\
-    \  };\n  auto add_r = [&](int i) -> void {\n    int x = A[i];\n    inv += bit.sum_all()\
-    \ - bit.sum(x + 1);\n    bit.add(x, +1);\n  };\n  auto rm_r = [&](int i) -> void\
-    \ {\n    int x = A[i];\n    bit.add(x, -1);\n    inv -= bit.sum_all() - bit.sum(x\
-    \ + 1);\n  };\n  auto calc = [&](int i) -> void { ANS[i] = inv; };\n  mo.calc(add_l,\
-    \ add_r, rm_l, rm_r, calc);\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/static_range_inversions_query\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n#include \"ds/offline_query/mo.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll,\
-    \ A, N);\n  vi key = A;\n  UNIQUE(key);\n\n  for (auto&& x: A) x = LB(key, x);\n\
-    \  ll K = len(key);\n  FenwickTree<Monoid_Add<int>> bit(K);\n\n  Mo mo;\n  vi\
-    \ ANS(Q);\n  FOR(Q) {\n    LL(L, R);\n    mo.add(L, R);\n  }\n\n  ll inv = 0;\n\
-    \  auto add_l = [&](int i) -> void {\n    int x = A[i];\n    inv += bit.sum(x);\n\
-    \    bit.add(x, +1);\n  };\n  auto rm_l = [&](int i) -> void {\n    int x = A[i];\n\
-    \    bit.add(x, -1);\n    inv -= bit.sum(x);\n  };\n  auto add_r = [&](int i)\
-    \ -> void {\n    int x = A[i];\n    inv += bit.sum_all() - bit.sum(x + 1);\n \
-    \   bit.add(x, +1);\n  };\n  auto rm_r = [&](int i) -> void {\n    int x = A[i];\n\
-    \    bit.add(x, -1);\n    inv -= bit.sum_all() - bit.sum(x + 1);\n  };\n  auto\
-    \ calc = [&](int i) -> void { ANS[i] = inv; };\n  mo.calc(add_l, add_r, rm_l,\
-    \ rm_r, calc);\n  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
+    \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
+    \n  FenwickTree<Monoid_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n \
+    \ FOR(Q) {\r\n    LL(L, R);\r\n    mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\
+    \n  auto add_l = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\
+    \n    bit.add(x, +1);\r\n  };\r\n  auto rm_l = [&](int i) -> void {\r\n    int\
+    \ x = A[i];\r\n    bit.add(x, -1);\r\n    inv -= bit.sum(x);\r\n  };\r\n  auto\
+    \ add_r = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum_all()\
+    \ - bit.sum(x + 1);\r\n    bit.add(x, +1);\r\n  };\r\n  auto rm_r = [&](int i)\
+    \ -> void {\r\n    int x = A[i];\r\n    bit.add(x, -1);\r\n    inv -= bit.sum_all()\
+    \ - bit.sum(x + 1);\r\n  };\r\n  auto calc = [&](int i) -> void { ANS[i] = inv;\
+    \ };\r\n  mo.calc(add_l, add_r, rm_l, rm_r, calc);\r\n  for (auto&& x: ANS) print(x);\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_inversions_query\"\
+    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
+    \ \"ds/fenwicktree/fenwicktree.hpp\"\r\n#include \"ds/offline_query/mo.hpp\"\r\
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  vi key = A;\r\n \
+    \ UNIQUE(key);\r\n\r\n  for (auto&& x: A) x = LB(key, x);\r\n  ll K = len(key);\r\
+    \n  FenwickTree<Monoid_Add<int>> bit(K);\r\n\r\n  Mo mo;\r\n  vi ANS(Q);\r\n \
+    \ FOR(Q) {\r\n    LL(L, R);\r\n    mo.add(L, R);\r\n  }\r\n\r\n  ll inv = 0;\r\
+    \n  auto add_l = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum(x);\r\
+    \n    bit.add(x, +1);\r\n  };\r\n  auto rm_l = [&](int i) -> void {\r\n    int\
+    \ x = A[i];\r\n    bit.add(x, -1);\r\n    inv -= bit.sum(x);\r\n  };\r\n  auto\
+    \ add_r = [&](int i) -> void {\r\n    int x = A[i];\r\n    inv += bit.sum_all()\
+    \ - bit.sum(x + 1);\r\n    bit.add(x, +1);\r\n  };\r\n  auto rm_r = [&](int i)\
+    \ -> void {\r\n    int x = A[i];\r\n    bit.add(x, -1);\r\n    inv -= bit.sum_all()\
+    \ - bit.sum(x + 1);\r\n  };\r\n  auto calc = [&](int i) -> void { ANS[i] = inv;\
+    \ };\r\n  mo.calc(add_l, add_r, rm_l, rm_r, calc);\r\n  for (auto&& x: ANS) print(x);\r\
+    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    \n  cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -313,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-09 15:17:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
 layout: document

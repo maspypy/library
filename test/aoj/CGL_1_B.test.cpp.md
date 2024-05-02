@@ -1,31 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    ERROR: '0.00000001'
+    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B
-  bundledCode: "#line 1 \"test/aoj/CGL_1_B.test.cpp\"\n// competitive-verifier: PROBLEM\
-    \ https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\n// competitive-verifier:\
-    \ ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/aoj/CGL_1_B.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
+    \n#define ERROR 0.00000001\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -189,7 +190,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 6 \"test/aoj/CGL_1_B.test.cpp\"\n\n#line 2 \"geo/reflection.hpp\"\
+    \ yes(!t); }\r\n#line 7 \"test/aoj/CGL_1_B.test.cpp\"\n\n#line 2 \"geo/reflection.hpp\"\
     \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
     \n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
     \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
@@ -252,19 +253,19 @@ data:
     #line 4 \"geo/reflection.hpp\"\n\ntemplate <typename REAL, typename T, typename\
     \ U>\nPoint<REAL> reflection(Point<T> P, Line<U> L) {\n  REAL t = REAL(L.eval(P))\
     \ / (L.a * L.a + L.b * L.b);\n  REAL x = P.x - 2 * t * L.a;\n  REAL y = P.y -\
-    \ 2 * t * L.b;\n  return Point<REAL>(x, y);\n};\n#line 8 \"test/aoj/CGL_1_B.test.cpp\"\
+    \ 2 * t * L.b;\n  return Point<REAL>(x, y);\n};\n#line 9 \"test/aoj/CGL_1_B.test.cpp\"\
     \n\nvoid solve() {\n  using Re = double;\n  LL(a, b, c, d);\n  Line<ll> L(a, b,\
     \ c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x, y);\n    Point<Re> p = reflection<Re,\
     \ ll, ll>(Point<ll>(x, y), L);\n    print(p.x, p.y);\n  }\n}\n\nsigned main()\
     \ {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T)\
     \ solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\n\
-    // competitive-verifier: ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include\
-    \ \"other/io.hpp\"\n\n#include \"geo/reflection.hpp\"\n\nvoid solve() {\n  using\
-    \ Re = double;\n  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q)\
-    \ {\n    LL(x, y);\n    Point<Re> p = reflection<Re, ll, ll>(Point<ll>(x, y),\
-    \ L);\n    print(p.x, p.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_1_B\"\
+    \n#define ERROR 0.00000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
+    \n\n#include \"geo/reflection.hpp\"\n\nvoid solve() {\n  using Re = double;\n\
+    \  LL(a, b, c, d);\n  Line<ll> L(a, b, c, d);\n  LL(Q);\n  FOR(Q) {\n    LL(x,\
+    \ y);\n    Point<Re> p = reflection<Re, ll, ll>(Point<ll>(x, y), L);\n    print(p.x,\
+    \ p.y);\n  }\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n \
+    \ ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -273,8 +274,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-03-29 11:46:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/CGL_1_B.test.cpp
 layout: document

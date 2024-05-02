@@ -1,30 +1,31 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/min_of_linear.hpp
     title: mod/min_of_linear.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
     links:
     - https://judge.yosupo.jp/problem/min_of_mod_of_linear
   bundledCode: "#line 1 \"test/library_checker/math/min_of_mod_of_linear.test.cpp\"\
-    \n// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/min_of_mod_of_linear\n\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -219,7 +220,7 @@ data:
     \ {\n  LL(n, m, a, b);\n  auto [x, fx] = min_of_linear(0, n, a, b, m);\n  print(fx);\n\
     }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  LL(T);\n  FOR(T)\
     \ solve();\n\n  return 0;\n}\n"
-  code: "// competitive-verifier: PROBLEM https://judge.yosupo.jp/problem/min_of_mod_of_linear\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/min_of_linear.hpp\"\
     \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto [x, fx] = min_of_linear(0, n, a,\
     \ b, m);\n  print(fx);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
@@ -232,8 +233,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/min_of_mod_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 05:27:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-04-09 15:17:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/min_of_mod_of_linear.test.cpp
 layout: document
