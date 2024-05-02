@@ -22,7 +22,6 @@ vc<mint> multivar_convolution_cyclic(vc<int> ns, vc<mint> f, vc<mint>& g) {
 
   FOR(k, K) { root[k] = r.pow((p - 1) / ns[k]); }
   FOR(k, K) { iroot[k] = ir.pow((p - 1) / ns[k]); }
-
   int step = 1;
   FOR(k, K) {
     int n = ns[k];
