@@ -45,10 +45,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/string/prefix_substring_lcs.test.cpp
     title: test/library_checker/string/prefix_substring_lcs.test.cpp
-  - icon: ':x:'
-    path: test/mytest/wavelet_matrix.test.cpp
-    title: test/mytest/wavelet_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,7 +105,6 @@ data:
   timestamp: '2022-12-12 13:31:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/wavelet_matrix.test.cpp
   - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/924.test.cpp
   - test/yukicoder/1919_2.test.cpp
