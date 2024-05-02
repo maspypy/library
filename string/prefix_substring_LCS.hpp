@@ -22,7 +22,7 @@ struct Prefix_Substring_LCS {
       dph[i][j] = (same ? b : max(a, b));
       dpv[i][j] = (same ? a : min(a, b));
     }
-    FOR(i, N + 1) { WM.eb(Wavelet_Matrix<int, 0>(dph[i])); }
+    FOR(i, N + 1) { WM.eb(Wavelet_Matrix<int, 0, 0>(dph[i])); }
   }
 
   // LCS(S[0:n], T[L:R])
