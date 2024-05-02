@@ -15,7 +15,7 @@ void solve() {
     }
     if (t == 2) { query.eb(len(A)); }
   }
-  Wavelet_Matrix<ll, 1> X(A, A);
+  Wavelet_Matrix<ll, 1, 1> X(A, A);
   auto Bc = cumsum<ll>(B);
 
   for (auto&& n: query) {
