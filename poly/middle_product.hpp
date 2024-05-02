@@ -46,7 +46,7 @@ vc<mint> middle_product_garner(vc<mint>& a, vc<mint> b) {
   auto c1 = middle_product<mint1>(a1, b1);
   auto c2 = middle_product<mint2>(a2, b2);
   vc<mint> c(len(c0));
-  FOR(i, n + m - 1) {
+  FOR(i, n - m + 1) {
     c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
   }
   return c;
