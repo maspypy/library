@@ -124,6 +124,53 @@ struct Wavelet_Matrix {
     return kth_value_sum(L, R, k, xor_val).fi;
   }
 
+  // x 以上
+  T next(int L, int R, T x, T xor_val = 0) {
+    if (xor_val != 0) assert(set_log);
+    if (L == R) return infty<T>;
+    T ans = infty<T>;
+
+    auto dfs = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {
+      if (ans <= lx || L == R || rx <= x) return;
+      if (d == 0) {
+        chmin(ans, lx);
+        return;
+      }
+      --d;
+      T mx = (lx + rx) / 2;
+      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);
+      dfs(dfs, d, l0, r0, lx, mx), dfs(dfs, d, l1, r1, mx, rx);
+    };
+    dfs(dfs, lg, L, R, 0, T(1) << lg);
+    return ans;
+  }
+
+  // x 以上
+  T prev(int L, int R, T x, T xor_val = 0) {
+    if (xor_val != 0) assert(set_log);
+    if (L == R) return infty<T>;
+    static_assert(is_same_v<T, int> || is_same_v<T, ll>);
+    T ans = -1;
+
+    auto dfs = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {
+      if ((rx - 1) <= ans || L == R || x < lx) return;
+      if (d == 0) {
+        chmin(ans, lx);
+        return;
+      }
+      --d;
+      T mx = (lx + rx) / 2;
+      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);
+      dfs(dfs, d, l1, r1, mx, rx), dfs(dfs, d, l0, r0, lx, mx);
+    };
+    dfs(dfs, lg, L, R, 0, T(1) << lg);
+    return ans;
+  }
+
   // xor した結果で、[L, R) の中で中央値。
   // LOWER = true：下側中央値、false：上側中央値
   T median(bool UPPER, int L, int R, T xor_val = 0) {
