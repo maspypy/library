@@ -1605,7 +1605,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
     - icon: ':question:'
@@ -2610,7 +2610,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
       title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
       title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     - icon: ':heavy_check_mark:'

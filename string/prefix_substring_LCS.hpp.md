@@ -130,7 +130,7 @@ data:
     \ 1, N + 1) FOR(j, 1, M + 1) {\n      bool same = S[i - 1] == T[j - 1];\n    \
     \  int a = dph[i - 1][j], b = dpv[i][j - 1];\n      dph[i][j] = (same ? b : max(a,\
     \ b));\n      dpv[i][j] = (same ? a : min(a, b));\n    }\n    FOR(i, N + 1) {\
-    \ WM.eb(Wavelet_Matrix<int, 0>(dph[i])); }\n  }\n\n  // LCS(S[0:n], T[L:R])\n\
+    \ WM.eb(Wavelet_Matrix<int, 0, 0>(dph[i])); }\n  }\n\n  // LCS(S[0:n], T[L:R])\n\
     \  int query(int n, int L, int R) { return WM[n].count(L + 1, R + 1, 0, L + 1);\
     \ }\n};\n"
   code: "#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
@@ -142,7 +142,7 @@ data:
     \ 1, N + 1) FOR(j, 1, M + 1) {\n      bool same = S[i - 1] == T[j - 1];\n    \
     \  int a = dph[i - 1][j], b = dpv[i][j - 1];\n      dph[i][j] = (same ? b : max(a,\
     \ b));\n      dpv[i][j] = (same ? a : min(a, b));\n    }\n    FOR(i, N + 1) {\
-    \ WM.eb(Wavelet_Matrix<int, 0>(dph[i])); }\n  }\n\n  // LCS(S[0:n], T[L:R])\n\
+    \ WM.eb(Wavelet_Matrix<int, 0, 0>(dph[i])); }\n  }\n\n  // LCS(S[0:n], T[L:R])\n\
     \  int query(int n, int L, int R) { return WM[n].count(L + 1, R + 1, 0, L + 1);\
     \ }\n};\n"
   dependsOn:
@@ -151,7 +151,7 @@ data:
   isVerificationFile: false
   path: string/prefix_substring_LCS.hpp
   requiredBy: []
-  timestamp: '2024-05-03 02:10:55+09:00'
+  timestamp: '2024-05-03 02:51:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/prefix_substring_lcs.test.cpp

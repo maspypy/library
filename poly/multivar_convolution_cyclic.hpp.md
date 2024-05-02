@@ -66,12 +66,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -388,7 +388,7 @@ data:
     \ a1[i] = a[i].val, a2[i] = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val,\
     \ b2[i] = b[i].val;\n  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
     \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n \
-    \ FOR(i, n + m - 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
+    \ FOR(i, n - m + 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
     \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
     \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
     \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 2 \"mod/all_inverse.hpp\"\
@@ -559,7 +559,7 @@ data:
     \n  int K = len(ns);\n  int N = 1;\n  for (auto&& n: ns) N *= n;\n  assert(len(f)\
     \ == N);\n  assert(len(g) == N);\n  vc<mint> root(K), iroot(K);\n\n  FOR(k, K)\
     \ { root[k] = r.pow((p - 1) / ns[k]); }\n  FOR(k, K) { iroot[k] = ir.pow((p -\
-    \ 1) / ns[k]); }\n\n  int step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
+    \ 1) / ns[k]); }\n  int step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
     \ N) if (i % (step * n) < step) {\n      vc<mint> a(n), b(n);\n      FOR(j, n)\
     \ {\n        a[j] = f[i + step * j];\n        b[j] = g[i + step * j];\n      }\n\
     \      a = multipoint_eval_on_geom_seq(a, mint(1), root[k], n);\n      b = multipoint_eval_on_geom_seq(b,\
@@ -585,7 +585,7 @@ data:
     \n  int K = len(ns);\n  int N = 1;\n  for (auto&& n: ns) N *= n;\n  assert(len(f)\
     \ == N);\n  assert(len(g) == N);\n  vc<mint> root(K), iroot(K);\n\n  FOR(k, K)\
     \ { root[k] = r.pow((p - 1) / ns[k]); }\n  FOR(k, K) { iroot[k] = ir.pow((p -\
-    \ 1) / ns[k]); }\n\n  int step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
+    \ 1) / ns[k]); }\n  int step = 1;\n  FOR(k, K) {\n    int n = ns[k];\n    FOR(i,\
     \ N) if (i % (step * n) < step) {\n      vc<mint> a(n), b(n);\n      FOR(j, n)\
     \ {\n        a[j] = f[i + step * j];\n        b[j] = g[i + step * j];\n      }\n\
     \      a = multipoint_eval_on_geom_seq(a, mint(1), root[k], n);\n      b = multipoint_eval_on_geom_seq(b,\
@@ -627,8 +627,8 @@ data:
   isVerificationFile: false
   path: poly/multivar_convolution_cyclic.hpp
   requiredBy: []
-  timestamp: '2024-05-01 06:03:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-05-03 02:48:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
 documentation_of: poly/multivar_convolution_cyclic.hpp
