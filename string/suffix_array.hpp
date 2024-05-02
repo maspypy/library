@@ -62,7 +62,6 @@ struct Suffix_Array {
   //  0: S[L1:R1) = S[L2, R2)
   // +1: S[L1:R1) > S[L2, R2)
   int compare(int L1, int R1, int L2, int R2) {
-    int N = len(SA);
     int n1 = R1 - L1, n2 = R2 - L2;
     int n = lcp(L1, L2);
     if (n == n1 && n == n2) return 0;
