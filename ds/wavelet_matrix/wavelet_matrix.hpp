@@ -4,6 +4,7 @@
 // xor 的な使い方をする場合には、コンストラクタで log を渡すこと
 template <typename T, bool COMPRESS, bool USE_SUM>
 struct Wavelet_Matrix {
+  static_assert(is_same_v<T, int> || is_same_v<T, ll>);
   int N, lg;
   vector<int> mid;
   vector<Bit_Vector> bv;
@@ -23,6 +24,8 @@ struct Wavelet_Matrix {
     N = len(A), lg = log, set_log = (log != -1);
     if (N == 0) {
       lg = 0;
+      cumsum.resize(1);
+      cumsum[0] = {0};
       return;
     }
     vc<T>& S = SUM_data;
@@ -69,6 +72,7 @@ struct Wavelet_Matrix {
   pair<int, T> range_cnt_sum(int L, int R, T a, T b, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
     if (a == b) return {0, 0};
+    if (COMPRESS) a = LB(key, a), b = LB(key, b);
     int cnt = 0;
     T sm = 0;
     auto dfs = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {
@@ -117,17 +121,25 @@ struct Wavelet_Matrix {
     return range_cnt_sum(L, R, a, b, xor_val).fi;
   }
   T sum(int L, int R, T a, T b, T xor_val = 0) {
+    static_assert(USE_SUM);
     return range_cnt_sum(L, R, a, b, xor_val).se;
+  }
+
+  T sum_index_range(int L, int R, int k1, int k2, T xor_val = 0) {
+    static_assert(USE_SUM);
+    return kth_value_sum(L, R, k2, xor_val).se
+           - kth_value_sum(L, R, k1, xor_val).se;
   }
   T kth(int L, int R, int k, T xor_val = 0) {
     assert(0 <= k && k < R - L);
     return kth_value_sum(L, R, k, xor_val).fi;
   }
 
-  // x 以上
+  // x 以上最小 OR infty<T>
   T next(int L, int R, T x, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
     if (L == R) return infty<T>;
+    if (COMPRESS) x = LB(key, x);
     T ans = infty<T>;
 
     auto dfs = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {
@@ -144,20 +156,22 @@ struct Wavelet_Matrix {
       dfs(dfs, d, l0, r0, lx, mx), dfs(dfs, d, l1, r1, mx, rx);
     };
     dfs(dfs, lg, L, R, 0, T(1) << lg);
+    if (COMPRESS && ans < infty<T>) ans = key[ans];
     return ans;
   }
 
-  // x 以上
+  // x 以下最大 OR -infty<T>
   T prev(int L, int R, T x, T xor_val = 0) {
     if (xor_val != 0) assert(set_log);
-    if (L == R) return infty<T>;
-    static_assert(is_same_v<T, int> || is_same_v<T, ll>);
-    T ans = -1;
+    if (L == R) return -infty<T>;
+    T ans = -infty<int>;
+    ++x;
+    if (COMPRESS) x = LB(key, x);
 
     auto dfs = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {
-      if ((rx - 1) <= ans || L == R || x < lx) return;
+      if ((rx - 1) <= ans || L == R || x <= lx) return;
       if (d == 0) {
-        chmin(ans, lx);
+        chmax(ans, lx);
         return;
       }
       --d;
@@ -168,6 +182,7 @@ struct Wavelet_Matrix {
       dfs(dfs, d, l1, r1, mx, rx), dfs(dfs, d, l0, r0, lx, mx);
     };
     dfs(dfs, lg, L, R, 0, T(1) << lg);
+    if (COMPRESS && ans != -infty<T>) ans = key[ans];
     return ans;
   }
 
@@ -210,7 +225,7 @@ struct Wavelet_Matrix {
 
 private:
   inline T get(int d, int L, int R) {
-    if constexpr (USE_SUM) cumsum[d][R] - cumsum[d][L];
+    if constexpr (USE_SUM) return cumsum[d][R] - cumsum[d][L];
     return 0;
   }
 };
