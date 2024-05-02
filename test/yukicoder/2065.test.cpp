@@ -6,12 +6,11 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  Wavelet_Matrix<ll, true, Monoid_Add<ll>> X(A, A);
+  Wavelet_Matrix<ll, true, true> X(A, A);
   FOR(Q) {
     LL(l, r, x);
     --l;
-    int k = X.count(l, r, 0, x);
-    ll sm = X.sum(l, r, 0, k);
+    auto [k, sm] = X.range_cnt_sum(l, r, 0, x);
     ll ANS = (r - l - k) * x + sm;
     print(ANS);
   }
