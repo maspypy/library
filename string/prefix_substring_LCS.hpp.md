@@ -9,12 +9,12 @@ data:
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/prefix_substring_lcs.test.cpp
     title: test/library_checker/string/prefix_substring_lcs.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/111625
@@ -130,7 +130,7 @@ data:
     \  }\r\n\r\nprivate:\r\n  inline T get(int d, int L, int R) {\r\n    if constexpr\
     \ (USE_SUM) return cumsum[d][R] - cumsum[d][L];\r\n    return 0;\r\n  }\r\n};\n\
     #line 2 \"string/prefix_substring_LCS.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
-    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, 0>> WM;\n\
+    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, 0, 0>> WM;\n\
     \n  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
     \    build(S, T);\n  }\n\n  template <typename STRING>\n  void build(STRING S,\
     \ STRING T) {\n    N = len(S), M = len(T);\n    vv(int, dph, N + 1, M + 1);\n\
@@ -142,7 +142,7 @@ data:
     \  int query(int n, int L, int R) { return WM[n].count(L + 1, R + 1, 0, L + 1);\
     \ }\n};\n"
   code: "#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
-    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, 0>> WM;\n\
+    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, 0, 0>> WM;\n\
     \n  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
     \    build(S, T);\n  }\n\n  template <typename STRING>\n  void build(STRING S,\
     \ STRING T) {\n    N = len(S), M = len(T);\n    vv(int, dph, N + 1, M + 1);\n\
@@ -159,8 +159,8 @@ data:
   isVerificationFile: false
   path: string/prefix_substring_LCS.hpp
   requiredBy: []
-  timestamp: '2024-05-03 03:33:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-05-03 03:59:48+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/string/prefix_substring_lcs.test.cpp
 documentation_of: string/prefix_substring_LCS.hpp

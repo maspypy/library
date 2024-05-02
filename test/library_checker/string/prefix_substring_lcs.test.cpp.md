@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/prefix_substring_lcs
@@ -305,7 +305,7 @@ data:
     \  }\r\n\r\nprivate:\r\n  inline T get(int d, int L, int R) {\r\n    if constexpr\
     \ (USE_SUM) return cumsum[d][R] - cumsum[d][L];\r\n    return 0;\r\n  }\r\n};\n\
     #line 2 \"string/prefix_substring_LCS.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
-    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, 0>> WM;\n\
+    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, 0, 0>> WM;\n\
     \n  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
     \    build(S, T);\n  }\n\n  template <typename STRING>\n  void build(STRING S,\
     \ STRING T) {\n    N = len(S), M = len(T);\n    vv(int, dph, N + 1, M + 1);\n\
@@ -333,8 +333,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 03:33:06+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-03 03:59:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/prefix_substring_lcs.test.cpp
 layout: document
