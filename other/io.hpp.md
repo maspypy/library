@@ -378,10 +378,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1807,12 +1807,15 @@ data:
     path: test_atcoder/abc218c.test.cpp
     title: test_atcoder/abc218c.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc218g.test.cpp
+    title: test_atcoder/abc218g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1869,7 +1872,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc237g1.test.cpp
     title: test_atcoder/abc237g1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc240ex.test.cpp
     title: test_atcoder/abc240ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2883,6 +2886,7 @@ data:
   - test_atcoder/abc237g1.test.cpp
   - test_atcoder/abc314f.test.cpp
   - test_atcoder/abc217e.test.cpp
+  - test_atcoder/abc218g.test.cpp
   - test_atcoder/abc236h.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test_atcoder/arc157a.test.cpp

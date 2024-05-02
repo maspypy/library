@@ -1,18 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/monoid/affine.hpp
-    title: alg/monoid/affine.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/segtree/segtree.hpp
-    title: ds/segtree/segtree.hpp
-  - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
+    path: ds/binary_trie.hpp
+    title: ds/binary_trie.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -26,11 +17,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
+    PROBLEM: https://atcoder.jp/contests/abc218/tasks/abc218_g
     links:
-    - https://judge.yosupo.jp/problem/point_set_range_composite
-  bundledCode: "#line 1 \"test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
+    - https://atcoder.jp/contests/abc218/tasks/abc218_g
+  bundledCode: "#line 1 \"test_atcoder/abc218g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc218/tasks/abc218_g\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -195,162 +185,108 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp\"\
-    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
-    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
-    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
-    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
-    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
-    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
-    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
-    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
-    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
-    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
-    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
-    \u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n\
-    \  using value_type = F;\n  using X = value_type;\n  static constexpr F op(const\
-    \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
-    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
-    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
-    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class\
-    \ Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
-    \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n\
-    \  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f)\
-    \ {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void\
-    \ build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n\
-    \  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i];\
-    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log\
-    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
-    \ update(i);\n  }\n\n  X get(int i) { return dat[size + i]; }\n  vc<X> get_all()\
-    \ { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
-    \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
-    \ X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
-    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
-    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
-    \  X prod(int L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n    X vl =\
-    \ Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while (L\
-    \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
-    \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
-    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
-    \ max_right(F check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
-    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
-    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
-    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
-    \ dat[L]))) { sm = Monoid::op(sm, dat[L++]); }\n        }\n        return L -\
-    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
-    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
-    \ int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R\
-    \ == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n    \
-    \  --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
-    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
-    \ (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }\n       \
-    \ }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n\
-    \    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r} A[i xor\
-    \ x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
-    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
-    \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
-    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
-    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
-    \  }\n};\n#line 8 \"test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp\"\
-    \n\nusing mint = modint998;\nusing Mono = Monoid_Affine<mint>;\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  SegTree<Mono> seg(N, [&](int i) -> pair<mint, mint> {\n  \
-    \  INT(a, b);\n    return {a, b};\n  });\n  FOR(Q) {\n    INT(t);\n    if (t ==\
-    \ 0) {\n      INT(i, a, b);\n      seg.set(i, {a, b});\n    } else {\n      INT(L,\
-    \ R, x);\n      print(Mono::eval(seg.prod(L, R), mint(x)));\n    }\n  }\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_composite\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
-    \n#include \"alg/monoid/affine.hpp\"\n#include \"ds/segtree/segtree.hpp\"\n\n\
-    using mint = modint998;\nusing Mono = Monoid_Affine<mint>;\n\nvoid solve() {\n\
-    \  LL(N, Q);\n  SegTree<Mono> seg(N, [&](int i) -> pair<mint, mint> {\n    INT(a,\
-    \ b);\n    return {a, b};\n  });\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n\
-    \      INT(i, a, b);\n      seg.set(i, {a, b});\n    } else {\n      INT(L, R,\
-    \ x);\n      print(Mono::eval(seg.prod(L, R), mint(x)));\n    }\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}"
+    \ yes(!t); }\r\n#line 4 \"test_atcoder/abc218g.test.cpp\"\n\n#line 1 \"ds/binary_trie.hpp\"\
+    \n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\
+    \u30FC\u30C9\u6570\ntemplate <int LOG, bool PERSISTENT, int NODES, typename UINT\
+    \ = u64,\n          typename SIZE_TYPE = int>\nstruct Binary_Trie {\n  using T\
+    \ = SIZE_TYPE;\n  struct Node {\n    int width;\n    UINT val;\n    T cnt;\n \
+    \   Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n\
+    \  Binary_Trie() : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid\
+    \ = 0; }\n\n  np new_root() { return nullptr; }\n\n  np add(np root, UINT val,\
+    \ T cnt = 1) {\n    if (!root) root = new_node(0, 0);\n    assert(0 <= val &&\
+    \ val < (1LL << LOG));\n    return add_rec(root, LOG, val, cnt);\n  }\n\n  //\
+    \ f(val, cnt)\n  template <typename F>\n  void enumerate(np root, F f) {\n   \
+    \ auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {\n      if (ht\
+    \ == 0) {\n        f(val, root->cnt);\n        return;\n      }\n      np c =\
+    \ root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width));\
+    \ }\n      c = root->r;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
+    \ ht - (c->width)); }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n  }\n\n\
+    \  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067\u6607\u9806 k \u756A\u76EE\
+    \n  UINT kth(np root, T k, UINT xor_val) {\n    assert(root && 0 <= k && k < root->cnt);\n\
+    \    return kth_rec(root, 0, k, LOG, xor_val) ^ xor_val;\n  }\n\n  // xor_val\
+    \ \u3057\u305F\u3042\u3068\u306E\u5024\u3067\u6700\u5C0F\u5024\n  UINT min(np\
+    \ root, UINT xor_val) {\n    assert(root && root->cnt);\n    return kth(root,\
+    \ 0, xor_val);\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067\
+    \u6700\u5927\u5024\n  UINT max(np root, UINT xor_val) {\n    assert(root && root->cnt);\n\
+    \    return kth(root, (root->cnt) - 1, xor_val);\n  }\n\n  // xor_val \u3057\u305F\
+    \u3042\u3068\u306E\u5024\u3067 [0, upper) \u5185\u306B\u5165\u308B\u3082\u306E\
+    \u306E\u500B\u6570\n  T prefix_count(np root, UINT upper, UINT xor_val) {\n  \
+    \  if (!root) return 0;\n    return prefix_count_rec(root, LOG, upper, xor_val,\
+    \ 0);\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067 [lo, hi)\
+    \ \u5185\u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\n  T count(np root, UINT\
+    \ lo, UINT hi, UINT xor_val) {\n    return prefix_count(root, hi, xor_val) - prefix_count(root,\
+    \ lo, xor_val);\n  }\n\nprivate:\n  inline UINT mask(int k) { return (UINT(1)\
+    \ << k) - 1; }\n\n  np new_node(int width, UINT val) {\n    pool[pid].l = pool[pid].r\
+    \ = nullptr;\n    pool[pid].width = width;\n    pool[pid].val = val;\n    pool[pid].cnt\
+    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np copy_node(np c) {\n    if (!c\
+    \ || !PERSISTENT) return c;\n    np res = &(pool[pid++]);\n    res->width = c->width,\
+    \ res->val = c->val;\n    res->cnt = c->cnt, res->l = c->l, res->r = c->r;\n \
+    \   return res;\n  }\n\n  np add_rec(np root, int ht, UINT val, T cnt) {\n   \
+    \ root = copy_node(root);\n    root->cnt += cnt;\n    if (ht == 0) return root;\n\
+    \n    bool go_r = (val >> (ht - 1)) & 1;\n    np c = (go_r ? root->r : root->l);\n\
+    \    if (!c) {\n      c = new_node(ht, val);\n      c->cnt = cnt;\n      if (!go_r)\
+    \ root->l = c;\n      if (go_r) root->r = c;\n      return root;\n    }\n    int\
+    \ w = c->width;\n    if ((val >> (ht - w)) == c->val) {\n      c = add_rec(c,\
+    \ ht - w, val & mask(ht - w), cnt);\n      if (!go_r) root->l = c;\n      if (go_r)\
+    \ root->r = c;\n      return root;\n    }\n    int same = w - 1 - topbit((val\
+    \ >> (ht - w)) ^ (c->val));\n    np n = new_node(same, (c->val) >> (w - same));\n\
+    \    n->cnt = c->cnt + cnt;\n    c = copy_node(c);\n    c->width = w - same;\n\
+    \    c->val = c->val & mask(w - same);\n    if ((val >> (ht - same - 1)) & 1)\
+    \ {\n      n->l = c;\n      n->r = new_node(ht - same, val & mask(ht - same));\n\
+    \      n->r->cnt = cnt;\n    } else {\n      n->r = c;\n      n->l = new_node(ht\
+    \ - same, val & mask(ht - same));\n      n->l->cnt = cnt;\n    }\n    if (!go_r)\
+    \ root->l = n;\n    if (go_r) root->r = n;\n    return root;\n  }\n\n  UINT kth_rec(np\
+    \ root, UINT val, T k, int ht, UINT xor_val) {\n    if (ht == 0) return val;\n\
+    \    np left = root->l, right = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left,\
+    \ right);\n    T sl = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c\
+    \ = left; }\n    if (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n\
+    \    return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T prefix_count_rec(np\
+    \ root, int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht)\
+    \ ^ (xor_val);\n    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht\
+    \ == 0 || (LIM >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2)\
+    \ {\n      np c = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w\
+    \ = c->width;\n        res += prefix_count_rec(c, ht - w, LIM, xor_val, val <<\
+    \ w | c->val);\n      }\n    }\n    return res;\n  }\n};\n#line 6 \"test_atcoder/abc218g.test.cpp\"\
+    \n\nll A[100010];\nint N, m[100010];\nBinary_Trie<30, false, 200'100, u32> BT;\n\
+    using np = decltype(BT)::np;\nnp root;\n\nvector<int> G[100010];\n\nint get_med()\
+    \ {\n  int cnt = root->cnt;\n  if (cnt & 1) { return BT.kth(root, cnt / 2, 0);\
+    \ }\n  return (BT.kth(root, cnt / 2, 0) + BT.kth(root, (cnt - 1) / 2, 0)) / 2;\n\
+    }\n\nvoid dfs(int v, int p, int mode) {\n  bool f = true;\n  if (mode) m[v] =\
+    \ 1 << 30;\n  root = BT.add(root, A[v], 1);\n  for (auto u: G[v]) {\n    if (u\
+    \ == p) continue;\n    f = false;\n    dfs(u, v, (mode + 1) & 1);\n    if (mode)\
+    \ {\n      chmin(m[v], m[u]);\n    } else {\n      chmax(m[v], m[u]);\n    }\n\
+    \  }\n  if (f) m[v] = get_med();\n  root = BT.add(root, A[v], -1);\n}\n\nvoid\
+    \ solve() {\n  INT(N);\n  root = BT.new_root();\n  FOR(i, 1, N + 1) read(A[i]);\n\
+    \  FOR(i, 1, N) {\n    INT(x, y);\n    G[x].eb(y), G[y].eb(x);\n  }\n  dfs(1,\
+    \ 0, 0);\n  print(m[1]);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc218/tasks/abc218_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/binary_trie.hpp\"\
+    \n\nll A[100010];\nint N, m[100010];\nBinary_Trie<30, false, 200'100, u32> BT;\n\
+    using np = decltype(BT)::np;\nnp root;\n\nvector<int> G[100010];\n\nint get_med()\
+    \ {\n  int cnt = root->cnt;\n  if (cnt & 1) { return BT.kth(root, cnt / 2, 0);\
+    \ }\n  return (BT.kth(root, cnt / 2, 0) + BT.kth(root, (cnt - 1) / 2, 0)) / 2;\n\
+    }\n\nvoid dfs(int v, int p, int mode) {\n  bool f = true;\n  if (mode) m[v] =\
+    \ 1 << 30;\n  root = BT.add(root, A[v], 1);\n  for (auto u: G[v]) {\n    if (u\
+    \ == p) continue;\n    f = false;\n    dfs(u, v, (mode + 1) & 1);\n    if (mode)\
+    \ {\n      chmin(m[v], m[u]);\n    } else {\n      chmax(m[v], m[u]);\n    }\n\
+    \  }\n  if (f) m[v] = get_med();\n  root = BT.add(root, A[v], -1);\n}\n\nvoid\
+    \ solve() {\n  INT(N);\n  root = BT.new_root();\n  FOR(i, 1, N + 1) read(A[i]);\n\
+    \  FOR(i, 1, N) {\n    INT(x, y);\n    G[x].eb(y), G[y].eb(x);\n  }\n  dfs(1,\
+    \ 0, 0);\n  print(m[1]);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
-  - alg/monoid/affine.hpp
-  - ds/segtree/segtree.hpp
+  - ds/binary_trie.hpp
   isVerificationFile: true
-  path: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+  path: test_atcoder/abc218g.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-05-03 02:10:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+documentation_of: test_atcoder/abc218g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-- /verify/test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp.html
-title: test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
+- /verify/test_atcoder/abc218g.test.cpp
+- /verify/test_atcoder/abc218g.test.cpp.html
+title: test_atcoder/abc218g.test.cpp
 ---

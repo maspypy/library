@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -255,28 +255,48 @@ data:
     \ R, a, b, xor_val).fi;\r\n  }\r\n  T sum(int L, int R, T a, T b, T xor_val =\
     \ 0) {\r\n    return range_cnt_sum(L, R, a, b, xor_val).se;\r\n  }\r\n  T kth(int\
     \ L, int R, int k, T xor_val = 0) {\r\n    assert(0 <= k && k < R - L);\r\n  \
-    \  return kth_value_sum(L, R, k, xor_val).fi;\r\n  }\r\n\r\n  // xor \u3057\u305F\
-    \u7D50\u679C\u3067\u3001[L, R) \u306E\u4E2D\u3067\u4E2D\u592E\u5024\u3002\r\n\
-    \  // LOWER = true\uFF1A\u4E0B\u5074\u4E2D\u592E\u5024\u3001false\uFF1A\u4E0A\u5074\
-    \u4E2D\u592E\u5024\r\n  T median(bool UPPER, int L, int R, T xor_val = 0) {\r\n\
-    \    int n = R - L;\r\n    int k = (UPPER ? n / 2 : (n - 1) / 2);\r\n    return\
-    \ kth(L, R, k, xor_val);\r\n  }\r\n\r\n  T sum_all(int L, int R) { return get(lg,\
-    \ L, R); }\r\n\r\n  // check(cnt, prefix sum) \u304C true \u3068\u306A\u308B\u3088\
-    \u3046\u306A\u6700\u5927\u306E (cnt, sum)\r\n  template <typename F>\r\n  pair<int,\
-    \ T> max_right(F check, int L, int R, T xor_val = 0) {\r\n    assert(check(0,\
-    \ 0));\r\n    if (xor_val != 0) assert(set_log);\r\n    if (L == R) return {0,\
-    \ 0};\r\n    if (check(R - L, get(lg, L, R))) return {R - L, get(lg, L, R)};\r\
-    \n    int cnt = 0;\r\n    T sm = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\
-    \n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int l1 = L\
-    \ + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val >> d & 1) swap(l0,\
-    \ l1), swap(r0, r1);\r\n      if (check(cnt + r0 - l0, sm + get(d, l0, r0))) {\r\
-    \n        cnt += r0 - l0, sm += get(d, l0, r0);\r\n        L = l1, R = r1;\r\n\
-    \      } else {\r\n        L = l0, R = r0;\r\n      }\r\n    }\r\n    int k =\
-    \ binary_search(\r\n        [&](int k) -> bool { return check(cnt + k, sm + get(0,\
-    \ L, L + k)); }, 0,\r\n        R - L);\r\n    cnt += k, sm += get(0, L, L + k);\r\
-    \n    return {cnt, sm};\r\n  }\r\n\r\nprivate:\r\n  inline T get(int d, int L,\
-    \ int R) {\r\n    if constexpr (USE_SUM) cumsum[d][R] - cumsum[d][L];\r\n    return\
-    \ 0;\r\n  }\r\n};\n#line 2 \"string/prefix_substring_LCS.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
+    \  return kth_value_sum(L, R, k, xor_val).fi;\r\n  }\r\n\r\n  // x \u4EE5\u4E0A\
+    \r\n  T next(int L, int R, T x, T xor_val = 0) {\r\n    if (xor_val != 0) assert(set_log);\r\
+    \n    if (L == R) return infty<T>;\r\n    T ans = infty<T>;\r\n\r\n    auto dfs\
+    \ = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {\r\n      if (ans\
+    \ <= lx || L == R || rx <= x) return;\r\n      if (d == 0) {\r\n        chmin(ans,\
+    \ lx);\r\n        return;\r\n      }\r\n      --d;\r\n      T mx = (lx + rx) /\
+    \ 2;\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int l1\
+    \ = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val >> d & 1) swap(l0,\
+    \ l1), swap(r0, r1);\r\n      dfs(dfs, d, l0, r0, lx, mx), dfs(dfs, d, l1, r1,\
+    \ mx, rx);\r\n    };\r\n    dfs(dfs, lg, L, R, 0, T(1) << lg);\r\n    return ans;\r\
+    \n  }\r\n\r\n  // x \u4EE5\u4E0A\r\n  T prev(int L, int R, T x, T xor_val = 0)\
+    \ {\r\n    if (xor_val != 0) assert(set_log);\r\n    if (L == R) return infty<T>;\r\
+    \n    static_assert(is_same_v<T, int> || is_same_v<T, ll>);\r\n    T ans = -1;\r\
+    \n\r\n    auto dfs = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {\r\
+    \n      if ((rx - 1) <= ans || L == R || x < lx) return;\r\n      if (d == 0)\
+    \ {\r\n        chmin(ans, lx);\r\n        return;\r\n      }\r\n      --d;\r\n\
+    \      T mx = (lx + rx) / 2;\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val\
+    \ >> d & 1) swap(l0, l1), swap(r0, r1);\r\n      dfs(dfs, d, l1, r1, mx, rx),\
+    \ dfs(dfs, d, l0, r0, lx, mx);\r\n    };\r\n    dfs(dfs, lg, L, R, 0, T(1) <<\
+    \ lg);\r\n    return ans;\r\n  }\r\n\r\n  // xor \u3057\u305F\u7D50\u679C\u3067\
+    \u3001[L, R) \u306E\u4E2D\u3067\u4E2D\u592E\u5024\u3002\r\n  // LOWER = true\uFF1A\
+    \u4E0B\u5074\u4E2D\u592E\u5024\u3001false\uFF1A\u4E0A\u5074\u4E2D\u592E\u5024\r\
+    \n  T median(bool UPPER, int L, int R, T xor_val = 0) {\r\n    int n = R - L;\r\
+    \n    int k = (UPPER ? n / 2 : (n - 1) / 2);\r\n    return kth(L, R, k, xor_val);\r\
+    \n  }\r\n\r\n  T sum_all(int L, int R) { return get(lg, L, R); }\r\n\r\n  // check(cnt,\
+    \ prefix sum) \u304C true \u3068\u306A\u308B\u3088\u3046\u306A\u6700\u5927\u306E\
+    \ (cnt, sum)\r\n  template <typename F>\r\n  pair<int, T> max_right(F check, int\
+    \ L, int R, T xor_val = 0) {\r\n    assert(check(0, 0));\r\n    if (xor_val !=\
+    \ 0) assert(set_log);\r\n    if (L == R) return {0, 0};\r\n    if (check(R - L,\
+    \ get(lg, L, R))) return {R - L, get(lg, L, R)};\r\n    int cnt = 0;\r\n    T\
+    \ sm = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      int l0 = bv[d].rank(L,\
+    \ 0), r0 = bv[d].rank(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
+    \ - r0;\r\n      if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);\r\n      if\
+    \ (check(cnt + r0 - l0, sm + get(d, l0, r0))) {\r\n        cnt += r0 - l0, sm\
+    \ += get(d, l0, r0);\r\n        L = l1, R = r1;\r\n      } else {\r\n        L\
+    \ = l0, R = r0;\r\n      }\r\n    }\r\n    int k = binary_search(\r\n        [&](int\
+    \ k) -> bool { return check(cnt + k, sm + get(0, L, L + k)); }, 0,\r\n       \
+    \ R - L);\r\n    cnt += k, sm += get(0, L, L + k);\r\n    return {cnt, sm};\r\n\
+    \  }\r\n\r\nprivate:\r\n  inline T get(int d, int L, int R) {\r\n    if constexpr\
+    \ (USE_SUM) cumsum[d][R] - cumsum[d][L];\r\n    return 0;\r\n  }\r\n};\n#line\
+    \ 2 \"string/prefix_substring_LCS.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
     struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, 0>> WM;\n\
     \n  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
     \    build(S, T);\n  }\n\n  template <typename STRING>\n  void build(STRING S,\
@@ -305,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 01:43:19+09:00'
+  timestamp: '2024-05-03 02:10:55+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/prefix_substring_lcs.test.cpp

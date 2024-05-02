@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/binary_trie.test.cpp
     title: test/mytest/binary_trie.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc218g.test.cpp
+    title: test_atcoder/abc218g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -146,6 +149,7 @@ data:
   verifiedWith:
   - test/mytest/binary_trie.test.cpp
   - test/library_checker/datastructure/set_xor_min.test.cpp
+  - test_atcoder/abc218g.test.cpp
 documentation_of: ds/binary_trie.hpp
 layout: document
 redirect_from:
