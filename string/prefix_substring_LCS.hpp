@@ -3,7 +3,7 @@
 // https://codeforces.com/blog/entry/111625
 struct Prefix_Substring_LCS {
   int N, M;
-  vc<Wavelet_Matrix<int, 0>> WM;
+  vc<Wavelet_Matrix<int, 0, 0>> WM;
 
   template <typename STRING>
   Prefix_Substring_LCS(STRING S, STRING T) {
