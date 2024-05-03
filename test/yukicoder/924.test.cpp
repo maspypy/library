@@ -12,7 +12,7 @@ void solve() {
     --L;
     int n = (R - L);
     ll k = (n - 1) / 2;
-    auto [med, sum_lo] = WM.kth_value_and_sum(L, R, k);
+    auto [med, sum_lo] = WM.kth_value_sum(L, R, k);
     auto sum_hi = WM.sum_all(L, R) - sum_lo;
     ll ANS = 0;
     ANS += med * k - sum_lo;
