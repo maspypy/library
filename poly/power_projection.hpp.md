@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/power_projection.test.cpp
     title: test/mytest/power_projection.test.cpp
   - icon: ':x:'
