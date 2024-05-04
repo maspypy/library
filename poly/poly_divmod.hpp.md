@@ -35,6 +35,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: poly/coef_of_rational_fps.hpp
+    title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
@@ -44,7 +47,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/bell_number_large.hpp
+    title: seq/famous/bell_number_large.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/interpolate_linear_rec.hpp
+    title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
+    title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
@@ -52,11 +64,56 @@ data:
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/bell.test.cpp
+    title: test/mytest/bell.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/coef_of_rational.test.cpp
+    title: test/mytest/coef_of_rational.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1500.test.cpp
+    title: test/yukicoder/1500.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1516.test.cpp
+    title: test/yukicoder/1516.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1547.test.cpp
+    title: test/yukicoder/1547.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1561.test.cpp
+    title: test/yukicoder/1561.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1844.test.cpp
+    title: test/yukicoder/1844.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1962.test.cpp
+    title: test/yukicoder/1962.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2122.test.cpp
+    title: test/yukicoder/2122.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2305.test.cpp
+    title: test/yukicoder/2305.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2583.test.cpp
     title: test/yukicoder/2583.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587.test.cpp
+    title: test/yukicoder/2587.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2587_2.test.cpp
+    title: test/yukicoder/2587_2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/541.test.cpp
+    title: test/yukicoder/541.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/578.test.cpp
+    title: test/yukicoder/578.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/579.test.cpp
+    title: test/yukicoder/579.test.cpp
   - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
@@ -391,14 +448,33 @@ data:
   isVerificationFile: false
   path: poly/poly_divmod.hpp
   requiredBy:
+  - poly/coef_of_rational_fps.hpp
   - poly/poly_mod_pow.hpp
   - poly/finding_root_of_polynomial.hpp
   - poly/poly_gcd.hpp
+  - seq/interpolate_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/poly_root_finding.test.cpp
+  - test/mytest/coef_of_rational.test.cpp
+  - test/mytest/bell.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/1500.test.cpp
+  - test/yukicoder/2587_2.test.cpp
+  - test/yukicoder/1547.test.cpp
   - test/yukicoder/2583.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/1516.test.cpp
+  - test/yukicoder/578.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/2587.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/2122.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
   - test_atcoder/agc058d2.test.cpp

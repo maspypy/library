@@ -17,11 +17,11 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: poly/coef_of_rational_fps.hpp
+    title: poly/coef_of_rational_fps.hpp
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/convolution_all.hpp
-    title: poly/convolution_all.hpp
   - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
@@ -34,9 +34,9 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/finding_root_of_polynomial.hpp
-    title: poly/finding_root_of_polynomial.hpp
+  - icon: ':question:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
@@ -44,14 +44,11 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
+    path: poly/ntt_doubling.hpp
+    title: poly/ntt_doubling.hpp
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_gcd.hpp
-    title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/poly_mod_pow.hpp
-    title: poly/poly_mod_pow.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
@@ -65,7 +62,7 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/poly_root_finding.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/mytest/coef_of_rational.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
     \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
@@ -147,8 +144,8 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/poly_root_finding.test.cpp\"\n\n\
-    #line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
+    \  return B;\n}\n#endif\n#line 3 \"test/mytest/coef_of_rational.test.cpp\"\n\n\
+    #line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
     \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
     \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -442,135 +439,110 @@ data:
     \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
     \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
     \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
-    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 4\
-    \ \"poly/poly_divmod.hpp\"\ntemplate <typename mint>\r\npair<vc<mint>, vc<mint>>\
-    \ poly_divmod(vc<mint> f, vc<mint> g) {\r\n  assert(g.back() != 0);\r\n  if (len(f)\
-    \ < len(g)) { return {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)),\
-    \ reverse(all(rg));\r\n  ll deg = len(rf) - len(rg) + 1;\r\n  rf.resize(deg),\
-    \ rg.resize(deg);\r\n  rg = fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n\
-    \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
-    \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
-    \n  return {q, f};\r\n}\r\n#line 2 \"poly/poly_mod_pow.hpp\"\n\n// f^n mod g\n\
-    template <typename mint>\nvc<mint> poly_mod_pow(vc<mint> f, ll n, vc<mint>& g)\
-    \ {\n  if (n == 0) return {1};\n  if (n == 1) return f;\n  vc<mint> F = poly_mod_pow(f,\
-    \ n / 2, g);\n  F = convolution<mint>(F, F);\n  F = poly_divmod(F, g).se;\n  if\
-    \ (n & 1) {\n    F = convolution<mint>(F, f);\n    F = poly_divmod(F, g).se;\n\
-    \  }\n  return F;\n}\n#line 2 \"poly/poly_gcd.hpp\"\n\r\n// https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf\r\
-    \nnamespace half_gcd {\r\ntemplate <typename T>\r\nusing arr = array<vc<T>, 2>;\r\
-    \n\r\ntemplate <typename T>\r\nusing mat = array<vc<T>, 4>;\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid shrink(vc<T>& a) {\r\n  while (len(a) && a.back() == 0) a.pop_back();\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvc<T> operator+(const vc<T>& a, const vc<T>&\
-    \ b) {\r\n  vc<T> c(max(len(a), len(b)));\r\n  FOR(i, len(a)) c[i] += a[i];\r\n\
-    \  FOR(i, len(b)) c[i] += b[i];\r\n  shrink(c);\r\n  return c;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nvc<T> operator-(const vc<T>& a, const vc<T>& b) {\r\n  vc<T>\
-    \ c(max(len(a), len(b)));\r\n  FOR(i, len(a)) c[i] += a[i];\r\n  FOR(i, len(b))\
-    \ c[i] -= b[i];\r\n  shrink(c);\r\n  return c;\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> operator*(const vc<T>& a, const vc<T>& b) {\r\n  return convolution(a,\
-    \ b);\r\n}\r\n\r\ntemplate <typename T>\r\nmat<T> operator*(const mat<T>& A, const\
-    \ mat<T>& B) {\r\n  return {A[0] * B[0] + A[1] * B[2], A[0] * B[1] + A[1] * B[3],\r\
-    \n          A[2] * B[0] + A[3] * B[2], A[2] * B[1] + A[3] * B[3]};\r\n}\r\n\r\n\
-    template <typename T>\r\nmat<T> step(const vc<T> q) {\r\n  mat<T> Q;\r\n  Q[1]\
-    \ = {1}, Q[2] = {1};\r\n  Q[3] = Q[3] - q;\r\n  return Q;\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\narr<T> operator*(const mat<T>& A, const arr<T>& b) {\r\n  return\
-    \ {A[0] * b[0] + A[1] * b[1], A[2] * b[0] + A[3] * b[1]};\r\n}\r\n\r\ntemplate\
-    \ <typename T>\r\nmat<T> hgcd(arr<T> a) {\r\n  assert(len(a[0]) > len(a[1]) &&\
-    \ len(a[1]) > 0);\r\n  int m = len(a[0]) / 2;\r\n  if (len(a[1]) <= m) {\r\n \
-    \   mat<T> M;\r\n    M[0] = {1}, M[3] = {1};\r\n    return M;\r\n  }\r\n  auto\
-    \ R = hgcd(arr<T>({vc<T>(a[0].begin() + m, a[0].end()),\r\n                  \
-    \      vc<T>(a[1].begin() + m, a[1].end())}));\r\n  a = R * a;\r\n  if (len(a[1])\
-    \ <= m) return R;\r\n  mat<T> Q = step(poly_divmod(a[0], a[1]).fi);\r\n  R = Q\
-    \ * R, a = Q * a;\r\n  if (len(a[1]) <= m) return R;\r\n  int k = 2 * m + 1 -\
-    \ len(a[0]);\r\n  auto H = hgcd(arr<T>({vc<T>(a[0].begin() + k, a[0].end()),\r\
-    \n                        vc<T>(a[1].begin() + k, a[1].end())}));\r\n  return\
-    \ H * R;\r\n}\r\n\r\ntemplate <typename T>\r\nmat<T> cgcd(arr<T> a) {\r\n  assert(a[0].size()\
-    \ > a[1].size() && !a[1].empty());\r\n  auto m0 = hgcd(a);\r\n  a = m0 * a;\r\n\
-    \  if (a[1].empty()) return m0;\r\n  mat<T> Q = step(poly_divmod(a[0], a[1]).fi);\r\
-    \n  m0 = Q * m0, a = Q * a;\r\n  if (a[1].empty()) return m0;\r\n  return cgcd(a)\
-    \ * m0;\r\n}\r\n\r\n// gcd == f * fi + g * gi \u3068\u306A\u308B (gcd, fi, gi)\r\
-    \ntemplate <typename T>\r\ntuple<vc<T>, vc<T>, vc<T>> poly_extgcd(const vc<T>&\
-    \ f, const vc<T>& g) {\r\n  mat<T> Q = step(poly_divmod(f, g).fi);\r\n  auto m\
-    \ = Q;\r\n  auto ap = Q * arr<T>{f, g};\r\n  if (!ap[1].empty()) m = cgcd(ap)\
-    \ * m;\r\n  return {f * m[0] + g * m[1], m[0], m[1]};\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvc<T> poly_gcd(vc<T> f, vc<T> g) {\r\n  while (len(f) && f.back() == T(0))\
-    \ POP(f);\r\n  while (len(g) && g.back() == T(0)) POP(g);\r\n  if (f.empty())\
-    \ return g;\r\n  if (g.empty()) return f;\r\n  auto F = get<0>(poly_extgcd(f,\
-    \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
-    \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
-    \n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      =\
-    \ uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 5\
+    \ \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\u3055\
+    \u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
+    \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
+    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
+    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
+    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
+    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
+    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
+    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
+    \    }\n  }\n  return f;\n}\n#line 2 \"poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\
+    \n\ntemplate <typename mint>\nvoid ntt_doubling(vector<mint>& a) {\n  static array<mint,\
+    \ 30> root;\n  static bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n\
+    \    const int rank2 = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  const\
+    \ int M = (int)a.size();\n  auto b = a;\n  ntt(b, 1);\n  mint r = 1, zeta = root[topbit(2\
+    \ * M)];\n  FOR(i, M) b[i] *= r, r *= zeta;\n  ntt(b, 0);\n  copy(begin(b), end(b),\
+    \ back_inserter(a));\n}\n#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 4 \"poly/poly_divmod.hpp\"\
+    \ntemplate <typename mint>\r\npair<vc<mint>, vc<mint>> poly_divmod(vc<mint> f,\
+    \ vc<mint> g) {\r\n  assert(g.back() != 0);\r\n  if (len(f) < len(g)) { return\
+    \ {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)), reverse(all(rg));\r\
+    \n  ll deg = len(rf) - len(rg) + 1;\r\n  rf.resize(deg), rg.resize(deg);\r\n \
+    \ rg = fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n  q.resize(deg);\r\n\
+    \  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n  FOR(i, len(f)) f[i]\
+    \ -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\n  return\
+    \ {q, f};\r\n}\r\n#line 4 \"poly/coef_of_rational_fps.hpp\"\n\r\ntemplate <typename\
+    \ mint>\r\nmint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll\
+    \ N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) && len(Q) <= 16\r\n   \
+    \      && Q[0] == mint(1));\r\n  if (P.empty()) return 0;\r\n  int m = len(Q)\
+    \ - 1;\r\n  vc<u32> Q32(m + 1);\r\n  FOR(i, m + 1) Q32[i] = (-Q[i]).val;\r\n\r\
+    \n  using poly = vc<u64>;\r\n  auto dfs = [&](auto& dfs, const ll N) -> poly {\r\
+    \n    // x^N mod G\r\n    if (N == 0) {\r\n      poly f(m);\r\n      f[0] = 1;\r\
+    \n      return f;\r\n    }\r\n    poly f = dfs(dfs, N / 2);\r\n    poly g(len(f)\
+    \ * 2 - 1 + (N & 1));\r\n    FOR(i, len(f)) FOR(j, len(f)) { g[i + j + (N & 1)]\
+    \ += f[i] * f[j]; }\r\n    FOR(i, len(g)) g[i] = mint(g[i]).val;\r\n    FOR_R(i,\
+    \ len(g)) {\r\n      g[i] = mint(g[i]).val;\r\n      if (i >= m) FOR(j, 1, len(Q))\
+    \ g[i - j] += Q32[j] * g[i];\r\n    }\r\n    g.resize(m);\r\n    return g;\r\n\
+    \  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) FOR(j, 1, i + 1) { P[i] -= Q[j]\
+    \ * P[i - j]; }\r\n  u64 res = 0;\r\n  FOR(i, m) res += f[i] * P[i].val;\r\n \
+    \ return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
+    \ P, vector<mint> Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) &&\
+    \ Q[0] == mint(1));\r\n  if (P.empty()) return 0;\r\n\r\n  int n = 1;\r\n  while\
+    \ (n < len(Q)) n += n;\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    vc<int> btr(n);\r\
+    \n    int log = topbit(n);\r\n    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i\
+    \ & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\n    mint r = mint::ntt_info().se;\r\
+    \n    mint dw = r.inverse().pow((1 << t) / (2 * n));\r\n    mint w = inv<mint>(2);\r\
+    \n    for (auto& i: btr) { W[i] = w, w *= dw; }\r\n  }\r\n\r\n  P.resize(2 * n),\
+    \ Q.resize(2 * n);\r\n  ntt(P, 0), ntt(Q, 0);\r\n\r\n  while (N >= n) {\r\n  \
+    \  if (N % 2 == 0) {\r\n      FOR(i, n) {\r\n        P[i] = (P[2 * i] * Q[2 *\
+    \ i + 1] + P[2 * i + 1] * Q[2 * i])\r\n               * inv<mint>(2);\r\n    \
+    \  }\r\n    } else {\r\n      FOR(i, n) {\r\n        P[i] = (P[2 * i] * Q[2 *\
+    \ i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i];\r\n      }\r\n    }\r\n    FOR(i,\
+    \ n) Q[i] = Q[2 * i] * Q[2 * i + 1];\r\n    P.resize(n), Q.resize(n);\r\n    N\
+    \ /= 2;\r\n    if (N < n) break;\r\n    ntt_doubling(P), ntt_doubling(Q);\r\n\
+    \  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  Q = fps_inv<mint>(Q);\r\n  mint ans = 0;\r\
+    \n  FOR(i, N + 1) ans += P[i] * Q[N - i];\r\n  return ans;\r\n}\r\n\r\ntemplate\
+    \ <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint> P, vector<mint>\
+    \ Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) && Q[0] == mint(1));\r\
+    \n  if (P.empty()) return 0;\r\n  while (N >= len(P)) {\r\n    vc<mint> Q1 = Q;\r\
+    \n    FOR(i, len(Q1)) if (i & 1) Q1[i] = -Q1[i];\r\n    P = convolution(P, Q1);\r\
+    \n    Q = convolution(Q, Q1);\r\n    FOR(i, len(Q1)) Q[i] = Q[2 * i];\r\n    FOR(i,\
+    \ len(Q1) - 1) P[i] = P[2 * i | (N & 1)];\r\n    P.resize(len(Q1) - 1);\r\n  \
+    \  Q.resize(len(Q1));\r\n    N /= 2;\r\n  }\r\n  return fps_div(P, Q)[N];\r\n\
+    }\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps(vector<mint> P,\
+    \ vector<mint> Q, ll N) {\r\n  if (P.empty()) return 0;\r\n  assert(len(Q) > 0\
+    \ && Q[0] != mint(0));\r\n  while (Q.back() == mint(0)) POP(Q);\r\n  mint c =\
+    \ mint(1) / Q[0];\r\n  for (auto& x: P) x *= c;\r\n  for (auto& x: Q) x *= c;\r\
+    \n  mint base = 0;\r\n  if (len(P) >= len(Q)) {\r\n    auto [f, g] = poly_divmod<mint>(P,\
+    \ Q);\r\n    base = (N < len(f) ? f[N] : mint(0));\r\n    P = g;\r\n  }\r\n  P.resize(len(Q)\
+    \ - 1);\r\n  int n = len(Q);\r\n  if (mint::ntt_info().fi != -1) {\r\n    if (n\
+    \ <= 10) return base + coef_of_rational_fps_small(P, Q, N);\r\n    if (n > 10)\
+    \ return base + coef_of_rational_fps_ntt(P, Q, N);\r\n  }\r\n  mint x = (n <=\
+    \ 16 ? coef_of_rational_fps_small(P, Q, N)\r\n                    : coef_of_rational_fps_convolution(P,\
+    \ Q, N));\r\n  return base + x;\r\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"poly/finding_root_of_polynomial.hpp\"\
-    \n\n// F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\
-    \u9806\u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate\
-    \ <typename mint>\nvc<mint> finding_root_of_polynomial(vc<mint> F) {\n  while\
-    \ (len(F) && F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int\
-    \ p = mint::get_mod();\n  assert(p % 2 == 1);\n\n  vc<mint> g = {0, 1};\n  g =\
-    \ poly_mod_pow(g, p, F);\n  if (len(g) <= 2) g.resize(2);\n  g[1] -= 1;\n  F =\
-    \ poly_gcd(F, g);\n\n  // F \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\
-    \u7A4D\n  vc<mint> ANS;\n  auto dfs = [&](auto& dfs, vc<mint> F) -> void {\n \
-    \   if (len(F) == 1) return;\n    if (len(F) == 2) {\n      mint a = F[0], b =\
-    \ F[1];\n      // a+bx=0\n      ANS.eb((-a) / b);\n      return;\n    }\n    vc<mint>\
-    \ g(2);\n    g[0] = RNG(0, p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g, (p\
-    \ - 1) / 2, F);\n    if (h.empty()) { return dfs(dfs, F); }\n    h[0] -= 1;\n\
-    \    vc<mint> f1 = poly_gcd(F, h);\n    vc<mint> f2 = poly_divmod(F, f1).fi;\n\
-    \    dfs(dfs, f1), dfs(dfs, f2);\n  };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return\
-    \ ANS;\n}\n#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 4 \"poly/convolution_all.hpp\"\
-    \n\r\ntemplate <typename T>\r\nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n \
-    \ if (len(polys) == 0) return {T(1)};\r\n  while (1) {\r\n    int n = len(polys);\r\
-    \n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n    FOR(i, m) {\r\n   \
-    \   if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\n      } else\
-    \ {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);\r\n   \
-    \   }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n#line\
-    \ 6 \"test/mytest/poly_root_finding.test.cpp\"\n\n// \u76F8\u7570\u306A\u308B\
-    \ 1 \u6B21\u5F0F\u306E\u7A4D\u3001\u91CD\u8907\u5EA6\u307E\u3042\u307E\u3042\u3042\
-    \u308B\u304B\u3082\nvoid test_1() {\n  using mint = modint998;\n  using poly =\
-    \ vc<mint>;\n  int p = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10) {\n     \
-    \ vc<mint> S;\n      FOR(10) S.eb(RNG(0, p));\n      vc<poly> polys;\n      vc<mint>\
-    \ roots;\n      FOR(N) {\n        mint a = S[RNG(0, 10)];\n        roots.eb(a);\n\
-    \        polys.eb(poly({-mint(a), mint(1)}));\n      }\n      UNIQUE(roots);\n\
-    \      poly f = convolution_all(polys);\n      auto ANS = finding_root_of_polynomial(f);\n\
-    \      sort(all(ANS));\n      assert(roots == ANS);\n    }\n  }\n}\n\n// test_1\
-    \ \u306B\u3082\u3046\u3072\u3068\u3064 N \u6B21\u5F0F\u3092\u304B\u3051\u308B\n\
-    void test_2() {\n  using mint = modint998;\n  using poly = vc<mint>;\n  int p\
-    \ = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10) {\n      vc<mint> S;\n     \
-    \ FOR(10) S.eb(RNG(0, p));\n      vc<poly> polys;\n      vc<mint> roots;\n   \
-    \   FOR(N) {\n        mint a = S[RNG(0, 10)];\n        roots.eb(a);\n        polys.eb(poly({-mint(a),\
-    \ mint(1)}));\n      }\n      UNIQUE(roots);\n      poly f = convolution_all(polys);\n\
-    \      vc<mint> g(N + 1);\n      FOR(i, N + 1) g[i] = RNG(0, p);\n      f = convolution(f,\
-    \ g);\n      auto ANS = finding_root_of_polynomial(f);\n      for (auto& r: roots)\
-    \ { assert(binary_search(all(ANS), r)); }\n    }\n  }\n}\n\nvoid solve() {\n \
-    \ int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test_1();\n  test_2();\n  solve();\n  return 0;\n}\n"
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/mytest/coef_of_rational.test.cpp\"\
+    \n\ntemplate <typename mint>\nvoid test() {\n  FOR(N, 20) {\n    FOR(M, 20) {\n\
+    \      FOR(10) {\n        vc<mint> f(N), g(M);\n        FOR(i, N) f[i] = RNG(0,\
+    \ 3);\n        FOR(i, M) g[i] = RNG(0, 3);\n        vc<mint> F = f, G = g;\n \
+    \       F.resize(20);\n        G.resize(20);\n        if (G[0] == mint(0)) continue;\n\
+    \        F = fps_div(F, G);\n        FOR(k, 20) {\n          mint x = coef_of_rational_fps<mint>(f,\
+    \ g, k);\n          assert(x == F[k]);\n        }\n      }\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test<modint998>();\n  test<modint107>();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"poly/finding_root_of_polynomial.hpp\"\n#include \"poly/convolution_all.hpp\"\
-    \n\n// \u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\u3001\u91CD\u8907\u5EA6\
-    \u307E\u3042\u307E\u3042\u3042\u308B\u304B\u3082\nvoid test_1() {\n  using mint\
-    \ = modint998;\n  using poly = vc<mint>;\n  int p = mint::get_mod();\n  FOR(N,\
-    \ 50) {\n    FOR(10) {\n      vc<mint> S;\n      FOR(10) S.eb(RNG(0, p));\n  \
-    \    vc<poly> polys;\n      vc<mint> roots;\n      FOR(N) {\n        mint a =\
-    \ S[RNG(0, 10)];\n        roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n\
-    \      }\n      UNIQUE(roots);\n      poly f = convolution_all(polys);\n     \
-    \ auto ANS = finding_root_of_polynomial(f);\n      sort(all(ANS));\n      assert(roots\
-    \ == ANS);\n    }\n  }\n}\n\n// test_1 \u306B\u3082\u3046\u3072\u3068\u3064 N\
-    \ \u6B21\u5F0F\u3092\u304B\u3051\u308B\nvoid test_2() {\n  using mint = modint998;\n\
-    \  using poly = vc<mint>;\n  int p = mint::get_mod();\n  FOR(N, 50) {\n    FOR(10)\
-    \ {\n      vc<mint> S;\n      FOR(10) S.eb(RNG(0, p));\n      vc<poly> polys;\n\
-    \      vc<mint> roots;\n      FOR(N) {\n        mint a = S[RNG(0, 10)];\n    \
-    \    roots.eb(a);\n        polys.eb(poly({-mint(a), mint(1)}));\n      }\n   \
-    \   UNIQUE(roots);\n      poly f = convolution_all(polys);\n      vc<mint> g(N\
-    \ + 1);\n      FOR(i, N + 1) g[i] = RNG(0, p);\n      f = convolution(f, g);\n\
-    \      auto ANS = finding_root_of_polynomial(f);\n      for (auto& r: roots) {\
-    \ assert(binary_search(all(ANS), r)); }\n    }\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test_1();\n  test_2();\n  solve();\n  return 0;\n}"
+    \n\n#include \"poly/coef_of_rational_fps.hpp\"\n#include \"random/base.hpp\"\n\
+    \ntemplate <typename mint>\nvoid test() {\n  FOR(N, 20) {\n    FOR(M, 20) {\n\
+    \      FOR(10) {\n        vc<mint> f(N), g(M);\n        FOR(i, N) f[i] = RNG(0,\
+    \ 3);\n        FOR(i, M) g[i] = RNG(0, 3);\n        vc<mint> F = f, G = g;\n \
+    \       F.resize(20);\n        G.resize(20);\n        if (G[0] == mint(0)) continue;\n\
+    \        F = fps_div(F, G);\n        FOR(k, 20) {\n          mint x = coef_of_rational_fps<mint>(f,\
+    \ g, k);\n          assert(x == F[k]);\n        }\n      }\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test<modint998>();\n  test<modint107>();\n  solve();\n}"
   dependsOn:
   - my_template.hpp
-  - poly/finding_root_of_polynomial.hpp
-  - poly/poly_mod_pow.hpp
-  - poly/poly_divmod.hpp
-  - poly/fps_inv.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/fps_div.hpp
   - poly/count_terms.hpp
+  - poly/fps_inv.hpp
   - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
@@ -580,19 +552,19 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/poly_gcd.hpp
+  - poly/ntt_doubling.hpp
+  - poly/poly_divmod.hpp
   - random/base.hpp
-  - poly/convolution_all.hpp
   isVerificationFile: true
-  path: test/mytest/poly_root_finding.test.cpp
+  path: test/mytest/coef_of_rational.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
+  timestamp: '2024-05-05 00:38:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/poly_root_finding.test.cpp
+documentation_of: test/mytest/coef_of_rational.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/poly_root_finding.test.cpp
-- /verify/test/mytest/poly_root_finding.test.cpp.html
-title: test/mytest/poly_root_finding.test.cpp
+- /verify/test/mytest/coef_of_rational.test.cpp
+- /verify/test/mytest/coef_of_rational.test.cpp.html
+title: test/mytest/coef_of_rational.test.cpp
 ---
