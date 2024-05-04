@@ -1,31 +1,29 @@
 #include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"
-#include "ds/fastset.hpp"
 
 template <typename GT>
 UnionFind complement_graph_unionfind(GT& G) {
   const int N = G.N;
+  vc<int> que(N), yet(N);
+  vc<bool> NG(N);
+  int p = 0;
+  FOR(v, N) yet[p++] = v;
   UnionFind uf(N);
-  FastSet ss(N);
-  FOR(v, N) ss.insert(v);
 
-  vc<int> que;
-  FOR(v, N) {
-    if (!ss[v]) continue;
-    que.eb(v);
-    while (len(que)) {
-      int a = POP(que);
-      vc<int> tmp;
-      for (auto&& e: G[a]) {
-        if (ss[e.to]) tmp.eb(e.to);
+  while (p) {
+    int ql = 0, qr = 0;
+    que[qr++] = yet[--p];
+    while (ql < qr) {
+      int v = que[ql++];
+      for (auto& e: G[v]) NG[e.to] = 1;
+      for (int i = p - 1; i >= 0; --i) {
+        int to = yet[i];
+        if (NG[to]) continue;
+        que[qr++] = to;
+        swap(yet[i], yet[--p]);
+        uf.merge(v, to);
       }
-      for (auto&& x: tmp) ss.erase(x);
-      ss.enumerate(0, N, [&](int to) -> void {
-        ss.erase(to);
-        que.eb(to);
-        uf.merge(a, to);
-      });
-      for (auto&& x: tmp) ss.insert(x);
+      for (auto& e: G[v]) NG[e.to] = 0;
     }
   }
   return uf;
