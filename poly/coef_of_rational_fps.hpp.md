@@ -1,104 +1,104 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1516.test.cpp
     title: test/yukicoder/1516.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1547.test.cpp
     title: test/yukicoder/1547.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2305.test.cpp
     title: test/yukicoder/2305.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -427,20 +427,23 @@ data:
     \n  poly f = dfs(dfs, N);\r\n  FOR(i, m) { FOR(j, 1, i + 1) P[i] -= Q[j] * P[i\
     \ - j]; }\r\n  u64 res = 0;\r\n  FOR(i, m) res += f[i] * P[i].val;\r\n  return\
     \ res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  int log = 0;\r\n  while ((1 << log) < len(Q))\
-    \ ++log;\r\n  int n = 1 << log;\r\n  P.resize(2 * n), Q.resize(2 * n);\r\n  ntt(P,\
-    \ 0), ntt(Q, 0);\r\n  vc<int> btr(n);\r\n  FOR(i, n) { btr[i] = (btr[i >> 1] >>\
-    \ 1) + ((i & 1) << (log - 1)); }\r\n\r\n  int t = mint::ntt_info().fi;\r\n  mint\
-    \ r = mint::ntt_info().se;\r\n  mint dw = r.inverse().pow((1 << t) / (2 * n));\r\
-    \n\r\n  vc<mint> S, T;\r\n  while (N >= n) {\r\n    mint w = inv<mint>(2);\r\n\
-    \    T.resize(n);\r\n    FOR(i, n) T[i] = Q[2 * i + 0] * Q[2 * i + 1];\r\n   \
-    \ S.resize(n);\r\n    if (N & 1) {\r\n      for (auto& i: btr) {\r\n        S[i]\
-    \ = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * w;\r\n        w *= dw;\r\
-    \n      }\r\n    } else {\r\n      FOR(i, n) {\r\n        S[i] = (P[2 * i] * Q[2\
-    \ * i + 1] + P[2 * i + 1] * Q[2 * i]) * w;\r\n      }\r\n    }\r\n    swap(P,\
-    \ S), swap(Q, T);\r\n    N >>= 1;\r\n    if (N < n) break;\r\n    ntt_doubling(P);\r\
-    \n    ntt_doubling(Q);\r\n  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  return fps_div(P,\
-    \ Q)[N];\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint>\
+    \ P, vector<mint> Q, ll N) {\r\n  mint base = 0;\r\n  if (len(P) >= len(Q)) {\r\
+    \n    auto [f, g] = poly_divmod(P, Q);\r\n    if (N < len(f)) base += f[N];\r\n\
+    \    swap(P, g);\r\n  }\r\n  assert(len(P) < len(Q));\r\n\r\n  int n = 1;\r\n\
+    \  while (n < len(Q)) n += n;\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    vc<int> btr(n);\r\
+    \n    int log = topbit(n);\r\n    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i\
+    \ & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\n    mint r = mint::ntt_info().se;\r\
+    \n    mint dw = r.inverse().pow((1 << t) / (2 * n));\r\n    mint w = inv<mint>(2);\r\
+    \n    for (auto& i: btr) { W[i] = w, w *= dw; }\r\n  }\r\n\r\n  P.resize(2 * n),\
+    \ Q.resize(2 * n);\r\n  ntt(P, 0), ntt(Q, 0);\r\n\r\n  while (N >= n) {\r\n  \
+    \  if (N % 2 == 0) {\r\n      FOR(i, n) {\r\n        P[i] = (P[2 * i] * Q[2 *\
+    \ i + 1] + P[2 * i + 1] * Q[2 * i])\r\n               * inv<mint>(2);\r\n    \
+    \  }\r\n    } else {\r\n      FOR(i, n) {\r\n        P[i] = (P[2 * i] * Q[2 *\
+    \ i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i];\r\n      }\r\n    }\r\n    FOR(i,\
+    \ n) Q[i] = Q[2 * i] * Q[2 * i + 1];\r\n    P.resize(n), Q.resize(n);\r\n    N\
+    \ /= 2;\r\n    if (N < n) break;\r\n    ntt_doubling(P), ntt_doubling(Q);\r\n\
+    \  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  P.resize(N + 1), Q.resize(N + 1);\r\n  return\
+    \ base + fps_div(P, Q)[N];\r\n}\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint>\
     \ P, vector<mint> Q, ll N) {\r\n  P.resize(len(Q) - 1);\r\n  if (len(P) == 0)\
     \ return 0;\r\n  while (N >= len(P)) {\r\n    vc<mint> Q1 = Q;\r\n    FOR(i, len(Q1))\
     \ if (i & 1) Q1[i] = -Q1[i];\r\n    P = convolution(P, Q1);\r\n    Q = convolution(Q,\
@@ -468,20 +471,23 @@ data:
     \  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) { FOR(j, 1, i + 1) P[i] -= Q[j]\
     \ * P[i - j]; }\r\n  u64 res = 0;\r\n  FOR(i, m) res += f[i] * P[i].val;\r\n \
     \ return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  int log = 0;\r\n  while ((1 << log) < len(Q))\
-    \ ++log;\r\n  int n = 1 << log;\r\n  P.resize(2 * n), Q.resize(2 * n);\r\n  ntt(P,\
-    \ 0), ntt(Q, 0);\r\n  vc<int> btr(n);\r\n  FOR(i, n) { btr[i] = (btr[i >> 1] >>\
-    \ 1) + ((i & 1) << (log - 1)); }\r\n\r\n  int t = mint::ntt_info().fi;\r\n  mint\
-    \ r = mint::ntt_info().se;\r\n  mint dw = r.inverse().pow((1 << t) / (2 * n));\r\
-    \n\r\n  vc<mint> S, T;\r\n  while (N >= n) {\r\n    mint w = inv<mint>(2);\r\n\
-    \    T.resize(n);\r\n    FOR(i, n) T[i] = Q[2 * i + 0] * Q[2 * i + 1];\r\n   \
-    \ S.resize(n);\r\n    if (N & 1) {\r\n      for (auto& i: btr) {\r\n        S[i]\
-    \ = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * w;\r\n        w *= dw;\r\
-    \n      }\r\n    } else {\r\n      FOR(i, n) {\r\n        S[i] = (P[2 * i] * Q[2\
-    \ * i + 1] + P[2 * i + 1] * Q[2 * i]) * w;\r\n      }\r\n    }\r\n    swap(P,\
-    \ S), swap(Q, T);\r\n    N >>= 1;\r\n    if (N < n) break;\r\n    ntt_doubling(P);\r\
-    \n    ntt_doubling(Q);\r\n  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  return fps_div(P,\
-    \ Q)[N];\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint>\
+    \ P, vector<mint> Q, ll N) {\r\n  mint base = 0;\r\n  if (len(P) >= len(Q)) {\r\
+    \n    auto [f, g] = poly_divmod(P, Q);\r\n    if (N < len(f)) base += f[N];\r\n\
+    \    swap(P, g);\r\n  }\r\n  assert(len(P) < len(Q));\r\n\r\n  int n = 1;\r\n\
+    \  while (n < len(Q)) n += n;\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    vc<int> btr(n);\r\
+    \n    int log = topbit(n);\r\n    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i\
+    \ & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\n    mint r = mint::ntt_info().se;\r\
+    \n    mint dw = r.inverse().pow((1 << t) / (2 * n));\r\n    mint w = inv<mint>(2);\r\
+    \n    for (auto& i: btr) { W[i] = w, w *= dw; }\r\n  }\r\n\r\n  P.resize(2 * n),\
+    \ Q.resize(2 * n);\r\n  ntt(P, 0), ntt(Q, 0);\r\n\r\n  while (N >= n) {\r\n  \
+    \  if (N % 2 == 0) {\r\n      FOR(i, n) {\r\n        P[i] = (P[2 * i] * Q[2 *\
+    \ i + 1] + P[2 * i + 1] * Q[2 * i])\r\n               * inv<mint>(2);\r\n    \
+    \  }\r\n    } else {\r\n      FOR(i, n) {\r\n        P[i] = (P[2 * i] * Q[2 *\
+    \ i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i];\r\n      }\r\n    }\r\n    FOR(i,\
+    \ n) Q[i] = Q[2 * i] * Q[2 * i + 1];\r\n    P.resize(n), Q.resize(n);\r\n    N\
+    \ /= 2;\r\n    if (N < n) break;\r\n    ntt_doubling(P), ntt_doubling(Q);\r\n\
+    \  }\r\n  ntt(P, 1), ntt(Q, 1);\r\n  P.resize(N + 1), Q.resize(N + 1);\r\n  return\
+    \ base + fps_div(P, Q)[N];\r\n}\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_convolution(vector<mint>\
     \ P, vector<mint> Q, ll N) {\r\n  P.resize(len(Q) - 1);\r\n  if (len(P) == 0)\
     \ return 0;\r\n  while (N >= len(P)) {\r\n    vc<mint> Q1 = Q;\r\n    FOR(i, len(Q1))\
     \ if (i & 1) Q1[i] = -Q1[i];\r\n    P = convolution(P, Q1);\r\n    Q = convolution(Q,\
@@ -514,8 +520,8 @@ data:
   requiredBy:
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
-  timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-04 19:14:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/bell.test.cpp
   - test/yukicoder/1962.test.cpp
