@@ -733,7 +733,7 @@ data:
   isVerificationFile: true
   path: test/mytest/bell.test.cpp
   requiredBy: []
-  timestamp: '2024-05-05 00:38:21+09:00'
+  timestamp: '2024-05-05 04:17:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/bell.test.cpp

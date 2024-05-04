@@ -218,7 +218,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -465,6 +465,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/slice_rational.test.cpp
+    title: test/library_checker/polynomial/slice_rational.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
@@ -606,7 +609,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -849,7 +852,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc345g.test.cpp
     title: test_atcoder/abc345g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1140,6 +1143,7 @@ data:
   - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/slice_rational.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
   - test/library_checker/polynomial/exp_of_fps.test.cpp

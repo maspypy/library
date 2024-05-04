@@ -41,19 +41,22 @@ data:
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
-    path: poly/middle_product.hpp
-    title: poly/middle_product.hpp
-  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: poly/poly_divmod.hpp
+    title: poly/poly_divmod.hpp
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
+  - icon: ':question:'
+    path: poly/transposed_ntt.hpp
+    title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc013/tasks/agc013_e
@@ -492,30 +495,60 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/middle_product.hpp\"\
-    \n\n#line 5 \"poly/middle_product.hpp\"\n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m)\
-    \ a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate\
-    \ <typename mint>\nvc<mint> middle_product(vc<mint>& a, vc<mint>& b) {\n  assert(len(a)\
-    \ >= len(b));\n  if (b.empty()) return vc<mint>(len(a) - len(b) + 1);\n  if (min(len(b),\
-    \ len(a) - len(b) + 1) <= 60) {\n    return middle_product_naive(a, b);\n  }\n\
-    \  if (!(mint::can_ntt())) {\n    return middle_product_garner(a, b);\n  } else\
-    \ {\n    int n = 1 << __lg(2 * len(a) - 1);\n    vc<mint> fa(n), fb(n);\n    copy(a.begin(),\
-    \ a.end(), fa.begin());\n    copy(b.rbegin(), b.rend(), fb.begin());\n    ntt(fa,\
-    \ 0), ntt(fb, 0);\n    FOR(i, n) fa[i] *= fb[i];\n    ntt(fa, 1);\n    fa.resize(len(a));\n\
-    \    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\n    return fa;\n  }\n}\n\n\
-    template <typename mint>\nvc<mint> middle_product_garner(vc<mint>& a, vc<mint>\
-    \ b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  static constexpr\
-    \ int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n  static constexpr\
-    \ int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using mint1 = modint<p1>;\n\
-    \  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
-    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
-    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
-    \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
-    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n \
-    \ FOR(i, n - m + 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
-    \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
-    \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
-    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 2 \"poly/fps_div.hpp\"\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/transposed_ntt.hpp\"\
+    \n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>& a, bool inverse)\
+    \ {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n  const\
+    \ int mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n  static\
+    \ array<mint, 30> rate2, irate2;\n  static array<mint, 30> rate3, irate3;\n\n\
+    \  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\n\n  static bool prepared\
+    \ = 0;\n  if (!prepared) {\n    prepared = 1;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    iroot[rank2] = mint(1) / root[rank2];\n    FOR_R(i, rank2) {\n      root[i]\
+    \ = root[i + 1] * root[i + 1];\n      iroot[i] = iroot[i + 1] * iroot[i + 1];\n\
+    \    }\n    mint prod = 1, iprod = 1;\n    for (int i = 0; i <= rank2 - 2; i++)\
+    \ {\n      rate2[i] = root[i + 2] * prod;\n      irate2[i] = iroot[i + 2] * iprod;\n\
+    \      prod *= iroot[i + 2];\n      iprod *= root[i + 2];\n    }\n    prod = 1,\
+    \ iprod = 1;\n    for (int i = 0; i <= rank2 - 3; i++) {\n      rate3[i] = root[i\
+    \ + 3] * prod;\n      irate3[i] = iroot[i + 3] * iprod;\n      prod *= iroot[i\
+    \ + 3];\n      iprod *= root[i + 3];\n    }\n  }\n\n  int n = int(a.size());\n\
+    \  int h = topbit(n);\n  assert(n == 1 << h);\n  if (!inverse) {\n    int len\
+    \ = h;\n    while (len > 0) {\n      if (len == 1) {\n        int p = 1 << (h\
+    \ - len);\n        mint rot = 1;\n        FOR(s, 1 << (len - 1)) {\n         \
+    \ int offset = s << (h - len + 1);\n          FOR(i, p) {\n            u64 l =\
+    \ a[i + offset].val;\n            u64 r = a[i + offset + p].val;\n           \
+    \ a[i + offset] = l + r;\n            a[i + offset + p] = (mod + l - r) * rot.val;\n\
+    \          }\n          rot *= rate2[topbit(~s & -~s)];\n        }\n        len--;\n\
+    \      } else {\n        int p = 1 << (h - len);\n        mint rot = 1, imag =\
+    \ root[2];\n        FOR(s, (1 << (len - 2))) {\n          int offset = s << (h\
+    \ - len + 2);\n          mint rot2 = rot * rot;\n          mint rot3 = rot2 *\
+    \ rot;\n          for (int i = 0; i < p; i++) {\n            u64 a0 = a[i + offset\
+    \ + 0 * p].val;\n            u64 a1 = a[i + offset + 1 * p].val;\n           \
+    \ u64 a2 = a[i + offset + 2 * p].val;\n            u64 a3 = a[i + offset + 3 *\
+    \ p].val;\n            u64 x = (mod + a2 - a3) * imag.val % mod;\n           \
+    \ a[i + offset] = a0 + a1 + a2 + a3;\n            a[i + offset + 1 * p] = (a0\
+    \ + mod - a1 + x) * rot.val;\n            a[i + offset + 2 * p] = (a0 + a1 + 2\
+    \ * mod - a2 - a3) * rot2.val;\n            a[i + offset + 3 * p] = (a0 + 2 *\
+    \ mod - a1 - x) * rot3.val;\n          }\n          rot *= rate3[topbit(~s & -~s)];\n\
+    \        }\n        len -= 2;\n      }\n    }\n  } else {\n    mint coef = mint(1)\
+    \ / mint(len(a));\n    FOR(i, len(a)) a[i] *= coef;\n    int len = 0;\n    while\
+    \ (len < h) {\n      if (len == h - 1) {\n        int p = 1 << (h - len - 1);\n\
+    \        mint irot = 1;\n        FOR(s, 1 << len) {\n          int offset = s\
+    \ << (h - len);\n          FOR(i, p) {\n            auto l = a[i + offset];\n\
+    \            auto r = a[i + offset + p] * irot;\n            a[i + offset] = l\
+    \ + r;\n            a[i + offset + p] = l - r;\n          }\n          irot *=\
+    \ irate2[topbit(~s & -~s)];\n        }\n        len++;\n      } else {\n     \
+    \   int p = 1 << (h - len - 2);\n        mint irot = 1, iimag = iroot[2];\n  \
+    \      for (int s = 0; s < (1 << len); s++) {\n          mint irot2 = irot * irot;\n\
+    \          mint irot3 = irot2 * irot;\n          int offset = s << (h - len);\n\
+    \          for (int i = 0; i < p; i++) {\n            u64 mod2 = u64(mod) * mod;\n\
+    \            u64 a0 = a[i + offset].val;\n            u64 a1 = u64(a[i + offset\
+    \ + p].val) * irot.val;\n            u64 a2 = u64(a[i + offset + 2 * p].val) *\
+    \ irot2.val;\n            u64 a3 = u64(a[i + offset + 3 * p].val) * irot3.val;\n\
+    \            u64 a1na3imag = (a1 + mod2 - a3) % mod * iimag.val;\n           \
+    \ u64 na2 = mod2 - a2;\n            a[i + offset] = a0 + a2 + a1 + a3;\n     \
+    \       a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\n          \
+    \  a[i + offset + 2 * p] = a0 + na2 + a1na3imag;\n            a[i + offset + 3\
+    \ * p] = a0 + na2 + (mod2 - a1na3imag);\n          }\n          irot *= irate3[topbit(~s\
+    \ & -~s)];\n        }\n        len += 2;\n      }\n    }\n  }\n}\n#line 2 \"poly/fps_div.hpp\"\
     \n\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
     \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
     \n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -551,22 +584,51 @@ data:
     \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
     \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/slice_rational_fps.hpp\"\n\
-    \n// P(x)/Q(x) \u306E [N, N+d] \u90E8\u5206\u3092\u8A08\u7B97\n// https://qiita.com/ryuhe1/items/c18ddbb834eed724a42b\n\
-    template <typename mint>\nvc<mint> slice_rational_fps(vc<mint> P, vc<mint> Q,\
-    \ ll N) {\n  assert(N >= 0 && Q[0] == mint(1) && len(P) < len(Q));\n  const int\
-    \ d = len(Q) - 1;\n  if (d == 0) { return vc<mint>(); }\n  P.resize(len(Q) - 1);\n\
-    \n  auto dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {\n    // 1/Q \u306E\
-    \ [N-d+1, N]\n    if (N == 0) {\n      vc<mint> f(d);\n      f[d - 1] = 1;\n \
-    \     return f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d + 1) if (i & 1) R[i]\
-    \ = -R[i];\n    vc<mint> V = convolution(Q, R);\n    FOR(i, d + 1) V[i] = V[2\
-    \ * i];\n    V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N / 2, V);\n    vc<mint>\
-    \ S(d + d);\n    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];\n    if (N % 2\
-    \ == 1) FOR(i, d) S[2 * i] = W[i];\n    reverse(all(R));\n    return middle_product(S,\
-    \ R);\n  };\n  vc<mint> A = dfs(dfs, N, Q);\n  vc<mint> f = convolution(A, Q);\n\
-    \  f = {f.begin() + d, f.end() - 1};\n  f = fps_div(f, Q);\n  for (auto&& x: f)\
-    \ x = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n  return middle_product(A,\
-    \ P);\n}\n#line 6 \"test_atcoder/agc013e.test.cpp\"\n\nusing mint = modint107;\n\
+    \ - j];\n    }\n  }\n  return f;\n}\n#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line\
+    \ 4 \"poly/poly_divmod.hpp\"\ntemplate <typename mint>\r\npair<vc<mint>, vc<mint>>\
+    \ poly_divmod(vc<mint> f, vc<mint> g) {\r\n  assert(g.back() != 0);\r\n  if (len(f)\
+    \ < len(g)) { return {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)),\
+    \ reverse(all(rg));\r\n  ll deg = len(rf) - len(rg) + 1;\r\n  rf.resize(deg),\
+    \ rg.resize(deg);\r\n  rg = fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n\
+    \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
+    \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
+    \n  return {q, f};\r\n}\r\n#line 5 \"poly/slice_rational_fps.hpp\"\n\ntemplate\
+    \ <typename mint>\nvc<mint> slice_of_rational_fps_ntt(vector<mint> P, vector<mint>\
+    \ Q, ll L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0]\
+    \ == mint(1));\n  if (len(Q) == 1) {\n    vc<mint> ANS(R - L);\n    FOR(i, L,\
+    \ R) if (i < len(P)) ANS[i - L] = P[i];\n    return ANS;\n  }\n  vc<mint> Q0 =\
+    \ Q;\n\n  int n = 1;\n  while (n < len(Q)) n += n;\n  Q.resize(2 * n), ntt(Q,\
+    \ 0);\n\n  vc<mint> W(n);\n  {\n    vc<int> btr(n);\n    int log = topbit(n);\n\
+    \    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n   \
+    \ int t = mint::ntt_info().fi;\n    mint r = mint::ntt_info().se;\n    mint dw\
+    \ = r.inverse().pow((1 << t) / (2 * n));\n    mint w = 1;\n    for (auto& i: btr)\
+    \ { W[i] = w, w *= dw; }\n  }\n\n  mint z = W[n / 2].inverse();\n  auto doubling\
+    \ = [&](vc<mint> f, bool t) -> vc<mint> {\n    mint r = 1;\n    if (!t) {\n  \
+    \    vc<mint> g(2 * n);\n      copy(all(f), g.begin());\n      ntt(f, 1);\n  \
+    \    FOR(i, 1, n) r *= z, f[i] *= r;\n      ntt(f, 0);\n      copy(all(f), g.begin()\
+    \ + n);\n      return g;\n    } else {\n      vc<mint> g = {f.begin(), f.begin()\
+    \ + n};\n      f = {f.begin() + n, f.begin() + 2 * n};\n      transposed_ntt(f,\
+    \ 0);\n      FOR(i, 1, n) r *= z, f[i] *= r;\n      transposed_ntt(f, 1);\n  \
+    \    FOR(i, n) g[i] += f[i];\n      return g;\n    }\n  };\n\n  auto dfs = [&](auto&\
+    \ dfs, vc<mint> Q, ll N) -> vc<mint> {\n    vc<mint> nxt_Q(2 * n);\n    FOR(i,\
+    \ n) nxt_Q[i] = Q[2 * i] * Q[2 * i + 1];\n    nxt_Q.resize(n);\n    vc<mint> p;\n\
+    \    if (N / 2 >= n) {\n      nxt_Q = doubling(nxt_Q, 0);\n      p = dfs(dfs,\
+    \ nxt_Q, N / 2);\n      p = doubling(p, 1);\n    } else {\n      ntt(nxt_Q, 1);\n\
+    \      nxt_Q = fps_inv<mint>(nxt_Q);\n      p.resize(n);\n      FOR(i, N / 2 +\
+    \ 1) p[i] += nxt_Q[N / 2 - i];\n      transposed_ntt(p, 1);\n    }\n    assert(len(p)\
+    \ == n);\n    p.resize(2 * n);\n    if (N % 2 == 0) {\n      FOR_R(i, n) {\n \
+    \       p[2 * i + 1] = Q[2 * i + 0] * inv<mint>(2) * p[i];\n        p[2 * i +\
+    \ 0] = Q[2 * i + 1] * inv<mint>(2) * p[i];\n      }\n    } else {\n      FOR_R(i,\
+    \ n) {\n        p[2 * i + 1] = -Q[2 * i + 0] * inv<mint>(2) * W[i] * p[i];\n \
+    \       p[2 * i + 0] = Q[2 * i + 1] * inv<mint>(2) * W[i] * p[i];\n      }\n \
+    \   }\n    assert(len(p) == 2 * n);\n    return p;\n  };\n\n  vc<mint> p = dfs(dfs,\
+    \ Q, L + n - 1);\n  transposed_ntt(p, 0);\n  p.resize(n);\n  reverse(all(p));\n\
+    \  swap(Q, Q0);\n  p.resize(len(Q) - 1);\n  // 1/Q \u306E L \u4EE5\u964D\u304C\
+    \ p \u3067\u306F\u3058\u307E\u308B\n  auto [f, g] = poly_divmod(P, Q);\n  p =\
+    \ convolution<mint>(p, Q);\n  p.resize(len(Q) - 1);\n  p = convolution<mint>(p,\
+    \ g);\n  p = poly_divmod(p, Q).se;\n  p.resize(R - L);\n  Q.resize(R - L);\n \
+    \ p = fps_div<mint>(p, Q);\n  FOR(i, L, len(f)) if (i < R) p[i - L] += f[i];\n\
+    \  return p;\n}\n#line 6 \"test_atcoder/agc013e.test.cpp\"\n\nusing mint = modint107;\n\
     \nvoid solve() {\n  LL(N, M);\n  using poly = vc<mint>;\n  poly f = {0, 1, 1};\n\
     \  poly Q = {1, -4, 2, -1};\n  int now = 0;\n  FOR(M) {\n    INT(x);\n    f =\
     \ slice_rational_fps(f, Q, x - now);\n    now = x;\n    mint a = f[0];\n    f\
@@ -595,15 +657,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/middle_product.hpp
+  - poly/transposed_ntt.hpp
   - poly/fps_div.hpp
   - poly/count_terms.hpp
   - poly/fps_inv.hpp
+  - poly/poly_divmod.hpp
   isVerificationFile: true
   path: test_atcoder/agc013e.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-05 04:17:31+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/agc013e.test.cpp
 layout: document

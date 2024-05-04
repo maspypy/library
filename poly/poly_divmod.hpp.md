@@ -47,6 +47,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
+  - icon: ':x:'
+    path: poly/slice_rational_fps.hpp
+    title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
@@ -63,6 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/slice_rational.test.cpp
+    title: test/library_checker/polynomial/slice_rational.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
@@ -72,6 +78,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
+  - icon: ':x:'
+    path: test/mytest/slice_rational_fps.test.cpp
+    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
@@ -114,6 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc013e.test.cpp
+    title: test_atcoder/agc013e.test.cpp
   - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
@@ -449,6 +461,7 @@ data:
   path: poly/poly_divmod.hpp
   requiredBy:
   - poly/coef_of_rational_fps.hpp
+  - poly/slice_rational_fps.hpp
   - poly/poly_mod_pow.hpp
   - poly/finding_root_of_polynomial.hpp
   - poly/poly_gcd.hpp
@@ -457,6 +470,7 @@ data:
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/poly_root_finding.test.cpp
   - test/mytest/coef_of_rational.test.cpp
   - test/mytest/bell.test.cpp
@@ -476,8 +490,10 @@ data:
   - test/yukicoder/2122.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/slice_rational.test.cpp
   - test/library_checker/polynomial/polynomial_division.test.cpp
   - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/agc013e.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
 redirect_from:

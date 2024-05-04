@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':warning:'
@@ -93,6 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/slice_rational.test.cpp
+    title: test/library_checker/polynomial/slice_rational.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
@@ -108,7 +111,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/slice_rational_fps.test.cpp
     title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -183,7 +186,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   - icon: ':x:'
@@ -579,6 +582,7 @@ data:
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/math/bernoulli.test.cpp
   - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/library_checker/polynomial/slice_rational.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/arc154f.test.cpp

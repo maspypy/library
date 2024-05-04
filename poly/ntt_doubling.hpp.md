@@ -142,7 +142,7 @@ data:
     \ { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  const int M = (int)a.size();\n\
     \  auto b = a;\n  ntt(b, 1);\n  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i,\
     \ M) b[i] *= r, r *= zeta;\n  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n\
-    }"
+    }\n"
   dependsOn:
   - poly/ntt.hpp
   isVerificationFile: false
@@ -151,7 +151,7 @@ data:
   - poly/coef_of_rational_fps.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
-  timestamp: '2024-05-04 21:50:01+09:00'
+  timestamp: '2024-05-05 04:17:31+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/coef_of_rational.test.cpp

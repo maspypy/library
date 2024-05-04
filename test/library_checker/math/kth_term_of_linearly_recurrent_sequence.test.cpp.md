@@ -630,7 +630,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   requiredBy: []
-  timestamp: '2024-05-05 00:38:21+09:00'
+  timestamp: '2024-05-05 04:17:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp

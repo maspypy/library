@@ -24,9 +24,6 @@ data:
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/slice_rational_fps.hpp
-    title: poly/slice_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
@@ -63,9 +60,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/slice_rational_fps.test.cpp
-    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
@@ -105,9 +99,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc333f.test.cpp
     title: test_atcoder/abc333f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/agc013e.test.cpp
-    title: test_atcoder/agc013e.test.cpp
   - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
@@ -233,7 +224,6 @@ data:
   path: poly/middle_product.hpp
   requiredBy:
   - poly/typical_divide_conquer.hpp
-  - poly/slice_rational_fps.hpp
   - poly/multipoint.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
@@ -245,7 +235,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/chirp_z.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
@@ -266,7 +255,6 @@ data:
   - test_atcoder/abc333f.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc241h.test.cpp
-  - test_atcoder/agc013e.test.cpp
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/abc260h.test.cpp
 documentation_of: poly/middle_product.hpp
