@@ -51,11 +51,18 @@ struct Vector_Space {
     return x;
   }
 
-  static SP intersection(SP& x, SP& y, int max_dim) {
-    SP xx = x.orthogonal_space(max_dim);
-    SP yy = y.orthogonal_space(max_dim);
-    xx = merge(xx, yy);
-    return xx.orthogonal_space(max_dim);
+  static SP intersection(SP& x, SP& y) {
+    // とりあえず
+    static_assert(is_same_v<UINT, u32>);
+    vc<u64> xx;
+    for (auto& v: x.dat) xx.eb(v | static_cast<u64>(v) << 32);
+    Vector_Space<u64> z(xx, true);
+    for (auto& v: y.dat) z.add_element(static_cast<u64>(v) << 32);
+    vc<u32> xy;
+    for (auto& v: z.dat) {
+      if (v <= u32(-1)) xy.eb(v);
+    }
+    return SP(xy, true);
   }
 
   SP orthogonal_space(int max_dim) {
