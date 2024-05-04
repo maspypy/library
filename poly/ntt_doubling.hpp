@@ -1,3 +1,5 @@
+#pragma once
+
 #include "poly/ntt.hpp"
 
 template <typename mint>
