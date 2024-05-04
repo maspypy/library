@@ -1,19 +1,24 @@
 #include "poly/fps_div.hpp"
 #include "poly/ntt_doubling.hpp"
+#include "poly/poly_divmod.hpp"
 
 template <typename mint>
 mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
-  assert(len(Q) <= 16);
+  assert(0 <= len(P) && len(P) + 1 == len(Q) && len(Q) <= 16
+         && Q[0] == mint(1));
+  if (P.empty()) return 0;
   int m = len(Q) - 1;
-  assert(len(P) == m);
-  if (m == 0) return mint(0);
   vc<u32> Q32(m + 1);
   FOR(i, m + 1) Q32[i] = (-Q[i]).val;
 
   using poly = vc<u64>;
   auto dfs = [&](auto& dfs, const ll N) -> poly {
     // x^N mod G
-    if (N == 0) return {1};
+    if (N == 0) {
+      poly f(m);
+      f[0] = 1;
+      return f;
+    }
     poly f = dfs(dfs, N / 2);
     poly g(len(f) * 2 - 1 + (N & 1));
     FOR(i, len(f)) FOR(j, len(f)) { g[i + j + (N & 1)] += f[i] * f[j]; }
@@ -26,7 +31,7 @@ mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
     return g;
   };
   poly f = dfs(dfs, N);
-  FOR(i, m) { FOR(j, 1, i + 1) P[i] -= Q[j] * P[i - j]; }
+  FOR(i, m) FOR(j, 1, i + 1) { P[i] -= Q[j] * P[i - j]; }
   u64 res = 0;
   FOR(i, m) res += f[i] * P[i].val;
   return res;
@@ -34,13 +39,8 @@ mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
 
 template <typename mint>
 mint coef_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll N) {
-  mint base = 0;
-  if (len(P) >= len(Q)) {
-    auto [f, g] = poly_divmod(P, Q);
-    if (N < len(f)) base += f[N];
-    swap(P, g);
-  }
-  assert(len(P) < len(Q));
+  assert(0 <= len(P) && len(P) + 1 == len(Q) && Q[0] == mint(1));
+  if (P.empty()) return 0;
 
   int n = 1;
   while (n < len(Q)) n += n;
@@ -81,13 +81,13 @@ mint coef_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll N) {
   Q = fps_inv<mint>(Q);
   mint ans = 0;
   FOR(i, N + 1) ans += P[i] * Q[N - i];
-  return base + ans;
+  return ans;
 }
 
 template <typename mint>
 mint coef_of_rational_fps_convolution(vector<mint> P, vector<mint> Q, ll N) {
-  P.resize(len(Q) - 1);
-  if (len(P) == 0) return 0;
+  assert(0 <= len(P) && len(P) + 1 == len(Q) && Q[0] == mint(1));
+  if (P.empty()) return 0;
   while (N >= len(P)) {
     vc<mint> Q1 = Q;
     FOR(i, len(Q1)) if (i & 1) Q1[i] = -Q1[i];
@@ -104,16 +104,25 @@ mint coef_of_rational_fps_convolution(vector<mint> P, vector<mint> Q, ll N) {
 
 template <typename mint>
 mint coef_of_rational_fps(vector<mint> P, vector<mint> Q, ll N) {
-  assert(len(P) < len(Q) && Q[0] == mint(1));
-  if (N == 0) return (P.empty() ? mint(0) : P[0]);
+  if (P.empty()) return 0;
+  assert(len(Q) > 0 && Q[0] != mint(0));
+  while (Q.back() == mint(0)) POP(Q);
+  mint c = mint(1) / Q[0];
+  for (auto& x: P) x *= c;
+  for (auto& x: Q) x *= c;
+  mint base = 0;
+  if (len(P) >= len(Q)) {
+    auto [f, g] = poly_divmod<mint>(P, Q);
+    base = (N < len(f) ? f[N] : mint(0));
+    P = g;
+  }
+  P.resize(len(Q) - 1);
   int n = len(Q);
   if (mint::ntt_info().fi != -1) {
-    if (n <= 10) {
-      return coef_of_rational_fps_small(P, Q, N);
-    } else {
-      return coef_of_rational_fps_ntt(P, Q, N);
-    }
+    if (n <= 10) return base + coef_of_rational_fps_small(P, Q, N);
+    if (n > 10) return base + coef_of_rational_fps_ntt(P, Q, N);
   }
-  return (n <= 16 ? coef_of_rational_fps_small(P, Q, N)
-                  : coef_of_rational_fps_convolution(P, Q, N));
+  mint x = (n <= 16 ? coef_of_rational_fps_small(P, Q, N)
+                    : coef_of_rational_fps_convolution(P, Q, N));
+  return base + x;
 }
