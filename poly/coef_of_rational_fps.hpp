@@ -34,44 +34,53 @@ mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
 
 template <typename mint>
 mint coef_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll N) {
-  int log = 0;
-  while ((1 << log) < len(Q)) ++log;
-  int n = 1 << log;
+  mint base = 0;
+  if (len(P) >= len(Q)) {
+    auto [f, g] = poly_divmod(P, Q);
+    if (N < len(f)) base += f[N];
+    swap(P, g);
+  }
+  assert(len(P) < len(Q));
+
+  int n = 1;
+  while (n < len(Q)) n += n;
+
+  vc<mint> W(n);
+  {
+    vc<int> btr(n);
+    int log = topbit(n);
+    FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }
+    int t = mint::ntt_info().fi;
+    mint r = mint::ntt_info().se;
+    mint dw = r.inverse().pow((1 << t) / (2 * n));
+    mint w = inv<mint>(2);
+    for (auto& i: btr) { W[i] = w, w *= dw; }
+  }
+
   P.resize(2 * n), Q.resize(2 * n);
   ntt(P, 0), ntt(Q, 0);
-  vc<int> btr(n);
-  FOR(i, n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }
 
-  int t = mint::ntt_info().fi;
-  mint r = mint::ntt_info().se;
-  mint dw = r.inverse().pow((1 << t) / (2 * n));
-
-  vc<mint> S, T;
   while (N >= n) {
-    mint w = inv<mint>(2);
-    T.resize(n);
-    FOR(i, n) T[i] = Q[2 * i + 0] * Q[2 * i + 1];
-    S.resize(n);
-    if (N & 1) {
-      for (auto& i: btr) {
-        S[i] = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * w;
-        w *= dw;
+    if (N % 2 == 0) {
+      FOR(i, n) {
+        P[i] = (P[2 * i] * Q[2 * i + 1] + P[2 * i + 1] * Q[2 * i])
+               * inv<mint>(2);
       }
     } else {
       FOR(i, n) {
-        S[i] = (P[2 * i] * Q[2 * i + 1] + P[2 * i + 1] * Q[2 * i]) * w;
+        P[i] = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i];
       }
     }
-    swap(P, S), swap(Q, T);
-    N >>= 1;
+    FOR(i, n) Q[i] = Q[2 * i] * Q[2 * i + 1];
+    P.resize(n), Q.resize(n);
+    N /= 2;
     if (N < n) break;
-    ntt_doubling(P);
-    ntt_doubling(Q);
+    ntt_doubling(P), ntt_doubling(Q);
   }
   ntt(P, 1), ntt(Q, 1);
-  return fps_div(P, Q)[N];
+  P.resize(N + 1), Q.resize(N + 1);
+  return base + fps_div(P, Q)[N];
 }
-
 template <typename mint>
 mint coef_of_rational_fps_convolution(vector<mint> P, vector<mint> Q, ll N) {
   P.resize(len(Q) - 1);
