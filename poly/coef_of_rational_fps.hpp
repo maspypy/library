@@ -78,9 +78,12 @@ mint coef_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll N) {
     ntt_doubling(P), ntt_doubling(Q);
   }
   ntt(P, 1), ntt(Q, 1);
-  P.resize(N + 1), Q.resize(N + 1);
-  return base + fps_div(P, Q)[N];
+  Q = fps_inv<mint>(Q);
+  mint ans = 0;
+  FOR(i, N + 1) ans += P[i] * Q[N - i];
+  return base + ans;
 }
+
 template <typename mint>
 mint coef_of_rational_fps_convolution(vector<mint> P, vector<mint> Q, ll N) {
   P.resize(len(Q) - 1);

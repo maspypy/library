@@ -52,7 +52,7 @@ vector<int> ConvexHull(vector<pair<T, T>>& XY, string mode = "full",
     P.insert(P.end(), all(Q));
   }
   if (mode == "upper") reverse(all(P));
-  if (len(P) >= 2 && P[0] == P.back()) P.pop_back();
+  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();
   return P;
 }
 
@@ -106,6 +106,6 @@ vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full",
     P.insert(P.end(), all(Q));
   }
   if (mode == "upper") reverse(all(P));
-  if (len(P) >= 2 && P[0] == P.back()) P.pop_back();
+  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();
   return P;
 }
