@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
   - icon: ':heavy_check_mark:'
@@ -14,16 +14,19 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
+  - icon: ':warning:'
+    path: test/library_checker/geometry/static_convex_hull.tset.cpp
+    title: test/library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -103,7 +106,7 @@ data:
     \   vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
     full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n\
     \    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
-    upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] == P.back()) P.pop_back();\n\
+    upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
     \  return P;\n}\n\ntemplate <typename T>\nvector<int> ConvexHull(vector<Point<T>>&\
     \ XY, string mode = \"full\",\n                       bool inclusive = false,\
     \ bool sorted = false) {\n  assert(mode == \"full\" || mode == \"lower\" || mode\
@@ -122,7 +125,7 @@ data:
     \ calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"full\" || mode\
     \ == \"upper\") {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n \
     \   vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
-    upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] == P.back()) P.pop_back();\n\
+    upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
     \  return P;\n}\n"
   code: "#pragma once\n\n#include \"geo/base.hpp\"\n\ntemplate <typename T>\nvector<int>\
     \ ConvexHull(vector<pair<T, T>>& XY, string mode = \"full\",\n               \
@@ -142,8 +145,8 @@ data:
     \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
     \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
-    \  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] ==\
-    \ P.back()) P.pop_back();\n  return P;\n}\n\ntemplate <typename T>\nvector<int>\
+    \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
+    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n\ntemplate <typename T>\nvector<int>\
     \ ConvexHull(vector<Point<T>>& XY, string mode = \"full\",\n                 \
     \      bool inclusive = false, bool sorted = false) {\n  assert(mode == \"full\"\
     \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
@@ -161,8 +164,8 @@ data:
     \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
     \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
-    \  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] ==\
-    \ P.back()) P.pop_back();\n  return P;\n}"
+    \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
+    \ == XY[P.back()]) P.pop_back();\n  return P;\n}"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
@@ -170,9 +173,10 @@ data:
   requiredBy:
   - geo/convex_polygon.hpp
   - geo/minkowski_sum.hpp
+  - test/library_checker/geometry/static_convex_hull.tset.cpp
   - convex/fenchel.hpp
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-04 21:50:01+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test_atcoder/arc130f.test.cpp

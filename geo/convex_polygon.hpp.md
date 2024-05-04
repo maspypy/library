@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy:
@@ -97,10 +97,10 @@ data:
     \ == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
     \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
     \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
-    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2\
-    \ && P[0] == P.back()) P.pop_back();\n  return P;\n}\n\ntemplate <typename T>\n\
-    vector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"full\",\n       \
-    \                bool inclusive = false, bool sorted = false) {\n  assert(mode\
+    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
+    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n\ntemplate <typename\
+    \ T>\nvector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"full\",\n \
+    \                      bool inclusive = false, bool sorted = false) {\n  assert(mode\
     \ == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n\
     \  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0,\
     \ 1};\n    if (XY[1] < XY[0]) return {1, 0};\n    if (inclusive) return {0, 1};\n\
@@ -116,16 +116,16 @@ data:
     \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
     \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
-    \  }\n  if (mode == \"upper\") reverse(all(P));\n  if (len(P) >= 2 && P[0] ==\
-    \ P.back()) P.pop_back();\n  return P;\n}\n#line 3 \"geo/convex_polygon.hpp\"\n\
-    \n// \u307B\u3068\u3093\u3069\u30C6\u30B9\u30C8\u3055\u308C\u3066\u3044\u306A\u3044\
-    \u306E\u3067\u3042\u3084\u3057\u3044\n// n=2 \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\
-    \u30C8\u3057\u3066\u3044\u306A\u3044\n// \u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u8907\
-    \u6570\u306E\u70B9\u304C\u3042\u308B\u3068\u6B63\u3057\u304F\u52D5\u304B\u306A\
-    \u3044\u8AAC\u304C\u3042\u308B\ntemplate <typename T>\nstruct ConvexPolygon {\n\
-    \  using P = Point<T>;\n  int n;\n  vc<P> point;\n\n  ConvexPolygon(vc<P> point_,\
-    \ bool is_conv) : n(len(point_)), point(point_) {\n    if (!is_conv) {\n     \
-    \ vc<int> I = ConvexHull<T>(point_, \"full\");\n      point = rearrange(point_,\
+    \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
+    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"geo/convex_polygon.hpp\"\
+    \n\n// \u307B\u3068\u3093\u3069\u30C6\u30B9\u30C8\u3055\u308C\u3066\u3044\u306A\
+    \u3044\u306E\u3067\u3042\u3084\u3057\u3044\n// n=2 \u306F\u73FE\u72B6\u30B5\u30DD\
+    \u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\n// \u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\
+    \u8907\u6570\u306E\u70B9\u304C\u3042\u308B\u3068\u6B63\u3057\u304F\u52D5\u304B\
+    \u306A\u3044\u8AAC\u304C\u3042\u308B\ntemplate <typename T>\nstruct ConvexPolygon\
+    \ {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n\n  ConvexPolygon(vc<P>\
+    \ point_, bool is_conv) : n(len(point_)), point(point_) {\n    if (!is_conv) {\n\
+    \      vc<int> I = ConvexHull<T>(point_, \"full\");\n      point = rearrange(point_,\
     \ I);\n    }\n    // assert(n >= 3);\n    // counter clockwise \u306B\u306A\u304A\
     \u3059\n    if (n >= 3) {\n      if ((point[1] - point[0]).det(point[2] - point[0])\
     \ < 0) {\n        reverse(all(point));\n      }\n    }\n  }\n\n  // \u6BD4\u8F03\
@@ -189,7 +189,7 @@ data:
   path: geo/convex_polygon.hpp
   requiredBy:
   - geo/minkowski_sum.hpp
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-05-04 21:50:01+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp

@@ -4,12 +4,9 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/outcircle.hpp
-    title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
-    path: geo/triangle_area.hpp
-    title: geo/triangle_area.hpp
+  - icon: ':question:'
+    path: geo/convex_hull.hpp
+    title: geo/convex_hull.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,14 +17,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2602
     links:
-    - https://yukicoder.me/problems/no/2602
-  bundledCode: "#line 1 \"test/yukicoder/2602.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2602\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/static_convex_hull
+  bundledCode: "#line 1 \"test/library_checker/geometry/static_convex_hull.tset.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -191,20 +187,21 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/yukicoder/2602.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
-    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
-    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
-    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
-    \ {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point\
-    \ operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
-    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
-    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
-    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
-    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
-    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
-    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
-    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
-    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \ yes(!t); }\r\n#line 4 \"test/library_checker/geometry/static_convex_hull.tset.cpp\"\
+    \n\n#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
+    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
+    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
+    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
+    \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
+    \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
+    \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
+    \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
+    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
+    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
+    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
+    \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>&\
     \ p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
@@ -250,61 +247,68 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename T>\nREAL\
-    \ triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n  return abs((B - A).det(C\
-    \ - A)) * 0.5;\n}\n#line 3 \"geo/outcircle.hpp\"\n\ntemplate <typename REAL, typename\
-    \ T>\nCircle<REAL> outcircle(Point<T> A, Point<T> B, Point<T> C) {\n  REAL b1\
-    \ = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x - A.x, c2 = C.y - A.y;\n  REAL\
-    \ bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1 * c1 + c2 * c2) / 2;\n\n  REAL\
-    \ det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2 - b2 * cc) / det;\n  REAL y =\
-    \ (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x * x + y * y);\n  x += A.x, y +=\
-    \ A.y;\n  return Circle<REAL>(x, y, r);\n}\n\n// ABC \u306E\u5916\u63A5\u5186\u306B\
-    \u5BFE\u3057\u3066\u5185\u5916\u3069\u3061\u3089\u306B\u3042\u308B\u304B\n// \u4E2D\
-    \uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1\n// \u5EA7\u6A19\u306E 4 \u4E57\u304C\
-    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\
-    \u3059\u308B\ntemplate <typename T>\nint outcircle_side(Point<T> A, Point<T> B,\
-    \ Point<T> C, Point<T> p) {\n  T d = (B - A).det(C - A);\n  assert(d != 0);\n\
-    \  if (d < 0) swap(B, C);\n  array<Point<T>, 3> pts = {A, B, C};\n  array<array<T,\
-    \ 3>, 3> mat;\n  FOR(i, 3) {\n    T dx = pts[i].x - p.x, dy = pts[i].y - p.y;\n\
-    \    mat[i][0] = dx, mat[i][1] = dy, mat[i][2] = dx * dx + dy * dy;\n  }\n  T\
-    \ det = 0;\n  det += mat[0][0] * (mat[1][1] * mat[2][2] - mat[1][2] * mat[2][1]);\n\
-    \  det += mat[0][1] * (mat[1][2] * mat[2][0] - mat[1][0] * mat[2][2]);\n  det\
-    \ += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);\n  if (det ==\
-    \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 7 \"test/yukicoder/2602.test.cpp\"\
-    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(Q);\n  P A, B, C;\n  read(A,\
-    \ B, C);\n\n  A.x *= 2;\n  A.y *= 2;\n  B.x *= 2;\n  B.y *= 2;\n  C.x *= 2;\n\
-    \  C.y *= 2;\n\n  FOR(3) {\n    tie(A, B, C) = mt(B, C, A);\n    ll dot = (B -\
-    \ A).dot(C - A);\n    if (dot < 0) {\n      P O = (B + C);\n      O.x /= 2, O.y\
-    \ /= 2;\n      A = B - O;\n      tie(A.x, A.y) = mp(A.y, -A.x);\n      A = A +\
-    \ O;\n    }\n  }\n\n  FOR(Q) {\n    P p;\n    read(p);\n    p.x *= 2, p.y *= 2;\n\
-    \    Yes(outcircle_side(A, B, C, p) >= 0);\n  }\n}\n\nsigned main() {\n  int T\
-    \ = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/2602\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\n#include \"geo/outcircle.hpp\"\
-    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(Q);\n  P A, B, C;\n  read(A,\
-    \ B, C);\n\n  A.x *= 2;\n  A.y *= 2;\n  B.x *= 2;\n  B.y *= 2;\n  C.x *= 2;\n\
-    \  C.y *= 2;\n\n  FOR(3) {\n    tie(A, B, C) = mt(B, C, A);\n    ll dot = (B -\
-    \ A).dot(C - A);\n    if (dot < 0) {\n      P O = (B + C);\n      O.x /= 2, O.y\
-    \ /= 2;\n      A = B - O;\n      tie(A.x, A.y) = mp(A.y, -A.x);\n      A = A +\
-    \ O;\n    }\n  }\n\n  FOR(Q) {\n    P p;\n    read(p);\n    p.x *= 2, p.y *= 2;\n\
-    \    Yes(outcircle_side(A, B, C, p) >= 0);\n  }\n}\n\nsigned main() {\n  int T\
-    \ = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    #line 4 \"geo/convex_hull.hpp\"\n\ntemplate <typename T>\nvector<int> ConvexHull(vector<pair<T,\
+    \ T>>& XY, string mode = \"full\",\n                       bool inclusive = false,\
+    \ bool sorted = false) {\n  assert(mode == \"full\" || mode == \"lower\" || mode\
+    \ == \"upper\");\n  ll N = XY.size();\n  if (N == 1) return {0};\n  if (N == 2)\
+    \ {\n    if (XY[0] < XY[1]) return {0, 1};\n    if (XY[1] < XY[0]) return {1,\
+    \ 0};\n    if (inclusive) return {0, 1};\n    return {0};\n  }\n  vc<int> I =\
+    \ argsort(XY);\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    auto xi\
+    \ = XY[i].fi, yi = XY[i].se;\n    auto xj = XY[j].fi, yj = XY[j].se;\n    auto\
+    \ xk = XY[k].fi, yk = XY[k].se;\n    auto dx1 = xj - xi, dy1 = yj - yi;\n    auto\
+    \ dx2 = xk - xj, dy2 = yk - yj;\n    T det = dx1 * dy2 - dy1 * dx2;\n    return\
+    \ (inclusive ? det >= 0 : det > 0);\n  };\n\n  auto calc = [&]() {\n    vector<int>\
+    \ P;\n    for (auto&& k: I) {\n      while (P.size() > 1) {\n        auto i =\
+    \ P[P.size() - 2];\n        auto j = P[P.size() - 1];\n        if (check(i, j,\
+    \ k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n    }\n    return\
+    \ P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode == \"lower\") {\n \
+    \   vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n\
+    \    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
+    \  return P;\n}\n\ntemplate <typename T>\nvector<int> ConvexHull(vector<Point<T>>&\
+    \ XY, string mode = \"full\",\n                       bool inclusive = false,\
+    \ bool sorted = false) {\n  assert(mode == \"full\" || mode == \"lower\" || mode\
+    \ == \"upper\");\n  ll N = XY.size();\n  if (N == 1) return {0};\n  if (N == 2)\
+    \ {\n    if (XY[0] < XY[1]) return {0, 1};\n    if (XY[1] < XY[0]) return {1,\
+    \ 0};\n    if (inclusive) return {0, 1};\n    return {0};\n  }\n  vc<int> I =\
+    \ argsort(XY);\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    auto xi\
+    \ = XY[i].x, yi = XY[i].y;\n    auto xj = XY[j].x, yj = XY[j].y;\n    auto xk\
+    \ = XY[k].x, yk = XY[k].y;\n    auto dx1 = xj - xi, dy1 = yj - yi;\n    auto dx2\
+    \ = xk - xj, dy2 = yk - yj;\n    T det = dx1 * dy2 - dy1 * dx2;\n    return (inclusive\
+    \ ? det >= 0 : det > 0);\n  };\n\n  auto calc = [&]() {\n    vector<int> P;\n\
+    \    for (auto&& k: I) {\n      while (P.size() > 1) {\n        auto i = P[P.size()\
+    \ - 2];\n        auto j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n\
+    \        P.pop_back();\n      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n\
+    \  vc<int> P;\n  if (mode == \"full\" || mode == \"lower\") {\n    vc<int> Q =\
+    \ calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"full\" || mode\
+    \ == \"upper\") {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n \
+    \   vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"\
+    upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n\
+    \  return P;\n}\n#line 6 \"test/library_checker/geometry/static_convex_hull.tset.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, point, N);\n  vc<int> I = ConvexHull(point);\n\
+    \  print(len(I));\n  for (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n\
+    \  INT(T);\n  FOR(T) solve();\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_hull.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, point, N);\n  vc<int> I = ConvexHull(point);\n\
+    \  print(len(I));\n  for (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n\
+    \  INT(T);\n  FOR(T) solve();\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - geo/convex_hull.hpp
   - geo/base.hpp
-  - geo/outcircle.hpp
-  - geo/triangle_area.hpp
-  isVerificationFile: true
-  path: test/yukicoder/2602.test.cpp
+  isVerificationFile: false
+  path: test/library_checker/geometry/static_convex_hull.tset.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-04 21:50:01+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/yukicoder/2602.test.cpp
+documentation_of: test/library_checker/geometry/static_convex_hull.tset.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/2602.test.cpp
-- /verify/test/yukicoder/2602.test.cpp.html
-title: test/yukicoder/2602.test.cpp
+- /library/test/library_checker/geometry/static_convex_hull.tset.cpp
+- /library/test/library_checker/geometry/static_convex_hull.tset.cpp.html
+title: test/library_checker/geometry/static_convex_hull.tset.cpp
 ---

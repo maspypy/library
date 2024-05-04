@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/library_checker/geometry/static_convex_hull.tset.cpp
+    title: test/library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
@@ -2583,7 +2586,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc123d.test.cpp
     title: test_atcoder/arc123d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2788,7 +2791,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: my_template.hpp
-  requiredBy: []
+  requiredBy:
+  - test/library_checker/geometry/static_convex_hull.tset.cpp
   timestamp: '2024-03-29 11:46:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
