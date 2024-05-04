@@ -21,7 +21,7 @@ void solve() {
   for (auto&& n: query) {
     ll cnt_lo = (n - 1) / 2;
     auto [med, sum_lo] = X.kth_value_sum(0, n, cnt_lo);
-    auto total = X.sum(0, n, 0, n);
+    auto total = X.sum_all(0, n);
     ll cnt_hi = n - cnt_lo;
     ll sum_hi = total - sum_lo;
     ll ANS = Bc[n];
