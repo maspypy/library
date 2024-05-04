@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedRequiredBy: []
@@ -43,9 +43,12 @@ data:
     \ {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n \
     \   return res;\n  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y))\
     \ swap(x, y);\n    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n\
-    \  }\n\n  static SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
-    \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
-    \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
+    \  }\n\n  static SP intersection(SP& x, SP& y) {\n    // \u3068\u308A\u3042\u3048\
+    \u305A\n    static_assert(is_same_v<UINT, u32>);\n    vc<u64> xx;\n    for (auto&\
+    \ v: x.dat) xx.eb(v | static_cast<u64>(v) << 32);\n    Vector_Space<u64> z(xx,\
+    \ true);\n    for (auto& v: y.dat) z.add_element(static_cast<u64>(v) << 32);\n\
+    \    vc<u32> xy;\n    for (auto& v: z.dat) {\n      if (v <= u32(-1)) xy.eb(v);\n\
+    \    }\n    return SP(xy, true);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
     \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
     \u3088\u3046\u306B\u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64>\
     \ tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m,\
@@ -71,7 +74,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/merge_vector_space.hpp
   requiredBy: []
-  timestamp: '2024-03-09 20:17:37+09:00'
+  timestamp: '2024-05-04 19:37:33+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/184.test.cpp

@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/merge_vector_space.hpp
-    title: alg/monoid/merge_vector_space.hpp
   - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
@@ -23,10 +20,11 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/184
+    PROBLEM: https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces
     links:
-    - https://yukicoder.me/problems/no/184
-  bundledCode: "#line 1 \"test/yukicoder/184.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/184\"\
+    - https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces
+  bundledCode: "#line 1 \"test/library_checker/matrix/vector_space_intersection.test.cpp\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -191,8 +189,9 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E\
-    \ transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\n// https://github.com/dsnet/matrix-transpose\n\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/matrix/vector_space_intersection.test.cpp\"\
+    \n\n#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E transpose\u3002\
+    O((n+m)log(n+m)) \u6642\u9593\u3002\n// https://github.com/dsnet/matrix-transpose\n\
     template <typename UINT>\nvc<UINT> transpose(int n, int m, vc<UINT>& A, bool keep_A\
     \ = 1) {\n  assert(max(n, m) <= numeric_limits<UINT>::digits);\n  assert(len(A)\
     \ == n);\n  vc<UINT> tmp;\n  if (keep_A) tmp = A;\n  int LOG = 0;\n  while ((1\
@@ -232,36 +231,32 @@ data:
     \u5316\n    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);\n    sort(all(dat));\n\
     \    if (dec) reverse(all(dat));\n  }\n\nprivate:\n  void reduce() {\n    SP y;\n\
     \    for (auto&& e: dat) y.add_element(e);\n    (*this) = y;\n  }\n#undef SP\n\
-    };\n#line 2 \"alg/monoid/merge_vector_space.hpp\"\n\ntemplate <typename UINT>\n\
-    struct Merge_Vector_Space {\n  using value_type = Vector_Space<UINT>;\n  using\
-    \ X = value_type;\n  static X op(X x, X y) { return Vector_Space<UINT>::merge(x,\
-    \ y); }\n  static constexpr X unit() { return {}; }\n  static constexpr bool commute\
-    \ = 1;\n};\n#line 5 \"test/yukicoder/184.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(ll, A, N);\n  using Mono = Merge_Vector_Space<u64>;\n  using SP = typename\
-    \ Mono::value_type;\n  SP X;\n  for (auto&& a: A) { X.add_element(a); }\n  print(1LL\
-    \ << len(X));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/184\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"alg/monoid/merge_vector_space.hpp\"\n\n\
-    void solve() {\n  LL(N);\n  VEC(ll, A, N);\n  using Mono = Merge_Vector_Space<u64>;\n\
-    \  using SP = typename Mono::value_type;\n  SP X;\n  for (auto&& a: A) { X.add_element(a);\
-    \ }\n  print(1LL << len(X));\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    };\n#line 7 \"test/library_checker/matrix/vector_space_intersection.test.cpp\"\
+    \n\nusing SP = Vector_Space<u32>;\n\nvoid solve() {\n  auto get = [&]() -> SP\
+    \ {\n    INT(n);\n    VEC(u32, a, n);\n    return SP(a, 0);\n  };\n  auto x =\
+    \ get(), y = get();\n  x = SP::intersection(x, y);\n  print(x.dim(), x.dat);\n\
+    }\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n}\n"
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/xor/vector_space.hpp\"\
+    \n\nusing SP = Vector_Space<u32>;\n\nvoid solve() {\n  auto get = [&]() -> SP\
+    \ {\n    INT(n);\n    VEC(u32, a, n);\n    return SP(a, 0);\n  };\n  auto x =\
+    \ get(), y = get();\n  x = SP::intersection(x, y);\n  print(x.dim(), x.dat);\n\
+    }\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - alg/monoid/merge_vector_space.hpp
   - linalg/xor/vector_space.hpp
   - linalg/xor/transpose.hpp
   isVerificationFile: true
-  path: test/yukicoder/184.test.cpp
+  path: test/library_checker/matrix/vector_space_intersection.test.cpp
   requiredBy: []
   timestamp: '2024-05-04 19:37:33+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/184.test.cpp
+documentation_of: test/library_checker/matrix/vector_space_intersection.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/184.test.cpp
-- /verify/test/yukicoder/184.test.cpp.html
-title: test/yukicoder/184.test.cpp
+- /verify/test/library_checker/matrix/vector_space_intersection.test.cpp
+- /verify/test/library_checker/matrix/vector_space_intersection.test.cpp.html
+title: test/library_checker/matrix/vector_space_intersection.test.cpp
 ---

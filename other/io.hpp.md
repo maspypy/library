@@ -739,6 +739,9 @@ data:
     path: test/library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/vector_space_intersection.test.cpp
+    title: test/library_checker/matrix/vector_space_intersection.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/composition_dmint.test.cpp
     title: test/library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1743,7 +1746,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc141e.test.cpp
     title: test_atcoder/abc141e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc141f.test.cpp
     title: test_atcoder/abc141f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2773,6 +2776,7 @@ data:
   - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/library_checker/matrix/matrix_product_mod2.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test/library_checker/matrix/vector_space_intersection.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   _extendedRequiredBy:
@@ -10,17 +10,20 @@ data:
     title: alg/monoid/merge_vector_space.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/matrix/vector_space_intersection.test.cpp
+    title: test/library_checker/matrix/vector_space_intersection.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc141f.test.cpp
     title: test_atcoder/abc141f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E\
@@ -49,9 +52,12 @@ data:
     \ {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n \
     \   return res;\n  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y))\
     \ swap(x, y);\n    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n\
-    \  }\n\n  static SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
-    \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
-    \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
+    \  }\n\n  static SP intersection(SP& x, SP& y) {\n    // \u3068\u308A\u3042\u3048\
+    \u305A\n    static_assert(is_same_v<UINT, u32>);\n    vc<u64> xx;\n    for (auto&\
+    \ v: x.dat) xx.eb(v | static_cast<u64>(v) << 32);\n    Vector_Space<u64> z(xx,\
+    \ true);\n    for (auto& v: y.dat) z.add_element(static_cast<u64>(v) << 32);\n\
+    \    vc<u32> xy;\n    for (auto& v: z.dat) {\n      if (v <= u32(-1)) xy.eb(v);\n\
+    \    }\n    return SP(xy, true);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
     \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
     \u3088\u3046\u306B\u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64>\
     \ tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m,\
@@ -76,30 +82,33 @@ data:
     \ res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n    return res;\n\
     \  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y)) swap(x, y);\n\
     \    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n  }\n\n  static\
-    \ SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
-    \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
-    \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
-    \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
-    \u3088\u3046\u306B\u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64>\
-    \ tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m,\
-    \ m, tmp, 0);\n    SP res;\n    FOR(j, m) {\n      if (tmp[j] >> j & 1) continue;\n\
-    \      res.add_element(tmp[j] | UINT(1) << j);\n    }\n    return res;\n  }\n\n\
-    \  void normalize(bool dec = true) {\n    int n = len(dat);\n    // \u4E09\u89D2\
-    \u5316\n    FOR(j, n) FOR(i, j) chmin(dat[i], dat[i] ^ dat[j]);\n    sort(all(dat));\n\
-    \    if (dec) reverse(all(dat));\n  }\n\nprivate:\n  void reduce() {\n    SP y;\n\
-    \    for (auto&& e: dat) y.add_element(e);\n    (*this) = y;\n  }\n#undef SP\n\
-    };\n"
+    \ SP intersection(SP& x, SP& y) {\n    // \u3068\u308A\u3042\u3048\u305A\n   \
+    \ static_assert(is_same_v<UINT, u32>);\n    vc<u64> xx;\n    for (auto& v: x.dat)\
+    \ xx.eb(v | static_cast<u64>(v) << 32);\n    Vector_Space<u64> z(xx, true);\n\
+    \    for (auto& v: y.dat) z.add_element(static_cast<u64>(v) << 32);\n    vc<u32>\
+    \ xy;\n    for (auto& v: z.dat) {\n      if (v <= u32(-1)) xy.eb(v);\n    }\n\
+    \    return SP(xy, true);\n  }\n\n  SP orthogonal_space(int max_dim) {\n    normalize();\n\
+    \    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\u3088\u3046\u306B\
+    \u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64> tmp(m);\n    FOR(i,\
+    \ len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m, m, tmp, 0);\n\
+    \    SP res;\n    FOR(j, m) {\n      if (tmp[j] >> j & 1) continue;\n      res.add_element(tmp[j]\
+    \ | UINT(1) << j);\n    }\n    return res;\n  }\n\n  void normalize(bool dec =\
+    \ true) {\n    int n = len(dat);\n    // \u4E09\u89D2\u5316\n    FOR(j, n) FOR(i,\
+    \ j) chmin(dat[i], dat[i] ^ dat[j]);\n    sort(all(dat));\n    if (dec) reverse(all(dat));\n\
+    \  }\n\nprivate:\n  void reduce() {\n    SP y;\n    for (auto&& e: dat) y.add_element(e);\n\
+    \    (*this) = y;\n  }\n#undef SP\n};\n"
   dependsOn:
   - linalg/xor/transpose.hpp
   isVerificationFile: false
   path: linalg/xor/vector_space.hpp
   requiredBy:
   - alg/monoid/merge_vector_space.hpp
-  timestamp: '2024-03-09 20:17:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-04 19:37:33+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/QOJ5445.test.cpp
   - test/yukicoder/184.test.cpp
+  - test/library_checker/matrix/vector_space_intersection.test.cpp
   - test_atcoder/abc141f.test.cpp
 documentation_of: linalg/xor/vector_space.hpp
 layout: document

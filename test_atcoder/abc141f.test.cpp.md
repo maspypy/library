@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc141/tasks/abc141_f
@@ -214,9 +214,12 @@ data:
     \ {\n    UINT res = xor_val;\n    for (auto&& x: dat) chmin(res, res ^ x);\n \
     \   return res;\n  }\n\n  static SP merge(SP x, SP y) {\n    if (len(x) < len(y))\
     \ swap(x, y);\n    for (auto v: y.dat) { x.add_element(v); }\n    return x;\n\
-    \  }\n\n  static SP intersection(SP& x, SP& y, int max_dim) {\n    SP xx = x.orthogonal_space(max_dim);\n\
-    \    SP yy = y.orthogonal_space(max_dim);\n    xx = merge(xx, yy);\n    return\
-    \ xx.orthogonal_space(max_dim);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
+    \  }\n\n  static SP intersection(SP& x, SP& y) {\n    // \u3068\u308A\u3042\u3048\
+    \u305A\n    static_assert(is_same_v<UINT, u32>);\n    vc<u64> xx;\n    for (auto&\
+    \ v: x.dat) xx.eb(v | static_cast<u64>(v) << 32);\n    Vector_Space<u64> z(xx,\
+    \ true);\n    for (auto& v: y.dat) z.add_element(static_cast<u64>(v) << 32);\n\
+    \    vc<u32> xy;\n    for (auto& v: z.dat) {\n      if (v <= u32(-1)) xy.eb(v);\n\
+    \    }\n    return SP(xy, true);\n  }\n\n  SP orthogonal_space(int max_dim) {\n\
     \    normalize();\n    int m = max_dim;\n    // pivot[k] == k \u3068\u306A\u308B\
     \u3088\u3046\u306B\u884C\u306E\u9806\u756A\u3092\u5909\u3048\u308B\n    vc<u64>\
     \ tmp(m);\n    FOR(i, len(dat)) tmp[topbit(dat[i])] = dat[i];\n    tmp = transpose(m,\
@@ -246,8 +249,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc141f.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-04 19:37:33+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc141f.test.cpp
 layout: document

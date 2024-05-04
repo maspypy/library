@@ -1206,10 +1206,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/xor/mat_inv.hpp
       title: linalg/xor/mat_inv.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/xor/transpose.hpp
       title: linalg/xor/transpose.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/xor/vector_space.hpp
       title: linalg/xor/vector_space.hpp
   - name: mod
@@ -2716,6 +2716,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/sparse_matrix_det.test.cpp
       title: test/library_checker/matrix/sparse_matrix_det.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/matrix/vector_space_intersection.test.cpp
+      title: test/library_checker/matrix/vector_space_intersection.test.cpp
   - name: test/library_checker/polynomial
     pages:
     - icon: ':heavy_check_mark:'
@@ -4230,7 +4233,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc141e.test.cpp
       title: test_atcoder/abc141e.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc141f.test.cpp
       title: test_atcoder/abc141f.test.cpp
     - icon: ':heavy_check_mark:'
