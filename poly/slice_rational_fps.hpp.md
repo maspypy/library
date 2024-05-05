@@ -425,8 +425,8 @@ data:
     \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
     \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
     \n  return {q, f};\r\n}\r\n#line 5 \"poly/slice_rational_fps.hpp\"\n\ntemplate\
-    \ <typename mint>\nvc<mint> slice_of_rational_fps_ntt(vector<mint> P, vector<mint>\
-    \ Q, ll L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0]\
+    \ <typename mint>\nvc<mint> slice_rational_fps(vector<mint> P, vector<mint> Q,\
+    \ ll L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0]\
     \ == mint(1));\n  if (len(Q) == 1) {\n    vc<mint> ANS(R - L);\n    FOR(i, L,\
     \ R) if (i < len(P)) ANS[i - L] = P[i];\n    return ANS;\n  }\n  vc<mint> Q0 =\
     \ Q;\n\n  int n = 1;\n  while (n < len(Q)) n += n;\n  Q.resize(2 * n), ntt(Q,\
@@ -463,13 +463,13 @@ data:
     \  return p;\n}\n"
   code: "#include \"poly/convolution.hpp\"\n#include \"poly/transposed_ntt.hpp\"\n\
     #include \"poly/fps_div.hpp\"\n#include \"poly/poly_divmod.hpp\"\n\ntemplate <typename\
-    \ mint>\nvc<mint> slice_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll\
-    \ L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0] ==\
-    \ mint(1));\n  if (len(Q) == 1) {\n    vc<mint> ANS(R - L);\n    FOR(i, L, R)\
-    \ if (i < len(P)) ANS[i - L] = P[i];\n    return ANS;\n  }\n  vc<mint> Q0 = Q;\n\
-    \n  int n = 1;\n  while (n < len(Q)) n += n;\n  Q.resize(2 * n), ntt(Q, 0);\n\n\
-    \  vc<mint> W(n);\n  {\n    vc<int> btr(n);\n    int log = topbit(n);\n    FOR(i,\
-    \ n) { btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n    int t = mint::ntt_info().fi;\n\
+    \ mint>\nvc<mint> slice_rational_fps(vector<mint> P, vector<mint> Q, ll L, ll\
+    \ R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0] == mint(1));\n\
+    \  if (len(Q) == 1) {\n    vc<mint> ANS(R - L);\n    FOR(i, L, R) if (i < len(P))\
+    \ ANS[i - L] = P[i];\n    return ANS;\n  }\n  vc<mint> Q0 = Q;\n\n  int n = 1;\n\
+    \  while (n < len(Q)) n += n;\n  Q.resize(2 * n), ntt(Q, 0);\n\n  vc<mint> W(n);\n\
+    \  {\n    vc<int> btr(n);\n    int log = topbit(n);\n    FOR(i, n) { btr[i] =\
+    \ (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\n    int t = mint::ntt_info().fi;\n\
     \    mint r = mint::ntt_info().se;\n    mint dw = r.inverse().pow((1 << t) / (2\
     \ * n));\n    mint w = 1;\n    for (auto& i: btr) { W[i] = w, w *= dw; }\n  }\n\
     \n  mint z = W[n / 2].inverse();\n  auto doubling = [&](vc<mint> f, bool t) ->\
@@ -516,7 +516,7 @@ data:
   isVerificationFile: false
   path: poly/slice_rational_fps.hpp
   requiredBy: []
-  timestamp: '2024-05-05 04:17:31+09:00'
+  timestamp: '2024-05-05 13:22:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/slice_rational_fps.test.cpp
