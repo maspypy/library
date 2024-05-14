@@ -53,7 +53,7 @@ struct Incremental_Centroid {
       if (idx == -1 || idx == N) continue;
       if (L <= idx && idx < R) continue;
       int y = tree.V[idx];
-      x = tree.lca_root(x, y, cent);
+      x = tree.meet(x, y, cent);
     }
     return x;
   }
