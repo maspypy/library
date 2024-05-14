@@ -4,7 +4,7 @@
 #include "poly/poly_divmod.hpp"
 
 template <typename mint>
-vc<mint> slice_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll L, ll R) {
+vc<mint> slice_rational_fps(vector<mint> P, vector<mint> Q, ll L, ll R) {
   while (len(Q) && Q.back() == mint(0)) POP(Q);
   assert(Q[0] == mint(1));
   if (len(Q) == 1) {
