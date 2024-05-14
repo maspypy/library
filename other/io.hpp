@@ -230,6 +230,8 @@ using fastio::read;
 using fastio::print;
 using fastio::flush;
 
+#define SHOW(x) print(#x, "=", (x)), flush()
+
 #define INT(...)   \
   int __VA_ARGS__; \
   read(__VA_ARGS__)

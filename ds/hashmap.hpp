@@ -3,6 +3,7 @@
 // u64 -> Val
 template <typename Val>
 struct HashMap {
+  // n は入れたいものの個数で ok
   HashMap(u32 n = 0) { build(n); }
   void build(u32 n) {
     u32 k = 8;
@@ -10,7 +11,9 @@ struct HashMap {
     cap = k / 2, mask = k - 1;
     key.resize(k), val.resize(k), used.assign(k, 0);
   }
-  void clear() { build(0); }
+
+  // size を保ったまま. size=0 にするときは build すること.
+  void clear() { used.assign(len(used), 0); }
   int size() { return len(used) - cap; }
 
   int index(const u64& k) {

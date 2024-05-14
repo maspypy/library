@@ -8,6 +8,7 @@
 // query(i,j,k)：三角形 AiAjAk 内部の Bl の個数（非負）を返す
 // 前計算 O(NMlogM)、クエリ O(1)
 // https://codeforces.com/contest/13/problem/D
+// https://codeforces.com/contest/852/problem/H
 struct Count_Points_In_Triangles {
   using P = Point<ll>;
   const int LIM = 1'000'000'000 + 10;
