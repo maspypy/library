@@ -6,7 +6,7 @@ data:
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
     title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
   - icon: ':x:'

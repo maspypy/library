@@ -6,16 +6,16 @@ data:
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/yukicoder/902.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092\
@@ -238,7 +238,7 @@ data:
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
   timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/902.test.cpp
   - test/yukicoder/2296.test.cpp
