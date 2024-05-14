@@ -9,7 +9,7 @@ data:
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':x:'
