@@ -30,7 +30,7 @@ data:
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/gaussian_integers.test.cpp
     title: test/library_checker/math/gaussian_integers.test.cpp
   - icon: ':heavy_check_mark:'
