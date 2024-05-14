@@ -3,7 +3,7 @@
 #include "nt/factor.hpp"
 #include "mod/barrett.hpp"
 
-// 非負最小解を mod new_mod で返す (garner)
+// 非負最小解を mod new_mod で返す (garner), なければ -1.
 template <typename T>
 i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
   int n = len(vals);

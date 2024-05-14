@@ -3,6 +3,7 @@
 // ax+b in {L, ..., R-1} mod となる最小の x>=0 を返す
 // 例えば ax+b=1 なら ax+b in {-1} mod 2 のようにする
 // 存在しなければ -1
+// L<0 や mod<=R も ok
 int first_mod_range_of_linear(ll L, ll R, ll a, ll b, int mod) {
   assert(L <= R);
   b -= L, R -= L;

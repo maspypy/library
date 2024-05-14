@@ -94,9 +94,16 @@ struct Tree_Monoid {
     return v;
   }
 
-  X prod_subtree(int u) {
-    int l = tree.LID[u], r = tree.RID[u];
-    return seg.prod(l + edge, r);
+  X prod_subtree(int u, int root = -1) {
+    if (root == u) return prod_all();
+    if (root == -1 || tree.in_subtree(u, root)) {
+      int l = tree.LID[u], r = tree.RID[u];
+      return seg.prod(l + edge, r);
+    }
+    assert(!edge); // さぼり
+    u = tree.jump(u, root, 1);
+    int L = tree.LID[u], R = tree.RID[u];
+    return MX::op(seg.prod(0, L), seg.prod(R, N));
   }
 
   X prod_all() { return prod_subtree(tree.V[0]); }

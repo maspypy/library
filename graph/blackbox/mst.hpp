@@ -57,7 +57,7 @@ vc<tuple<int, int, COST>> blackbox_mst_incremental(int N, F0 init, F1 add,
     FOR(i, N) {
       for (auto& v: comp[i]) {
         auto [w, x] = find(v);
-        if (chmin(wt[i], x)) who[i] = {v, w};
+        if (w != -1 && chmin(wt[i], x)) who[i] = {v, w};
       }
       for (auto& v: comp[i]) { add(v); }
     }
@@ -65,7 +65,7 @@ vc<tuple<int, int, COST>> blackbox_mst_incremental(int N, F0 init, F1 add,
     FOR_R(i, N) {
       for (auto& v: comp[i]) {
         auto [w, x] = find(v);
-        if (chmin(wt[i], x)) who[i] = {v, w};
+        if (w != -1 && chmin(wt[i], x)) who[i] = {v, w};
       }
       for (auto& v: comp[i]) { add(v); }
     }

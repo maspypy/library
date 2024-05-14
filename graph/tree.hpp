@@ -112,12 +112,9 @@ struct Tree {
       if (head[u] == head[v]) return u;
     }
   }
-  // root を根とした場合の lca
-  int LCA_root(int u, int v, int root) {
-    return LCA(u, v) ^ LCA(u, root) ^ LCA(v, root);
-  }
+
+  int meet(int a, int b, int c) { return LCA(a, b) ^ LCA(a, c) ^ LCA(b, c); }
   int lca(int u, int v) { return LCA(u, v); }
-  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }
 
   int subtree_size(int v, int root = -1) {
     if (root == -1) return RID[v] - LID[v];
@@ -201,5 +198,17 @@ struct Tree {
       }
     }
     return P;
+  }
+
+  // path [a,b] と [c,d] の交わり. 空ならば {-1,-1}.
+  // https://codeforces.com/problemset/problem/500/G
+  pair<int, int> path_intersection(int a, int b, int c, int d) {
+    int ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);
+    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);
+    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)
+    if (x != y) return {x, y};
+    int z = ac ^ ad ^ cd;
+    if (x != z) x = -1;
+    return {x, x};
   }
 };
