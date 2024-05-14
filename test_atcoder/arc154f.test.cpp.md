@@ -16,16 +16,16 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':question:'
@@ -49,17 +49,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc154/tasks/arc154_f
@@ -217,11 +217,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -613,8 +614,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc154f.test.cpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc154f.test.cpp
 layout: document

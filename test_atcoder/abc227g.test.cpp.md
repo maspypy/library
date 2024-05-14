@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -13,20 +13,20 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/factor_interval.hpp
     title: nt/factor_interval.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc227/tasks/abc227_g
@@ -184,11 +184,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -198,126 +199,129 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test_atcoder/abc227g.test.cpp\"\n\n#line 2 \"ds/hashmap.hpp\"\
-    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
     \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
     \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n\
-    \  int size() { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\
-    \n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1)\
-    \ & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\
-    \n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) {\
-    \ used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
-    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
-    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n  \
-    \      = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x\
-    \ += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x =\
-    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\
-    \n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
-    \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
-    \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
-    \ = b;\r\n  }\r\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
-    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
-    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
-    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
-    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
-    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
-    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
-    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
-    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
-    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
-    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 7 \"test_atcoder/abc227g.test.cpp\"\n\n#line 2 \"nt/primetable.hpp\"\n\n\
-    template <typename T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int\
-    \ S = 32768;\n  static int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\
-    \n  if (done < LIM) {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1,\
-    \ 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n\
-    \    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i])\
-    \ {\n        cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2\
-    \ * i) sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n\
-    \      array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int\
-    \ i = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R\
-    \ - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 2 \"nt/factor_interval.hpp\"\
-    \n\n// n \u304C p \u3092\u6301\u3064\u3068\u304D f(n, p) \u3092\u547C\u3076\n\
-    template <typename F>\nvoid factor_interval(ll L, ll R, F f) {\n  int n = R -\
-    \ L;\n  auto primes = primetable(sqrt(R));\n  vi A(n);\n  iota(all(A), L);\n \
-    \ for (auto&& p: primes) {\n    ll pp = 1;\n    while (1) {\n      if (pp > R\
-    \ / p) break;\n      pp *= p;\n      ll s = ceil(L, pp) * pp;\n      while (s\
-    \ < R) {\n        f(s, p);\n        A[s - L] /= p;\n        s += pp;\n      }\n\
-    \    }\n  }\n  FOR(i, n) if (A[i] > 1) f(L + i, A[i]);\n}\n#line 9 \"test_atcoder/abc227g.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, K);\n  HashMap<int> MP;\n\
-    \  factor_interval(1, K + 1, [&](int i, ll p) -> void { MP[p]--; });\n  factor_interval(N\
-    \ - K + 1, N + 1, [&](int i, ll p) -> void { MP[p]++; });\n  mint ANS = 1;\n \
-    \ MP.enumerate_all([&](ll p, int k) -> void { ANS *= mint(1 + k); });\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() { used.assign(len(used), 0); }\r\n  int size()\
+    \ { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i\
+    \ = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\
+    \n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap\
+    \ == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1,\
+    \ key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val\
+    \ get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n    return\
+    \ (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const u64& k)\
+    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
+    \n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\
+    \n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\
+    \n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\
+    \r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
+    \ large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int\
+    \ mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
+    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
+    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
+    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
+    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
+    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
+    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
+    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
+    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
+    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
+    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 7 \"test_atcoder/abc227g.test.cpp\"\
+    \n\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T> primetable(int\
+    \ LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done = 2;\n  static vc<T>\
+    \ primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done = LIM;\n\n    primes\
+    \ = {2}, sieve.assign(S + 1, 0);\n    const int R = LIM / 2;\n    primes.reserve(int(LIM\
+    \ / log(LIM) * 1.1));\n    vc<pair<int, int>> cp;\n    for (int i = 3; i <= S;\
+    \ i += 2) {\n      if (!sieve[i]) {\n        cp.eb(i, i * i / 2);\n        for\
+    \ (int j = i * i; j <= S; j += 2 * i) sieve[j] = 1;\n      }\n    }\n    for (int\
+    \ L = 1; L <= R; L += S) {\n      array<bool, S> block{};\n      for (auto& [p,\
+    \ idx]: cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
+    \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
+    \    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
+    \ + k};\n}\n#line 2 \"nt/factor_interval.hpp\"\n\n// n \u304C p \u3092\u6301\u3064\
+    \u3068\u304D f(n, p) \u3092\u547C\u3076\ntemplate <typename F>\nvoid factor_interval(ll\
+    \ L, ll R, F f) {\n  int n = R - L;\n  auto primes = primetable(sqrt(R));\n  vi\
+    \ A(n);\n  iota(all(A), L);\n  for (auto&& p: primes) {\n    ll pp = 1;\n    while\
+    \ (1) {\n      if (pp > R / p) break;\n      pp *= p;\n      ll s = ceil(L, pp)\
+    \ * pp;\n      while (s < R) {\n        f(s, p);\n        A[s - L] /= p;\n   \
+    \     s += pp;\n      }\n    }\n  }\n  FOR(i, n) if (A[i] > 1) f(L + i, A[i]);\n\
+    }\n#line 9 \"test_atcoder/abc227g.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
+    \ solve() {\n  LL(N, K);\n  HashMap<int> MP;\n  factor_interval(1, K + 1, [&](int\
+    \ i, ll p) -> void { MP[p]--; });\n  factor_interval(N - K + 1, N + 1, [&](int\
+    \ i, ll p) -> void { MP[p]++; });\n  mint ANS = 1;\n  MP.enumerate_all([&](ll\
+    \ p, int k) -> void { ANS *= mint(1 + k); });\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc227/tasks/abc227_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/hashmap.hpp\"\
     \n#include \"mod/modint.hpp\"\n\n#include \"nt/factor_interval.hpp\"\n\nusing\
@@ -337,8 +341,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc227g.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc227g.test.cpp
 layout: document

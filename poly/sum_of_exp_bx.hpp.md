@@ -34,14 +34,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -54,15 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc154f.test.cpp
     title: test_atcoder/arc154f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -409,7 +409,7 @@ data:
   - poly/composition_f_ex.hpp
   - poly/composition_f_1_minus_ex.hpp
   timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp

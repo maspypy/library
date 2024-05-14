@@ -2,23 +2,23 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/merge_vector_space.hpp
     title: alg/monoid/merge_vector_space.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/vector_space_intersection.test.cpp
     title: test/library_checker/matrix/vector_space_intersection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/QOJ5445.test.cpp
     title: test/mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/xor_transpose.test.cpp
     title: test/mytest/xor_transpose.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/184.test.cpp
     title: test/yukicoder/184.test.cpp
   - icon: ':x:'

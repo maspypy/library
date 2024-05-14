@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
   - icon: ':x:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -187,11 +187,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -445,7 +446,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2024-05-04 21:50:01+09:00'
+  timestamp: '2024-05-14 16:33:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp

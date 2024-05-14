@@ -8,7 +8,10 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
+  - icon: ':question:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -17,38 +20,41 @@ data:
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/library_checker/graph/chromatic_number.test.cpp
+    title: test/library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,43 +66,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796_1.test.cpp
     title: test/yukicoder/1796_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2626.test.cpp
     title: test/yukicoder/2626.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc333f.test.cpp
     title: test_atcoder/abc333f.test.cpp
   - icon: ':x:'
@@ -228,6 +234,7 @@ data:
   - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - graph/chromatic.hpp
   - string/wildcard_pattern_matching.hpp
   - linalg/blackbox/vandermonde.hpp
   - seq/count_grid_path.hpp
@@ -245,6 +252,7 @@ data:
   - test/yukicoder/2626.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/2231.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp

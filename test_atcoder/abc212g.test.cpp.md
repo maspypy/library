@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_g
@@ -187,11 +187,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -261,81 +262,83 @@ data:
     \ n, vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p =\
     \ lpf[n];\n    int e = 0;\n    while (n % p == 0) {\n      n /= p;\n      ++e;\n\
     \    }\n    res.eb(p, e);\n  }\n  return res;\n}\n#line 2 \"ds/hashmap.hpp\"\n\
-    \r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32\
+    \r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
     \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
     \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n\
-    \  int size() { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\
-    \n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1)\
-    \ & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\
-    \n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) {\
-    \ used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
-    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
-    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n  \
-    \      = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x\
-    \ += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x =\
-    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\
-    \n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
-    \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
-    \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
-    \ = b;\r\n  }\r\n};\n#line 3 \"nt/array_on_divisors.hpp\"\n\ntemplate <typename\
-    \ T>\nstruct Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T>\
-    \ dat;\n  HashMap<int> MP;\n\n  Array_On_Divisors(ll N = 1) { build(N); }\n  Array_On_Divisors(vc<pair<ll,\
-    \ int>> pf) { build(pf); }\n\n  void build(ll N) { build(factor(N)); }\n  void\
-    \ build(vc<pair<ll, int>> pfs) {\n    if (!pf.empty() && pf == pfs) return;\n\
-    \    pf = pfs;\n    ll n = 1;\n    for (auto&& [p, e]: pf) n *= (e + 1);\n   \
-    \ divs.assign(n, 1);\n    dat.assign(n, T{});\n    int nxt = 1;\n    for (auto&&\
-    \ [p, e]: pf) {\n      int L = nxt;\n      ll q = p;\n      FOR(e) {\n       \
-    \ FOR(i, L) { divs[nxt++] = divs[i] * q; }\n        q *= p;\n      }\n    }\n\
-    \    MP.build(n);\n    FOR(i, n) MP[divs[i]] = i;\n  }\n\n  T& operator[](ll d)\
-    \ { return dat[MP[d]]; }\n\n  // f(p, k) \u3092\u4E0E\u3048\u308B \u2192 \u4E57\
-    \u6CD5\u7684\u306B\u62E1\u5F35\n  template <typename F>\n  void set_multiplicative(F\
-    \ f) {\n    dat.reserve(len(divs));\n    dat = {T(1)};\n    for (auto&& [p, e]:\
-    \ pf) {\n      int n = len(divs);\n      FOR(k, 1, e + 1) { FOR(i, n) dat.eb(dat[i]\
-    \ * f(p, k)); }\n    }\n  }\n\n  void set_euler_phi() {\n    dat.resize(len(divs));\n\
-    \    FOR(i, len(divs)) dat[i] = T(divs[i]);\n    divisor_mobius();\n  }\n\n  void\
-    \ set_mobius() {\n    set_multiplicative([&](ll p, int k) -> T {\n      if (k\
-    \ >= 2) return T(0);\n      return (k == 1 ? T(-1) : T(0));\n    });\n  }\n\n\
-    \  void multiplier_zeta() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n  \
-    \    ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j,\
-    \ mod - k) { dat[mod * i + j] += dat[mod * i + j + k]; }\n      }\n      k *=\
-    \ (e + 1);\n    }\n  }\n\n  void multiplier_mobius() {\n    ll k = 1;\n    for\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() { used.assign(len(used), 0); }\r\n  int size()\
+    \ { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i\
+    \ = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\
+    \n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap\
+    \ == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1,\
+    \ key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val\
+    \ get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n    return\
+    \ (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const u64& k)\
+    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
+    \n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\
+    \n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\
+    \n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\
+    \r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"nt/array_on_divisors.hpp\"\
+    \n\ntemplate <typename T>\nstruct Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n\
+    \  vc<ll> divs;\n  vc<T> dat;\n  HashMap<int> MP;\n\n  Array_On_Divisors(ll N\
+    \ = 1) { build(N); }\n  Array_On_Divisors(vc<pair<ll, int>> pf) { build(pf); }\n\
+    \n  void build(ll N) { build(factor(N)); }\n  void build(vc<pair<ll, int>> pfs)\
+    \ {\n    if (!pf.empty() && pf == pfs) return;\n    pf = pfs;\n    ll n = 1;\n\
+    \    for (auto&& [p, e]: pf) n *= (e + 1);\n    divs.assign(n, 1);\n    dat.assign(n,\
+    \ T{});\n    int nxt = 1;\n    for (auto&& [p, e]: pf) {\n      int L = nxt;\n\
+    \      ll q = p;\n      FOR(e) {\n        FOR(i, L) { divs[nxt++] = divs[i] *\
+    \ q; }\n        q *= p;\n      }\n    }\n    MP.build(n);\n    FOR(i, n) MP[divs[i]]\
+    \ = i;\n  }\n\n  T& operator[](ll d) { return dat[MP[d]]; }\n\n  // f(p, k) \u3092\
+    \u4E0E\u3048\u308B \u2192 \u4E57\u6CD5\u7684\u306B\u62E1\u5F35\n  template <typename\
+    \ F>\n  void set_multiplicative(F f) {\n    dat.reserve(len(divs));\n    dat =\
+    \ {T(1)};\n    for (auto&& [p, e]: pf) {\n      int n = len(divs);\n      FOR(k,\
+    \ 1, e + 1) { FOR(i, n) dat.eb(dat[i] * f(p, k)); }\n    }\n  }\n\n  void set_euler_phi()\
+    \ {\n    dat.resize(len(divs));\n    FOR(i, len(divs)) dat[i] = T(divs[i]);\n\
+    \    divisor_mobius();\n  }\n\n  void set_mobius() {\n    set_multiplicative([&](ll\
+    \ p, int k) -> T {\n      if (k >= 2) return T(0);\n      return (k == 1 ? T(-1)\
+    \ : T(0));\n    });\n  }\n\n  void multiplier_zeta() {\n    ll k = 1;\n    for\
     \ (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) /\
-    \ mod) {\n        FOR(j, mod - k) { dat[mod * i + j] -= dat[mod * i + j + k];\
-    \ }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void divisor_zeta() {\n   \
-    \ ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n    \
-    \  FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod * i + j + k] +=\
-    \ dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void divisor_mobius()\
-    \ {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n\
-    \      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j\
-    \ + k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  //\
-    \ SUB(T&a,Tb)->void : a-=b\n  template <typename F>\n  void divisor_mobius(F SUB)\
-    \ {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n\
-    \      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { SUB(dat[mod * i\
-    \ + j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\n\
-    \  // ADD(T&a,Tb)->void : a+=b\n  template <typename F>\n  void multiplier_zeta(F\
-    \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { ADD(dat[mod\
-    \ * i + j], dat[mod * i + j + k]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // SUB(T&a,Tb)->void : a-=b\n  template <typename F>\n  void multiplier_mobius(F\
-    \ SUB) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { SUB(dat[mod\
-    \ * i + j], dat[mod * i + j + k]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // ADD(T&a,Tb)->void : a+=b\n  template <typename F>\n  void divisor_zeta(F\
-    \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { ADD(dat[mod\
-    \ * i + j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // (d, fd)\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
-    \ { f(divs[i], dat[i]); }\n  }\n};\n#line 5 \"test_atcoder/abc212g.test.cpp\"\n\
-    \nvoid solve() {\n  LL(P);\n  Array_On_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
-    \  i128 ANS = 1;\n  X.enumerate([&](ll a, ll b) -> void { ANS += i128(a) * b;\
-    \ });\n  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \ mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j] += dat[mod * i + j + k];\
+    \ }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void multiplier_mobius() {\n\
+    \    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n \
+    \     FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod * i + j] -=\
+    \ dat[mod * i + j + k]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  void\
+    \ divisor_zeta() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod\
+    \ = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod\
+    \ * i + j + k] += dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n \
+    \ }\n\n  void divisor_mobius() {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n\
+    \      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j,\
+    \ mod - k) { dat[mod * i + j + k] -= dat[mod * i + j]; }\n      }\n      k *=\
+    \ (e + 1);\n    }\n  }\n\n  // SUB(T&a,Tb)->void : a-=b\n  template <typename\
+    \ F>\n  void divisor_mobius(F SUB) {\n    ll k = 1;\n    for (auto&& [p, e]: pf)\
+    \ {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j,\
+    \ mod - k) { SUB(dat[mod * i + j + k], dat[mod * i + j]); }\n      }\n      k\
+    \ *= (e + 1);\n    }\n  }\n\n  // ADD(T&a,Tb)->void : a+=b\n  template <typename\
+    \ F>\n  void multiplier_zeta(F ADD) {\n    ll k = 1;\n    for (auto&& [p, e]:\
+    \ pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n      \
+    \  FOR_R(j, mod - k) { ADD(dat[mod * i + j], dat[mod * i + j + k]); }\n      }\n\
+    \      k *= (e + 1);\n    }\n  }\n\n  // SUB(T&a,Tb)->void : a-=b\n  template\
+    \ <typename F>\n  void multiplier_mobius(F SUB) {\n    ll k = 1;\n    for (auto&&\
+    \ [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n\
+    \        FOR(j, mod - k) { SUB(dat[mod * i + j], dat[mod * i + j + k]); }\n  \
+    \    }\n      k *= (e + 1);\n    }\n  }\n\n  // ADD(T&a,Tb)->void : a+=b\n  template\
+    \ <typename F>\n  void divisor_zeta(F ADD) {\n    ll k = 1;\n    for (auto&& [p,\
+    \ e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n  \
+    \      FOR(j, mod - k) { ADD(dat[mod * i + j + k], dat[mod * i + j]); }\n    \
+    \  }\n      k *= (e + 1);\n    }\n  }\n\n  // (d, fd)\n  template <typename F>\n\
+    \  void enumerate(F f) {\n    FOR(i, len(divs)) { f(divs[i], dat[i]); }\n  }\n\
+    };\n#line 5 \"test_atcoder/abc212g.test.cpp\"\n\nvoid solve() {\n  LL(P);\n  Array_On_Divisors<ll>\
+    \ X(P - 1);\n  X.set_euler_phi();\n  i128 ANS = 1;\n  X.enumerate([&](ll a, ll\
+    \ b) -> void { ANS += i128(a) * b; });\n  print(ANS % 998244353);\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc212/tasks/abc212_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/array_on_divisors.hpp\"\
     \n\nvoid solve() {\n  LL(P);\n  Array_On_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
@@ -354,8 +357,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc212g.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc212g.test.cpp
 layout: document

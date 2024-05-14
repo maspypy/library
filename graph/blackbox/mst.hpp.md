@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
@@ -50,14 +50,14 @@ data:
     \ bool upd = 0;\n    vvc<int> comp(N);\n    FOR(v, N) comp[uf[v]].eb(v);\n   \
     \ vc<COST> wt(N, infty<COST>);\n    vc<pair<int, int>> who(N, {-1, -1});\n   \
     \ init();\n    FOR(i, N) {\n      for (auto& v: comp[i]) {\n        auto [w, x]\
-    \ = find(v);\n        if (chmin(wt[i], x)) who[i] = {v, w};\n      }\n      for\
-    \ (auto& v: comp[i]) { add(v); }\n    }\n    init();\n    FOR_R(i, N) {\n    \
-    \  for (auto& v: comp[i]) {\n        auto [w, x] = find(v);\n        if (chmin(wt[i],\
-    \ x)) who[i] = {v, w};\n      }\n      for (auto& v: comp[i]) { add(v); }\n  \
-    \  }\n    FOR(i, N) {\n      auto [a, b] = who[i];\n      if (a == -1) continue;\n\
-    \      if (uf.merge(a, b)) {\n        upd = true;\n        res.eb(a, b, wt[i]);\n\
-    \      }\n    }\n    if (!upd) break;\n  }\n  return res;\n}\n\n// Prim\n// O(N^2)\n\
-    // https://atcoder.jp/contests/pakencamp-2023-day1/tasks/pakencamp_2023_day1_p\n\
+    \ = find(v);\n        if (w != -1 && chmin(wt[i], x)) who[i] = {v, w};\n     \
+    \ }\n      for (auto& v: comp[i]) { add(v); }\n    }\n    init();\n    FOR_R(i,\
+    \ N) {\n      for (auto& v: comp[i]) {\n        auto [w, x] = find(v);\n     \
+    \   if (w != -1 && chmin(wt[i], x)) who[i] = {v, w};\n      }\n      for (auto&\
+    \ v: comp[i]) { add(v); }\n    }\n    FOR(i, N) {\n      auto [a, b] = who[i];\n\
+    \      if (a == -1) continue;\n      if (uf.merge(a, b)) {\n        upd = true;\n\
+    \        res.eb(a, b, wt[i]);\n      }\n    }\n    if (!upd) break;\n  }\n  return\
+    \ res;\n}\n\n// Prim\n// O(N^2)\n// https://atcoder.jp/contests/pakencamp-2023-day1/tasks/pakencamp_2023_day1_p\n\
     template <typename COST, typename F>\nvc<tuple<int, int, COST>> mst_prim(int N,\
     \ F cost) {\n  using edge = tuple<int, int, COST>;\n  UnionFind uf(N);\n  vc<edge>\
     \ res;\n  vc<ll> wt(N, infty<ll>);\n  vc<int> TO(N);\n  auto add = [&](int v)\
@@ -93,14 +93,14 @@ data:
     \ bool upd = 0;\n    vvc<int> comp(N);\n    FOR(v, N) comp[uf[v]].eb(v);\n   \
     \ vc<COST> wt(N, infty<COST>);\n    vc<pair<int, int>> who(N, {-1, -1});\n   \
     \ init();\n    FOR(i, N) {\n      for (auto& v: comp[i]) {\n        auto [w, x]\
-    \ = find(v);\n        if (chmin(wt[i], x)) who[i] = {v, w};\n      }\n      for\
-    \ (auto& v: comp[i]) { add(v); }\n    }\n    init();\n    FOR_R(i, N) {\n    \
-    \  for (auto& v: comp[i]) {\n        auto [w, x] = find(v);\n        if (chmin(wt[i],\
-    \ x)) who[i] = {v, w};\n      }\n      for (auto& v: comp[i]) { add(v); }\n  \
-    \  }\n    FOR(i, N) {\n      auto [a, b] = who[i];\n      if (a == -1) continue;\n\
-    \      if (uf.merge(a, b)) {\n        upd = true;\n        res.eb(a, b, wt[i]);\n\
-    \      }\n    }\n    if (!upd) break;\n  }\n  return res;\n}\n\n// Prim\n// O(N^2)\n\
-    // https://atcoder.jp/contests/pakencamp-2023-day1/tasks/pakencamp_2023_day1_p\n\
+    \ = find(v);\n        if (w != -1 && chmin(wt[i], x)) who[i] = {v, w};\n     \
+    \ }\n      for (auto& v: comp[i]) { add(v); }\n    }\n    init();\n    FOR_R(i,\
+    \ N) {\n      for (auto& v: comp[i]) {\n        auto [w, x] = find(v);\n     \
+    \   if (w != -1 && chmin(wt[i], x)) who[i] = {v, w};\n      }\n      for (auto&\
+    \ v: comp[i]) { add(v); }\n    }\n    FOR(i, N) {\n      auto [a, b] = who[i];\n\
+    \      if (a == -1) continue;\n      if (uf.merge(a, b)) {\n        upd = true;\n\
+    \        res.eb(a, b, wt[i]);\n      }\n    }\n    if (!upd) break;\n  }\n  return\
+    \ res;\n}\n\n// Prim\n// O(N^2)\n// https://atcoder.jp/contests/pakencamp-2023-day1/tasks/pakencamp_2023_day1_p\n\
     template <typename COST, typename F>\nvc<tuple<int, int, COST>> mst_prim(int N,\
     \ F cost) {\n  using edge = tuple<int, int, COST>;\n  UnionFind uf(N);\n  vc<edge>\
     \ res;\n  vc<ll> wt(N, infty<ll>);\n  vc<int> TO(N);\n  auto add = [&](int v)\
@@ -113,7 +113,7 @@ data:
   isVerificationFile: false
   path: graph/blackbox/mst.hpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-05-14 16:33:21+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/blackbox/mst.hpp

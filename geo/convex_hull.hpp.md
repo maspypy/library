@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':warning:'
@@ -18,7 +18,7 @@ data:
     path: test/library_checker/geometry/static_convex_hull.tset.cpp
     title: test/library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test_atcoder/arc130f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -176,7 +176,7 @@ data:
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   - convex/fenchel.hpp
   timestamp: '2024-05-04 21:50:01+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test_atcoder/arc130f.test.cpp

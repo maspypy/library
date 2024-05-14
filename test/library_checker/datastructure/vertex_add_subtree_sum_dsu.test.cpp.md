@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -185,11 +185,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -298,10 +299,8 @@ data:
     \      v = parent[u];\r\n    }\r\n  }\r\n  int la(int u, int v) { return LA(u,\
     \ v); }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\
     \n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
-    \ u;\r\n    }\r\n  }\r\n  // root \u3092\u6839\u3068\u3057\u305F\u5834\u5408\u306E\
-    \ lca\r\n  int LCA_root(int u, int v, int root) {\r\n    return LCA(u, v) ^ LCA(u,\
-    \ root) ^ LCA(v, root);\r\n  }\r\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\r\n  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }\r\
+    \ u;\r\n    }\r\n  }\r\n\r\n  int meet(int a, int b, int c) { return LCA(a, b)\
+    \ ^ LCA(a, c) ^ LCA(b, c); }\r\n  int lca(int u, int v) { return LCA(u, v); }\r\
     \n\r\n  int subtree_size(int v, int root = -1) {\r\n    if (root == -1) return\
     \ RID[v] - LID[v];\r\n    if (v == root) return N;\r\n    int x = jump(v, root,\
     \ 1);\r\n    if (in_subtree(v, x)) return RID[v] - LID[v];\r\n    return N - RID[x]\
@@ -332,41 +331,47 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 2 \"graph/dsu_on_tree.hpp\"\n\n// add(v)\
-    \ : \u9802\u70B9 v \u306E\u30C7\u30FC\u30BF\u3092\u8FFD\u52A0\u3059\u308B\n//\
-    \ query(v) : \u9802\u70B9 v \u306B\u304A\u3051\u308B\u30AF\u30A8\u30EA\u306B\u7B54\
-    \u3048\u308B\n// reset() : \u30C7\u30FC\u30BF\u304C\u7A7A\u306E\u72B6\u614B\u306B\
-    \u623B\u3059\u3002\n// \u30C7\u30FC\u30BF\u69CB\u9020\u306B\u3088\u3063\u3066\u306F\
-    \u3001\u5C65\u6B74\u3092\u4F7F\u3063\u3066\u9AD8\u901F\u306B reset \u3059\u308B\
-    \u3002\ntemplate <typename TREE, typename F1, typename F2, typename F3>\nvoid\
-    \ DSU_on_Tree(TREE& tree, F1& add, F2& query, F3& reset) {\n  int N = tree.N;\n\
-    \  FOR_R(vid, N) {\n    int v = tree.V[vid];\n    add(v);\n    // collect data\
-    \ in light subtree\n    for (auto&& e: tree.G[v]) {\n      if (e.to == tree.parent[v])\
-    \ continue;\n      if (tree.head[e.to] != e.to) continue;\n      FOR(idx, tree.LID[e.to],\
-    \ tree.RID[e.to]) { add(tree.V[idx]); }\n    }\n    query(v);\n\n    if (tree.head[v]\
-    \ == v) reset();\n  }\n}\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n\
-    \  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
-    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
-    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
-    struct FenwickTree {\n  using G = Monoid;\n  using E = typename G::value_type;\n\
-    \  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n  FenwickTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  FenwickTree(int n, F f) {\n   \
-    \ build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total = G::unit();\n  }\n\
-    \  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i];\
-    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
-    \    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n    FOR(i, n)\
-    \ { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i\
-    \ & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j - 1]);\n    }\n\
-    \    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total; }\n  E sum_all()\
-    \ { return total; }\n  E sum(int k) { return prefix_sum(k); }\n  E prod(int k)\
-    \ { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k); }\n\
-    \  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for (;\
-    \ k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n  E\
-    \ sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
+    \n    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
+    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 2 \"graph/dsu_on_tree.hpp\"\n\n// add(v) : \u9802\u70B9 v \u306E\u30C7\
+    \u30FC\u30BF\u3092\u8FFD\u52A0\u3059\u308B\n// query(v) : \u9802\u70B9 v \u306B\
+    \u304A\u3051\u308B\u30AF\u30A8\u30EA\u306B\u7B54\u3048\u308B\n// reset() : \u30C7\
+    \u30FC\u30BF\u304C\u7A7A\u306E\u72B6\u614B\u306B\u623B\u3059\u3002\n// \u30C7\u30FC\
+    \u30BF\u69CB\u9020\u306B\u3088\u3063\u3066\u306F\u3001\u5C65\u6B74\u3092\u4F7F\
+    \u3063\u3066\u9AD8\u901F\u306B reset \u3059\u308B\u3002\ntemplate <typename TREE,\
+    \ typename F1, typename F2, typename F3>\nvoid DSU_on_Tree(TREE& tree, F1& add,\
+    \ F2& query, F3& reset) {\n  int N = tree.N;\n  FOR_R(vid, N) {\n    int v = tree.V[vid];\n\
+    \    add(v);\n    // collect data in light subtree\n    for (auto&& e: tree.G[v])\
+    \ {\n      if (e.to == tree.parent[v]) continue;\n      if (tree.head[e.to] !=\
+    \ e.to) continue;\n      FOR(idx, tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]);\
+    \ }\n    }\n    query(v);\n\n    if (tree.head[v] == v) reset();\n  }\n}\n#line\
+    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
+    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
+    \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
+    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
+    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
+    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
+    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total;\
+    \ }\n  E sum_all() { return total; }\n  E sum(int k) { return prefix_sum(k); }\n\
+    \  E prod(int k) { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k);\
+    \ }\n  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for\
+    \ (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n\
+    \  E sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
     \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
     \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
     \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
@@ -448,8 +453,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
 layout: document

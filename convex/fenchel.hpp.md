@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy: []

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -176,11 +176,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -290,10 +291,8 @@ data:
     \      v = parent[u];\r\n    }\r\n  }\r\n  int la(int u, int v) { return LA(u,\
     \ v); }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\
     \n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
-    \ u;\r\n    }\r\n  }\r\n  // root \u3092\u6839\u3068\u3057\u305F\u5834\u5408\u306E\
-    \ lca\r\n  int LCA_root(int u, int v, int root) {\r\n    return LCA(u, v) ^ LCA(u,\
-    \ root) ^ LCA(v, root);\r\n  }\r\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\r\n  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }\r\
+    \ u;\r\n    }\r\n  }\r\n\r\n  int meet(int a, int b, int c) { return LCA(a, b)\
+    \ ^ LCA(a, c) ^ LCA(b, c); }\r\n  int lca(int u, int v) { return LCA(u, v); }\r\
     \n\r\n  int subtree_size(int v, int root = -1) {\r\n    if (root == -1) return\
     \ RID[v] - LID[v];\r\n    if (v == root) return N;\r\n    int x = jump(v, root,\
     \ 1);\r\n    if (in_subtree(v, x)) return RID[v] - LID[v];\r\n    return N - RID[x]\
@@ -324,12 +323,18 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 6 \"test/library_checker/tree/lca_directed.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n  FOR3(v, 1, N) {\n  \
-    \  LL(p);\n    G.add(p, v);\n  }\n  G.build();\n  Tree tree(G);\n\n  FOR(_, Q)\
-    \ {\n    LL(a, b);\n    print(tree.LCA(a, b));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  solve();\n \
-    \ return 0;\n}\n"
+    \n    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
+    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 6 \"test/library_checker/tree/lca_directed.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n  FOR3(v, 1, N) {\n    LL(p);\n    G.add(p,\
+    \ v);\n  }\n  G.build();\n  Tree tree(G);\n\n  FOR(_, Q) {\n    LL(a, b);\n  \
+    \  print(tree.LCA(a, b));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"graph/tree.hpp\"\n\nvoid solve() {\n\
     \  LL(N, Q);\n  Graph<int, 1> G(N);\n  FOR3(v, 1, N) {\n    LL(p);\n    G.add(p,\
@@ -344,8 +349,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/lca_directed.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/lca_directed.test.cpp
 layout: document

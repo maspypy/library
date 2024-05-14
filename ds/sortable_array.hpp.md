@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   _extendedRequiredBy: []
@@ -9,15 +9,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/sortable_array.test.cpp
     title: test/mytest/sortable_array.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc217e.test.cpp
     title: test_atcoder/abc217e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc237g1.test.cpp
     title: test_atcoder/abc237g1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63)\
@@ -188,7 +188,7 @@ data:
   path: ds/sortable_array.hpp
   requiredBy: []
   timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/sortable_array.test.cpp
   - test_atcoder/abc237g1.test.cpp

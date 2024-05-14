@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -28,14 +28,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_set_path_composite
@@ -194,11 +194,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -430,10 +431,8 @@ data:
     \      v = parent[u];\r\n    }\r\n  }\r\n  int la(int u, int v) { return LA(u,\
     \ v); }\r\n\r\n  int LCA(int u, int v) {\r\n    for (;; v = parent[head[v]]) {\r\
     \n      if (LID[u] > LID[v]) swap(u, v);\r\n      if (head[u] == head[v]) return\
-    \ u;\r\n    }\r\n  }\r\n  // root \u3092\u6839\u3068\u3057\u305F\u5834\u5408\u306E\
-    \ lca\r\n  int LCA_root(int u, int v, int root) {\r\n    return LCA(u, v) ^ LCA(u,\
-    \ root) ^ LCA(v, root);\r\n  }\r\n  int lca(int u, int v) { return LCA(u, v);\
-    \ }\r\n  int lca_root(int u, int v, int root) { return LCA_root(u, v, root); }\r\
+    \ u;\r\n    }\r\n  }\r\n\r\n  int meet(int a, int b, int c) { return LCA(a, b)\
+    \ ^ LCA(a, c) ^ LCA(b, c); }\r\n  int lca(int u, int v) { return LCA(u, v); }\r\
     \n\r\n  int subtree_size(int v, int root = -1) {\r\n    if (root == -1) return\
     \ RID[v] - LID[v];\r\n    if (v == root) return N;\r\n    int x = jump(v, root,\
     \ 1);\r\n    if (in_subtree(v, x)) return RID[v] - LID[v];\r\n    return N - RID[x]\
@@ -464,23 +463,30 @@ data:
     \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
     \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
     \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n};\r\n#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\n\
-    template <class Monoid>\r\nstruct Monoid_Reverse {\r\n  using value_type = typename\
-    \ Monoid::value_type;\r\n  using X = value_type;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) { return Monoid::op(y, x); }\r\n  static constexpr X unit()\
-    \ { return Monoid::unit(); }\r\n  static const bool commute = Monoid::commute;\r\
-    \n};\r\n#line 6 \"graph/ds/tree_monoid.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ Monoid, bool edge>\r\nstruct Tree_Monoid {\r\n  using MX = Monoid;\r\n  using\
-    \ X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  SegTree<MX> seg;\r\
-    \n  SegTree<Monoid_Reverse<MX>> seg_r;\r\n\r\n  Tree_Monoid(TREE &tree) : tree(tree),\
-    \ N(tree.N) {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\
-    \n  Tree_Monoid(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int\
-    \ i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_Monoid(TREE\
-    \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  void build(F f) {\r\n    if (!edge) {\r\n      auto f_v =\
-    \ [&](int i) -> X { return f(tree.V[i]); };\r\n      seg.build(N, f_v);\r\n  \
-    \    if constexpr (!MX::commute) { seg_r.build(N, f_v); }\r\n    } else {\r\n\
-    \      auto f_e = [&](int i) -> X {\r\n        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\
+    \n    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
+    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 2 \"alg/monoid/monoid_reverse.hpp\"\n\r\ntemplate <class Monoid>\r\nstruct\
+    \ Monoid_Reverse {\r\n  using value_type = typename Monoid::value_type;\r\n  using\
+    \ X = value_type;\r\n  static constexpr X op(const X &x, const X &y) { return\
+    \ Monoid::op(y, x); }\r\n  static constexpr X unit() { return Monoid::unit();\
+    \ }\r\n  static const bool commute = Monoid::commute;\r\n};\r\n#line 6 \"graph/ds/tree_monoid.hpp\"\
+    \n\r\ntemplate <typename TREE, typename Monoid, bool edge>\r\nstruct Tree_Monoid\
+    \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE\
+    \ &tree;\r\n  int N;\r\n  SegTree<MX> seg;\r\n  SegTree<Monoid_Reverse<MX>> seg_r;\r\
+    \n\r\n  Tree_Monoid(TREE &tree) : tree(tree), N(tree.N) {\r\n    build([](int\
+    \ i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_Monoid(TREE &tree, vc<X>\
+    \ &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X { return dat[i];\
+    \ });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_Monoid(TREE &tree, F f)\
+    \ : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template <typename\
+    \ F>\r\n  void build(F f) {\r\n    if (!edge) {\r\n      auto f_v = [&](int i)\
+    \ -> X { return f(tree.V[i]); };\r\n      seg.build(N, f_v);\r\n      if constexpr\
+    \ (!MX::commute) { seg_r.build(N, f_v); }\r\n    } else {\r\n      auto f_e =\
+    \ [&](int i) -> X {\r\n        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\
     \n      };\r\n      seg.build(N, f_e);\r\n      if constexpr (!MX::commute) {\
     \ seg_r.build(N, f_e); }\r\n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n \
     \   if constexpr (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i,\
@@ -505,24 +511,27 @@ data:
     \ i = seg.min_left(check_tmp, a + 1);\r\n        if constexpr (!MX::commute) i\
     \ = seg_r.min_left(check_tmp, a + 1);\r\n        if (i == a + 1) return u;\r\n\
     \        return tree.V[i];\r\n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n\
-    \  X prod_subtree(int u) {\r\n    int l = tree.LID[u], r = tree.RID[u];\r\n  \
-    \  return seg.prod(l + edge, r);\r\n  }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]);\
-    \ }\r\n\r\n  inline X get_prod(int a, int b) {\r\n    if constexpr (MX::commute)\
-    \ {\r\n      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\r\n  \
-    \  }\r\n    return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\r\n \
-    \ }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F check, int\
-    \ u, int v) {\r\n    static_assert(edge);\r\n    if (!check(MX::unit())) return\
-    \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ lca, edge);\r\n    X val = MX::unit();\r\n\r\n    // climb\r\n    for (auto\
-    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = get_prod(a, b);\r\n\
-    \      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\n     \
-    \   u = (tree.parent[tree.V[b]]);\r\n        continue;\r\n      }\r\n      auto\
-    \ check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };\r\n      int\
-    \ i = 0;\r\n      if constexpr (MX::commute) i = seg.min_left(check_tmp, a + 1);\r\
-    \n      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a + 1);\r\n\
-    \      if (i == a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\n \
-    \   }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\n\
-    \    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = get_prod(a,\
+    \  X prod_subtree(int u, int root = -1) {\r\n    if (root == u) return prod_all();\r\
+    \n    if (root == -1 || tree.in_subtree(u, root)) {\r\n      int l = tree.LID[u],\
+    \ r = tree.RID[u];\r\n      return seg.prod(l + edge, r);\r\n    }\r\n    assert(!edge);\
+    \ // \u3055\u307C\u308A\r\n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u],\
+    \ R = tree.RID[u];\r\n    return MX::op(seg.prod(0, L), seg.prod(R, N));\r\n \
+    \ }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]); }\r\n\r\n  inline\
+    \ X get_prod(int a, int b) {\r\n    if constexpr (MX::commute) {\r\n      return\
+    \ (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\r\n    }\r\n    return (a\
+    \ <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\r\n  }\r\n\r\nprivate:\r\n\
+    \  template <class F>\r\n  int max_path_edge(F check, int u, int v) {\r\n    static_assert(edge);\r\
+    \n    if (!check(MX::unit())) return -1;\r\n    int lca = tree.lca(u, v);\r\n\
+    \    auto pd = tree.get_path_decomposition(u, lca, edge);\r\n    X val = MX::unit();\r\
+    \n\r\n    // climb\r\n    for (auto &&[a, b]: pd) {\r\n      assert(a >= b);\r\
+    \n      X x = get_prod(a, b);\r\n      if (check(MX::op(val, x))) {\r\n      \
+    \  val = MX::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n        continue;\r\
+    \n      }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val,\
+    \ x)); };\r\n      int i = 0;\r\n      if constexpr (MX::commute) i = seg.min_left(check_tmp,\
+    \ a + 1);\r\n      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a\
+    \ + 1);\r\n      if (i == a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\
+    \n    }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\
+    \n    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = get_prod(a,\
     \ b);\r\n      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\
     \n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
     \ = [&](X x) -> bool { return check(MX::op(val, x)); };\r\n      auto i = seg.max_right(check_tmp,\
@@ -563,8 +572,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
 layout: document

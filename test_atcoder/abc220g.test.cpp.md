@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max2.hpp
     title: alg/monoid/max2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc220/tasks/abc220_g
@@ -184,11 +184,12 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)\
-    \      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
+    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
+    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
+    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
+    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
+    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
     \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
     \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
     \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
@@ -265,52 +266,55 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/hashmap.hpp\"\
-    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  HashMap(u32\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
     \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
     \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
-    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n  void clear() { build(0); }\r\n\
-    \  int size() { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\
-    \n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1)\
-    \ & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\
-    \n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) {\
-    \ used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
-    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
-    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n  \
-    \      = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x\
-    \ += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x =\
-    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\
-    \n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
-    \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
-    \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
-    \ = b;\r\n  }\r\n};\n#line 2 \"alg/monoid/max2.hpp\"\n\ntemplate <typename T,\
-    \ typename KEY>\nstruct Monoid_Max2 {\n  struct Data {\n    T max1, max2;\n  \
-    \  KEY key1, key2;\n    bool add_element(T x, KEY key) {\n      if (key1 == key)\
-    \ { return chmax(max1, x); }\n      if (key2 == key) {\n        bool upd = chmax(max2,\
-    \ x);\n        if (max1 < max2) swap(max1, max2), swap(key1, key2);\n        return\
-    \ upd;\n      }\n      if (max1 < x) {\n        max2 = max1, key2 = key1, max1\
-    \ = x, key1 = key;\n        return 1;\n      }\n      elif (max2 < x) {\n    \
-    \    max2 = x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n\
-    \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
-    \ x, X y) {\n    x.add_element(y.max1, y.key1);\n    x.add_element(y.max2, y.key2);\n\
-    \    return x;\n  }\n  static constexpr X unit() { return {-infty<T>, -infty<T>,\
-    \ -1, -1}; }\n  static constexpr bool commute = true;\n};\n#line 10 \"test_atcoder/abc220g.test.cpp\"\
-    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi\
-    \ C(N);\n  FOR(i, N) read(point[i], C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(),\
-    \ cc = RNG_64();\n\n  using Mono = Monoid_Max2<ll, ll>;\n  using Data = typename\
-    \ Mono::Data;\n  HashMap<Data> MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L\
-    \ = perpendicular_bisector(point[i], point[j]);\n    L.normalize();\n    u64 key\
-    \ = 0;\n    key += u64(L.a + infty<ll>) * aa;\n    key += u64(L.b + infty<ll>)\
-    \ * bb;\n    key += u64(L.c + infty<ll>) * cc;\n    if (!MP.count(key)) MP[key]\
-    \ = Mono::unit();\n    ll g = gcd(L.a, L.b);\n    Point<ll> normal = {L.b / g,\
-    \ -L.a / g};\n    ll t = normal.dot(point[i]);\n    MP[key].add_element(C[i] +\
-    \ C[j], t);\n  }\n\n  ll ANS = -1;\n  MP.enumerate_all([&](auto key, auto dat)\
-    \ -> void {\n    ll ans = dat.max1 + dat.max2;\n    chmax(ANS, ans);\n  });\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() { used.assign(len(used), 0); }\r\n  int size()\
+    \ { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i\
+    \ = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\
+    \n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap\
+    \ == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1,\
+    \ key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val\
+    \ get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n    return\
+    \ (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const u64& k)\
+    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
+    \n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\
+    \n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\
+    \n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\
+    \r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"alg/monoid/max2.hpp\"\n\
+    \ntemplate <typename T, typename KEY>\nstruct Monoid_Max2 {\n  struct Data {\n\
+    \    T max1, max2;\n    KEY key1, key2;\n    bool add_element(T x, KEY key) {\n\
+    \      if (key1 == key) { return chmax(max1, x); }\n      if (key2 == key) {\n\
+    \        bool upd = chmax(max2, x);\n        if (max1 < max2) swap(max1, max2),\
+    \ swap(key1, key2);\n        return upd;\n      }\n      if (max1 < x) {\n   \
+    \     max2 = max1, key2 = key1, max1 = x, key1 = key;\n        return 1;\n   \
+    \   }\n      elif (max2 < x) {\n        max2 = x, key2 = key;\n        return\
+    \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
+    \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.max1, y.key1);\n\
+    \    x.add_element(y.max2, y.key2);\n    return x;\n  }\n  static constexpr X\
+    \ unit() { return {-infty<T>, -infty<T>, -1, -1}; }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 10 \"test_atcoder/abc220g.test.cpp\"\n\nusing P = Point<ll>;\n\
+    \nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  vi C(N);\n  FOR(i, N) read(point[i],\
+    \ C[i]);\n\n  u64 aa = RNG_64(), bb = RNG_64(), cc = RNG_64();\n\n  using Mono\
+    \ = Monoid_Max2<ll, ll>;\n  using Data = typename Mono::Data;\n  HashMap<Data>\
+    \ MP;\n\n  FOR(j, N) FOR(i, j) {\n    Line<ll> L = perpendicular_bisector(point[i],\
+    \ point[j]);\n    L.normalize();\n    u64 key = 0;\n    key += u64(L.a + infty<ll>)\
+    \ * aa;\n    key += u64(L.b + infty<ll>) * bb;\n    key += u64(L.c + infty<ll>)\
+    \ * cc;\n    if (!MP.count(key)) MP[key] = Mono::unit();\n    ll g = gcd(L.a,\
+    \ L.b);\n    Point<ll> normal = {L.b / g, -L.a / g};\n    ll t = normal.dot(point[i]);\n\
+    \    MP[key].add_element(C[i] + C[j], t);\n  }\n\n  ll ANS = -1;\n  MP.enumerate_all([&](auto\
+    \ key, auto dat) -> void {\n    ll ans = dat.max1 + dat.max2;\n    chmax(ANS,\
+    \ ans);\n  });\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc220/tasks/abc220_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/base.hpp\"\n\
     #include \"geo/perpendicular_bisector.hpp\"\n#include \"random/base.hpp\"\n#include\
@@ -338,8 +342,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc220g.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc220g.test.cpp
 layout: document

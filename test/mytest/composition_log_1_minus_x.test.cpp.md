@@ -16,16 +16,16 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
   - icon: ':heavy_check_mark:'
@@ -43,25 +43,25 @@ data:
   - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -73,10 +73,10 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
@@ -85,7 +85,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedRequiredBy: []

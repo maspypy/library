@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
   - icon: ':question:'
@@ -24,21 +24,21 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1956.test.cpp
     title: test/yukicoder/1956.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2119.test.cpp
     title: test/yukicoder/2119.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\
@@ -144,7 +144,42 @@ data:
     \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
     \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 5 \"\
     nt/crt.hpp\"\n\n// \u975E\u8CA0\u6700\u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\
-    \u3059 (garner)\ntemplate <typename T>\ni128 CRT(vc<T> vals, vc<T> mods, ll new_mod\
+    \u3059 (garner), \u306A\u3051\u308C\u3070 -1.\ntemplate <typename T>\ni128 CRT(vc<T>\
+    \ vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {\n  int n = len(vals);\n\
+    \  FOR(i, n) {\n    vals[i] = ((vals[i] %= mods[i]) >= 0 ? vals[i] : vals[i] +\
+    \ mods[i]);\n  }\n\n  bool ng = 0;\n  auto reduction_by_factor = [&]() -> void\
+    \ {\n    unordered_map<T, pair<T, int>> MP;\n    FOR(i, n) {\n      for (auto&&\
+    \ [p, e]: factor(mods[i])) {\n        T mod = 1;\n        FOR(e) mod *= p;\n \
+    \       T val = vals[i] % mod;\n        if (!MP.count(p)) {\n          MP[p] =\
+    \ {mod, val % mod};\n          continue;\n        }\n        auto& [mod1, val1]\
+    \ = MP[p];\n        if (mod > mod1) swap(mod, mod1), swap(val, val1);\n      \
+    \  if (val1 % mod != val) {\n          ng = 1;\n          return;\n        }\n\
+    \      }\n    }\n    mods.clear(), vals.clear();\n    for (auto&& [p, x]: MP)\
+    \ {\n      auto [mod, val] = x;\n      mods.eb(mod), vals.eb(val);\n    }\n  \
+    \  n = len(vals);\n  };\n  auto reduction_by_coprime_factor = [&]() -> void {\n\
+    \    auto [basis, pfs] = coprime_factorization<T>(mods);\n    int k = len(basis);\n\
+    \    vc<pair<T, int>> dat(k, {1, 0});\n    FOR(i, n) {\n      for (auto&& [pid,\
+    \ exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp) mod *= basis[pid];\n \
+    \       T val = vals[i] % mod;\n        auto& [mod1, val1] = dat[pid];\n     \
+    \   if (mod > mod1) swap(mod, mod1), swap(val, val1);\n        if (val1 % mod\
+    \ != val) {\n          ng = 1;\n          return;\n        }\n      }\n    }\n\
+    \    mods.clear(), vals.clear();\n    for (auto&& [mod, val]: dat) { mods.eb(mod),\
+    \ vals.eb(val); }\n    n = len(vals);\n  };\n  if (!coprime) {\n    (n <= 10 ?\
+    \ reduction_by_coprime_factor() : reduction_by_factor());\n  }\n\n  if (ng) return\
+    \ -1;\n  if (n == 0) return 0;\n\n  vc<ll> cfs(n);\n  if (MAX(mods) < (1LL <<\
+    \ 31)) {\n    FOR(i, n) {\n      Barrett bt(mods[i]);\n      ll a = vals[i], prod\
+    \ = 1;\n      FOR(j, i) {\n        a = bt.modulo(a + cfs[j] * (mods[i] - prod));\n\
+    \        prod = bt.mul(prod, mods[j]);\n      }\n      cfs[i] = bt.mul(mod_inv(prod,\
+    \ mods[i]), a);\n    }\n  } else {\n    FOR(i, n) {\n      ll a = vals[i], prod\
+    \ = 1;\n      FOR(j, i) {\n        a = (a + i128(cfs[j]) * (mods[i] - prod)) %\
+    \ mods[i];\n        prod = i128(prod) * mods[j] % mods[i];\n      }\n      cfs[i]\
+    \ = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n  }\n  i128 ret = 0, prod\
+    \ = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod *= mods[i];\n    if (new_mod\
+    \ != -1) { ret %= new_mod, prod %= new_mod; }\n  }\n  return ret;\n}\n"
+  code: "#include \"mod/mod_inv.hpp\"\n#include \"nt/coprime_factorization.hpp\"\n\
+    #include \"nt/factor.hpp\"\n#include \"mod/barrett.hpp\"\n\n// \u975E\u8CA0\u6700\
+    \u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\u3059 (garner), \u306A\u3051\u308C\
+    \u3070 -1.\ntemplate <typename T>\ni128 CRT(vc<T> vals, vc<T> mods, ll new_mod\
     \ = -1, bool coprime = false) {\n  int n = len(vals);\n  FOR(i, n) {\n    vals[i]\
     \ = ((vals[i] %= mods[i]) >= 0 ? vals[i] : vals[i] + mods[i]);\n  }\n\n  bool\
     \ ng = 0;\n  auto reduction_by_factor = [&]() -> void {\n    unordered_map<T,\
@@ -175,41 +210,7 @@ data:
     \      }\n      cfs[i] = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n\
     \  }\n  i128 ret = 0, prod = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod\
     \ *= mods[i];\n    if (new_mod != -1) { ret %= new_mod, prod %= new_mod; }\n \
-    \ }\n  return ret;\n}\n"
-  code: "#include \"mod/mod_inv.hpp\"\n#include \"nt/coprime_factorization.hpp\"\n\
-    #include \"nt/factor.hpp\"\n#include \"mod/barrett.hpp\"\n\n// \u975E\u8CA0\u6700\
-    \u5C0F\u89E3\u3092 mod new_mod \u3067\u8FD4\u3059 (garner)\ntemplate <typename\
-    \ T>\ni128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false)\
-    \ {\n  int n = len(vals);\n  FOR(i, n) {\n    vals[i] = ((vals[i] %= mods[i])\
-    \ >= 0 ? vals[i] : vals[i] + mods[i]);\n  }\n\n  bool ng = 0;\n  auto reduction_by_factor\
-    \ = [&]() -> void {\n    unordered_map<T, pair<T, int>> MP;\n    FOR(i, n) {\n\
-    \      for (auto&& [p, e]: factor(mods[i])) {\n        T mod = 1;\n        FOR(e)\
-    \ mod *= p;\n        T val = vals[i] % mod;\n        if (!MP.count(p)) {\n   \
-    \       MP[p] = {mod, val % mod};\n          continue;\n        }\n        auto&\
-    \ [mod1, val1] = MP[p];\n        if (mod > mod1) swap(mod, mod1), swap(val, val1);\n\
-    \        if (val1 % mod != val) {\n          ng = 1;\n          return;\n    \
-    \    }\n      }\n    }\n    mods.clear(), vals.clear();\n    for (auto&& [p, x]:\
-    \ MP) {\n      auto [mod, val] = x;\n      mods.eb(mod), vals.eb(val);\n    }\n\
-    \    n = len(vals);\n  };\n  auto reduction_by_coprime_factor = [&]() -> void\
-    \ {\n    auto [basis, pfs] = coprime_factorization<T>(mods);\n    int k = len(basis);\n\
-    \    vc<pair<T, int>> dat(k, {1, 0});\n    FOR(i, n) {\n      for (auto&& [pid,\
-    \ exp]: pfs[i]) {\n        T mod = 1;\n        FOR(exp) mod *= basis[pid];\n \
-    \       T val = vals[i] % mod;\n        auto& [mod1, val1] = dat[pid];\n     \
-    \   if (mod > mod1) swap(mod, mod1), swap(val, val1);\n        if (val1 % mod\
-    \ != val) {\n          ng = 1;\n          return;\n        }\n      }\n    }\n\
-    \    mods.clear(), vals.clear();\n    for (auto&& [mod, val]: dat) { mods.eb(mod),\
-    \ vals.eb(val); }\n    n = len(vals);\n  };\n  if (!coprime) {\n    (n <= 10 ?\
-    \ reduction_by_coprime_factor() : reduction_by_factor());\n  }\n\n  if (ng) return\
-    \ -1;\n  if (n == 0) return 0;\n\n  vc<ll> cfs(n);\n  if (MAX(mods) < (1LL <<\
-    \ 31)) {\n    FOR(i, n) {\n      Barrett bt(mods[i]);\n      ll a = vals[i], prod\
-    \ = 1;\n      FOR(j, i) {\n        a = bt.modulo(a + cfs[j] * (mods[i] - prod));\n\
-    \        prod = bt.mul(prod, mods[j]);\n      }\n      cfs[i] = bt.mul(mod_inv(prod,\
-    \ mods[i]), a);\n    }\n  } else {\n    FOR(i, n) {\n      ll a = vals[i], prod\
-    \ = 1;\n      FOR(j, i) {\n        a = (a + i128(cfs[j]) * (mods[i] - prod)) %\
-    \ mods[i];\n        prod = i128(prod) * mods[j] % mods[i];\n      }\n      cfs[i]\
-    \ = mod_inv(prod, mods[i]) * i128(a) % mods[i];\n    }\n  }\n  i128 ret = 0, prod\
-    \ = 1;\n  FOR(i, n) {\n    ret += prod * cfs[i], prod *= mods[i];\n    if (new_mod\
-    \ != -1) { ret %= new_mod, prod %= new_mod; }\n  }\n  return ret;\n}"
+    \ }\n  return ret;\n}"
   dependsOn:
   - mod/mod_inv.hpp
   - nt/coprime_factorization.hpp
@@ -221,8 +222,8 @@ data:
   isVerificationFile: false
   path: nt/crt.hpp
   requiredBy: []
-  timestamp: '2023-11-02 05:00:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/590.test.cpp
   - test/yukicoder/1956.test.cpp

@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'
@@ -40,13 +40,13 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':question:'

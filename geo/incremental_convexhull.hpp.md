@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -190,7 +190,7 @@ data:
   path: geo/incremental_convexhull.hpp
   requiredBy: []
   timestamp: '2023-12-21 22:18:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/incremental_ch.test.cpp
   - test_atcoder/abc266c.test.cpp

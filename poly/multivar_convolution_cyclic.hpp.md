@@ -66,12 +66,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -628,7 +628,7 @@ data:
   path: poly/multivar_convolution_cyclic.hpp
   requiredBy: []
   timestamp: '2024-05-03 04:27:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
 documentation_of: poly/multivar_convolution_cyclic.hpp

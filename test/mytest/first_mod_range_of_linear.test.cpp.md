@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/first_mod_range_of_linear.hpp
     title: mod/first_mod_range_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -129,19 +129,19 @@ data:
     \n\n// ax+b in {L, ..., R-1} mod \u3068\u306A\u308B\u6700\u5C0F\u306E x>=0 \u3092\
     \u8FD4\u3059\n// \u4F8B\u3048\u3070 ax+b=1 \u306A\u3089 ax+b in {-1} mod 2 \u306E\
     \u3088\u3046\u306B\u3059\u308B\n// \u5B58\u5728\u3057\u306A\u3051\u308C\u3070\
-    \ -1\nint first_mod_range_of_linear(ll L, ll R, ll a, ll b, int mod) {\n  assert(L\
-    \ <= R);\n  b -= L, R -= L;\n  if (R >= mod) return 0;\n  a = bmod<ll>(a, mod),\
-    \ b = bmod<ll>(b, mod);\n  // ax+b<R\n  if (b < R) return 0;\n  auto [X, DX] =\
-    \ min_of_linear_segments(a, b, mod);\n  FOR(i, len(DX)) {\n    ll x1 = X[i], x2\
-    \ = X[i + 1];\n    ll y2 = (a * x2 + b) % mod;\n    if (y2 >= R) continue;\n \
-    \   ll y1 = (a * x1 + b) % mod;\n    ll d = (y1 - y2) * DX[i] / (x2 - x1);\n \
-    \   ll k = floor(y1 - R, d) + 1;\n    return x1 + k * DX[i];\n  }\n  return -1;\n\
-    }\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n     \
-    \ = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                   \
-    \  chrono::high_resolution_clock::now().time_since_epoch())\n                \
-    \     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/mytest/first_mod_range_of_linear.test.cpp\"\
+    \ -1\n// L<0 \u3084 mod<=R \u3082 ok\nint first_mod_range_of_linear(ll L, ll R,\
+    \ ll a, ll b, int mod) {\n  assert(L <= R);\n  b -= L, R -= L;\n  if (R >= mod)\
+    \ return 0;\n  a = bmod<ll>(a, mod), b = bmod<ll>(b, mod);\n  // ax+b<R\n  if\
+    \ (b < R) return 0;\n  auto [X, DX] = min_of_linear_segments(a, b, mod);\n  FOR(i,\
+    \ len(DX)) {\n    ll x1 = X[i], x2 = X[i + 1];\n    ll y2 = (a * x2 + b) % mod;\n\
+    \    if (y2 >= R) continue;\n    ll y1 = (a * x1 + b) % mod;\n    ll d = (y1 -\
+    \ y2) * DX[i] / (x2 - x1);\n    ll k = floor(y1 - R, d) + 1;\n    return x1 +\
+    \ k * DX[i];\n  }\n  return -1;\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/mytest/first_mod_range_of_linear.test.cpp\"\
     \n\nll naive(ll L, ll R, ll a, ll b, ll mod) {\n  FOR(x, mod) {\n    FOR(y, L,\
     \ R) {\n      if (((a * x + b) - y) % mod == 0) return x;\n    }\n  }\n  return\
     \ -1;\n}\n\nvoid test() {\n  ll K = 15;\n  FOR(L, -K, K) {\n    FOR(R, L, K) {\n\
@@ -176,8 +176,8 @@ data:
   isVerificationFile: true
   path: test/mytest/first_mod_range_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/first_mod_range_of_linear.test.cpp
 layout: document

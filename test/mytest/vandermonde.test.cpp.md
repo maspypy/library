@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -52,7 +52,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':question:'

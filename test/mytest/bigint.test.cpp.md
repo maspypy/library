@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'

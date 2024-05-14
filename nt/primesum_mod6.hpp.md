@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy: []

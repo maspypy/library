@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/first_mod_range_of_linear.test.cpp
     title: test/mytest/first_mod_range_of_linear.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
@@ -37,32 +37,33 @@ data:
     \n\n// ax+b in {L, ..., R-1} mod \u3068\u306A\u308B\u6700\u5C0F\u306E x>=0 \u3092\
     \u8FD4\u3059\n// \u4F8B\u3048\u3070 ax+b=1 \u306A\u3089 ax+b in {-1} mod 2 \u306E\
     \u3088\u3046\u306B\u3059\u308B\n// \u5B58\u5728\u3057\u306A\u3051\u308C\u3070\
-    \ -1\nint first_mod_range_of_linear(ll L, ll R, ll a, ll b, int mod) {\n  assert(L\
+    \ -1\n// L<0 \u3084 mod<=R \u3082 ok\nint first_mod_range_of_linear(ll L, ll R,\
+    \ ll a, ll b, int mod) {\n  assert(L <= R);\n  b -= L, R -= L;\n  if (R >= mod)\
+    \ return 0;\n  a = bmod<ll>(a, mod), b = bmod<ll>(b, mod);\n  // ax+b<R\n  if\
+    \ (b < R) return 0;\n  auto [X, DX] = min_of_linear_segments(a, b, mod);\n  FOR(i,\
+    \ len(DX)) {\n    ll x1 = X[i], x2 = X[i + 1];\n    ll y2 = (a * x2 + b) % mod;\n\
+    \    if (y2 >= R) continue;\n    ll y1 = (a * x1 + b) % mod;\n    ll d = (y1 -\
+    \ y2) * DX[i] / (x2 - x1);\n    ll k = floor(y1 - R, d) + 1;\n    return x1 +\
+    \ k * DX[i];\n  }\n  return -1;\n}\n"
+  code: "#include \"mod/min_of_linear_segments.hpp\"\n\n// ax+b in {L, ..., R-1} mod\
+    \ \u3068\u306A\u308B\u6700\u5C0F\u306E x>=0 \u3092\u8FD4\u3059\n// \u4F8B\u3048\
+    \u3070 ax+b=1 \u306A\u3089 ax+b in {-1} mod 2 \u306E\u3088\u3046\u306B\u3059\u308B\
+    \n// \u5B58\u5728\u3057\u306A\u3051\u308C\u3070 -1\n// L<0 \u3084 mod<=R \u3082\
+    \ ok\nint first_mod_range_of_linear(ll L, ll R, ll a, ll b, int mod) {\n  assert(L\
     \ <= R);\n  b -= L, R -= L;\n  if (R >= mod) return 0;\n  a = bmod<ll>(a, mod),\
     \ b = bmod<ll>(b, mod);\n  // ax+b<R\n  if (b < R) return 0;\n  auto [X, DX] =\
     \ min_of_linear_segments(a, b, mod);\n  FOR(i, len(DX)) {\n    ll x1 = X[i], x2\
     \ = X[i + 1];\n    ll y2 = (a * x2 + b) % mod;\n    if (y2 >= R) continue;\n \
     \   ll y1 = (a * x1 + b) % mod;\n    ll d = (y1 - y2) * DX[i] / (x2 - x1);\n \
     \   ll k = floor(y1 - R, d) + 1;\n    return x1 + k * DX[i];\n  }\n  return -1;\n\
-    }\n"
-  code: "#include \"mod/min_of_linear_segments.hpp\"\n\n// ax+b in {L, ..., R-1} mod\
-    \ \u3068\u306A\u308B\u6700\u5C0F\u306E x>=0 \u3092\u8FD4\u3059\n// \u4F8B\u3048\
-    \u3070 ax+b=1 \u306A\u3089 ax+b in {-1} mod 2 \u306E\u3088\u3046\u306B\u3059\u308B\
-    \n// \u5B58\u5728\u3057\u306A\u3051\u308C\u3070 -1\nint first_mod_range_of_linear(ll\
-    \ L, ll R, ll a, ll b, int mod) {\n  assert(L <= R);\n  b -= L, R -= L;\n  if\
-    \ (R >= mod) return 0;\n  a = bmod<ll>(a, mod), b = bmod<ll>(b, mod);\n  // ax+b<R\n\
-    \  if (b < R) return 0;\n  auto [X, DX] = min_of_linear_segments(a, b, mod);\n\
-    \  FOR(i, len(DX)) {\n    ll x1 = X[i], x2 = X[i + 1];\n    ll y2 = (a * x2 +\
-    \ b) % mod;\n    if (y2 >= R) continue;\n    ll y1 = (a * x1 + b) % mod;\n   \
-    \ ll d = (y1 - y2) * DX[i] / (x2 - x1);\n    ll k = floor(y1 - R, d) + 1;\n  \
-    \  return x1 + k * DX[i];\n  }\n  return -1;\n}"
+    }"
   dependsOn:
   - mod/min_of_linear_segments.hpp
   isVerificationFile: false
   path: mod/first_mod_range_of_linear.hpp
   requiredBy: []
-  timestamp: '2024-01-02 21:42:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-14 16:33:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/first_mod_range_of_linear.test.cpp
 documentation_of: mod/first_mod_range_of_linear.hpp

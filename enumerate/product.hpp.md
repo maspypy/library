@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: enumerate/labeled_tree.hpp
+    title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_products.test.cpp
@@ -9,15 +12,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/fibonacci_search.test.cpp
     title: test/mytest/fibonacci_search.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/mytest/prufer.test.cpp
+    title: test/mytest/prufer.test.cpp
+  - icon: ':x:'
     path: test_atcoder/abc233c.test.cpp
     title: test_atcoder/abc233c.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate\
@@ -33,11 +39,13 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: enumerate/product.hpp
-  requiredBy: []
+  requiredBy:
+  - enumerate/labeled_tree.hpp
   timestamp: '2023-01-23 21:04:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/enumerate_products.test.cpp
+  - test/mytest/prufer.test.cpp
   - test/mytest/fibonacci_search.test.cpp
   - test_atcoder/arc153f.test.cpp
   - test_atcoder/abc233c.test.cpp
