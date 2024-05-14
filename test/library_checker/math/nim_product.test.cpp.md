@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: nt/nim_product.hpp
     title: nt/nim_product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

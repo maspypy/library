@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: nt/stern_brocot_tree.hpp
     title: nt/stern_brocot_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: nt/sigma_0_sum.hpp
     title: nt/sigma_0_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

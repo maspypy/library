@@ -10,13 +10,13 @@ data:
   - icon: ':x:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree_2d_dense.hpp
     title: ds/segtree/segtree_2d_dense.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
