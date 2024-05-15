@@ -412,8 +412,8 @@ data:
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/typical_dc.test.cpp
   - test_atcoder/abc333f.test.cpp
+  - test/mytest/typical_dc.test.cpp
 documentation_of: poly/typical_divide_conquer.hpp
 layout: document
 redirect_from:

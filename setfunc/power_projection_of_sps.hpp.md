@@ -410,9 +410,9 @@ data:
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc253h.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/math/powproj_sps.test.cpp
-  - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/power_projection_of_sps.hpp
 layout: document
 redirect_from:

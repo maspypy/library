@@ -170,26 +170,26 @@ data:
   isVerificationFile: false
   path: poly/transposed_ntt.hpp
   requiredBy:
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - poly/slice_rational_fps.hpp
   - poly/composition.hpp
   - poly/compositional_inverse.hpp
-  - poly/slice_rational_fps.hpp
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-04-23 20:14:58+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test/library_checker/polynomial/slice_rational.test.cpp
+  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/library_checker/polynomial/composition_dmint.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/compositional_inverset.test.cpp
-  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/slice_rational.test.cpp
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
-  - test/library_checker/polynomial/composition_dmint.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
-  - test_atcoder/agc013e.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
 documentation_of: poly/transposed_ntt.hpp
 layout: document
 redirect_from:

@@ -70,13 +70,13 @@ data:
   timestamp: '2023-05-04 20:25:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc180e.test.cpp
+  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test/mytest/subset_sum.test.cpp
-  - test/yukicoder/4_2.test.cpp
+  - test/aoj/DPL_2_A.test.cpp
   - test/yukicoder/114.test.cpp
   - test/yukicoder/2507.test.cpp
-  - test/aoj/DPL_2_A.test.cpp
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - test_atcoder/abc180e.test.cpp
+  - test/yukicoder/4_2.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
 redirect_from:

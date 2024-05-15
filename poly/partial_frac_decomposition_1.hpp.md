@@ -477,9 +477,9 @@ data:
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc241h.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
-  - test_atcoder/abc241h.test.cpp
 documentation_of: poly/partial_frac_decomposition_1.hpp
 layout: document
 redirect_from:

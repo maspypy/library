@@ -235,15 +235,15 @@ data:
   timestamp: '2024-05-03 01:43:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/longest_common_substr.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/yukicoder/2361.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/longest_common_substring.test.cpp
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc240ex.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/longest_common_substring.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/mytest/suffix_tree.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
+  - test/yukicoder/2361.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:
