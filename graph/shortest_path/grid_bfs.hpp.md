@@ -47,8 +47,8 @@ data:
   timestamp: '2023-02-02 01:33:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc301e.test.cpp
   - test/yukicoder/1323.test.cpp
+  - test_atcoder/abc301e.test.cpp
 documentation_of: graph/shortest_path/grid_bfs.hpp
 layout: document
 redirect_from:

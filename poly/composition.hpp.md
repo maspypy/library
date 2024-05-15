@@ -647,22 +647,22 @@ data:
   isVerificationFile: false
   path: poly/composition.hpp
   requiredBy:
-  - graph/count/count_labeled_bridgeless.hpp
-  - graph/count/count_labeled_biconnected.hpp
   - poly/compositional_inverse.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/composition_dmint.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/library_checker/polynomial/composition_dmint.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
 documentation_of: poly/composition.hpp
 layout: document
 redirect_from:

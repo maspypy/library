@@ -171,15 +171,15 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
-  - test/library_checker/geometry/static_convex_hull.tset.cpp
-  - convex/fenchel.hpp
   - geo/convex_polygon.hpp
   - geo/minkowski_sum.hpp
+  - test/library_checker/geometry/static_convex_hull.tset.cpp
+  - convex/fenchel.hpp
   timestamp: '2024-05-04 21:50:01+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/arc130f.test.cpp
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+  - test_atcoder/arc130f.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

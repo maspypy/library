@@ -519,19 +519,19 @@ data:
   isVerificationFile: false
   path: poly/power_projection.hpp
   requiredBy:
-  - graph/count/count_labeled_bridgeless.hpp
-  - graph/count/count_labeled_biconnected.hpp
   - poly/compositional_inverse.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc345g.test.cpp
-  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/mytest/power_projection.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/power_projection.test.cpp
+  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test_atcoder/abc345g.test.cpp
 documentation_of: poly/power_projection.hpp
 layout: document
 redirect_from:

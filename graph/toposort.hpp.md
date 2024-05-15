@@ -137,8 +137,8 @@ data:
   timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc223d.test.cpp
   - test/aoj/2251_1.test.cpp
+  - test_atcoder/abc223d.test.cpp
 documentation_of: graph/toposort.hpp
 layout: document
 redirect_from:

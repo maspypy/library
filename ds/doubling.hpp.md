@@ -91,10 +91,10 @@ data:
   timestamp: '2024-03-18 21:07:27+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc241e.test.cpp
-  - test/yukicoder/2242.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1097.test.cpp
+  - test/yukicoder/2242.test.cpp
+  - test_atcoder/abc241e.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document
 redirect_from:
