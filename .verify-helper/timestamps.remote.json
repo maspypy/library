@@ -745,5 +745,10 @@
 "test/yukicoder/902.test.cpp": "2024-05-14 16:33:21 +0900",
 "test/yukicoder/913.test.cpp": "2024-05-14 16:33:21 +0900",
 "test/yukicoder/919.test.cpp": "2024-05-14 16:33:21 +0900",
-"test/yukicoder/924.test.cpp": "2024-05-14 16:33:21 +0900"
+"test/yukicoder/924.test.cpp": "2024-05-14 16:33:21 +0900",
+"test_atcoder/abc127f.test.cpp": "2024-05-14 16:33:21 +0900",
+"test_atcoder/abc127f_1.test.cpp": "2024-05-14 16:33:21 +0900",
+"test_atcoder/abc139f.test.cpp": "2024-05-14 16:33:21 +0900",
+"test_atcoder/abc141e.test.cpp": "2024-05-14 16:33:21 +0900",
+"test_atcoder/abc141f.test.cpp": "2024-05-14 16:33:21 +0900"
 }
