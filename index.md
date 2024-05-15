@@ -679,7 +679,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/max_norm_sum.hpp
       title: geo/max_norm_sum.hpp
     - icon: ':x:'
@@ -1218,10 +1218,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/xor/mat_inv.hpp
       title: linalg/xor/mat_inv.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor/transpose.hpp
       title: linalg/xor/transpose.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/xor/vector_space.hpp
       title: linalg/xor/vector_space.hpp
   - name: mod
@@ -1884,7 +1884,7 @@ data:
       title: setfunc/zeta.hpp
   - name: string
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/all_pair_lcp.hpp
       title: string/all_pair_lcp.hpp
     - icon: ':heavy_check_mark:'
@@ -4250,19 +4250,19 @@ data:
       title: test/yukicoder/924.test.cpp
   - name: test_atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f.test.cpp
       title: test_atcoder/abc127f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f_1.test.cpp
       title: test_atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc139f.test.cpp
       title: test_atcoder/abc139f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc141e.test.cpp
       title: test_atcoder/abc141e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc141f.test.cpp
       title: test_atcoder/abc141f.test.cpp
     - icon: ':x:'
