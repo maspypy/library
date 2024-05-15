@@ -7,7 +7,7 @@ vc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {
   vc<T> C(n + m - 1, infty<T>);
   while (n > 0 && A[n - 1] == infty<T>) --n;
   while (m > 0 && B[m - 1] == infty<T>) --m;
-  if (n == 0 && m == 0) return C;
+  if (n == 0 || m == 0) return C;
   int a = 0, b = 0;
   while (a < n && A[a] == infty<T>) ++a;
   while (b < m && B[b] == infty<T>) ++b;
