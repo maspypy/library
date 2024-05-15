@@ -12,7 +12,7 @@ data:
     title: mod/floor_monoid_product.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
     title: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   - icon: ':heavy_check_mark:'
