@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/minplus_convolution_of_triples.hpp
     title: convex/minplus_convolution_of_triples.hpp
   _extendedVerifiedWith:
@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minplus_conv_triple.test.cpp
     title: test/mytest/minplus_conv_triple.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j)\
@@ -38,7 +38,7 @@ data:
     \ minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A), m\
     \ = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
     \  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m > 0 && B[m - 1] == infty<T>)\
-    \ --m;\n  if (n == 0 && m == 0) return C;\n  int a = 0, b = 0;\n  while (a < n\
+    \ --m;\n  if (n == 0 || m == 0) return C;\n  int a = 0, b = 0;\n  while (a < n\
     \ && A[a] == infty<T>) ++a;\n  while (b < m && B[b] == infty<T>) ++b;\n  C[a +\
     \ b] = A[a] + B[b];\n  for (int i = a + b + 1; i < n + m - 1; ++i) {\n    if (b\
     \ == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a] + B[b + 1])) {\n      chmin(C[i],\
@@ -61,7 +61,7 @@ data:
   code: "#include \"convex/monotone_minima.hpp\"\n\ntemplate <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>&\
     \ A, vc<T>& B) {\n  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return\
     \ {};\n  vc<T> C(n + m - 1, infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>)\
-    \ --n;\n  while (m > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 && m == 0)\
+    \ --n;\n  while (m > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 || m == 0)\
     \ return C;\n  int a = 0, b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n \
     \ while (b < m && B[b] == infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int\
     \ i = a + b + 1; i < n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a\
@@ -88,8 +88,8 @@ data:
   path: convex/minplus_convolution.hpp
   requiredBy:
   - convex/minplus_convolution_of_triples.hpp
-  timestamp: '2023-08-10 03:11:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-15 14:09:29+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/minplus_convex.test.cpp

@@ -181,7 +181,7 @@ data:
     \  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int\
     \ n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n\
     \      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
-    \ p);\n}\n#line 1 \"graph/prufer_code.hpp\"\n\n// [0,n-1]^{n-1}, \u305F\u3060\u3057\
+    \ p);\n}\n#line 2 \"graph/prufer_code.hpp\"\n\n// [0,n-1]^{n-1}, \u305F\u3060\u3057\
     \u672B\u5C3E\u306F n-1, \u3068\u3044\u3046\u5B9A\u5F0F\u5316 (n=1 ok)\nvc<int>\
     \ to_prufer_code(Graph<int, 0>& G) {\n  // \u30E9\u30D9\u30EB\u6700\u5C0F\u306E\
     \u8449\u3092\u3068\u308B -> \u89AA\u3092\u5217\u306B\u8FFD\u52A0\n  int n = G.N;\n\
@@ -233,7 +233,7 @@ data:
   isVerificationFile: true
   path: test/mytest/prufer.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
+  timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/prufer.test.cpp

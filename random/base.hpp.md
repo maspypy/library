@@ -225,7 +225,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -408,7 +408,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
@@ -429,10 +429,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minplus_conv_triple.test.cpp
     title: test/mytest/minplus_conv_triple.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
   - icon: ':x:'

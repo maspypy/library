@@ -322,7 +322,10 @@ data:
     \ point[i % n].dot(p) < point[j % n].dot(p);\n    });\n    return {idx, point[idx].dot(p)};\n\
     \  }\n  pair<int, T> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i,\
     \ int j) -> bool {\n      return point[i % n].dot(p) > point[j % n].dot(p);\n\
-    \    });\n    return {idx, point[idx].dot(p)};\n  }\n  // pair<int, int> visible_range(P\
+    \    });\n    return {idx, point[idx].dot(p)};\n  }\n\n  // \u5916\u5074\u306E\
+    \u70B9 p \u304B\u3089\u898B\u3048\u308B\u70B9\u5168\u4F53 [l,r]\n  // p \u3092\
+    \u8FFD\u52A0\u3057\u305F\u3068\u304D\u306B\u51F8\u5305\u306B\u6B8B\u308B\u70B9\
+    \u3068\u3044\u3063\u3066\u3082\u3088\u3044\n  // pair<int, int> visible_range(P\
     \ p) {}\n};\n#line 7 \"test/library_checker/geometry/count_points_in_triangles_naive.test.cpp\"\
     \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, A, N);\n  LL(M);\n\
     \  VEC(P, B, M);\n  LL(Q);\n  FOR(Q) {\n    LL(a, b, c);\n    ConvexPolygon<ll>\
@@ -345,7 +348,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
+  timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp

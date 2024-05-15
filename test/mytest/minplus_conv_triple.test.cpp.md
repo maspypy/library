@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/minplus_convolution_of_triples.hpp
     title: convex/minplus_convolution_of_triples.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -125,7 +125,7 @@ data:
     \ <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n\
     \  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n\
     \ + m - 1, infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m\
-    \ > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 && m == 0) return C;\n  int\
+    \ > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 || m == 0) return C;\n  int\
     \ a = 0, b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n  while (b < m && B[b]\
     \ == infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i <\
     \ n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a]\
@@ -237,8 +237,8 @@ data:
   isVerificationFile: true
   path: test/mytest/minplus_conv_triple.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-15 14:09:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/minplus_conv_triple.test.cpp
 layout: document

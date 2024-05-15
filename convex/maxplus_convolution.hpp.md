@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j)\
@@ -26,7 +26,7 @@ data:
     \ maxplus_convolution_concave_concave(vc<T>& A, vc<T>& B) {\n  int n = len(A),\
     \ m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, -infty<T>);\n\
     \  while (n > 0 && A[n - 1] == -infty<T>) --n;\n  while (m > 0 && B[m - 1] ==\
-    \ -infty<T>) --m;\n  if (n == 0 && m == 0) return C;\n  int a = 0, b = 0;\n  while\
+    \ -infty<T>) --m;\n  if (n == 0 || m == 0) return C;\n  int a = 0, b = 0;\n  while\
     \ (a < n && A[a] == -infty<T>) ++a;\n  while (b < m && B[b] == -infty<T>) ++b;\n\
     \  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i < n + m - 1; ++i) {\n\
     \    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] > A[a] + B[b + 1])) {\n\
@@ -49,7 +49,7 @@ data:
   code: "#include \"convex/monotone_minima.hpp\"\n\ntemplate <typename T>\nvc<T> maxplus_convolution_concave_concave(vc<T>&\
     \ A, vc<T>& B) {\n  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return\
     \ {};\n  vc<T> C(n + m - 1, -infty<T>);\n  while (n > 0 && A[n - 1] == -infty<T>)\
-    \ --n;\n  while (m > 0 && B[m - 1] == -infty<T>) --m;\n  if (n == 0 && m == 0)\
+    \ --n;\n  while (m > 0 && B[m - 1] == -infty<T>) --m;\n  if (n == 0 || m == 0)\
     \ return C;\n  int a = 0, b = 0;\n  while (a < n && A[a] == -infty<T>) ++a;\n\
     \  while (b < m && B[b] == -infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int\
     \ i = a + b + 1; i < n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a\
@@ -74,8 +74,8 @@ data:
   isVerificationFile: false
   path: convex/maxplus_convolution.hpp
   requiredBy: []
-  timestamp: '2023-08-10 03:33:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-15 14:09:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/maxplus_concave.test.cpp
 documentation_of: convex/maxplus_convolution.hpp

@@ -149,7 +149,10 @@ data:
     \ point[i % n].dot(p) < point[j % n].dot(p);\n    });\n    return {idx, point[idx].dot(p)};\n\
     \  }\n  pair<int, T> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i,\
     \ int j) -> bool {\n      return point[i % n].dot(p) > point[j % n].dot(p);\n\
-    \    });\n    return {idx, point[idx].dot(p)};\n  }\n  // pair<int, int> visible_range(P\
+    \    });\n    return {idx, point[idx].dot(p)};\n  }\n\n  // \u5916\u5074\u306E\
+    \u70B9 p \u304B\u3089\u898B\u3048\u308B\u70B9\u5168\u4F53 [l,r]\n  // p \u3092\
+    \u8FFD\u52A0\u3057\u305F\u3068\u304D\u306B\u51F8\u5305\u306B\u6B8B\u308B\u70B9\
+    \u3068\u3044\u3063\u3066\u3082\u3088\u3044\n  // pair<int, int> visible_range(P\
     \ p) {}\n};\n#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\
     \n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
     \ <typename T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n  vector<int>\
@@ -190,7 +193,7 @@ data:
   isVerificationFile: false
   path: geo/minkowski_sum.hpp
   requiredBy: []
-  timestamp: '2024-05-04 21:50:01+09:00'
+  timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minkowski_sum.hpp

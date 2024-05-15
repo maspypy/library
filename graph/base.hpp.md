@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: enumerate/labeled_tree.hpp
+    title: enumerate/labeled_tree.hpp
   - icon: ':heavy_check_mark:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
@@ -194,6 +197,9 @@ data:
   - icon: ':x:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
+  - icon: ':x:'
+    path: graph/prufer_code.hpp
+    title: graph/prufer_code.hpp
   - icon: ':x:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
@@ -996,6 +1002,7 @@ data:
   - graph/dsu_on_tree.hpp
   - graph/path_cycle.hpp
   - graph/block_cut.hpp
+  - graph/prufer_code.hpp
   - graph/dag_path_cover.hpp
   - graph/find_cycle.hpp
   - graph/find_even_cycle.hpp
@@ -1033,6 +1040,7 @@ data:
   - graph/unicyclic.hpp
   - graph/two_edge_component.hpp
   - graph/centroid_decomposition_old.hpp
+  - enumerate/labeled_tree.hpp
   - enumerate/triangle.hpp
   - string/suffix_automaton.hpp
   - string/suffix_tree.hpp

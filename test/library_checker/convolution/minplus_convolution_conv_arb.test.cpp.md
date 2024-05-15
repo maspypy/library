@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':question:'
@@ -202,7 +202,7 @@ data:
     \n\ntemplate <typename T>\nvc<T> minplus_convolution_convex_convex(vc<T>& A, vc<T>&\
     \ B) {\n  int n = len(A), m = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T>\
     \ C(n + m - 1, infty<T>);\n  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while\
-    \ (m > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 && m == 0) return C;\n  int\
+    \ (m > 0 && B[m - 1] == infty<T>) --m;\n  if (n == 0 || m == 0) return C;\n  int\
     \ a = 0, b = 0;\n  while (a < n && A[a] == infty<T>) ++a;\n  while (b < m && B[b]\
     \ == infty<T>) ++b;\n  C[a + b] = A[a] + B[b];\n  for (int i = a + b + 1; i <\
     \ n + m - 1; ++i) {\n    if (b == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a]\
@@ -236,7 +236,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
+  timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp

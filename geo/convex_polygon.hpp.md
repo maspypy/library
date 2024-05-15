@@ -148,7 +148,10 @@ data:
     \ point[i % n].dot(p) < point[j % n].dot(p);\n    });\n    return {idx, point[idx].dot(p)};\n\
     \  }\n  pair<int, T> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i,\
     \ int j) -> bool {\n      return point[i % n].dot(p) > point[j % n].dot(p);\n\
-    \    });\n    return {idx, point[idx].dot(p)};\n  }\n  // pair<int, int> visible_range(P\
+    \    });\n    return {idx, point[idx].dot(p)};\n  }\n\n  // \u5916\u5074\u306E\
+    \u70B9 p \u304B\u3089\u898B\u3048\u308B\u70B9\u5168\u4F53 [l,r]\n  // p \u3092\
+    \u8FFD\u52A0\u3057\u305F\u3068\u304D\u306B\u51F8\u5305\u306B\u6B8B\u308B\u70B9\
+    \u3068\u3044\u3063\u3066\u3082\u3088\u3044\n  // pair<int, int> visible_range(P\
     \ p) {}\n};\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n\n// \u307B\u3068\
     \u3093\u3069\u30C6\u30B9\u30C8\u3055\u308C\u3066\u3044\u306A\u3044\u306E\u3067\
@@ -181,7 +184,10 @@ data:
     \    });\n    return {idx, point[idx].dot(p)};\n  }\n  pair<int, T> max_dot(P\
     \ p) {\n    int idx = periodic_min_comp([&](int i, int j) -> bool {\n      return\
     \ point[i % n].dot(p) > point[j % n].dot(p);\n    });\n    return {idx, point[idx].dot(p)};\n\
-    \  }\n  // pair<int, int> visible_range(P p) {}\n};"
+    \  }\n\n  // \u5916\u5074\u306E\u70B9 p \u304B\u3089\u898B\u3048\u308B\u70B9\u5168\
+    \u4F53 [l,r]\n  // p \u3092\u8FFD\u52A0\u3057\u305F\u3068\u304D\u306B\u51F8\u5305\
+    \u306B\u6B8B\u308B\u70B9\u3068\u3044\u3063\u3066\u3082\u3088\u3044\n  // pair<int,\
+    \ int> visible_range(P p) {}\n};"
   dependsOn:
   - geo/base.hpp
   - geo/convex_hull.hpp
@@ -189,7 +195,7 @@ data:
   path: geo/convex_polygon.hpp
   requiredBy:
   - geo/minkowski_sum.hpp
-  timestamp: '2024-05-04 21:50:01+09:00'
+  timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp

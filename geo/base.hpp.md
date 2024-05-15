@@ -18,6 +18,9 @@ data:
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
+    path: geo/convex_layers.hpp
+    title: geo/convex_layers.hpp
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -279,6 +282,7 @@ data:
   - geo/max_norm_sum.hpp
   - geo/convex_hull.hpp
   - geo/dynamicupperhull.hpp
+  - geo/convex_layers.hpp
   - geo/angle_sort.hpp
   - geo/reflection.hpp
   - geo/projection.hpp

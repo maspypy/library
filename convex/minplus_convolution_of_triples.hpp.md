@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/minplus_conv_triple.test.cpp
     title: test/mytest/minplus_conv_triple.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/436/problem/E
@@ -30,7 +30,7 @@ data:
     \ minplus_convolution_convex_convex(vc<T>& A, vc<T>& B) {\n  int n = len(A), m\
     \ = len(B);\n  if (n == 0 && m == 0) return {};\n  vc<T> C(n + m - 1, infty<T>);\n\
     \  while (n > 0 && A[n - 1] == infty<T>) --n;\n  while (m > 0 && B[m - 1] == infty<T>)\
-    \ --m;\n  if (n == 0 && m == 0) return C;\n  int a = 0, b = 0;\n  while (a < n\
+    \ --m;\n  if (n == 0 || m == 0) return C;\n  int a = 0, b = 0;\n  while (a < n\
     \ && A[a] == infty<T>) ++a;\n  while (b < m && B[b] == infty<T>) ++b;\n  C[a +\
     \ b] = A[a] + B[b];\n  for (int i = a + b + 1; i < n + m - 1; ++i) {\n    if (b\
     \ == m - 1 || (a != n - 1 && A[a + 1] + B[b] < A[a] + B[b + 1])) {\n      chmin(C[i],\
@@ -153,8 +153,8 @@ data:
   isVerificationFile: false
   path: convex/minplus_convolution_of_triples.hpp
   requiredBy: []
-  timestamp: '2023-08-10 03:11:20+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-15 14:09:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/minplus_conv_triple.test.cpp
 documentation_of: convex/minplus_convolution_of_triples.hpp
