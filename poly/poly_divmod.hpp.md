@@ -78,9 +78,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
-  - icon: ':x:'
-    path: test/mytest/slice_rational_fps.test.cpp
-    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
@@ -470,7 +467,6 @@ data:
   timestamp: '2024-05-03 04:27:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/poly_root_finding.test.cpp
   - test/mytest/coef_of_rational.test.cpp
   - test/mytest/bell.test.cpp

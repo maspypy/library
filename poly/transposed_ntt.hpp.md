@@ -52,9 +52,6 @@ data:
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
   - icon: ':x:'
-    path: test/mytest/slice_rational_fps.test.cpp
-    title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   _isVerificationFailed: true
@@ -182,7 +179,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp

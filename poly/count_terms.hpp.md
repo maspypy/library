@@ -366,9 +366,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
-  - icon: ':x:'
-    path: test/mytest/slice_rational_fps.test.cpp
-    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/sparse_pow_2d.test.cpp
     title: test/mytest/sparse_pow_2d.test.cpp
@@ -414,7 +411,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1755.test.cpp
     title: test/yukicoder/1755.test.cpp
   - icon: ':x:'
@@ -603,7 +600,6 @@ data:
   - test/mytest/count_labeled_tournament.test.cpp
   - test/mytest/online_inv.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/bell_number.test.cpp
   - test/mytest/partial_frac.test.cpp
   - test/mytest/count_labeled_connected.test.cpp

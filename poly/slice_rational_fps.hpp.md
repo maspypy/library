@@ -49,9 +49,6 @@ data:
     path: test/library_checker/polynomial/slice_rational.test.cpp
     title: test/library_checker/polynomial/slice_rational.test.cpp
   - icon: ':x:'
-    path: test/mytest/slice_rational_fps.test.cpp
-    title: test/mytest/slice_rational_fps.test.cpp
-  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   _isVerificationFailed: true
@@ -519,7 +516,6 @@ data:
   timestamp: '2024-05-05 13:22:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/slice_rational_fps.test.cpp
   - test/library_checker/polynomial/slice_rational.test.cpp
   - test_atcoder/agc013e.test.cpp
 documentation_of: poly/slice_rational_fps.hpp

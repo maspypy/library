@@ -111,9 +111,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
-  - icon: ':x:'
-    path: test/mytest/slice_rational_fps.test.cpp
-    title: test/mytest/slice_rational_fps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
@@ -552,7 +549,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/tree_walk_gf.test.cpp
-  - test/mytest/slice_rational_fps.test.cpp
   - test/mytest/vandermonde.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
