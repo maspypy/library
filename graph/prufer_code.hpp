@@ -1,3 +1,4 @@
+#include "graph/base.hpp"
 
 // [0,n-1]^{n-1}, ただし末尾は n-1, という定式化 (n=1 ok)
 vc<int> to_prufer_code(Graph<int, 0>& G) {

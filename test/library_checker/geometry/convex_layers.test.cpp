@@ -1,32 +1,27 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/convex_layers"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "geo/dynamicupperhull.hpp"
 
+#include "geo/convex_layers.hpp"
+
+using P = Point<ll>;
 void solve() {
   LL(N);
-  vc<Point<ll>> pts(N);
-  FOR(i, N) read(pts[i].x), read(pts[i].y);
-  DynamicUpperHull DUH(pts, 1);
-  FOR(i, N) pts[i] = -pts[i];
-  DynamicUpperHull DLH(pts, 1);
-  vc<int> ANS(N, -1);
-  int done = 0;
-  int k = 0;
-  while (done < N) {
-    ++k;
-    auto A = DUH.get();
-    auto B = DLH.get();
-    A.insert(A.end(), all(B));
-    for (auto&& i: A)
-      if (ANS[i] == -1) {
-        ++done;
-        ANS[i] = k;
-        DUH.erase(i);
-        DLH.erase(i);
-      }
+  vc<P> A(N);
+  FOR(i, N) read(A[i]);
+  auto layer = convex_layers(A);
+  vc<int> ANS(N);
+  FOR(i, len(layer)) {
+    for (auto& j: layer[i]) ANS[j] = 1 + i;
+    vc<P> X = rearrange(A, layer[i]);
+    if (len(X) <= 2) continue;
+    FOR(a, len(X)) {
+      int b = (a + 1) % len(X);
+      int c = (b + 1) % len(X);
+      assert(ccw(X[a], X[b], X[c]) >= 0);
+    }
   }
-  for (auto&& x: ANS) print(x);
+  for (auto& x: ANS) print(x);
 }
 
 signed main() {

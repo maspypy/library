@@ -77,5 +77,8 @@ struct ConvexPolygon {
     });
     return {idx, point[idx].dot(p)};
   }
+
+  // 外側の点 p から見える点全体 [l,r]
+  // p を追加したときに凸包に残る点といってもよい
   // pair<int, int> visible_range(P p) {}
 };
