@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: ds/incremental_rectangle_union.hpp
     title: ds/incremental_rectangle_union.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
   - icon: ':heavy_check_mark:'
@@ -69,12 +69,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex.test.cpp
     title: test_atcoder/abc256ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63)\
@@ -160,7 +160,7 @@ data:
   - graph/toposort.hpp
   - other/cuboid_union_volume.hpp
   timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc256d.test.cpp
   - test_atcoder/abc256ex.test.cpp
