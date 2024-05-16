@@ -185,8 +185,8 @@ data:
   timestamp: '2024-03-30 00:47:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/splay_cm.test.cpp
   - test/library_checker/datastructure/range_reverse_range_sum.test.cpp
+  - test/mytest/splay_cm.test.cpp
 documentation_of: ds/splaytree/splaytree_commutative_monoid.hpp
 layout: document
 redirect_from:

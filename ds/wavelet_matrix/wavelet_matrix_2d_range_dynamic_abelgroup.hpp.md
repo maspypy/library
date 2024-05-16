@@ -212,8 +212,8 @@ data:
   timestamp: '2024-04-09 15:17:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1919_2.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/yukicoder/1919_2.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
 layout: document
 redirect_from:

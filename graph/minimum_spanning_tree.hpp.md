@@ -413,9 +413,9 @@ data:
   timestamp: '2024-05-14 16:33:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
-  - test/library_checker/tree/mst.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test/library_checker/tree/mst.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp
 layout: document
 redirect_from:

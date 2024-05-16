@@ -1665,7 +1665,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: poly/slice_rational_fps.hpp
       title: poly/slice_rational_fps.hpp
     - icon: ':heavy_check_mark:'
@@ -2831,7 +2831,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
       title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/slice_rational.test.cpp
       title: test/library_checker/polynomial/slice_rational.test.cpp
     - icon: ':heavy_check_mark:'

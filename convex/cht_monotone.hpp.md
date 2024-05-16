@@ -91,9 +91,9 @@ data:
   timestamp: '2024-02-26 23:16:18+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1297.test.cpp
-  - test/yukicoder/913.test.cpp
   - test_atcoder/arc130f.test.cpp
+  - test/yukicoder/913.test.cpp
+  - test/yukicoder/1297.test.cpp
 documentation_of: convex/cht_monotone.hpp
 layout: document
 redirect_from:

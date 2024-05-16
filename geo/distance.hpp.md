@@ -164,9 +164,9 @@ data:
   timestamp: '2024-04-19 22:50:36+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
   - test_atcoder/abc314.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
+  - test/aoj/CGL_7_B.test.cpp
 documentation_of: geo/distance.hpp
 layout: document
 redirect_from:

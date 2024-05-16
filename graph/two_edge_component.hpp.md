@@ -115,10 +115,10 @@ data:
   timestamp: '2024-04-19 02:20:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/529.test.cpp
-  - test/yukicoder/1983.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
+  - test/aoj/GRL_3_B.test.cpp
+  - test/yukicoder/1983.test.cpp
+  - test/yukicoder/529.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:

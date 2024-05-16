@@ -143,8 +143,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/rect_add_pt_sum.test.cpp
-  - test/yukicoder/2491.test.cpp
   - test/yukicoder/2338.test.cpp
+  - test/yukicoder/2491.test.cpp
 documentation_of: ds/offline_query/rectangle_add_point_sum.hpp
 layout: document
 redirect_from:

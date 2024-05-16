@@ -266,11 +266,11 @@ data:
   timestamp: '2023-11-02 05:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/math/gaussian_integers.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/three_square.test.cpp
   - test/mytest/three_triangular.test.cpp
   - test/yukicoder/1593.test.cpp
-  - test/library_checker/math/gaussian_integers.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

@@ -46,7 +46,7 @@ data:
   - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':question:'
@@ -54,16 +54,16 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence
     links:
     - https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence
   bundledCode: "#line 1 \"test/library_checker/polynomial/slice_rational.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
+    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -229,7 +229,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/polynomial/slice_rational.test.cpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/library_checker/polynomial/slice_rational.test.cpp\"\
     \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -631,16 +631,16 @@ data:
     \ convolution<mint>(p, Q);\n  p.resize(len(Q) - 1);\n  p = convolution<mint>(p,\
     \ g);\n  p = poly_divmod(p, Q).se;\n  p.resize(R - L);\n  Q.resize(R - L);\n \
     \ p = fps_div<mint>(p, Q);\n  FOR(i, L, len(f)) if (i < R) p[i - L] += f[i];\n\
-    \  return p;\n}\n#line 6 \"test/library_checker/polynomial/slice_rational.test.cpp\"\
+    \  return p;\n}\n#line 7 \"test/library_checker/polynomial/slice_rational.test.cpp\"\
     \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n\
     \  VEC(mint, g, N);\n  for (auto&& x: g) x = -x;\n  g.insert(g.begin(), 1);\n\
-    \  auto f = convolution(A, g);\n  f.resize(N);\n  print(slice_of_rational_fps_ntt(f,\
+    \  auto f = convolution(A, g);\n  f.resize(N);\n  print(slice_rational_fps(f,\
     \ g, a, a + b));\n}\n\nsigned main() { solve(); }\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
+  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/slice_rational_fps.hpp\"\
     \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n\
     \  VEC(mint, g, N);\n  for (auto&& x: g) x = -x;\n  g.insert(g.begin(), 1);\n\
-    \  auto f = convolution(A, g);\n  f.resize(N);\n  print(slice_of_rational_fps_ntt(f,\
+    \  auto f = convolution(A, g);\n  f.resize(N);\n  print(slice_rational_fps(f,\
     \ g, a, a + b));\n}\n\nsigned main() { solve(); }\n"
   dependsOn:
   - my_template.hpp
@@ -663,8 +663,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/slice_rational.test.cpp
   requiredBy: []
-  timestamp: '2024-05-15 22:06:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-16 11:37:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/slice_rational.test.cpp
 layout: document
