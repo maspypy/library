@@ -1,4 +1,5 @@
-#define PROBLEM "https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence"
+#define PROBLEM \
+  "https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -13,7 +14,7 @@ void solve() {
   g.insert(g.begin(), 1);
   auto f = convolution(A, g);
   f.resize(N);
-  print(slice_of_rational_fps_ntt(f, g, a, a + b));
+  print(slice_rational_fps(f, g, a, a + b));
 }
 
 signed main() { solve(); }
