@@ -2,6 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
+#include "poly/middle_product.hpp"
+#include "poly/fps_div.hpp"
 #include "poly/slice_rational_fps.hpp"
 
 using mint = modint107;
@@ -14,7 +16,7 @@ void solve() {
   int now = 0;
   FOR(M) {
     INT(x);
-    f = slice_rational_fps(f, Q, x - now, x);
+    f = slice_rational_fps(f, Q, x - now, x - now + 3);
     now = x;
     mint a = f[0];
     f = convolution(f, Q);
@@ -22,7 +24,7 @@ void solve() {
     f[1] -= a;
     f[2] -= a;
   }
-  f = slice_rational_fps(f, Q, N - now, N);
+  f = slice_rational_fps(f, Q, N - now, N - now + 3);
   print(f[0]);
 }
 
