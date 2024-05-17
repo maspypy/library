@@ -2133,7 +2133,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc160d.test.cpp
     title: test_atcoder/arc160d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
   _isVerificationFailed: true
