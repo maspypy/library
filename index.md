@@ -836,7 +836,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/optimal_product_on_tree.hpp
       title: graph/optimal_product_on_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -881,7 +881,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1229,10 +1229,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/O1_inverse.hpp
       title: mod/O1_inverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/all_inverse.hpp
       title: mod/all_inverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/barrett.hpp
       title: mod/barrett.hpp
     - icon: ':heavy_check_mark:'
@@ -1283,7 +1283,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
     - icon: ':heavy_check_mark:'
@@ -1304,7 +1304,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/modular_subset_sum.hpp
       title: mod/modular_subset_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mongomery_modint.hpp
       title: mod/mongomery_modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1319,7 +1319,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/prefix_sum_of_binom.hpp
       title: mod/prefix_sum_of_binom.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/primitive_root.hpp
       title: mod/primitive_root.hpp
     - icon: ':heavy_check_mark:'
@@ -1376,7 +1376,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/extgcd.hpp
       title: nt/extgcd.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor.hpp
       title: nt/factor.hpp
     - icon: ':heavy_check_mark:'
@@ -1424,7 +1424,7 @@ data:
     - icon: ':question:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetest.hpp
       title: nt/primetest.hpp
     - icon: ':heavy_check_mark:'
@@ -1506,10 +1506,10 @@ data:
       title: other/solve_hukumenzan.hpp
   - name: poly
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/coef_of_rational_fps.hpp
       title: poly/coef_of_rational_fps.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/coef_of_rational_fps_2d.hpp
       title: poly/coef_of_rational_fps_2d.hpp
     - icon: ':warning:'
@@ -1611,10 +1611,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/middle_product.hpp
       title: poly/middle_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
     - icon: ':heavy_check_mark:'
@@ -1626,7 +1626,7 @@ data:
     - icon: ':question:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/ntt_doubling.hpp
       title: poly/ntt_doubling.hpp
     - icon: ':heavy_check_mark:'
@@ -1644,7 +1644,7 @@ data:
     - icon: ':question:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/power_projection.hpp
       title: poly/power_projection.hpp
     - icon: ':heavy_check_mark:'
@@ -1717,7 +1717,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -4580,22 +4580,22 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc339f.test.cpp
       title: test_atcoder/abc339f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc345g.test.cpp
       title: test_atcoder/abc345g.test.cpp
     - icon: ':x:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/agc023f.test.cpp
       title: test_atcoder/agc023f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/agc058d.test.cpp
       title: test_atcoder/agc058d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/agc058d2.test.cpp
       title: test_atcoder/agc058d2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/arc064c.test.cpp
       title: test_atcoder/arc064c.test.cpp
     - icon: ':x:'

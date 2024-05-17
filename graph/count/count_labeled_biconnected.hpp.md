@@ -73,7 +73,7 @@ data:
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   - icon: ':question:'
