@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc269ex2.test.cpp
     title: test_atcoder/abc269ex2.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc351g.test.cpp
+    title: test_atcoder/abc351g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -274,6 +277,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc269ex2.test.cpp
+  - test_atcoder/abc351g.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/yukicoder/2587.test.cpp
   - test/yukicoder/2587_2.test.cpp

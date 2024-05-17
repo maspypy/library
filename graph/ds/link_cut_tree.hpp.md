@@ -30,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc350_g.test.cpp
+    title: test_atcoder/abc350_g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -240,6 +243,7 @@ data:
   timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc350_g.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/dynamic_tree_subtree_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp

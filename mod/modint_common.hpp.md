@@ -1302,6 +1302,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc345g.test.cpp
     title: test_atcoder/abc345g.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc351g.test.cpp
+    title: test_atcoder/abc351g.test.cpp
   - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
@@ -1582,6 +1585,7 @@ data:
   - test_atcoder/abc314f.test.cpp
   - test_atcoder/abc222h.test.cpp
   - test_atcoder/abc333f.test.cpp
+  - test_atcoder/abc351g.test.cpp
   - test_atcoder/abc230h.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp

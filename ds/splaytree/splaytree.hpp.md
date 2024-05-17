@@ -46,6 +46,9 @@ data:
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc350f.test.cpp
+    title: test_atcoder/abc350f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153b.test.cpp
     title: test_atcoder/arc153b.test.cpp
   _isVerificationFailed: false
@@ -297,6 +300,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc153b.test.cpp
+  - test_atcoder/abc350f.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   - test/mytest/splay_cm.test.cpp

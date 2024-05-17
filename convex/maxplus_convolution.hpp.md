@@ -9,6 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc348g.test.cpp
+    title: test_atcoder/abc348g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -77,6 +80,7 @@ data:
   timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc348g.test.cpp
   - test/mytest/maxplus_concave.test.cpp
 documentation_of: convex/maxplus_convolution.hpp
 layout: document

@@ -596,8 +596,8 @@ data:
     \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
     \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
     \n  return {q, f};\r\n}\r\n#line 5 \"poly/slice_rational_fps.hpp\"\n\ntemplate\
-    \ <typename mint>\nvc<mint> slice_rational_fps(vector<mint> P, vector<mint> Q,\
-    \ ll L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0]\
+    \ <typename mint>\nvc<mint> slice_rational_fps_ntt(vector<mint> P, vector<mint>\
+    \ Q, ll L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0]\
     \ == mint(1));\n  if (len(Q) == 1) {\n    vc<mint> ANS(R - L);\n    FOR(i, L,\
     \ R) if (i < len(P)) ANS[i - L] = P[i];\n    return ANS;\n  }\n  vc<mint> Q0 =\
     \ Q;\n\n  int n = 1;\n  while (n < len(Q)) n += n;\n  Q.resize(2 * n), ntt(Q,\
@@ -631,11 +631,29 @@ data:
     \ convolution<mint>(p, Q);\n  p.resize(len(Q) - 1);\n  p = convolution<mint>(p,\
     \ g);\n  p = poly_divmod(p, Q).se;\n  p.resize(R - L);\n  Q.resize(R - L);\n \
     \ p = fps_div<mint>(p, Q);\n  FOR(i, L, len(f)) if (i < R) p[i - L] += f[i];\n\
-    \  return p;\n}\n#line 7 \"test/library_checker/polynomial/slice_rational.test.cpp\"\
-    \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n\
-    \  VEC(mint, g, N);\n  for (auto&& x: g) x = -x;\n  g.insert(g.begin(), 1);\n\
-    \  auto f = convolution(A, g);\n  f.resize(N);\n  print(slice_rational_fps(f,\
-    \ g, a, a + b));\n}\n\nsigned main() { solve(); }\n"
+    \  return p;\n}\n\ntemplate <typename mint>\nvc<mint> slice_rational_fps_convolution(vc<mint>\
+    \ P, vc<mint> Q, ll L, ll R) {\n  assert(L >= 0 && Q[0] == mint(1) && len(P) <\
+    \ len(Q));\n  const int d = len(Q) - 1;\n  if (d == 0) { return vc<mint>(); }\n\
+    \  P.resize(len(Q) - 1);\n\n  auto dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint>\
+    \ {\n    // 1/Q \u306E [N-d+1, N]\n    if (N == 0) {\n      vc<mint> f(d);\n \
+    \     f[d - 1] = 1;\n      return f;\n    }\n    vc<mint> R = Q;\n    FOR(i, d\
+    \ + 1) if (i & 1) R[i] = -R[i];\n    vc<mint> V = convolution(Q, R);\n    FOR(i,\
+    \ d + 1) V[i] = V[2 * i];\n    V.resize(d + 1);\n    vc<mint> W = dfs(dfs, N /\
+    \ 2, V);\n    vc<mint> S(d + d);\n    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] =\
+    \ W[i];\n    if (N % 2 == 1) FOR(i, d) S[2 * i] = W[i];\n    reverse(all(R));\n\
+    \    return middle_product(S, R);\n  };\n  vc<mint> A = dfs(dfs, L, Q);\n  vc<mint>\
+    \ f = convolution(A, Q);\n  f = {f.begin() + d, f.end() - 1};\n  f = fps_div(f,\
+    \ Q);\n  for (auto&& x: f) x = -x;\n  A.insert(A.end(), all(f));\n  reverse(all(P));\n\
+    \  f = middle_product(A, P);\n  f = convolution<mint>(f, Q);\n  f.resize(d);\n\
+    \  f.resize(R - L);\n  f = fps_div<mint>(f, Q);\n  return f;\n}\n\ntemplate <typename\
+    \ mint>\nvc<mint> slice_rational_fps(vc<mint>& P, vc<mint>& Q, ll L, ll R) {\n\
+    \  if constexpr (mint::can_ntt()) {\n    return slice_rational_fps_ntt(P, Q, L,\
+    \ R);\n  } else {\n    return slice_rational_fps_convolution(P, Q, L, R);\n  }\n\
+    }\n#line 7 \"test/library_checker/polynomial/slice_rational.test.cpp\"\n\nusing\
+    \ mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n  VEC(mint,\
+    \ g, N);\n  for (auto&& x: g) x = -x;\n  g.insert(g.begin(), 1);\n  auto f = convolution(A,\
+    \ g);\n  f.resize(N);\n  print(slice_rational_fps(f, g, a, a + b));\n}\n\nsigned\
+    \ main() { solve(); }\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/slice_rational_fps.hpp\"\
     \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n\
@@ -663,7 +681,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/slice_rational.test.cpp
   requiredBy: []
-  timestamp: '2024-05-16 11:37:40+09:00'
+  timestamp: '2024-05-17 17:24:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/slice_rational.test.cpp

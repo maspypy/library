@@ -92,7 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -802,6 +802,9 @@ data:
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc351g.test.cpp
+    title: test_atcoder/abc351g.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1074,6 +1077,7 @@ data:
   - test_atcoder/arc107.test.cpp
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc314f.test.cpp
+  - test_atcoder/abc351g.test.cpp
   - test_atcoder/abc223d.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp

@@ -27,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/minplus_convex.test.cpp
     title: test/mytest/minplus_convex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc348g.test.cpp
+    title: test_atcoder/abc348g.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -59,6 +62,7 @@ data:
   timestamp: '2023-07-06 21:02:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc348g.test.cpp
   - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
   - test/mytest/minplus_conv_triple.test.cpp

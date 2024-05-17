@@ -7,6 +7,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc350f.test.cpp
+    title: test_atcoder/abc350f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153b.test.cpp
     title: test_atcoder/arc153b.test.cpp
   _isVerificationFailed: false
@@ -171,6 +174,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc153b.test.cpp
+  - test_atcoder/abc350f.test.cpp
 documentation_of: ds/splaytree/splaytree_basic.hpp
 layout: document
 redirect_from:

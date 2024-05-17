@@ -1030,7 +1030,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/dual_tree_monoid.hpp
       title: graph/ds/dual_tree_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/dynamic_tree_dp.hpp
       title: graph/ds/dynamic_tree_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -1039,7 +1039,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/lazy_tree_monoid.hpp
       title: graph/ds/lazy_tree_monoid.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/lct_node_base.hpp
       title: graph/ds/lct_node_base.hpp
     - icon: ':heavy_check_mark:'
@@ -1611,7 +1611,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/lagrange_interpolate_iota.hpp
       title: poly/lagrange_interpolate_iota.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: poly/middle_product.hpp
       title: poly/middle_product.hpp
     - icon: ':heavy_check_mark:'
@@ -4583,6 +4583,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc345g.test.cpp
       title: test_atcoder/abc345g.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc348g.test.cpp
+      title: test_atcoder/abc348g.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc350_g.test.cpp
+      title: test_atcoder/abc350_g.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc350f.test.cpp
+      title: test_atcoder/abc350f.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc350g2.test.cpp
+      title: test_atcoder/abc350g2.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test_atcoder/abc351g.test.cpp
+      title: test_atcoder/abc351g.test.cpp
     - icon: ':x:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp
