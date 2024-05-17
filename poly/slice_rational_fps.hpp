@@ -4,7 +4,7 @@
 #include "poly/poly_divmod.hpp"
 
 template <typename mint>
-vc<mint> slice_rational_fps(vector<mint> P, vector<mint> Q, ll L, ll R) {
+vc<mint> slice_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll L, ll R) {
   while (len(Q) && Q.back() == mint(0)) POP(Q);
   assert(Q[0] == mint(1));
   if (len(Q) == 1) {
@@ -102,4 +102,54 @@ vc<mint> slice_rational_fps(vector<mint> P, vector<mint> Q, ll L, ll R) {
   p = fps_div<mint>(p, Q);
   FOR(i, L, len(f)) if (i < R) p[i - L] += f[i];
   return p;
+}
+
+template <typename mint>
+vc<mint> slice_rational_fps_convolution(vc<mint> P, vc<mint> Q, ll L, ll R) {
+  assert(L >= 0 && Q[0] == mint(1) && len(P) < len(Q));
+  const int d = len(Q) - 1;
+  if (d == 0) { return vc<mint>(); }
+  P.resize(len(Q) - 1);
+
+  auto dfs = [&](auto& dfs, ll N, vc<mint> Q) -> vc<mint> {
+    // 1/Q の [N-d+1, N]
+    if (N == 0) {
+      vc<mint> f(d);
+      f[d - 1] = 1;
+      return f;
+    }
+    vc<mint> R = Q;
+    FOR(i, d + 1) if (i & 1) R[i] = -R[i];
+    vc<mint> V = convolution(Q, R);
+    FOR(i, d + 1) V[i] = V[2 * i];
+    V.resize(d + 1);
+    vc<mint> W = dfs(dfs, N / 2, V);
+    vc<mint> S(d + d);
+    if (N % 2 == 0) FOR(i, d) S[2 * i + 1] = W[i];
+    if (N % 2 == 1) FOR(i, d) S[2 * i] = W[i];
+    reverse(all(R));
+    return middle_product(S, R);
+  };
+  vc<mint> A = dfs(dfs, L, Q);
+  vc<mint> f = convolution(A, Q);
+  f = {f.begin() + d, f.end() - 1};
+  f = fps_div(f, Q);
+  for (auto&& x: f) x = -x;
+  A.insert(A.end(), all(f));
+  reverse(all(P));
+  f = middle_product(A, P);
+  f = convolution<mint>(f, Q);
+  f.resize(d);
+  f.resize(R - L);
+  f = fps_div<mint>(f, Q);
+  return f;
+}
+
+template <typename mint>
+vc<mint> slice_rational_fps(vc<mint>& P, vc<mint>& Q, ll L, ll R) {
+  if constexpr (mint::can_ntt()) {
+    return slice_rational_fps_ntt(P, Q, L, R);
+  } else {
+    return slice_rational_fps_convolution(P, Q, L, R);
+  }
 }
