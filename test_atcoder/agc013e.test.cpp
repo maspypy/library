@@ -14,7 +14,7 @@ void solve() {
   int now = 0;
   FOR(M) {
     INT(x);
-    f = slice_rational_fps(f, Q, x - now);
+    f = slice_rational_fps(f, Q, x - now, x);
     now = x;
     mint a = f[0];
     f = convolution(f, Q);
@@ -22,7 +22,7 @@ void solve() {
     f[1] -= a;
     f[2] -= a;
   }
-  f = slice_rational_fps(f, Q, N - now);
+  f = slice_rational_fps(f, Q, N - now, N);
   print(f[0]);
 }
 
