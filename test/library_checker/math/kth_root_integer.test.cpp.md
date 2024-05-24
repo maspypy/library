@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/integer_kth_root.hpp
     title: nt/integer_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_integer
@@ -173,32 +173,38 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64\
-    \ k, u64 a) {\r\n  assert(k >= 1);\r\n  if (a == 0 || a == 1 || k == 1) return\
-    \ a;\r\n  if (k >= 64) return 1;\r\n  if (k == 2) return sqrtl(a);\r\n  if (a\
-    \ == u64(-1)) --a;\r\n  struct S {\r\n    u64 v;\r\n    S& operator*=(const S&\
-    \ o) {\r\n      v = v <= u64(-1) / o.v ? v * o.v : u64(-1);\r\n      return *this;\r\
-    \n    }\r\n  };\r\n  auto power = [&](S x, ll n) -> S {\r\n    S v{1};\r\n   \
-    \ while (n) {\r\n      if (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\n\
-    \    }\r\n    return v;\r\n  };\r\n  u64 res = pow(a, nextafter(1 / double(k),\
-    \ 0));\r\n  while (power(S{res + 1}, k).v <= a) ++res;\r\n  return res;\r\n}\r\
-    \n#line 5 \"test/library_checker/math/kth_root_integer.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64 k, u64 a) {\r\n  assert(k\
+    \ >= 1);\r\n  if (a == 0 || a == 1 || k == 1) return a;\r\n  if (k >= 64) return\
+    \ 1;\r\n  if (k == 2) return sqrtl(a);\r\n  if (a == u64(-1)) --a;\r\n  struct\
+    \ S {\r\n    u64 v;\r\n    S& operator*=(const S& o) {\r\n      v = v <= u64(-1)\
+    \ / o.v ? v * o.v : u64(-1);\r\n      return *this;\r\n    }\r\n  };\r\n  auto\
+    \ power = [&](S x, ll n) -> S {\r\n    S v{1};\r\n    while (n) {\r\n      if\
+    \ (n & 1) v *= x;\r\n      x *= x;\r\n      n /= 2;\r\n    }\r\n    return v;\r\
+    \n  };\r\n  u64 res = pow(a, nextafter(1 / double(k), 0));\r\n  while (power(S{res\
+    \ + 1}, k).v <= a) ++res;\r\n  return res;\r\n}\r\n#line 5 \"test/library_checker/math/kth_root_integer.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n}\r\
+    \n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return 0;\r\n\
+    }\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/kth_root_integer\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"nt/integer_kth_root.hpp\"\
     \r\n\r\nvoid solve() {\r\n  LL(a, k);\r\n  print(integer_kth_root(k, a));\r\n\
@@ -211,8 +217,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/kth_root_integer.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/kth_root_integer.test.cpp
 layout: document

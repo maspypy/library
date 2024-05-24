@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A
@@ -124,8 +124,14 @@ data:
     \    os << A[i];\r\n  }\r\n  return os;\r\n}\r\n\r\nvoid print() {\r\n  cout <<\
     \ \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class... Tail>\r\
     \nvoid print(Head &&head, Tail &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail))\
-    \ cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n#define SHOW(x)\
-    \ print(#x, \"=\", (x))\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    \ cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n#if defined(LOCAL)\r\
+    \n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\
+    \n#define SHOW_IMPL(_1, _2, _3, _4, NAME, ...) NAME\r\n#define SHOW1(x) print(#x,\
+    \ \"=\", (x)), flush()\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\"\
+    , (y)), flush()\r\n#define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y),\
+    \ #z, \"=\", (z)), flush()\r\n#define SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\"\
+    , (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w)), flush()\r\n#else\r\n#define\
+    \ SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
@@ -156,8 +162,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ITP1_9_A.test.cpp
 layout: document

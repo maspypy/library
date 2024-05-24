@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
@@ -176,43 +176,48 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\
-    \n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 4 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\n\n#line 2 \"\
+    mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax + b, mod)\n// I\
+    \ \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
+    \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O = i128, typename I\
+    \ = long long>\nO floor_sum_of_linear(I L, I R, I a, I b, I mod) {\n  assert(L\
+    \ <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n  if (b < 0) {\n    I\
+    \ k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N) * O(k);\n  }\n\n  while\
+    \ (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n    res += (N & 1 ? O(N) *\
+    \ O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b >= mod) {\n\
+    \      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n    tie(N,\
+    \ b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n  return res;\n\
+    }\n#line 2 \"mod/range_freq_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
     \ b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\
     \u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O = i128,\
-    \ typename I = long long>\nO floor_sum_of_linear(I L, I R, I a, I b, I mod) {\n\
-    \  assert(L <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n  if (b < 0)\
-    \ {\n    I k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N) * O(k);\n  }\n\
-    \n  while (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n    res += (N & 1\
-    \ ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b >=\
-    \ mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n \
-    \   tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n\
-    \  return res;\n}\n#line 2 \"mod/range_freq_of_linear.hpp\"\n\n// sum_{x in [L,R)}\
-    \ floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\
-    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename\
-    \ O = i128, typename I = long long>\nI range_freq_of_linear(I L, I R, I a, I b,\
-    \ I mod, I lo, I hi) {\n  if (lo >= hi) return 0;\n  assert(0 <= lo && lo < hi\
-    \ && hi <= mod);\n\n  O x1 = floor_sum_of_linear<O, I>(L, R, a, b - lo, mod);\n\
-    \  O x2 = floor_sum_of_linear<O, I>(L, R, a, b - hi, mod);\n  return x1 - x2;\n\
-    }\n#line 6 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n    return\
-    \ range_freq_of_linear<i128, ll>(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check,\
-    \ 0, m));\n}\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n\
-    }\n"
+    \ typename I = long long>\nI range_freq_of_linear(I L, I R, I a, I b, I mod, I\
+    \ lo, I hi) {\n  if (lo >= hi) return 0;\n  assert(0 <= lo && lo < hi && hi <=\
+    \ mod);\n\n  O x1 = floor_sum_of_linear<O, I>(L, R, a, b - lo, mod);\n  O x2 =\
+    \ floor_sum_of_linear<O, I>(L, R, a, b - hi, mod);\n  return x1 - x2;\n}\n#line\
+    \ 6 \"test/library_checker/math/min_of_mod_of_linear_2.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n    return range_freq_of_linear<i128,\
+    \ ll>(0, n, a, b, m, 0, k) == 0;\n  };\n  print(binary_search(check, 0, m));\n\
+    }\n\nsigned main() {\n  LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/min_of_mod_of_linear\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/range_freq_of_linear.hpp\"\
     \n\nvoid solve() {\n  LL(n, m, a, b);\n  auto check = [&](int k) -> bool {\n \
@@ -227,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
 layout: document

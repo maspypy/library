@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
@@ -173,36 +173,42 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat =\
-    \ {dp[1], dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\u306B\u306A\u308B\n\
-    // hashmap \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename T>\nstruct\
-    \ Array_On_Floor {\n  u64 N;\n  u32 n, sq;\n  vc<T> dat;\n  Array_On_Floor() {}\n\
-    \  Array_On_Floor(u64 N, T default_value = T{}) : N(N) {\n    assert(N <= u64(1)\
-    \ << 50);\n    sq = sqrtl(N);\n    n = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n\
-    \    dat.resize(n + sq, default_value);\n  }\n\n  u32 size() { return dat.size();\
-    \ }\n\n  T& operator[](u64 d) {\n    int i = get_index(d);\n    return dat[i];\n\
-    \  }\n\n  inline u32 get_index(u64 d) {\n    assert(d > 0);\n    if (d <= n) return\
-    \ d - 1;\n    return dat.size() - u32(double(N) / d);\n  }\n\n  // dat[i] \u306B\
-    \u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32 i) { return (i < n ? 1 + i\
-    \ : double(N) / (n + sq - i)); }\n\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]); }\n  }\n};\n#line 5 \"\
-    test/library_checker/math/enumerate_quotients2.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n  FOR(i, len(A)) print(A.get_floor(i));\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat = {dp[1], dp[2], dp[3],\
+    \ dp[5], dp[10]} \u307F\u305F\u3044\u306B\u306A\u308B\n// hashmap \u3088\u308A\
+    \u6570\u500D\u9AD8\u901F\ntemplate <typename T>\nstruct Array_On_Floor {\n  u64\
+    \ N;\n  u32 n, sq;\n  vc<T> dat;\n  Array_On_Floor() {}\n  Array_On_Floor(u64\
+    \ N, T default_value = T{}) : N(N) {\n    assert(N <= u64(1) << 50);\n    sq =\
+    \ sqrtl(N);\n    n = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n    dat.resize(n\
+    \ + sq, default_value);\n  }\n\n  u32 size() { return dat.size(); }\n\n  T& operator[](u64\
+    \ d) {\n    int i = get_index(d);\n    return dat[i];\n  }\n\n  inline u32 get_index(u64\
+    \ d) {\n    assert(d > 0);\n    if (d <= n) return d - 1;\n    return dat.size()\
+    \ - u32(double(N) / d);\n  }\n\n  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n\
+    \  u64 get_floor(u32 i) { return (i < n ? 1 + i : double(N) / (n + sq - i)); }\n\
+    \n  template <typename F>\n  void enumerate_all(F f) {\n    FOR(i, len(dat)) {\
+    \ f(get_floor(i), dat[i]); }\n  }\n};\n#line 5 \"test/library_checker/math/enumerate_quotients2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
+    \  FOR(i, len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/array_on_floor.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
@@ -215,8 +221,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/enumerate_quotients2.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/enumerate_quotients2.test.cpp
 layout: document

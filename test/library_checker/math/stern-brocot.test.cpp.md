@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/stern_brocot_tree.hpp
     title: nt/stern_brocot_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/stern_brocot_tree
@@ -173,76 +173,81 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/library_checker/math/stern-brocot.test.cpp\"\n\n\
-    #line 1 \"nt/stern_brocot_tree.hpp\"\n\nstruct Stern_Brocot_Tree {\n  using PATH\
-    \ = vi; // \u306F\u3058\u3081\u306F R\n\n  static tuple<PATH, pi, pi> get_path_and_range(pi\
-    \ x) {\n    PATH path;\n    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n \
-    \   ll det_l = l.fi * x.se - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se *\
-    \ x.fi;\n    ll det_m = det_l + det_r;\n    while (1) {\n      if (det_m == 0)\
-    \ break;\n      ll k = ceil(-det_m, det_r);\n      path.eb(k);\n      l = {l.fi\
-    \ + k * r.fi, l.se + k * r.se};\n      m = {l.fi + r.fi, l.se + r.se};\n     \
-    \ det_l += k * det_r;\n      det_m += k * det_r;\n      if (det_m == 0) break;\n\
-    \      k = ceil(det_m, -det_l);\n      path.eb(k);\n      r = {r.fi + k * l.fi,\
-    \ r.se + k * l.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_r += k *\
-    \ det_l;\n      det_m += k * det_l;\n    }\n    return {path, l, r};\n  }\n\n\
-    \  static PATH get_path(pi x) {\n    auto [path, l, r] = get_path_and_range(x);\n\
-    \    return path;\n  }\n\n  static pair<pi, pi> range(pi x) {\n    auto [path,\
-    \ l, r] = get_path_and_range(x);\n    return {l, r};\n  }\n\n  // x in range(y)\n\
-    \  static bool in_subtree(pi x, pi y) {\n    auto [l, r] = range(y);\n    bool\
-    \ ok_l = i128(x.fi) * l.se - i128(x.se) * l.fi > 0;\n    bool ok_r = i128(r.fi)\
-    \ * x.se - i128(r.se) * x.fi > 0;\n    return ok_l && ok_r;\n  }\n\n  template\
-    \ <typename T = ll>\n  static pair<T, T> from_path(PATH& p) {\n    using P = pair<T,\
-    \ T>;\n    P l = {0, 1}, r = {1, 0};\n    FOR(i, len(p)) {\n      ll k = p[i];\n\
-    \      if (i % 2 == 0) {\n        l.fi += T(k) * r.fi;\n        l.se += T(k) *\
-    \ r.se;\n      }\n      if (i % 2 == 1) {\n        r.fi += T(k) * l.fi;\n    \
-    \    r.se += T(k) * l.se;\n      }\n    }\n    return {l.fi + r.fi, l.se + r.se};\n\
-    \  }\n\n  static pair<pi, pi> child(pi x) {\n    auto [l, r] = range(x);\n   \
-    \ pi lc = {l.fi + x.fi, l.se + x.se};\n    pi rc = {x.fi + r.fi, x.se + r.se};\n\
-    \    return {lc, rc};\n  }\n\n  static pi LCA(pi x, pi y) {\n    auto Px = get_path(x);\n\
-    \    auto Py = get_path(y);\n    vi P;\n    FOR(i, min(len(Px), len(Py))) {\n\
-    \      ll k = min(Px[i], Py[i]);\n      P.eb(k);\n      if (k < Px[i] || k < Py[i])\
-    \ break;\n    }\n    return from_path(P);\n  }\n\n  static pi LA(pi x, ll dep)\
-    \ {\n    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n    ll det_l = l.fi *\
-    \ x.se - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se * x.fi;\n    ll det_m\
-    \ = det_l + det_r;\n    while (1) {\n      if (det_m == 0 || dep == 0) break;\n\
-    \      ll k = min(dep, ceil(-det_m, det_r));\n      l = {l.fi + k * r.fi, l.se\
-    \ + k * r.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_l += k * det_r;\n\
-    \      det_m += k * det_r;\n      dep -= k;\n      if (det_m == 0 || dep == 0)\
-    \ break;\n      k = min(dep, ceil(det_m, -det_l));\n      r = {r.fi + k * l.fi,\
-    \ r.se + k * l.se};\n      m = {l.fi + r.fi, l.se + r.se};\n      det_r += k *\
-    \ det_l;\n      det_m += k * det_l;\n      dep -= k;\n    }\n    if (dep == 0)\
-    \ return m;\n    return {-1, -1};\n  }\n\n  static string to_string(PATH& p) {\n\
-    \    string res;\n    char c = 'L';\n    for (auto&& x: p) {\n      c = 'L' +\
-    \ 'R' - c;\n      if (x == 0) continue;\n      res += c;\n      res += \" \" +\
-    \ std::to_string(x);\n    }\n    return res;\n  }\n};\n#line 6 \"test/library_checker/math/stern-brocot.test.cpp\"\
-    \n\nvoid solve() {\n  using SBT = Stern_Brocot_Tree;\n  STR(S);\n  if (S == \"\
-    DECODE_PATH\") {\n    INT(n);\n    vi A;\n    FOR(n) {\n      CHAR(s);\n     \
-    \ INT(x);\n      if (A.empty() && s == 'L') { A.eb(0); }\n      A.eb(x);\n   \
-    \ }\n    auto [a, b] = SBT::from_path(A);\n    print(a, b);\n  }\n  if (S == \"\
-    ENCODE_PATH\") {\n    LL(a, b);\n    vi A = SBT::get_path({a, b});\n    vc<string>\
-    \ ANS;\n    FOR(i, len(A)) {\n      if (A[i] == 0) continue;\n      string x =\
-    \ (i % 2 == 0 ? \"R\" : \"L\");\n      ANS.eb(x);\n      ANS.eb(to_string(A[i]));\n\
-    \    }\n    print(len(ANS) / 2, ANS);\n  }\n  if (S == \"LCA\") {\n    LL(a, b,\
-    \ c, d);\n    auto [e, f] = SBT::LCA({a, b}, {c, d});\n    print(e, f);\n  }\n\
-    \  if (S == \"ANCESTOR\") {\n    LL(k, a, b);\n    auto [x, y] = SBT::LA({a, b},\
-    \ k);\n    if (x == -1) {\n      print(-1);\n    } else {\n      print(x, y);\n\
-    \    }\n  }\n  if (S == \"RANGE\") {\n    LL(a, b);\n    auto [x, y] = SBT::range({a,\
-    \ b});\n    print(x, y);\n  }\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\n  solve();\n\
-    \  return 0;\n}\n"
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 4 \"test/library_checker/math/stern-brocot.test.cpp\"\n\n#line 1 \"nt/stern_brocot_tree.hpp\"\
+    \n\nstruct Stern_Brocot_Tree {\n  using PATH = vi; // \u306F\u3058\u3081\u306F\
+    \ R\n\n  static tuple<PATH, pi, pi> get_path_and_range(pi x) {\n    PATH path;\n\
+    \    pi l = {0, 1}, r = {1, 0};\n    pi m = {1, 1};\n    ll det_l = l.fi * x.se\
+    \ - l.se * x.fi;\n    ll det_r = r.fi * x.se - r.se * x.fi;\n    ll det_m = det_l\
+    \ + det_r;\n    while (1) {\n      if (det_m == 0) break;\n      ll k = ceil(-det_m,\
+    \ det_r);\n      path.eb(k);\n      l = {l.fi + k * r.fi, l.se + k * r.se};\n\
+    \      m = {l.fi + r.fi, l.se + r.se};\n      det_l += k * det_r;\n      det_m\
+    \ += k * det_r;\n      if (det_m == 0) break;\n      k = ceil(det_m, -det_l);\n\
+    \      path.eb(k);\n      r = {r.fi + k * l.fi, r.se + k * l.se};\n      m = {l.fi\
+    \ + r.fi, l.se + r.se};\n      det_r += k * det_l;\n      det_m += k * det_l;\n\
+    \    }\n    return {path, l, r};\n  }\n\n  static PATH get_path(pi x) {\n    auto\
+    \ [path, l, r] = get_path_and_range(x);\n    return path;\n  }\n\n  static pair<pi,\
+    \ pi> range(pi x) {\n    auto [path, l, r] = get_path_and_range(x);\n    return\
+    \ {l, r};\n  }\n\n  // x in range(y)\n  static bool in_subtree(pi x, pi y) {\n\
+    \    auto [l, r] = range(y);\n    bool ok_l = i128(x.fi) * l.se - i128(x.se) *\
+    \ l.fi > 0;\n    bool ok_r = i128(r.fi) * x.se - i128(r.se) * x.fi > 0;\n    return\
+    \ ok_l && ok_r;\n  }\n\n  template <typename T = ll>\n  static pair<T, T> from_path(PATH&\
+    \ p) {\n    using P = pair<T, T>;\n    P l = {0, 1}, r = {1, 0};\n    FOR(i, len(p))\
+    \ {\n      ll k = p[i];\n      if (i % 2 == 0) {\n        l.fi += T(k) * r.fi;\n\
+    \        l.se += T(k) * r.se;\n      }\n      if (i % 2 == 1) {\n        r.fi\
+    \ += T(k) * l.fi;\n        r.se += T(k) * l.se;\n      }\n    }\n    return {l.fi\
+    \ + r.fi, l.se + r.se};\n  }\n\n  static pair<pi, pi> child(pi x) {\n    auto\
+    \ [l, r] = range(x);\n    pi lc = {l.fi + x.fi, l.se + x.se};\n    pi rc = {x.fi\
+    \ + r.fi, x.se + r.se};\n    return {lc, rc};\n  }\n\n  static pi LCA(pi x, pi\
+    \ y) {\n    auto Px = get_path(x);\n    auto Py = get_path(y);\n    vi P;\n  \
+    \  FOR(i, min(len(Px), len(Py))) {\n      ll k = min(Px[i], Py[i]);\n      P.eb(k);\n\
+    \      if (k < Px[i] || k < Py[i]) break;\n    }\n    return from_path(P);\n \
+    \ }\n\n  static pi LA(pi x, ll dep) {\n    pi l = {0, 1}, r = {1, 0};\n    pi\
+    \ m = {1, 1};\n    ll det_l = l.fi * x.se - l.se * x.fi;\n    ll det_r = r.fi\
+    \ * x.se - r.se * x.fi;\n    ll det_m = det_l + det_r;\n    while (1) {\n    \
+    \  if (det_m == 0 || dep == 0) break;\n      ll k = min(dep, ceil(-det_m, det_r));\n\
+    \      l = {l.fi + k * r.fi, l.se + k * r.se};\n      m = {l.fi + r.fi, l.se +\
+    \ r.se};\n      det_l += k * det_r;\n      det_m += k * det_r;\n      dep -= k;\n\
+    \      if (det_m == 0 || dep == 0) break;\n      k = min(dep, ceil(det_m, -det_l));\n\
+    \      r = {r.fi + k * l.fi, r.se + k * l.se};\n      m = {l.fi + r.fi, l.se +\
+    \ r.se};\n      det_r += k * det_l;\n      det_m += k * det_l;\n      dep -= k;\n\
+    \    }\n    if (dep == 0) return m;\n    return {-1, -1};\n  }\n\n  static string\
+    \ to_string(PATH& p) {\n    string res;\n    char c = 'L';\n    for (auto&& x:\
+    \ p) {\n      c = 'L' + 'R' - c;\n      if (x == 0) continue;\n      res += c;\n\
+    \      res += \" \" + std::to_string(x);\n    }\n    return res;\n  }\n};\n#line\
+    \ 6 \"test/library_checker/math/stern-brocot.test.cpp\"\n\nvoid solve() {\n  using\
+    \ SBT = Stern_Brocot_Tree;\n  STR(S);\n  if (S == \"DECODE_PATH\") {\n    INT(n);\n\
+    \    vi A;\n    FOR(n) {\n      CHAR(s);\n      INT(x);\n      if (A.empty() &&\
+    \ s == 'L') { A.eb(0); }\n      A.eb(x);\n    }\n    auto [a, b] = SBT::from_path(A);\n\
+    \    print(a, b);\n  }\n  if (S == \"ENCODE_PATH\") {\n    LL(a, b);\n    vi A\
+    \ = SBT::get_path({a, b});\n    vc<string> ANS;\n    FOR(i, len(A)) {\n      if\
+    \ (A[i] == 0) continue;\n      string x = (i % 2 == 0 ? \"R\" : \"L\");\n    \
+    \  ANS.eb(x);\n      ANS.eb(to_string(A[i]));\n    }\n    print(len(ANS) / 2,\
+    \ ANS);\n  }\n  if (S == \"LCA\") {\n    LL(a, b, c, d);\n    auto [e, f] = SBT::LCA({a,\
+    \ b}, {c, d});\n    print(e, f);\n  }\n  if (S == \"ANCESTOR\") {\n    LL(k, a,\
+    \ b);\n    auto [x, y] = SBT::LA({a, b}, k);\n    if (x == -1) {\n      print(-1);\n\
+    \    } else {\n      print(x, y);\n    }\n  }\n  if (S == \"RANGE\") {\n    LL(a,\
+    \ b);\n    auto [x, y] = SBT::range({a, b});\n    print(x, y);\n  }\n}\n\nsigned\
+    \ main() {\n  INT(T);\n  FOR(T)\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/stern_brocot_tree\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/stern_brocot_tree.hpp\"\
     \n\nvoid solve() {\n  using SBT = Stern_Brocot_Tree;\n  STR(S);\n  if (S == \"\
@@ -266,8 +271,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/stern-brocot.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/stern-brocot.test.cpp
 layout: document

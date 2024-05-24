@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D
@@ -176,46 +176,52 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
-    \  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n\
-    \  Dual_SegTree(int n) { build(n); }\n\n  void build(int m) {\n    n = m;\n  \
-    \  log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, MA::unit());\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
-    \ laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin()\
-    \ + size, laz.begin() + size + n};\n  }\n\n  void apply(int l, int r, const A&\
-    \ a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n   \
-    \ l += size, r += size;\n    if (!MA::commute) {\n      for (int i = log; i >=\
-    \ 1; i--) {\n        if (((l >> i) << i) != l) push(l >> i);\n        if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n\
-    \      if (l & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n  \
-    \    l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k]\
-    \ == MA::unit()) return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n\
-    \    laz[k] = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k],\
-    \ a); }\n};\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int\
-    \ none_val>\r\nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X\
-    \ op(X x, X y) { return (y == X(none_val) ? x : y); }\r\n  static constexpr X\
-    \ unit() { return X(none_val); }\r\n  static constexpr bool commute = false;\r\
-    \n};\r\n#line 7 \"test/aoj/DSL_2_D.test.cpp\"\n\r\nvoid solve() {\r\n  using Mono\
-    \ = Monoid_Assign<ll, (1LL << 31) - 1>;\r\n  LL(N, Q);\r\n  Dual_SegTree<Mono>\
-    \ seg(N);\r\n  FOR(Q) {\r\n    LL(t);\r\n    if (t == 0) {\r\n      LL(L, R, x);\r\
-    \n      seg.apply(L, ++R, x);\r\n    } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\
-    \n    }\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\nstruct Dual_SegTree\
+    \ {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log,\
+    \ size;\n  vc<A> laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int\
+    \ n) { build(n); }\n\n  void build(int m) {\n    n = m;\n    log = 1;\n    while\
+    \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
+    \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
+    \ (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A>\
+    \ get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin()\
+    \ + size + n};\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0\
+    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
+    \    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
+    \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
+    \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
+    \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
+    \ }\n\nprivate:\n  void push(int k) {\n    if (laz[k] == MA::unit()) return;\n\
+    \    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
+    \  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }\n};\n#line\
+    \ 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\nstruct\
+    \ Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return\
+    \ (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return X(none_val);\
+    \ }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 7 \"test/aoj/DSL_2_D.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  using Mono = Monoid_Assign<ll, (1LL << 31) - 1>;\r\n\
+    \  LL(N, Q);\r\n  Dual_SegTree<Mono> seg(N);\r\n  FOR(Q) {\r\n    LL(t);\r\n \
+    \   if (t == 0) {\r\n      LL(L, R, x);\r\n      seg.apply(L, ++R, x);\r\n   \
+    \ } else {\r\n      LL(i);\r\n      print(seg.get(i));\r\n    }\r\n  }\r\n}\r\n\
+    \r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
     \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
     \ solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_2_D\"\
@@ -235,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DSL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DSL_2_D.test.cpp
 layout: document

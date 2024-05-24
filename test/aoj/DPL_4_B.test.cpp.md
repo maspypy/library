@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/subset_sum_count.hpp
     title: knapsack/subset_sum_count.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B
@@ -172,52 +172,58 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"knapsack/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\n\
-    subset sum 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\
-    \u3082\u306E\u306E\u500B\u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T>\
-    \ A, T lo, T hi) {\n  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n\
-    \    vc<T> dp = {0};\n    for (auto&& a: A) {\n      vc<T> dp1 = dp;\n      for\
-    \ (auto&& t: dp1) t += a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1),\
-    \ back_inserter(newdp));\n      swap(dp, newdp);\n    }\n    return dp;\n  };\n\
-    \  vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2,\
-    \ A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n  auto f = [&](T lim)\
-    \ -> ll {\n    int q = len(dp2);\n    ll res = 0;\n    FOR(p, len(dp1)) {\n  \
-    \    while (q && dp1[p] + dp2[q - 1] >= lim) --q;\n      res += q;\n    }\n  \
-    \  return res;\n  };\n  return f(hi) - f(lo);\n}\n\n/*\nO(2^{N/2})\nsubset sum\
-    \ 2^N \u901A\u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\
-    \u306E\u500B\u6570\u3002\n\u3092\u4F7F\u3046\u500B\u6570\u3054\u3068\u306B\u6C42\
-    \u3081\u308B\u3002\n*/\ntemplate <typename T = ll>\nvc<ll> subset_sum_count_by_size(vc<T>\
-    \ A, T lo, T hi) {\n  int n = len(A);\n  using P = pair<T, int>;\n  auto gen =\
-    \ [&](vc<T> A) -> vc<vc<T>> {\n    vc<P> dp;\n    dp.eb(0, 0);\n    for (auto&&\
-    \ a: A) {\n      vc<P> dp1 = dp;\n      for (auto&& t: dp1) t.fi += a, t.se +=\
-    \ 1;\n      vc<P> newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n\
-    \      swap(dp, newdp);\n    }\n    vc<vc<T>> res(len(A) + 1);\n    for (auto&&\
-    \ p: dp) res[p.se].eb(p.fi);\n    return res;\n  };\n  vc<T> AL = {A.begin(),\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 2 \"knapsack/subset_sum_count.hpp\"\n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\
+    \u308A\u306E\u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\u306E\u500B\
+    \u6570\n*/\ntemplate <typename T = ll>\nll subset_sum_count(vc<T> A, T lo, T hi)\
+    \ {\n  int n = len(A);\n  auto gen = [&](vc<T> A) -> vc<T> {\n    vc<T> dp = {0};\n\
+    \    for (auto&& a: A) {\n      vc<T> dp1 = dp;\n      for (auto&& t: dp1) t +=\
+    \ a;\n      vc<T> newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n\
+    \      swap(dp, newdp);\n    }\n    return dp;\n  };\n  vc<T> AL = {A.begin(),\
     \ A.begin() + n / 2};\n  vc<T> AR = {A.begin() + n / 2, A.end()};\n  auto dp1\
-    \ = gen(AL);\n  auto dp2 = gen(AR);\n\n  auto f = [&](T lim) -> vi {\n    vi res(n\
-    \ + 1);\n    FOR(s1, len(dp1)) FOR(s2, len(dp2)) {\n      auto& X = dp1[s1];\n\
-    \      auto& Y = dp2[s2];\n      int q = len(Y);\n      ll& cnt = res[s1 + s2];\n\
-    \      for (auto&& x: X) {\n        while (q && x + Y[q - 1] >= lim) --q;\n  \
-    \      cnt += q;\n      }\n    }\n    return res;\n  };\n  auto CNT1 = f(hi);\n\
-    \  auto CNT2 = f(lo);\n  FOR(i, len(CNT1)) CNT1[i] -= CNT2[i];\n  return CNT1;\n\
-    }\n#line 6 \"test/aoj/DPL_4_B.test.cpp\"\n\nvoid solve() {\n  LL(N, K, L, R);\n\
-    \  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A, L, R + 1)[K]);\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ = gen(AL);\n  auto dp2 = gen(AR);\n  auto f = [&](T lim) -> ll {\n    int q\
+    \ = len(dp2);\n    ll res = 0;\n    FOR(p, len(dp1)) {\n      while (q && dp1[p]\
+    \ + dp2[q - 1] >= lim) --q;\n      res += q;\n    }\n    return res;\n  };\n \
+    \ return f(hi) - f(lo);\n}\n\n/*\nO(2^{N/2})\nsubset sum 2^N \u901A\u308A\u306E\
+    \u3046\u3061\u3001[lo, hi) \u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\u3002\
+    \n\u3092\u4F7F\u3046\u500B\u6570\u3054\u3068\u306B\u6C42\u3081\u308B\u3002\n*/\n\
+    template <typename T = ll>\nvc<ll> subset_sum_count_by_size(vc<T> A, T lo, T hi)\
+    \ {\n  int n = len(A);\n  using P = pair<T, int>;\n  auto gen = [&](vc<T> A) ->\
+    \ vc<vc<T>> {\n    vc<P> dp;\n    dp.eb(0, 0);\n    for (auto&& a: A) {\n    \
+    \  vc<P> dp1 = dp;\n      for (auto&& t: dp1) t.fi += a, t.se += 1;\n      vc<P>\
+    \ newdp;\n      merge(all(dp), all(dp1), back_inserter(newdp));\n      swap(dp,\
+    \ newdp);\n    }\n    vc<vc<T>> res(len(A) + 1);\n    for (auto&& p: dp) res[p.se].eb(p.fi);\n\
+    \    return res;\n  };\n  vc<T> AL = {A.begin(), A.begin() + n / 2};\n  vc<T>\
+    \ AR = {A.begin() + n / 2, A.end()};\n  auto dp1 = gen(AL);\n  auto dp2 = gen(AR);\n\
+    \n  auto f = [&](T lim) -> vi {\n    vi res(n + 1);\n    FOR(s1, len(dp1)) FOR(s2,\
+    \ len(dp2)) {\n      auto& X = dp1[s1];\n      auto& Y = dp2[s2];\n      int q\
+    \ = len(Y);\n      ll& cnt = res[s1 + s2];\n      for (auto&& x: X) {\n      \
+    \  while (q && x + Y[q - 1] >= lim) --q;\n        cnt += q;\n      }\n    }\n\
+    \    return res;\n  };\n  auto CNT1 = f(hi);\n  auto CNT2 = f(lo);\n  FOR(i, len(CNT1))\
+    \ CNT1[i] -= CNT2[i];\n  return CNT1;\n}\n#line 6 \"test/aoj/DPL_4_B.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A,\
+    \ L, R + 1)[K]);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_4_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"knapsack/subset_sum_count.hpp\"\
     \n\nvoid solve() {\n  LL(N, K, L, R);\n  VEC(ll, A, N);\n  print(subset_sum_count_by_size(A,\
@@ -231,8 +237,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_4_B.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_4_B.test.cpp
 layout: document

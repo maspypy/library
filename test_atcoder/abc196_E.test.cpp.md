@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_chmin_chmax.hpp
     title: alg/monoid/add_chmin_chmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc196/tasks/abc196_e
@@ -172,38 +172,43 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/add_chmin_chmax.hpp\"\n\n// max(min(x+a,b),c)\
-    \ \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate <typename E>\n\
-    struct Monoid_Add_Chmin_Chmax {\n  using value_type = tuple<E, E, E>;\n  using\
-    \ X = value_type;\n\n  static X op(X x, X y) {\n    auto [a, b, c] = x;\n    auto\
-    \ [d, e, f] = y;\n    a = a + d;\n    b = (b == infty<E> ? b : b + d);\n    c\
-    \ = (c == -infty<E> ? c : c + d);\n    b = min(b, e);\n    c = max(min(c, e),\
-    \ f);\n    return {a, b, c};\n  }\n\n  static E eval(X f, E x) {\n    auto [a,\
-    \ b, c] = f;\n    return max(min(x + a, b), c);\n  }\n\n  static X add(E a) {\
-    \ return {a, infty<E>, -infty<E>}; }\n  static X chmin(E b) { return {0, b, -infty<E>};\
-    \ }\n  static X chmax(E c) { return {0, infty<E>, c}; }\n\n  static constexpr\
-    \ X unit() { return {0, infty<E>, -infty<E>}; }\n  static constexpr bool commute\
-    \ = 0;\n};\n#line 5 \"test_atcoder/abc196_E.test.cpp\"\n\nvoid solve() {\n  using\
-    \ Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename Mono::value_type;\n\
-    \  F f = Mono::unit();\n\n  LL(N);\n  FOR(N) {\n    LL(a, t);\n    if (t == 1)\
-    \ f = Mono::op(f, Mono::add(a));\n    if (t == 2) f = Mono::op(f, Mono::chmax(a));\n\
-    \    if (t == 3) f = Mono::op(f, Mono::chmin(a));\n  }\n\n  LL(Q);\n  FOR(Q) {\n\
-    \    LL(x);\n    print(Mono::eval(f, x));\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 2 \"alg/monoid/add_chmin_chmax.hpp\"\n\n// max(min(x+a,b),c) \u3068\u8868\u305B\
+    \u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate <typename E>\nstruct Monoid_Add_Chmin_Chmax\
+    \ {\n  using value_type = tuple<E, E, E>;\n  using X = value_type;\n\n  static\
+    \ X op(X x, X y) {\n    auto [a, b, c] = x;\n    auto [d, e, f] = y;\n    a =\
+    \ a + d;\n    b = (b == infty<E> ? b : b + d);\n    c = (c == -infty<E> ? c :\
+    \ c + d);\n    b = min(b, e);\n    c = max(min(c, e), f);\n    return {a, b, c};\n\
+    \  }\n\n  static E eval(X f, E x) {\n    auto [a, b, c] = f;\n    return max(min(x\
+    \ + a, b), c);\n  }\n\n  static X add(E a) { return {a, infty<E>, -infty<E>};\
+    \ }\n  static X chmin(E b) { return {0, b, -infty<E>}; }\n  static X chmax(E c)\
+    \ { return {0, infty<E>, c}; }\n\n  static constexpr X unit() { return {0, infty<E>,\
+    \ -infty<E>}; }\n  static constexpr bool commute = 0;\n};\n#line 5 \"test_atcoder/abc196_E.test.cpp\"\
+    \n\nvoid solve() {\n  using Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename\
+    \ Mono::value_type;\n  F f = Mono::unit();\n\n  LL(N);\n  FOR(N) {\n    LL(a,\
+    \ t);\n    if (t == 1) f = Mono::op(f, Mono::add(a));\n    if (t == 2) f = Mono::op(f,\
+    \ Mono::chmax(a));\n    if (t == 3) f = Mono::op(f, Mono::chmin(a));\n  }\n\n\
+    \  LL(Q);\n  FOR(Q) {\n    LL(x);\n    print(Mono::eval(f, x));\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc196/tasks/abc196_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add_chmin_chmax.hpp\"\
     \n\nvoid solve() {\n  using Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename\
@@ -219,8 +224,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc196_E.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc196_E.test.cpp
 layout: document

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/double_ended_q.test.cpp
     title: test/library_checker/datastructure/double_ended_q.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/double_end_queue.hpp\"\n\ntemplate <typename T>\nstruct\
@@ -94,7 +94,7 @@ data:
   path: ds/double_end_queue.hpp
   requiredBy: []
   timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/double_ended_q.test.cpp
 documentation_of: ds/double_end_queue.hpp

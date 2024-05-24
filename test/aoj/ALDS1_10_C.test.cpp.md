@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -173,42 +173,47 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/longest_common_subsequence.hpp\"\n\ntemplate\
-    \ <typename STRING>\nll longest_common_subsequence(STRING& A, STRING& B) {\n \
-    \ int N = len(B);\n  vc<int> dp(N + 1);\n  for (auto&& a: A) {\n    FOR_R(i, N)\
-    \ if (a == B[i]) chmax(dp[i + 1], dp[i] + 1);\n    FOR(i, N) chmax(dp[i + 1],\
-    \ dp[i]);\n  }\n  return dp[N];\n}\n\n/*\n\u5FA9\u5143\u3082\u3059\u308B LCS dp\u3002\
-    \n(A[i], B[j]) \u3092\u4F7F\u3046\u3088\u3046\u306A (i, j) \u306E\u30DA\u30A2\u306E\
-    \ vector \u3092\u8FD4\u3059\u3002\n*/\ntemplate <typename STRING>\nvc<pair<int,\
-    \ int>> longest_common_subsequence_restore(STRING& A, STRING& B) {\n  int N =\
-    \ len(A), M = len(B);\n  vv(int, DP, N + 1, M + 1);\n  FOR(i, N) {\n    auto&\
-    \ dp = DP[i];\n    auto& newdp = DP[i + 1];\n    newdp = dp;\n    FOR(j, M) {\n\
-    \      chmax(newdp[j + 1], newdp[j]);\n      if (A[i] == B[j]) chmax(newdp[j +\
-    \ 1], dp[j] + 1);\n    }\n  }\n  vc<pair<int, int>> res;\n  int n = N, m = M;\n\
-    \  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m]) { --n; }\n    elif (DP[n][m]\
-    \ == DP[n][m - 1]) { --m; }\n    else {\n      --n, --m;\n      res.eb(n, m);\n\
-    \    }\n  }\n  reverse(all(res));\n  return res;\n}\n#line 6 \"test/aoj/ALDS1_10_C.test.cpp\"\
-    \n\nvoid solve() {\n  STR(S, T);\n  ll LCS = longest_common_subsequence(S, T);\n\
-    \  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S, T);\n  assert(len(pairs)\
-    \ == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i] == T[j]);\n  FOR(i, LCS -\
-    \ 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n    assert(pairs[i].se < pairs[i\
-    \ + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n \
-    \ ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  LL(T);\n  FOR(_,\
-    \ T) solve();\n\n  return 0;\n}\n"
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 1 \"string/longest_common_subsequence.hpp\"\n\ntemplate <typename STRING>\n\
+    ll longest_common_subsequence(STRING& A, STRING& B) {\n  int N = len(B);\n  vc<int>\
+    \ dp(N + 1);\n  for (auto&& a: A) {\n    FOR_R(i, N) if (a == B[i]) chmax(dp[i\
+    \ + 1], dp[i] + 1);\n    FOR(i, N) chmax(dp[i + 1], dp[i]);\n  }\n  return dp[N];\n\
+    }\n\n/*\n\u5FA9\u5143\u3082\u3059\u308B LCS dp\u3002\n(A[i], B[j]) \u3092\u4F7F\
+    \u3046\u3088\u3046\u306A (i, j) \u306E\u30DA\u30A2\u306E vector \u3092\u8FD4\u3059\
+    \u3002\n*/\ntemplate <typename STRING>\nvc<pair<int, int>> longest_common_subsequence_restore(STRING&\
+    \ A, STRING& B) {\n  int N = len(A), M = len(B);\n  vv(int, DP, N + 1, M + 1);\n\
+    \  FOR(i, N) {\n    auto& dp = DP[i];\n    auto& newdp = DP[i + 1];\n    newdp\
+    \ = dp;\n    FOR(j, M) {\n      chmax(newdp[j + 1], newdp[j]);\n      if (A[i]\
+    \ == B[j]) chmax(newdp[j + 1], dp[j] + 1);\n    }\n  }\n  vc<pair<int, int>> res;\n\
+    \  int n = N, m = M;\n  while (DP[n][m]) {\n    if (DP[n][m] == DP[n - 1][m])\
+    \ { --n; }\n    elif (DP[n][m] == DP[n][m - 1]) { --m; }\n    else {\n      --n,\
+    \ --m;\n      res.eb(n, m);\n    }\n  }\n  reverse(all(res));\n  return res;\n\
+    }\n#line 6 \"test/aoj/ALDS1_10_C.test.cpp\"\n\nvoid solve() {\n  STR(S, T);\n\
+    \  ll LCS = longest_common_subsequence(S, T);\n  vc<pair<int, int>> pairs = longest_common_subsequence_restore(S,\
+    \ T);\n  assert(len(pairs) == LCS);\n  for (auto&& [i, j]: pairs) assert(S[i]\
+    \ == T[j]);\n  FOR(i, LCS - 1) {\n    assert(pairs[i].fi < pairs[i + 1].fi);\n\
+    \    assert(pairs[i].se < pairs[i + 1].se);\n  }\n  print(LCS);\n}\n\nsigned main()\
+    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/longest_common_subsequence.hpp\"\
     \n\nvoid solve() {\n  STR(S, T);\n  ll LCS = longest_common_subsequence(S, T);\n\
@@ -225,7 +230,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_10_C.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
+  timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_10_C.test.cpp

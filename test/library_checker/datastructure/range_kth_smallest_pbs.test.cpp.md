@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/parallel_binary_search.hpp
     title: ds/offline_query/parallel_binary_search.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -179,45 +179,51 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"ds/offline_query/parallel_binary_search.hpp\"\n/*\r\n\
-    \u4E26\u5217\u4E8C\u5206\u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\r\
-    \ncheck \u304C\u6210\u308A\u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\
-    \u6570\u3092\u8FD4\u3059\u3002\r\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E\
-    \ update\r\n\u30FBbool check(q)\uFF1A\u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\r\
-    \n*/\r\ntemplate <typename F1, typename F2, typename F3>\r\nvc<int> parallel_binary_search(int\
-    \ Q, int ok, int ng, F1 init, F2 upd,\r\n                               F3 check)\
-    \ {\r\n  int T = max(ok, ng);\r\n  vc<int> OK(Q, ok), NG(Q, ng);\r\n  while (1)\
-    \ {\r\n    vc<int> check_t(Q, -1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (abs(OK[q] - NG[q]) > 1) { t = (OK[q] + NG[q]) / 2; }\r\n    }\r\n\
-    \    vc<int> indptr(T + 1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
-    \n      if (t != -1) indptr[t + 1]++;\r\n    }\r\n    FOR(t, T) indptr[t + 1]\
-    \ += indptr[t];\r\n    int total = indptr.back();\r\n    if (total == 0) break;\r\
-    \n    auto counter = indptr;\r\n    vc<int> csr(total);\r\n    FOR(q, Q) {\r\n\
-    \      int& t = check_t[q];\r\n      if (t != -1) { csr[counter[t]++] = q; }\r\
-    \n    }\r\n\r\n    init();\r\n    int t = 0;\r\n    for (auto&& q: csr) {\r\n\
-    \      while (t < check_t[q]) { upd(t++); }\r\n      if (check(q))\r\n       \
-    \ OK[q] = t;\r\n      else\r\n        NG[q] = t;\r\n    }\r\n  }\r\n  return OK;\r\
-    \n}\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 1 \"ds/offline_query/parallel_binary_search.hpp\"\n/*\r\n\u4E26\u5217\u4E8C\u5206\
+    \u63A2\u7D22\u3002(Q, ok, ng, init, upd, check)\u3002\r\ncheck \u304C\u6210\u308A\
+    \u7ACB\u3064\u304E\u308A\u304E\u308A\u306E upd\u56DE\u6570\u3092\u8FD4\u3059\u3002\
+    \r\n\u30FBvoid upd(t)\uFF1At \u56DE\u76EE\u306E update\r\n\u30FBbool check(q)\uFF1A\
+    \u30AF\u30A8\u30EA q \u306E\u5224\u5B9A\r\n*/\r\ntemplate <typename F1, typename\
+    \ F2, typename F3>\r\nvc<int> parallel_binary_search(int Q, int ok, int ng, F1\
+    \ init, F2 upd,\r\n                               F3 check) {\r\n  int T = max(ok,\
+    \ ng);\r\n  vc<int> OK(Q, ok), NG(Q, ng);\r\n  while (1) {\r\n    vc<int> check_t(Q,\
+    \ -1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\n      if (abs(OK[q]\
+    \ - NG[q]) > 1) { t = (OK[q] + NG[q]) / 2; }\r\n    }\r\n    vc<int> indptr(T\
+    \ + 1);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\n      if (t != -1)\
+    \ indptr[t + 1]++;\r\n    }\r\n    FOR(t, T) indptr[t + 1] += indptr[t];\r\n \
+    \   int total = indptr.back();\r\n    if (total == 0) break;\r\n    auto counter\
+    \ = indptr;\r\n    vc<int> csr(total);\r\n    FOR(q, Q) {\r\n      int& t = check_t[q];\r\
+    \n      if (t != -1) { csr[counter[t]++] = q; }\r\n    }\r\n\r\n    init();\r\n\
+    \    int t = 0;\r\n    for (auto&& q: csr) {\r\n      while (t < check_t[q]) {\
+    \ upd(t++); }\r\n      if (check(q))\r\n        OK[q] = t;\r\n      else\r\n \
+    \       NG[q] = t;\r\n    }\r\n  }\r\n  return OK;\r\n}\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
+    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
     \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
     \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
     \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
@@ -299,8 +305,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
 layout: document

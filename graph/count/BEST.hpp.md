@@ -1,32 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: ds/unionfind/unionfind.hpp
-    title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -73,8 +70,11 @@ data:
     \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
     \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
     \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
-    \  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n\
-    \    if (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
+    \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
+    \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
+    \u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\u3067\u6CE8\
+    \u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if\
+    \ (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
     \ n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
     \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (len(used_e)\
     \ <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id]) continue;\n   \
@@ -87,26 +87,16 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
-    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
-    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
-    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
-    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename\
-    \ mint>\r\nvector<mint> find_linear_rec(vector<mint>& A) {\r\n  int N = len(A);\r\
-    \n  vc<mint> B = {1}, C = {1};\r\n  int l = 0, m = 1;\r\n  mint p = 1;\r\n  FOR(i,\
-    \ N) {\r\n    mint d = A[i];\r\n    FOR3(j, 1, l + 1) { d += C[j] * A[i - j];\
-    \ }\r\n    if (d == 0) {\r\n      ++m;\r\n      continue;\r\n    }\r\n    auto\
-    \ tmp = C;\r\n    mint q = d / p;\r\n    if (len(C) < len(B) + m) C.insert(C.end(),\
-    \ len(B) + m - len(C), 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n   \
-    \ if (l + l <= i) {\r\n      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n     \
-    \ p = d;\r\n    } else {\r\n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    #line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\nvector<mint>\
+    \ find_linear_rec(vector<mint>& A) {\r\n  int N = len(A);\r\n  vc<mint> B = {1},\
+    \ C = {1};\r\n  int l = 0, m = 1;\r\n  mint p = 1;\r\n  FOR(i, N) {\r\n    mint\
+    \ d = A[i];\r\n    FOR3(j, 1, l + 1) { d += C[j] * A[i - j]; }\r\n    if (d ==\
+    \ 0) {\r\n      ++m;\r\n      continue;\r\n    }\r\n    auto tmp = C;\r\n    mint\
+    \ q = d / p;\r\n    if (len(C) < len(B) + m) C.insert(C.end(), len(B) + m - len(C),\
+    \ 0);\r\n    FOR(j, len(B)) C[j + m] -= q * B[j];\r\n    if (l + l <= i) {\r\n\
+    \      B = tmp;\r\n      l = i + 1 - l, m = 1;\r\n      p = d;\r\n    } else {\r\
+    \n      ++m;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -124,7 +114,7 @@ data:
     \ g = [&](vc<mint> v) -> vc<mint> {\r\n    FOR(i, N) v[i] *= c[i];\r\n    return\
     \ apply(v);\r\n  };\r\n  auto f = blackbox_min_poly<mint>(N, g);\r\n  mint det\
     \ = (len(f) == N + 1 ? f[0] : mint(0));\r\n  if (N & 1) det *= -1;\r\n  det /=\
-    \ r;\r\n  return det;\r\n}\r\n#line 4 \"graph/count/BEST.hpp\"\n\n/*\n\u3072\u3068\
+    \ r;\r\n  return det;\r\n}\r\n#line 3 \"graph/count/BEST.hpp\"\n\n/*\n\u3072\u3068\
     \u3064\u9078\u3093\u3060\u8FBA\u304B\u3089\u59CB\u3081\u3066\u5168\u3066\u306E\
     \u8FBA\u3092\u901A\u308B closed walk \u3092\u6570\u3048\u308B.\n\u591A\u91CD\u8FBA\
     \u306F vc<int>(eid) \u3067\u6E21\u3059\uFF0C\u306A\u3051\u308C\u3070\u3059\u3079\
@@ -146,32 +136,30 @@ data:
     \  vc<mint> B(N - 1);\n    for (auto& [a, b, c]: mat) B[b] += A[a] * c;\n    return\
     \ B;\n  };\n  mint d = blackbox_det<mint>(N - 1, apply);\n  for (auto& x: outdeg)\
     \ { d *= fact<mint>(x - 1); }\n  return d;\n}\n"
-  code: "#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
-    \ \"linalg/blackbox/det.hpp\"\n\n/*\n\u3072\u3068\u3064\u9078\u3093\u3060\u8FBA\
-    \u304B\u3089\u59CB\u3081\u3066\u5168\u3066\u306E\u8FBA\u3092\u901A\u308B closed\
-    \ walk \u3092\u6570\u3048\u308B.\n\u591A\u91CD\u8FBA\u306F vc<int>(eid) \u3067\
-    \u6E21\u3059\uFF0C\u306A\u3051\u308C\u3070\u3059\u3079\u3066 1. e.cost \u306F\u53C2\
-    \u7167\u3057\u306A\u3044.\n\u8FBA\u306F\u30E9\u30D9\u30EB\u4ED8\u304D\u3067\u8003\
-    \u3048\u308B. \u591A\u91CD\u8FBA\u3092\u540C\u4E00\u8996\u3059\u308B\u5834\u5408\
-    \u306A\u3069\u306F\u5F8C\u3067\u968E\u4E57\u3067\u5272\u308B\u3053\u3068.\nO(N^2+NM)\
-    \ \uFF08 + \u6700\u5F8C\u306B\u91CD\u8907\u5EA6\u306E\u968E\u4E57\u3092\u304B\u3051\
-    \u308B\uFF09\uFF0E\n*/\ntemplate <typename mint, typename GT>\nmint BEST_theorem(GT\
-    \ G, vc<int> edge_multiplicity = {}) {\n  static_assert(GT::is_directed);\n  int\
-    \ N = G.N, M = G.M;\n  if (M == 0) return 0;\n  if (edge_multiplicity.empty())\
-    \ edge_multiplicity.assign(M, 1);\n  vc<int> vs;\n  for (auto& e: G.edges) {\n\
-    \    if (edge_multiplicity[e.id] == 0) continue;\n    vs.eb(e.frm), vs.eb(e.to);\n\
-    \  }\n\n  UNIQUE(vs);\n  G = G.rearrange(vs, true);\n  N = G.N;\n\n  vc<int> indeg(N),\
-    \ outdeg(N);\n  vc<tuple<int, int, mint>> mat;\n  for (auto& e: G.edges) {\n \
-    \   int a = e.frm, b = e.to, x = edge_multiplicity[e.id];\n    outdeg[a] += x,\
-    \ indeg[b] += x;\n    if (a < N - 1 && b < N - 1) mat.eb(a, b, -x);\n    if (a\
-    \ < N - 1) mat.eb(a, a, x);\n  }\n  FOR(v, N) if (indeg[v] != outdeg[v]) return\
-    \ 0;\n\n  auto apply = [&](vc<mint> A) -> vc<mint> {\n    vc<mint> B(N - 1);\n\
-    \    for (auto& [a, b, c]: mat) B[b] += A[a] * c;\n    return B;\n  };\n  mint\
-    \ d = blackbox_det<mint>(N - 1, apply);\n  for (auto& x: outdeg) { d *= fact<mint>(x\
-    \ - 1); }\n  return d;\n}\n"
+  code: "#include \"graph/base.hpp\"\n#include \"linalg/blackbox/det.hpp\"\n\n/*\n\
+    \u3072\u3068\u3064\u9078\u3093\u3060\u8FBA\u304B\u3089\u59CB\u3081\u3066\u5168\
+    \u3066\u306E\u8FBA\u3092\u901A\u308B closed walk \u3092\u6570\u3048\u308B.\n\u591A\
+    \u91CD\u8FBA\u306F vc<int>(eid) \u3067\u6E21\u3059\uFF0C\u306A\u3051\u308C\u3070\
+    \u3059\u3079\u3066 1. e.cost \u306F\u53C2\u7167\u3057\u306A\u3044.\n\u8FBA\u306F\
+    \u30E9\u30D9\u30EB\u4ED8\u304D\u3067\u8003\u3048\u308B. \u591A\u91CD\u8FBA\u3092\
+    \u540C\u4E00\u8996\u3059\u308B\u5834\u5408\u306A\u3069\u306F\u5F8C\u3067\u968E\
+    \u4E57\u3067\u5272\u308B\u3053\u3068.\nO(N^2+NM) \uFF08 + \u6700\u5F8C\u306B\u91CD\
+    \u8907\u5EA6\u306E\u968E\u4E57\u3092\u304B\u3051\u308B\uFF09\uFF0E\n*/\ntemplate\
+    \ <typename mint, typename GT>\nmint BEST_theorem(GT G, vc<int> edge_multiplicity\
+    \ = {}) {\n  static_assert(GT::is_directed);\n  int N = G.N, M = G.M;\n  if (M\
+    \ == 0) return 0;\n  if (edge_multiplicity.empty()) edge_multiplicity.assign(M,\
+    \ 1);\n  vc<int> vs;\n  for (auto& e: G.edges) {\n    if (edge_multiplicity[e.id]\
+    \ == 0) continue;\n    vs.eb(e.frm), vs.eb(e.to);\n  }\n\n  UNIQUE(vs);\n  G =\
+    \ G.rearrange(vs, true);\n  N = G.N;\n\n  vc<int> indeg(N), outdeg(N);\n  vc<tuple<int,\
+    \ int, mint>> mat;\n  for (auto& e: G.edges) {\n    int a = e.frm, b = e.to, x\
+    \ = edge_multiplicity[e.id];\n    outdeg[a] += x, indeg[b] += x;\n    if (a <\
+    \ N - 1 && b < N - 1) mat.eb(a, b, -x);\n    if (a < N - 1) mat.eb(a, a, x);\n\
+    \  }\n  FOR(v, N) if (indeg[v] != outdeg[v]) return 0;\n\n  auto apply = [&](vc<mint>\
+    \ A) -> vc<mint> {\n    vc<mint> B(N - 1);\n    for (auto& [a, b, c]: mat) B[b]\
+    \ += A[a] * c;\n    return B;\n  };\n  mint d = blackbox_det<mint>(N - 1, apply);\n\
+    \  for (auto& x: outdeg) { d *= fact<mint>(x - 1); }\n  return d;\n}\n"
   dependsOn:
   - graph/base.hpp
-  - ds/unionfind/unionfind.hpp
   - linalg/blackbox/det.hpp
   - linalg/blackbox/min_poly.hpp
   - seq/find_linear_rec.hpp
@@ -179,8 +167,8 @@ data:
   isVerificationFile: false
   path: graph/count/BEST.hpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc336g.test.cpp
 documentation_of: graph/count/BEST.hpp

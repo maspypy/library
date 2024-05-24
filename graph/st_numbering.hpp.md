@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Bipolar_orientation
@@ -59,83 +59,104 @@ data:
     \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n\
     \  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\
     \u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\
-    \u306B\u3059\u308B\n  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool\
-    \ keep_eid = 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    int\
-    \ n = len(V);\n    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n\
-    \    vc<int> history;\n    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n\
-    \        if (len(used_e) <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id])\
-    \ continue;\n        int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 &&\
-    \ new_idx[b] != -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n\
-    \          int eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b],\
-    \ e.cost, eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n\
-    \    for (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n\
-    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
+    \u306B\u3059\u308B\n  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\
+    \u306A\u3063\u3066\u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\
+    \u306E n+m \u3088\u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\
+    \u3067\u6CE8\u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid =\
+    \ 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n\
+    \    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
+    \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (len(used_e)\
+    \ <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id]) continue;\n   \
+    \     int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] !=\
+    \ -1) {\n          history.eb(e.id);\n          used_e[e.id] = 1;\n          int\
+    \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
+    \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
+    \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
+    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 3 \"graph/st_numbering.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
-    // \u9806\u5217 p \u3092\u6C42\u3081\u308B. s=p[0], ..., p[n-1]=t.\n// \u3053\u306E\
-    \u9806\u3067\u5411\u304D\u4ED8\u3051\u308B\u3068\u4EFB\u610F\u306E v \u306B\u5BFE\
-    \u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728.\n// \u5B58\u5728\u6761\u4EF6\uFF1A\
-    BCT \u3067\u5168\u90E8\u306E\u6210\u5206\u3092\u901A\u308B st \u30D1\u30B9\u304C\
-    \u3042\u308B \u4E0D\u53EF\u80FD\u306A\u3089\u3070 empty \u3092\u304B\u3048\u3059\
-    .\ntemplate <typename GT>\nvc<int> st_numbering(GT &G, int s, int t) {\n  static_assert(!GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  if (N == 1) return {0};\n  if (s\
-    \ == t) return {};\n  vc<int> par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\
-    \n  auto dfs = [&](auto &dfs, int v) -> void {\n    pre[v] = len(V), V.eb(v);\n\
-    \    low[v] = v;\n    for (auto &e: G[v]) {\n      int w = e.to;\n      if (v\
-    \ == w) continue;\n      if (pre[w] == -1) {\n        dfs(dfs, w);\n        par[w]\
-    \ = v;\n        if (pre[low[w]] < pre[low[v]]) { low[v] = low[w]; }\n      }\n\
-    \      elif (pre[w] < pre[low[v]]) { low[v] = w; }\n    }\n  };\n\n  pre[s] =\
-    \ 0, V.eb(s);\n  dfs(dfs, t);\n  if (len(V) != N) return {};\n  vc<int> nxt(N,\
-    \ -1), prev(N);\n  nxt[s] = t, prev[t] = s;\n\n  vc<int> sgn(N);\n  sgn[s] = -1;\n\
-    \  FOR(i, 2, len(V)) {\n    int v = V[i];\n    int p = par[v];\n    if (sgn[low[v]]\
-    \ == -1) {\n      int q = prev[p];\n      if (q == -1) return {};\n      nxt[q]\
-    \ = v, nxt[v] = p;\n      prev[v] = q, prev[p] = v;\n      sgn[p] = 1;\n    }\
-    \ else {\n      int q = nxt[p];\n      if (q == -1) return {};\n      nxt[p] =\
-    \ v, nxt[v] = q;\n      prev[v] = p, prev[q] = v;\n      sgn[p] = -1;\n    }\n\
-    \  }\n  vc<int> A = {s};\n  while (A.back() != t) { A.eb(nxt[A.back()]); }\n \
-    \ // \u4F5C\u308C\u3066\u3044\u308B\u304B\u5224\u5B9A\n  if (len(A) < N) return\
-    \ {};\n  assert(A[0] == s && A.back() == t);\n  vc<int> rk(N, -1);\n  FOR(i, N)\
-    \ rk[A[i]] = i;\n  assert(MIN(rk) != -1);\n  FOR(i, N) {\n    bool l = 0, r =\
-    \ 0;\n    int v = A[i];\n    for (auto &e: G[v]) {\n      if (rk[e.to] < rk[v])\
-    \ l = 1;\n      if (rk[v] < rk[e.to]) r = 1;\n    }\n    if (i > 0 && !l) return\
-    \ {};\n    if (i < N - 1 && !r) return {};\n  }\n  return A;\n}\n"
+    // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
+    \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
+    \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
+    .\n// \u5B58\u5728\u6761\u4EF6\uFF1ABCT \u3067\u5168\u90E8\u306E\u6210\u5206\u3092\
+    \u901A\u308B st \u30D1\u30B9\u304C\u3042\u308B \u4E0D\u53EF\u80FD\u306A\u3089\u3070\
+    \ empty \u3092\u304B\u3048\u3059.\ntemplate <typename GT>\nvc<int> st_numbering(GT\
+    \ &G, int s, int t) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  if (N == 1) return {0};\n  if (s == t) return {};\n  vc<int>\
+    \ par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\n  auto dfs = [&](auto &dfs,\
+    \ int v) -> void {\n    pre[v] = len(V), V.eb(v);\n    low[v] = v;\n    for (auto\
+    \ &e: G[v]) {\n      int w = e.to;\n      if (v == w) continue;\n      if (pre[w]\
+    \ == -1) {\n        dfs(dfs, w);\n        par[w] = v;\n        if (pre[low[w]]\
+    \ < pre[low[v]]) { low[v] = low[w]; }\n      }\n      elif (pre[w] < pre[low[v]])\
+    \ { low[v] = w; }\n    }\n  };\n\n  pre[s] = 0, V.eb(s);\n  dfs(dfs, t);\n  if\
+    \ (len(V) != N) return {};\n  vc<int> nxt(N, -1), prev(N);\n  nxt[s] = t, prev[t]\
+    \ = s;\n\n  vc<int> sgn(N);\n  sgn[s] = -1;\n  FOR(i, 2, len(V)) {\n    int v\
+    \ = V[i];\n    int p = par[v];\n    if (sgn[low[v]] == -1) {\n      int q = prev[p];\n\
+    \      if (q == -1) return {};\n      nxt[q] = v, nxt[v] = p;\n      prev[v] =\
+    \ q, prev[p] = v;\n      sgn[p] = 1;\n    } else {\n      int q = nxt[p];\n  \
+    \    if (q == -1) return {};\n      nxt[p] = v, nxt[v] = q;\n      prev[v] = p,\
+    \ prev[q] = v;\n      sgn[p] = -1;\n    }\n  }\n  vc<int> A = {s};\n  while (A.back()\
+    \ != t) { A.eb(nxt[A.back()]); }\n  // \u4F5C\u308C\u3066\u3044\u308B\u304B\u5224\
+    \u5B9A\n  if (len(A) < N) return {};\n  assert(A[0] == s && A.back() == t);\n\
+    \  vc<int> rk(N, -1);\n  FOR(i, N) rk[A[i]] = i;\n  assert(MIN(rk) != -1);\n \
+    \ FOR(i, N) {\n    bool l = 0, r = 0;\n    int v = A[i];\n    for (auto &e: G[v])\
+    \ {\n      if (rk[e.to] < rk[v]) l = 1;\n      if (rk[v] < rk[e.to]) r = 1;\n\
+    \    }\n    if (i > 0 && !l) return {};\n    if (i < N - 1 && !r) return {};\n\
+    \  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return res;\n}\n\nbool\
+    \ check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N = G.N;\n  assert(N\
+    \ >= 2);\n\n  UnionFind uf(N);\n  for (auto &e: G.edges) uf.merge(e.frm, e.to);\n\
+    \  if (uf.n_comp >= 2) return 0; // disconnected\n\n  // BCT \u306B\u304A\u3044\
+    \u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\
+    \u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs01<int>(G,\
+    \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
+    \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
+    \ 0;\n  }\n  return 1;\n}\n"
   code: "\n#include \"graph/base.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
-    // \u9806\u5217 p \u3092\u6C42\u3081\u308B. s=p[0], ..., p[n-1]=t.\n// \u3053\u306E\
-    \u9806\u3067\u5411\u304D\u4ED8\u3051\u308B\u3068\u4EFB\u610F\u306E v \u306B\u5BFE\
-    \u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728.\n// \u5B58\u5728\u6761\u4EF6\uFF1A\
-    BCT \u3067\u5168\u90E8\u306E\u6210\u5206\u3092\u901A\u308B st \u30D1\u30B9\u304C\
-    \u3042\u308B \u4E0D\u53EF\u80FD\u306A\u3089\u3070 empty \u3092\u304B\u3048\u3059\
-    .\ntemplate <typename GT>\nvc<int> st_numbering(GT &G, int s, int t) {\n  static_assert(!GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  if (N == 1) return {0};\n  if (s\
-    \ == t) return {};\n  vc<int> par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\
-    \n  auto dfs = [&](auto &dfs, int v) -> void {\n    pre[v] = len(V), V.eb(v);\n\
-    \    low[v] = v;\n    for (auto &e: G[v]) {\n      int w = e.to;\n      if (v\
-    \ == w) continue;\n      if (pre[w] == -1) {\n        dfs(dfs, w);\n        par[w]\
-    \ = v;\n        if (pre[low[w]] < pre[low[v]]) { low[v] = low[w]; }\n      }\n\
-    \      elif (pre[w] < pre[low[v]]) { low[v] = w; }\n    }\n  };\n\n  pre[s] =\
-    \ 0, V.eb(s);\n  dfs(dfs, t);\n  if (len(V) != N) return {};\n  vc<int> nxt(N,\
-    \ -1), prev(N);\n  nxt[s] = t, prev[t] = s;\n\n  vc<int> sgn(N);\n  sgn[s] = -1;\n\
-    \  FOR(i, 2, len(V)) {\n    int v = V[i];\n    int p = par[v];\n    if (sgn[low[v]]\
-    \ == -1) {\n      int q = prev[p];\n      if (q == -1) return {};\n      nxt[q]\
-    \ = v, nxt[v] = p;\n      prev[v] = q, prev[p] = v;\n      sgn[p] = 1;\n    }\
-    \ else {\n      int q = nxt[p];\n      if (q == -1) return {};\n      nxt[p] =\
-    \ v, nxt[v] = q;\n      prev[v] = p, prev[q] = v;\n      sgn[p] = -1;\n    }\n\
-    \  }\n  vc<int> A = {s};\n  while (A.back() != t) { A.eb(nxt[A.back()]); }\n \
-    \ // \u4F5C\u308C\u3066\u3044\u308B\u304B\u5224\u5B9A\n  if (len(A) < N) return\
-    \ {};\n  assert(A[0] == s && A.back() == t);\n  vc<int> rk(N, -1);\n  FOR(i, N)\
-    \ rk[A[i]] = i;\n  assert(MIN(rk) != -1);\n  FOR(i, N) {\n    bool l = 0, r =\
-    \ 0;\n    int v = A[i];\n    for (auto &e: G[v]) {\n      if (rk[e.to] < rk[v])\
-    \ l = 1;\n      if (rk[v] < rk[e.to]) r = 1;\n    }\n    if (i > 0 && !l) return\
-    \ {};\n    if (i < N - 1 && !r) return {};\n  }\n  return A;\n}\n"
+    // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
+    \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
+    \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
+    .\n// \u5B58\u5728\u6761\u4EF6\uFF1ABCT \u3067\u5168\u90E8\u306E\u6210\u5206\u3092\
+    \u901A\u308B st \u30D1\u30B9\u304C\u3042\u308B \u4E0D\u53EF\u80FD\u306A\u3089\u3070\
+    \ empty \u3092\u304B\u3048\u3059.\ntemplate <typename GT>\nvc<int> st_numbering(GT\
+    \ &G, int s, int t) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  if (N == 1) return {0};\n  if (s == t) return {};\n  vc<int>\
+    \ par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\n  auto dfs = [&](auto &dfs,\
+    \ int v) -> void {\n    pre[v] = len(V), V.eb(v);\n    low[v] = v;\n    for (auto\
+    \ &e: G[v]) {\n      int w = e.to;\n      if (v == w) continue;\n      if (pre[w]\
+    \ == -1) {\n        dfs(dfs, w);\n        par[w] = v;\n        if (pre[low[w]]\
+    \ < pre[low[v]]) { low[v] = low[w]; }\n      }\n      elif (pre[w] < pre[low[v]])\
+    \ { low[v] = w; }\n    }\n  };\n\n  pre[s] = 0, V.eb(s);\n  dfs(dfs, t);\n  if\
+    \ (len(V) != N) return {};\n  vc<int> nxt(N, -1), prev(N);\n  nxt[s] = t, prev[t]\
+    \ = s;\n\n  vc<int> sgn(N);\n  sgn[s] = -1;\n  FOR(i, 2, len(V)) {\n    int v\
+    \ = V[i];\n    int p = par[v];\n    if (sgn[low[v]] == -1) {\n      int q = prev[p];\n\
+    \      if (q == -1) return {};\n      nxt[q] = v, nxt[v] = p;\n      prev[v] =\
+    \ q, prev[p] = v;\n      sgn[p] = 1;\n    } else {\n      int q = nxt[p];\n  \
+    \    if (q == -1) return {};\n      nxt[p] = v, nxt[v] = q;\n      prev[v] = p,\
+    \ prev[q] = v;\n      sgn[p] = -1;\n    }\n  }\n  vc<int> A = {s};\n  while (A.back()\
+    \ != t) { A.eb(nxt[A.back()]); }\n  // \u4F5C\u308C\u3066\u3044\u308B\u304B\u5224\
+    \u5B9A\n  if (len(A) < N) return {};\n  assert(A[0] == s && A.back() == t);\n\
+    \  vc<int> rk(N, -1);\n  FOR(i, N) rk[A[i]] = i;\n  assert(MIN(rk) != -1);\n \
+    \ FOR(i, N) {\n    bool l = 0, r = 0;\n    int v = A[i];\n    for (auto &e: G[v])\
+    \ {\n      if (rk[e.to] < rk[v]) l = 1;\n      if (rk[v] < rk[e.to]) r = 1;\n\
+    \    }\n    if (i > 0 && !l) return {};\n    if (i < N - 1 && !r) return {};\n\
+    \  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return res;\n}\n\nbool\
+    \ check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N = G.N;\n  assert(N\
+    \ >= 2);\n\n  UnionFind uf(N);\n  for (auto &e: G.edges) uf.merge(e.frm, e.to);\n\
+    \  if (uf.n_comp >= 2) return 0; // disconnected\n\n  // BCT \u306B\u304A\u3044\
+    \u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\
+    \u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs01<int>(G,\
+    \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
+    \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
+    \ 0;\n  }\n  return 1;\n}\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/st_numbering.hpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/st_numbering.test.cpp
 documentation_of: graph/st_numbering.hpp

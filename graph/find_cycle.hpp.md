@@ -1,20 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/cycle_detection_undirected.test.cpp
     title: test/library_checker/graph/cycle_detection_undirected.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/find_cycle_minimum.test.cpp
+    title: test/mytest/find_cycle_minimum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -61,8 +64,11 @@ data:
     \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
     \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
     \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
-    \  // {G, es}\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n\
-    \    if (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
+    \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
+    \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
+    \u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\u3067\u6CE8\
+    \u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if\
+    \ (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
     \ n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
     \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (len(used_e)\
     \ <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id]) continue;\n   \
@@ -99,22 +105,18 @@ data:
     \ vc<int>> find_cycle_undirected(GT& G) {\r\n  assert(!GT::is_directed);\r\n \
     \ assert(G.is_prepared());\r\n  const int N = G.N;\r\n  const int M = G.M;\r\n\
     \  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n  vc<int> par(N, -1); // edge\
-    \ idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int d) -> int {\r\n    dep[v]\
-    \ = d;\r\n    for (auto&& e: G[v]) {\r\n      if (used_e[e.id]) continue;\r\n\
-    \      if (dep[e.to] != -1) return v;\r\n      used_e[e.id] = 1;\r\n      par[e.to]\
-    \ = e.id;\r\n      int res = dfs(dfs, e.to, d + 1);\r\n      if (res != -1) return\
-    \ res;\r\n    }\r\n    return -1;\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v,\
-    \ N) {\r\n    if (dep[v] != -1) continue;\r\n    // w has back edge\r\n    int\
-    \ w = dfs(dfs, v, 0);\r\n    if (w == -1) continue;\r\n    int b = -1, back_e\
-    \ = -1;\r\n    while (1) {\r\n      for (auto&& e: G[w]) {\r\n        if (used_e[e.id])\
-    \ continue;\r\n        if (dep[e.to] > dep[w] || dep[e.to] == -1) continue;\r\n\
-    \        b = w, back_e = e.id;\r\n      }\r\n      if (w == v) break;\r\n    \
-    \  auto& e = G.edges[par[w]];\r\n      w = e.frm + e.to - w;\r\n    }\r\n    int\
-    \ a = G.edges[back_e].frm + G.edges[back_e].to - b;\r\n    es.eb(back_e), vs.eb(a);\r\
-    \n    while (1) {\r\n      int x = vs.back();\r\n      auto& e = G.edges[es.back()];\r\
-    \n      int y = e.frm + e.to - x;\r\n      if (y == a) break;\r\n      vs.eb(y);\r\
-    \n      es.eb(par[y]);\r\n    }\r\n    return {vs, es};\r\n  }\r\n  return {vs,\
-    \ es};\r\n}\r\n"
+    \ idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int d) -> void {\r\n    dep[v]\
+    \ = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to] != -1) continue;\r\
+    \n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n      dfs(dfs, e.to, d\
+    \ + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v, N) {\r\n    if (dep[v]\
+    \ == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\n  int back_e\
+    \ = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\n \
+    \   int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e =\
+    \ e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
+    \ b = G.edges[back_e].to;\r\n  if (dep[a] > dep[b]) swap(a, b);\r\n  es.eb(back_e),\
+    \ vs.eb(a);\r\n  while (1) {\r\n    int x = vs.back();\r\n    auto& e = G.edges[es.back()];\r\
+    \n    int y = e.frm + e.to - x;\r\n    if (y == a) break;\r\n    vs.eb(y);\r\n\
+    \    es.eb(par[y]);\r\n  }\r\n  return {vs, es};\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
     \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT& G) {\r\n  static_assert(GT::is_directed);\r\
     \n  assert(G.is_prepared());\r\n\r\n  int N = G.N;\r\n  vc<int> used(N);\r\n \
@@ -139,32 +141,29 @@ data:
     \ vc<int>> find_cycle_undirected(GT& G) {\r\n  assert(!GT::is_directed);\r\n \
     \ assert(G.is_prepared());\r\n  const int N = G.N;\r\n  const int M = G.M;\r\n\
     \  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n  vc<int> par(N, -1); // edge\
-    \ idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int d) -> int {\r\n    dep[v]\
-    \ = d;\r\n    for (auto&& e: G[v]) {\r\n      if (used_e[e.id]) continue;\r\n\
-    \      if (dep[e.to] != -1) return v;\r\n      used_e[e.id] = 1;\r\n      par[e.to]\
-    \ = e.id;\r\n      int res = dfs(dfs, e.to, d + 1);\r\n      if (res != -1) return\
-    \ res;\r\n    }\r\n    return -1;\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v,\
-    \ N) {\r\n    if (dep[v] != -1) continue;\r\n    // w has back edge\r\n    int\
-    \ w = dfs(dfs, v, 0);\r\n    if (w == -1) continue;\r\n    int b = -1, back_e\
-    \ = -1;\r\n    while (1) {\r\n      for (auto&& e: G[w]) {\r\n        if (used_e[e.id])\
-    \ continue;\r\n        if (dep[e.to] > dep[w] || dep[e.to] == -1) continue;\r\n\
-    \        b = w, back_e = e.id;\r\n      }\r\n      if (w == v) break;\r\n    \
-    \  auto& e = G.edges[par[w]];\r\n      w = e.frm + e.to - w;\r\n    }\r\n    int\
-    \ a = G.edges[back_e].frm + G.edges[back_e].to - b;\r\n    es.eb(back_e), vs.eb(a);\r\
-    \n    while (1) {\r\n      int x = vs.back();\r\n      auto& e = G.edges[es.back()];\r\
-    \n      int y = e.frm + e.to - x;\r\n      if (y == a) break;\r\n      vs.eb(y);\r\
-    \n      es.eb(par[y]);\r\n    }\r\n    return {vs, es};\r\n  }\r\n  return {vs,\
-    \ es};\r\n}\r\n"
+    \ idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int d) -> void {\r\n    dep[v]\
+    \ = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to] != -1) continue;\r\
+    \n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n      dfs(dfs, e.to, d\
+    \ + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v, N) {\r\n    if (dep[v]\
+    \ == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\n  int back_e\
+    \ = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\n \
+    \   int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e =\
+    \ e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
+    \ b = G.edges[back_e].to;\r\n  if (dep[a] > dep[b]) swap(a, b);\r\n  es.eb(back_e),\
+    \ vs.eb(a);\r\n  while (1) {\r\n    int x = vs.back();\r\n    auto& e = G.edges[es.back()];\r\
+    \n    int y = e.frm + e.to - x;\r\n    if (y == a) break;\r\n    vs.eb(y);\r\n\
+    \    es.eb(par[y]);\r\n  }\r\n  return {vs, es};\r\n}\r\n"
   dependsOn:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/find_cycle.hpp
   requiredBy: []
-  timestamp: '2024-04-19 02:20:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
+  - test/mytest/find_cycle_minimum.test.cpp
 documentation_of: graph/find_cycle.hpp
 layout: document
 redirect_from:

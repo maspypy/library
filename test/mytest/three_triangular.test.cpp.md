@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -230,30 +230,33 @@ data:
     \ /= g; }\r\n  G operator%(const G &g) { return G(*this) %= g; }\r\n  bool operator==(const\
     \ G &g) { return (x == g.x && y == g.y); }\r\n\r\n  static G gcd(G a, G b) {\r\
     \n    while (b.x != 0 || b.y != 0) {\r\n      a %= b;\r\n      swap(a, b);\r\n\
-    \    }\r\n    return a;\r\n  }\r\n\r\n  // (g,x,y) s.t ax+by=g\r\n  static tuple<G,\
-    \ G, G> extgcd(G a, G b) {\r\n    if (b.x != 0 || b.y != 0) {\r\n      G q = a\
-    \ / b;\r\n      auto [g, x, y] = extgcd(b, a - q * b);\r\n      return {g, y,\
-    \ x - q * y};\r\n    }\r\n    return {a, G{1, 0}, G{0, 0}};\r\n  }\r\n};\r\n\r\
-    \npair<ll, ll> solve_norm_equation_prime(ll p) {\r\n  using G = Gaussian_Integer<i128>;\r\
-    \n  assert(p == 2 || p % 4 == 1);\r\n  if (p == 2) return {1, 1};\r\n  ll x =\
-    \ [&]() -> ll {\r\n    ll x = 1;\r\n    while (1) {\r\n      ++x;\r\n      ll\
-    \ pow_x = 1;\r\n      if (p < (1 << 30)) {\r\n        pow_x = mod_pow(x, (p -\
-    \ 1) / 4, p);\r\n        if (pow_x * pow_x % p == p - 1) return pow_x;\r\n   \
-    \   } else {\r\n        pow_x = mod_pow_64(x, (p - 1) / 4, p);\r\n        if (i128(pow_x)\
-    \ * pow_x % p == p - 1) return pow_x;\r\n      }\r\n    }\r\n    return -1;\r\n\
-    \  }();\r\n  G a(p, 0), b(x, 1);\r\n  a = G::gcd(a, b);\r\n  assert(a.norm() ==\
-    \ p);\r\n  return {a.x, a.y};\r\n}\r\n\r\ntemplate <typename T>\r\nvc<Gaussian_Integer<T>>\
-    \ solve_norm_equation_factor(vc<pair<ll, int>> pfs) {\r\n  using G = Gaussian_Integer<T>;\r\
-    \n  vc<G> res;\r\n  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3 && e % 2\
-    \ == 1) return {};\r\n  }\r\n\r\n  res.eb(G(1, 0));\r\n  for (auto &&[p, e]: pfs)\
-    \ {\r\n    if (p % 4 == 3) {\r\n      T pp = 1;\r\n      FOR(e / 2) pp *= p;\r\
-    \n      for (auto &&g: res) {\r\n        g.x *= pp;\r\n        g.y *= pp;\r\n\
-    \      }\r\n      continue;\r\n    }\r\n    G pi = solve_norm_equation_prime(p);\r\
-    \n    vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1]\
-    \ = pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\
-    \n      continue;\r\n    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j, e + 1) { pis[j]\
-    \ = pows[j] * (pows[e - j].conjugate()); }\r\n    vc<G> new_res;\r\n    new_res.reserve(len(res)\
-    \ * (e + 1));\r\n    for (auto &&g: res) {\r\n      for (auto &&a: pis) { new_res.eb(g\
+    \    }\r\n    return a;\r\n  }\r\n\r\n  G pow(ll n) const {\r\n    assert(n >=\
+    \ 0);\r\n    G ret(1), mul(*this);\r\n    while (n > 0) {\r\n      if (n & 1)\
+    \ ret *= mul;\r\n      mul *= mul;\r\n      n >>= 1;\r\n    }\r\n    return ret;\r\
+    \n  }\r\n\r\n  // (g,x,y) s.t ax+by=g\r\n  static tuple<G, G, G> extgcd(G a, G\
+    \ b) {\r\n    if (b.x != 0 || b.y != 0) {\r\n      G q = a / b;\r\n      auto\
+    \ [g, x, y] = extgcd(b, a - q * b);\r\n      return {g, y, x - q * y};\r\n   \
+    \ }\r\n    return {a, G{1, 0}, G{0, 0}};\r\n  }\r\n};\r\n\r\npair<ll, ll> solve_norm_equation_prime(ll\
+    \ p) {\r\n  using G = Gaussian_Integer<i128>;\r\n  assert(p == 2 || p % 4 == 1);\r\
+    \n  if (p == 2) return {1, 1};\r\n  ll x = [&]() -> ll {\r\n    ll x = 1;\r\n\
+    \    while (1) {\r\n      ++x;\r\n      ll pow_x = 1;\r\n      if (p < (1 << 30))\
+    \ {\r\n        pow_x = mod_pow(x, (p - 1) / 4, p);\r\n        if (pow_x * pow_x\
+    \ % p == p - 1) return pow_x;\r\n      } else {\r\n        pow_x = mod_pow_64(x,\
+    \ (p - 1) / 4, p);\r\n        if (i128(pow_x) * pow_x % p == p - 1) return pow_x;\r\
+    \n      }\r\n    }\r\n    return -1;\r\n  }();\r\n  G a(p, 0), b(x, 1);\r\n  a\
+    \ = G::gcd(a, b);\r\n  assert(a.norm() == p);\r\n  return {a.x, a.y};\r\n}\r\n\
+    \r\ntemplate <typename T>\r\nvc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll,\
+    \ int>> pfs) {\r\n  using G = Gaussian_Integer<T>;\r\n  vc<G> res;\r\n  for (auto\
+    \ &&[p, e]: pfs) {\r\n    if (p % 4 == 3 && e % 2 == 1) return {};\r\n  }\r\n\r\
+    \n  res.eb(G(1, 0));\r\n  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3) {\r\
+    \n      T pp = 1;\r\n      FOR(e / 2) pp *= p;\r\n      for (auto &&g: res) {\r\
+    \n        g.x *= pp;\r\n        g.y *= pp;\r\n      }\r\n      continue;\r\n \
+    \   }\r\n    G pi = solve_norm_equation_prime(p);\r\n    vc<G> pows(e + 1);\r\n\
+    \    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1] = pows[i] * pi;\r\n    if\
+    \ (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\n      continue;\r\n\
+    \    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j, e + 1) { pis[j] = pows[j] * (pows[e\
+    \ - j].conjugate()); }\r\n    vc<G> new_res;\r\n    new_res.reserve(len(res) *\
+    \ (e + 1));\r\n    for (auto &&g: res) {\r\n      for (auto &&a: pis) { new_res.eb(g\
     \ * a); }\r\n    }\r\n    swap(res, new_res);\r\n  }\r\n\r\n  for (auto &&g: res)\
     \ {\r\n    while (g.x <= 0 || g.y < 0) { g = G(-g.y, g.x); }\r\n  }\r\n  return\
     \ res;\r\n}\r\n\r\n// i128 \u3092\u4F7F\u3046\u3068 N <= 10^{18} \u3082\u3067\u304D\
@@ -322,8 +325,8 @@ data:
   isVerificationFile: true
   path: test/mytest/three_triangular.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/three_triangular.test.cpp
 layout: document

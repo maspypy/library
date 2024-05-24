@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -176,33 +176,39 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"ds/binary_trie.hpp\"\n// \u975E\u6C38\u7D9A\u306A\u3089\
-    \u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int\
-    \ LOG, bool PERSISTENT, int NODES, typename UINT = u64,\n          typename SIZE_TYPE\
-    \ = int>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  struct Node {\n    int\
-    \ width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n  };\n\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n\n  Binary_Trie() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n\
-    \  np add(np root, UINT val, T cnt = 1) {\n    if (!root) root = new_node(0, 0);\n\
-    \    assert(0 <= val && val < (1LL << LOG));\n    return add_rec(root, LOG, val,\
-    \ cnt);\n  }\n\n  // f(val, cnt)\n  template <typename F>\n  void enumerate(np\
-    \ root, F f) {\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void\
-    \ {\n      if (ht == 0) {\n        f(val, root->cnt);\n        return;\n     \
-    \ }\n      np c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 1 \"ds/binary_trie.hpp\"\n// \u975E\u6C38\u7D9A\u306A\u3089\u3070\u30012 * \u8981\
+    \u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int LOG, bool PERSISTENT,\
+    \ int NODES, typename UINT = u64,\n          typename SIZE_TYPE = int>\nstruct\
+    \ Binary_Trie {\n  using T = SIZE_TYPE;\n  struct Node {\n    int width;\n   \
+    \ UINT val;\n    T cnt;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n\
+    \  using np = Node *;\n\n  Binary_Trie() : pid(0) { pool = new Node[NODES]; }\n\
+    \n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n  np add(np\
+    \ root, UINT val, T cnt = 1) {\n    if (!root) root = new_node(0, 0);\n    assert(0\
+    \ <= val && val < (1LL << LOG));\n    return add_rec(root, LOG, val, cnt);\n \
+    \ }\n\n  // f(val, cnt)\n  template <typename F>\n  void enumerate(np root, F\
+    \ f) {\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void {\n \
+    \     if (ht == 0) {\n        f(val, root->cnt);\n        return;\n      }\n \
+    \     np c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
     \ ht - (c->width)); }\n      c = root->r;\n      if (c) { dfs(dfs, c, val << (c->width)\
     \ | (c->val), ht - (c->width)); }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n\
     \  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067\u6607\u9806 k\
@@ -301,8 +307,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/set_xor_min.test.cpp
 layout: document

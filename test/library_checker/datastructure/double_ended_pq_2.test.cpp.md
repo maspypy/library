@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -176,51 +176,56 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\
-    \u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\
-    \u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\
-    \u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod \u306E\
-    \u985E\u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\
-    \u822C\u306B\u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\u3044\
-    \u5834\u5408\u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\u308B\
-    \u3053\u3068\u304C\u3067\u304D\u308B\u306E\u304C\u5229\u70B9\ntemplate <typename\
-    \ Monoid, bool PERSISTENT, int NODES>\nstruct Dynamic_SegTree_Sparse {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n\n  struct Node {\n    ll\
-    \ idx;\n    Node *l, *r;\n    X prod, x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n  vc<np> FREE;\n\n  Dynamic_SegTree_Sparse(ll\
-    \ L0, ll R0) : L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n\n\
-    \  // \u6728 dp \u306E\u30DE\u30FC\u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\
-    \u7528\u3059\u308B\u3068 MLE \u56DE\u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\
-    \u308B\n  // https://codeforces.com/problemset/problem/671/D\n  void free_subtree(np\
-    \ c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs,\
-    \ c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs,\
-    \ c);\n  }\n\n  np new_root() { return nullptr; }\n\n  np new_node(ll idx, const\
-    \ X x) {\n    if (!FREE.empty()) {\n      np c = POP(FREE);\n      c->idx = idx,\
-    \ c->l = c->r = nullptr;\n      c->prod = c->x = x;\n      return c;\n    }\n\
-    \    pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
-    \ = pool[pid].prod = x;\n    return &(pool[pid++]);\n  }\n\n  X prod(np root,\
-    \ ll l, ll r) {\n    assert(L0 <= l && l <= r && r <= R0);\n    if (l == r) return\
-    \ MX::unit();\n    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x);\n \
-    \   return x;\n  }\n\n  X prod_all(np root) { return prod(root, L0, R0); }\n\n\
-    \  np set(np root, ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return\
-    \ set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i, const X &x)\
-    \ {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root, L0, R0, i,\
-    \ x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check, ll L)\
-    \ {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\n// \u5E38\u306B\u307B\u3068\u3093\
+    \u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\u308B\u3053\u3068\u304C\u4FDD\
+    \u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\u7684\u30BB\u30B0\u6728\n// \u3057\
+    \u305F\u304C\u3063\u3066\u3001default_prod \u306E\u985E\u306F\u6301\u305F\u305B\
+    \u3089\u308C\u305A\u3001acted monoid \u3082\u4E00\u822C\u306B\u306F\u6271\u3048\
+    \u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\u3044\u5834\u5408\u306E\u30CE\u30FC\
+    \u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\u308B\u3053\u3068\u304C\u3067\u304D\
+    \u308B\u306E\u304C\u5229\u70B9\ntemplate <typename Monoid, bool PERSISTENT, int\
+    \ NODES>\nstruct Dynamic_SegTree_Sparse {\n  using MX = Monoid;\n  using X = typename\
+    \ MX::value_type;\n\n  struct Node {\n    ll idx;\n    Node *l, *r;\n    X prod,\
+    \ x;\n  };\n\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node\
+    \ *;\n  vc<np> FREE;\n\n  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0),\
+    \ pid(0) {\n    pool = new Node[NODES];\n  }\n\n  // \u6728 dp \u306E\u30DE\u30FC\
+    \u30B8\u306E\u3068\u304D\u306A\u3069\u306B\u4F7F\u7528\u3059\u308B\u3068 MLE \u56DE\
+    \u907F\u3067\u304D\u308B\u3053\u3068\u304C\u3042\u308B\n  // https://codeforces.com/problemset/problem/671/D\n\
+    \  void free_subtree(np c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n\
+    \      if (c->l) dfs(dfs, c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n\
+    \    };\n    dfs(dfs, c);\n  }\n\n  np new_root() { return nullptr; }\n\n  np\
+    \ new_node(ll idx, const X x) {\n    if (!FREE.empty()) {\n      np c = POP(FREE);\n\
+    \      c->idx = idx, c->l = c->r = nullptr;\n      c->prod = c->x = x;\n     \
+    \ return c;\n    }\n    pool[pid].idx = idx;\n    pool[pid].l = pool[pid].r =\
+    \ nullptr;\n    pool[pid].x = pool[pid].prod = x;\n    return &(pool[pid++]);\n\
+    \  }\n\n  X prod(np root, ll l, ll r) {\n    assert(L0 <= l && l <= r && r <=\
+    \ R0);\n    if (l == r) return MX::unit();\n    X x = MX::unit();\n    prod_rec(root,\
+    \ L0, R0, l, r, x);\n    return x;\n  }\n\n  X prod_all(np root) { return prod(root,\
+    \ L0, R0); }\n\n  np set(np root, ll i, const X &x) {\n    assert(L0 <= i && i\
+    \ < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root,\
+    \ ll i, const X &x) {\n    assert(L0 <= i && i < R0);\n    return multiply_rec(root,\
+    \ L0, R0, i, x);\n  }\n\n  template <typename F>\n  ll max_right(np root, F check,\
+    \ ll L) {\n    assert(L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n\
     \    return max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename\
     \ F>\n  ll min_left(np root, F check, ll R) {\n    assert(L0 <= R && R <= R0 &&\
     \ check(MX::unit()));\n    X x = MX::unit();\n    return min_left_rec(root, check,\
@@ -306,8 +311,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_pq_2.test.cpp
 layout: document

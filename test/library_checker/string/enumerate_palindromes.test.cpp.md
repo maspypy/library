@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/manacher.hpp
     title: string/manacher.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_palindromes
@@ -173,34 +173,39 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/manacher.hpp\"\n// \u6975\u5927\u56DE\u6587 [L,\
-    \ R) \u3092\u5217\u6319\u3059\u308B\r\ntemplate <typename STRING>\r\nvc<pair<int,\
-    \ int>> manacher(STRING s) {\r\n  int n = len(s);\r\n  assert(n > 0);\r\n  s.resize(2\
-    \ * n - 1);\r\n  FOR_R(i, n) s[2 * i] = s[i];\r\n  FOR(i, n - 1) s[2 * i + 1]\
-    \ = '~';\r\n  vector<int> dp(len(s));\r\n  int i = 0, j = 0;\r\n  while (i < len(s))\
-    \ {\r\n    while (i - j >= 0 && i + j < len(s) && s[i - j] == s[i + j]) ++j;\r\
-    \n    dp[i] = j;\r\n    int k = 1;\r\n    while (i - k >= 0 && i + k < len(s)\
-    \ && k + dp[i - k] < j) {\r\n      dp[i + k] = dp[i - k];\r\n      ++k;\r\n  \
-    \  }\r\n    i += k, j -= k;\r\n  }\r\n  FOR(i, len(dp)) if (!((i ^ dp[i]) & 1))--\
-    \ dp[i];\r\n  vc<pair<int, int>> res;\r\n  res.reserve(len(dp));\r\n  FOR(i, len(dp))\
-    \ {\r\n    if (dp[i] == 0) continue;\r\n    int l = (i - dp[i] + 1) / 2;\r\n \
-    \   int r = (i + dp[i] + 1) / 2;\r\n    res.eb(l, r);\r\n  }\r\n  return res;\r\
-    \n}\r\n#line 5 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\n\
-    \r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 1 \"string/manacher.hpp\"\n// \u6975\u5927\u56DE\u6587 [L, R) \u3092\u5217\u6319\
+    \u3059\u308B\r\ntemplate <typename STRING>\r\nvc<pair<int, int>> manacher(STRING\
+    \ s) {\r\n  int n = len(s);\r\n  assert(n > 0);\r\n  s.resize(2 * n - 1);\r\n\
+    \  FOR_R(i, n) s[2 * i] = s[i];\r\n  FOR(i, n - 1) s[2 * i + 1] = '~';\r\n  vector<int>\
+    \ dp(len(s));\r\n  int i = 0, j = 0;\r\n  while (i < len(s)) {\r\n    while (i\
+    \ - j >= 0 && i + j < len(s) && s[i - j] == s[i + j]) ++j;\r\n    dp[i] = j;\r\
+    \n    int k = 1;\r\n    while (i - k >= 0 && i + k < len(s) && k + dp[i - k] <\
+    \ j) {\r\n      dp[i + k] = dp[i - k];\r\n      ++k;\r\n    }\r\n    i += k, j\
+    \ -= k;\r\n  }\r\n  FOR(i, len(dp)) if (!((i ^ dp[i]) & 1))-- dp[i];\r\n  vc<pair<int,\
+    \ int>> res;\r\n  res.reserve(len(dp));\r\n  FOR(i, len(dp)) {\r\n    if (dp[i]\
+    \ == 0) continue;\r\n    int l = (i - dp[i] + 1) / 2;\r\n    int r = (i + dp[i]\
+    \ + 1) / 2;\r\n    res.eb(l, r);\r\n  }\r\n  return res;\r\n}\r\n#line 5 \"test/library_checker/string/enumerate_palindromes.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  STR(S);\r\n  auto LR = manacher(S);\r\n  vc<int> ANS(len(S)\
     \ * 2 - 1);\r\n  for (auto&& [l, r]: LR) { ANS[l + r - 1] = r - l; }\r\n  print(ANS);\r\
     \n}\r\n\r\nsigned main() {\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_palindromes\"\
@@ -215,8 +220,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/enumerate_palindromes.test.cpp
 layout: document

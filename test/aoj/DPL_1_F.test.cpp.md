@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/knapsack01.hpp
     title: knapsack/knapsack01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_F
@@ -172,30 +172,36 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"knapsack/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\
-    \u5217\u6319\n\u30FBO(2^n) \u3067\u3001(wt, val) \u3092\u5168\u5217\u6319 + wt\
-    \ \u3067\u30BD\u30FC\u30C8\n\u30FBremove extra = true \u2192 val \u304C\u5897\u52A0\
-    \u306B\u306A\u308B\u3068\u3053\u308D\u3060\u3051\u6B8B\u3059\n*/\ntemplate <typename\
-    \ WT, typename VAL>\nvc<pair<WT, VAL>> knapsack01_gen_all(vc<WT> weight, vc<VAL>\
-    \ val,\n                                     bool remove_extra) {\n  int n = len(weight);\n\
-    \  using P = pair<WT, VAL>;\n  vc<P> dp;\n  dp.eb(0, 0);\n  FOR(i, n) {\n    vc<P>\
-    \ tmp(len(dp));\n    FOR(j, len(dp)) tmp[j] = {dp[j].fi + weight[i], dp[j].se\
-    \ + val[i]};\n    vc<P> res;\n    merge(all(dp), all(tmp), back_inserter(res));\n\
-    \    swap(dp, res);\n  }\n  if (!remove_extra) return dp;\n  vc<P> res;\n  res.reserve(len(dp));\n\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 1 \"knapsack/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\u6319\n\u30FB\
+    O(2^n) \u3067\u3001(wt, val) \u3092\u5168\u5217\u6319 + wt \u3067\u30BD\u30FC\u30C8\
+    \n\u30FBremove extra = true \u2192 val \u304C\u5897\u52A0\u306B\u306A\u308B\u3068\
+    \u3053\u308D\u3060\u3051\u6B8B\u3059\n*/\ntemplate <typename WT, typename VAL>\n\
+    vc<pair<WT, VAL>> knapsack01_gen_all(vc<WT> weight, vc<VAL> val,\n           \
+    \                          bool remove_extra) {\n  int n = len(weight);\n  using\
+    \ P = pair<WT, VAL>;\n  vc<P> dp;\n  dp.eb(0, 0);\n  FOR(i, n) {\n    vc<P> tmp(len(dp));\n\
+    \    FOR(j, len(dp)) tmp[j] = {dp[j].fi + weight[i], dp[j].se + val[i]};\n   \
+    \ vc<P> res;\n    merge(all(dp), all(tmp), back_inserter(res));\n    swap(dp,\
+    \ res);\n  }\n  if (!remove_extra) return dp;\n  vc<P> res;\n  res.reserve(len(dp));\n\
     \  for (auto&& [w, v]: dp) {\n    while (len(res) && res.back().fi == w) res.pop_back();\n\
     \    if (len(res) && res.back().se >= v) continue;\n    res.eb(w, v);\n  }\n \
     \ return res;\n}\n\ntemplate <typename WT, typename VAL>\nVAL knapsack01(vc<WT>\
@@ -240,8 +246,8 @@ data:
   isVerificationFile: true
   path: test/aoj/DPL_1_F.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/DPL_1_F.test.cpp
 layout: document

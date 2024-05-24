@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -176,47 +176,53 @@ data:
     \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
     \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
     \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#define SHOW(x) print(#x, \"=\", (x)), flush()\r\n\
-    \r\n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\
-    #define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)\
-    \   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)   \
-    \   \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)\
-    \   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)  \
-    \    \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate\
-    \ <class Monoid>\r\nstruct Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\n\
-    \  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\n\
-    \  Disjoint_Sparse_Table() {}\r\n  Disjoint_Sparse_Table(int n) { build(n); }\r\
-    \n  template <typename F>\r\n  Disjoint_Sparse_Table(int n, F f) {\r\n    build(n,\
-    \ f);\r\n  }\r\n  Disjoint_Sparse_Table(const vc<X>& v) { build(v); }\r\n\r\n\
-    \  void build(int m) {\r\n    build(m, [](int i) -> X { return MX::unit(); });\r\
-    \n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v), [&](int i) -> X {\
-    \ return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void build(int m, F\
-    \ f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(log);\r\
-    \n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\n    FOR(i, 1, log)\
-    \ {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n      int b = 1 << i;\r\
-    \n      for (int m = b; m <= n; m += 2 * b) {\r\n        int L = m - b, R = min(n,\
-    \ m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n\
-    \        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n  \
-    \  }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return MX::unit();\r\
-    \n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k = topbit(L ^ R);\r\
-    \n    return MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\
-    \n  int max_right(const F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\
-    \n    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok +\
-    \ 1 < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
-    \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
-    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 2 \"alg/monoid/min.hpp\"\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
+    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
+    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
+    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
+    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
+    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
+    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
+    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
+    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
+    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
+    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
+    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
+    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
+    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
+    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
+    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
+    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
+    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
+    \ 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate <class Monoid>\r\
+    \nstruct Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\n  using X = typename\
+    \ MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\n  Disjoint_Sparse_Table()\
+    \ {}\r\n  Disjoint_Sparse_Table(int n) { build(n); }\r\n  template <typename F>\r\
+    \n  Disjoint_Sparse_Table(int n, F f) {\r\n    build(n, f);\r\n  }\r\n  Disjoint_Sparse_Table(const\
+    \ vc<X>& v) { build(v); }\r\n\r\n  void build(int m) {\r\n    build(m, [](int\
+    \ i) -> X { return MX::unit(); });\r\n  }\r\n  void build(const vc<X>& v) {\r\n\
+    \    build(len(v), [&](int i) -> X { return v[i]; });\r\n  }\r\n  template <typename\
+    \ F>\r\n  void build(int m, F f) {\r\n    n = m, log = 1;\r\n    while ((1 <<\
+    \ log) < n) ++log;\r\n    dat.resize(log);\r\n    dat[0].reserve(n);\r\n    FOR(i,\
+    \ n) dat[0].eb(f(i));\r\n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\n \
+    \     v = dat[0];\r\n      int b = 1 << i;\r\n      for (int m = b; m <= n; m\
+    \ += 2 * b) {\r\n        int L = m - b, R = min(n, m + b);\r\n        FOR_R(j,\
+    \ L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n        FOR(j, m, R - 1) v[j\
+    \ + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n    }\r\n  }\r\n\r\n  X prod(int\
+    \ L, int R) {\r\n    if (L == R) return MX::unit();\r\n    --R;\r\n    if (L ==\
+    \ R) return dat[0][L];\r\n    int k = topbit(L ^ R);\r\n    return MX::op(dat[k][L],\
+    \ dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\n  int max_right(const F check,\
+    \ int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\n    if (L\
+    \ == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok + 1 < ng) {\r\
+    \n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\n     \
+    \ if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\
+    \n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n    assert(0\
+    \ <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return 0;\r\n    int\
+    \ ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k = (ok + ng) / 2;\r\
+    \n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\n      if (!bl)\
+    \ ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 2 \"alg/monoid/min.hpp\"\
     \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
     \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
     \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
@@ -238,8 +244,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/staticrmq_dst.test.cpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-24 21:01:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/staticrmq_dst.test.cpp
 layout: document
