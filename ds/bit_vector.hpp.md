@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - icon: ':x:'
@@ -24,10 +24,10 @@ data:
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':x:'
@@ -74,7 +74,7 @@ data:
     title: test_atcoder/abc324g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
@@ -103,7 +103,7 @@ data:
   - graph/ds/tree_wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
   timestamp: '2022-12-12 13:31:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc324g.test.cpp
   - test_atcoder/abc127f_1.test.cpp

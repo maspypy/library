@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/rollback_lazy_segtree.hpp
     title: ds/segtree/rollback_lazy_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   - icon: ':x:'
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/add_remove_query.test.cpp
     title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
     title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - icon: ':x:'
