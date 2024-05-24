@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
