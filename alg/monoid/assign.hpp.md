@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':x:'
@@ -21,13 +21,13 @@ data:
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_I.test.cpp
     title: test/aoj/DSL_2_I.test.cpp
   - icon: ':heavy_check_mark:'
