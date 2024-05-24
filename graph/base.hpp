@@ -150,6 +150,8 @@ struct Graph {
 
   // G における頂点 V[i] が、新しいグラフで i になるようにする
   // {G, es}
+  // sum(deg(v)) の計算量になっていて、
+  // 新しいグラフの n+m より大きい可能性があるので注意
   Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {
     if (len(new_idx) != N) new_idx.assign(N, -1);
     int n = len(V);

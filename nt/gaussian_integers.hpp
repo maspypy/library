@@ -53,6 +53,17 @@ struct Gaussian_Integer {
     return a;
   }
 
+  G pow(ll n) const {
+    assert(n >= 0);
+    G ret(1), mul(*this);
+    while (n > 0) {
+      if (n & 1) ret *= mul;
+      mul *= mul;
+      n >>= 1;
+    }
+    return ret;
+  }
+
   // (g,x,y) s.t ax+by=g
   static tuple<G, G, G> extgcd(G a, G b) {
     if (b.x != 0 || b.y != 0) {
