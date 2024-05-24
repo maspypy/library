@@ -2,8 +2,8 @@
 #include "graph/base.hpp"
 
 // https://en.wikipedia.org/wiki/Bipolar_orientation
-// 順列 p を求める. s=p[0], ..., p[n-1]=t.
-// この順で向き付けると任意の v に対して svt パスが存在.
+// 順列 p を求める. p[s]=0,p[t]=n-1.
+// p[u]<p[v] となる向きに辺を向き付けると任意の v に対して svt パスが存在.
 // 存在条件：BCT で全部の成分を通る st パスがある 不可能ならば empty をかえす.
 template <typename GT>
 vc<int> st_numbering(GT &G, int s, int t) {
@@ -73,5 +73,29 @@ vc<int> st_numbering(GT &G, int s, int t) {
     if (i > 0 && !l) return {};
     if (i < N - 1 && !r) return {};
   }
-  return A;
+  vc<int> res(N);
+  FOR(i, N) res[A[i]] = i;
+  return res;
+}
+
+bool check_st_numbering(Graph<int, 0> G, int s, int t) {
+  int N = G.N;
+  assert(N >= 2);
+
+  UnionFind uf(N);
+  for (auto &e: G.edges) uf.merge(e.frm, e.to);
+  if (uf.n_comp >= 2) return 0; // disconnected
+
+  // BCT において st パスがすべての block を通ることが必要
+  auto BCT = block_cut(G);
+  auto [dist, par] = bfs01<int>(G, s);
+  vc<int> path = restore_path(par, t);
+
+  vc<int> vis(BCT.N);
+  for (auto &x: path) vis[x] = 1;
+
+  FOR(i, N, BCT.N) {
+    if (!vis[i]) return 0;
+  }
+  return 1;
 }

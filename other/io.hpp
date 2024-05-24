@@ -230,7 +230,18 @@ using fastio::read;
 using fastio::print;
 using fastio::flush;
 
-#define SHOW(x) print(#x, "=", (x)), flush()
+#if defined(LOCAL)
+#define SHOW(...) \
+  SHOW_IMPL(__VA_ARGS__, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)
+#define SHOW_IMPL(_1, _2, _3, _4, NAME, ...) NAME
+#define SHOW1(x) print(#x, "=", (x)), flush()
+#define SHOW2(x, y) print(#x, "=", (x), #y, "=", (y)), flush()
+#define SHOW3(x, y, z) print(#x, "=", (x), #y, "=", (y), #z, "=", (z)), flush()
+#define SHOW4(x, y, z, w) \
+  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w)), flush()
+#else
+#define SHOW(...)
+#endif
 
 #define INT(...)   \
   int __VA_ARGS__; \

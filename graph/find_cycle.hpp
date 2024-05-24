@@ -76,47 +76,38 @@ pair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {
   vc<bool> used_e(M);
   vc<int> par(N, -1); // edge idx
 
-  auto dfs = [&](auto& dfs, int v, int d) -> int {
+  auto dfs = [&](auto& dfs, int v, int d) -> void {
     dep[v] = d;
     for (auto&& e: G[v]) {
-      if (used_e[e.id]) continue;
-      if (dep[e.to] != -1) return v;
+      if (dep[e.to] != -1) continue;
       used_e[e.id] = 1;
       par[e.to] = e.id;
-      int res = dfs(dfs, e.to, d + 1);
-      if (res != -1) return res;
+      dfs(dfs, e.to, d + 1);
     }
-    return -1;
   };
 
   vc<int> vs, es;
   FOR(v, N) {
-    if (dep[v] != -1) continue;
-    // w has back edge
-    int w = dfs(dfs, v, 0);
-    if (w == -1) continue;
-    int b = -1, back_e = -1;
-    while (1) {
-      for (auto&& e: G[w]) {
-        if (used_e[e.id]) continue;
-        if (dep[e.to] > dep[w] || dep[e.to] == -1) continue;
-        b = w, back_e = e.id;
-      }
-      if (w == v) break;
-      auto& e = G.edges[par[w]];
-      w = e.frm + e.to - w;
-    }
-    int a = G.edges[back_e].frm + G.edges[back_e].to - b;
-    es.eb(back_e), vs.eb(a);
-    while (1) {
-      int x = vs.back();
-      auto& e = G.edges[es.back()];
-      int y = e.frm + e.to - x;
-      if (y == a) break;
-      vs.eb(y);
-      es.eb(par[y]);
-    }
-    return {vs, es};
+    if (dep[v] == -1) dfs(dfs, v, 0);
+  }
+  int mi_len = infty<int>;
+  int back_e = -1;
+  for (auto& e: G.edges) {
+    if (used_e[e.id]) continue;
+    int d = abs(dep[e.frm] - dep[e.to]);
+    if (chmin(mi_len, d)) back_e = e.id;
+  }
+  if (back_e == -1) return {vs, es};
+  int a = G.edges[back_e].frm, b = G.edges[back_e].to;
+  if (dep[a] > dep[b]) swap(a, b);
+  es.eb(back_e), vs.eb(a);
+  while (1) {
+    int x = vs.back();
+    auto& e = G.edges[es.back()];
+    int y = e.frm + e.to - x;
+    if (y == a) break;
+    vs.eb(y);
+    es.eb(par[y]);
   }
   return {vs, es};
 }
