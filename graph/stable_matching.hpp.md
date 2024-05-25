@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2288.test.cpp
     title: test/yukicoder/2288.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/stable_matching.hpp\"\n\n// \u30B0\u30EB\u30FC\u30D7\
@@ -53,7 +53,7 @@ data:
   path: graph/stable_matching.hpp
   requiredBy: []
   timestamp: '2023-11-30 16:32:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2288.test.cpp
 documentation_of: graph/stable_matching.hpp
