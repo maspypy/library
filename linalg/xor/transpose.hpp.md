@@ -5,11 +5,11 @@ data:
   - icon: ':x:'
     path: alg/monoid/merge_vector_space.hpp
     title: alg/monoid/merge_vector_space.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/vector_space_intersection.test.cpp
     title: test/library_checker/matrix/vector_space_intersection.test.cpp
   - icon: ':x:'

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
   - icon: ':question:'

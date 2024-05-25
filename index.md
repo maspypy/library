@@ -902,7 +902,7 @@ data:
     - icon: ':question:'
       path: graph/two_edge_component.hpp
       title: graph/two_edge_component.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
     - icon: ':x:'
@@ -1157,7 +1157,7 @@ data:
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/blackbox/det.hpp
       title: linalg/blackbox/det.hpp
     - icon: ':question:'
@@ -1171,19 +1171,19 @@ data:
       title: linalg/blackbox/vandermonde.hpp
   - name: linalg
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/characteristic_poly.hpp
       title: linalg/characteristic_poly.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/det.hpp
       title: linalg/det.hpp
     - icon: ':x:'
       path: linalg/det_A_plus_xB.hpp
       title: linalg/det_A_plus_xB.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/hafnian.hpp
       title: linalg/hafnian.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/matrix_inv.hpp
       title: linalg/matrix_inv.hpp
     - icon: ':x:'
@@ -1192,7 +1192,7 @@ data:
     - icon: ':question:'
       path: linalg/matrix_mul.hpp
       title: linalg/matrix_mul.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/matrix_pow.hpp
       title: linalg/matrix_pow.hpp
     - icon: ':question:'
@@ -1201,7 +1201,7 @@ data:
     - icon: ':x:'
       path: linalg/rot90.hpp
       title: linalg/rot90.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
     - icon: ':x:'
@@ -1221,7 +1221,7 @@ data:
     - icon: ':question:'
       path: linalg/xor/transpose.hpp
       title: linalg/xor/transpose.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/xor/vector_space.hpp
       title: linalg/xor/vector_space.hpp
   - name: mod
@@ -1328,7 +1328,7 @@ data:
     - icon: ':question:'
       path: mod/range_freq_of_linear.hpp
       title: mod/range_freq_of_linear.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: mod/tetration.hpp
       title: mod/tetration.hpp
   - name: .
@@ -1406,7 +1406,7 @@ data:
     - icon: ':x:'
       path: nt/mobius_table.hpp
       title: nt/mobius_table.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/multiplicative_sum.hpp
       title: nt/multiplicative_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1439,7 +1439,7 @@ data:
     - icon: ':x:'
       path: nt/sigma_0_sum.hpp
       title: nt/sigma_0_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/stern_brocot_tree.hpp
       title: nt/stern_brocot_tree.hpp
     - icon: ':x:'
@@ -1764,10 +1764,10 @@ data:
     - icon: ':warning:'
       path: seq/interpolate_periodic_sequence.hpp
       title: seq/interpolate_periodic_sequence.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp.hpp
       title: seq/interpolate_poly_exp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
     - icon: ':question:'
@@ -1782,7 +1782,7 @@ data:
     - icon: ':x:'
       path: seq/kth_term_of_p_recursive.hpp
       title: seq/kth_term_of_p_recursive.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/limit_poly_exp_sum.hpp
       title: seq/limit_poly_exp_sum.hpp
     - icon: ':question:'
@@ -1826,13 +1826,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/simple_permutations.hpp
       title: seq/famous/simple_permutations.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/stirling_number_1.hpp
       title: seq/famous/stirling_number_1.hpp
     - icon: ':question:'
       path: seq/famous/stirling_number_2.hpp
       title: seq/famous/stirling_number_2.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/famous/stirling_number_query.hpp
       title: seq/famous/stirling_number_query.hpp
     - icon: ':x:'
@@ -2660,83 +2660,83 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sps_exp.test.cpp
       title: test/library_checker/math/sps_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sqrt_mod.test.cpp
       title: test/library_checker/math/sqrt_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stern-brocot.test.cpp
       title: test/library_checker/math/stern-brocot.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_mod_p_1.test.cpp
       title: test/library_checker/math/stirling_mod_p_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_mod_p_2.test.cpp
       title: test/library_checker/math/stirling_mod_p_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
       title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
       title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
       title: test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
       title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
       title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
       title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
       title: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/tetration.test.cpp
       title: test/library_checker/math/tetration.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/totient_sum.test.cpp
       title: test/library_checker/math/totient_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/twosat.test.cpp
       title: test/library_checker/math/twosat.test.cpp
   - name: test/library_checker/matix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matix/pow_of_matrix.test.cpp
       title: test/library_checker/matix/pow_of_matrix.test.cpp
   - name: test/library_checker/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/charactereistic_poly.test.cpp
       title: test/library_checker/matrix/charactereistic_poly.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/det_mod.test.cpp
       title: test/library_checker/matrix/det_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
       title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/inverse_matrix.test.cpp
       title: test/library_checker/matrix/inverse_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/matrix_det.test.cpp
       title: test/library_checker/matrix/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/matrix_product.test.cpp
       title: test/library_checker/matrix/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/matrix_product_mod2.test.cpp
       title: test/library_checker/matrix/matrix_product_mod2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/solve_linear.test.cpp
       title: test/library_checker/matrix/solve_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/sparse_matrix_det.test.cpp
       title: test/library_checker/matrix/sparse_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/matrix/vector_space_intersection.test.cpp
       title: test/library_checker/matrix/vector_space_intersection.test.cpp
   - name: test/library_checker/polynomial

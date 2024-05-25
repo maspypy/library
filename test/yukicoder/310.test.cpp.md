@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
   - icon: ':question:'
