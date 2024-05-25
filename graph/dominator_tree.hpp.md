@@ -9,12 +9,12 @@ data:
     title: graph/reverse_graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/domninator_tree.test.cpp
     title: test/library_checker/graph/domninator_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/757/problem/F
@@ -127,7 +127,7 @@ data:
   path: graph/dominator_tree.hpp
   requiredBy: []
   timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/domninator_tree.test.cpp
 documentation_of: graph/dominator_tree.hpp
