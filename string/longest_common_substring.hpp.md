@@ -12,7 +12,7 @@ data:
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/string/longest_common_substring.test.cpp
     title: test/library_checker/string/longest_common_substring.test.cpp
   - icon: ':heavy_check_mark:'
