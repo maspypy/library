@@ -1,5 +1,9 @@
 
 #include "graph/base.hpp"
+#include "ds/unionfind/unionfind.hpp"
+#include "graph/block_cut.hpp"
+#include "graph/shortest_path/bfs01.hpp"
+#include "graph/shortest_path/restore_path.hpp"
 
 // https://en.wikipedia.org/wiki/Bipolar_orientation
 // 順列 p を求める. p[s]=0,p[t]=n-1.
