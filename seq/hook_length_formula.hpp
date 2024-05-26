@@ -1,5 +1,7 @@
 #pragma once
 
+#include "mod/modint.hpp"
+
 template <typename mint>
 mint hook_length_formula(vc<int> A) {
   if (len(A) == 0) return 1;

@@ -1,9 +1,15 @@
 #include "mod/modint.hpp"
 #include "poly/ntt.hpp"
 #include "poly/middle_product.hpp"
+#include "random/base.hpp"
 
+// S が長い方で、S から T を探す
 vc<bool> wildcard_pattern_matching(string S, string T, char WILD = '?') {
+  assert(WILD == '?');
   using mint = modint998;
+
+  ll shift = RNG(0, mint::get_mod());
+
   int N = len(S), M = len(T);
   int mi = 1024;
   for (auto&& x: S)
@@ -11,8 +17,8 @@ vc<bool> wildcard_pattern_matching(string S, string T, char WILD = '?') {
   for (auto&& x: T)
     if (x != '?') chmin(mi, x);
   vc<mint> f1(N), g1(M);
-  FOR(i, N) f1[i] = (S[i] == '?' ? 0 : S[i] - mi + 1);
-  FOR(i, M) g1[i] = (T[i] == '?' ? 0 : T[i] - mi + 1);
+  FOR(i, N) f1[i] = (S[i] == '?' ? 0 : S[i] - mi + 1 + shift);
+  FOR(i, M) g1[i] = (T[i] == '?' ? 0 : T[i] - mi + 1 + shift);
   vc<mint> f2(N), f3(N), g2(M), g3(M);
   FOR(i, N) f2[i] = f1[i] * f1[i], f3[i] = f2[i] * f1[i];
   FOR(i, M) g2[i] = g1[i] * g1[i], g3[i] = g2[i] * g1[i];
