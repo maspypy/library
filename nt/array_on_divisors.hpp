@@ -102,40 +102,40 @@ struct Array_On_Divisors {
     }
   }
 
-  // SUB(T&a,Tb)->void : a-=b
+  // (Ta,Tb)->T : a-b
   template <typename F>
   void divisor_mobius(F SUB) {
     ll k = 1;
     for (auto&& [p, e]: pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR_R(j, mod - k) { SUB(dat[mod * i + j + k], dat[mod * i + j]); }
+        FOR_R(j, mod - k) { dat[mod * i + j + k] = SUB(dat[mod * i + j + k], dat[mod * i + j]); }
       }
       k *= (e + 1);
     }
   }
 
-  // ADD(T&a,Tb)->void : a+=b
+  // ADD(Ta,Tb)->T : a+b
   template <typename F>
   void multiplier_zeta(F ADD) {
     ll k = 1;
     for (auto&& [p, e]: pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR_R(j, mod - k) { ADD(dat[mod * i + j], dat[mod * i + j + k]); }
+        FOR_R(j, mod - k) { dat[mod * i + j] = ADD(dat[mod * i + j], dat[mod * i + j + k]); }
       }
       k *= (e + 1);
     }
   }
 
-  // SUB(T&a,Tb)->void : a-=b
+  // SUB(Ta,Tb)->T : a-=b
   template <typename F>
   void multiplier_mobius(F SUB) {
     ll k = 1;
     for (auto&& [p, e]: pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR(j, mod - k) { SUB(dat[mod * i + j], dat[mod * i + j + k]); }
+        FOR(j, mod - k) { dat[mod * i + j] = SUB(dat[mod * i + j], dat[mod * i + j + k]); }
       }
       k *= (e + 1);
     }
@@ -148,7 +148,7 @@ struct Array_On_Divisors {
     for (auto&& [p, e]: pf) {
       ll mod = k * (e + 1);
       FOR(i, len(divs) / mod) {
-        FOR(j, mod - k) { ADD(dat[mod * i + j + k], dat[mod * i + j]); }
+        FOR(j, mod - k) { dat[mod * i + j + k] = ADD(dat[mod * i + j + k], dat[mod * i + j]); }
       }
       k *= (e + 1);
     }
