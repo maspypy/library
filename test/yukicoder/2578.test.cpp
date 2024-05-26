@@ -23,7 +23,7 @@ void solve() {
     W = W * C + D;
   }
 
-  X.divisor_zeta([&](mint& a, mint b) -> void { a *= b; });
+  X.divisor_zeta([&](mint a, mint b) -> mint { return a * b; });
   for (auto& x: X.dat) x -= mint(1);
   X.divisor_mobius();
   print(X[M]);
