@@ -85,6 +85,7 @@ vc<int> st_numbering(GT &G, int s, int t) {
 bool check_st_numbering(Graph<int, 0> G, int s, int t) {
   int N = G.N;
   assert(N >= 2);
+  if (s == t) return 0;
 
   UnionFind uf(N);
   for (auto &e: G.edges) uf.merge(e.frm, e.to);
@@ -92,7 +93,7 @@ bool check_st_numbering(Graph<int, 0> G, int s, int t) {
 
   // BCT において st パスがすべての block を通ることが必要
   auto BCT = block_cut(G);
-  auto [dist, par] = bfs01<int>(G, s);
+  auto [dist, par] = bfs01<int>(BCT, s);
   vc<int> path = restore_path(par, t);
 
   vc<int> vis(BCT.N);
