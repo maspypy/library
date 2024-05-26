@@ -358,23 +358,24 @@ data:
     \ {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n\
     \      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j\
     \ + k] -= dat[mod * i + j]; }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  //\
-    \ SUB(T&a,Tb)->void : a-=b\n  template <typename F>\n  void divisor_mobius(F SUB)\
-    \ {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n\
-    \      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { SUB(dat[mod * i\
-    \ + j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\n\
-    \  // ADD(T&a,Tb)->void : a+=b\n  template <typename F>\n  void multiplier_zeta(F\
-    \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { ADD(dat[mod\
-    \ * i + j], dat[mod * i + j + k]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // SUB(T&a,Tb)->void : a-=b\n  template <typename F>\n  void multiplier_mobius(F\
-    \ SUB) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { SUB(dat[mod\
-    \ * i + j], dat[mod * i + j + k]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // ADD(T&a,Tb)->void : a+=b\n  template <typename F>\n  void divisor_zeta(F\
-    \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
-    \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { ADD(dat[mod\
-    \ * i + j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\
-    \n  // (d, fd)\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
+    \ (Ta,Tb)->T : a-b\n  template <typename F>\n  void divisor_mobius(F SUB) {\n\
+    \    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n \
+    \     FOR(i, len(divs) / mod) {\n        FOR_R(j, mod - k) { dat[mod * i + j +\
+    \ k] = SUB(dat[mod * i + j + k], dat[mod * i + j]); }\n      }\n      k *= (e\
+    \ + 1);\n    }\n  }\n\n  // ADD(Ta,Tb)->T : a+b\n  template <typename F>\n  void\
+    \ multiplier_zeta(F ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n   \
+    \   ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n        FOR_R(j, mod\
+    \ - k) { dat[mod * i + j] = ADD(dat[mod * i + j], dat[mod * i + j + k]); }\n \
+    \     }\n      k *= (e + 1);\n    }\n  }\n\n  // SUB(Ta,Tb)->T : a-=b\n  template\
+    \ <typename F>\n  void multiplier_mobius(F SUB) {\n    ll k = 1;\n    for (auto&&\
+    \ [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs) / mod) {\n\
+    \        FOR(j, mod - k) { dat[mod * i + j] = SUB(dat[mod * i + j], dat[mod *\
+    \ i + j + k]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\n  // ADD(T&a,Tb)->void\
+    \ : a+=b\n  template <typename F>\n  void divisor_zeta(F ADD) {\n    ll k = 1;\n\
+    \    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs)\
+    \ / mod) {\n        FOR(j, mod - k) { dat[mod * i + j + k] = ADD(dat[mod * i +\
+    \ j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\n \
+    \ // (d, fd)\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
     \ { f(divs[i], dat[i]); }\n  }\n};\n#line 10 \"test_atcoder/abc335g.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, P);\n  auto pfs = factor(P - 1);\n\n  auto F = [&](ll\
     \ a) -> ll {\n    ll exp = P - 1;\n    for (auto& [p, e]: pfs) {\n      while\
@@ -409,7 +410,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc335g.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-27 02:22:28+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc335g.test.cpp
