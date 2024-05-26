@@ -127,26 +127,26 @@ data:
     \ cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n#if defined(LOCAL)\r\
     \n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\
     \n#define SHOW_IMPL(_1, _2, _3, _4, NAME, ...) NAME\r\n#define SHOW1(x) print(#x,\
-    \ \"=\", (x)), flush()\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\"\
-    , (y)), flush()\r\n#define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y),\
-    \ #z, \"=\", (z)), flush()\r\n#define SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\"\
-    , (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w)), flush()\r\n#else\r\n#define\
-    \ SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 1 \"string/split.hpp\"\nvc<string> split(string S, char sep = ',') {\r\n  vc<string>\
-    \ res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (s == sep)\r\n      res.eb(\"\
-    \");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\n}\r\n\r\n\
-    vc<string> split(string S, string seps = \" ,\") {\r\n  vc<string> res = {\"\"\
-    };\r\n  for (auto&& s: S) {\r\n    if (count(all(seps), s))\r\n      res.eb(\"\
-    \");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\n}\r\n#line\
-    \ 6 \"test/aoj/ITP1_9_A.test.cpp\"\n\nvoid solve() {\n  STR(T);\n  string S;\n\
-    \  ll ANS = 0;\n  while (getline(cin, S)) {\n    for (auto&& token: split(S, '\
-    \ ')) {\n      for (auto&& t: token)\n        if (isupper(t)) t = tolower(t);\n\
-    \      ANS += token == T;\n    }\n  }\n  print(ANS);\n}\n\nsigned main() {\n \
-    \ cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ \"=\", (x))\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y))\r\n\
+    #define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z))\r\
+    \n#define SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w))\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n\
+    void YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) {\
+    \ YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid\
+    \ No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"\
+    no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line 1 \"string/split.hpp\"\n\
+    vc<string> split(string S, char sep = ',') {\r\n  vc<string> res = {\"\"};\r\n\
+    \  for (auto&& s: S) {\r\n    if (s == sep)\r\n      res.eb(\"\");\r\n    else\r\
+    \n      res.back() += s;\r\n  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string\
+    \ S, string seps = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s:\
+    \ S) {\r\n    if (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n\
+    \      res.back() += s;\r\n  }\r\n  return res;\r\n}\r\n#line 6 \"test/aoj/ITP1_9_A.test.cpp\"\
+    \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
+    \ S)) {\n    for (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n\
+    \        if (isupper(t)) t = tolower(t);\n      ANS += token == T;\n    }\n  }\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n#include \"string/split.hpp\"\
     \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
@@ -162,7 +162,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-27 02:49:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_9_A.test.cpp

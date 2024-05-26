@@ -37,14 +37,14 @@ data:
     \  print(forward<Tail>(tail)...);\r\n}\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...)\
     \ \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n\
     #define SHOW_IMPL(_1, _2, _3, _4, NAME, ...) NAME\r\n#define SHOW1(x) print(#x,\
-    \ \"=\", (x)), flush()\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\"\
-    , (y)), flush()\r\n#define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y),\
-    \ #z, \"=\", (z)), flush()\r\n#define SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\"\
-    , (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w)), flush()\r\n#else\r\n#define\
-    \ SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n"
+    \ \"=\", (x))\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y))\r\n\
+    #define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z))\r\
+    \n#define SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w))\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n\
+    void YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) {\
+    \ YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid\
+    \ No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"\
+    no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n"
   code: "#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define\
     \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define STR(...)\
     \      \\\r\n  string __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define CHR(...)\
@@ -71,19 +71,19 @@ data:
     \  print(forward<Tail>(tail)...);\r\n}\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...)\
     \ \\\r\n  SHOW_IMPL(__VA_ARGS__, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n\
     #define SHOW_IMPL(_1, _2, _3, _4, NAME, ...) NAME\r\n#define SHOW1(x) print(#x,\
-    \ \"=\", (x)), flush()\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\"\
-    , (y)), flush()\r\n#define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y),\
-    \ #z, \"=\", (z)), flush()\r\n#define SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\"\
-    , (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w)), flush()\r\n#else\r\n#define\
-    \ SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n"
+    \ \"=\", (x))\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y))\r\n\
+    #define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z))\r\
+    \n#define SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w))\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n\
+    void YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) {\
+    \ YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid\
+    \ No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"\
+    no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n"
   dependsOn: []
   isVerificationFile: false
   path: other/io2.hpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-27 02:49:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ITP1_9_A.test.cpp
