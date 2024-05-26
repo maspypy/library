@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/st_numbering.hpp
+    title: graph/st_numbering.hpp
   - icon: ':warning:'
     path: graph/tree_center.hpp
     title: graph/tree_center.hpp
@@ -33,6 +36,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/restore_path.hpp
   requiredBy:
+  - graph/st_numbering.hpp
   - graph/tree_center.hpp
   - graph/tree_diameter.hpp
   timestamp: '2022-10-21 18:11:46+09:00'

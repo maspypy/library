@@ -16,6 +16,9 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
@@ -186,40 +189,50 @@ data:
     \ FOR(i, n - m + 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
     \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
     \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
-    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 4 \"string/wildcard_pattern_matching.hpp\"\
-    \n\nvc<bool> wildcard_pattern_matching(string S, string T, char WILD = '?') {\n\
-    \  using mint = modint998;\n  int N = len(S), M = len(T);\n  int mi = 1024;\n\
-    \  for (auto&& x: S)\n    if (x != '?') chmin(mi, x);\n  for (auto&& x: T)\n \
-    \   if (x != '?') chmin(mi, x);\n  vc<mint> f1(N), g1(M);\n  FOR(i, N) f1[i] =\
-    \ (S[i] == '?' ? 0 : S[i] - mi + 1);\n  FOR(i, M) g1[i] = (T[i] == '?' ? 0 : T[i]\
-    \ - mi + 1);\n  vc<mint> f2(N), f3(N), g2(M), g3(M);\n  FOR(i, N) f2[i] = f1[i]\
-    \ * f1[i], f3[i] = f2[i] * f1[i];\n  FOR(i, M) g2[i] = g1[i] * g1[i], g3[i] =\
-    \ g2[i] * g1[i];\n  vc<mint> A = middle_product(f1, g3);\n  vc<mint> B = middle_product(f2,\
-    \ g2);\n  vc<mint> C = middle_product(f3, g1);\n  FOR(i, len(A)) A[i] = A[i] -\
-    \ B[i] - B[i] + C[i];\n  vc<bool> res(len(A));\n  FOR(i, len(res)) res[i] = A[i]\
-    \ == mint(0);\n  return res;\n}\n"
+    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"string/wildcard_pattern_matching.hpp\"\
+    \n\n// S \u304C\u9577\u3044\u65B9\u3067\u3001S \u304B\u3089 T \u3092\u63A2\u3059\
+    \nvc<bool> wildcard_pattern_matching(string S, string T, char WILD = '?') {\n\
+    \  assert(WILD == '?');\n  using mint = modint998;\n\n  ll shift = RNG(0, mint::get_mod());\n\
+    \n  int N = len(S), M = len(T);\n  int mi = 1024;\n  for (auto&& x: S)\n    if\
+    \ (x != '?') chmin(mi, x);\n  for (auto&& x: T)\n    if (x != '?') chmin(mi, x);\n\
+    \  vc<mint> f1(N), g1(M);\n  FOR(i, N) f1[i] = (S[i] == '?' ? 0 : S[i] - mi +\
+    \ 1 + shift);\n  FOR(i, M) g1[i] = (T[i] == '?' ? 0 : T[i] - mi + 1 + shift);\n\
+    \  vc<mint> f2(N), f3(N), g2(M), g3(M);\n  FOR(i, N) f2[i] = f1[i] * f1[i], f3[i]\
+    \ = f2[i] * f1[i];\n  FOR(i, M) g2[i] = g1[i] * g1[i], g3[i] = g2[i] * g1[i];\n\
+    \  vc<mint> A = middle_product(f1, g3);\n  vc<mint> B = middle_product(f2, g2);\n\
+    \  vc<mint> C = middle_product(f3, g1);\n  FOR(i, len(A)) A[i] = A[i] - B[i] -\
+    \ B[i] + C[i];\n  vc<bool> res(len(A));\n  FOR(i, len(res)) res[i] = A[i] == mint(0);\n\
+    \  return res;\n}\n"
   code: "#include \"mod/modint.hpp\"\n#include \"poly/ntt.hpp\"\n#include \"poly/middle_product.hpp\"\
-    \n\nvc<bool> wildcard_pattern_matching(string S, string T, char WILD = '?') {\n\
-    \  using mint = modint998;\n  int N = len(S), M = len(T);\n  int mi = 1024;\n\
-    \  for (auto&& x: S)\n    if (x != '?') chmin(mi, x);\n  for (auto&& x: T)\n \
-    \   if (x != '?') chmin(mi, x);\n  vc<mint> f1(N), g1(M);\n  FOR(i, N) f1[i] =\
-    \ (S[i] == '?' ? 0 : S[i] - mi + 1);\n  FOR(i, M) g1[i] = (T[i] == '?' ? 0 : T[i]\
-    \ - mi + 1);\n  vc<mint> f2(N), f3(N), g2(M), g3(M);\n  FOR(i, N) f2[i] = f1[i]\
-    \ * f1[i], f3[i] = f2[i] * f1[i];\n  FOR(i, M) g2[i] = g1[i] * g1[i], g3[i] =\
-    \ g2[i] * g1[i];\n  vc<mint> A = middle_product(f1, g3);\n  vc<mint> B = middle_product(f2,\
-    \ g2);\n  vc<mint> C = middle_product(f3, g1);\n  FOR(i, len(A)) A[i] = A[i] -\
-    \ B[i] - B[i] + C[i];\n  vc<bool> res(len(A));\n  FOR(i, len(res)) res[i] = A[i]\
-    \ == mint(0);\n  return res;\n}"
+    \n#include \"random/base.hpp\"\n\n// S \u304C\u9577\u3044\u65B9\u3067\u3001S \u304B\
+    \u3089 T \u3092\u63A2\u3059\nvc<bool> wildcard_pattern_matching(string S, string\
+    \ T, char WILD = '?') {\n  assert(WILD == '?');\n  using mint = modint998;\n\n\
+    \  ll shift = RNG(0, mint::get_mod());\n\n  int N = len(S), M = len(T);\n  int\
+    \ mi = 1024;\n  for (auto&& x: S)\n    if (x != '?') chmin(mi, x);\n  for (auto&&\
+    \ x: T)\n    if (x != '?') chmin(mi, x);\n  vc<mint> f1(N), g1(M);\n  FOR(i, N)\
+    \ f1[i] = (S[i] == '?' ? 0 : S[i] - mi + 1 + shift);\n  FOR(i, M) g1[i] = (T[i]\
+    \ == '?' ? 0 : T[i] - mi + 1 + shift);\n  vc<mint> f2(N), f3(N), g2(M), g3(M);\n\
+    \  FOR(i, N) f2[i] = f1[i] * f1[i], f3[i] = f2[i] * f1[i];\n  FOR(i, M) g2[i]\
+    \ = g1[i] * g1[i], g3[i] = g2[i] * g1[i];\n  vc<mint> A = middle_product(f1, g3);\n\
+    \  vc<mint> B = middle_product(f2, g2);\n  vc<mint> C = middle_product(f3, g1);\n\
+    \  FOR(i, len(A)) A[i] = A[i] - B[i] - B[i] + C[i];\n  vc<bool> res(len(A));\n\
+    \  FOR(i, len(res)) res[i] = A[i] == mint(0);\n  return res;\n}"
   dependsOn:
   - mod/modint.hpp
   - mod/modint_common.hpp
   - poly/ntt.hpp
   - poly/middle_product.hpp
   - mod/crt3.hpp
+  - random/base.hpp
   isVerificationFile: false
   path: string/wildcard_pattern_matching.hpp
   requiredBy: []
-  timestamp: '2024-05-03 04:27:41+09:00'
+  timestamp: '2024-05-26 14:03:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2231.test.cpp

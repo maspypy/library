@@ -270,6 +270,9 @@ data:
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/domino_standard_tableaux.hpp
+    title: seq/domino_standard_tableaux.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number.hpp
     title: seq/famous/bell_number.hpp
   - icon: ':heavy_check_mark:'
@@ -302,6 +305,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/hook_length_formula.hpp
+    title: seq/hook_length_formula.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
@@ -1528,7 +1534,9 @@ data:
   - seq/famous/surjection.hpp
   - seq/famous/indecomposable_permutations.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/hook_length_formula.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - seq/domino_standard_tableaux.hpp
   - seq/count_grid_path.hpp
   - seq/sum_of_powers.hpp
   - seq/limit_poly_exp_sum.hpp

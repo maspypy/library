@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
+  - icon: ':x:'
+    path: graph/st_numbering.hpp
+    title: graph/st_numbering.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
@@ -182,6 +185,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/bfs01.hpp
   requiredBy:
+  - graph/st_numbering.hpp
   - graph/tree_all_distances.hpp
   - graph/ds/contour_query_range.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp

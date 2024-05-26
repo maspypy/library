@@ -185,103 +185,19 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 3 \"graph/st_numbering.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
-    // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
-    \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
-    \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
-    .\n// \u5B58\u5728\u6761\u4EF6\uFF1ABCT \u3067\u5168\u90E8\u306E\u6210\u5206\u3092\
-    \u901A\u308B st \u30D1\u30B9\u304C\u3042\u308B \u4E0D\u53EF\u80FD\u306A\u3089\u3070\
-    \ empty \u3092\u304B\u3048\u3059.\ntemplate <typename GT>\nvc<int> st_numbering(GT\
-    \ &G, int s, int t) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  if (N == 1) return {0};\n  if (s == t) return {};\n  vc<int>\
-    \ par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\n  auto dfs = [&](auto &dfs,\
-    \ int v) -> void {\n    pre[v] = len(V), V.eb(v);\n    low[v] = v;\n    for (auto\
-    \ &e: G[v]) {\n      int w = e.to;\n      if (v == w) continue;\n      if (pre[w]\
-    \ == -1) {\n        dfs(dfs, w);\n        par[w] = v;\n        if (pre[low[w]]\
-    \ < pre[low[v]]) { low[v] = low[w]; }\n      }\n      elif (pre[w] < pre[low[v]])\
-    \ { low[v] = w; }\n    }\n  };\n\n  pre[s] = 0, V.eb(s);\n  dfs(dfs, t);\n  if\
-    \ (len(V) != N) return {};\n  vc<int> nxt(N, -1), prev(N);\n  nxt[s] = t, prev[t]\
-    \ = s;\n\n  vc<int> sgn(N);\n  sgn[s] = -1;\n  FOR(i, 2, len(V)) {\n    int v\
-    \ = V[i];\n    int p = par[v];\n    if (sgn[low[v]] == -1) {\n      int q = prev[p];\n\
-    \      if (q == -1) return {};\n      nxt[q] = v, nxt[v] = p;\n      prev[v] =\
-    \ q, prev[p] = v;\n      sgn[p] = 1;\n    } else {\n      int q = nxt[p];\n  \
-    \    if (q == -1) return {};\n      nxt[p] = v, nxt[v] = q;\n      prev[v] = p,\
-    \ prev[q] = v;\n      sgn[p] = -1;\n    }\n  }\n  vc<int> A = {s};\n  while (A.back()\
-    \ != t) { A.eb(nxt[A.back()]); }\n  // \u4F5C\u308C\u3066\u3044\u308B\u304B\u5224\
-    \u5B9A\n  if (len(A) < N) return {};\n  assert(A[0] == s && A.back() == t);\n\
-    \  vc<int> rk(N, -1);\n  FOR(i, N) rk[A[i]] = i;\n  assert(MIN(rk) != -1);\n \
-    \ FOR(i, N) {\n    bool l = 0, r = 0;\n    int v = A[i];\n    for (auto &e: G[v])\
-    \ {\n      if (rk[e.to] < rk[v]) l = 1;\n      if (rk[v] < rk[e.to]) r = 1;\n\
-    \    }\n    if (i > 0 && !l) return {};\n    if (i < N - 1 && !r) return {};\n\
-    \  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return res;\n}\n\nbool\
-    \ check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N = G.N;\n  assert(N\
-    \ >= 2);\n\n  UnionFind uf(N);\n  for (auto &e: G.edges) uf.merge(e.frm, e.to);\n\
-    \  if (uf.n_comp >= 2) return 0; // disconnected\n\n  // BCT \u306B\u304A\u3044\
-    \u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\
-    \u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs01<int>(G,\
-    \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
-    \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
-    \ 0;\n  }\n  return 1;\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
-    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
-    \ A[RNG(0, i + 1)]);\n}\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind\
-    \ {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0)\
-    \ { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
-    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
-    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 5 \"random/random_graph.hpp\"\
-    \n\nvoid random_relabel(int N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int>\
-    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a],\
-    \ b = A[b];\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_graph(int\
-    \ n, bool simple) {\n  vc<pair<int, int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n\
-    \    if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n\
-    \    cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n \
-    \ FOR(m) {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple\
-    \ && ss.count(i)) continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n\
-    \      G.eb(a, b);\n      break;\n    }\n  }\n  random_relabel(n, G);\n  return\
-    \ G;\n}\n\nvc<pair<int, int>> random_tree(int n) {\n  vc<pair<int, int>> G;\n\
-    \  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n, G);\n  return G;\n\
-    }\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\u30A4\u30AF\u30EB\
-    \uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\u8FBA\
-    \uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\u4E00\u306E\u30B5\
-    \u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\
-    \u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE) {\n  if (!EDGE)\
-    \ {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\u4E0A\u306B\u5206\
-    \u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int> S(n, 1);\n  \
-    \  int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0, n);\n     \
-    \ if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest = 0;\n \
-    \       } else {\n          S[k] += 2, rest -= 2;\n        }\n      } else {\n\
-    \        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p = 0;\n  \
-    \  FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n      A.eb(C);\n\
-    \      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
-    \    vc<pair<int, int>> G;\n    FOR(i, m) {\n      vc<int>& V = A[i];\n      if\
-    \ (len(V) == 1) continue;\n      FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]);\
-    \ }\n    }\n    for (auto& [c1, c2]: H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
-    \      int b = A[c2][RNG(0, len(A[c2]))];\n      G.eb(a, b);\n    }\n    random_relabel(N,\
-    \ G);\n    return G;\n  }\n  assert(EDGE);\n  if (N == 1) return {};\n  int n\
-    \ = RNG(1, N);\n  vc<int> S(n, 2);\n  int rest = N - 1 - n;\n  while (rest > 0)\
-    \ {\n    int k = RNG(0, n);\n    S[k]++, --rest;\n  }\n  vvc<int> A;\n  int p\
-    \ = 0;\n  FOR(i, n) {\n    vc<int> C;\n    FOR(v, p, p + S[i]) C.eb(v);\n    A.eb(C);\n\
-    \    p += S[i];\n  }\n  assert(p == N + n - 1);\n  UnionFind uf(p);\n  auto H\
-    \ = random_tree(n);\n  for (auto& [c1, c2]: H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
-    \    int b = A[c2][RNG(0, len(A[c2]))];\n    uf.merge(a, b);\n  }\n  vc<int> new_idx(p);\n\
-    \  int x = 0;\n  FOR(i, p) if (uf[i] == i) new_idx[i] = x++;\n  assert(x == N);\n\
-    \  FOR(i, p) new_idx[i] = new_idx[uf[i]];\n  vc<pair<int, int>> G;\n  FOR(i, n)\
-    \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
-    \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
-    \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 2 \"graph/block_cut.hpp\"\n\n/*\nblock-cut tree \u3092\u3001block \u306B\
-    \u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\u63A5\u3055\u305B\u3066\u62E1\u5F35\
-    \u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
+    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 2 \"graph/block_cut.hpp\"\n\n/*\nblock-cut tree\
+    \ \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\u63A5\u3055\
+    \u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
     [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9 [n, n + n_block)\uFF1Ablock\n\u95A2\
     \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
     \u305F\u3059\u3082\u306E\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\u304B\
@@ -325,62 +241,131 @@ data:
     }\n#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int> restore_path(vector<int>\
     \ par, int t){\r\n  vector<int> pth = {t};\r\n  while (par[pth.back()] != -1)\
     \ pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n}\n#line\
-    \ 10 \"test/mytest/st_numbering.test.cpp\"\n\nvoid test() {\n  // valid \u306A\
-    \ output \u306B\u306A\u3063\u3066\u3044\u308B\u3053\u3068\u306F\u6700\u5F8C\u306B\
-    \u30C1\u30A7\u30C3\u30AF\u3057\u3066\u3044\u308B\u306E\u3067\n  // invalid \u3068\
-    \u8A00\u308F\u308C\u305F\u3068\u304D\u306B\u69CB\u7BC9\u4E0D\u53EF\u80FD\u3067\
-    \u3042\u308B\u3053\u3068\u3092\u78BA\u304B\u3081\u308C\u3070\u3088\u3044\n  FOR(N,\
-    \ 2, 20) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]:\
-    \ random_graph<0>(N, false)) { G.add(a, b); };\n      G.build();\n\n      auto\
-    \ BCT = block_cut(G);\n      UnionFind uf(N);\n      for (auto& e: G.edges) uf.merge(e.frm,\
-    \ e.to);\n      auto check = [&](int s, int t) -> bool {\n        if (uf.n_comp\
-    \ >= 2) return false;\n        if (s == t) return false;\n        // BCT \u306B\
-    \u304A\u3051\u308B st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E component \u3092\
-    \u901A\u308B\u304B\u3069\u3046\u304B\n        auto [dist, par] = bfs01<int>(BCT,\
-    \ s);\n        vc<int> path = restore_path(par, t);\n        vc<int> pass(BCT.N);\n\
-    \        for (auto& x: path) pass[x] = 1;\n        FOR(i, N, BCT.N) if (!pass[i])\
-    \ return false;\n        return true;\n      };\n      FOR(s, N) FOR(t, N) {\n\
-    \        auto ST = st_numbering(G, s, t);\n        if (!ST.empty()) continue;\n\
-    \        assert(!check(s, t));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n  return 0;\n}\n"
+    \ 7 \"graph/st_numbering.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
+    // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
+    \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
+    \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
+    .\n// \u5B58\u5728\u6761\u4EF6\uFF1ABCT \u3067\u5168\u90E8\u306E\u6210\u5206\u3092\
+    \u901A\u308B st \u30D1\u30B9\u304C\u3042\u308B \u4E0D\u53EF\u80FD\u306A\u3089\u3070\
+    \ empty \u3092\u304B\u3048\u3059.\ntemplate <typename GT>\nvc<int> st_numbering(GT\
+    \ &G, int s, int t) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  if (N == 1) return {0};\n  if (s == t) return {};\n  vc<int>\
+    \ par(N, -1), pre(N, -1), low(N, -1);\n  vc<int> V;\n\n  auto dfs = [&](auto &dfs,\
+    \ int v) -> void {\n    pre[v] = len(V), V.eb(v);\n    low[v] = v;\n    for (auto\
+    \ &e: G[v]) {\n      int w = e.to;\n      if (v == w) continue;\n      if (pre[w]\
+    \ == -1) {\n        dfs(dfs, w);\n        par[w] = v;\n        if (pre[low[w]]\
+    \ < pre[low[v]]) { low[v] = low[w]; }\n      }\n      elif (pre[w] < pre[low[v]])\
+    \ { low[v] = w; }\n    }\n  };\n\n  pre[s] = 0, V.eb(s);\n  dfs(dfs, t);\n  if\
+    \ (len(V) != N) return {};\n  vc<int> nxt(N, -1), prev(N);\n  nxt[s] = t, prev[t]\
+    \ = s;\n\n  vc<int> sgn(N);\n  sgn[s] = -1;\n  FOR(i, 2, len(V)) {\n    int v\
+    \ = V[i];\n    int p = par[v];\n    if (sgn[low[v]] == -1) {\n      int q = prev[p];\n\
+    \      if (q == -1) return {};\n      nxt[q] = v, nxt[v] = p;\n      prev[v] =\
+    \ q, prev[p] = v;\n      sgn[p] = 1;\n    } else {\n      int q = nxt[p];\n  \
+    \    if (q == -1) return {};\n      nxt[p] = v, nxt[v] = q;\n      prev[v] = p,\
+    \ prev[q] = v;\n      sgn[p] = -1;\n    }\n  }\n  vc<int> A = {s};\n  while (A.back()\
+    \ != t) { A.eb(nxt[A.back()]); }\n  // \u4F5C\u308C\u3066\u3044\u308B\u304B\u5224\
+    \u5B9A\n  if (len(A) < N) return {};\n  assert(A[0] == s && A.back() == t);\n\
+    \  vc<int> rk(N, -1);\n  FOR(i, N) rk[A[i]] = i;\n  assert(MIN(rk) != -1);\n \
+    \ FOR(i, N) {\n    bool l = 0, r = 0;\n    int v = A[i];\n    for (auto &e: G[v])\
+    \ {\n      if (rk[e.to] < rk[v]) l = 1;\n      if (rk[v] < rk[e.to]) r = 1;\n\
+    \    }\n    if (i > 0 && !l) return {};\n    if (i < N - 1 && !r) return {};\n\
+    \  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return res;\n}\n\nbool\
+    \ check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N = G.N;\n  assert(N\
+    \ >= 2);\n\n  UnionFind uf(N);\n  for (auto &e: G.edges) uf.merge(e.frm, e.to);\n\
+    \  if (uf.n_comp >= 2) return 0; // disconnected\n\n  // BCT \u306B\u304A\u3044\
+    \u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\
+    \u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs01<int>(G,\
+    \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
+    \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
+    \ 0;\n  }\n  return 1;\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
+    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
+    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
+    \ A[RNG(0, i + 1)]);\n}\n#line 5 \"random/random_graph.hpp\"\n\nvoid random_relabel(int\
+    \ N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int> A(N);\n  FOR(i, N) A[i]\
+    \ = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a], b = A[b];\n}\n\ntemplate\
+    \ <int DIRECTED>\nvc<pair<int, int>> random_graph(int n, bool simple) {\n  vc<pair<int,\
+    \ int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n    if (simple && a == b) continue;\n\
+    \    if (!DIRECTED && a > b) continue;\n    cand.eb(a, b);\n  }\n  int m = RNG(0,\
+    \ len(cand) + 1);\n  set<int> ss;\n  FOR(m) {\n    while (1) {\n      int i =\
+    \ RNG(0, len(cand));\n      if (simple && ss.count(i)) continue;\n      ss.insert(i);\n\
+    \      auto [a, b] = cand[i];\n      G.eb(a, b);\n      break;\n    }\n  }\n \
+    \ random_relabel(n, G);\n  return G;\n}\n\nvc<pair<int, int>> random_tree(int\
+    \ n) {\n  vc<pair<int, int>> G;\n  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n,\
+    \ G);\n  return G;\n}\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\
+    \u30A4\u30AF\u30EB\uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\
+    \u305F\u306F\u8FBA\uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\
+    \u4E00\u306E\u30B5\u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\
+    \u307E\u305F\u306F\u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE)\
+    \ {\n  if (!EDGE) {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\
+    \u4E0A\u306B\u5206\u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int>\
+    \ S(n, 1);\n    int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0,\
+    \ n);\n      if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest\
+    \ = 0;\n        } else {\n          S[k] += 2, rest -= 2;\n        }\n      }\
+    \ else {\n        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p\
+    \ = 0;\n    FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n\
+    \      A.eb(C);\n      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
+    \    vc<pair<int, int>> G;\n    FOR(i, m) {\n      vc<int>& V = A[i];\n      if\
+    \ (len(V) == 1) continue;\n      FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]);\
+    \ }\n    }\n    for (auto& [c1, c2]: H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \      int b = A[c2][RNG(0, len(A[c2]))];\n      G.eb(a, b);\n    }\n    random_relabel(N,\
+    \ G);\n    return G;\n  }\n  assert(EDGE);\n  if (N == 1) return {};\n  int n\
+    \ = RNG(1, N);\n  vc<int> S(n, 2);\n  int rest = N - 1 - n;\n  while (rest > 0)\
+    \ {\n    int k = RNG(0, n);\n    S[k]++, --rest;\n  }\n  vvc<int> A;\n  int p\
+    \ = 0;\n  FOR(i, n) {\n    vc<int> C;\n    FOR(v, p, p + S[i]) C.eb(v);\n    A.eb(C);\n\
+    \    p += S[i];\n  }\n  assert(p == N + n - 1);\n  UnionFind uf(p);\n  auto H\
+    \ = random_tree(n);\n  for (auto& [c1, c2]: H) {\n    int a = A[c1][RNG(0, len(A[c1]))];\n\
+    \    int b = A[c2][RNG(0, len(A[c2]))];\n    uf.merge(a, b);\n  }\n  vc<int> new_idx(p);\n\
+    \  int x = 0;\n  FOR(i, p) if (uf[i] == i) new_idx[i] = x++;\n  assert(x == N);\n\
+    \  FOR(i, p) new_idx[i] = new_idx[uf[i]];\n  vc<pair<int, int>> G;\n  FOR(i, n)\
+    \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
+    \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
+    \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
+    }\n#line 6 \"test/mytest/st_numbering.test.cpp\"\n\nvoid test() {\n  // valid\
+    \ \u306A output \u306B\u306A\u3063\u3066\u3044\u308B\u3053\u3068\u306F\u6700\u5F8C\
+    \u306B\u30C1\u30A7\u30C3\u30AF\u3057\u3066\u3044\u308B\u306E\u3067\n  // invalid\
+    \ \u3068\u8A00\u308F\u308C\u305F\u3068\u304D\u306B\u69CB\u7BC9\u4E0D\u53EF\u80FD\
+    \u3067\u3042\u308B\u3053\u3068\u3092\u78BA\u304B\u3081\u308C\u3070\u3088\u3044\
+    \n  FOR(N, 2, 20) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n      for (auto&\
+    \ [a, b]: random_graph<0>(N, false)) { G.add(a, b); };\n      G.build();\n\n \
+    \     auto BCT = block_cut(G);\n      UnionFind uf(N);\n      for (auto& e: G.edges)\
+    \ uf.merge(e.frm, e.to);\n      FOR(s, N) FOR(t, N) {\n        auto ST = st_numbering(G,\
+    \ s, t);\n        assert((!ST.empty()) == check_st_numbering(G, s, t));\n    \
+    \  }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
+    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/st_numbering.hpp\"\n#include \"random/random_graph.hpp\"\n\
-    #include \"graph/block_cut.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
-    \ \"graph/shortest_path/bfs01.hpp\"\n#include \"graph/shortest_path/restore_path.hpp\"\
-    \n\nvoid test() {\n  // valid \u306A output \u306B\u306A\u3063\u3066\u3044\u308B\
+    \nvoid test() {\n  // valid \u306A output \u306B\u306A\u3063\u3066\u3044\u308B\
     \u3053\u3068\u306F\u6700\u5F8C\u306B\u30C1\u30A7\u30C3\u30AF\u3057\u3066\u3044\
     \u308B\u306E\u3067\n  // invalid \u3068\u8A00\u308F\u308C\u305F\u3068\u304D\u306B\
     \u69CB\u7BC9\u4E0D\u53EF\u80FD\u3067\u3042\u308B\u3053\u3068\u3092\u78BA\u304B\
     \u3081\u308C\u3070\u3088\u3044\n  FOR(N, 2, 20) {\n    FOR(100) {\n      Graph<int,\
     \ 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N, false)) { G.add(a, b);\
     \ };\n      G.build();\n\n      auto BCT = block_cut(G);\n      UnionFind uf(N);\n\
-    \      for (auto& e: G.edges) uf.merge(e.frm, e.to);\n      auto check = [&](int\
-    \ s, int t) -> bool {\n        if (uf.n_comp >= 2) return false;\n        if (s\
-    \ == t) return false;\n        // BCT \u306B\u304A\u3051\u308B st \u30D1\u30B9\
-    \u304C\u3059\u3079\u3066\u306E component \u3092\u901A\u308B\u304B\u3069\u3046\u304B\
-    \n        auto [dist, par] = bfs01<int>(BCT, s);\n        vc<int> path = restore_path(par,\
-    \ t);\n        vc<int> pass(BCT.N);\n        for (auto& x: path) pass[x] = 1;\n\
-    \        FOR(i, N, BCT.N) if (!pass[i]) return false;\n        return true;\n\
-    \      };\n      FOR(s, N) FOR(t, N) {\n        auto ST = st_numbering(G, s, t);\n\
-    \        if (!ST.empty()) continue;\n        assert(!check(s, t));\n      }\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \      for (auto& e: G.edges) uf.merge(e.frm, e.to);\n      FOR(s, N) FOR(t, N)\
+    \ {\n        auto ST = st_numbering(G, s, t);\n        assert((!ST.empty()) ==\
+    \ check_st_numbering(G, s, t));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - graph/st_numbering.hpp
   - graph/base.hpp
-  - random/random_graph.hpp
-  - random/base.hpp
-  - random/shuffle.hpp
   - ds/unionfind/unionfind.hpp
   - graph/block_cut.hpp
   - graph/shortest_path/bfs01.hpp
   - graph/shortest_path/restore_path.hpp
+  - random/random_graph.hpp
+  - random/base.hpp
+  - random/shuffle.hpp
   isVerificationFile: true
   path: test/mytest/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-26 14:03:56+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/st_numbering.test.cpp

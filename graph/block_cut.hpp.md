@@ -4,7 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/st_numbering.hpp
+    title: graph/st_numbering.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_3_A.test.cpp
@@ -141,7 +144,8 @@ data:
   - graph/base.hpp
   isVerificationFile: false
   path: graph/block_cut.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/st_numbering.hpp
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

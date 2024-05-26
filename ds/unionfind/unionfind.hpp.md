@@ -53,6 +53,9 @@ data:
   - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
+  - icon: ':x:'
+    path: graph/st_numbering.hpp
+    title: graph/st_numbering.hpp
   - icon: ':question:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
@@ -286,6 +289,7 @@ data:
   path: ds/unionfind/unionfind.hpp
   requiredBy:
   - graph/tree_of_unionfind.hpp
+  - graph/st_numbering.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/directed_mst.hpp
   - graph/optimal_product_on_tree.hpp

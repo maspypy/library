@@ -131,6 +131,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/wildcard_pattern_matching.hpp
+    title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
@@ -812,6 +815,7 @@ data:
   - random/hash_vector.hpp
   - random/random_graph.hpp
   - random/hash_pair.hpp
+  - string/wildcard_pattern_matching.hpp
   - string/rollinghash_2d.hpp
   - string/rollinghash.hpp
   - alg/monoid/rollinghash.hpp

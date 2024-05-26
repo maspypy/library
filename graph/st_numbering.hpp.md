@@ -2,8 +2,20 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: ds/unionfind/unionfind.hpp
+    title: ds/unionfind/unionfind.hpp
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
+  - icon: ':question:'
+    path: graph/block_cut.hpp
+    title: graph/block_cut.hpp
+  - icon: ':question:'
+    path: graph/shortest_path/bfs01.hpp
+    title: graph/shortest_path/bfs01.hpp
+  - icon: ':question:'
+    path: graph/shortest_path/restore_path.hpp
+    title: graph/shortest_path/restore_path.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -76,7 +88,63 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 3 \"graph/st_numbering.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
+    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 2 \"graph/block_cut.hpp\"\n\n/*\nblock-cut tree\
+    \ \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\u63A5\u3055\
+    \u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
+    [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9 [n, n + n_block)\uFF1Ablock\n\u95A2\
+    \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
+    \u305F\u3059\u3082\u306E\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\u304B\
+    \u3089\u306A\u308B block\n\u6210\u5206\u304C\u6B32\u3057\u3044\u5834\u5408\uFF1A\
+    \u8FD1\u508D\u3092\u898B\u308B\u3068\u70B9\u96C6\u5408. \u8FBA\u304B\u3089\u6210\
+    \u5206\u3092\u5F97\u308B\u306B\u306F tree.jump\n\u3068\u601D\u3063\u305F\u304C\
+    \u975E\u9023\u7D50\u306A\u3068\u304D\u306B\u6CE8\u610F\u304C\u3044\u308B\u306A\
+    \u2026\n*/\ntemplate <typename GT>\nGraph<int, 0> block_cut(GT& G) {\n  int n\
+    \ = G.N;\n  vc<int> low(n), ord(n), st;\n  vc<bool> used(n);\n  st.reserve(n);\n\
+    \  int nxt = n;\n  int k = 0;\n  vc<pair<int, int>> edges;\n\n  auto dfs = [&](auto&\
+    \ dfs, int v, int p) -> void {\n    st.eb(v);\n    used[v] = 1;\n    low[v] =\
+    \ ord[v] = k++;\n    int child = 0;\n    for (auto&& e: G[v]) {\n      if (e.to\
+    \ == p) continue;\n      if (!used[e.to]) {\n        ++child;\n        int s =\
+    \ len(st);\n        dfs(dfs, e.to, v);\n        chmin(low[v], low[e.to]);\n  \
+    \      if ((p == -1 && child > 1) || (p != -1 && low[e.to] >= ord[v])) {\n   \
+    \       edges.eb(nxt, v);\n          while (len(st) > s) {\n            edges.eb(nxt,\
+    \ st.back());\n            st.pop_back();\n          }\n          ++nxt;\n   \
+    \     }\n      } else {\n        chmin(low[v], ord[e.to]);\n      }\n    }\n \
+    \ };\n  FOR(v, n) if (!used[v]) {\n    dfs(dfs, v, -1);\n    for (auto&& x: st)\
+    \ { edges.eb(nxt, x); }\n    ++nxt;\n    st.clear();\n  }\n  Graph<int, 0> BCT(nxt);\n\
+    \  for (auto&& [a, b]: edges) BCT.add(a, b);\n  BCT.build();\n  return BCT;\n\
+    }\n#line 3 \"graph/shortest_path/bfs01.hpp\"\n\ntemplate <typename T, typename\
+    \ GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int>\
+    \ que;\n\n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n   \
+    \ auto v = que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n  \
+    \    if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n    \
+    \    dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] = e.frm;\n        if\
+    \ (e.cost == 0)\n          que.push_front(e.to);\n        else\n          que.push_back(e.to);\n\
+    \      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> bfs01(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n \
+    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
+    \ -1);\n  deque<int> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v]\
+    \ = v;\n    que.push_front(v);\n  }\n\n  while (!que.empty()) {\n    auto v =\
+    \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
+    \ == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
+    \ + e.cost;\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n \
+    \       if (e.cost == 0)\n          que.push_front(e.to);\n        else\n    \
+    \      que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par, root};\n\
+    }\n#line 1 \"graph/shortest_path/restore_path.hpp\"\nvector<int> restore_path(vector<int>\
+    \ par, int t){\r\n  vector<int> pth = {t};\r\n  while (par[pth.back()] != -1)\
+    \ pth.eb(par[pth.back()]);\r\n  reverse(all(pth));\r\n  return pth;\r\n}\n#line\
+    \ 7 \"graph/st_numbering.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
     // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
     \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
     \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
@@ -113,7 +181,9 @@ data:
     \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
     \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
     \ 0;\n  }\n  return 1;\n}\n"
-  code: "\n#include \"graph/base.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
+  code: "\n#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n\
+    #include \"graph/block_cut.hpp\"\n#include \"graph/shortest_path/bfs01.hpp\"\n\
+    #include \"graph/shortest_path/restore_path.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
     // \u9806\u5217 p \u3092\u6C42\u3081\u308B. p[s]=0,p[t]=n-1.\n// p[u]<p[v] \u3068\
     \u306A\u308B\u5411\u304D\u306B\u8FBA\u3092\u5411\u304D\u4ED8\u3051\u308B\u3068\
     \u4EFB\u610F\u306E v \u306B\u5BFE\u3057\u3066 svt \u30D1\u30B9\u304C\u5B58\u5728\
@@ -152,10 +222,14 @@ data:
     \ 0;\n  }\n  return 1;\n}\n"
   dependsOn:
   - graph/base.hpp
+  - ds/unionfind/unionfind.hpp
+  - graph/block_cut.hpp
+  - graph/shortest_path/bfs01.hpp
+  - graph/shortest_path/restore_path.hpp
   isVerificationFile: false
   path: graph/st_numbering.hpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-26 14:03:56+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/st_numbering.test.cpp
