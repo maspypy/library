@@ -1398,7 +1398,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2304,16 +2304,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212h.test.cpp
     title: test_atcoder/abc212h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc214h.test.cpp
     title: test_atcoder/abc214h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc217e.test.cpp
     title: test_atcoder/abc217e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc217h.test.cpp
     title: test_atcoder/abc217h.test.cpp
   - icon: ':x:'

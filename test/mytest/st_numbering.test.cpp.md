@@ -10,13 +10,13 @@ data:
   - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':question:'
@@ -25,17 +25,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -271,14 +271,14 @@ data:
     \    }\n    if (i > 0 && !l) return {};\n    if (i < N - 1 && !r) return {};\n\
     \  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return res;\n}\n\nbool\
     \ check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N = G.N;\n  assert(N\
-    \ >= 2);\n\n  UnionFind uf(N);\n  for (auto &e: G.edges) uf.merge(e.frm, e.to);\n\
-    \  if (uf.n_comp >= 2) return 0; // disconnected\n\n  // BCT \u306B\u304A\u3044\
-    \u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\
-    \u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs01<int>(G,\
-    \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
-    \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
-    \ 0;\n  }\n  return 1;\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ >= 2);\n  if (s == t) return 0;\n\n  UnionFind uf(N);\n  for (auto &e: G.edges)\
+    \ uf.merge(e.frm, e.to);\n  if (uf.n_comp >= 2) return 0; // disconnected\n\n\
+    \  // BCT \u306B\u304A\u3044\u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E\
+    \ block \u3092\u901A\u308B\u3053\u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n\
+    \  auto [dist, par] = bfs01<int>(BCT, s);\n  vc<int> path = restore_path(par,\
+    \ t);\n\n  vc<int> vis(BCT.N);\n  for (auto &x: path) vis[x] = 1;\n\n  FOR(i,\
+    \ N, BCT.N) {\n    if (!vis[i]) return 0;\n  }\n  return 1;\n}\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -365,8 +365,8 @@ data:
   isVerificationFile: true
   path: test/mytest/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2024-05-26 14:03:56+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-05-26 19:03:47+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/st_numbering.test.cpp
 layout: document

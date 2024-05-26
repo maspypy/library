@@ -10,20 +10,20 @@ data:
   - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Bipolar_orientation
@@ -174,13 +174,13 @@ data:
     \    }\n    if (i > 0 && !l) return {};\n    if (i < N - 1 && !r) return {};\n\
     \  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return res;\n}\n\nbool\
     \ check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N = G.N;\n  assert(N\
-    \ >= 2);\n\n  UnionFind uf(N);\n  for (auto &e: G.edges) uf.merge(e.frm, e.to);\n\
-    \  if (uf.n_comp >= 2) return 0; // disconnected\n\n  // BCT \u306B\u304A\u3044\
-    \u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\
-    \u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs01<int>(G,\
-    \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
-    \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
-    \ 0;\n  }\n  return 1;\n}\n"
+    \ >= 2);\n  if (s == t) return 0;\n\n  UnionFind uf(N);\n  for (auto &e: G.edges)\
+    \ uf.merge(e.frm, e.to);\n  if (uf.n_comp >= 2) return 0; // disconnected\n\n\
+    \  // BCT \u306B\u304A\u3044\u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E\
+    \ block \u3092\u901A\u308B\u3053\u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n\
+    \  auto [dist, par] = bfs01<int>(BCT, s);\n  vc<int> path = restore_path(par,\
+    \ t);\n\n  vc<int> vis(BCT.N);\n  for (auto &x: path) vis[x] = 1;\n\n  FOR(i,\
+    \ N, BCT.N) {\n    if (!vis[i]) return 0;\n  }\n  return 1;\n}\n"
   code: "\n#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n\
     #include \"graph/block_cut.hpp\"\n#include \"graph/shortest_path/bfs01.hpp\"\n\
     #include \"graph/shortest_path/restore_path.hpp\"\n\n// https://en.wikipedia.org/wiki/Bipolar_orientation\n\
@@ -213,13 +213,13 @@ data:
     \    }\n    if (i > 0 && !l) return {};\n    if (i < N - 1 && !r) return {};\n\
     \  }\n  vc<int> res(N);\n  FOR(i, N) res[A[i]] = i;\n  return res;\n}\n\nbool\
     \ check_st_numbering(Graph<int, 0> G, int s, int t) {\n  int N = G.N;\n  assert(N\
-    \ >= 2);\n\n  UnionFind uf(N);\n  for (auto &e: G.edges) uf.merge(e.frm, e.to);\n\
-    \  if (uf.n_comp >= 2) return 0; // disconnected\n\n  // BCT \u306B\u304A\u3044\
-    \u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E block \u3092\u901A\u308B\u3053\
-    \u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n  auto [dist, par] = bfs01<int>(G,\
-    \ s);\n  vc<int> path = restore_path(par, t);\n\n  vc<int> vis(BCT.N);\n  for\
-    \ (auto &x: path) vis[x] = 1;\n\n  FOR(i, N, BCT.N) {\n    if (!vis[i]) return\
-    \ 0;\n  }\n  return 1;\n}\n"
+    \ >= 2);\n  if (s == t) return 0;\n\n  UnionFind uf(N);\n  for (auto &e: G.edges)\
+    \ uf.merge(e.frm, e.to);\n  if (uf.n_comp >= 2) return 0; // disconnected\n\n\
+    \  // BCT \u306B\u304A\u3044\u3066 st \u30D1\u30B9\u304C\u3059\u3079\u3066\u306E\
+    \ block \u3092\u901A\u308B\u3053\u3068\u304C\u5FC5\u8981\n  auto BCT = block_cut(G);\n\
+    \  auto [dist, par] = bfs01<int>(BCT, s);\n  vc<int> path = restore_path(par,\
+    \ t);\n\n  vc<int> vis(BCT.N);\n  for (auto &x: path) vis[x] = 1;\n\n  FOR(i,\
+    \ N, BCT.N) {\n    if (!vis[i]) return 0;\n  }\n  return 1;\n}\n"
   dependsOn:
   - graph/base.hpp
   - ds/unionfind/unionfind.hpp
@@ -229,8 +229,8 @@ data:
   isVerificationFile: false
   path: graph/st_numbering.hpp
   requiredBy: []
-  timestamp: '2024-05-26 14:03:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-05-26 19:03:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/st_numbering.test.cpp
 documentation_of: graph/st_numbering.hpp

@@ -606,7 +606,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/mincostflow.hpp
       title: flow/mincostflow.hpp
     - icon: ':heavy_check_mark:'
@@ -860,7 +860,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/scc_tounament_by_indegrees.hpp
       title: graph/scc_tounament_by_indegrees.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/st_numbering.hpp
       title: graph/st_numbering.hpp
     - icon: ':heavy_check_mark:'
@@ -1089,7 +1089,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellmanford.hpp
       title: graph/shortest_path/bellmanford.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bfs01.hpp
       title: graph/shortest_path/bfs01.hpp
     - icon: ':heavy_check_mark:'
@@ -1104,7 +1104,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
       title: graph/shortest_path/nonzero_group_product_shortest_path.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/restore_path.hpp
       title: graph/shortest_path/restore_path.hpp
     - icon: ':x:'
@@ -1726,10 +1726,10 @@ data:
     - icon: ':question:'
       path: random/hash_vector.hpp
       title: random/hash_vector.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -1870,7 +1870,7 @@ data:
     - icon: ':x:'
       path: setfunc/sps_inv.hpp
       title: setfunc/sps_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
     - icon: ':question:'
@@ -3400,7 +3400,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/splay_monoid.test.cpp
       title: test/mytest/splay_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/st_numbering.test.cpp
       title: test/mytest/st_numbering.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4313,16 +4313,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc212h.test.cpp
       title: test_atcoder/abc212h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc213g.test.cpp
       title: test_atcoder/abc213g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc214h.test.cpp
       title: test_atcoder/abc214h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc217e.test.cpp
       title: test_atcoder/abc217e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc217h.test.cpp
       title: test_atcoder/abc217h.test.cpp
     - icon: ':x:'
