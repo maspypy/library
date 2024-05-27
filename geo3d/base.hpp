@@ -1,3 +1,4 @@
+#pragma once
 
 template <typename T>
 struct Point_3d {
@@ -24,5 +25,24 @@ struct Point_3d {
   Point_3d cross(Point_3d other) {
     return Point_3d(y * other.z - z * other.y, z * other.x - x * other.z,
                     x * other.y - y * other.x);
+  }
+};
+
+template <typename T>
+struct Line_3d {
+  // a + td
+  Point_3d<T> a, d;
+
+  Line_3d(Point_3d<T> A, Point_3d<T> B) : a(A), d(B - A) {
+    assert(d.dot(d) != 0);
+  }
+  bool is_parallel(Line_3d<T> other) {
+    Point_3d<T> n = d.cross(other.d);
+    return (n.x == T(0) && n.y == T(0) && n.z == T(0));
+  }
+  bool contain(Point_3d<T> p) {
+    p = p - a;
+    p = p.cross(d);
+    return (p.x == T(0) && p.y == T(0) && p.z == T(0));
   }
 };
