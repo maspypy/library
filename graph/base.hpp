@@ -177,6 +177,28 @@ struct Graph {
     return G;
   }
 
+  Graph<T, true> to_directed_tree(int root = -1) {
+    if (root == -1) root = 0;
+    assert(!is_directed() && prepared && M == N - 1);
+    Graph<T, true> G1(N);
+    vc<int> par(N, -1);
+    auto dfs = [&](auto& dfs, int v) -> void {
+      for (auto& e: G[v]) {
+        if (e.to == par[v]) continue;
+        par[e.to] = v, dfs(dfs, e.to);
+      }
+    };
+    dfs(dfs, root);
+    for (auto& e: G.edges) {
+      int a = e.frm, b = e.to;
+      if (par[a] == b) swap(a, b);
+      assert(par[b] == a);
+      G1.add(a, b);
+    }
+    G1.build();
+    return G1;
+  }
+
 private:
   void calc_deg() {
     assert(vc_deg.empty());
