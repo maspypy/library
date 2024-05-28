@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -33,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'

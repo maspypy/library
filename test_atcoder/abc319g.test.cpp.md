@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
@@ -258,24 +258,31 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/blackbox/complement_graph_bfs.hpp\"\n\ntemplate <typename GT>\n\
-    pair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n  static vc<int>\
-    \ que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que) < N) que.resize(N);\n\
-    \  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n  dist.assign(N,\
-    \ infty<int>);\n  par.assign(N, -1);\n  int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++]\
-    \ = s;\n  int p = 0;\n  FOR(v, N) if (v != s) yet[p++] = v;\n  while (ql < qr)\
-    \ {\n    int v = que[ql++];\n    for (auto& e: G[v]) NG[e.to] = 1;\n    for (int\
-    \ i = p - 1; i >= 0; --i) {\n      int to = yet[i];\n      if (NG[to]) continue;\n\
-    \      dist[to] = dist[v] + 1, par[to] = v, que[qr++] = to;\n      swap(yet[i],\
-    \ yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to] = 0;\n  }\n  return {dist,\
-    \ par};\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/blackbox/complement_graph_bfs.hpp\"\n\ntemplate\
+    \ <typename GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n\
+    \  static vc<int> que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que)\
+    \ < N) que.resize(N);\n  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n\
+    \  dist.assign(N, infty<int>);\n  par.assign(N, -1);\n  int ql = 0, qr = 0;\n\
+    \  dist[s] = 0, que[qr++] = s;\n  int p = 0;\n  FOR(v, N) if (v != s) yet[p++]\
+    \ = v;\n  while (ql < qr) {\n    int v = que[ql++];\n    for (auto& e: G[v]) NG[e.to]\
+    \ = 1;\n    for (int i = p - 1; i >= 0; --i) {\n      int to = yet[i];\n     \
+    \ if (NG[to]) continue;\n      dist[to] = dist[v] + 1, par[to] = v, que[qr++]\
+    \ = to;\n      swap(yet[i], yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to]\
+    \ = 0;\n  }\n  return {dist, par};\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -378,7 +385,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc319g.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-27 19:13:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc319g.test.cpp

@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://en.wikipedia.org/wiki/Bipolar_orientation
@@ -84,23 +84,30 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
-    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
-    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
-    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
-    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 2 \"graph/block_cut.hpp\"\n\n/*\nblock-cut tree\
-    \ \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\u63A5\u3055\
-    \u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n \
+    \ int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
+    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
+    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
+    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
+    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
+    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
+    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
+    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
+    \ (*this)[i];\n    return A;\n  }\n};\n#line 2 \"graph/block_cut.hpp\"\n\n/*\n\
+    block-cut tree \u3092\u3001block \u306B\u901A\u5E38\u306E\u9802\u70B9\u3092\u96A3\
+    \u63A5\u3055\u305B\u3066\u62E1\u5F35\u3057\u3066\u304A\u304F\nhttps://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg\n\
     [0, n)\uFF1A\u3082\u3068\u306E\u9802\u70B9 [n, n + n_block)\uFF1Ablock\n\u95A2\
     \u7BC0\u70B9\uFF1A[0, n) \u306E\u3046\u3061\u3067\u3001degree >= 2 \u3092\u6E80\
     \u305F\u3059\u3082\u306E\n\u5B64\u7ACB\u70B9\u306F\u30011 \u70B9\u3060\u3051\u304B\
@@ -229,8 +236,8 @@ data:
   isVerificationFile: false
   path: graph/st_numbering.hpp
   requiredBy: []
-  timestamp: '2024-05-26 19:03:47+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/st_numbering.test.cpp
 documentation_of: graph/st_numbering.hpp

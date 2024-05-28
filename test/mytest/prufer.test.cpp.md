@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -165,54 +165,61 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
-    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
-    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
-    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
-    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1)\
-    \ x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n\
-    \  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int\
-    \ n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n\
-    \      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs,\
-    \ p);\n}\n#line 2 \"graph/prufer_code.hpp\"\n\n// [0,n-1]^{n-1}, \u305F\u3060\u3057\
-    \u672B\u5C3E\u306F n-1, \u3068\u3044\u3046\u5B9A\u5F0F\u5316 (n=1 ok)\nvc<int>\
-    \ to_prufer_code(Graph<int, 0>& G) {\n  // \u30E9\u30D9\u30EB\u6700\u5C0F\u306E\
-    \u8449\u3092\u3068\u308B -> \u89AA\u3092\u5217\u306B\u8FFD\u52A0\n  int n = G.N;\n\
-    \  vc<int> par(n);\n  {\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\n\
-    \      par[v] = p;\n      for (auto& e: G[v])\n        if (e.to != p) dfs(dfs,\
-    \ e.to, v);\n    };\n    dfs(dfs, n - 1, -1);\n  }\n  vc<int> deg = G.deg_array();\n\
-    \  vc<int> res(n - 1);\n  int p = 0;\n  int leaf = -1;\n  FOR(i, n - 1) {\n  \
-    \  if (leaf == -1) {\n      while (deg[p] != 1) ++p;\n      leaf = p;\n    }\n\
-    \    res[i] = par[leaf];\n    deg[leaf]--, deg[par[leaf]]--;\n    leaf = (deg[par[leaf]]\
-    \ == 1 && par[leaf] < p ? par[leaf] : -1);\n  }\n  return res;\n}\n\nGraph<int,\
-    \ 0> from_prufer_code(vc<int> code) {\n  int n = len(code) + 1;\n  Graph<int,\
-    \ 0> G(n);\n  if (n == 1) return G;\n  assert(code.back() == n - 1);\n  vc<int>\
-    \ deg(n, 1);\n  for (auto& v: code) deg[v]++;\n\n  int p = 0;\n  int leaf = -1;\n\
-    \  FOR(i, n - 1) {\n    if (leaf == -1) {\n      while (deg[p] != 1) p++;\n  \
-    \    leaf = p;\n    }\n    G.add(code[i], leaf);\n    deg[leaf]--, deg[code[i]]--;\n\
-    \    leaf = (code[i] < p && deg[code[i]] == 1 ? code[i] : -1);\n  }\n  G.build();\n\
-    \  return G;\n}\n#line 8 \"test/mytest/prufer.test.cpp\"\n\nvoid test(int n) {\n\
-    \  /*\n  F: \u5217 -> \u6728\n  G: \u6728 -> \u5217\n  \u30FB\u5199\u50CF\u306B\
-    \u306A\u3063\u3066\u3044\u308B\u3053\u3068\n  \u30FBGF(A)=A\n  \u3053\u308C\u304C\
-    \u793A\u3055\u308C\u308C\u3070\u3001\u500B\u6570\u304C\u7B49\u3057\u3044\u3053\
-    \u3068\u306F\u77E5\u3063\u3066\u3044\u308B\u306E\u3067\u5168\u5358\u5C04\u304C\
-    \u3044\u3048\u308B\n  */\n  enumerate_product(vc<int>(n - 1, n), [&](vc<int> A)\
-    \ -> void {\n    if (n >= 2 && A.back() != n - 1) return;\n    Graph<int, 0> G\
-    \ = from_prufer_code(A);\n    UnionFind uf(n);\n    for (auto& e: G.edges) assert(uf.merge(e.frm,\
-    \ e.to));\n    assert(uf.n_comp == 1);\n    vc<int> B = to_prufer_code(G);\n \
-    \   assert(A == B);\n  });\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n\
-    \  cout << x + y << \"\\n\";\n}\n\nsigned main() {\n  FOR(n, 2, 8) test(n);\n\
-    \  solve();\n  return 0;\n}\n"
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n \
+    \ int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n);\
+    \ }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n\
+    \  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x]\
+    \ >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n\
+    \      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n   \
+    \ x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n\
+    \    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x]\
+    \ < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return\
+    \ true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] =\
+    \ (*this)[i];\n    return A;\n  }\n};\n#line 1 \"enumerate/product.hpp\"\n// [0,\
+    \ A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int> A,\
+    \ F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void\
+    \ {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n\
+    \      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
+    \ p;\n  dfs(dfs, p);\n}\n#line 2 \"graph/prufer_code.hpp\"\n\n// [0,n-1]^{n-1},\
+    \ \u305F\u3060\u3057\u672B\u5C3E\u306F n-1, \u3068\u3044\u3046\u5B9A\u5F0F\u5316\
+    \ (n=1 ok)\nvc<int> to_prufer_code(Graph<int, 0>& G) {\n  // \u30E9\u30D9\u30EB\
+    \u6700\u5C0F\u306E\u8449\u3092\u3068\u308B -> \u89AA\u3092\u5217\u306B\u8FFD\u52A0\
+    \n  int n = G.N;\n  vc<int> par(n);\n  {\n    auto dfs = [&](auto& dfs, int v,\
+    \ int p) -> void {\n      par[v] = p;\n      for (auto& e: G[v])\n        if (e.to\
+    \ != p) dfs(dfs, e.to, v);\n    };\n    dfs(dfs, n - 1, -1);\n  }\n  vc<int> deg\
+    \ = G.deg_array();\n  vc<int> res(n - 1);\n  int p = 0;\n  int leaf = -1;\n  FOR(i,\
+    \ n - 1) {\n    if (leaf == -1) {\n      while (deg[p] != 1) ++p;\n      leaf\
+    \ = p;\n    }\n    res[i] = par[leaf];\n    deg[leaf]--, deg[par[leaf]]--;\n \
+    \   leaf = (deg[par[leaf]] == 1 && par[leaf] < p ? par[leaf] : -1);\n  }\n  return\
+    \ res;\n}\n\nGraph<int, 0> from_prufer_code(vc<int> code) {\n  int n = len(code)\
+    \ + 1;\n  Graph<int, 0> G(n);\n  if (n == 1) return G;\n  assert(code.back() ==\
+    \ n - 1);\n  vc<int> deg(n, 1);\n  for (auto& v: code) deg[v]++;\n\n  int p =\
+    \ 0;\n  int leaf = -1;\n  FOR(i, n - 1) {\n    if (leaf == -1) {\n      while\
+    \ (deg[p] != 1) p++;\n      leaf = p;\n    }\n    G.add(code[i], leaf);\n    deg[leaf]--,\
+    \ deg[code[i]]--;\n    leaf = (code[i] < p && deg[code[i]] == 1 ? code[i] : -1);\n\
+    \  }\n  G.build();\n  return G;\n}\n#line 8 \"test/mytest/prufer.test.cpp\"\n\n\
+    void test(int n) {\n  /*\n  F: \u5217 -> \u6728\n  G: \u6728 -> \u5217\n  \u30FB\
+    \u5199\u50CF\u306B\u306A\u3063\u3066\u3044\u308B\u3053\u3068\n  \u30FBGF(A)=A\n\
+    \  \u3053\u308C\u304C\u793A\u3055\u308C\u308C\u3070\u3001\u500B\u6570\u304C\u7B49\
+    \u3057\u3044\u3053\u3068\u306F\u77E5\u3063\u3066\u3044\u308B\u306E\u3067\u5168\
+    \u5358\u5C04\u304C\u3044\u3048\u308B\n  */\n  enumerate_product(vc<int>(n - 1,\
+    \ n), [&](vc<int> A) -> void {\n    if (n >= 2 && A.back() != n - 1) return;\n\
+    \    Graph<int, 0> G = from_prufer_code(A);\n    UnionFind uf(n);\n    for (auto&\
+    \ e: G.edges) assert(uf.merge(e.frm, e.to));\n    assert(uf.n_comp == 1);\n  \
+    \  vc<int> B = to_prufer_code(G);\n    assert(A == B);\n  });\n}\n\nvoid solve()\
+    \ {\n  int x, y;\n  cin >> x >> y;\n  cout << x + y << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  FOR(n, 2, 8) test(n);\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
     \ \"enumerate/product.hpp\"\n#include \"graph/prufer_code.hpp\"\n\nvoid test(int\
@@ -236,8 +243,8 @@ data:
   isVerificationFile: true
   path: test/mytest/prufer.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/prufer.test.cpp
 layout: document

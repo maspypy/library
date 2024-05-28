@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/number_of_substrings2.test.cpp
     title: test/library_checker/string/number_of_substrings2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -71,26 +71,33 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"string/suffix_automaton.hpp\"\n\ntemplate <int sigma = 26>\nstruct Suffix_Automaton\
-    \ {\n  struct Node {\n    array<int, sigma> next; // automaton \u306E\u9077\u79FB\
-    \u5148\n    int link;               // suffix link\n    int size;            \
-    \   // node \u304C\u53D7\u7406\u3059\u308B\u6700\u9577\u6587\u5B57\u5217\u306E\
-    \u9577\u3055\n    Node(int link, int size) : link(link), size(size) { fill(all(next),\
-    \ -1); }\n  };\n\n  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\
-    \u3092\u5165\u308C\u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automaton()\
-    \ {\n    nodes.eb(Node(-1, 0));\n    last = 0;\n  }\n\n  void add(char c0, char\
-    \ off) {\n    int c = c0 - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1,\
-    \ nodes[last].size + 1));\n    int p = last;\n    while (p != -1 && nodes[p].next[c]\
-    \ == -1) {\n      nodes[p].next[c] = new_node;\n      p = nodes[p].link;\n   \
-    \ }\n    int q = (p == -1 ? 0 : nodes[p].next[c]);\n    if (p == -1 || nodes[p].size\
-    \ + 1 == nodes[q].size) {\n      nodes[new_node].link = q;\n    } else {\n   \
-    \   int new_q = len(nodes);\n      nodes.eb(Node(nodes[q].link, nodes[p].size\
-    \ + 1));\n      nodes.back().next = nodes[q].next;\n      nodes[q].link = new_q;\n\
-    \      nodes[new_node].link = new_q;\n      while (p != -1 && nodes[p].next[c]\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"string/suffix_automaton.hpp\"\n\ntemplate <int sigma =\
+    \ 26>\nstruct Suffix_Automaton {\n  struct Node {\n    array<int, sigma> next;\
+    \ // automaton \u306E\u9077\u79FB\u5148\n    int link;               // suffix\
+    \ link\n    int size;               // node \u304C\u53D7\u7406\u3059\u308B\u6700\
+    \u9577\u6587\u5B57\u5217\u306E\u9577\u3055\n    Node(int link, int size) : link(link),\
+    \ size(size) { fill(all(next), -1); }\n  };\n\n  vc<Node> nodes;\n  int last;\
+    \ // \u6587\u5B57\u5217\u5168\u4F53\u3092\u5165\u308C\u305F\u3068\u304D\u306E\u884C\
+    \u304D\u5148\n\n  Suffix_Automaton() {\n    nodes.eb(Node(-1, 0));\n    last =\
+    \ 0;\n  }\n\n  void add(char c0, char off) {\n    int c = c0 - 'a';\n    int new_node\
+    \ = len(nodes);\n    nodes.eb(Node(-1, nodes[last].size + 1));\n    int p = last;\n\
+    \    while (p != -1 && nodes[p].next[c] == -1) {\n      nodes[p].next[c] = new_node;\n\
+    \      p = nodes[p].link;\n    }\n    int q = (p == -1 ? 0 : nodes[p].next[c]);\n\
+    \    if (p == -1 || nodes[p].size + 1 == nodes[q].size) {\n      nodes[new_node].link\
+    \ = q;\n    } else {\n      int new_q = len(nodes);\n      nodes.eb(Node(nodes[q].link,\
+    \ nodes[p].size + 1));\n      nodes.back().next = nodes[q].next;\n      nodes[q].link\
+    \ = new_q;\n      nodes[new_node].link = new_q;\n      while (p != -1 && nodes[p].next[c]\
     \ == q) {\n        nodes[p].next[c] = new_q;\n        p = nodes[p].link;\n   \
     \   }\n    }\n    last = new_node;\n  }\n\n  Graph<int, 1> calc_DAG() {\n    int\
     \ n = len(nodes);\n    Graph<int, 1> G(n);\n    FOR(v, n) {\n      for (auto&&\
@@ -142,8 +149,8 @@ data:
   isVerificationFile: false
   path: string/suffix_automaton.hpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/number_of_substrings2.test.cpp
 documentation_of: string/suffix_automaton.hpp

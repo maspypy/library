@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':question:'
@@ -386,26 +386,33 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate <typename\
-    \ F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n  auto\
-    \ dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n ==\
-    \ N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n\
-    \      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line 2 \"\
-    mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x -\
-    \ 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\
-    \r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll\
-    \ val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\n  val %=\
-    \ mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\
-    \n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"\
-    mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n \
-    \ a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res * a % mod;\n\
-    \    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename T,\
-    \ u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\n\
+    template <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N =\
+    \ len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n\
+    \    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
+    \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
+    \ 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n// (val\
+    \ * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
+    \u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\r\n\
+    ll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
+    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
+    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
+    #line 2 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32\
+    \ mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res *\
+    \ a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename\
+    \ T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0\
     \ < p1 && p1 < p2);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 -\
     \ 2, p1);\n  static constexpr u64 x01_2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
     \ p2 - 2, p2);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  u64 a = a0 + c * p0;\n\
@@ -864,7 +871,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc153f.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-27 19:13:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc153f.test.cpp

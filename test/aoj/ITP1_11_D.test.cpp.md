@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/dice.hpp
     title: other/dice.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_D
@@ -253,13 +253,20 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"other/dice.hpp\"\n\n// \u6B21\u306E\u756A\u53F7\u4ED8\u3051\u308B\u306B\
-    \u5F93\u3046\uFF1AUFRLBD\n// i, 5-i \u304C\u53CD\u5BFE\u306E\u9762\u306B\u306A\
-    \u3063\u3066\u3044\u308B\n// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"other/dice.hpp\"\n\n// \u6B21\u306E\u756A\u53F7\u4ED8\u3051\
+    \u308B\u306B\u5F93\u3046\uFF1AUFRLBD\n// i, 5-i \u304C\u53CD\u5BFE\u306E\u9762\
+    \u306B\u306A\u3063\u3066\u3044\u308B\n// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\n\
     // https://atcoder.jp/contests/tenka1-2012-final/tasks/tenka1_2012_final_e\ntemplate\
     \ <typename X>\nstruct Dice {\n  using ARR = array<X, 6>;\n  ARR A;\n\n  Dice(ARR\
     \ A) : A(A) {}\n\n  X U() { return A[0]; }\n  X F() { return A[1]; }\n  X R()\
@@ -306,8 +313,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_11_D.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ITP1_11_D.test.cpp
 layout: document

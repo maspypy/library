@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':warning:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':warning:'
@@ -120,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'

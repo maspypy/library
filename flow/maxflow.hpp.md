@@ -8,11 +8,11 @@ data:
   - icon: ':x:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
   - icon: ':heavy_check_mark:'

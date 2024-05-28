@@ -1,36 +1,36 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
     title: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/K_shortest_walk.test.cpp
     title: test/library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1602.test.cpp
     title: test/yukicoder/1602.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -101,27 +101,34 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename T, typename\
-    \ GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {\n  const int N = G.N;\n\
-    \  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<bool> done(N);\n  dist[s]\
-    \ = 0;\n  while (1) {\n    int v = -1;\n    T mi = infty<T>;\n    FOR(i, N) {\n\
-    \      if (!done[i] && chmin(mi, dist[i])) v = i;\n    }\n    if (v == -1) break;\n\
-    \    done[v] = 1;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[v]\
-    \ + e.cost)) par[e.to] = v;\n    }\n  }\n  return {dist, par};\n}\n\ntemplate\
-    \ <typename T, typename GT, bool DENSE = false>\npair<vc<T>, vc<int>> dijkstra(GT&\
-    \ G, int v) {\n  if (DENSE) return dijkstra_dense<T>(G, v);\n  auto N = G.N;\n\
-    \  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n  using P = pair<T,\
-    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  dist[v] = 0;\n\
-    \  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv, v] = que.top();\n\
-    \    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n\
-    \      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to] = e.frm;\n\
-    \        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\n\
-    template <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
+    \ T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {\n  const\
+    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<bool>\
+    \ done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n    T mi = infty<T>;\n\
+    \    FOR(i, N) {\n      if (!done[i] && chmin(mi, dist[i])) v = i;\n    }\n  \
+    \  if (v == -1) break;\n    done[v] = 1;\n    for (auto&& e: G[v]) {\n      if\
+    \ (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;\n    }\n  }\n  return {dist,\
+    \ par};\n}\n\ntemplate <typename T, typename GT, bool DENSE = false>\npair<vc<T>,\
+    \ vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE) return dijkstra_dense<T>(G,\
+    \ v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n\
+    \  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\
+    \n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv,\
+    \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
+    \ e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to]\
+    \ = e.frm;\n        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return\
+    \ {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par,\
+    \ root]\ntemplate <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
     \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
     \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
     \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&& v:\
@@ -164,8 +171,8 @@ data:
   requiredBy:
   - graph/shortest_path/K_shortest_walk.hpp
   - graph/shortest_path/nonzero_group_product_shortest_path.hpp
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/arc064c.test.cpp

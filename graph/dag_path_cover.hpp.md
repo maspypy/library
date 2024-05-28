@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/2251_1.test.cpp
     title: test/aoj/2251_1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -77,24 +77,31 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\u52A0\u3057\
-    \u3066\u3088\u3044\n// \u8FBA\u306E\u5BB9\u91CF\u306E\u5909\u66F4\u304C\u53EF\u80FD\
-    \n// \u5909\u66F4\u3059\u308B capacity \u304C F \u306E\u3068\u304D\u3001O((N+M)|F|)\
-    \ \u6642\u9593\u3067\u66F4\u65B0\ntemplate <typename Cap>\nstruct MaxFlow {\n\
-    \  struct Edge {\n    int to, rev;\n    Cap cap; // \u6B8B\u3063\u3066\u3044\u308B\
-    \u5BB9\u91CF. \u3057\u305F\u304C\u3063\u3066 cap+flow \u304C\u5B9A\u6570.\n  \
-    \  Cap flow = 0;\n  };\n\n  const int N, source, sink;\n  vvc<Edge> edges;\n \
-    \ vc<pair<int, int>> pos;\n  vc<int> prog, level;\n  vc<int> que;\n  bool calculated;\n\
-    \n  MaxFlow(int N, int source, int sink)\n      : N(N),\n        source(source),\n\
-    \        sink(sink),\n        edges(N),\n        calculated(0),\n        flow_ans(0)\
-    \ {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap = 0) {\n    calculated\
-    \ = 0;\n    assert(0 <= frm && frm < N);\n    assert(0 <= to && to < N);\n   \
-    \ assert(Cap(0) <= cap);\n    int a = len(edges[frm]);\n    int b = (frm == to\
-    \ ? a + 1 : len(edges[to]));\n    pos.eb(frm, a);\n    edges[frm].eb(Edge{to,\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
+    \u52A0\u3057\u3066\u3088\u3044\n// \u8FBA\u306E\u5BB9\u91CF\u306E\u5909\u66F4\u304C\
+    \u53EF\u80FD\n// \u5909\u66F4\u3059\u308B capacity \u304C F \u306E\u3068\u304D\
+    \u3001O((N+M)|F|) \u6642\u9593\u3067\u66F4\u65B0\ntemplate <typename Cap>\nstruct\
+    \ MaxFlow {\n  struct Edge {\n    int to, rev;\n    Cap cap; // \u6B8B\u3063\u3066\
+    \u3044\u308B\u5BB9\u91CF. \u3057\u305F\u304C\u3063\u3066 cap+flow \u304C\u5B9A\
+    \u6570.\n    Cap flow = 0;\n  };\n\n  const int N, source, sink;\n  vvc<Edge>\
+    \ edges;\n  vc<pair<int, int>> pos;\n  vc<int> prog, level;\n  vc<int> que;\n\
+    \  bool calculated;\n\n  MaxFlow(int N, int source, int sink)\n      : N(N),\n\
+    \        source(source),\n        sink(sink),\n        edges(N),\n        calculated(0),\n\
+    \        flow_ans(0) {}\n\n  void add(int frm, int to, Cap cap, Cap rev_cap =\
+    \ 0) {\n    calculated = 0;\n    assert(0 <= frm && frm < N);\n    assert(0 <=\
+    \ to && to < N);\n    assert(Cap(0) <= cap);\n    int a = len(edges[frm]);\n \
+    \   int b = (frm == to ? a + 1 : len(edges[to]));\n    pos.eb(frm, a);\n    edges[frm].eb(Edge{to,\
     \ b, cap, 0});\n    edges[to].eb(Edge{frm, a, rev_cap, 0});\n  }\n\n  void change_capacity(int\
     \ i, Cap after) {\n    auto [frm, idx] = pos[i];\n    auto& e = edges[frm][idx];\n\
     \    Cap before = e.cap + e.flow;\n    if (before < after) {\n      calculated\
@@ -206,8 +213,8 @@ data:
   isVerificationFile: false
   path: graph/dag_path_cover.hpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/aoj/2251_1.test.cpp
 documentation_of: graph/dag_path_cover.hpp

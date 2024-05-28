@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq.test.cpp
     title: test/library_checker/datastructure/double_ended_pq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2654.test.cpp
     title: test/yukicoder/2654.test.cpp
   - icon: ':heavy_check_mark:'

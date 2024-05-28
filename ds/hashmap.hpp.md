@@ -14,10 +14,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':heavy_check_mark:'
@@ -54,10 +54,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_mode_query.test.cpp
     title: test/library_checker/datastructure/static_range_mode_query.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/eulerwalk_d.test.cpp
     title: test/library_checker/graph/eulerwalk_d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/eulerwalk_ud.test.cpp
     title: test/library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,7 +93,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1728.test.cpp
     title: test/yukicoder/1728.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1769.test.cpp
     title: test/yukicoder/1769.test.cpp
   - icon: ':heavy_check_mark:'

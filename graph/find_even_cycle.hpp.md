@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/find_even_cycle.test.cpp
     title: test/mytest/find_even_cycle.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://chaoxu.prof/posts/2014-03-08-even-cycle-in-a-simple-graph.html
@@ -73,13 +73,20 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/find_even_cycle.hpp\"\n\n// (vs, es), size=(n+1,n)\n// [R] https://scoreboard.icpc.global/46/finals46.pdf\n\
-    template <typename GT>\npair<vc<int>, vc<int>> find_even_cycle(GT &G) {\n  /*\n\
-    \  \u53C2\u8003\uFF1Ahttps://chaoxu.prof/posts/2014-03-08-even-cycle-in-a-simple-graph.html\n\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/find_even_cycle.hpp\"\n\n// (vs, es), size=(n+1,n)\n\
+    // [R] https://scoreboard.icpc.global/46/finals46.pdf\ntemplate <typename GT>\n\
+    pair<vc<int>, vc<int>> find_even_cycle(GT &G) {\n  /*\n  \u53C2\u8003\uFF1Ahttps://chaoxu.prof/posts/2014-03-08-even-cycle-in-a-simple-graph.html\n\
     \  DFS\u6728\u3092\u4F5C\u308B, \u5F8C\u9000\u8FBA\u3054\u3068\u306B\u30B5\u30A4\
     \u30AF\u30EB\u3092\u4F5C\u308B\n  \u5076\u30B5\u30A4\u30AF\u30EB\u304C\u3067\u304D\
     \u308C\u3070 OK\n  \u5171\u901A\u8FBA\u3092\u6301\u3064\u5947\u30B5\u30A4\u30AF\
@@ -158,8 +165,8 @@ data:
   isVerificationFile: false
   path: graph/find_even_cycle.hpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/find_even_cycle.test.cpp
 documentation_of: graph/find_even_cycle.hpp

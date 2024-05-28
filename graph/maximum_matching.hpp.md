@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/general_matching.test.cpp
     title: test/library_checker/graph/general_matching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -74,14 +74,21 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/maximum_matching.hpp\"\n\n// return : (match size, match)\n//\
-    \ match[v] : \u30DE\u30C3\u30C1\u30F3\u30B0\u76F8\u624B OR 0\n// O(N^3)\n// \u300C\
-    \u7D44\u5408\u305B\u6700\u9069\u5316\u300D\u7B2C2\u7248, \u30A2\u30EB\u30B4\u30EA\
-    \u30BA\u30E0 10.2\ntemplate <typename GT>\npair<int, vc<int>> maximum_matching(const\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/maximum_matching.hpp\"\n\n// return : (match size,\
+    \ match)\n// match[v] : \u30DE\u30C3\u30C1\u30F3\u30B0\u76F8\u624B OR 0\n// O(N^3)\n\
+    // \u300C\u7D44\u5408\u305B\u6700\u9069\u5316\u300D\u7B2C2\u7248, \u30A2\u30EB\
+    \u30B4\u30EA\u30BA\u30E0 10.2\ntemplate <typename GT>\npair<int, vc<int>> maximum_matching(const\
     \ GT& G) {\n  const int N = G.N;\n  vc<int> mu(N), phi(N), rho(N);\n  vc<bool>\
     \ scanned(N);\n  FOR(v, N) mu[v] = v;\n  ll ans = 0;\n  for (auto&& e: G.edges)\
     \ {\n    if (e.frm != e.to && mu[e.frm] == e.frm && mu[e.to] == e.to) {\n    \
@@ -171,8 +178,8 @@ data:
   isVerificationFile: false
   path: graph/maximum_matching.hpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/general_matching.test.cpp
   - test/mytest/matching.test.cpp

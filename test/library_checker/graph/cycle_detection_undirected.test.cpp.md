@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/cycle_detection_undirected
@@ -254,42 +254,49 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/find_cycle.hpp\"\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
-    \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT& G) {\r\n  static_assert(GT::is_directed);\r\
-    \n  assert(G.is_prepared());\r\n\r\n  int N = G.N;\r\n  vc<int> used(N);\r\n \
-    \ vc<pair<int, int>> par(N);\r\n  vector<int> es, vs;\r\n\r\n  auto dfs = [&](auto\
-    \ self, int v) -> void {\r\n    used[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (len(es)) return;\r\n      if (!used[e.to]) {\r\n        par[e.to] =\
-    \ {v, e.id};\r\n        self(self, e.to);\r\n      }\r\n      elif (used[e.to]\
-    \ == 1) {\r\n        es = {e.id};\r\n        int cur = v;\r\n        while (cur\
-    \ != e.to) {\r\n          es.eb(par[cur].se);\r\n          cur = par[cur].fi;\r\
-    \n        }\r\n        reverse(all(es));\r\n        return;\r\n      }\r\n   \
-    \ }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\r\n\
-    \  if (es.empty()) return {vs, es};\r\n\r\n  // minimal cycle\r\n  vc<int> nxt(N,\
-    \ -1);\r\n  for (auto&& eid: es) nxt[G.edges[eid].frm] = eid;\r\n\r\n  for (auto&&\
-    \ e: G.edges) {\r\n    int a = e.frm, b = e.to;\r\n    if (nxt[a] == -1 || nxt[b]\
-    \ == -1) continue;\r\n    if (G.edges[nxt[a]].to == e.to) continue;\r\n    while\
-    \ (a != b) {\r\n      int t = G.edges[nxt[a]].to;\r\n      nxt[a] = -1;\r\n  \
-    \    a = t;\r\n    }\r\n    nxt[e.frm] = e.id;\r\n  }\r\n  es.clear();\r\n  FOR(v,\
-    \ N) {\r\n    if (nxt[v] == -1) continue;\r\n    int x = v;\r\n    while (1) {\r\
-    \n      vs.eb(x);\r\n      es.eb(nxt[x]);\r\n      x = G.edges[nxt[x]].to;\r\n\
-    \      if (x == v) break;\r\n    }\r\n    break;\r\n  }\r\n  return {vs, es};\r\
-    \n}\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate <typename GT>\r\npair<vc<int>,\
-    \ vc<int>> find_cycle_undirected(GT& G) {\r\n  assert(!GT::is_directed);\r\n \
-    \ assert(G.is_prepared());\r\n  const int N = G.N;\r\n  const int M = G.M;\r\n\
-    \  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n  vc<int> par(N, -1); // edge\
-    \ idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int d) -> void {\r\n    dep[v]\
-    \ = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to] != -1) continue;\r\
-    \n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n      dfs(dfs, e.to, d\
-    \ + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v, N) {\r\n    if (dep[v]\
-    \ == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\n  int back_e\
-    \ = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\n \
-    \   int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e =\
-    \ e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/find_cycle.hpp\"\n\r\n// {vs, es} or empty. minimal.\r\
+    \ntemplate <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT& G)\
+    \ {\r\n  static_assert(GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\n\
+    \  int N = G.N;\r\n  vc<int> used(N);\r\n  vc<pair<int, int>> par(N);\r\n  vector<int>\
+    \ es, vs;\r\n\r\n  auto dfs = [&](auto self, int v) -> void {\r\n    used[v] =\
+    \ 1;\r\n    for (auto&& e: G[v]) {\r\n      if (len(es)) return;\r\n      if (!used[e.to])\
+    \ {\r\n        par[e.to] = {v, e.id};\r\n        self(self, e.to);\r\n      }\r\
+    \n      elif (used[e.to] == 1) {\r\n        es = {e.id};\r\n        int cur =\
+    \ v;\r\n        while (cur != e.to) {\r\n          es.eb(par[cur].se);\r\n   \
+    \       cur = par[cur].fi;\r\n        }\r\n        reverse(all(es));\r\n     \
+    \   return;\r\n      }\r\n    }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if\
+    \ (!used[v]) dfs(dfs, v);\r\n  if (es.empty()) return {vs, es};\r\n\r\n  // minimal\
+    \ cycle\r\n  vc<int> nxt(N, -1);\r\n  for (auto&& eid: es) nxt[G.edges[eid].frm]\
+    \ = eid;\r\n\r\n  for (auto&& e: G.edges) {\r\n    int a = e.frm, b = e.to;\r\n\
+    \    if (nxt[a] == -1 || nxt[b] == -1) continue;\r\n    if (G.edges[nxt[a]].to\
+    \ == e.to) continue;\r\n    while (a != b) {\r\n      int t = G.edges[nxt[a]].to;\r\
+    \n      nxt[a] = -1;\r\n      a = t;\r\n    }\r\n    nxt[e.frm] = e.id;\r\n  }\r\
+    \n  es.clear();\r\n  FOR(v, N) {\r\n    if (nxt[v] == -1) continue;\r\n    int\
+    \ x = v;\r\n    while (1) {\r\n      vs.eb(x);\r\n      es.eb(nxt[x]);\r\n   \
+    \   x = G.edges[nxt[x]].to;\r\n      if (x == v) break;\r\n    }\r\n    break;\r\
+    \n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
+    \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {\r\n \
+    \ assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n  const int N = G.N;\r\
+    \n  const int M = G.M;\r\n  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n \
+    \ vc<int> par(N, -1); // edge idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int\
+    \ d) -> void {\r\n    dep[v] = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to]\
+    \ != -1) continue;\r\n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n \
+    \     dfs(dfs, e.to, d + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v,\
+    \ N) {\r\n    if (dep[v] == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\
+    \n  int back_e = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\
+    \n    int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e\
+    \ = e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
     \ b = G.edges[back_e].to;\r\n  if (dep[a] > dep[b]) swap(a, b);\r\n  es.eb(back_e),\
     \ vs.eb(a);\r\n  while (1) {\r\n    int x = vs.back();\r\n    auto& e = G.edges[es.back()];\r\
     \n    int y = e.frm + e.to - x;\r\n    if (y == a) break;\r\n    vs.eb(y);\r\n\
@@ -312,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/cycle_detection_undirected.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/cycle_detection_undirected.test.cpp
 layout: document

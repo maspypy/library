@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -9,12 +9,12 @@ data:
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/prufer.test.cpp
     title: test/mytest/prufer.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -74,27 +74,35 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/prufer_code.hpp\"\n\n// [0,n-1]^{n-1}, \u305F\u3060\u3057\u672B\
-    \u5C3E\u306F n-1, \u3068\u3044\u3046\u5B9A\u5F0F\u5316 (n=1 ok)\nvc<int> to_prufer_code(Graph<int,\
-    \ 0>& G) {\n  // \u30E9\u30D9\u30EB\u6700\u5C0F\u306E\u8449\u3092\u3068\u308B\
-    \ -> \u89AA\u3092\u5217\u306B\u8FFD\u52A0\n  int n = G.N;\n  vc<int> par(n);\n\
-    \  {\n    auto dfs = [&](auto& dfs, int v, int p) -> void {\n      par[v] = p;\n\
-    \      for (auto& e: G[v])\n        if (e.to != p) dfs(dfs, e.to, v);\n    };\n\
-    \    dfs(dfs, n - 1, -1);\n  }\n  vc<int> deg = G.deg_array();\n  vc<int> res(n\
-    \ - 1);\n  int p = 0;\n  int leaf = -1;\n  FOR(i, n - 1) {\n    if (leaf == -1)\
-    \ {\n      while (deg[p] != 1) ++p;\n      leaf = p;\n    }\n    res[i] = par[leaf];\n\
-    \    deg[leaf]--, deg[par[leaf]]--;\n    leaf = (deg[par[leaf]] == 1 && par[leaf]\
-    \ < p ? par[leaf] : -1);\n  }\n  return res;\n}\n\nGraph<int, 0> from_prufer_code(vc<int>\
-    \ code) {\n  int n = len(code) + 1;\n  Graph<int, 0> G(n);\n  if (n == 1) return\
-    \ G;\n  assert(code.back() == n - 1);\n  vc<int> deg(n, 1);\n  for (auto& v: code)\
-    \ deg[v]++;\n\n  int p = 0;\n  int leaf = -1;\n  FOR(i, n - 1) {\n    if (leaf\
-    \ == -1) {\n      while (deg[p] != 1) p++;\n      leaf = p;\n    }\n    G.add(code[i],\
-    \ leaf);\n    deg[leaf]--, deg[code[i]]--;\n    leaf = (code[i] < p && deg[code[i]]\
-    \ == 1 ? code[i] : -1);\n  }\n  G.build();\n  return G;\n}\n"
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/prufer_code.hpp\"\n\n// [0,n-1]^{n-1}, \u305F\u3060\
+    \u3057\u672B\u5C3E\u306F n-1, \u3068\u3044\u3046\u5B9A\u5F0F\u5316 (n=1 ok)\n\
+    vc<int> to_prufer_code(Graph<int, 0>& G) {\n  // \u30E9\u30D9\u30EB\u6700\u5C0F\
+    \u306E\u8449\u3092\u3068\u308B -> \u89AA\u3092\u5217\u306B\u8FFD\u52A0\n  int\
+    \ n = G.N;\n  vc<int> par(n);\n  {\n    auto dfs = [&](auto& dfs, int v, int p)\
+    \ -> void {\n      par[v] = p;\n      for (auto& e: G[v])\n        if (e.to !=\
+    \ p) dfs(dfs, e.to, v);\n    };\n    dfs(dfs, n - 1, -1);\n  }\n  vc<int> deg\
+    \ = G.deg_array();\n  vc<int> res(n - 1);\n  int p = 0;\n  int leaf = -1;\n  FOR(i,\
+    \ n - 1) {\n    if (leaf == -1) {\n      while (deg[p] != 1) ++p;\n      leaf\
+    \ = p;\n    }\n    res[i] = par[leaf];\n    deg[leaf]--, deg[par[leaf]]--;\n \
+    \   leaf = (deg[par[leaf]] == 1 && par[leaf] < p ? par[leaf] : -1);\n  }\n  return\
+    \ res;\n}\n\nGraph<int, 0> from_prufer_code(vc<int> code) {\n  int n = len(code)\
+    \ + 1;\n  Graph<int, 0> G(n);\n  if (n == 1) return G;\n  assert(code.back() ==\
+    \ n - 1);\n  vc<int> deg(n, 1);\n  for (auto& v: code) deg[v]++;\n\n  int p =\
+    \ 0;\n  int leaf = -1;\n  FOR(i, n - 1) {\n    if (leaf == -1) {\n      while\
+    \ (deg[p] != 1) p++;\n      leaf = p;\n    }\n    G.add(code[i], leaf);\n    deg[leaf]--,\
+    \ deg[code[i]]--;\n    leaf = (code[i] < p && deg[code[i]] == 1 ? code[i] : -1);\n\
+    \  }\n  G.build();\n  return G;\n}\n"
   code: "#include \"graph/base.hpp\"\n\n// [0,n-1]^{n-1}, \u305F\u3060\u3057\u672B\
     \u5C3E\u306F n-1, \u3068\u3044\u3046\u5B9A\u5F0F\u5316 (n=1 ok)\nvc<int> to_prufer_code(Graph<int,\
     \ 0>& G) {\n  // \u30E9\u30D9\u30EB\u6700\u5C0F\u306E\u8449\u3092\u3068\u308B\
@@ -118,8 +126,8 @@ data:
   path: graph/prufer_code.hpp
   requiredBy:
   - enumerate/labeled_tree.hpp
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-27 19:13:45+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/prufer.test.cpp
 documentation_of: graph/prufer_code.hpp

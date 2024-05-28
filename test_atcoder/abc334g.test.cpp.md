@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
   - icon: ':question:'
@@ -332,57 +332,64 @@ data:
     \ eid = (keep_eid ? e.id : -1);\n          G.add(new_idx[a], new_idx[b], e.cost,\
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
-    \nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
-    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
-    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
-    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 2 \"graph/ds/remove_one_vertex_connectivity.hpp\"\n\n// 1 \u70B9\u6D88\u3057\
-    \u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B / \u9023\u7D50\u6210\
-    \u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\u30BA\nstruct Remove_One_Vertex_Connectivity\
-    \ {\n  int N, M, n_comp_base;\n  vc<int> root;\n  vc<int> LID, RID;\n  vc<int>\
-    \ low;\n  vvc<int> ch;\n  vc<int> rm_sz, rm_comp;\n\n  template <typename GT>\n\
-    \  Remove_One_Vertex_Connectivity(GT& G) {\n    build(G);\n  }\n\n  template <typename\
-    \ GT>\n  void build(GT& G) {\n    N = G.N, M = G.M;\n    root.assign(N, -1);\n\
-    \    LID.assign(N, -1), RID.assign(N, -1), low.assign(N, -1);\n    ch.resize(N);\n\
-    \    int p = 0;\n    n_comp_base = 0;\n    auto dfs = [&](auto& dfs, int v, int\
-    \ last_e) -> void {\n      low[v] = LID[v] = p++;\n      for (auto&& e: G[v])\
-    \ {\n        if (e.id == last_e) continue;\n        if (root[e.to] == -1) {\n\
-    \          root[e.to] = root[v];\n          ch[v].eb(e.to);\n          dfs(dfs,\
-    \ e.to, e.id);\n          chmin(low[v], low[e.to]);\n        } else {\n      \
-    \    chmin(low[v], LID[e.to]);\n        }\n      }\n      RID[v] = p;\n    };\n\
-    \    FOR(v, N) {\n      if (root[v] == -1) { n_comp_base++, root[v] = v, dfs(dfs,\
-    \ v, -1); }\n    }\n    rm_sz.assign(N, 0);\n    rm_comp.assign(N, n_comp_base);\n\
-    \    FOR(v, N) {\n      if (root[v] == v) {\n        rm_comp[v] += len(ch[v])\
-    \ - 1;\n      } else {\n        rm_sz[v] = subtree_size(root[v]) - 1;\n      \
-    \  for (auto& c: ch[v]) {\n          if (low[c] >= LID[v]) { rm_sz[v] -= subtree_size(c),\
-    \ rm_comp[v]++; }\n        }\n      }\n    }\n  }\n\n  int n_comp(int rm) { return\
-    \ rm_comp[rm]; }\n\n  bool is_connected(int rm, int u, int v) {\n    assert(u\
-    \ != rm && v != rm);\n    if (root[u] != root[v]) return false;\n    if (root[u]\
-    \ != root[rm]) return true;\n    bool in_u = in_subtree(u, rm), in_v = in_subtree(v,\
-    \ rm);\n    if (in_u) { u = jump(rm, u), in_u = low[u] >= LID[rm]; }\n    if (in_v)\
-    \ { v = jump(rm, v), in_v = low[v] >= LID[rm]; }\n    if (in_u != in_v) return\
-    \ false;\n    return (in_u ? u == v : true);\n  }\n\n  int size(int rm, int v)\
-    \ {\n    assert(rm != v);\n    if (root[v] != root[rm]) return subtree_size(root[v]);\n\
-    \    if (rm == root[v]) { return subtree_size(jump(rm, v)); }\n    if (!in_subtree(v,\
-    \ rm)) { return rm_sz[rm]; }\n    v = jump(rm, v);\n    return (LID[rm] <= low[v]\
-    \ ? subtree_size(v) : rm_sz[rm]);\n  }\n\nprivate:\n  bool in_subtree(int a, int\
-    \ b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\n  int subtree_size(int v)\
-    \ { return RID[v] - LID[v]; }\n  int jump(int r, int v) {\n    assert(r != v &&\
-    \ in_subtree(v, r));\n    int n = len(ch[r]);\n    int k = binary_search(\n  \
-    \      [&](int k) -> bool {\n          int c = ch[r][k];\n          return LID[c]\
-    \ <= LID[v];\n        },\n        0, n);\n    return ch[r][k];\n  }\n};\n#line\
-    \ 7 \"test_atcoder/abc334g.test.cpp\"\n\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(H, W);\n  VEC(string, S, H);\n  vv(int, IDX, H, W, -1);\n  int p = 0;\n\
-    \  FOR(x, H) FOR(y, W) {\n    if (S[x][y] == '#') { IDX[x][y] = p++; }\n  }\n\n\
-    \  auto isin = [&](int x, int y) -> bool {\n    return (0 <= x && x < H && 0 <=\
-    \ y && y < W && S[x][y] == '#');\n  };\n  int dx[] = {1, 0, -1, 0, 1, 1, -1, -1};\n\
-    \  int dy[] = {0, 1, 0, -1, 1, -1, 1, -1};\n\n  Graph<int, 0> G(p);\n  FOR(x,\
-    \ H) FOR(y, W) {\n    FOR(d, 2) {\n      int nx = x + dx[d], ny = y + dy[d];\n\
-    \      if (!isin(x, y)) continue;\n      if (!isin(nx, ny)) continue;\n      G.add(IDX[x][y],\
-    \ IDX[nx][ny]);\n    }\n  }\n  G.build();\n\n  Remove_One_Vertex_Connectivity\
-    \ X(G);\n  mint ans = 0;\n  FOR(v, p) { ans += X.n_comp(v); }\n  ans /= mint(p);\n\
-    \  print(ans);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
+    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
+    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
+    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
+    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
+    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
+    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
+    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
+    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
+    \ }\n  }\n};\n#line 2 \"graph/ds/remove_one_vertex_connectivity.hpp\"\n\n// 1\
+    \ \u70B9\u6D88\u3057\u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B\
+    \ / \u9023\u7D50\u6210\u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\
+    \u30BA\nstruct Remove_One_Vertex_Connectivity {\n  int N, M, n_comp_base;\n  vc<int>\
+    \ root;\n  vc<int> LID, RID;\n  vc<int> low;\n  vvc<int> ch;\n  vc<int> rm_sz,\
+    \ rm_comp;\n\n  template <typename GT>\n  Remove_One_Vertex_Connectivity(GT& G)\
+    \ {\n    build(G);\n  }\n\n  template <typename GT>\n  void build(GT& G) {\n \
+    \   N = G.N, M = G.M;\n    root.assign(N, -1);\n    LID.assign(N, -1), RID.assign(N,\
+    \ -1), low.assign(N, -1);\n    ch.resize(N);\n    int p = 0;\n    n_comp_base\
+    \ = 0;\n    auto dfs = [&](auto& dfs, int v, int last_e) -> void {\n      low[v]\
+    \ = LID[v] = p++;\n      for (auto&& e: G[v]) {\n        if (e.id == last_e) continue;\n\
+    \        if (root[e.to] == -1) {\n          root[e.to] = root[v];\n          ch[v].eb(e.to);\n\
+    \          dfs(dfs, e.to, e.id);\n          chmin(low[v], low[e.to]);\n      \
+    \  } else {\n          chmin(low[v], LID[e.to]);\n        }\n      }\n      RID[v]\
+    \ = p;\n    };\n    FOR(v, N) {\n      if (root[v] == -1) { n_comp_base++, root[v]\
+    \ = v, dfs(dfs, v, -1); }\n    }\n    rm_sz.assign(N, 0);\n    rm_comp.assign(N,\
+    \ n_comp_base);\n    FOR(v, N) {\n      if (root[v] == v) {\n        rm_comp[v]\
+    \ += len(ch[v]) - 1;\n      } else {\n        rm_sz[v] = subtree_size(root[v])\
+    \ - 1;\n        for (auto& c: ch[v]) {\n          if (low[c] >= LID[v]) { rm_sz[v]\
+    \ -= subtree_size(c), rm_comp[v]++; }\n        }\n      }\n    }\n  }\n\n  int\
+    \ n_comp(int rm) { return rm_comp[rm]; }\n\n  bool is_connected(int rm, int u,\
+    \ int v) {\n    assert(u != rm && v != rm);\n    if (root[u] != root[v]) return\
+    \ false;\n    if (root[u] != root[rm]) return true;\n    bool in_u = in_subtree(u,\
+    \ rm), in_v = in_subtree(v, rm);\n    if (in_u) { u = jump(rm, u), in_u = low[u]\
+    \ >= LID[rm]; }\n    if (in_v) { v = jump(rm, v), in_v = low[v] >= LID[rm]; }\n\
+    \    if (in_u != in_v) return false;\n    return (in_u ? u == v : true);\n  }\n\
+    \n  int size(int rm, int v) {\n    assert(rm != v);\n    if (root[v] != root[rm])\
+    \ return subtree_size(root[v]);\n    if (rm == root[v]) { return subtree_size(jump(rm,\
+    \ v)); }\n    if (!in_subtree(v, rm)) { return rm_sz[rm]; }\n    v = jump(rm,\
+    \ v);\n    return (LID[rm] <= low[v] ? subtree_size(v) : rm_sz[rm]);\n  }\n\n\
+    private:\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
+    \ < RID[b]; }\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n  int jump(int\
+    \ r, int v) {\n    assert(r != v && in_subtree(v, r));\n    int n = len(ch[r]);\n\
+    \    int k = binary_search(\n        [&](int k) -> bool {\n          int c = ch[r][k];\n\
+    \          return LID[c] <= LID[v];\n        },\n        0, n);\n    return ch[r][k];\n\
+    \  }\n};\n#line 7 \"test_atcoder/abc334g.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid solve() {\n  LL(H, W);\n  VEC(string, S, H);\n  vv(int, IDX, H, W, -1);\n\
+    \  int p = 0;\n  FOR(x, H) FOR(y, W) {\n    if (S[x][y] == '#') { IDX[x][y] =\
+    \ p++; }\n  }\n\n  auto isin = [&](int x, int y) -> bool {\n    return (0 <= x\
+    \ && x < H && 0 <= y && y < W && S[x][y] == '#');\n  };\n  int dx[] = {1, 0, -1,\
+    \ 0, 1, 1, -1, -1};\n  int dy[] = {0, 1, 0, -1, 1, -1, 1, -1};\n\n  Graph<int,\
+    \ 0> G(p);\n  FOR(x, H) FOR(y, W) {\n    FOR(d, 2) {\n      int nx = x + dx[d],\
+    \ ny = y + dy[d];\n      if (!isin(x, y)) continue;\n      if (!isin(nx, ny))\
+    \ continue;\n      G.add(IDX[x][y], IDX[nx][ny]);\n    }\n  }\n  G.build();\n\n\
+    \  Remove_One_Vertex_Connectivity X(G);\n  mint ans = 0;\n  FOR(v, p) { ans +=\
+    \ X.n_comp(v); }\n  ans /= mint(p);\n  print(ans);\n}\n\nsigned main() {\n  int\
+    \ T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc334/tasks/abc334_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"graph/ds/remove_one_vertex_connectivity.hpp\"\n\nusing mint = modint998;\n\
@@ -407,7 +414,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc334g.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-05-27 19:13:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc334g.test.cpp
