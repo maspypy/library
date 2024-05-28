@@ -879,6 +879,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/online_z.test.cpp
     title: test/library_checker/string/online_z.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/string/palindromes_in_deque.test.cpp
+    title: test/library_checker/string/palindromes_in_deque.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/prefix_substring_lcs.test.cpp
     title: test/library_checker/string/prefix_substring_lcs.test.cpp
@@ -3113,6 +3116,7 @@ data:
   - test/library_checker/string/longest_common_substring.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/palindromes_in_deque.test.cpp
   - test/library_checker/string/enumerate_palindromes.test.cpp
   - test/library_checker/string/zalgorithm.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp

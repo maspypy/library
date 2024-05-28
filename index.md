@@ -1893,7 +1893,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/count_subseq.hpp
       title: string/count_subseq.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: string/double_ended_palindromic_tree.hpp
       title: string/double_ended_palindromic_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2877,6 +2877,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/online_z.test.cpp
       title: test/library_checker/string/online_z.test.cpp
+    - icon: ':x:'
+      path: test/library_checker/string/palindromes_in_deque.test.cpp
+      title: test/library_checker/string/palindromes_in_deque.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/string/prefix_substring_lcs.test.cpp
       title: test/library_checker/string/prefix_substring_lcs.test.cpp
