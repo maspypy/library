@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -72,43 +72,44 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/ds/remove_one_edge_connectivity.hpp\"\n\n// 1 \u8FBA\
-    \u6D88\u3057\u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B / \u9023\
-    \u7D50\u6210\u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\u30BA\n\
-    struct Remove_One_Edge_Connectivity {\n  int N, M;\n  int n_comp_base;\n  vc<pair<int,\
-    \ int>> edge;\n  vc<int> root;\n  vc<int> LID, RID;\n  vc<bool> bridge;\n\n  template\
-    \ <typename GT>\n  Remove_One_Edge_Connectivity(GT& G) {\n    build(G);\n  }\n\
-    \n  template <typename GT>\n  void build(GT& G) {\n    N = G.N, M = G.M;\n   \
-    \ edge.resize(M);\n    for (auto& e: G.edges) edge[e.id] = {e.frm, e.to};\n  \
-    \  root.assign(N, -1);\n    LID.assign(N, -1), RID.assign(N, -1);\n    bridge.assign(M,\
-    \ 0);\n    vc<int> low(N, -1);\n    n_comp_base = 0;\n    int p = 0;\n    auto\
-    \ dfs = [&](auto& dfs, int v, int last_e) -> void {\n      low[v] = LID[v] = p++;\n\
-    \      for (auto&& e: G[v]) {\n        if (e.id == last_e) continue;\n       \
-    \ if (root[e.to] == -1) {\n          root[e.to] = root[v];\n          dfs(dfs,\
-    \ e.to, e.id);\n          chmin(low[v], low[e.to]);\n          bridge[e.id] =\
-    \ (low[e.to] == LID[e.to]);\n        } else {\n          chmin(low[v], LID[e.to]);\n\
-    \        }\n      }\n      RID[v] = p;\n    };\n    FOR(v, N) {\n      if (root[v]\
-    \ == -1) { n_comp_base++, root[v] = v, dfs(dfs, v, -1); }\n    }\n    for (auto&\
-    \ [a, b]: edge) {\n      if (in_subtree(a, b)) swap(a, b);\n    }\n  }\n\n  int\
-    \ n_comp(int eid) { return n_comp_base + (bridge[eid] ? 1 : 0); }\n\n  bool is_connected(int\
-    \ eid, int u, int v) {\n    if (root[u] != root[v]) return false;\n    if (!bridge[eid])\
-    \ return true;\n    auto [a, b] = edge[eid];\n    return (in_subtree(u, b) ==\
-    \ in_subtree(v, b));\n  }\n\n  int size(int eid, int v) {\n    int r = root[v];\n\
-    \    if (!bridge[eid]) { return subtree_size(r); }\n    auto [a, b] = edge[eid];\n\
-    \    if (root[a] != r) { return subtree_size(r); }\n    if (in_subtree(v, b))\
-    \ return subtree_size(b);\n    return subtree_size(r) - subtree_size(b);\n  }\n\
-    \nprivate:\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
-    \ < RID[b]; }\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n};\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/ds/remove_one_edge_connectivity.hpp\"\
+    \n\n// 1 \u8FBA\u6D88\u3057\u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\
+    \u304B / \u9023\u7D50\u6210\u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\
+    \u30A4\u30BA\nstruct Remove_One_Edge_Connectivity {\n  int N, M;\n  int n_comp_base;\n\
+    \  vc<pair<int, int>> edge;\n  vc<int> root;\n  vc<int> LID, RID;\n  vc<bool>\
+    \ bridge;\n\n  template <typename GT>\n  Remove_One_Edge_Connectivity(GT& G) {\n\
+    \    build(G);\n  }\n\n  template <typename GT>\n  void build(GT& G) {\n    N\
+    \ = G.N, M = G.M;\n    edge.resize(M);\n    for (auto& e: G.edges) edge[e.id]\
+    \ = {e.frm, e.to};\n    root.assign(N, -1);\n    LID.assign(N, -1), RID.assign(N,\
+    \ -1);\n    bridge.assign(M, 0);\n    vc<int> low(N, -1);\n    n_comp_base = 0;\n\
+    \    int p = 0;\n    auto dfs = [&](auto& dfs, int v, int last_e) -> void {\n\
+    \      low[v] = LID[v] = p++;\n      for (auto&& e: G[v]) {\n        if (e.id\
+    \ == last_e) continue;\n        if (root[e.to] == -1) {\n          root[e.to]\
+    \ = root[v];\n          dfs(dfs, e.to, e.id);\n          chmin(low[v], low[e.to]);\n\
+    \          bridge[e.id] = (low[e.to] == LID[e.to]);\n        } else {\n      \
+    \    chmin(low[v], LID[e.to]);\n        }\n      }\n      RID[v] = p;\n    };\n\
+    \    FOR(v, N) {\n      if (root[v] == -1) { n_comp_base++, root[v] = v, dfs(dfs,\
+    \ v, -1); }\n    }\n    for (auto& [a, b]: edge) {\n      if (in_subtree(a, b))\
+    \ swap(a, b);\n    }\n  }\n\n  int n_comp(int eid) { return n_comp_base + (bridge[eid]\
+    \ ? 1 : 0); }\n\n  bool is_connected(int eid, int u, int v) {\n    if (root[u]\
+    \ != root[v]) return false;\n    if (!bridge[eid]) return true;\n    auto [a,\
+    \ b] = edge[eid];\n    return (in_subtree(u, b) == in_subtree(v, b));\n  }\n\n\
+    \  int size(int eid, int v) {\n    int r = root[v];\n    if (!bridge[eid]) { return\
+    \ subtree_size(r); }\n    auto [a, b] = edge[eid];\n    if (root[a] != r) { return\
+    \ subtree_size(r); }\n    if (in_subtree(v, b)) return subtree_size(b);\n    return\
+    \ subtree_size(r) - subtree_size(b);\n  }\n\nprivate:\n  bool in_subtree(int a,\
+    \ int b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\n  int subtree_size(int\
+    \ v) { return RID[v] - LID[v]; }\n};\n"
   code: "#include \"graph/base.hpp\"\n\n// 1 \u8FBA\u6D88\u3057\u305F\u3068\u304D\u306B\
     \n// u,v \u304C\u9023\u7D50\u304B / \u9023\u7D50\u6210\u5206\u6570 / v \u306E\u9023\
     \u7D50\u6210\u5206\u30B5\u30A4\u30BA\nstruct Remove_One_Edge_Connectivity {\n\
@@ -141,7 +142,7 @@ data:
   isVerificationFile: false
   path: graph/ds/remove_one_edge_connectivity.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/remove_one_edge.test.cpp

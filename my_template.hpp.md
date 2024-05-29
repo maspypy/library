@@ -6,7 +6,7 @@ data:
     path: test/library_checker/geometry/static_convex_hull.tset.cpp
     title: test/library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
   - icon: ':heavy_check_mark:'
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/1508_2.test.cpp
     title: test/aoj/1508_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/1566.test.cpp
     title: test/aoj/1566.test.cpp
   - icon: ':x:'
@@ -87,7 +87,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_B.test.cpp
     title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -186,7 +186,7 @@ data:
   - icon: ':x:'
     path: test/aoj/ITP1_11_D.test.cpp
     title: test/aoj/ITP1_11_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/ITP1_9_A.test.cpp
     title: test/aoj/ITP1_9_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -291,7 +291,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
     title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/double_ended_q.test.cpp
     title: test/library_checker/datastructure/double_ended_q.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1269,7 +1269,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_square.test.cpp
     title: test/mytest/online_square.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/palindrome_decomposition_dp.test.cpp
     title: test/mytest/palindrome_decomposition_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2124,7 +2124,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2604.test.cpp
     title: test/yukicoder/2604.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2606.test.cpp
     title: test/yukicoder/2606.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2139,7 +2139,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2627.test.cpp
     title: test/yukicoder/2627.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2154,16 +2154,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/310.test.cpp
     title: test/yukicoder/310.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/421.test.cpp
     title: test/yukicoder/421.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/421_2.test.cpp
     title: test/yukicoder/421_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/426.test.cpp
     title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/465.test.cpp
     title: test/yukicoder/465.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2262,7 +2262,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc141f.test.cpp
     title: test_atcoder/abc141f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'

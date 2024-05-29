@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -273,55 +273,55 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
-    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
-    \ A[RNG(0, i + 1)]);\n}\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate\
-    \ <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
-    \u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void\
-    \ build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap\
-    \ = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\
-    \n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
-    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() { used.assign(len(used),\
-    \ 0); }\r\n  int size() { return len(used) - cap; }\r\n\r\n  int index(const u64&\
-    \ k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i =\
-    \ (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64&\
-    \ k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i])\
-    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
-    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
-    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n  \
-    \      = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x\
-    \ += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x =\
-    \ (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) & mask;\r\
-    \n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n    dat.reserve(len(used)\
-    \ - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\
-    \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
-    \ = b;\r\n  }\r\n};\n#line 2 \"random/hash_pair.hpp\"\n\ntemplate <typename T>\n\
-    u64 hash_pair(pair<T, T> X) {\n  static ll hash_base = 0;\n  if (hash_base ==\
-    \ 0) hash_base = RNG_64();\n  return hash_base * X.fi + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\
-    \n\ntemplate <typename T>\npair<int, int> closest_pair(vc<Point<T>> points) {\n\
-    \  int N = len(points);\n  assert(N >= 2);\n  HashMap<int> MP(N);\n  vc<int> I(N);\n\
-    \  iota(all(I), 0);\n  shuffle(I);\n  points = rearrange(points, I);\n\n  auto\
-    \ calc = [&](int i, int j) -> T {\n    return (points[j] - points[i]).dot(points[j]\
-    \ - points[i]);\n  };\n\n  T best = calc(0, 1);\n  pair<int, int> res = {0, 1};\n\
-    \  T w = sqrtl(best);\n\n  vc<int> nxt(N, -1);\n\n  auto insert = [&](int i) ->\
-    \ void {\n    u64 k = hash_pair<ll>({points[i].x / w, points[i].y / w});\n   \
-    \ nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\n  auto query = [&](int i) ->\
-    \ bool {\n    ll a = points[i].x / w;\n    ll b = points[i].y / w;\n    bool upd\
-    \ = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n      u64 k = hash_pair<ll>({a +\
-    \ dx, b + dy});\n      int j = MP.get(k, -1);\n      while (j != -1) {\n     \
-    \   if (chmin(best, calc(i, j))) { upd = 1, res = {i, j}, w = sqrtl(best); }\n\
-    \        j = nxt[j];\n      }\n    }\n    return upd;\n  };\n\n  insert(0), insert(1);\n\
-    \  FOR(i, 2, N) {\n    if (query(i)) {\n      if (best == T(0)) break;\n     \
-    \ MP.build(N);\n      FOR(j, i) insert(j);\n    }\n    insert(i);\n  }\n  res.fi\
-    \ = I[res.fi], res.se = I[res.se];\n  return res;\n}\n#line 7 \"test/aoj/CGL_5_A.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  using Re = double;\n  using P = Point<Re>;\n \
-    \ VEC(P, points, N);\n  auto [i, j] = closest_pair(points);\n  Re ANS = dist<Re>(points[i],\
-    \ points[j]);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
-    }\n"
+    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int\
+    \ j = RNG(0, i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 2 \"ds/hashmap.hpp\"\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
+    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
+    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() { used.assign(len(used), 0); }\r\n  int size()\
+    \ { return len(used) - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i\
+    \ = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\
+    \n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap\
+    \ == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1,\
+    \ key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val\
+    \ get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n    return\
+    \ (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const u64& k)\
+    \ {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\
+    \n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F f) {\r\
+    \n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\
+    \n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\
+    \r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\r\n        = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"random/hash_pair.hpp\"\n\
+    \ntemplate <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base\
+    \ = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi\
+    \ + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\n\ntemplate <typename T>\npair<int,\
+    \ int> closest_pair(vc<Point<T>> points) {\n  int N = len(points);\n  assert(N\
+    \ >= 2);\n  HashMap<int> MP(N);\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n\
+    \  points = rearrange(points, I);\n\n  auto calc = [&](int i, int j) -> T {\n\
+    \    return (points[j] - points[i]).dot(points[j] - points[i]);\n  };\n\n  T best\
+    \ = calc(0, 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\n  vc<int>\
+    \ nxt(N, -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
+    \ / w, points[i].y / w});\n    nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\
+    \n  auto query = [&](int i) -> bool {\n    ll a = points[i].x / w;\n    ll b =\
+    \ points[i].y / w;\n    bool upd = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n \
+    \     u64 k = hash_pair<ll>({a + dx, b + dy});\n      int j = MP.get(k, -1);\n\
+    \      while (j != -1) {\n        if (chmin(best, calc(i, j))) { upd = 1, res\
+    \ = {i, j}, w = sqrtl(best); }\n        j = nxt[j];\n      }\n    }\n    return\
+    \ upd;\n  };\n\n  insert(0), insert(1);\n  FOR(i, 2, N) {\n    if (query(i)) {\n\
+    \      if (best == T(0)) break;\n      MP.build(N);\n      FOR(j, i) insert(j);\n\
+    \    }\n    insert(i);\n  }\n  res.fi = I[res.fi], res.se = I[res.se];\n  return\
+    \ res;\n}\n#line 7 \"test/aoj/CGL_5_A.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \  using Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i,\
+    \ j] = closest_pair(points);\n  Re ANS = dist<Re>(points[i], points[j]);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
     \n#define ERROR 0.000001\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
     \n#include \"geo/closest_pair.hpp\"\n\nvoid solve() {\n  LL(N);\n  using Re =\
@@ -340,8 +340,8 @@ data:
   isVerificationFile: true
   path: test/aoj/CGL_5_A.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-29 22:32:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/CGL_5_A.test.cpp
 layout: document

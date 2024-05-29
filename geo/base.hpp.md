@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: geo/apollonian_circle.hpp
     title: geo/apollonian_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':question:'
@@ -44,13 +44,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':heavy_check_mark:'
@@ -90,7 +90,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_B.test.cpp
     title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'

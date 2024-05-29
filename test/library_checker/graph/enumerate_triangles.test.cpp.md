@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -254,27 +254,28 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"enumerate/triangle.hpp\"\n\r\ntemplate <typename Gr, typename\
-    \ F>\r\nvoid enumerate_triangle(Gr& G, F query) {\r\n  int N = G.N;\r\n  Graph<int,\
-    \ 1> H(N);\r\n  for (auto&& e: G.edges) {\r\n    // \u6CE8\u610F\uFF1A\u6B21\u6570\
-    \u6BD4\u8F03\u3060\u3051\u3060\u3068 DAG \u306B\u306A\u3089\u305A\u3001\u30B5\u30A4\
-    \u30AF\u30EB\u304C\u3067\u304D\u3066\u3057\u307E\u3046\r\n    if (mp(G.deg(e.frm),\
-    \ e.frm) < mp(G.deg(e.to), e.to))\r\n      H.add(e.frm, e.to);\r\n    else\r\n\
-    \      H.add(e.to, e.frm);\r\n  }\r\n  H.build();\r\n\r\n  vc<bool> table(N);\r\
-    \n  FOR(a, N) {\r\n    for (auto&& e: H[a]) { table[e.to] = 1; }\r\n    for (auto&&\
-    \ e: H[a]) {\r\n      int b = e.to;\r\n      for (auto&& f: H[b]) {\r\n      \
-    \  int c = f.to;\r\n        if (table[c]) query(a, b, c);\r\n      }\r\n    }\r\
-    \n    for (auto&& e: H[a]) { table[e.to] = 0; }\r\n  }\r\n}\r\n#line 5 \"test/library_checker/graph/enumerate_triangles.test.cpp\"\
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"enumerate/triangle.hpp\"\
+    \n\r\ntemplate <typename Gr, typename F>\r\nvoid enumerate_triangle(Gr& G, F query)\
+    \ {\r\n  int N = G.N;\r\n  Graph<int, 1> H(N);\r\n  for (auto&& e: G.edges) {\r\
+    \n    // \u6CE8\u610F\uFF1A\u6B21\u6570\u6BD4\u8F03\u3060\u3051\u3060\u3068 DAG\
+    \ \u306B\u306A\u3089\u305A\u3001\u30B5\u30A4\u30AF\u30EB\u304C\u3067\u304D\u3066\
+    \u3057\u307E\u3046\r\n    if (mp(G.deg(e.frm), e.frm) < mp(G.deg(e.to), e.to))\r\
+    \n      H.add(e.frm, e.to);\r\n    else\r\n      H.add(e.to, e.frm);\r\n  }\r\n\
+    \  H.build();\r\n\r\n  vc<bool> table(N);\r\n  FOR(a, N) {\r\n    for (auto&&\
+    \ e: H[a]) { table[e.to] = 1; }\r\n    for (auto&& e: H[a]) {\r\n      int b =\
+    \ e.to;\r\n      for (auto&& f: H[b]) {\r\n        int c = f.to;\r\n        if\
+    \ (table[c]) query(a, b, c);\r\n      }\r\n    }\r\n    for (auto&& e: H[a]) {\
+    \ table[e.to] = 0; }\r\n  }\r\n}\r\n#line 5 \"test/library_checker/graph/enumerate_triangles.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(int, A, N);\r\n  Graph G(N);\r\n\
     \  G.read_graph(M, 0, 0);\r\n  i128 sum = 0;\r\n  auto query\r\n      = [&](int\
     \ a, int b, int c) -> void { sum += i128(A[a]) * A[b] * A[c]; };\r\n  enumerate_triangle(G,\
@@ -295,7 +296,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/graph/enumerate_triangles.test.cpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/graph/enumerate_triangles.test.cpp

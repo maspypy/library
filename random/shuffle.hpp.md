@@ -5,17 +5,17 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':x:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':x:'
@@ -63,12 +63,12 @@ data:
   - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -77,10 +77,11 @@ data:
     \          .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n \
     \ return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
     ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
-    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
-    \ A[RNG(0, i + 1)]);\n}\n"
+    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int\
+    \ j = RNG(0, i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n"
   code: "#include \"random/base.hpp\"\n\ntemplate <typename T>\nvoid shuffle(vc<T>&\
-    \ A) {\n  FOR(i, len(A)) swap(A[i], A[RNG(0, i + 1)]);\n}"
+    \ A) {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n    if (i != j) swap(A[i],\
+    \ A[j]);\n  }\n}"
   dependsOn:
   - random/base.hpp
   isVerificationFile: false
@@ -89,8 +90,8 @@ data:
   - random/random_graph.hpp
   - geo/closest_pair.hpp
   - geo/minimum_enclosing_circle.hpp
-  timestamp: '2023-02-17 09:47:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-05-29 22:32:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
   - test/mytest/find_C4.test.cpp

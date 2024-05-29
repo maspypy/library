@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
@@ -72,37 +72,38 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/blackbox/complement_graph_bfs.hpp\"\n\ntemplate\
-    \ <typename GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G, int s) {\n\
-    \  static vc<int> que, NG, dist, par, yet;\n  const int N = G.N;\n  if (len(que)\
-    \ < N) que.resize(N);\n  if (len(NG) < N) NG.resize(N);\n  if (len(yet) < N) yet.resize(N);\n\
-    \  dist.assign(N, infty<int>);\n  par.assign(N, -1);\n  int ql = 0, qr = 0;\n\
-    \  dist[s] = 0, que[qr++] = s;\n  int p = 0;\n  FOR(v, N) if (v != s) yet[p++]\
-    \ = v;\n  while (ql < qr) {\n    int v = que[ql++];\n    for (auto& e: G[v]) NG[e.to]\
-    \ = 1;\n    for (int i = p - 1; i >= 0; --i) {\n      int to = yet[i];\n     \
-    \ if (NG[to]) continue;\n      dist[to] = dist[v] + 1, par[to] = v, que[qr++]\
-    \ = to;\n      swap(yet[i], yet[--p]);\n    }\n    for (auto& e: G[v]) NG[e.to]\
-    \ = 0;\n  }\n  return {dist, par};\n}\n#line 2 \"graph/blackbox/complement_graph_distance.hpp\"\
-    \n\n// \u8DDD\u96E2 2 \u4EE5\u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\n\
-    template <typename GT>\nvc<tuple<int, int, int>> complement_graph_all_distance(GT&\
-    \ G) {\n  const int N = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg))\
-    \ - deg.begin();\n  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\
-    \n  vc<tuple<int, int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm]\
-    \ || nbd[e.to]) continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n\
-    \    res.eb(a, b, 2);\n  }\n\n  for (auto& e: G[S]) {\n    int a = e.to;\n   \
-    \ auto dist = complement_graph_bfs(G, a).fi;\n    FOR(b, N) {\n      if (dist[b]\
-    \ <= 1) continue;\n      if (nbd[b] && a >= b) continue;\n      res.eb(a, b, dist[b]);\n\
-    \    }\n  }\n  return res;\n}\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/blackbox/complement_graph_bfs.hpp\"\
+    \n\ntemplate <typename GT>\npair<vc<int>, vc<int>> complement_graph_bfs(GT& G,\
+    \ int s) {\n  static vc<int> que, NG, dist, par, yet;\n  const int N = G.N;\n\
+    \  if (len(que) < N) que.resize(N);\n  if (len(NG) < N) NG.resize(N);\n  if (len(yet)\
+    \ < N) yet.resize(N);\n  dist.assign(N, infty<int>);\n  par.assign(N, -1);\n \
+    \ int ql = 0, qr = 0;\n  dist[s] = 0, que[qr++] = s;\n  int p = 0;\n  FOR(v, N)\
+    \ if (v != s) yet[p++] = v;\n  while (ql < qr) {\n    int v = que[ql++];\n   \
+    \ for (auto& e: G[v]) NG[e.to] = 1;\n    for (int i = p - 1; i >= 0; --i) {\n\
+    \      int to = yet[i];\n      if (NG[to]) continue;\n      dist[to] = dist[v]\
+    \ + 1, par[to] = v, que[qr++] = to;\n      swap(yet[i], yet[--p]);\n    }\n  \
+    \  for (auto& e: G[v]) NG[e.to] = 0;\n  }\n  return {dist, par};\n}\n#line 2 \"\
+    graph/blackbox/complement_graph_distance.hpp\"\n\n// \u8DDD\u96E2 2 \u4EE5\u4E0A\
+    \u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate <typename GT>\n\
+    vc<tuple<int, int, int>> complement_graph_all_distance(GT& G) {\n  const int N\
+    \ = G.N;\n  auto deg = G.deg_array();\n  int S = min_element(all(deg)) - deg.begin();\n\
+    \  vc<int> nbd(N);\n  for (auto& e: G[S]) { nbd[e.to] = 1; }\n\n  vc<tuple<int,\
+    \ int, int>> res;\n  for (auto& e: G.edges) {\n    if (nbd[e.frm] || nbd[e.to])\
+    \ continue;\n    // a -> S -> b\n    int a = e.frm, b = e.to;\n    res.eb(a, b,\
+    \ 2);\n  }\n\n  for (auto& e: G[S]) {\n    int a = e.to;\n    auto dist = complement_graph_bfs(G,\
+    \ a).fi;\n    FOR(b, N) {\n      if (dist[b] <= 1) continue;\n      if (nbd[b]\
+    \ && a >= b) continue;\n      res.eb(a, b, dist[b]);\n    }\n  }\n  return res;\n\
+    }\n"
   code: "#include \"graph/blackbox/complement_graph_bfs.hpp\"\n\n// \u8DDD\u96E2 2\
     \ \u4EE5\u4E0A\u306E 2 \u70B9\u7D44\u306E\u5217\u6319. {v,w,dvw}.\ntemplate <typename\
     \ GT>\nvc<tuple<int, int, int>> complement_graph_all_distance(GT& G) {\n  const\
@@ -120,7 +121,7 @@ data:
   isVerificationFile: false
   path: graph/blackbox/complement_graph_distance.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/blackbox/complement_graph_distance.hpp

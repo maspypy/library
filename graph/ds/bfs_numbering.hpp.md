@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -72,51 +72,51 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/ds/bfs_numbering.hpp\"\n\r\n// ID[v]\uFF1A\u9802\
-    \u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n// calc_range(v, dep)\uFF1Av \u306E\
-    \u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep \u306E\u3082\u306E\u305F\u3061\u306E\
-    \u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\u5BFE\u7684\u306A\u3082\u306E\u3067\
-    \u3042\u308B\u3053\u3068\u306B\u6CE8\u610F\u305B\u3088\r\ntemplate <typename Graph>\r\
-    \nstruct BFS_Numbering {\r\n  Graph& G;\r\n  int root;\r\n  vector<int> V;\r\n\
-    \  vector<int> ID;\r\n  vector<int> depth;\r\n  vector<int> parent;\r\n  vector<int>\
-    \ LID, RID;\r\n  vector<int> LID_seq;\r\n  vector<int> dep_ids;\r\n  int cnt;\r\
-    \n\r\n  BFS_Numbering(Graph& G, int root = 0) : G(G), root(root), cnt(0) { build();\
-    \ }\r\n\r\n  void bfs() {\r\n    deque<int> que = {root};\r\n    while (!que.empty())\
-    \ {\r\n      int v = POP(que);\r\n      ID[v] = V.size();\r\n      V.eb(v);\r\n\
-    \      for (auto&& [frm, to, cost, id]: G[v]) {\r\n        if (to == parent[v])\
-    \ continue;\r\n        que.eb(to), parent[to] = v, depth[to] = depth[v] + 1;\r\
-    \n      }\r\n    }\r\n  }\r\n\r\n  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n\
-    \    for (auto&& [frm, to, cost, id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\
-    \n      dfs(to);\r\n    }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\
-    \n    int N = G.N;\r\n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N,\
-    \ 0), LID.assign(N, 0), RID.assign(N, 0), depth.assign(N, 0);\r\n    bfs();\r\n\
-    \    dfs(root);\r\n    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n \
-    \   FOR(v, N) dep_ids[depth[v] + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] +=\
-    \ dep_ids[d];\r\n    LID_seq.reserve(N);\r\n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\
-    \n  }\r\n\r\n  // dep \u306F\u7D76\u5BFE\u7684\u306A\u6DF1\u3055\r\n  pair<int,\
-    \ int> calc_range(int v, int dep) {\r\n    assert(dep >= depth[v]);\r\n    if\
-    \ (dep >= len(dep_ids) - 1) return {0, 0};\r\n    int l = LID[v], r = RID[v];\r\
-    \n    int L = dep_ids[dep], R = dep_ids[dep + 1];\r\n    int a = bs(L - 1, R,\
-    \ l);\r\n    int b = bs(L - 1, R, r);\r\n    return {a, b};\r\n  }\r\n\r\n  //\
-    \ dist(p,v)<=r\r\n  vc<pair<int, int>> disk_range(int v, int r) {\r\n    if (r\
-    \ < 0) return {};\r\n    vc<pair<int, int>> res;\r\n    int d = depth[v];\r\n\
-    \    FOR(k, r + 1) {\r\n      if (v == -1) break;\r\n      int hi = d + r - k;\r\
-    \n      int lo = hi - 1;\r\n      chmax(lo, d);\r\n      if (parent[v] == -1)\
-    \ lo = 0;\r\n      FOR(i, lo, hi + 1) { res.eb(calc_range(v, i)); }\r\n      v\
-    \ = parent[v], d = d - 1;\r\n    }\r\n    return res;\r\n  }\r\n\r\nprivate:\r\
-    \n  int bs(int L, int R, int x) {\r\n    while (L + 1 < R) {\r\n      int M =\
-    \ (L + R) / 2;\r\n      if (LID_seq[M] >= x)\r\n        R = M;\r\n      else\r\
-    \n        L = M;\r\n    }\r\n    return R;\r\n  }\r\n};\r\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/ds/bfs_numbering.hpp\"\
+    \n\r\n// ID[v]\uFF1A\u9802\u70B9\u306E\u65B0\u3057\u3044\u756A\u53F7\r\n// calc_range(v,\
+    \ dep)\uFF1Av \u306E\u90E8\u5206\u6728\u3067\u3001\u6DF1\u3055 dep \u306E\u3082\
+    \u306E\u305F\u3061\u306E\u7BC4\u56F2\r\n// \u6DF1\u3055\u306F\u7D76\u5BFE\u7684\
+    \u306A\u3082\u306E\u3067\u3042\u308B\u3053\u3068\u306B\u6CE8\u610F\u305B\u3088\
+    \r\ntemplate <typename Graph>\r\nstruct BFS_Numbering {\r\n  Graph& G;\r\n  int\
+    \ root;\r\n  vector<int> V;\r\n  vector<int> ID;\r\n  vector<int> depth;\r\n \
+    \ vector<int> parent;\r\n  vector<int> LID, RID;\r\n  vector<int> LID_seq;\r\n\
+    \  vector<int> dep_ids;\r\n  int cnt;\r\n\r\n  BFS_Numbering(Graph& G, int root\
+    \ = 0) : G(G), root(root), cnt(0) { build(); }\r\n\r\n  void bfs() {\r\n    deque<int>\
+    \ que = {root};\r\n    while (!que.empty()) {\r\n      int v = POP(que);\r\n \
+    \     ID[v] = V.size();\r\n      V.eb(v);\r\n      for (auto&& [frm, to, cost,\
+    \ id]: G[v]) {\r\n        if (to == parent[v]) continue;\r\n        que.eb(to),\
+    \ parent[to] = v, depth[to] = depth[v] + 1;\r\n      }\r\n    }\r\n  }\r\n\r\n\
+    \  void dfs(int v) {\r\n    LID[v] = cnt++;\r\n    for (auto&& [frm, to, cost,\
+    \ id]: G[v]) {\r\n      if (to == parent[v]) continue;\r\n      dfs(to);\r\n \
+    \   }\r\n    RID[v] = cnt;\r\n  }\r\n\r\n  void build() {\r\n    int N = G.N;\r\
+    \n    V.reserve(N);\r\n    parent.assign(N, -1);\r\n    ID.assign(N, 0), LID.assign(N,\
+    \ 0), RID.assign(N, 0), depth.assign(N, 0);\r\n    bfs();\r\n    dfs(root);\r\n\
+    \    int D = MAX(depth);\r\n    dep_ids.resize(D + 2);\r\n    FOR(v, N) dep_ids[depth[v]\
+    \ + 1]++;\r\n    FOR(d, D + 1) dep_ids[d + 1] += dep_ids[d];\r\n    LID_seq.reserve(N);\r\
+    \n    FOR(i, N) LID_seq.eb(LID[V[i]]);\r\n  }\r\n\r\n  // dep \u306F\u7D76\u5BFE\
+    \u7684\u306A\u6DF1\u3055\r\n  pair<int, int> calc_range(int v, int dep) {\r\n\
+    \    assert(dep >= depth[v]);\r\n    if (dep >= len(dep_ids) - 1) return {0, 0};\r\
+    \n    int l = LID[v], r = RID[v];\r\n    int L = dep_ids[dep], R = dep_ids[dep\
+    \ + 1];\r\n    int a = bs(L - 1, R, l);\r\n    int b = bs(L - 1, R, r);\r\n  \
+    \  return {a, b};\r\n  }\r\n\r\n  // dist(p,v)<=r\r\n  vc<pair<int, int>> disk_range(int\
+    \ v, int r) {\r\n    if (r < 0) return {};\r\n    vc<pair<int, int>> res;\r\n\
+    \    int d = depth[v];\r\n    FOR(k, r + 1) {\r\n      if (v == -1) break;\r\n\
+    \      int hi = d + r - k;\r\n      int lo = hi - 1;\r\n      chmax(lo, d);\r\n\
+    \      if (parent[v] == -1) lo = 0;\r\n      FOR(i, lo, hi + 1) { res.eb(calc_range(v,\
+    \ i)); }\r\n      v = parent[v], d = d - 1;\r\n    }\r\n    return res;\r\n  }\r\
+    \n\r\nprivate:\r\n  int bs(int L, int R, int x) {\r\n    while (L + 1 < R) {\r\
+    \n      int M = (L + R) / 2;\r\n      if (LID_seq[M] >= x)\r\n        R = M;\r\
+    \n      else\r\n        L = M;\r\n    }\r\n    return R;\r\n  }\r\n};\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// ID[v]\uFF1A\u9802\u70B9\u306E\u65B0\
     \u3057\u3044\u756A\u53F7\r\n// calc_range(v, dep)\uFF1Av \u306E\u90E8\u5206\u6728\
     \u3067\u3001\u6DF1\u3055 dep \u306E\u3082\u306E\u305F\u3061\u306E\u7BC4\u56F2\r\
@@ -157,7 +157,7 @@ data:
   isVerificationFile: false
   path: graph/ds/bfs_numbering.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/899.test.cpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
     path: graph/scc_tounament_by_indegrees.hpp
     title: graph/scc_tounament_by_indegrees.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -167,43 +167,44 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate <typename\
-    \ GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
-    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
-    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
-    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
-    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
-    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
-    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
-    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
-    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
-    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
-    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
-    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 1 \"graph/scc_tounament_by_indegrees.hpp\"\
-    \npair<int, vc<int>> scc_tournament_by_indegrees(vc<int> indeg) {\n  int N = len(indeg);\n\
-    \  auto I = argsort(indeg);\n  vc<int> ANS(N);\n  ll sm = 0;\n  int nxt = 0;\n\
-    \  FOR(i, N) {\n    int v = I[i];\n    ANS[v] = nxt;\n    // I[0:i] \u304C\u3072\
-    \u3068\u3064\u306E\u6210\u5206\u304B\u3069\u3046\u304B\n    sm += indeg[v];\n\
-    \    ll TS = sm - (i + 1) * i / 2;\n    if (TS == 0) ++nxt;\n  }\n  return {nxt,\
-    \ ANS};\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
-    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n              \
-    \       chrono::high_resolution_clock::now().time_since_epoch())\n           \
-    \          .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n \
-    \ return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/scc_tournament.test.cpp\"\
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename GT>\npair<int, vc<int>> strongly_connected_component(GT&\
+    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N\
+    \ = G.N;\n  int C = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  int now\
+    \ = 0;\n\n  auto dfs = [&](auto& dfs, int v) -> void {\n    low[v] = ord[v] =\
+    \ now++;\n    path.eb(v);\n    for (auto&& [frm, to, cost, id]: G[v]) {\n    \
+    \  if (ord[to] == -1) {\n        dfs(dfs, to), chmin(low[v], low[to]);\n     \
+    \ } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] ==\
+    \ ord[v]) {\n      while (1) {\n        int u = POP(path);\n        ord[u] = N,\
+    \ comp[u] = C;\n        if (u == v) break;\n      }\n      ++C;\n    }\n  };\n\
+    \  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] =\
+    \ C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int,\
+    \ 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int>\
+    \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
+    \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
+    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
+    \ DAG;\n}\n#line 1 \"graph/scc_tounament_by_indegrees.hpp\"\npair<int, vc<int>>\
+    \ scc_tournament_by_indegrees(vc<int> indeg) {\n  int N = len(indeg);\n  auto\
+    \ I = argsort(indeg);\n  vc<int> ANS(N);\n  ll sm = 0;\n  int nxt = 0;\n  FOR(i,\
+    \ N) {\n    int v = I[i];\n    ANS[v] = nxt;\n    // I[0:i] \u304C\u3072\u3068\
+    \u3064\u306E\u6210\u5206\u304B\u3069\u3046\u304B\n    sm += indeg[v];\n    ll\
+    \ TS = sm - (i + 1) * i / 2;\n    if (TS == 0) ++nxt;\n  }\n  return {nxt, ANS};\n\
+    }\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n     \
+    \ = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                   \
+    \  chrono::high_resolution_clock::now().time_since_epoch())\n                \
+    \     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/mytest/scc_tournament.test.cpp\"\
     \n\nvoid test() {\n  FOR(N, 1, 50) {\n    FOR(100) {\n      Graph<int, 1> G(N);\n\
     \      FOR(b, N) FOR(a, b) {\n        int x = RNG(0, 2);\n        if (x) G.add(a,\
     \ b);\n        if (!x) G.add(b, a);\n      }\n      G.build();\n\n      auto [indeg,\
@@ -230,7 +231,7 @@ data:
   isVerificationFile: true
   path: test/mytest/scc_tournament.test.cpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/scc_tournament.test.cpp

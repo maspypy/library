@@ -44,7 +44,7 @@ data:
     \ -= 1;\n    if (nodes[k].linkcnt == 0) FREE.eb(nid);\n  }\n\n  Double_Ended_Palindromic_Tree(int\
     \ max_size) { // odd, even\n    assert(ODD == new_node(-1, -1, -1));\n    assert(EVEN\
     \ == new_node(-1, 0, 0));\n    nodes[ODD].cnt = infty<int>, nodes[EVEN].cnt =\
-    \ infty<int>;\n    mod = 1;\n    while (mod < max_size) mod *= 2;\n    dat.resize(mod);\n\
+    \ infty<int>;\n    mod = 4;\n    while (mod < max_size) mod *= 2;\n    dat.resize(mod);\n\
     \    mask = mod - 1;\n  }\n\n  int suffix_node() {\n    return (L == R ? EVEN\
     \ : dat[(R - 1) & mask].left_surface);\n  }\n  int prefix_node() { return (L ==\
     \ R ? EVEN : dat[L & mask].right_surface); }\n\n  void push_back(int c) {\n  \
@@ -132,7 +132,7 @@ data:
     \ == 0) FREE.eb(nid);\n  }\n\n  Double_Ended_Palindromic_Tree(int max_size) {\
     \ // odd, even\n    assert(ODD == new_node(-1, -1, -1));\n    assert(EVEN == new_node(-1,\
     \ 0, 0));\n    nodes[ODD].cnt = infty<int>, nodes[EVEN].cnt = infty<int>;\n  \
-    \  mod = 1;\n    while (mod < max_size) mod *= 2;\n    dat.resize(mod);\n    mask\
+    \  mod = 4;\n    while (mod < max_size) mod *= 2;\n    dat.resize(mod);\n    mask\
     \ = mod - 1;\n  }\n\n  int suffix_node() {\n    return (L == R ? EVEN : dat[(R\
     \ - 1) & mask].left_surface);\n  }\n  int prefix_node() { return (L == R ? EVEN\
     \ : dat[L & mask].right_surface); }\n\n  void push_back(int c) {\n    assert(R\
@@ -193,7 +193,7 @@ data:
   isVerificationFile: false
   path: string/double_ended_palindromic_tree.hpp
   requiredBy: []
-  timestamp: '2024-05-29 00:48:16+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/palindromes_in_deque.test.cpp

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/palindrome_decomposition_dp.test.cpp
     title: test/mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/465.test.cpp
     title: test/yukicoder/465.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://arxiv.org/pdf/1403.2431.pdf
@@ -36,14 +36,14 @@ data:
     \      int l = i - 1 - nodes[p].length;\n      int r = i + 1;\n      nodes[p].TO[x]\
     \ = to;\n\n      int link;\n      if (p == 0) link = 1;\n      if (p != 0) {\n\
     \        while (1) {\n          p = nodes[p].link;\n          int j = i - 1 -\
-    \ nodes[p].length;\n          bool can = (j >= 0 && S[j] - off == x) || (p ==\
-    \ 0);\n          if (can) break;\n        }\n        assert(nodes[p].TO[x] !=\
-    \ -1);\n        link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link, r -\
-    \ l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  // node \u3054\u3068\
-    \u306E\u51FA\u73FE\u56DE\u6570\n  vc<int> count() {\n    vc<int> res(len(nodes));\n\
-    \    for (auto&& p: path) res[p]++;\n    FOR_R(k, 1, len(nodes)) {\n      int\
-    \ link = nodes[k].link;\n      res[link] += res[k];\n    }\n    return res;\n\
-    \  }\n};\n#line 2 \"string/palindrome_decomposition_dp.hpp\"\n\n/*\nhttps://arxiv.org/pdf/1403.2431.pdf\n\
+    \ nodes[p].length;\n          bool can = (j >= 0 && S[j] - off == x);\n      \
+    \    if (can) break;\n        }\n        assert(nodes[p].TO[x] != -1);\n     \
+    \   link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link, r - l, l, r));\n\
+    \      p = to;\n    }\n    path.eb(p);\n  }\n\n  // node \u3054\u3068\u306E\u51FA\
+    \u73FE\u56DE\u6570\n  vc<int> count() {\n    vc<int> res(len(nodes));\n    for\
+    \ (auto&& p: path) res[p]++;\n    FOR_R(k, 1, len(nodes)) {\n      int link =\
+    \ nodes[k].link;\n      res[link] += res[k];\n    }\n    return res;\n  }\n};\n\
+    #line 2 \"string/palindrome_decomposition_dp.hpp\"\n\n/*\nhttps://arxiv.org/pdf/1403.2431.pdf\n\
     \u56DE\u6587\u306B\u5206\u5272\u3059\u308B dp \u306F O(nlog n) time, O(n) space\
     \ \u306B\u306A\u308B\n\u540C\u3058\u3068\u3053\u308D\u306B\u9077\u79FB\u3059\u308B\
     \u3082\u306E\u3092\u307E\u3068\u3081\u305F\u3082\u306E gdp\n\u30FBdp[i] := dp_init[i]\n\
@@ -108,8 +108,8 @@ data:
   isVerificationFile: false
   path: string/palindrome_decomposition_dp.hpp
   requiredBy: []
-  timestamp: '2024-04-09 15:17:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-29 22:32:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/yukicoder/465.test.cpp

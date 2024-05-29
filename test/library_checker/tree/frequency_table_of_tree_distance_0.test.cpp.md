@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
@@ -285,56 +285,56 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/shortest_path/bfs01.hpp\"\n\ntemplate <typename\
-    \ T, typename GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int v) {\n  assert(G.is_prepared());\n\
-    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  deque<int>\
-    \ que;\n\n  dist[v] = 0;\n  que.push_front(v);\n  while (!que.empty()) {\n   \
-    \ auto v = que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n  \
-    \    if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n    \
-    \    dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] = e.frm;\n        if\
-    \ (e.cost == 0)\n          que.push_front(e.to);\n        else\n          que.push_back(e.to);\n\
-    \      }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
-    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
-    \ vc<int>, vc<int>> bfs01(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n \
-    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N,\
-    \ -1);\n  deque<int> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v]\
-    \ = v;\n    que.push_front(v);\n  }\n\n  while (!que.empty()) {\n    auto v =\
-    \ que.front();\n    que.pop_front();\n    for (auto&& e: G[v]) {\n      if (dist[e.to]\
-    \ == infty<T> || dist[e.to] > dist[e.frm] + e.cost) {\n        dist[e.to] = dist[e.frm]\
-    \ + e.cost;\n        root[e.to] = root[e.frm];\n        par[e.to] = e.frm;\n \
-    \       if (e.cost == 0)\n          que.push_front(e.to);\n        else\n    \
-    \      que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par, root};\n\
-    }\n#line 3 \"graph/centroid_decomposition.hpp\"\n\n// \u9802\u70B9\u30D9\u30FC\
-    \u30B9\u306E\u91CD\u5FC3\u5206\u89E3\n// f(par, V, indptr)\ntemplate <typename\
-    \ F>\nvoid centroid_decomposition_0_dfs(vc<int>& par, vc<int>& vs, F f) {\n  const\
-    \ int N = len(par);\n  assert(N >= 1);\n  int c = -1;\n  vc<int> sz(N, 1);\n \
-    \ FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n      break;\n\
-    \    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N);\n  vc<int> V = {c};\n\
-    \  int nc = 1;\n  FOR(v, 1, N) {\n    if (par[v] == c) { V.eb(v), color[v] = nc++;\
-    \ }\n  }\n  if (c > 0) {\n    for (int a = par[c]; a != -1; a = par[a]) { color[a]\
-    \ = nc, V.eb(a); }\n    ++nc;\n  }\n  FOR(i, N) {\n    if (i != c && color[i]\
-    \ == 0) color[i] = color[par[i]], V.eb(i);\n  }\n  vc<int> indptr(nc + 1);\n \
-    \ FOR(i, N) indptr[1 + color[i]]++;\n  FOR(i, nc) indptr[i + 1] += indptr[i];\n\
-    \  vc<int> counter = indptr;\n  vc<int> ord(N);\n  for (auto& v: V) { ord[counter[color[v]]++]\
-    \ = v; }\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[ord[i]] = i;\n  vc<int> name(N);\n\
-    \  FOR(i, N) name[new_idx[i]] = vs[i];\n  {\n    vc<int> tmp(N, -1);\n    FOR(i,\
-    \ 1, N) {\n      int a = new_idx[i], b = new_idx[par[i]];\n      if (a > b) swap(a,\
-    \ b);\n      tmp[b] = a;\n    }\n    swap(par, tmp);\n  }\n  f(par, name, indptr);\n\
-    \  FOR(k, 1, nc) {\n    int L = indptr[k], R = indptr[k + 1];\n    vc<int> par1(R\
-    \ - L, -1);\n    vc<int> name1(R - L, -1);\n    name1[0] = name[0];\n    FOR(i,\
-    \ L, R) name1[i - L] = name[i];\n    FOR(i, L, R) { par1[i - L] = max(par[i] -\
-    \ L, -1); }\n    centroid_decomposition_0_dfs(par1, name1, f);\n  }\n}\n\n/*\n\
-    https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/bfs01.hpp\"\
+    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> bfs01(GT& G, int\
+    \ v) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
+    \  vc<int> par(N, -1);\n  deque<int> que;\n\n  dist[v] = 0;\n  que.push_front(v);\n\
+    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
+    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        par[e.to] =\
+    \ e.frm;\n        if (e.cost == 0)\n          que.push_front(e.to);\n        else\n\
+    \          que.push_back(e.to);\n      }\n    }\n  }\n  return {dist, par};\n\
+    }\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par, root]\ntemplate\
+    \ <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> bfs01(GT& G, vc<int>\
+    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n\
+    \  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n  deque<int> que;\n\n  for (auto&&\
+    \ v: vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.push_front(v);\n  }\n\n\
+    \  while (!que.empty()) {\n    auto v = que.front();\n    que.pop_front();\n \
+    \   for (auto&& e: G[v]) {\n      if (dist[e.to] == infty<T> || dist[e.to] > dist[e.frm]\
+    \ + e.cost) {\n        dist[e.to] = dist[e.frm] + e.cost;\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        if (e.cost == 0)\n     \
+    \     que.push_front(e.to);\n        else\n          que.push_back(e.to);\n  \
+    \    }\n    }\n  }\n  return {dist, par, root};\n}\n#line 3 \"graph/centroid_decomposition.hpp\"\
+    \n\n// \u9802\u70B9\u30D9\u30FC\u30B9\u306E\u91CD\u5FC3\u5206\u89E3\n// f(par,\
+    \ V, indptr)\ntemplate <typename F>\nvoid centroid_decomposition_0_dfs(vc<int>&\
+    \ par, vc<int>& vs, F f) {\n  const int N = len(par);\n  assert(N >= 1);\n  int\
+    \ c = -1;\n  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N,\
+    \ 2)) {\n      c = i;\n      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int>\
+    \ color(N);\n  vc<int> V = {c};\n  int nc = 1;\n  FOR(v, 1, N) {\n    if (par[v]\
+    \ == c) { V.eb(v), color[v] = nc++; }\n  }\n  if (c > 0) {\n    for (int a = par[c];\
+    \ a != -1; a = par[a]) { color[a] = nc, V.eb(a); }\n    ++nc;\n  }\n  FOR(i, N)\
+    \ {\n    if (i != c && color[i] == 0) color[i] = color[par[i]], V.eb(i);\n  }\n\
+    \  vc<int> indptr(nc + 1);\n  FOR(i, N) indptr[1 + color[i]]++;\n  FOR(i, nc)\
+    \ indptr[i + 1] += indptr[i];\n  vc<int> counter = indptr;\n  vc<int> ord(N);\n\
+    \  for (auto& v: V) { ord[counter[color[v]]++] = v; }\n  vc<int> new_idx(N);\n\
+    \  FOR(i, N) new_idx[ord[i]] = i;\n  vc<int> name(N);\n  FOR(i, N) name[new_idx[i]]\
+    \ = vs[i];\n  {\n    vc<int> tmp(N, -1);\n    FOR(i, 1, N) {\n      int a = new_idx[i],\
+    \ b = new_idx[par[i]];\n      if (a > b) swap(a, b);\n      tmp[b] = a;\n    }\n\
+    \    swap(par, tmp);\n  }\n  f(par, name, indptr);\n  FOR(k, 1, nc) {\n    int\
+    \ L = indptr[k], R = indptr[k + 1];\n    vc<int> par1(R - L, -1);\n    vc<int>\
+    \ name1(R - L, -1);\n    name1[0] = name[0];\n    FOR(i, L, R) name1[i - L] =\
+    \ name[i];\n    FOR(i, L, R) { par1[i - L] = max(par[i] - L, -1); }\n    centroid_decomposition_0_dfs(par1,\
+    \ name1, f);\n  }\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     centroid_decomposition_1\uFF1A\u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\
     \u4F53\nf(par, V, n1, n2)\n[1,1+n1]: color 1\n[1+n1,1+n1+n2]: color 2\n*/\ntemplate\
     \ <typename F>\nvoid centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F\
@@ -704,7 +704,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp

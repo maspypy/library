@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/421.test.cpp
     title: test/yukicoder/421.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/421_2.test.cpp
     title: test/yukicoder/421_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1045/problem/A
@@ -22,6 +22,8 @@ data:
     \u5EA6\u3067\u52D5\u304F\u5834\u5408\u304C\u3042\u308B\n// https://qoj.ac/problem/6308\n\
     // (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n//\
     \ (10000, 20000) \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\n\
+    // (10000, 10000) 6500ms TLE. row, col \u3068\u3082 shuffle \u3067 3000ms AC.\n\
+    // bitset \u306E\u65B9\u304C My_Bitset \u3088\u308A\u9AD8\u901F\uFF1F(2024/05/27)\n\
     template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
     \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
     \n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\n      : N1(N1), N2(N2),\
@@ -50,6 +52,8 @@ data:
     // (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\u5408\u304C\u3042\
     \u308B\n// https://qoj.ac/problem/6308\n// (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n\
     // (10000, 20000) \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\n\
+    // (10000, 10000) 6500ms TLE. row, col \u3068\u3082 shuffle \u3067 3000ms AC.\n\
+    // bitset \u306E\u65B9\u304C My_Bitset \u3088\u308A\u9AD8\u901F\uFF1F(2024/05/27)\n\
     template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
     \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
     \n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2)\n      : N1(N1), N2(N2),\
@@ -78,8 +82,8 @@ data:
   isVerificationFile: false
   path: flow/bipartite_dense.hpp
   requiredBy: []
-  timestamp: '2023-11-03 05:41:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-29 22:31:13+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/421_2.test.cpp
   - test/yukicoder/421.test.cpp

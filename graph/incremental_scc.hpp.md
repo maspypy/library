@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
@@ -76,57 +76,58 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate <typename\
-    \ GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
-    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
-    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
-    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
-    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
-    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
-    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
-    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
-    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
-    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
-    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
-    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/incremental_scc.hpp\"\
-    \n\n// https://codeforces.com/blog/entry/91608\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
-    \u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\u8DB3\u3057\u3066\u3044\u304F\
-    .\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\u308C\u304C\u30B5\u30A4\u30AF\
-    \u30EB\u306B\u542B\u307E\u308C\u308B\u3088\u3046\u306A\u6642\u523B\u306E\u6700\
-    \u5C0F\u5024\u3092\u8FD4\u3059.\n// \u3053\u308C\u3067 mst \u3092\u4F5C\u3063\u3066\
-    \ path max query \u3059\u308C\u3070 2 \u70B9\u304C\u540C\u3058 scc \u306B\u306A\
-    \u308B\u6642\u523B\u3082\u6C42\u307E\u308B\ntemplate <typename GT>\nvc<int> incremental_scc(GT&\
-    \ G) {\n  static_assert(GT::is_directed);\n  int N = G.N, M = G.M;\n  vc<int>\
-    \ merge_time(M, infty<int>);\n  vc<tuple<int, int, int>> dat;\n  FOR(i, M) {\n\
-    \    auto& e = G.edges[i];\n    dat.eb(i, e.frm, e.to);\n  }\n\n  vc<int> new_idx(N,\
-    \ -1);\n  // L \u6642\u70B9\u3067\u306F\u30B5\u30A4\u30AF\u30EB\u306B\u306F\u542B\
-    \u307E\u308C\u305A, R \u6642\u70B9\u3067\u306F\u542B\u307E\u308C\u308B\n  auto\
-    \ dfs\n      = [&](auto& dfs, vc<tuple<int, int, int>>& dat, int L, int R) ->\
-    \ void {\n    if (dat.empty() || R == L + 1) return;\n    int M = (L + R) / 2;\n\
-    \    int n = 0;\n    for (auto& [i, a, b]: dat) {\n      if (new_idx[a] == -1)\
-    \ new_idx[a] = n++;\n      if (new_idx[b] == -1) new_idx[b] = n++;\n    }\n\n\
-    \    Graph<int, 1> G(n);\n    for (auto& [i, a, b]: dat) {\n      if (i < M) G.add(new_idx[a],\
-    \ new_idx[b]);\n    }\n    G.build();\n    auto [nc, comp] = strongly_connected_component(G);\n\
-    \    vc<tuple<int, int, int>> dat1, dat2;\n    for (auto [i, a, b]: dat) {\n \
-    \     a = new_idx[a], b = new_idx[b];\n      if (i < M) {\n        if (comp[a]\
-    \ == comp[b]) {\n          chmin(merge_time[i], M), dat1.eb(i, a, b);\n      \
-    \  } else {\n          dat2.eb(i, comp[a], comp[b]);\n        }\n      } else\
-    \ {\n        dat2.eb(i, comp[a], comp[b]);\n      }\n    }\n    for (auto& [i,\
-    \ a, b]: dat) new_idx[a] = new_idx[b] = -1;\n    dfs(dfs, dat1, L, M), dfs(dfs,\
-    \ dat2, M, R);\n  };\n  dfs(dfs, dat, 0, M + 1);\n  return merge_time;\n}\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename GT>\npair<int, vc<int>> strongly_connected_component(GT&\
+    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N\
+    \ = G.N;\n  int C = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  int now\
+    \ = 0;\n\n  auto dfs = [&](auto& dfs, int v) -> void {\n    low[v] = ord[v] =\
+    \ now++;\n    path.eb(v);\n    for (auto&& [frm, to, cost, id]: G[v]) {\n    \
+    \  if (ord[to] == -1) {\n        dfs(dfs, to), chmin(low[v], low[to]);\n     \
+    \ } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] ==\
+    \ ord[v]) {\n      while (1) {\n        int u = POP(path);\n        ord[u] = N,\
+    \ comp[u] = C;\n        if (u == v) break;\n      }\n      ++C;\n    }\n  };\n\
+    \  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] =\
+    \ C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int,\
+    \ 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int>\
+    \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
+    \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
+    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
+    \ DAG;\n}\n#line 2 \"graph/incremental_scc.hpp\"\n\n// https://codeforces.com/blog/entry/91608\n\
+    // \u30B0\u30E9\u30D5\u306E\u8FBA\u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\
+    \u8DB3\u3057\u3066\u3044\u304F.\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\
+    \u308C\u304C\u30B5\u30A4\u30AF\u30EB\u306B\u542B\u307E\u308C\u308B\u3088\u3046\
+    \u306A\u6642\u523B\u306E\u6700\u5C0F\u5024\u3092\u8FD4\u3059.\n// \u3053\u308C\
+    \u3067 mst \u3092\u4F5C\u3063\u3066 path max query \u3059\u308C\u3070 2 \u70B9\
+    \u304C\u540C\u3058 scc \u306B\u306A\u308B\u6642\u523B\u3082\u6C42\u307E\u308B\n\
+    template <typename GT>\nvc<int> incremental_scc(GT& G) {\n  static_assert(GT::is_directed);\n\
+    \  int N = G.N, M = G.M;\n  vc<int> merge_time(M, infty<int>);\n  vc<tuple<int,\
+    \ int, int>> dat;\n  FOR(i, M) {\n    auto& e = G.edges[i];\n    dat.eb(i, e.frm,\
+    \ e.to);\n  }\n\n  vc<int> new_idx(N, -1);\n  // L \u6642\u70B9\u3067\u306F\u30B5\
+    \u30A4\u30AF\u30EB\u306B\u306F\u542B\u307E\u308C\u305A, R \u6642\u70B9\u3067\u306F\
+    \u542B\u307E\u308C\u308B\n  auto dfs\n      = [&](auto& dfs, vc<tuple<int, int,\
+    \ int>>& dat, int L, int R) -> void {\n    if (dat.empty() || R == L + 1) return;\n\
+    \    int M = (L + R) / 2;\n    int n = 0;\n    for (auto& [i, a, b]: dat) {\n\
+    \      if (new_idx[a] == -1) new_idx[a] = n++;\n      if (new_idx[b] == -1) new_idx[b]\
+    \ = n++;\n    }\n\n    Graph<int, 1> G(n);\n    for (auto& [i, a, b]: dat) {\n\
+    \      if (i < M) G.add(new_idx[a], new_idx[b]);\n    }\n    G.build();\n    auto\
+    \ [nc, comp] = strongly_connected_component(G);\n    vc<tuple<int, int, int>>\
+    \ dat1, dat2;\n    for (auto [i, a, b]: dat) {\n      a = new_idx[a], b = new_idx[b];\n\
+    \      if (i < M) {\n        if (comp[a] == comp[b]) {\n          chmin(merge_time[i],\
+    \ M), dat1.eb(i, a, b);\n        } else {\n          dat2.eb(i, comp[a], comp[b]);\n\
+    \        }\n      } else {\n        dat2.eb(i, comp[a], comp[b]);\n      }\n \
+    \   }\n    for (auto& [i, a, b]: dat) new_idx[a] = new_idx[b] = -1;\n    dfs(dfs,\
+    \ dat1, L, M), dfs(dfs, dat2, M, R);\n  };\n  dfs(dfs, dat, 0, M + 1);\n  return\
+    \ merge_time;\n}\n"
   code: "#include \"graph/strongly_connected_component.hpp\"\n\n// https://codeforces.com/blog/entry/91608\n\
     // \u30B0\u30E9\u30D5\u306E\u8FBA\u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\
     \u8DB3\u3057\u3066\u3044\u304F.\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\
@@ -159,7 +160,7 @@ data:
   isVerificationFile: false
   path: graph/incremental_scc.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/incremental_scc.test.cpp

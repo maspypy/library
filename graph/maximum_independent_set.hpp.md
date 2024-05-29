@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -73,34 +73,34 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/maximum_independent_set.hpp\"\n\r\n// worst N*1.381^N\
-    \ \u3060\u304C\u3001N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\
-    \u6027\u304C\u3042\u308B\u3002\r\n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\
-    \u901F https://codeforces.com/contest/1578/problem/K\r\ntemplate <int MAX_V, typename\
-    \ GT>\r\nvc<int> maximum_independent_set(GT& G) {\r\n  using BS = bitset<MAX_V>;\r\
-    \n  const int N = G.N;\r\n  assert(N <= MAX_V);\r\n  vc<BS> nbd(N);\r\n  FOR(v,\
-    \ N) for (auto&& e: G[v]) nbd[v][e.to] = 1;\r\n\r\n  int best = 0;\r\n  BS res;\r\
-    \n\r\n  auto dfs = [&](auto& dfs, BS now, BS rest) -> void {\r\n    pair<int,\
-    \ int> p = {-1, -1}; // (v, d)\r\n    while (1) {\r\n      bool upd = 0;\r\n \
-    \     FOR(v, N) if (rest[v]) {\r\n        int d = (nbd[v] & rest).count();\r\n\
-    \        if (chmax(p.se, d)) p.fi = v;\r\n        if (d <= 1) { rest[v] = 0, rest\
-    \ &= ~nbd[v], now[v] = 1, upd = 1; }\r\n      }\r\n      if (!upd) break;\r\n\
-    \      p = {-1, -1};\r\n    }\r\n    int a = now.count(), b = rest.count();\r\n\
-    \    if (chmax(best, a)) res = now;\r\n    if (b == 0 || a + b <= best) return;\r\
-    \n    int v = p.fi;\r\n    rest[v] = 0;\r\n    if (p.se >= 3) dfs(dfs, now, rest);\r\
-    \n    now[v] = 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\n  };\r\n  BS now,\
-    \ rest;\r\n  FOR(v, N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\n  vc<int> ANS;\r\
-    \n  FOR(v, N) if (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/maximum_independent_set.hpp\"\
+    \n\r\n// worst N*1.381^N \u3060\u304C\u3001N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\
+    \u3048\u308B\u53EF\u80FD\u6027\u304C\u3042\u308B\u3002\r\n// \u7279\u6B8A\u6700\
+    \u592780\u9802\u70B9\u7206\u901F https://codeforces.com/contest/1578/problem/K\r\
+    \ntemplate <int MAX_V, typename GT>\r\nvc<int> maximum_independent_set(GT& G)\
+    \ {\r\n  using BS = bitset<MAX_V>;\r\n  const int N = G.N;\r\n  assert(N <= MAX_V);\r\
+    \n  vc<BS> nbd(N);\r\n  FOR(v, N) for (auto&& e: G[v]) nbd[v][e.to] = 1;\r\n\r\
+    \n  int best = 0;\r\n  BS res;\r\n\r\n  auto dfs = [&](auto& dfs, BS now, BS rest)\
+    \ -> void {\r\n    pair<int, int> p = {-1, -1}; // (v, d)\r\n    while (1) {\r\
+    \n      bool upd = 0;\r\n      FOR(v, N) if (rest[v]) {\r\n        int d = (nbd[v]\
+    \ & rest).count();\r\n        if (chmax(p.se, d)) p.fi = v;\r\n        if (d <=\
+    \ 1) { rest[v] = 0, rest &= ~nbd[v], now[v] = 1, upd = 1; }\r\n      }\r\n   \
+    \   if (!upd) break;\r\n      p = {-1, -1};\r\n    }\r\n    int a = now.count(),\
+    \ b = rest.count();\r\n    if (chmax(best, a)) res = now;\r\n    if (b == 0 ||\
+    \ a + b <= best) return;\r\n    int v = p.fi;\r\n    rest[v] = 0;\r\n    if (p.se\
+    \ >= 3) dfs(dfs, now, rest);\r\n    now[v] = 1;\r\n    dfs(dfs, now, rest & ~(nbd[v]));\r\
+    \n  };\r\n  BS now, rest;\r\n  FOR(v, N) rest[v] = 1;\r\n  dfs(dfs, now, rest);\r\
+    \n  vc<int> ANS;\r\n  FOR(v, N) if (res[v]) ANS.eb(v);\r\n  return ANS;\r\n}\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// worst N*1.381^N \u3060\u304C\u3001\
     N=100 \u7A0B\u5EA6\u3067\u3082\u4F7F\u3048\u308B\u53EF\u80FD\u6027\u304C\u3042\
     \u308B\u3002\r\n// \u7279\u6B8A\u6700\u592780\u9802\u70B9\u7206\u901F https://codeforces.com/contest/1578/problem/K\r\
@@ -123,7 +123,7 @@ data:
   isVerificationFile: false
   path: graph/maximum_independent_set.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/graph/maximum_independent_set.test.cpp

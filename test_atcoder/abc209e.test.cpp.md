@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':x:'
@@ -256,51 +256,51 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\n\r\ntemplate <typename GT>\r\
-    \nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\n  GT G1(G.N);\r\
-    \n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id); }\r\n  G1.build();\r\
-    \n  return G1;\r\n}\r\n#line 3 \"game/graph_game.hpp\"\n\n// \u6709\u5411\u30B0\
-    \u30E9\u30D5\u3001\u52D5\u3051\u306A\u3044\u4EBA\u304C\u8CA0\u3051\n// \u5404\u30CE\
-    \u30FC\u30C9\u306B\u5BFE\u3057\u3066\u624B\u756A\u306E\u30D7\u30EC\u30A4\u30E4\
-    \u304C\u6C7A\u307E\u3063\u3066\u3044\u3066\u3001\u4EA4\u4E92\n// \u52DD\u8005\u306F\
-    \u6700\u77ED\u3001\u6557\u8005\u306F\u6700\u9577\u624B\u6570\u3092\u76EE\u6307\
-    \u3059\nstruct Graph_Game {\n  vc<bool> win;\n  vc<bool> lose;\n  vc<int> end_turn;\n\
-    \  vc<int> best_strategy;\n\n  template <typename GT>\n  Graph_Game(GT& G) {\n\
-    \    auto RG = reverse_graph(G);\n    auto [indeg, outdeg] = G.deg_array_inout();\n\
-    \    int N = G.N;\n    win.assign(N, 0);\n    lose.assign(N, 0);\n    end_turn.assign(N,\
-    \ infty<int>);\n    best_strategy.assign(N, -1);\n    deque<int> que;\n    FOR(v,\
-    \ N) {\n      if (outdeg[v] == 0) que.eb(v);\n    }\n\n    while (!que.empty())\
-    \ {\n      auto v = POP(que);\n      if (win[v] || lose[v]) continue;\n      lose[v]\
-    \ = 1;\n      for (auto&& e: G[v]) {\n        if (lose[e.to]) win[v] = 1;\n  \
-    \      if (!win[e.to]) lose[v] = 0;\n      }\n      assert(win[v] ^ lose[v]);\n\
-    \      if (win[v]) {\n        for (auto&& e: G[v]) {\n          if (chmin(end_turn[v],\
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/reverse_graph.hpp\"\
+    \n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\
+    \n  GT G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
+    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 3 \"game/graph_game.hpp\"\n\
+    \n// \u6709\u5411\u30B0\u30E9\u30D5\u3001\u52D5\u3051\u306A\u3044\u4EBA\u304C\u8CA0\
+    \u3051\n// \u5404\u30CE\u30FC\u30C9\u306B\u5BFE\u3057\u3066\u624B\u756A\u306E\u30D7\
+    \u30EC\u30A4\u30E4\u304C\u6C7A\u307E\u3063\u3066\u3044\u3066\u3001\u4EA4\u4E92\
+    \n// \u52DD\u8005\u306F\u6700\u77ED\u3001\u6557\u8005\u306F\u6700\u9577\u624B\u6570\
+    \u3092\u76EE\u6307\u3059\nstruct Graph_Game {\n  vc<bool> win;\n  vc<bool> lose;\n\
+    \  vc<int> end_turn;\n  vc<int> best_strategy;\n\n  template <typename GT>\n \
+    \ Graph_Game(GT& G) {\n    auto RG = reverse_graph(G);\n    auto [indeg, outdeg]\
+    \ = G.deg_array_inout();\n    int N = G.N;\n    win.assign(N, 0);\n    lose.assign(N,\
+    \ 0);\n    end_turn.assign(N, infty<int>);\n    best_strategy.assign(N, -1);\n\
+    \    deque<int> que;\n    FOR(v, N) {\n      if (outdeg[v] == 0) que.eb(v);\n\
+    \    }\n\n    while (!que.empty()) {\n      auto v = POP(que);\n      if (win[v]\
+    \ || lose[v]) continue;\n      lose[v] = 1;\n      for (auto&& e: G[v]) {\n  \
+    \      if (lose[e.to]) win[v] = 1;\n        if (!win[e.to]) lose[v] = 0;\n   \
+    \   }\n      assert(win[v] ^ lose[v]);\n      if (win[v]) {\n        for (auto&&\
+    \ e: G[v]) {\n          if (chmin(end_turn[v], end_turn[e.to] + 1)) {\n      \
+    \      best_strategy[v] = e.to;\n          }\n        }\n      }\n      if (lose[v])\
+    \ {\n        end_turn[v] = 0;\n        for (auto&& e: G[v]) {\n          if (chmax(end_turn[v],\
     \ end_turn[e.to] + 1)) {\n            best_strategy[v] = e.to;\n          }\n\
-    \        }\n      }\n      if (lose[v]) {\n        end_turn[v] = 0;\n        for\
-    \ (auto&& e: G[v]) {\n          if (chmax(end_turn[v], end_turn[e.to] + 1)) {\n\
-    \            best_strategy[v] = e.to;\n          }\n        }\n      }\n     \
-    \ for (auto&& e: RG[v]) {\n        outdeg[e.to]--;\n        if (lose[v] || outdeg[e.to]\
-    \ == 0) que.eb(e.to);\n      }\n    }\n  }\n};\n#line 7 \"test_atcoder/abc209e.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(string, dat, N);\n  vc<string> states;\n \
-    \ FOR(i, N) {\n    string a = dat[i].substr(0, 3);\n    string b = dat[i].substr(len(dat[i])\
-    \ - 3, 3);\n    states.eb(a);\n    states.eb(b);\n  }\n  UNIQUE(states);\n\n \
-    \ Graph<bool, 1> G(len(states));\n  FOR(i, N) {\n    string a = dat[i].substr(0,\
-    \ 3);\n    string b = dat[i].substr(len(dat[i]) - 3, 3);\n    G.add(LB(states,\
-    \ a), LB(states, b));\n  }\n  G.build();\n\n  auto out = [&](bool win, bool lose)\
-    \ -> void {\n    if (win) return print(\"Aoki\");\n    if (lose) return print(\"\
-    Takahashi\");\n    return print(\"Draw\");\n  };\n\n  Graph_Game X(G);\n  FOR(i,\
-    \ N) {\n    int v = G.edges[i].to;\n    out(X.win[v], X.lose[v]);\n  }\n}\n\n\
-    signed main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
-    }\n"
+    \        }\n      }\n      for (auto&& e: RG[v]) {\n        outdeg[e.to]--;\n\
+    \        if (lose[v] || outdeg[e.to] == 0) que.eb(e.to);\n      }\n    }\n  }\n\
+    };\n#line 7 \"test_atcoder/abc209e.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(string,\
+    \ dat, N);\n  vc<string> states;\n  FOR(i, N) {\n    string a = dat[i].substr(0,\
+    \ 3);\n    string b = dat[i].substr(len(dat[i]) - 3, 3);\n    states.eb(a);\n\
+    \    states.eb(b);\n  }\n  UNIQUE(states);\n\n  Graph<bool, 1> G(len(states));\n\
+    \  FOR(i, N) {\n    string a = dat[i].substr(0, 3);\n    string b = dat[i].substr(len(dat[i])\
+    \ - 3, 3);\n    G.add(LB(states, a), LB(states, b));\n  }\n  G.build();\n\n  auto\
+    \ out = [&](bool win, bool lose) -> void {\n    if (win) return print(\"Aoki\"\
+    );\n    if (lose) return print(\"Takahashi\");\n    return print(\"Draw\");\n\
+    \  };\n\n  Graph_Game X(G);\n  FOR(i, N) {\n    int v = G.edges[i].to;\n    out(X.win[v],\
+    \ X.lose[v]);\n  }\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T)\
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc209/tasks/abc209_e\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"game/graph_game.hpp\"\
     \n#include \"graph/base.hpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(string, dat,\
@@ -323,7 +323,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc209e.test.cpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc209e.test.cpp

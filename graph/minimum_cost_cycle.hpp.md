@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -72,65 +72,65 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/minimum_cost_cycle.hpp\"\n\r\n// {wt, vs, es}, O(N\
-    \ * shortest path)\r\ntemplate <typename T, typename GT>\r\ntuple<T, vc<int>,\
-    \ vc<int>> minimum_cost_cycle_directed(GT& G) {\r\n  const int N = G.N;\r\n  T\
-    \ mi = 0, ma = 0;\r\n  for (auto& e: G.edges) chmin(mi, e.cost), chmax(ma, e.cost);\r\
-    \n  assert(mi >= 0);\r\n\r\n  T ans = infty<T>;\r\n  vc<T> dist(N);\r\n  vc<int>\
-    \ vs, es;\r\n  vc<int> par_e(N, -1);\r\n  pqg<pair<T, int>> que;\r\n  deque<int>\
-    \ deq;\r\n  FOR(r, N) {\r\n    fill(dist.begin() + r, dist.end(), infty<T>);\r\
-    \n    if (ma <= 1) {\r\n      auto push = [&](int v, bool back) -> void {\r\n\
-    \        (back ? deq.eb(v) : deq.emplace_front(v));\r\n      };\r\n      for (auto&\
-    \ e: G[r]) {\r\n        if (r <= e.to && chmin(dist[e.to], e.cost))\r\n      \
-    \    par_e[e.to] = e.id, push(e.to, e.cost);\r\n      }\r\n      while (len(deq))\
-    \ {\r\n        auto v = POP(deq);\r\n        for (auto& e: G[v]) {\r\n       \
-    \   if (r <= e.to && chmin(dist[e.to], dist[v] + e.cost)) {\r\n            par_e[e.to]\
-    \ = e.id, push(e.to, e.cost);\r\n          }\r\n        }\r\n      }\r\n    }\
-    \ else {\r\n      for (auto& e: G[r]) {\r\n        if (r <= e.to && chmin(dist[e.to],\
-    \ e.cost)) {\r\n          par_e[e.to] = e.id, que.emplace(e.cost, e.to);\r\n \
-    \       }\r\n      }\r\n      while (len(que)) {\r\n        auto [dv, v] = POP(que);\r\
-    \n        if (dist[v] != dv) continue;\r\n        for (auto& e: G[v]) {\r\n  \
-    \        T x = dv + e.cost;\r\n          if (r <= e.to && chmin(dist[e.to], x))\
-    \ {\r\n            par_e[e.to] = e.id, que.emplace(x, e.to);\r\n          }\r\n\
-    \        }\r\n      }\r\n    }\r\n    if (chmin(ans, dist[r])) {\r\n      vs.clear(),\
-    \ es.clear();\r\n      vs.eb(r);\r\n      while (1) {\r\n        int eid = par_e[vs.back()];\r\
-    \n        es.eb(eid);\r\n        vs.eb(G.edges[eid].frm);\r\n        if (vs.back()\
-    \ == r) break;\r\n      }\r\n      reverse(all(vs));\r\n      reverse(all(es));\r\
-    \n    };\r\n  }\r\n  return {ans, vs, es};\r\n}\r\n\r\n// {wt, vs, es}, O(N *\
-    \ shortest path)\r\ntemplate <typename T, typename GT>\r\ntuple<T, vc<int>, vc<int>>\
-    \ minimum_cost_cycle_undirected(GT& G) {\r\n  const int N = G.N;\r\n  T ans =\
-    \ infty<T>;\r\n  vc<T> dist(N);\r\n  vc<int> par_e(N);\r\n  vc<int> vs, es;\r\n\
-    \  FOR(r, N) {\r\n    fill(dist.begin() + r, dist.end(), infty<T>);\r\n    pqg<pair<T,\
-    \ int>> que;\r\n    dist[r] = 0, que.emplace(0, r);\r\n    while (len(que)) {\r\
-    \n      auto [dv, v] = POP(que);\r\n      if (dist[v] != dv) continue;\r\n   \
-    \   for (auto& e: G[v]) {\r\n        if (e.to < r) continue;\r\n        T x =\
-    \ dv + e.cost;\r\n        if (chmin(dist[e.to], x)) {\r\n          par_e[e.to]\
-    \ = e.id;\r\n          que.emplace(x, e.to);\r\n        }\r\n      }\r\n    }\r\
-    \n    int best_e = -1;\r\n    for (auto& e: G.edges) {\r\n      int a = e.frm,\
-    \ b = e.to;\r\n      if (a < r || b < r || par_e[a] == e.id || par_e[b] == e.id)\
-    \ continue;\r\n      if (chmin(ans, dist[a] + dist[b] + e.cost)) best_e = e.id;\r\
-    \n    }\r\n    if (best_e == -1) continue;\r\n    vs.clear(), es.clear();\r\n\
-    \    auto& e = G.edges[best_e];\r\n    int a = e.frm, b = e.to;\r\n    // r ->\
-    \ a\r\n    while (a != r) {\r\n      int eid = par_e[a];\r\n      vs.eb(a), es.eb(eid);\r\
-    \n      a = G.edges[eid].frm ^ G.edges[eid].to ^ a;\r\n    }\r\n    vs.eb(a);\r\
-    \n    reverse(all(vs)), reverse(all(es));\r\n    es.eb(best_e);\r\n    while (b\
-    \ != r) {\r\n      int eid = par_e[b];\r\n      vs.eb(b), es.eb(eid);\r\n    \
-    \  b = G.edges[eid].frm ^ G.edges[eid].to ^ b;\r\n    }\r\n    vs.eb(b);\r\n \
-    \ }\r\n  return {ans, vs, es};\r\n}\r\n\r\n// {wt, vs, es}, O(N * shortest path)\r\
-    \ntemplate <typename T, typename GT>\r\ntuple<T, vc<int>, vc<int>> minimum_cost_cycle(GT&\
-    \ G) {\r\n  for (auto& e: G.edges) assert(e.cost >= 0);\r\n  if constexpr (GT::is_directed)\
-    \ {\r\n    return minimum_cost_cycle_directed<T>(G);\r\n  } else {\r\n    return\
-    \ minimum_cost_cycle_undirected<T>(G);\r\n  }\r\n}\r\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/minimum_cost_cycle.hpp\"\
+    \n\r\n// {wt, vs, es}, O(N * shortest path)\r\ntemplate <typename T, typename\
+    \ GT>\r\ntuple<T, vc<int>, vc<int>> minimum_cost_cycle_directed(GT& G) {\r\n \
+    \ const int N = G.N;\r\n  T mi = 0, ma = 0;\r\n  for (auto& e: G.edges) chmin(mi,\
+    \ e.cost), chmax(ma, e.cost);\r\n  assert(mi >= 0);\r\n\r\n  T ans = infty<T>;\r\
+    \n  vc<T> dist(N);\r\n  vc<int> vs, es;\r\n  vc<int> par_e(N, -1);\r\n  pqg<pair<T,\
+    \ int>> que;\r\n  deque<int> deq;\r\n  FOR(r, N) {\r\n    fill(dist.begin() +\
+    \ r, dist.end(), infty<T>);\r\n    if (ma <= 1) {\r\n      auto push = [&](int\
+    \ v, bool back) -> void {\r\n        (back ? deq.eb(v) : deq.emplace_front(v));\r\
+    \n      };\r\n      for (auto& e: G[r]) {\r\n        if (r <= e.to && chmin(dist[e.to],\
+    \ e.cost))\r\n          par_e[e.to] = e.id, push(e.to, e.cost);\r\n      }\r\n\
+    \      while (len(deq)) {\r\n        auto v = POP(deq);\r\n        for (auto&\
+    \ e: G[v]) {\r\n          if (r <= e.to && chmin(dist[e.to], dist[v] + e.cost))\
+    \ {\r\n            par_e[e.to] = e.id, push(e.to, e.cost);\r\n          }\r\n\
+    \        }\r\n      }\r\n    } else {\r\n      for (auto& e: G[r]) {\r\n     \
+    \   if (r <= e.to && chmin(dist[e.to], e.cost)) {\r\n          par_e[e.to] = e.id,\
+    \ que.emplace(e.cost, e.to);\r\n        }\r\n      }\r\n      while (len(que))\
+    \ {\r\n        auto [dv, v] = POP(que);\r\n        if (dist[v] != dv) continue;\r\
+    \n        for (auto& e: G[v]) {\r\n          T x = dv + e.cost;\r\n          if\
+    \ (r <= e.to && chmin(dist[e.to], x)) {\r\n            par_e[e.to] = e.id, que.emplace(x,\
+    \ e.to);\r\n          }\r\n        }\r\n      }\r\n    }\r\n    if (chmin(ans,\
+    \ dist[r])) {\r\n      vs.clear(), es.clear();\r\n      vs.eb(r);\r\n      while\
+    \ (1) {\r\n        int eid = par_e[vs.back()];\r\n        es.eb(eid);\r\n    \
+    \    vs.eb(G.edges[eid].frm);\r\n        if (vs.back() == r) break;\r\n      }\r\
+    \n      reverse(all(vs));\r\n      reverse(all(es));\r\n    };\r\n  }\r\n  return\
+    \ {ans, vs, es};\r\n}\r\n\r\n// {wt, vs, es}, O(N * shortest path)\r\ntemplate\
+    \ <typename T, typename GT>\r\ntuple<T, vc<int>, vc<int>> minimum_cost_cycle_undirected(GT&\
+    \ G) {\r\n  const int N = G.N;\r\n  T ans = infty<T>;\r\n  vc<T> dist(N);\r\n\
+    \  vc<int> par_e(N);\r\n  vc<int> vs, es;\r\n  FOR(r, N) {\r\n    fill(dist.begin()\
+    \ + r, dist.end(), infty<T>);\r\n    pqg<pair<T, int>> que;\r\n    dist[r] = 0,\
+    \ que.emplace(0, r);\r\n    while (len(que)) {\r\n      auto [dv, v] = POP(que);\r\
+    \n      if (dist[v] != dv) continue;\r\n      for (auto& e: G[v]) {\r\n      \
+    \  if (e.to < r) continue;\r\n        T x = dv + e.cost;\r\n        if (chmin(dist[e.to],\
+    \ x)) {\r\n          par_e[e.to] = e.id;\r\n          que.emplace(x, e.to);\r\n\
+    \        }\r\n      }\r\n    }\r\n    int best_e = -1;\r\n    for (auto& e: G.edges)\
+    \ {\r\n      int a = e.frm, b = e.to;\r\n      if (a < r || b < r || par_e[a]\
+    \ == e.id || par_e[b] == e.id) continue;\r\n      if (chmin(ans, dist[a] + dist[b]\
+    \ + e.cost)) best_e = e.id;\r\n    }\r\n    if (best_e == -1) continue;\r\n  \
+    \  vs.clear(), es.clear();\r\n    auto& e = G.edges[best_e];\r\n    int a = e.frm,\
+    \ b = e.to;\r\n    // r -> a\r\n    while (a != r) {\r\n      int eid = par_e[a];\r\
+    \n      vs.eb(a), es.eb(eid);\r\n      a = G.edges[eid].frm ^ G.edges[eid].to\
+    \ ^ a;\r\n    }\r\n    vs.eb(a);\r\n    reverse(all(vs)), reverse(all(es));\r\n\
+    \    es.eb(best_e);\r\n    while (b != r) {\r\n      int eid = par_e[b];\r\n \
+    \     vs.eb(b), es.eb(eid);\r\n      b = G.edges[eid].frm ^ G.edges[eid].to ^\
+    \ b;\r\n    }\r\n    vs.eb(b);\r\n  }\r\n  return {ans, vs, es};\r\n}\r\n\r\n\
+    // {wt, vs, es}, O(N * shortest path)\r\ntemplate <typename T, typename GT>\r\n\
+    tuple<T, vc<int>, vc<int>> minimum_cost_cycle(GT& G) {\r\n  for (auto& e: G.edges)\
+    \ assert(e.cost >= 0);\r\n  if constexpr (GT::is_directed) {\r\n    return minimum_cost_cycle_directed<T>(G);\r\
+    \n  } else {\r\n    return minimum_cost_cycle_undirected<T>(G);\r\n  }\r\n}\r\n"
   code: "#include \"graph/base.hpp\"\r\n\r\n// {wt, vs, es}, O(N * shortest path)\r\
     \ntemplate <typename T, typename GT>\r\ntuple<T, vc<int>, vc<int>> minimum_cost_cycle_directed(GT&\
     \ G) {\r\n  const int N = G.N;\r\n  T mi = 0, ma = 0;\r\n  for (auto& e: G.edges)\
@@ -184,7 +184,7 @@ data:
   isVerificationFile: false
   path: graph/minimum_cost_cycle.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1320.test.cpp

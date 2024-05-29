@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -221,7 +221,7 @@ data:
     \ 1;\n      nodes[p].TO[x] = to;\n\n      int link;\n      if (p == 0) link =\
     \ 1;\n      if (p != 0) {\n        while (1) {\n          p = nodes[p].link;\n\
     \          int j = i - 1 - nodes[p].length;\n          bool can = (j >= 0 && S[j]\
-    \ - off == x) || (p == 0);\n          if (can) break;\n        }\n        assert(nodes[p].TO[x]\
+    \ - off == x);\n          if (can) break;\n        }\n        assert(nodes[p].TO[x]\
     \ != -1);\n        link = nodes[p].TO[x];\n      }\n      nodes.eb(Node(link,\
     \ r - l, l, r));\n      p = to;\n    }\n    path.eb(p);\n  }\n\n  // node \u3054\
     \u3068\u306E\u51FA\u73FE\u56DE\u6570\n  vc<int> count() {\n    vc<int> res(len(nodes));\n\
@@ -328,8 +328,8 @@ data:
   isVerificationFile: true
   path: test/mytest/palindrome_decomposition_dp.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-05-29 22:32:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/palindrome_decomposition_dp.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':question:'
@@ -254,49 +254,50 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"other/dice.hpp\"\n\n// \u6B21\u306E\u756A\u53F7\u4ED8\u3051\
-    \u308B\u306B\u5F93\u3046\uFF1AUFRLBD\n// i, 5-i \u304C\u53CD\u5BFE\u306E\u9762\
-    \u306B\u306A\u3063\u3066\u3044\u308B\n// https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\n\
-    // https://atcoder.jp/contests/tenka1-2012-final/tasks/tenka1_2012_final_e\ntemplate\
-    \ <typename X>\nstruct Dice {\n  using ARR = array<X, 6>;\n  ARR A;\n\n  Dice(ARR\
-    \ A) : A(A) {}\n\n  X U() { return A[0]; }\n  X F() { return A[1]; }\n  X R()\
-    \ { return A[2]; }\n  X L() { return A[3]; }\n  X B() { return A[4]; }\n  X D()\
-    \ { return A[5]; }\n\n  // U \u306E\u3046\u3064\u308B\u5148\u3068\u306A\u308B\
-    \ FRLB \u3092\u6307\u5B9A\u3059\u308B or \u65B9\u89D2 NWES \u3092\u6307\u5B9A\u3059\
-    \u308B\n  void rotate(char c) {\n    if (c == 'F' || c == 'S') A = {A[4], A[0],\
-    \ A[2], A[3], A[5], A[1]};\n    elif (c == 'R' || c == 'E') A = {A[3], A[1], A[0],\
-    \ A[5], A[4], A[2]};\n    elif (c == 'L' || c == 'W') A = {A[2], A[1], A[5], A[0],\
-    \ A[4], A[3]};\n    elif (c == 'B' || c == 'N') A = {A[1], A[5], A[2], A[3], A[0],\
-    \ A[4]};\n    elif (c == 'U') A = {A[0], A[2], A[4], A[1], A[3], A[5]};\n    elif\
-    \ (c == 'D') A = {A[0], A[3], A[1], A[4], A[2], A[5]};\n    else {\n      assert(false);\n\
-    \    }\n  }\n\n  vc<ARR> gen_all() {\n    vc<ARR> res(24);\n    vc<tuple<int,\
-    \ int, int>> tmp(24);\n    tmp[0] = {0, 1, 2};\n    tmp[1] = {0, 4, 3};\n    tmp[2]\
-    \ = {5, 1, 3};\n    tmp[3] = {5, 4, 2};\n\n    FOR(i, 4) {\n      auto [a, b,\
-    \ c] = tmp[i];\n      tmp[4 + i] = {b, c, a};\n      tmp[8 + i] = {c, a, b};\n\
-    \    }\n\n    FOR(i, 12) {\n      auto [a, b, c] = tmp[i];\n      tmp[12 + i]\
-    \ = {5 - b, a, c};\n    }\n\n    FOR(i, 24) {\n      auto [a, b, c] = tmp[i];\n\
-    \      res[i] = {A[a], A[b], A[c], A[5 - c], A[5 - b], A[5 - a]};\n    }\n   \
-    \ return res;\n  }\n\n  // 24 \u9802\u70B9 6 \u9077\u79FB\u306E\u30B0\u30E9\u30D5\
-    \u3092\u4F5C\u308B\n  Graph<int, 0> to_graph() {\n    int N = 24;\n    Graph<int,\
-    \ 0> G(N);\n    auto dat = gen_all();\n    FOR(i, N) {\n      array<X, 6> A =\
-    \ dat[i];\n      for (char ch: {'U', 'F', 'R', 'L', 'B', 'D'}) {\n        Dice<X>\
-    \ d(A);\n        d.rotate(ch);\n        int idx = -1;\n        FOR(j, N) if (dat[j]\
-    \ == d.A) idx = j;\n        assert(idx != -1);\n        if (i < idx) G.add(i,\
-    \ idx);\n      }\n    }\n    G.build();\n    return G;\n  }\n};\n#line 7 \"test/aoj/ITP1_11_A.test.cpp\"\
-    \n\nvoid solve() {\n  array<int, 6> A;\n  FOR(i, 6) read(A[i]);\n  Dice<int> X(A);\n\
-    \  STR(S);\n  for (auto&& s: S) { X.rotate(s); }\n  print(X.U());\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"other/dice.hpp\"\
+    \n\n// \u6B21\u306E\u756A\u53F7\u4ED8\u3051\u308B\u306B\u5F93\u3046\uFF1AUFRLBD\n\
+    // i, 5-i \u304C\u53CD\u5BFE\u306E\u9762\u306B\u306A\u3063\u3066\u3044\u308B\n\
+    // https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\n// https://atcoder.jp/contests/tenka1-2012-final/tasks/tenka1_2012_final_e\n\
+    template <typename X>\nstruct Dice {\n  using ARR = array<X, 6>;\n  ARR A;\n\n\
+    \  Dice(ARR A) : A(A) {}\n\n  X U() { return A[0]; }\n  X F() { return A[1]; }\n\
+    \  X R() { return A[2]; }\n  X L() { return A[3]; }\n  X B() { return A[4]; }\n\
+    \  X D() { return A[5]; }\n\n  // U \u306E\u3046\u3064\u308B\u5148\u3068\u306A\
+    \u308B FRLB \u3092\u6307\u5B9A\u3059\u308B or \u65B9\u89D2 NWES \u3092\u6307\u5B9A\
+    \u3059\u308B\n  void rotate(char c) {\n    if (c == 'F' || c == 'S') A = {A[4],\
+    \ A[0], A[2], A[3], A[5], A[1]};\n    elif (c == 'R' || c == 'E') A = {A[3], A[1],\
+    \ A[0], A[5], A[4], A[2]};\n    elif (c == 'L' || c == 'W') A = {A[2], A[1], A[5],\
+    \ A[0], A[4], A[3]};\n    elif (c == 'B' || c == 'N') A = {A[1], A[5], A[2], A[3],\
+    \ A[0], A[4]};\n    elif (c == 'U') A = {A[0], A[2], A[4], A[1], A[3], A[5]};\n\
+    \    elif (c == 'D') A = {A[0], A[3], A[1], A[4], A[2], A[5]};\n    else {\n \
+    \     assert(false);\n    }\n  }\n\n  vc<ARR> gen_all() {\n    vc<ARR> res(24);\n\
+    \    vc<tuple<int, int, int>> tmp(24);\n    tmp[0] = {0, 1, 2};\n    tmp[1] =\
+    \ {0, 4, 3};\n    tmp[2] = {5, 1, 3};\n    tmp[3] = {5, 4, 2};\n\n    FOR(i, 4)\
+    \ {\n      auto [a, b, c] = tmp[i];\n      tmp[4 + i] = {b, c, a};\n      tmp[8\
+    \ + i] = {c, a, b};\n    }\n\n    FOR(i, 12) {\n      auto [a, b, c] = tmp[i];\n\
+    \      tmp[12 + i] = {5 - b, a, c};\n    }\n\n    FOR(i, 24) {\n      auto [a,\
+    \ b, c] = tmp[i];\n      res[i] = {A[a], A[b], A[c], A[5 - c], A[5 - b], A[5 -\
+    \ a]};\n    }\n    return res;\n  }\n\n  // 24 \u9802\u70B9 6 \u9077\u79FB\u306E\
+    \u30B0\u30E9\u30D5\u3092\u4F5C\u308B\n  Graph<int, 0> to_graph() {\n    int N\
+    \ = 24;\n    Graph<int, 0> G(N);\n    auto dat = gen_all();\n    FOR(i, N) {\n\
+    \      array<X, 6> A = dat[i];\n      for (char ch: {'U', 'F', 'R', 'L', 'B',\
+    \ 'D'}) {\n        Dice<X> d(A);\n        d.rotate(ch);\n        int idx = -1;\n\
+    \        FOR(j, N) if (dat[j] == d.A) idx = j;\n        assert(idx != -1);\n \
+    \       if (i < idx) G.add(i, idx);\n      }\n    }\n    G.build();\n    return\
+    \ G;\n  }\n};\n#line 7 \"test/aoj/ITP1_11_A.test.cpp\"\n\nvoid solve() {\n  array<int,\
+    \ 6> A;\n  FOR(i, 6) read(A[i]);\n  Dice<int> X(A);\n  STR(S);\n  for (auto&&\
+    \ s: S) { X.rotate(s); }\n  print(X.U());\n}\n\nsigned main() {\n  cout << fixed\
+    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_11_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"other/dice.hpp\"\
     \n\nvoid solve() {\n  array<int, 6> A;\n  FOR(i, 6) read(A[i]);\n  Dice<int> X(A);\n\
@@ -311,7 +312,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_11_A.test.cpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ITP1_11_A.test.cpp

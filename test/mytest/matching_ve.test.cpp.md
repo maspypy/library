@@ -4,19 +4,19 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':x:'
     path: graph/maximum_matching_between_vertex_edge.hpp
     title: graph/maximum_matching_between_vertex_edge.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':x:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -196,23 +196,23 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n#line 2 \"\
-    ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int>\
-    \ dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void build(int\
-    \ m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void reset()\
-    \ { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0) {\n    \
-    \  int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n      x = dat[x]\
-    \ = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"graph/bipartite_vertex_coloring.hpp\"\
+    \n\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
     \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
@@ -313,31 +313,32 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
-    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
-    \ A[RNG(0, i + 1)]);\n}\n#line 5 \"random/random_graph.hpp\"\n\nvoid random_relabel(int\
-    \ N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int> A(N);\n  FOR(i, N) A[i]\
-    \ = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a], b = A[b];\n}\n\ntemplate\
-    \ <int DIRECTED>\nvc<pair<int, int>> random_graph(int n, bool simple) {\n  vc<pair<int,\
-    \ int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n    if (simple && a == b) continue;\n\
-    \    if (!DIRECTED && a > b) continue;\n    cand.eb(a, b);\n  }\n  int m = RNG(0,\
-    \ len(cand) + 1);\n  set<int> ss;\n  FOR(m) {\n    while (1) {\n      int i =\
-    \ RNG(0, len(cand));\n      if (simple && ss.count(i)) continue;\n      ss.insert(i);\n\
-    \      auto [a, b] = cand[i];\n      G.eb(a, b);\n      break;\n    }\n  }\n \
-    \ random_relabel(n, G);\n  return G;\n}\n\nvc<pair<int, int>> random_tree(int\
-    \ n) {\n  vc<pair<int, int>> G;\n  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n,\
-    \ G);\n  return G;\n}\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\
-    \u30A4\u30AF\u30EB\uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\
-    \u305F\u306F\u8FBA\uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\
-    \u4E00\u306E\u30B5\u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\
-    \u307E\u305F\u306F\u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE)\
-    \ {\n  if (!EDGE) {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\
-    \u4E0A\u306B\u5206\u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int>\
-    \ S(n, 1);\n    int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0,\
-    \ n);\n      if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest\
-    \ = 0;\n        } else {\n          S[k] += 2, rest -= 2;\n        }\n      }\
-    \ else {\n        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p\
-    \ = 0;\n    FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n\
-    \      A.eb(C);\n      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
+    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int\
+    \ j = RNG(0, i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 5 \"random/random_graph.hpp\"\
+    \n\nvoid random_relabel(int N, vc<pair<int, int>>& G) {\n  shuffle(G);\n  vc<int>\
+    \ A(N);\n  FOR(i, N) A[i] = i;\n  shuffle(A);\n  for (auto& [a, b]: G) a = A[a],\
+    \ b = A[b];\n}\n\ntemplate <int DIRECTED>\nvc<pair<int, int>> random_graph(int\
+    \ n, bool simple) {\n  vc<pair<int, int>> G, cand;\n  FOR(a, n) FOR(b, n) {\n\
+    \    if (simple && a == b) continue;\n    if (!DIRECTED && a > b) continue;\n\
+    \    cand.eb(a, b);\n  }\n  int m = RNG(0, len(cand) + 1);\n  set<int> ss;\n \
+    \ FOR(m) {\n    while (1) {\n      int i = RNG(0, len(cand));\n      if (simple\
+    \ && ss.count(i)) continue;\n      ss.insert(i);\n      auto [a, b] = cand[i];\n\
+    \      G.eb(a, b);\n      break;\n    }\n  }\n  random_relabel(n, G);\n  return\
+    \ G;\n}\n\nvc<pair<int, int>> random_tree(int n) {\n  vc<pair<int, int>> G;\n\
+    \  FOR(i, 1, n) { G.eb(RNG(0, i), i); }\n  random_relabel(n, G);\n  return G;\n\
+    }\n\n// EDGE = true: \u5404\u8FBA\u304C\u552F\u4E00\u306E\u30B5\u30A4\u30AF\u30EB\
+    \uFF08\u95A2\u7BC0\u70B9\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\u8FBA\
+    \uFF09\n// EDGE = false\uFF1A \u5404\u9802\u70B9\u304C\u552F\u4E00\u306E\u30B5\
+    \u30A4\u30AF\u30EB\uFF08\u6A4B\u3067\u30B5\u30A4\u30AF\u30EB\u307E\u305F\u306F\
+    \u8FBA\uFF09\nvc<pair<int, int>> random_cactus(int N, bool EDGE) {\n  if (!EDGE)\
+    \ {\n    // n \u9802\u70B9\u3092 1 \u307E\u305F\u306F 3 \u4EE5\u4E0A\u306B\u5206\
+    \u5272\n    vvc<int> A;\n    int n = RNG(1, N + 1);\n    vc<int> S(n, 1);\n  \
+    \  int rest = N - n;\n    while (rest > 0) {\n      int k = RNG(0, n);\n     \
+    \ if (S[k] == 1) {\n        if (rest == 1) {\n          S.eb(1), rest = 0;\n \
+    \       } else {\n          S[k] += 2, rest -= 2;\n        }\n      } else {\n\
+    \        S[k]++, rest--;\n      }\n    }\n    n = len(S);\n    int p = 0;\n  \
+    \  FOR(i, n) {\n      vc<int> C;\n      FOR(v, p, p + S[i]) C.eb(v);\n      A.eb(C);\n\
+    \      p += S[i];\n    }\n    int m = len(A);\n    auto H = random_tree(m);\n\
     \    vc<pair<int, int>> G;\n    FOR(i, m) {\n      vc<int>& V = A[i];\n      if\
     \ (len(V) == 1) continue;\n      FOR(k, len(V)) { G.eb(V[k], V[(1 + k) % len(V)]);\
     \ }\n    }\n    for (auto& [c1, c2]: H) {\n      int a = A[c1][RNG(0, len(A[c1]))];\n\
@@ -394,7 +395,7 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/matching_ve.test.cpp

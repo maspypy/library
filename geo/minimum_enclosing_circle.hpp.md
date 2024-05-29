@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/119/E
@@ -91,11 +91,11 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\
-    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) swap(A[i],\
-    \ A[RNG(0, i + 1)]);\n}\n#line 1 \"geo/triangle_area.hpp\"\ntemplate <typename\
-    \ REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T> B, Point<T> C) {\n\
-    \  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/outcircle.hpp\"\n\n\
-    template <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
+    \n\ntemplate <typename T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int\
+    \ j = RNG(0, i + 1);\n    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 1 \"geo/triangle_area.hpp\"\
+    \ntemplate <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/outcircle.hpp\"\
+    \n\ntemplate <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
     \ B, Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x -\
     \ A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1\
     \ * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2\
@@ -157,8 +157,8 @@ data:
   isVerificationFile: false
   path: geo/minimum_enclosing_circle.hpp
   requiredBy: []
-  timestamp: '2024-01-13 13:39:55+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-05-29 22:32:29+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
 documentation_of: geo/minimum_enclosing_circle.hpp

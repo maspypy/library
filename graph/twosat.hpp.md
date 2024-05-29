@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
@@ -75,45 +75,45 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\n\ntemplate <typename\
-    \ GT>\npair<int, vc<int>> strongly_connected_component(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  int N = G.N;\n  int C = 0;\n  vc<int> comp(N),\
-    \ low(N), ord(N, -1), path;\n  int now = 0;\n\n  auto dfs = [&](auto& dfs, int\
-    \ v) -> void {\n    low[v] = ord[v] = now++;\n    path.eb(v);\n    for (auto&&\
-    \ [frm, to, cost, id]: G[v]) {\n      if (ord[to] == -1) {\n        dfs(dfs, to),\
-    \ chmin(low[v], low[to]);\n      } else {\n        chmin(low[v], ord[to]);\n \
-    \     }\n    }\n    if (low[v] == ord[v]) {\n      while (1) {\n        int u\
-    \ = POP(path);\n        ord[u] = N, comp[u] = C;\n        if (u == v) break;\n\
-    \      }\n      ++C;\n    }\n  };\n  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs,\
-    \ v);\n  }\n  FOR(v, N) comp[v] = C - 1 - comp[v];\n  return {C, comp};\n}\n\n\
-    template <typename GT>\nGraph<int, 1> scc_dag(GT& G, int C, vc<int>& comp) {\n\
-    \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
-    \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
-    \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/twosat.hpp\"\n\r\
-    \nstruct TwoSat {\r\n  Graph<bool, 1> G;\r\n  vc<int> values;\r\n  vc<pair<int,\
-    \ int>> edges;\r\n\r\n  TwoSat(ll n) : G(n + n), values(n, -1) {}\r\n  void add(int\
-    \ a, int b) {\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ?\
-    \ 2 * b + 1 : 2 * (~b));\r\n    edges.eb(a ^ 1, b);\r\n    edges.eb(b ^ 1, a);\r\
-    \n  }\r\n  void set(int a) {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n  \
-    \  else\r\n      values[~a] = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\
-    \n    edges.eb(a ^ 1, a);\r\n  }\r\n  void implies(int a, int b) { add(~a, b);\
-    \ }\r\n\r\n  pair<bool, vc<int>> calc() {\r\n    UNIQUE(edges);\r\n    for (auto&&\
-    \ [a, b]: edges) G.add(a, b);\r\n    G.build();\r\n    ll n = len(values);\r\n\
-    \    auto [C, comp] = strongly_connected_component(G);\r\n    FOR(i, n) {\r\n\
-    \      if (comp[2 * i] == comp[2 * i + 1]) return {false, values};\r\n      values[i]\
-    \ = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n    return {true, values};\r\n\
-    \  }\r\n};\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename GT>\npair<int, vc<int>> strongly_connected_component(GT&\
+    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N\
+    \ = G.N;\n  int C = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  int now\
+    \ = 0;\n\n  auto dfs = [&](auto& dfs, int v) -> void {\n    low[v] = ord[v] =\
+    \ now++;\n    path.eb(v);\n    for (auto&& [frm, to, cost, id]: G[v]) {\n    \
+    \  if (ord[to] == -1) {\n        dfs(dfs, to), chmin(low[v], low[to]);\n     \
+    \ } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] ==\
+    \ ord[v]) {\n      while (1) {\n        int u = POP(path);\n        ord[u] = N,\
+    \ comp[u] = C;\n        if (u == v) break;\n      }\n      ++C;\n    }\n  };\n\
+    \  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] =\
+    \ C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int,\
+    \ 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int>\
+    \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
+    \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
+    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
+    \ DAG;\n}\n#line 2 \"graph/twosat.hpp\"\n\r\nstruct TwoSat {\r\n  Graph<bool,\
+    \ 1> G;\r\n  vc<int> values;\r\n  vc<pair<int, int>> edges;\r\n\r\n  TwoSat(ll\
+    \ n) : G(n + n), values(n, -1) {}\r\n  void add(int a, int b) {\r\n    a = (a\
+    \ >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    b = (b >= 0 ? 2 * b + 1 : 2 * (~b));\r\n\
+    \    edges.eb(a ^ 1, b);\r\n    edges.eb(b ^ 1, a);\r\n  }\r\n  void set(int a)\
+    \ {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a]\
+    \ = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    edges.eb(a ^ 1, a);\r\
+    \n  }\r\n  void implies(int a, int b) { add(~a, b); }\r\n\r\n  pair<bool, vc<int>>\
+    \ calc() {\r\n    UNIQUE(edges);\r\n    for (auto&& [a, b]: edges) G.add(a, b);\r\
+    \n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
+    \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
+    \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
+    \  return {true, values};\r\n  }\r\n};\n"
   code: "#include \"graph/strongly_connected_component.hpp\"\r\n\r\nstruct TwoSat\
     \ {\r\n  Graph<bool, 1> G;\r\n  vc<int> values;\r\n  vc<pair<int, int>> edges;\r\
     \n\r\n  TwoSat(ll n) : G(n + n), values(n, -1) {}\r\n  void add(int a, int b)\
@@ -133,7 +133,7 @@ data:
   isVerificationFile: false
   path: graph/twosat.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/twosat.test.cpp

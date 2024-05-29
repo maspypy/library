@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
@@ -258,55 +258,55 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\n\ntemplate <typename\
-    \ T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT& G, int s) {\n  const\
-    \ int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<bool>\
-    \ done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n    T mi = infty<T>;\n\
-    \    FOR(i, N) {\n      if (!done[i] && chmin(mi, dist[i])) v = i;\n    }\n  \
-    \  if (v == -1) break;\n    done[v] = 1;\n    for (auto&& e: G[v]) {\n      if\
-    \ (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;\n    }\n  }\n  return {dist,\
-    \ par};\n}\n\ntemplate <typename T, typename GT, bool DENSE = false>\npair<vc<T>,\
-    \ vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE) return dijkstra_dense<T>(G,\
-    \ v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n  vector<int> par(N, -1);\n\
-    \  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\
-    \n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty()) {\n    auto [dv,\
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/dijkstra.hpp\"\
+    \n\ntemplate <typename T, typename GT>\npair<vc<T>, vc<int>> dijkstra_dense(GT&\
+    \ G, int s) {\n  const int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N,\
+    \ -1);\n  vc<bool> done(N);\n  dist[s] = 0;\n  while (1) {\n    int v = -1;\n\
+    \    T mi = infty<T>;\n    FOR(i, N) {\n      if (!done[i] && chmin(mi, dist[i]))\
+    \ v = i;\n    }\n    if (v == -1) break;\n    done[v] = 1;\n    for (auto&& e:\
+    \ G[v]) {\n      if (chmin(dist[e.to], dist[v] + e.cost)) par[e.to] = v;\n   \
+    \ }\n  }\n  return {dist, par};\n}\n\ntemplate <typename T, typename GT, bool\
+    \ DENSE = false>\npair<vc<T>, vc<int>> dijkstra(GT& G, int v) {\n  if (DENSE)\
+    \ return dijkstra_dense<T>(G, v);\n  auto N = G.N;\n  vector<T> dist(N, infty<T>);\n\
+    \  vector<int> par(N, -1);\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
+    \ greater<P>> que;\n\n  dist[v] = 0;\n  que.emplace(0, v);\n  while (!que.empty())\
+    \ {\n    auto [dv, v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n\
+    \    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost))\
+    \ {\n        par[e.to] = e.frm;\n        que.emplace(dist[e.to], e.to);\n    \
+    \  }\n    }\n  }\n  return {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\
+    \u30C8\u3002[dist, par, root]\ntemplate <typename T, typename GT>\ntuple<vc<T>,\
+    \ vc<int>, vc<int>> dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  vc<int>\
+    \ root(N, -1);\n\n  using P = pair<T, int>;\n\n  priority_queue<P, vector<P>,\
+    \ greater<P>> que;\n\n  for (auto&& v: vs) {\n    dist[v] = 0;\n    root[v] =\
+    \ v;\n    que.emplace(T(0), v);\n  }\n\n  while (!que.empty()) {\n    auto [dv,\
     \ v] = que.top();\n    que.pop();\n    if (dv > dist[v]) continue;\n    for (auto&&\
-    \ e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        par[e.to]\
-    \ = e.frm;\n        que.emplace(dist[e.to], e.to);\n      }\n    }\n  }\n  return\
-    \ {dist, par};\n}\n\n// \u591A\u70B9\u30B9\u30BF\u30FC\u30C8\u3002[dist, par,\
-    \ root]\ntemplate <typename T, typename GT>\ntuple<vc<T>, vc<int>, vc<int>> dijkstra(GT&\
-    \ G, vc<int> vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  vc<T> dist(N,\
-    \ infty<T>);\n  vc<int> par(N, -1);\n  vc<int> root(N, -1);\n\n  using P = pair<T,\
-    \ int>;\n\n  priority_queue<P, vector<P>, greater<P>> que;\n\n  for (auto&& v:\
-    \ vs) {\n    dist[v] = 0;\n    root[v] = v;\n    que.emplace(T(0), v);\n  }\n\n\
-    \  while (!que.empty()) {\n    auto [dv, v] = que.top();\n    que.pop();\n   \
-    \ if (dv > dist[v]) continue;\n    for (auto&& e: G[v]) {\n      if (chmin(dist[e.to],\
-    \ dist[e.frm] + e.cost)) {\n        root[e.to] = root[e.frm];\n        par[e.to]\
-    \ = e.frm;\n        que.push(mp(dist[e.to], e.to));\n      }\n    }\n  }\n  return\
-    \ {dist, par, root};\n}\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct\
-    \ Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename\
-    \ B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n\
-    \  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const\
-    \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
-    \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
-    \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
-    \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
-    \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
-    \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
-    \    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y;\
-    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n\n  double norm()\
-    \ { return sqrtl(x * x + y * y); }\n  double angle() { return atan2(y, x); }\n\
-    \n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \ e: G[v]) {\n      if (chmin(dist[e.to], dist[e.frm] + e.cost)) {\n        root[e.to]\
+    \ = root[e.frm];\n        par[e.to] = e.frm;\n        que.push(mp(dist[e.to],\
+    \ e.to));\n      }\n    }\n  }\n  return {dist, par, root};\n}\n#line 2 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point\
+    \ operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
+    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
+    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
+    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
+    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
+    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>&\
     \ p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
@@ -379,7 +379,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc064c.test.cpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc064c.test.cpp

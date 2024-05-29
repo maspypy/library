@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/min2.hpp
     title: alg/monoid/min2.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -75,40 +75,41 @@ data:
     \ eid);\n        }\n      }\n    }\n    FOR(i, n) new_idx[V[i]] = -1;\n    for\
     \ (auto&& eid: history) used_e[eid] = 0;\n    G.build();\n    return G;\n  }\n\
     \n  Graph<T, true> to_directed_tree(int root = -1) {\n    if (root == -1) root\
-    \ = 0;\n    assert(!is_directed() && prepared && M == N - 1);\n    Graph<T, true>\
+    \ = 0;\n    assert(!is_directed && prepared && M == N - 1);\n    Graph<T, true>\
     \ G1(N);\n    vc<int> par(N, -1);\n    auto dfs = [&](auto& dfs, int v) -> void\
-    \ {\n      for (auto& e: G[v]) {\n        if (e.to == par[v]) continue;\n    \
-    \    par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n  \
-    \  for (auto& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
-    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b);\n    }\n\
-    \    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n\
-    \    vc_deg.resize(N);\n    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n\
-    \  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n\
-    \    vc_outdeg.resize(N);\n    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++;\
-    \ }\n  }\n};\n#line 2 \"alg/monoid/min2.hpp\"\n\ntemplate <typename T, typename\
-    \ KEY>\nstruct Monoid_Min2 {\n  struct Data {\n    T min1, min2;\n    KEY key1,\
-    \ key2;\n    bool add_element(T x, KEY key) {\n      if (key1 == key) { return\
-    \ chmin(min1, x); }\n      if (key2 == key) {\n        bool upd = chmin(min2,\
-    \ x);\n        if (min1 > min2) swap(min1, min2), swap(key1, key2);\n        return\
-    \ upd;\n      }\n      if (min1 > x) {\n        min2 = min1, key2 = key1, min1\
-    \ = x, key1 = key;\n        return 1;\n      }\n      elif (min2 > x) {\n    \
-    \    min2 = x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n\
-    \  };\n  using value_type = Data;\n  using X = value_type;\n\n  static X op(X\
-    \ x, X y) {\n    x.add_element(y.min1, y.key1);\n    x.add_element(y.min2, y.key2);\n\
-    \    return x;\n  }\n  static constexpr X unit() { return {infty<T>, infty<T>,\
-    \ -1, -1}; }\n  static constexpr bool commute = true;\n};\n#line 3 \"graph/shortest_path/top2_dijkstra.hpp\"\
-    \n\n// \u7D4C\u8DEF\u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\
-    \u985E\u3060\u3051\u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T,\
-    \ typename GT>\nvc<typename Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int>\
-    \ vs) {\n  assert(G.is_prepared());\n  int N = G.N;\n  using Mono = Monoid_Min2<T,\
-    \ int>;\n  using Data = typename Mono::Data;\n  vc<Data> dist(N, Mono::unit());\n\
-    \  pqg<tuple<T, int, int>> que; // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto\
-    \ upd = [&](int v, int c, T x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x,\
-    \ v, c);\n  };\n\n  for (auto& v: vs) { upd(v, v, 0); }\n\n  while (len(que))\
-    \ {\n    auto [dv, v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n\
-    \    if (e.min1 == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2\
-    \ == c) ok = 1;\n    if (!ok) continue;\n    for (auto&& e: G[v]) { upd(e.to,\
-    \ c, dv + e.cost); }\n  }\n  return dist;\n}\n"
+    \ {\n      for (auto& e: (*this)[v]) {\n        if (e.to == par[v]) continue;\n\
+    \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
+    \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
+    \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
+    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
+    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
+    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
+    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 2 \"alg/monoid/min2.hpp\"\
+    \n\ntemplate <typename T, typename KEY>\nstruct Monoid_Min2 {\n  struct Data {\n\
+    \    T min1, min2;\n    KEY key1, key2;\n    bool add_element(T x, KEY key) {\n\
+    \      if (key1 == key) { return chmin(min1, x); }\n      if (key2 == key) {\n\
+    \        bool upd = chmin(min2, x);\n        if (min1 > min2) swap(min1, min2),\
+    \ swap(key1, key2);\n        return upd;\n      }\n      if (min1 > x) {\n   \
+    \     min2 = min1, key2 = key1, min1 = x, key1 = key;\n        return 1;\n   \
+    \   }\n      elif (min2 > x) {\n        min2 = x, key2 = key;\n        return\
+    \ 1;\n      }\n      return 0;\n    }\n  };\n  using value_type = Data;\n  using\
+    \ X = value_type;\n\n  static X op(X x, X y) {\n    x.add_element(y.min1, y.key1);\n\
+    \    x.add_element(y.min2, y.key2);\n    return x;\n  }\n  static constexpr X\
+    \ unit() { return {infty<T>, infty<T>, -1, -1}; }\n  static constexpr bool commute\
+    \ = true;\n};\n#line 3 \"graph/shortest_path/top2_dijkstra.hpp\"\n\n// \u7D4C\u8DEF\
+    \u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\u3051\
+    \u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\nvc<typename\
+    \ Monoid_Min2<T, int>::Data> top2_dijkstra(GT& G, vc<int> vs) {\n  assert(G.is_prepared());\n\
+    \  int N = G.N;\n  using Mono = Monoid_Min2<T, int>;\n  using Data = typename\
+    \ Mono::Data;\n  vc<Data> dist(N, Mono::unit());\n  pqg<tuple<T, int, int>> que;\
+    \ // \u8DDD\u96E2\u3001\u753A\u3001\u8272\n\n  auto upd = [&](int v, int c, T\
+    \ x) -> void {\n    if (dist[v].add_element(x, c)) que.emplace(x, v, c);\n  };\n\
+    \n  for (auto& v: vs) { upd(v, v, 0); }\n\n  while (len(que)) {\n    auto [dv,\
+    \ v, c] = POP(que);\n    bool ok = 0;\n    auto& e = dist[v];\n    if (e.min1\
+    \ == dv && e.key1 == c) ok = 1;\n    if (e.min2 == dv && e.key2 == c) ok = 1;\n\
+    \    if (!ok) continue;\n    for (auto&& e: G[v]) { upd(e.to, c, dv + e.cost);\
+    \ }\n  }\n  return dist;\n}\n"
   code: "#include \"graph/base.hpp\"\n#include \"alg/monoid/min2.hpp\"\n\n// \u7D4C\
     \u8DEF\u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\u985E\u3060\
     \u3051\u306B\u306A\u3063\u3066\u3044\u308B\ntemplate <typename T, typename GT>\n\
@@ -128,7 +129,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/top2_dijkstra.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
+  timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc245g2.test.cpp
