@@ -9,12 +9,12 @@ data:
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1602.test.cpp
     title: test/yukicoder/1602.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://arxiv.org/abs/1906.04062
@@ -183,7 +183,7 @@ data:
   path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   requiredBy: []
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1602.test.cpp
 documentation_of: graph/shortest_path/nonzero_group_product_shortest_path.hpp
