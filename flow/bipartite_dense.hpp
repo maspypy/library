@@ -7,6 +7,8 @@
 // https://codeforces.com/contest/1045/problem/A
 // (10000, 20000) で 3837ms
 // https://codeforces.com/contest/786/problem/E
+// (10000, 10000) 6500ms TLE. row, col とも shuffle で 3000ms AC.
+// bitset の方が My_Bitset より高速？(2024/05/27)
 template <typename BS>
 struct BipartiteMatching_Dense {
   int N1, N2;
