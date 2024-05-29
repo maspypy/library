@@ -2,5 +2,8 @@
 
 template <typename T>
 void shuffle(vc<T>& A) {
-  FOR(i, len(A)) swap(A[i], A[RNG(0, i + 1)]);
+  FOR(i, len(A)) {
+    int j = RNG(0, i + 1);
+    if (i != j) swap(A[i], A[j]);
+  }
 }

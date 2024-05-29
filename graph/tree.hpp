@@ -90,6 +90,11 @@ struct Tree {
     return (parent[e.frm] == e.to ? e.frm : e.to);
   }
   int v_to_e(int v) { return VtoE[v]; }
+  int get_eid(int u, int v) {
+    if (parent[u] != v) swap(u, v);
+    assert(parent[u] == v);
+    return VtoE[u];
+  }
 
   int ELID(int v) { return 2 * LID[v] - depth[v]; }
   int ERID(int v) { return 2 * RID[v] - depth[v] - 1; }
