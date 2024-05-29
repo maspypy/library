@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':question:'
