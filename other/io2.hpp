@@ -73,19 +73,6 @@ void print(Head &&head, Tail &&... tail) {
   print(forward<Tail>(tail)...);
 }
 
-#if defined(LOCAL)
-#define SHOW(...) \
-  SHOW_IMPL(__VA_ARGS__, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)
-#define SHOW_IMPL(_1, _2, _3, _4, NAME, ...) NAME
-#define SHOW1(x) print(#x, "=", (x))
-#define SHOW2(x, y) print(#x, "=", (x), #y, "=", (y))
-#define SHOW3(x, y, z) print(#x, "=", (x), #y, "=", (y), #z, "=", (z))
-#define SHOW4(x, y, z, w) \
-  print(#x, "=", (x), #y, "=", (y), #z, "=", (z), #w, "=", (w))
-#else
-#define SHOW(...)
-#endif
-
 void YES(bool t = 1) { print(t ? "YES" : "NO"); }
 void NO(bool t = 1) { YES(!t); }
 void Yes(bool t = 1) { print(t ? "Yes" : "No"); }

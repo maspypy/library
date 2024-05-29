@@ -65,7 +65,7 @@ struct Double_Ended_Palindromic_Tree {
     assert(ODD == new_node(-1, -1, -1));
     assert(EVEN == new_node(-1, 0, 0));
     nodes[ODD].cnt = infty<int>, nodes[EVEN].cnt = infty<int>;
-    mod = 1;
+    mod = 4;
     while (mod < max_size) mod *= 2;
     dat.resize(mod);
     mask = mod - 1;

@@ -179,21 +179,21 @@ struct Graph {
 
   Graph<T, true> to_directed_tree(int root = -1) {
     if (root == -1) root = 0;
-    assert(!is_directed() && prepared && M == N - 1);
+    assert(!is_directed && prepared && M == N - 1);
     Graph<T, true> G1(N);
     vc<int> par(N, -1);
     auto dfs = [&](auto& dfs, int v) -> void {
-      for (auto& e: G[v]) {
+      for (auto& e: (*this)[v]) {
         if (e.to == par[v]) continue;
         par[e.to] = v, dfs(dfs, e.to);
       }
     };
     dfs(dfs, root);
-    for (auto& e: G.edges) {
+    for (auto& e: edges) {
       int a = e.frm, b = e.to;
       if (par[a] == b) swap(a, b);
       assert(par[b] == a);
-      G1.add(a, b);
+      G1.add(a, b, e.cost);
     }
     G1.build();
     return G1;

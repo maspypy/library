@@ -47,7 +47,7 @@ struct Palindromic_Tree {
         while (1) {
           p = nodes[p].link;
           int j = i - 1 - nodes[p].length;
-          bool can = (j >= 0 && S[j] - off == x) || (p == 0);
+          bool can = (j >= 0 && S[j] - off == x);
           if (can) break;
         }
         assert(nodes[p].TO[x] != -1);
