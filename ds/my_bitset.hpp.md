@@ -48,10 +48,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2626_2.test.cpp
     title: test/yukicoder/2626_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/421.test.cpp
     title: test/yukicoder/421.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/421_2.test.cpp
     title: test/yukicoder/421_2.test.cpp
   - icon: ':heavy_check_mark:'

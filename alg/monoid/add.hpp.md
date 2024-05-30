@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -435,7 +435,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
   - icon: ':heavy_check_mark:'
