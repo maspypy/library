@@ -57,3 +57,58 @@ pair<int, int> closest_pair(vc<Point<T>> points) {
   res.fi = I[res.fi], res.se = I[res.se];
   return res;
 }
+
+pair<int, int> closest_pair_dc(vc<Point<ll>> point) {
+  int N = len(point);
+  assert(N >= 2);
+
+  auto I = argsort(point);
+  point = rearrange(point, I);
+
+  ll best = -1;
+  pair<int, int> best_pair = {-1, -1};
+
+  auto upd = [&](int i, int j) -> void {
+    Point<ll> p = point[i] - point[j];
+    ll d = p.dot(p);
+    if (best == -1 || best > d) { best = d, best_pair = {I[i], I[j]}; }
+  };
+  upd(0, 1);
+
+  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {
+    // return: [L,R) を y について sort したもの
+    if (R == L + 1) return {L};
+    int M = (L + R) / 2;
+    vc<int> I0 = dfs(dfs, L, M);
+    vc<int> I1 = dfs(dfs, M, R);
+    vc<int> I;
+    vc<int> near;
+    int a = 0, b = 0;
+    FOR(R - L) {
+      int idx = [&]() -> int {
+        if (a == len(I0)) return I1[b++];
+        if (b == len(I1)) return I0[a++];
+        int i = I0[a], j = I1[b];
+        if (point[i].y < point[j].y) {
+          ++a;
+          return i;
+        }
+        ++b;
+        return j;
+      }();
+      I.eb(idx);
+      ll dx = point[M].x - point[idx].x;
+      if (dx * dx > best) { continue; }
+      FOR_R(k, len(near)) {
+        int j = near[k];
+        ll dy = point[idx].y - point[j].y;
+        if (dy * dy > best) break;
+        upd(idx, j);
+      }
+      near.eb(idx);
+    }
+    return I;
+  };
+  dfs(dfs, 0, N);
+  return best_pair;
+}
