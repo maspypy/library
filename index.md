@@ -582,7 +582,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/binary_optimization.hpp
       title: flow/binary_optimization.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
     - icon: ':heavy_check_mark:'
@@ -673,7 +673,7 @@ data:
     - icon: ':warning:'
       path: geo/inside_polygon.hpp
       title: geo/inside_polygon.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
     - icon: ':heavy_check_mark:'
@@ -722,7 +722,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bipartite_edge_coloring.hpp
       title: graph/bipartite_edge_coloring.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/bipartite_vertex_coloring.hpp
       title: graph/bipartite_vertex_coloring.hpp
     - icon: ':warning:'
@@ -872,7 +872,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/steiner_tree.hpp
       title: graph/steiner_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/strongly_connected_component.hpp
       title: graph/strongly_connected_component.hpp
     - icon: ':warning:'
@@ -1118,10 +1118,10 @@ data:
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/subtree_depth_sum.hpp
       title: graph/tree_dp/subtree_depth_sum.hpp
     - icon: ':warning:'
@@ -4487,7 +4487,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc274_h.test.cpp
       title: test_atcoder/abc274_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc274g.test.cpp
       title: test_atcoder/abc274g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4511,7 +4511,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc281g.test.cpp
       title: test_atcoder/abc281g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc283f.test.cpp
       title: test_atcoder/abc283f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4520,7 +4520,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc288ex.test.cpp
       title: test_atcoder/abc288ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc298ex.test.cpp
       title: test_atcoder/abc298ex.test.cpp
     - icon: ':x:'
