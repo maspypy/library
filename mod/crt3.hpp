@@ -20,3 +20,11 @@ T CRT3(u64 a0, u64 a1, u64 a2) {
   c = (a2 - a % p2 + p2) * x01_2 % p2;
   return T(a) + T(c) * T(p0) * T(p1);
 }
+
+template <typename T, u32 p0, u32 p1>
+T CRT2(u64 a0, u64 a1) {
+  static_assert(p0 < p1);
+  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);
+  u64 c = (a1 - a0 + p1) * x0_1 % p1;
+  return a0 + c * p0;
+}
