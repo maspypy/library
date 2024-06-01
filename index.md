@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmax_add.hpp
       title: alg/acted_monoid/minmax_add.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
     - icon: ':heavy_check_mark:'
@@ -145,7 +145,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
     - icon: ':heavy_check_mark:'
@@ -287,7 +287,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
     - icon: ':heavy_check_mark:'
@@ -441,7 +441,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/dynamic_segtree_sparse.hpp
       title: ds/segtree/dynamic_segtree_sparse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -1462,7 +1462,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/connected_dp.hpp
       title: other/connected_dp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/count_seq_with_fixed_xor_value.hpp
       title: other/count_seq_with_fixed_xor_value.hpp
     - icon: ':warning:'
@@ -1697,7 +1697,7 @@ data:
       title: poly/typical_divide_conquer.hpp
   - name: poly/online
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_convolution.hpp
       title: poly/online/online_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1715,7 +1715,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/online/online_pow.hpp
       title: poly/online/online_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_square.hpp
       title: poly/online/online_square.hpp
   - name: random
@@ -4517,7 +4517,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc285h.test.cpp
       title: test_atcoder/abc285h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc288ex.test.cpp
       title: test_atcoder/abc288ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4547,16 +4547,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc314g.test.cpp
       title: test_atcoder/abc314g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc315h.test.cpp
       title: test_atcoder/abc315h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc315h2.test.cpp
       title: test_atcoder/abc315h2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318b.test.cpp
       title: test_atcoder/abc318b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc318g.test.cpp
       title: test_atcoder/abc318g.test.cpp
     - icon: ':x:'
