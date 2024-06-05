@@ -1,4 +1,5 @@
 #include "poly/convolution.hpp"
+#include "nt/digit_sum.hpp"
 
 // 10^9 ずつ区切って
 struct BigInteger {
@@ -270,6 +271,12 @@ struct BigInteger {
     x = std::log10(x);
     x += double(LOG) * (len(dat) - 4);
     return x;
+  }
+
+  int digit_sum() {
+    int ans = 0;
+    for (auto &x: dat) ans += ::digit_sum(x); // global にある digit_sum
+    return ans;
   }
 };
 
