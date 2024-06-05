@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -101,8 +101,8 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"nt/digit_sum.hpp\"\nint digit_sum(u64 x) {\n\
-    \  const int K = 100'000;\n  static vc<int> dp(K);\n  if (dp[1] == 0) { FOR(x,\
+    \  return B;\n}\n#endif\n#line 2 \"nt/digit_sum.hpp\"\n\nint digit_sum(u64 x)\
+    \ {\n  const int K = 100'000;\n  static vc<int> dp(K);\n  if (dp[1] == 0) { FOR(x,\
     \ 1, K) dp[x] = dp[x / 10] + (x % 10); }\n  int res = 0;\n  while (x) {\n    res\
     \ += dp[x % K];\n    x /= K;\n  }\n  return res;\n}\n#line 2 \"random/base.hpp\"\
     \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
@@ -130,7 +130,7 @@ data:
   isVerificationFile: true
   path: test/mytest/digit_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-03-29 11:46:13+09:00'
+  timestamp: '2024-06-06 03:38:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/digit_sum.test.cpp

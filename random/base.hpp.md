@@ -116,7 +116,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':heavy_check_mark:'
@@ -384,6 +384,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_nns.test.cpp
     title: test/mytest/kdtree_nns.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/lex_minmax_suffix.test.cpp
+    title: test/mytest/lex_minmax_suffix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
@@ -768,15 +771,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -839,7 +842,7 @@ data:
   - geo/count_points_in_triangles.hpp
   - geo/minimum_enclosing_circle.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc151f.test.cpp
@@ -913,6 +916,7 @@ data:
   - test/mytest/product_of_one_pm_xn.test.cpp
   - test/mytest/count_clique.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/lex_minmax_suffix.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/fenwick01.test.cpp

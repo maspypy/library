@@ -29,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - icon: ':warning:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
@@ -305,6 +308,7 @@ data:
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree_range_add.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp

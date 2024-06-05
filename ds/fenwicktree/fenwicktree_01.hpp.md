@@ -8,6 +8,9 @@ data:
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
@@ -190,6 +193,7 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - seq/inversion.hpp
   - geo/count_points_in_triangles.hpp

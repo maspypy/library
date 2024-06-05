@@ -1174,6 +1174,9 @@ data:
     path: test/mytest/knight_distance.test.cpp
     title: test/mytest/knight_distance.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/lex_minmax_suffix.test.cpp
+    title: test/mytest/lex_minmax_suffix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2487,7 +2490,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc280f.test.cpp
     title: test_atcoder/abc280f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc281e.test.cpp
     title: test_atcoder/abc281e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2520,7 +2523,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc306h.test.cpp
     title: test_atcoder/abc306h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2529,7 +2532,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314f.test.cpp
     title: test_atcoder/abc314f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314g.test.cpp
     title: test_atcoder/abc314g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2577,7 +2580,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2655,9 +2658,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/96344
@@ -2830,7 +2833,7 @@ data:
   requiredBy:
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/abc270_g.test.cpp
@@ -3252,6 +3255,7 @@ data:
   - test/mytest/count_clique.test.cpp
   - test/mytest/catalan_convolution.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/lex_minmax_suffix.test.cpp
   - test/mytest/datetime.test.cpp
   - test/mytest/partizan.test.cpp
   - test/mytest/min_poly.test.cpp

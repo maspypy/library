@@ -9,6 +9,9 @@ data:
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: string/lex_max_suffix_for_all_prefix.hpp
+    title: string/lex_max_suffix_for_all_prefix.hpp
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/suffix_array_vec.test.cpp
     title: test/library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/lex_minmax_suffix.test.cpp
+    title: test/mytest/lex_minmax_suffix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
@@ -229,6 +235,7 @@ data:
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy:
+  - string/lex_max_suffix_for_all_prefix.hpp
   - string/sort_substrings.hpp
   - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
@@ -242,6 +249,7 @@ data:
   - test/library_checker/string/longest_common_substring.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/lex_minmax_suffix.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/yukicoder/2361.test.cpp
 documentation_of: string/suffix_array.hpp

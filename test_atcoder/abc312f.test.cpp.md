@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/slide_split_sum.hpp
     title: ds/slide_split_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc312/tasks/abc312_f
@@ -213,21 +213,22 @@ data:
     \ x) { (x <= lmax() ? push_l(x) : push_r(x)); }\n  void erase(T x) { (x <= lmax()\
     \ ? erase_l(x) : erase_r(x)); }\n  pair<T, T> query(int k) {\n    assert(0 <=\
     \ k && k <= size());\n    while (len(ql) < k) { push_l(pop_r()); }\n    while\
-    \ (len(ql) > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  T query_l(int\
-    \ k) { return query(k).fi; }\n  T query_r(int k) { return query(size() - k).se;\
-    \ }\n\nprivate:\n  inline T lmax() { return (ql.empty() ? -infty<T> : ql.top());\
-    \ }\n  inline T rmin() { return (qr.empty() ? infty<T> : qr.top()); }\n  inline\
-    \ T pop_l() {\n    T x = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline\
-    \ T pop_r() {\n    T x = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline\
-    \ void push_l(T x) { ql.push(x), sl += x; }\n  inline void push_r(T x) { qr.push(x),\
-    \ sr += x; }\n  inline void erase_l(T x) { ql.remove(x), sl -= x; }\n  inline\
-    \ void erase_r(T x) { qr.remove(x), sr -= x; }\n};\n#line 6 \"test_atcoder/abc312f.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  vi A, B, C;\n  ll ANS = 0;\n  FOR(N) {\n  \
-    \  LL(t, x);\n    if (t == 0) C.eb(x);\n    if (t == 1) B.eb(x);\n    if (t ==\
-    \ 2) A.eb(x);\n  }\n  sort(all(A));\n  reverse(all(A));\n  sort(all(B));\n  reverse(all(B));\n\
-    \  sort(all(C));\n  reverse(all(C));\n\n  Slide_Split_Sum<ll> SSS;\n  auto calc\
-    \ = [&](ll n) -> void {\n    int k = min(n, len(SSS));\n    chmax(ANS, SSS.query_r(k));\n\
-    \  };\n  for (auto&& x: C) SSS.insert(x);\n  calc(M);\n\n  ll p = 0;\n  for (auto&&\
+    \ (len(ql) > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  // \u4E0B\u4F4D\
+    \ k \u500B\n  T query_l(int k) { return query(k).fi; }\n  // \u4E0A\u4F4D k \u500B\
+    \n  T query_r(int k) { return query(size() - k).se; }\n\nprivate:\n  inline T\
+    \ lmax() { return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T rmin() {\
+    \ return (qr.empty() ? infty<T> : qr.top()); }\n  inline T pop_l() {\n    T x\
+    \ = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline T pop_r() {\n    T x\
+    \ = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline void push_l(T x) { ql.push(x),\
+    \ sl += x; }\n  inline void push_r(T x) { qr.push(x), sr += x; }\n  inline void\
+    \ erase_l(T x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T x) { qr.remove(x),\
+    \ sr -= x; }\n};\n#line 6 \"test_atcoder/abc312f.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N, M);\n  vi A, B, C;\n  ll ANS = 0;\n  FOR(N) {\n    LL(t, x);\n    if\
+    \ (t == 0) C.eb(x);\n    if (t == 1) B.eb(x);\n    if (t == 2) A.eb(x);\n  }\n\
+    \  sort(all(A));\n  reverse(all(A));\n  sort(all(B));\n  reverse(all(B));\n  sort(all(C));\n\
+    \  reverse(all(C));\n\n  Slide_Split_Sum<ll> SSS;\n  auto calc = [&](ll n) ->\
+    \ void {\n    int k = min(n, len(SSS));\n    chmax(ANS, SSS.query_r(k));\n  };\n\
+    \  for (auto&& x: C) SSS.insert(x);\n  calc(M);\n\n  ll p = 0;\n  for (auto&&\
     \ a: A) {\n    FOR(i, p, p + a) {\n      if (i >= len(B)) break;\n      SSS.insert(B[i]);\n\
     \    }\n    M -= 1;\n    p += a;\n    if (M == 0) break;\n    calc(M);\n  }\n\
     \  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
@@ -252,8 +253,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc312f.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-06 03:38:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc312f.test.cpp
 layout: document

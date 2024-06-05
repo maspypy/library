@@ -15,6 +15,9 @@ data:
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
+    path: string/lex_max_suffix_for_all_prefix.hpp
+    title: string/lex_max_suffix_for_all_prefix.hpp
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/lca_fast.test.cpp
     title: test/library_checker/tree/lca_fast.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/lex_minmax_suffix.test.cpp
+    title: test/mytest/lex_minmax_suffix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
@@ -132,6 +138,7 @@ data:
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/static_rmq.hpp
   - graph/fast_lca.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
   - string/sort_substrings.hpp
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
@@ -149,6 +156,7 @@ data:
   - test/library_checker/string/suffix_array.test.cpp
   - test/library_checker/tree/lca_fast.test.cpp
   - test/mytest/suffix_tree.test.cpp
+  - test/mytest/lex_minmax_suffix.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/yukicoder/1036_4.test.cpp

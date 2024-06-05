@@ -36,6 +36,9 @@ data:
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
+    path: string/lex_max_suffix_for_all_prefix.hpp
+    title: string/lex_max_suffix_for_all_prefix.hpp
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -102,6 +105,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dynamic_segtree_sparse.test.cpp
     title: test/mytest/dynamic_segtree_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/lex_minmax_suffix.test.cpp
+    title: test/mytest/lex_minmax_suffix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/longest_common_substr.test.cpp
     title: test/mytest/longest_common_substr.test.cpp
@@ -190,6 +196,7 @@ data:
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/fast_lca.hpp
   - graph/minimum_spanning_tree.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
   - string/sort_substrings.hpp
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
@@ -222,6 +229,7 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/min_max.test.cpp
   - test/mytest/dynamic_segtree_sparse.test.cpp
+  - test/mytest/lex_minmax_suffix.test.cpp
   - test/mytest/rbst_test.test.cpp
   - test/mytest/range_closest_pair.test.cpp
   - test/mytest/max_min.test.cpp

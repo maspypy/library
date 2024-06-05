@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/slide_split_sum.hpp
     title: ds/slide_split_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc281/tasks/abc281_e
@@ -213,19 +213,20 @@ data:
     \ x) { (x <= lmax() ? push_l(x) : push_r(x)); }\n  void erase(T x) { (x <= lmax()\
     \ ? erase_l(x) : erase_r(x)); }\n  pair<T, T> query(int k) {\n    assert(0 <=\
     \ k && k <= size());\n    while (len(ql) < k) { push_l(pop_r()); }\n    while\
-    \ (len(ql) > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  T query_l(int\
-    \ k) { return query(k).fi; }\n  T query_r(int k) { return query(size() - k).se;\
-    \ }\n\nprivate:\n  inline T lmax() { return (ql.empty() ? -infty<T> : ql.top());\
-    \ }\n  inline T rmin() { return (qr.empty() ? infty<T> : qr.top()); }\n  inline\
-    \ T pop_l() {\n    T x = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline\
-    \ T pop_r() {\n    T x = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline\
-    \ void push_l(T x) { ql.push(x), sl += x; }\n  inline void push_r(T x) { qr.push(x),\
-    \ sr += x; }\n  inline void erase_l(T x) { ql.remove(x), sl -= x; }\n  inline\
-    \ void erase_r(T x) { qr.remove(x), sr -= x; }\n};\n#line 7 \"test_atcoder/abc281e.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M, K);\n  Slide_Split_Sum<ll> S;\n  VEC(ll, A, N);\n\
-    \  vi ANS;\n  FOR(i, N) {\n    S.insert(A[i]);\n    if (len(S) > M) S.erase(A[i\
-    \ - M]);\n    if (len(S) == M) ANS.eb(S.query_l(K));\n  }\n  print(ANS);\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \ (len(ql) > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  // \u4E0B\u4F4D\
+    \ k \u500B\n  T query_l(int k) { return query(k).fi; }\n  // \u4E0A\u4F4D k \u500B\
+    \n  T query_r(int k) { return query(size() - k).se; }\n\nprivate:\n  inline T\
+    \ lmax() { return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T rmin() {\
+    \ return (qr.empty() ? infty<T> : qr.top()); }\n  inline T pop_l() {\n    T x\
+    \ = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline T pop_r() {\n    T x\
+    \ = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline void push_l(T x) { ql.push(x),\
+    \ sl += x; }\n  inline void push_r(T x) { qr.push(x), sr += x; }\n  inline void\
+    \ erase_l(T x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T x) { qr.remove(x),\
+    \ sr -= x; }\n};\n#line 7 \"test_atcoder/abc281e.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N, M, K);\n  Slide_Split_Sum<ll> S;\n  VEC(ll, A, N);\n  vi ANS;\n  FOR(i,\
+    \ N) {\n    S.insert(A[i]);\n    if (len(S) > M) S.erase(A[i - M]);\n    if (len(S)\
+    \ == M) ANS.eb(S.query_l(K));\n  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc281/tasks/abc281_e\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/slide_split_sum.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, K);\n  Slide_Split_Sum<ll> S;\n  VEC(ll, A, N);\n\
@@ -240,8 +241,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc281e.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-06 03:38:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc281e.test.cpp
 layout: document

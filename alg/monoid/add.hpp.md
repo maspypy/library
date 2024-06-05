@@ -89,6 +89,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - icon: ':warning:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
@@ -513,6 +516,7 @@ data:
   - ds/fenwicktree/dual_fenwicktree_2d.hpp
   - ds/fenwicktree/dual_fenwicktree.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp

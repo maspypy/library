@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
+  - icon: ':warning:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
@@ -97,6 +100,7 @@ data:
   requiredBy:
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
