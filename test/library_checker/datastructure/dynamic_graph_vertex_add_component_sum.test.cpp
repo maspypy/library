@@ -43,6 +43,7 @@ void solve() {
   vc<int> I(len(upd));
   iota(all(I), 0);
   auto dfs = [&](auto& dfs, vc<int>& upd_query_I, int begin, int end) -> void {
+    if (begin == end) return;
     // snapshot
     int a_time = A.time();
     int uf_time = uf.time();
