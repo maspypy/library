@@ -253,23 +253,23 @@ data:
     \    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n  Rollback_UnionFind\
     \ uf(N);\n  // rollback_dfs\n  auto upd = X.calc(len(query));\n  vi ANS(len(query));\n\
     \  vc<int> I(len(upd));\n  iota(all(I), 0);\n  auto dfs = [&](auto& dfs, vc<int>&\
-    \ upd_query_I, int begin, int end) -> void {\n    // snapshot\n    int a_time\
-    \ = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL, IR;\n    int mid\
-    \ = (begin + end) / 2;\n    for (auto&& i: upd_query_I) {\n      auto [a, b, X]\
-    \ = upd[i];\n      if (a <= begin && end <= b) {\n        // X \u3067\u8868\u3055\
-    \u308C\u308B update query \u3092\u51E6\u7406\u3059\u308B\n        auto [p, q]\
-    \ = X;\n        if (p >= 0) {\n          int u = p, v = q;\n          u = uf[u],\
-    \ v = uf[v];\n          if (u == v) continue;\n          uf.merge(u, v);\n   \
-    \       int r = uf[u];\n          A.set(r, A.get(u) + A.get(v));\n        } else\
-    \ {\n          int v = ~p, x = q;\n          v = uf[v];\n          A.set(v, A.get(v)\
-    \ + x);\n        }\n        continue;\n      }\n      if (a < mid) IL.eb(i);\n\
-    \      if (mid < b) IR.eb(i);\n    }\n    if (begin + 1 == end) {\n      int v\
-    \ = query[begin];\n      ANS[begin] = A.get(uf[v]);\n    } else {\n      dfs(dfs,\
-    \ IL, begin, mid);\n      dfs(dfs, IR, mid, end);\n    }\n    // rollback\n  \
-    \  A.rollback(a_time);\n    uf.rollback(uf_time);\n  };\n  dfs(dfs, I, 0, len(query));\n\
-    \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ upd_query_I, int begin, int end) -> void {\n    if (begin == end) return;\n\
+    \    // snapshot\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n\
+    \    vc<int> IL, IR;\n    int mid = (begin + end) / 2;\n    for (auto&& i: upd_query_I)\
+    \ {\n      auto [a, b, X] = upd[i];\n      if (a <= begin && end <= b) {\n   \
+    \     // X \u3067\u8868\u3055\u308C\u308B update query \u3092\u51E6\u7406\u3059\
+    \u308B\n        auto [p, q] = X;\n        if (p >= 0) {\n          int u = p,\
+    \ v = q;\n          u = uf[u], v = uf[v];\n          if (u == v) continue;\n \
+    \         uf.merge(u, v);\n          int r = uf[u];\n          A.set(r, A.get(u)\
+    \ + A.get(v));\n        } else {\n          int v = ~p, x = q;\n          v =\
+    \ uf[v];\n          A.set(v, A.get(v) + x);\n        }\n        continue;\n  \
+    \    }\n      if (a < mid) IL.eb(i);\n      if (mid < b) IR.eb(i);\n    }\n  \
+    \  if (begin + 1 == end) {\n      int v = query[begin];\n      ANS[begin] = A.get(uf[v]);\n\
+    \    } else {\n      dfs(dfs, IL, begin, mid);\n      dfs(dfs, IR, mid, end);\n\
+    \    }\n    // rollback\n    A.rollback(a_time);\n    uf.rollback(uf_time);\n\
+    \  };\n  dfs(dfs, I, 0, len(query));\n  for (auto&& x: ANS) print(x);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/unionfind/rollback_unionfind.hpp\"\
     \n#include \"ds/rollback_array.hpp\"\n#include \"ds/offline_query/add_remove_query.hpp\"\
@@ -282,23 +282,23 @@ data:
     \    }\n    if (t == 3) {\n      LL(v);\n      query.eb(v);\n    }\n  }\n  Rollback_UnionFind\
     \ uf(N);\n  // rollback_dfs\n  auto upd = X.calc(len(query));\n  vi ANS(len(query));\n\
     \  vc<int> I(len(upd));\n  iota(all(I), 0);\n  auto dfs = [&](auto& dfs, vc<int>&\
-    \ upd_query_I, int begin, int end) -> void {\n    // snapshot\n    int a_time\
-    \ = A.time();\n    int uf_time = uf.time();\n\n    vc<int> IL, IR;\n    int mid\
-    \ = (begin + end) / 2;\n    for (auto&& i: upd_query_I) {\n      auto [a, b, X]\
-    \ = upd[i];\n      if (a <= begin && end <= b) {\n        // X \u3067\u8868\u3055\
-    \u308C\u308B update query \u3092\u51E6\u7406\u3059\u308B\n        auto [p, q]\
-    \ = X;\n        if (p >= 0) {\n          int u = p, v = q;\n          u = uf[u],\
-    \ v = uf[v];\n          if (u == v) continue;\n          uf.merge(u, v);\n   \
-    \       int r = uf[u];\n          A.set(r, A.get(u) + A.get(v));\n        } else\
-    \ {\n          int v = ~p, x = q;\n          v = uf[v];\n          A.set(v, A.get(v)\
-    \ + x);\n        }\n        continue;\n      }\n      if (a < mid) IL.eb(i);\n\
-    \      if (mid < b) IR.eb(i);\n    }\n    if (begin + 1 == end) {\n      int v\
-    \ = query[begin];\n      ANS[begin] = A.get(uf[v]);\n    } else {\n      dfs(dfs,\
-    \ IL, begin, mid);\n      dfs(dfs, IR, mid, end);\n    }\n    // rollback\n  \
-    \  A.rollback(a_time);\n    uf.rollback(uf_time);\n  };\n  dfs(dfs, I, 0, len(query));\n\
-    \  for (auto&& x: ANS) print(x);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ upd_query_I, int begin, int end) -> void {\n    if (begin == end) return;\n\
+    \    // snapshot\n    int a_time = A.time();\n    int uf_time = uf.time();\n\n\
+    \    vc<int> IL, IR;\n    int mid = (begin + end) / 2;\n    for (auto&& i: upd_query_I)\
+    \ {\n      auto [a, b, X] = upd[i];\n      if (a <= begin && end <= b) {\n   \
+    \     // X \u3067\u8868\u3055\u308C\u308B update query \u3092\u51E6\u7406\u3059\
+    \u308B\n        auto [p, q] = X;\n        if (p >= 0) {\n          int u = p,\
+    \ v = q;\n          u = uf[u], v = uf[v];\n          if (u == v) continue;\n \
+    \         uf.merge(u, v);\n          int r = uf[u];\n          A.set(r, A.get(u)\
+    \ + A.get(v));\n        } else {\n          int v = ~p, x = q;\n          v =\
+    \ uf[v];\n          A.set(v, A.get(v) + x);\n        }\n        continue;\n  \
+    \    }\n      if (a < mid) IL.eb(i);\n      if (mid < b) IR.eb(i);\n    }\n  \
+    \  if (begin + 1 == end) {\n      int v = query[begin];\n      ANS[begin] = A.get(uf[v]);\n\
+    \    } else {\n      dfs(dfs, IL, begin, mid);\n      dfs(dfs, IR, mid, end);\n\
+    \    }\n    // rollback\n    A.rollback(a_time);\n    uf.rollback(uf_time);\n\
+    \  };\n  dfs(dfs, I, 0, len(query));\n  for (auto&& x: ANS) print(x);\n}\n\nsigned\
+    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
+    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -308,7 +308,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-06-05 23:49:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
