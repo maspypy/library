@@ -21,7 +21,9 @@ struct Slide_Split_Sum {
     while (len(ql) > k) { push_r(pop_l()); }
     return {sl, sr};
   }
+  // 下位 k 個
   T query_l(int k) { return query(k).fi; }
+  // 上位 k 個
   T query_r(int k) { return query(size() - k).se; }
 
 private:
