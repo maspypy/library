@@ -179,7 +179,7 @@ data:
       title: alg/monoid_pow.hpp
   - name: bigint
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: bigint/base.hpp
       title: bigint/base.hpp
     - icon: ':heavy_check_mark:'
@@ -260,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -290,13 +290,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
     - icon: ':heavy_check_mark:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/slide_split_sum.hpp
       title: ds/slide_split_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1244,7 +1244,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
     - icon: ':heavy_check_mark:'
@@ -1280,7 +1280,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -1298,13 +1298,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
@@ -1339,7 +1339,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1367,7 +1367,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/crt.hpp
       title: nt/crt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/digit_sum.hpp
       title: nt/digit_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1483,7 +1483,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1551,7 +1551,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/compositional_inverse.hpp
       title: poly/compositional_inverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1563,13 +1563,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution_huge.hpp
       title: poly/convolution_huge.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_karatsuba.hpp
       title: poly/convolution_karatsuba.hpp
     - icon: ':heavy_check_mark:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
     - icon: ':heavy_check_mark:'
@@ -1581,7 +1581,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':heavy_check_mark:'
@@ -1629,7 +1629,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':heavy_check_mark:'
@@ -1723,13 +1723,13 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
       path: random/hash_pair.hpp
       title: random/hash_pair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/hash_vector.hpp
       title: random/hash_vector.hpp
     - icon: ':heavy_check_mark:'
@@ -4514,7 +4514,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc280f.test.cpp
       title: test_atcoder/abc280f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc281e.test.cpp
       title: test_atcoder/abc281e.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4547,7 +4547,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc306h.test.cpp
       title: test_atcoder/abc306h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc312f.test.cpp
       title: test_atcoder/abc312f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4556,7 +4556,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc314f.test.cpp
       title: test_atcoder/abc314f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc314g.test.cpp
       title: test_atcoder/abc314g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4604,7 +4604,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc336g.test.cpp
       title: test_atcoder/abc336g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc339f.test.cpp
       title: test_atcoder/abc339f.test.cpp
     - icon: ':heavy_check_mark:'
