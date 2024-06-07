@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':heavy_check_mark:'
@@ -116,13 +116,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   - icon: ':heavy_check_mark:'
@@ -297,6 +297,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':x:'
+    path: test/mytest/convex_polygon_side.test.cpp
+    title: test/mytest/convex_polygon_side.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/convex_polygon_visible_range.test.cpp
+    title: test/mytest/convex_polygon_visible_range.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/coprime_factorization.test.cpp
     title: test/mytest/coprime_factorization.test.cpp
@@ -405,6 +411,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_dot.test.cpp
+    title: test/mytest/max_dot.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
@@ -738,19 +747,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/590.test.cpp
     title: test/yukicoder/590.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc152e.test.cpp
     title: test_atcoder/abc152e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -771,15 +780,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -842,7 +851,7 @@ data:
   - geo/count_points_in_triangles.hpp
   - geo/minimum_enclosing_circle.hpp
   timestamp: '2022-10-23 11:21:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc151f.test.cpp
@@ -890,6 +899,7 @@ data:
   - test/library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - test/library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/mytest/convex_polygon_side.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/online_square.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
@@ -901,6 +911,7 @@ data:
   - test/mytest/rbst_monoid_persistent.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/bigint.test.cpp
+  - test/mytest/max_dot.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/suffix_tree.test.cpp
@@ -968,6 +979,7 @@ data:
   - test/mytest/first_mod_range_of_linear.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/add_chmin.test.cpp
+  - test/mytest/convex_polygon_visible_range.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/remove_one_edge.test.cpp
   - test/mytest/incremental_scc.test.cpp

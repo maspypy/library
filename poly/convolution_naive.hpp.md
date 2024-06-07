@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
@@ -98,7 +98,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':heavy_check_mark:'
@@ -119,7 +119,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -131,7 +131,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
   - icon: ':heavy_check_mark:'
@@ -143,13 +143,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -191,7 +191,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -200,7 +200,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -245,7 +245,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
@@ -732,7 +732,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2525.test.cpp
     title: test/yukicoder/2525.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -747,10 +747,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2613.test.cpp
     title: test/yukicoder/2613.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2649.test.cpp
     title: test/yukicoder/2649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -819,7 +819,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc333f.test.cpp
     title: test_atcoder/abc333f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -849,9 +849,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename\
@@ -987,7 +987,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - setfunc/power_projection_of_sps.hpp
   timestamp: '2023-10-18 00:17:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/agc058d2.test.cpp

@@ -501,7 +501,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1014,6 +1014,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
+  - icon: ':x:'
+    path: test/mytest/convex_polygon_side.test.cpp
+    title: test/mytest/convex_polygon_side.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/convex_polygon_visible_range.test.cpp
+    title: test/mytest/convex_polygon_visible_range.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/coprime_factorization.test.cpp
     title: test/mytest/coprime_factorization.test.cpp
@@ -1197,6 +1203,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/max_dot.test.cpp
+    title: test/mytest/max_dot.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
@@ -2109,7 +2118,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2578.test.cpp
     title: test/yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2121,7 +2130,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2602.test.cpp
     title: test/yukicoder/2602.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2145,13 +2154,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2649.test.cpp
     title: test/yukicoder/2649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2654.test.cpp
     title: test/yukicoder/2654.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2256,7 +2265,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc127f_1.test.cpp
     title: test_atcoder/abc127f_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2265,7 +2274,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc141f.test.cpp
     title: test_atcoder/abc141f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2298,7 +2307,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2331,7 +2340,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2433,7 +2442,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2526,7 +2535,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2580,7 +2589,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2613,7 +2622,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc064c.test.cpp
     title: test_atcoder/arc064c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2625,7 +2634,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc123d.test.cpp
     title: test_atcoder/arc123d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2658,9 +2667,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/96344
@@ -2833,7 +2842,7 @@ data:
   requiredBy:
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   timestamp: '2024-03-29 11:46:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/abc270_g.test.cpp
@@ -3213,6 +3222,7 @@ data:
   - test/library_checker/tree/lca_directed.test.cpp
   - test/library_checker/tree/lca.test.cpp
   - test/mytest/eulerian_number.test.cpp
+  - test/mytest/convex_polygon_side.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/online_square.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
@@ -3228,6 +3238,7 @@ data:
   - test/mytest/summin_add.test.cpp
   - test/mytest/bigint.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/max_dot.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/pytagorean_triples.test.cpp
   - test/mytest/count_labeled_strong.test.cpp
@@ -3324,6 +3335,7 @@ data:
   - test/mytest/minidx_add.test.cpp
   - test/mytest/add_chmin.test.cpp
   - test/mytest/count_labeled_undirected.test.cpp
+  - test/mytest/convex_polygon_visible_range.test.cpp
   - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/mytest/remove_one_edge.test.cpp
   - test/mytest/incremental_scc.test.cpp

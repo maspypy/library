@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
@@ -113,7 +113,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -155,13 +155,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -221,7 +221,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -230,7 +230,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -278,7 +278,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
@@ -1110,7 +1110,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2578.test.cpp
     title: test/yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1131,10 +1131,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2626_2.test.cpp
     title: test/yukicoder/2626_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2649.test.cpp
     title: test/yukicoder/2649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1170,7 +1170,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1275,7 +1275,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1296,7 +1296,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc105.test.cpp
     title: test_atcoder/arc105.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1317,9 +1317,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -1550,7 +1550,7 @@ data:
   - setfunc/power_projection_of_sps.hpp
   - other/count_seq_with_fixed_xor_value.hpp
   timestamp: '2023-11-21 19:08:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc267g.test.cpp
   - test_atcoder/agc058d2.test.cpp

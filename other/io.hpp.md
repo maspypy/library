@@ -498,7 +498,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1608,7 +1608,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2578.test.cpp
     title: test/yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1620,7 +1620,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2602.test.cpp
     title: test/yukicoder/2602.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1644,13 +1644,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2649.test.cpp
     title: test/yukicoder/2649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2654.test.cpp
     title: test/yukicoder/2654.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1755,7 +1755,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc127f_1.test.cpp
     title: test_atcoder/abc127f_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1764,7 +1764,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc141f.test.cpp
     title: test_atcoder/abc141f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1797,7 +1797,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc200f.test.cpp
     title: test_atcoder/abc200f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1830,7 +1830,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc220f.test.cpp
     title: test_atcoder/abc220f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc220g.test.cpp
     title: test_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1932,7 +1932,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2025,7 +2025,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc312f.test.cpp
     title: test_atcoder/abc312f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2079,7 +2079,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2112,7 +2112,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc064c.test.cpp
     title: test_atcoder/arc064c.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2124,7 +2124,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc123d.test.cpp
     title: test_atcoder/arc123d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2157,9 +2157,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc162f.test.cpp
     title: test_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/21623
@@ -2350,7 +2350,7 @@ data:
   requiredBy:
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/abc270_g.test.cpp
