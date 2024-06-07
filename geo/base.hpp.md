@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_side.test.cpp
     title: test/mytest/convex_polygon_side.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,7 +132,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2602.test.cpp
     title: test/yukicoder/2602.test.cpp
   - icon: ':x:'

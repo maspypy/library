@@ -21,7 +21,7 @@ data:
   - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_side.test.cpp
     title: test/mytest/convex_polygon_side.test.cpp
   - icon: ':heavy_check_mark:'

@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -318,13 +318,13 @@ data:
     \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  Incremental_ConvexHull<ll>\
     \ Y;\n  for (auto& p: point) Y.add(p);\n\n  auto I = ConvexHull(point);\n  point\
     \ = rearrange(point, I);\n  N = len(point);\n  if (N <= 2) return;\n\n  ConvexPolygon<ll>\
-    \ X(point, true);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x, y);\n   \
-    \ int ans = 1;\n    [&]() -> int {\n      FOR(i, N) {\n        P A = point[i],\
-    \ B = point[(i + 1) % N];\n        if ((B - A).det(p - A) <= 0) chmin(ans, 0);\n\
-    \        if ((B - A).det(p - A) < 0) chmin(ans, -1);\n      }\n      return ans;\n\
-    \    }();\n    assert(ans == X.side(p));\n    assert(ans == Y.side(p));\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n  return 0;\n}\n"
+    \ X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x, y);\n    int ans\
+    \ = 1;\n    [&]() -> int {\n      FOR(i, N) {\n        P A = point[i], B = point[(i\
+    \ + 1) % N];\n        if ((B - A).det(p - A) <= 0) chmin(ans, 0);\n        if\
+    \ ((B - A).det(p - A) < 0) chmin(ans, -1);\n      }\n      return ans;\n    }();\n\
+    \    assert(ans == X.side(p));\n    assert(ans == Y.side(p));\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(10000) test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n#include \"geo/convex_polygon.hpp\"\
     \n#include \"geo/incremental_convexhull.hpp\"\n#include \"random/base.hpp\"\n\n\
@@ -332,13 +332,13 @@ data:
     \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  Incremental_ConvexHull<ll>\
     \ Y;\n  for (auto& p: point) Y.add(p);\n\n  auto I = ConvexHull(point);\n  point\
     \ = rearrange(point, I);\n  N = len(point);\n  if (N <= 2) return;\n\n  ConvexPolygon<ll>\
-    \ X(point, true);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x, y);\n   \
-    \ int ans = 1;\n    [&]() -> int {\n      FOR(i, N) {\n        P A = point[i],\
-    \ B = point[(i + 1) % N];\n        if ((B - A).det(p - A) <= 0) chmin(ans, 0);\n\
-    \        if ((B - A).det(p - A) < 0) chmin(ans, -1);\n      }\n      return ans;\n\
-    \    }();\n    assert(ans == X.side(p));\n    assert(ans == Y.side(p));\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  FOR(10000) test();\n  solve();\n  return 0;\n}\n"
+    \ X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x, y);\n    int ans\
+    \ = 1;\n    [&]() -> int {\n      FOR(i, N) {\n        P A = point[i], B = point[(i\
+    \ + 1) % N];\n        if ((B - A).det(p - A) <= 0) chmin(ans, 0);\n        if\
+    \ ((B - A).det(p - A) < 0) chmin(ans, -1);\n      }\n      return ans;\n    }();\n\
+    \    assert(ans == X.side(p));\n    assert(ans == Y.side(p));\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(10000) test();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - geo/base.hpp
@@ -349,8 +349,8 @@ data:
   isVerificationFile: true
   path: test/mytest/convex_polygon_side.test.cpp
   requiredBy: []
-  timestamp: '2024-06-08 04:37:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-08 05:21:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/convex_polygon_side.test.cpp
 layout: document

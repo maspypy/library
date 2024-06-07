@@ -1014,7 +1014,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/conv_leq.test.cpp
     title: test/mytest/conv_leq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_side.test.cpp
     title: test/mytest/convex_polygon_side.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2118,7 +2118,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2578.test.cpp
     title: test/yukicoder/2578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2130,7 +2130,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2602.test.cpp
     title: test/yukicoder/2602.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2154,13 +2154,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/263.test.cpp
     title: test/yukicoder/263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2649.test.cpp
     title: test/yukicoder/2649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2654.test.cpp
     title: test/yukicoder/2654.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
