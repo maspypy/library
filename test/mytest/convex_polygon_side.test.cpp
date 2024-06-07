@@ -22,7 +22,7 @@ void test() {
   N = len(point);
   if (N <= 2) return;
 
-  ConvexPolygon<ll> X(point, true);
+  ConvexPolygon<ll> X(point);
 
   FOR(x, -10, 11) FOR(y, -10, 11) {
     P p(x, y);
