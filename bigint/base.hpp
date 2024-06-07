@@ -77,6 +77,7 @@ struct BigInteger {
       if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;
     }
     while (len(dat) && dat.back() == 0) dat.pop_back();
+    if (dat.empty()) sgn = 0;
     return *this;
   }
   bint &operator-=(const bint p) {
