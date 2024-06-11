@@ -22,10 +22,7 @@ data:
   - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
-    title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
@@ -213,8 +210,7 @@ data:
   - random/base.hpp
   isVerificationFile: false
   path: graph/count/count_spanning_tree.hpp
-  requiredBy:
-  - test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+  requiredBy: []
   timestamp: '2024-06-11 17:38:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
