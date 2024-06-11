@@ -37,6 +37,9 @@ data:
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/st_numbering.test.cpp
+    title: test/library_checker/graph/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -206,6 +209,7 @@ data:
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/library_checker/graph/st_numbering.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp

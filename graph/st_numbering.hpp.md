@@ -19,6 +19,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/st_numbering.test.cpp
+    title: test/library_checker/graph/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/st_numbering.test.cpp
     title: test/mytest/st_numbering.test.cpp
   _isVerificationFailed: false
@@ -239,6 +242,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/graph/st_numbering.test.cpp
   - test/mytest/st_numbering.test.cpp
 documentation_of: graph/st_numbering.hpp
 layout: document

@@ -16,6 +16,9 @@ data:
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/st_numbering.test.cpp
+    title: test/library_checker/graph/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/tree_diameter.test.cpp
     title: test/library_checker/tree/tree_diameter.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,6 +45,7 @@ data:
   timestamp: '2022-10-21 18:11:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/library_checker/graph/st_numbering.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
   - test/mytest/st_numbering.test.cpp

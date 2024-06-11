@@ -2599,6 +2599,9 @@ data:
       path: test/library_checker/graph/shortest_path.test.cpp
       title: test/library_checker/graph/shortest_path.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/st_numbering.test.cpp
+      title: test/library_checker/graph/st_numbering.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/two_edge_component.test.cpp
       title: test/library_checker/graph/two_edge_component.test.cpp
   - name: test/library_checker/math

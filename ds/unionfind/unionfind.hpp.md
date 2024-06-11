@@ -109,6 +109,9 @@ data:
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/st_numbering.test.cpp
+    title: test/library_checker/graph/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/mst.test.cpp
     title: test/library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -325,6 +328,7 @@ data:
   - test/library_checker/datastructure/unionfind.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/directed_mst.test.cpp
+  - test/library_checker/graph/st_numbering.test.cpp
   - test/library_checker/graph/eulerwalk_d.test.cpp
   - test/library_checker/graph/complement_graph_unionfind.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp

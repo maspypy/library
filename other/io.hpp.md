@@ -598,6 +598,9 @@ data:
     path: test/library_checker/graph/shortest_path.test.cpp
     title: test/library_checker/graph/shortest_path.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/st_numbering.test.cpp
+    title: test/library_checker/graph/st_numbering.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/two_edge_component.test.cpp
     title: test/library_checker/graph/two_edge_component.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2619,6 +2622,7 @@ data:
   - test/library_checker/graph/assignment.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/directed_mst.test.cpp
+  - test/library_checker/graph/st_numbering.test.cpp
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
