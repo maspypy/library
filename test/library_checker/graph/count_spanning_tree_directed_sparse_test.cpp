@@ -1,22 +1,16 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/counting_spanning_tree_directed"
+#define PROBLEM "https://judge.yosupo.jp/problem/addition_of_hex_big_integers"
+
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "graph/count/count_spanning_tree.hpp"
-#include "mod/modint.hpp"
+#include "bigint/binary.hpp"
 
-using mint = modint998;
+using B = BigInteger_Binary;
 
-void solve() {
-  LL(N, M, r);
-  Graph<int, 1> G(N);
-  G.read_graph(M, 0, 0);
-  mint ANS = count_spanning_tree_directed<mint, false>(G, r);
-  print(ANS);
-}
+void solve() { STR(a, b); }
 
 signed main() {
-  solve();
+  INT(T);
+  FOR(T) solve();
   return 0;
 }
