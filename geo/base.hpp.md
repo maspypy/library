@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: geo/apollonian_circle.hpp
     title: geo/apollonian_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':question:'
@@ -35,6 +35,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/furthest_pair.hpp
+    title: geo/furthest_pair.hpp
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
@@ -90,7 +93,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_B.test.cpp
     title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -100,6 +103,12 @@ data:
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/closest_pair.test.cpp
+    title: test/library_checker/geometry/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/closest_pair_dc.test.cpp
+    title: test/library_checker/geometry/closest_pair_dc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,6 +117,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/furthest_pair.test.cpp
+    title: test/library_checker/geometry/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
@@ -298,6 +310,7 @@ data:
   - geo/convex_polygon.hpp
   - geo/incremental_convexhull.hpp
   - geo/projection.hpp
+  - geo/furthest_pair.hpp
   - geo/reflection.hpp
   - geo/apollonian_circle.hpp
   - geo/convex_layers.hpp
@@ -321,7 +334,10 @@ data:
   - test_atcoder/arc064c.test.cpp
   - test_atcoder/abc139f.test.cpp
   - test_atcoder/abc314.test.cpp
+  - test/library_checker/geometry/furthest_pair.test.cpp
   - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/closest_pair_dc.test.cpp
+  - test/library_checker/geometry/closest_pair.test.cpp
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp

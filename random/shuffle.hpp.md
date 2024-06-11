@@ -5,7 +5,7 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':x:'
@@ -15,9 +15,15 @@ data:
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/closest_pair.test.cpp
+    title: test/library_checker/geometry/closest_pair.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/closest_pair_dc.test.cpp
+    title: test/library_checker/geometry/closest_pair_dc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_K4.test.cpp
     title: test/mytest/count_K4.test.cpp
@@ -94,6 +100,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
+  - test/library_checker/geometry/closest_pair_dc.test.cpp
+  - test/library_checker/geometry/closest_pair.test.cpp
   - test/mytest/find_C4.test.cpp
   - test/mytest/count_clique.test.cpp
   - test/mytest/find_odd_cycle.test.cpp

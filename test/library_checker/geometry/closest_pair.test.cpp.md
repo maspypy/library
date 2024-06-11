@@ -27,18 +27,17 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    ERROR: '0.000001'
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
+    PROBLEM: https://judge.yosupo.jp/problem/closest_pair
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A
-  bundledCode: "#line 1 \"test/aoj/CGL_5_A.test.cpp\"\n#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
-    \n#define ERROR 0.000001\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include\
-    \ <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+    - https://judge.yosupo.jp/problem/closest_pair
+  bundledCode: "#line 1 \"test/library_checker/geometry/closest_pair.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/closest_pair\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -209,52 +208,52 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point()\
-    \ : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A x, B y) :\
-    \ x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B> p)\
-    \ : x(p.fi), y(p.se) {}\n\n  Point operator+(Point p) const { return {x + p.x,\
-    \ y + p.y}; }\n  Point operator-(Point p) const { return {x - p.x, y - p.y}; }\n\
-    \  bool operator==(Point p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point\
-    \ p) const { return x != p.x || y != p.y; }\n  Point operator-() const { return\
-    \ {-x, -y}; }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point\
-    \ operator/(T t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p)\
-    \ const {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
-    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
-    \ x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y);\
-    \ }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double theta)\
-    \ {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta), s\
-    \ = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n};\n\n\
-    #ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x),\
-    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n\
-    \  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\
-    \u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
-    \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
-    \ T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n  T x = (B - A).det(C - A);\n\
-    \  if (x > 0) return 1;\n  if (x < 0) return -1;\n  return 0;\n}\n\ntemplate <typename\
-    \ REAL, typename T, typename U>\nREAL dist(Point<T> A, Point<U> B) {\n  REAL dx\
-    \ = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y) - REAL(B.y);\n  return sqrt(dx\
-    \ * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename T>\nstruct Line {\n  T\
-    \ a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c) {}\n  Line(Point<T> A,\
-    \ Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;\n\
-    \  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2))\
-    \ {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n    return a * P.x +\
-    \ b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x, U y) {\n    return\
-    \ a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\u540C\u3058 a,b,c\
-    \ \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\u308B\n  void normalize()\
-    \ {\n    static_assert(is_same_v<T, int> || is_same_v<T, long long>);\n    T g\
-    \ = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /= g, c /= g;\n    if (b\
-    \ < 0) { a = -a, b = -b, c = -c; }\n    if (b == 0 && a < 0) { a = -a, b = -b,\
-    \ c = -c; }\n  }\n\n  bool is_parallel(Line other) { return a * other.b - b *\
-    \ other.a == 0; }\n  bool is_orthogonal(Line other) { return a * other.a + b *\
-    \ other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment {\n  Point<T> A,\
-    \ B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n  Segment(T x1, T y1,\
-    \ T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}\n\n  bool\
-    \ contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n    T det\
-    \ = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B\
-    \ - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A,\
-    \ B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n \
-    \ REAL r;\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL\
-    \ y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ 4 \"test/library_checker/geometry/closest_pair.test.cpp\"\n\n#line 2 \"geo/base.hpp\"\
+    \ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\
+    \n  template <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n \
+    \ template <typename A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se)\
+    \ {}\n\n  Point operator+(Point p) const { return {x + p.x, y + p.y}; }\n  Point\
+    \ operator-(Point p) const { return {x - p.x, y - p.y}; }\n  bool operator==(Point\
+    \ p) const { return x == p.x && y == p.y; }\n  bool operator!=(Point p) const\
+    \ { return x != p.x || y != p.y; }\n  Point operator-() const { return {-x, -y};\
+    \ }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point operator/(T\
+    \ t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p) const {\n \
+    \   if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other)\
+    \ { return x * other.x + y * other.y; }\n  T det(Point other) { return x * other.y\
+    \ - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double\
+    \ angle() { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>&\
+    \ p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
+    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
+    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
+    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL dist(Point<T>\
+    \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
+    \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
+    \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
+    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c =\
+    \ A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\
+    \u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\
+    \u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T,\
+    \ long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /=\
+    \ g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n    if (b == 0 && a\
+    \ < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line other) { return\
+    \ a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line other) { return\
+    \ a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment\
+    \ {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
+    \ y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
+    \    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C -\
+    \ A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() {\
+    \ return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
+    \ O;\n  REAL r;\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
+    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
     \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
     \ <= r * r;\n  }\n};\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>>\
     \ points;\n  T a;\n\n  template <typename A, typename B>\n  Polygon(vc<pair<A,\
@@ -339,16 +338,15 @@ data:
     \  int j = near[k];\n        ll dy = point[idx].y - point[j].y;\n        if (best\
     \ == 0 || dy * dy > best) break;\n        upd(idx, j);\n      }\n      near.eb(idx);\n\
     \    }\n    return I;\n  };\n  dfs(dfs, 0, N);\n  return best_pair;\n}\n#line\
-    \ 7 \"test/aoj/CGL_5_A.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  using Re = double;\n\
-    \  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i, j] = closest_pair(points);\n\
-    \  Re ANS = dist<Re>(points[i], points[j]);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=CGL_5_A\"\
-    \n#define ERROR 0.000001\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\
-    \n#include \"geo/closest_pair.hpp\"\n\nvoid solve() {\n  LL(N);\n  using Re =\
-    \ double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i, j] = closest_pair(points);\n\
-    \  Re ANS = dist<Re>(points[i], points[j]);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}"
+    \ 6 \"test/library_checker/geometry/closest_pair.test.cpp\"\n\nusing P = Point<ll>;\n\
+    \nvoid solve() {\n  LL(N);\n  VEC(P, point, N);\n  auto [i, j] = closest_pair(point);\n\
+    \  print(i, j);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
+    \ 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/closest_pair\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/closest_pair.hpp\"\
+    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  VEC(P, point, N);\n  auto\
+    \ [i, j] = closest_pair(point);\n  print(i, j);\n}\n\nsigned main() {\n  INT(T);\n\
+    \  FOR(T) solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -359,15 +357,15 @@ data:
   - ds/hashmap.hpp
   - random/hash_pair.hpp
   isVerificationFile: true
-  path: test/aoj/CGL_5_A.test.cpp
+  path: test/library_checker/geometry/closest_pair.test.cpp
   requiredBy: []
   timestamp: '2024-06-11 16:20:24+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/aoj/CGL_5_A.test.cpp
+documentation_of: test/library_checker/geometry/closest_pair.test.cpp
 layout: document
 redirect_from:
-- /verify/test/aoj/CGL_5_A.test.cpp
-- /verify/test/aoj/CGL_5_A.test.cpp.html
-title: test/aoj/CGL_5_A.test.cpp
+- /verify/test/library_checker/geometry/closest_pair.test.cpp
+- /verify/test/library_checker/geometry/closest_pair.test.cpp.html
+title: test/library_checker/geometry/closest_pair.test.cpp
 ---

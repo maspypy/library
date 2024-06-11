@@ -11,6 +11,9 @@ data:
   - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
+  - icon: ':heavy_check_mark:'
+    path: geo/furthest_pair.hpp
+    title: geo/furthest_pair.hpp
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
@@ -21,6 +24,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/geometry/furthest_pair.test.cpp
+    title: test/library_checker/geometry/furthest_pair.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_side.test.cpp
     title: test/mytest/convex_polygon_side.test.cpp
@@ -184,11 +190,13 @@ data:
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   - convex/fenchel.hpp
   - geo/convex_polygon.hpp
+  - geo/furthest_pair.hpp
   - geo/minkowski_sum.hpp
   timestamp: '2024-06-08 04:37:41+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/arc130f.test.cpp
+  - test/library_checker/geometry/furthest_pair.test.cpp
   - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test/mytest/convex_polygon_side.test.cpp
   - test/mytest/max_dot.test.cpp

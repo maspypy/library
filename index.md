@@ -640,7 +640,7 @@ data:
     - icon: ':question:'
       path: geo/base.hpp
       title: geo/base.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/closest_pair.hpp
       title: geo/closest_pair.hpp
     - icon: ':question:'
@@ -667,6 +667,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/dynamicupperhull.hpp
       title: geo/dynamicupperhull.hpp
+    - icon: ':heavy_check_mark:'
+      path: geo/furthest_pair.hpp
+      title: geo/furthest_pair.hpp
     - icon: ':heavy_check_mark:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
@@ -1726,7 +1729,7 @@ data:
     - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/hash_pair.hpp
       title: random/hash_pair.hpp
     - icon: ':question:'
@@ -2072,7 +2075,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/aoj/CGL_3_B.test.cpp
       title: test/aoj/CGL_3_B.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/aoj/CGL_5_A.test.cpp
       title: test/aoj/CGL_5_A.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2489,6 +2492,12 @@ data:
   - name: test/library_checker/geometry
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/geometry/closest_pair.test.cpp
+      title: test/library_checker/geometry/closest_pair.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/geometry/closest_pair_dc.test.cpp
+      title: test/library_checker/geometry/closest_pair_dc.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2497,6 +2506,9 @@ data:
     - icon: ':x:'
       path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
       title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/geometry/furthest_pair.test.cpp
+      title: test/library_checker/geometry/furthest_pair.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
