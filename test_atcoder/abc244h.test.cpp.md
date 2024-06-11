@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/cht.hpp
     title: convex/cht.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
@@ -220,22 +220,22 @@ data:
     \u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FB\
     add(a, b, i=-1)\uFF1Aax + by \u306E\u8FFD\u52A0 (index=i)\r\n\u30FBget_max(x,y)\uFF1A\
     (ax + by,i)\r\n\u30FBget_min(x,y)\uFF1A(ax + by,i)\r\n*/\r\ntemplate <typename\
-    \ T>\r\nstruct CHT_xy {\r\n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\
-    \n  CHT_max<ld> cht_max;\r\n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax\
-    \ = -infty<T>, bmin = infty<T>;\r\n  int amax_idx = -1, amin_idx = -1;\r\n  int\
-    \ bmax_idx = -1, bmin_idx = -1;\r\n  bool empty = true;\r\n  map<pair<T, T>, int>\
-    \ MP;\r\n\r\n  void clear() {\r\n    empty = true;\r\n    cht_min.clear();\r\n\
-    \    cht_max.clear();\r\n  }\r\n  void add(T a, T b, int i = -1) {\r\n    empty\
-    \ = false;\r\n    cht_min.add(b, a);\r\n    cht_max.add(b, a);\r\n    pair<T,\
-    \ T> p = {a, b};\r\n    MP[p] = i;\r\n\r\n    if (chmax(amax, a)) amax_idx = i;\r\
-    \n    if (chmin(amin, a)) amin_idx = i;\r\n    if (chmax(bmax, b)) bmax_idx =\
-    \ i;\r\n    if (chmin(bmin, b)) bmin_idx = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T\
-    \ x, T y) {\r\n    if (cht_min.empty()) return {-infty<T>, -1};\r\n\r\n    if\
-    \ (x == 0) {\r\n      if (bmax * y > bmin * y) { return {bmax * y, bmax_idx};\
-    \ }\r\n      return {bmin * y, bmin_idx};\r\n    }\r\n    ld z = ld(y) / x;\r\n\
-    \    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\n      T a = l->m,\
-    \ b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx = MP[p];\r\n    \
-    \  return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
+    \ T>\r\nstruct CHT_xy {\r\n  static_assert(T == long long || std::is_floating_point_v<T>);\r\
+    \n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld> cht_max;\r\
+    \n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax = -infty<T>, bmin = infty<T>;\r\
+    \n  int amax_idx = -1, amin_idx = -1;\r\n  int bmax_idx = -1, bmin_idx = -1;\r\
+    \n  bool empty = true;\r\n  map<pair<T, T>, int> MP;\r\n\r\n  void clear() {\r\
+    \n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\n  }\r\n\
+    \  void add(T a, T b, int i = -1) {\r\n    empty = false;\r\n    cht_min.add(b,\
+    \ a);\r\n    cht_max.add(b, a);\r\n    pair<T, T> p = {a, b};\r\n    MP[p] = i;\r\
+    \n\r\n    if (chmax(amax, a)) amax_idx = i;\r\n    if (chmin(amin, a)) amin_idx\
+    \ = i;\r\n    if (chmax(bmax, b)) bmax_idx = i;\r\n    if (chmin(bmin, b)) bmin_idx\
+    \ = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T x, T y) {\r\n    if (cht_min.empty())\
+    \ return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n      if (bmax * y > bmin\
+    \ * y) { return {bmax * y, bmax_idx}; }\r\n      return {bmin * y, bmin_idx};\r\
+    \n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
+    \n      T a = l->m, b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx\
+    \ = MP[p];\r\n      return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
     \n    T a = -(l->m), b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx\
     \ = MP[p];\r\n    return {a * x + b * y, idx};\r\n  }\r\n\r\n  pair<T, int> get_min(T\
     \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
@@ -254,8 +254,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc244h.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-11 22:40:57+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc244h.test.cpp
 layout: document

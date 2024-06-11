@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
+  - icon: ':warning:'
+    path: graph/maximum_weighted_antichain.hpp
+    title: graph/maximum_weighted_antichain.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_1.test.cpp
@@ -218,6 +221,7 @@ data:
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy:
+  - graph/maximum_weighted_antichain.hpp
   - graph/dag_path_cover.hpp
   - flow/binary_optimization.hpp
   - flow/k_ary_optimization.hpp

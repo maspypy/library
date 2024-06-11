@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
   - icon: ':x:'
@@ -392,45 +392,46 @@ data:
     \    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
     \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
     \ hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return res;\n}\n#line 1 \"convex/cht_monotone.hpp\"\
-    \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n  struct Line\
-    \ {\r\n    T a, b;\r\n    int idx;\r\n  };\r\n  deque<Line> H;\r\n  int nxt_idx\
-    \ = 0;\r\n\r\n  CHT_monotone() = default;\r\n\r\n  bool empty() const { return\
-    \ H.empty(); }\r\n  void clear() { H.clear(); }\r\n\r\n  inline int sgn(T x) {\
-    \ return x == 0 ? 0 : (x < 0 ? -1 : 1); }\r\n  using D = long double;\r\n  inline\
-    \ bool check(const Line &a, const Line &b, const Line &c) {\r\n    if (b.b ==\
-    \ a.b || c.b == b.b)\r\n      return sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a\
-    \ - b.a) * sgn(b.b - a.b);\r\n    // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\
-    \n    return D(b.a - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b))\r\n           >=\
-    \ D(c.a - b.a) * sgn(b.b - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T\
-    \ a, T b, int idx = -1) {\r\n    if (idx == -1) { idx = nxt_idx++; }\r\n    if\
-    \ (!isMin) a *= -1, b *= -1;\r\n    Line L{a, b, idx};\r\n    if (empty()) {\r\
-    \n      H.emplace_front(L);\r\n      return;\r\n    }\r\n    if (H.front().a <=\
-    \ a) {\r\n      if (H.front().a == a) {\r\n        if (H.front().b <= b) return;\r\
-    \n        H.pop_front();\r\n      }\r\n      while (H.size() >= 2 && check(L,\
-    \ H.front(), H[1])) { H.pop_front(); }\r\n      H.emplace_front(L);\r\n    } else\
-    \ {\r\n      assert(a <= H.back().a);\r\n      if (H.back().a == a) {\r\n    \
-    \    if (H.back().b <= b) return;\r\n        H.pop_back();\r\n      }\r\n    \
-    \  while (H.size() >= 2 && check(H[H.size() - 2], H.back(), L)) H.pop_back();\r\
-    \n      H.emplace_back(L);\r\n    }\r\n  }\r\n\r\n  inline T get_y(const Line\
-    \ &a, const T &x) { return a.a * x + a.b; }\r\n\r\n  pair<T, int> query(T x) {\r\
-    \n    assert(!empty());\r\n    int l = -1, r = H.size() - 1;\r\n    while (l +\
-    \ 1 < r) {\r\n      int m = (l + r) >> 1;\r\n      if (get_y(H[m], x) >= get_y(H[m\
-    \ + 1], x))\r\n        l = m;\r\n      else\r\n        r = m;\r\n    }\r\n   \
-    \ if (isMin) return {get_y(H[r], x), H[r].idx};\r\n    return {-get_y(H[r], x),\
-    \ H[r].idx};\r\n  }\r\n\r\n  pair<T, int> query_monotone_inc(T x) {\r\n    assert(!empty());\r\
-    \n    while (H.size() >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n     \
-    \ H.pop_front();\r\n    if (isMin) return {get_y(H.front(), x), H.front().idx};\r\
-    \n    return {-get_y(H.front(), x), H.front().idx};\r\n  }\r\n\r\n  pair<T, int>\
-    \ query_monotone_dec(T x) {\r\n    assert(!empty());\r\n    while (H.size() >=\
-    \ 2 && get_y(H.back(), x) >= get_y(H[H.size() - 2], x))\r\n      H.pop_back();\r\
-    \n    if (isMin) return {get_y(H.back(), x), H.back().idx};\r\n    return {-get_y(H.back(),\
-    \ x), H.back().idx};\r\n  }\r\n};\n#line 8 \"test_atcoder/arc130f.test.cpp\"\n\
-    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>>\
-    \ XY(N);\n  FOR(i, N) XY[i] = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n \
-    \ for (auto&& [L, R, a, b]: Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>)\
-    \ { cht.add(L, b - a * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a *\
-    \ (R - 1)); }\n  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n  static_assert(T\
+    \ == long long || std::is_floating_point_v<T>);\r\n  struct Line {\r\n    T a,\
+    \ b;\r\n    int idx;\r\n  };\r\n  deque<Line> H;\r\n  int nxt_idx = 0;\r\n\r\n\
+    \  CHT_monotone() = default;\r\n\r\n  bool empty() const { return H.empty(); }\r\
+    \n  void clear() { H.clear(); }\r\n\r\n  inline int sgn(T x) { return x == 0 ?\
+    \ 0 : (x < 0 ? -1 : 1); }\r\n  using D = long double;\r\n  inline bool check(const\
+    \ Line &a, const Line &b, const Line &c) {\r\n    if (b.b == a.b || c.b == b.b)\r\
+    \n      return sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\r\
+    \n    // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\n    return D(b.a\
+    \ - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b))\r\n           >= D(c.a - b.a) *\
+    \ sgn(b.b - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T a, T b, int idx\
+    \ = -1) {\r\n    if (idx == -1) { idx = nxt_idx++; }\r\n    if (!isMin) a *= -1,\
+    \ b *= -1;\r\n    Line L{a, b, idx};\r\n    if (empty()) {\r\n      H.emplace_front(L);\r\
+    \n      return;\r\n    }\r\n    if (H.front().a <= a) {\r\n      if (H.front().a\
+    \ == a) {\r\n        if (H.front().b <= b) return;\r\n        H.pop_front();\r\
+    \n      }\r\n      while (H.size() >= 2 && check(L, H.front(), H[1])) { H.pop_front();\
+    \ }\r\n      H.emplace_front(L);\r\n    } else {\r\n      assert(a <= H.back().a);\r\
+    \n      if (H.back().a == a) {\r\n        if (H.back().b <= b) return;\r\n   \
+    \     H.pop_back();\r\n      }\r\n      while (H.size() >= 2 && check(H[H.size()\
+    \ - 2], H.back(), L)) H.pop_back();\r\n      H.emplace_back(L);\r\n    }\r\n \
+    \ }\r\n\r\n  inline T get_y(const Line &a, const T &x) { return a.a * x + a.b;\
+    \ }\r\n\r\n  pair<T, int> query(T x) {\r\n    assert(!empty());\r\n    int l =\
+    \ -1, r = H.size() - 1;\r\n    while (l + 1 < r) {\r\n      int m = (l + r) >>\
+    \ 1;\r\n      if (get_y(H[m], x) >= get_y(H[m + 1], x))\r\n        l = m;\r\n\
+    \      else\r\n        r = m;\r\n    }\r\n    if (isMin) return {get_y(H[r], x),\
+    \ H[r].idx};\r\n    return {-get_y(H[r], x), H[r].idx};\r\n  }\r\n\r\n  pair<T,\
+    \ int> query_monotone_inc(T x) {\r\n    assert(!empty());\r\n    while (H.size()\
+    \ >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n      H.pop_front();\r\n \
+    \   if (isMin) return {get_y(H.front(), x), H.front().idx};\r\n    return {-get_y(H.front(),\
+    \ x), H.front().idx};\r\n  }\r\n\r\n  pair<T, int> query_monotone_dec(T x) {\r\
+    \n    assert(!empty());\r\n    while (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size()\
+    \ - 2], x))\r\n      H.pop_back();\r\n    if (isMin) return {get_y(H.back(), x),\
+    \ H.back().idx};\r\n    return {-get_y(H.back(), x), H.back().idx};\r\n  }\r\n\
+    };\n#line 8 \"test_atcoder/arc130f.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
+    \ solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>> XY(N);\n  FOR(i, N) XY[i]\
+    \ = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n  for (auto&& [L, R, a, b]:\
+    \ Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>) { cht.add(L, b - a\
+    \ * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a * (R - 1)); }\n  }\n\
+    \n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"convex/fenchel.hpp\"\n#include \"convex/cht_monotone.hpp\"\n\nusing\
@@ -452,7 +453,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2024-06-08 04:37:41+09:00'
+  timestamp: '2024-06-11 22:40:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp
