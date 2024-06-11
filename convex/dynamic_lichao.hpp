@@ -1,12 +1,21 @@
+/*
+struct F {
+  using value_type = ll;  // operator() の戻り値
+  int a;
+  ll b;
+  ll operator()(ll x) { return a * x + b; }
+};
+*/
+
 // 直線追加かつ非永続なら空間 Q でよい。
 // 関数は ll -> T。[L, R) 上 f が overflow しないように注意。
 // evaluate を書き変えると、totally monotone な関数群にも使える
-template <typename T, bool PERSISTENT, int NODES, bool MINIMIZE>
+template <typename FUNC, bool PERSISTENT, int NODES, bool MINIMIZE>
 struct Dynamic_LiChao_Tree {
-  using FUNC = pair<T, T>;
+  using T = typename FUNC::value_type;
   vc<FUNC> funcs;
 
-  static inline T evaluate(FUNC &f, ll x) { return f.fi * x + f.se; }
+  static inline T evaluate(FUNC &f, ll x) { return f(x); }
 
   struct Node {
     int fid;
