@@ -5,9 +5,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
-  - icon: ':warning:'
-    path: ds/unionfind/parallel_unionfind.hpp
-    title: ds/unionfind/parallel_unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
@@ -63,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -163,7 +160,6 @@ data:
   isVerificationFile: false
   path: mod/modint61.hpp
   requiredBy:
-  - ds/unionfind/parallel_unionfind.hpp
   - graph/maximum_matching_size.hpp
   - graph/tree_dp/subtree_hash.hpp
   - random/hash_vector.hpp
