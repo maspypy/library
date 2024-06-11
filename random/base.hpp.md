@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -35,10 +35,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -174,6 +174,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/general_matching.test.cpp
     title: test/library_checker/graph/general_matching.test.cpp
@@ -783,7 +789,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc335g.test.cpp
     title: test_atcoder/abc335g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
   - icon: ':x:'
@@ -887,7 +893,9 @@ data:
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
+  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/graph/counting_eulerian_dense.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp

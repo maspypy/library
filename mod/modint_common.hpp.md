@@ -454,6 +454,12 @@ data:
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1299,7 +1305,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc334g.test.cpp
     title: test_atcoder/abc334g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
   - icon: ':x:'
@@ -1643,8 +1649,10 @@ data:
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/graph/counting_eulerian_dense.test.cpp
   - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp

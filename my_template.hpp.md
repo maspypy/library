@@ -550,6 +550,12 @@ data:
     path: test/library_checker/graph/complement_graph_unionfind.test.cpp
     title: test/library_checker/graph/complement_graph_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/cycle_detection.test.cpp
     title: test/library_checker/graph/cycle_detection.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2595,7 +2601,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc335g.test.cpp
     title: test_atcoder/abc335g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
   - icon: ':x:'
@@ -3108,12 +3114,14 @@ data:
   - test/library_checker/graph/assignment_mcf.test.cpp
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
+  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
+  - test/library_checker/graph/counting_eulerian_dense.test.cpp
   - test/library_checker/graph/enumerate_triangles.test.cpp
   - test/library_checker/graph/min_cost_b-flow.test.cpp
   - test/library_checker/graph/eulerwalk_d.test.cpp

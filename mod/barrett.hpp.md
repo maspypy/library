@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':question:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':heavy_check_mark:'
@@ -72,6 +75,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/mul_modp_conv.test.cpp
     title: test/library_checker/convolution/mul_modp_conv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/binomial_coefficient.test.cpp
     title: test/library_checker/math/binomial_coefficient.test.cpp
@@ -213,12 +222,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc335g.test.cpp
     title: test_atcoder/abc335g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc336g.test.cpp
+    title: test_atcoder/abc336g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
@@ -265,6 +277,7 @@ data:
   - nt/three_triangular.hpp
   - nt/three_square.hpp
   - nt/gaussian_integers.hpp
+  - graph/count/BEST.hpp
   - graph/count/count_labeled_bipartite.hpp
   - poly/fps_sqrt.hpp
   - poly/multivar_convolution_cyclic.hpp
@@ -280,12 +293,13 @@ data:
   - mod/primitive_root.hpp
   - linalg/det.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc270_g.test.cpp
   - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc281g.test.cpp
   - test_atcoder/abc222g.test.cpp
+  - test_atcoder/abc336g.test.cpp
   - test_atcoder/abc335g.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp
   - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
@@ -300,6 +314,8 @@ data:
   - test/library_checker/polynomial/inv_of_fps.test.cpp
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/counting_eulerian_dense.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
   - test/library_checker/math/binomial_coefficient.test.cpp
   - test/library_checker/math/primitive_root.test.cpp

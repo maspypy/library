@@ -1,11 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':question:'
+    path: graph/count/BEST.hpp
+    title: graph/count/BEST.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
@@ -15,9 +24,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test_atcoder/abc336g.test.cpp
+    title: test_atcoder/abc336g.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
@@ -64,10 +76,14 @@ data:
   - mod/barrett.hpp
   isVerificationFile: false
   path: linalg/det.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/count/BEST.hpp
   timestamp: '2023-10-24 14:53:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc336g.test.cpp
+  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/counting_eulerian_dense.test.cpp
   - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
   - test/yukicoder/1303.test.cpp
