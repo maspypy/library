@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/count_subseq.hpp
     title: string/count_subseq.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/number_of_subsequences
@@ -274,7 +274,10 @@ data:
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 1 \"string/count_subseq.hpp\"\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
-    template <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
+    // \u884C\u5217\u306B\u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\
+    \u3092\u6301\u3064\u3068\u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\
+    \u3068\u304C\u3042\u308B.\n// https://yukicoder.me/problems/no/2762\ntemplate\
+    \ <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
     \ mint> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n\
     \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
     \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
@@ -296,8 +299,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/number_of_subsequences.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-06-11 19:43:00+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/number_of_subsequences.test.cpp
 layout: document

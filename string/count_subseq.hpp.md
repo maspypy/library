@@ -3,36 +3,42 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/string/number_of_subsequences.test.cpp
     title: test/library_checker/string/number_of_subsequences.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1493.test.cpp
     title: test/yukicoder/1493.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://noshi91.hatenablog.com/entry/2023/02/26/135340
+    - https://yukicoder.me/problems/no/2762
   bundledCode: "#line 1 \"string/count_subseq.hpp\"\n// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n\
-    template <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
+    // \u884C\u5217\u306B\u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\
+    \u3092\u6301\u3064\u3068\u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\
+    \u3068\u304C\u3042\u308B.\n// https://yukicoder.me/problems/no/2762\ntemplate\
+    \ <typename mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int,\
     \ mint> dp;\n  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n\
     \    if (it == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n\
     \      mint d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n\
     \  }\n  return sm;\n}\n"
-  code: "// https://noshi91.hatenablog.com/entry/2023/02/26/135340\ntemplate <typename\
-    \ mint, typename STRING>\nmint count_subseq(STRING& S) {\n  map<int, mint> dp;\n\
-    \  mint sm = 1;\n  for (auto&& x: S) {\n    auto it = dp.find(x);\n    if (it\
-    \ == dp.end()) {\n      dp[x] = sm;\n      sm += sm;\n    } else {\n      mint\
-    \ d = (*it).se;\n      (*it).se = sm;\n      sm += sm - d;\n    }\n  }\n  return\
-    \ sm;\n}"
+  code: "// https://noshi91.hatenablog.com/entry/2023/02/26/135340\n// \u884C\u5217\
+    \u306B\u3059\u308B\u3068\u304D\u306F\u3001(mp[x]+1) \u306E\u5217\u3092\u6301\u3064\
+    \u3068\u5C0F\u3055\u3044\u884C\u5217\u306B\u306A\u308B\u3053\u3068\u304C\u3042\
+    \u308B.\n// https://yukicoder.me/problems/no/2762\ntemplate <typename mint, typename\
+    \ STRING>\nmint count_subseq(STRING& S) {\n  map<int, mint> dp;\n  mint sm = 1;\n\
+    \  for (auto&& x: S) {\n    auto it = dp.find(x);\n    if (it == dp.end()) {\n\
+    \      dp[x] = sm;\n      sm += sm;\n    } else {\n      mint d = (*it).se;\n\
+    \      (*it).se = sm;\n      sm += sm - d;\n    }\n  }\n  return sm;\n}"
   dependsOn: []
   isVerificationFile: false
   path: string/count_subseq.hpp
   requiredBy: []
-  timestamp: '2023-10-17 19:59:15+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-06-11 19:43:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/string/number_of_subsequences.test.cpp
   - test/yukicoder/1493.test.cpp
