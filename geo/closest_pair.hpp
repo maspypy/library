@@ -6,6 +6,8 @@
 
 template <typename T>
 pair<int, int> closest_pair(vc<Point<T>> points) {
+  static_assert(std::is_same<T, int>::value
+                || std::is_same<T, long long>::value);
   int N = len(points);
   assert(N >= 2);
   HashMap<int> MP(N);
@@ -45,6 +47,11 @@ pair<int, int> closest_pair(vc<Point<T>> points) {
     return upd;
   };
 
+  if (best == T(0)) {
+    res.fi = I[res.fi], res.se = I[res.se];
+    return res;
+  }
+
   insert(0), insert(1);
   FOR(i, 2, N) {
     if (query(i)) {
@@ -75,7 +82,7 @@ pair<int, int> closest_pair_dc(vc<Point<ll>> point) {
   };
   upd(0, 1);
 
-  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {
+  auto dfs = [&](auto &dfs, int L, int R) -> vc<int> {
     // return: [L,R) を y について sort したもの
     if (R == L + 1) return {L};
     int M = (L + R) / 2;
@@ -102,7 +109,7 @@ pair<int, int> closest_pair_dc(vc<Point<ll>> point) {
       FOR_R(k, len(near)) {
         int j = near[k];
         ll dy = point[idx].y - point[j].y;
-        if (dy * dy > best) break;
+        if (best == 0 || dy * dy > best) break;
         upd(idx, j);
       }
       near.eb(idx);
