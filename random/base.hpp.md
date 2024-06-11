@@ -27,6 +27,9 @@ data:
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/count/count_spanning_tree.hpp
+    title: graph/count/count_spanning_tree.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +137,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
+  - icon: ':warning:'
+    path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_14_C.test.cpp
     title: test/aoj/ALDS1_14_C.test.cpp
@@ -174,6 +183,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/classify_tree.test.cpp
     title: test/library_checker/graph/classify_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/library_checker/graph/counting_eulerian_dense.test.cpp
@@ -829,6 +847,8 @@ data:
   - nt/gaussian_integers.hpp
   - nt/euler_phi.hpp
   - ds/unionfind/parallel_unionfind.hpp
+  - test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+  - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/maximum_matching_size.hpp
@@ -892,10 +912,13 @@ data:
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/library_checker/graph/classify_tree.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/library_checker/math/kth_root_mod.test.cpp
@@ -1086,6 +1109,7 @@ data:
   - test/yukicoder/1956.test.cpp
   - test/yukicoder/2626.test.cpp
   - test/yukicoder/2102.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: random/base.hpp
 layout: document
 redirect_from:

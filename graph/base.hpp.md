@@ -71,6 +71,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_spanning_tree.hpp
+    title: graph/count/count_spanning_tree.hpp
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
@@ -305,7 +308,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
+  - icon: ':warning:'
+    path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
@@ -405,6 +414,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/complement_graph_unionfind.test.cpp
     title: test/library_checker/graph/complement_graph_unionfind.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/library_checker/graph/counting_eulerian_dense.test.cpp
@@ -981,8 +999,10 @@ data:
   isVerificationFile: false
   path: graph/base.hpp
   requiredBy:
+  - test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - graph/bracket_graph.hpp
   - graph/tree_of_unionfind.hpp
+  - graph/count/count_spanning_tree.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_cycle.hpp
   - graph/count/count_independent_set.hpp
@@ -1123,6 +1143,7 @@ data:
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/directed_mst.test.cpp
@@ -1130,6 +1151,7 @@ data:
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
   - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
@@ -1144,6 +1166,7 @@ data:
   - test/library_checker/graph/eulerwalk_ud.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/string/number_of_substrings2.test.cpp
   - test/library_checker/math/twosat.test.cpp
@@ -1261,6 +1284,7 @@ data:
   - test/yukicoder/1320.test.cpp
   - test/yukicoder/1295.test.cpp
   - test/yukicoder/529.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: graph/base.hpp
 layout: document
 redirect_from:

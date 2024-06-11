@@ -1022,6 +1022,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/count/count_labeled_unicyclic.hpp
       title: graph/count/count_labeled_unicyclic.hpp
+    - icon: ':heavy_check_mark:'
+      path: graph/count/count_spanning_tree.hpp
+      title: graph/count/count_spanning_tree.hpp
     - icon: ':warning:'
       path: graph/count/count_tree_by_root_degree.hpp
       title: graph/count/count_tree_by_root_degree.hpp
@@ -1991,7 +1994,17 @@ data:
     - icon: ':warning:'
       path: test/library_checker/geometry/static_convex_hull.tset.cpp
       title: test/library_checker/geometry/static_convex_hull.tset.cpp
+  - name: test/library_checker/graph
+    pages:
+    - icon: ':warning:'
+      path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+      title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   verificationCategories:
+  - name: graph
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: graph/chromatic_polynomial.test.cpp
+      title: graph/chromatic_polynomial.test.cpp
   - name: test/aoj
     pages:
     - icon: ':heavy_check_mark:'
@@ -2548,6 +2561,15 @@ data:
       path: test/library_checker/graph/complement_graph_unionfind.test.cpp
       title: test/library_checker/graph/complement_graph_unionfind.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+      title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+      title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+      title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/counting_eulerian_dense.test.cpp
       title: test/library_checker/graph/counting_eulerian_dense.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2681,6 +2703,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/partition.test.cpp
       title: test/library_checker/math/partition.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/library_checker/math/power_projection_of_sps.test.cpp
+      title: test/library_checker/math/power_projection_of_sps.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/powproj_sps.test.cpp
       title: test/library_checker/math/powproj_sps.test.cpp

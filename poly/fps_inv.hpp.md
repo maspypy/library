@@ -178,6 +178,9 @@ data:
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -992,6 +995,7 @@ data:
   - test/yukicoder/1962.test.cpp
   - test/yukicoder/1844.test.cpp
   - test/yukicoder/2583.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document
 redirect_from:

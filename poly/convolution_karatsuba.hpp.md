@@ -286,6 +286,9 @@ data:
     title: setfunc/power_projection_of_sps.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_A.test.cpp
     title: test/aoj/NTL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -351,6 +354,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/power_projection_of_sps.test.cpp
+    title: test/library_checker/math/power_projection_of_sps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/powproj_sps.test.cpp
     title: test/library_checker/math/powproj_sps.test.cpp
@@ -1072,6 +1078,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/factorial.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
+  - test/library_checker/math/power_projection_of_sps.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/powproj_sps.test.cpp
@@ -1188,6 +1195,7 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/303.test.cpp
   - test/yukicoder/1821.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: poly/convolution_karatsuba.hpp
 layout: document
 redirect_from:

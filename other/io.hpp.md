@@ -5,7 +5,13 @@ data:
   - icon: ':warning:'
     path: test/library_checker/geometry/static_convex_hull.tset.cpp
     title: test/library_checker/geometry/static_convex_hull.tset.cpp
+  - icon: ':warning:'
+    path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/0275.test.cpp
     title: test/aoj/0275.test.cpp
@@ -547,6 +553,15 @@ data:
     path: test/library_checker/graph/complement_graph_unionfind.test.cpp
     title: test/library_checker/graph/complement_graph_unionfind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/library_checker/graph/counting_eulerian_dense.test.cpp
   - icon: ':heavy_check_mark:'
@@ -678,6 +693,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/power_projection_of_sps.test.cpp
+    title: test/library_checker/math/power_projection_of_sps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/powproj_sps.test.cpp
     title: test/library_checker/math/powproj_sps.test.cpp
@@ -2366,6 +2384,7 @@ data:
   isVerificationFile: false
   path: other/io.hpp
   requiredBy:
+  - test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
@@ -2618,6 +2637,7 @@ data:
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/maximum_independent_set2.test.cpp
   - test/library_checker/graph/biconnected_component.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/graph/assignment.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
@@ -2627,6 +2647,7 @@ data:
   - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
   - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/library_checker/graph/domninator_tree.test.cpp
@@ -2643,6 +2664,7 @@ data:
   - test/library_checker/graph/eulerwalk_ud.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/library_checker/graph/two_edge_component.test.cpp
   - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
@@ -2682,6 +2704,7 @@ data:
   - test/library_checker/math/kth_root_integer.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
   - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/power_projection_of_sps.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
@@ -3093,6 +3116,7 @@ data:
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/529.test.cpp
   - test/yukicoder/1649_2.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: other/io.hpp
 layout: document
 redirect_from:

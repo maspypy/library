@@ -79,6 +79,9 @@ data:
     title: seq/famous/stirling_number_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_1_C.test.cpp
     title: test/aoj/ALDS1_1_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -427,6 +430,7 @@ data:
   - test/yukicoder/1025.test.cpp
   - test/yukicoder/1783.test.cpp
   - test/yukicoder/1956.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: mod/mongomery_modint.hpp
 layout: document
 redirect_from:

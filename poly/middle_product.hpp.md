@@ -37,6 +37,9 @@ data:
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -272,6 +275,7 @@ data:
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1575.test.cpp
   - test/yukicoder/2626.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

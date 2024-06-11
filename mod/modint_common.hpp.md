@@ -341,7 +341,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
+  - icon: ':warning:'
+    path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_5_C.test.cpp
     title: test/aoj/DPL_5_C.test.cpp
@@ -454,6 +460,15 @@ data:
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/library_checker/graph/counting_eulerian_dense.test.cpp
   - icon: ':heavy_check_mark:'
@@ -495,6 +510,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/partition.test.cpp
     title: test/library_checker/math/partition.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/power_projection_of_sps.test.cpp
+    title: test/library_checker/math/power_projection_of_sps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/powproj_sps.test.cpp
     title: test/library_checker/math/powproj_sps.test.cpp
@@ -1431,6 +1449,7 @@ data:
   isVerificationFile: false
   path: mod/modint_common.hpp
   requiredBy:
+  - test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_labeled_connected.hpp
@@ -1649,10 +1668,13 @@ data:
   - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - test/library_checker/graph/enumerate_cliques.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - test/library_checker/string/number_of_subsequences.test.cpp
@@ -1666,6 +1688,7 @@ data:
   - test/library_checker/math/factorial.test.cpp
   - test/library_checker/math/stirling_number_of_the_second_kind.test.cpp
   - test/library_checker/math/find_linear_recurrence.test.cpp
+  - test/library_checker/math/power_projection_of_sps.test.cpp
   - test/library_checker/math/sharp_p_subset_sum.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
@@ -1883,6 +1906,7 @@ data:
   - test/yukicoder/1821.test.cpp
   - test/yukicoder/1919.test.cpp
   - test/yukicoder/1649_2.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: mod/modint_common.hpp
 layout: document
 redirect_from:

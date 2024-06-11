@@ -28,6 +28,9 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/subset_convolution.test.cpp
     title: test/library_checker/convolution/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -36,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/power_projection_of_sps.test.cpp
+    title: test/library_checker/math/power_projection_of_sps.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/powproj_sps.test.cpp
     title: test/library_checker/math/powproj_sps.test.cpp
@@ -123,12 +129,14 @@ data:
   - test_atcoder/abc213g.test.cpp
   - test_atcoder/arc105.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/math/power_projection_of_sps.test.cpp
   - test/library_checker/math/composition_sps.test.cpp
   - test/library_checker/math/powproj_sps.test.cpp
   - test/library_checker/math/sps_exp.test.cpp
   - test/library_checker/matrix/hafnian_of_matrix.test.cpp
   - test/library_checker/convolution/subset_convolution.test.cpp
   - test/yukicoder/2507.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
 redirect_from:
