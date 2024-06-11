@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -219,7 +219,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1983.test.cpp
     title: test/yukicoder/1983.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -228,10 +228,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2296.test.cpp
     title: test/yukicoder/2296.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -264,9 +264,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc157a.test.cpp
     title: test_atcoder/arc157a.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -318,7 +318,7 @@ data:
   - flow/bipartite.hpp
   - geo/manhattan_mst.hpp
   timestamp: '2024-03-10 03:27:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc270_f.test.cpp
   - test_atcoder/abc283f.test.cpp
