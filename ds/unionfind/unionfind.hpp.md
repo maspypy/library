@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/parallel_unionfind.hpp
     title: ds/unionfind/parallel_unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_parallel_uf.test.cpp
+    title: test/library_checker/datastructure/range_parallel_uf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/unionfind.test.cpp
     title: test/library_checker/datastructure/unionfind.test.cpp
@@ -330,6 +333,7 @@ data:
   - test_atcoder/abc237ex.test.cpp
   - test_atcoder/abc314f.test.cpp
   - test/library_checker/datastructure/unionfind.test.cpp
+  - test/library_checker/datastructure/range_parallel_uf.test.cpp
   - test/library_checker/graph/manhattan_mst.test.cpp
   - test/library_checker/graph/directed_mst.test.cpp
   - test/library_checker/graph/st_numbering.test.cpp

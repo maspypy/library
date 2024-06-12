@@ -430,6 +430,9 @@ data:
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_parallel_uf.test.cpp
+    title: test/library_checker/datastructure/range_parallel_uf.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_set_range_composite.test.cpp
     title: test/library_checker/datastructure/range_set_range_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1643,6 +1646,7 @@ data:
   - test/library_checker/datastructure/sort_segtree.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_dynamic.test.cpp
+  - test/library_checker/datastructure/range_parallel_uf.test.cpp
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/library_checker/polynomial/sqrt_of_fps.test.cpp

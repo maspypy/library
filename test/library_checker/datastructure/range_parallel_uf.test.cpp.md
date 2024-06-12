@@ -1,9 +1,18 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: ds/unionfind/parallel_unionfind.hpp
+    title: ds/unionfind/parallel_unionfind.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/unionfind/unionfind.hpp
+    title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
-    path: convex/cht.hpp
-    title: convex/cht.hpp
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -12,15 +21,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc244/tasks/abc244_Ex
+    PROBLEM: https://judge.yosupo.jp/problem/range_parallel_unionfind
     links:
-    - https://atcoder.jp/contests/abc244/tasks/abc244_Ex
-  bundledCode: "#line 1 \"test_atcoder/abc244h.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\
+    - https://judge.yosupo.jp/problem/range_parallel_unionfind
+  bundledCode: "#line 1 \"test/library_checker/datastructure/range_parallel_uf.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/range_parallel_unionfind\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -192,75 +202,138 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 4 \"test_atcoder/abc244h.test.cpp\"\n\n#line 1 \"convex/cht.hpp\"\nnamespace\
-    \ CHT {\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T k, m, p;\r\n\
-    \  bool operator<(const Line& o) const { return k < o.k; }\r\n  bool operator<(T\
-    \ x) const { return p < x; }\r\n};\r\n\r\ntemplate <typename T>\r\nT lc_inf()\
-    \ {\r\n  return numeric_limits<T>::max();\r\n}\r\ntemplate <>\r\nlong double lc_inf<long\
-    \ double>() {\r\n  return 1 / .0;\r\n}\r\n\r\ntemplate <typename T>\r\nT lc_div(T\
-    \ a, T b) {\r\n  return a / b - ((a ^ b) < 0 and a % b);\r\n}\r\ntemplate <>\r\
-    \nlong double lc_div(long double a, long double b) {\r\n  return a / b;\r\n};\r\
-    \ntemplate <>\r\ndouble lc_div(double a, double b) {\r\n  return a / b;\r\n};\r\
-    \n\r\ntemplate <typename T, bool MINIMIZE = true>\r\nstruct LineContainer : multiset<Line<T>,\
-    \ less<>> {\r\n  using super = multiset<Line<T>, less<>>;\r\n  using super::begin,\
-    \ super::end, super::insert, super::erase;\r\n  using super::empty, super::lower_bound;\r\
-    \n  T inf = lc_inf<T>();\r\n  bool insect(typename super::iterator x, typename\
-    \ super::iterator y) {\r\n    if (y == end()) return x->p = inf, false;\r\n  \
-    \  if (x->k == y->k)\r\n      x->p = (x->m > y->m ? inf : -inf);\r\n    else\r\
-    \n      x->p = lc_div(y->m - x->m, x->k - y->k);\r\n    return x->p >= y->p;\r\
-    \n  }\r\n  void add(T k, T m) {\r\n    if (MINIMIZE) { k = -k, m = -m; }\r\n \
-    \   auto z = insert({k, m, 0}), y = z++, x = y;\r\n    while (insect(y, z)) z\
-    \ = erase(z);\r\n    if (x != begin() and insect(--x, y)) insect(x, y = erase(y));\r\
-    \n    while ((y = x) != begin() and (--x)->p >= y->p) insect(x, erase(y));\r\n\
-    \  }\r\n  T query(T x) {\r\n    assert(!empty());\r\n    auto l = *lower_bound(x);\r\
-    \n    T v = (l.k * x + l.m);\r\n    return (MINIMIZE ? -v : v);\r\n  }\r\n};\r\
-    \n}; // namespace CHT\r\n\r\nusing namespace CHT;\r\ntemplate <typename T>\r\n\
-    using CHT_min = LineContainer<T, true>;\r\ntemplate <typename T>\r\nusing CHT_max\
-    \ = LineContainer<T, false>;\r\n\r\n/*\r\nlong long / double \u3067\u52D5\u304F\
-    \u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FB\
-    add(a, b, i=-1)\uFF1Aax + by \u306E\u8FFD\u52A0 (index=i)\r\n\u30FBget_max(x,y)\uFF1A\
-    (ax + by,i)\r\n\u30FBget_min(x,y)\uFF1A(ax + by,i)\r\n*/\r\ntemplate <typename\
-    \ T>\r\nstruct CHT_xy {\r\n  static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);\r\
-    \n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld> cht_max;\r\
-    \n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax = -infty<T>, bmin = infty<T>;\r\
-    \n  int amax_idx = -1, amin_idx = -1;\r\n  int bmax_idx = -1, bmin_idx = -1;\r\
-    \n  bool empty = true;\r\n  map<pair<T, T>, int> MP;\r\n\r\n  void clear() {\r\
-    \n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\n  }\r\n\
-    \  void add(T a, T b, int i = -1) {\r\n    empty = false;\r\n    cht_min.add(b,\
-    \ a);\r\n    cht_max.add(b, a);\r\n    pair<T, T> p = {a, b};\r\n    MP[p] = i;\r\
-    \n\r\n    if (chmax(amax, a)) amax_idx = i;\r\n    if (chmin(amin, a)) amin_idx\
-    \ = i;\r\n    if (chmax(bmax, b)) bmax_idx = i;\r\n    if (chmin(bmin, b)) bmin_idx\
-    \ = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T x, T y) {\r\n    if (cht_min.empty())\
-    \ return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n      if (bmax * y > bmin\
-    \ * y) { return {bmax * y, bmax_idx}; }\r\n      return {bmin * y, bmin_idx};\r\
-    \n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      T a = l->m, b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx\
-    \ = MP[p];\r\n      return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
-    \n    T a = -(l->m), b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx\
-    \ = MP[p];\r\n    return {a * x + b * y, idx};\r\n  }\r\n\r\n  pair<T, int> get_min(T\
-    \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
-    \ }\r\n};\r\n#line 6 \"test_atcoder/abc244h.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n\
-    \  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n    cht.add(a, b);\n    print(cht.get_max(x,\
-    \ y).fi);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc244/tasks/abc244_Ex\"\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/cht.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  CHT_xy<ll> cht;\n  FOR(Q) {\n    LL(a, b, x, y);\n\
-    \    cht.add(a, b);\n    print(cht.get_max(x, y).fi);\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n\n  return 0;\n}\n"
+    \ 4 \"test/library_checker/datastructure/range_parallel_uf.test.cpp\"\n\n#line\
+    \ 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n \
+    \ vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 2 \"ds/unionfind/parallel_unionfind.hpp\"\n\nstruct\
+    \ Range_Parallel_UnionFind {\n  int N;\n  int log;\n  // ufs[i][a]==ufs[i][b]\
+    \ iff [a,...,a+2^i) == [b,...,b+2^i)\n  vc<UnionFind> ufs;\n  Range_Parallel_UnionFind(int\
+    \ n) : N(n) {\n    log = 1;\n    while ((1 << log) < n) ++log;\n    ufs.resize(log);\n\
+    \    FOR(i, log) {\n      ll n = 1 << i;\n      ufs[i].build(N - n + 1);\n   \
+    \ }\n  }\n\n  // f(r1,r2) : \u6210\u5206 r2 \u3092 r1 \u306B\u30DE\u30FC\u30B8\
+    \n  template <typename F>\n  void merge(int L1, int R1, int L2, int R2, F f) {\n\
+    \    assert(R1 - L1 == R2 - L2);\n    int n = R1 - L1;\n    if (n == 0) return;\n\
+    \    if (n == 1) return merge_inner(0, L1, L2, f);\n    int k = topbit(n - 1);\n\
+    \    merge_inner(k, L1, L2, f);\n    merge_inner(k, R1 - (1 << k), R2 - (1 <<\
+    \ k), f);\n  }\n\n  // f(r1,r2) : \u6210\u5206 r2 \u3092 r1 \u306B\u30DE\u30FC\
+    \u30B8\n  template <typename F>\n  void merge(int i, int j, F f) {\n    merge_inner(0,\
+    \ i, j, f);\n  }\n\n  template <typename F>\n  void merge_inner(int k, int L1,\
+    \ int L2, const F& f) {\n    if (k == 0) {\n      int a = ufs[0][L1], b = ufs[0][L2];\n\
+    \      if (a == b) return;\n      ufs[0].merge(a, b);\n      int c = ufs[0][a];\n\
+    \      return f(c, a ^ b ^ c);\n    }\n    if (!ufs[k].merge(L1, L2)) return;\n\
+    \    merge_inner(k - 1, L1, L2, f);\n    merge_inner(k - 1, L1 + (1 << (k - 1)),\
+    \ L2 + (1 << (k - 1)), f);\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
+    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
+    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
+    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
+    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
+    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
+    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
+    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
+    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
+    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
+    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
+    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
+    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
+    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
+    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
+    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 7 \"test/library_checker/datastructure/range_parallel_uf.test.cpp\"\n\n\
+    using mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  Range_Parallel_UnionFind\
+    \ uf(N);\n  VEC(mint, x, N);\n\n  mint ANS = 0;\n  auto f = [&](int i, int j)\
+    \ -> void {\n    ANS += x[i] * x[j];\n    x[i] += x[j];\n  };\n\n  FOR(Q) {\n\
+    \    INT(k, a, b);\n    uf.merge(a, a + k, b, b + k, f);\n    print(ANS);\n  }\n\
+    }\n\nsigned main() { solve(); }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_parallel_unionfind\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/unionfind/parallel_unionfind.hpp\"\
+    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
+    \ INT(N, Q);\n  Range_Parallel_UnionFind uf(N);\n  VEC(mint, x, N);\n\n  mint\
+    \ ANS = 0;\n  auto f = [&](int i, int j) -> void {\n    ANS += x[i] * x[j];\n\
+    \    x[i] += x[j];\n  };\n\n  FOR(Q) {\n    INT(k, a, b);\n    uf.merge(a, a +\
+    \ k, b, b + k, f);\n    print(ANS);\n  }\n}\n\nsigned main() { solve(); }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - convex/cht.hpp
+  - ds/unionfind/parallel_unionfind.hpp
+  - ds/unionfind/unionfind.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
   isVerificationFile: true
-  path: test_atcoder/abc244h.test.cpp
+  path: test/library_checker/datastructure/range_parallel_uf.test.cpp
   requiredBy: []
   timestamp: '2024-06-12 17:41:41+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test_atcoder/abc244h.test.cpp
+documentation_of: test/library_checker/datastructure/range_parallel_uf.test.cpp
 layout: document
 redirect_from:
-- /verify/test_atcoder/abc244h.test.cpp
-- /verify/test_atcoder/abc244h.test.cpp.html
-title: test_atcoder/abc244h.test.cpp
+- /verify/test/library_checker/datastructure/range_parallel_uf.test.cpp
+- /verify/test/library_checker/datastructure/range_parallel_uf.test.cpp.html
+title: test/library_checker/datastructure/range_parallel_uf.test.cpp
 ---

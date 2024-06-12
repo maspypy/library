@@ -5,10 +5,13 @@ data:
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/datastructure/range_parallel_uf.test.cpp
+    title: test/library_checker/datastructure/range_parallel_uf.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int\
@@ -63,8 +66,9 @@ data:
   path: ds/unionfind/parallel_unionfind.hpp
   requiredBy: []
   timestamp: '2024-06-12 04:39:59+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/library_checker/datastructure/range_parallel_uf.test.cpp
 documentation_of: ds/unionfind/parallel_unionfind.hpp
 layout: document
 redirect_from:

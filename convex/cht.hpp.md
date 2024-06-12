@@ -3,13 +3,13 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/line_add_get_min.test.cpp
     title: test/library_checker/datastructure/line_add_get_min.test.cpp
   - icon: ':x:'
     path: test/yukicoder/1297.test.cpp
     title: test/yukicoder/1297.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2012.test.cpp
     title: test/yukicoder/2012.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test_atcoder/abc244h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/cht.hpp\"\nnamespace CHT {\r\ntemplate <typename\
@@ -48,9 +48,9 @@ data:
     \u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FBadd(a, b, i=-1)\uFF1A\
     ax + by \u306E\u8FFD\u52A0 (index=i)\r\n\u30FBget_max(x,y)\uFF1A(ax + by,i)\r\n\
     \u30FBget_min(x,y)\uFF1A(ax + by,i)\r\n*/\r\ntemplate <typename T>\r\nstruct CHT_xy\
-    \ {\r\n  static_assert(T == long long || std::is_floating_point_v<T>);\r\n  using\
-    \ ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld> cht_max;\r\n  T\
-    \ amax = -infty<T>, amin = infty<T>;\r\n  T bmax = -infty<T>, bmin = infty<T>;\r\
+    \ {\r\n  static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);\r\n \
+    \ using ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld> cht_max;\r\
+    \n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax = -infty<T>, bmin = infty<T>;\r\
     \n  int amax_idx = -1, amin_idx = -1;\r\n  int bmax_idx = -1, bmin_idx = -1;\r\
     \n  bool empty = true;\r\n  map<pair<T, T>, int> MP;\r\n\r\n  void clear() {\r\
     \n    empty = true;\r\n    cht_min.clear();\r\n    cht_max.clear();\r\n  }\r\n\
@@ -95,7 +95,7 @@ data:
     \u3068\u601D\u3046\u3002\u30AF\u30A8\u30EA\u3042\u305F\u308A O(log N)\r\n\u30FB\
     add(a, b, i=-1)\uFF1Aax + by \u306E\u8FFD\u52A0 (index=i)\r\n\u30FBget_max(x,y)\uFF1A\
     (ax + by,i)\r\n\u30FBget_min(x,y)\uFF1A(ax + by,i)\r\n*/\r\ntemplate <typename\
-    \ T>\r\nstruct CHT_xy {\r\n  static_assert(T == long long || std::is_floating_point_v<T>);\r\
+    \ T>\r\nstruct CHT_xy {\r\n  static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);\r\
     \n  using ld = long double;\r\n  CHT_min<ld> cht_min;\r\n  CHT_max<ld> cht_max;\r\
     \n  T amax = -infty<T>, amin = infty<T>;\r\n  T bmax = -infty<T>, bmin = infty<T>;\r\
     \n  int amax_idx = -1, amin_idx = -1;\r\n  int bmax_idx = -1, bmin_idx = -1;\r\
@@ -119,8 +119,8 @@ data:
   isVerificationFile: false
   path: convex/cht.hpp
   requiredBy: []
-  timestamp: '2024-06-11 22:40:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-06-12 17:41:41+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc244h.test.cpp
   - test/library_checker/datastructure/line_add_get_min.test.cpp
