@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/cht_monotone.hpp
     title: convex/cht_monotone.hpp
   - icon: ':x:'
@@ -392,19 +392,19 @@ data:
     \    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
     \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
     \ hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return res;\n}\n#line 1 \"convex/cht_monotone.hpp\"\
-    \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n  static_assert(T\
-    \ == long long || std::is_floating_point_v<T>);\r\n  struct Line {\r\n    T a,\
-    \ b;\r\n    int idx;\r\n  };\r\n  deque<Line> H;\r\n  int nxt_idx = 0;\r\n\r\n\
-    \  CHT_monotone() = default;\r\n\r\n  bool empty() const { return H.empty(); }\r\
-    \n  void clear() { H.clear(); }\r\n\r\n  inline int sgn(T x) { return x == 0 ?\
-    \ 0 : (x < 0 ? -1 : 1); }\r\n  using D = long double;\r\n  inline bool check(const\
-    \ Line &a, const Line &b, const Line &c) {\r\n    if (b.b == a.b || c.b == b.b)\r\
-    \n      return sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\r\
-    \n    // return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\n    return D(b.a\
-    \ - a.a) * sgn(c.b - b.b) / D(abs(b.b - a.b))\r\n           >= D(c.a - b.a) *\
-    \ sgn(b.b - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T a, T b, int idx\
-    \ = -1) {\r\n    if (idx == -1) { idx = nxt_idx++; }\r\n    if (!isMin) a *= -1,\
-    \ b *= -1;\r\n    Line L{a, b, idx};\r\n    if (empty()) {\r\n      H.emplace_front(L);\r\
+    \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n  static_assert(is_same_v<T,\
+    \ ll> || std::is_floating_point_v<T>);\r\n  struct Line {\r\n    T a, b;\r\n \
+    \   int idx;\r\n  };\r\n  deque<Line> H;\r\n  int nxt_idx = 0;\r\n\r\n  CHT_monotone()\
+    \ = default;\r\n\r\n  bool empty() const { return H.empty(); }\r\n  void clear()\
+    \ { H.clear(); }\r\n\r\n  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1\
+    \ : 1); }\r\n  using D = long double;\r\n  inline bool check(const Line &a, const\
+    \ Line &b, const Line &c) {\r\n    if (b.b == a.b || c.b == b.b)\r\n      return\
+    \ sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\r\n    //\
+    \ return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\n    return D(b.a - a.a)\
+    \ * sgn(c.b - b.b) / D(abs(b.b - a.b))\r\n           >= D(c.a - b.a) * sgn(b.b\
+    \ - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T a, T b, int idx = -1)\
+    \ {\r\n    if (idx == -1) { idx = nxt_idx++; }\r\n    if (!isMin) a *= -1, b *=\
+    \ -1;\r\n    Line L{a, b, idx};\r\n    if (empty()) {\r\n      H.emplace_front(L);\r\
     \n      return;\r\n    }\r\n    if (H.front().a <= a) {\r\n      if (H.front().a\
     \ == a) {\r\n        if (H.front().b <= b) return;\r\n        H.pop_front();\r\
     \n      }\r\n      while (H.size() >= 2 && check(L, H.front(), H[1])) { H.pop_front();\
@@ -453,7 +453,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/arc130f.test.cpp
   requiredBy: []
-  timestamp: '2024-06-11 22:40:57+09:00'
+  timestamp: '2024-06-12 21:50:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc130f.test.cpp
