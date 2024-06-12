@@ -72,7 +72,7 @@ long long / double で動くと思う。クエリあたり O(log N)
 */
 template <typename T>
 struct CHT_xy {
-  static_assert(T == long long || std::is_floating_point_v<T>);
+  static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);
   using ld = long double;
   CHT_min<ld> cht_min;
   CHT_max<ld> cht_max;
