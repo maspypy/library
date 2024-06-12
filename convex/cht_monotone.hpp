@@ -1,6 +1,6 @@
 template <typename T, bool isMin>
 struct CHT_monotone {
-  static_assert(T == long long || std::is_floating_point_v<T>);
+  static_assert(is_same_v<T, ll> || std::is_floating_point_v<T>);
   struct Line {
     T a, b;
     int idx;
