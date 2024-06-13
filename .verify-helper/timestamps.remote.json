@@ -331,6 +331,7 @@
 "test/mytest/bigint.test.cpp": "2024-06-11 19:14:48 +0900",
 "test/mytest/binary_trie.test.cpp": "2024-03-29 11:46:13 +0900",
 "test/mytest/binom.test.cpp": "2024-03-29 11:46:13 +0900",
+"test/mytest/blackbox_solve_linear.test.cpp": "2024-06-14 05:06:38 +0900",
 "test/mytest/catalan_convolution.test.cpp": "2024-06-11 19:14:48 +0900",
 "test/mytest/cf702_F.test.cpp": "2024-03-29 11:46:13 +0900",
 "test/mytest/cf702_F_splay.test.cpp": "2024-03-30 00:47:55 +0900",
