@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':question:'
@@ -19,10 +19,10 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash_pair.hpp
     title: random/hash_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -303,13 +303,12 @@ data:
     \ntemplate <typename T>\nu64 hash_pair(pair<T, T> X) {\n  static ll hash_base\
     \ = 0;\n  if (hash_base == 0) hash_base = RNG_64();\n  return hash_base * X.fi\
     \ + X.se;\n}\n#line 6 \"geo/closest_pair.hpp\"\n\ntemplate <typename T>\npair<int,\
-    \ int> closest_pair(vc<Point<T>> points) {\n  static_assert(std::is_same<T, int>::value\n\
-    \                || std::is_same<T, long long>::value);\n  int N = len(points);\n\
-    \  assert(N >= 2);\n  HashMap<int> MP(N);\n  vc<int> I(N);\n  iota(all(I), 0);\n\
-    \  shuffle(I);\n  points = rearrange(points, I);\n\n  auto calc = [&](int i, int\
-    \ j) -> T {\n    return (points[j] - points[i]).dot(points[j] - points[i]);\n\
-    \  };\n\n  T best = calc(0, 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\
-    \n  vc<int> nxt(N, -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
+    \ int> closest_pair(vc<Point<T>> points) {\n  int N = len(points);\n  assert(N\
+    \ >= 2);\n  HashMap<int> MP(N);\n  vc<int> I(N);\n  iota(all(I), 0);\n  shuffle(I);\n\
+    \  points = rearrange(points, I);\n\n  auto calc = [&](int i, int j) -> T {\n\
+    \    return (points[j] - points[i]).dot(points[j] - points[i]);\n  };\n\n  T best\
+    \ = calc(0, 1);\n  pair<int, int> res = {0, 1};\n  T w = sqrtl(best);\n\n  vc<int>\
+    \ nxt(N, -1);\n\n  auto insert = [&](int i) -> void {\n    u64 k = hash_pair<ll>({points[i].x\
     \ / w, points[i].y / w});\n    nxt[i] = MP.get(k, -1);\n    MP[k] = i;\n  };\n\
     \n  auto query = [&](int i) -> bool {\n    ll a = points[i].x / w;\n    ll b =\
     \ points[i].y / w;\n    bool upd = 0;\n    FOR(dx, -1, 2) FOR(dy, -1, 2) {\n \
@@ -359,7 +358,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-06-11 16:20:24+09:00'
+  timestamp: '2024-06-13 14:32:55+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/geometry/closest_pair.test.cpp

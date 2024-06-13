@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: geo/apollonian_circle.hpp
     title: geo/apollonian_circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':question:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -93,7 +93,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_3_B.test.cpp
     title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_5_A.test.cpp
     title: test/aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,9 +114,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':x:'
-    path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
-    title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/furthest_pair.test.cpp
     title: test/library_checker/geometry/furthest_pair.test.cpp
@@ -341,7 +338,6 @@ data:
   - test/library_checker/geometry/convex_layers.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test/mytest/convex_polygon_side.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/max_dot.test.cpp

@@ -12,9 +12,6 @@ data:
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
-    title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_side.test.cpp
     title: test/mytest/convex_polygon_side.test.cpp
@@ -24,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_dot.test.cpp
     title: test/mytest/max_dot.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/1906/problem/D
@@ -226,9 +223,8 @@ data:
   requiredBy:
   - geo/minkowski_sum.hpp
   timestamp: '2024-06-08 04:37:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test/mytest/convex_polygon_side.test.cpp
   - test/mytest/max_dot.test.cpp
   - test/mytest/convex_polygon_visible_range.test.cpp

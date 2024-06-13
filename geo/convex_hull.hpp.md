@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -21,9 +21,6 @@ data:
     path: test/library_checker/geometry/static_convex_hull.tset.cpp
     title: test/library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
-    title: test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/furthest_pair.test.cpp
     title: test/library_checker/geometry/furthest_pair.test.cpp
@@ -197,7 +194,6 @@ data:
   verifiedWith:
   - test_atcoder/arc130f.test.cpp
   - test/library_checker/geometry/furthest_pair.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles_naive.test.cpp
   - test/mytest/convex_polygon_side.test.cpp
   - test/mytest/max_dot.test.cpp
   - test/mytest/convex_polygon_visible_range.test.cpp
