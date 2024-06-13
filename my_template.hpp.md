@@ -1012,6 +1012,9 @@ data:
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/blackbox_solve_linear.test.cpp
+    title: test/mytest/blackbox_solve_linear.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/catalan_convolution.test.cpp
     title: test/mytest/catalan_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3362,6 +3365,7 @@ data:
   - test/mytest/sortable_array.test.cpp
   - test/mytest/QOJ5445.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/blackbox_solve_linear.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/find_even_cycle.test.cpp
   - test/mytest/graph_count.test.cpp

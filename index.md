@@ -1182,6 +1182,9 @@ data:
       path: linalg/blackbox/pascal.hpp
       title: linalg/blackbox/pascal.hpp
     - icon: ':heavy_check_mark:'
+      path: linalg/blackbox/solve_linear.hpp
+      title: linalg/blackbox/solve_linear.hpp
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/vandermonde.hpp
       title: linalg/blackbox/vandermonde.hpp
   - name: linalg
@@ -1747,6 +1750,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/random_graph.hpp
       title: random/random_graph.hpp
+    - icon: ':heavy_check_mark:'
+      path: random/random_matrix.hpp
+      title: random/random_matrix.hpp
     - icon: ':heavy_check_mark:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
@@ -3038,6 +3044,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/binom.test.cpp
       title: test/mytest/binom.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/mytest/blackbox_solve_linear.test.cpp
+      title: test/mytest/blackbox_solve_linear.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/mytest/catalan_convolution.test.cpp
       title: test/mytest/catalan_convolution.test.cpp

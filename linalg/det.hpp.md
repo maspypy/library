@@ -11,6 +11,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/random_matrix.hpp
+    title: random/random_matrix.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
@@ -33,6 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/blackbox_solve_linear.test.cpp
+    title: test/mytest/blackbox_solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1303.test.cpp
     title: test/yukicoder/1303.test.cpp
@@ -91,6 +97,7 @@ data:
   requiredBy:
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
+  - random/random_matrix.hpp
   timestamp: '2023-10-24 14:53:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -102,6 +109,7 @@ data:
   - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/library_checker/matrix/det_mod.test.cpp
   - test/library_checker/matrix/matrix_det.test.cpp
+  - test/mytest/blackbox_solve_linear.test.cpp
   - test/yukicoder/1303.test.cpp
 documentation_of: linalg/det.hpp
 layout: document

@@ -266,6 +266,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/random_matrix.hpp
+    title: random/random_matrix.hpp
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
@@ -693,6 +696,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/blackbox_solve_linear.test.cpp
+    title: test/mytest/blackbox_solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/catalan_convolution.test.cpp
     title: test/mytest/catalan_convolution.test.cpp
@@ -1488,6 +1494,7 @@ data:
   - graph/chromatic.hpp
   - bigint/base.hpp
   - bigint/binary.hpp
+  - random/random_matrix.hpp
   - string/wildcard_pattern_matching.hpp
   - poly/composed_product.hpp
   - poly/product_of_pow_of_linear.hpp
@@ -1773,6 +1780,7 @@ data:
   - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/prime_sum.test.cpp
+  - test/mytest/blackbox_solve_linear.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/graph_count.test.cpp
   - test/mytest/coef_of_rational.test.cpp

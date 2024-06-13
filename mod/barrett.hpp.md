@@ -65,6 +65,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/random_matrix.hpp
+    title: random/random_matrix.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
@@ -168,6 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/O1_inv.test.cpp
     title: test/mytest/O1_inv.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/blackbox_solve_linear.test.cpp
+    title: test/mytest/blackbox_solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_bipartite.test.cpp
     title: test/mytest/count_bipartite.test.cpp
@@ -292,6 +298,7 @@ data:
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   - graph/count/count_labeled_bipartite.hpp
+  - random/random_matrix.hpp
   - poly/fps_sqrt.hpp
   - poly/multivar_convolution_cyclic.hpp
   - mod/mod_pow.hpp
@@ -350,6 +357,7 @@ data:
   - test/mytest/O1_inv.test.cpp
   - test/mytest/three_square.test.cpp
   - test/mytest/31bit_modint.test.cpp
+  - test/mytest/blackbox_solve_linear.test.cpp
   - test/mytest/geometric_sequence_sum.test.cpp
   - test/mytest/three_triangular.test.cpp
   - test/mytest/count_bipartite.test.cpp

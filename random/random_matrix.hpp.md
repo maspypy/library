@@ -2,92 +2,69 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: linalg/det.hpp
+    title: linalg/det.hpp
+  - icon: ':heavy_check_mark:'
+    path: linalg/matrix_mul.hpp
+    title: linalg/matrix_mul.hpp
+  - icon: ':question:'
+    path: mod/barrett.hpp
+    title: mod/barrett.hpp
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: linalg/det_A_plus_xB.hpp
-    title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/matrix_pow.hpp
-    title: linalg/matrix_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/from_log_differentiation.hpp
-    title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/prefix_product_of_poly.hpp
-    title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sparse_exp_of_div.hpp
-    title: poly/sparse_exp_of_div.hpp
-  - icon: ':heavy_check_mark:'
-    path: random/random_matrix.hpp
-    title: random/random_matrix.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/math/factorial.test.cpp
-    title: test/library_checker/math/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matix/pow_of_matrix.test.cpp
-    title: test/library_checker/matix/pow_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/matrix/matrix_product.test.cpp
-    title: test/library_checker/matrix/matrix_product.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/blackbox_solve_linear.test.cpp
     title: test/mytest/blackbox_solve_linear.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1080_2.test.cpp
-    title: test/yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1750.test.cpp
-    title: test/yukicoder/1750.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1810.test.cpp
-    title: test/yukicoder/1810.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1907.test.cpp
-    title: test/yukicoder/1907.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/426.test.cpp
-    title: test/yukicoder/426.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/502_2.test.cpp
-    title: test/yukicoder/502_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc222h_2.test.cpp
-    title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc276_g.test.cpp
-    title: test_atcoder/abc276_g.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc276_g_2.test.cpp
-    title: test_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+  bundledCode: "#line 1 \"random/random_matrix.hpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
+    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
+    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/barrett.hpp\"\
+    \n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
+    struct Barrett {\n  u32 m;\n  u64 im;\n  explicit Barrett(u32 m = 1) : m(m), im(u64(-1)\
+    \ / m + 1) {}\n  u32 umod() const { return m; }\n  u32 modulo(u64 z) {\n    if\
+    \ (m == 1) return 0;\n    u64 x = (u64)(((unsigned __int128)(z)*im) >> 64);\n\
+    \    u64 y = x * m;\n    return (z - y + (z < y ? m : 0));\n  }\n  u64 floor(u64\
+    \ z) {\n    if (m == 1) return z;\n    u64 x = (u64)(((unsigned __int128)(z)*im)\
+    \ >> 64);\n    u64 y = x * m;\n    return (z < y ? x - 1 : x);\n  }\n  pair<u64,\
+    \ u32> divmod(u64 z) {\n    if (m == 1) return {z, 0};\n    u64 x = (u64)(((unsigned\
+    \ __int128)(z)*im) >> 64);\n    u64 y = x * m;\n    if (z < y) return {x - 1,\
+    \ z - y + m};\n    return {x, z - y};\n  }\n  u32 mul(u32 a, u32 b) { return modulo(u64(a)\
+    \ * b); }\n};\n\nstruct Barrett_64 {\n  u128 mod, mh, ml;\n\n  explicit Barrett_64(u64\
+    \ mod = 1) : mod(mod) {\n    u128 m = u128(-1) / mod;\n    if (m * mod + mod ==\
+    \ u128(0)) ++m;\n    mh = m >> 64;\n    ml = m & u64(-1);\n  }\n\n  u64 umod()\
+    \ const { return mod; }\n\n  u64 modulo(u128 x) {\n    u128 z = (x & u64(-1))\
+    \ * ml;\n    z = (x & u64(-1)) * mh + (x >> 64) * ml + (z >> 64);\n    z = (x\
+    \ >> 64) * mh + (z >> 64);\n    x -= z * mod;\n    return x < mod ? x : x - mod;\n\
+    \  }\n\n  u64 mul(u64 a, u64 b) { return modulo(u128(a) * b); }\n};\n#line 2 \"\
+    linalg/det.hpp\"\n\r\nint det_mod(vvc<int> A, int mod) {\r\n  Barrett bt(mod);\r\
+    \n  const int n = len(A);\r\n  ll det = 1;\r\n  FOR(i, n) {\r\n    FOR(j, i, n)\
+    \ {\r\n      if (A[j][i] == 0) continue;\r\n      if (i != j) { swap(A[i], A[j]),\
+    \ det = mod - det; }\r\n      break;\r\n    }\r\n    FOR(j, i + 1, n) {\r\n  \
+    \    while (A[i][i] != 0) {\r\n        ll c = mod - A[j][i] / A[i][i];\r\n   \
+    \     FOR_R(k, i, n) { A[j][k] = bt.modulo(A[j][k] + A[i][k] * c); }\r\n     \
+    \   swap(A[i], A[j]), det = mod - det;\r\n      }\r\n      swap(A[i], A[j]), det\
+    \ = mod - det;\r\n    }\r\n  }\r\n  FOR(i, n) det = bt.mul(det, A[i][i]);\r\n\
+    \  return det % mod;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint det(vvc<mint>&\
+    \ A) {\r\n  const int n = len(A);\r\n  vv(int, B, n, n);\r\n  FOR(i, n) FOR(j,\
+    \ n) B[i][j] = A[i][j].val;\r\n  return det_mod(B, mint::get_mod());\r\n}\r\n\
+    #line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
@@ -189,74 +166,40 @@ data:
     \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
     \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
     \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
-    \ * B[j][k];\r\n  return C;\r\n}\r\n"
-  code: "#pragma once\r\n#include \"mod/modint.hpp\"\r\n\r\ntemplate <class T, typename\
-    \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>> matrix_mul(const\
-    \ vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n                     int N2\
-    \ = -1, int N3 = -1) {\r\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]);\
-    \ }\r\n  vv(u32, b, N3, N2);\r\n  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j].val;\r\
-    \n  vv(T, C, N1, N3);\r\n\r\n  if ((T::get_mod() < (1 << 30)) && N2 <= 16) {\r\
-    \n    FOR(i, N1) FOR(j, N3) {\r\n      u64 sm = 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val)\
-    \ * b[j][m];\r\n      C[i][j] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N1) FOR(j,\
-    \ N3) {\r\n      u128 sm = 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\
-    \n      C[i][j] = T::raw(sm % (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\
-    \n}\r\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* =\
-    \ nullptr>\r\nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int\
-    \ N1 = -1,\r\n                     int N2 = -1, int N3 = -1) {\r\n  if (N1 ==\
-    \ -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\r\n  vv(T, b, N2, N3);\r\n\
-    \  FOR(i, N2) FOR(j, N3) b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\n  FOR(n,\
-    \ N1) FOR(m, N2) FOR(k, N3) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\
-    \n\r\n// square-matrix defined as array\r\ntemplate <class T, int N,\r\n     \
-    \     typename enable_if<has_mod<T>::value>::type* = nullptr>\r\narray<array<T,\
-    \ N>, N> matrix_mul(const array<array<T, N>, N>& A,\r\n                      \
-    \           const array<array<T, N>, N>& B) {\r\n  array<array<T, N>, N> C{};\r\
-    \n\r\n  if ((T::get_mod() < (1 << 30)) && N <= 16) {\r\n    FOR(i, N) FOR(k, N)\
-    \ {\r\n      u64 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
-    \n      C[i][k] = sm;\r\n    }\r\n  } else {\r\n    FOR(i, N) FOR(k, N) {\r\n\
-    \      u128 sm = 0;\r\n      FOR(j, N) sm += u64(A[i][j].val) * (B[j][k].val);\r\
-    \n      C[i][k] = sm;\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\n// square-matrix\
-    \ defined as array\r\ntemplate <class T, int N,\r\n          typename enable_if<!has_mod<T>::value>::type*\
-    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
-    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
-    \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
-    \ * B[j][k];\r\n  return C;\r\n}\r\n"
+    \ * B[j][k];\r\n  return C;\r\n}\r\n#line 5 \"random/random_matrix.hpp\"\n\ntemplate\
+    \ <typename mint>\nvvc<mint> random_matrix(int n, int m, int rk) {\n  if (n ==\
+    \ m && m == rk) {\n    while (1) {\n      vv(mint, A, n, n);\n      FOR(i, n)\
+    \ FOR(j, n) A[i][j] = RNG(0, mint::get_mod());\n      if (det(A) == mint(0)) continue;\n\
+    \      return A;\n    }\n  }\n  vvc<mint> L = random_matrix<mint>(n, n, n);\n\
+    \  vvc<mint> R = random_matrix<mint>(m, m, m);\n  vv(mint, A, n, m);\n  FOR(i,\
+    \ rk) A[i][i] = 1;\n  A = matrix_mul<mint>(L, A, n, n, m);\n  A = matrix_mul<mint>(A,\
+    \ R, n, m, m);\n  return A;\n}\n"
+  code: "\n#include \"random/base.hpp\"\n#include \"linalg/det.hpp\"\n#include \"\
+    linalg/matrix_mul.hpp\"\n\ntemplate <typename mint>\nvvc<mint> random_matrix(int\
+    \ n, int m, int rk) {\n  if (n == m && m == rk) {\n    while (1) {\n      vv(mint,\
+    \ A, n, n);\n      FOR(i, n) FOR(j, n) A[i][j] = RNG(0, mint::get_mod());\n  \
+    \    if (det(A) == mint(0)) continue;\n      return A;\n    }\n  }\n  vvc<mint>\
+    \ L = random_matrix<mint>(n, n, n);\n  vvc<mint> R = random_matrix<mint>(m, m,\
+    \ m);\n  vv(mint, A, n, m);\n  FOR(i, rk) A[i][i] = 1;\n  A = matrix_mul<mint>(L,\
+    \ A, n, n, m);\n  A = matrix_mul<mint>(A, R, n, m, m);\n  return A;\n}\n"
   dependsOn:
+  - random/base.hpp
+  - linalg/det.hpp
+  - mod/barrett.hpp
+  - linalg/matrix_mul.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
   isVerificationFile: false
-  path: linalg/matrix_mul.hpp
-  requiredBy:
-  - random/random_matrix.hpp
-  - poly/from_log_differentiation.hpp
-  - poly/prefix_product_of_poly.hpp
-  - poly/sparse_exp_of_div.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - linalg/matrix_pow.hpp
-  - linalg/det_A_plus_xB.hpp
-  timestamp: '2024-04-12 12:45:20+09:00'
+  path: random/random_matrix.hpp
+  requiredBy: []
+  timestamp: '2024-06-14 05:06:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test/library_checker/math/factorial.test.cpp
-  - test/library_checker/matix/pow_of_matrix.test.cpp
-  - test/library_checker/matrix/matrix_product.test.cpp
-  - test/mytest/min_poly.test.cpp
-  - test/mytest/factorial_998.test.cpp
   - test/mytest/blackbox_solve_linear.test.cpp
-  - test/yukicoder/1750.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/1810.test.cpp
-  - test/yukicoder/426.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1907.test.cpp
-documentation_of: linalg/matrix_mul.hpp
+documentation_of: random/random_matrix.hpp
 layout: document
 redirect_from:
-- /library/linalg/matrix_mul.hpp
-- /library/linalg/matrix_mul.hpp.html
-title: linalg/matrix_mul.hpp
+- /library/random/random_matrix.hpp
+- /library/random/random_matrix.hpp.html
+title: random/random_matrix.hpp
 ---

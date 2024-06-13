@@ -42,6 +42,9 @@ data:
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/blackbox/solve_linear.hpp
+    title: linalg/blackbox/solve_linear.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
@@ -122,6 +125,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/random_matrix.hpp
+    title: random/random_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
@@ -294,6 +300,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/binom.test.cpp
     title: test/mytest/binom.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/blackbox_solve_linear.test.cpp
+    title: test/mytest/blackbox_solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
@@ -848,6 +857,7 @@ data:
   - graph/find_path_through_specified.hpp
   - graph/chromatic.hpp
   - random/shuffle.hpp
+  - random/random_matrix.hpp
   - random/hash_vector.hpp
   - random/random_graph.hpp
   - random/hash_pair.hpp
@@ -867,6 +877,7 @@ data:
   - mod/mod_kth_root.hpp
   - mod/mod_sqrt.hpp
   - mod/primitive_root.hpp
+  - linalg/blackbox/solve_linear.hpp
   - linalg/blackbox/det.hpp
   - linalg/blackbox/min_poly.hpp
   - linalg/det_A_plus_xB.hpp
@@ -996,6 +1007,7 @@ data:
   - test/mytest/add_chmin_chmax.test.cpp
   - test/mytest/sortable_array.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/blackbox_solve_linear.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/find_even_cycle.test.cpp
   - test/mytest/coef_of_rational.test.cpp
