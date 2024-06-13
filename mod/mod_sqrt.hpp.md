@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
