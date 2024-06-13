@@ -6,8 +6,6 @@
 
 template <typename T>
 pair<int, int> closest_pair(vc<Point<T>> points) {
-  static_assert(std::is_same<T, int>::value
-                || std::is_same<T, long long>::value);
   int N = len(points);
   assert(N >= 2);
   HashMap<int> MP(N);
