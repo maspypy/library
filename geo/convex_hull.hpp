@@ -14,7 +14,12 @@ vector<int> ConvexHull(vector<pair<T, T>>& XY, string mode = "full",
     if (inclusive) return {0, 1};
     return {0};
   }
-  vc<int> I = argsort(XY);
+  vc<int> I(N);
+  if (sorted) {
+    FOR(i, N) I[i] = i;
+  } else {
+    I = argsort(XY);
+  }
 
   auto check = [&](ll i, ll j, ll k) -> bool {
     auto xi = XY[i].fi, yi = XY[i].se;
@@ -68,7 +73,12 @@ vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full",
     if (inclusive) return {0, 1};
     return {0};
   }
-  vc<int> I = argsort(XY);
+  vc<int> I(N);
+  if (sorted) {
+    FOR(i, N) I[i] = i;
+  } else {
+    I = argsort(XY);
+  }
 
   auto check = [&](ll i, ll j, ll k) -> bool {
     auto xi = XY[i].x, yi = XY[i].y;
