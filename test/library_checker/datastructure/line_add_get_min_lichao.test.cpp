@@ -3,10 +3,17 @@
 #include "other/io.hpp"
 #include "convex/dynamic_lichao.hpp"
 
+struct F {
+  using value_type = ll; // operator() の戻り値
+  int a;
+  ll b;
+  ll operator()(ll x) { return a * x + b; }
+};
+
 void solve() {
   LL(N, Q);
   const int LIM = 1'000'000'000;
-  Dynamic_LiChao_Tree<ll, 0, 400'000, 1> X(-LIM, LIM + 1);
+  Dynamic_LiChao_Tree<F, 0, 400'000, 1> X(-LIM, LIM + 1);
   using np = decltype(X)::np;
   np root = X.new_root();
   FOR(N) {
