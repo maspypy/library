@@ -1,28 +1,28 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -31,17 +31,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc336/tasks/abc336_g
@@ -451,10 +451,10 @@ data:
     \u6570\u3048\u308B\n    Graph<ll, 1> G(8);\n    FOR(s, 16) {\n      int a = s\
     \ >> 1;\n      int b = s & 7;\n      G.add(a, b, A[s]);\n    }\n    G.add(b, a,\
     \ 1);\n    G.build();\n    vc<int> mul = A;\n    mul.eb(1);\n    assert(len(G.edges)\
-    \ == len(mul));\n    mint x = BEST_theorem<mint>(G, mul);\n    for (auto& a: A)\
-    \ x *= fact_inv<mint>(a);\n    // \u8FBA\u30E9\u30D9\u30EB\u306E\u5BFE\u79F0\u6027\
-    \u3092\u9664\u304F\n    ANS += x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n\
-    \  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ == len(mul));\n    mint x = BEST_theorem<mint, 0>(G, mul);\n    for (auto& a:\
+    \ A) x *= fact_inv<mint>(a);\n    // \u8FBA\u30E9\u30D9\u30EB\u306E\u5BFE\u79F0\
+    \u6027\u3092\u9664\u304F\n    ANS += x;\n  }\n  print(ANS);\n}\n\nsigned main()\
+    \ {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc336/tasks/abc336_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"graph/count/BEST.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
@@ -464,7 +464,7 @@ data:
     \ 1> G(8);\n    FOR(s, 16) {\n      int a = s >> 1;\n      int b = s & 7;\n  \
     \    G.add(a, b, A[s]);\n    }\n    G.add(b, a, 1);\n    G.build();\n    vc<int>\
     \ mul = A;\n    mul.eb(1);\n    assert(len(G.edges) == len(mul));\n    mint x\
-    \ = BEST_theorem<mint>(G, mul);\n    for (auto& a: A) x *= fact_inv<mint>(a);\n\
+    \ = BEST_theorem<mint, 0>(G, mul);\n    for (auto& a: A) x *= fact_inv<mint>(a);\n\
     \    // \u8FBA\u30E9\u30D9\u30EB\u306E\u5BFE\u79F0\u6027\u3092\u9664\u304F\n \
     \   ANS += x;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
     \  FOR(T) solve();\n  return 0;\n}\n"
@@ -484,8 +484,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc336g.test.cpp
   requiredBy: []
-  timestamp: '2024-06-11 16:34:43+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-06-17 07:13:08+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc336g.test.cpp
 layout: document

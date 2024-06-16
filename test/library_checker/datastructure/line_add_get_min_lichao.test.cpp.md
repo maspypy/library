@@ -249,22 +249,24 @@ data:
     \ res1) : max(res, res1));\n    }\n    if (x >= node_m && c->r) {\n      pair<T,\
     \ int> res1 = query_rec(c->r, x, node_m, node_r);\n      res = (MINIMIZE ? min(res,\
     \ res1) : max(res, res1));\n    }\n    return res;\n  }\n};\n#line 5 \"test/library_checker/datastructure/line_add_get_min_lichao.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<ll,\
-    \ 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root =\
-    \ X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a, b});\n\
-    \  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n      root\
-    \ = X.add_line(root, {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n     \
-    \ print(X.query(root, x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \n\nstruct F {\n  using value_type = ll; // operator() \u306E\u623B\u308A\u5024\
+    \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<F, 0,\
+    \ 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root = X.new_root();\n\
+    \  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a, b});\n  }\n  FOR(Q)\
+    \ {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n      root = X.add_line(root,\
+    \ {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n      print(X.query(root,\
+    \ x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/dynamic_lichao.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<ll,\
-    \ 0, 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root =\
-    \ X.new_root();\n  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a, b});\n\
-    \  }\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n      root\
-    \ = X.add_line(root, {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n     \
-    \ print(X.query(root, x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \n\nstruct F {\n  using value_type = ll; // operator() \u306E\u623B\u308A\u5024\
+    \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  const int LIM = 1'000'000'000;\n  Dynamic_LiChao_Tree<F, 0,\
+    \ 400'000, 1> X(-LIM, LIM + 1);\n  using np = decltype(X)::np;\n  np root = X.new_root();\n\
+    \  FOR(N) {\n    LL(a, b);\n    root = X.add_line(root, {a, b});\n  }\n  FOR(Q)\
+    \ {\n    INT(t);\n    if (t == 0) {\n      LL(a, b);\n      root = X.add_line(root,\
+    \ {a, b});\n    }\n    if (t == 1) {\n      INT(x);\n      print(X.query(root,\
+    \ x).fi);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -272,7 +274,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
   requiredBy: []
-  timestamp: '2024-06-11 22:40:57+09:00'
+  timestamp: '2024-06-17 07:15:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
