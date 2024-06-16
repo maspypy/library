@@ -26,7 +26,7 @@ void solve() {
     vc<int> mul = A;
     mul.eb(1);
     assert(len(G.edges) == len(mul));
-    mint x = BEST_theorem<mint>(G, mul);
+    mint x = BEST_theorem<mint, 0>(G, mul);
     for (auto& a: A) x *= fact_inv<mint>(a);
     // 辺ラベルの対称性を除く
     ANS += x;
