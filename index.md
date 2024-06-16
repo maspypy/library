@@ -193,7 +193,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
     - icon: ':heavy_check_mark:'
@@ -1354,7 +1354,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
   - name: new_poly
@@ -1498,7 +1498,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2337,7 +2337,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min.test.cpp
       title: test/library_checker/datastructure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
       title: test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
     - icon: ':heavy_check_mark:'
