@@ -137,6 +137,7 @@
 "test/library_checker/datastructure/rectangle_sum_sweep.test.cpp": "2024-05-24 21:01:28 +0900",
 "test/library_checker/datastructure/rectangle_sum_wm.test.cpp": "2024-05-24 21:01:28 +0900",
 "test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp": "2024-05-24 21:01:28 +0900",
+"test/library_checker/datastructure/segment_add_get_min.test.cpp": "2024-06-17 07:37:54 +0900",
 "test/library_checker/datastructure/segment_add_get_min_2.test.cpp": "2024-05-24 21:01:28 +0900",
 "test/library_checker/datastructure/set_xor_min.test.cpp": "2024-05-24 21:01:28 +0900",
 "test/library_checker/datastructure/sort_segtree.test.cpp": "2024-05-24 21:01:28 +0900",
