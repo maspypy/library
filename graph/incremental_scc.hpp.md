@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -18,6 +18,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/blog/entry/91608
+    - https://codeforces.com/contest/1989/problem/F
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
     \  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool\
     \ directed = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
@@ -103,21 +104,22 @@ data:
     \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
     \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
     \ DAG;\n}\n#line 2 \"graph/incremental_scc.hpp\"\n\n// https://codeforces.com/blog/entry/91608\n\
-    // \u30B0\u30E9\u30D5\u306E\u8FBA\u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\
-    \u8DB3\u3057\u3066\u3044\u304F.\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\
-    \u308C\u304C\u30B5\u30A4\u30AF\u30EB\u306B\u542B\u307E\u308C\u308B\u3088\u3046\
-    \u306A\u6642\u523B\u306E\u6700\u5C0F\u5024\u3092\u8FD4\u3059.\n// \u3053\u308C\
-    \u3067 mst \u3092\u4F5C\u3063\u3066 path max query \u3059\u308C\u3070 2 \u70B9\
-    \u304C\u540C\u3058 scc \u306B\u306A\u308B\u6642\u523B\u3082\u6C42\u307E\u308B\n\
-    template <typename GT>\nvc<int> incremental_scc(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  int N = G.N, M = G.M;\n  vc<int> merge_time(M, infty<int>);\n  vc<tuple<int,\
-    \ int, int>> dat;\n  FOR(i, M) {\n    auto& e = G.edges[i];\n    dat.eb(i, e.frm,\
-    \ e.to);\n  }\n\n  vc<int> new_idx(N, -1);\n  // L \u6642\u70B9\u3067\u306F\u30B5\
-    \u30A4\u30AF\u30EB\u306B\u306F\u542B\u307E\u308C\u305A, R \u6642\u70B9\u3067\u306F\
-    \u542B\u307E\u308C\u308B\n  auto dfs\n      = [&](auto& dfs, vc<tuple<int, int,\
-    \ int>>& dat, int L, int R) -> void {\n    if (dat.empty() || R == L + 1) return;\n\
-    \    int M = (L + R) / 2;\n    int n = 0;\n    for (auto& [i, a, b]: dat) {\n\
-    \      if (new_idx[a] == -1) new_idx[a] = n++;\n      if (new_idx[b] == -1) new_idx[b]\
+    // https://codeforces.com/contest/1989/problem/F\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
+    \u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\u8DB3\u3057\u3066\u3044\u304F\
+    .\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\u308C\u304C\u30B5\u30A4\u30AF\
+    \u30EB\u306B\u542B\u307E\u308C\u308B\u3088\u3046\u306A\u6642\u523B\u306E\u6700\
+    \u5C0F\u5024 or infty \u3092\u8FD4\u3059.\n// \u3053\u308C\u3067 mst \u3092\u4F5C\
+    \u3063\u3066 path max query \u3059\u308C\u3070 2 \u70B9\u304C\u540C\u3058 scc\
+    \ \u306B\u306A\u308B\u6642\u523B\u3082\u6C42\u307E\u308B\ntemplate <typename GT>\n\
+    vc<int> incremental_scc(GT& G) {\n  static_assert(GT::is_directed);\n  int N =\
+    \ G.N, M = G.M;\n  vc<int> merge_time(M, infty<int>);\n  vc<tuple<int, int, int>>\
+    \ dat;\n  FOR(i, M) {\n    auto& e = G.edges[i];\n    dat.eb(i, e.frm, e.to);\n\
+    \  }\n\n  vc<int> new_idx(N, -1);\n  // L \u6642\u70B9\u3067\u306F\u30B5\u30A4\
+    \u30AF\u30EB\u306B\u306F\u542B\u307E\u308C\u305A, R \u6642\u70B9\u3067\u306F\u542B\
+    \u307E\u308C\u308B\n  auto dfs\n      = [&](auto& dfs, vc<tuple<int, int, int>>&\
+    \ dat, int L, int R) -> void {\n    if (dat.empty() || R == L + 1) return;\n \
+    \   int M = (L + R) / 2;\n    int n = 0;\n    for (auto& [i, a, b]: dat) {\n \
+    \     if (new_idx[a] == -1) new_idx[a] = n++;\n      if (new_idx[b] == -1) new_idx[b]\
     \ = n++;\n    }\n\n    Graph<int, 1> G(n);\n    for (auto& [i, a, b]: dat) {\n\
     \      if (i < M) G.add(new_idx[a], new_idx[b]);\n    }\n    G.build();\n    auto\
     \ [nc, comp] = strongly_connected_component(G);\n    vc<tuple<int, int, int>>\
@@ -129,21 +131,22 @@ data:
     \ dat1, L, M), dfs(dfs, dat2, M, R);\n  };\n  dfs(dfs, dat, 0, M + 1);\n  return\
     \ merge_time;\n}\n"
   code: "#include \"graph/strongly_connected_component.hpp\"\n\n// https://codeforces.com/blog/entry/91608\n\
-    // \u30B0\u30E9\u30D5\u306E\u8FBA\u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\
-    \u8DB3\u3057\u3066\u3044\u304F.\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\
-    \u308C\u304C\u30B5\u30A4\u30AF\u30EB\u306B\u542B\u307E\u308C\u308B\u3088\u3046\
-    \u306A\u6642\u523B\u306E\u6700\u5C0F\u5024\u3092\u8FD4\u3059.\n// \u3053\u308C\
-    \u3067 mst \u3092\u4F5C\u3063\u3066 path max query \u3059\u308C\u3070 2 \u70B9\
-    \u304C\u540C\u3058 scc \u306B\u306A\u308B\u6642\u523B\u3082\u6C42\u307E\u308B\n\
-    template <typename GT>\nvc<int> incremental_scc(GT& G) {\n  static_assert(GT::is_directed);\n\
-    \  int N = G.N, M = G.M;\n  vc<int> merge_time(M, infty<int>);\n  vc<tuple<int,\
-    \ int, int>> dat;\n  FOR(i, M) {\n    auto& e = G.edges[i];\n    dat.eb(i, e.frm,\
-    \ e.to);\n  }\n\n  vc<int> new_idx(N, -1);\n  // L \u6642\u70B9\u3067\u306F\u30B5\
-    \u30A4\u30AF\u30EB\u306B\u306F\u542B\u307E\u308C\u305A, R \u6642\u70B9\u3067\u306F\
-    \u542B\u307E\u308C\u308B\n  auto dfs\n      = [&](auto& dfs, vc<tuple<int, int,\
-    \ int>>& dat, int L, int R) -> void {\n    if (dat.empty() || R == L + 1) return;\n\
-    \    int M = (L + R) / 2;\n    int n = 0;\n    for (auto& [i, a, b]: dat) {\n\
-    \      if (new_idx[a] == -1) new_idx[a] = n++;\n      if (new_idx[b] == -1) new_idx[b]\
+    // https://codeforces.com/contest/1989/problem/F\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
+    \u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\u8DB3\u3057\u3066\u3044\u304F\
+    .\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\u308C\u304C\u30B5\u30A4\u30AF\
+    \u30EB\u306B\u542B\u307E\u308C\u308B\u3088\u3046\u306A\u6642\u523B\u306E\u6700\
+    \u5C0F\u5024 or infty \u3092\u8FD4\u3059.\n// \u3053\u308C\u3067 mst \u3092\u4F5C\
+    \u3063\u3066 path max query \u3059\u308C\u3070 2 \u70B9\u304C\u540C\u3058 scc\
+    \ \u306B\u306A\u308B\u6642\u523B\u3082\u6C42\u307E\u308B\ntemplate <typename GT>\n\
+    vc<int> incremental_scc(GT& G) {\n  static_assert(GT::is_directed);\n  int N =\
+    \ G.N, M = G.M;\n  vc<int> merge_time(M, infty<int>);\n  vc<tuple<int, int, int>>\
+    \ dat;\n  FOR(i, M) {\n    auto& e = G.edges[i];\n    dat.eb(i, e.frm, e.to);\n\
+    \  }\n\n  vc<int> new_idx(N, -1);\n  // L \u6642\u70B9\u3067\u306F\u30B5\u30A4\
+    \u30AF\u30EB\u306B\u306F\u542B\u307E\u308C\u305A, R \u6642\u70B9\u3067\u306F\u542B\
+    \u307E\u308C\u308B\n  auto dfs\n      = [&](auto& dfs, vc<tuple<int, int, int>>&\
+    \ dat, int L, int R) -> void {\n    if (dat.empty() || R == L + 1) return;\n \
+    \   int M = (L + R) / 2;\n    int n = 0;\n    for (auto& [i, a, b]: dat) {\n \
+    \     if (new_idx[a] == -1) new_idx[a] = n++;\n      if (new_idx[b] == -1) new_idx[b]\
     \ = n++;\n    }\n\n    Graph<int, 1> G(n);\n    for (auto& [i, a, b]: dat) {\n\
     \      if (i < M) G.add(new_idx[a], new_idx[b]);\n    }\n    G.build();\n    auto\
     \ [nc, comp] = strongly_connected_component(G);\n    vc<tuple<int, int, int>>\
@@ -160,7 +163,7 @@ data:
   isVerificationFile: false
   path: graph/incremental_scc.hpp
   requiredBy: []
-  timestamp: '2024-05-29 22:32:29+09:00'
+  timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/incremental_scc.test.cpp

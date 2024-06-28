@@ -235,8 +235,8 @@ data:
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy:
-  - string/lex_max_suffix_for_all_prefix.hpp
   - string/sort_substrings.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
   - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
   timestamp: '2024-05-03 01:43:19+09:00'
@@ -244,14 +244,14 @@ data:
   verifiedWith:
   - test_atcoder/arc151_e.test.cpp
   - test_atcoder/abc240ex.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/yukicoder/2361.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
   - test/library_checker/string/suffix_array.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/lex_minmax_suffix.test.cpp
   - test/mytest/longest_common_substr.test.cpp
-  - test/yukicoder/2361.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

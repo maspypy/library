@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -433,10 +433,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc253h.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/math/power_projection_of_sps.test.cpp
-  - test/library_checker/math/powproj_sps.test.cpp
   - graph/chromatic_polynomial.test.cpp
+  - test/library_checker/math/powproj_sps.test.cpp
+  - test/library_checker/math/power_projection_of_sps.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
 documentation_of: setfunc/power_projection_of_sps.hpp
 layout: document
 redirect_from:

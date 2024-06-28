@@ -269,15 +269,15 @@ data:
   timestamp: '2024-05-03 03:33:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc324g.test.cpp
   - test_atcoder/abc127f_1.test.cpp
+  - test_atcoder/abc324g.test.cpp
+  - test/yukicoder/2065.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/1332.test.cpp
+  - test/yukicoder/919.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/string/prefix_substring_lcs.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/919.test.cpp
-  - test/yukicoder/1332.test.cpp
-  - test/yukicoder/2065.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix.hpp
 layout: document
 redirect_from:

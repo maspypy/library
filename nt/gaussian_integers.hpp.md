@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -271,11 +271,11 @@ data:
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/gaussian_integers.test.cpp
-  - test/mytest/four_square.test.cpp
-  - test/mytest/three_square.test.cpp
-  - test/mytest/three_triangular.test.cpp
   - test/yukicoder/1593.test.cpp
+  - test/library_checker/math/gaussian_integers.test.cpp
+  - test/mytest/three_square.test.cpp
+  - test/mytest/four_square.test.cpp
+  - test/mytest/three_triangular.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

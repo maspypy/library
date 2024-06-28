@@ -127,8 +127,8 @@ data:
   timestamp: '2024-04-04 05:35:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
 layout: document
 redirect_from:

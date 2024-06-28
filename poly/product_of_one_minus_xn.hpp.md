@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -427,8 +427,8 @@ data:
   timestamp: '2024-06-11 19:14:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc267h.test.cpp
   - test_atcoder/abc331g.test.cpp
+  - test_atcoder/abc267h.test.cpp
   - test/mytest/product_of_one_pm_xn.test.cpp
 documentation_of: poly/product_of_one_minus_xn.hpp
 layout: document

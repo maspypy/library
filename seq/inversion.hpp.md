@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   _extendedRequiredBy: []
@@ -172,10 +172,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc190f.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
   - test/yukicoder/694.test.cpp
   - test/yukicoder/1838.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

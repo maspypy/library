@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -560,8 +560,8 @@ data:
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
-  - test/yukicoder/1080_2.test.cpp
   - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1080_2.test.cpp
 documentation_of: poly/from_log_differentiation.hpp
 layout: document
 redirect_from:

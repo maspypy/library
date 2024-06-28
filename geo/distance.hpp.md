@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
@@ -15,18 +15,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/cross_point.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
     \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+(Point\
+    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const\
+    \ Point p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
+    \ Point p) {\n    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point\
     \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
     \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
@@ -38,9 +40,9 @@ data:
     \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
     \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
-    \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>&\
-    \ p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
-    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>\
+    \ &p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>\
+    \ &p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
     \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
     \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
@@ -72,7 +74,7 @@ data:
     \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
     \ <= r * r;\n  }\n};\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>>\
     \ points;\n  T a;\n\n  template <typename A, typename B>\n  Polygon(vc<pair<A,\
-    \ B>> pairs) {\n    for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));\n  \
+    \ B>> pairs) {\n    for (auto &&[a, b]: pairs) points.eb(Point<T>(a, b));\n  \
     \  build();\n  }\n  Polygon(vc<Point<T>> points) : points(points) { build(); }\n\
     \n  int size() { return len(points); }\n\n  template <typename REAL>\n  REAL area()\
     \ {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
@@ -162,12 +164,12 @@ data:
   isVerificationFile: false
   path: geo/distance.hpp
   requiredBy: []
-  timestamp: '2024-06-08 04:37:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-06-28 09:49:29+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc314.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
   - test/aoj/CGL_7_B.test.cpp
+  - test/aoj/CGL_2_D.test.cpp
 documentation_of: geo/distance.hpp
 layout: document
 redirect_from:

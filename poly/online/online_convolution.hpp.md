@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -251,13 +251,13 @@ data:
   - test_atcoder/abc315h.test.cpp
   - test_atcoder/abc230h.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
+  - test/mytest/online_division.test.cpp
+  - test/mytest/online_inv.test.cpp
   - test/mytest/online_log.test.cpp
   - test/mytest/online_exp.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/online_inv.test.cpp
   - test/mytest/simple_perm.test.cpp
+  - test/mytest/online_pow.test.cpp
   - test/mytest/count_unlabeled_tree.test.cpp
-  - test/mytest/online_division.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document
 redirect_from:

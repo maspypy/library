@@ -77,9 +77,9 @@ data:
   timestamp: '2024-06-06 03:38:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc312f.test.cpp
   - test_atcoder/abc281e.test.cpp
   - test_atcoder/abc314g.test.cpp
-  - test_atcoder/abc312f.test.cpp
   - test/yukicoder/2654.test.cpp
 documentation_of: ds/slide_split_sum.hpp
 layout: document

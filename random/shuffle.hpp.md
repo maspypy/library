@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':heavy_check_mark:'
@@ -69,12 +69,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc151f.test.cpp
     title: test_atcoder/abc151f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -94,30 +94,30 @@ data:
   path: random/shuffle.hpp
   requiredBy:
   - random/random_graph.hpp
-  - geo/closest_pair.hpp
   - geo/minimum_enclosing_circle.hpp
+  - geo/closest_pair.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc151f.test.cpp
+  - test/aoj/CGL_5_A.test.cpp
   - test/library_checker/geometry/closest_pair_dc.test.cpp
   - test/library_checker/geometry/closest_pair.test.cpp
-  - test/mytest/find_C4.test.cpp
-  - test/mytest/count_clique.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
-  - test/mytest/count_indep_set.test.cpp
-  - test/mytest/count_P3P4P5.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/st_numbering.test.cpp
-  - test/mytest/count_K4.test.cpp
-  - test/mytest/matching_ve.test.cpp
-  - test/mytest/remove_one_vertex.test.cpp
-  - test/mytest/find_cycle_minimum.test.cpp
-  - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/find_even_cycle.test.cpp
+  - test/mytest/st_numbering.test.cpp
+  - test/mytest/remove_one_vertex.test.cpp
+  - test/mytest/count_indep_set.test.cpp
+  - test/mytest/find_C4.test.cpp
+  - test/mytest/find_cycle_minimum.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/mytest/remove_one_edge.test.cpp
+  - test/mytest/count_clique.test.cpp
+  - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/count_K4.test.cpp
+  - test/mytest/count_P3P4P5.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/incremental_scc.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
 documentation_of: random/shuffle.hpp
 layout: document
 redirect_from:

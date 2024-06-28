@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -412,9 +412,9 @@ data:
   timestamp: '2024-06-11 19:14:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/bernoulli.test.cpp
-  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1357.test.cpp
+  - test/yukicoder/2580.test.cpp
+  - test/library_checker/math/bernoulli.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:

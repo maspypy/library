@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -238,8 +238,8 @@ data:
   - test_atcoder/abc335g.test.cpp
   - test_atcoder/abc212g.test.cpp
   - test/yukicoder/1728.test.cpp
-  - test/yukicoder/2578.test.cpp
   - test/yukicoder/2264.test.cpp
+  - test/yukicoder/2578.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:
