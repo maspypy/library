@@ -8,6 +8,7 @@ struct Online_Exp {
   Online_Convolution<mint> X;
 
   mint query(int i, mint f_i) {
+    assert(i == len(F));
     if (i == 0) {
       assert(f_i == mint(0));
       F.eb(mint(1));
