@@ -11,6 +11,14 @@ struct Point {
   template <typename A, typename B>
   Point(pair<A, B> p) : x(p.fi), y(p.se) {}
 
+  Point operator+=(const Point p) {
+    x += p.x, y += p.y;
+    return *this;
+  }
+  Point operator-=(const Point p) {
+    x -= p.x, y -= p.y;
+    return *this;
+  }
   Point operator+(Point p) const { return {x + p.x, y + p.y}; }
   Point operator-(Point p) const { return {x - p.x, y - p.y}; }
   bool operator==(Point p) const { return x == p.x && y == p.y; }
@@ -38,11 +46,11 @@ struct Point {
 
 #ifdef FASTIO
 template <typename T>
-void rd(Point<T>& p) {
+void rd(Point<T> &p) {
   fastio::rd(p.x), fastio::rd(p.y);
 }
 template <typename T>
-void wt(Point<T>& p) {
+void wt(Point<T> &p) {
   fastio::wt(p.x);
   fastio::wt(' ');
   fastio::wt(p.y);
@@ -137,7 +145,7 @@ struct Polygon {
 
   template <typename A, typename B>
   Polygon(vc<pair<A, B>> pairs) {
-    for (auto&& [a, b]: pairs) points.eb(Point<T>(a, b));
+    for (auto &&[a, b]: pairs) points.eb(Point<T>(a, b));
     build();
   }
   Polygon(vc<Point<T>> points) : points(points) { build(); }
