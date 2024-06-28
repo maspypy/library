@@ -1,8 +1,9 @@
 #include "graph/strongly_connected_component.hpp"
 
 // https://codeforces.com/blog/entry/91608
+// https://codeforces.com/contest/1989/problem/F
 // グラフの辺番号 0, 1, 2, ... 順に辺を足していく.
-// 各辺 i に対してそれがサイクルに含まれるような時刻の最小値を返す.
+// 各辺 i に対してそれがサイクルに含まれるような時刻の最小値 or infty を返す.
 // これで mst を作って path max query すれば 2 点が同じ scc になる時刻も求まる
 template <typename GT>
 vc<int> incremental_scc(GT& G) {
