@@ -177,17 +177,17 @@ data:
     \ i];\n    return h[p++];\n  }\n};\n#line 3 \"poly/online/online_exp.hpp\"\n\n\
     // query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\
     \ntemplate <typename mint>\nstruct Online_Exp {\n  vc<mint> F;\n  Online_Convolution<mint>\
-    \ X;\n\n  mint query(int i, mint f_i) {\n    if (i == 0) {\n      assert(f_i ==\
-    \ mint(0));\n      F.eb(mint(1));\n      return mint(1);\n    }\n    mint x =\
-    \ inv<mint>(i) * X.query(i - 1, F[i - 1], f_i * mint(i));\n    F.eb(x);\n    return\
-    \ x;\n  }\n};\n"
+    \ X;\n\n  mint query(int i, mint f_i) {\n    assert(i == len(F));\n    if (i ==\
+    \ 0) {\n      assert(f_i == mint(0));\n      F.eb(mint(1));\n      return mint(1);\n\
+    \    }\n    mint x = inv<mint>(i) * X.query(i - 1, F[i - 1], f_i * mint(i));\n\
+    \    F.eb(x);\n    return x;\n  }\n};\n"
   code: "#pragma once\n#include \"poly/online/online_convolution.hpp\"\n\n// query(i)\uFF1A\
     f[i] \u3092\u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\ntemplate <typename\
     \ mint>\nstruct Online_Exp {\n  vc<mint> F;\n  Online_Convolution<mint> X;\n\n\
-    \  mint query(int i, mint f_i) {\n    if (i == 0) {\n      assert(f_i == mint(0));\n\
-    \      F.eb(mint(1));\n      return mint(1);\n    }\n    mint x = inv<mint>(i)\
-    \ * X.query(i - 1, F[i - 1], f_i * mint(i));\n    F.eb(x);\n    return x;\n  }\n\
-    };"
+    \  mint query(int i, mint f_i) {\n    assert(i == len(F));\n    if (i == 0) {\n\
+    \      assert(f_i == mint(0));\n      F.eb(mint(1));\n      return mint(1);\n\
+    \    }\n    mint x = inv<mint>(i) * X.query(i - 1, F[i - 1], f_i * mint(i));\n\
+    \    F.eb(x);\n    return x;\n  }\n};"
   dependsOn:
   - poly/online/online_convolution.hpp
   - poly/ntt.hpp
@@ -197,7 +197,7 @@ data:
   path: poly/online/online_exp.hpp
   requiredBy:
   - graph/count/count_unlabeled_tree.hpp
-  timestamp: '2023-12-29 16:32:29+09:00'
+  timestamp: '2024-06-29 08:14:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/online_exp.test.cpp

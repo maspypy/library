@@ -10,6 +10,9 @@ data:
     path: test/mytest/online_square.test.cpp
     title: test/mytest/online_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2801.test.cpp
+    title: test/yukicoder/2801.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc315h2.test.cpp
     title: test_atcoder/abc315h2.test.cpp
   _isVerificationFailed: false
@@ -108,6 +111,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc315h2.test.cpp
+  - test/yukicoder/2801.test.cpp
   - test/mytest/online_square.test.cpp
 documentation_of: poly/online/online_square.hpp
 layout: document
