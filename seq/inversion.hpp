@@ -51,3 +51,17 @@ vvc<int> all_range_inversion(vc<T>& A) {
   }
   return dp;
 }
+
+template <typename T>
+ll inversion_between(vc<T> A, vc<T> B) {
+  int N = len(A);
+  map<T, vc<int>> MP;
+  FOR(i, N) MP[B[i]].eb(i);
+  vc<int> TO(N);
+  FOR_R(i, N) {
+    auto& I = MP[A[i]];
+    if (I.empty()) return -1;
+    TO[i] = POP(I);
+  }
+  return inversion(TO);
+}
