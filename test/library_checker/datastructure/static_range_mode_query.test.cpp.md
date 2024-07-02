@@ -251,9 +251,10 @@ data:
     \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
     \ = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0]\
     \ etc.\nstruct To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n\n  To_Small_Key(u32\
-    \ n = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int set_key(u64\
-    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
-    \ query(u64 x) { return MP.get(x, -1); }\n};\n#line 8 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\
+    \ n = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int size()\
+    \ { return MP.size(); }\n\n  int set_key(u64 x) {\n    if (!MP.count(x)) MP[x]\
+    \ = kind++;\n    return MP[x];\n  }\n\n  int query(u64 x) { return MP.get(x, -1);\
+    \ }\n};\n#line 8 \"test/library_checker/datastructure/static_range_mode_query.test.cpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  VEC(int, A, N);\n  vc<int> key = A;\n  UNIQUE(key);\n\
     \  for (auto& x: A) x = LB(key, x);\n\n  Rollback_Mo mo;\n  FOR(Q) {\n    LL(L,\
     \ R);\n    mo.add(L, R);\n  }\n  vc<pair<int, int>> ANS(Q);\n\n  vc<int> CNT(N);\n\
@@ -294,7 +295,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_mode_query.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-07-03 07:03:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_mode_query.test.cpp

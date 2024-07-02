@@ -110,13 +110,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
+  - icon: ':warning:'
+    path: other/sliding_puzzle_solve.hpp
+    title: other/sliding_puzzle_solve.hpp
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -444,7 +447,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
   - icon: ':x:'
@@ -504,6 +507,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/add.hpp
   requiredBy:
+  - other/sliding_puzzle_solve.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp

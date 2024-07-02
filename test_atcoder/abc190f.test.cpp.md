@@ -16,14 +16,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc190/tasks/abc190_f
@@ -312,10 +312,14 @@ data:
     \ all_range_inversion(vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N +\
     \ 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] +\
     \ dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n\
-    \  return dp;\n}\n#line 5 \"test_atcoder/abc190f.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate<int, 1>(A);\n  for (auto&&\
-    \ x: ANS) print(x);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(vc<T> A, vc<T>\
+    \ B) {\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n\
+    \  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty())\
+    \ return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n}\n#line 5 \"\
+    test_atcoder/abc190f.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n\
+    \  vi ANS = inversion_rotate<int, 1>(A);\n  for (auto&& x: ANS) print(x);\n}\n\
+    \nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
+    \  FOR(T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc190/tasks/abc190_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/inversion.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vi ANS = inversion_rotate<int,\
@@ -332,8 +336,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc190f.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-03 07:03:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc190f.test.cpp
 layout: document

@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: other/sliding_puzzle_solve.hpp
+    title: other/sliding_puzzle_solve.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2108.test.cpp
@@ -21,7 +24,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: linalg/transpose.hpp
-  requiredBy: []
+  requiredBy:
+  - other/sliding_puzzle_solve.hpp
   timestamp: '2023-10-24 15:46:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

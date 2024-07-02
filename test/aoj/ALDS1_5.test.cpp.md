@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -312,9 +312,13 @@ data:
     \ all_range_inversion(vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N +\
     \ 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] +\
     \ dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n\
-    \  return dp;\n}\n#line 7 \"test/aoj/ALDS1_5.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
-    \  VEC(ll, A, N);\n  ll ANS = inversion<ll>(A);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(vc<T> A, vc<T>\
+    \ B) {\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n\
+    \  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty())\
+    \ return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n}\n#line 7 \"\
+    test/aoj/ALDS1_5.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll\
+    \ ANS = inversion<ll>(A);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_5_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"seq/inversion.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  ll ANS = inversion<ll>(A);\n\
@@ -329,7 +333,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_5.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-07-03 07:03:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_5.test.cpp

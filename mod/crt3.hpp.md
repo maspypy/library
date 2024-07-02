@@ -179,6 +179,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':warning:'
+    path: poly/online/online_convolution_garner.hpp
+    title: poly/online/online_convolution_garner.hpp
+  - icon: ':warning:'
+    path: poly/online/online_exp_garner.hpp
+    title: poly/online/online_exp_garner.hpp
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
@@ -1001,6 +1007,8 @@ data:
   - poly/composition.hpp
   - poly/from_log_differentiation.hpp
   - poly/composition_f_x_plus_1x.hpp
+  - poly/online/online_exp_garner.hpp
+  - poly/online/online_convolution_garner.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/fps_inv_2d.hpp
   - poly/sum_of_power_of_roots.hpp

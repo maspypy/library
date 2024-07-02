@@ -43,6 +43,9 @@ data:
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/incremental_scc.test.cpp
+    title: test/library_checker/graph/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -226,6 +229,7 @@ data:
   - test/library_checker/math/twosat.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/incremental_scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/tutte.test.cpp

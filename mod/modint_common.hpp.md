@@ -203,12 +203,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
+  - icon: ':warning:'
+    path: poly/online/online_convolution_garner.hpp
+    title: poly/online/online_convolution_garner.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
+  - icon: ':warning:'
+    path: poly/online/online_exp_garner.hpp
+    title: poly/online/online_exp_garner.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
@@ -483,6 +489,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/enumerate_cliques.test.cpp
     title: test/library_checker/graph/enumerate_cliques.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/incremental_scc.test.cpp
+    title: test/library_checker/graph/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/bernoulli.test.cpp
     title: test/library_checker/math/bernoulli.test.cpp
@@ -1544,9 +1553,11 @@ data:
   - poly/online/online_log.hpp
   - poly/online/online_inv.hpp
   - poly/online/online_division.hpp
+  - poly/online/online_exp_garner.hpp
   - poly/online/online_exp.hpp
   - poly/online/online_pow.hpp
   - poly/online/online_convolution.hpp
+  - poly/online/online_convolution_garner.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/fps_inv_2d.hpp
   - poly/sum_of_power_of_roots.hpp
@@ -1793,6 +1804,7 @@ data:
   - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/incremental_scc.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/log_of_fps_sparse.test.cpp

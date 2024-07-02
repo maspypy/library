@@ -185,12 +185,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
+  - icon: ':warning:'
+    path: poly/online/online_convolution_garner.hpp
+    title: poly/online/online_convolution_garner.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
+  - icon: ':warning:'
+    path: poly/online/online_exp_garner.hpp
+    title: poly/online/online_exp_garner.hpp
   - icon: ':heavy_check_mark:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
@@ -1109,10 +1115,12 @@ data:
   - poly/online/online_log.hpp
   - poly/online/online_inv.hpp
   - poly/online/online_division.hpp
+  - poly/online/online_exp_garner.hpp
   - poly/online/online_exp.hpp
   - poly/online/online_pow.hpp
   - poly/online/online_square.hpp
   - poly/online/online_convolution.hpp
+  - poly/online/online_convolution_garner.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/fps_inv_2d.hpp
   - poly/sum_of_power_of_roots.hpp

@@ -112,6 +112,9 @@ data:
     path: test/library_checker/graph/eulerwalk_ud.test.cpp
     title: test/library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/graph/incremental_scc.test.cpp
+    title: test/library_checker/graph/incremental_scc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/manhattan_mst.test.cpp
     title: test/library_checker/graph/manhattan_mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -369,6 +372,7 @@ data:
   - test/library_checker/graph/complement_graph_unionfind.test.cpp
   - test/library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/library_checker/graph/eulerwalk_ud.test.cpp
+  - test/library_checker/graph/incremental_scc.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
   - test/mytest/find_even_cycle.test.cpp

@@ -1,15 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: ds/removable_queue.hpp
-    title: ds/removable_queue.hpp
-  - icon: ':question:'
-    path: ds/slide_split_sum.hpp
-    title: ds/slide_split_sum.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/unionfind/unionfind.hpp
+    title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/incremental_scc.hpp
+    title: graph/incremental_scc.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/strongly_connected_component.hpp
+    title: graph/strongly_connected_component.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -23,12 +32,13 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/2654
+    PROBLEM: https://judge.yosupo.jp/problem/incremental_scc
     links:
-    - https://yukicoder.me/problems/no/2654
-  bundledCode: "#line 1 \"test/yukicoder/2654.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/2654\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    - https://judge.yosupo.jp/problem/incremental_scc
+  bundledCode: "#line 1 \"test/library_checker/graph/incremental_scc.test.cpp\"\n\
+    #define PROBLEM \"https://judge.yosupo.jp/problem/incremental_scc\"\n#line 1 \"\
+    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
+    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
@@ -198,36 +208,81 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 4 \"test/yukicoder/2654.test.cpp\"\n\n#line 2 \"ds/removable_queue.hpp\"\n\n\
-    template <typename QUE_TYPE>\nstruct Removable_Queue {\n  using QUE = QUE_TYPE;\n\
-    \  using T = typename QUE::value_type;\n\n  QUE que, rm_que;\n\n  Removable_Queue()\
-    \ {}\n  Removable_Queue(vc<T>& dat) : que(all(dat)) {}\n\n  void push(T x) { que.push(x);\
-    \ }\n  int size() { return len(que) - len(rm_que); }\n  bool empty() { return\
-    \ size() == 0; }\n\n  T pop() {\n    refresh();\n    return POP(que);\n  }\n \
-    \ T top() {\n    refresh();\n    return que.top();\n  }\n\n  void remove(T x)\
-    \ { rm_que.push(x); }\n\nprivate:\n  void refresh() {\n    while (len(rm_que)\
-    \ && rm_que.top() == que.top()) {\n      rm_que.pop(), que.pop();\n    }\n  }\n\
-    };\n#line 2 \"ds/slide_split_sum.hpp\"\n\n/*\n\u30FB\u591A\u91CD\u96C6\u5408\u3092\
-    \u6271\u3046\n\u30FB[0,k) \u756A\u76EE\u3068 [k,N) \u756A\u76EE\u306E sum \u304C\
-    \u3068\u308C\u308B\n\u30FBO(k \u306E\u5909\u5316\u91CF\u306E\u7DCF\u548C x log\
-    \ N)\n*/\ntemplate <typename T, typename SUM_T = T>\nstruct Slide_Split_Sum {\n\
-    \  Removable_Queue<pq<T>> ql;\n  Removable_Queue<pqg<T>> qr;\n  SUM_T sl, sr;\n\
-    \  Slide_Split_Sum() : sl(0), sr(0) {}\n\n  inline int size() { return len(ql)\
-    \ + len(qr); }\n  void clear() {\n    ql = Removable_Queue<pq<T>>();\n    qr =\
-    \ Removable_Queue<pqg<T>>();\n    sl = sr = 0;\n  }\n  void insert(T x) { (x <=\
-    \ lmax() ? push_l(x) : push_r(x)); }\n  void erase(T x) { (x <= lmax() ? erase_l(x)\
-    \ : erase_r(x)); }\n  pair<SUM_T, SUM_T> query(int k) {\n    assert(0 <= k &&\
-    \ k <= size());\n    while (len(ql) < k) { push_l(pop_r()); }\n    while (len(ql)\
-    \ > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  // \u4E0B\u4F4D k \u500B\
-    \n  SUM_T query_l(int k) { return query(k).fi; }\n  // \u4E0A\u4F4D k \u500B\n\
-    \  SUM_T query_r(int k) { return query(size() - k).se; }\n\nprivate:\n  inline\
-    \ T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T rmin()\
-    \ { return (qr.empty() ? infty<T> : qr.top()); }\n  inline T pop_l() {\n    T\
-    \ x = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline T pop_r() {\n    T\
-    \ x = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline void push_l(T x) {\
-    \ ql.push(x), sl += x; }\n  inline void push_r(T x) { qr.push(x), sr += x; }\n\
-    \  inline void erase_l(T x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T\
-    \ x) { qr.remove(x), sr -= x; }\n};\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename\
+    \ 4 \"test/library_checker/graph/incremental_scc.test.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
+    \ large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int\
+    \ mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
+    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
+    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
+    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
+    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
+    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
+    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
+    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
+    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
+    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
+    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
+    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename\
     \ T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
     \ T = int, bool directed = false>\nstruct Graph {\n  static constexpr bool is_directed\
     \ = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n\
@@ -295,73 +350,97 @@ data:
     \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 7 \"test/yukicoder/2654.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  ++N;\n  VEC(ll, A, N);\n  Graph<int, 0> G(N);\n\
-    \  G.read_tree(0, 0);\n\n  Removable_Queue<pqg<ll>> que1;\n  Removable_Queue<pq<ll>>\
-    \ que2;\n\n  Slide_Split_Sum<ll> X;\n\n  auto F = [&]() -> ll {\n    ll n = len(X);\n\
-    \    if (n <= 2) return -1;\n    ll mi = que1.top();\n    ll ma = que2.top();\n\
-    \n    ll ANS = infty<ll>;\n\n    if (n % 2 == 0) {\n      ll k = (n - 2) / 2;\n\
-    \      {\n        ll a = X.query_l(k);\n        ll b = X.query_l(k + 1) - a;\n\
-    \        ll c = X.query_r(k + 1) - ma;\n        ll ans = (b * k - a) + (c - b\
-    \ * k);\n        if (b == ma) ++ans;\n        chmin(ANS, ans);\n      }\n    \
-    \  {\n        ll a = X.query_l(k + 1) - mi;\n        ll c = X.query_r(k);\n  \
-    \      ll b = X.query_r(k + 1) - c;\n        ll ans = (b * k - a) + (c - b * k);\n\
-    \        if (b == mi) ++ans;\n        chmin(ANS, ans);\n      }\n      return\
-    \ ANS;\n    }\n    assert(n % 2 == 1);\n    ll k = (n - 3) / 2;\n    {\n     \
-    \ ll a = X.query_l(k + 1) - mi;\n      ll c = X.query_r(k + 1);\n      ll b =\
-    \ X.query_r(k + 2) - c;\n      ll ans = (b * k - a) + (c - b * (k + 1));\n   \
-    \   if (b == mi) ++ans;\n      chmin(ANS, ans);\n    }\n    {\n      ll a = X.query_l(k);\n\
-    \      ll b = X.query_l(k + 1) - a;\n      ll c = X.query_r(k + 2) - ma;\n   \
-    \   ll ans = (b * k - a) + (c - b * (k + 1));\n      if (b == ma) ++ans;\n   \
-    \   chmin(ANS, ans);\n    }\n    return ANS;\n  };\n\n  vi ANS(N);\n  auto dfs\
-    \ = [&](auto& dfs, int v, int p) -> void {\n    X.insert(A[v]);\n    que1.push(A[v]);\n\
-    \    que2.push(A[v]);\n    for (auto& e: G[v]) {\n      if (e.to == p) continue;\n\
-    \      dfs(dfs, e.to, v);\n    }\n    ANS[v] = F();\n    X.erase(A[v]);\n    que1.remove(A[v]);\n\
-    \    que2.remove(A[v]);\n  };\n  dfs(dfs, 0, -1);\n\n  FOR(v, 1, N) { print(ANS[v]);\
-    \ }\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/2654\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n\n#include \"ds/slide_split_sum.hpp\"\n#include \"\
-    graph/base.hpp\"\n\nvoid solve() {\n  LL(N);\n  ++N;\n  VEC(ll, A, N);\n  Graph<int,\
-    \ 0> G(N);\n  G.read_tree(0, 0);\n\n  Removable_Queue<pqg<ll>> que1;\n  Removable_Queue<pq<ll>>\
-    \ que2;\n\n  Slide_Split_Sum<ll> X;\n\n  auto F = [&]() -> ll {\n    ll n = len(X);\n\
-    \    if (n <= 2) return -1;\n    ll mi = que1.top();\n    ll ma = que2.top();\n\
-    \n    ll ANS = infty<ll>;\n\n    if (n % 2 == 0) {\n      ll k = (n - 2) / 2;\n\
-    \      {\n        ll a = X.query_l(k);\n        ll b = X.query_l(k + 1) - a;\n\
-    \        ll c = X.query_r(k + 1) - ma;\n        ll ans = (b * k - a) + (c - b\
-    \ * k);\n        if (b == ma) ++ans;\n        chmin(ANS, ans);\n      }\n    \
-    \  {\n        ll a = X.query_l(k + 1) - mi;\n        ll c = X.query_r(k);\n  \
-    \      ll b = X.query_r(k + 1) - c;\n        ll ans = (b * k - a) + (c - b * k);\n\
-    \        if (b == mi) ++ans;\n        chmin(ANS, ans);\n      }\n      return\
-    \ ANS;\n    }\n    assert(n % 2 == 1);\n    ll k = (n - 3) / 2;\n    {\n     \
-    \ ll a = X.query_l(k + 1) - mi;\n      ll c = X.query_r(k + 1);\n      ll b =\
-    \ X.query_r(k + 2) - c;\n      ll ans = (b * k - a) + (c - b * (k + 1));\n   \
-    \   if (b == mi) ++ans;\n      chmin(ANS, ans);\n    }\n    {\n      ll a = X.query_l(k);\n\
-    \      ll b = X.query_l(k + 1) - a;\n      ll c = X.query_r(k + 2) - ma;\n   \
-    \   ll ans = (b * k - a) + (c - b * (k + 1));\n      if (b == ma) ++ans;\n   \
-    \   chmin(ANS, ans);\n    }\n    return ANS;\n  };\n\n  vi ANS(N);\n  auto dfs\
-    \ = [&](auto& dfs, int v, int p) -> void {\n    X.insert(A[v]);\n    que1.push(A[v]);\n\
-    \    que2.push(A[v]);\n    for (auto& e: G[v]) {\n      if (e.to == p) continue;\n\
-    \      dfs(dfs, e.to, v);\n    }\n    ANS[v] = F();\n    X.erase(A[v]);\n    que1.remove(A[v]);\n\
-    \    que2.remove(A[v]);\n  };\n  dfs(dfs, 0, -1);\n\n  FOR(v, 1, N) { print(ANS[v]);\
-    \ }\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
+    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/strongly_connected_component.hpp\"\
+    \n\ntemplate <typename GT>\npair<int, vc<int>> strongly_connected_component(GT&\
+    \ G) {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  int N\
+    \ = G.N;\n  int C = 0;\n  vc<int> comp(N), low(N), ord(N, -1), path;\n  int now\
+    \ = 0;\n\n  auto dfs = [&](auto& dfs, int v) -> void {\n    low[v] = ord[v] =\
+    \ now++;\n    path.eb(v);\n    for (auto&& [frm, to, cost, id]: G[v]) {\n    \
+    \  if (ord[to] == -1) {\n        dfs(dfs, to), chmin(low[v], low[to]);\n     \
+    \ } else {\n        chmin(low[v], ord[to]);\n      }\n    }\n    if (low[v] ==\
+    \ ord[v]) {\n      while (1) {\n        int u = POP(path);\n        ord[u] = N,\
+    \ comp[u] = C;\n        if (u == v) break;\n      }\n      ++C;\n    }\n  };\n\
+    \  FOR(v, N) {\n    if (ord[v] == -1) dfs(dfs, v);\n  }\n  FOR(v, N) comp[v] =\
+    \ C - 1 - comp[v];\n  return {C, comp};\n}\n\ntemplate <typename GT>\nGraph<int,\
+    \ 1> scc_dag(GT& G, int C, vc<int>& comp) {\n  Graph<int, 1> DAG(C);\n  vvc<int>\
+    \ edges(C);\n  for (auto&& e: G.edges) {\n    int x = comp[e.frm], y = comp[e.to];\n\
+    \    if (x == y) continue;\n    edges[x].eb(y);\n  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n\
+    \    for (auto&& to: edges[c]) DAG.add(c, to);\n  }\n  DAG.build();\n  return\
+    \ DAG;\n}\n#line 2 \"graph/incremental_scc.hpp\"\n\n// https://codeforces.com/blog/entry/91608\n\
+    // https://codeforces.com/contest/1989/problem/F\n// \u30B0\u30E9\u30D5\u306E\u8FBA\
+    \u756A\u53F7 0, 1, 2, ... \u9806\u306B\u8FBA\u3092\u8DB3\u3057\u3066\u3044\u304F\
+    .\n// \u5404\u8FBA i \u306B\u5BFE\u3057\u3066\u305D\u308C\u304C\u30B5\u30A4\u30AF\
+    \u30EB\u306B\u542B\u307E\u308C\u308B\u3088\u3046\u306A\u6642\u523B\u306E\u6700\
+    \u5C0F\u5024 or infty \u3092\u8FD4\u3059.\n// \u3053\u308C\u3067 mst \u3092\u4F5C\
+    \u3063\u3066 path max query \u3059\u308C\u3070 2 \u70B9\u304C\u540C\u3058 scc\
+    \ \u306B\u306A\u308B\u6642\u523B\u3082\u6C42\u307E\u308B\ntemplate <typename GT>\n\
+    vc<int> incremental_scc(GT& G) {\n  static_assert(GT::is_directed);\n  int N =\
+    \ G.N, M = G.M;\n  vc<int> merge_time(M, infty<int>);\n  vc<tuple<int, int, int>>\
+    \ dat;\n  FOR(i, M) {\n    auto& e = G.edges[i];\n    dat.eb(i, e.frm, e.to);\n\
+    \  }\n\n  vc<int> new_idx(N, -1);\n  // L \u6642\u70B9\u3067\u306F\u30B5\u30A4\
+    \u30AF\u30EB\u306B\u306F\u542B\u307E\u308C\u305A, R \u6642\u70B9\u3067\u306F\u542B\
+    \u307E\u308C\u308B\n  auto dfs\n      = [&](auto& dfs, vc<tuple<int, int, int>>&\
+    \ dat, int L, int R) -> void {\n    if (dat.empty() || R == L + 1) return;\n \
+    \   int M = (L + R) / 2;\n    int n = 0;\n    for (auto& [i, a, b]: dat) {\n \
+    \     if (new_idx[a] == -1) new_idx[a] = n++;\n      if (new_idx[b] == -1) new_idx[b]\
+    \ = n++;\n    }\n\n    Graph<int, 1> G(n);\n    for (auto& [i, a, b]: dat) {\n\
+    \      if (i < M) G.add(new_idx[a], new_idx[b]);\n    }\n    G.build();\n    auto\
+    \ [nc, comp] = strongly_connected_component(G);\n    vc<tuple<int, int, int>>\
+    \ dat1, dat2;\n    for (auto [i, a, b]: dat) {\n      a = new_idx[a], b = new_idx[b];\n\
+    \      if (i < M) {\n        if (comp[a] == comp[b]) {\n          chmin(merge_time[i],\
+    \ M), dat1.eb(i, a, b);\n        } else {\n          dat2.eb(i, comp[a], comp[b]);\n\
+    \        }\n      } else {\n        dat2.eb(i, comp[a], comp[b]);\n      }\n \
+    \   }\n    for (auto& [i, a, b]: dat) new_idx[a] = new_idx[b] = -1;\n    dfs(dfs,\
+    \ dat1, L, M), dfs(dfs, dat2, M, R);\n  };\n  dfs(dfs, dat, 0, M + 1);\n  return\
+    \ merge_time;\n}\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n\
+    \  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) {\
+    \ build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 8 \"test/library_checker/graph/incremental_scc.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, M);\n  VEC(mint, X, N);\n\
+    \n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto time = incremental_scc(G);\n\
+    \  vc<vc<int>> IDS(M + 1);\n  FOR(i, M) {\n    if (time[i] != infty<int>) IDS[time[i]].eb(i);\n\
+    \  }\n\n  UnionFind uf(N);\n  mint ANS = 0;\n  FOR(t, 1, M + 1) {\n    for (auto\
+    \ &i: IDS[t]) {\n      int a = G.edges[i].frm;\n      int b = G.edges[i].to;\n\
+    \      a = uf[a], b = uf[b];\n      if (a == b) continue;\n      ANS += X[a] *\
+    \ X[b];\n      uf.merge(a, b);\n      X[uf[a]] = X[a] + X[b];\n    }\n    print(ANS);\n\
+    \  }\n}\n\nsigned main() { solve(); }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/incremental_scc\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"graph/incremental_scc.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, M);\n  VEC(mint, X, N);\n\
+    \n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\n  auto time = incremental_scc(G);\n\
+    \  vc<vc<int>> IDS(M + 1);\n  FOR(i, M) {\n    if (time[i] != infty<int>) IDS[time[i]].eb(i);\n\
+    \  }\n\n  UnionFind uf(N);\n  mint ANS = 0;\n  FOR(t, 1, M + 1) {\n    for (auto\
+    \ &i: IDS[t]) {\n      int a = G.edges[i].frm;\n      int b = G.edges[i].to;\n\
+    \      a = uf[a], b = uf[b];\n      if (a == b) continue;\n      ANS += X[a] *\
+    \ X[b];\n      uf.merge(a, b);\n      X[uf[a]] = X[a] + X[b];\n    }\n    print(ANS);\n\
+    \  }\n}\n\nsigned main() { solve(); }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/slide_split_sum.hpp
-  - ds/removable_queue.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
+  - graph/incremental_scc.hpp
+  - graph/strongly_connected_component.hpp
   - graph/base.hpp
+  - ds/unionfind/unionfind.hpp
   isVerificationFile: true
-  path: test/yukicoder/2654.test.cpp
+  path: test/library_checker/graph/incremental_scc.test.cpp
   requiredBy: []
   timestamp: '2024-07-03 07:03:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/yukicoder/2654.test.cpp
+documentation_of: test/library_checker/graph/incremental_scc.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/2654.test.cpp
-- /verify/test/yukicoder/2654.test.cpp.html
-title: test/yukicoder/2654.test.cpp
+- /verify/test/library_checker/graph/incremental_scc.test.cpp
+- /verify/test/library_checker/graph/incremental_scc.test.cpp.html
+title: test/library_checker/graph/incremental_scc.test.cpp
 ---

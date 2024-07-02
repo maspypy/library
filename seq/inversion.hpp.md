@@ -10,7 +10,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: other/sliding_puzzle_solve.hpp
+    title: other/sliding_puzzle_solve.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
@@ -24,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/694.test.cpp
     title: test/yukicoder/694.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
@@ -143,7 +146,10 @@ data:
     \ all_range_inversion(vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N +\
     \ 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] +\
     \ dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n\
-    \  return dp;\n}\n"
+    \  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(vc<T> A, vc<T>\
+    \ B) {\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n\
+    \  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty())\
+    \ return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n}\n"
   code: "#pragma once\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\n\ntemplate\
     \ <typename T>\nll inversion(vc<T> A) {\n  int N = len(A);\n  if (A.empty()) return\
     \ 0;\n  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto&\
@@ -160,16 +166,21 @@ data:
     \ N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(vc<T>&\
     \ A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R,\
     \ L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R -\
-    \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}"
+    \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n\ntemplate\
+    \ <typename T>\nll inversion_between(vc<T> A, vc<T> B) {\n  int N = len(A);\n\
+    \  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i,\
+    \ N) {\n    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
+    \  }\n  return inversion(TO);\n}"
   dependsOn:
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
   isVerificationFile: false
   path: seq/inversion.hpp
-  requiredBy: []
-  timestamp: '2024-04-09 15:17:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - other/sliding_puzzle_solve.hpp
+  timestamp: '2024-07-03 07:03:22+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc190f.test.cpp
   - test/yukicoder/694.test.cpp

@@ -1,6 +1,9 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: mod/crt3.hpp
+    title: mod/crt3.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -10,71 +13,44 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/online/online_convolution.hpp
+    title: poly/online/online_convolution.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: graph/count/count_unlabeled_tree.hpp
-    title: graph/count/count_unlabeled_tree.hpp
-  - icon: ':warning:'
-    path: poly/online/online_convolution_garner.hpp
-    title: poly/online/online_convolution_garner.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_division.hpp
-    title: poly/online/online_division.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_exp.hpp
-    title: poly/online/online_exp.hpp
   - icon: ':warning:'
     path: poly/online/online_exp_garner.hpp
     title: poly/online/online_exp_garner.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_inv.hpp
-    title: poly/online/online_inv.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_log.hpp
-    title: poly/online/online_log.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/online/online_pow.hpp
-    title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/famous/simple_permutations.hpp
-    title: seq/famous/simple_permutations.hpp
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/online_convolution.test.cpp
-    title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/count_unlabeled_tree.test.cpp
-    title: test/mytest/count_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_division.test.cpp
-    title: test/mytest/online_division.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_exp.test.cpp
-    title: test/mytest/online_exp.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_inv.test.cpp
-    title: test/mytest/online_inv.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_log.test.cpp
-    title: test/mytest/online_log.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/online_pow.test.cpp
-    title: test/mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/mytest/simple_perm.test.cpp
-    title: test/mytest/simple_perm.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc230h.test.cpp
-    title: test_atcoder/abc230h.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test_atcoder/abc315h.test.cpp
-    title: test_atcoder/abc315h.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
+  bundledCode: "#line 2 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a,\
+    \ u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1)\
+    \ res = res * a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\n\
+    template <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0, u64 a1) {\n  static_assert(p0\
+    \ < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n \
+    \ u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n}\n\ntemplate <typename\
+    \ T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0\
+    \ < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2,\
+    \ p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 -\
+    \ 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1)\
+    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
+    \ p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32 p0,\
+    \ u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3, u64\
+    \ a4) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static\
+    \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
+    \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
+    \ x3\n      = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static\
+    \ constexpr u64 x4\n      = mod_pow_constexpr(u64(p0) * p1 % p4 * p2 % p4 * p3\
+    \ % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0) * p1;\n  static constexpr\
+    \ u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 =\
+    \ a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1\
+    \ + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3 - ans_2 % p3 + p3)\
+    \ * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c * p2) * p01;\n  c = static_cast<u64>(a4\
+    \ - ans_3 % p4 + p4) * x4 % p4;\n  return T(ans_3) + T(c) * T(p01) * T(p23);\n\
+    }\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
     \ a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
     \n  const int mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\
     \n  static array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\
@@ -219,57 +195,43 @@ data:
     \ b0[i] *= gm[z][i];\n      b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n\
     \      ntt(b1, false);\n      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n     \
     \ s = w - 1;\n    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s +\
-    \ i];\n    return h[p++];\n  }\n};\n"
-  code: "#pragma once\n#include \"poly/ntt.hpp\"\n#include \"mod/modint.hpp\"\n\n\
-    /*\nquery(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\
-    \u3002\n2^{17}\uFF1A127ms\n2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A\
-    1220ms\n*/\ntemplate <class mint>\nstruct Online_Convolution {\n  vc<mint> f,\
-    \ g, h, b0, b1;\n  vvc<mint> fm, gm;\n  int p;\n\n  Online_Convolution() : p(0)\
-    \ { assert(mint::can_ntt()); }\n\n  mint query(int i, mint f_i, mint g_i) {\n\
-    \    assert(i == p);\n    f.eb(f_i), g.eb(g_i);\n    int z = __builtin_ctz(p +\
-    \ 2), w = 1 << z, s;\n    if (p + 2 == w) {\n      b0 = f, b0.resize(2 * w);\n\
-    \      ntt(b0, false);\n      fm.eb(b0.begin(), b0.begin() + w);\n      b1 = g,\
-    \ b1.resize(2 * w);\n      ntt(b1, false);\n      gm.eb(b1.begin(), b1.begin()\
-    \ + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n      s = w - 2;\n      h.resize(2\
-    \ * s + 2);\n    } else {\n      b0.assign(f.end() - w, f.end()), b0.resize(2\
-    \ * w);\n      ntt(b0, false);\n      FOR(i, 2 * w) b0[i] *= gm[z][i];\n     \
-    \ b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n      ntt(b1, false);\n\
-    \      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n      s = w - 1;\n    }\n   \
-    \ ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s + i];\n    return h[p++];\n\
-    \  }\n};\n"
+    \ i];\n    return h[p++];\n  }\n};\n#line 3 \"poly/online/online_convolution_garner.hpp\"\
+    \n\ntemplate <class mint>\nstruct Online_Convolution_Garner {\n  static constexpr\
+    \ int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n  static constexpr\
+    \ int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using mint1 = modint<p1>;\n\
+    \  using mint2 = modint<p2>;\n  Online_Convolution<mint0> OC0;\n  Online_Convolution<mint1>\
+    \ OC1;\n  Online_Convolution<mint2> OC2;\n  int p;\n  Online_Convolution_Garner()\
+    \ : p(0) {}\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == p);\n\
+    \    p++;\n    u64 x0 = OC0.query(i, f_i.val, g_i.val).val;\n    u64 x1 = OC1.query(i,\
+    \ f_i.val, g_i.val).val;\n    u64 x2 = OC2.query(i, f_i.val, g_i.val).val;\n \
+    \   return CRT3<mint, p0, p1, p2>(x0, x1, x2);\n  }\n};\n"
+  code: "#include \"mod/crt3.hpp\"\n#include \"poly/online/online_convolution.hpp\"\
+    \n\ntemplate <class mint>\nstruct Online_Convolution_Garner {\n  static constexpr\
+    \ int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n  static constexpr\
+    \ int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using mint1 = modint<p1>;\n\
+    \  using mint2 = modint<p2>;\n  Online_Convolution<mint0> OC0;\n  Online_Convolution<mint1>\
+    \ OC1;\n  Online_Convolution<mint2> OC2;\n  int p;\n  Online_Convolution_Garner()\
+    \ : p(0) {}\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == p);\n\
+    \    p++;\n    u64 x0 = OC0.query(i, f_i.val, g_i.val).val;\n    u64 x1 = OC1.query(i,\
+    \ f_i.val, g_i.val).val;\n    u64 x2 = OC2.query(i, f_i.val, g_i.val).val;\n \
+    \   return CRT3<mint, p0, p1, p2>(x0, x1, x2);\n  }\n};\n"
   dependsOn:
+  - mod/crt3.hpp
+  - poly/online/online_convolution.hpp
   - poly/ntt.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
   isVerificationFile: false
-  path: poly/online/online_convolution.hpp
+  path: poly/online/online_convolution_garner.hpp
   requiredBy:
-  - graph/count/count_unlabeled_tree.hpp
-  - poly/online/online_log.hpp
-  - poly/online/online_inv.hpp
-  - poly/online/online_division.hpp
   - poly/online/online_exp_garner.hpp
-  - poly/online/online_exp.hpp
-  - poly/online/online_pow.hpp
-  - poly/online/online_convolution_garner.hpp
-  - seq/famous/simple_permutations.hpp
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test_atcoder/abc315h.test.cpp
-  - test_atcoder/abc230h.test.cpp
-  - test/library_checker/convolution/online_convolution.test.cpp
-  - test/mytest/online_division.test.cpp
-  - test/mytest/online_inv.test.cpp
-  - test/mytest/online_log.test.cpp
-  - test/mytest/online_exp.test.cpp
-  - test/mytest/simple_perm.test.cpp
-  - test/mytest/online_pow.test.cpp
-  - test/mytest/count_unlabeled_tree.test.cpp
-documentation_of: poly/online/online_convolution.hpp
+  timestamp: '2024-07-03 07:03:22+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: poly/online/online_convolution_garner.hpp
 layout: document
 redirect_from:
-- /library/poly/online/online_convolution.hpp
-- /library/poly/online/online_convolution.hpp.html
-title: poly/online/online_convolution.hpp
+- /library/poly/online/online_convolution_garner.hpp
+- /library/poly/online/online_convolution_garner.hpp.html
+title: poly/online/online_convolution_garner.hpp
 ---

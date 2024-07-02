@@ -45,20 +45,21 @@ data:
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\
     \n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
     \  HashMap<int> MP;\n\n  To_Small_Key(u32 n = 0) : MP(n) {}\n\n  void reserve(u32\
-    \ n) { MP.build(n); }\n\n  int set_key(u64 x) {\n    if (!MP.count(x)) MP[x] =\
-    \ kind++;\n    return MP[x];\n  }\n\n  int query(u64 x) { return MP.get(x, -1);\
-    \ }\n};\n#line 3 \"ds/static_range_frequency.hpp\"\n\nstruct Static_Range_Frequency\
-    \ {\n  vc<int> pos, indptr;\n  To_Small_Key S;\n\n  template <typename T>\n  Static_Range_Frequency(vc<T>&\
-    \ A) {\n    build(len(A), [&](int i) -> u64 { return A[i]; });\n  }\n\n  template\
-    \ <typename F>\n  Static_Range_Frequency(int N, F f) {\n    build(N, f);\n  }\n\
-    \n  template <typename F>\n  void build(int N, F f) {\n    S.reserve(N);\n   \
-    \ pos.resize(N);\n    vc<int> cnt(N + 1), dat(N);\n    FOR(i, N) {\n      u64\
-    \ x = f(i);\n      int k = S.set_key(x);\n      cnt[1 + k]++, dat[i] = k;\n  \
-    \  }\n    FOR(k, N) cnt[1 + k] += cnt[k];\n    indptr = cnt;\n    FOR(i, N) pos[cnt[dat[i]]++]\
-    \ = i;\n  }\n\n  int query(int L, int R, u64 x) {\n    int k = S.query(x);\n \
-    \   if (k == -1) return 0;\n    int a = indptr[k], b = indptr[k + 1];\n    auto\
-    \ nl = lower_bound(pos.begin() + a, pos.begin() + b, L);\n    auto nr = lower_bound(pos.begin()\
-    \ + a, pos.begin() + b, R);\n    return nr - nl;\n  }\n};\n"
+    \ n) { MP.build(n); }\n\n  int size() { return MP.size(); }\n\n  int set_key(u64\
+    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
+    \ query(u64 x) { return MP.get(x, -1); }\n};\n#line 3 \"ds/static_range_frequency.hpp\"\
+    \n\nstruct Static_Range_Frequency {\n  vc<int> pos, indptr;\n  To_Small_Key S;\n\
+    \n  template <typename T>\n  Static_Range_Frequency(vc<T>& A) {\n    build(len(A),\
+    \ [&](int i) -> u64 { return A[i]; });\n  }\n\n  template <typename F>\n  Static_Range_Frequency(int\
+    \ N, F f) {\n    build(N, f);\n  }\n\n  template <typename F>\n  void build(int\
+    \ N, F f) {\n    S.reserve(N);\n    pos.resize(N);\n    vc<int> cnt(N + 1), dat(N);\n\
+    \    FOR(i, N) {\n      u64 x = f(i);\n      int k = S.set_key(x);\n      cnt[1\
+    \ + k]++, dat[i] = k;\n    }\n    FOR(k, N) cnt[1 + k] += cnt[k];\n    indptr\
+    \ = cnt;\n    FOR(i, N) pos[cnt[dat[i]]++] = i;\n  }\n\n  int query(int L, int\
+    \ R, u64 x) {\n    int k = S.query(x);\n    if (k == -1) return 0;\n    int a\
+    \ = indptr[k], b = indptr[k + 1];\n    auto nl = lower_bound(pos.begin() + a,\
+    \ pos.begin() + b, L);\n    auto nr = lower_bound(pos.begin() + a, pos.begin()\
+    \ + b, R);\n    return nr - nl;\n  }\n};\n"
   code: "\n#include \"ds/to_small_key.hpp\"\n\nstruct Static_Range_Frequency {\n \
     \ vc<int> pos, indptr;\n  To_Small_Key S;\n\n  template <typename T>\n  Static_Range_Frequency(vc<T>&\
     \ A) {\n    build(len(A), [&](int i) -> u64 { return A[i]; });\n  }\n\n  template\
@@ -77,7 +78,7 @@ data:
   isVerificationFile: false
   path: ds/static_range_frequency.hpp
   requiredBy: []
-  timestamp: '2024-05-14 16:33:21+09:00'
+  timestamp: '2024-07-03 07:03:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/static_range_frequency.test.cpp

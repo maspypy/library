@@ -50,21 +50,23 @@ data:
     \n    }\r\n    build(2 * len(dat));\r\n    for (auto& [a, b]: dat) (*this)[a]\
     \ = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0]\
     \ etc.\nstruct To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n\n  To_Small_Key(u32\
-    \ n = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int set_key(u64\
-    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
-    \ query(u64 x) { return MP.get(x, -1); }\n};\n"
+    \ n = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int size()\
+    \ { return MP.size(); }\n\n  int set_key(u64 x) {\n    if (!MP.count(x)) MP[x]\
+    \ = kind++;\n    return MP[x];\n  }\n\n  int query(u64 x) { return MP.get(x, -1);\
+    \ }\n};\n"
   code: "#include \"ds/hashmap.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct\
     \ To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n\n  To_Small_Key(u32 n\
-    \ = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int set_key(u64\
-    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
-    \ query(u64 x) { return MP.get(x, -1); }\n};"
+    \ = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int size() {\
+    \ return MP.size(); }\n\n  int set_key(u64 x) {\n    if (!MP.count(x)) MP[x] =\
+    \ kind++;\n    return MP[x];\n  }\n\n  int query(u64 x) { return MP.get(x, -1);\
+    \ }\n};"
   dependsOn:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
   - ds/static_range_frequency.hpp
-  timestamp: '2024-05-14 16:33:21+09:00'
+  timestamp: '2024-07-03 07:03:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/static_range_freq.test.cpp

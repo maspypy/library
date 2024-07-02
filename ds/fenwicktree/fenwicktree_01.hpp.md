@@ -17,7 +17,10 @@ data:
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: other/sliding_puzzle_solve.hpp
+    title: other/sliding_puzzle_solve.hpp
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
@@ -48,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/694.test.cpp
     title: test/yukicoder/694.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
   - icon: ':x:'
@@ -193,6 +196,7 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
+  - other/sliding_puzzle_solve.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - geo/count_points_in_triangles.hpp
   - graph/ds/range_edge_connected_component_query.hpp
