@@ -26,10 +26,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':heavy_check_mark:'
@@ -159,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc266c.test.cpp
     title: test_atcoder/abc266c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,9 +168,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -325,7 +325,7 @@ data:
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   - convex/fenchel.hpp
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc314.test.cpp
   - test_atcoder/abc139f.test.cpp

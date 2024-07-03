@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':heavy_check_mark:'
@@ -19,10 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

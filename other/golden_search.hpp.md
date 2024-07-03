@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc314.test.cpp
     title: test_atcoder/abc314.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/golden_search.hpp\"\n// return : (fx, x)\n// f \u304C\
@@ -42,7 +42,7 @@ data:
   path: other/golden_search.hpp
   requiredBy: []
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc314.test.cpp
 documentation_of: other/golden_search.hpp

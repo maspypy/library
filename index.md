@@ -637,7 +637,7 @@ data:
     - icon: ':warning:'
       path: geo/apollonian_circle.hpp
       title: geo/apollonian_circle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
@@ -655,13 +655,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':heavy_check_mark:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':heavy_check_mark:'
@@ -1354,7 +1354,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1495,13 +1495,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/golden_search.hpp
       title: other/golden_search.hpp
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -4638,7 +4638,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc312f.test.cpp
       title: test_atcoder/abc312f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc314.test.cpp
       title: test_atcoder/abc314.test.cpp
     - icon: ':heavy_check_mark:'
