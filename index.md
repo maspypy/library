@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -124,7 +124,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max2.hpp
       title: alg/monoid/max2.hpp
     - icon: ':heavy_check_mark:'
@@ -260,7 +260,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -331,10 +331,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_01.hpp
       title: ds/fenwicktree/fenwicktree_01.hpp
     - icon: ':heavy_check_mark:'
@@ -631,7 +631,7 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':warning:'
@@ -652,7 +652,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':question:'
@@ -685,19 +685,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/max_norm_sum.hpp
       title: geo/max_norm_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/minimum_enclosing_circle.hpp
       title: geo/minimum_enclosing_circle.hpp
     - icon: ':warning:'
       path: geo/minkowski_sum.hpp
       title: geo/minkowski_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/outcircle.hpp
       title: geo/outcircle.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/perpendicular_bisector.hpp
       title: geo/perpendicular_bisector.hpp
     - icon: ':heavy_check_mark:'
@@ -709,7 +709,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/reflection.hpp
       title: geo/reflection.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/triangle_area.hpp
       title: geo/triangle_area.hpp
   - name: geo3d
@@ -1334,7 +1334,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/multiplicative_convolution_mod_p.hpp
       title: mod/multiplicative_convolution_mod_p.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/powertable.hpp
       title: mod/powertable.hpp
     - icon: ':heavy_check_mark:'
@@ -1445,7 +1445,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/primesum_mod6.hpp
       title: nt/primesum_mod6.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/primetable.hpp
       title: nt/primetable.hpp
     - icon: ':heavy_check_mark:'
@@ -1750,7 +1750,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1765,7 +1765,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/random_matrix.hpp
       title: random/random_matrix.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -1806,7 +1806,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
     - icon: ':heavy_check_mark:'
@@ -4368,7 +4368,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f_1.test.cpp
       title: test_atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc139f.test.cpp
       title: test_atcoder/abc139f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4377,7 +4377,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc141f.test.cpp
       title: test_atcoder/abc141f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc151f.test.cpp
       title: test_atcoder/abc151f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4392,7 +4392,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc180e.test.cpp
       title: test_atcoder/abc180e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc190f.test.cpp
       title: test_atcoder/abc190f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4410,7 +4410,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200f.test.cpp
       title: test_atcoder/abc200f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc202_f.test.cpp
       title: test_atcoder/abc202_f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4443,7 +4443,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc220f.test.cpp
       title: test_atcoder/abc220f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc220g.test.cpp
       title: test_atcoder/abc220g.test.cpp
     - icon: ':heavy_check_mark:'
