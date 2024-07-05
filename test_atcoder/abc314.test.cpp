@@ -29,10 +29,13 @@ void solve() {
 
   Re INF = 1e6;
   auto f = [&](Re y) -> Re {
-    return golden_search([&](Re x) -> Re { return F(x, y); }, -INF, INF).fi;
+    return golden_search<Re, true>([&](Re x) -> Re { return F(x, y); }, -INF,
+                                   INF)
+        .fi;
   };
 
-  Re ANS = golden_search([&](Re y) -> Re { return f(y); }, -INF, INF).fi;
+  Re ANS
+      = golden_search<Re, true>([&](Re y) -> Re { return f(y); }, -INF, INF).fi;
   print(ANS);
 }
 
