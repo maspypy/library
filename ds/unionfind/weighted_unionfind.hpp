@@ -13,7 +13,7 @@ struct Weighted_UnionFind {
     iota(all(par), 0);
   }
 
-  // (root, root=0 としたときの val)
+  // (root, P[root]^{-1}P[v])
   pair<int, E> get(int v) {
     E res = Group::unit();
     while (v != par[v]) {
@@ -27,6 +27,7 @@ struct Weighted_UnionFind {
 
   pair<int, E> operator[](int v) { return get(v); }
 
+  // P[to]==P[frm]x
   bool merge(int frm, int to, E x) {
     auto [v1, x1] = get(frm);
     auto [v2, x2] = get(to);

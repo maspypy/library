@@ -85,5 +85,9 @@
         "stop_token": "cpp",
         "tmp": "cpp",
         "cassert": "cpp"
+    },
+    "[python]": {
+        "editor.tabSize": 4,
+        "editor.insertSpaces": true
     }
 }
