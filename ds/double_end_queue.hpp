@@ -45,9 +45,9 @@ struct Double_End_Queue {
     FOR(i, len(dat) - 1) if (i % 2 == 0) assert(!(dat[i + 1] < dat[i]));
     FOR(i, 1, ceil<int>(len(dat), 2)) {
       int p = (i - 1) / 2;
-      int a = dat[2 * p + 0], b = dat[2 * p + 1];
-      int c = dat[2 * i + 0];
-      int d = (2 * i + 1 >= len(dat) ? dat.back() : dat[2 * i + 1]);
+      T a = dat[2 * p + 0], b = dat[2 * p + 1];
+      T c = dat[2 * i + 0];
+      T d = (2 * i + 1 >= len(dat) ? dat.back() : dat[2 * i + 1]);
       assert(a <= c && c <= d && d <= b);
     }
     print("heap condition ok");
