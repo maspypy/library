@@ -108,7 +108,7 @@ private:
   int prefix_count(int L, int R, int x) {
     int cnt = 0;
     FOR_R(d, lg) {
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       if (x >> d & 1) {
         cnt += r0 - l0, L += mid[d] - l0, R += mid[d] - r0;
       } else {
@@ -121,7 +121,7 @@ private:
   X prefix_sum(int L, int R, int x) {
     X add = MX::unit(), sub = MX::unit();
     FOR_R(d, lg) {
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       if (x >> d & 1) {
         add = MX::op(add, dat[d][r0]);
         sub = MX::op(sub, dat[d][l0]);

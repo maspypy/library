@@ -117,9 +117,9 @@ struct Wavelet_Matrix_2D_Range_Dynamic_Monoid {
     int a = A[i];
     FOR_R(d, lg) {
       if (a >> d & 1) {
-        i = mid[d] + bv[d].rank(i, 1);
+        i = mid[d] + bv[d].count(i, 1);
       } else {
-        i = bv[d].rank(i, 0);
+        i = bv[d].count(i, 0);
       }
       dat[d].set(i, x);
     }
@@ -130,9 +130,9 @@ struct Wavelet_Matrix_2D_Range_Dynamic_Monoid {
     int a = A[i];
     FOR_R(d, lg) {
       if (a >> d & 1) {
-        i = mid[d] + bv[d].rank(i, 1);
+        i = mid[d] + bv[d].count(i, 1);
       } else {
-        i = bv[d].rank(i, 0);
+        i = bv[d].count(i, 0);
       }
       dat[d].multiply(i, x);
     }
@@ -142,7 +142,7 @@ private:
   int prefix_count(int L, int R, int x) {
     int cnt = 0;
     FOR_R(d, lg) {
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       if (x >> d & 1) {
         cnt += r0 - l0, L += mid[d] - l0, R += mid[d] - r0;
       } else {
@@ -160,7 +160,7 @@ private:
       res = MX::op(res, dat[d + 1].prod(L, R));
       return;
     }
-    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+    int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
     prod_dfs(l0, r0, x1, x2, d - 1, res);
     prod_dfs(L + mid[d] - l0, R + mid[d] - r0, x1 - (1 << d), x2 - (1 << d),
              d - 1, res);

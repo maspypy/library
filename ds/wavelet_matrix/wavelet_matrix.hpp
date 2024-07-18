@@ -83,7 +83,7 @@ struct Wavelet_Matrix {
       }
       --d;
       T mx = (lx + rx) / 2;
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
       if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);
       dfs(dfs, d, l0, r0, lx, mx), dfs(dfs, d, l1, r1, mx, rx);
@@ -101,7 +101,7 @@ struct Wavelet_Matrix {
     T sm = 0, val = 0;
     for (int d = lg - 1; d >= 0; --d) {
       // いま幅 d+1 の trie node に居て, 幅 d のところに行く
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
       if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);
       if (k < r0 - l0) {
@@ -150,7 +150,7 @@ struct Wavelet_Matrix {
       }
       --d;
       T mx = (lx + rx) / 2;
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
       if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);
       dfs(dfs, d, l0, r0, lx, mx), dfs(dfs, d, l1, r1, mx, rx);
@@ -176,7 +176,7 @@ struct Wavelet_Matrix {
       }
       --d;
       T mx = (lx + rx) / 2;
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
       if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);
       dfs(dfs, d, l1, r1, mx, rx), dfs(dfs, d, l0, r0, lx, mx);
@@ -206,7 +206,7 @@ struct Wavelet_Matrix {
     int cnt = 0;
     T sm = 0;
     for (int d = lg - 1; d >= 0; --d) {
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
       if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);
       if (check(cnt + r0 - l0, sm + get(d, l0, r0))) {
