@@ -152,7 +152,7 @@ struct SplayTree {
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     X res = root->prod;
-    splay(root);
+    splay(root, true);
     return res;
   }
 
@@ -167,7 +167,7 @@ struct SplayTree {
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     root->apply(a);
-    splay(root);
+    splay(root, true);
   }
   void apply(np &root, const A &a) {
     if (!root) return;
@@ -208,9 +208,19 @@ struct SplayTree {
     if (c) c->p = p;
   }
 
-  void splay(Node *me) {
+  void prop_from_root(np c) {
+    if (!c->p) {
+      c->prop();
+      return;
+    }
+    prop_from_root(c->p);
+    c->prop();
+  }
+
+  void splay(Node *me, bool prop_from_root_done) {
     // これを呼ぶ時点で、me の祖先（me を除く）は既に prop 済であることを仮定
     // 特に、splay 終了時点で me は upd / prop 済である
+    if (!prop_from_root_done) prop_from_root(me);
     me->prop();
     while (me->p) {
       np p = me->p;
@@ -232,9 +242,9 @@ struct SplayTree {
   void splay_kth(np &root, u32 k) {
     assert(0 <= k && k < (root->size));
     while (1) {
+      root->prop();
       u32 sl = (root->l ? root->l->size : 0);
       if (k == sl) break;
-      root->prop();
       if (k < sl)
         root = root->l;
       else {
@@ -242,7 +252,7 @@ struct SplayTree {
         root = root->r;
       }
     }
-    splay(root);
+    splay(root, true);
   }
 
   // check(x), 左側のノード全体が check を満たすように切る
@@ -252,10 +262,29 @@ struct SplayTree {
     assert(!root->p);
     np c = find_max_right(root, check);
     if (!c) {
-      splay(root);
+      splay(root, true);
       return {nullptr, root};
     }
-    splay(c);
+    splay(c, true);
+    np right = c->r;
+    if (!right) return {c, nullptr};
+    right->p = nullptr;
+    c->r = nullptr;
+    c->update();
+    return {c, right};
+  }
+
+  // check(x, cnt), 左側のノード全体が check を満たすように切る
+  template <typename F>
+  pair<np, np> split_max_right_cnt(np root, F check) {
+    if (!root) return {nullptr, nullptr};
+    assert(!root->p);
+    np c = find_max_right_cnt(root, check);
+    if (!c) {
+      splay(root, true);
+      return {nullptr, root};
+    }
+    splay(c, true);
     np right = c->r;
     if (!right) return {c, nullptr};
     right->p = nullptr;
@@ -271,10 +300,10 @@ struct SplayTree {
     assert(!root->p);
     np c = find_max_right_prod(root, check);
     if (!c) {
-      splay(root);
+      splay(root, true);
       return {nullptr, root};
     }
-    splay(c);
+    splay(c, true);
     np right = c->r;
     if (!right) return {c, nullptr};
     right->p = nullptr;
@@ -297,7 +326,28 @@ struct SplayTree {
         root = root->l;
       }
     }
-    splay(last);
+    splay(last, true);
+    return last_ok;
+  }
+
+  template <typename F>
+  np find_max_right_cnt(np root, const F &check) {
+    // 最後に見つけた ok の点、最後に探索した点
+    np last_ok = nullptr, last = nullptr;
+    ll n = 0;
+    while (root) {
+      last = root;
+      root->prop();
+      ll ns = (root->l ? root->l->size : 0);
+      if (check(root->x, n + ns + 1)) {
+        last_ok = root;
+        n += ns + 1;
+        root = root->r;
+      } else {
+        root = root->l;
+      }
+    }
+    splay(last, true);
     return last_ok;
   }
 
@@ -321,7 +371,7 @@ struct SplayTree {
         root = root->l;
       }
     }
-    splay(last);
+    splay(last, true);
     return last_ok;
   }
 };
