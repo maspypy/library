@@ -180,7 +180,7 @@ struct SplayTree {
     assert(0 <= l && l < r && r <= root->size);
     goto_between(root, l, r);
     root->reverse();
-    splay(root);
+    splay(root, true);
   }
   void reverse(np root) {
     if (!root) return;
