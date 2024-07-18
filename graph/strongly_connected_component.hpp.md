@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
   - icon: ':heavy_check_mark:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
@@ -42,13 +42,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/incremental_scc.test.cpp
     title: test/library_checker/graph/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,9 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc274g.test.cpp
     title: test_atcoder/abc274g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -205,37 +205,37 @@ data:
   path: graph/strongly_connected_component.hpp
   requiredBy:
   - flow/bipartite.hpp
-  - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
+  - graph/reachability.hpp
   - graph/incremental_scc.hpp
   - graph/twosat.hpp
-  - graph/reachability.hpp
+  - graph/bipartite_edge_coloring.hpp
   - graph/find_odd_cycle.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc214h.test.cpp
-  - test_atcoder/abc237ex.test.cpp
-  - test_atcoder/abc274g.test.cpp
-  - test/yukicoder/1170.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1293.test.cpp
+  - test/library_checker/math/twosat.test.cpp
+  - test/library_checker/graph/scc.test.cpp
+  - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/incremental_scc.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/mytest/matching_ve.test.cpp
+  - test/mytest/find_odd_cycle.test.cpp
+  - test/mytest/tutte.test.cpp
+  - test/mytest/scc_tournament.test.cpp
+  - test/mytest/incremental_scc.test.cpp
   - test/yukicoder/1813.test.cpp
+  - test/yukicoder/1745.test.cpp
   - test/yukicoder/1479.test.cpp
+  - test/yukicoder/1170.test.cpp
+  - test/yukicoder/1293.test.cpp
+  - test/yukicoder/1744.test.cpp
   - test/aoj/2251_2.test.cpp
   - test/aoj/0275.test.cpp
   - test/aoj/1566.test.cpp
-  - test/library_checker/math/twosat.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/library_checker/graph/scc.test.cpp
-  - test/library_checker/graph/incremental_scc.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/mytest/find_odd_cycle.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/mytest/matching_ve.test.cpp
-  - test/mytest/incremental_scc.test.cpp
-  - test/mytest/scc_tournament.test.cpp
+  - test_atcoder/abc214h.test.cpp
+  - test_atcoder/abc274g.test.cpp
+  - test_atcoder/abc237ex.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:

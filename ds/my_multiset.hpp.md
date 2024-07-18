@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   _extendedRequiredBy: []
@@ -140,8 +140,8 @@ data:
   timestamp: '2024-03-30 00:47:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc281e_2.test.cpp
   - test_atcoder/abc241d.test.cpp
+  - test_atcoder/abc281e_2.test.cpp
 documentation_of: ds/my_multiset.hpp
 layout: document
 redirect_from:

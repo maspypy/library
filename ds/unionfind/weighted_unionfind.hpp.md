@@ -6,10 +6,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_1_B.test.cpp
     title: test/aoj/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1502.test.cpp
     title: test/yukicoder/1502.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2294.test.cpp
     title: test/yukicoder/2294.test.cpp
   - icon: ':x:'
@@ -59,10 +59,10 @@ data:
   timestamp: '2024-07-05 14:51:23+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc280f.test.cpp
-  - test/yukicoder/2294.test.cpp
   - test/yukicoder/1502.test.cpp
+  - test/yukicoder/2294.test.cpp
   - test/aoj/DSL_1_B.test.cpp
+  - test_atcoder/abc280f.test.cpp
 documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document
 redirect_from:

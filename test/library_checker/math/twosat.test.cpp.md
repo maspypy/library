@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_sat
@@ -290,9 +290,14 @@ data:
     \    edges.eb(a ^ 1, b);\r\n    edges.eb(b ^ 1, a);\r\n  }\r\n  void set(int a)\
     \ {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a]\
     \ = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    edges.eb(a ^ 1, a);\r\
-    \n  }\r\n  void implies(int a, int b) { add(~a, b); }\r\n\r\n  pair<bool, vc<int>>\
-    \ calc() {\r\n    UNIQUE(edges);\r\n    for (auto&& [a, b]: edges) G.add(a, b);\r\
-    \n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
+    \n  }\r\n  void implies(int a, int b) { add(~a, b); }\r\n  void debug() {\r\n\
+    \    for (auto& [a, b]: edges) {\r\n      string A, B;\r\n      if (a % 2 == 0)\
+    \ A = \"([\" + to_string(a / 2) + \"] == 0)\";\r\n      if (a % 2 == 1) A = \"\
+    ([\" + to_string(a / 2) + \"] == 1)\";\r\n      if (b % 2 == 0) B = \"([\" + to_string(b\
+    \ / 2) + \"] == 0)\";\r\n      if (b % 2 == 1) B = \"([\" + to_string(b / 2) +\
+    \ \"] == 1)\";\r\n      print(A, \"->\", B);\r\n    }\r\n  }\r\n\r\n  pair<bool,\
+    \ vc<int>> calc() {\r\n    UNIQUE(edges);\r\n    for (auto&& [a, b]: edges) G.add(a,\
+    \ b);\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
     \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
     \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
     \  return {true, values};\r\n  }\r\n};\n#line 5 \"test/library_checker/math/twosat.test.cpp\"\
@@ -325,8 +330,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/math/twosat.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/math/twosat.test.cpp
 layout: document

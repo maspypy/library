@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc200/tasks/abc200_f
@@ -265,30 +265,31 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename U, typename\
-    \ Arg1, typename Arg2>\nstruct has_power_method {\nprivate:\n  // \u30D8\u30EB\
-    \u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename V, typename A1,\
-    \ typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
-    \                                          std::declval<A2>()),\n            \
-    \      std::true_type{});\n  template <typename, typename, typename>\n  static\
-    \ auto check(...) -> std::false_type;\n\npublic:\n  // \u30E1\u30BD\u30C3\u30C9\
-    \u306E\u6709\u7121\u3092\u8868\u3059\u578B\n  static constexpr bool value = decltype(check<U,\
-    \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
-    \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
-    \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    X res = Monoid::unit();\n    while\
-    \ (exp) {\n      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x,\
-    \ x);\n      exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 7 \"test_atcoder/abc200f.test.cpp\"\
-    \n\nusing mint = modint107;\n\nusing P = pair<mint, mint>;\nusing ARR = array<array<P,\
-    \ 2>, 2>;\n\nstruct Mono {\n  using value_type = ARR;\n  using X = value_type;\n\
-    \  static X op(X x, X y) {\n    if (x == unit()) return y;\n    if (y == unit())\
+    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
+    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"alg/monoid_pow.hpp\"\n\n// chat\
+    \ gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \ {\nprivate:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n \
+    \ template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
+    \                             std::declval<A2>()),\n                  std::true_type{});\n\
+    \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
+    \npublic:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
+    };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
+    \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
+    \ >= 0);\n    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res\
+    \ = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n\
+    \    return res;\n  }\n}\n#line 7 \"test_atcoder/abc200f.test.cpp\"\n\nusing mint\
+    \ = modint107;\n\nusing P = pair<mint, mint>;\nusing ARR = array<array<P, 2>,\
+    \ 2>;\n\nstruct Mono {\n  using value_type = ARR;\n  using X = value_type;\n \
+    \ static X op(X x, X y) {\n    if (x == unit()) return y;\n    if (y == unit())\
     \ return x;\n    X z = unit();\n    FOR(i, 2) FOR(j, 2) z[i][j] = {mint(0), mint(0)};\n\
     \    FOR(a, 2) FOR(b, 2) FOR(c, 2) FOR(d, 2) {\n      auto& dp1 = x[a][b];\n \
     \     auto& dp2 = y[c][d];\n      z[a][d].fi += dp1.fi * dp2.fi;\n      z[a][d].se\
@@ -332,8 +333,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc200f.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc200f.test.cpp
 layout: document

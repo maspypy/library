@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -201,27 +201,28 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
     \ 5 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp\"\
     \n\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32, u32>> dat;\n\
-    \  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n\n  void set(int\
-    \ i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n\n  void build() {\n    FOR(i,\
-    \ len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\n  // [0,\
-    \ k) \u5185\u306E 1 \u306E\u500B\u6570\n  int rank(int k, bool f = 1) {\n    auto\
-    \ [a, b] = dat[k >> 5];\n    int ret = b + popcnt(a & ((u32(1) << (k & 31)) -\
-    \ 1));\n    return (f ? ret : k - ret);\n  }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\
-    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
-    \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
-    \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
-    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
-    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
-    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
-    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
-    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
-    \ << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size + i]\
-    \ = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return dat[size\
-    \ + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size\
-    \ + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
-    \ + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
-    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
-    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
+    \  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void set(int i)\
+    \ { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat), pair<u32,\
+    \ u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
+    \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
+    \ int count(int k, bool f = 1) {\n    auto [a, b] = dat[k >> 5];\n    int ret\
+    \ = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n\
+    \  }\n  int count(int L, int R, bool f = 1) { return count(R, f) - count(L, f);\
+    \ }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
+    \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
+    \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
+    \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
+    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
+    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
+    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
+    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
+    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
+    \  X get(int i) { return dat[size + i]; }\n  vc<X> get_all() { return {dat.begin()\
+    \ + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2\
+    \ * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n\
+    \    dat[i += size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int\
+    \ i, const X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
     \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
     \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
     \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
@@ -389,8 +390,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:54:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
 layout: document

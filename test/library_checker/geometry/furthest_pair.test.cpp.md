@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/furthest_pair
@@ -263,62 +263,39 @@ data:
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
     #line 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\n\ntemplate\
-    \ <typename T>\nvector<int> ConvexHull(vector<pair<T, T>>& XY, string mode = \"\
-    full\",\n                       bool inclusive = false, bool sorted = false) {\n\
-    \  assert(mode == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N\
-    \ = XY.size();\n  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1])\
-    \ return {0, 1};\n    if (XY[1] < XY[0]) return {1, 0};\n    if (inclusive) return\
-    \ {0, 1};\n    return {0};\n  }\n  vc<int> I(N);\n  if (sorted) {\n    FOR(i,\
-    \ N) I[i] = i;\n  } else {\n    I = argsort(XY);\n  }\n\n  auto check = [&](ll\
-    \ i, ll j, ll k) -> bool {\n    auto xi = XY[i].fi, yi = XY[i].se;\n    auto xj\
-    \ = XY[j].fi, yj = XY[j].se;\n    auto xk = XY[k].fi, yk = XY[k].se;\n    auto\
-    \ dx1 = xj - xi, dy1 = yj - yi;\n    auto dx2 = xk - xj, dy2 = yk - yj;\n    T\
-    \ det = dx1 * dy2 - dy1 * dx2;\n    return (inclusive ? det >= 0 : det > 0);\n\
-    \  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n\
-    \      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n        auto\
-    \ j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n\
-    \      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode\
-    \ == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
-    \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
-    \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
-    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
-    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n\ntemplate <typename\
-    \ T>\nvector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"full\",\n \
-    \                      bool inclusive = false, bool sorted = false) {\n  assert(mode\
-    \ == \"full\" || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n\
-    \  if (N == 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0,\
-    \ 1};\n    if (XY[1] < XY[0]) return {1, 0};\n    if (inclusive) return {0, 1};\n\
-    \    return {0};\n  }\n  vc<int> I(N);\n  if (sorted) {\n    FOR(i, N) I[i] =\
-    \ i;\n  } else {\n    I = argsort(XY);\n  }\n\n  auto check = [&](ll i, ll j,\
-    \ ll k) -> bool {\n    auto xi = XY[i].x, yi = XY[i].y;\n    auto xj = XY[j].x,\
-    \ yj = XY[j].y;\n    auto xk = XY[k].x, yk = XY[k].y;\n    auto dx1 = xj - xi,\
-    \ dy1 = yj - yi;\n    auto dx2 = xk - xj, dy2 = yk - yj;\n    T det = dx1 * dy2\
-    \ - dy1 * dx2;\n    return (inclusive ? det >= 0 : det > 0);\n  };\n\n  auto calc\
-    \ = [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n      while (P.size()\
-    \ > 1) {\n        auto i = P[P.size() - 2];\n        auto j = P[P.size() - 1];\n\
-    \        if (check(i, j, k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n\
-    \    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode ==\
-    \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
-    \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
-    \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
-    \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
-    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"geo/furthest_pair.hpp\"\
-    \n\ntemplate <typename T>\npair<int, int> furthest_pair(vc<Point<T>> point) {\n\
-    \  T best = -1;\n  pair<int, int> ANS = {-1, -1};\n\n  auto upd = [&](int i, int\
-    \ j) -> void {\n    Point<T> p = point[i] - point[j];\n    ll d = p.dot(p);\n\
-    \    if (chmax(best, d)) ANS = {i, j};\n  };\n  upd(0, 1);\n\n  auto I = ConvexHull(point);\n\
-    \  int n = len(I);\n  if (n == 1) return ANS;\n  if (n == 2) { return {I[0], I[1]};\
-    \ }\n  /*\n  \u76F4\u5F84\u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\
-    \u51F8\u5305\u3092\u306F\u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\
-    \u306F\u3055\u3093\u3067\u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\
-    \n  p[i]p[i+1] \u306E\u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\
-    \u3088\u3044\n  */\n  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point,\
-    \ I);\n  int j = 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n &&\
-    \ (C[i + 1] - C[i]).det(C[j + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n\
-    \  return ANS;\n}\n#line 7 \"test/library_checker/geometry/furthest_pair.test.cpp\"\
-    \n\nusing P = Point<ll>;\n\nvoid solve() {\n  INT(N);\n  VEC(P, point, N);\n \
-    \ auto [a, b] = furthest_pair(point);\n  print(a, b);\n}\n\nsigned main() {\n\
-    \  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ <typename T>\nvector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"\
+    full\",\n                       bool sorted = false) {\n  assert(mode == \"full\"\
+    \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
+    \ 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n   \
+    \ if (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n  vc<int> I(N);\n \
+    \ if (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n \
+    \ }\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    return (XY[j] - XY[i]).det(XY[k]\
+    \ - XY[i]) > 0;\n  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&&\
+    \ k: I) {\n      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n \
+    \       auto j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n      \
+    \  P.pop_back();\n      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int>\
+    \ P;\n  if (mode == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n\
+    \    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\"\
+    ) {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n    vc<int> Q =\
+    \ calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n\
+    \  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n\
+    }\n#line 3 \"geo/furthest_pair.hpp\"\n\ntemplate <typename T>\npair<int, int>\
+    \ furthest_pair(vc<Point<T>> point) {\n  T best = -1;\n  pair<int, int> ANS =\
+    \ {-1, -1};\n\n  auto upd = [&](int i, int j) -> void {\n    Point<T> p = point[i]\
+    \ - point[j];\n    ll d = p.dot(p);\n    if (chmax(best, d)) ANS = {i, j};\n \
+    \ };\n  upd(0, 1);\n\n  auto I = ConvexHull(point);\n  int n = len(I);\n  if (n\
+    \ == 1) return ANS;\n  if (n == 2) { return {I[0], I[1]}; }\n  /*\n  \u76F4\u5F84\
+    \u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\u51F8\u5305\u3092\u306F\
+    \u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\u306F\u3055\u3093\u3067\
+    \u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\n  p[i]p[i+1] \u306E\
+    \u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\u3088\u3044\n  */\n\
+    \  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point, I);\n  int j =\
+    \ 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n && (C[i + 1] - C[i]).det(C[j\
+    \ + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n  return ANS;\n}\n#line 7\
+    \ \"test/library_checker/geometry/furthest_pair.test.cpp\"\n\nusing P = Point<ll>;\n\
+    \nvoid solve() {\n  INT(N);\n  VEC(P, point, N);\n  auto [a, b] = furthest_pair(point);\n\
+    \  print(a, b);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/furthest_pair\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/furthest_pair.hpp\"\
     \n\nusing P = Point<ll>;\n\nvoid solve() {\n  INT(N);\n  VEC(P, point, N);\n \
@@ -333,8 +310,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/furthest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 11:12:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/geometry/furthest_pair.test.cpp
 layout: document

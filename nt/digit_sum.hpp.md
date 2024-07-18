@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   _extendedVerifiedWith:
@@ -21,39 +21,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
     title: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/bigint.test.cpp
     title: test/mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/digit_sum.test.cpp
     title: test/mytest/digit_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2440.test.cpp
     title: test/yukicoder/2440.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2508.test.cpp
     title: test/yukicoder/2508.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2525.test.cpp
     title: test/yukicoder/2525.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2649.test.cpp
     title: test/yukicoder/2649.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/digit_sum.hpp\"\n\nint digit_sum(u64 x) {\n  const int\
@@ -70,23 +70,23 @@ data:
   requiredBy:
   - bigint/base.hpp
   timestamp: '2024-06-06 03:38:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc339f.test.cpp
-  - test/yukicoder/2649.test.cpp
-  - test/yukicoder/2525.test.cpp
-  - test/yukicoder/2440.test.cpp
-  - test/yukicoder/303.test.cpp
-  - test/yukicoder/2580.test.cpp
-  - test/yukicoder/2508.test.cpp
-  - test/aoj/NTL_2_C.test.cpp
-  - test/aoj/NTL_2_B.test.cpp
-  - test/aoj/NTL_2_A.test.cpp
   - test/library_checker/sample/aplusb128.test.cpp
-  - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
-  - test/mytest/bigint.test.cpp
+  - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/mytest/digit_sum.test.cpp
+  - test/mytest/bigint.test.cpp
+  - test/yukicoder/2525.test.cpp
+  - test/yukicoder/2508.test.cpp
+  - test/yukicoder/303.test.cpp
+  - test/yukicoder/2440.test.cpp
+  - test/yukicoder/2580.test.cpp
+  - test/yukicoder/2649.test.cpp
+  - test/aoj/NTL_2_C.test.cpp
+  - test/aoj/NTL_2_A.test.cpp
+  - test/aoj/NTL_2_B.test.cpp
+  - test_atcoder/abc339f.test.cpp
 documentation_of: nt/digit_sum.hpp
 layout: document
 redirect_from:

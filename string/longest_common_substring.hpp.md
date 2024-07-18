@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':heavy_check_mark:'
@@ -156,9 +156,9 @@ data:
   timestamp: '2024-05-03 01:43:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/arc151_e.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
   - test/mytest/longest_common_substr.test.cpp
+  - test_atcoder/arc151_e.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

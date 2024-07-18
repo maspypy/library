@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/double_end_queue.hpp
     title: ds/double_end_queue.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -211,28 +211,28 @@ data:
     \ dat.back());\n    T res = POP(dat);\n    down(1);\n    return res;\n  }\n\n\
     \  void debug() {\n    print(\"debug dat=\", dat);\n    FOR(i, len(dat) - 1) if\
     \ (i % 2 == 0) assert(!(dat[i + 1] < dat[i]));\n    FOR(i, 1, ceil<int>(len(dat),\
-    \ 2)) {\n      int p = (i - 1) / 2;\n      int a = dat[2 * p + 0], b = dat[2 *\
-    \ p + 1];\n      int c = dat[2 * i + 0];\n      int d = (2 * i + 1 >= len(dat)\
-    \ ? dat.back() : dat[2 * i + 1]);\n      assert(a <= c && c <= d && d <= b);\n\
-    \    }\n    print(\"heap condition ok\");\n  }\n\nprivate:\n  inline int parent(int\
-    \ i) { return (i - 4 + (i & 3)) / 2; }\n\n  void down(int i) {\n    int n = len(dat);\n\
-    \    if (i % 2 == 0) {\n      while (1) {\n        if (i + 1 < n && dat[i + 1]\
-    \ < dat[i]) swap(dat[i], dat[i + 1]);\n        int j = i, l = 2 * i + 2, r = 2\
-    \ * i + 4;\n        if (l < n && dat[l] < dat[j]) j = l;\n        if (r < n &&\
-    \ dat[r] < dat[j]) j = r;\n        if (i == j) break;\n        swap(dat[i], dat[j]),\
-    \ i = j;\n      }\n    } else {\n      while (1) {\n        if (dat[i] < dat[i\
-    \ - 1]) swap(dat[i - 1], dat[i]);\n        int j = i, l = 2 * i + 1, r = 2 * i\
-    \ + 3;\n        if (r >= n) --r;\n        if (l >= n) --l;\n        if (l < n\
-    \ && dat[j] < dat[l]) j = l;\n        if (r < n && dat[j] < dat[r]) j = r;\n \
-    \       if (i == j) break;\n        swap(dat[i], dat[j]), i = j;\n        if (i\
-    \ % 2 == 0) break;\n      }\n    }\n  }\n\n  void up() {\n    int i = len(dat)\
-    \ - 1;\n    if (2 <= i && i % 2 == 0) {\n      int p = parent(i) ^ 1;\n      if\
-    \ (dat[p] < dat[i]) { swap(dat[i], dat[p]), i = p; }\n    }\n    if (i % 2 ==\
-    \ 1 && dat[i] < dat[i - 1]) { swap(dat[i - 1], dat[i]), --i; }\n    if (i % 2\
-    \ == 0) {\n      while (i >= 2) {\n        int p = parent(i);\n        if (!(dat[i]\
-    \ < dat[p])) break;\n        swap(dat[p], dat[i]), i = p;\n      }\n      return;\n\
-    \    }\n    while (i >= 3) {\n      int p = parent(i);\n      if (!(dat[p] < dat[i]))\
-    \ break;\n      swap(dat[p], dat[i]), i = p;\n    }\n  }\n};\n#line 6 \"test/library_checker/datastructure/double_ended_q.test.cpp\"\
+    \ 2)) {\n      int p = (i - 1) / 2;\n      T a = dat[2 * p + 0], b = dat[2 * p\
+    \ + 1];\n      T c = dat[2 * i + 0];\n      T d = (2 * i + 1 >= len(dat) ? dat.back()\
+    \ : dat[2 * i + 1]);\n      assert(a <= c && c <= d && d <= b);\n    }\n    print(\"\
+    heap condition ok\");\n  }\n\nprivate:\n  inline int parent(int i) { return (i\
+    \ - 4 + (i & 3)) / 2; }\n\n  void down(int i) {\n    int n = len(dat);\n    if\
+    \ (i % 2 == 0) {\n      while (1) {\n        if (i + 1 < n && dat[i + 1] < dat[i])\
+    \ swap(dat[i], dat[i + 1]);\n        int j = i, l = 2 * i + 2, r = 2 * i + 4;\n\
+    \        if (l < n && dat[l] < dat[j]) j = l;\n        if (r < n && dat[r] < dat[j])\
+    \ j = r;\n        if (i == j) break;\n        swap(dat[i], dat[j]), i = j;\n \
+    \     }\n    } else {\n      while (1) {\n        if (dat[i] < dat[i - 1]) swap(dat[i\
+    \ - 1], dat[i]);\n        int j = i, l = 2 * i + 1, r = 2 * i + 3;\n        if\
+    \ (r >= n) --r;\n        if (l >= n) --l;\n        if (l < n && dat[j] < dat[l])\
+    \ j = l;\n        if (r < n && dat[j] < dat[r]) j = r;\n        if (i == j) break;\n\
+    \        swap(dat[i], dat[j]), i = j;\n        if (i % 2 == 0) break;\n      }\n\
+    \    }\n  }\n\n  void up() {\n    int i = len(dat) - 1;\n    if (2 <= i && i %\
+    \ 2 == 0) {\n      int p = parent(i) ^ 1;\n      if (dat[p] < dat[i]) { swap(dat[i],\
+    \ dat[p]), i = p; }\n    }\n    if (i % 2 == 1 && dat[i] < dat[i - 1]) { swap(dat[i\
+    \ - 1], dat[i]), --i; }\n    if (i % 2 == 0) {\n      while (i >= 2) {\n     \
+    \   int p = parent(i);\n        if (!(dat[i] < dat[p])) break;\n        swap(dat[p],\
+    \ dat[i]), i = p;\n      }\n      return;\n    }\n    while (i >= 3) {\n     \
+    \ int p = parent(i);\n      if (!(dat[p] < dat[i])) break;\n      swap(dat[p],\
+    \ dat[i]), i = p;\n    }\n  }\n};\n#line 6 \"test/library_checker/datastructure/double_ended_q.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Double_End_Queue<int> que(A);\n\
     \  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(x);\n      que.push(x);\n\
     \    }\n    if (t == 1) print(que.pop_min());\n    if (t == 2) print(que.pop_max());\n\
@@ -250,8 +250,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/double_ended_q.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 22:30:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:54:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/double_ended_q.test.cpp
 layout: document

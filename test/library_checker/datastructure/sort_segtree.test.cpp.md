@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
@@ -421,23 +421,23 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 8 \"test/library_checker/datastructure/sort_segtree.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\
-    \u3059\u308B\u65B9\n\n  using AFF = Monoid_Affine<mint>;\n  LL(N, Q);\n  vc<int>\
-    \ key(N);\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) { read(key[i]), read(seg_raw[i]);\
-    \ }\n\n  vc<int> all_key = key;\n  using QT = tuple<int, int, int, int, int>;\n\
-    \  vc<QT> query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      LL(i,\
-    \ p, a, b);\n      query[q] = {t, i, p, a, b};\n      all_key.eb(p);\n    }\n\
-    \    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n  \
-    \  }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l, r,\
-    \ 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
+    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
+    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 8 \"test/library_checker/datastructure/sort_segtree.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\
+    \u307F\u3059\u308B\u65B9\n\n  using AFF = Monoid_Affine<mint>;\n  LL(N, Q);\n\
+    \  vc<int> key(N);\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) { read(key[i]),\
+    \ read(seg_raw[i]); }\n\n  vc<int> all_key = key;\n  using QT = tuple<int, int,\
+    \ int, int, int>;\n  vc<QT> query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t ==\
+    \ 0) {\n      LL(i, p, a, b);\n      query[q] = {t, i, p, a, b};\n      all_key.eb(p);\n\
+    \    }\n    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n\
+    \    }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l,\
+    \ r, 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
     \ k);\n\n  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);\n\n\
     \  for (auto&& [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key,\
     \ b);\n      seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n  \
@@ -476,8 +476,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/sort_segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/sort_segtree.test.cpp
 layout: document

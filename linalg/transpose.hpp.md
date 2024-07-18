@@ -6,12 +6,12 @@ data:
     path: other/sliding_puzzle_solve.hpp
     title: other/sliding_puzzle_solve.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2108.test.cpp
     title: test/yukicoder/2108.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
@@ -27,7 +27,7 @@ data:
   requiredBy:
   - other/sliding_puzzle_solve.hpp
   timestamp: '2023-10-24 15:46:44+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2108.test.cpp
 documentation_of: linalg/transpose.hpp

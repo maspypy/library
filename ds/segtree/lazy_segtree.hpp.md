@@ -8,10 +8,10 @@ data:
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_affine_range_sum.test.cpp
     title: test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,28 +90,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1720.test.cpp
     title: test/yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/255.test.cpp
     title: test/yukicoder/255.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc234g.test.cpp
     title: test_atcoder/abc234g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,9 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -247,48 +247,48 @@ data:
   path: ds/segtree/lazy_segtree.hpp
   requiredBy:
   - ds/rectangle_union.hpp
+  - seq/common_interval_decomposition.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - graph/count/count_connected_intervals.hpp
-  - seq/common_interval_decomposition.hpp
   timestamp: '2023-05-21 00:13:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc256ex2.test.cpp
-  - test_atcoder/abc318b.test.cpp
-  - test_atcoder/abc256ex.test.cpp
-  - test_atcoder/abc234g.test.cpp
-  - test/yukicoder/1790.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/899.test.cpp
-  - test/yukicoder/1234.test.cpp
-  - test/yukicoder/1548.test.cpp
-  - test/yukicoder/255.test.cpp
-  - test/yukicoder/1197.test.cpp
-  - test/yukicoder/1720.test.cpp
-  - test/yukicoder/749.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
-  - test/aoj/DSL_4_A.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
-  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/library_checker/datastructure/range_affine_range_sum.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/mytest/summax_add.test.cpp
-  - test/mytest/fenwick_raq.test.cpp
   - test/mytest/summin_assign.test.cpp
-  - test/mytest/maxidx_add.test.cpp
-  - test/mytest/max_max.test.cpp
-  - test/mytest/max_assign.test.cpp
-  - test/mytest/minidx_add.test.cpp
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/min_max.test.cpp
-  - test/mytest/max_min.test.cpp
-  - test/mytest/range_assign.test.cpp
-  - test/mytest/summin_add.test.cpp
-  - test/mytest/min_min.test.cpp
   - test/mytest/minmax_add.test.cpp
+  - test/mytest/min_max.test.cpp
+  - test/mytest/min_min.test.cpp
+  - test/mytest/fenwick_raq.test.cpp
+  - test/mytest/max_max.test.cpp
+  - test/mytest/minidx_add.test.cpp
+  - test/mytest/max_assign.test.cpp
+  - test/mytest/summin_add.test.cpp
+  - test/mytest/summax_add.test.cpp
+  - test/mytest/range_assign.test.cpp
+  - test/mytest/summax_assign.test.cpp
+  - test/mytest/max_min.test.cpp
+  - test/mytest/maxidx_add.test.cpp
+  - test/yukicoder/255.test.cpp
+  - test/yukicoder/1234.test.cpp
+  - test/yukicoder/749.test.cpp
+  - test/yukicoder/899.test.cpp
+  - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1720.test.cpp
+  - test/yukicoder/235.test.cpp
+  - test/yukicoder/1548.test.cpp
+  - test/yukicoder/1197.test.cpp
+  - test/yukicoder/1790.test.cpp
+  - test/aoj/GRL_5_E.test.cpp
+  - test/aoj/DSL_2_H.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/aoj/DSL_4_A.test.cpp
+  - test_atcoder/abc318b.test.cpp
+  - test_atcoder/abc234g.test.cpp
+  - test_atcoder/abc256ex2.test.cpp
+  - test_atcoder/abc256ex.test.cpp
 documentation_of: ds/segtree/lazy_segtree.hpp
 layout: document
 redirect_from:

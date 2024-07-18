@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/range_xor_basis_query.hpp
     title: ds/offline_query/range_xor_basis_query.hpp
   - icon: ':question:'

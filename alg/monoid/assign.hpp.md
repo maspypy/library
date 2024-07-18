@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -48,13 +48,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/rbst_am_persistent.test.cpp
     title: test/mytest/rbst_am_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst_monoid.test.cpp
     title: test/mytest/rbst_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rbst_monoid_persistent.test.cpp
     title: test/mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/splay_monoid.test.cpp
     title: test/mytest/splay_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/summin_assign.test.cpp
     title: test/mytest/summin_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1548.test.cpp
     title: test/yukicoder/1548.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,9 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc256ex2.test.cpp
     title: test_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
@@ -92,33 +92,33 @@ data:
   isVerificationFile: false
   path: alg/monoid/assign.hpp
   requiredBy:
-  - alg/acted_monoid/summax_assign.hpp
-  - alg/acted_monoid/min_assign.hpp
-  - alg/acted_monoid/powersums_assign.hpp
   - alg/acted_monoid/summin_assign.hpp
-  - alg/acted_monoid/sum_assign.hpp
+  - alg/acted_monoid/min_assign.hpp
   - alg/acted_monoid/max_assign.hpp
+  - alg/acted_monoid/powersums_assign.hpp
+  - alg/acted_monoid/summax_assign.hpp
+  - alg/acted_monoid/sum_assign.hpp
   timestamp: '2023-10-14 20:28:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc256ex2.test.cpp
-  - test_atcoder/abc256ex.test.cpp
+  - test/mytest/summin_assign.test.cpp
+  - test/mytest/rbst_am.test.cpp
+  - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test/mytest/max_assign.test.cpp
+  - test/mytest/splay_monoid.test.cpp
+  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/mytest/rbst_monoid_persistent.test.cpp
+  - test/mytest/range_assign.test.cpp
+  - test/mytest/rbst_am_persistent.test.cpp
+  - test/mytest/summax_assign.test.cpp
+  - test/mytest/rbst_monoid.test.cpp
   - test/yukicoder/1548.test.cpp
   - test/yukicoder/2292.test.cpp
+  - test/aoj/DSL_2_F.test.cpp
   - test/aoj/DSL_2_I.test.cpp
   - test/aoj/DSL_2_D.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/summin_assign.test.cpp
-  - test/mytest/splay_monoid.test.cpp
-  - test/mytest/max_assign.test.cpp
-  - test/mytest/rbst_monoid_persistent.test.cpp
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/range_assign.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
+  - test_atcoder/abc256ex2.test.cpp
+  - test_atcoder/abc256ex.test.cpp
 documentation_of: alg/monoid/assign.hpp
 layout: document
 redirect_from:

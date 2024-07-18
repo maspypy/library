@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_affine_point_add.test.cpp
     title: test/library_checker/datastructure/range_affine_point_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2498.test.cpp
     title: test/yukicoder/2498.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,9 +42,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
@@ -90,18 +90,18 @@ data:
   - graph/ds/dual_tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-04 02:25:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc301h.test.cpp
-  - test_atcoder/abc270_f.test.cpp
-  - test/yukicoder/913.test.cpp
-  - test/yukicoder/2498.test.cpp
-  - test/yukicoder/1524.test.cpp
-  - test/aoj/DSL_2_D.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
   - test/library_checker/datastructure/range_affine_point_add.test.cpp
   - test/library_checker/tree/mst.test.cpp
   - test/mytest/range_closest_pair.test.cpp
+  - test/yukicoder/913.test.cpp
+  - test/yukicoder/2498.test.cpp
+  - test/yukicoder/1524.test.cpp
+  - test/aoj/GRL_2_A.test.cpp
+  - test/aoj/DSL_2_D.test.cpp
+  - test_atcoder/abc301h.test.cpp
+  - test_atcoder/abc270_f.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document
 redirect_from:

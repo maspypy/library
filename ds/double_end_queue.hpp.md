@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/double_ended_q.test.cpp
     title: test/library_checker/datastructure/double_ended_q.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/double_end_queue.hpp\"\n// T \u306F operator< \u3092\u6301\
@@ -28,9 +28,9 @@ data:
     \ 2) { return POP(dat); }\n    swap(dat[1], dat.back());\n    T res = POP(dat);\n\
     \    down(1);\n    return res;\n  }\n\n  void debug() {\n    print(\"debug dat=\"\
     , dat);\n    FOR(i, len(dat) - 1) if (i % 2 == 0) assert(!(dat[i + 1] < dat[i]));\n\
-    \    FOR(i, 1, ceil<int>(len(dat), 2)) {\n      int p = (i - 1) / 2;\n      int\
-    \ a = dat[2 * p + 0], b = dat[2 * p + 1];\n      int c = dat[2 * i + 0];\n   \
-    \   int d = (2 * i + 1 >= len(dat) ? dat.back() : dat[2 * i + 1]);\n      assert(a\
+    \    FOR(i, 1, ceil<int>(len(dat), 2)) {\n      int p = (i - 1) / 2;\n      T\
+    \ a = dat[2 * p + 0], b = dat[2 * p + 1];\n      T c = dat[2 * i + 0];\n     \
+    \ T d = (2 * i + 1 >= len(dat) ? dat.back() : dat[2 * i + 1]);\n      assert(a\
     \ <= c && c <= d && d <= b);\n    }\n    print(\"heap condition ok\");\n  }\n\n\
     private:\n  inline int parent(int i) { return (i - 4 + (i & 3)) / 2; }\n\n  void\
     \ down(int i) {\n    int n = len(dat);\n    if (i % 2 == 0) {\n      while (1)\
@@ -68,18 +68,18 @@ data:
     \    T res = POP(dat);\n    down(1);\n    return res;\n  }\n\n  void debug() {\n\
     \    print(\"debug dat=\", dat);\n    FOR(i, len(dat) - 1) if (i % 2 == 0) assert(!(dat[i\
     \ + 1] < dat[i]));\n    FOR(i, 1, ceil<int>(len(dat), 2)) {\n      int p = (i\
-    \ - 1) / 2;\n      int a = dat[2 * p + 0], b = dat[2 * p + 1];\n      int c =\
-    \ dat[2 * i + 0];\n      int d = (2 * i + 1 >= len(dat) ? dat.back() : dat[2 *\
-    \ i + 1]);\n      assert(a <= c && c <= d && d <= b);\n    }\n    print(\"heap\
-    \ condition ok\");\n  }\n\nprivate:\n  inline int parent(int i) { return (i -\
-    \ 4 + (i & 3)) / 2; }\n\n  void down(int i) {\n    int n = len(dat);\n    if (i\
-    \ % 2 == 0) {\n      while (1) {\n        if (i + 1 < n && dat[i + 1] < dat[i])\
-    \ swap(dat[i], dat[i + 1]);\n        int j = i, l = 2 * i + 2, r = 2 * i + 4;\n\
-    \        if (l < n && dat[l] < dat[j]) j = l;\n        if (r < n && dat[r] < dat[j])\
-    \ j = r;\n        if (i == j) break;\n        swap(dat[i], dat[j]), i = j;\n \
-    \     }\n    } else {\n      while (1) {\n        if (dat[i] < dat[i - 1]) swap(dat[i\
-    \ - 1], dat[i]);\n        int j = i, l = 2 * i + 1, r = 2 * i + 3;\n        if\
-    \ (r >= n) --r;\n        if (l >= n) --l;\n        if (l < n && dat[j] < dat[l])\
+    \ - 1) / 2;\n      T a = dat[2 * p + 0], b = dat[2 * p + 1];\n      T c = dat[2\
+    \ * i + 0];\n      T d = (2 * i + 1 >= len(dat) ? dat.back() : dat[2 * i + 1]);\n\
+    \      assert(a <= c && c <= d && d <= b);\n    }\n    print(\"heap condition\
+    \ ok\");\n  }\n\nprivate:\n  inline int parent(int i) { return (i - 4 + (i & 3))\
+    \ / 2; }\n\n  void down(int i) {\n    int n = len(dat);\n    if (i % 2 == 0) {\n\
+    \      while (1) {\n        if (i + 1 < n && dat[i + 1] < dat[i]) swap(dat[i],\
+    \ dat[i + 1]);\n        int j = i, l = 2 * i + 2, r = 2 * i + 4;\n        if (l\
+    \ < n && dat[l] < dat[j]) j = l;\n        if (r < n && dat[r] < dat[j]) j = r;\n\
+    \        if (i == j) break;\n        swap(dat[i], dat[j]), i = j;\n      }\n \
+    \   } else {\n      while (1) {\n        if (dat[i] < dat[i - 1]) swap(dat[i -\
+    \ 1], dat[i]);\n        int j = i, l = 2 * i + 1, r = 2 * i + 3;\n        if (r\
+    \ >= n) --r;\n        if (l >= n) --l;\n        if (l < n && dat[j] < dat[l])\
     \ j = l;\n        if (r < n && dat[j] < dat[r]) j = r;\n        if (i == j) break;\n\
     \        swap(dat[i], dat[j]), i = j;\n        if (i % 2 == 0) break;\n      }\n\
     \    }\n  }\n\n  void up() {\n    int i = len(dat) - 1;\n    if (2 <= i && i %\
@@ -94,8 +94,8 @@ data:
   isVerificationFile: false
   path: ds/double_end_queue.hpp
   requiredBy: []
-  timestamp: '2024-05-29 22:30:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-18 10:54:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/datastructure/double_ended_q.test.cpp
 documentation_of: ds/double_end_queue.hpp

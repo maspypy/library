@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc351/tasks/abc351_g
@@ -486,25 +486,25 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 7 \"test_atcoder/abc351g.test.cpp\"\n\nusing mint = modint998;\n\nusing\
-    \ Data = pair<mint, mint>;\n\nvoid solve() {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n\
-    \  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  VEC(mint, A, N);\n\
-    \  G.build();\n  Tree<decltype(G)> tree(G);\n\n  Dynamic_Tree_Dp<decltype(tree),\
-    \ Data> X(tree);\n  auto single = [&](int v) -> Data { return {1, A[v]}; };\n\
-    \  auto rake = [&](Data x, Data y, int u, int v) -> Data {\n    mint c = y.se;\n\
-    \    auto [a, b] = x;\n    return {a * c, b * c};\n  };\n  auto compress = [&](Data\
-    \ x, Data y, int u, int v, int w) -> Data {\n    auto [a, b] = x;\n    auto [c,\
-    \ d] = y;\n    return {a * c, a * d + b};\n  };\n  X.init_dp(single, rake, compress);\n\
-    \n  FOR(Q) {\n    INT(v, x);\n    --v;\n    A[v] = x;\n    Data a = X.recalc(v,\
-    \ single, rake, compress);\n    print(a.se);\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
+    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 7 \"test_atcoder/abc351g.test.cpp\"\
+    \n\nusing mint = modint998;\n\nusing Data = pair<mint, mint>;\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p,\
+    \ v);\n  }\n  VEC(mint, A, N);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n\
+    \  Dynamic_Tree_Dp<decltype(tree), Data> X(tree);\n  auto single = [&](int v)\
+    \ -> Data { return {1, A[v]}; };\n  auto rake = [&](Data x, Data y, int u, int\
+    \ v) -> Data {\n    mint c = y.se;\n    auto [a, b] = x;\n    return {a * c, b\
+    \ * c};\n  };\n  auto compress = [&](Data x, Data y, int u, int v, int w) -> Data\
+    \ {\n    auto [a, b] = x;\n    auto [c, d] = y;\n    return {a * c, a * d + b};\n\
+    \  };\n  X.init_dp(single, rake, compress);\n\n  FOR(Q) {\n    INT(v, x);\n  \
+    \  --v;\n    A[v] = x;\n    Data a = X.recalc(v, single, rake, compress);\n  \
+    \  print(a.se);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc351/tasks/abc351_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/dynamic_tree_dp.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nusing Data = pair<mint,\
@@ -531,8 +531,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc351g.test.cpp
   requiredBy: []
-  timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc351g.test.cpp
 layout: document

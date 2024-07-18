@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
@@ -54,12 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc190f.test.cpp
     title: test_atcoder/abc190f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
@@ -198,23 +198,23 @@ data:
   requiredBy:
   - other/sliding_puzzle_solve.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
+  - seq/inversion.hpp
   - geo/count_points_in_triangles.hpp
   - graph/ds/range_edge_connected_component_query.hpp
-  - seq/inversion.hpp
   timestamp: '2024-04-09 15:17:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc190f.test.cpp
-  - test_atcoder/abc202_f.test.cpp
-  - test/yukicoder/694.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/library_checker/datastructure/predecessor_problem_4.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/mytest/fenwick01.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/fenwick01.test.cpp
+  - test/yukicoder/1838.test.cpp
+  - test/yukicoder/694.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test_atcoder/abc190f.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

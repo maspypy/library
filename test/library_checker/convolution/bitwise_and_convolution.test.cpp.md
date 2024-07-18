@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/zeta.hpp
     title: setfunc/zeta.hpp
   _extendedRequiredBy: []
@@ -270,28 +270,28 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) A[s]\
-    \ += A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid superset_mobius(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) A[s]\
-    \ -= A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_zeta(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s > t) A[s]\
-    \ += A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_mobius(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s > t) A[s]\
-    \ -= A[t];\r\n  }\r\n}\n#line 2 \"setfunc/and_convolution.hpp\"\ntemplate <typename\
-    \ T>\r\nvc<T> and_convolution(vc<T> A, vc<T> B) {\r\n  superset_zeta(A);\r\n \
-    \ superset_zeta(B);\r\n  FOR(i, len(A)) A[i] *= B[i];\r\n  superset_mobius(A);\r\
+    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
+    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate\
+    \ <typename T>\r\nvoid superset_zeta(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
+    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
+    \ t = s ^ (1 << n);\r\n    if (s < t) A[s] += A[t];\r\n  }\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid superset_mobius(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
+    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
+    \ t = s ^ (1 << n);\r\n    if (s < t) A[s] -= A[t];\r\n  }\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid subset_zeta(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
+    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
+    \ t = s ^ (1 << n);\r\n    if (s > t) A[s] += A[t];\r\n  }\r\n}\r\n\r\ntemplate\
+    \ <typename T>\r\nvoid subset_mobius(vc<T>& A) {\r\n  int log = topbit(len(A));\r\
+    \n  assert(1 << log == len(A));\r\n  FOR(n, log) FOR(s, 1 << log) {\r\n    int\
+    \ t = s ^ (1 << n);\r\n    if (s > t) A[s] -= A[t];\r\n  }\r\n}\n#line 2 \"setfunc/and_convolution.hpp\"\
+    \ntemplate <typename T>\r\nvc<T> and_convolution(vc<T> A, vc<T> B) {\r\n  superset_zeta(A);\r\
+    \n  superset_zeta(B);\r\n  FOR(i, len(A)) A[i] *= B[i];\r\n  superset_mobius(A);\r\
     \n  return A;\r\n}\r\n#line 7 \"test/library_checker/convolution/bitwise_and_convolution.test.cpp\"\
     \n\r\nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N);\r\n  VEC(mint,\
     \ A, 1 << N);\r\n  VEC(mint, B, 1 << N);\r\n  auto ANS = and_convolution(A, B);\r\
@@ -314,7 +314,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/convolution/bitwise_and_convolution.test.cpp

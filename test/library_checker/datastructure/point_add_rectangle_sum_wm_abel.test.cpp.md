@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -204,19 +204,20 @@ data:
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
     \ 5 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
     \n\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32, u32>> dat;\n\
-    \  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n\n  void set(int\
-    \ i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n\n  void build() {\n    FOR(i,\
-    \ len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\n  // [0,\
-    \ k) \u5185\u306E 1 \u306E\u500B\u6570\n  int rank(int k, bool f = 1) {\n    auto\
-    \ [a, b] = dat[k >> 5];\n    int ret = b + popcnt(a & ((u32(1) << (k & 31)) -\
-    \ 1));\n    return (f ? ret : k - ret);\n  }\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
-    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void set(int i)\
+    \ { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat), pair<u32,\
+    \ u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
+    \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
+    \ int count(int k, bool f = 1) {\n    auto [a, b] = dat[k >> 5];\n    int ret\
+    \ = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n\
+    \  }\n  int count(int L, int R, bool f = 1) { return count(R, f) - count(L, f);\
+    \ }\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
     \ E = typename G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree()\
     \ {}\n  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
     \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
@@ -360,8 +361,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:54:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
 layout: document

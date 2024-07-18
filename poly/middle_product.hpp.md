@@ -1,122 +1,122 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
     path: seq/count_grid_path.hpp
     title: seq/count_grid_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic_polynomial.test.cpp
     title: graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1796_1.test.cpp
     title: test/yukicoder/1796_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2626.test.cpp
     title: test/yukicoder/2626.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc333f.test.cpp
     title: test_atcoder/abc333f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\
@@ -251,44 +251,44 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
+  - seq/count_grid_path.hpp
+  - string/wildcard_pattern_matching.hpp
+  - poly/typical_divide_conquer.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/multipoint.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/partial_frac_decomposition_1.hpp
   - linalg/blackbox/vandermonde.hpp
   - graph/chromatic.hpp
-  - poly/typical_divide_conquer.hpp
-  - poly/multipoint.hpp
-  - poly/partial_frac_decomposition_1.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - string/wildcard_pattern_matching.hpp
-  - seq/count_grid_path.hpp
   timestamp: '2024-06-11 19:14:48+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc267g.test.cpp
-  - test_atcoder/abc272_h.test.cpp
-  - test_atcoder/agc013e.test.cpp
-  - test_atcoder/agc058d2.test.cpp
-  - test_atcoder/abc260h.test.cpp
-  - test_atcoder/abc241h.test.cpp
-  - test_atcoder/abc333f.test.cpp
-  - graph/chromatic_polynomial.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/2243.test.cpp
-  - test/yukicoder/2626.test.cpp
-  - test/yukicoder/1796_1.test.cpp
-  - test/yukicoder/2231.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/partial_frac.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
   - test/mytest/chirp_z.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/yukicoder/2231.test.cpp
+  - test/yukicoder/1796_1.test.cpp
+  - test/yukicoder/2626.test.cpp
+  - test/yukicoder/2243.test.cpp
+  - test/yukicoder/1575.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc241h.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc333f.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

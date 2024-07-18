@@ -1,77 +1,77 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':warning:'
     path: poly/online/online_convolution_garner.hpp
     title: poly/online/online_convolution_garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   - icon: ':warning:'
     path: poly/online/online_exp_garner.hpp
     title: poly/online/online_exp_garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_inv.test.cpp
     title: test/mytest/online_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc230h.test.cpp
     title: test_atcoder/abc230h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc315h.test.cpp
     title: test_atcoder/abc315h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -197,29 +197,30 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 4 \"poly/online/online_convolution.hpp\"\n\n/*\nquery(i)\uFF1Aa[i], b[i]\
-    \ \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A127ms\n\
-    2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A1220ms\n*/\ntemplate <class\
-    \ mint>\nstruct Online_Convolution {\n  vc<mint> f, g, h, b0, b1;\n  vvc<mint>\
-    \ fm, gm;\n  int p;\n\n  Online_Convolution() : p(0) { assert(mint::can_ntt());\
-    \ }\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == p);\n    f.eb(f_i),\
-    \ g.eb(g_i);\n    int z = __builtin_ctz(p + 2), w = 1 << z, s;\n    if (p + 2\
-    \ == w) {\n      b0 = f, b0.resize(2 * w);\n      ntt(b0, false);\n      fm.eb(b0.begin(),\
-    \ b0.begin() + w);\n      b1 = g, b1.resize(2 * w);\n      ntt(b1, false);\n \
-    \     gm.eb(b1.begin(), b1.begin() + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n\
-    \      s = w - 2;\n      h.resize(2 * s + 2);\n    } else {\n      b0.assign(f.end()\
-    \ - w, f.end()), b0.resize(2 * w);\n      ntt(b0, false);\n      FOR(i, 2 * w)\
-    \ b0[i] *= gm[z][i];\n      b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n\
-    \      ntt(b1, false);\n      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n     \
-    \ s = w - 1;\n    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s +\
-    \ i];\n    return h[p++];\n  }\n};\n"
+    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
+    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 4 \"poly/online/online_convolution.hpp\"\
+    \n\n/*\nquery(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\
+    \u3002\n2^{17}\uFF1A127ms\n2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A\
+    1220ms\n*/\ntemplate <class mint>\nstruct Online_Convolution {\n  vc<mint> f,\
+    \ g, h, b0, b1;\n  vvc<mint> fm, gm;\n  int p;\n\n  Online_Convolution() : p(0)\
+    \ { assert(mint::can_ntt()); }\n\n  mint query(int i, mint f_i, mint g_i) {\n\
+    \    assert(i == p);\n    f.eb(f_i), g.eb(g_i);\n    int z = __builtin_ctz(p +\
+    \ 2), w = 1 << z, s;\n    if (p + 2 == w) {\n      b0 = f, b0.resize(2 * w);\n\
+    \      ntt(b0, false);\n      fm.eb(b0.begin(), b0.begin() + w);\n      b1 = g,\
+    \ b1.resize(2 * w);\n      ntt(b1, false);\n      gm.eb(b1.begin(), b1.begin()\
+    \ + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n      s = w - 2;\n      h.resize(2\
+    \ * s + 2);\n    } else {\n      b0.assign(f.end() - w, f.end()), b0.resize(2\
+    \ * w);\n      ntt(b0, false);\n      FOR(i, 2 * w) b0[i] *= gm[z][i];\n     \
+    \ b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n      ntt(b1, false);\n\
+    \      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n      s = w - 1;\n    }\n   \
+    \ ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s + i];\n    return h[p++];\n\
+    \  }\n};\n"
   code: "#pragma once\n#include \"poly/ntt.hpp\"\n#include \"mod/modint.hpp\"\n\n\
     /*\nquery(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\
     \u3002\n2^{17}\uFF1A127ms\n2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A\
@@ -244,28 +245,28 @@ data:
   isVerificationFile: false
   path: poly/online/online_convolution.hpp
   requiredBy:
-  - graph/count/count_unlabeled_tree.hpp
-  - poly/online/online_log.hpp
+  - seq/famous/simple_permutations.hpp
+  - poly/online/online_convolution_garner.hpp
   - poly/online/online_inv.hpp
-  - poly/online/online_division.hpp
   - poly/online/online_exp_garner.hpp
+  - poly/online/online_log.hpp
   - poly/online/online_exp.hpp
   - poly/online/online_pow.hpp
-  - poly/online/online_convolution_garner.hpp
-  - seq/famous/simple_permutations.hpp
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - poly/online/online_division.hpp
+  - graph/count/count_unlabeled_tree.hpp
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc315h.test.cpp
-  - test_atcoder/abc230h.test.cpp
   - test/library_checker/convolution/online_convolution.test.cpp
   - test/mytest/online_division.test.cpp
-  - test/mytest/online_inv.test.cpp
+  - test/mytest/count_unlabeled_tree.test.cpp
   - test/mytest/online_log.test.cpp
-  - test/mytest/online_exp.test.cpp
   - test/mytest/simple_perm.test.cpp
   - test/mytest/online_pow.test.cpp
-  - test/mytest/count_unlabeled_tree.test.cpp
+  - test/mytest/online_inv.test.cpp
+  - test/mytest/online_exp.test.cpp
+  - test_atcoder/abc230h.test.cpp
+  - test_atcoder/abc315h.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document
 redirect_from:

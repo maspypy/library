@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_inv.test.cpp
     title: test/mytest/online_inv.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -149,41 +149,41 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 4 \"poly/online/online_convolution.hpp\"\n\n/*\nquery(i)\uFF1Aa[i], b[i]\
-    \ \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\u3002\n2^{17}\uFF1A127ms\n\
-    2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A1220ms\n*/\ntemplate <class\
-    \ mint>\nstruct Online_Convolution {\n  vc<mint> f, g, h, b0, b1;\n  vvc<mint>\
-    \ fm, gm;\n  int p;\n\n  Online_Convolution() : p(0) { assert(mint::can_ntt());\
-    \ }\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == p);\n    f.eb(f_i),\
-    \ g.eb(g_i);\n    int z = __builtin_ctz(p + 2), w = 1 << z, s;\n    if (p + 2\
-    \ == w) {\n      b0 = f, b0.resize(2 * w);\n      ntt(b0, false);\n      fm.eb(b0.begin(),\
-    \ b0.begin() + w);\n      b1 = g, b1.resize(2 * w);\n      ntt(b1, false);\n \
-    \     gm.eb(b1.begin(), b1.begin() + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n\
-    \      s = w - 2;\n      h.resize(2 * s + 2);\n    } else {\n      b0.assign(f.end()\
-    \ - w, f.end()), b0.resize(2 * w);\n      ntt(b0, false);\n      FOR(i, 2 * w)\
-    \ b0[i] *= gm[z][i];\n      b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n\
-    \      ntt(b1, false);\n      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n     \
-    \ s = w - 1;\n    }\n    ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s +\
-    \ i];\n    return h[p++];\n  }\n};\n#line 3 \"poly/online/online_division.hpp\"\
-    \n\n// query(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 (f/g)[i] \u3092\u5F97\
-    \u308B\u3002\n// g[0] == 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename\
-    \ mint>\nstruct Online_Division {\n  vc<mint> f, g, F;\n  Online_Convolution<mint>\
-    \ X;\n\n  mint query(int i, mint f_i, mint g_i) {\n    assert(i == len(f));\n\
-    \    f.eb(f_i);\n    g.eb(g_i);\n    if (i == 0) {\n      assert(g_i == mint(1));\n\
-    \      F.eb(f_i);\n      return F[0];\n    }\n    F.eb(f[i] - X.query(i - 1, F[i\
-    \ - 1], g[i]));\n    return F[i];\n  }\n};\n#line 2 \"poly/online/online_inv.hpp\"\
-    \n\n// query(i)\uFF1Af[i] \u3092\u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\
-    \u3002\n// f[0] == 1 \u3092\u4EEE\u5B9A\u3059\u308B\u3002\ntemplate <typename\
-    \ mint>\nstruct Online_Inv {\n  Online_Division<mint> X;\n\n  mint query(int i,\
-    \ mint f_i) {\n    mint g_i = (i == 0 ? mint(1) : mint(0));\n    return X.query(i,\
-    \ g_i, f_i);\n  }\n};\n"
+    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
+    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 4 \"poly/online/online_convolution.hpp\"\
+    \n\n/*\nquery(i)\uFF1Aa[i], b[i] \u3092\u4E0E\u3048\u3066 ab[i] \u3092\u5F97\u308B\
+    \u3002\n2^{17}\uFF1A127ms\n2^{18}\uFF1A277ms\n2^{19}\uFF1A570ms\n2^{20}\uFF1A\
+    1220ms\n*/\ntemplate <class mint>\nstruct Online_Convolution {\n  vc<mint> f,\
+    \ g, h, b0, b1;\n  vvc<mint> fm, gm;\n  int p;\n\n  Online_Convolution() : p(0)\
+    \ { assert(mint::can_ntt()); }\n\n  mint query(int i, mint f_i, mint g_i) {\n\
+    \    assert(i == p);\n    f.eb(f_i), g.eb(g_i);\n    int z = __builtin_ctz(p +\
+    \ 2), w = 1 << z, s;\n    if (p + 2 == w) {\n      b0 = f, b0.resize(2 * w);\n\
+    \      ntt(b0, false);\n      fm.eb(b0.begin(), b0.begin() + w);\n      b1 = g,\
+    \ b1.resize(2 * w);\n      ntt(b1, false);\n      gm.eb(b1.begin(), b1.begin()\
+    \ + w);\n      FOR(i, 2 * w) b0[i] *= b1[i];\n      s = w - 2;\n      h.resize(2\
+    \ * s + 2);\n    } else {\n      b0.assign(f.end() - w, f.end()), b0.resize(2\
+    \ * w);\n      ntt(b0, false);\n      FOR(i, 2 * w) b0[i] *= gm[z][i];\n     \
+    \ b1.assign(g.end() - w, g.end()), b1.resize(2 * w);\n      ntt(b1, false);\n\
+    \      FOR(i, 2 * w) b0[i] += b1[i] * fm[z][i];\n      s = w - 1;\n    }\n   \
+    \ ntt(b0, true);\n    FOR(i, s + 1) h[p + i] += b0[s + i];\n    return h[p++];\n\
+    \  }\n};\n#line 3 \"poly/online/online_division.hpp\"\n\n// query(i)\uFF1Aa[i],\
+    \ b[i] \u3092\u4E0E\u3048\u3066 (f/g)[i] \u3092\u5F97\u308B\u3002\n// g[0] ==\
+    \ 1 \u3092\u4EEE\u5B9A\u3059\u308B\ntemplate <typename mint>\nstruct Online_Division\
+    \ {\n  vc<mint> f, g, F;\n  Online_Convolution<mint> X;\n\n  mint query(int i,\
+    \ mint f_i, mint g_i) {\n    assert(i == len(f));\n    f.eb(f_i);\n    g.eb(g_i);\n\
+    \    if (i == 0) {\n      assert(g_i == mint(1));\n      F.eb(f_i);\n      return\
+    \ F[0];\n    }\n    F.eb(f[i] - X.query(i - 1, F[i - 1], g[i]));\n    return F[i];\n\
+    \  }\n};\n#line 2 \"poly/online/online_inv.hpp\"\n\n// query(i)\uFF1Af[i] \u3092\
+    \u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\n// f[0] == 1 \u3092\u4EEE\
+    \u5B9A\u3059\u308B\u3002\ntemplate <typename mint>\nstruct Online_Inv {\n  Online_Division<mint>\
+    \ X;\n\n  mint query(int i, mint f_i) {\n    mint g_i = (i == 0 ? mint(1) : mint(0));\n\
+    \    return X.query(i, g_i, f_i);\n  }\n};\n"
   code: "#include \"poly/online/online_division.hpp\"\n\n// query(i)\uFF1Af[i] \u3092\
     \u4E0E\u3048\u3066 (f^{-1})[i] \u3092\u5F97\u308B\u3002\n// f[0] == 1 \u3092\u4EEE\
     \u5B9A\u3059\u308B\u3002\ntemplate <typename mint>\nstruct Online_Inv {\n  Online_Division<mint>\
@@ -198,8 +198,8 @@ data:
   isVerificationFile: false
   path: poly/online/online_inv.hpp
   requiredBy: []
-  timestamp: '2023-12-29 16:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/online_inv.test.cpp
 documentation_of: poly/online/online_inv.hpp

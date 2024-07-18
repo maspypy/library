@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -200,12 +200,14 @@ data:
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
     \ 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32, u32>> dat;\n  Bit_Vector(int\
-    \ n) { dat.assign((n + 63) >> 5, {0, 0}); }\n\n  void set(int i) { dat[i >> 5].fi\
-    \ |= u32(1) << (i & 31); }\n\n  void build() {\n    FOR(i, len(dat) - 1) dat[i\
-    \ + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\n  // [0, k) \u5185\u306E 1\
-    \ \u306E\u500B\u6570\n  int rank(int k, bool f = 1) {\n    auto [a, b] = dat[k\
-    \ >> 5];\n    int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return\
-    \ (f ? ret : k - ret);\n  }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
+    \ n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void set(int i) { dat[i >> 5].fi\
+    \ |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat), pair<u32, u32>{0,\
+    \ 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
+    \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
+    \ int count(int k, bool f = 1) {\n    auto [a, b] = dat[k >> 5];\n    int ret\
+    \ = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n\
+    \  }\n  int count(int L, int R, bool f = 1) { return count(R, f) - count(L, f);\
+    \ }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
     \n\ntemplate <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct\
     \ Wavelet_Matrix_2D_Range_Static_AbelGroup {\n  // \u70B9\u7FA4\u3092 Y \u6607\
     \u9806\u306B\u4E26\u3079\u308B.\n  // X \u3092\u6574\u6570\u306B\u306A\u304A\u3057\
@@ -281,8 +283,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:54:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
 layout: document

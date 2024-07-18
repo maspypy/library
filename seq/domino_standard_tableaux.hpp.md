@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/hook_length_formula.hpp
     title: seq/hook_length_formula.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2149.test.cpp
     title: test/yukicoder/2149.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/hook_length_formula.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -88,27 +88,27 @@ data:
     \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
     \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
     \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
-    \ 1045430273) return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n\
-    \    if (mod == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
-    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
-    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 4 \"seq/hook_length_formula.hpp\"\n\
-    \ntemplate <typename mint>\nmint hook_length_formula(vc<int> A) {\n  if (len(A)\
-    \ == 0) return 1;\n  int H = len(A), W = A[0];\n  FOR(i, H - 1) assert(A[i] >=\
-    \ A[i + 1]);\n  vc<int> B(W);\n  reverse(all(A));\n  mint ANS = fact<mint>(SUM<int>(A));\n\
-    \  for (auto&& a: A) {\n    FOR(j, a) { ANS *= inv<mint>(B[j] + a - j), ++B[j];\
-    \ }\n  }\n  return ANS;\n}\n#line 2 \"seq/domino_standard_tableaux.hpp\"\n\ntemplate\
-    \ <typename mint>\nmint domino_standard_tableaux(vc<int> A) {\n  int N = len(A);\n\
-    \  if (N == 0) return mint(1);\n  FOR(i, N - 1) assert(A[i] >= A[i + 1]);\n  int\
-    \ x = 0;\n  FOR(i, N) {\n    if (A[i] % 2 == 1) { x += (i % 2 == 0 ? 1 : -1);\
-    \ }\n  }\n  if (x != 0) return 0;\n  FOR(i, N) A[i] += N - 1 - i;\n  int ev =\
-    \ 0, od = 0;\n  vc<int> P, Q;\n  FOR_R(i, N) {\n    if (A[i] % 2 == 0) { P.eb(A[i]\
-    \ / 2 - ev), ++ev; }\n    if (A[i] % 2 == 1) { Q.eb(A[i] / 2 - od), ++od; }\n\
-    \  }\n  reverse(all(P)), reverse(all(Q));\n  int b = SUM<int>(P), c = SUM<int>(Q);\n\
-    \  return C<mint>(b + c, b) * hook_length_formula<mint>(P)\n         * hook_length_formula<mint>(Q);\n\
-    }\n"
+    \ 1004535809) return {21, 836905998};\n    if (mod == 1045430273) return {20,\
+    \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
+    \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
+    \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 4 \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint hook_length_formula(vc<int>\
+    \ A) {\n  if (len(A) == 0) return 1;\n  int H = len(A), W = A[0];\n  FOR(i, H\
+    \ - 1) assert(A[i] >= A[i + 1]);\n  vc<int> B(W);\n  reverse(all(A));\n  mint\
+    \ ANS = fact<mint>(SUM<int>(A));\n  for (auto&& a: A) {\n    FOR(j, a) { ANS *=\
+    \ inv<mint>(B[j] + a - j), ++B[j]; }\n  }\n  return ANS;\n}\n#line 2 \"seq/domino_standard_tableaux.hpp\"\
+    \n\ntemplate <typename mint>\nmint domino_standard_tableaux(vc<int> A) {\n  int\
+    \ N = len(A);\n  if (N == 0) return mint(1);\n  FOR(i, N - 1) assert(A[i] >= A[i\
+    \ + 1]);\n  int x = 0;\n  FOR(i, N) {\n    if (A[i] % 2 == 1) { x += (i % 2 ==\
+    \ 0 ? 1 : -1); }\n  }\n  if (x != 0) return 0;\n  FOR(i, N) A[i] += N - 1 - i;\n\
+    \  int ev = 0, od = 0;\n  vc<int> P, Q;\n  FOR_R(i, N) {\n    if (A[i] % 2 ==\
+    \ 0) { P.eb(A[i] / 2 - ev), ++ev; }\n    if (A[i] % 2 == 1) { Q.eb(A[i] / 2 -\
+    \ od), ++od; }\n  }\n  reverse(all(P)), reverse(all(Q));\n  int b = SUM<int>(P),\
+    \ c = SUM<int>(Q);\n  return C<mint>(b + c, b) * hook_length_formula<mint>(P)\n\
+    \         * hook_length_formula<mint>(Q);\n}\n"
   code: "#include \"seq/hook_length_formula.hpp\"\n\ntemplate <typename mint>\nmint\
     \ domino_standard_tableaux(vc<int> A) {\n  int N = len(A);\n  if (N == 0) return\
     \ mint(1);\n  FOR(i, N - 1) assert(A[i] >= A[i + 1]);\n  int x = 0;\n  FOR(i,\
@@ -126,8 +126,8 @@ data:
   isVerificationFile: false
   path: seq/domino_standard_tableaux.hpp
   requiredBy: []
-  timestamp: '2024-05-26 14:03:56+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2149.test.cpp
 documentation_of: seq/domino_standard_tableaux.hpp

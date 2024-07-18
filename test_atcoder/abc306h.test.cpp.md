@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -13,17 +13,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/sps_inv.hpp
     title: setfunc/sps_inv.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc306/tasks/abc306_ex
@@ -268,44 +268,45 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1045430273) return {20, 363};\n    if (mod == 1051721729)\
-    \ return {20, 330};\n    if (mod == 1053818881) return {20, 2789};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int LIM>\r\nvc<array<T,\
-    \ LIM + 1>> ranked_zeta(const vc<T>& f) {\r\n  int n = topbit(len(f));\r\n  assert(n\
-    \ <= LIM);\r\n  assert(len(f) == 1 << n);\r\n  vc<array<T, LIM + 1>> Rf(1 << n);\r\
-    \n  for (int s = 0; s < (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\n  for (int\
-    \ i = 0; i < n; ++i) {\r\n    int w = 1 << i;\r\n    for (int p = 0; p < (1 <<\
-    \ n); p += 2 * w) {\r\n      for (int s = p; s < p + w; ++s) {\r\n        int\
-    \ t = s | 1 << i;\r\n        for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\
-    \n      }\r\n    }\r\n  }\r\n  return Rf;\r\n}\r\n\r\ntemplate <typename T, int\
-    \ LIM>\r\nvc<T> ranked_mobius(vc<array<T, LIM + 1>>& Rf) {\r\n  int n = topbit(len(Rf));\r\
-    \n  assert(len(Rf) == 1 << n);\r\n  for (int i = 0; i < n; ++i) {\r\n    int w\
-    \ = 1 << i;\r\n    for (int p = 0; p < (1 << n); p += 2 * w) {\r\n      for (int\
-    \ s = p; s < p + w; ++s) {\r\n        int t = s | 1 << i;\r\n        for (int\
-    \ d = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n      }\r\n    }\r\n  }\r\n  vc<T>\
-    \ f(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\
-    \n  return f;\r\n}\n#line 2 \"setfunc/sps_inv.hpp\"\n\ntemplate <typename mint,\
-    \ int LIM>\nvc<mint> sps_inv(vc<mint>& dp) {\n  const int N = topbit(len(dp));\n\
-    \  assert(len(dp) == (1 << N) && dp[0] == mint(1));\n  auto RA = ranked_zeta<mint,\
-    \ LIM>(dp);\n  array<mint, LIM + 1> g;\n  FOR(s, 1 << N) {\n    auto& f = RA[s];\n\
-    \    g[0] = 1;\n    FOR(k, 1, N + 1) {\n      g[k] = 0;\n      FOR(i, k) g[k]\
-    \ -= g[i] * f[k - i];\n    }\n    RA[s] = g;\n  }\n  return ranked_mobius<mint,\
-    \ LIM>(RA);\n}\n#line 8 \"test_atcoder/abc306h.test.cpp\"\n\nusing mint = modint998;\n\
-    void solve() {\n  LL(N, M);\n  vc<int> nbd(N);\n  FOR(M) {\n    INT(a, b);\n \
-    \   --a, --b;\n    nbd[a] |= 1 << b;\n    nbd[b] |= 1 << a;\n  }\n\n  vc<mint>\
-    \ F(1 << N);\n  FOR(s, 1 << N) {\n    int comp = 0;\n    int yet = s;\n    while\
-    \ (yet) {\n      int root = lowbit(yet);\n      yet ^= 1 << root;\n      ++comp;\n\
-    \      int que = 1 << root;\n      while (que) {\n        int p = lowbit(que);\n\
-    \        que ^= 1 << p;\n        int nxt = nbd[p] & yet;\n        while (nxt)\
-    \ {\n          int to = lowbit(nxt);\n          que |= 1 << to, nxt ^= 1 << to,\
-    \ yet ^= 1 << to;\n        }\n      }\n    }\n    F[s] = (comp % 2 == 0 ? 1 :\
-    \ -1);\n  }\n\n  F = sps_inv<mint, 17>(F);\n  print(F.back());\n}\n\nsigned main()\
-    \ {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
+    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
+    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
+    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
+    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\n\
+    template <typename T, int LIM>\r\nvc<array<T, LIM + 1>> ranked_zeta(const vc<T>&\
+    \ f) {\r\n  int n = topbit(len(f));\r\n  assert(n <= LIM);\r\n  assert(len(f)\
+    \ == 1 << n);\r\n  vc<array<T, LIM + 1>> Rf(1 << n);\r\n  for (int s = 0; s <\
+    \ (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\n  for (int i = 0; i < n; ++i) {\r\
+    \n    int w = 1 << i;\r\n    for (int p = 0; p < (1 << n); p += 2 * w) {\r\n \
+    \     for (int s = p; s < p + w; ++s) {\r\n        int t = s | 1 << i;\r\n   \
+    \     for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\n      }\r\n    }\r\
+    \n  }\r\n  return Rf;\r\n}\r\n\r\ntemplate <typename T, int LIM>\r\nvc<T> ranked_mobius(vc<array<T,\
+    \ LIM + 1>>& Rf) {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\
+    \n  for (int i = 0; i < n; ++i) {\r\n    int w = 1 << i;\r\n    for (int p = 0;\
+    \ p < (1 << n); p += 2 * w) {\r\n      for (int s = p; s < p + w; ++s) {\r\n \
+    \       int t = s | 1 << i;\r\n        for (int d = 0; d <= n; ++d) Rf[t][d] -=\
+    \ Rf[s][d];\r\n      }\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\n  for (int s =\
+    \ 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\n}\n#line 2\
+    \ \"setfunc/sps_inv.hpp\"\n\ntemplate <typename mint, int LIM>\nvc<mint> sps_inv(vc<mint>&\
+    \ dp) {\n  const int N = topbit(len(dp));\n  assert(len(dp) == (1 << N) && dp[0]\
+    \ == mint(1));\n  auto RA = ranked_zeta<mint, LIM>(dp);\n  array<mint, LIM + 1>\
+    \ g;\n  FOR(s, 1 << N) {\n    auto& f = RA[s];\n    g[0] = 1;\n    FOR(k, 1, N\
+    \ + 1) {\n      g[k] = 0;\n      FOR(i, k) g[k] -= g[i] * f[k - i];\n    }\n \
+    \   RA[s] = g;\n  }\n  return ranked_mobius<mint, LIM>(RA);\n}\n#line 8 \"test_atcoder/abc306h.test.cpp\"\
+    \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, M);\n  vc<int> nbd(N);\n\
+    \  FOR(M) {\n    INT(a, b);\n    --a, --b;\n    nbd[a] |= 1 << b;\n    nbd[b]\
+    \ |= 1 << a;\n  }\n\n  vc<mint> F(1 << N);\n  FOR(s, 1 << N) {\n    int comp =\
+    \ 0;\n    int yet = s;\n    while (yet) {\n      int root = lowbit(yet);\n   \
+    \   yet ^= 1 << root;\n      ++comp;\n      int que = 1 << root;\n      while\
+    \ (que) {\n        int p = lowbit(que);\n        que ^= 1 << p;\n        int nxt\
+    \ = nbd[p] & yet;\n        while (nxt) {\n          int to = lowbit(nxt);\n  \
+    \        que |= 1 << to, nxt ^= 1 << to, yet ^= 1 << to;\n        }\n      }\n\
+    \    }\n    F[s] = (comp % 2 == 0 ? 1 : -1);\n  }\n\n  F = sps_inv<mint, 17>(F);\n\
+    \  print(F.back());\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T)\
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc306/tasks/abc306_ex\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
     \n#include \"setfunc/sps_inv.hpp\"\n\nusing mint = modint998;\nvoid solve() {\n\
@@ -329,8 +330,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc306h.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-18 10:59:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc306h.test.cpp
 layout: document
