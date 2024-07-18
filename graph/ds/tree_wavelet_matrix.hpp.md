@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -27,10 +27,10 @@ data:
     \ + 63) >> 5, {0, 0}); }\n  void set(int i) { dat[i >> 5].fi |= u32(1) << (i &\
     \ 31); }\n  void reset() { fill(all(dat), pair<u32, u32>{0, 0}); }\n  void build()\
     \ {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n\
-    \  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count(int k, bool f\
-    \ = 1) {\n    auto [a, b] = dat[k >> 5];\n    int ret = b + popcnt(a & ((u32(1)\
-    \ << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int count(int L,\
-    \ int R, bool f = 1) { return count(R, f) - count(L, f); }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  int count(int k, bool f)\
+    \ {\n    auto [a, b] = dat[k >> 5];\n    int ret = b + popcnt(a & ((u32(1) <<\
+    \ (k & 31)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int count(int L, int\
+    \ R, bool f) { return count(R, f) - count(L, f); }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
     \n\r\n// \u5EA7\u5727\u3059\u308B\u304B\u3069\u3046\u304B\u3092 COMPRESS \u3067\
     \u6307\u5B9A\u3059\u308B\r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\u3092\u3059\u308B\
     \u5834\u5408\u306B\u306F\u3001\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067\
@@ -397,7 +397,7 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2024-07-18 12:02:29+09:00'
+  timestamp: '2024-07-18 12:32:55+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/tree_wavelet_matrix.hpp

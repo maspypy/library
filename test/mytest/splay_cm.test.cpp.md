@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
@@ -257,41 +257,42 @@ data:
     \ A &a) {\n    if (!root) return;\n    root->apply(a);\n  }\n\n  void reverse(np\
     \ &root, u32 l, u32 r) {\n    assert(root == nullptr || !root->p);\n    if (l\
     \ == r) return;\n    assert(0 <= l && l < r && r <= root->size);\n    goto_between(root,\
-    \ l, r);\n    root->reverse();\n    splay(root);\n  }\n  void reverse(np root)\
-    \ {\n    if (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node *n)\
-    \ {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update \u306F\
-    \ rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n    p =\
-    \ n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n\
-    \      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r =\
-    \ c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r == p) pp->r\
-    \ = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\n  void prop_from_root(np\
-    \ c) {\n    if (!c->p) {\n      c->prop();\n      return;\n    }\n    prop_from_root(c->p);\n\
-    \    c->prop();\n  }\n\n  void splay(Node *me, bool prop_from_root_done) {\n \
-    \   // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\u3067\u3001me \u306E\u7956\u5148\
-    \uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\u306B prop \u6E08\u3067\u3042\u308B\
-    \u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\u306B\u3001splay \u7D42\u4E86\u6642\
-    \u70B9\u3067 me \u306F upd / prop \u6E08\u3067\u3042\u308B\n    if (!prop_from_root_done)\
-    \ prop_from_root(me);\n    me->prop();\n    while (me->p) {\n      np p = me->p;\n\
-    \      np pp = p->p;\n      if (!pp) {\n        rotate(me);\n        p->update();\n\
-    \        break;\n      }\n      bool same = (p->l == me && pp->l == p) || (p->r\
-    \ == me && pp->r == p);\n      if (same) rotate(p), rotate(me);\n      if (!same)\
-    \ rotate(me), rotate(me);\n      pp->update(), p->update();\n    }\n    // me\
-    \ \u306E update \u306F\u6700\u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n\
-    \  }\n\n  void splay_kth(np &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n\
-    \    while (1) {\n      root->prop();\n      u32 sl = (root->l ? root->l->size\
-    \ : 0);\n      if (k == sl) break;\n      if (k < sl)\n        root = root->l;\n\
-    \      else {\n        k -= sl + 1;\n        root = root->r;\n      }\n    }\n\
-    \    splay(root, true);\n  }\n\n  // check(x), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\
-    \u5168\u4F53\u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\
-    \n  template <typename F>\n  pair<np, np> split_max_right(np root, F check) {\n\
-    \    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n    np c =\
-    \ find_max_right(root, check);\n    if (!c) {\n      splay(root, true);\n    \
-    \  return {nullptr, root};\n    }\n    splay(c, true);\n    np right = c->r;\n\
-    \    if (!right) return {c, nullptr};\n    right->p = nullptr;\n    c->r = nullptr;\n\
-    \    c->update();\n    return {c, right};\n  }\n\n  // check(x, cnt), \u5DE6\u5074\
-    \u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\u3059\u3088\
-    \u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np> split_max_right_cnt(np\
-    \ root, F check) {\n    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n\
+    \ l, r);\n    root->reverse();\n    splay(root, true);\n  }\n  void reverse(np\
+    \ root) {\n    if (!root) return;\n    root->reverse();\n  }\n\n  void rotate(Node\
+    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\u3002prop, update\
+    \ \u306F rotate \u306E\u5916\u3067\u884C\u3046\u3002\n    Node *pp, *p, *c;\n\
+    \    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r\
+    \ = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n    \
+    \  p->r = c;\n    }\n    if (pp && pp->l == p) pp->l = n;\n    if (pp && pp->r\
+    \ == p) pp->r = n;\n    n->p = pp;\n    p->p = n;\n    if (c) c->p = p;\n  }\n\
+    \n  void prop_from_root(np c) {\n    if (!c->p) {\n      c->prop();\n      return;\n\
+    \    }\n    prop_from_root(c->p);\n    c->prop();\n  }\n\n  void splay(Node *me,\
+    \ bool prop_from_root_done) {\n    // \u3053\u308C\u3092\u547C\u3076\u6642\u70B9\
+    \u3067\u3001me \u306E\u7956\u5148\uFF08me \u3092\u9664\u304F\uFF09\u306F\u65E2\
+    \u306B prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\n    // \u7279\
+    \u306B\u3001splay \u7D42\u4E86\u6642\u70B9\u3067 me \u306F upd / prop \u6E08\u3067\
+    \u3042\u308B\n    if (!prop_from_root_done) prop_from_root(me);\n    me->prop();\n\
+    \    while (me->p) {\n      np p = me->p;\n      np pp = p->p;\n      if (!pp)\
+    \ {\n        rotate(me);\n        p->update();\n        break;\n      }\n    \
+    \  bool same = (p->l == me && pp->l == p) || (p->r == me && pp->r == p);\n   \
+    \   if (same) rotate(p), rotate(me);\n      if (!same) rotate(me), rotate(me);\n\
+    \      pp->update(), p->update();\n    }\n    // me \u306E update \u306F\u6700\
+    \u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n  }\n\n  void splay_kth(np\
+    \ &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n    while (1) {\n\
+    \      root->prop();\n      u32 sl = (root->l ? root->l->size : 0);\n      if\
+    \ (k == sl) break;\n      if (k < sl)\n        root = root->l;\n      else {\n\
+    \        k -= sl + 1;\n        root = root->r;\n      }\n    }\n    splay(root,\
+    \ true);\n  }\n\n  // check(x), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\
+    \u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template\
+    \ <typename F>\n  pair<np, np> split_max_right(np root, F check) {\n    if (!root)\
+    \ return {nullptr, nullptr};\n    assert(!root->p);\n    np c = find_max_right(root,\
+    \ check);\n    if (!c) {\n      splay(root, true);\n      return {nullptr, root};\n\
+    \    }\n    splay(c, true);\n    np right = c->r;\n    if (!right) return {c,\
+    \ nullptr};\n    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n\
+    \    return {c, right};\n  }\n\n  // check(x, cnt), \u5DE6\u5074\u306E\u30CE\u30FC\
+    \u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\
+    \u308B\n  template <typename F>\n  pair<np, np> split_max_right_cnt(np root, F\
+    \ check) {\n    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n\
     \    np c = find_max_right_cnt(root, check);\n    if (!c) {\n      splay(root,\
     \ true);\n      return {nullptr, root};\n    }\n    splay(c, true);\n    np right\
     \ = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n   \
@@ -406,7 +407,7 @@ data:
   isVerificationFile: true
   path: test/mytest/splay_cm.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-07-18 12:34:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/splay_cm.test.cpp

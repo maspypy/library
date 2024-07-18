@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
@@ -263,8 +263,8 @@ data:
     \ return;\n    root->apply(a);\n  }\n\n  void reverse(np &root, u32 l, u32 r)\
     \ {\n    assert(root == nullptr || !root->p);\n    if (l == r) return;\n    assert(0\
     \ <= l && l < r && r <= root->size);\n    goto_between(root, l, r);\n    root->reverse();\n\
-    \    splay(root);\n  }\n  void reverse(np root) {\n    if (!root) return;\n  \
-    \  root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
+    \    splay(root, true);\n  }\n  void reverse(np root) {\n    if (!root) return;\n\
+    \    root->reverse();\n  }\n\n  void rotate(Node *n) {\n    // n \u3092\u6839\u306B\
     \u8FD1\u3065\u3051\u308B\u3002prop, update \u306F rotate \u306E\u5916\u3067\u884C\
     \u3046\u3002\n    Node *pp, *p, *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l\
     \ == n) {\n      c = n->r;\n      n->r = p;\n      p->l = c;\n    } else {\n \
@@ -380,8 +380,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-18 12:34:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
 layout: document
