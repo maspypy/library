@@ -18,12 +18,7 @@ vc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {
     if (inverse) { return multipoint_interpolate(A, f); }
   }
   if (!inverse) {
-    vc<pair<poly, poly>> dat(N);
-    FOR(j, N) {
-      poly a{f[j]}, b{mint(1), mint(-A[j])};
-      dat[j] = {a, b};
-    }
-    auto [num, den] = sum_of_rationals(dat);
+    auto [num, den] = sum_of_rationals_1<mint>(A, f);
     num.resize(N);
     return fps_div(num, den);
   }

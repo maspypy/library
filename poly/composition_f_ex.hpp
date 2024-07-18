@@ -6,7 +6,7 @@
 template <typename mint>
 vc<mint> composition_f_ex(vc<mint> f) {
   int N = len(f) - 1;
-  vc<pair<mint, mint>> AB;
-  FOR(k, len(f)) AB.eb(f[k], mint(k));
-  return sum_of_exp_bx(N, AB);
+  vc<mint> A, B;
+  FOR(k, len(f)) A.eb(f[k]), B.eb(mint(k));
+  return sum_of_exp_bx(N, A, B);
 }

@@ -35,9 +35,7 @@ vc<T> sum_of_powers_iota(ll L, ll R, ll N) {
 template <typename T>
 vc<T> sum_of_powers_with_coef(const vc<T>& A, const vc<T>& C, int N) {
   using P = pair<vc<T>, vc<T>>;
-  vc<P> dat;
-  FOR(i, len(A)) { dat.eb(vc<T>({C[i]}), vc<T>({1, -A[i]})); }
-  auto [num, den] = sum_of_rationals(dat);
+  auto [num, den] = sum_of_rationals_1(A, C);
   num.resize(N + 1);
   den.resize(N + 1);
   auto f = fps_inv(den);
