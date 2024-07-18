@@ -7,17 +7,16 @@
 template <typename mint>
 vc<mint> product_of_pow_of_linear(int N, vc<mint> A, vc<mint> B, vi C) {
   using poly = vc<mint>;
-  vc<pair<poly, poly>> fracs;
+  vc<mint> wt, a;
   mint cf = 1;
   FOR(i, len(A)) {
     assert(A[i] != mint(0));
     cf *= A[i].pow(C[i]);
     B[i] /= A[i];
-    poly num = {B[i] * mint(C[i])};
-    poly den = {1, B[i]};
-    fracs.eb(num, den);
+    wt.eb(B[i] * mint(C[i]));
+    a.eb(-B[i]);
   }
-  auto [f, g] = sum_of_rationals(fracs);
+  auto [f, g] = sum_of_rationals_1(a, wt);
   g.resize(N + 1);
   f = convolution(f, fps_inv(g));
   f.resize(N + 1);

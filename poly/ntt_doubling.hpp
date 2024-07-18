@@ -2,6 +2,7 @@
 
 #include "poly/ntt.hpp"
 
+// 2^k 次多項式の長さ 2^k が与えられるので 2^k+1 にする
 template <typename mint>
 void ntt_doubling(vector<mint>& a) {
   static array<mint, 30> root;
