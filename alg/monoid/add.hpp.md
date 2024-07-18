@@ -59,10 +59,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
   - icon: ':warning:'
@@ -387,16 +387,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919_2.test.cpp
     title: test/yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
   - icon: ':heavy_check_mark:'

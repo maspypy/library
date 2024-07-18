@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/solve_linear.hpp
     title: linalg/blackbox/solve_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':question:'
@@ -137,7 +137,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
   _extendedVerifiedWith:
@@ -714,13 +714,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1783.test.cpp
     title: test/yukicoder/1783.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/187.test.cpp
     title: test/yukicoder/187.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1907.test.cpp
     title: test/yukicoder/1907.test.cpp
   - icon: ':heavy_check_mark:'
@@ -741,7 +741,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2181.test.cpp
     title: test/yukicoder/2181.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2231.test.cpp
     title: test/yukicoder/2231.test.cpp
   - icon: ':x:'
