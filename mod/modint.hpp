@@ -71,6 +71,7 @@ struct modint {
     if (mod == 880803841) return {23, 211};
     if (mod == 943718401) return {22, 663003469};
     if (mod == 998244353) return {23, 31};
+    if (mod == 1004535809) return {21, 836905998};
     if (mod == 1045430273) return {20, 363};
     if (mod == 1051721729) return {20, 330};
     if (mod == 1053818881) return {20, 2789};
