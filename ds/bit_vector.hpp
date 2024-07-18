@@ -1,6 +1,7 @@
 struct Bit_Vector {
+  int n;
   vc<pair<u32, u32>> dat;
-  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }
+  Bit_Vector(int n) : n(n) { dat.assign((n + 63) >> 5, {0, 0}); }
   void set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }
   void reset() { fill(all(dat), pair<u32, u32>{0, 0}); }
   void build() {
@@ -13,4 +14,9 @@ struct Bit_Vector {
     return (f ? ret : k - ret);
   }
   int count(int L, int R, bool f) { return count(R, f) - count(L, f); }
+  string to_string() {
+    string ans;
+    FOR(i, n) ans += '0' + (dat[i / 32].fi >> (i % 32) & 1);
+    return ans;
+  }
 };
