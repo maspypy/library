@@ -197,16 +197,16 @@ data:
     \    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X res\
     \ = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return res;\n\
     \  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt = 0;\n\
-    \    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n\
+    \    FOR_R(d, lg) {\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n\
     \      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d]\
     \ - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n\
     \  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n    chmax(x1,\
     \ 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n    assert(0 <=\
     \ x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2 == (1 << (d +\
     \ 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n      return;\n   \
-    \ }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n    prod_dfs(l0, r0,\
-    \ x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d] - r0, x1 - (1\
-    \ << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
+    \ }\n    int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n    prod_dfs(l0,\
+    \ r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d] - r0, x1\
+    \ - (1 << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
   code: "#include \"ds/bit_vector.hpp\"\n#include \"ds/segtree/segtree.hpp\"\n#include\
     \ \"alg/monoid/add.hpp\"\n#include \"ds/static_range_product.hpp\"\n\ntemplate\
     \ <typename Monoid, typename ST, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct\
@@ -248,16 +248,16 @@ data:
     \    x1 = XtoI(x1), x2 = XtoI(x2);\n    y1 = YtoI(y1), y2 = YtoI(y2);\n    X res\
     \ = MX::unit();\n    prod_dfs(y1, y2, x1, x2, lg - 1, res);\n    return res;\n\
     \  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt = 0;\n\
-    \    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n\
+    \    FOR_R(d, lg) {\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n\
     \      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d]\
     \ - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n\
     \  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n    chmax(x1,\
     \ 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n    assert(0 <=\
     \ x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2 == (1 << (d +\
     \ 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n      return;\n   \
-    \ }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n    prod_dfs(l0, r0,\
-    \ x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d] - r0, x1 - (1\
-    \ << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
+    \ }\n    int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n    prod_dfs(l0,\
+    \ r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d] - r0, x1\
+    \ - (1 << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
   dependsOn:
   - ds/bit_vector.hpp
   - ds/segtree/segtree.hpp
@@ -268,7 +268,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:54:15+09:00'
+  timestamp: '2024-07-18 12:02:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1600_2.test.cpp

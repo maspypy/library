@@ -246,11 +246,11 @@ data:
     \ = YtoI(y1), y2 = YtoI(y2);\n    X add = prefix_sum(y1, y2, x2);\n    X sub =\
     \ prefix_sum(y1, y2, x1);\n    return MX::op(add, MX::inverse(sub));\n  }\n\n\
     private:\n  int prefix_count(int L, int R, int x) {\n    int cnt = 0;\n    FOR_R(d,\
-    \ lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x\
+    \ lg) {\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n      if (x\
     \ >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R += mid[d] - r0;\n \
     \     } else {\n        L = l0, R = r0;\n      }\n    }\n    return cnt;\n  }\n\
     \n  X prefix_sum(int L, int R, int x) {\n    X add = MX::unit(), sub = MX::unit();\n\
-    \    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n\
+    \    FOR_R(d, lg) {\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n\
     \      if (x >> d & 1) {\n        add = MX::op(add, dat[d][r0]);\n        sub\
     \ = MX::op(sub, dat[d][l0]);\n        L += mid[d] - l0, R += mid[d] - r0;\n  \
     \    } else {\n        L = l0, R = r0;\n      }\n    }\n    return MX::op(add,\
@@ -283,7 +283,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 10:54:15+09:00'
+  timestamp: '2024-07-18 12:02:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp

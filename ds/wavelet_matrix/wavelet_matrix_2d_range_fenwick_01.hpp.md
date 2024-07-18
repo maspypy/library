@@ -128,8 +128,8 @@ data:
     \ XY, bool SMALL_X, bool SMALL_Y>\nstruct Wavelet_Matrix_2D_Range_Fenwick_01 {\n\
     \  // \u70B9\u7FA4\u3092 Y \u6607\u9806\u306B\u4E26\u3079\u308B.\n  // X \u3092\
     \u6574\u6570\u306B\u306A\u304A\u3057\u3066 binary trie \u307F\u305F\u3044\u306B\
-    \u632F\u308A\u5206\u3051\u308B\n\n  template <bool SMALL>\n  struct TO_IDX {\n\
-    \    vc<XY> key;\n    XY mi, ma;\n    vc<int> dat;\n\n    void build(vc<XY>& X)\
+    \u632F\u308A\u5206\u3051\u308B\n  template <bool SMALL>\n  struct TO_IDX {\n \
+    \   vc<XY> key;\n    XY mi, ma;\n    vc<int> dat;\n\n    void build(vc<XY>& X)\
     \ {\n      if constexpr (SMALL) {\n        mi = (X.empty() ? 0 : MIN(X));\n  \
     \      ma = (X.empty() ? 0 : MAX(X));\n        dat.assign(ma - mi + 2, 0);\n \
     \       for (auto& x: X) { dat[x - mi + 1]++; }\n        FOR(i, len(dat) - 1)\
@@ -168,15 +168,15 @@ data:
     \  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void\
     \ add(int i, int x) {\n    assert(0 <= i && i < N);\n    i = new_idx[i];\n   \
     \ int a = A[i];\n    FOR_R(d, lg) {\n      if (a >> d & 1) {\n        i = mid[d]\
-    \ + bv[d].rank(i, 1);\n      } else {\n        i = bv[d].rank(i, 0);\n      }\n\
-    \      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int count_inner(int L, int\
-    \ R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
+    \ + bv[d].count(i, 1);\n      } else {\n        i = bv[d].count(i, 0);\n     \
+    \ }\n      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int count_inner(int L,\
+    \ int R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].count(L,\
+    \ 0), r0 = bv[d].count(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
     \ L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n\
     \      }\n    }\n    return cnt;\n  }\n\n  int sum_inner(int L, int R, int x)\
     \ {\n    if (x == 0) return 0;\n    int sm = 0;\n    FOR_R(d, lg) {\n      int\
-    \ l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n   \
-    \     sm += dat[d].sum(l0, r0);\n        L += mid[d] - l0, R += mid[d] - r0;\n\
+    \ l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n      if (x >> d & 1) {\n \
+    \       sm += dat[d].sum(l0, r0);\n        L += mid[d] - l0, R += mid[d] - r0;\n\
     \      } else {\n        L = l0, R = r0;\n      }\n    }\n    return sm;\n  }\n\
     };\n"
   code: "#include \"ds/bit_vector.hpp\"\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\
@@ -184,8 +184,8 @@ data:
     \ XY, bool SMALL_X, bool SMALL_Y>\nstruct Wavelet_Matrix_2D_Range_Fenwick_01 {\n\
     \  // \u70B9\u7FA4\u3092 Y \u6607\u9806\u306B\u4E26\u3079\u308B.\n  // X \u3092\
     \u6574\u6570\u306B\u306A\u304A\u3057\u3066 binary trie \u307F\u305F\u3044\u306B\
-    \u632F\u308A\u5206\u3051\u308B\n\n  template <bool SMALL>\n  struct TO_IDX {\n\
-    \    vc<XY> key;\n    XY mi, ma;\n    vc<int> dat;\n\n    void build(vc<XY>& X)\
+    \u632F\u308A\u5206\u3051\u308B\n  template <bool SMALL>\n  struct TO_IDX {\n \
+    \   vc<XY> key;\n    XY mi, ma;\n    vc<int> dat;\n\n    void build(vc<XY>& X)\
     \ {\n      if constexpr (SMALL) {\n        mi = (X.empty() ? 0 : MIN(X));\n  \
     \      ma = (X.empty() ? 0 : MAX(X));\n        dat.assign(ma - mi + 2, 0);\n \
     \       for (auto& x: X) { dat[x - mi + 1]++; }\n        FOR(i, len(dat) - 1)\
@@ -224,15 +224,15 @@ data:
     \  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void\
     \ add(int i, int x) {\n    assert(0 <= i && i < N);\n    i = new_idx[i];\n   \
     \ int a = A[i];\n    FOR_R(d, lg) {\n      if (a >> d & 1) {\n        i = mid[d]\
-    \ + bv[d].rank(i, 1);\n      } else {\n        i = bv[d].rank(i, 0);\n      }\n\
-    \      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int count_inner(int L, int\
-    \ R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
+    \ + bv[d].count(i, 1);\n      } else {\n        i = bv[d].count(i, 0);\n     \
+    \ }\n      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int count_inner(int L,\
+    \ int R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].count(L,\
+    \ 0), r0 = bv[d].count(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
     \ L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n\
     \      }\n    }\n    return cnt;\n  }\n\n  int sum_inner(int L, int R, int x)\
     \ {\n    if (x == 0) return 0;\n    int sm = 0;\n    FOR_R(d, lg) {\n      int\
-    \ l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n   \
-    \     sm += dat[d].sum(l0, r0);\n        L += mid[d] - l0, R += mid[d] - r0;\n\
+    \ l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n      if (x >> d & 1) {\n \
+    \       sm += dat[d].sum(l0, r0);\n        L += mid[d] - l0, R += mid[d] - r0;\n\
     \      } else {\n        L = l0, R = r0;\n      }\n    }\n    return sm;\n  }\n\
     };\n"
   dependsOn:
@@ -243,7 +243,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:54:15+09:00'
+  timestamp: '2024-07-18 12:02:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp

@@ -67,22 +67,22 @@ data:
     \ L, int R, T lx, T rx) -> void {\r\n      if (rx <= a || b <= lx) return;\r\n\
     \      if (a <= lx && rx <= b) {\r\n        cnt += R - L, sm += get(d, L, R);\r\
     \n        return;\r\n      }\r\n      --d;\r\n      T mx = (lx + rx) / 2;\r\n\
-    \      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n      int l1 = L +\
-    \ mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val >> d & 1) swap(l0, l1),\
-    \ swap(r0, r1);\r\n      dfs(dfs, d, l0, r0, lx, mx), dfs(dfs, d, l1, r1, mx,\
-    \ rx);\r\n    };\r\n    dfs(dfs, lg, L, R, 0, T(1) << lg);\r\n    return {cnt,\
+    \      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L\
+    \ + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val >> d & 1) swap(l0,\
+    \ l1), swap(r0, r1);\r\n      dfs(dfs, d, l0, r0, lx, mx), dfs(dfs, d, l1, r1,\
+    \ mx, rx);\r\n    };\r\n    dfs(dfs, lg, L, R, 0, T(1) << lg);\r\n    return {cnt,\
     \ sm};\r\n  }\r\n\r\n  // smallest k, sum of [0,k)\r\n  pair<T, T> kth_value_sum(int\
     \ L, int R, int k, T xor_val = 0) {\r\n    assert(0 <= k && k <= R - L);\r\n \
     \   if (k == R - L) { return {infty<T>, sum_all(L, R)}; }\r\n    if (L == R) return\
     \ {infty<T>, 0};\r\n    if (xor_val != 0) assert(set_log);\r\n    T sm = 0, val\
     \ = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      // \u3044\u307E\u5E45\
     \ d+1 \u306E trie node \u306B\u5C45\u3066, \u5E45 d \u306E\u3068\u3053\u308D\u306B\
-    \u884C\u304F\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\r\n  \
-    \    int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val >> d\
-    \ & 1) swap(l0, l1), swap(r0, r1);\r\n      if (k < r0 - l0) {\r\n        L =\
-    \ l0, R = r0;\r\n      } else {\r\n        k -= r0 - l0, val |= T(1) << d, L =\
-    \ l1, R = r1;\r\n        if constexpr (USE_SUM) sm += get(d, l0, r0);\r\n    \
-    \  }\r\n    }\r\n    if constexpr (USE_SUM) sm += get(0, L, L + k);\r\n    if\
+    \u884C\u304F\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n\
+    \      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val >>\
+    \ d & 1) swap(l0, l1), swap(r0, r1);\r\n      if (k < r0 - l0) {\r\n        L\
+    \ = l0, R = r0;\r\n      } else {\r\n        k -= r0 - l0, val |= T(1) << d, L\
+    \ = l1, R = r1;\r\n        if constexpr (USE_SUM) sm += get(d, l0, r0);\r\n  \
+    \    }\r\n    }\r\n    if constexpr (USE_SUM) sm += get(0, L, L + k);\r\n    if\
     \ (COMPRESS) val = key[val];\r\n\r\n    return {val, sm};\r\n  }\r\n\r\n  int\
     \ count(int L, int R, T a, T b, T xor_val = 0) {\r\n    return range_cnt_sum(L,\
     \ R, a, b, xor_val).fi;\r\n  }\r\n  T sum(int L, int R, T a, T b, T xor_val =\
@@ -98,7 +98,7 @@ data:
     \n\r\n    auto dfs = [&](auto& dfs, int d, int L, int R, T lx, T rx) -> void {\r\
     \n      if (ans <= lx || L == R || rx <= x) return;\r\n      if (d == 0) {\r\n\
     \        chmin(ans, lx);\r\n        return;\r\n      }\r\n      --d;\r\n     \
-    \ T mx = (lx + rx) / 2;\r\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \ T mx = (lx + rx) / 2;\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
     \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (xor_val\
     \ >> d & 1) swap(l0, l1), swap(r0, r1);\r\n      dfs(dfs, d, l0, r0, lx, mx),\
     \ dfs(dfs, d, l1, r1, mx, rx);\r\n    };\r\n    dfs(dfs, lg, L, R, 0, T(1) <<\
@@ -109,8 +109,8 @@ data:
     \ (COMPRESS) x = LB(key, x);\r\n\r\n    auto dfs = [&](auto& dfs, int d, int L,\
     \ int R, T lx, T rx) -> void {\r\n      if ((rx - 1) <= ans || L == R || x <=\
     \ lx) return;\r\n      if (d == 0) {\r\n        chmax(ans, lx);\r\n        return;\r\
-    \n      }\r\n      --d;\r\n      T mx = (lx + rx) / 2;\r\n      int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
+    \n      }\r\n      --d;\r\n      T mx = (lx + rx) / 2;\r\n      int l0 = bv[d].count(L,\
+    \ 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
     \ - r0;\r\n      if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);\r\n      dfs(dfs,\
     \ d, l1, r1, mx, rx), dfs(dfs, d, l0, r0, lx, mx);\r\n    };\r\n    dfs(dfs, lg,\
     \ L, R, 0, T(1) << lg);\r\n    if (COMPRESS && ans != -infty<T>) ans = key[ans];\r\
@@ -125,8 +125,8 @@ data:
     \ L, int R, T xor_val = 0) {\r\n    assert(check(0, 0));\r\n    if (xor_val !=\
     \ 0) assert(set_log);\r\n    if (L == R) return {0, 0};\r\n    if (check(R - L,\
     \ get(lg, L, R))) return {R - L, get(lg, L, R)};\r\n    int cnt = 0;\r\n    T\
-    \ sm = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
+    \ sm = 0;\r\n    for (int d = lg - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L,\
+    \ 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
     \ - r0;\r\n      if (xor_val >> d & 1) swap(l0, l1), swap(r0, r1);\r\n      if\
     \ (check(cnt + r0 - l0, sm + get(d, l0, r0))) {\r\n        cnt += r0 - l0, sm\
     \ += get(d, l0, r0);\r\n        L = l1, R = r1;\r\n      } else {\r\n        L\
@@ -397,7 +397,7 @@ data:
   isVerificationFile: false
   path: graph/ds/tree_wavelet_matrix.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:54:15+09:00'
+  timestamp: '2024-07-18 12:02:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/ds/tree_wavelet_matrix.hpp

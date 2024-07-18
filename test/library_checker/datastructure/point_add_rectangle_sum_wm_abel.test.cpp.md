@@ -316,17 +316,17 @@ data:
     \ XtoI(x));\n  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E\
     \ index\n  void add(int i, X x) {\n    assert(0 <= i && i < N);\n    i = new_idx[i];\n\
     \    int a = A[i];\n    FOR_R(d, lg) {\n      if (a >> d & 1) {\n        i = mid[d]\
-    \ + bv[d].rank(i, 1);\n      } else {\n        i = bv[d].rank(i, 0);\n      }\n\
-    \      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int count_inner(int L, int\
-    \ R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L,\
-    \ 0), r0 = bv[d].rank(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
+    \ + bv[d].count(i, 1);\n      } else {\n        i = bv[d].count(i, 0);\n     \
+    \ }\n      dat[d].add(i, x);\n    }\n  }\n\nprivate:\n  int count_inner(int L,\
+    \ int R, int x) {\n    int cnt = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].count(L,\
+    \ 0), r0 = bv[d].count(R, 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0,\
     \ L += mid[d] - l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n\
     \      }\n    }\n    return cnt;\n  }\n\n  X sum_inner(int L, int R, int x) {\n\
     \    if (x == 0) return MX::unit();\n    X sm = MX::unit();\n    FOR_R(d, lg)\
-    \ {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n      if (x >> d\
-    \ & 1) {\n        sm = MX::op(sm, dat[d].sum(l0, r0));\n        L += mid[d] -\
-    \ l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n  \
-    \  }\n    return sm;\n  }\n};\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
+    \ {\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n      if (x >>\
+    \ d & 1) {\n        sm = MX::op(sm, dat[d].sum(l0, r0));\n        L += mid[d]\
+    \ - l0, R += mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n\
+    \    }\n    return sm;\n  }\n};\n#line 7 \"test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N);\n  vc<u64> W(N);\n  FOR(i,\
     \ N) read(X[i], Y[i], W[i]);\n  using QQ = tuple<u32, u32, u32, u32>;\n  vc<QQ>\
     \ query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      U32(x, y, w);\n\
@@ -361,7 +361,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 10:54:15+09:00'
+  timestamp: '2024-07-18 12:02:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp

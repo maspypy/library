@@ -106,21 +106,21 @@ data:
     \  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void\
     \ set(int i, X x) {\n    assert(0 <= i && i < N);\n    i = new_idx[i];\n    int\
     \ a = A[i];\n    FOR_R(d, lg) {\n      if (a >> d & 1) {\n        i = mid[d] +\
-    \ bv[d].rank(i, 1);\n      } else {\n        i = bv[d].rank(i, 0);\n      }\n\
+    \ bv[d].count(i, 1);\n      } else {\n        i = bv[d].count(i, 0);\n      }\n\
     \      dat[d].set(i, x);\n    }\n  }\n  void multiply(int i, X x) {\n    assert(0\
     \ <= i && i < N);\n    i = new_idx[i];\n    int a = A[i];\n    FOR_R(d, lg) {\n\
-    \      if (a >> d & 1) {\n        i = mid[d] + bv[d].rank(i, 1);\n      } else\
-    \ {\n        i = bv[d].rank(i, 0);\n      }\n      dat[d].multiply(i, x);\n  \
-    \  }\n  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt\
-    \ = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \      if (a >> d & 1) {\n        i = mid[d] + bv[d].count(i, 1);\n      } else\
+    \ {\n        i = bv[d].count(i, 0);\n      }\n      dat[d].multiply(i, x);\n \
+    \   }\n  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt\
+    \ = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
     \ 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R +=\
     \ mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return\
     \ cnt;\n  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n\
     \    chmax(x1, 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n \
     \   assert(0 <= x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2\
     \ == (1 << (d + 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n    \
-    \  return;\n    }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n   \
-    \ prod_dfs(l0, r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d]\
+    \  return;\n    }\n    int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n \
+    \   prod_dfs(l0, r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d]\
     \ - r0, x1 - (1 << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n#include \"ds/bit_vector.hpp\"\n\ntemplate\
     \ <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct Wavelet_Matrix_2D_Range_Dynamic_Monoid\
@@ -163,21 +163,21 @@ data:
     \  }\n\n  // \u6700\u521D\u306B\u4E0E\u3048\u305F\u70B9\u7FA4\u306E index\n  void\
     \ set(int i, X x) {\n    assert(0 <= i && i < N);\n    i = new_idx[i];\n    int\
     \ a = A[i];\n    FOR_R(d, lg) {\n      if (a >> d & 1) {\n        i = mid[d] +\
-    \ bv[d].rank(i, 1);\n      } else {\n        i = bv[d].rank(i, 0);\n      }\n\
+    \ bv[d].count(i, 1);\n      } else {\n        i = bv[d].count(i, 0);\n      }\n\
     \      dat[d].set(i, x);\n    }\n  }\n  void multiply(int i, X x) {\n    assert(0\
     \ <= i && i < N);\n    i = new_idx[i];\n    int a = A[i];\n    FOR_R(d, lg) {\n\
-    \      if (a >> d & 1) {\n        i = mid[d] + bv[d].rank(i, 1);\n      } else\
-    \ {\n        i = bv[d].rank(i, 0);\n      }\n      dat[d].multiply(i, x);\n  \
-    \  }\n  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt\
-    \ = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R,\
+    \      if (a >> d & 1) {\n        i = mid[d] + bv[d].count(i, 1);\n      } else\
+    \ {\n        i = bv[d].count(i, 0);\n      }\n      dat[d].multiply(i, x);\n \
+    \   }\n  }\n\nprivate:\n  int prefix_count(int L, int R, int x) {\n    int cnt\
+    \ = 0;\n    FOR_R(d, lg) {\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
     \ 0);\n      if (x >> d & 1) {\n        cnt += r0 - l0, L += mid[d] - l0, R +=\
     \ mid[d] - r0;\n      } else {\n        L = l0, R = r0;\n      }\n    }\n    return\
     \ cnt;\n  }\n\n  void prod_dfs(int L, int R, int x1, int x2, int d, X& res) {\n\
     \    chmax(x1, 0), chmin(x2, 1 << (d + 1));\n    if (x1 >= x2) { return; }\n \
     \   assert(0 <= x1 && x1 < x2 && x2 <= (1 << (d + 1)));\n    if (x1 == 0 && x2\
     \ == (1 << (d + 1))) {\n      res = MX::op(res, dat[d + 1].prod(L, R));\n    \
-    \  return;\n    }\n    int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);\n   \
-    \ prod_dfs(l0, r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d]\
+    \  return;\n    }\n    int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\n \
+    \   prod_dfs(l0, r0, x1, x2, d - 1, res);\n    prod_dfs(L + mid[d] - l0, R + mid[d]\
     \ - r0, x1 - (1 << d), x2 - (1 << d),\n             d - 1, res);\n  }\n};\n"
   dependsOn:
   - ds/segtree/segtree.hpp
@@ -185,7 +185,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:54:15+09:00'
+  timestamp: '2024-07-18 12:02:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1625_2.test.cpp
