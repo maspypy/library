@@ -7,10 +7,10 @@ struct Bit_Vector {
     FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);
   }
   // [0, k) 内の 1 の個数
-  int count(int k, bool f = 1) {
+  int count(int k, bool f) {
     auto [a, b] = dat[k >> 5];
     int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));
     return (f ? ret : k - ret);
   }
-  int count(int L, int R, bool f = 1) { return count(R, f) - count(L, f); }
+  int count(int L, int R, bool f) { return count(R, f) - count(L, f); }
 };
