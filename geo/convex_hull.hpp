@@ -21,13 +21,7 @@ vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full",
   }
 
   auto check = [&](ll i, ll j, ll k) -> bool {
-    auto xi = XY[i].x, yi = XY[i].y;
-    auto xj = XY[j].x, yj = XY[j].y;
-    auto xk = XY[k].x, yk = XY[k].y;
-    auto dx1 = xj - xi, dy1 = yj - yi;
-    auto dx2 = xk - xj, dy2 = yk - yj;
-    T det = dx1 * dy2 - dy1 * dx2;
-    return det > 0;
+    return (XY[j] - XY[i]).det(XY[k] - XY[i]) > 0;
   };
 
   auto calc = [&]() {
