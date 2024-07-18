@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2490.test.cpp
     title: test/yukicoder/2490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2626_2.test.cpp
     title: test/yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc350g2.test.cpp
     title: test_atcoder/abc350g2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -289,7 +289,7 @@ data:
   - graph/bitset/reachability_bitset.hpp
   - graph/bitset/bfs_bitset.hpp
   timestamp: '2024-02-23 19:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/matrix_product_mod2.test.cpp
   - test/mytest/subset_sum.test.cpp
