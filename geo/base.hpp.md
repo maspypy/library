@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -123,10 +123,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_side.test.cpp
     title: test/mytest/convex_polygon_side.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_visible_range.test.cpp
     title: test/mytest/convex_polygon_visible_range.test.cpp
   - icon: ':heavy_check_mark:'

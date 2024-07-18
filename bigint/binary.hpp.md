@@ -33,12 +33,12 @@ data:
     path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
     title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/bigint.test.cpp
     title: test/mytest/bigint.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/477/problem/D
@@ -506,7 +506,7 @@ data:
   requiredBy:
   - test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/bigint.test.cpp
 documentation_of: bigint/binary.hpp
