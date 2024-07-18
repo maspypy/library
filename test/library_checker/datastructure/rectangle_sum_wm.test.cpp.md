@@ -199,15 +199,16 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32, u32>> dat;\n  Bit_Vector(int\
-    \ n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void set(int i) { dat[i >> 5].fi\
-    \ |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat), pair<u32, u32>{0,\
-    \ 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
-    \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
-    \ int count(int k, bool f) {\n    auto [a, b] = dat[k >> 5];\n    int ret = b\
-    \ + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n\
-    \  }\n  int count(int L, int R, bool f) { return count(R, f) - count(L, f); }\n\
-    };\n#line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
+    \ 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u32, u32>>\
+    \ dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void\
+    \ set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat),\
+    \ pair<u32, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i +\
+    \ 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\
+    \u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k >> 5];\n \
+    \   int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret\
+    \ : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R, f) - count(L,\
+    \ f); }\n  string to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i\
+    \ / 32].fi >> (i % 32) & 1);\n    return ans;\n  }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix_2d_range_static_abelgroup.hpp\"\
     \n\ntemplate <typename Monoid, typename XY, bool SMALL_X, bool SMALL_Y>\nstruct\
     \ Wavelet_Matrix_2D_Range_Static_AbelGroup {\n  // \u70B9\u7FA4\u3092 Y \u6607\
     \u9806\u306B\u4E26\u3079\u308B.\n  // X \u3092\u6574\u6570\u306B\u306A\u304A\u3057\
@@ -283,7 +284,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 12:32:55+09:00'
+  timestamp: '2024-07-18 19:11:13+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm.test.cpp

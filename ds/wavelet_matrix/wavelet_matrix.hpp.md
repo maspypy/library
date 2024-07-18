@@ -44,19 +44,21 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
-    \ u32>> dat;\n  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void\
-    \ set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat),\
-    \ pair<u32, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i +\
-    \ 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\
-    \u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k >> 5];\n \
-    \   int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R, f) - count(L,\
-    \ f); }\n};\n#line 2 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\r\n// \u5EA7\u5727\
-    \u3059\u308B\u304B\u3069\u3046\u304B\u3092 COMPRESS \u3067\u6307\u5B9A\u3059\u308B\
-    \r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\u3092\u3059\u308B\u5834\u5408\u306B\u306F\
-    \u3001\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\
-    \u3068\r\ntemplate <typename T, bool COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix\
+  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u32,\
+    \ u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 63) >> 5, {0, 0});\
+    \ }\n  void set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset()\
+    \ { fill(all(dat), pair<u32, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat)\
+    \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\
+    \u306E 1 \u306E\u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k\
+    \ >> 5];\n    int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return\
+    \ (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R,\
+    \ f) - count(L, f); }\n  string to_string() {\n    string ans;\n    FOR(i, n)\
+    \ ans += '0' + (dat[i / 32].fi >> (i % 32) & 1);\n    return ans;\n  }\n};\n#line\
+    \ 2 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\r\n// \u5EA7\u5727\u3059\u308B\u304B\
+    \u3069\u3046\u304B\u3092 COMPRESS \u3067\u6307\u5B9A\u3059\u308B\r\n// xor \u7684\
+    \u306A\u4F7F\u3044\u65B9\u3092\u3059\u308B\u5834\u5408\u306B\u306F\u3001\u30B3\
+    \u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\u3068\r\
+    \ntemplate <typename T, bool COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix\
     \ {\r\n  static_assert(is_same_v<T, int> || is_same_v<T, ll>);\r\n  int N, lg;\r\
     \n  vector<int> mid;\r\n  vector<Bit_Vector> bv;\r\n  vc<T> key;\r\n  bool set_log;\r\
     \n  vvc<T> cumsum;\r\n\r\n  Wavelet_Matrix() {}\r\n\r\n  // \u548C\u3092\u4F7F\
@@ -268,7 +270,7 @@ data:
   requiredBy:
   - string/prefix_substring_LCS.hpp
   - graph/ds/tree_wavelet_matrix.hpp
-  timestamp: '2024-07-18 12:32:55+09:00'
+  timestamp: '2024-07-18 19:11:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp

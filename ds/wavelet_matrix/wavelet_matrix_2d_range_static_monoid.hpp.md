@@ -29,18 +29,20 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  vc<pair<u32,\
-    \ u32>> dat;\n  Bit_Vector(int n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void\
-    \ set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat),\
-    \ pair<u32, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i +\
-    \ 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\
-    \u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k >> 5];\n \
-    \   int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R, f) - count(L,\
-    \ f); }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
-    \ SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using\
-    \ value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
+  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u32,\
+    \ u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 63) >> 5, {0, 0});\
+    \ }\n  void set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset()\
+    \ { fill(all(dat), pair<u32, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat)\
+    \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\
+    \u306E 1 \u306E\u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k\
+    \ >> 5];\n    int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return\
+    \ (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R,\
+    \ f) - count(L, f); }\n  string to_string() {\n    string ans;\n    FOR(i, n)\
+    \ ans += '0' + (dat[i / 32].fi >> (i % 32) & 1);\n    return ans;\n  }\n};\n#line\
+    \ 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n\
+    \  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
+    \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
+    \ { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
     \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
     \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
     \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
@@ -267,7 +269,7 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   requiredBy: []
-  timestamp: '2024-07-18 12:32:55+09:00'
+  timestamp: '2024-07-18 19:11:13+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1600_2.test.cpp
