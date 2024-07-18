@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/lct_node_base.hpp
     title: graph/ds/lct_node_base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'

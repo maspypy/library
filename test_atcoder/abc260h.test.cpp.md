@@ -62,6 +62,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
+    path: poly/ntt_doubling.hpp
+    title: poly/ntt_doubling.hpp
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
@@ -658,43 +661,64 @@ data:
     \ % 2 == 1) g[i] = -g[i];\r\n  }\r\n  f = convolution<mint>(f, g);\r\n  f.resize(n);\r\
     \n\r\n  reverse(all(f));\r\n  mint ia = a.inverse();\r\n  mint pow = 1;\r\n  FOR(i,\
     \ n) f[i] *= pow, pow *= ia;\r\n  return f;\r\n}\r\n#line 2 \"poly/sum_of_rationals.hpp\"\
-    \n\n#line 4 \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\
-    \u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002\
-    N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>,\
-    \ vc<mint>> sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {\n  if (len(dat)\
-    \ == 0) {\n    vc<mint> f = {0}, g = {1};\n    return {f, g};\n  }\n  using P\
-    \ = pair<vc<mint>, vc<mint>>;\n  auto add = [&](P& a, P& b) -> P {\n    int na\
-    \ = len(a.fi) - 1, da = len(a.se) - 1;\n    int nb = len(b.fi) - 1, db = len(b.se)\
-    \ - 1;\n    int n = max(na + db, da + nb);\n    vc<mint> num(n + 1);\n    {\n\
-    \      auto f = convolution(a.fi, b.se);\n      FOR(i, len(f)) num[i] += f[i];\n\
-    \    }\n    {\n      auto f = convolution(a.se, b.fi);\n      FOR(i, len(f)) num[i]\
-    \ += f[i];\n    }\n    auto den = convolution(a.se, b.se);\n    return {num, den};\n\
-    \  };\n\n  while (len(dat) > 1) {\n    int n = len(dat);\n    FOR(i, 1, n, 2)\
-    \ { dat[i - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2\
-    \ * i];\n    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n#line 2 \"poly/fps_div.hpp\"\
-    \n\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\
-    \u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
-    \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
-    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
-    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
-    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
-    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
-    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
-    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
-    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
-    \    }\n  }\n  return f;\n}\n#line 4 \"linalg/blackbox/vandermonde.hpp\"\n\n//\
-    \ transpose = 0\uFF1Ag[p] = sum pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p] = sum\
-    \ pow(aq,p) f[q]\n// (false, false) = multipoint eval\n// (false, true) = multipoint\
-    \ interpolate\n// (true, false) = sum of rationals\n// (true, true) = partial\
-    \ frac decomposition (fps -> coefs)\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint>\
-    \ f, vc<mint> A, bool transpose, bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n\
-    \  int N = len(f);\n  using poly = vc<mint>;\n  if (!transpose) {\n    if (!inverse)\
-    \ { return multipoint_eval(f, A); }\n    if (inverse) { return multipoint_interpolate(A,\
-    \ f); }\n  }\n  if (!inverse) {\n    vc<pair<poly, poly>> dat(N);\n    FOR(j,\
-    \ N) {\n      poly a{f[j]}, b{mint(1), mint(-A[j])};\n      dat[j] = {a, b};\n\
-    \    }\n    auto [num, den] = sum_of_rationals(dat);\n    num.resize(N);\n   \
-    \ return fps_div(num, den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint> g =\
-    \ X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n\
+    \n\n#line 2 \"poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n\
+    // 2^k \u6B21\u591A\u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\
+    \u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint>\n\
+    void ntt_doubling(vector<mint>& a) {\n  static array<mint, 30> root;\n  static\
+    \ bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    const int rank2\
+    \ = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n    FOR_R(i,\
+    \ rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  const int M = (int)a.size();\n\
+    \  auto b = a;\n  ntt(b, 1);\n  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i,\
+    \ M) b[i] *= r, r *= zeta;\n  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n\
+    }\n#line 5 \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\
+    \u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\
+    \u6B21\u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>, vc<mint>>\
+    \ sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {\n  if (len(dat) == 0) {\n\
+    \    vc<mint> f = {0}, g = {1};\n    return {f, g};\n  }\n  using P = pair<vc<mint>,\
+    \ vc<mint>>;\n  auto add = [&](P& a, P& b) -> P {\n    int na = len(a.fi) - 1,\
+    \ da = len(a.se) - 1;\n    int nb = len(b.fi) - 1, db = len(b.se) - 1;\n    int\
+    \ n = max(na + db, da + nb);\n    vc<mint> num(n + 1);\n    {\n      auto f =\
+    \ convolution(a.fi, b.se);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n\
+    \      auto f = convolution(a.se, b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n\
+    \    }\n    auto den = convolution(a.se, b.se);\n    return {num, den};\n  };\n\
+    \n  while (len(dat) > 1) {\n    int n = len(dat);\n    FOR(i, 1, n, 2) { dat[i\
+    \ - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n\
+    \    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\n\
+    template <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint>\
+    \ A, vc<mint> wt) {\n  using poly = vc<mint>;\n  int n = 1;\n  while (n < len(A))\
+    \ n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n), G(n);\n  FOR(i, len(A)) F[i]\
+    \ = -A[i], G[i] = wt[i];\n\n  FOR(d, k) {\n    int b = 1 << d;\n    for (int L\
+    \ = 0; L < n; L += 2 * b) {\n      poly f1 = {F.begin() + L, F.begin() + L + b};\n\
+    \      poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n      poly g1 =\
+    \ {G.begin() + L, G.begin() + L + b};\n      poly g2 = {G.begin() + L + b, G.begin()\
+    \ + L + 2 * b};\n      ntt_doubling(f1), ntt_doubling(f2);\n      ntt_doubling(g1),\
+    \ ntt_doubling(g2);\n      FOR(i, b) f1[i] += 1, f2[i] += 1;\n      FOR(i, b,\
+    \ 2 * b) f1[i] -= 1, f2[i] -= 1;\n      FOR(i, 2 * b) F[L + i] = f1[i] * f2[i]\
+    \ - 1;\n      FOR(i, 2 * b) G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n    }\n\
+    \  }\n  ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)), reverse(all(G));\n\
+    \  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G, F};\n}\n#line 2 \"\
+    poly/fps_div.hpp\"\n\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\
+    \u3067\u51FA\u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE =\
+    \ false>\nvc<mint> fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g)\
+    \ < 200) return fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g\
+    \ = fps_inv<mint>(g);\n  f = convolution(f, g);\n  f.resize(n);\n  return f;\n\
+    }\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint>\
+    \ fps_div_sparse(vc<mint> f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint\
+    \ cf = g[0].inverse();\n    for (auto&& x: f) x *= cf;\n    for (auto&& x: g)\
+    \ x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] !=\
+    \ mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f)) {\n    for (auto&& [j, x]: dat)\
+    \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
+    \ 4 \"linalg/blackbox/vandermonde.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q)\
+    \ f[q]\n// transpose = 1\uFF1Ag[p] = sum pow(aq,p) f[q]\n// (false, false) = multipoint\
+    \ eval\n// (false, true) = multipoint interpolate\n// (true, false) = sum of rationals\n\
+    // (true, true) = partial frac decomposition (fps -> coefs)\ntemplate <typename\
+    \ mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse)\
+    \ {\n  if (len(f) == 0) return vc<mint>();\n  int N = len(f);\n  using poly =\
+    \ vc<mint>;\n  if (!transpose) {\n    if (!inverse) { return multipoint_eval(f,\
+    \ A); }\n    if (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if\
+    \ (!inverse) {\n    auto [num, den] = sum_of_rationals_1<mint>(A, f);\n    num.resize(N);\n\
+    \    return fps_div(num, den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint>\
+    \ g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n\
     \  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1)\
     \ g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
     \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
@@ -749,11 +773,12 @@ data:
   - poly/middle_product.hpp
   - mod/all_inverse.hpp
   - poly/sum_of_rationals.hpp
+  - poly/ntt_doubling.hpp
   - poly/fps_div.hpp
   isVerificationFile: true
   path: test_atcoder/abc260h.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-07-19 05:46:42+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc260h.test.cpp

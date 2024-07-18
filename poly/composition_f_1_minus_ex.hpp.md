@@ -44,6 +44,9 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
+    path: poly/ntt_doubling.hpp
+    title: poly/ntt_doubling.hpp
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
@@ -373,7 +376,16 @@ data:
     \ N) f[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
     \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(f));\r\n  f = convolution(f,\
     \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
-    \n  return f;\r\n}\r\n#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 4 \"poly/sum_of_rationals.hpp\"\
+    \n  return f;\r\n}\r\n#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"poly/ntt_doubling.hpp\"\
+    \n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\
+    \u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067 2^k+1 \u306B\
+    \u3059\u308B\ntemplate <typename mint>\nvoid ntt_doubling(vector<mint>& a) {\n\
+    \  static array<mint, 30> root;\n  static bool prepared = 0;\n  if (!prepared)\
+    \ {\n    prepared = 1;\n    const int rank2 = mint::ntt_info().fi;\n    root[rank2]\
+    \ = mint::ntt_info().se;\n    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i\
+    \ + 1]; }\n  }\n\n  const int M = (int)a.size();\n  auto b = a;\n  ntt(b, 1);\n\
+    \  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i, M) b[i] *= r, r *= zeta;\n\
+    \  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n}\n#line 5 \"poly/sum_of_rationals.hpp\"\
     \n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\
     \u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate\
     \ <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>,\
@@ -387,46 +399,56 @@ data:
     \ b.se);\n    return {num, den};\n  };\n\n  while (len(dat) > 1) {\n    int n\
     \ = len(dat);\n    FOR(i, 1, n, 2) { dat[i - 1] = add(dat[i - 1], dat[i]); }\n\
     \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
-    \  return dat[0];\n}\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\
-    \nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i]\
-    \ != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  int N =\
-    \ len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0))\
-    \ dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0]\
-    \ = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat)\
-    \ {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n    }\r\n   \
-    \ g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\ntemplate <typename mint>\r\
-    \nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\n  vc<mint> G = {mint(1) /\
-    \ F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\n  while (n < N) {\r\n\
-    \    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n\
-    \    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g, false);\r\n    FOR(i,\
-    \ 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i, n) f[i] = 0;\r\n   \
-    \ ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n \
-    \   FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\n  }\r\n  return G;\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const vc<mint>&\
-    \ F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const int N\
-    \ = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int m =\
-    \ 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m + m);\r\
-    \n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p = convolution(p,\
-    \ f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i] + R[i] - p[i];\r\
-    \n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\n\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0] != mint(0));\r\
-    \n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160 : 820);\r\n  return\
-    \ (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\n}\r\n#line 3\
-    \ \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092 [0,NN \u6B21\u307E\u3067\
-    \u3002O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint> sum_of_exp_bx(int\
-    \ N, vc<pair<mint, mint>> AB) {\n  using poly = vc<mint>;\n  vc<pair<poly, poly>>\
-    \ fracs;\n  for (auto&& [a, b]: AB) {\n    poly num = {a};\n    poly den = {mint(1),\
-    \ -b};\n    fracs.eb(num, den);\n  }\n  auto [f, g] = sum_of_rationals<mint>(fracs);\n\
-    \  g.resize(N + 1);\n  f = convolution(f, fps_inv(g));\n  f.resize(N + 1);\n \
-    \ FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n#line 2 \"poly/composition_f_ex.hpp\"\
+    \  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename mint>\npair<vc<mint>,\
+    \ vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt) {\n  using poly = vc<mint>;\n\
+    \  int n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint>\
+    \ F(n), G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] = wt[i];\n\n  FOR(d, k) {\n\
+    \    int b = 1 << d;\n    for (int L = 0; L < n; L += 2 * b) {\n      poly f1\
+    \ = {F.begin() + L, F.begin() + L + b};\n      poly f2 = {F.begin() + L + b, F.begin()\
+    \ + L + 2 * b};\n      poly g1 = {G.begin() + L, G.begin() + L + b};\n      poly\
+    \ g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n      ntt_doubling(f1), ntt_doubling(f2);\n\
+    \      ntt_doubling(g1), ntt_doubling(g2);\n      FOR(i, b) f1[i] += 1, f2[i]\
+    \ += 1;\n      FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      FOR(i, 2 * b) F[L\
+    \ + i] = f1[i] * f2[i] - 1;\n      FOR(i, 2 * b) G[L + i] = g1[i] * f2[i] + g2[i]\
+    \ * f1[i];\n    }\n  }\n  ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
+    \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
+    \ F};\n}\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
+    \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
+    \n  return t;\r\n}\n#line 4 \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\
+    \nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int,\
+    \ mint>> dat;\r\n  FOR(i, 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint>\
+    \ g(N);\r\n  mint g0 = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n\
+    \    mint rhs = 0;\r\n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\
+    \n      rhs -= fk * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return\
+    \ g;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const\
+    \ vc<mint>& F) {\r\n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\
+    \n  G.reserve(N);\r\n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n\
+    \    FOR(i, min(N, 2 * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f,\
+    \ false), ntt(g, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\
+    \n    FOR(i, n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\
+    \n    ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
+    \n  }\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const\
+    \ vc<mint>& F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const\
+    \ int N = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int\
+    \ m = 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m\
+    \ + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p =\
+    \ convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i]\
+    \ + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
+    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
+    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
+    \n}\r\n#line 3 \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092 [0,NN \u6B21\
+    \u307E\u3067\u3002O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint> sum_of_exp_bx(int\
+    \ N, vc<mint> A, vc<mint> B) {\n  using poly = vc<mint>;\n  auto [f, g] = sum_of_rationals_1<mint>(B,\
+    \ A);\n  g.resize(N + 1);\n  f = convolution(f, fps_inv(g));\n  f.resize(N + 1);\n\
+    \  FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n#line 2 \"poly/composition_f_ex.hpp\"\
     \n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\u5BFE\u3057\u3066\u3001f(e^x) \u3092\
     \ [0,N] \u6B21\u307E\u3067\u3002O(Nlog^2N)\n// f \u304C N \u3088\u308A\u9577\u304F\
     \u3066\u6B32\u3057\u3044\u3082\u306E\u304C [0,N] \u3068\u3044\u3046\u5834\u5408\
     \u3082 f \u3092 resize(N+1)\n// \u3059\u308B\u3068\u7B54\u304C\u5909\u308F\u308B\
     \u306E\u3067\u6CE8\u610F\ntemplate <typename mint>\nvc<mint> composition_f_ex(vc<mint>\
-    \ f) {\n  int N = len(f) - 1;\n  vc<pair<mint, mint>> AB;\n  FOR(k, len(f)) AB.eb(f[k],\
-    \ mint(k));\n  return sum_of_exp_bx(N, AB);\n}\n#line 4 \"poly/composition_f_1_minus_ex.hpp\"\
+    \ f) {\n  int N = len(f) - 1;\n  vc<mint> A, B;\n  FOR(k, len(f)) A.eb(f[k]),\
+    \ B.eb(mint(k));\n  return sum_of_exp_bx(N, A, B);\n}\n#line 4 \"poly/composition_f_1_minus_ex.hpp\"\
     \n\n// f(1-e^x)\ntemplate <typename mint>\nvc<mint> composition_1_minus_ex(vc<mint>\
     \ f) {\n  f = poly_taylor_shift<mint>(f, 1);\n  FOR(i, len(f)) if (i & 1) f[i]\
     \ = -f[i];\n  return composition_f_ex<mint>(f);\n}\n"
@@ -450,12 +472,13 @@ data:
   - poly/composition_f_ex.hpp
   - poly/sum_of_exp_bx.hpp
   - poly/sum_of_rationals.hpp
+  - poly/ntt_doubling.hpp
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
   isVerificationFile: false
   path: poly/composition_f_1_minus_ex.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-07-19 05:46:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/composition_1_minus_ex.test.cpp
