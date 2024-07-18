@@ -124,9 +124,9 @@ struct Wavelet_Matrix_2D_Range_Dynamic_AbelGroup {
     int a = A[i];
     FOR_R(d, lg) {
       if (a >> d & 1) {
-        i = mid[d] + bv[d].rank(i, 1);
+        i = mid[d] + bv[d].count(i, 1);
       } else {
-        i = bv[d].rank(i, 0);
+        i = bv[d].count(i, 0);
       }
       dat[d].add(i, x);
     }
@@ -136,7 +136,7 @@ private:
   int count_inner(int L, int R, int x) {
     int cnt = 0;
     FOR_R(d, lg) {
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       if (x >> d & 1) {
         cnt += r0 - l0, L += mid[d] - l0, R += mid[d] - r0;
       } else {
@@ -150,7 +150,7 @@ private:
     if (x == 0) return MX::unit();
     X sm = MX::unit();
     FOR_R(d, lg) {
-      int l0 = bv[d].rank(L, 0), r0 = bv[d].rank(R, 0);
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       if (x >> d & 1) {
         sm = MX::op(sm, dat[d].sum(l0, r0));
         L += mid[d] - l0, R += mid[d] - r0;
