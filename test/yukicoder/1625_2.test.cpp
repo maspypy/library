@@ -1,7 +1,8 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1625"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix_2d_range.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "alg/monoid/max.hpp"
 
 void solve() {
@@ -32,7 +33,7 @@ void solve() {
     }
   }
   using Mono = Monoid_Max<ll>;
-  Wavelet_Matrix_2D_Range_Dynamic_Monoid<Mono, int, false, false> WM(
+  Wavelet_Matrix_2D_Range<SegTree<Mono>, int, false, false> WM(
       N + Q, [&](int i) -> tuple<int, int, ll> {
         auto [a, b, c] = query[i];
         if (i < N) return {a, b, c};
