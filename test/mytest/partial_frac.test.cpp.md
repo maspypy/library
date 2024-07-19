@@ -487,7 +487,7 @@ data:
     \ - 1;\n      FOR(i, 2 * b) G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n    }\n\
     \  }\n  ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)), reverse(all(G));\n\
     \  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G, F};\n}\n#line 2 \"\
-    poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\n\n#line 5 \"poly/middle_product.hpp\"\
+    poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\n\n#line 6 \"poly/middle_product.hpp\"\
     \n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m) a, b \u2192 n-m \u6B21\u591A\u9805\
     \u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate <typename mint>\nvc<mint> middle_product(vc<mint>&\
     \ a, vc<mint>& b) {\n  assert(len(a) >= len(b));\n  if (b.empty()) return vc<mint>(len(a)\
@@ -741,7 +741,7 @@ data:
   isVerificationFile: true
   path: test/mytest/partial_frac.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 13:09:23+09:00'
+  timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/partial_frac.test.cpp

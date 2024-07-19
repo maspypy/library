@@ -752,7 +752,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
       title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic.hpp
       title: graph/chromatic.hpp
     - icon: ':warning:'
@@ -1187,7 +1187,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/blackbox/solve_linear.hpp
       title: linalg/blackbox/solve_linear.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/blackbox/vandermonde.hpp
       title: linalg/blackbox/vandermonde.hpp
   - name: linalg
@@ -1650,7 +1650,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
     - icon: ':question:'
@@ -1971,7 +1971,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/prefix_substring_LCS.hpp
       title: string/prefix_substring_LCS.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
     - icon: ':heavy_check_mark:'
@@ -2010,7 +2010,7 @@ data:
     - icon: ':warning:'
       path: string/trie_map.hpp
       title: string/trie_map.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
     - icon: ':heavy_check_mark:'
@@ -2029,7 +2029,7 @@ data:
   verificationCategories:
   - name: graph
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/chromatic_polynomial.test.cpp
       title: graph/chromatic_polynomial.test.cpp
   - name: test/aoj
@@ -2575,7 +2575,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/bipartitematching.test.cpp
       title: test/library_checker/graph/bipartitematching.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/graph/chromatic_number.test.cpp
       title: test/library_checker/graph/chromatic_number.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2724,7 +2724,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
       title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
       title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2883,7 +2883,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
       title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
       title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2895,10 +2895,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_division.test.cpp
       title: test/library_checker/polynomial/polynomial_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
       title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
       title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3560,7 +3560,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/typical_dc.test.cpp
       title: test/mytest/typical_dc.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/vandermonde.test.cpp
       title: test/mytest/vandermonde.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4111,13 +4111,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2230.test.cpp
       title: test/yukicoder/2230.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2231.test.cpp
       title: test/yukicoder/2231.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2242.test.cpp
       title: test/yukicoder/2242.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2243.test.cpp
       title: test/yukicoder/2243.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4246,7 +4246,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/2613.test.cpp
       title: test/yukicoder/2613.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/2626.test.cpp
       title: test/yukicoder/2626.test.cpp
     - icon: ':heavy_check_mark:'

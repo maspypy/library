@@ -309,7 +309,7 @@ data:
     \ p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3\
     \ - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c *\
     \ p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 + p4) * x4 % p4;\n  return\
-    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 5 \"poly/middle_product.hpp\"\n\
+    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 6 \"poly/middle_product.hpp\"\n\
     \n// n, m \u6B21\u591A\u9805\u5F0F (n>=m) a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F\
     \ c\n// c[i] = sum_j b[j]a[i+j]\ntemplate <typename mint>\nvc<mint> middle_product(vc<mint>&\
     \ a, vc<mint>& b) {\n  assert(len(a) >= len(b));\n  if (b.empty()) return vc<mint>(len(a)\
@@ -697,7 +697,7 @@ data:
   isVerificationFile: true
   path: test/mytest/chirp_z.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 13:09:23+09:00'
+  timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/chirp_z.test.cpp

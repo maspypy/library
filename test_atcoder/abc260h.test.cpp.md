@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -555,7 +555,7 @@ data:
     \  if (inverse) FOR(i, n) if (i & 1) g[i] = -g[i];\n  f = convolution(f, g);\n\
     \  f.resize(n);\n  reverse(all(f));\n  FOR(i, n) f[i] *= fact_inv<mint>(i);\n\
     \  return f;\n}\n#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\
-    \n\n#line 5 \"poly/middle_product.hpp\"\n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m)\
+    \n\n#line 6 \"poly/middle_product.hpp\"\n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m)\
     \ a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate\
     \ <typename mint>\nvc<mint> middle_product(vc<mint>& a, vc<mint>& b) {\n  assert(len(a)\
     \ >= len(b));\n  if (b.empty()) return vc<mint>(len(a) - len(b) + 1);\n  if (min(len(b),\
@@ -794,17 +794,16 @@ data:
     \ eval\n// (false, true) = multipoint interpolate\n// (true, false) = sum of rationals\n\
     // (true, true) = partial frac decomposition (fps -> coefs)\ntemplate <typename\
     \ mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse)\
-    \ {\n  if (len(f) == 0) return vc<mint>();\n  int N = len(f);\n  using poly =\
-    \ vc<mint>;\n  if (!transpose) {\n    if (!inverse) { return multipoint_eval(f,\
-    \ A); }\n    if (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if\
-    \ (!inverse) {\n    auto [num, den] = sum_of_rationals_1<mint>(A, f);\n    num.resize(N);\n\
-    \    return fps_div(num, den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint>\
-    \ g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n\
-    \  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1)\
-    \ g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
-    \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
-    \ num[i] / den[i];\n  return B;\n}\n#line 9 \"test_atcoder/abc260h.test.cpp\"\n\
-    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(int, A, N);\n\
+    \ {\n  if (len(f) == 0) return vc<mint>();\n  int N = len(f);\n  if (!transpose)\
+    \ {\n    if (!inverse) { return multipoint_eval(f, A); }\n    if (inverse) { return\
+    \ multipoint_interpolate(A, f); }\n  }\n  if (!inverse) {\n    auto [num, den]\
+    \ = sum_of_rationals_1<mint>(A, f);\n    num.resize(N);\n    return fps_div(num,\
+    \ den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n\
+    \  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n  f.resize(N);\n  reverse(all(f));\n\
+    \  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\
+    \  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
+    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n#line 9 \"test_atcoder/abc260h.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(int, A, N);\n\
     \  vc<int> CNT(N);\n  for (auto&& x: A) CNT[x - 1]++;\n  // \u5305\u9664\u30EB\
     \u30FC\u30EB\u306E\u500B\u6570 -> \u30EB\u30FC\u30EB\u306E\u6C7A\u3081\u65B9\n\
     \  vvc<mint> polys;\n  FOR(x, N) {\n    int n = CNT[x];\n    if (n <= 1) continue;\n\
@@ -860,7 +859,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc260h.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 13:09:23+09:00'
+  timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc260h.test.cpp
