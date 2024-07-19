@@ -2,6 +2,7 @@
 
 #include "poly/ntt.hpp"
 #include "mod/crt3.hpp"
+#include "mod/modint.hpp"
 
 // n, m 次多項式 (n>=m) a, b → n-m 次多項式 c
 // c[i] = sum_j b[j]a[i+j]

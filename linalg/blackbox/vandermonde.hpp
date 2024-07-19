@@ -12,7 +12,6 @@ template <typename mint>
 vc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse) {
   if (len(f) == 0) return vc<mint>();
   int N = len(f);
-  using poly = vc<mint>;
   if (!transpose) {
     if (!inverse) { return multipoint_eval(f, A); }
     if (inverse) { return multipoint_interpolate(A, f); }
