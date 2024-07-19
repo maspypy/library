@@ -181,8 +181,6 @@ struct Wavelet_Matrix {
   // y 以下最大 OR -infty<T>
   Y prev(int L, int R, Y y) {
     int k = IDX(y + 1);
-    SHOW(L, R, y);
-    SHOW(ItoY, y, k);
     int p = -1;
     auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
       if (b - 1 <= p || L == R || k <= a) return;
@@ -223,6 +221,35 @@ struct Wavelet_Matrix {
     }
     t = Mono::op(t, seg[0].prod(L, L + k));
     return {ItoY[p], t};
+  }
+
+  T prod_index_range(int L, int R, int k1, int k2) {
+    static_assert(has_inverse<Mono>::value);
+    T t1 = kth_value_and_prod(L, R, k1).se;
+    T t2 = kth_value_and_prod(L, R, k2).se;
+    return Mono::op(Mono::inverse(t1), t2);
+  }
+
+  // [L,R) x [0,y) での check(cnt, prod) が true となる最大の (cnt,prod)
+  template <typename F>
+  pair<int, T> max_right(F check, int L, int R) {
+    int cnt = 0;
+    T t = Mono::unit();
+    assert(check(0, Mono::unit()));
+    if (check(R - L, seg[log].prod(L, R))) {
+      return {R - L, seg[log].prod(L, R)};
+    }
+    for (int d = log - 1; d >= 0; --d) {
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      int cnt1 = cnt + r0 - l0, t1 = Mono::op(t, seg[d].prod(l0, r0));
+      if (check(cnt1, t1)) {
+        cnt = cnt1, t = t1, L = l1, R = r1;
+      } else {
+        L = l0, R = r0;
+      }
+    }
+    return {cnt, t};
   }
 };
 
