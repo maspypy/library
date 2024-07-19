@@ -6,9 +6,6 @@ data:
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-    title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
   _extendedVerifiedWith:
@@ -27,9 +24,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1600_2.test.cpp
-    title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
@@ -96,7 +90,6 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/disjoint_sparse_table.hpp
   requiredBy:
-  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/static_range_product.hpp
   - graph/ds/static_tree_monoid.hpp
   timestamp: '2024-02-06 01:35:38+09:00'
@@ -106,7 +99,6 @@ data:
   - test/library_checker/datastructure/staticrmq.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/yukicoder/1216.test.cpp
-  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1216_2.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp

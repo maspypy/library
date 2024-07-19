@@ -92,12 +92,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - icon: ':warning:'
-    path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
-    title: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-    title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
@@ -247,12 +241,6 @@ data:
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - icon: ':heavy_check_mark:'
@@ -394,9 +382,6 @@ data:
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1600_2.test.cpp
-    title: test/yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -414,6 +399,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919_2.test.cpp
+    title: test/yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1977.test.cpp
     title: test/yukicoder/1977.test.cpp
@@ -552,9 +540,7 @@ data:
   - ds/rectangle_union.hpp
   - ds/doubling.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
-  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - ds/cumsum_2d.hpp
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree_2d.hpp
@@ -609,7 +595,6 @@ data:
   - test/library_checker/datastructure/static_range_inversions_mo.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/predecessor_problem_5.test.cpp
   - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
@@ -619,7 +604,6 @@ data:
   - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/double_ended_pq_2.test.cpp
@@ -675,7 +659,6 @@ data:
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1441.test.cpp
   - test/yukicoder/2342.test.cpp
-  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2161.test.cpp
   - test/yukicoder/789.test.cpp
   - test/yukicoder/924.test.cpp
@@ -683,6 +666,7 @@ data:
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/1490.test.cpp
   - test/yukicoder/789_3.test.cpp
+  - test/yukicoder/1919_2.test.cpp
   - test/yukicoder/1197.test.cpp
   - test/yukicoder/2338.test.cpp
   - test/yukicoder/686.test.cpp

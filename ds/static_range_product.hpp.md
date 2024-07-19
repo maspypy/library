@@ -7,17 +7,11 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-    title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1600_2.test.cpp
-    title: test/yukicoder/1600_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -130,13 +124,11 @@ data:
   - ds/sparse_table/disjoint_sparse_table.hpp
   isVerificationFile: false
   path: ds/static_range_product.hpp
-  requiredBy:
-  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
+  requiredBy: []
   timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/staticrmq.test.cpp
-  - test/yukicoder/1600_2.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document
 redirect_from:

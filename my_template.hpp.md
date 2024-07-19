@@ -418,12 +418,6 @@ data:
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/segment_add_get_min.test.cpp
     title: test/library_checker/datastructure/segment_add_get_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1774,9 +1768,6 @@ data:
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1600_2.test.cpp
-    title: test/yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1962,6 +1953,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919_2.test.cpp
+    title: test/yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1936.test.cpp
     title: test/yukicoder/1936.test.cpp
@@ -2646,25 +2640,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc350_g.test.cpp
     title: test_atcoder/abc350_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc350f.test.cpp
     title: test_atcoder/abc350f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc350g2.test.cpp
     title: test_atcoder/abc350g2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc351g.test.cpp
     title: test_atcoder/abc351g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc023f.test.cpp
     title: test_atcoder/agc023f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d.test.cpp
     title: test_atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2990,7 +2984,6 @@ data:
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - test/library_checker/datastructure/sort_segtree_1.test.cpp
   - test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   - test/library_checker/datastructure/static_range_sum.test.cpp
@@ -3008,7 +3001,6 @@ data:
   - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/line_add_get_min_lichao.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/point_set_range_composite_monoid.test.cpp
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
@@ -3462,7 +3454,6 @@ data:
   - test/yukicoder/1293.test.cpp
   - test/yukicoder/2627.test.cpp
   - test/yukicoder/1810.test.cpp
-  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/465.test.cpp
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/579.test.cpp
@@ -3519,6 +3510,7 @@ data:
   - test/yukicoder/1526.test.cpp
   - test/yukicoder/789_3.test.cpp
   - test/yukicoder/2265.test.cpp
+  - test/yukicoder/1919_2.test.cpp
   - test/yukicoder/1254.test.cpp
   - test/yukicoder/2801.test.cpp
   - test/yukicoder/1548.test.cpp

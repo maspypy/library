@@ -22,6 +22,9 @@ data:
     path: test/yukicoder/1919.test.cpp
     title: test/yukicoder/1919.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919_2.test.cpp
+    title: test/yukicoder/1919_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/235.test.cpp
     title: test/yukicoder/235.test.cpp
   - icon: ':heavy_check_mark:'
@@ -71,6 +74,7 @@ data:
   - test/yukicoder/2491.test.cpp
   - test/yukicoder/2627.test.cpp
   - test/yukicoder/235.test.cpp
+  - test/yukicoder/1919_2.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

@@ -26,9 +26,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':warning:'
-    path: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
-    title: ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
@@ -156,6 +153,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919_2.test.cpp
+    title: test/yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
@@ -308,7 +308,6 @@ data:
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/rectangle_add_point_sum.hpp
   - ds/offline_query/point_add_rectangle_sum.hpp
-  - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree_range_add.hpp
   - seq/factorial_digit_system.hpp
@@ -350,6 +349,7 @@ data:
   - test/yukicoder/2161.test.cpp
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/1490.test.cpp
+  - test/yukicoder/1919_2.test.cpp
   - test/yukicoder/2338.test.cpp
   - test/yukicoder/1326.test.cpp
   - test/yukicoder/1838.test.cpp

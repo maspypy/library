@@ -9,9 +9,6 @@ data:
     path: ds/static_rmq.hpp
     title: ds/static_rmq.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-    title: ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
-  - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':heavy_check_mark:'
@@ -63,9 +60,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_4.test.cpp
     title: test/yukicoder/1036_4.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/yukicoder/1600_2.test.cpp
-    title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
@@ -134,7 +128,6 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/sparse_table.hpp
   requiredBy:
-  - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/static_range_product.hpp
   - ds/static_rmq.hpp
   - string/suffix_array.hpp
@@ -157,7 +150,6 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/lex_minmax_suffix.test.cpp
   - test/yukicoder/1036_4.test.cpp
-  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2361.test.cpp
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp

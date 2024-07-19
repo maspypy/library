@@ -40,6 +40,9 @@ data:
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1919_2.test.cpp
+    title: test/yukicoder/1919_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
   - icon: ':heavy_check_mark:'
@@ -146,6 +149,7 @@ data:
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/924.test.cpp
+  - test/yukicoder/1919_2.test.cpp
   - test_atcoder/abc127f_1.test.cpp
   - test_atcoder/abc324g.test.cpp
 documentation_of: ds/index_compression.hpp
