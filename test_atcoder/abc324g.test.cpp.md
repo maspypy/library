@@ -266,32 +266,33 @@ data:
     \ A, vc<T>& SUM_Data) { build(A, SUM_Data); }\r\n  template <typename F>\r\n \
     \ Wavelet_Matrix(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  template <typename\
     \ F>\r\n  void build(int m, F f) {\r\n    vc<Y> A(m);\r\n    vc<T> S(m);\r\n \
-    \   for (int i = 0; i < m; ++i) tie(A[i], S[i]) = f(i);\r\n  }\r\n\r\n  void build(const\
-    \ vc<Y>& A) { build(A, vc<T>(len(A), Mono::unit())); }\r\n  void build(const vc<Y>&\
-    \ A, vc<T> S) {\r\n    n = len(A);\r\n    vc<int> B = IDX.build(A);\r\n    K =\
-    \ 0;\r\n    for (auto& x: B) chmax(K, x + 1);\r\n    ItoY.resize(K);\r\n    FOR(i,\
-    \ n) ItoY[B[i]] = A[i];\r\n    log = 0;\r\n    while ((1 << log) < K) ++log;\r\
-    \n    mid.resize(log), bv.assign(log, Bit_Vector(n));\r\n    vc<int> B0(n), B1(n);\r\
-    \n    vc<T> S0(n), S1(n);\r\n    seg.resize(log + 1);\r\n    seg[log].build(S);\r\
-    \n    for (int d = log - 1; d >= 0; --d) {\r\n      int p0 = 0, p1 = 0;\r\n  \
-    \    for (int i = 0; i < n; ++i) {\r\n        bool f = (B[i] >> d & 1);\r\n  \
-    \      if (!f) { B0[p0] = B[i], S0[p0] = S[i], p0++; }\r\n        if (f) { bv[d].set(i),\
-    \ B1[p1] = B[i], S1[p1] = S[i], p1++; }\r\n      }\r\n      swap(B, B0), swap(S,\
-    \ S0);\r\n      move(B1.begin(), B1.begin() + p1, B.begin() + p0);\r\n      move(S1.begin(),\
-    \ S1.begin() + p1, S.begin() + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\
-    \n    }\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  int prefix_count(int L, int R, Y\
-    \ y) {\r\n    int p = IDX(y);\r\n    if (p == 0) return 0;\r\n    if (p == K)\
-    \ return R - L;\r\n    int cnt = 0;\r\n    for (int d = log - 1; d >= 0; --d)\
-    \ {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int\
-    \ l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) cnt +=\
-    \ r0 - l0, L = l1, R = r1;\r\n      if (!(p >> d & 1)) L = l0, R = r0;\r\n   \
-    \ }\r\n    return cnt;\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int L,\
-    \ int R, Y y1, Y y2) {\r\n    return prefix_count(L, R, y2) - prefix_count(L,\
-    \ R, y1);\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  pair<int, T> prefix_count_and_prod(int\
-    \ L, int R, Y y) {\r\n    int p = IDX(y);\r\n    if (p == 0) return {0, Mono::unit()};\r\
-    \n    if (p == K) return {R - L, seg[log].prod(L, R)};\r\n    int cnt = 0;\r\n\
-    \    T t = Mono::unit();\r\n    for (int d = log - 1; d >= 0; --d) {\r\n     \
-    \ int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d]\
+    \   for (int i = 0; i < m; ++i) tie(A[i], S[i]) = f(i);\r\n    build(A, S);\r\n\
+    \  }\r\n\r\n  void build(const vc<Y>& A) { build(A, vc<T>(len(A), Mono::unit()));\
+    \ }\r\n  void build(const vc<Y>& A, vc<T> S) {\r\n    n = len(A);\r\n    vc<int>\
+    \ B = IDX.build(A);\r\n    K = 0;\r\n    for (auto& x: B) chmax(K, x + 1);\r\n\
+    \    ItoY.resize(K);\r\n    FOR(i, n) ItoY[B[i]] = A[i];\r\n    log = 0;\r\n \
+    \   while ((1 << log) < K) ++log;\r\n    mid.resize(log), bv.assign(log, Bit_Vector(n));\r\
+    \n    vc<int> B0(n), B1(n);\r\n    vc<T> S0(n), S1(n);\r\n    seg.resize(log +\
+    \ 1);\r\n    seg[log].build(S);\r\n    for (int d = log - 1; d >= 0; --d) {\r\n\
+    \      int p0 = 0, p1 = 0;\r\n      for (int i = 0; i < n; ++i) {\r\n        bool\
+    \ f = (B[i] >> d & 1);\r\n        if (!f) { B0[p0] = B[i], S0[p0] = S[i], p0++;\
+    \ }\r\n        if (f) { bv[d].set(i), B1[p1] = B[i], S1[p1] = S[i], p1++; }\r\n\
+    \      }\r\n      swap(B, B0), swap(S, S0);\r\n      move(B1.begin(), B1.begin()\
+    \ + p1, B.begin() + p0);\r\n      move(S1.begin(), S1.begin() + p1, S.begin()\
+    \ + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\n    }\r\n  }\r\
+    \n\r\n  // [L,R) x [0,y)\r\n  int prefix_count(int L, int R, Y y) {\r\n    int\
+    \ p = IDX(y);\r\n    if (p == 0) return 0;\r\n    if (p == K) return R - L;\r\n\
+    \    int cnt = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      int l0\
+    \ = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] -\
+    \ l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) cnt += r0 - l0, L = l1, R\
+    \ = r1;\r\n      if (!(p >> d & 1)) L = l0, R = r0;\r\n    }\r\n    return cnt;\r\
+    \n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int L, int R, Y y1, Y y2) {\r\
+    \n    return prefix_count(L, R, y2) - prefix_count(L, R, y1);\r\n  }\r\n\r\n \
+    \ // [L,R) x [0,y)\r\n  pair<int, T> prefix_count_and_prod(int L, int R, Y y)\
+    \ {\r\n    int p = IDX(y);\r\n    if (p == 0) return {0, Mono::unit()};\r\n  \
+    \  if (p == K) return {R - L, seg[log].prod(L, R)};\r\n    int cnt = 0;\r\n  \
+    \  T t = Mono::unit();\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      int\
+    \ l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d]\
     \ - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) {\r\n        cnt += r0\
     \ - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1;\r\n      }\r\n \
     \     if (!(p >> d & 1)) L = l0, R = r0;\r\n    }\r\n    return {cnt, t};\r\n\
@@ -310,40 +311,41 @@ data:
     \ log);\r\n    return {cnt, t};\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  T prefix_prod(int\
     \ L, int R, Y y) { return prefix_count_and_prod(L, R, y).se; }\r\n  // [L,R) x\
     \ [y1,y2)\r\n  T prod(int L, int R, Y y1, Y y2) { return count_and_prod(L, R,\
-    \ y1, y2).se; }\r\n\r\n  Y kth(int L, int R, int k) {\r\n    assert(0 <= k &&\
-    \ k < R - L);\r\n    int p = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n\
-    \      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L\
-    \ + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k < r0 - l0) {\r\n       \
-    \ L = l0, R = r0;\r\n      } else {\r\n        k -= r0 - l0, L = l1, R = r1, p\
-    \ |= 1 << d;\r\n      }\r\n    }\r\n    return ItoY[p];\r\n  }\r\n\r\n  // y \u4EE5\
-    \u4E0A\u6700\u5C0F OR infty<Y>\r\n  Y next(int L, int R, Y y) {\r\n    int k =\
-    \ IDX(y);\r\n    int p = K;\r\n\r\n    auto dfs = [&](auto& dfs, int d, int L,\
-    \ int R, int a, int b) -> void {\r\n      if (p <= a || L == R || b <= k) return;\r\
-    \n      if (d == 0) {\r\n        chmin(p, a);\r\n        return;\r\n      }\r\n\
-    \      --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count(L, 0),\
+    \ y1, y2).se; }\r\n  T prod_all(int L, int R) { return seg[log].prod(L, R); }\r\
+    \n\r\n  Y kth(int L, int R, int k) {\r\n    assert(0 <= k && k < R - L);\r\n \
+    \   int p = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L,\
+    \ 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
+    \ - r0;\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else\
+    \ {\r\n        k -= r0 - l0, L = l1, R = r1, p |= 1 << d;\r\n      }\r\n    }\r\
+    \n    return ItoY[p];\r\n  }\r\n\r\n  // y \u4EE5\u4E0A\u6700\u5C0F OR infty<Y>\r\
+    \n  Y next(int L, int R, Y y) {\r\n    int k = IDX(y);\r\n    int p = K;\r\n\r\
+    \n    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {\r\
+    \n      if (p <= a || L == R || b <= k) return;\r\n      if (d == 0) {\r\n   \
+    \     chmin(p, a);\r\n        return;\r\n      }\r\n      --d;\r\n      int c\
+    \ = (a + b) / 2;\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\
+    \n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      dfs(dfs, d, l0,\
+    \ r0, a, c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\n    dfs(dfs, log, L, R, 0,\
+    \ 1 << log);\r\n    return (p == K ? infty<Y> : ItoY[p]);\r\n  }\r\n\r\n  // y\
+    \ \u4EE5\u4E0B\u6700\u5927 OR -infty<T>\r\n  Y prev(int L, int R, Y y) {\r\n \
+    \   int k = IDX(y + 1);\r\n    int p = -1;\r\n    auto dfs = [&](auto& dfs, int\
+    \ d, int L, int R, int a, int b) -> void {\r\n      if (b - 1 <= p || L == R ||\
+    \ k <= a) return;\r\n      if (d == 0) {\r\n        chmax(p, a);\r\n        return;\r\
+    \n      }\r\n      --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count(L,\
+    \ 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
+    \ - r0;\r\n      dfs(dfs, d, l1, r1, c, b), dfs(dfs, d, l0, r0, a, c);\r\n   \
+    \ };\r\n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == -1 ? -infty<Y>\
+    \ : ItoY[p]);\r\n  }\r\n\r\n  Y median(bool UPPER, int L, int R) {\r\n    assert(0\
+    \ <= L && L < R && R <= n);\r\n    int k = (UPPER ? (R - L) / 2 : (R - L - 1)\
+    \ / 2);\r\n    return kth(L, R, k);\r\n  }\r\n\r\n  pair<Y, T> kth_value_and_prod(int\
+    \ L, int R, int k) {\r\n    assert(0 <= k && k <= R - L);\r\n    if (k == R -\
+    \ L) return {infty<Y>, seg[log].prod(L, R)};\r\n    int p = 0;\r\n    T t = Mono::unit();\r\
+    \n    for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0),\
     \ r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] -\
-    \ r0;\r\n      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\
-    \n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == K ? infty<Y> : ItoY[p]);\r\
-    \n  }\r\n\r\n  // y \u4EE5\u4E0B\u6700\u5927 OR -infty<T>\r\n  Y prev(int L, int\
-    \ R, Y y) {\r\n    int k = IDX(y + 1);\r\n    int p = -1;\r\n    auto dfs = [&](auto&\
-    \ dfs, int d, int L, int R, int a, int b) -> void {\r\n      if (b - 1 <= p ||\
-    \ L == R || k <= a) return;\r\n      if (d == 0) {\r\n        chmax(p, a);\r\n\
-    \        return;\r\n      }\r\n      --d;\r\n      int c = (a + b) / 2;\r\n  \
-    \    int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L +\
-    \ mid[d] - l0, r1 = R + mid[d] - r0;\r\n      dfs(dfs, d, l1, r1, c, b), dfs(dfs,\
-    \ d, l0, r0, a, c);\r\n    };\r\n    dfs(dfs, log, L, R, 0, 1 << log);\r\n   \
-    \ return (p == -1 ? -infty<Y> : ItoY[p]);\r\n  }\r\n\r\n  Y median(bool UPPER,\
-    \ int L, int R) {\r\n    assert(0 <= L && L < R && R <= n);\r\n    int k = (UPPER\
-    \ ? (R - L) / 2 : (R - L - 1) / 2);\r\n    return kth(L, R, k);\r\n  }\r\n\r\n\
-    \  pair<Y, T> kth_value_and_prod(int L, int R, int k) {\r\n    assert(0 <= k &&\
-    \ k <= R - L);\r\n    if (k == R - L) return {infty<Y>, seg[log].prod(L, R)};\r\
-    \n    int p = 0;\r\n    T t = Mono::unit();\r\n    for (int d = log - 1; d >=\
-    \ 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n \
-    \     int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k < r0 - l0)\
-    \ {\r\n        L = l0, R = r0;\r\n      } else {\r\n        t = Mono::op(t, seg[d].prod(l0,\
-    \ r0)), k -= r0 - l0, L = l1, R = r1,\r\n        p |= 1 << d;\r\n      }\r\n \
-    \   }\r\n    t = Mono::op(t, seg[0].prod(L, L + k));\r\n    return {ItoY[p], t};\r\
-    \n  }\r\n\r\n  T prod_index_range(int L, int R, int k1, int k2) {\r\n    static_assert(has_inverse<Mono>::value);\r\
+    \ r0;\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\
+    \n        t = Mono::op(t, seg[d].prod(l0, r0)), k -= r0 - l0, L = l1, R = r1,\r\
+    \n        p |= 1 << d;\r\n      }\r\n    }\r\n    t = Mono::op(t, seg[0].prod(L,\
+    \ L + k));\r\n    return {ItoY[p], t};\r\n  }\r\n\r\n  T prod_index_range(int\
+    \ L, int R, int k1, int k2) {\r\n    static_assert(has_inverse<Mono>::value);\r\
     \n    T t1 = kth_value_and_prod(L, R, k1).se;\r\n    T t2 = kth_value_and_prod(L,\
     \ R, k2).se;\r\n    return Mono::op(Mono::inverse(t1), t2);\r\n  }\r\n\r\n  //\
     \ [L,R) x [0,y) \u3067\u306E check(cnt, prod) \u304C true \u3068\u306A\u308B\u6700\
@@ -512,7 +514,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc324g.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 20:55:35+09:00'
+  timestamp: '2024-07-19 21:19:03+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc324g.test.cpp
