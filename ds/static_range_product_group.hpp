@@ -7,6 +7,16 @@ struct Static_Range_Product_Group {
   int n;
   vc<X> dat;
   Static_Range_Product_Group() {}
+  template <typename F>
+  Static_Range_Product_Group(int m, F f) {
+    build(m, f);
+  }
+  template <typename F>
+  void build(int m, F f) {
+    n = m;
+    dat.assign(n + 1, MX::unit());
+    for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));
+  }
   void build(vc<X>& A) {
     n = len(A);
     dat.assign(n + 1, MX::unit());
