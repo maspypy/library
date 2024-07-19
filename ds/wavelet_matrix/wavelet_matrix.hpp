@@ -142,6 +142,7 @@ struct Wavelet_Matrix {
   T prefix_prod(int L, int R, Y y) { return prefix_count_and_prod(L, R, y).se; }
   // [L,R) x [y1,y2)
   T prod(int L, int R, Y y1, Y y2) { return count_and_prod(L, R, y1, y2).se; }
+  T prod_all(int L, int R) { return seg[log].prod(L, R); }
 
   Y kth(int L, int R, int k) {
     assert(0 <= k && k < R - L);

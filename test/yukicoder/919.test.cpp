@@ -6,12 +6,11 @@
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  Wavelet_Matrix<ll, true, false> WM(A);
+  Wavelet_Matrix<ll, false> WM(A);
   ll ANS = -infty<ll>;
 
   auto get = [&](ll L, ll R) -> ll {
     assert(L < R);
-    ll n = R - L;
     return WM.median(0, L, R);
   };
 
