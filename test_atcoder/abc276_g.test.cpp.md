@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -40,10 +40,10 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
@@ -52,20 +52,20 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc276/tasks/abc276_g
@@ -714,16 +714,35 @@ data:
     \    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n    dat.resize(ceil(n, 2));\n  }\n\
     \  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\ntemplate <typename mint>\npair<vc<mint>,\
     \ vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt) {\n  using poly = vc<mint>;\n\
-    \  int n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint>\
-    \ F(n), G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] = wt[i];\n\n  FOR(d, k) {\n\
-    \    int b = 1 << d;\n    for (int L = 0; L < n; L += 2 * b) {\n      poly f1\
-    \ = {F.begin() + L, F.begin() + L + b};\n      poly f2 = {F.begin() + L + b, F.begin()\
-    \ + L + 2 * b};\n      poly g1 = {G.begin() + L, G.begin() + L + b};\n      poly\
-    \ g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n      ntt_doubling(f1), ntt_doubling(f2);\n\
-    \      ntt_doubling(g1), ntt_doubling(g2);\n      FOR(i, b) f1[i] += 1, f2[i]\
-    \ += 1;\n      FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      FOR(i, 2 * b) F[L\
-    \ + i] = f1[i] * f2[i] - 1;\n      FOR(i, 2 * b) G[L + i] = g1[i] * f2[i] + g2[i]\
-    \ * f1[i];\n    }\n  }\n  ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
+    \  if (!mint::can_ntt()) {\n    vc<pair<poly, poly>> rationals;\n    FOR(i, len(A))\
+    \ rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));\n    return sum_of_rationals(rationals);\n\
+    \  }\n  int n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint>\
+    \ F(n), G(n);\n  vc<mint> nxt_F(n), nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i],\
+    \ G[i] = wt[i];\n  int D = 6;\n\n  FOR(d, k) {\n    int b = 1 << d;\n    if (d\
+    \ < D) {\n      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));\n      for\
+    \ (int L = 0; L < n; L += 2 * b) {\n        FOR(i, b) FOR(j, b) nxt_F[L + i +\
+    \ j] += F[L + i] * F[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j]\
+    \ += F[L + i] * G[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] +=\
+    \ F[L + b + i] * G[L + j];\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L\
+    \ + b + i];\n        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];\n\
+    \      }\n    }\n    elif (d == D) {\n      for (int L = 0; L < n; L += 2 * b)\
+    \ {\n        poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 =\
+    \ {F.begin() + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() +\
+    \ L, G.begin() + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L\
+    \ + 2 * b};\n        f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2\
+    \ * b);\n        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);\n        FOR(i,\
+    \ b) f1[i] += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n\
+    \        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b)\
+    \ nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n    }\n    else {\n\
+    \      for (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L,\
+    \ F.begin() + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2\
+    \ * b};\n        poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2\
+    \ = {G.begin() + L + b, G.begin() + L + 2 * b};\n        ntt_doubling(f1), ntt_doubling(f2),\
+    \ ntt_doubling(g1), ntt_doubling(g2);\n        FOR(i, b) f1[i] += 1, f2[i] +=\
+    \ 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i]\
+    \ * f2[i] + g2[i] * f1[i];\n      }\n    }\n    swap(F, nxt_F), swap(G, nxt_G);\n\
+    \  }\n  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
     \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
     \ F};\n}\n#line 8 \"test_atcoder/abc276_g.test.cpp\"\n\nusing mint = modint998;\n\
     \nvoid solve() {\n  LL(N, M);\n  --N;\n  M -= N;\n  if (M < 0) return print(0);\n\
@@ -772,8 +791,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc276_g.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 12:50:09+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-20 03:47:44+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc276_g.test.cpp
 layout: document

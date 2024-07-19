@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -667,32 +667,52 @@ data:
     \ { dat[i - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2\
     \ * i];\n    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\n\
     template <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint>\
-    \ A, vc<mint> wt) {\n  using poly = vc<mint>;\n  int n = 1;\n  while (n < len(A))\
-    \ n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n), G(n);\n  FOR(i, len(A)) F[i]\
-    \ = -A[i], G[i] = wt[i];\n\n  FOR(d, k) {\n    int b = 1 << d;\n    for (int L\
-    \ = 0; L < n; L += 2 * b) {\n      poly f1 = {F.begin() + L, F.begin() + L + b};\n\
-    \      poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n      poly g1 =\
-    \ {G.begin() + L, G.begin() + L + b};\n      poly g2 = {G.begin() + L + b, G.begin()\
-    \ + L + 2 * b};\n      ntt_doubling(f1), ntt_doubling(f2);\n      ntt_doubling(g1),\
-    \ ntt_doubling(g2);\n      FOR(i, b) f1[i] += 1, f2[i] += 1;\n      FOR(i, b,\
-    \ 2 * b) f1[i] -= 1, f2[i] -= 1;\n      FOR(i, 2 * b) F[L + i] = f1[i] * f2[i]\
-    \ - 1;\n      FOR(i, 2 * b) G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n    }\n\
-    \  }\n  ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)), reverse(all(G));\n\
-    \  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G, F};\n}\n#line 4 \"\
-    linalg/blackbox/vandermonde.hpp\"\n\n// transpose = 0\uFF1Ag[p] = sum pow(ap,q)\
-    \ f[q]\n// transpose = 1\uFF1Ag[p] = sum pow(aq,p) f[q]\n// (false, false) = multipoint\
-    \ eval\n// (false, true) = multipoint interpolate\n// (true, false) = sum of rationals\n\
-    // (true, true) = partial frac decomposition (fps -> coefs)\ntemplate <typename\
-    \ mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint> A, bool transpose, bool inverse)\
-    \ {\n  if (len(f) == 0) return vc<mint>();\n  int N = len(f);\n  if (!transpose)\
-    \ {\n    if (!inverse) { return multipoint_eval(f, A); }\n    if (inverse) { return\
-    \ multipoint_interpolate(A, f); }\n  }\n  if (!inverse) {\n    auto [num, den]\
-    \ = sum_of_rationals_1<mint>(A, f);\n    num.resize(N);\n    return fps_div(num,\
-    \ den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint> g = X.T[1]; // prod(1-ax)\n\
-    \  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n  f.resize(N);\n  reverse(all(f));\n\
-    \  reverse(all(g));\n  FOR(i, len(g) - 1) g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n\
-    \  auto num = X.evaluation(f);\n  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n\
-    \  FOR(i, len(A)) B[i] = num[i] / den[i];\n  return B;\n}\n#line 6 \"test/mytest/vandermonde.test.cpp\"\
+    \ A, vc<mint> wt) {\n  using poly = vc<mint>;\n  if (!mint::can_ntt()) {\n   \
+    \ vc<pair<poly, poly>> rationals;\n    FOR(i, len(A)) rationals.eb(poly({wt[i]}),\
+    \ poly({mint(1), -A[i]}));\n    return sum_of_rationals(rationals);\n  }\n  int\
+    \ n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n),\
+    \ G(n);\n  vc<mint> nxt_F(n), nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] =\
+    \ wt[i];\n  int D = 6;\n\n  FOR(d, k) {\n    int b = 1 << d;\n    if (d < D) {\n\
+    \      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));\n      for (int L\
+    \ = 0; L < n; L += 2 * b) {\n        FOR(i, b) FOR(j, b) nxt_F[L + i + j] += F[L\
+    \ + i] * F[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L +\
+    \ i] * G[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + b\
+    \ + i] * G[L + j];\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L + b +\
+    \ i];\n        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];\n      }\n\
+    \    }\n    elif (d == D) {\n      for (int L = 0; L < n; L += 2 * b) {\n    \
+    \    poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 = {F.begin()\
+    \ + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() + L, G.begin()\
+    \ + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n \
+    \       f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2 * b);\n\
+    \        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);\n        FOR(i, b) f1[i]\
+    \ += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      \
+    \  FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L\
+    \ + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n    }\n    else {\n      for\
+    \ (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L, F.begin()\
+    \ + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n \
+    \       poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2 = {G.begin()\
+    \ + L + b, G.begin() + L + 2 * b};\n        ntt_doubling(f1), ntt_doubling(f2),\
+    \ ntt_doubling(g1), ntt_doubling(g2);\n        FOR(i, b) f1[i] += 1, f2[i] +=\
+    \ 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i]\
+    \ * f2[i] + g2[i] * f1[i];\n      }\n    }\n    swap(F, nxt_F), swap(G, nxt_G);\n\
+    \  }\n  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
+    \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
+    \ F};\n}\n#line 4 \"linalg/blackbox/vandermonde.hpp\"\n\n// transpose = 0\uFF1A\
+    g[p] = sum pow(ap,q) f[q]\n// transpose = 1\uFF1Ag[p] = sum pow(aq,p) f[q]\n//\
+    \ (false, false) = multipoint eval\n// (false, true) = multipoint interpolate\n\
+    // (true, false) = sum of rationals\n// (true, true) = partial frac decomposition\
+    \ (fps -> coefs)\ntemplate <typename mint>\nvc<mint> vandermonde(vc<mint> f, vc<mint>\
+    \ A, bool transpose, bool inverse) {\n  if (len(f) == 0) return vc<mint>();\n\
+    \  int N = len(f);\n  if (!transpose) {\n    if (!inverse) { return multipoint_eval(f,\
+    \ A); }\n    if (inverse) { return multipoint_interpolate(A, f); }\n  }\n  if\
+    \ (!inverse) {\n    auto [num, den] = sum_of_rationals_1<mint>(A, f);\n    num.resize(N);\n\
+    \    return fps_div(num, den);\n  }\n  SubproductTree<mint> X(A);\n  vc<mint>\
+    \ g = X.T[1]; // prod(1-ax)\n  g.resize(N + 1);\n  f = convolution<mint>(f, g);\n\
+    \  f.resize(N);\n  reverse(all(f));\n  reverse(all(g));\n  FOR(i, len(g) - 1)\
+    \ g[i] = g[i + 1] * mint(i + 1);\n  g.pop_back();\n  auto num = X.evaluation(f);\n\
+    \  auto den = X.evaluation(g);\n  vc<mint> B(len(A));\n  FOR(i, len(A)) B[i] =\
+    \ num[i] / den[i];\n  return B;\n}\n#line 6 \"test/mytest/vandermonde.test.cpp\"\
     \n\ntemplate <typename mint>\nvc<mint> naive(vc<mint> f, vc<mint> A, bool transpose)\
     \ {\n  assert(len(f) == len(A));\n  int N = len(f);\n  vc<mint> g(N);\n  if (!transpose)\
     \ { FOR(i, N) FOR(j, N) g[i] += A[i].pow(j) * f[j]; }\n  if (transpose) { FOR(i,\
@@ -746,7 +766,7 @@ data:
   isVerificationFile: true
   path: test/mytest/vandermonde.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 15:13:09+09:00'
+  timestamp: '2024-07-20 03:47:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/vandermonde.test.cpp

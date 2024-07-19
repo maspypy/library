@@ -475,36 +475,56 @@ data:
     \ - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n\
     \    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\n\
     template <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint>\
-    \ A, vc<mint> wt) {\n  using poly = vc<mint>;\n  int n = 1;\n  while (n < len(A))\
-    \ n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n), G(n);\n  FOR(i, len(A)) F[i]\
-    \ = -A[i], G[i] = wt[i];\n\n  FOR(d, k) {\n    int b = 1 << d;\n    for (int L\
-    \ = 0; L < n; L += 2 * b) {\n      poly f1 = {F.begin() + L, F.begin() + L + b};\n\
-    \      poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n      poly g1 =\
-    \ {G.begin() + L, G.begin() + L + b};\n      poly g2 = {G.begin() + L + b, G.begin()\
-    \ + L + 2 * b};\n      ntt_doubling(f1), ntt_doubling(f2);\n      ntt_doubling(g1),\
-    \ ntt_doubling(g2);\n      FOR(i, b) f1[i] += 1, f2[i] += 1;\n      FOR(i, b,\
-    \ 2 * b) f1[i] -= 1, f2[i] -= 1;\n      FOR(i, 2 * b) F[L + i] = f1[i] * f2[i]\
-    \ - 1;\n      FOR(i, 2 * b) G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];\n    }\n\
-    \  }\n  ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)), reverse(all(G));\n\
-    \  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G, F};\n}\n#line 2 \"\
-    poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\n\n#line 6 \"poly/middle_product.hpp\"\
-    \n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m) a, b \u2192 n-m \u6B21\u591A\u9805\
-    \u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate <typename mint>\nvc<mint> middle_product(vc<mint>&\
-    \ a, vc<mint>& b) {\n  assert(len(a) >= len(b));\n  if (b.empty()) return vc<mint>(len(a)\
-    \ - len(b) + 1);\n  if (min(len(b), len(a) - len(b) + 1) <= 60) {\n    return\
-    \ middle_product_naive(a, b);\n  }\n  if (!(mint::can_ntt())) {\n    return middle_product_garner(a,\
-    \ b);\n  } else {\n    int n = 1 << __lg(2 * len(a) - 1);\n    vc<mint> fa(n),\
-    \ fb(n);\n    copy(a.begin(), a.end(), fa.begin());\n    copy(b.rbegin(), b.rend(),\
-    \ fb.begin());\n    ntt(fa, 0), ntt(fb, 0);\n    FOR(i, n) fa[i] *= fb[i];\n \
-    \   ntt(fa, 1);\n    fa.resize(len(a));\n    fa.erase(fa.begin(), fa.begin() +\
-    \ len(b) - 1);\n    return fa;\n  }\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_garner(vc<mint>&\
-    \ a, vc<mint> b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n\
-    \  static constexpr int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n\
-    \  static constexpr int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using\
-    \ mint1 = modint<p1>;\n  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n\
-    \  vc<mint1> a1(n), b1(m);\n  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val,\
-    \ a1[i] = a[i].val, a2[i] = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val,\
-    \ b2[i] = b[i].val;\n  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
+    \ A, vc<mint> wt) {\n  using poly = vc<mint>;\n  if (!mint::can_ntt()) {\n   \
+    \ vc<pair<poly, poly>> rationals;\n    FOR(i, len(A)) rationals.eb(poly({wt[i]}),\
+    \ poly({mint(1), -A[i]}));\n    return sum_of_rationals(rationals);\n  }\n  int\
+    \ n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n),\
+    \ G(n);\n  vc<mint> nxt_F(n), nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] =\
+    \ wt[i];\n  int D = 6;\n\n  FOR(d, k) {\n    int b = 1 << d;\n    if (d < D) {\n\
+    \      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));\n      for (int L\
+    \ = 0; L < n; L += 2 * b) {\n        FOR(i, b) FOR(j, b) nxt_F[L + i + j] += F[L\
+    \ + i] * F[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L +\
+    \ i] * G[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + b\
+    \ + i] * G[L + j];\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L + b +\
+    \ i];\n        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];\n      }\n\
+    \    }\n    elif (d == D) {\n      for (int L = 0; L < n; L += 2 * b) {\n    \
+    \    poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 = {F.begin()\
+    \ + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() + L, G.begin()\
+    \ + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n \
+    \       f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2 * b);\n\
+    \        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);\n        FOR(i, b) f1[i]\
+    \ += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      \
+    \  FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L\
+    \ + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n    }\n    else {\n      for\
+    \ (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L, F.begin()\
+    \ + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n \
+    \       poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2 = {G.begin()\
+    \ + L + b, G.begin() + L + 2 * b};\n        ntt_doubling(f1), ntt_doubling(f2),\
+    \ ntt_doubling(g1), ntt_doubling(g2);\n        FOR(i, b) f1[i] += 1, f2[i] +=\
+    \ 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i]\
+    \ * f2[i] + g2[i] * f1[i];\n      }\n    }\n    swap(F, nxt_F), swap(G, nxt_G);\n\
+    \  }\n  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
+    \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
+    \ F};\n}\n#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\
+    \n\n#line 6 \"poly/middle_product.hpp\"\n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m)\
+    \ a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate\
+    \ <typename mint>\nvc<mint> middle_product(vc<mint>& a, vc<mint>& b) {\n  assert(len(a)\
+    \ >= len(b));\n  if (b.empty()) return vc<mint>(len(a) - len(b) + 1);\n  if (min(len(b),\
+    \ len(a) - len(b) + 1) <= 60) {\n    return middle_product_naive(a, b);\n  }\n\
+    \  if (!(mint::can_ntt())) {\n    return middle_product_garner(a, b);\n  } else\
+    \ {\n    int n = 1 << __lg(2 * len(a) - 1);\n    vc<mint> fa(n), fb(n);\n    copy(a.begin(),\
+    \ a.end(), fa.begin());\n    copy(b.rbegin(), b.rend(), fb.begin());\n    ntt(fa,\
+    \ 0), ntt(fb, 0);\n    FOR(i, n) fa[i] *= fb[i];\n    ntt(fa, 1);\n    fa.resize(len(a));\n\
+    \    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\n    return fa;\n  }\n}\n\n\
+    template <typename mint>\nvc<mint> middle_product_garner(vc<mint>& a, vc<mint>\
+    \ b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  static constexpr\
+    \ int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n  static constexpr\
+    \ int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using mint1 = modint<p1>;\n\
+    \  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
+    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
+    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
+    \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
     \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n \
     \ FOR(i, n - m + 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
     \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
@@ -741,7 +761,7 @@ data:
   isVerificationFile: true
   path: test/mytest/partial_frac.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 15:13:09+09:00'
+  timestamp: '2024-07-20 03:47:44+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/partial_frac.test.cpp
