@@ -244,7 +244,8 @@ struct Wavelet_Matrix {
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      int cnt1 = cnt + r0 - l0, t1 = Mono::op(t, seg[d].prod(l0, r0));
+      int cnt1 = cnt + r0 - l0;
+      T t1 = Mono::op(t, seg[d].prod(l0, r0));
       if (check(cnt1, t1)) {
         cnt = cnt1, t = t1, L = l1, R = r1;
       } else {

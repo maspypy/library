@@ -2,8 +2,9 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "mod/modint.hpp"
-#include "ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix_2d_range.hpp"
 #include "alg/monoid/add_pair.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 using mint = modint107;
 
@@ -24,13 +25,13 @@ void solve() {
     FOR(i, N) Y[i] = A[i] + B[i];
 
     using Grp = Monoid_Add_Pair<mint>;
-    Wavelet_Matrix_2D_Range_Dynamic_AbelGroup<Grp, int, false, false> WM(
+    Wavelet_Matrix_2D_Range<FenwickTree<Grp>, int, false, false> WM(
         N, [&](int i) -> tuple<int, int, pair<mint, mint>> {
           return {X[i], Y[i], Grp::unit()};
         });
     FOR(i, N) {
-      WM.add(i, {mint(1), mint(A[i])});
-      auto [c, s] = WM.sum(-infty<int>, X[i], -infty<int>, Y[i]);
+      WM.multiply(i, {mint(1), mint(A[i])});
+      auto [c, s] = WM.prod(-infty<int>, X[i], -infty<int>, Y[i]);
       ANS.fi += mint(A[i]) * c - s;
     }
   }
