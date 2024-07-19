@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/static_range_product_group.hpp\"\n\ntemplate <typename\
@@ -26,8 +29,9 @@ data:
   path: ds/static_range_product_group.hpp
   requiredBy: []
   timestamp: '2024-07-19 17:51:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/mytest/wavelet_matrix.test.cpp
 documentation_of: ds/static_range_product_group.hpp
 layout: document
 redirect_from:

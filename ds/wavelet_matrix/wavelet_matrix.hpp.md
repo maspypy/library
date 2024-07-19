@@ -27,7 +27,7 @@ data:
   - icon: ':x:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':x:'
@@ -50,16 +50,16 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u32,\
-    \ u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 63) >> 5, {0, 0});\
-    \ }\n  void set(int i) { dat[i >> 5].fi |= u32(1) << (i & 31); }\n  void reset()\
-    \ { fill(all(dat), pair<u32, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat)\
+  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u64,\
+    \ u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 127) >> 6, {0, 0});\
+    \ }\n  void set(int i) { dat[i >> 6].fi |= u64(1) << (i & 63); }\n  void reset()\
+    \ { fill(all(dat), pair<u64, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat)\
     \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\
     \u306E 1 \u306E\u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k\
-    \ >> 5];\n    int ret = b + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return\
+    \ >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return\
     \ (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R,\
     \ f) - count(L, f); }\n  string to_string() {\n    string ans;\n    FOR(i, n)\
-    \ ans += '0' + (dat[i / 32].fi >> (i % 32) & 1);\n    return ans;\n  }\n};\n#line\
+    \ ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n#line\
     \ 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL\
     \ {\n  static_assert(is_same_v<T, int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int>\
     \ build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma\
@@ -485,7 +485,7 @@ data:
   requiredBy:
   - string/prefix_substring_LCS.hpp
   - graph/ds/tree_wavelet_matrix.hpp
-  timestamp: '2024-07-19 18:40:42+09:00'
+  timestamp: '2024-07-19 19:22:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

@@ -87,6 +87,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1036_2.test.cpp
     title: test/yukicoder/1036_2.test.cpp
@@ -129,9 +132,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc301h.test.cpp
     title: test_atcoder/abc301h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -228,7 +231,7 @@ data:
   - graph/ds/tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
@@ -245,6 +248,7 @@ data:
   - test/mytest/mo_on_tree.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/manhattan_nns.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/range_assign.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
   - test/yukicoder/1625_2.test.cpp

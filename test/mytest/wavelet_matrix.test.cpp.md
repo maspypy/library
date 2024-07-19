@@ -5,11 +5,20 @@ data:
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
+    path: alg/monoid/min.hpp
+    title: alg/monoid/min.hpp
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
+  - icon: ':question:'
+    path: ds/segtree/segtree.hpp
+    title: ds/segtree/segtree.hpp
+  - icon: ':x:'
+    path: ds/static_range_product_group.hpp
+    title: ds/static_range_product_group.hpp
   - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
@@ -207,16 +216,16 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"ds/bit_vector.hpp\"\
-    \nstruct Bit_Vector {\n  int n;\n  vc<pair<u32, u32>> dat;\n  Bit_Vector(int n)\
-    \ : n(n) { dat.assign((n + 63) >> 5, {0, 0}); }\n  void set(int i) { dat[i >>\
-    \ 5].fi |= u32(1) << (i & 31); }\n  void reset() { fill(all(dat), pair<u32, u32>{0,\
+    \nstruct Bit_Vector {\n  int n;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int n)\
+    \ : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void set(int i) { dat[i >>\
+    \ 6].fi |= u64(1) << (i & 63); }\n  void reset() { fill(all(dat), pair<u64, u32>{0,\
     \ 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
     \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
-    \ int count(int k, bool f) {\n    auto [a, b] = dat[k >> 5];\n    int ret = b\
-    \ + popcnt(a & ((u32(1) << (k & 31)) - 1));\n    return (f ? ret : k - ret);\n\
+    \ int count(int k, bool f) {\n    auto [a, b] = dat[k >> 6];\n    int ret = b\
+    \ + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n\
     \  }\n  int count(int L, int R, bool f) { return count(R, f) - count(L, f); }\n\
     \  string to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i /\
-    \ 32].fi >> (i % 32) & 1);\n    return ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\
+    \ 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\
     \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(is_same_v<T,\
     \ int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi\
     \ = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
@@ -442,91 +451,134 @@ data:
     \ R - L);\r\n    cnt += k, sm += get(0, L, L + k);\r\n    return {cnt, sm};\r\n\
     \  }\r\n\r\nprivate:\r\n  inline T get(int d, int L, int R) {\r\n    if constexpr\
     \ (USE_SUM) return cumsum[d][R] - cumsum[d][L];\r\n    return 0;\r\n  }\r\n};\r\
-    \n*/\r\n#line 6 \"test/mytest/wavelet_matrix.test.cpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct Static_Range_Sum {\n  using MX = Monoid;\n  using X = Monoid::value_type;\n\
-    \  int n;\n  vc<X> dat;\n  Static_Range_Sum() {}\n  void build(vc<X>& A) {\n \
-    \   n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n;\
-    \ ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) { return\
-    \ MX::op(MX::inverse(dat[l]), dat[r]); }\n  X sum(int l, int r) { return MX::op(MX::inverse(dat[l]),\
-    \ dat[r]); }\n};\n\ntemplate <bool SMALL_Y>\nvoid test(int N) {\n  int MAX = RNG(2,\
-    \ 1 << 10);\n  vc<int> A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n\
-    \  FOR(i, N) A[i] = RNG(MAX);\n\n  Wavelet_Matrix<int, false, Static_Range_Sum<Monoid_Add<int>>>\
-    \ WM(A, X);\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, max(1, N));\n  \
-    \  int R = RNG(0, max(1, N + 1));\n    if (L > R) swap(L, R);\n    int lo = RNG(0,\
-    \ MAX);\n    int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n\
-    \    vc<int> B = {A.begin() + L, A.begin() + R};\n    vc<int> Y = {X.begin() +\
-    \ L, X.begin() + R};\n    int t = RNG(0, 7);\n    if (t == 0) { // count\n   \
-    \   SHOW(A);\n      SHOW(L, R, lo, hi);\n      int cnt = 0;\n      for (auto&&\
-    \ x: B)\n        if (lo <= x && x < hi) cnt += 1;\n      assert(WM.count(L, R,\
-    \ lo, hi) == cnt);\n    }\n    // if (t == 1) { // sm\n    //   int sm = 0;\n\
-    \    //   FOR(i, L, R) if (lo <= A[i] && A[i] < hi) sm += X[i];\n    //   assert(WM.sum(L,\
-    \ R, lo, hi) == sm);\n    // }\n    // if (t == 2) { // kth\n    //   if (L ==\
-    \ R) continue;\n    //   int k = RNG(R - L);\n    //   sort(all(B));\n    // \
-    \  assert(WM.kth(L, R, k) == B[k]);\n    // }\n    // if (t == 3) { // max_right\n\
-    \    //   int a = RNG(0, 10);\n    //   int b = RNG(0, 10);\n    //   int c =\
-    \ RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n    //   auto check\n    //  \
-    \     = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n    //\
-    \   auto p = WM.max_right(check, L, R);\n    //   int k = binary_search(\n   \
-    \ //       [&](int k) -> bool {\n    //         int sm = WM.sum_index_range(L,\
-    \ R, 0, k);\n    //         return check(k, sm);\n    //       },\n    //    \
-    \   0, R - L + 1);\n    //   int sm = WM.sum_index_range(L, R, 0, k);\n    //\
-    \   assert(p.fi == k && p.se == sm);\n    // }\n    // if (t == 4) { // k-th value\
-    \ and sum\n    //   int k = RNG(0, R - L + 1);\n    //   B.eb(infty<int>);\n \
-    \   //   auto I = argsort(B);\n    //   int val = B[I[k]];\n    //   int sm =\
-    \ 0;\n    //   FOR(i, k) sm += Y[I[i]];\n    //   auto p = WM.kth_value_sum(L,\
-    \ R, k);\n    //   assert(p.fi == val && p.se == sm);\n    // }\n    // if (t\
-    \ == 5) { // next\n    //   int x = RNG(-1, MAX + 2);\n    //   int ans = infty<int>;\n\
-    \    //   for (auto& b: B) {\n    //     if (x <= b) chmin(ans, b);\n    //  \
-    \ }\n    //   assert(ans == WM.next(L, R, x));\n    // }\n    // if (t == 6) {\
-    \ // prev\n    //   int x = RNG(-1, MAX + 1);\n    //   int ans = -infty<int>;\n\
-    \    //   for (auto& b: B) {\n    //     if (b <= x) chmax(ans, b);\n    //  \
-    \ }\n    //   assert(ans == WM.prev(L, R, x));\n    // }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(N, 64) { FOR(50) test<true>(N); }\n  FOR(N, 64) { FOR(50) test<false>(N);\
-    \ }\n  solve();\n\n  return 0;\n}\n"
+    \n*/\r\n#line 1 \"ds/static_range_product_group.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct Static_Range_Product_Group {\n  using MX = Monoid;\n  using X = Monoid::value_type;\n\
+    \  int n;\n  vc<X> dat;\n  Static_Range_Product_Group() {}\n  void build(vc<X>&\
+    \ A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
+    \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int\
+    \ r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n  X sum(int l, int r) {\
+    \ return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\
+    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
+    \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
+    \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
+    \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
+    \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
+    \ i) -> X { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1\
+    \ << log;\n    dat.assign(size << 1, MX::unit());\n    FOR(i, n) dat[size + i]\
+    \ = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n  X get(int i) { return dat[size\
+    \ + i]; }\n  vc<X> get_all() { return {dat.begin() + size, dat.begin() + size\
+    \ + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i\
+    \ + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n    dat[i +=\
+    \ size] = x;\n    while (i >>= 1) update(i);\n  }\n\n  void multiply(int i, const\
+    \ X& x) {\n    assert(i < n);\n    i += size;\n    dat[i] = Monoid::op(dat[i],\
+    \ x);\n    while (i >>= 1) update(i);\n  }\n\n  X prod(int L, int R) {\n    assert(0\
+    \ <= L && L <= R && R <= n);\n    X vl = Monoid::unit(), vr = Monoid::unit();\n\
+    \    L += size, R += size;\n    while (L < R) {\n      if (L & 1) vl = Monoid::op(vl,\
+    \ dat[L++]);\n      if (R & 1) vr = Monoid::op(dat[--R], vr);\n      L >>= 1,\
+    \ R >>= 1;\n    }\n    return Monoid::op(vl, vr);\n  }\n\n  X prod_all() { return\
+    \ dat[1]; }\n\n  template <class F>\n  int max_right(F check, int L) {\n    assert(0\
+    \ <= L && L <= n && check(Monoid::unit()));\n    if (L == n) return n;\n    L\
+    \ += size;\n    X sm = Monoid::unit();\n    do {\n      while (L % 2 == 0) L >>=\
+    \ 1;\n      if (!check(Monoid::op(sm, dat[L]))) {\n        while (L < size) {\n\
+    \          L = 2 * L;\n          if (check(Monoid::op(sm, dat[L]))) { sm = Monoid::op(sm,\
+    \ dat[L++]); }\n        }\n        return L - size;\n      }\n      sm = Monoid::op(sm,\
+    \ dat[L++]);\n    } while ((L & -L) != L);\n    return n;\n  }\n\n  template <class\
+    \ F>\n  int min_left(F check, int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n\
+    \    if (R == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
+    \ (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }\n       \
+    \ }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n\
+    \    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r} A[i xor\
+    \ x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
+    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
+    \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
+    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
+    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
+    \  }\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 9 \"test/mytest/wavelet_matrix.test.cpp\"\n\ntemplate <bool SMALL_Y,\
+    \ typename SEGTREE>\nvoid test(int N) {\n  int MAX = RNG(2, 1 << 10);\n  vc<int>\
+    \ A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n\
+    \n  Wavelet_Matrix<int, false, SEGTREE> WM(A, X);\n  using Mono = SEGTREE::MX;\n\
+    \n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, max(1, N));\n    int R = RNG(0,\
+    \ max(1, N + 1));\n    if (L > R) swap(L, R);\n    int lo = RNG(0, MAX);\n   \
+    \ int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int>\
+    \ B = {A.begin() + L, A.begin() + R};\n    vc<int> Y = {X.begin() + L, X.begin()\
+    \ + R};\n    int t = RNG(0, 7);\n    if (t == 0) { // count\n      int cnt = 0;\n\
+    \      for (auto&& x: B)\n        if (lo <= x && x < hi) cnt += 1;\n      assert(WM.count(L,\
+    \ R, lo, hi) == cnt);\n    }\n    if (t == 1) { // sm\n      int sm = Mono::unit();\n\
+    \      FOR(i, L, R) if (lo <= A[i] && A[i] < hi) sm = Mono::op(sm, X[i]);\n  \
+    \    assert(WM.prod(L, R, lo, hi) == sm);\n    }\n    if (t == 2) { // kth\n \
+    \     if (L == R) continue;\n      int k = RNG(R - L);\n      sort(all(B));\n\
+    \      SHOW(B[k], WM.kth(L, R, k));\n      assert(WM.kth(L, R, k) == B[k]);\n\
+    \    }\n    // if (t == 3) { // max_right\n    //   int a = RNG(0, 10);\n    //\
+    \   int b = RNG(0, 10);\n    //   int c = RNG(0, a * (R - L) + b * MAX * (R -\
+    \ L) + 1);\n    //   auto check\n    //       = [&](int cnt, int sm) -> bool {\
+    \ return a * cnt + b * sm <= c; };\n    //   auto p = WM.max_right(check, L, R);\n\
+    \    //   int k = binary_search(\n    //       [&](int k) -> bool {\n    //  \
+    \       int sm = WM.sum_index_range(L, R, 0, k);\n    //         return check(k,\
+    \ sm);\n    //       },\n    //       0, R - L + 1);\n    //   int sm = WM.sum_index_range(L,\
+    \ R, 0, k);\n    //   assert(p.fi == k && p.se == sm);\n    // }\n    // if (t\
+    \ == 4) { // k-th value and sum\n    //   int k = RNG(0, R - L + 1);\n    // \
+    \  B.eb(infty<int>);\n    //   auto I = argsort(B);\n    //   int val = B[I[k]];\n\
+    \    //   int sm = 0;\n    //   FOR(i, k) sm += Y[I[i]];\n    //   auto p = WM.kth_value_sum(L,\
+    \ R, k);\n    //   assert(p.fi == val && p.se == sm);\n    // }\n    if (t ==\
+    \ 5) { // next\n      int x = RNG(-1, MAX + 2);\n      int ans = infty<int>;\n\
+    \      for (auto& b: B) {\n        if (x <= b) chmin(ans, b);\n      }\n     \
+    \ assert(ans == WM.next(L, R, x));\n    }\n    if (t == 6) { // prev\n      int\
+    \ x = RNG(-1, MAX + 1);\n      int ans = -infty<int>;\n      for (auto& b: B)\
+    \ {\n        if (b <= x) chmax(ans, b);\n      }\n      assert(ans == WM.prev(L,\
+    \ R, x));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 64) {\n    FOR(50) {\n\
+    \      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<false,\
+    \ Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<true, SegTree<Monoid_Min<int>>>(N);\n\
+    \      test<false, SegTree<Monoid_Min<int>>>(N);\n    }\n  }\n  solve();\n\n \
+    \ return 0;\n}\n"
   code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\
-    \n#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n\ntemplate <typename Monoid>\n\
-    struct Static_Range_Sum {\n  using MX = Monoid;\n  using X = Monoid::value_type;\n\
-    \  int n;\n  vc<X> dat;\n  Static_Range_Sum() {}\n  void build(vc<X>& A) {\n \
-    \   n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n;\
-    \ ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) { return\
-    \ MX::op(MX::inverse(dat[l]), dat[r]); }\n  X sum(int l, int r) { return MX::op(MX::inverse(dat[l]),\
-    \ dat[r]); }\n};\n\ntemplate <bool SMALL_Y>\nvoid test(int N) {\n  int MAX = RNG(2,\
-    \ 1 << 10);\n  vc<int> A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n\
-    \  FOR(i, N) A[i] = RNG(MAX);\n\n  Wavelet_Matrix<int, false, Static_Range_Sum<Monoid_Add<int>>>\
-    \ WM(A, X);\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, max(1, N));\n  \
-    \  int R = RNG(0, max(1, N + 1));\n    if (L > R) swap(L, R);\n    int lo = RNG(0,\
-    \ MAX);\n    int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n\
-    \    vc<int> B = {A.begin() + L, A.begin() + R};\n    vc<int> Y = {X.begin() +\
-    \ L, X.begin() + R};\n    int t = RNG(0, 7);\n    if (t == 0) { // count\n   \
-    \   SHOW(A);\n      SHOW(L, R, lo, hi);\n      int cnt = 0;\n      for (auto&&\
-    \ x: B)\n        if (lo <= x && x < hi) cnt += 1;\n      assert(WM.count(L, R,\
-    \ lo, hi) == cnt);\n    }\n    // if (t == 1) { // sm\n    //   int sm = 0;\n\
-    \    //   FOR(i, L, R) if (lo <= A[i] && A[i] < hi) sm += X[i];\n    //   assert(WM.sum(L,\
-    \ R, lo, hi) == sm);\n    // }\n    // if (t == 2) { // kth\n    //   if (L ==\
-    \ R) continue;\n    //   int k = RNG(R - L);\n    //   sort(all(B));\n    // \
-    \  assert(WM.kth(L, R, k) == B[k]);\n    // }\n    // if (t == 3) { // max_right\n\
-    \    //   int a = RNG(0, 10);\n    //   int b = RNG(0, 10);\n    //   int c =\
-    \ RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n    //   auto check\n    //  \
-    \     = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n    //\
-    \   auto p = WM.max_right(check, L, R);\n    //   int k = binary_search(\n   \
-    \ //       [&](int k) -> bool {\n    //         int sm = WM.sum_index_range(L,\
-    \ R, 0, k);\n    //         return check(k, sm);\n    //       },\n    //    \
-    \   0, R - L + 1);\n    //   int sm = WM.sum_index_range(L, R, 0, k);\n    //\
-    \   assert(p.fi == k && p.se == sm);\n    // }\n    // if (t == 4) { // k-th value\
-    \ and sum\n    //   int k = RNG(0, R - L + 1);\n    //   B.eb(infty<int>);\n \
-    \   //   auto I = argsort(B);\n    //   int val = B[I[k]];\n    //   int sm =\
-    \ 0;\n    //   FOR(i, k) sm += Y[I[i]];\n    //   auto p = WM.kth_value_sum(L,\
-    \ R, k);\n    //   assert(p.fi == val && p.se == sm);\n    // }\n    // if (t\
-    \ == 5) { // next\n    //   int x = RNG(-1, MAX + 2);\n    //   int ans = infty<int>;\n\
-    \    //   for (auto& b: B) {\n    //     if (x <= b) chmin(ans, b);\n    //  \
-    \ }\n    //   assert(ans == WM.next(L, R, x));\n    // }\n    // if (t == 6) {\
-    \ // prev\n    //   int x = RNG(-1, MAX + 1);\n    //   int ans = -infty<int>;\n\
-    \    //   for (auto& b: B) {\n    //     if (b <= x) chmax(ans, b);\n    //  \
-    \ }\n    //   assert(ans == WM.prev(L, R, x));\n    // }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(N, 64) { FOR(50) test<true>(N); }\n  FOR(N, 64) { FOR(50) test<false>(N);\
-    \ }\n  solve();\n\n  return 0;\n}\n"
+    \n#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n#include \"ds/static_range_product_group.hpp\"\
+    \n#include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid/min.hpp\"\n\ntemplate\
+    \ <bool SMALL_Y, typename SEGTREE>\nvoid test(int N) {\n  int MAX = RNG(2, 1 <<\
+    \ 10);\n  vc<int> A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i,\
+    \ N) A[i] = RNG(MAX);\n\n  Wavelet_Matrix<int, false, SEGTREE> WM(A, X);\n  using\
+    \ Mono = SEGTREE::MX;\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, max(1,\
+    \ N));\n    int R = RNG(0, max(1, N + 1));\n    if (L > R) swap(L, R);\n    int\
+    \ lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n\
+    \    ++hi;\n    vc<int> B = {A.begin() + L, A.begin() + R};\n    vc<int> Y = {X.begin()\
+    \ + L, X.begin() + R};\n    int t = RNG(0, 7);\n    if (t == 0) { // count\n \
+    \     int cnt = 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) cnt\
+    \ += 1;\n      assert(WM.count(L, R, lo, hi) == cnt);\n    }\n    if (t == 1)\
+    \ { // sm\n      int sm = Mono::unit();\n      FOR(i, L, R) if (lo <= A[i] &&\
+    \ A[i] < hi) sm = Mono::op(sm, X[i]);\n      assert(WM.prod(L, R, lo, hi) == sm);\n\
+    \    }\n    if (t == 2) { // kth\n      if (L == R) continue;\n      int k = RNG(R\
+    \ - L);\n      sort(all(B));\n      SHOW(B[k], WM.kth(L, R, k));\n      assert(WM.kth(L,\
+    \ R, k) == B[k]);\n    }\n    // if (t == 3) { // max_right\n    //   int a =\
+    \ RNG(0, 10);\n    //   int b = RNG(0, 10);\n    //   int c = RNG(0, a * (R -\
+    \ L) + b * MAX * (R - L) + 1);\n    //   auto check\n    //       = [&](int cnt,\
+    \ int sm) -> bool { return a * cnt + b * sm <= c; };\n    //   auto p = WM.max_right(check,\
+    \ L, R);\n    //   int k = binary_search(\n    //       [&](int k) -> bool {\n\
+    \    //         int sm = WM.sum_index_range(L, R, 0, k);\n    //         return\
+    \ check(k, sm);\n    //       },\n    //       0, R - L + 1);\n    //   int sm\
+    \ = WM.sum_index_range(L, R, 0, k);\n    //   assert(p.fi == k && p.se == sm);\n\
+    \    // }\n    // if (t == 4) { // k-th value and sum\n    //   int k = RNG(0,\
+    \ R - L + 1);\n    //   B.eb(infty<int>);\n    //   auto I = argsort(B);\n   \
+    \ //   int val = B[I[k]];\n    //   int sm = 0;\n    //   FOR(i, k) sm += Y[I[i]];\n\
+    \    //   auto p = WM.kth_value_sum(L, R, k);\n    //   assert(p.fi == val &&\
+    \ p.se == sm);\n    // }\n    if (t == 5) { // next\n      int x = RNG(-1, MAX\
+    \ + 2);\n      int ans = infty<int>;\n      for (auto& b: B) {\n        if (x\
+    \ <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L, R, x));\n    }\n\
+    \    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n      int ans = -infty<int>;\n\
+    \      for (auto& b: B) {\n        if (b <= x) chmax(ans, b);\n      }\n     \
+    \ assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid solve() {\n  int a,\
+    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N,\
+    \ 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
+    \      test<false, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<true,\
+    \ SegTree<Monoid_Min<int>>>(N);\n      test<false, SegTree<Monoid_Min<int>>>(N);\n\
+    \    }\n  }\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -535,10 +587,13 @@ data:
   - ds/bit_vector.hpp
   - ds/index_compression.hpp
   - alg/monoid/add.hpp
+  - ds/static_range_product_group.hpp
+  - ds/segtree/segtree.hpp
+  - alg/monoid/min.hpp
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 18:40:42+09:00'
+  timestamp: '2024-07-19 19:22:24+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp

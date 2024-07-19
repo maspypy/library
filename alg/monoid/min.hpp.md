@@ -141,6 +141,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/suffix_tree.test.cpp
     title: test/mytest/suffix_tree.test.cpp
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1212.test.cpp
     title: test/yukicoder/1212.test.cpp
@@ -174,9 +177,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc151_e.test.cpp
     title: test_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -209,7 +212,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/fast_lca.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/staticrmq_sparse.test.cpp
   - test/library_checker/datastructure/staticrmq_dst.test.cpp
@@ -232,6 +235,7 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/seg2d.test.cpp
   - test/mytest/range_closest_pair.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/lex_minmax_suffix.test.cpp
   - test/mytest/rbst_am_persistent.test.cpp
   - test/mytest/max_min.test.cpp

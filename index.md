@@ -133,7 +133,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/merge_vector_space.hpp
       title: alg/monoid/merge_vector_space.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
@@ -320,7 +320,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_product.hpp
       title: ds/static_range_product.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: ds/static_range_product_group.hpp
       title: ds/static_range_product_group.hpp
     - icon: ':warning:'
@@ -456,7 +456,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -971,7 +971,7 @@ data:
       title: graph/blackbox/unionfind.hpp
   - name: graph/count
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/count/BEST.hpp
       title: graph/count/BEST.hpp
     - icon: ':heavy_check_mark:'
@@ -1178,10 +1178,10 @@ data:
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/det.hpp
       title: linalg/blackbox/det.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/min_poly.hpp
       title: linalg/blackbox/min_poly.hpp
     - icon: ':heavy_check_mark:'
@@ -1198,7 +1198,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/characteristic_poly.hpp
       title: linalg/characteristic_poly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/det.hpp
       title: linalg/det.hpp
     - icon: ':heavy_check_mark:'
@@ -1791,7 +1791,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/factorial_digit_system.hpp
       title: seq/factorial_digit_system.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/find_linear_rec.hpp
       title: seq/find_linear_rec.hpp
     - icon: ':heavy_check_mark:'
@@ -3721,7 +3721,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1326.test.cpp
       title: test/yukicoder/1326.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1332.test.cpp
       title: test/yukicoder/1332.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4695,7 +4695,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc335g.test.cpp
       title: test_atcoder/abc335g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc336g.test.cpp
       title: test_atcoder/abc336g.test.cpp
     - icon: ':x:'
