@@ -102,42 +102,59 @@ data:
     \ S0);\r\n      move(B1.begin(), B1.begin() + p1, B.begin() + p0);\r\n      move(S1.begin(),\
     \ S1.begin() + p1, S.begin() + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\
     \n    }\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  int prefix_count(int L, int R, Y\
-    \ y) {\r\n    int k = IDX(y);\r\n    if (k == 0) return 0;\r\n    if (k == K)\
+    \ y) {\r\n    int p = IDX(y);\r\n    if (p == 0) return 0;\r\n    if (p == K)\
     \ return R - L;\r\n    int cnt = 0;\r\n    for (int d = log - 1; d >= 0; --d)\
     \ {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int\
-    \ l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k >> d & 1) cnt +=\
-    \ r0 - l0, L = l1, R = r1;\r\n      if (!(k >> d & 1)) L = l0, R = r0;\r\n   \
+    \ l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) cnt +=\
+    \ r0 - l0, L = l1, R = r1;\r\n      if (!(p >> d & 1)) L = l0, R = r0;\r\n   \
     \ }\r\n    return cnt;\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int L,\
     \ int R, Y y1, Y y2) {\r\n    return prefix_count(L, R, y2) - prefix_count(L,\
     \ R, y1);\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  pair<int, T> prefix_count_and_prod(int\
-    \ L, int R, Y y) {\r\n    int k = IDX(y);\r\n    if (k == 0) return {0, Mono::unit()};\r\
-    \n    if (k == K) return {R - L, seg[log].prod(L, R)};\r\n    int cnt = 0;\r\n\
-    \    T ans = Mono::unit();\r\n    for (int d = log - 1; d >= 0; --d) {\r\n   \
-    \   int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L +\
-    \ mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k >> d & 1) {\r\n        cnt\
-    \ += r0 - l0;\r\n        ans = Mono::op(ans, seg[d].prod(l0, r0)), L = l1, R =\
-    \ r1;\r\n      }\r\n      if (!(k >> d & 1)) L = l0, R = r0;\r\n    }\r\n    return\
-    \ {cnt, ans};\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int\
-    \ L, int R, Y y1, Y y2) {\r\n    if constexpr (has_inverse<Mono>::value) {\r\n\
-    \      auto [c1, t1] = prefix_count_and_prod(L, R, y1);\r\n      auto [c2, t2]\
-    \ = prefix_count_and_prod(L, R, y2);\r\n      return {c2 - c1, Mono::op(Mono::inverse(t1),\
-    \ t2)};\r\n    }\r\n    int lo = IDX(y1), hi = IDX(y2), cnt = 0;\r\n    T ans\
-    \ = Mono::unit();\r\n    auto dfs = [&](auto& dfs, int d, int L, int R, int a,\
-    \ int b) -> void {\r\n      assert(b - a == (1 << d));\r\n      if (hi <= a ||\
-    \ b <= lo) return;\r\n      if (lo <= a && b <= hi) {\r\n        cnt += R - L,\
-    \ ans = Mono::op(ans, seg[d].prod(L, R));\r\n        return;\r\n      }\r\n  \
-    \    --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count(L, 0), r0\
-    \ = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\
-    \n      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\n  \
-    \  dfs(dfs, log, L, R, 0, 1 << log);\r\n    return {cnt, ans};\r\n  }\r\n\r\n\
-    \  // [L,R) x [y1,y2)\r\n  T prefix_prod(int L, int R, Y y) { return prefix_count_and_prod(L,\
-    \ R, y).se; }\r\n  // [L,R) x [y1,y2)\r\n  T prod(int L, int R, Y y1, Y y2) {\
-    \ return count_and_prod(L, R, y1, y2).se; }\r\n\r\n  Y kth(int L, int R, int k)\
-    \ {\r\n    assert(0 <= k && k < R - L);\r\n    int p = 0;\r\n    for (int d =\
-    \ log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
-    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k\
-    \ < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\n        k -= r0\
-    \ - l0, L = l1, R = r1, p |= 1 << d;\r\n      }\r\n    }\r\n    return ItoY[p];\r\
+    \ L, int R, Y y) {\r\n    int p = IDX(y);\r\n    if (p == 0) return {0, Mono::unit()};\r\
+    \n    if (p == K) return {R - L, seg[log].prod(L, R)};\r\n    int cnt = 0;\r\n\
+    \    T t = Mono::unit();\r\n    for (int d = log - 1; d >= 0; --d) {\r\n     \
+    \ int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d]\
+    \ - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) {\r\n        cnt += r0\
+    \ - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1;\r\n      }\r\n \
+    \     if (!(p >> d & 1)) L = l0, R = r0;\r\n    }\r\n    return {cnt, t};\r\n\
+    \  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int L, int R,\
+    \ Y y1, Y y2) {\r\n    if constexpr (has_inverse<Mono>::value) {\r\n      auto\
+    \ [c1, t1] = prefix_count_and_prod(L, R, y1);\r\n      auto [c2, t2] = prefix_count_and_prod(L,\
+    \ R, y2);\r\n      return {c2 - c1, Mono::op(Mono::inverse(t1), t2)};\r\n    }\r\
+    \n    int lo = IDX(y1), hi = IDX(y2), cnt = 0;\r\n    T t = Mono::unit();\r\n\
+    \    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {\r\n\
+    \      assert(b - a == (1 << d));\r\n      if (hi <= a || b <= lo) return;\r\n\
+    \      if (lo <= a && b <= hi) {\r\n        cnt += R - L, t = Mono::op(t, seg[d].prod(L,\
+    \ R));\r\n        return;\r\n      }\r\n      --d;\r\n      int c = (a + b) /\
+    \ 2;\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int\
+    \ l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      dfs(dfs, d, l0, r0, a,\
+    \ c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\n    dfs(dfs, log, L, R, 0, 1 <<\
+    \ log);\r\n    return {cnt, t};\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  T prefix_prod(int\
+    \ L, int R, Y y) { return prefix_count_and_prod(L, R, y).se; }\r\n  // [L,R) x\
+    \ [y1,y2)\r\n  T prod(int L, int R, Y y1, Y y2) { return count_and_prod(L, R,\
+    \ y1, y2).se; }\r\n\r\n  Y kth(int L, int R, int k) {\r\n    assert(0 <= k &&\
+    \ k < R - L);\r\n    int p = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n\
+    \      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L\
+    \ + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k < r0 - l0) {\r\n       \
+    \ L = l0, R = r0;\r\n      } else {\r\n        k -= r0 - l0, L = l1, R = r1, p\
+    \ |= 1 << d;\r\n      }\r\n    }\r\n    return ItoY[p];\r\n  }\r\n\r\n  // y \u4EE5\
+    \u4E0A\u6700\u5C0F OR infty<Y>\r\n  Y next(int L, int R, Y y) {\r\n    int k =\
+    \ IDX(y);\r\n    int p = K;\r\n\r\n    auto dfs = [&](auto& dfs, int d, int L,\
+    \ int R, int a, int b) -> void {\r\n      if (p <= a || L == R || b <= k) return;\r\
+    \n      if (d == 0) {\r\n        chmin(p, a);\r\n        return;\r\n      }\r\n\
+    \      --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count(L, 0),\
+    \ r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] -\
+    \ r0;\r\n      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\
+    \n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == K ? infty<Y> : ItoY[p]);\r\
+    \n  }\r\n\r\n  // y \u4EE5\u4E0B\u6700\u5927 OR -infty<T>\r\n  Y prev(int L, int\
+    \ R, Y y) {\r\n    int k = IDX(y + 1);\r\n    SHOW(L, R, y);\r\n    SHOW(ItoY,\
+    \ y, k);\r\n    int p = -1;\r\n    auto dfs = [&](auto& dfs, int d, int L, int\
+    \ R, int a, int b) -> void {\r\n      if (b - 1 <= p || L == R || k <= a) return;\r\
+    \n      if (d == 0) {\r\n        chmax(p, a);\r\n        return;\r\n      }\r\n\
+    \      --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count(L, 0),\
+    \ r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] -\
+    \ r0;\r\n      dfs(dfs, d, l1, r1, c, b), dfs(dfs, d, l0, r0, a, c);\r\n    };\r\
+    \n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == -1 ? -infty<Y> : ItoY[p]);\r\
     \n  }\r\n};\r\n\r\n/*\r\n// \u5EA7\u5727\u3059\u308B\u304B\u3069\u3046\u304B\u3092\
     \ COMPRESS \u3067\u6307\u5B9A\u3059\u308B\r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\
     \u3092\u3059\u308B\u5834\u5408\u306B\u306F\u3001\u30B3\u30F3\u30B9\u30C8\u30E9\
@@ -274,7 +291,7 @@ data:
   isVerificationFile: false
   path: string/prefix_substring_LCS.hpp
   requiredBy: []
-  timestamp: '2024-07-19 18:04:08+09:00'
+  timestamp: '2024-07-19 18:40:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/string/prefix_substring_lcs.test.cpp
