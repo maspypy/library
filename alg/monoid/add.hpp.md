@@ -86,6 +86,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
+  - icon: ':x:'
+    path: ds/wavelet_matrix/wavelet_matrix.hpp
+    title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
@@ -111,6 +114,9 @@ data:
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':warning:'
+    path: graph/ds/tree_wavelet_matrix.hpp
+    title: graph/ds/tree_wavelet_matrix.hpp
+  - icon: ':warning:'
     path: other/sliding_puzzle_solve.hpp
     title: other/sliding_puzzle_solve.hpp
   - icon: ':heavy_check_mark:'
@@ -122,6 +128,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':x:'
+    path: string/prefix_substring_LCS.hpp
+    title: string/prefix_substring_LCS.hpp
   - icon: ':heavy_check_mark:'
     path: string/trie.hpp
     title: string/trie.hpp
@@ -219,6 +228,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+    title: test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
     title: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
@@ -276,6 +291,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/common_interval_decomposition.test.cpp
     title: test/library_checker/graph/common_interval_decomposition.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/string/prefix_substring_lcs.test.cpp
+    title: test/library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/ARC30D.test.cpp
     title: test/mytest/ARC30D.test.cpp
@@ -366,6 +384,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/1332.test.cpp
+    title: test/yukicoder/1332.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1441.test.cpp
     title: test/yukicoder/1441.test.cpp
@@ -399,6 +420,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2003.test.cpp
     title: test/yukicoder/2003.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/2065.test.cpp
+    title: test/yukicoder/2065.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
@@ -444,6 +468,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/919.test.cpp
+    title: test/yukicoder/919.test.cpp
+  - icon: ':x:'
+    path: test/yukicoder/924.test.cpp
+    title: test/yukicoder/924.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc127f_1.test.cpp
+    title: test_atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc174f.test.cpp
     title: test_atcoder/abc174f.test.cpp
@@ -483,6 +516,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc324g.test.cpp
+    title: test_atcoder/abc324g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g2.test.cpp
     title: test_atcoder/abc324g2.test.cpp
@@ -515,6 +551,7 @@ data:
   - ds/offline_query/point_add_rectangle_sum.hpp
   - ds/rectangle_union.hpp
   - ds/doubling.hpp
+  - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_fenwick_01.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp
@@ -544,7 +581,9 @@ data:
   - alg/acted_monoid/cntsum_add.hpp
   - alg/acted_monoid/minidx_add.hpp
   - string/trie.hpp
+  - string/prefix_substring_LCS.hpp
   - graph/ds/tree_abelgroup.hpp
+  - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/count/count_connected_intervals.hpp
@@ -582,12 +621,15 @@ data:
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet2.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/datastructure/double_ended_pq_2.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_bit2d.test.cpp
   - test/library_checker/datastructure/point_add_range_sum.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
+  - test/library_checker/string/prefix_substring_lcs.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/mytest/rect_add_pt_sum.test.cpp
@@ -613,6 +655,7 @@ data:
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1269.test.cpp
   - test/yukicoder/789_2.test.cpp
+  - test/yukicoder/919.test.cpp
   - test/yukicoder/1234.test.cpp
   - test/yukicoder/1216.test.cpp
   - test/yukicoder/1641.test.cpp
@@ -623,7 +666,9 @@ data:
   - test/yukicoder/2491.test.cpp
   - test/yukicoder/899.test.cpp
   - test/yukicoder/1270.test.cpp
+  - test/yukicoder/1332.test.cpp
   - test/yukicoder/2242.test.cpp
+  - test/yukicoder/2065.test.cpp
   - test/yukicoder/2296.test.cpp
   - test/yukicoder/1977.test.cpp
   - test/yukicoder/1720.test.cpp
@@ -632,6 +677,7 @@ data:
   - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2161.test.cpp
   - test/yukicoder/789.test.cpp
+  - test/yukicoder/924.test.cpp
   - test/yukicoder/235.test.cpp
   - test/yukicoder/1874.test.cpp
   - test/yukicoder/1490.test.cpp
@@ -664,8 +710,10 @@ data:
   - test_atcoder/abc318b.test.cpp
   - test_atcoder/abc268_ex.test.cpp
   - test_atcoder/abc234g.test.cpp
+  - test_atcoder/abc127f_1.test.cpp
   - test_atcoder/abc174f.test.cpp
   - test_atcoder/abc256ex2.test.cpp
+  - test_atcoder/abc324g.test.cpp
   - test_atcoder/abc237g.test.cpp
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc280f.test.cpp
