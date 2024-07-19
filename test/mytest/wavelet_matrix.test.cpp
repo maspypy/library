@@ -17,7 +17,7 @@ void test(int N) {
   FOR(i, N) A[i] = RNG(MAX);
 
   Wavelet_Matrix<int, false, SEGTREE> WM(A, X);
-  using Mono = SEGTREE::MX;
+  using Mono = typename SEGTREE::MX;
 
   int Q = 100;
   FOR(Q) {
