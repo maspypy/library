@@ -9,6 +9,9 @@ data:
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/tree_walk_generating_function.hpp
+    title: graph/tree_walk_generating_function.hpp
+  - icon: ':question:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -26,6 +29,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
+  - icon: ':question:'
+    path: poly/convolution_all.hpp
+    title: poly/convolution_all.hpp
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
@@ -82,6 +88,9 @@ data:
     path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+    title: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/bell.test.cpp
     title: test/mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,15 +108,27 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':x:'
+    path: test/mytest/convolution_all_1.test.cpp
+    title: test/mytest/convolution_all_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/poly_root_finding.test.cpp
+    title: test/mytest/poly_root_finding.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/tree_walk_gf.test.cpp
+    title: test/mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1392.test.cpp
+    title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1500.test.cpp
     title: test/yukicoder/1500.test.cpp
@@ -126,6 +147,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1844.test.cpp
     title: test/yukicoder/1844.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1857.test.cpp
+    title: test/yukicoder/1857.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1875.test.cpp
     title: test/yukicoder/1875.test.cpp
@@ -165,12 +189,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc241h.test.cpp
     title: test_atcoder/abc241h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc260h.test.cpp
     title: test_atcoder/abc260h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc269ex.test.cpp
+    title: test_atcoder/abc269ex.test.cpp
   - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
@@ -287,6 +314,7 @@ data:
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
   - poly/composition_f_1_minus_ex.hpp
+  - poly/convolution_all.hpp
   - poly/coef_of_rational_fps.hpp
   - poly/composition_f_ex_minus_1.hpp
   - poly/sum_of_exp_bx.hpp
@@ -298,10 +326,12 @@ data:
   - poly/partial_frac_decomposition_1.hpp
   - poly/product_of_pow_of_linear.hpp
   - linalg/blackbox/vandermonde.hpp
+  - graph/tree_walk_generating_function.hpp
   - graph/chromatic.hpp
   timestamp: '2024-07-19 12:50:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
@@ -310,6 +340,9 @@ data:
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - test/mytest/tree_walk_gf.test.cpp
+  - test/mytest/convolution_all_1.test.cpp
+  - test/mytest/poly_root_finding.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/coef_of_rational.test.cpp
   - test/mytest/chirp_z.test.cpp
@@ -329,8 +362,10 @@ data:
   - test/yukicoder/1875.test.cpp
   - test/yukicoder/579.test.cpp
   - test/yukicoder/2243.test.cpp
+  - test/yukicoder/1857.test.cpp
   - test/yukicoder/541.test.cpp
   - test/yukicoder/2587_2.test.cpp
+  - test/yukicoder/1392.test.cpp
   - test/yukicoder/1561.test.cpp
   - test/yukicoder/1516.test.cpp
   - test/yukicoder/2305.test.cpp
@@ -338,6 +373,7 @@ data:
   - test/yukicoder/1547.test.cpp
   - test/yukicoder/2166.test.cpp
   - test_atcoder/abc281g.test.cpp
+  - test_atcoder/abc269ex.test.cpp
   - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc241h.test.cpp
   - test_atcoder/agc058d2.test.cpp

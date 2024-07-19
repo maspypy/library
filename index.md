@@ -1175,13 +1175,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/blackbox/min_poly.hpp
       title: linalg/blackbox/min_poly.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/blackbox/pascal.hpp
       title: linalg/blackbox/pascal.hpp
     - icon: ':heavy_check_mark:'
       path: linalg/blackbox/solve_linear.hpp
       title: linalg/blackbox/solve_linear.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: linalg/blackbox/vandermonde.hpp
       title: linalg/blackbox/vandermonde.hpp
   - name: linalg
@@ -4542,7 +4542,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc259g.test.cpp
       title: test_atcoder/abc259g.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc260h.test.cpp
       title: test_atcoder/abc260h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4557,7 +4557,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc266h_2.test.cpp
       title: test_atcoder/abc266h_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test_atcoder/abc267g.test.cpp
       title: test_atcoder/abc267g.test.cpp
     - icon: ':heavy_check_mark:'

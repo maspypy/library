@@ -561,14 +561,28 @@ data:
     \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
     \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
-    \    }\n  }\n  return f;\n}\n#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 4\
-    \ \"poly/convolution_all.hpp\"\n\r\ntemplate <typename T>\r\nvc<T> convolution_all(vc<vc<T>>&\
-    \ polys) {\r\n  if (len(polys) == 0) return {T(1)};\r\n  while (1) {\r\n    int\
-    \ n = len(polys);\r\n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n   \
-    \ FOR(i, m) {\r\n      if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\
-    \n      } else {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i +\
-    \ 1]);\r\n      }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\
-    \n}\r\n\r\n// product of 1-A[i]x\r\ntemplate <typename mint>\r\nvc<mint> convolution_all_1(vc<mint>\
+    \    }\n  }\n  return f;\n}\n#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2\
+    \ \"poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\
+    \u591A\u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\
+    \u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint, bool transposed = false>\n\
+    void ntt_doubling(vector<mint>& a) {\n  static array<mint, 30> root;\n  static\
+    \ bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    const int rank2\
+    \ = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n    FOR_R(i,\
+    \ rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr (!transposed)\
+    \ {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b, 1);\n    mint\
+    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r *= zeta;\n  \
+    \  ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  } else {\n   \
+    \ const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin() + M};\n\
+    \    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint r = 1,\
+    \ zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n    transposed_ntt(a,\
+    \ 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n#line 5 \"poly/convolution_all.hpp\"\
+    \n\r\ntemplate <typename T>\r\nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n \
+    \ if (len(polys) == 0) return {T(1)};\r\n  while (1) {\r\n    int n = len(polys);\r\
+    \n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n    FOR(i, m) {\r\n   \
+    \   if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\n      } else\
+    \ {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);\r\n   \
+    \   }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n\r\
+    \n// product of 1-A[i]x\r\ntemplate <typename mint>\r\nvc<mint> convolution_all_1(vc<mint>\
     \ A) {\r\n  if (!mint::can_ntt()) {\r\n    vvc<mint> polys;\r\n    for (auto&\
     \ a: A) polys.eb(vc<mint>({mint(1), -a}));\r\n    return convolution_all(polys);\r\
     \n  }\r\n  int D = 6;\r\n  using poly = vc<mint>;\r\n  int n = 1;\r\n  while (n\
@@ -580,33 +594,19 @@ data:
     \ + b + i];\r\n      }\r\n    }\r\n    elif (d == D) {\r\n      for (int L = 0;\
     \ L < n; L += 2 * b) {\r\n        poly f1 = {F.begin() + L, F.begin() + L + b};\r\
     \n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\r\n        f1.resize(2\
-    \ * b), f2.resize(2 * b);\r\n        ntt(f1, 0), ntt(f2, 0);\r\n        FOR(i,\
-    \ b) nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b)\
-    \ nxt_F[L + i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    else\
-    \ {\r\n      for (int L = 0; L < n; L += 2 * b) {\r\n        poly f1 = {F.begin()\
-    \ + L, F.begin() + L + b};\r\n        poly f2 = {F.begin() + L + b, F.begin()\
-    \ + L + 2 * b};\r\n        ntt_doubling(f1), ntt_doubling(f2);\r\n        FOR(i,\
-    \ b) nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b)\
-    \ nxt_F[L + i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    swap(F,\
-    \ nxt_F);\r\n  }\r\n  if (k - 1 >= D) ntt(F, 1);\r\n  F.eb(1), reverse(all(F));\r\
-    \n  F.resize(len(A) + 1);\r\n  return F;\r\n}\n#line 2 \"poly/sum_of_rationals.hpp\"\
-    \n\n#line 2 \"poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n\
-    // 2^k \u6B21\u591A\u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\
-    \u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint, bool\
-    \ transposed = false>\nvoid ntt_doubling(vector<mint>& a) {\n  static array<mint,\
-    \ 30> root;\n  static bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n\
-    \    const int rank2 = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n\
-    \    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr\
-    \ (!transposed) {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b,\
-    \ 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r\
-    \ *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  }\
-    \ else {\n    const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin()\
-    \ + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint\
-    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n  \
-    \  transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n#line 5 \"poly/sum_of_rationals.hpp\"\
-    \n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\u7B97\u3059\u308B\u3002\u5206\
-    \u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u548C\u3002\ntemplate\
-    \ <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>,\
+    \ * b), f2.resize(2 * b), ntt(f1, 0), ntt(f2, 0);\r\n        FOR(i, b) nxt_F[L\
+    \ + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b) nxt_F[L +\
+    \ i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    else {\r\n  \
+    \    for (int L = 0; L < n; L += 2 * b) {\r\n        poly f1 = {F.begin() + L,\
+    \ F.begin() + L + b};\r\n        poly f2 = {F.begin() + L + b, F.begin() + L +\
+    \ 2 * b};\r\n        ntt_doubling(f1), ntt_doubling(f2);\r\n        FOR(i, b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b) nxt_F[L\
+    \ + i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    swap(F, nxt_F);\r\
+    \n  }\r\n  if (k - 1 >= D) ntt(F, 1);\r\n  F.eb(1), reverse(all(F));\r\n  F.resize(len(A)\
+    \ + 1);\r\n  return F;\r\n}\n#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 5\
+    \ \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\u8A08\
+    \u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\u6B21\
+    \u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>,\
     \ vc<mint>>> dat) {\n  if (len(dat) == 0) {\n    vc<mint> f = {0}, g = {1};\n\
     \    return {f, g};\n  }\n  using P = pair<vc<mint>, vc<mint>>;\n  auto add =\
     \ [&](P& a, P& b) -> P {\n    int na = len(a.fi) - 1, da = len(a.se) - 1;\n  \
@@ -678,14 +678,14 @@ data:
   - poly/ntt.hpp
   - poly/fft.hpp
   - poly/convolution_all.hpp
+  - poly/ntt_doubling.hpp
   - poly/composition_f_ex.hpp
   - poly/sum_of_exp_bx.hpp
   - poly/sum_of_rationals.hpp
-  - poly/ntt_doubling.hpp
   isVerificationFile: true
   path: test_atcoder/arc154f.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 03:03:46+09:00'
+  timestamp: '2024-07-20 03:22:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/arc154f.test.cpp
