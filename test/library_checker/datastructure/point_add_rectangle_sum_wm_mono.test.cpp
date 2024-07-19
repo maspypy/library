@@ -3,7 +3,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_monoid.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix_2d_range.hpp"
+#include "ds/segtree/segtree.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {
@@ -27,7 +28,7 @@ void solve() {
     }
   }
 
-  Wavelet_Matrix_2D_Range_Dynamic_Monoid<Monoid_Add<ll>, int, false, false> WM(
+  Wavelet_Matrix_2D_Range<SegTree<Monoid_Add<ll>>, int, false, false> WM(
       len(X), [&](int i) -> tuple<int, int, ll> {
         return {X[i], Y[i], W[i]};
       });

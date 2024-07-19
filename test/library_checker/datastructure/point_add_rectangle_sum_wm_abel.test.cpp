@@ -3,7 +3,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/wavelet_matrix/wavelet_matrix_2d_range_dynamic_abelgroup.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix_2d_range.hpp"
+#include "ds/fenwicktree/fenwicktree.hpp"
 
 void solve() {
   LL(N, Q);
@@ -26,17 +27,17 @@ void solve() {
     }
   }
 
-  Wavelet_Matrix_2D_Range_Dynamic_AbelGroup<Monoid_Add<ll>, int, false, false>
-      WM(len(X), [&](int i) -> tuple<int, int, ll> {
+  Wavelet_Matrix_2D_Range<FenwickTree<Monoid_Add<ll>>, int, false, false> WM(
+      len(X), [&](int i) -> tuple<int, int, ll> {
         return {X[i], Y[i], W[i]};
       });
   int idx = N;
   FOR(q, Q) {
     auto [a, b, c, d] = query[q];
     if (a == u32(-1)) {
-      WM.add(idx++, d);
+      WM.multiply(idx++, d);
     } else {
-      print(WM.sum(a, b, c, d));
+      print(WM.prod(a, b, c, d));
     }
   }
 }
