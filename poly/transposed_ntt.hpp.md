@@ -2,22 +2,49 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: graph/chromatic.hpp
+    title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':question:'
+  - icon: ':x:'
+    path: linalg/blackbox/vandermonde.hpp
+    title: linalg/blackbox/vandermonde.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/composition.hpp
     title: poly/composition.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/composition_f_log_1_minus_x.hpp
+    title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   - icon: ':question:'
+    path: poly/multipoint.hpp
+    title: poly/multipoint.hpp
+  - icon: ':x:'
+    path: poly/multivar_convolution_cyclic.hpp
+    title: poly/multivar_convolution_cyclic.hpp
+  - icon: ':question:'
+    path: poly/partial_frac_decomposition_1.hpp
+    title: poly/partial_frac_decomposition_1.hpp
+  - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: graph/chromatic_polynomial.test.cpp
+    title: graph/chromatic_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/graph/chromatic_number.test.cpp
+    title: test/library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/composition_dmint.test.cpp
     title: test/library_checker/polynomial/composition_dmint.test.cpp
@@ -30,16 +57,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
+    title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+    title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+    title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
+    title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
+    title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/slice_rational.test.cpp
     title: test/library_checker/polynomial/slice_rational.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/chirp_z.test.cpp
+    title: test/mytest/chirp_z.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/composition_ex_minus_1.test.cpp
     title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
   - icon: ':heavy_check_mark:'
@@ -51,9 +96,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_bridgeless.test.cpp
     title: test/mytest/count_labeled_bridgeless.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/mytest/partial_frac.test.cpp
+    title: test/mytest/partial_frac.test.cpp
+  - icon: ':x:'
+    path: test/mytest/vandermonde.test.cpp
+    title: test/mytest/vandermonde.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1575.test.cpp
+    title: test/yukicoder/1575.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2166.test.cpp
+    title: test/yukicoder/2166.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/2243.test.cpp
+    title: test/yukicoder/2243.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc241h.test.cpp
+    title: test_atcoder/abc241h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc260h.test.cpp
+    title: test_atcoder/abc260h.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc267g.test.cpp
+    title: test_atcoder/abc267g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc272_h.test.cpp
+    title: test_atcoder/abc272_h.test.cpp
   - icon: ':x:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/agc058d2.test.cpp
+    title: test_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -171,8 +246,14 @@ data:
   path: poly/transposed_ntt.hpp
   requiredBy:
   - poly/compositional_inverse.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - poly/slice_rational_fps.hpp
+  - poly/multipoint.hpp
   - poly/composition.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - linalg/blackbox/vandermonde.hpp
+  - graph/chromatic.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
   timestamp: '2024-04-23 20:14:58+09:00'
@@ -180,16 +261,35 @@ data:
   verifiedWith:
   - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/library_checker/polynomial/composition_dmint.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/library_checker/polynomial/slice_rational.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/chirp_z.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/compositional_inverset.test.cpp
+  - test/mytest/vandermonde.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/yukicoder/2243.test.cpp
+  - test/yukicoder/1575.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test_atcoder/abc272_h.test.cpp
+  - test_atcoder/abc241h.test.cpp
   - test_atcoder/agc013e.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc260h.test.cpp
+  - test_atcoder/abc267g.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: poly/transposed_ntt.hpp
 layout: document
 redirect_from:
