@@ -9,13 +9,13 @@ using mint = modint998;
 void solve() {
   LL(N, S);
   mint s = mint(S).inverse();
-  vvc<mint> polys(N);
+  vc<mint> polys(N);
   FOR(i, N) {
     INT(p);
     mint x = mint(p) * s;
-    polys[i] = {1, x};
+    polys[i] = -x;
   }
-  auto f = convolution_all(polys);
+  auto f = convolution_all_1(polys);
 
   mint ANS = 0;
   FOR(i, N + 1) { ANS += f[i] * fact<mint>(i); }
@@ -23,11 +23,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

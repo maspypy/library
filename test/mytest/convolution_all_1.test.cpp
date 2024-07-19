@@ -20,6 +20,23 @@ void test() {
   }
 }
 
+void test_1() {
+  int N = 100000;
+  FOR(100) {
+    vc<mint> A(N);
+    FOR(i, N) A[i] = RNG(0, mint::get_mod());
+    vvc<mint> polys;
+    for (auto& a: A) polys.eb(vc<mint>({mint(1), -a}));
+    int a = clock();
+    vc<mint> F = convolution_all_1<mint>(A);
+    int b = clock();
+    vc<mint> G = convolution_all<mint>(polys);
+    int c = clock();
+    cout << b - a << " " << c - b << endl;
+    assert(F == G);
+  }
+}
+
 void solve() {
   int a, b;
   cin >> a >> b;
@@ -28,6 +45,7 @@ void solve() {
 
 signed main() {
   test();
+  test_1();
   solve();
   return 0;
 }

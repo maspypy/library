@@ -1,6 +1,7 @@
 #pragma once
 
 #include "poly/convolution.hpp"
+#include "poly/ntt_doubling.hpp"
 
 template <typename T>
 vc<T> convolution_all(vc<vc<T>>& polys) {
@@ -49,8 +50,7 @@ vc<mint> convolution_all_1(vc<mint> A) {
       for (int L = 0; L < n; L += 2 * b) {
         poly f1 = {F.begin() + L, F.begin() + L + b};
         poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};
-        f1.resize(2 * b), f2.resize(2 * b);
-        ntt(f1, 0), ntt(f2, 0);
+        f1.resize(2 * b), f2.resize(2 * b), ntt(f1, 0), ntt(f2, 0);
         FOR(i, b) nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];
         FOR(i, b, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - f1[i] - f2[i];
       }
