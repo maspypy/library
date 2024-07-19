@@ -103,6 +103,9 @@ data:
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -244,6 +247,7 @@ data:
   - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/range_assign.test.cpp
   - test/mytest/segtree_xor_prod.test.cpp
+  - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1036_2.test.cpp
   - test/yukicoder/1212.test.cpp
   - test/yukicoder/1600_2.test.cpp

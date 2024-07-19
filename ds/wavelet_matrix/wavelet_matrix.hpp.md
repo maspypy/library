@@ -39,6 +39,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
   - icon: ':x:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
@@ -574,6 +577,7 @@ data:
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - test/library_checker/string/prefix_substring_lcs.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
+  - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/919.test.cpp
   - test/yukicoder/1332.test.cpp
   - test/yukicoder/2065.test.cpp

@@ -46,6 +46,9 @@ data:
     path: test/yukicoder/1625.test.cpp
     title: test/yukicoder/1625.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1625_2.test.cpp
+    title: test/yukicoder/1625_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,6 +120,7 @@ data:
   - test/mytest/max_assign.test.cpp
   - test/mytest/max_min.test.cpp
   - test/yukicoder/2026.test.cpp
+  - test/yukicoder/1625_2.test.cpp
   - test/yukicoder/1826.test.cpp
   - test/yukicoder/2242.test.cpp
   - test/yukicoder/1117.test.cpp
