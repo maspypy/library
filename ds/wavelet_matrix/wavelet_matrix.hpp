@@ -42,6 +42,7 @@ struct Wavelet_Matrix {
     vc<Y> A(m);
     vc<T> S(m);
     for (int i = 0; i < m; ++i) tie(A[i], S[i]) = f(i);
+    build(A, S);
   }
 
   void build(const vc<Y>& A) { build(A, vc<T>(len(A), Mono::unit())); }
