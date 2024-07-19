@@ -1,3 +1,4 @@
+#include "alg/monoid/add.hpp"
 
 template <typename Monoid>
 struct Static_Range_Product_Group {
@@ -13,3 +14,6 @@ struct Static_Range_Product_Group {
   }
   X prod(int l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }
 };
+
+template <typename T>
+using Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;
