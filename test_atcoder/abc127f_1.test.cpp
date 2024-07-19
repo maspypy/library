@@ -2,6 +2,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/wavelet_matrix/wavelet_matrix.hpp"
+#include "ds/static_range_product_group.hpp"
 
 void solve() {
   LL(Q);
@@ -15,13 +16,15 @@ void solve() {
     }
     if (t == 2) { query.eb(len(A)); }
   }
-  Wavelet_Matrix<ll, 1, 1> X(A, A);
+  Wavelet_Matrix<int, 0, Prefix_Sum<ll>> X(len(A), [&](int i) -> pair<int, ll> {
+    return {A[i], A[i]};
+  });
   auto Bc = cumsum<ll>(B);
 
   for (auto&& n: query) {
     ll cnt_lo = (n - 1) / 2;
-    auto [med, sum_lo] = X.kth_value_sum(0, n, cnt_lo);
-    auto total = X.sum_all(0, n);
+    auto [med, sum_lo] = X.kth_value_and_prod(0, n, cnt_lo);
+    auto total = X.prod_all(0, n);
     ll cnt_hi = n - cnt_lo;
     ll sum_hi = total - sum_lo;
     ll ANS = Bc[n];
