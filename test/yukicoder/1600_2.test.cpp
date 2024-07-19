@@ -2,7 +2,8 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/wavelet_matrix/wavelet_matrix_2d_range_static_monoid.hpp"
+#include "ds/wavelet_matrix/wavelet_matrix_2d_range.hpp"
+#include "ds/static_range_product.hpp"
 
 #include "alg/monoid/min.hpp"
 #include "graph/tree.hpp"
@@ -43,7 +44,7 @@ void solve() {
 
   using Mono = Monoid_Min<int>;
   using ST = Sparse_Table<Mono>;
-  Wavelet_Matrix_2D_Range_Static_Monoid<Mono, ST, int, true, true> seg(
+  Wavelet_Matrix_2D_Range<Static_Range_Product<Mono, ST>, int, true, true> seg(
       len(X), [&](int i) -> tuple<int, int, int> {
         return {X[i], Y[i], W[i]};
       });
