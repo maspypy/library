@@ -1,5 +1,6 @@
+#define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
+
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "random/base.hpp"
 #include "ds/wavelet_matrix/wavelet_matrix.hpp"
@@ -45,35 +46,35 @@ void test(int N) {
       if (L == R) continue;
       int k = RNG(R - L);
       sort(all(B));
-      SHOW(B[k], WM.kth(L, R, k));
       assert(WM.kth(L, R, k) == B[k]);
     }
-    // if (t == 3) { // max_right
-    //   int a = RNG(0, 10);
-    //   int b = RNG(0, 10);
-    //   int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);
-    //   auto check
-    //       = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };
-    //   auto p = WM.max_right(check, L, R);
-    //   int k = binary_search(
-    //       [&](int k) -> bool {
-    //         int sm = WM.sum_index_range(L, R, 0, k);
-    //         return check(k, sm);
-    //       },
-    //       0, R - L + 1);
-    //   int sm = WM.sum_index_range(L, R, 0, k);
-    //   assert(p.fi == k && p.se == sm);
-    // }
-    // if (t == 4) { // k-th value and sum
-    //   int k = RNG(0, R - L + 1);
-    //   B.eb(infty<int>);
-    //   auto I = argsort(B);
-    //   int val = B[I[k]];
-    //   int sm = 0;
-    //   FOR(i, k) sm += Y[I[i]];
-    //   auto p = WM.kth_value_sum(L, R, k);
-    //   assert(p.fi == val && p.se == sm);
-    // }
+    if (is_same_v<Mono, Monoid_Add<int>> && t == 3) { // max_right
+      int a = RNG(0, 10);
+      int b = RNG(0, 10);
+      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);
+      auto check
+          = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };
+      auto p = WM.max_right(check, L, R);
+      int cnt = 0, sm = 0;
+      binary_search(
+          [&](int y) -> bool {
+            auto [c, s] = WM.prefix_count_and_prod(L, R, y);
+            if (check(c, s)) cnt = c, sm = s;
+            return check(c, s);
+          },
+          -10, MAX + 10);
+      assert(p.fi == cnt && p.se == sm);
+    }
+    if (t == 4) { // k-th value and prod
+      int k = RNG(0, R - L + 1);
+      B.eb(infty<int>);
+      auto I = argsort(B);
+      int val = B[I[k]];
+      int sm = Mono::unit();
+      FOR(i, k) sm = Mono::op(sm, Y[I[i]]);
+      auto p = WM.kth_value_and_prod(L, R, k);
+      assert(p.fi == val && p.se == sm);
+    }
     if (t == 5) { // next
       int x = RNG(-1, MAX + 2);
       int ans = infty<int>;
