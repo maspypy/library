@@ -58,8 +58,51 @@ struct SubproductTree {
 };
 
 template <typename mint>
+vc<mint> multipoint_evaluation_ntt(vc<mint> f, vc<mint> point) {
+  using poly = vc<mint>;
+  int n = 1, k = 0;
+  while (n < len(point)) n *= 2, ++k;
+  vv(mint, F, k + 1, 2 * n);
+  FOR(i, len(point)) F[0][2 * i] = -point[i];
+
+  FOR(d, k) {
+    int b = 1 << d;
+    for (int L = 0; L < 2 * n; L += 4 * b) {
+      poly f1 = {F[d].begin() + L, F[d].begin() + L + b};
+      poly f2 = {F[d].begin() + L + 2 * b, F[d].begin() + L + 3 * b};
+      ntt_doubling(f1), ntt_doubling(f2);
+      FOR(i, b) f1[i] += 1, f2[i] += 1;
+      FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;
+      copy(all(f1), F[d].begin() + L);
+      copy(all(f2), F[d].begin() + L + 2 * b);
+      FOR(i, 2 * b) { F[d + 1][L + i] = f1[i] * f2[i] - 1; }
+    }
+  }
+  vc<mint> P = {F[k].begin(), F[k].begin() + n};
+  ntt(P, 1), P.eb(1), reverse(all(P)), P.resize(len(f)), P = fps_inv<mint>(P);
+  f.resize(n + len(P) - 1), f = middle_product<mint>(f, P), reverse(all(f));
+  transposed_ntt(f, 1);
+  vc<mint>& G = f;
+  FOR_R(d, k) {
+    vc<mint> nxt_G(n);
+    int b = 1 << d;
+    for (int L = 0; L < n; L += 2 * b) {
+      vc<mint> g1(2 * b), g2(2 * b);
+      FOR(i, 2 * b) { g1[i] = G[L + i] * F[d][2 * L + 2 * b + i]; }
+      FOR(i, 2 * b) { g2[i] = G[L + i] * F[d][2 * L + i]; }
+      ntt_doubling<mint, true>(g1), ntt_doubling<mint, true>(g2);
+      FOR(i, b) { nxt_G[L + i] = g1[i], nxt_G[L + b + i] = g2[i]; }
+    }
+    swap(G, nxt_G);
+  }
+  G.resize(len(point));
+  return G;
+}
+
+template <typename mint>
 vc<mint> multipoint_eval(vc<mint>& f, vc<mint>& x) {
   if (x.empty()) return {};
+  if (mint::can_ntt()) return multipoint_evaluation_ntt(f, x);
   SubproductTree<mint> F(x);
   return F.evaluation(f);
 }
