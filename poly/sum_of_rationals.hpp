@@ -45,24 +45,52 @@ pair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt) {
   while (n < len(A)) n *= 2;
   int k = topbit(n);
   vc<mint> F(n), G(n);
+  vc<mint> nxt_F(n), nxt_G(n);
   FOR(i, len(A)) F[i] = -A[i], G[i] = wt[i];
+  int D = 6;
 
   FOR(d, k) {
     int b = 1 << d;
-    for (int L = 0; L < n; L += 2 * b) {
-      poly f1 = {F.begin() + L, F.begin() + L + b};
-      poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};
-      poly g1 = {G.begin() + L, G.begin() + L + b};
-      poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};
-      ntt_doubling(f1), ntt_doubling(f2);
-      ntt_doubling(g1), ntt_doubling(g2);
-      FOR(i, b) f1[i] += 1, f2[i] += 1;
-      FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;
-      FOR(i, 2 * b) F[L + i] = f1[i] * f2[i] - 1;
-      FOR(i, 2 * b) G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];
+    if (d < D) {
+      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));
+      for (int L = 0; L < n; L += 2 * b) {
+        FOR(i, b) FOR(j, b) nxt_F[L + i + j] += F[L + i] * F[L + b + j];
+        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + i] * G[L + b + j];
+        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + b + i] * G[L + j];
+        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L + b + i];
+        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];
+      }
     }
+    elif (d == D) {
+      for (int L = 0; L < n; L += 2 * b) {
+        poly f1 = {F.begin() + L, F.begin() + L + b};
+        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};
+        poly g1 = {G.begin() + L, G.begin() + L + b};
+        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};
+        f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2 * b);
+        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);
+        FOR(i, b) f1[i] += 1, f2[i] += 1;
+        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;
+        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;
+        FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];
+      }
+    }
+    else {
+      for (int L = 0; L < n; L += 2 * b) {
+        poly f1 = {F.begin() + L, F.begin() + L + b};
+        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};
+        poly g1 = {G.begin() + L, G.begin() + L + b};
+        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};
+        ntt_doubling(f1), ntt_doubling(f2), ntt_doubling(g1), ntt_doubling(g2);
+        FOR(i, b) f1[i] += 1, f2[i] += 1;
+        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;
+        FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;
+        FOR(i, 2 * b) nxt_G[L + i] = g1[i] * f2[i] + g2[i] * f1[i];
+      }
+    }
+    swap(F, nxt_F), swap(G, nxt_G);
   }
-  ntt(F, 1), ntt(G, 1);
+  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);
   F.eb(1);
   reverse(all(F)), reverse(all(G));
   F.resize(len(A) + 1);
