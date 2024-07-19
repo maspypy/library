@@ -1,9 +1,4 @@
 #include "ds/bit_vector.hpp"
-
-#include "my_template.hpp"
-#include "other/io.hpp"
-
-#include "ds/bit_vector.hpp"
 #include "ds/index_compression.hpp"
 #include "alg/monoid/add.hpp"
 
@@ -43,7 +38,7 @@ struct Wavelet_Matrix {
   void build(const vc<Y>& A, vc<T> S) {
     n = len(A);
     vc<int> B = IDX.build(A);
-    int K = 1;
+    K = 1;
     for (auto& x: B) chmax(K, x + 1);
     log = 0;
     while ((1 << log) < K) ++log;
@@ -75,8 +70,8 @@ struct Wavelet_Matrix {
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (k >> d & 1) cnt += r0 - l0, L = l1, R = r1;
-      if (!(k >> d & 1)) cnt += r1 - l1, L = l0, R = r0;
+      \ if (k >> d & 1) cnt += r0 - l0, L = l1, R = r1;
+      if (!(k >> d & 1)) L = l0, R = r0;
     }
     return cnt;
   }
@@ -87,6 +82,7 @@ struct Wavelet_Matrix {
   }
 };
 
+/*
 // 座圧するかどうかを COMPRESS で指定する
 // xor 的な使い方をする場合には、コンストラクタで log を渡すこと
 template <typename T, bool COMPRESS, bool USE_SUM>
@@ -99,10 +95,10 @@ struct Wavelet_Matrix_Old {
   bool set_log;
   vvc<T> cumsum;
 
-  Wavelet_Matrix() {}
+  Wavelet_Matrix_Old() {}
 
   // 和を使わないなら、SUM_data は空でよい
-  Wavelet_Matrix(vc<T> A, vc<T> SUM_data = {}, int log = -1) {
+  Wavelet_Matrix_Old(vc<T> A, vc<T> SUM_data = {}, int log = -1) {
     build(A, SUM_data, log);
   }
 
@@ -316,3 +312,4 @@ private:
     return 0;
   }
 };
+*/
