@@ -1,6 +1,9 @@
 ---
 data:
-  _extendedDependsOn: []
+  _extendedDependsOn:
+  - icon: ':question:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
@@ -12,33 +15,44 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test_atcoder/abc127f_1.test.cpp
+    title: test_atcoder/abc127f_1.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/static_range_product_group.hpp\"\n\ntemplate <typename\
-    \ Monoid>\nstruct Static_Range_Product_Group {\n  using MX = Monoid;\n  using\
-    \ X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
+  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/static_range_product_group.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using MX\
+    \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
     \ {}\n  void build(vc<X>& A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n\
     \    for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X\
-    \ prod(int l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n"
-  code: "\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using\
-    \ MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n\
-    \  Static_Range_Product_Group() {}\n  void build(vc<X>& A) {\n    n = len(A);\n\
+    \ prod(int l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate\
+    \ <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
+  code: "#include \"alg/monoid/add.hpp\"\n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X>\
+    \ dat;\n  Static_Range_Product_Group() {}\n  void build(vc<X>& A) {\n    n = len(A);\n\
     \    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i) dat[i + 1]\
     \ = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) { return MX::op(MX::inverse(dat[l]),\
-    \ dat[r]); }\n};"
-  dependsOn: []
+    \ dat[r]); }\n};\n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n"
+  dependsOn:
+  - alg/monoid/add.hpp
   isVerificationFile: false
   path: ds/static_range_product_group.hpp
   requiredBy: []
-  timestamp: '2024-07-20 00:39:58+09:00'
+  timestamp: '2024-07-20 01:26:34+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/wavelet_matrix.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/924.test.cpp
+  - test_atcoder/abc127f_1.test.cpp
 documentation_of: ds/static_range_product_group.hpp
 layout: document
 redirect_from:

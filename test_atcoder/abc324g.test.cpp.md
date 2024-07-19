@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc324/tasks/abc324_g
@@ -475,7 +475,7 @@ data:
     \ (USE_SUM) return cumsum[d][R] - cumsum[d][L];\r\n    return 0;\r\n  }\r\n};\r\
     \n*/\r\n#line 6 \"test_atcoder/abc324g.test.cpp\"\n\nvoid solve() {\n  INT(N);\n\
     \  VEC(int, A, N);\n  using T = tuple<int, int, int, int>;\n  vc<T> dat;\n  dat.eb(0,\
-    \ N, 0, MAX(A) + 1);\n\n  Wavelet_Matrix<int, 0, 0> WM(A);\n\n  INT(Q);\n  FOR(Q)\
+    \ N, 0, MAX(A) + 1);\n\n  Wavelet_Matrix<int, true> WM(A);\n\n  INT(Q);\n  FOR(Q)\
     \ {\n    INT(t, s, x);\n    int L = get<0>(dat[s]);\n    int R = get<1>(dat[s]);\n\
     \    int lo = get<2>(dat[s]);\n    int hi = get<3>(dat[s]);\n    if (t == 1) {\n\
     \      auto check = [&](int M) -> bool { return WM.count(L, M, lo, hi) >= x; };\n\
@@ -492,7 +492,7 @@ data:
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
     \n\nvoid solve() {\n  INT(N);\n  VEC(int, A, N);\n  using T = tuple<int, int,\
     \ int, int>;\n  vc<T> dat;\n  dat.eb(0, N, 0, MAX(A) + 1);\n\n  Wavelet_Matrix<int,\
-    \ 0, 0> WM(A);\n\n  INT(Q);\n  FOR(Q) {\n    INT(t, s, x);\n    int L = get<0>(dat[s]);\n\
+    \ true> WM(A);\n\n  INT(Q);\n  FOR(Q) {\n    INT(t, s, x);\n    int L = get<0>(dat[s]);\n\
     \    int R = get<1>(dat[s]);\n    int lo = get<2>(dat[s]);\n    int hi = get<3>(dat[s]);\n\
     \    if (t == 1) {\n      auto check = [&](int M) -> bool { return WM.count(L,\
     \ M, lo, hi) >= x; };\n      if (!check(R)) {\n        dat.eb(0, 0, 0, 0);\n \
@@ -503,7 +503,7 @@ data:
     \  else {\n        dat[s] = {L, R, lo, x + 1};\n        dat.eb(L, R, x + 1, hi);\n\
     \      }\n    }\n\n    {\n      auto [L, R, lo, hi] = dat.back();\n      int ANS\
     \ = WM.count(L, R, lo, hi);\n      print(ANS);\n    }\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
+    \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -514,8 +514,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc324g.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 01:18:38+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-20 01:28:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/abc324g.test.cpp
 layout: document

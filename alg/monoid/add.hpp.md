@@ -87,6 +87,9 @@ data:
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':question:'
+    path: ds/static_range_product_group.hpp
+    title: ds/static_range_product_group.hpp
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -462,7 +465,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc127f_1.test.cpp
     title: test_atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -504,7 +507,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318b.test.cpp
     title: test_atcoder/abc318b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g.test.cpp
     title: test_atcoder/abc324g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -533,6 +536,7 @@ data:
   requiredBy:
   - other/sliding_puzzle_solve.hpp
   - ds/range_add_range_sum.hpp
+  - ds/static_range_product_group.hpp
   - ds/offline_query/coeffient_query_2d.hpp
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   - ds/offline_query/rectangle_add_point_sum.hpp

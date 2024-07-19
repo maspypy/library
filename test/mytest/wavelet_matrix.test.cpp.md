@@ -397,14 +397,15 @@ data:
     \ R - L);\r\n    cnt += k, sm += get(0, L, L + k);\r\n    return {cnt, sm};\r\n\
     \  }\r\n\r\nprivate:\r\n  inline T get(int d, int L, int R) {\r\n    if constexpr\
     \ (USE_SUM) return cumsum[d][R] - cumsum[d][L];\r\n    return 0;\r\n  }\r\n};\r\
-    \n*/\r\n#line 1 \"ds/static_range_product_group.hpp\"\n\ntemplate <typename Monoid>\n\
+    \n*/\r\n#line 2 \"ds/static_range_product_group.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Static_Range_Product_Group {\n  using MX = Monoid;\n  using X = typename\
     \ MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group() {}\n\
     \  void build(vc<X>& A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n\
     \    for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X\
-    \ prod(int l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n#line\
-    \ 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n\
-    \  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
+    \ prod(int l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate\
+    \ <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
+    #line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
     \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
     \ { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
     \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
@@ -536,7 +537,7 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 01:18:38+09:00'
+  timestamp: '2024-07-20 01:26:34+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp
