@@ -3,13 +3,18 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
+#include "ds/static_range_product_group.hpp"
+
 void solve() {
   LL(N, Q);
-  VEC(int, A, N);
-  auto Ac = cumsum<ll>(A);
+
+  Prefix_Sum<u64> seg(N, [&](int i) -> u32 {
+    U32(x);
+    return x;
+  });
   FOR(Q) {
-    INT(L, R);
-    print(Ac[R] - Ac[L]);
+    INT(l, r);
+    print(seg.prod(l, r));
   }
 }
 
