@@ -2,6 +2,15 @@
 #include "ds/index_compression.hpp"
 #include "alg/monoid/add.hpp"
 
+// 静的メソッドinverseの存在をチェックするテンプレート
+template <typename, typename = std::void_t<>>
+struct has_inverse : std::false_type {};
+
+template <typename T>
+struct has_inverse<T, std::void_t<decltype(
+                          T::inverse(std::declval<typename T::value_type>()))>>
+    : std::true_type {};
+
 struct Dummy_Data_Structure {
   using MX = Monoid_Add<bool>;
   void build(const vc<bool>& A) {}
@@ -70,7 +79,7 @@ struct Wavelet_Matrix {
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      \ if (k >> d & 1) cnt += r0 - l0, L = l1, R = r1;
+      if (k >> d & 1) cnt += r0 - l0, L = l1, R = r1;
       if (!(k >> d & 1)) L = l0, R = r0;
     }
     return cnt;
@@ -80,6 +89,56 @@ struct Wavelet_Matrix {
   int count(int L, int R, Y y1, Y y2) {
     return prefix_count(L, R, y2) - prefix_count(L, R, y1);
   }
+
+  // [L,R) x [0,y)
+  pair<int, T> prefix_count_and_prod(int L, int R, Y y) {
+    int k = IDX(y);
+    if (k == 0) return {0, Mono::unit()};
+    if (k == K) return {R - L, seg[log].prod(L, R)};
+    int cnt = 0;
+    T ans = Mono::unit();
+    for (int d = log - 1; d >= 0; --d) {
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (k >> d & 1) {
+        cnt += r0 - l0;
+        ans = Mono::op(ans, seg[d].prod(l0, r0)), L = l1, R = r1;
+      }
+      if (!(k >> d & 1)) L = l0, R = r0;
+    }
+    return {cnt, ans};
+  }
+
+  // [L,R) x [y1,y2)
+  pair<int, T> count_and_prod(int L, int R, Y y1, Y y2) {
+    if constexpr (has_inverse<Mono>::value) {
+      auto [c1, t1] = prefix_count_and_prod(L, R, y1);
+      auto [c2, t2] = prefix_count_and_prod(L, R, y2);
+      return {c2 - c1, Mono::op(Mono::inverse(t1), t2)};
+    }
+    int lo = IDX(y1), hi = IDX(y2), cnt = 0;
+    T ans = Mono::unit();
+    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
+      assert(b - a == (1 << d));
+      if (hi <= a || b <= lo) return;
+      if (lo <= a && b <= hi) {
+        cnt += R - L, ans = Mono::op(ans, seg[d].prod(L, R));
+        return;
+      }
+      --d;
+      int c = (a + b) / 2;
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);
+    };
+    dfs(dfs, log, L, R, 0, 1 << log);
+    return {cnt, ans};
+  }
+
+  // [L,R) x [y1,y2)
+  T prefix_prod(int L, int R, Y y) { return prefix_count_and_prod(L, R, y).se; }
+  // [L,R) x [y1,y2)
+  T prod(int L, int R, Y y1, Y y2) { return count_and_prod(L, R, y1, y2).se; }
 };
 
 /*
