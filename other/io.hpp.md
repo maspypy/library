@@ -993,9 +993,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
-  - icon: ':x:'
-    path: test/mytest/wavelet_matrix.test.cpp
-    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -2121,10 +2118,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc336g.test.cpp
     title: test_atcoder/abc336g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc345g.test.cpp
     title: test_atcoder/abc345g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2653,7 +2650,6 @@ data:
   - test/mytest/bell_number.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/palindrome_decomposition_dp.test.cpp
-  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/count_labeled_strong.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/2026.test.cpp

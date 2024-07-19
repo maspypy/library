@@ -26,9 +26,6 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
-  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -38,28 +35,32 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    links: []
-  bundledCode: "#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
-    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
-    )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
-    \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
-    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
-    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
-    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
-    \ <>\nconstexpr int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
-    \ = ll(infty<int>) * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> =\
-    \ infty<int>;\ntemplate <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\n\
-    constexpr i128 infty<i128> = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr\
-    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
-    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
-    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
-    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
-    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
-    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
-    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>>\
-    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n\
-    \  vector<vector<vector<type>>> name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n\
-    #define vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
+    links:
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/mytest/wavelet_matrix.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
+    \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
+    \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
+    \nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned long\
+    \ long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 =\
+    \ __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
+    \ int infty<int> = 1'000'000'000;\ntemplate <>\nconstexpr ll infty<ll> = ll(infty<int>)\
+    \ * infty<int> * 2;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate\
+    \ <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128>\
+    \ = i128(infty<ll>) * infty<ll>;\ntemplate <>\nconstexpr double infty<double>\
+    \ = infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
+    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
+    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
+    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
+    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
+    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
+    \ greater<T>>;\n\n#define vv(type, name, h, ...) \\\n  vector<vector<type>> name(h,\
+    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...)   \\\n  vector<vector<vector<type>>>\
+    \ name( \\\n      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define\
+    \ vvvv(type, name, a, b, c, ...)       \\\n  vector<vector<vector<vector<type>>>>\
     \ name( \\\n      a, vector<vector<vector<type>>>(       \\\n             b, vector<vector<type>>(c,\
     \ vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n#define FOR1(a)\
     \ for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i = 0; i < ll(a);\
@@ -119,99 +120,8 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n#include\
-    \ <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace fastio\
-    \ {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar obuf[SZ];\r\
-    \nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0, pir = 0, por\
-    \ = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr Pre() : num()\
-    \ {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\n      for\
-    \ (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n        n\
-    \ /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline void load()\
-    \ {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil + fread(ibuf\
-    \ + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir < SZ) ibuf[pir++]\
-    \ = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf, 1, por, stdout);\r\
-    \n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n    if (pil + 1 > pir)\
-    \ load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n}\r\n\r\nvoid\
-    \ rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n    if (pil + 1 >\
-    \ pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\n  do {\r\n\
-    \    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\n  } while\
-    \ (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T &x) {\r\n\
-    \  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename T>\r\
-    \nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\n \
-    \ do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n  if\
-    \ constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c == '-')\
-    \ { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c) { x\
-    \ = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
-    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
-    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
-    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
-    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
-    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
-    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
-    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
-    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
-    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
-    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
-    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
-    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
-    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
-    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
-    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
-    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
-    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
-    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
-    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
-    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
-    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
-    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
-    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
-    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
-    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
-    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
-    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
-    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
-    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
-    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
-    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
-    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
-    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
-    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
-    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
-    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 3 \"test/mytest/wavelet_matrix.test.cpp\"\n\n#line 2 \"random/base.hpp\"\n\n\
-    u64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \  return B;\n}\n#endif\n#line 4 \"test/mytest/wavelet_matrix.test.cpp\"\n\n#line\
+    \ 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -339,19 +249,42 @@ data:
     \ r0;\r\n      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\
     \n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == K ? infty<Y> : ItoY[p]);\r\
     \n  }\r\n\r\n  // y \u4EE5\u4E0B\u6700\u5927 OR -infty<T>\r\n  Y prev(int L, int\
-    \ R, Y y) {\r\n    int k = IDX(y + 1);\r\n    SHOW(L, R, y);\r\n    SHOW(ItoY,\
-    \ y, k);\r\n    int p = -1;\r\n    auto dfs = [&](auto& dfs, int d, int L, int\
-    \ R, int a, int b) -> void {\r\n      if (b - 1 <= p || L == R || k <= a) return;\r\
-    \n      if (d == 0) {\r\n        chmax(p, a);\r\n        return;\r\n      }\r\n\
-    \      --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count(L, 0),\
-    \ r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] -\
-    \ r0;\r\n      dfs(dfs, d, l1, r1, c, b), dfs(dfs, d, l0, r0, a, c);\r\n    };\r\
-    \n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == -1 ? -infty<Y> : ItoY[p]);\r\
-    \n  }\r\n};\r\n\r\n/*\r\n// \u5EA7\u5727\u3059\u308B\u304B\u3069\u3046\u304B\u3092\
-    \ COMPRESS \u3067\u6307\u5B9A\u3059\u308B\r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\
-    \u3092\u3059\u308B\u5834\u5408\u306B\u306F\u3001\u30B3\u30F3\u30B9\u30C8\u30E9\
-    \u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\u3068\r\ntemplate <typename T,\
-    \ bool COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix_Old {\r\n  static_assert(is_same_v<T,\
+    \ R, Y y) {\r\n    int k = IDX(y + 1);\r\n    int p = -1;\r\n    auto dfs = [&](auto&\
+    \ dfs, int d, int L, int R, int a, int b) -> void {\r\n      if (b - 1 <= p ||\
+    \ L == R || k <= a) return;\r\n      if (d == 0) {\r\n        chmax(p, a);\r\n\
+    \        return;\r\n      }\r\n      --d;\r\n      int c = (a + b) / 2;\r\n  \
+    \    int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L +\
+    \ mid[d] - l0, r1 = R + mid[d] - r0;\r\n      dfs(dfs, d, l1, r1, c, b), dfs(dfs,\
+    \ d, l0, r0, a, c);\r\n    };\r\n    dfs(dfs, log, L, R, 0, 1 << log);\r\n   \
+    \ return (p == -1 ? -infty<Y> : ItoY[p]);\r\n  }\r\n\r\n  Y median(bool UPPER,\
+    \ int L, int R) {\r\n    assert(0 <= L && L < R && R <= n);\r\n    int k = (UPPER\
+    \ ? (R - L) / 2 : (R - L - 1) / 2);\r\n    return kth(L, R, k);\r\n  }\r\n\r\n\
+    \  pair<Y, T> kth_value_and_prod(int L, int R, int k) {\r\n    assert(0 <= k &&\
+    \ k <= R - L);\r\n    if (k == R - L) return {infty<Y>, seg[log].prod(L, R)};\r\
+    \n    int p = 0;\r\n    T t = Mono::unit();\r\n    for (int d = log - 1; d >=\
+    \ 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n \
+    \     int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k < r0 - l0)\
+    \ {\r\n        L = l0, R = r0;\r\n      } else {\r\n        t = Mono::op(t, seg[d].prod(l0,\
+    \ r0)), k -= r0 - l0, L = l1, R = r1,\r\n        p |= 1 << d;\r\n      }\r\n \
+    \   }\r\n    t = Mono::op(t, seg[0].prod(L, L + k));\r\n    return {ItoY[p], t};\r\
+    \n  }\r\n\r\n  T prod_index_range(int L, int R, int k1, int k2) {\r\n    static_assert(has_inverse<Mono>::value);\r\
+    \n    T t1 = kth_value_and_prod(L, R, k1).se;\r\n    T t2 = kth_value_and_prod(L,\
+    \ R, k2).se;\r\n    return Mono::op(Mono::inverse(t1), t2);\r\n  }\r\n\r\n  //\
+    \ [L,R) x [0,y) \u3067\u306E check(cnt, prod) \u304C true \u3068\u306A\u308B\u6700\
+    \u5927\u306E (cnt,prod)\r\n  template <typename F>\r\n  pair<int, T> max_right(F\
+    \ check, int L, int R) {\r\n    int cnt = 0;\r\n    T t = Mono::unit();\r\n  \
+    \  assert(check(0, Mono::unit()));\r\n    if (check(R - L, seg[log].prod(L, R)))\
+    \ {\r\n      return {R - L, seg[log].prod(L, R)};\r\n    }\r\n    for (int d =\
+    \ log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
+    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      int cnt1\
+    \ = cnt + r0 - l0, t1 = Mono::op(t, seg[d].prod(l0, r0));\r\n      if (check(cnt1,\
+    \ t1)) {\r\n        cnt = cnt1, t = t1, L = l1, R = r1;\r\n      } else {\r\n\
+    \        L = l0, R = r0;\r\n      }\r\n    }\r\n    return {cnt, t};\r\n  }\r\n\
+    };\r\n\r\n/*\r\n// \u5EA7\u5727\u3059\u308B\u304B\u3069\u3046\u304B\u3092 COMPRESS\
+    \ \u3067\u6307\u5B9A\u3059\u308B\r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\u3092\
+    \u3059\u308B\u5834\u5408\u306B\u306F\u3001\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
+    \u30BF\u3067 log \u3092\u6E21\u3059\u3053\u3068\r\ntemplate <typename T, bool\
+    \ COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix_Old {\r\n  static_assert(is_same_v<T,\
     \ int> || is_same_v<T, ll>);\r\n  int N, lg;\r\n  vector<int> mid;\r\n  vector<Bit_Vector>\
     \ bv;\r\n  vc<T> key;\r\n  bool set_log;\r\n  vvc<T> cumsum;\r\n\r\n  Wavelet_Matrix_Old()\
     \ {}\r\n\r\n  // \u548C\u3092\u4F7F\u308F\u306A\u3044\u306A\u3089\u3001SUM_data\
@@ -501,7 +434,7 @@ data:
     \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
     \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
     \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 9 \"test/mytest/wavelet_matrix.test.cpp\"\n\ntemplate <bool SMALL_Y,\
+    };\r\n#line 10 \"test/mytest/wavelet_matrix.test.cpp\"\n\ntemplate <bool SMALL_Y,\
     \ typename SEGTREE>\nvoid test(int N) {\n  int MAX = RNG(2, 1 << 10);\n  vc<int>\
     \ A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n\
     \n  Wavelet_Matrix<int, false, SEGTREE> WM(A, X);\n  using Mono = SEGTREE::MX;\n\
@@ -515,73 +448,71 @@ data:
     \      FOR(i, L, R) if (lo <= A[i] && A[i] < hi) sm = Mono::op(sm, X[i]);\n  \
     \    assert(WM.prod(L, R, lo, hi) == sm);\n    }\n    if (t == 2) { // kth\n \
     \     if (L == R) continue;\n      int k = RNG(R - L);\n      sort(all(B));\n\
-    \      SHOW(B[k], WM.kth(L, R, k));\n      assert(WM.kth(L, R, k) == B[k]);\n\
-    \    }\n    // if (t == 3) { // max_right\n    //   int a = RNG(0, 10);\n    //\
-    \   int b = RNG(0, 10);\n    //   int c = RNG(0, a * (R - L) + b * MAX * (R -\
-    \ L) + 1);\n    //   auto check\n    //       = [&](int cnt, int sm) -> bool {\
-    \ return a * cnt + b * sm <= c; };\n    //   auto p = WM.max_right(check, L, R);\n\
-    \    //   int k = binary_search(\n    //       [&](int k) -> bool {\n    //  \
-    \       int sm = WM.sum_index_range(L, R, 0, k);\n    //         return check(k,\
-    \ sm);\n    //       },\n    //       0, R - L + 1);\n    //   int sm = WM.sum_index_range(L,\
-    \ R, 0, k);\n    //   assert(p.fi == k && p.se == sm);\n    // }\n    // if (t\
-    \ == 4) { // k-th value and sum\n    //   int k = RNG(0, R - L + 1);\n    // \
-    \  B.eb(infty<int>);\n    //   auto I = argsort(B);\n    //   int val = B[I[k]];\n\
-    \    //   int sm = 0;\n    //   FOR(i, k) sm += Y[I[i]];\n    //   auto p = WM.kth_value_sum(L,\
-    \ R, k);\n    //   assert(p.fi == val && p.se == sm);\n    // }\n    if (t ==\
-    \ 5) { // next\n      int x = RNG(-1, MAX + 2);\n      int ans = infty<int>;\n\
-    \      for (auto& b: B) {\n        if (x <= b) chmin(ans, b);\n      }\n     \
-    \ assert(ans == WM.next(L, R, x));\n    }\n    if (t == 6) { // prev\n      int\
-    \ x = RNG(-1, MAX + 1);\n      int ans = -infty<int>;\n      for (auto& b: B)\
-    \ {\n        if (b <= x) chmax(ans, b);\n      }\n      assert(ans == WM.prev(L,\
-    \ R, x));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N, 64) {\n    FOR(50) {\n\
-    \      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<false,\
-    \ Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<true, SegTree<Monoid_Min<int>>>(N);\n\
-    \      test<false, SegTree<Monoid_Min<int>>>(N);\n    }\n  }\n  solve();\n\n \
-    \ return 0;\n}\n"
-  code: "#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"random/base.hpp\"\
-    \n#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\n#include \"ds/static_range_product_group.hpp\"\
-    \n#include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid/min.hpp\"\n\ntemplate\
-    \ <bool SMALL_Y, typename SEGTREE>\nvoid test(int N) {\n  int MAX = RNG(2, 1 <<\
-    \ 10);\n  vc<int> A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i,\
-    \ N) A[i] = RNG(MAX);\n\n  Wavelet_Matrix<int, false, SEGTREE> WM(A, X);\n  using\
-    \ Mono = SEGTREE::MX;\n\n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, max(1,\
-    \ N));\n    int R = RNG(0, max(1, N + 1));\n    if (L > R) swap(L, R);\n    int\
-    \ lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n\
-    \    ++hi;\n    vc<int> B = {A.begin() + L, A.begin() + R};\n    vc<int> Y = {X.begin()\
-    \ + L, X.begin() + R};\n    int t = RNG(0, 7);\n    if (t == 0) { // count\n \
-    \     int cnt = 0;\n      for (auto&& x: B)\n        if (lo <= x && x < hi) cnt\
-    \ += 1;\n      assert(WM.count(L, R, lo, hi) == cnt);\n    }\n    if (t == 1)\
-    \ { // sm\n      int sm = Mono::unit();\n      FOR(i, L, R) if (lo <= A[i] &&\
-    \ A[i] < hi) sm = Mono::op(sm, X[i]);\n      assert(WM.prod(L, R, lo, hi) == sm);\n\
-    \    }\n    if (t == 2) { // kth\n      if (L == R) continue;\n      int k = RNG(R\
-    \ - L);\n      sort(all(B));\n      SHOW(B[k], WM.kth(L, R, k));\n      assert(WM.kth(L,\
-    \ R, k) == B[k]);\n    }\n    // if (t == 3) { // max_right\n    //   int a =\
-    \ RNG(0, 10);\n    //   int b = RNG(0, 10);\n    //   int c = RNG(0, a * (R -\
-    \ L) + b * MAX * (R - L) + 1);\n    //   auto check\n    //       = [&](int cnt,\
-    \ int sm) -> bool { return a * cnt + b * sm <= c; };\n    //   auto p = WM.max_right(check,\
-    \ L, R);\n    //   int k = binary_search(\n    //       [&](int k) -> bool {\n\
-    \    //         int sm = WM.sum_index_range(L, R, 0, k);\n    //         return\
-    \ check(k, sm);\n    //       },\n    //       0, R - L + 1);\n    //   int sm\
-    \ = WM.sum_index_range(L, R, 0, k);\n    //   assert(p.fi == k && p.se == sm);\n\
-    \    // }\n    // if (t == 4) { // k-th value and sum\n    //   int k = RNG(0,\
-    \ R - L + 1);\n    //   B.eb(infty<int>);\n    //   auto I = argsort(B);\n   \
-    \ //   int val = B[I[k]];\n    //   int sm = 0;\n    //   FOR(i, k) sm += Y[I[i]];\n\
-    \    //   auto p = WM.kth_value_sum(L, R, k);\n    //   assert(p.fi == val &&\
-    \ p.se == sm);\n    // }\n    if (t == 5) { // next\n      int x = RNG(-1, MAX\
-    \ + 2);\n      int ans = infty<int>;\n      for (auto& b: B) {\n        if (x\
-    \ <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L, R, x));\n    }\n\
-    \    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n      int ans = -infty<int>;\n\
-    \      for (auto& b: B) {\n        if (b <= x) chmax(ans, b);\n      }\n     \
-    \ assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(N,\
-    \ 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
+    \      assert(WM.kth(L, R, k) == B[k]);\n    }\n    if (is_same_v<Mono, Monoid_Add<int>>\
+    \ && t == 3) { // max_right\n      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n\
+    \      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n\
+    \          = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n\
+    \      auto p = WM.max_right(check, L, R);\n      int cnt = 0, sm = 0;\n     \
+    \ binary_search(\n          [&](int y) -> bool {\n            auto [c, s] = WM.prefix_count_and_prod(L,\
+    \ R, y);\n            if (check(c, s)) cnt = c, sm = s;\n            return check(c,\
+    \ s);\n          },\n          -10, MAX + 10);\n      assert(p.fi == cnt && p.se\
+    \ == sm);\n    }\n    if (t == 4) { // k-th value and prod\n      int k = RNG(0,\
+    \ R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n      int\
+    \ val = B[I[k]];\n      int sm = Mono::unit();\n      FOR(i, k) sm = Mono::op(sm,\
+    \ Y[I[i]]);\n      auto p = WM.kth_value_and_prod(L, R, k);\n      assert(p.fi\
+    \ == val && p.se == sm);\n    }\n    if (t == 5) { // next\n      int x = RNG(-1,\
+    \ MAX + 2);\n      int ans = infty<int>;\n      for (auto& b: B) {\n        if\
+    \ (x <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L, R, x));\n \
+    \   }\n    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n      int ans\
+    \ = -infty<int>;\n      for (auto& b: B) {\n        if (b <= x) chmax(ans, b);\n\
+    \      }\n      assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  FOR(N, 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
+    \      test<false, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<true,\
+    \ SegTree<Monoid_Min<int>>>(N);\n      test<false, SegTree<Monoid_Min<int>>>(N);\n\
+    \    }\n  }\n  solve();\n\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
+    my_template.hpp\"\n\n#include \"random/base.hpp\"\n#include \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \n#include \"ds/static_range_product_group.hpp\"\n#include \"ds/segtree/segtree.hpp\"\
+    \n#include \"alg/monoid/min.hpp\"\n\ntemplate <bool SMALL_Y, typename SEGTREE>\n\
+    void test(int N) {\n  int MAX = RNG(2, 1 << 10);\n  vc<int> A(N);\n  vc<int> X(N);\n\
+    \  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n\n  Wavelet_Matrix<int,\
+    \ false, SEGTREE> WM(A, X);\n  using Mono = SEGTREE::MX;\n\n  int Q = 100;\n \
+    \ FOR(Q) {\n    int L = RNG(0, max(1, N));\n    int R = RNG(0, max(1, N + 1));\n\
+    \    if (L > R) swap(L, R);\n    int lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n\
+    \    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin() + L, A.begin()\
+    \ + R};\n    vc<int> Y = {X.begin() + L, X.begin() + R};\n    int t = RNG(0, 7);\n\
+    \    if (t == 0) { // count\n      int cnt = 0;\n      for (auto&& x: B)\n   \
+    \     if (lo <= x && x < hi) cnt += 1;\n      assert(WM.count(L, R, lo, hi) ==\
+    \ cnt);\n    }\n    if (t == 1) { // sm\n      int sm = Mono::unit();\n      FOR(i,\
+    \ L, R) if (lo <= A[i] && A[i] < hi) sm = Mono::op(sm, X[i]);\n      assert(WM.prod(L,\
+    \ R, lo, hi) == sm);\n    }\n    if (t == 2) { // kth\n      if (L == R) continue;\n\
+    \      int k = RNG(R - L);\n      sort(all(B));\n      assert(WM.kth(L, R, k)\
+    \ == B[k]);\n    }\n    if (is_same_v<Mono, Monoid_Add<int>> && t == 3) { // max_right\n\
+    \      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n      int c = RNG(0, a\
+    \ * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n          = [&](int cnt,\
+    \ int sm) -> bool { return a * cnt + b * sm <= c; };\n      auto p = WM.max_right(check,\
+    \ L, R);\n      int cnt = 0, sm = 0;\n      binary_search(\n          [&](int\
+    \ y) -> bool {\n            auto [c, s] = WM.prefix_count_and_prod(L, R, y);\n\
+    \            if (check(c, s)) cnt = c, sm = s;\n            return check(c, s);\n\
+    \          },\n          -10, MAX + 10);\n      assert(p.fi == cnt && p.se ==\
+    \ sm);\n    }\n    if (t == 4) { // k-th value and prod\n      int k = RNG(0,\
+    \ R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n      int\
+    \ val = B[I[k]];\n      int sm = Mono::unit();\n      FOR(i, k) sm = Mono::op(sm,\
+    \ Y[I[i]]);\n      auto p = WM.kth_value_and_prod(L, R, k);\n      assert(p.fi\
+    \ == val && p.se == sm);\n    }\n    if (t == 5) { // next\n      int x = RNG(-1,\
+    \ MAX + 2);\n      int ans = infty<int>;\n      for (auto& b: B) {\n        if\
+    \ (x <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L, R, x));\n \
+    \   }\n    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n      int ans\
+    \ = -infty<int>;\n      for (auto& b: B) {\n        if (b <= x) chmax(ans, b);\n\
+    \      }\n      assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  FOR(N, 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
     \      test<false, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<true,\
     \ SegTree<Monoid_Min<int>>>(N);\n      test<false, SegTree<Monoid_Min<int>>>(N);\n\
     \    }\n  }\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - random/base.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/bit_vector.hpp
@@ -593,7 +524,7 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 19:22:24+09:00'
+  timestamp: '2024-07-19 19:55:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp
