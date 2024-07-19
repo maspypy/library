@@ -199,6 +199,31 @@ struct Wavelet_Matrix {
     dfs(dfs, log, L, R, 0, 1 << log);
     return (p == -1 ? -infty<Y> : ItoY[p]);
   }
+
+  Y median(bool UPPER, int L, int R) {
+    assert(0 <= L && L < R && R <= n);
+    int k = (UPPER ? (R - L) / 2 : (R - L - 1) / 2);
+    return kth(L, R, k);
+  }
+
+  pair<Y, T> kth_value_and_prod(int L, int R, int k) {
+    assert(0 <= k && k <= R - L);
+    if (k == R - L) return {infty<Y>, seg[log].prod(L, R)};
+    int p = 0;
+    T t = Mono::unit();
+    for (int d = log - 1; d >= 0; --d) {
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (k < r0 - l0) {
+        L = l0, R = r0;
+      } else {
+        t = Mono::op(t, seg[d].prod(l0, r0)), k -= r0 - l0, L = l1, R = r1,
+        p |= 1 << d;
+      }
+    }
+    t = Mono::op(t, seg[0].prod(L, L + k));
+    return {ItoY[p], t};
+  }
 };
 
 /*
