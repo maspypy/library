@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -84,15 +84,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint>\
@@ -117,7 +117,7 @@ data:
   - linalg/blackbox/vandermonde.hpp
   - graph/chromatic.hpp
   timestamp: '2022-11-23 08:11:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp

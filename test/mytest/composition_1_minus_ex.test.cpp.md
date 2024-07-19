@@ -64,10 +64,10 @@ data:
   - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

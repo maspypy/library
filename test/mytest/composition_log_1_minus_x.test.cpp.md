@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -67,10 +67,10 @@ data:
   - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'
@@ -85,10 +85,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'

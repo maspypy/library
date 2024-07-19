@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -43,14 +43,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc269/tasks/abc269_Ex
@@ -670,12 +670,34 @@ data:
     \n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n    FOR(i, m) {\r\n   \
     \   if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\n      } else\
     \ {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);\r\n   \
-    \   }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n#line\
-    \ 2 \"poly/sum_of_prefix_suffix_products.hpp\"\n\n/*\n\u591A\u9805\u5F0F\u306E\
-    \u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073 g0, g1, ..., g{N-1} \u3092\u4E0E\
-    \u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3 + f0g1g2g3 + g0g1g2g3\n\u306E\
-    \u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\u308B\u3002\u5206\u5272\u7D71\
-    \u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\u306E\u7DCF\u548C\u3002\nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n\
+    \   }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n\r\
+    \n// product of 1-A[i]x\r\ntemplate <typename mint>\r\nvc<mint> convolution_all_1(vc<mint>\
+    \ A) {\r\n  if (!mint::can_ntt()) {\r\n    vvc<mint> polys;\r\n    for (auto&\
+    \ a: A) polys.eb(vc<mint>({mint(1), -a}));\r\n    return convolution_all(polys);\r\
+    \n  }\r\n  int D = 6;\r\n  using poly = vc<mint>;\r\n  int n = 1;\r\n  while (n\
+    \ < len(A)) n *= 2;\r\n  int k = topbit(n);\r\n  vc<mint> F(n), nxt_F(n);\r\n\
+    \  FOR(i, len(A)) F[i] = -A[i];\r\n  FOR(d, k) {\r\n    int b = 1 << d;\r\n  \
+    \  if (d < D) {\r\n      fill(all(nxt_F), mint(0));\r\n      for (int L = 0; L\
+    \ < n; L += 2 * b) {\r\n        FOR(i, b) FOR(j, b) { nxt_F[L + i + j] += F[L\
+    \ + i] * F[L + b + j]; }\r\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L\
+    \ + b + i];\r\n      }\r\n    }\r\n    elif (d == D) {\r\n      for (int L = 0;\
+    \ L < n; L += 2 * b) {\r\n        poly f1 = {F.begin() + L, F.begin() + L + b};\r\
+    \n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\r\n        f1.resize(2\
+    \ * b), f2.resize(2 * b);\r\n        ntt(f1, 0), ntt(f2, 0);\r\n        FOR(i,\
+    \ b) nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    else\
+    \ {\r\n      for (int L = 0; L < n; L += 2 * b) {\r\n        poly f1 = {F.begin()\
+    \ + L, F.begin() + L + b};\r\n        poly f2 = {F.begin() + L + b, F.begin()\
+    \ + L + 2 * b};\r\n        ntt_doubling(f1), ntt_doubling(f2);\r\n        FOR(i,\
+    \ b) nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    swap(F,\
+    \ nxt_F);\r\n  }\r\n  if (k - 1 >= D) ntt(F, 1);\r\n  F.eb(1), reverse(all(F));\r\
+    \n  F.resize(len(A) + 1);\r\n  return F;\r\n}\n#line 2 \"poly/sum_of_prefix_suffix_products.hpp\"\
+    \n\n/*\n\u591A\u9805\u5F0F\u306E\u5217 f0, f1, ..., f{N-1} \u304A\u3088\u3073\
+    \ g0, g1, ..., g{N-1} \u3092\u4E0E\u3048\u308B\u3002\nf0f1f2f3 + f0f1f2g3 + f0f1g2g3\
+    \ + f0g1g2g3 + g0g1g2g3\n\u306E\u3088\u3046\u306A\u7DCF\u548C\u3092\u6C42\u3081\
+    \u308B\u3002\u5206\u5272\u7D71\u6CBB\u3067 O(Nlog^2N)\u3002N \u306F\u6B21\u6570\
+    \u306E\u7DCF\u548C\u3002\nhttps://atcoder.jp/contests/nadafes2022_day1/tasks/nadafes2022_day1_p\n\
     */\ntemplate <typename mint>\nvc<mint> sum_of_prefix_suffix_products(vvc<mint>\
     \ F, vvc<mint> G) {\n  int n = len(F);\n  using poly = vc<mint>;\n  auto add =\
     \ [&](poly f, poly g) -> poly {\n    poly h(max(len(f), len(g)));\n    FOR(i,\
@@ -734,8 +756,8 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc269ex.test.cpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-20 03:03:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc269ex.test.cpp
 layout: document

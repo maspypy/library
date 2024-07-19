@@ -7,13 +7,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'

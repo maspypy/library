@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

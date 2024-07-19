@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -120,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267g.test.cpp
     title: test_atcoder/abc267g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,9 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid\
@@ -257,7 +257,7 @@ data:
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
   timestamp: '2024-04-23 20:14:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
