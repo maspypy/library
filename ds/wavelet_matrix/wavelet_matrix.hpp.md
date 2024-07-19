@@ -12,6 +12,9 @@ data:
     title: ds/index_compression.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
+  - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -27,7 +30,7 @@ data:
   - icon: ':x:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':x:'
@@ -204,21 +207,32 @@ data:
     \ = cnt + r0 - l0, t1 = Mono::op(t, seg[d].prod(l0, r0));\r\n      if (check(cnt1,\
     \ t1)) {\r\n        cnt = cnt1, t = t1, L = l1, R = r1;\r\n      } else {\r\n\
     \        L = l0, R = r0;\r\n      }\r\n    }\r\n    return {cnt, t};\r\n  }\r\n\
-    };\r\n\r\n/*\r\n// \u5EA7\u5727\u3059\u308B\u304B\u3069\u3046\u304B\u3092 COMPRESS\
-    \ \u3067\u6307\u5B9A\u3059\u308B\r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\u3092\
-    \u3059\u308B\u5834\u5408\u306B\u306F\u3001\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\
-    \u30BF\u3067 log \u3092\u6E21\u3059\u3053\u3068\r\ntemplate <typename T, bool\
-    \ COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix_Old {\r\n  static_assert(is_same_v<T,\
-    \ int> || is_same_v<T, ll>);\r\n  int N, lg;\r\n  vector<int> mid;\r\n  vector<Bit_Vector>\
-    \ bv;\r\n  vc<T> key;\r\n  bool set_log;\r\n  vvc<T> cumsum;\r\n\r\n  Wavelet_Matrix_Old()\
-    \ {}\r\n\r\n  // \u548C\u3092\u4F7F\u308F\u306A\u3044\u306A\u3089\u3001SUM_data\
-    \ \u306F\u7A7A\u3067\u3088\u3044\r\n  Wavelet_Matrix_Old(vc<T> A, vc<T> SUM_data\
-    \ = {}, int log = -1) {\r\n    build(A, SUM_data, log);\r\n  }\r\n\r\n  void build(vc<T>\
-    \ A, vc<T> SUM_data = {}, int log = -1) {\r\n    if constexpr (USE_SUM) { assert(len(SUM_data)\
-    \ == len(A)); }\r\n    N = len(A), lg = log, set_log = (log != -1);\r\n    if\
-    \ (N == 0) {\r\n      lg = 0;\r\n      cumsum.resize(1);\r\n      cumsum[0] =\
-    \ {0};\r\n      return;\r\n    }\r\n    vc<T>& S = SUM_data;\r\n    if (COMPRESS)\
-    \ {\r\n      assert(!set_log);\r\n      key.reserve(N);\r\n      vc<int> I = argsort(A);\r\
+    \r\n  void set(int i, T t) {\r\n    assert(0 <= i && i < n);\r\n    int L = i,\
+    \ R = i + 1;\r\n    seg[log].set(L, t);\r\n    for (int d = log - 1; d >= 0; --d)\
+    \ {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int\
+    \ l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0 < r0) L = l0, R\
+    \ = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].set(L, t);\r\n\
+    \    }\r\n  }\r\n  void multiply(int i, T t) {\r\n    assert(0 <= i && i < n);\r\
+    \n    int L = i, R = i + 1;\r\n    seg[log].multiply(L, t);\r\n    for (int d\
+    \ = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
+    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0\
+    \ < r0) L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].multiply(L,\
+    \ t);\r\n    }\r\n  }\r\n};\r\n\r\n/*\r\n// \u5EA7\u5727\u3059\u308B\u304B\u3069\
+    \u3046\u304B\u3092 COMPRESS \u3067\u6307\u5B9A\u3059\u308B\r\n// xor \u7684\u306A\
+    \u4F7F\u3044\u65B9\u3092\u3059\u308B\u5834\u5408\u306B\u306F\u3001\u30B3\u30F3\
+    \u30B9\u30C8\u30E9\u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\u3068\r\ntemplate\
+    \ <typename T, bool COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix_Old {\r\n\
+    \  static_assert(is_same_v<T, int> || is_same_v<T, ll>);\r\n  int N, lg;\r\n \
+    \ vector<int> mid;\r\n  vector<Bit_Vector> bv;\r\n  vc<T> key;\r\n  bool set_log;\r\
+    \n  vvc<T> cumsum;\r\n\r\n  Wavelet_Matrix_Old() {}\r\n\r\n  // \u548C\u3092\u4F7F\
+    \u308F\u306A\u3044\u306A\u3089\u3001SUM_data \u306F\u7A7A\u3067\u3088\u3044\r\n\
+    \  Wavelet_Matrix_Old(vc<T> A, vc<T> SUM_data = {}, int log = -1) {\r\n    build(A,\
+    \ SUM_data, log);\r\n  }\r\n\r\n  void build(vc<T> A, vc<T> SUM_data = {}, int\
+    \ log = -1) {\r\n    if constexpr (USE_SUM) { assert(len(SUM_data) == len(A));\
+    \ }\r\n    N = len(A), lg = log, set_log = (log != -1);\r\n    if (N == 0) {\r\
+    \n      lg = 0;\r\n      cumsum.resize(1);\r\n      cumsum[0] = {0};\r\n     \
+    \ return;\r\n    }\r\n    vc<T>& S = SUM_data;\r\n    if (COMPRESS) {\r\n    \
+    \  assert(!set_log);\r\n      key.reserve(N);\r\n      vc<int> I = argsort(A);\r\
     \n      for (auto&& i: I) {\r\n        if (key.empty() || key.back() != A[i])\
     \ key.eb(A[i]);\r\n        A[i] = len(key) - 1;\r\n      }\r\n      key.shrink_to_fit();\r\
     \n    }\r\n    if (lg == -1) lg = __lg(max<ll>(MAX(A), 1)) + 1;\r\n    mid.resize(lg),\
@@ -416,13 +430,23 @@ data:
     \ - r0;\r\n      int cnt1 = cnt + r0 - l0, t1 = Mono::op(t, seg[d].prod(l0, r0));\r\
     \n      if (check(cnt1, t1)) {\r\n        cnt = cnt1, t = t1, L = l1, R = r1;\r\
     \n      } else {\r\n        L = l0, R = r0;\r\n      }\r\n    }\r\n    return\
-    \ {cnt, t};\r\n  }\r\n};\r\n\r\n/*\r\n// \u5EA7\u5727\u3059\u308B\u304B\u3069\u3046\
-    \u304B\u3092 COMPRESS \u3067\u6307\u5B9A\u3059\u308B\r\n// xor \u7684\u306A\u4F7F\
-    \u3044\u65B9\u3092\u3059\u308B\u5834\u5408\u306B\u306F\u3001\u30B3\u30F3\u30B9\
-    \u30C8\u30E9\u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\u3068\r\ntemplate\
-    \ <typename T, bool COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix_Old {\r\n\
-    \  static_assert(is_same_v<T, int> || is_same_v<T, ll>);\r\n  int N, lg;\r\n \
-    \ vector<int> mid;\r\n  vector<Bit_Vector> bv;\r\n  vc<T> key;\r\n  bool set_log;\r\
+    \ {cnt, t};\r\n  }\r\n\r\n  void set(int i, T t) {\r\n    assert(0 <= i && i <\
+    \ n);\r\n    int L = i, R = i + 1;\r\n    seg[log].set(L, t);\r\n    for (int\
+    \ d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
+    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0\
+    \ < r0) L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].set(L,\
+    \ t);\r\n    }\r\n  }\r\n  void multiply(int i, T t) {\r\n    assert(0 <= i &&\
+    \ i < n);\r\n    int L = i, R = i + 1;\r\n    seg[log].multiply(L, t);\r\n   \
+    \ for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0\
+    \ = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\
+    \n      if (l0 < r0) L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n\
+    \      seg[d].multiply(L, t);\r\n    }\r\n  }\r\n};\r\n\r\n/*\r\n// \u5EA7\u5727\
+    \u3059\u308B\u304B\u3069\u3046\u304B\u3092 COMPRESS \u3067\u6307\u5B9A\u3059\u308B\
+    \r\n// xor \u7684\u306A\u4F7F\u3044\u65B9\u3092\u3059\u308B\u5834\u5408\u306B\u306F\
+    \u3001\u30B3\u30F3\u30B9\u30C8\u30E9\u30AF\u30BF\u3067 log \u3092\u6E21\u3059\u3053\
+    \u3068\r\ntemplate <typename T, bool COMPRESS, bool USE_SUM>\r\nstruct Wavelet_Matrix_Old\
+    \ {\r\n  static_assert(is_same_v<T, int> || is_same_v<T, ll>);\r\n  int N, lg;\r\
+    \n  vector<int> mid;\r\n  vector<Bit_Vector> bv;\r\n  vc<T> key;\r\n  bool set_log;\r\
     \n  vvc<T> cumsum;\r\n\r\n  Wavelet_Matrix_Old() {}\r\n\r\n  // \u548C\u3092\u4F7F\
     \u308F\u306A\u3044\u306A\u3089\u3001SUM_data \u306F\u7A7A\u3067\u3088\u3044\r\n\
     \  Wavelet_Matrix_Old(vc<T> A, vc<T> SUM_data = {}, int log = -1) {\r\n    build(A,\
@@ -529,9 +553,10 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix.hpp
   requiredBy:
+  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - string/prefix_substring_LCS.hpp
   - graph/ds/tree_wavelet_matrix.hpp
-  timestamp: '2024-07-19 19:55:37+09:00'
+  timestamp: '2024-07-19 20:55:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp

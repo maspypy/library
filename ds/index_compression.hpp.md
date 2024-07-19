@@ -6,6 +6,9 @@ data:
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':warning:'
+    path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
+    title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
+  - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -24,7 +27,7 @@ data:
   - icon: ':x:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
   - icon: ':x:'
@@ -117,6 +120,7 @@ data:
   path: ds/index_compression.hpp
   requiredBy:
   - ds/wavelet_matrix/wavelet_matrix.hpp
+  - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - string/prefix_substring_LCS.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   timestamp: '2024-07-19 14:53:37+09:00'

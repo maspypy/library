@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
@@ -112,22 +112,22 @@ data:
     \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
     \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
     \n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\ntemplate <typename Monoid>\n\
-    struct FenwickTree {\n  using G = Monoid;\n  using E = typename G::value_type;\n\
-    \  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n  FenwickTree(int\
-    \ n) { build(n); }\n  template <typename F>\n  FenwickTree(int n, F f) {\n   \
-    \ build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total = G::unit();\n  }\n\
-    \  void build(const vc<E>& v) {\n    build(len(v), [&](int i) -> E { return v[i];\
-    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
-    \    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n    FOR(i, n)\
-    \ { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int j = i + (i\
-    \ & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j - 1]);\n    }\n\
-    \    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total; }\n  E sum_all()\
-    \ { return total; }\n  E sum(int k) { return prefix_sum(k); }\n  E prod(int k)\
-    \ { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k); }\n\
-    \  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for (;\
-    \ k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n  E\
-    \ sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
+    struct FenwickTree {\n  using G = Monoid;\n  using MX = Monoid;\n  using E = typename\
+    \ G::value_type;\n  int n;\n  vector<E> dat;\n  E total;\n\n  FenwickTree() {}\n\
+    \  FenwickTree(int n) { build(n); }\n  template <typename F>\n  FenwickTree(int\
+    \ n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const vc<E>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m, G::unit());\n    total\
+    \ = G::unit();\n  }\n  void build(const vc<E>& v) {\n    build(len(v), [&](int\
+    \ i) -> E { return v[i]; });\n  }\n  template <typename F>\n  void build(int m,\
+    \ F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n    total = G::unit();\n\
+    \    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1; i <= n; ++i) {\n      int\
+    \ j = i + (i & -i);\n      if (j <= n) dat[j - 1] = G::op(dat[i - 1], dat[j -\
+    \ 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n  E prod_all() { return total;\
+    \ }\n  E sum_all() { return total; }\n  E sum(int k) { return prefix_sum(k); }\n\
+    \  E prod(int k) { return prefix_prod(k); }\n  E prefix_sum(int k) { return prefix_prod(k);\
+    \ }\n  E prefix_prod(int k) {\n    chmin(k, n);\n    E ret = G::unit();\n    for\
+    \ (; k > 0; k -= k & -k) ret = G::op(ret, dat[k - 1]);\n    return ret;\n  }\n\
+    \  E sum(int L, int R) { return prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L,\
     \ 0), chmin(R, n);\n    if (L == 0) return prefix_prod(R);\n    assert(0 <= L\
     \ && L <= R && R <= n);\n    E pos = G::unit(), neg = G::unit();\n    while (L\
     \ < R) { pos = G::op(pos, dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg\
@@ -199,7 +199,7 @@ data:
   isVerificationFile: true
   path: test/mytest/factorial_digit.test.cpp
   requiredBy: []
-  timestamp: '2024-04-09 15:17:41+09:00'
+  timestamp: '2024-07-19 20:55:35+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/factorial_digit.test.cpp
