@@ -1207,6 +1207,9 @@ data:
     path: test/mytest/incremental_scc.test.cpp
     title: test/mytest/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/index_compress.test.cpp
+    title: test/mytest/index_compress.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2361,10 +2364,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212g.test.cpp
     title: test_atcoder/abc212g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc212h.test.cpp
     title: test_atcoder/abc212h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc213g.test.cpp
     title: test_atcoder/abc213g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2391,10 +2394,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222g.test.cpp
     title: test_atcoder/abc222g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h.test.cpp
     title: test_atcoder/abc222h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2406,7 +2409,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc224h.test.cpp
     title: test_atcoder/abc224h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc226f.test.cpp
     title: test_atcoder/abc226f.test.cpp
   - icon: ':x:'
@@ -3182,6 +3185,7 @@ data:
   - test/mytest/remove_one_edge.test.cpp
   - test/mytest/qbinom.test.cpp
   - test/mytest/all_inverse.test.cpp
+  - test/mytest/index_compress.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/count_labeled_forest.test.cpp
