@@ -24,6 +24,7 @@ struct Wavelet_Matrix {
 
   int n, log, K;
   Index_Compression<Y, true, SMALL_Y> IDX;
+  vc<Y> ItoY;
   vc<int> mid;
   vc<Bit_Vector> bv;
   vc<SEGTREE> seg;
@@ -47,8 +48,10 @@ struct Wavelet_Matrix {
   void build(const vc<Y>& A, vc<T> S) {
     n = len(A);
     vc<int> B = IDX.build(A);
-    K = 1;
+    K = 0;
     for (auto& x: B) chmax(K, x + 1);
+    ItoY.resize(K);
+    FOR(i, n) ItoY[B[i]] = A[i];
     log = 0;
     while ((1 << log) < K) ++log;
     mid.resize(log), bv.assign(log, Bit_Vector(n));
@@ -139,6 +142,21 @@ struct Wavelet_Matrix {
   T prefix_prod(int L, int R, Y y) { return prefix_count_and_prod(L, R, y).se; }
   // [L,R) x [y1,y2)
   T prod(int L, int R, Y y1, Y y2) { return count_and_prod(L, R, y1, y2).se; }
+
+  Y kth(int L, int R, int k) {
+    assert(0 <= k && k < R - L);
+    int p = 0;
+    for (int d = log - 1; d >= 0; --d) {
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (k < r0 - l0) {
+        L = l0, R = r0;
+      } else {
+        k -= r0 - l0, L = l1, R = r1, p |= 1 << d;
+      }
+    }
+    return ItoY[p];
+  }
 };
 
 /*
