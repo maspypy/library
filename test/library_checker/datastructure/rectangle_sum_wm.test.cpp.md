@@ -404,10 +404,13 @@ data:
     #line 2 \"ds/static_range_product_group.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Static_Range_Product_Group {\n  using MX = Monoid;\n  using X = typename\
     \ MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group() {}\n\
-    \  void build(vc<X>& A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n\
-    \    for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X\
-    \ prod(int l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate\
-    \ <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
+    \  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n    build(m,\
+    \ f);\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n\
+    \    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i) dat[i + 1]\
+    \ = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A) {\n    n = len(A);\n  \
+    \  dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i) dat[i + 1]\
+    \ = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) { return MX::op(MX::inverse(dat[l]),\
+    \ dat[r]); }\n};\n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
     #line 7 \"test/library_checker/datastructure/rectangle_sum_wm.test.cpp\"\n\nvoid\
     \ solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
     \ Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<Prefix_Sum<ll>, int, false, false> WM(\n\
@@ -434,7 +437,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 02:22:39+09:00'
+  timestamp: '2024-07-20 04:13:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm.test.cpp

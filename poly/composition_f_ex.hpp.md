@@ -440,9 +440,9 @@ data:
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
     \n}\r\n#line 3 \"poly/sum_of_exp_bx.hpp\"\n\n// sum a e^{bx} \u3092 [0,NN \u6B21\
     \u307E\u3067\u3002O(Mlog^2M + NlogN)\ntemplate <typename mint>\nvc<mint> sum_of_exp_bx(int\
-    \ N, vc<mint> A, vc<mint> B) {\n  using poly = vc<mint>;\n  auto [f, g] = sum_of_rationals_1<mint>(B,\
-    \ A);\n  g.resize(N + 1);\n  f = convolution(f, fps_inv(g));\n  f.resize(N + 1);\n\
-    \  FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n#line 2 \"poly/composition_f_ex.hpp\"\
+    \ N, vc<mint> A, vc<mint> B) {\n  auto [f, g] = sum_of_rationals_1<mint>(B, A);\n\
+    \  g.resize(N + 1);\n  f = convolution(f, fps_inv(g));\n  f.resize(N + 1);\n \
+    \ FOR(n, N + 1) f[n] *= fact_inv<mint>(n);\n  return f;\n}\n#line 2 \"poly/composition_f_ex.hpp\"\
     \n\n// N \u6B21\u591A\u9805\u5F0F f \u306B\u5BFE\u3057\u3066\u3001f(e^x) \u3092\
     \ [0,N] \u6B21\u307E\u3067\u3002O(Nlog^2N)\n// f \u304C N \u3088\u308A\u9577\u304F\
     \u3066\u6B32\u3057\u3044\u3082\u306E\u304C [0,N] \u3068\u3044\u3046\u5834\u5408\
@@ -478,7 +478,7 @@ data:
   requiredBy:
   - poly/composition_f_1_minus_ex.hpp
   - poly/composition_f_ex_minus_1.hpp
-  timestamp: '2024-07-20 03:47:44+09:00'
+  timestamp: '2024-07-20 04:13:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/composition_1_minus_ex.test.cpp

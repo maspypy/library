@@ -1,6 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/static_range_product_group.hpp
+    title: ds/static_range_product_group.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -190,22 +196,42 @@ data:
     ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
     Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
     \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 5 \"test/library_checker/datastructure/static_range_sum.test.cpp\"\n\r\nvoid\
-    \ solve() {\r\n  LL(N, Q);\r\n  VEC(int, A, N);\r\n  auto Ac = cumsum<ll>(A);\r\
-    \n  FOR(Q) {\r\n    INT(L, R);\r\n    print(Ac[R] - Ac[L]);\r\n  }\r\n}\r\n\r\n\
-    signed main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \ 5 \"test/library_checker/datastructure/static_range_sum.test.cpp\"\n\r\n#line\
+    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
+    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
+    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
+    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
+    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/static_range_product_group.hpp\"\
+    \n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using MX\
+    \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
+    \ {}\n  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n  \
+    \  build(m, f);\n  }\n  template <typename F>\n  void build(int m, F f) {\n  \
+    \  n = m;\n    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i)\
+    \ dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A) {\n    n = len(A);\n\
+    \    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i) dat[i + 1]\
+    \ = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) { return MX::op(MX::inverse(dat[l]),\
+    \ dat[r]); }\n};\n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
+    #line 7 \"test/library_checker/datastructure/static_range_sum.test.cpp\"\n\r\n\
+    void solve() {\r\n  LL(N, Q);\r\n\r\n  Prefix_Sum<u64> seg(N, [&](int i) -> u32\
+    \ {\r\n    U32(x);\r\n    return x;\r\n  });\r\n  FOR(Q) {\r\n    INT(l, r);\r\
+    \n    print(seg.prod(l, r));\r\n  }\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
+    \n  return 0;\r\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_sum\"\r\n\r\
-    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\nvoid solve()\
-    \ {\r\n  LL(N, Q);\r\n  VEC(int, A, N);\r\n  auto Ac = cumsum<ll>(A);\r\n  FOR(Q)\
-    \ {\r\n    INT(L, R);\r\n    print(Ac[R] - Ac[L]);\r\n  }\r\n}\r\n\r\nsigned main()\
-    \ {\r\n  solve();\r\n  return 0;\r\n}\r\n"
+    \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
+    ds/static_range_product_group.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\
+    \n  Prefix_Sum<u64> seg(N, [&](int i) -> u32 {\r\n    U32(x);\r\n    return x;\r\
+    \n  });\r\n  FOR(Q) {\r\n    INT(l, r);\r\n    print(seg.prod(l, r));\r\n  }\r\
+    \n}\r\n\r\nsigned main() {\r\n  solve();\r\n  return 0;\r\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - ds/static_range_product_group.hpp
+  - alg/monoid/add.hpp
   isVerificationFile: true
   path: test/library_checker/datastructure/static_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
+  timestamp: '2024-07-20 04:13:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/static_range_sum.test.cpp

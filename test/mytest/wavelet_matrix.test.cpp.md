@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -295,10 +295,13 @@ data:
     \      seg[d].multiply(L, t);\r\n    }\r\n  }\r\n};\r\n#line 2 \"ds/static_range_product_group.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using MX\
     \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
-    \ {}\n  void build(vc<X>& A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n\
-    \    for (int i = 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X\
-    \ prod(int l, int r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate\
-    \ <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
+    \ {}\n  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n  \
+    \  build(m, f);\n  }\n  template <typename F>\n  void build(int m, F f) {\n  \
+    \  n = m;\n    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i)\
+    \ dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A) {\n    n = len(A);\n\
+    \    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i) dat[i + 1]\
+    \ = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) { return MX::op(MX::inverse(dat[l]),\
+    \ dat[r]); }\n};\n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
     #line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
     \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
@@ -432,7 +435,7 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 02:22:39+09:00'
+  timestamp: '2024-07-20 04:13:38+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp
