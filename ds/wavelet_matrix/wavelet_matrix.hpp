@@ -251,6 +251,31 @@ struct Wavelet_Matrix {
     }
     return {cnt, t};
   }
+
+  void set(int i, T t) {
+    assert(0 <= i && i < n);
+    int L = i, R = i + 1;
+    seg[log].set(L, t);
+    for (int d = log - 1; d >= 0; --d) {
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (l0 < r0) L = l0, R = r0;
+      if (l0 == r0) L = l1, R = r1;
+      seg[d].set(L, t);
+    }
+  }
+  void multiply(int i, T t) {
+    assert(0 <= i && i < n);
+    int L = i, R = i + 1;
+    seg[log].multiply(L, t);
+    for (int d = log - 1; d >= 0; --d) {
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (l0 < r0) L = l0, R = r0;
+      if (l0 == r0) L = l1, R = r1;
+      seg[d].multiply(L, t);
+    }
+  }
 };
 
 /*
