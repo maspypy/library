@@ -75,15 +75,15 @@ struct Wavelet_Matrix {
 
   // [L,R) x [0,y)
   int prefix_count(int L, int R, Y y) {
-    int k = IDX(y);
-    if (k == 0) return 0;
-    if (k == K) return R - L;
+    int p = IDX(y);
+    if (p == 0) return 0;
+    if (p == K) return R - L;
     int cnt = 0;
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (k >> d & 1) cnt += r0 - l0, L = l1, R = r1;
-      if (!(k >> d & 1)) L = l0, R = r0;
+      if (p >> d & 1) cnt += r0 - l0, L = l1, R = r1;
+      if (!(p >> d & 1)) L = l0, R = r0;
     }
     return cnt;
   }
@@ -95,21 +95,20 @@ struct Wavelet_Matrix {
 
   // [L,R) x [0,y)
   pair<int, T> prefix_count_and_prod(int L, int R, Y y) {
-    int k = IDX(y);
-    if (k == 0) return {0, Mono::unit()};
-    if (k == K) return {R - L, seg[log].prod(L, R)};
+    int p = IDX(y);
+    if (p == 0) return {0, Mono::unit()};
+    if (p == K) return {R - L, seg[log].prod(L, R)};
     int cnt = 0;
-    T ans = Mono::unit();
+    T t = Mono::unit();
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (k >> d & 1) {
-        cnt += r0 - l0;
-        ans = Mono::op(ans, seg[d].prod(l0, r0)), L = l1, R = r1;
+      if (p >> d & 1) {
+        cnt += r0 - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1;
       }
-      if (!(k >> d & 1)) L = l0, R = r0;
+      if (!(p >> d & 1)) L = l0, R = r0;
     }
-    return {cnt, ans};
+    return {cnt, t};
   }
 
   // [L,R) x [y1,y2)
@@ -120,12 +119,12 @@ struct Wavelet_Matrix {
       return {c2 - c1, Mono::op(Mono::inverse(t1), t2)};
     }
     int lo = IDX(y1), hi = IDX(y2), cnt = 0;
-    T ans = Mono::unit();
+    T t = Mono::unit();
     auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
       assert(b - a == (1 << d));
       if (hi <= a || b <= lo) return;
       if (lo <= a && b <= hi) {
-        cnt += R - L, ans = Mono::op(ans, seg[d].prod(L, R));
+        cnt += R - L, t = Mono::op(t, seg[d].prod(L, R));
         return;
       }
       --d;
@@ -135,7 +134,7 @@ struct Wavelet_Matrix {
       dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);
     };
     dfs(dfs, log, L, R, 0, 1 << log);
-    return {cnt, ans};
+    return {cnt, t};
   }
 
   // [L,R) x [y1,y2)
@@ -156,6 +155,49 @@ struct Wavelet_Matrix {
       }
     }
     return ItoY[p];
+  }
+
+  // y 以上最小 OR infty<Y>
+  Y next(int L, int R, Y y) {
+    int k = IDX(y);
+    int p = K;
+
+    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
+      if (p <= a || L == R || b <= k) return;
+      if (d == 0) {
+        chmin(p, a);
+        return;
+      }
+      --d;
+      int c = (a + b) / 2;
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);
+    };
+    dfs(dfs, log, L, R, 0, 1 << log);
+    return (p == K ? infty<Y> : ItoY[p]);
+  }
+
+  // y 以下最大 OR -infty<T>
+  Y prev(int L, int R, Y y) {
+    int k = IDX(y + 1);
+    SHOW(L, R, y);
+    SHOW(ItoY, y, k);
+    int p = -1;
+    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {
+      if (b - 1 <= p || L == R || k <= a) return;
+      if (d == 0) {
+        chmax(p, a);
+        return;
+      }
+      --d;
+      int c = (a + b) / 2;
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      dfs(dfs, d, l1, r1, c, b), dfs(dfs, d, l0, r0, a, c);
+    };
+    dfs(dfs, log, L, R, 0, 1 << log);
+    return (p == -1 ? -infty<Y> : ItoY[p]);
   }
 };
 
