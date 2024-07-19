@@ -639,13 +639,18 @@ data:
     \ {\n      if (i >= j) f[i] += x * f[i - j];\n    }\n  }\n  return f;\n}\n#line\
     \ 2 \"poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\
     \u591A\u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\
-    \u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint>\nvoid ntt_doubling(vector<mint>&\
-    \ a) {\n  static array<mint, 30> root;\n  static bool prepared = 0;\n  if (!prepared)\
-    \ {\n    prepared = 1;\n    const int rank2 = mint::ntt_info().fi;\n    root[rank2]\
-    \ = mint::ntt_info().se;\n    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i\
-    \ + 1]; }\n  }\n\n  const int M = (int)a.size();\n  auto b = a;\n  ntt(b, 1);\n\
-    \  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i, M) b[i] *= r, r *= zeta;\n\
-    \  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n}\n#line 2 \"poly/poly_divmod.hpp\"\
+    \u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint, bool transposed = false>\n\
+    void ntt_doubling(vector<mint>& a) {\n  static array<mint, 30> root;\n  static\
+    \ bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    const int rank2\
+    \ = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n    FOR_R(i,\
+    \ rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr (!transposed)\
+    \ {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b, 1);\n    mint\
+    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r *= zeta;\n  \
+    \  ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  } else {\n   \
+    \ const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin() + M};\n\
+    \    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint r = 1,\
+    \ zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n    transposed_ntt(a,\
+    \ 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n#line 2 \"poly/poly_divmod.hpp\"\
     \n\r\n#line 4 \"poly/poly_divmod.hpp\"\ntemplate <typename mint>\r\npair<vc<mint>,\
     \ vc<mint>> poly_divmod(vc<mint> f, vc<mint> g) {\r\n  assert(g.back() != 0);\r\
     \n  if (len(f) < len(g)) { return {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)),\
@@ -750,7 +755,7 @@ data:
   isVerificationFile: true
   path: test/mytest/bell.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 05:46:42+09:00'
+  timestamp: '2024-07-19 12:50:09+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/bell.test.cpp

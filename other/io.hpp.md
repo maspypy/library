@@ -9,7 +9,7 @@ data:
     path: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
     title: test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic_polynomial.test.cpp
     title: graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -540,7 +540,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
   - icon: ':heavy_check_mark:'
@@ -687,7 +687,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -840,22 +840,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
     title: test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/polynomial_division.test.cpp
     title: test/library_checker/polynomial/polynomial_division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1248,7 +1248,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1573.test.cpp
     title: test/yukicoder/1573.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1521,7 +1521,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2161.test.cpp
     title: test/yukicoder/2161.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2166.test.cpp
     title: test/yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1542,7 +1542,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2242.test.cpp
     title: test/yukicoder/2242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2243.test.cpp
     title: test/yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1656,7 +1656,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1728,13 +1728,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'

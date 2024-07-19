@@ -5,7 +5,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -32,10 +32,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/partial_frac.test.cpp
     title: test/mytest/partial_frac.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,16 +99,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':x:'
@@ -192,23 +192,32 @@ data:
     \          }\r\n          irot *= irate3[topbit(~s & -~s)];\r\n        }\r\n \
     \       len -= 2;\r\n      }\r\n    }\r\n  }\r\n}\r\n#line 4 \"poly/ntt_doubling.hpp\"\
     \n\n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\
-    \u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint>\n\
-    void ntt_doubling(vector<mint>& a) {\n  static array<mint, 30> root;\n  static\
-    \ bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    const int rank2\
-    \ = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n    FOR_R(i,\
-    \ rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  const int M = (int)a.size();\n\
-    \  auto b = a;\n  ntt(b, 1);\n  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i,\
-    \ M) b[i] *= r, r *= zeta;\n  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n\
-    }\n"
+    \u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint, bool\
+    \ transposed = false>\nvoid ntt_doubling(vector<mint>& a) {\n  static array<mint,\
+    \ 30> root;\n  static bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n\
+    \    const int rank2 = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr\
+    \ (!transposed) {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b,\
+    \ 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r\
+    \ *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  }\
+    \ else {\n    const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin()\
+    \ + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint\
+    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n  \
+    \  transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n"
   code: "#pragma once\n\n#include \"poly/ntt.hpp\"\n\n// 2^k \u6B21\u591A\u9805\u5F0F\
     \u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067 2^k+1\
-    \ \u306B\u3059\u308B\ntemplate <typename mint>\nvoid ntt_doubling(vector<mint>&\
-    \ a) {\n  static array<mint, 30> root;\n  static bool prepared = 0;\n  if (!prepared)\
-    \ {\n    prepared = 1;\n    const int rank2 = mint::ntt_info().fi;\n    root[rank2]\
-    \ = mint::ntt_info().se;\n    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i\
-    \ + 1]; }\n  }\n\n  const int M = (int)a.size();\n  auto b = a;\n  ntt(b, 1);\n\
-    \  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i, M) b[i] *= r, r *= zeta;\n\
-    \  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n}\n"
+    \ \u306B\u3059\u308B\ntemplate <typename mint, bool transposed = false>\nvoid\
+    \ ntt_doubling(vector<mint>& a) {\n  static array<mint, 30> root;\n  static bool\
+    \ prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    const int rank2 =\
+    \ mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n    FOR_R(i, rank2)\
+    \ { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr (!transposed)\
+    \ {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b, 1);\n    mint\
+    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r *= zeta;\n  \
+    \  ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  } else {\n   \
+    \ const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin() + M};\n\
+    \    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint r = 1,\
+    \ zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n    transposed_ntt(a,\
+    \ 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n"
   dependsOn:
   - poly/ntt.hpp
   isVerificationFile: false
@@ -225,7 +234,7 @@ data:
   - poly/sum_of_rationals.hpp
   - poly/product_of_pow_of_linear.hpp
   - linalg/blackbox/vandermonde.hpp
-  timestamp: '2024-07-19 05:46:42+09:00'
+  timestamp: '2024-07-19 12:50:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp

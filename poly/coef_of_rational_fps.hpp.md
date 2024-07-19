@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
@@ -87,16 +87,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2587.test.cpp
     title: test/yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2587_2.test.cpp
     title: test/yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/541.test.cpp
     title: test/yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/578.test.cpp
     title: test/yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/579.test.cpp
     title: test/yukicoder/579.test.cpp
   - icon: ':x:'
@@ -430,35 +430,40 @@ data:
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
     \    }\n  }\n  return f;\n}\n#line 2 \"poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\
     \n\n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\
-    \u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint>\n\
-    void ntt_doubling(vector<mint>& a) {\n  static array<mint, 30> root;\n  static\
-    \ bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    const int rank2\
-    \ = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n    FOR_R(i,\
-    \ rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  const int M = (int)a.size();\n\
-    \  auto b = a;\n  ntt(b, 1);\n  mint r = 1, zeta = root[topbit(2 * M)];\n  FOR(i,\
-    \ M) b[i] *= r, r *= zeta;\n  ntt(b, 0);\n  copy(begin(b), end(b), back_inserter(a));\n\
-    }\n#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 4 \"poly/poly_divmod.hpp\"\ntemplate\
-    \ <typename mint>\r\npair<vc<mint>, vc<mint>> poly_divmod(vc<mint> f, vc<mint>\
-    \ g) {\r\n  assert(g.back() != 0);\r\n  if (len(f) < len(g)) { return {{}, f};\
-    \ }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)), reverse(all(rg));\r\n  ll\
-    \ deg = len(rf) - len(rg) + 1;\r\n  rf.resize(deg), rg.resize(deg);\r\n  rg =\
-    \ fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n  q.resize(deg);\r\n  reverse(all(q));\r\
-    \n  auto h = convolution(q, g);\r\n  FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f)\
-    \ > 0 && f.back() == 0) f.pop_back();\r\n  return {q, f};\r\n}\r\n#line 4 \"poly/coef_of_rational_fps.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_small(vector<mint>\
-    \ P, vector<mint> Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) &&\
-    \ len(Q) <= 16\r\n         && Q[0] == mint(1));\r\n  if (P.empty()) return 0;\r\
-    \n  int m = len(Q) - 1;\r\n  vc<u32> Q32(m + 1);\r\n  FOR(i, m + 1) Q32[i] = (-Q[i]).val;\r\
-    \n\r\n  using poly = vc<u64>;\r\n  auto dfs = [&](auto& dfs, const ll N) -> poly\
-    \ {\r\n    // x^N mod G\r\n    if (N == 0) {\r\n      poly f(m);\r\n      f[0]\
-    \ = 1;\r\n      return f;\r\n    }\r\n    poly f = dfs(dfs, N / 2);\r\n    poly\
-    \ g(len(f) * 2 - 1 + (N & 1));\r\n    FOR(i, len(f)) FOR(j, len(f)) { g[i + j\
-    \ + (N & 1)] += f[i] * f[j]; }\r\n    FOR(i, len(g)) g[i] = mint(g[i]).val;\r\n\
-    \    FOR_R(i, len(g)) {\r\n      g[i] = mint(g[i]).val;\r\n      if (i >= m) FOR(j,\
-    \ 1, len(Q)) g[i - j] += Q32[j] * g[i];\r\n    }\r\n    g.resize(m);\r\n    return\
-    \ g;\r\n  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) FOR(j, 1, i + 1) { P[i]\
-    \ -= Q[j] * P[i - j]; }\r\n  u64 res = 0;\r\n  FOR(i, m) res += f[i] * P[i].val;\r\
-    \n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
+    \u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint, bool\
+    \ transposed = false>\nvoid ntt_doubling(vector<mint>& a) {\n  static array<mint,\
+    \ 30> root;\n  static bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n\
+    \    const int rank2 = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr\
+    \ (!transposed) {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b,\
+    \ 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r\
+    \ *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  }\
+    \ else {\n    const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin()\
+    \ + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint\
+    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n  \
+    \  transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n#line 2 \"poly/poly_divmod.hpp\"\
+    \n\r\n#line 4 \"poly/poly_divmod.hpp\"\ntemplate <typename mint>\r\npair<vc<mint>,\
+    \ vc<mint>> poly_divmod(vc<mint> f, vc<mint> g) {\r\n  assert(g.back() != 0);\r\
+    \n  if (len(f) < len(g)) { return {{}, f}; }\r\n  auto rf = f, rg = g;\r\n  reverse(all(rf)),\
+    \ reverse(all(rg));\r\n  ll deg = len(rf) - len(rg) + 1;\r\n  rf.resize(deg),\
+    \ rg.resize(deg);\r\n  rg = fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n\
+    \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
+    \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
+    \n  return {q, f};\r\n}\r\n#line 4 \"poly/coef_of_rational_fps.hpp\"\n\r\ntemplate\
+    \ <typename mint>\r\nmint coef_of_rational_fps_small(vector<mint> P, vector<mint>\
+    \ Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) && len(Q) <= 16\r\
+    \n         && Q[0] == mint(1));\r\n  if (P.empty()) return 0;\r\n  int m = len(Q)\
+    \ - 1;\r\n  vc<u32> Q32(m + 1);\r\n  FOR(i, m + 1) Q32[i] = (-Q[i]).val;\r\n\r\
+    \n  using poly = vc<u64>;\r\n  auto dfs = [&](auto& dfs, const ll N) -> poly {\r\
+    \n    // x^N mod G\r\n    if (N == 0) {\r\n      poly f(m);\r\n      f[0] = 1;\r\
+    \n      return f;\r\n    }\r\n    poly f = dfs(dfs, N / 2);\r\n    poly g(len(f)\
+    \ * 2 - 1 + (N & 1));\r\n    FOR(i, len(f)) FOR(j, len(f)) { g[i + j + (N & 1)]\
+    \ += f[i] * f[j]; }\r\n    FOR(i, len(g)) g[i] = mint(g[i]).val;\r\n    FOR_R(i,\
+    \ len(g)) {\r\n      g[i] = mint(g[i]).val;\r\n      if (i >= m) FOR(j, 1, len(Q))\
+    \ g[i - j] += Q32[j] * g[i];\r\n    }\r\n    g.resize(m);\r\n    return g;\r\n\
+    \  };\r\n  poly f = dfs(dfs, N);\r\n  FOR(i, m) FOR(j, 1, i + 1) { P[i] -= Q[j]\
+    \ * P[i - j]; }\r\n  u64 res = 0;\r\n  FOR(i, m) res += f[i] * P[i].val;\r\n \
+    \ return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nmint coef_of_rational_fps_ntt(vector<mint>\
     \ P, vector<mint> Q, ll N) {\r\n  assert(0 <= len(P) && len(P) + 1 == len(Q) &&\
     \ Q[0] == mint(1));\r\n  if (P.empty()) return 0;\r\n\r\n  int n = 1;\r\n  while\
     \ (n < len(Q)) n += n;\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    vc<int> btr(n);\r\
@@ -562,7 +567,7 @@ data:
   requiredBy:
   - seq/interpolate_linear_rec.hpp
   - seq/famous/bell_number_large.hpp
-  timestamp: '2024-07-19 05:46:42+09:00'
+  timestamp: '2024-07-19 12:50:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
