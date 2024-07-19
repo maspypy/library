@@ -11,7 +11,7 @@ void solve() {
   vc<T> dat;
   dat.eb(0, N, 0, MAX(A) + 1);
 
-  Wavelet_Matrix<int, 0, 0> WM(A);
+  Wavelet_Matrix<int, true> WM(A);
 
   INT(Q);
   FOR(Q) {
