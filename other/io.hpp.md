@@ -2,15 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
-    path: ds/wavelet_matrix/wavelet_matrix.hpp
-    title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':warning:'
-    path: graph/ds/tree_wavelet_matrix.hpp
-    title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':x:'
-    path: string/prefix_substring_LCS.hpp
-    title: string/prefix_substring_LCS.hpp
   - icon: ':warning:'
     path: test/library_checker/geometry/static_convex_hull.tset.cpp
     title: test/library_checker/geometry/static_convex_hull.tset.cpp
@@ -1005,6 +996,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1025.test.cpp
     title: test/yukicoder/1025.test.cpp
@@ -2401,9 +2395,6 @@ data:
   requiredBy:
   - test/library_checker/geometry/static_convex_hull.tset.cpp
   - test/library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
-  - ds/wavelet_matrix/wavelet_matrix.hpp
-  - string/prefix_substring_LCS.hpp
-  - graph/ds/tree_wavelet_matrix.hpp
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -2666,6 +2657,7 @@ data:
   - test/mytest/bell_number.test.cpp
   - test/mytest/typical_dc.test.cpp
   - test/mytest/palindrome_decomposition_dp.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/count_labeled_strong.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/2026.test.cpp

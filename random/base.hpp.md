@@ -663,6 +663,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/vandermonde.test.cpp
     title: test/mytest/vandermonde.test.cpp
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/xor_transpose.test.cpp
     title: test/mytest/xor_transpose.test.cpp
@@ -1023,6 +1026,7 @@ data:
   - test/mytest/range_freq_of_linear.test.cpp
   - test/mytest/maxplus_concave.test.cpp
   - test/mytest/palindrome_decomposition_dp.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/compositional_inverset.test.cpp
   - test/mytest/rbst_monoid_persistent.test.cpp

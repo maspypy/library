@@ -3563,7 +3563,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/vandermonde.test.cpp
       title: test/mytest/vandermonde.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/wavelet_matrix.test.cpp
       title: test/mytest/wavelet_matrix.test.cpp
     - icon: ':heavy_check_mark:'

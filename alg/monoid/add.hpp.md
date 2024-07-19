@@ -351,6 +351,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/summin_add.test.cpp
     title: test/mytest/summin_add.test.cpp
+  - icon: ':x:'
+    path: test/mytest/wavelet_matrix.test.cpp
+    title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
@@ -642,6 +645,7 @@ data:
   - test/mytest/rbst_commutative_persistent.test.cpp
   - test/mytest/summin_add.test.cpp
   - test/mytest/factorial_digit.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
   - test/mytest/splay_am.test.cpp
   - test/mytest/summax_add.test.cpp
   - test/mytest/range_assign.test.cpp
