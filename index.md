@@ -536,6 +536,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
       title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
+    - icon: ':warning:'
+      path: ds/wavelet_matrix/wavelet_matrix_old.hpp
+      title: ds/wavelet_matrix/wavelet_matrix_old.hpp
   - name: enumerate
     pages:
     - icon: ':heavy_check_mark:'
