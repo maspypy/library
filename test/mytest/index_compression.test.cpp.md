@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: ds/index_compress.hpp
-    title: ds/index_compress.hpp
+    path: ds/index_compression.hpp
+    title: ds/index_compression.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,9 +20,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/mytest/index_compress.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
-    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/mytest/index_compression.test.cpp\"\n#define PROBLEM\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n\n#line 1 \"my_template.hpp\"\n\
+    #if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -102,66 +102,102 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 4 \"test/mytest/index_compress.test.cpp\"\n\n#line\
-    \ 1 \"ds/index_compress.hpp\"\ntemplate <typename T>\nstruct To_Unique_Index_SMALL\
+    \  return B;\n}\n#endif\n#line 4 \"test/mytest/index_compression.test.cpp\"\n\n\
+    #line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL\
     \ {\n  static_assert(is_same_v<T, int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int>\
     \ build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma\
     \ = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x: X) dat[x - mi\
     \ + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x: X)\
     \ { x = dat[x - mi]++; }\n    FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n   \
     \ dat[0] = 0;\n    return X;\n  }\n  int operator()(ll x) { return dat[clamp<ll>(x\
-    \ - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct To_Unique_Index_LARGE\
+    \ - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL\
+    \ {\n  static_assert(is_same_v<T, int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int>\
+    \ build(vc<int> X) {\n    mi = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma\
+    \ = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n    for (auto& x: X) dat[x - mi\
+    \ + 1] = 1;\n    FOR(i, len(dat) - 1) dat[i + 1] += dat[i];\n    for (auto& x:\
+    \ X) { x = dat[x - mi]; }\n    return X;\n  }\n  int operator()(ll x) { return\
+    \ dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename T>\nstruct\
+    \ Index_Compression_SAME_LARGE {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n \
+    \   vc<int> I = argsort(X);\n    vc<int> res(len(X));\n    for (auto& i: I) {\n\
+    \      if (!dat.empty() && dat.back() == X[i]) {\n        res[i] = len(dat) -\
+    \ 1;\n      } else {\n        res[i] = len(dat);\n        dat.eb(X[i]);\n    \
+    \  }\n    }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int operator()(T\
+    \ x) { return LB(dat, x); }\n};\n\ntemplate <typename T>\nstruct Index_Compression_DISTINCT_LARGE\
     \ {\n  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n \
-    \   dat = rearrange(X, I);\n    sort(all(dat));\n    vc<int> res(len(X));\n  \
-    \  FOR(i, len(X)) res[I[i]] = i;\n    return res;\n  }\n  int operator()(T x)\
-    \ { return LB(dat, x); }\n};\n\n// \u307E\u305A X \u306E\u5404\u8981\u7D20\u3092\
-    \ [0,n) \u306B\u3046\u3064\u3059, \u5358\u5C04\u306B\u3059\u308B\n// [2,2,3] ->\
-    \ [0,1,2]\n// (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename\
-    \ T, bool SMALL>\nusing To_Unique_Index =\n    typename std::conditional<SMALL,\
-    \ To_Unique_Index_SMALL<T>,\n                              To_Unique_Index_LARGE<T>>::type;\n\
+    \   vc<int> res(len(X));\n    for (auto& i: I) { res[i] = len(dat), dat.eb(X[i]);\
+    \ }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int operator()(T x) { return\
+    \ LB(dat, x); }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
+    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
+    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
+    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
+    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
+    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// (x): lower_bound(X,x)\
+    \ \u3092\u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing\
+    \ Index_Compression =\n    typename std::conditional<SAME, Index_Compression_SAME<T,\
+    \ SMALL>,\n                              Index_Compression_DISTINCT<T, SMALL>>::type;\n\
     #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/index_compress.test.cpp\"\
-    \n\ntemplate <bool SMALL>\nvoid test() {\n  vc<int> X = {3, 4, 7, 4, 3, 6, 6,\
-    \ 7, 3};\n  To_Unique_Index<int, SMALL> IDX;\n  vc<int> Y = IDX.build(X);\n  assert(Y\
-    \ == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1) == 0 && IDX(2) ==\
-    \ 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 && IDX(6) == 5);\n \
-    \ assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100) {\n    FOR(N,\
-    \ 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100, 100);\n   \
-    \   To_Unique_Index<int, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n      auto\
-    \ I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X = rearrange(X,\
-    \ I);\n      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));\n    }\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test<false>();\n  test<true>();\n  solve();\n}\n"
+    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/mytest/index_compression.test.cpp\"\
+    \n\ntemplate <bool SMALL>\nvoid test_distinct() {\n  vc<int> X = {3, 4, 7, 4,\
+    \ 3, 6, 6, 7, 3};\n  Index_Compression<int, false, SMALL> IDX;\n  vc<int> Y =\
+    \ IDX.build(X);\n  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1)\
+    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 &&\
+    \ IDX(6) == 5);\n  assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100)\
+    \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
+    \ 100);\n      Index_Compression<int, false, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
+    \      auto I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X =\
+    \ rearrange(X, I);\n      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));\n    }\n\
+    \  }\n}\n\ntemplate <bool SMALL>\nvoid test_same() {\n  vc<int> X = {3, 4, 7,\
+    \ 4, 3, 6, 6, 7, 3};\n  Index_Compression<int, true, SMALL> IDX;\n  vc<int> Y\
+    \ = IDX.build(X);\n  assert(Y == vc<int>({0, 1, 3, 1, 0, 2, 2, 3, 0}));\n  assert(IDX(1)\
+    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 1 && IDX(5) == 2 &&\
+    \ IDX(6) == 2);\n  assert(IDX(7) == 3 && IDX(8) == 4 && IDX(9) == 4);\n\n  FOR(100)\
+    \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
+    \ 100);\n      Index_Compression<int, true, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
+    \      vc<int> key = X;\n      UNIQUE(key);\n      FOR(i, N) assert(LB(key, X[i])\
+    \ == Y[i]);\n      FOR(x, -100, 100) assert(IDX(x) == LB(key, x));\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test_distinct<false>();\n  test_distinct<true>();\n\
+    \  test_same<false>();\n  test_same<true>();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n\n#include \"ds/index_compress.hpp\"\n#include \"random/base.hpp\"\
-    \n\ntemplate <bool SMALL>\nvoid test() {\n  vc<int> X = {3, 4, 7, 4, 3, 6, 6,\
-    \ 7, 3};\n  To_Unique_Index<int, SMALL> IDX;\n  vc<int> Y = IDX.build(X);\n  assert(Y\
-    \ == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1) == 0 && IDX(2) ==\
-    \ 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 && IDX(6) == 5);\n \
-    \ assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100) {\n    FOR(N,\
-    \ 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100, 100);\n   \
-    \   To_Unique_Index<int, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n      auto\
-    \ I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X = rearrange(X,\
-    \ I);\n      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));\n    }\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test<false>();\n  test<true>();\n  solve();\n}"
+    my_template.hpp\"\n\n#include \"ds/index_compression.hpp\"\n#include \"random/base.hpp\"\
+    \n\ntemplate <bool SMALL>\nvoid test_distinct() {\n  vc<int> X = {3, 4, 7, 4,\
+    \ 3, 6, 6, 7, 3};\n  Index_Compression<int, false, SMALL> IDX;\n  vc<int> Y =\
+    \ IDX.build(X);\n  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1)\
+    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 &&\
+    \ IDX(6) == 5);\n  assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100)\
+    \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
+    \ 100);\n      Index_Compression<int, false, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
+    \      auto I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X =\
+    \ rearrange(X, I);\n      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));\n    }\n\
+    \  }\n}\n\ntemplate <bool SMALL>\nvoid test_same() {\n  vc<int> X = {3, 4, 7,\
+    \ 4, 3, 6, 6, 7, 3};\n  Index_Compression<int, true, SMALL> IDX;\n  vc<int> Y\
+    \ = IDX.build(X);\n  assert(Y == vc<int>({0, 1, 3, 1, 0, 2, 2, 3, 0}));\n  assert(IDX(1)\
+    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 1 && IDX(5) == 2 &&\
+    \ IDX(6) == 2);\n  assert(IDX(7) == 3 && IDX(8) == 4 && IDX(9) == 4);\n\n  FOR(100)\
+    \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
+    \ 100);\n      Index_Compression<int, true, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
+    \      vc<int> key = X;\n      UNIQUE(key);\n      FOR(i, N) assert(LB(key, X[i])\
+    \ == Y[i]);\n      FOR(x, -100, 100) assert(IDX(x) == LB(key, x));\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test_distinct<false>();\n  test_distinct<true>();\n\
+    \  test_same<false>();\n  test_same<true>();\n  solve();\n}"
   dependsOn:
   - my_template.hpp
-  - ds/index_compress.hpp
+  - ds/index_compression.hpp
   - random/base.hpp
   isVerificationFile: true
-  path: test/mytest/index_compress.test.cpp
+  path: test/mytest/index_compression.test.cpp
   requiredBy: []
-  timestamp: '2024-07-19 14:18:20+09:00'
+  timestamp: '2024-07-19 14:53:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/mytest/index_compress.test.cpp
+documentation_of: test/mytest/index_compression.test.cpp
 layout: document
 redirect_from:
-- /verify/test/mytest/index_compress.test.cpp
-- /verify/test/mytest/index_compress.test.cpp.html
-title: test/mytest/index_compress.test.cpp
+- /verify/test/mytest/index_compression.test.cpp
+- /verify/test/mytest/index_compression.test.cpp.html
+title: test/mytest/index_compression.test.cpp
 ---

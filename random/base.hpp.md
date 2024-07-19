@@ -412,8 +412,8 @@ data:
     path: test/mytest/incremental_scc.test.cpp
     title: test/mytest/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/mytest/index_compress.test.cpp
-    title: test/mytest/index_compress.test.cpp
+    path: test/mytest/index_compression.test.cpp
+    title: test/mytest/index_compression.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/is_substring.test.cpp
     title: test/mytest/is_substring.test.cpp
@@ -936,6 +936,7 @@ data:
   - test/mytest/digit_sum.test.cpp
   - test/mytest/tree_walk_gf.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
+  - test/mytest/index_compression.test.cpp
   - test/mytest/non_adj.test.cpp
   - test/mytest/range_mex.test.cpp
   - test/mytest/minplus_convex.test.cpp
@@ -958,7 +959,6 @@ data:
   - test/mytest/find_cycle_minimum.test.cpp
   - test/mytest/remove_one_edge.test.cpp
   - test/mytest/all_inverse.test.cpp
-  - test/mytest/index_compress.test.cpp
   - test/mytest/min_poly.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/mytest/max_dot.test.cpp
