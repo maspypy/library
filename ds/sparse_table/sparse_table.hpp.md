@@ -61,6 +61,9 @@ data:
     path: test/yukicoder/1036_4.test.cpp
     title: test/yukicoder/1036_4.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2361.test.cpp
     title: test/yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,6 +153,7 @@ data:
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/lex_minmax_suffix.test.cpp
   - test/yukicoder/1036_4.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2361.test.cpp
   - test_atcoder/abc240ex.test.cpp
   - test_atcoder/arc151_e.test.cpp

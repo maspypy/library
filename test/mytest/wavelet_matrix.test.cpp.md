@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -450,7 +450,7 @@ data:
     };\r\n#line 10 \"test/mytest/wavelet_matrix.test.cpp\"\n\ntemplate <bool SMALL_Y,\
     \ typename SEGTREE>\nvoid test(int N) {\n  int MAX = RNG(2, 1 << 10);\n  vc<int>\
     \ A(N);\n  vc<int> X(N);\n  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n\
-    \n  Wavelet_Matrix<int, false, SEGTREE> WM(A, X);\n  using Mono = SEGTREE::MX;\n\
+    \n  Wavelet_Matrix<int, false, SEGTREE> WM(A, X);\n  using Mono = typename SEGTREE::MX;\n\
     \n  int Q = 100;\n  FOR(Q) {\n    int L = RNG(0, max(1, N));\n    int R = RNG(0,\
     \ max(1, N + 1));\n    if (L > R) swap(L, R);\n    int lo = RNG(0, MAX);\n   \
     \ int hi = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int>\
@@ -490,26 +490,26 @@ data:
     \n#include \"alg/monoid/min.hpp\"\n\ntemplate <bool SMALL_Y, typename SEGTREE>\n\
     void test(int N) {\n  int MAX = RNG(2, 1 << 10);\n  vc<int> A(N);\n  vc<int> X(N);\n\
     \  FOR(i, N) X[i] = RNG(MAX);\n  FOR(i, N) A[i] = RNG(MAX);\n\n  Wavelet_Matrix<int,\
-    \ false, SEGTREE> WM(A, X);\n  using Mono = SEGTREE::MX;\n\n  int Q = 100;\n \
-    \ FOR(Q) {\n    int L = RNG(0, max(1, N));\n    int R = RNG(0, max(1, N + 1));\n\
-    \    if (L > R) swap(L, R);\n    int lo = RNG(0, MAX);\n    int hi = RNG(0, MAX);\n\
-    \    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin() + L, A.begin()\
-    \ + R};\n    vc<int> Y = {X.begin() + L, X.begin() + R};\n    int t = RNG(0, 7);\n\
-    \    if (t == 0) { // count\n      int cnt = 0;\n      for (auto&& x: B)\n   \
-    \     if (lo <= x && x < hi) cnt += 1;\n      assert(WM.count(L, R, lo, hi) ==\
-    \ cnt);\n    }\n    if (t == 1) { // sm\n      int sm = Mono::unit();\n      FOR(i,\
-    \ L, R) if (lo <= A[i] && A[i] < hi) sm = Mono::op(sm, X[i]);\n      assert(WM.prod(L,\
-    \ R, lo, hi) == sm);\n    }\n    if (t == 2) { // kth\n      if (L == R) continue;\n\
-    \      int k = RNG(R - L);\n      sort(all(B));\n      assert(WM.kth(L, R, k)\
-    \ == B[k]);\n    }\n    if (is_same_v<Mono, Monoid_Add<int>> && t == 3) { // max_right\n\
-    \      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n      int c = RNG(0, a\
-    \ * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n          = [&](int cnt,\
-    \ int sm) -> bool { return a * cnt + b * sm <= c; };\n      auto p = WM.max_right(check,\
-    \ L, R);\n      int cnt = 0, sm = 0;\n      binary_search(\n          [&](int\
-    \ y) -> bool {\n            auto [c, s] = WM.prefix_count_and_prod(L, R, y);\n\
-    \            if (check(c, s)) cnt = c, sm = s;\n            return check(c, s);\n\
-    \          },\n          -10, MAX + 10);\n      assert(p.fi == cnt && p.se ==\
-    \ sm);\n    }\n    if (t == 4) { // k-th value and prod\n      int k = RNG(0,\
+    \ false, SEGTREE> WM(A, X);\n  using Mono = typename SEGTREE::MX;\n\n  int Q =\
+    \ 100;\n  FOR(Q) {\n    int L = RNG(0, max(1, N));\n    int R = RNG(0, max(1,\
+    \ N + 1));\n    if (L > R) swap(L, R);\n    int lo = RNG(0, MAX);\n    int hi\
+    \ = RNG(0, MAX);\n    if (lo > hi) swap(lo, hi);\n    ++hi;\n    vc<int> B = {A.begin()\
+    \ + L, A.begin() + R};\n    vc<int> Y = {X.begin() + L, X.begin() + R};\n    int\
+    \ t = RNG(0, 7);\n    if (t == 0) { // count\n      int cnt = 0;\n      for (auto&&\
+    \ x: B)\n        if (lo <= x && x < hi) cnt += 1;\n      assert(WM.count(L, R,\
+    \ lo, hi) == cnt);\n    }\n    if (t == 1) { // sm\n      int sm = Mono::unit();\n\
+    \      FOR(i, L, R) if (lo <= A[i] && A[i] < hi) sm = Mono::op(sm, X[i]);\n  \
+    \    assert(WM.prod(L, R, lo, hi) == sm);\n    }\n    if (t == 2) { // kth\n \
+    \     if (L == R) continue;\n      int k = RNG(R - L);\n      sort(all(B));\n\
+    \      assert(WM.kth(L, R, k) == B[k]);\n    }\n    if (is_same_v<Mono, Monoid_Add<int>>\
+    \ && t == 3) { // max_right\n      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n\
+    \      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n\
+    \          = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n\
+    \      auto p = WM.max_right(check, L, R);\n      int cnt = 0, sm = 0;\n     \
+    \ binary_search(\n          [&](int y) -> bool {\n            auto [c, s] = WM.prefix_count_and_prod(L,\
+    \ R, y);\n            if (check(c, s)) cnt = c, sm = s;\n            return check(c,\
+    \ s);\n          },\n          -10, MAX + 10);\n      assert(p.fi == cnt && p.se\
+    \ == sm);\n    }\n    if (t == 4) { // k-th value and prod\n      int k = RNG(0,\
     \ R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n      int\
     \ val = B[I[k]];\n      int sm = Mono::unit();\n      FOR(i, k) sm = Mono::op(sm,\
     \ Y[I[i]]);\n      auto p = WM.kth_value_and_prod(L, R, k);\n      assert(p.fi\
@@ -537,8 +537,8 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-20 01:26:34+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-20 01:46:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp
 layout: document

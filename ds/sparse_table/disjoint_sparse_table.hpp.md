@@ -25,6 +25,9 @@ data:
     path: test/yukicoder/1216_2.test.cpp
     title: test/yukicoder/1216_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2005.test.cpp
     title: test/yukicoder/2005.test.cpp
   _isVerificationFailed: false
@@ -99,6 +102,7 @@ data:
   - test/library_checker/datastructure/staticrmq.test.cpp
   - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/yukicoder/1216.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1216_2.test.cpp
 documentation_of: ds/sparse_table/disjoint_sparse_table.hpp

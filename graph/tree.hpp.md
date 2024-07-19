@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -183,6 +183,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1600_2.test.cpp
+    title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
@@ -571,6 +574,7 @@ data:
   - test/yukicoder/2342_2.test.cpp
   - test/yukicoder/2342.test.cpp
   - test/yukicoder/590.test.cpp
+  - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/1718.test.cpp
   - test/yukicoder/1242.test.cpp
   - test/yukicoder/1451.test.cpp
