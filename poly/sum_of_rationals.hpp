@@ -41,6 +41,11 @@ pair<vc<mint>, vc<mint>> sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {
 template <typename mint>
 pair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint> A, vc<mint> wt) {
   using poly = vc<mint>;
+  if (!mint::can_ntt()) {
+    vc<pair<poly, poly>> rationals;
+    FOR(i, len(A)) rationals.eb(poly({wt[i]}), poly({mint(1), -A[i]}));
+    return sum_of_rationals(rationals);
+  }
   int n = 1;
   while (n < len(A)) n *= 2;
   int k = topbit(n);
