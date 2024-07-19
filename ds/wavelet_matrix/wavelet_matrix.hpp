@@ -1,9 +1,96 @@
 #include "ds/bit_vector.hpp"
 
+#include "my_template.hpp"
+#include "other/io.hpp"
+
+#include "ds/bit_vector.hpp"
+#include "ds/index_compression.hpp"
+#include "alg/monoid/add.hpp"
+
+struct Dummy_Data_Structure {
+  using MX = Monoid_Add<bool>;
+  void build(const vc<bool>& A) {}
+};
+
+template <typename Y, bool SMALL_Y, typename SEGTREE = Dummy_Data_Structure>
+struct Wavelet_Matrix {
+  using Mono = typename SEGTREE::MX;
+  using T = typename Mono::value_type;
+  static_assert(Mono::commute);
+
+  int n, log, K;
+  Index_Compression<Y, true, SMALL_Y> IDX;
+  vc<int> mid;
+  vc<Bit_Vector> bv;
+  vc<SEGTREE> seg;
+
+  Wavelet_Matrix() {}
+  Wavelet_Matrix(const vc<Y>& A) { build(A); }
+  Wavelet_Matrix(const vc<Y>& A, vc<T>& SUM_Data) { build(A, SUM_Data); }
+  template <typename F>
+  Wavelet_Matrix(int n, F f) {
+    build(n, f);
+  }
+
+  template <typename F>
+  void build(int m, F f) {
+    vc<Y> A(m);
+    vc<T> S(m);
+    for (int i = 0; i < m; ++i) tie(A[i], S[i]) = f(i);
+  }
+
+  void build(const vc<Y>& A) { build(A, vc<T>(len(A), Mono::unit())); }
+  void build(const vc<Y>& A, vc<T> S) {
+    n = len(A);
+    vc<int> B = IDX.build(A);
+    int K = 1;
+    for (auto& x: B) chmax(K, x + 1);
+    log = 0;
+    while ((1 << log) < K) ++log;
+    mid.resize(log), bv.assign(log, Bit_Vector(n));
+    vc<int> B0(n), B1(n);
+    vc<T> S0(n), S1(n);
+    seg.resize(log + 1);
+    seg[log].build(S);
+    for (int d = log - 1; d >= 0; --d) {
+      int p0 = 0, p1 = 0;
+      for (int i = 0; i < n; ++i) {
+        bool f = (B[i] >> d & 1);
+        if (!f) { B0[p0] = B[i], S0[p0] = S[i], p0++; }
+        if (f) { bv[d].set(i), B1[p1] = B[i], S1[p1] = S[i], p1++; }
+      }
+      swap(B, B0), swap(S, S0);
+      move(B1.begin(), B1.begin() + p1, B.begin() + p0);
+      move(S1.begin(), S1.begin() + p1, S.begin() + p0);
+      mid[d] = p0, bv[d].build(), seg[d].build(S);
+    }
+  }
+
+  // [L,R) x [0,y)
+  int prefix_count(int L, int R, Y y) {
+    int k = IDX(y);
+    if (k == 0) return 0;
+    if (k == K) return R - L;
+    int cnt = 0;
+    for (int d = log - 1; d >= 0; --d) {
+      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);
+      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
+      if (k >> d & 1) cnt += r0 - l0, L = l1, R = r1;
+      if (!(k >> d & 1)) cnt += r1 - l1, L = l0, R = r0;
+    }
+    return cnt;
+  }
+
+  // [L,R) x [y1,y2)
+  int count(int L, int R, Y y1, Y y2) {
+    return prefix_count(L, R, y2) - prefix_count(L, R, y1);
+  }
+};
+
 // 座圧するかどうかを COMPRESS で指定する
 // xor 的な使い方をする場合には、コンストラクタで log を渡すこと
 template <typename T, bool COMPRESS, bool USE_SUM>
-struct Wavelet_Matrix {
+struct Wavelet_Matrix_Old {
   static_assert(is_same_v<T, int> || is_same_v<T, ll>);
   int N, lg;
   vector<int> mid;
