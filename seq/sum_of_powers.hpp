@@ -6,9 +6,7 @@
 // sum_{a in A} a^n を、n = 0, 1, ..., N で列挙
 template <typename T>
 vc<T> sum_of_powers(const vc<T>& A, ll N) {
-  vvc<T> polys;
-  for (auto&& a: A) polys.eb(vc<T>({T(1), -a}));
-  auto f = convolution_all(polys);
+  auto f = convolution_all_1<T>(A);
   f.resize(N + 1);
   f = fps_log(f);
   FOR(i, len(f)) f[i] = -f[i] * T(i);
@@ -34,7 +32,6 @@ vc<T> sum_of_powers_iota(ll L, ll R, ll N) {
 // sum ca^n を n=0,1,...,N で列挙
 template <typename T>
 vc<T> sum_of_powers_with_coef(const vc<T>& A, const vc<T>& C, int N) {
-  using P = pair<vc<T>, vc<T>>;
   auto [num, den] = sum_of_rationals_1(A, C);
   num.resize(N + 1);
   den.resize(N + 1);
