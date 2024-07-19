@@ -1,8 +1,8 @@
 
 template <typename Monoid>
 struct Static_Range_Product_Group {
-  using MX = typename Monoid;
-  using X = typename Monoid::value_type;
+  using MX = Monoid;
+  using X = typename MX::value_type;
   int n;
   vc<X> dat;
   Static_Range_Product_Group() {}
