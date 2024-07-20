@@ -16,7 +16,7 @@ vc<tuple<T, T, T, T>> Fenchel(vc<Point<T>> XY, string mode, bool sorted) {
     reverse(all(res));
     return res;
   }
-  auto I = ConvexHull(XY, "lower", false, sorted);
+  auto I = ConvexHull(XY, "lower", sorted);
   XY = rearrange(XY, I);
   vc<tuple<T, T, T, T>> res;
 
