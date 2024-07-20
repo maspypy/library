@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/arc130f.test.cpp
     title: test_atcoder/arc130f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -103,12 +103,11 @@ data:
     \ b]: Fenchel(XY, \"lower\", sorted)) {\n      T l = (R == infty<T> ? -infty<T>\
     \ : 1 - R);\n      T r = (L == -infty<T> ? infty<T> : 1 - L);\n      chmax(l,\
     \ -infty<T>), chmin(r, infty<T>);\n      res.eb(l, r, a, -b);\n    }\n    reverse(all(res));\n\
-    \    return res;\n  }\n  auto I = ConvexHull(XY, \"lower\", false, sorted);\n\
-    \  XY = rearrange(XY, I);\n  vc<tuple<T, T, T, T>> res;\n\n  ll lo = -infty<ll>;\n\
-    \  FOR(i, len(XY)) {\n    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n     \
-    \ chmin(hi, floor(XY[i + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n\
-    \    if (lo < hi) res.eb(lo, hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return\
-    \ res;\n}\n"
+    \    return res;\n  }\n  auto I = ConvexHull(XY, \"lower\", sorted);\n  XY = rearrange(XY,\
+    \ I);\n  vc<tuple<T, T, T, T>> res;\n\n  ll lo = -infty<ll>;\n  FOR(i, len(XY))\
+    \ {\n    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
+    \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
+    \ hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return res;\n}\n"
   code: "#include \"geo/convex_hull.hpp\"\n#include \"geo/base.hpp\"\n\n// (L,R,a,b)\uFF1A\
     \u50BE\u304D\u304C [L,R) \u306E\u3068\u304D (a,b) \u3092\u901A\u308B\ntemplate\
     \ <typename T>\nvc<tuple<T, T, T, T>> Fenchel(vc<Point<T>> XY, string mode, bool\
@@ -117,7 +116,7 @@ data:
     lower\", sorted)) {\n      T l = (R == infty<T> ? -infty<T> : 1 - R);\n      T\
     \ r = (L == -infty<T> ? infty<T> : 1 - L);\n      chmax(l, -infty<T>), chmin(r,\
     \ infty<T>);\n      res.eb(l, r, a, -b);\n    }\n    reverse(all(res));\n    return\
-    \ res;\n  }\n  auto I = ConvexHull(XY, \"lower\", false, sorted);\n  XY = rearrange(XY,\
+    \ res;\n  }\n  auto I = ConvexHull(XY, \"lower\", sorted);\n  XY = rearrange(XY,\
     \ I);\n  vc<tuple<T, T, T, T>> res;\n\n  ll lo = -infty<ll>;\n  FOR(i, len(XY))\
     \ {\n    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
     \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
@@ -128,8 +127,8 @@ data:
   isVerificationFile: false
   path: convex/fenchel.hpp
   requiredBy: []
-  timestamp: '2024-07-18 11:12:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-07-20 11:57:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/arc130f.test.cpp
 documentation_of: convex/fenchel.hpp
