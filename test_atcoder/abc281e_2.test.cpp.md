@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
