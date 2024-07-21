@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_tree.hpp
     title: graph/count/count_labeled_tree.hpp
   - icon: ':question:'
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/count_labeled_forest.test.cpp
     title: test/mytest/count_labeled_forest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A001858
@@ -427,7 +427,7 @@ data:
   path: graph/count/count_labeled_forest.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/graph_count.test.cpp
   - test/mytest/count_labeled_forest.test.cpp

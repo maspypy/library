@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/string/prefix_substring_lcs.test.cpp
     title: test/library_checker/string/prefix_substring_lcs.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/index_compression.test.cpp
     title: test/mytest/index_compression.test.cpp
   - icon: ':x:'

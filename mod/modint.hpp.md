@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_forest.hpp
     title: graph/count/count_labeled_forest.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_strong_tournament.hpp
     title: graph/count/count_labeled_strong_tournament.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -200,22 +200,22 @@ data:
   - icon: ':warning:'
     path: poly/online/online_convolution_garner.hpp
     title: poly/online/online_convolution_garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   - icon: ':warning:'
     path: poly/online/online_exp_garner.hpp
     title: poly/online/online_exp_garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
   - icon: ':question:'
@@ -795,34 +795,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/floor_sum_of_polynomial.test.cpp
     title: test/mytest/floor_sum_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/graph_count.test.cpp
     title: test/mytest/graph_count.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/multinomial.test.cpp
     title: test/mytest/multinomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_inv.test.cpp
     title: test/mytest/online_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
   - icon: ':x:'

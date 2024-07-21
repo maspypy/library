@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_products.test.cpp
     title: test/mytest/enumerate_products.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/fibonacci_search.test.cpp
     title: test/mytest/fibonacci_search.test.cpp
   - icon: ':x:'

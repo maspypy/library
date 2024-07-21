@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -315,7 +315,7 @@ data:
   path: test/mytest/find_C4.test.cpp
   requiredBy: []
   timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/find_C4.test.cpp
 layout: document

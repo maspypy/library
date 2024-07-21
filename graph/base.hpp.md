@@ -104,7 +104,7 @@ data:
   - icon: ':question:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
   - icon: ':warning:'
@@ -140,22 +140,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_C4.hpp
     title: graph/find_C4.hpp
   - icon: ':x:'
     path: graph/find_centroid.hpp
     title: graph/find_centroid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_even_cycle.hpp
     title: graph/find_even_cycle.hpp
   - icon: ':warning:'
     path: graph/find_nontransitive_triple.hpp
     title: graph/find_nontransitive_triple.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
   - icon: ':x:'
@@ -164,7 +164,7 @@ data:
   - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
   - icon: ':question:'
@@ -176,10 +176,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_independent_set_weighted.hpp
     title: graph/maximum_independent_set_weighted.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
   - icon: ':warning:'
@@ -531,31 +531,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/enumerate_unlabeled_tree.test.cpp
     title: test/mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/find_C4.test.cpp
     title: test/mytest/find_C4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/find_cycle_minimum.test.cpp
     title: test/mytest/find_cycle_minimum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/find_even_cycle.test.cpp
     title: test/mytest/find_even_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_scc.test.cpp
     title: test/mytest/incremental_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching.test.cpp
     title: test/mytest/matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
   - icon: ':x:'
