@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
   - icon: ':x:'
