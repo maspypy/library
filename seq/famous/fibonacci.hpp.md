@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/303.test.cpp
     title: test/yukicoder/303.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/famous/fibonacci.hpp\"\n// 0, 1, 1, 2, 3, 5, ...\ntemplate\
@@ -27,7 +27,7 @@ data:
   path: seq/famous/fibonacci.hpp
   requiredBy: []
   timestamp: '2023-02-28 19:11:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/303.test.cpp
 documentation_of: seq/famous/fibonacci.hpp
