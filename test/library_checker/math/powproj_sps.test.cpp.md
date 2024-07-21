@@ -45,9 +45,9 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/power_projection_of_set_power_series
@@ -588,7 +588,7 @@ data:
   path: test/library_checker/math/powproj_sps.test.cpp
   requiredBy: []
   timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/math/powproj_sps.test.cpp
 layout: document
