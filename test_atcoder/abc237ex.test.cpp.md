@@ -28,7 +28,7 @@ data:
   - icon: ':x:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
