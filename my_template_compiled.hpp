@@ -13,7 +13,6 @@ using i128 = __int128;
 using u128 = unsigned __int128;
 using f128 = __float128;
 
-
 template <class T>
 constexpr T infty = 0;
 template <>
@@ -25,7 +24,7 @@ constexpr u32 infty<u32> = infty<int>;
 template <>
 constexpr u64 infty<u64> = infty<ll>;
 template <>
-constexpr i128 infty<i128> = i128(infty<ll>) * 2'020'000'000'000'000'000;
+constexpr i128 infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;
 template <>
 constexpr double infty<double> = infty<ll>;
 template <>
