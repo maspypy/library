@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':warning:'
@@ -138,7 +138,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/max_dot.test.cpp
     title: test/mytest/max_dot.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
   - icon: ':x:'
