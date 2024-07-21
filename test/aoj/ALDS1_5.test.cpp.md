@@ -40,7 +40,7 @@ data:
     \ <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
     \ = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\n\
     template <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128\
-    \ infty<i128> = i128(infty<ll>) * 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr\
     \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
     \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
     \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
@@ -334,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ALDS1_5.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 14:07:17+09:00'
+  timestamp: '2024-07-21 16:21:08+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ALDS1_5.test.cpp
