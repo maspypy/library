@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: graph/bitset/reachability_bitset.hpp
     title: graph/bitset/reachability_bitset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/subset_sum.test.cpp
     title: test/mytest/subset_sum.test.cpp
   - icon: ':x:'
