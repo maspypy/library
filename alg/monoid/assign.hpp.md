@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':x:'
@@ -21,10 +21,10 @@ data:
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_D.test.cpp
     title: test/aoj/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/DSL_2_F.test.cpp
     title: test/aoj/DSL_2_F.test.cpp
   - icon: ':x:'
@@ -77,7 +77,7 @@ data:
     title: test_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
@@ -99,7 +99,7 @@ data:
   - alg/acted_monoid/summax_assign.hpp
   - alg/acted_monoid/sum_assign.hpp
   timestamp: '2023-10-14 20:28:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/summin_assign.test.cpp
   - test/mytest/rbst_am.test.cpp
