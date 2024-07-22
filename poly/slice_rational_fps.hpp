@@ -1,4 +1,5 @@
 #include "poly/convolution.hpp"
+#include "poly/middle_product.hpp"
 #include "poly/transposed_ntt.hpp"
 #include "poly/fps_div.hpp"
 #include "poly/poly_divmod.hpp"
@@ -147,6 +148,15 @@ vc<mint> slice_rational_fps_convolution(vc<mint> P, vc<mint> Q, ll L, ll R) {
 
 template <typename mint>
 vc<mint> slice_rational_fps(vc<mint>& P, vc<mint>& Q, ll L, ll R) {
+  assert(L <= R);
+  if (L == R) return {};
+  if (R < 0) { return vc<mint>(R - L, 0); }
+  if (L < 0) {
+    vc<mint> f = slice_rational_fps<mint>(P, Q, 0, R);
+    vc<mint> res(R - L);
+    FOR(i, 0, R) res[i - L] = f[i];
+    return res;
+  }
   if constexpr (mint::can_ntt()) {
     return slice_rational_fps_ntt(P, Q, L, R);
   } else {
