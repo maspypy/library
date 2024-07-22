@@ -32,7 +32,7 @@ data:
   - icon: ':question:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':x:'
@@ -198,13 +198,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1411.test.cpp
     title: test/yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
   - icon: ':x:'

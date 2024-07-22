@@ -11,7 +11,7 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
   - icon: ':x:'
@@ -233,7 +233,7 @@ data:
   - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
     title: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   - icon: ':x:'
@@ -284,7 +284,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':question:'
@@ -630,37 +630,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1344.test.cpp
     title: test/yukicoder/1344.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1418.test.cpp
     title: test/yukicoder/1418.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1451.test.cpp
     title: test/yukicoder/1451.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1494.test.cpp
     title: test/yukicoder/1494.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1524.test.cpp
     title: test/yukicoder/1524.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600.test.cpp
     title: test/yukicoder/1600.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1601.test.cpp
     title: test/yukicoder/1601.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1602.test.cpp
     title: test/yukicoder/1602.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1615.test.cpp
     title: test/yukicoder/1615.test.cpp
   - icon: ':x:'
