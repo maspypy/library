@@ -6,12 +6,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/blackbox_solve_linear.test.cpp
     title: test/mytest/blackbox_solve_linear.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://arxiv.org/pdf/1204.3735
@@ -98,7 +98,7 @@ data:
   path: linalg/blackbox/solve_linear.hpp
   requiredBy: []
   timestamp: '2024-06-14 05:06:38+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/blackbox_solve_linear.test.cpp
 documentation_of: linalg/blackbox/solve_linear.hpp

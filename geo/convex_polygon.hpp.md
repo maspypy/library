@@ -12,10 +12,10 @@ data:
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_side.test.cpp
     title: test/mytest/convex_polygon_side.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_visible_range.test.cpp
     title: test/mytest/convex_polygon_visible_range.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/mytest/max_dot.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1906/problem/D
@@ -204,7 +204,7 @@ data:
   requiredBy:
   - geo/minkowski_sum.hpp
   timestamp: '2024-07-18 11:12:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/convex_polygon_visible_range.test.cpp
   - test/mytest/max_dot.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
   _extendedRequiredBy: []
