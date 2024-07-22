@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq.test.cpp
     title: test/library_checker/datastructure/staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_dst.test.cpp
     title: test/library_checker/datastructure/staticrmq_dst.test.cpp
   - icon: ':x:'

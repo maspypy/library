@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
     title: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/sqrt_tree.hpp\"\n\n// \u6298\u89D2\u306A\u306E\u3067\u4F5C\
@@ -103,7 +103,7 @@ data:
   path: ds/sqrt_tree.hpp
   requiredBy: []
   timestamp: '2024-02-06 13:07:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
 documentation_of: ds/sqrt_tree.hpp

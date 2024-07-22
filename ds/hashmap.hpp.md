@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':x:'
@@ -54,10 +54,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_mode_query.test.cpp
     title: test/library_checker/datastructure/static_range_mode_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/closest_pair.test.cpp
     title: test/library_checker/geometry/closest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/closest_pair_dc.test.cpp
     title: test/library_checker/geometry/closest_pair_dc.test.cpp
   - icon: ':x:'
