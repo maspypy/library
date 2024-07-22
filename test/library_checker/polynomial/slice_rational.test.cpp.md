@@ -41,6 +41,9 @@ data:
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':question:'
+    path: poly/middle_product.hpp
+    title: poly/middle_product.hpp
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':x:'
@@ -522,7 +525,30 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/transposed_ntt.hpp\"\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/middle_product.hpp\"\
+    \n\n#line 6 \"poly/middle_product.hpp\"\n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m)\
+    \ a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate\
+    \ <typename mint>\nvc<mint> middle_product(vc<mint>& a, vc<mint>& b) {\n  assert(len(a)\
+    \ >= len(b));\n  if (b.empty()) return vc<mint>(len(a) - len(b) + 1);\n  if (min(len(b),\
+    \ len(a) - len(b) + 1) <= 60) {\n    return middle_product_naive(a, b);\n  }\n\
+    \  if (!(mint::can_ntt())) {\n    return middle_product_garner(a, b);\n  } else\
+    \ {\n    int n = 1 << __lg(2 * len(a) - 1);\n    vc<mint> fa(n), fb(n);\n    copy(a.begin(),\
+    \ a.end(), fa.begin());\n    copy(b.rbegin(), b.rend(), fb.begin());\n    ntt(fa,\
+    \ 0), ntt(fb, 0);\n    FOR(i, n) fa[i] *= fb[i];\n    ntt(fa, 1);\n    fa.resize(len(a));\n\
+    \    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\n    return fa;\n  }\n}\n\n\
+    template <typename mint>\nvc<mint> middle_product_garner(vc<mint>& a, vc<mint>\
+    \ b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  static constexpr\
+    \ int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n  static constexpr\
+    \ int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using mint1 = modint<p1>;\n\
+    \  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
+    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
+    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
+    \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
+    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n \
+    \ FOR(i, n - m + 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
+    \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
+    \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
+    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 2 \"poly/transposed_ntt.hpp\"\
     \n\ntemplate <class mint>\nvoid transposed_ntt(vector<mint>& a, bool inverse)\
     \ {\n  assert(mint::can_ntt());\n  const int rank2 = mint::ntt_info().fi;\n  const\
     \ int mod = mint::get_mod();\n  static array<mint, 30> root, iroot;\n  static\
@@ -619,7 +645,7 @@ data:
     \ rg.resize(deg);\r\n  rg = fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n\
     \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
     \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
-    \n  return {q, f};\r\n}\r\n#line 5 \"poly/slice_rational_fps.hpp\"\n\ntemplate\
+    \n  return {q, f};\r\n}\r\n#line 6 \"poly/slice_rational_fps.hpp\"\n\ntemplate\
     \ <typename mint>\nvc<mint> slice_rational_fps_ntt(vector<mint> P, vector<mint>\
     \ Q, ll L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0]\
     \ == mint(1));\n  if (len(Q) == 1) {\n    vc<mint> ANS(R - L);\n    FOR(i, L,\
@@ -671,13 +697,16 @@ data:
     \  f = middle_product(A, P);\n  f = convolution<mint>(f, Q);\n  f.resize(d);\n\
     \  f.resize(R - L);\n  f = fps_div<mint>(f, Q);\n  return f;\n}\n\ntemplate <typename\
     \ mint>\nvc<mint> slice_rational_fps(vc<mint>& P, vc<mint>& Q, ll L, ll R) {\n\
-    \  if constexpr (mint::can_ntt()) {\n    return slice_rational_fps_ntt(P, Q, L,\
-    \ R);\n  } else {\n    return slice_rational_fps_convolution(P, Q, L, R);\n  }\n\
-    }\n#line 7 \"test/library_checker/polynomial/slice_rational.test.cpp\"\n\nusing\
-    \ mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n  VEC(mint,\
-    \ g, N);\n  for (auto&& x: g) x = -x;\n  g.insert(g.begin(), 1);\n  auto f = convolution(A,\
-    \ g);\n  f.resize(N);\n  print(slice_rational_fps(f, g, a, a + b));\n}\n\nsigned\
-    \ main() { solve(); }\n"
+    \  assert(L <= R);\n  if (L == R) return {};\n  if (R < 0) { return vc<mint>(R\
+    \ - L, 0); }\n  if (L < 0) {\n    vc<mint> f = slice_rational_fps<mint>(P, Q,\
+    \ 0, R);\n    vc<mint> res(R - L);\n    FOR(i, 0, R) res[i - L] = f[i];\n    return\
+    \ res;\n  }\n  if constexpr (mint::can_ntt()) {\n    return slice_rational_fps_ntt(P,\
+    \ Q, L, R);\n  } else {\n    return slice_rational_fps_convolution(P, Q, L, R);\n\
+    \  }\n}\n#line 7 \"test/library_checker/polynomial/slice_rational.test.cpp\"\n\
+    \nusing mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n\
+    \  VEC(mint, g, N);\n  for (auto&& x: g) x = -x;\n  g.insert(g.begin(), 1);\n\
+    \  auto f = convolution(A, g);\n  f.resize(N);\n  print(slice_rational_fps(f,\
+    \ g, a, a + b));\n}\n\nsigned main() { solve(); }\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/consecutive_terms_of_linear_recurrent_sequence\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/slice_rational_fps.hpp\"\
     \n\nusing mint = modint998;\nvoid solve() {\n  LL(N, a, b);\n  VEC(mint, A, N);\n\
@@ -697,6 +726,7 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
+  - poly/middle_product.hpp
   - poly/transposed_ntt.hpp
   - poly/fps_div.hpp
   - poly/count_terms.hpp
@@ -705,7 +735,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/polynomial/slice_rational.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
+  timestamp: '2024-07-22 13:52:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/polynomial/slice_rational.test.cpp

@@ -644,7 +644,7 @@ data:
     \ rg.resize(deg);\r\n  rg = fps_inv(rg);\r\n  auto q = convolution(rf, rg);\r\n\
     \  q.resize(deg);\r\n  reverse(all(q));\r\n  auto h = convolution(q, g);\r\n \
     \ FOR(i, len(f)) f[i] -= h[i];\r\n  while (len(f) > 0 && f.back() == 0) f.pop_back();\r\
-    \n  return {q, f};\r\n}\r\n#line 5 \"poly/slice_rational_fps.hpp\"\n\ntemplate\
+    \n  return {q, f};\r\n}\r\n#line 6 \"poly/slice_rational_fps.hpp\"\n\ntemplate\
     \ <typename mint>\nvc<mint> slice_rational_fps_ntt(vector<mint> P, vector<mint>\
     \ Q, ll L, ll R) {\n  while (len(Q) && Q.back() == mint(0)) POP(Q);\n  assert(Q[0]\
     \ == mint(1));\n  if (len(Q) == 1) {\n    vc<mint> ANS(R - L);\n    FOR(i, L,\
@@ -696,15 +696,18 @@ data:
     \  f = middle_product(A, P);\n  f = convolution<mint>(f, Q);\n  f.resize(d);\n\
     \  f.resize(R - L);\n  f = fps_div<mint>(f, Q);\n  return f;\n}\n\ntemplate <typename\
     \ mint>\nvc<mint> slice_rational_fps(vc<mint>& P, vc<mint>& Q, ll L, ll R) {\n\
-    \  if constexpr (mint::can_ntt()) {\n    return slice_rational_fps_ntt(P, Q, L,\
-    \ R);\n  } else {\n    return slice_rational_fps_convolution(P, Q, L, R);\n  }\n\
-    }\n#line 8 \"test_atcoder/agc013e.test.cpp\"\n\nusing mint = modint107;\n\nvoid\
-    \ solve() {\n  LL(N, M);\n  using poly = vc<mint>;\n  poly f = {0, 1, 1};\n  poly\
-    \ Q = {1, -4, 2, -1};\n  int now = 0;\n  FOR(M) {\n    INT(x);\n    f = slice_rational_fps(f,\
-    \ Q, x - now, x - now + 3);\n    now = x;\n    mint a = f[0];\n    f = convolution(f,\
-    \ Q);\n    f.resize(3);\n    f[1] -= a;\n    f[2] -= a;\n  }\n  f = slice_rational_fps(f,\
-    \ Q, N - now, N - now + 3);\n  print(f[0]);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \  assert(L <= R);\n  if (L == R) return {};\n  if (R < 0) { return vc<mint>(R\
+    \ - L, 0); }\n  if (L < 0) {\n    vc<mint> f = slice_rational_fps<mint>(P, Q,\
+    \ 0, R);\n    vc<mint> res(R - L);\n    FOR(i, 0, R) res[i - L] = f[i];\n    return\
+    \ res;\n  }\n  if constexpr (mint::can_ntt()) {\n    return slice_rational_fps_ntt(P,\
+    \ Q, L, R);\n  } else {\n    return slice_rational_fps_convolution(P, Q, L, R);\n\
+    \  }\n}\n#line 8 \"test_atcoder/agc013e.test.cpp\"\n\nusing mint = modint107;\n\
+    \nvoid solve() {\n  LL(N, M);\n  using poly = vc<mint>;\n  poly f = {0, 1, 1};\n\
+    \  poly Q = {1, -4, 2, -1};\n  int now = 0;\n  FOR(M) {\n    INT(x);\n    f =\
+    \ slice_rational_fps(f, Q, x - now, x - now + 3);\n    now = x;\n    mint a =\
+    \ f[0];\n    f = convolution(f, Q);\n    f.resize(3);\n    f[1] -= a;\n    f[2]\
+    \ -= a;\n  }\n  f = slice_rational_fps(f, Q, N - now, N - now + 3);\n  print(f[0]);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/agc013/tasks/agc013_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\n\
     #include \"poly/middle_product.hpp\"\n#include \"poly/fps_div.hpp\"\n#include\
@@ -737,7 +740,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/agc013e.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
+  timestamp: '2024-07-22 13:52:12+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/agc013e.test.cpp

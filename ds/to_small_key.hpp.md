@@ -5,22 +5,22 @@ data:
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_freq.test.cpp
     title: test/library_checker/datastructure/static_range_freq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_frequency.test.cpp
     title: test/library_checker/datastructure/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/static_range_mode_query.test.cpp
     title: test/library_checker/datastructure/static_range_mode_query.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -67,7 +67,7 @@ data:
   requiredBy:
   - ds/static_range_frequency.hpp
   timestamp: '2024-07-03 07:03:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/static_range_freq.test.cpp
   - test/library_checker/datastructure/static_range_mode_query.test.cpp

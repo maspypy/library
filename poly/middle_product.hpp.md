@@ -33,6 +33,9 @@ data:
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':x:'
+    path: poly/slice_rational_fps.hpp
+    title: poly/slice_rational_fps.hpp
+  - icon: ':x:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
@@ -66,6 +69,9 @@ data:
   - icon: ':x:'
     path: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
     title: test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
+  - icon: ':x:'
+    path: test/library_checker/polynomial/slice_rational.test.cpp
+    title: test/library_checker/polynomial/slice_rational.test.cpp
   - icon: ':x:'
     path: test/mytest/chirp_z.test.cpp
     title: test/mytest/chirp_z.test.cpp
@@ -338,6 +344,7 @@ data:
   - string/wildcard_pattern_matching.hpp
   - poly/typical_divide_conquer.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - poly/slice_rational_fps.hpp
   - poly/multipoint.hpp
   - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
@@ -351,6 +358,7 @@ data:
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/library_checker/polynomial/slice_rational.test.cpp
   - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
   - test/mytest/chirp_z.test.cpp
