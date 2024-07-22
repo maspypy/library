@@ -6,7 +6,7 @@ data:
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
     title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test_atcoder/abc281e_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/671/D
@@ -203,7 +203,7 @@ data:
   requiredBy:
   - ds/my_multiset.hpp
   timestamp: '2024-03-30 00:47:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   - test/library_checker/datastructure/double_ended_pq_2.test.cpp
