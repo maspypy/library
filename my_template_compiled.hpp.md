@@ -89,7 +89,9 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n"
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n"
   code: "// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n#pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace\
     \ std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned\
@@ -168,12 +170,14 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n"
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}"
   dependsOn: []
   isVerificationFile: false
   path: my_template_compiled.hpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
+  timestamp: '2024-07-22 11:16:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: my_template_compiled.hpp

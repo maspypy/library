@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/fibonacci_search.hpp
     title: other/fibonacci_search.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -102,41 +102,44 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/fibonacci_search.hpp\"\n// returns: {fx,\
-    \ x}\n// [L, R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\u3064\u6C42\u3081\
-    \u308B\u3001\u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename T, bool MINIMIZE,\
-    \ typename F>\npair<T, ll> fibonacci_search(F f, ll L, ll R) {\n  assert(L < R);\n\
-    \  --R;\n  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n  int n = 0;\n  while (d\
-    \ < R) { b = c, c = d, d = b + c - a, ++n; }\n  auto get = [&](ll x) -> T {\n\
-    \    if (R < x) return infty<T>;\n    return (MINIMIZE ? f(x) : -f(x));\n  };\n\
-    \  T ya = get(a), yb = get(b), yc = get(c), yd = get(d);\n  // \u3053\u306E\u4E2D\
-    \u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\u3082\u6975\u5C0F\u3001\
-    \u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb <= yc) {\n      d = c,\
-    \ c = b, b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n    } else {\n\
-    \      a = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc = get(c);\n  \
-    \  }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n  if (chmin(y,\
-    \ yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return {y, x};\n  return\
-    \ {-y, x};\n}\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\n\
-    template <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N =\
-    \ len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n\
-    \    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
-    \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
-    \ 5 \"test/mytest/fibonacci_search.test.cpp\"\n\nvoid test() {\n  // permutation\n\
-    \  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A), 0);\n    do {\n      auto\
-    \ f = [&](int i) -> int { return A[i]; };\n      auto [y, i] = fibonacci_search<int,\
-    \ true>(f, 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i]\
-    \ < A[i - 1]);\n      if (i + 1 < N) assert(A[i] < A[i + 1]);\n    } while (next_permutation(all(A)));\n\
-    \  }\n  // [0,1]\n  FOR(N, 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n\
-    \      FOR(i, N) A[i] = s >> i & 1;\n      auto f = [&](int i) -> int { return\
-    \ A[i]; };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"other/fibonacci_search.hpp\"\
+    \n// returns: {fx, x}\n// [L, R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\
+    \u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename\
+    \ T, bool MINIMIZE, typename F>\npair<T, ll> fibonacci_search(F f, ll L, ll R)\
+    \ {\n  assert(L < R);\n  --R;\n  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n\
+    \  int n = 0;\n  while (d < R) { b = c, c = d, d = b + c - a, ++n; }\n  auto get\
+    \ = [&](ll x) -> T {\n    if (R < x) return infty<T>;\n    return (MINIMIZE ?\
+    \ f(x) : -f(x));\n  };\n  T ya = get(a), yb = get(b), yc = get(c), yd = get(d);\n\
+    \  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\
+    \u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb\
+    \ <= yc) {\n      d = c, c = b, b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n\
+    \    } else {\n      a = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc\
+    \ = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n\
+    \  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return\
+    \ {y, x};\n  return {-y, x};\n}\n#line 1 \"enumerate/product.hpp\"\n// [0, A0)\
+    \ x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int> A, F\
+    \ query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void\
+    \ {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n\
+    \      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
+    \ p;\n  dfs(dfs, p);\n}\n#line 5 \"test/mytest/fibonacci_search.test.cpp\"\n\n\
+    void test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A),\
+    \ 0);\n    do {\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
+    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
+    \      if (0 < i) assert(A[i] < A[i - 1]);\n      if (i + 1 < N) assert(A[i] <\
+    \ A[i + 1]);\n    } while (next_permutation(all(A)));\n  }\n  // [0,1]\n  FOR(N,\
+    \ 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n      FOR(i, N) A[i] =\
+    \ s >> i & 1;\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
+    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
+    \      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1 < N) assert(A[i]\
+    \ <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n    enumerate_product(vc<int>(N,\
+    \ 3), [&](vc<int> A) -> void {\n      auto f = [&](int i) -> int { return A[i];\
+    \ };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
     \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
-    \ < N) assert(A[i] <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n\
-    \    enumerate_product(vc<int>(N, 3), [&](vc<int> A) -> void {\n      auto f =\
-    \ [&](int i) -> int { return A[i]; };\n      auto [y, i] = fibonacci_search<int,\
-    \ true>(f, 0, N);\n      assert(0 <= i && i < N);\n      if (0 < i) assert(A[i]\
-    \ <= A[i - 1]);\n      if (i + 1 < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n}\n\nvoid solve() {\n  int a,\
+    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/fibonacci_search.hpp\"\n#include \"enumerate/product.hpp\"\n\
     \nvoid test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A),\
@@ -162,8 +165,8 @@ data:
   isVerificationFile: true
   path: test/mytest/fibonacci_search.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/fibonacci_search.test.cpp
 layout: document

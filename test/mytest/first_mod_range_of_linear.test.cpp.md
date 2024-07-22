@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/first_mod_range_of_linear.hpp
     title: mod/first_mod_range_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -105,7 +105,9 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/first_mod_range_of_linear.test.cpp\"\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/first_mod_range_of_linear.test.cpp\"\
     \n\n#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\u6700\
     \u5C0F\u3068\u306A\u308B\u3068\u3053\u308D\u306E\u60C5\u5831\u3092\u8FD4\u3059\
     \u3002\nprefix min \u3092\u66F4\u65B0\u3059\u308B x \u5168\u4F53\u304C\u3001\u7B49\
@@ -176,8 +178,8 @@ data:
   isVerificationFile: true
   path: test/mytest/first_mod_range_of_linear.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/first_mod_range_of_linear.test.cpp
 layout: document

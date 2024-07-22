@@ -28,20 +28,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://oeis.org/A000055
@@ -395,7 +395,7 @@ data:
   path: graph/count/count_unlabeled_tree.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_unlabeled_tree.test.cpp
 documentation_of: graph/count/count_unlabeled_tree.hpp

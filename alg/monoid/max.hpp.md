@@ -5,59 +5,59 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_max.hpp
     title: alg/acted_monoid/max_max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/GRL_2_A.test.cpp
     title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/tree/mst.test.cpp
     title: test/library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_assign.test.cpp
     title: test/mytest/max_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_max.test.cpp
     title: test/mytest/max_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_min.test.cpp
     title: test/mytest/max_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_max.test.cpp
     title: test/mytest/min_max.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1117.test.cpp
     title: test/yukicoder/1117.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1625.test.cpp
     title: test/yukicoder/1625.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1790.test.cpp
     title: test/yukicoder/1790.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1826.test.cpp
     title: test/yukicoder/1826.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1826_2.test.cpp
     title: test/yukicoder/1826_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2026.test.cpp
     title: test/yukicoder/2026.test.cpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
     title: test_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -112,7 +112,7 @@ data:
   - alg/acted_monoid/max_add.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/tree/mst.test.cpp
   - test/mytest/min_max.test.cpp

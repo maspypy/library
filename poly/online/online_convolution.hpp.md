@@ -11,56 +11,56 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':warning:'
     path: poly/online/online_convolution_garner.hpp
     title: poly/online/online_convolution_garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   - icon: ':warning:'
     path: poly/online/online_exp_garner.hpp
     title: poly/online/online_exp_garner.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/convolution/online_convolution.test.cpp
     title: test/library_checker/convolution/online_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_unlabeled_tree.test.cpp
     title: test/mytest/count_unlabeled_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_division.test.cpp
     title: test/mytest/online_division.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_exp.test.cpp
     title: test/mytest/online_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_inv.test.cpp
     title: test/mytest/online_inv.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_log.test.cpp
     title: test/mytest/online_log.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/online_pow.test.cpp
     title: test/mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/simple_perm.test.cpp
     title: test/mytest/simple_perm.test.cpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
     title: test_atcoder/abc315h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -255,7 +255,7 @@ data:
   - poly/online/online_division.hpp
   - graph/count/count_unlabeled_tree.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/convolution/online_convolution.test.cpp
   - test/mytest/online_division.test.cpp

@@ -2,32 +2,32 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_2_A.test.cpp
     title: test/aoj/NTL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_2_B.test.cpp
     title: test/aoj/NTL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
     title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
     title: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/sample/aplusb128.test.cpp
     title: test/library_checker/sample/aplusb128.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/bigint.test.cpp
     title: test/mytest/bigint.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/digit_sum.test.cpp
     title: test/mytest/digit_sum.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test_atcoder/abc339f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/digit_sum.hpp\"\n\nint digit_sum(u64 x) {\n  const int\
@@ -70,7 +70,7 @@ data:
   requiredBy:
   - bigint/base.hpp
   timestamp: '2024-06-06 03:38:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp

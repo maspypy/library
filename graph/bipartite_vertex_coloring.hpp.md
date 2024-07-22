@@ -11,10 +11,10 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
   - icon: ':question:'
@@ -27,34 +27,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1615.test.cpp
     title: test/yukicoder/1615.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1911.test.cpp
     title: test/yukicoder/1911.test.cpp
   - icon: ':x:'

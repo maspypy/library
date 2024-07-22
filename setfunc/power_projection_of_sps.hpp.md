@@ -35,20 +35,20 @@ data:
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic_polynomial.test.cpp
     title: graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/chromatic_number.test.cpp
     title: test/library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/power_projection_of_sps.test.cpp
     title: test/library_checker/math/power_projection_of_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/powproj_sps.test.cpp
     title: test/library_checker/math/powproj_sps.test.cpp
   - icon: ':x:'

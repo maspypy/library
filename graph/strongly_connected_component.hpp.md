@@ -8,13 +8,13 @@ data:
   - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
   - icon: ':question:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
@@ -36,52 +36,52 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/2251_2.test.cpp
     title: test/aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/bipartitematching.test.cpp
     title: test/library_checker/graph/bipartitematching.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/incremental_scc.test.cpp
     title: test/library_checker/graph/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/graph/scc.test.cpp
     title: test/library_checker/graph/scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/twosat.test.cpp
     title: test/library_checker/math/twosat.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/find_odd_cycle.test.cpp
     title: test/mytest/find_odd_cycle.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/incremental_scc.test.cpp
     title: test/mytest/incremental_scc.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/matching_ve.test.cpp
     title: test/mytest/matching_ve.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/scc_tournament.test.cpp
     title: test/mytest/scc_tournament.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tutte.test.cpp
     title: test/mytest/tutte.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1170.test.cpp
     title: test/yukicoder/1170.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1293.test.cpp
     title: test/yukicoder/1293.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1479.test.cpp
     title: test/yukicoder/1479.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1744.test.cpp
     title: test/yukicoder/1744.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1745.test.cpp
     title: test/yukicoder/1745.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1813.test.cpp
     title: test/yukicoder/1813.test.cpp
   - icon: ':x:'

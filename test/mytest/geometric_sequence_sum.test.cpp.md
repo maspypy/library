@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
   - icon: ':question:'
@@ -31,14 +31,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/geometric_sequence_sum.hpp
     title: seq/geometric_sequence_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -126,7 +126,9 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/geometric_sequence_sum.test.cpp\"\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/geometric_sequence_sum.test.cpp\"\
     \n\n#line 2 \"mod/dynamic_modint.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\n\n\
     struct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
     \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
@@ -359,8 +361,8 @@ data:
   isVerificationFile: true
   path: test/mytest/geometric_sequence_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/geometric_sequence_sum.test.cpp
 layout: document

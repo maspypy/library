@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:

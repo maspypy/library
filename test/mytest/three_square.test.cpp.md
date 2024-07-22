@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -13,16 +13,16 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -120,15 +120,17 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/three_square.test.cpp\"\n\n#line\
-    \ 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\
-    \u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\nstruct\
-    \ Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static U1 m,\
-    \ r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static void\
-    \ set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n    m =\
-    \ mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n    assert(r\
-    \ * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b) * r) *\
-    \ m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/three_square.test.cpp\"\
+    \n\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\u308F\
+    \u308A\u306B rx \u3092\u6301\u3064\ntemplate <int id, typename U1, typename U2>\n\
+    struct Mongomery_modint {\n  using mint = Mongomery_modint;\n  inline static U1\
+    \ m, r, n2;\n  static constexpr int W = numeric_limits<U1>::digits;\n\n  static\
+    \ void set_mod(U1 mod) {\n    assert(mod & 1 && mod <= U1(1) << (W - 2));\n  \
+    \  m = mod, n2 = -U2(m) % m, r = m;\n    FOR(5) r *= 2 - m * r;\n    r = -r;\n\
+    \    assert(r * m == U1(-1));\n  }\n  static U1 reduce(U2 b) { return (b + U2(U1(b)\
+    \ * r) * m) >> W; }\n\n  U1 x;\n  Mongomery_modint() : x(0) {}\n  Mongomery_modint(U1\
     \ x) : x(reduce(U2(x) * n2)){};\n  U1 val() const {\n    U1 y = reduce(x);\n \
     \   return y >= m ? y - m : y;\n  }\n  mint &operator+=(mint y) {\n    x = ((x\
     \ += y.x) >= m ? x - m : x);\n    return *this;\n  }\n  mint &operator-=(mint\
@@ -322,8 +324,8 @@ data:
   isVerificationFile: true
   path: test/mytest/three_square.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/three_square.test.cpp
 layout: document

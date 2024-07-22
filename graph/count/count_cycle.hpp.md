@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'

@@ -5,13 +5,13 @@ data:
   - icon: ':warning:'
     path: ds/counter.hpp
     title: ds/counter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bitset/bfs_bitset.hpp
     title: graph/bitset/bfs_bitset.hpp
   - icon: ':warning:'
     path: graph/bitset/reachability_bitset.hpp
     title: graph/bitset/reachability_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -20,26 +20,26 @@ data:
   - icon: ':warning:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/matrix/matrix_product_mod2.test.cpp
     title: test/library_checker/matrix/matrix_product_mod2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/mybitset.test.cpp
     title: test/mytest/mybitset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/subset_sum.test.cpp
     title: test/mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1400.test.cpp
     title: test/yukicoder/1400.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/142.test.cpp
     title: test/yukicoder/142.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1421.test.cpp
     title: test/yukicoder/1421.test.cpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
     title: test_atcoder/abc350g2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -289,7 +289,7 @@ data:
   - graph/bitset/reachability_bitset.hpp
   - graph/bitset/bfs_bitset.hpp
   timestamp: '2024-02-23 19:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/matrix/matrix_product_mod2.test.cpp
   - test/mytest/subset_sum.test.cpp

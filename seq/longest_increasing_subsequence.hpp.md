@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DPL_1_D.test.cpp
     title: test/aoj/DPL_1_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/longest_increasing_subsequence.test.cpp
     title: test/library_checker/math/longest_increasing_subsequence.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yukicoder/2230.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] := \u7B2C\
@@ -36,7 +36,7 @@ data:
   path: seq/longest_increasing_subsequence.hpp
   requiredBy: []
   timestamp: '2023-02-25 00:04:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/longest_increasing_subsequence.test.cpp
   - test/yukicoder/2230.test.cpp

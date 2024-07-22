@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_2_D.test.cpp
     title: test/aoj/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/CGL_7_B.test.cpp
     title: test/aoj/CGL_7_B.test.cpp
   - icon: ':x:'

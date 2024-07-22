@@ -16,10 +16,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   _extendedRequiredBy: []

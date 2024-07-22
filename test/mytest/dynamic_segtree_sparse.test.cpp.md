@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -105,14 +105,16 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
-    \n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\n\
-    \n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\u3042\
-    \u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\u52D5\
-    \u7684\u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 2 \"alg/monoid/min.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree_sparse.hpp\"\
+    \n\n// \u5E38\u306B\u307B\u3068\u3093\u3069\u306E\u8981\u7D20\u304C unit \u3067\
+    \u3042\u308B\u3053\u3068\u304C\u4FDD\u8A3C\u3055\u308C\u308B\u3088\u3046\u306A\
+    \u52D5\u7684\u30BB\u30B0\u6728\n// \u3057\u305F\u304C\u3063\u3066\u3001default_prod\
     \ \u306E\u985E\u306F\u6301\u305F\u305B\u3089\u308C\u305A\u3001acted monoid \u3082\
     \u4E00\u822C\u306B\u306F\u6271\u3048\u306A\u3044\n// \u6C38\u7D9A\u5316\u3057\u306A\
     \u3044\u5834\u5408\u306E\u30CE\u30FC\u30C9\u6570\u3092 O(N) \u306B\u6291\u3048\
@@ -239,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/dynamic_segtree_sparse.test.cpp
 layout: document

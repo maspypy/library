@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -110,19 +110,21 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate <typename\
-    \ E>\nstruct Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
-    \  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)}; }\n  static\
-    \ X from_element(E e) { return {e, e}; }\n  static constexpr X unit() { return\
-    \ {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line 2 \"alg/monoid/add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
-    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
-    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/summax_add.hpp\"\n\n\
-    template <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X = Monoid_SumMax<E>;\n\
-    \  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 2 \"alg/monoid/summax.hpp\"\
+    \n\ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
+    \ constexpr X unit() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
+    \ = 1;\n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/summax_add.hpp\"\
+    \n\ntemplate <typename E>\nstruct ActedMonoid_SumMax_Add {\n  using Monoid_X =\
+    \ Monoid_SumMax<E>;\n  using Monoid_A = Monoid_Add<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X&\
     \ x, const A& a, const ll& size) {\n    auto [xs, xm] = x;\n    xm = (xm == -infty<E>\
     \ ? xm : xm + a);\n    return {xs + E(size) * a, xm};\n  }\n};\n#line 2 \"random/base.hpp\"\
@@ -222,8 +224,8 @@ data:
   isVerificationFile: true
   path: test/mytest/summax_add.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/summax_add.test.cpp
 layout: document

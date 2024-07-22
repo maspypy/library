@@ -7,16 +7,16 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/restore_path.hpp
     title: graph/shortest_path/restore_path.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -123,18 +123,20 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/st_numbering.test.cpp\"\n\n#line\
-    \ 1 \"graph/st_numbering.hpp\"\n\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename\
-    \ T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename\
-    \ T = int, bool directed = false>\nstruct Graph {\n  static constexpr bool is_directed\
-    \ = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n\
-    \  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n\
-    \  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges\
-    \ {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l),\
-    \ r(r) {}\n\n    const edge_type* begin() const {\n      if (l == r) { return\
-    \ 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type* end() const\
-    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n\
-    \  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/st_numbering.test.cpp\"\
+    \n\n#line 1 \"graph/st_numbering.hpp\"\n\n#line 2 \"graph/base.hpp\"\n\ntemplate\
+    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
+    \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
+    \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
+    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
     \ { return prepared; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
     \ N) : N(N), M(0), prepared(0) {}\n\n  void build(int n) {\n    N = n, M = 0;\n\
     \    prepared = 0;\n    edges.clear();\n    indptr.clear();\n    csr_edges.clear();\n\
@@ -373,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/mytest/st_numbering.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/st_numbering.test.cpp
 layout: document

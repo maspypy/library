@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/summin.hpp
     title: alg/monoid/summin.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -110,28 +110,31 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 2 \"alg/monoid/summin.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_SumMin {\r\n  using value_type = pair<E, E>;\r\n  using\
-    \ X = value_type;\r\n  static X op(X x, X y) { return {x.fi + y.fi, min(x.se,\
-    \ y.se)}; }\r\n  static X from_element(E x) { return {x, x}; }\r\n  static constexpr\
-    \ X unit() { return {E(0), infty<E>}; }\r\n  static constexpr bool commute = true;\r\
-    \n};\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/summin_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_SumMin_Add {\r\n  using Monoid_X\
-    \ = Monoid_SumMin<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X& x, const A& a, const ll& size) {\r\n    auto [xs, xm]\
-    \ = x;\r\n    xm = (xm == infty<E> ? xm : xm + a);\r\n    return {xs + E(size)\
-    \ * a, xm};\r\n  }\r\n};\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 2 \"alg/monoid/summin.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_SumMin {\r\n  using value_type =\
+    \ pair<E, E>;\r\n  using X = value_type;\r\n  static X op(X x, X y) { return {x.fi\
+    \ + y.fi, min(x.se, y.se)}; }\r\n  static X from_element(E x) { return {x, x};\
+    \ }\r\n  static constexpr X unit() { return {E(0), infty<E>}; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename\
+    \ E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n \
+    \ static constexpr X op(const X &x, const X &y) noexcept { return x + y; }\r\n\
+    \  static constexpr X inverse(const X &x) noexcept { return -x; }\r\n  static\
+    \ constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\n  static\
+    \ constexpr X unit() { return X(0); }\r\n  static constexpr bool commute = true;\r\
+    \n};\r\n#line 3 \"alg/acted_monoid/summin_add.hpp\"\n\r\ntemplate <typename E>\r\
+    \nstruct ActedMonoid_SumMin_Add {\r\n  using Monoid_X = Monoid_SumMin<E>;\r\n\
+    \  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X& x, const A& a, const ll& size) {\r\n    auto [xs, xm] = x;\r\n    xm = (xm\
+    \ == infty<E> ? xm : xm + a);\r\n    return {xs + E(size) * a, xm};\r\n  }\r\n\
+    };\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n  \
+    \    = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                \
+    \     chrono::high_resolution_clock::now().time_since_epoch())\n             \
+    \        .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\
     \n\ntemplate <typename ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n\
     \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
     \ X = typename MX::value_type;\n  using A = typename MA::value_type;\n  int n,\
@@ -223,8 +226,8 @@ data:
   isVerificationFile: true
   path: test/mytest/summin_add.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/summin_add.test.cpp
 layout: document

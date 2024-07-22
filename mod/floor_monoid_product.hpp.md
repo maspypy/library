@@ -1,18 +1,18 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
     title: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/floor_sum_of_polynomial.test.cpp
     title: test/mytest/floor_sum_of_polynomial.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/yukicoder/2362.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://qoj.ac/contest/1411/problem/7620
@@ -76,7 +76,7 @@ data:
   requiredBy:
   - mod/floor_sum_of_linear_polynomial.hpp
   timestamp: '2024-01-23 03:59:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   - test/mytest/floor_sum_of_polynomial.test.cpp

@@ -8,25 +8,25 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':heavy_check_mark:'
@@ -35,13 +35,13 @@ data:
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':warning:'
     path: other/sliding_puzzle_solve.hpp
     title: other/sliding_puzzle_solve.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
   - icon: ':question:'
@@ -57,103 +57,103 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_5.test.cpp
     title: test/aoj/ALDS1_5.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_E.test.cpp
     title: test/aoj/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/aoj/DSL_2_G.test.cpp
     title: test/aoj/DSL_2_G.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_range_sum.test.cpp
     title: test/library_checker/datastructure/point_add_range_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/predecessor_problem_2.test.cpp
     title: test/library_checker/datastructure/predecessor_problem_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/predecessor_problem_4.test.cpp
     title: test/library_checker/datastructure/predecessor_problem_4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/predecessor_problem_5.test.cpp
     title: test/library_checker/datastructure/predecessor_problem_5.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_pbs.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
     title: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/fenwick01.test.cpp
     title: test/mytest/fenwick01.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rect_add_pt_sum.test.cpp
     title: test/mytest/rect_add_pt_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1038.test.cpp
     title: test/yukicoder/1038.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1270.test.cpp
     title: test/yukicoder/1270.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1311.test.cpp
     title: test/yukicoder/1311.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1490.test.cpp
     title: test/yukicoder/1490.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1838.test.cpp
     title: test/yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1919_2.test.cpp
     title: test/yukicoder/1919_2.test.cpp
   - icon: ':x:'

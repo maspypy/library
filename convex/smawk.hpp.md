@@ -6,7 +6,7 @@ data:
     path: convex/monge.hpp
     title: convex/monge.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/smawk.test.cpp
     title: test/mytest/smawk.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/yukicoder/705.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1423/problem/M
@@ -56,7 +56,7 @@ data:
   requiredBy:
   - convex/monge.hpp
   timestamp: '2023-10-24 13:33:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/smawk.test.cpp
   - test/yukicoder/705.test.cpp

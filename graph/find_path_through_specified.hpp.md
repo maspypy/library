@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'
@@ -12,15 +12,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1775.test.cpp
     title: test/yukicoder/1775.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1776.test.cpp
     title: test/yukicoder/1776.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -191,7 +191,7 @@ data:
   path: graph/find_path_through_specified.hpp
   requiredBy: []
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1775.test.cpp
   - test/yukicoder/1776.test.cpp

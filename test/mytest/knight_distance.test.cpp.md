@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/knight_distance.hpp
     title: other/knight_distance.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -99,10 +99,12 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/knight_distance.test.cpp\"\n\n\
-    #line 1 \"other/knight_distance.hpp\"\nll knight_distance(ll x, ll y) {\n  x =\
-    \ abs(x), y = abs(y);\n  if (x + y == 0) return 0;\n  if (x + y == 1) return 3;\n\
-    \  if (x == 2 && y == 2) return 4;\n  ll step = (max(x, y) + 1) / 2;\n  chmax(step,\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/knight_distance.test.cpp\"\
+    \n\n#line 1 \"other/knight_distance.hpp\"\nll knight_distance(ll x, ll y) {\n\
+    \  x = abs(x), y = abs(y);\n  if (x + y == 0) return 0;\n  if (x + y == 1) return\
+    \ 3;\n  if (x == 2 && y == 2) return 4;\n  ll step = (max(x, y) + 1) / 2;\n  chmax(step,\
     \ (x + y + 2) / 3);\n  step += (step ^ x ^ y) & 1;\n  return step;\n}\n#line 5\
     \ \"test/mytest/knight_distance.test.cpp\"\n\nvoid test() {\n  ll LIM = 20;\n\
     \  map<pi, int> dist;\n  deque<pi> que;\n  auto add = [&](int x, int y, int d)\
@@ -135,8 +137,8 @@ data:
   isVerificationFile: true
   path: test/mytest/knight_distance.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/knight_distance.test.cpp
 layout: document

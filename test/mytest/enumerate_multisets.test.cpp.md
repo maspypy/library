@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/multiset.hpp
     title: enumerate/multiset.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -99,9 +99,11 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/enumerate_multisets.test.cpp\"\n\
-    \n#line 1 \"enumerate/multiset.hpp\"\n// N \u5143 K \u7A2E\u985E\u306E\u591A\u91CD\
-    \u96C6\u5408\u306E\u983B\u5EA6\u5217\u3064\u307E\u308A\r\n// a[0]+...+a[K-1]==N\r\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/enumerate_multisets.test.cpp\"\
+    \n\n#line 1 \"enumerate/multiset.hpp\"\n// N \u5143 K \u7A2E\u985E\u306E\u591A\
+    \u91CD\u96C6\u5408\u306E\u983B\u5EA6\u5217\u3064\u307E\u308A\r\n// a[0]+...+a[K-1]==N\r\
     \ntemplate <typename F>\r\nvoid enumerate_multiset(int N, int K, F query) {\r\n\
     \  vc<int> A(K);\r\n  auto dfs = [&](auto& dfs, int p, int s) -> void {\r\n  \
     \  if (p == K) {\r\n      if (s == 0) query(A);\r\n      return;\r\n    }\r\n\
@@ -133,8 +135,8 @@ data:
   isVerificationFile: true
   path: test/mytest/enumerate_multisets.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/enumerate_multisets.test.cpp
 layout: document

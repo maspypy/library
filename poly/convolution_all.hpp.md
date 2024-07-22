@@ -32,35 +32,35 @@ data:
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/convolution_all_1.test.cpp
     title: test/mytest/convolution_all_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tree_walk_gf.test.cpp
     title: test/mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1145.test.cpp
     title: test/yukicoder/1145.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1575.test.cpp
     title: test/yukicoder/1575.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1857.test.cpp
     title: test/yukicoder/1857.test.cpp
   - icon: ':x:'
@@ -92,7 +92,7 @@ data:
     title: test_atcoder/arc154f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -468,7 +468,7 @@ data:
   - seq/sum_of_powers.hpp
   - graph/tree_walk_generating_function.hpp
   timestamp: '2024-07-20 03:22:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/mytest/tree_walk_gf.test.cpp

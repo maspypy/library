@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_P3P4P5.test.cpp
     title: test/mytest/count_P3P4P5.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/count/count_C3_C4.hpp\"\n// \u5404\u70B9\u306B\u5BFE\
@@ -72,7 +72,7 @@ data:
   path: graph/count/count_P3_P4_P5.hpp
   requiredBy: []
   timestamp: '2024-01-01 22:23:33+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_P3P4P5.test.cpp
 documentation_of: graph/count/count_P3_P4_P5.hpp

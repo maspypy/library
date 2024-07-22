@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -122,15 +122,18 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/tutte.test.cpp\"\n\n#line 2 \"\
-    random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\
-    \n\r\nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n\
-    \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
-    \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/tutte.test.cpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
+    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
+    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\n\r\
+    \nstruct modint61 {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64\
+    \ val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x)\
+    \ : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
     \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
     \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
     \n                                              : x) {}\r\n  static constexpr\
@@ -371,8 +374,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tutte.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tutte.test.cpp
 layout: document

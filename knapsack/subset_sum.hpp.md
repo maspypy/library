@@ -1,15 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/subset_sum.test.cpp
     title: test/mytest/subset_sum.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/yukicoder/4_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/755/problem/F
@@ -271,7 +271,7 @@ data:
   path: knapsack/subset_sum.hpp
   requiredBy: []
   timestamp: '2024-02-23 19:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/subset_sum.test.cpp
   - test/yukicoder/4_2.test.cpp

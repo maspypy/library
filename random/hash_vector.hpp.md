@@ -8,20 +8,20 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1397.test.cpp
     title: test/yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1561.test.cpp
     title: test/yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1881.test.cpp
     title: test/yukicoder/1881.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test_atcoder/abc339f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"random/base.hpp\"\n\
@@ -93,7 +93,7 @@ data:
   requiredBy:
   - other/connected_dp.hpp
   timestamp: '2023-12-22 20:53:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/tdpc_grid_dp.test.cpp
   - test/yukicoder/1881.test.cpp

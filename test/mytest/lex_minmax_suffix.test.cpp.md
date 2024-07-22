@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -13,23 +13,23 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lex_min_suffix_for_all_prefix.hpp
     title: string/lex_min_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -117,13 +117,16 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/lex_minmax_suffix.test.cpp\"\n\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"string/lyndon.hpp\"\
-    \n\ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization {\n  vc<CHAR>\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/lex_minmax_suffix.test.cpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
+    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
+    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"string/lyndon.hpp\"\n\
+    \ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization {\n  vc<CHAR>\
     \ S;\n  int i = 0, j = 0, k = 0;\n  vc<int> minimum_suffix_len = {0};\n\n  int\
     \ add(CHAR c) {\n    S.eb(c);\n    // [j, j+(i-k)) simple\n    while (i < len(S))\
     \ {\n      if (k == i) {\n        assert(j == k);\n        ++i;\n      }\n   \
@@ -289,8 +292,8 @@ data:
   isVerificationFile: true
   path: test/mytest/lex_minmax_suffix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/lex_minmax_suffix.test.cpp
 layout: document

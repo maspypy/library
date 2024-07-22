@@ -9,7 +9,7 @@ data:
     path: setfunc/sps_log.hpp
     title: setfunc/sps_log.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/composition_sps.test.cpp
     title: test/library_checker/math/composition_sps.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test_atcoder/arc105.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
@@ -94,7 +94,7 @@ data:
   requiredBy:
   - setfunc/sps_log.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/composition_sps.test.cpp
   - test_atcoder/arc105.test.cpp

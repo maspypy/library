@@ -36,12 +36,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/count_labeled_dag.test.cpp
     title: test/mytest/count_labeled_dag.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://oeis.org/A003024
@@ -385,7 +385,7 @@ data:
   path: graph/count/count_labeled_dag.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/count_labeled_dag.test.cpp
 documentation_of: graph/count/count_labeled_dag.hpp

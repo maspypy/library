@@ -13,13 +13,13 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':question:'
@@ -46,23 +46,23 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_1_minus_ex.test.cpp
     title: test/mytest/composition_1_minus_ex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/composition_f_1_minus_ex.hpp\"\n\n#line 2 \"poly/poly_taylor_shift.hpp\"\
@@ -503,7 +503,7 @@ data:
   path: poly/composition_f_1_minus_ex.hpp
   requiredBy: []
   timestamp: '2024-07-20 04:13:38+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/composition_1_minus_ex.test.cpp
 documentation_of: poly/composition_f_1_minus_ex.hpp

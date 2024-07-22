@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/ceil_range.hpp
     title: enumerate/ceil_range.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -102,38 +102,40 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"enumerate/ceil_range.hpp\"\n// \u5546\u304C\
-    \ q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\ntemplate\
-    \ <typename F>\nvoid ceil_range(ll N, F f) {\n  assert(N <= (1LL << 50));\n  ll\
-    \ sq = sqrtl(N);\n  ll prev = infty<ll>;\n  for (int q = 1; q <= sq; ++q) {\n\
-    \    ll x = double(N + q - 1) / q;\n    f(q, x, prev), prev = x;\n  }\n  int n\
-    \ = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq * sq) --n;\n  for (int l\
-    \ = n; l >= 1; --l) { f(double(N + l - 1) / l, l, l + 1); }\n}\n#line 1 \"enumerate/floor_range.hpp\"\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"enumerate/ceil_range.hpp\"\
     \n// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
-    \u6607\u9806\r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f) {\r\n  assert(N\
-    \ <= (u64(1) << 50));\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N\
-    \ ? sq : sq - 1);\r\n  u64 prev = N + 1;\r\n  for (u32 q = 1; q <= n; ++q) {\r\
-    \n    u64 x = double(N) / (q + 1) + 1;\r\n    f(q, x, prev), prev = x;\r\n  }\r\
-    \n  for (u32 l = sq; l >= 1; --l) { f(u64(double(N) / l), l, l + 1); }\r\n}\r\n\
-    #line 5 \"test/mytest/floor_ceil_ranges.test.cpp\"\n\nvoid test_floor() {\n  using\
-    \ T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T> dat;\n  \
-    \  auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n    floor_range(N,\
-    \ f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N\
-    \ + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x,\
-    \ 1, N + 1) {\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll\
-    \ hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return\
-    \ dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid test_ceil()\
-    \ {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N) -> vc<T> {\n    vc<T>\
-    \ dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q, l, r); };\n   \
-    \ ceil_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll N) -> vc<T> {\n\
-    \    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[ceil(N, x)].eb(x);\n    vc<T>\
-    \ dat;\n    FOR(x, 1, N + 1) {\n      if (x == 1) {\n        dat.eb(x, N, infty<ll>);\n\
-    \        continue;\n      }\n      if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n\
-    \        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi + 1);\n      }\n   \
-    \ }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) == G(N)); }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test_floor();\n  test_ceil();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \u6607\u9806\ntemplate <typename F>\nvoid ceil_range(ll N, F f) {\n  assert(N\
+    \ <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll prev = infty<ll>;\n  for (int q\
+    \ = 1; q <= sq; ++q) {\n    ll x = double(N + q - 1) / q;\n    f(q, x, prev),\
+    \ prev = x;\n  }\n  int n = (N <= sq * sq + sq ? sq : sq + 1);\n  if (N == sq\
+    \ * sq) --n;\n  for (int l = n; l >= 1; --l) { f(double(N + l - 1) / l, l, l +\
+    \ 1); }\n}\n#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\
+    \u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename\
+    \ F>\r\nvoid floor_range(u64 N, F f) {\r\n  assert(N <= (u64(1) << 50));\r\n \
+    \ u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  u64\
+    \ prev = N + 1;\r\n  for (u32 q = 1; q <= n; ++q) {\r\n    u64 x = double(N) /\
+    \ (q + 1) + 1;\r\n    f(q, x, prev), prev = x;\r\n  }\r\n  for (u32 l = sq; l\
+    \ >= 1; --l) { f(u64(double(N) / l), l, l + 1); }\r\n}\r\n#line 5 \"test/mytest/floor_ceil_ranges.test.cpp\"\
+    \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
+    \ -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) -> void { dat.eb(q,\
+    \ l, r); };\n    floor_range(N, f);\n    return dat;\n  };\n  auto G = [&](ll\
+    \ N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1) tmp[floor(N, x)].eb(x);\n\
+    \    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (len(tmp[x])) {\n        ll\
+    \ lo = tmp[x][0];\n        ll hi = tmp[x].back();\n        dat.eb(x, lo, hi +\
+    \ 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N, 1, 100) { assert(F(N) ==\
+    \ G(N)); }\n}\n\nvoid test_ceil() {\n  using T = tuple<ll, ll, ll>;\n  auto F\
+    \ = [&](ll N) -> vc<T> {\n    vc<T> dat;\n    auto f = [&](ll q, ll l, ll r) ->\
+    \ void { dat.eb(q, l, r); };\n    ceil_range(N, f);\n    return dat;\n  };\n \
+    \ auto G = [&](ll N) -> vc<T> {\n    vvc<ll> tmp(N + 1);\n    FOR(x, 1, N + 1)\
+    \ tmp[ceil(N, x)].eb(x);\n    vc<T> dat;\n    FOR(x, 1, N + 1) {\n      if (x\
+    \ == 1) {\n        dat.eb(x, N, infty<ll>);\n        continue;\n      }\n    \
+    \  if (len(tmp[x])) {\n        ll lo = tmp[x][0];\n        ll hi = tmp[x].back();\n\
+    \        dat.eb(x, lo, hi + 1);\n      }\n    }\n    return dat;\n  };\n  FOR(N,\
+    \ 1, 100) { assert(F(N) == G(N)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_floor();\n\
+    \  test_ceil();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"enumerate/ceil_range.hpp\"\n#include \"enumerate/floor_range.hpp\"\
     \n\nvoid test_floor() {\n  using T = tuple<ll, ll, ll>;\n  auto F = [&](ll N)\
@@ -161,8 +163,8 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil_ranges.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil_ranges.test.cpp
 layout: document

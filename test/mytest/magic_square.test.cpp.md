@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/magic_square.hpp
     title: other/magic_square.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -99,23 +99,25 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/magic_square.hpp\"\n// \u3068\u308A\u3042\
-    \u3048\u305A\u5947\u6570\u306E\u307F\u5BFE\u5FDC\u3059\u308B\nvvc<int> magic_square(int\
-    \ N) {\n  assert(N % 2 == 1);\n  vv(int, A, N, N);\n  int x = 0, y = N / 2;\n\
-    \  FOR(i, N * N) {\n    A[x][y] = i + 1;\n    int nx = (x == 0 ? N - 1 : x - 1);\n\
-    \    int ny = (y == N - 1 ? 0 : y + 1);\n    if (A[nx][ny] != 0) { nx = (x ==\
-    \ N - 1 ? 0 : x + 1), ny = y; }\n    tie(x, y) = mp(nx, ny);\n  }\n  return A;\n\
-    }\n#line 4 \"test/mytest/magic_square.test.cpp\"\n\nvoid test() {\n  vc<int> ns\
-    \ = {1, 3, 5, 7, 9};\n\n  for (auto&& N: ns) {\n    auto A = magic_square(N);\n\
-    \    vc<int> SM;\n    FOR(i, N) {\n      ll sm = 0;\n      FOR(j, N) sm += A[i][j];\n\
-    \      SM.eb(sm);\n    }\n    FOR(j, N) {\n      ll sm = 0;\n      FOR(i, N) sm\
-    \ += A[i][j];\n      SM.eb(sm);\n    }\n    ll sm1 = 0, sm2 = 0;\n    FOR(i, N)\
-    \ {\n      sm1 += A[i][i];\n      sm2 += A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n\
-    \    SM.eb(sm2);\n    assert(MIN(SM) == MAX(SM));\n    vc<int> done(N * N + 1);\n\
-    \    FOR(i, N) FOR(j, N) done[A[i][j]] = 1;\n    assert(SUM<int>(done) == N *\
-    \ N);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n\
-    }\n"
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"other/magic_square.hpp\"\
+    \n// \u3068\u308A\u3042\u3048\u305A\u5947\u6570\u306E\u307F\u5BFE\u5FDC\u3059\u308B\
+    \nvvc<int> magic_square(int N) {\n  assert(N % 2 == 1);\n  vv(int, A, N, N);\n\
+    \  int x = 0, y = N / 2;\n  FOR(i, N * N) {\n    A[x][y] = i + 1;\n    int nx\
+    \ = (x == 0 ? N - 1 : x - 1);\n    int ny = (y == N - 1 ? 0 : y + 1);\n    if\
+    \ (A[nx][ny] != 0) { nx = (x == N - 1 ? 0 : x + 1), ny = y; }\n    tie(x, y) =\
+    \ mp(nx, ny);\n  }\n  return A;\n}\n#line 4 \"test/mytest/magic_square.test.cpp\"\
+    \n\nvoid test() {\n  vc<int> ns = {1, 3, 5, 7, 9};\n\n  for (auto&& N: ns) {\n\
+    \    auto A = magic_square(N);\n    vc<int> SM;\n    FOR(i, N) {\n      ll sm\
+    \ = 0;\n      FOR(j, N) sm += A[i][j];\n      SM.eb(sm);\n    }\n    FOR(j, N)\
+    \ {\n      ll sm = 0;\n      FOR(i, N) sm += A[i][j];\n      SM.eb(sm);\n    }\n\
+    \    ll sm1 = 0, sm2 = 0;\n    FOR(i, N) {\n      sm1 += A[i][i];\n      sm2 +=\
+    \ A[i][N - 1 - i];\n    }\n    SM.eb(sm1);\n    SM.eb(sm2);\n    assert(MIN(SM)\
+    \ == MAX(SM));\n    vc<int> done(N * N + 1);\n    FOR(i, N) FOR(j, N) done[A[i][j]]\
+    \ = 1;\n    assert(SUM<int>(done) == N * N);\n  }\n}\n\nvoid solve() {\n  int\
+    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
+    \  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/magic_square.hpp\"\n\nvoid test() {\n  vc<int> ns = {1, 3,\
     \ 5, 7, 9};\n\n  for (auto&& N: ns) {\n    auto A = magic_square(N);\n    vc<int>\
@@ -133,8 +135,8 @@ data:
   isVerificationFile: true
   path: test/mytest/magic_square.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/magic_square.test.cpp
 layout: document

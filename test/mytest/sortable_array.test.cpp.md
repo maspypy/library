@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -105,17 +105,19 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 4 \"test/mytest/sortable_array.test.cpp\"\n\n#line\
-    \ 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63) * u64\r\nstruct\
-    \ FastSet {\r\n  static constexpr u32 B = 64;\r\n  int n, log;\r\n  vvc<u64> seg;\r\
-    \n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n); }\r\n\r\n  int size() { return\
-    \ n; }\r\n\r\n  template <typename F>\r\n  FastSet(int n, F f) {\r\n    build(n,\
-    \ f);\r\n  }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\n    n = m;\r\n\
-    \    do {\r\n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n      m = (m +\
-    \ B - 1) / B;\r\n    } while (m > 1);\r\n    log = len(seg);\r\n  }\r\n  template\
-    \ <typename F>\r\n  void build(int n, F f) {\r\n    build(n);\r\n    FOR(i, n)\
-    \ { seg[0][i / B] |= u64(f(i)) << (i % B); }\r\n    FOR(h, log - 1) {\r\n    \
-    \  FOR(i, len(seg[h])) {\r\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 4 \"test/mytest/sortable_array.test.cpp\"\
+    \n\n#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63) * u64\r\
+    \nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\n  int n, log;\r\n  vvc<u64>\
+    \ seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n); }\r\n\r\n  int size()\
+    \ { return n; }\r\n\r\n  template <typename F>\r\n  FastSet(int n, F f) {\r\n\
+    \    build(n, f);\r\n  }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\n\
+    \    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n\
+    \      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n    log = len(seg);\r\n\
+    \  }\r\n  template <typename F>\r\n  void build(int n, F f) {\r\n    build(n);\r\
+    \n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i % B); }\r\n    FOR(h, log -\
+    \ 1) {\r\n      FOR(i, len(seg[h])) {\r\n        seg[h + 1][i / B] |= u64(bool(seg[h][i]))\
     \ << (i % B);\r\n      }\r\n    }\r\n  }\r\n\r\n  bool operator[](int i) const\
     \ { return seg[0][i / B] >> (i % B) & 1; }\r\n  void insert(int i) {\r\n    for\
     \ (int h = 0; h < log; h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /=\
@@ -247,8 +249,8 @@ data:
   isVerificationFile: true
   path: test/mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/sortable_array.test.cpp
 layout: document

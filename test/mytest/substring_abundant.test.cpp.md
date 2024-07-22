@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/run_length.hpp
     title: string/run_length.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/substring_abundant_string.hpp
     title: string/substring_abundant_string.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -102,11 +102,13 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"string/run_length.hpp\"\ntemplate <typename\
-    \ STRING = string, typename CHAR = char>\nvc<pair<CHAR, int>> run_length(STRING&\
-    \ S) {\n  vc<pair<CHAR, int>> res;\n  for (auto&& x: S) {\n    if (res.empty()\
-    \ || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n \
-    \ }\n  return res;\n}\n#line 2 \"string/substring_abundant_string.hpp\"\n\n//\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"string/run_length.hpp\"\
+    \ntemplate <typename STRING = string, typename CHAR = char>\nvc<pair<CHAR, int>>\
+    \ run_length(STRING& S) {\n  vc<pair<CHAR, int>> res;\n  for (auto&& x: S) {\n\
+    \    if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n\
+    \  }\n  return res;\n}\n#line 2 \"string/substring_abundant_string.hpp\"\n\n//\
     \ \u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\u3067\
     \u3042\u308B\u3088\u3046\u306A 01 \u6587\u5B57\u5217\u306E\u69CB\u6210\n// https://qoj.ac/contest/1096/problem/5434?v=1\n\
     // https://oeis.org/A094913\n// https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf\n\
@@ -167,8 +169,8 @@ data:
   isVerificationFile: true
   path: test/mytest/substring_abundant.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/substring_abundant.test.cpp
 layout: document

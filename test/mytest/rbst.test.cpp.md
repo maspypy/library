@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/randomized_bst/rbst.hpp
     title: ds/randomized_bst/rbst.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -101,40 +101,42 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"ds/randomized_bst/rbst.hpp\"\n// \u5358\u306B\
-    \ S \u306E\u5143\u306E\u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate <typename\
-    \ S, bool PERSISTENT, int NODES>\nstruct RBST {\n  struct Node {\n    Node *l,\
-    \ *r;\n    S s;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  RBST() : pid(0) { pool = new Node[NODES]; }\n\n  void\
-    \ reset() { pid = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].s = s;\n    pool[pid].size = 1;\n    pool[pid].rev\
-    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<S> &dat) {\n\
-    \    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return\
-    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l +\
-    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
-    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
-    \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
-    \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l\
-    \ = n->l, pool[pid].r = n->r;\n    pool[pid].s = n->s;\n    pool[pid].size = n->size;\n\
-    \    pool[pid].rev = n->rev;\n    return &(pool[pid++]);\n  }\n\n  np merge(np\
-    \ l_root, np r_root) { return merge_rec(l_root, r_root); }\n  np merge3(np a,\
-    \ np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np a, np b, np c,\
-    \ np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np, np> split(np root,\
-    \ u32 k) {\n    if (!root) {\n      assert(k == 0);\n      return {nullptr, nullptr};\n\
-    \    }\n    assert(0 <= k && k <= root->size);\n    return split_rec(root, k);\n\
-    \  }\n  tuple<np, np, np> split3(np root, u32 l, u32 r) {\n    np nm, nr;\n  \
-    \  tie(root, nr) = split(root, r);\n    tie(root, nm) = split(root, l);\n    return\
-    \ {root, nm, nr};\n  }\n  tuple<np, np, np, np> split4(np root, u32 i, u32 j,\
-    \ u32 k) {\n    np d;\n    tie(root, d) = split(root, k);\n    auto [a, b, c]\
-    \ = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\n  np reverse(np root,\
-    \ u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n    if (r\
-    \ - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n    nm->rev\
-    \ ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm, nr);\n  }\n\n  np\
-    \ set(np root, u32 k, const S &s) { return set_rec(root, k, s); }\n  S get(np\
-    \ root, u32 k) { return get_rec(root, k, false); }\n\n  vc<S> get_all(np root)\
-    \ {\n    vc<S> res;\n    auto dfs = [&](auto &dfs, np root, bool rev) -> void\
-    \ {\n      if (!root) return;\n      dfs(dfs, (rev ? root->r : root->l), rev ^\
-    \ root->rev);\n      res.eb(root->s);\n      dfs(dfs, (rev ? root->l : root->r),\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"ds/randomized_bst/rbst.hpp\"\
+    \n// \u5358\u306B S \u306E\u5143\u306E\u5217\u3092\u7BA1\u7406\u3059\u308B\ntemplate\
+    \ <typename S, bool PERSISTENT, int NODES>\nstruct RBST {\n  struct Node {\n \
+    \   Node *l, *r;\n    S s;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n\
+    \  int pid;\n  using np = Node *;\n\n  RBST() : pid(0) { pool = new Node[NODES];\
+    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].s = s;\n    pool[pid].size = 1;\n  \
+    \  pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const\
+    \ vc<S> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
+    \ (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n \
+    \     u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root\
+    \ = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n      root->l = l_root,\
+    \ root->r = r_root;\n      update(root);\n      return root;\n    };\n    return\
+    \ dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT)\
+    \ return n;\n    pool[pid].l = n->l, pool[pid].r = n->r;\n    pool[pid].s = n->s;\n\
+    \    pool[pid].size = n->size;\n    pool[pid].rev = n->rev;\n    return &(pool[pid++]);\n\
+    \  }\n\n  np merge(np l_root, np r_root) { return merge_rec(l_root, r_root); }\n\
+    \  np merge3(np a, np b, np c) { return merge(merge(a, b), c); }\n  np merge4(np\
+    \ a, np b, np c, np d) { return merge(merge(merge(a, b), c), d); }\n  pair<np,\
+    \ np> split(np root, u32 k) {\n    if (!root) {\n      assert(k == 0);\n     \
+    \ return {nullptr, nullptr};\n    }\n    assert(0 <= k && k <= root->size);\n\
+    \    return split_rec(root, k);\n  }\n  tuple<np, np, np> split3(np root, u32\
+    \ l, u32 r) {\n    np nm, nr;\n    tie(root, nr) = split(root, r);\n    tie(root,\
+    \ nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np, np, np,\
+    \ np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root, d) = split(root,\
+    \ k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a, b, c, d};\n  }\n\
+    \n  np reverse(np root, u32 l, u32 r) {\n    assert(0 <= l && l <= r && r <= root->size);\n\
+    \    if (r - l <= 1) return root;\n    auto [nl, nm, nr] = split3(root, l, r);\n\
+    \    nm->rev ^= 1;\n    swap(nm->l, nm->r);\n    return merge3(nl, nm, nr);\n\
+    \  }\n\n  np set(np root, u32 k, const S &s) { return set_rec(root, k, s); }\n\
+    \  S get(np root, u32 k) { return get_rec(root, k, false); }\n\n  vc<S> get_all(np\
+    \ root) {\n    vc<S> res;\n    auto dfs = [&](auto &dfs, np root, bool rev) ->\
+    \ void {\n      if (!root) return;\n      dfs(dfs, (rev ? root->r : root->l),\
+    \ rev ^ root->rev);\n      res.eb(root->s);\n      dfs(dfs, (rev ? root->l : root->r),\
     \ rev ^ root->rev);\n    };\n    dfs(dfs, root, 0);\n    return res;\n  }\n\n\
     \  // \u6700\u5F8C\u306B check(s) \u304C\u6210\u308A\u7ACB\u3064\u3068\u3053\u308D\
     \u307E\u3067\u3092\u5DE6\u3068\u3057\u3066 split\n  template <typename F>\n  pair<np,\
@@ -228,8 +230,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst.test.cpp
 layout: document

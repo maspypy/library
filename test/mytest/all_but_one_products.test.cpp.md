@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/all_but_one_products.hpp
     title: other/all_but_one_products.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -99,17 +99,19 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/all_but_one_products.hpp\"\ntemplate\
-    \ <typename Monoid, typename X = typename Monoid::value_type>\nvector<X> all_but_one_products(const\
-    \ vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::unit());\n  FOR(i, N\
-    \ - 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::unit();\n  FOR_R(i,\
-    \ N) {\n    res[i] = Monoid::op(res[i], x);\n    x = Monoid::op(A[i], x);\n  }\n\
-    \  return res;\n}\n#line 4 \"test/mytest/all_but_one_products.test.cpp\"\n\nstruct\
-    \ Mono {\n  using value_type = string;\n  using X = value_type;\n  static X op(X\
-    \ x, X y) { return x + y; }\n  static X unit() { return \"\"; }\n  static constexpr\
-    \ bool commute = 0;\n};\n\nvoid test() {\n  vc<string> A = {\"a\", \"b\", \"c\"\
-    , \"d\", \"e\"};\n  auto B = all_but_one_products<Mono>(A);\n  assert(B[0] ==\
-    \ \"bcde\");\n  assert(B[1] == \"acde\");\n  assert(B[2] == \"abde\");\n  assert(B[3]\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"other/all_but_one_products.hpp\"\
+    \ntemplate <typename Monoid, typename X = typename Monoid::value_type>\nvector<X>\
+    \ all_but_one_products(const vc<X>& A) {\n  int N = len(A);\n  vc<X> res(N, Monoid::unit());\n\
+    \  FOR(i, N - 1) res[i + 1] = Monoid::op(res[i], A[i]);\n  X x = Monoid::unit();\n\
+    \  FOR_R(i, N) {\n    res[i] = Monoid::op(res[i], x);\n    x = Monoid::op(A[i],\
+    \ x);\n  }\n  return res;\n}\n#line 4 \"test/mytest/all_but_one_products.test.cpp\"\
+    \n\nstruct Mono {\n  using value_type = string;\n  using X = value_type;\n  static\
+    \ X op(X x, X y) { return x + y; }\n  static X unit() { return \"\"; }\n  static\
+    \ constexpr bool commute = 0;\n};\n\nvoid test() {\n  vc<string> A = {\"a\", \"\
+    b\", \"c\", \"d\", \"e\"};\n  auto B = all_but_one_products<Mono>(A);\n  assert(B[0]\
+    \ == \"bcde\");\n  assert(B[1] == \"acde\");\n  assert(B[2] == \"abde\");\n  assert(B[3]\
     \ == \"abce\");\n  assert(B[4] == \"abcd\");\n}\n\nvoid solve() {\n  int a, b;\n\
     \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
     \  solve();\n  return 0;\n}\n"
@@ -129,8 +131,8 @@ data:
   isVerificationFile: true
   path: test/mytest/all_but_one_products.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/all_but_one_products.test.cpp
 layout: document

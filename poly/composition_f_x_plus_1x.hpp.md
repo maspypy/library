@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
@@ -34,17 +34,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_f_x_plus_1x.test.cpp
     title: test/mytest/composition_f_x_plus_1x.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/composition_f_x_plus_1x.hpp\"\n\n#line 2 \"poly/poly_taylor_shift.hpp\"\
@@ -389,7 +389,7 @@ data:
   path: poly/composition_f_x_plus_1x.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/composition_f_x_plus_1x.test.cpp
 documentation_of: poly/composition_f_x_plus_1x.hpp

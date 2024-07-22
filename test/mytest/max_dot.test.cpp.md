@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -110,13 +110,15 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/max_dot.test.cpp\"\n\n#line 2 \"\
-    geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\n  Point()\
-    \ : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A x, B y) :\
-    \ x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A, B> p)\
-    \ : x(p.fi), y(p.se) {}\n\n  Point operator+=(const Point p) {\n    x += p.x,\
-    \ y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n   \
-    \ x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/max_dot.test.cpp\"\
+    \n\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n  T x, y;\n\
+    \n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n  Point(A\
+    \ x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
+    \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const Point p) {\n    x +=\
+    \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
+    \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
     \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
     \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
     \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
@@ -329,8 +331,8 @@ data:
   isVerificationFile: true
   path: test/mytest/max_dot.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/max_dot.test.cpp
 layout: document

@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -110,16 +110,18 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return max(x, y); }\r\
-    \n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
-    \n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/min_max.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct ActedMonoid_Min_Max {\n  using Monoid_X = Monoid_Min<E>;\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 2 \"alg/monoid/max.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return max(x, y); }\r\n  static constexpr X unit() { return -infty<E>; }\r\
+    \n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/min_max.hpp\"\
+    \n\ntemplate <typename E>\nstruct ActedMonoid_Min_Max {\n  using Monoid_X = Monoid_Min<E>;\n\
     \  using Monoid_A = Monoid_Max<E>;\n  using X = typename Monoid_X::value_type;\n\
     \  using A = typename Monoid_A::value_type;\n  static constexpr X act(const X\
     \ &x, const A &a, const ll &size) {\n    return max(x, a);\n  }\n};\n#line 2 \"\
@@ -215,8 +217,8 @@ data:
   isVerificationFile: true
   path: test/mytest/min_max.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/min_max.test.cpp
 layout: document

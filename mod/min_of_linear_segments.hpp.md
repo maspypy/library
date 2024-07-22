@@ -2,26 +2,26 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/first_mod_range_of_linear.hpp
     title: mod/first_mod_range_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/min_of_linear.hpp
     title: mod/min_of_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/min_of_mod_of_linear.test.cpp
     title: test/library_checker/math/min_of_mod_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/first_mod_range_of_linear.test.cpp
     title: test/mytest/first_mod_range_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/max_of_linear_segments.test.cpp
     title: test/mytest/max_of_linear_segments.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/min_of_linear_segments.test.cpp
     title: test/mytest/min_of_linear_segments.test.cpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
     title: test/yukicoder/2259.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
@@ -79,7 +79,7 @@ data:
   - mod/first_mod_range_of_linear.hpp
   - mod/max_of_linear_segments.hpp
   timestamp: '2022-08-16 06:06:14+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/mytest/max_of_linear_segments.test.cpp

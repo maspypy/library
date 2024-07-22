@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/run_length.hpp
     title: string/run_length.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -98,11 +98,13 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"string/run_length.hpp\"\ntemplate <typename\
-    \ STRING = string, typename CHAR = char>\nvc<pair<CHAR, int>> run_length(STRING&\
-    \ S) {\n  vc<pair<CHAR, int>> res;\n  for (auto&& x: S) {\n    if (res.empty()\
-    \ || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n \
-    \ }\n  return res;\n}\n#line 4 \"test/mytest/run_length.test.cpp\"\n\nvoid test()\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"string/run_length.hpp\"\
+    \ntemplate <typename STRING = string, typename CHAR = char>\nvc<pair<CHAR, int>>\
+    \ run_length(STRING& S) {\n  vc<pair<CHAR, int>> res;\n  for (auto&& x: S) {\n\
+    \    if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n\
+    \  }\n  return res;\n}\n#line 4 \"test/mytest/run_length.test.cpp\"\n\nvoid test()\
     \ {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res)\
     \ == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n    assert(res[1].fi\
     \ == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c' && res[2].se == 1);\n\
@@ -139,8 +141,8 @@ data:
   isVerificationFile: true
   path: test/mytest/run_length.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/run_length.test.cpp
 layout: document

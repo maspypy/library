@@ -34,23 +34,23 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/polynomial/inv_of_polynomials.test.cpp
     title: test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://people.eecs.berkeley.edu/~fateman/282/readings/yap-2.pdf
@@ -474,7 +474,7 @@ data:
   requiredBy:
   - poly/finding_root_of_polynomial.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/mytest/poly_root_finding.test.cpp

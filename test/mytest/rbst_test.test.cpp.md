@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -104,14 +104,16 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
-    \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
-    \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
-    \n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr bool\
-    \ commute = true;\r\n};\r\n#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate\
-    \ <typename Monoid, bool PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using\
-    \ X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X\
-    \ x, prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 2 \"alg/monoid/min.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
+    \  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\
+    \ntemplate <typename Monoid, bool PERSISTENT, int NODES>\nstruct RBST_Monoid {\n\
+    \  using X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
+    \    X x, prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n\
     \  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid() :\
     \ pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
     \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
@@ -268,8 +270,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rbst_test.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rbst_test.test.cpp
 layout: document

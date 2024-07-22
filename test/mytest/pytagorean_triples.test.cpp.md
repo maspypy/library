@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/pytagorean_triple.hpp
     title: nt/pytagorean_triple.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -99,8 +99,10 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 4 \"test/mytest/pytagorean_triples.test.cpp\"\n\
-    \n#line 1 \"nt/pytagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c)\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 4 \"test/mytest/pytagorean_triples.test.cpp\"\
+    \n\n#line 1 \"nt/pytagorean_triple.hpp\"\n\n/*\nc <= LIM, (a,b,c) \u3068 (b,a,c)\
     \ \u306F\u540C\u4E00\u8996, O(LIM) \u6642\u9593\n\u30FBLIM = 10^8\uFF1A\u4E92\u3044\
     \u306B\u7D20 1.59*10^7 \u500B, 0.13sec\n\u30FBLIM = 10^8\uFF1A\u5168\u90E8 2.71*10^8\
     \ \u500B, 0.53sec\nhttps://codeforces.com/contest/60/problem/D\n*/\ntemplate <bool\
@@ -144,8 +146,8 @@ data:
   isVerificationFile: true
   path: test/mytest/pytagorean_triples.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/pytagorean_triples.test.cpp
 layout: document

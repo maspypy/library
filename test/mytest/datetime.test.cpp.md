@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: datetime/datetime.hpp
     title: datetime/datetime.hpp
   - icon: ':question:'
@@ -9,9 +9,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -98,22 +98,24 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"datetime/datetime.hpp\"\nstruct DateTime {\n\
-    \  static constexpr int month_days[13]\n      = {0, 31, 28, 31, 30, 31, 30, 31,\
-    \ 31, 30, 31, 30, 31};\n  int year, month, day;\n  DateTime(int y, int m, int\
-    \ d) : year(y), month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\u304C 0 \u3068\
-    \u306A\u308B\u3088\u3046\u306B\u5909\u63DB\n  int to_int() {\n    int y = (month\
-    \ <= 2 ? year - 1 : year);\n    int m = (month <= 2 ? month + 12 : month);\n \
-    \   int d = day;\n    return 365 * y + y / 4 - y / 100 + y / 400 + 306 * (m +\
-    \ 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\u9006\u95A2\u6570\n  static\
-    \ DateTime from_int(int x) {\n    int y = x * 400 / 146097 + 1;\n    int d = x\
-    \ - DateTime(y, 1, 1).to_int();\n    int m = 1;\n    while (d >= 28) {\n     \
-    \ int k = month_days[m] + (m == 2 && is_leap_year(y) ? 1 : 0);\n      if (d <\
-    \ k) break;\n      ++m;\n      d -= k;\n    }\n    if (m == 13) {\n      ++y;\n\
-    \      m = 1;\n    }\n    ++d;\n    return DateTime(y, m, d);\n  }\n\n  // \u65E5\
-    \u66DC\u65E5\u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\u3092 [0, 7) \u3067\u8FD4\
-    \u3059\n  int weekday() { return (to_int() + 1) % 7; }\n\n  DateTime& operator++()\
-    \ {\n    ++day;\n    int lim = month_days[month];\n    if (is_leap_year(year)\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"datetime/datetime.hpp\"\
+    \nstruct DateTime {\n  static constexpr int month_days[13]\n      = {0, 31, 28,\
+    \ 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\n  int year, month, day;\n  DateTime(int\
+    \ y, int m, int d) : year(y), month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\
+    \u304C 0 \u3068\u306A\u308B\u3088\u3046\u306B\u5909\u63DB\n  int to_int() {\n\
+    \    int y = (month <= 2 ? year - 1 : year);\n    int m = (month <= 2 ? month\
+    \ + 12 : month);\n    int d = day;\n    return 365 * y + y / 4 - y / 100 + y /\
+    \ 400 + 306 * (m + 1) / 10 + d - 429;\n  }\n\n  // to_int() \u306E\u9006\u95A2\
+    \u6570\n  static DateTime from_int(int x) {\n    int y = x * 400 / 146097 + 1;\n\
+    \    int d = x - DateTime(y, 1, 1).to_int();\n    int m = 1;\n    while (d >=\
+    \ 28) {\n      int k = month_days[m] + (m == 2 && is_leap_year(y) ? 1 : 0);\n\
+    \      if (d < k) break;\n      ++m;\n      d -= k;\n    }\n    if (m == 13) {\n\
+    \      ++y;\n      m = 1;\n    }\n    ++d;\n    return DateTime(y, m, d);\n  }\n\
+    \n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\u3066\u3001\u66DC\u65E5\u3092 [0,\
+    \ 7) \u3067\u8FD4\u3059\n  int weekday() { return (to_int() + 1) % 7; }\n\n  DateTime&\
+    \ operator++() {\n    ++day;\n    int lim = month_days[month];\n    if (is_leap_year(year)\
     \ && month == 2) lim = 29;\n    if (day <= lim) return (*this);\n    day = 1;\n\
     \    ++month;\n    if (month == 13) {\n      ++year;\n      month = 1;\n    }\n\
     \    return (*this);\n  }\n  DateTime operator++(int) {\n    DateTime tmp = *this;\n\
@@ -156,8 +158,8 @@ data:
   isVerificationFile: true
   path: test/mytest/datetime.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/datetime.test.cpp
 layout: document

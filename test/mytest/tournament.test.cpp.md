@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tournament.hpp
     title: graph/tournament.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -101,12 +101,15 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/tournament.test.cpp\"\n\n#line\
-    \ 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"graph/tournament.hpp\"\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/tournament.test.cpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
+    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
+    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"graph/tournament.hpp\"\
     \n// https://yukicoder.me/problems/no/2085\n// https://codeforces.com/problemset/problem/412/D\n\
     template <typename F>\nvc<int> hamiltonian_path_in_tournament(int n, F check)\
     \ {\n  auto dfs = [&](auto& dfs, int L, int R) -> vc<int> {\n    if (R == L +\
@@ -146,8 +149,8 @@ data:
   isVerificationFile: true
   path: test/mytest/tournament.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/tournament.test.cpp
 layout: document

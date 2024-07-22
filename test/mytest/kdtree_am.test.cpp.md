@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/kdtree/kdtree_acted_monoid.hpp
     title: ds/kdtree/kdtree_acted_monoid.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -110,11 +110,13 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/kdtree_am.test.cpp\"\n\n#line 1\
-    \ \"ds/kdtree/kdtree_acted_monoid.hpp\"\ntemplate <class ActedMonoid, typename\
-    \ XY>\r\nstruct KDTree_ActedMonoid {\r\n  using AM = ActedMonoid;\r\n  using MX\
-    \ = typename AM::Monoid_X;\r\n  using MA = typename AM::Monoid_A;\r\n  using X\
-    \ = typename AM::X;\r\n  using A = typename AM::A;\r\n  static_assert(MX::commute);\r\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/kdtree_am.test.cpp\"\
+    \n\n#line 1 \"ds/kdtree/kdtree_acted_monoid.hpp\"\ntemplate <class ActedMonoid,\
+    \ typename XY>\r\nstruct KDTree_ActedMonoid {\r\n  using AM = ActedMonoid;\r\n\
+    \  using MX = typename AM::Monoid_X;\r\n  using MA = typename AM::Monoid_A;\r\n\
+    \  using X = typename AM::X;\r\n  using A = typename AM::A;\r\n  static_assert(MX::commute);\r\
     \n\r\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\
     \u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\
     \u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\
@@ -251,8 +253,8 @@ data:
   isVerificationFile: true
   path: test/mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/kdtree_am.test.cpp
 layout: document

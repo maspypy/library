@@ -6,9 +6,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -95,8 +95,10 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/floor_ceil.test.cpp\"\n\ntemplate\
-    \ <typename T>\nvoid test() {\n  vc<T> X;\n  T mi = numeric_limits<T>::min();\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/floor_ceil.test.cpp\"\
+    \n\ntemplate <typename T>\nvoid test() {\n  vc<T> X;\n  T mi = numeric_limits<T>::min();\n\
     \  T ma = numeric_limits<T>::max();\n  for (int x = -100; x <= 100; ++x) X.eb(T(x));\n\
     \  for (int x = 0; x <= 100; ++x) X.eb(mi + T(x));\n  for (int x = 0; x <= 100;\
     \ ++x) X.eb(ma - T(x));\n  for (auto& x: X) {\n    for (auto& y: X) {\n      if\
@@ -120,8 +122,8 @@ data:
   isVerificationFile: true
   path: test/mytest/floor_ceil.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/floor_ceil.test.cpp
 layout: document

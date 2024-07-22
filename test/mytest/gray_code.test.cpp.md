@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/gray_code.hpp
     title: seq/famous/gray_code.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -98,14 +98,16 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"seq/famous/gray_code.hpp\"\n// 0, ..., 2^{LOG}-1\
-    \ \u306E\u9806\u5217\u3067\u3042\u3063\u3066\u30011 bit \u305A\u3064\u5909\u5316\
-    \u3059\u308B\u3082\u306E\u3092\u8FD4\u3059\r\nvc<int> gray_code(int LOG) {\r\n\
-    \  vc<int> res(1 << LOG);\r\n  FOR(v, 1 << LOG) res[v] = v ^ (v >> 1);\r\n  return\
-    \ res;\r\n}\r\n#line 4 \"test/mytest/gray_code.test.cpp\"\n\nvoid test() {\n \
-    \ FOR(LOG, 10) {\n    auto G = gray_code(LOG);\n    FOR(i, len(G) - 1) {\n   \
-    \   int j = (i + 1 == len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n     \
-    \ assert(popcnt(x) == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"seq/famous/gray_code.hpp\"\
+    \n// 0, ..., 2^{LOG}-1 \u306E\u9806\u5217\u3067\u3042\u3063\u3066\u30011 bit \u305A\
+    \u3064\u5909\u5316\u3059\u308B\u3082\u306E\u3092\u8FD4\u3059\r\nvc<int> gray_code(int\
+    \ LOG) {\r\n  vc<int> res(1 << LOG);\r\n  FOR(v, 1 << LOG) res[v] = v ^ (v >>\
+    \ 1);\r\n  return res;\r\n}\r\n#line 4 \"test/mytest/gray_code.test.cpp\"\n\n\
+    void test() {\n  FOR(LOG, 10) {\n    auto G = gray_code(LOG);\n    FOR(i, len(G)\
+    \ - 1) {\n      int j = (i + 1 == len(G) ? 0 : i + 1);\n      int x = G[i] ^ G[j];\n\
+    \      assert(popcnt(x) == 1);\n    }\n    assert(len(G) == 1 << LOG);\n    UNIQUE(G);\n\
     \    assert(len(G) == 1 << LOG);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
     \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
     \ solve();\n  return 0;\n}\n"
@@ -123,8 +125,8 @@ data:
   isVerificationFile: true
   path: test/mytest/gray_code.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/gray_code.test.cpp
 layout: document

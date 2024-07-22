@@ -5,16 +5,16 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/75929
@@ -211,7 +211,7 @@ data:
   requiredBy:
   - geo/convex_layers.hpp
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/geometry/convex_layers.test.cpp
 documentation_of: geo/dynamicupperhull.hpp

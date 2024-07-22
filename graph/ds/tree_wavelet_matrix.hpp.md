@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'

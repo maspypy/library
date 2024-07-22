@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/maximum_matching_between_vertex_edge.hpp
     title: graph/maximum_matching_between_vertex_edge.hpp
   - icon: ':question:'
@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':question:'
@@ -33,9 +33,9 @@ data:
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -122,9 +122,11 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/matching_ve.test.cpp\"\n\n#line\
-    \ 1 \"graph/maximum_matching_between_vertex_edge.hpp\"\n// (v_i, e_i)\ntemplate\
-    \ <typename GT>\nvector<pair<int, int>> maximum_matching_between_vertex_edge(GT&\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/matching_ve.test.cpp\"\
+    \n\n#line 1 \"graph/maximum_matching_between_vertex_edge.hpp\"\n// (v_i, e_i)\n\
+    template <typename GT>\nvector<pair<int, int>> maximum_matching_between_vertex_edge(GT&\
     \ G) {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const\
     \ int N = G.N, M = G.M;\n  vc<int> match(M, -1);\n  vc<int> par(N, -1); // eid\n\
     \  vc<bool> used(M);\n  vc<bool> vis(N);\n\n  FOR(root, N) {\n    if (vis[root])\
@@ -395,8 +397,8 @@ data:
   isVerificationFile: true
   path: test/mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/matching_ve.test.cpp
 layout: document

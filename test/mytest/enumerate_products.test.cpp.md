@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -105,8 +105,10 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 3 \"test/mytest/enumerate_products.test.cpp\"\n\
-    \n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate <typename\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 3 \"test/mytest/enumerate_products.test.cpp\"\
+    \n\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate <typename\
     \ F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n  auto\
     \ dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n ==\
     \ N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n\
@@ -218,8 +220,8 @@ data:
   isVerificationFile: true
   path: test/mytest/enumerate_products.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/enumerate_products.test.cpp
 layout: document

@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/io2.hpp
     title: other/io2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A
@@ -101,46 +101,49 @@ data:
     \       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n\
     \  return ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
-    \  return B;\n}\n#endif\n#line 1 \"other/io2.hpp\"\n#define INT(...)   \\\r\n\
-    \  int __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__;\
-    \ \\\r\n  IN(__VA_ARGS__)\r\n#define STR(...)      \\\r\n  string __VA_ARGS__;\
-    \ \\\r\n  IN(__VA_ARGS__)\r\n#define CHR(...)    \\\r\n  char __VA_ARGS__; \\\r\
-    \n  IN(__VA_ARGS__)\r\n#define DBL(...)           \\\r\n  long double __VA_ARGS__;\
-    \ \\\r\n  IN(__VA_ARGS__)\r\n\r\n#define VEC(type, name, size) \\\r\n  vector<type>\
-    \ name(size);    \\\r\n  read(name)\r\n#define VV(type, name, h, w)          \
-    \           \\\r\n  vector<vector<type>> name(h, vector<type>(w)); \\\r\n  read(name)\r\
-    \n\r\nvoid read(int &a) { cin >> a; }\r\nvoid read(long long &a) { cin >> a; }\r\
-    \nvoid read(char &a) { cin >> a; }\r\nvoid read(double &a) { cin >> a; }\r\nvoid\
-    \ read(long double &a) { cin >> a; }\r\nvoid read(string &a) { cin >> a; }\r\n\
-    template <class T, class S>\r\nvoid read(pair<T, S> &p) {\r\n  read(p.first),\
-    \ read(p.second);\r\n}\r\ntemplate <class T>\r\nvoid read(vector<T> &a) {\r\n\
-    \  for (auto &i: a) read(i);\r\n}\r\ntemplate <class T>\r\nvoid read(T &a) {\r\
-    \n  cin >> a;\r\n}\r\nvoid IN() {}\r\ntemplate <class Head, class... Tail>\r\n\
-    void IN(Head &head, Tail &... tail) {\r\n  read(head);\r\n  IN(tail...);\r\n}\r\
-    \n\r\ntemplate <typename T, typename U>\r\nostream &operator<<(ostream &os, const\
-    \ pair<T, U> &A) {\r\n  os << A.fi << \" \" << A.se;\r\n  return os;\r\n}\r\n\r\
-    \ntemplate <typename T>\r\nostream &operator<<(ostream &os, const vector<T> &A)\
-    \ {\r\n  for (size_t i = 0; i < A.size(); i++) {\r\n    if (i) os << \" \";\r\n\
-    \    os << A[i];\r\n  }\r\n  return os;\r\n}\r\n\r\nvoid print() {\r\n  cout <<\
-    \ \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class... Tail>\r\
-    \nvoid print(Head &&head, Tail &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail))\
-    \ cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool\
-    \ t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\
-    \nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1)\
-    \ { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid\
-    \ no(bool t = 1) { yes(!t); }\r\n#line 1 \"string/split.hpp\"\nvc<string> split(string\
-    \ S, char sep = ',') {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\
-    \n    if (s == sep)\r\n      res.eb(\"\");\r\n    else\r\n      res.back() +=\
-    \ s;\r\n  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string seps\
-    \ = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if\
-    \ (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
-    \ += s;\r\n  }\r\n  return res;\r\n}\r\n#line 6 \"test/aoj/ITP1_9_A.test.cpp\"\
-    \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
-    \ S)) {\n    for (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n\
-    \        if (isupper(t)) t = tolower(t);\n      ANS += token == T;\n    }\n  }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"other/io2.hpp\"\
+    \n#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define\
+    \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define STR(...)\
+    \      \\\r\n  string __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define CHR(...)\
+    \    \\\r\n  char __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define DBL(...)   \
+    \        \\\r\n  long double __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n\r\n#define\
+    \ VEC(type, name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\
+    \n#define VV(type, name, h, w)                     \\\r\n  vector<vector<type>>\
+    \ name(h, vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid read(int &a) { cin\
+    \ >> a; }\r\nvoid read(long long &a) { cin >> a; }\r\nvoid read(char &a) { cin\
+    \ >> a; }\r\nvoid read(double &a) { cin >> a; }\r\nvoid read(long double &a) {\
+    \ cin >> a; }\r\nvoid read(string &a) { cin >> a; }\r\ntemplate <class T, class\
+    \ S>\r\nvoid read(pair<T, S> &p) {\r\n  read(p.first), read(p.second);\r\n}\r\n\
+    template <class T>\r\nvoid read(vector<T> &a) {\r\n  for (auto &i: a) read(i);\r\
+    \n}\r\ntemplate <class T>\r\nvoid read(T &a) {\r\n  cin >> a;\r\n}\r\nvoid IN()\
+    \ {}\r\ntemplate <class Head, class... Tail>\r\nvoid IN(Head &head, Tail &...\
+    \ tail) {\r\n  read(head);\r\n  IN(tail...);\r\n}\r\n\r\ntemplate <typename T,\
+    \ typename U>\r\nostream &operator<<(ostream &os, const pair<T, U> &A) {\r\n \
+    \ os << A.fi << \" \" << A.se;\r\n  return os;\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nostream &operator<<(ostream &os, const vector<T> &A) {\r\n  for (size_t\
+    \ i = 0; i < A.size(); i++) {\r\n    if (i) os << \" \";\r\n    os << A[i];\r\n\
+    \  }\r\n  return os;\r\n}\r\n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\
+    \n}\r\n\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
+    \ &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n\
+    \  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 1 \"string/split.hpp\"\nvc<string> split(string S, char\
+    \ sep = ',') {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if\
+    \ (s == sep)\r\n      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n\
+    \  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string seps = \"\
+    \ ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (count(all(seps),\
+    \ s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n\
+    \  return res;\r\n}\r\n#line 6 \"test/aoj/ITP1_9_A.test.cpp\"\n\nvoid solve()\
+    \ {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin, S)) {\n    for\
+    \ (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n        if (isupper(t))\
+    \ t = tolower(t);\n      ANS += token == T;\n    }\n  }\n  print(ANS);\n}\n\n\
+    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
+    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n#include \"string/split.hpp\"\
     \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
@@ -156,8 +159,8 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2024-07-21 16:21:08+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-22 11:16:29+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/aoj/ITP1_9_A.test.cpp
 layout: document

@@ -34,13 +34,13 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
   - icon: ':question:'
@@ -48,12 +48,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/poly_root_finding.test.cpp
     title: test/mytest/poly_root_finding.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -476,7 +476,7 @@ data:
   path: poly/finding_root_of_polynomial.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/poly_root_finding.test.cpp
 documentation_of: poly/finding_root_of_polynomial.hpp
