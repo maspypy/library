@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':question:'

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/reduce_intervals.test.cpp
     title: test/mytest/reduce_intervals.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/reduce_intervals.hpp\"\n\n// rm_included = true :\
@@ -49,7 +49,7 @@ data:
   path: other/reduce_intervals.hpp
   requiredBy: []
   timestamp: '2023-12-22 20:53:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/reduce_intervals.test.cpp
 documentation_of: other/reduce_intervals.hpp
