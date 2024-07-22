@@ -299,7 +299,7 @@ data:
   - icon: ':x:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/dice.hpp
     title: other/dice.hpp
   - icon: ':x:'
@@ -363,13 +363,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_A.test.cpp
     title: test/aoj/ITP1_11_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_B.test.cpp
     title: test/aoj/ITP1_11_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_C.test.cpp
     title: test/aoj/ITP1_11_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_11_D.test.cpp
     title: test/aoj/ITP1_11_D.test.cpp
   - icon: ':x:'

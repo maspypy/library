@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
   - icon: ':question:'
