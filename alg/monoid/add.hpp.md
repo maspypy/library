@@ -8,16 +8,16 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
   - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
   - icon: ':question:'
@@ -35,7 +35,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
   - icon: ':question:'
@@ -119,7 +119,7 @@ data:
   - icon: ':question:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
   - icon: ':question:'
@@ -300,25 +300,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/dual_fenwick.test.cpp
     title: test/mytest/dual_fenwick.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_digit.test.cpp
     title: test/mytest/factorial_digit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/fenwick01.test.cpp
     title: test/mytest/fenwick01.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/fenwick_raq.test.cpp
     title: test/mytest/fenwick_raq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/kdtree_am.test.cpp
     title: test/mytest/kdtree_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/maxidx_add.test.cpp
     title: test/mytest/maxidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/minidx_add.test.cpp
     title: test/mytest/minidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/minmax_add.test.cpp
     title: test/mytest/minmax_add.test.cpp
   - icon: ':x:'

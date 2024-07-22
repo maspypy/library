@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/magic_square.test.cpp
     title: test/mytest/magic_square.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/magic_square.hpp\"\n// \u3068\u308A\u3042\u3048\u305A\
@@ -28,7 +28,7 @@ data:
   path: other/magic_square.hpp
   requiredBy: []
   timestamp: '2022-11-27 18:59:55+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/magic_square.test.cpp
 documentation_of: other/magic_square.hpp

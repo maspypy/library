@@ -12,10 +12,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/convex_polygon_visible_range.test.cpp
     title: test/mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/incremental_ch.test.cpp
     title: test/mytest/incremental_ch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/max_dot.test.cpp
     title: test/mytest/max_dot.test.cpp
   - icon: ':x:'

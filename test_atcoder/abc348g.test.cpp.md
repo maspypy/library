@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/maxplus_convolution.hpp
     title: convex/maxplus_convolution.hpp
   - icon: ':question:'

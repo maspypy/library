@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':question:'

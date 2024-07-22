@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/blackbox_solve_linear.test.cpp
     title: test/mytest/blackbox_solve_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/factorial_998.test.cpp
     title: test/mytest/factorial_998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/min_poly.test.cpp
     title: test/mytest/min_poly.test.cpp
   - icon: ':x:'

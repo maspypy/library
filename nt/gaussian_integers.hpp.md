@@ -20,10 +20,10 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':x:'
@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/gaussian_integers.test.cpp
     title: test/library_checker/math/gaussian_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/four_square.test.cpp
     title: test/mytest/four_square.test.cpp
   - icon: ':x:'

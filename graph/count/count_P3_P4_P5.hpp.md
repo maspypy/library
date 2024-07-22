@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_C3_C4.hpp
     title: graph/count/count_C3_C4.hpp
   _extendedRequiredBy: []
