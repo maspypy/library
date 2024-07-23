@@ -14,10 +14,7 @@ vector<int> angle_sort(vector<Point<T>>& P) {
   }
   sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });
   sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });
-  auto& I = lower;
-  I.insert(I.end(), all(origin));
-  I.insert(I.end(), all(upper));
-  return I;
+  return concat(lower, orign, upper);
 }
 
 // 偏角ソートに対する argsort
