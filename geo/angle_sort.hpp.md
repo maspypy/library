@@ -5,43 +5,43 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/mytest/count_points_in_triangles.test.cpp
     title: test/mytest/count_points_in_triangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc139f.test.cpp
     title: test_atcoder/abc139f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -113,7 +113,7 @@ data:
     \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
     \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
     \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  return concat(lower, orign, upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\
+    \ });\r\n  return concat(lower, origin, upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\
     \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int>\
     \ angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i,\
     \ len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\n}\r\n"
@@ -124,7 +124,7 @@ data:
     \n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else\
     \ upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j])\
     \ > 0; });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j])\
-    \ > 0; });\r\n  return concat(lower, orign, upper);\r\n}\r\n\r\n// \u504F\u89D2\
+    \ > 0; });\r\n  return concat(lower, origin, upper);\r\n}\r\n\r\n// \u504F\u89D2\
     \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\n\
     vector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\
     \n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\n\
@@ -134,20 +134,20 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
-  - geo/max_norm_sum.hpp
-  - geo/count_points_in_triangles.hpp
-  - geo/minkowski_sum.hpp
   - graph/planar_graph.hpp
-  timestamp: '2024-07-23 21:27:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  - geo/count_points_in_triangles.hpp
+  - geo/max_norm_sum.hpp
+  - geo/minkowski_sum.hpp
+  timestamp: '2024-07-24 02:09:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
   - test/yukicoder/1777.test.cpp
-  - test_atcoder/abc202_f.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
   - test_atcoder/abc139f.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

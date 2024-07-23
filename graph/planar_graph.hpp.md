@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -158,7 +158,7 @@ data:
     \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
     \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
     \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  return concat(lower, orign,\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  return concat(lower, origin,\
     \ upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
     \ argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>&\
     \ P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
@@ -233,8 +233,8 @@ data:
   isVerificationFile: false
   path: graph/planar_graph.hpp
   requiredBy: []
-  timestamp: '2024-07-23 21:27:24+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-07-24 02:09:25+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1777.test.cpp
 documentation_of: graph/planar_graph.hpp

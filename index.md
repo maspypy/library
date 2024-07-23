@@ -337,10 +337,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_01.hpp
       title: ds/fenwicktree/fenwicktree_01.hpp
     - icon: ':question:'
@@ -631,7 +631,7 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':warning:'
@@ -652,7 +652,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':question:'
@@ -688,7 +688,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo/max_norm_sum.hpp
       title: geo/max_norm_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -857,7 +857,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/path_cycle.hpp
       title: graph/path_cycle.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/planar_graph.hpp
       title: graph/planar_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1888,7 +1888,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/for_nck.hpp
       title: setfunc/for_nck.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/hadamard.hpp
       title: setfunc/hadamard.hpp
     - icon: ':heavy_check_mark:'
@@ -1909,7 +1909,7 @@ data:
     - icon: ':x:'
       path: setfunc/sps_inv.hpp
       title: setfunc/sps_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
     - icon: ':question:'
@@ -2540,16 +2540,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/count_points_in_triangles.test.cpp
       title: test/library_checker/geometry/count_points_in_triangles.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/furthest_pair.test.cpp
       title: test/library_checker/geometry/furthest_pair.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
@@ -3155,7 +3155,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_undirected.test.cpp
       title: test/mytest/count_labeled_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/mytest/count_points_in_triangles.test.cpp
       title: test/mytest/count_points_in_triangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3934,7 +3934,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1776.test.cpp
       title: test/yukicoder/1776.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1777.test.cpp
       title: test/yukicoder/1777.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4374,7 +4374,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc127f_1.test.cpp
       title: test_atcoder/abc127f_1.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc139f.test.cpp
       title: test_atcoder/abc139f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4416,19 +4416,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200f.test.cpp
       title: test_atcoder/abc200f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc202_f.test.cpp
       title: test_atcoder/abc202_f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc209e.test.cpp
       title: test_atcoder/abc209e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc212g.test.cpp
       title: test_atcoder/abc212g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc212h.test.cpp
       title: test_atcoder/abc212h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc213g.test.cpp
       title: test_atcoder/abc213g.test.cpp
     - icon: ':x:'

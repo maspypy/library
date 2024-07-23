@@ -78,8 +78,8 @@ data:
   verifiedWith:
   - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - test/yukicoder/2296.test.cpp
   - test/yukicoder/2295.test.cpp
+  - test/yukicoder/2296.test.cpp
 documentation_of: graph/ds/lct_node_commutative_monoid.hpp
 layout: document
 redirect_from:

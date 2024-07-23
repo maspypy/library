@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   _extendedRequiredBy:
@@ -183,10 +183,10 @@ data:
   timestamp: '2024-07-19 20:55:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/694.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
   - test_atcoder/abc190f.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document

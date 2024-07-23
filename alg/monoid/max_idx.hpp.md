@@ -38,8 +38,8 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/maxidx_add.test.cpp
   - test/yukicoder/529.test.cpp
+  - test/mytest/maxidx_add.test.cpp
 documentation_of: alg/monoid/max_idx.hpp
 layout: document
 redirect_from:

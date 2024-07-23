@@ -73,8 +73,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/graph/assignment.test.cpp
-  - test/yukicoder/2573.test.cpp
   - test/yukicoder/1789.test.cpp
+  - test/yukicoder/2573.test.cpp
 documentation_of: flow/hungarian.hpp
 layout: document
 redirect_from:

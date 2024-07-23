@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
@@ -318,9 +318,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/aoj/2636.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1326.test.cpp
-  - test/aoj/2636.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document
 redirect_from:

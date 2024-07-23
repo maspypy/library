@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -152,7 +152,7 @@ data:
     \ P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower),\
     \ [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper),\
     \ [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  return concat(lower,\
-    \ orign, upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
+    \ origin, upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
     \u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
     \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
     \n  return angle_sort<T>(tmp);\r\n}\r\n#line 4 \"geo/minkowski_sum.hpp\"\n\n//\
@@ -183,7 +183,7 @@ data:
   isVerificationFile: false
   path: geo/minkowski_sum.hpp
   requiredBy: []
-  timestamp: '2024-07-23 21:27:24+09:00'
+  timestamp: '2024-07-24 02:09:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minkowski_sum.hpp
