@@ -96,9 +96,7 @@ struct SWAG_deque {
 
 private:
   void rebuild() {
-    vc<X> X;
-    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);
-    X.insert(X.end(), all(dat_r));
+    vc<X> X = concat(dat_l, dat_r);
     clear();
     int m = len(X) / 2;
     FOR_R(i, m) push_front(X[i]);

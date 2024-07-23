@@ -105,7 +105,7 @@ vc<mint> power_projection_0_ntt(vc<mint> wt, vc<mint> f, int m) {
   return P;
 }
 
-// \sum_j[x^j]f^i を i=0,1,...,m
+// \sum_jwt[j][x^j]f^i を i=0,1,...,m
 template <typename mint>
 vc<mint> power_projection_0_garner(vc<mint> wt, vc<mint> f, int m) {
   assert(len(f) == len(wt) && f[0] == mint(0));

@@ -24,10 +24,8 @@ struct Slinding_Puzzle_Solver {
     while (by > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by; }
     vc<P> ANS = solve_00(A, B);
     if (ANS.empty()) return {};
-    ANS_1.insert(ANS_1.end(), all(ANS));
     reverse(all(ANS_2));
-    ANS_1.insert(ANS_1.end(), all(ANS_2));
-    return ANS_1;
+    return concat(ANS_1, ANS, ANS_2);
   }
 
 private:
