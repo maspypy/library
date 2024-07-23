@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/enumerate_quotients2.test.cpp
     title: test/library_checker/math/enumerate_quotients2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2266.test.cpp
     title: test/yukicoder/2266.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat = {dp[1],\
@@ -53,7 +53,7 @@ data:
   - nt/mertens.hpp
   - nt/range_rational_count.hpp
   timestamp: '2023-11-24 15:08:08+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/enumerate_quotients2.test.cpp
   - test/yukicoder/2266.test.cpp

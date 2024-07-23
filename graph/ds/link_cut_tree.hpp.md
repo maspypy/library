@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
     title: test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2295.test.cpp
     title: test/yukicoder/2295.test.cpp
   - icon: ':x:'

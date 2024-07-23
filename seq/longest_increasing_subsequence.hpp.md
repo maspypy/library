@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/longest_increasing_subsequence.test.cpp
     title: test/library_checker/math/longest_increasing_subsequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2230.test.cpp
     title: test/yukicoder/2230.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] := \u7B2C\
@@ -36,7 +36,7 @@ data:
   path: seq/longest_increasing_subsequence.hpp
   requiredBy: []
   timestamp: '2023-02-25 00:04:38+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/longest_increasing_subsequence.test.cpp
   - test/yukicoder/2230.test.cpp
