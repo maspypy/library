@@ -2265,49 +2265,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/655.test.cpp
     title: test/yukicoder/655.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/686.test.cpp
     title: test/yukicoder/686.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/694.test.cpp
     title: test/yukicoder/694.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/705.test.cpp
     title: test/yukicoder/705.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/705_2.test.cpp
     title: test/yukicoder/705_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/749.test.cpp
     title: test/yukicoder/749.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/772.test.cpp
     title: test/yukicoder/772.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/779.test.cpp
     title: test/yukicoder/779.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789.test.cpp
     title: test/yukicoder/789.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_2.test.cpp
     title: test/yukicoder/789_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/789_3.test.cpp
     title: test/yukicoder/789_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/899.test.cpp
     title: test/yukicoder/899.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
   - icon: ':x:'
