@@ -174,7 +174,7 @@ data:
       title: alg/monoid/xor.hpp
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
   - name: bigint
@@ -623,7 +623,7 @@ data:
     - icon: ':question:'
       path: game/dyadic_rational.hpp
       title: game/dyadic_rational.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: game/graph_game.hpp
       title: game/graph_game.hpp
     - icon: ':question:'
@@ -869,7 +869,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -4413,13 +4413,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200a.test.cpp
       title: test_atcoder/abc200a.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc200f.test.cpp
       title: test_atcoder/abc200f.test.cpp
     - icon: ':x:'
       path: test_atcoder/abc202_f.test.cpp
       title: test_atcoder/abc202_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test_atcoder/abc209e.test.cpp
       title: test_atcoder/abc209e.test.cpp
     - icon: ':x:'

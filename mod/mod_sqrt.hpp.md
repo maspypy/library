@@ -148,8 +148,8 @@ data:
   isVerificationFile: false
   path: mod/mod_sqrt.hpp
   requiredBy:
-  - graph/count/count_labeled_bipartite.hpp
   - poly/fps_sqrt.hpp
+  - graph/count/count_labeled_bipartite.hpp
   timestamp: '2023-11-02 05:38:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -38,15 +38,15 @@ data:
   isVerificationFile: false
   path: geo/triangle_area.hpp
   requiredBy:
-  - geo/minimum_enclosing_circle.hpp
   - geo/incircle.hpp
+  - geo/minimum_enclosing_circle.hpp
   - geo/outcircle.hpp
   timestamp: '2022-08-20 20:06:17+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/yukicoder/2602.test.cpp
   - test/aoj/CGL_7_C.test.cpp
   - test/aoj/CGL_7_B.test.cpp
-  - test/yukicoder/2602.test.cpp
   - test_atcoder/abc151f.test.cpp
 documentation_of: geo/triangle_area.hpp
 layout: document

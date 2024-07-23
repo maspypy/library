@@ -79,8 +79,8 @@ data:
   timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/arc160d.test.cpp
   - test_atcoder/arc144d.test.cpp
+  - test_atcoder/arc160d.test.cpp
 documentation_of: poly/sum_of_C_negative.hpp
 layout: document
 redirect_from:

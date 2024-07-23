@@ -318,9 +318,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - test/aoj/2636.test.cpp
   - test/yukicoder/1641.test.cpp
   - test/yukicoder/1326.test.cpp
+  - test/aoj/2636.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document
 redirect_from:

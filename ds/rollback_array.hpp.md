@@ -53,8 +53,8 @@ data:
   path: ds/rollback_array.hpp
   requiredBy:
   - ds/segtree/rollback_lazy_segtree.hpp
-  - ds/unionfind/rollback_weighted_unionfind.hpp
   - ds/unionfind/rollback_unionfind.hpp
+  - ds/unionfind/rollback_weighted_unionfind.hpp
   timestamp: '2023-06-23 23:19:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
