@@ -142,11 +142,11 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
+  - test/library_checker/geometry/static_convex_hull.tset.cpp
+  - convex/fenchel.hpp
   - geo/furthest_pair.hpp
   - geo/minkowski_sum.hpp
   - geo/convex_polygon.hpp
-  - convex/fenchel.hpp
-  - test/library_checker/geometry/static_convex_hull.tset.cpp
   timestamp: '2024-07-18 11:12:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

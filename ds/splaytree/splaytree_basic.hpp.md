@@ -191,8 +191,8 @@ data:
   timestamp: '2024-07-18 12:34:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/arc153b.test.cpp
   - test_atcoder/abc350f.test.cpp
+  - test_atcoder/arc153b.test.cpp
 documentation_of: ds/splaytree/splaytree_basic.hpp
 layout: document
 redirect_from:
