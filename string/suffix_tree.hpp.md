@@ -286,8 +286,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/suffix_tree.test.cpp
   - test/yukicoder/2361.test.cpp
+  - test/mytest/suffix_tree.test.cpp
 documentation_of: string/suffix_tree.hpp
 layout: document
 redirect_from:

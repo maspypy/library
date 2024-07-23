@@ -12,8 +12,8 @@ data:
     title: ds/fenwicktree/fenwicktree_01.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: other/sliding_puzzle_solve.hpp
-    title: other/sliding_puzzle_solve.hpp
+    path: other/sliding_puzzle_solver.hpp
+    title: other/sliding_puzzle_solver.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/ALDS1_2_A.test.cpp
@@ -179,14 +179,14 @@ data:
   isVerificationFile: false
   path: seq/inversion.hpp
   requiredBy:
-  - other/sliding_puzzle_solve.hpp
+  - other/sliding_puzzle_solver.hpp
   timestamp: '2024-07-19 20:55:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/694.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
   - test_atcoder/abc190f.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document

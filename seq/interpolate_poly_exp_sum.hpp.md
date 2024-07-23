@@ -82,13 +82,12 @@ data:
     \  }\n\n  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n\
     \  X rprod() { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(),\
     \ cum_r.back()); }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild()\
-    \ {\n    vc<X> X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n    X.insert(X.end(),\
-    \ all(dat_r));\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n\
-    \    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n\
-    #line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
-    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {\n    vc<X> X = concat(dat_l, dat_r);\n    clear();\n    int m = len(X) / 2;\n\
+    \    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n \
+    \   assert(sz == len(X));\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
+    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -453,7 +452,7 @@ data:
   isVerificationFile: false
   path: seq/interpolate_poly_exp_sum.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp

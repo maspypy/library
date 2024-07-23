@@ -108,9 +108,9 @@ data:
     \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
     \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
     \ }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild() {\n    vc<X>\
-    \ X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n    X.insert(X.end(), all(dat_r));\n\
-    \    clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n  \
-    \  FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n"
+    \ X = concat(dat_l, dat_r);\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i,\
+    \ m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz\
+    \ == len(X));\n  }\n};\n"
   code: "template <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X =\
     \ typename Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X>\
     \ dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation()\n      :\
@@ -139,40 +139,40 @@ data:
     \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
     \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
     \ }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild() {\n    vc<X>\
-    \ X;\n    FOR_R(i, len(dat_l)) X.eb(dat_l[i]);\n    X.insert(X.end(), all(dat_r));\n\
-    \    clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n  \
-    \  FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n"
+    \ X = concat(dat_l, dat_r);\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i,\
+    \ m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz\
+    \ == len(X));\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/sliding_window_aggregation.hpp
   requiredBy:
-  - seq/interpolate_poly_exp_sum.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - poly/prefix_product_of_poly.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/sparse_exp_of_div.hpp
   - poly/sum_of_C_negative.hpp
+  - poly/lagrange_interpolate_iota.hpp
   - poly/from_log_differentiation.hpp
-  timestamp: '2023-11-10 12:47:10+09:00'
+  - poly/sparse_exp_of_div.hpp
+  - poly/prefix_product_of_poly.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - seq/interpolate_poly_exp_sum.hpp
+  timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/library_checker/math/factorial.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/mytest/factorial_998.test.cpp
+  - test/library_checker/math/factorial.test.cpp
+  - test/yukicoder/1117.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1435_2.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/1435_2.test.cpp
-  - test/yukicoder/1117.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1036_3.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test_atcoder/arc144d.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/arc160d.test.cpp
+  - test_atcoder/abc276_g_2.test.cpp
+  - test_atcoder/abc276_g.test.cpp
+  - test_atcoder/arc144d.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document
 redirect_from:

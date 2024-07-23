@@ -44,9 +44,9 @@ data:
   isVerificationFile: false
   path: alg/monoid/minmincnt.hpp
   requiredBy:
+  - graph/count/count_connected_intervals.hpp
   - ds/rectangle_union.hpp
   - alg/acted_monoid/minmincnt_add.hpp
-  - graph/count/count_connected_intervals.hpp
   timestamp: '2023-04-02 02:09:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

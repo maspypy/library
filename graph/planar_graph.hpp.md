@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1777.test.cpp
     title: test/yukicoder/1777.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -158,27 +158,26 @@ data:
     \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
     \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
     \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
-    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
-    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
-    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
-    \n}\r\n#line 4 \"graph/planar_graph.hpp\"\n\n/*\n\u30FB\u9023\u7D50\u5E73\u9762\
-    \u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\u306A\u3044\u3068\u304D\u306B\
-    \u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\u4F55\u3082\u8003\u3048\u3066\
-    \u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\u306A\u3044\n*/\ntemplate <typename\
-    \ XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n  int NV, NE, NF;\n  //\
-    \ \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5. \u6709\u5411\
-    \u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int, 1> G;\n  //\
-    \ \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\u5C5E\u6027\
-    \n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\u308B\u9762\
-    \u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\u8A08\u56DE\
-    \u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\n  // \u9762\
-    \u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P> point) : NV(N),\
-    \ G(N), point(point) {\n    assert(N > 1);\n  }\n\n  void add(int a, int b) {\
-    \ G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n    NE = G.M\
-    \ / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n    int\
-    \ v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  return concat(lower, orign,\
+    \ upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
+    \ argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>&\
+    \ P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 4 \"graph/planar_graph.hpp\"\n\n\
+    /*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\
+    \u306A\u3044\u3068\u304D\u306B\u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\
+    \u4F55\u3082\u8003\u3048\u3066\u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\
+    \u306A\u3044\n*/\ntemplate <typename XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n\
+    \  int NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\
+    \u30D5. \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int,\
+    \ 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\
+    \u5C5E\u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\
+    \u308B\u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\
+    \u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\
+    \n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P>\
+    \ point) : NV(N), G(N), point(point) {\n    assert(N > 1);\n  }\n\n  void add(int\
+    \ a, int b) { G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n\
+    \    NE = G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n\
+    \    int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
     \ v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto& e: G[v]) {\n\
     \        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n      }\n\
     \      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k, len(I))\
@@ -234,8 +233,8 @@ data:
   isVerificationFile: false
   path: graph/planar_graph.hpp
   requiredBy: []
-  timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-23 21:27:24+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1777.test.cpp
 documentation_of: graph/planar_graph.hpp

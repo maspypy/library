@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sort_points_by_argument
@@ -267,12 +267,12 @@ data:
     \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
     \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
     \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  auto& I = lower;\r\n  I.insert(I.end(), all(origin));\r\n  I.insert(I.end(),\
-    \ all(upper));\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
-    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
-    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 5 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
+    \ });\r\n  return concat(lower, orign, upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\
+    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int>\
+    \ angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i,\
+    \ len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\n}\r\n#line\
+    \ 5 \"test/library_checker/geometry/sort_points_by_argument.test.cpp\"\n\r\nvoid\
+    \ solve() {\r\n  LL(N);\r\n  vc<Point<ll>> P(N);\r\n  FOR(i, N) read(P[i].x),\
     \ read(P[i].y);\r\n  auto I = angle_sort<ll>(P);\r\n  P = rearrange(P, I);\r\n\
     \  FOR(i, N) print(P[i].x, P[i].y);\r\n}\r\n\r\nsigned main() {\r\n  solve();\r\
     \n\r\n  return 0;\r\n}\r\n"
@@ -290,8 +290,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/geometry/sort_points_by_argument.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-23 21:27:24+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/geometry/sort_points_by_argument.test.cpp
 layout: document

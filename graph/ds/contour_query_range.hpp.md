@@ -260,8 +260,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/yukicoder/1038.test.cpp
 documentation_of: graph/ds/contour_query_range.hpp
 layout: document

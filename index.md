@@ -628,7 +628,7 @@ data:
       title: game/solve_partizan_game.hpp
   - name: geo
     pages:
-    - icon: ':question:'
+    - icon: ':x:'
       path: geo/angle_sort.hpp
       title: geo/angle_sort.hpp
     - icon: ':warning:'
@@ -649,7 +649,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/convex_polygon.hpp
       title: geo/convex_polygon.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
     - icon: ':question:'
@@ -854,7 +854,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/path_cycle.hpp
       title: graph/path_cycle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: graph/planar_graph.hpp
       title: graph/planar_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1526,8 +1526,8 @@ data:
       path: other/reduce_intervals.hpp
       title: other/reduce_intervals.hpp
     - icon: ':warning:'
-      path: other/sliding_puzzle_solve.hpp
-      title: other/sliding_puzzle_solve.hpp
+      path: other/sliding_puzzle_solver.hpp
+      title: other/sliding_puzzle_solver.hpp
     - icon: ':x:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
@@ -2537,16 +2537,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/convex_layers.test.cpp
       title: test/library_checker/geometry/convex_layers.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/geometry/count_points_in_triangles.test.cpp
       title: test/library_checker/geometry/count_points_in_triangles.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/library_checker/geometry/furthest_pair.test.cpp
       title: test/library_checker/geometry/furthest_pair.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/geometry/sort_points_by_argument.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
       title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - name: test/library_checker/graph
@@ -3152,7 +3152,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/mytest/count_labeled_undirected.test.cpp
       title: test/mytest/count_labeled_undirected.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/mytest/count_points_in_triangles.test.cpp
       title: test/mytest/count_points_in_triangles.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3931,7 +3931,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1776.test.cpp
       title: test/yukicoder/1776.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/yukicoder/1777.test.cpp
       title: test/yukicoder/1777.test.cpp
     - icon: ':heavy_check_mark:'

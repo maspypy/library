@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -88,29 +88,29 @@ data:
     \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
     \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
     \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  auto& I = lower;\r\n  I.insert(I.end(),\
-    \ all(origin));\r\n  I.insert(I.end(), all(upper));\r\n  return I;\r\n}\r\n\r\n\
-    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
-    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
-    \n}\r\n#line 3 \"geo/max_norm_sum.hpp\"\n\n// \u30D9\u30AF\u30C8\u30EB\u306E\u5217\
-    \u304C\u4E0E\u3048\u3089\u308C\u308B. \u90E8\u5206\u5217\u3092\u9078\u3093\u3067\
-    \uFF0C\u548C\u306E norm \u3092\u6700\u5C0F\u5316\u3059\u308B.\n// \u7DCF\u548C\
-    \u306E\u5EA7\u6A19\u306E 2 \u4E57\u548C\u304C SM \u3067\u30AA\u30FC\u30D0\u30FC\
-    \u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\u306B\u6CE8\u610F\u305B\u3088\
-    \uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n// https://codeforces.com/contest/1841/problem/F\n\
-    template <typename SM, typename T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>>\
-    \ dat) {\n  auto I = angle_sort(dat);\n  {\n    vc<int> J;\n    for (auto&& i:\
-    \ I) {\n      if (dat[i].x != 0 || dat[i].y != 0) J.eb(i);\n    }\n    swap(I,\
-    \ J);\n  }\n  dat = rearrange(dat, I);\n  const int N = len(dat);\n\n  if (N ==\
-    \ 0) { return {0, {}}; }\n  SM ANS = 0;\n  pair<int, int> LR = {0, 0};\n\n  int\
-    \ L = 0, R = 1;\n  Point<T> c = dat[0];\n  auto eval = [&]() -> SM { return SM(c.x)\
-    \ * c.x + SM(c.y) * c.y; };\n  if (chmax(ANS, eval())) LR = {L, R};\n\n  while\
-    \ (L < N) {\n    Point<T>&A = dat[L], &B = dat[R % N];\n    if (R - L < N && (A.det(B)\
-    \ > 0 || (A.det(B) == 0 && A.dot(B) > 0))) {\n      c = c + B;\n      R++;\n \
-    \     if (chmax(ANS, eval())) LR = {L, R};\n    } else {\n      c = c - A;\n \
-    \     L++;\n      if (chmax(ANS, eval())) LR = {L, R};\n    }\n  }\n  vc<int>\
-    \ ids;\n  FOR(i, LR.fi, LR.se) { ids.eb(I[i % N]); }\n  return {ANS, ids};\n}\n"
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  return concat(lower, orign,\
+    \ upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
+    \ argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>&\
+    \ P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 3 \"geo/max_norm_sum.hpp\"\n\n//\
+    \ \u30D9\u30AF\u30C8\u30EB\u306E\u5217\u304C\u4E0E\u3048\u3089\u308C\u308B. \u90E8\
+    \u5206\u5217\u3092\u9078\u3093\u3067\uFF0C\u548C\u306E norm \u3092\u6700\u5C0F\
+    \u5316\u3059\u308B.\n// \u7DCF\u548C\u306E\u5EA7\u6A19\u306E 2 \u4E57\u548C\u304C\
+    \ SM \u3067\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3088\u3046\
+    \u306B\u6CE8\u610F\u305B\u3088\uFF0E\n// https://atcoder.jp/contests/abc139/tasks/abc139_f\n\
+    // https://codeforces.com/contest/1841/problem/F\ntemplate <typename SM, typename\
+    \ T>\npair<SM, vc<int>> max_norm_sum(vc<Point<T>> dat) {\n  auto I = angle_sort(dat);\n\
+    \  {\n    vc<int> J;\n    for (auto&& i: I) {\n      if (dat[i].x != 0 || dat[i].y\
+    \ != 0) J.eb(i);\n    }\n    swap(I, J);\n  }\n  dat = rearrange(dat, I);\n  const\
+    \ int N = len(dat);\n\n  if (N == 0) { return {0, {}}; }\n  SM ANS = 0;\n  pair<int,\
+    \ int> LR = {0, 0};\n\n  int L = 0, R = 1;\n  Point<T> c = dat[0];\n  auto eval\
+    \ = [&]() -> SM { return SM(c.x) * c.x + SM(c.y) * c.y; };\n  if (chmax(ANS, eval()))\
+    \ LR = {L, R};\n\n  while (L < N) {\n    Point<T>&A = dat[L], &B = dat[R % N];\n\
+    \    if (R - L < N && (A.det(B) > 0 || (A.det(B) == 0 && A.dot(B) > 0))) {\n \
+    \     c = c + B;\n      R++;\n      if (chmax(ANS, eval())) LR = {L, R};\n   \
+    \ } else {\n      c = c - A;\n      L++;\n      if (chmax(ANS, eval())) LR = {L,\
+    \ R};\n    }\n  }\n  vc<int> ids;\n  FOR(i, LR.fi, LR.se) { ids.eb(I[i % N]);\
+    \ }\n  return {ANS, ids};\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/angle_sort.hpp\"\n\n// \u30D9\u30AF\
     \u30C8\u30EB\u306E\u5217\u304C\u4E0E\u3048\u3089\u308C\u308B. \u90E8\u5206\u5217\
     \u3092\u9078\u3093\u3067\uFF0C\u548C\u306E norm \u3092\u6700\u5C0F\u5316\u3059\
@@ -136,7 +136,7 @@ data:
   isVerificationFile: false
   path: geo/max_norm_sum.hpp
   requiredBy: []
-  timestamp: '2024-06-28 09:49:29+09:00'
+  timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc139f.test.cpp

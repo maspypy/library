@@ -734,7 +734,7 @@ data:
     \ + 2 * n * k, Q.end(), mint(0));\n    FOR(j, 4 * k) Q[n * j] = 0;\n    n /= 2,\
     \ k *= 2;\n  }\n  FOR(i, k) P[i] = P[2 * i];\n  P.resize(k);\n  mint c = mint(1)\
     \ / mint(k);\n  for (auto& x: P) x *= c;\n  ntt(P, 1);\n  reverse(all(P));\n \
-    \ P.resize(m + 1);\n  return P;\n}\n\n// \\sum_j[x^j]f^i \u3092 i=0,1,...,m\n\
+    \ P.resize(m + 1);\n  return P;\n}\n\n// \\sum_jwt[j][x^j]f^i \u3092 i=0,1,...,m\n\
     template <typename mint>\nvc<mint> power_projection_0_garner(vc<mint> wt, vc<mint>\
     \ f, int m) {\n  assert(len(f) == len(wt) && f[0] == mint(0));\n  int n = 1;\n\
     \  while (n < len(f)) n *= 2;\n  f.resize(n), wt.resize(n);\n  reverse(all(wt));\n\
@@ -871,13 +871,13 @@ data:
   requiredBy:
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/compositional_inverset.test.cpp
 documentation_of: poly/compositional_inverse.hpp
 layout: document
