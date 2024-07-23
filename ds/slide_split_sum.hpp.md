@@ -6,7 +6,7 @@ data:
     title: ds/removable_queue.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2654.test.cpp
     title: test/yukicoder/2654.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/abc314g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
@@ -79,7 +79,7 @@ data:
   path: ds/slide_split_sum.hpp
   requiredBy: []
   timestamp: '2024-07-03 07:03:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2654.test.cpp
   - test_atcoder/abc281e.test.cpp
