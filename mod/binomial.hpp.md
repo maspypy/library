@@ -249,8 +249,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/yukicoder/2181.test.cpp
   - test/yukicoder/2120.test.cpp
+  - test/yukicoder/2181.test.cpp
   - test/yukicoder/2613.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document

@@ -110,8 +110,8 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/online_square.test.cpp
   - test/yukicoder/2801.test.cpp
+  - test/mytest/online_square.test.cpp
   - test_atcoder/abc315h2.test.cpp
 documentation_of: poly/online/online_square.hpp
 layout: document

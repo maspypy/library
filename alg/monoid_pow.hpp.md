@@ -67,17 +67,17 @@ data:
   isVerificationFile: false
   path: alg/monoid_pow.hpp
   requiredBy:
+  - ds/segtree/range_assignment_segtree.hpp
   - mod/floor_monoid_product.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
-  - ds/segtree/range_assignment_segtree.hpp
   timestamp: '2024-01-23 03:59:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/range_set_range_composite.test.cpp
   - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
-  - test/mytest/floor_sum_of_polynomial.test.cpp
-  - test/mytest/range_assign.test.cpp
   - test/yukicoder/2362.test.cpp
+  - test/mytest/range_assign.test.cpp
+  - test/mytest/floor_sum_of_polynomial.test.cpp
   - test_atcoder/abc200f.test.cpp
 documentation_of: alg/monoid_pow.hpp
 layout: document
