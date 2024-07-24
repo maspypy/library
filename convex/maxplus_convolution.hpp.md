@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   _extendedRequiredBy: []
@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/maxplus_concave.test.cpp
     title: test/mytest/maxplus_concave.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc348g.test.cpp
     title: test_atcoder/abc348g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/monotone_minima.hpp\"\n\n// select(i,j,k) : (i,j)\
@@ -78,7 +78,7 @@ data:
   path: convex/maxplus_convolution.hpp
   requiredBy: []
   timestamp: '2024-05-15 14:09:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/maxplus_concave.test.cpp
   - test_atcoder/abc348g.test.cpp

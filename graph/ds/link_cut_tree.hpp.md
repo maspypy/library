@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc350_g.test.cpp
     title: test_atcoder/abc350_g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092\
@@ -241,7 +241,7 @@ data:
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
   timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
