@@ -114,8 +114,8 @@ data:
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/aoj/ITP1_D_D.test.cpp
   - test/yukicoder/1575.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
 documentation_of: nt/divisors.hpp
 layout: document
 redirect_from:

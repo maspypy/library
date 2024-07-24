@@ -43,8 +43,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/kth_root_integer.test.cpp
-  - test/yukicoder/1666.test.cpp
   - test/yukicoder/1260.test.cpp
+  - test/yukicoder/1666.test.cpp
 documentation_of: nt/integer_kth_root.hpp
 layout: document
 redirect_from:

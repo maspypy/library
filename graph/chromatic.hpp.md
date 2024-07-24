@@ -812,8 +812,8 @@ data:
   timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - graph/chromatic_polynomial.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
+  - graph/chromatic_polynomial.test.cpp
 documentation_of: graph/chromatic.hpp
 layout: document
 redirect_from:

@@ -79,8 +79,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/charactereistic_poly.test.cpp
-  - test/yukicoder/1907.test.cpp
   - test/yukicoder/1303.test.cpp
+  - test/yukicoder/1907.test.cpp
 documentation_of: linalg/characteristic_poly.hpp
 layout: document
 redirect_from:
