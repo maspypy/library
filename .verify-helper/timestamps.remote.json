@@ -888,5 +888,10 @@
 "test_atcoder/abc350g2.test.cpp": "2024-07-22 11:16:29 +0900",
 "test_atcoder/abc351g.test.cpp": "2024-07-22 11:16:29 +0900",
 "test_atcoder/agc013e.test.cpp": "2024-07-22 13:52:12 +0900",
-"test_atcoder/agc023f.test.cpp": "2024-07-22 11:16:29 +0900"
+"test_atcoder/agc023f.test.cpp": "2024-07-22 11:16:29 +0900",
+"test_atcoder/agc058d.test.cpp": "2024-07-22 11:16:29 +0900",
+"test_atcoder/agc058d2.test.cpp": "2024-07-22 11:16:29 +0900",
+"test_atcoder/arc064c.test.cpp": "2024-07-22 11:16:29 +0900",
+"test_atcoder/arc105.test.cpp": "2024-07-22 11:16:29 +0900",
+"test_atcoder/arc107.test.cpp": "2024-07-22 11:16:29 +0900"
 }
