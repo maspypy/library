@@ -2091,19 +2091,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc319g.test.cpp
     title: test_atcoder/abc319g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc321g.test.cpp
     title: test_atcoder/abc321g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g.test.cpp
     title: test_atcoder/abc324g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g2.test.cpp
     title: test_atcoder/abc324g2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc326g.test.cpp
     title: test_atcoder/abc326g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc331g.test.cpp
     title: test_atcoder/abc331g.test.cpp
   - icon: ':x:'

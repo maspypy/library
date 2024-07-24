@@ -236,7 +236,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -885,7 +885,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc318h.test.cpp
     title: test_atcoder/abc318h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc331g.test.cpp
     title: test_atcoder/abc331g.test.cpp
   - icon: ':x:'
