@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_inv.hpp
     title: setfunc/sps_inv.hpp
   - icon: ':question:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc253h.test.cpp
     title: test_atcoder/abc253h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc306h.test.cpp
     title: test_atcoder/abc306h.test.cpp
   - icon: ':x:'
@@ -111,32 +111,32 @@ data:
   isVerificationFile: false
   path: setfunc/ranked_zeta.hpp
   requiredBy:
+  - graph/chromatic.hpp
+  - setfunc/subset_convolution.hpp
   - setfunc/sps_exp.hpp
   - setfunc/sps_inv.hpp
   - setfunc/power_projection_of_sps.hpp
-  - setfunc/subset_convolution.hpp
   - setfunc/sps_composition.hpp
   - setfunc/sps_log.hpp
   - linalg/hafnian.hpp
-  - graph/chromatic.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/convolution/subset_convolution.test.cpp
-  - test/library_checker/math/sps_exp.test.cpp
-  - test/library_checker/math/power_projection_of_sps.test.cpp
-  - test/library_checker/math/composition_sps.test.cpp
-  - test/library_checker/math/powproj_sps.test.cpp
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test/yukicoder/2507.test.cpp
-  - test_atcoder/abc306h.test.cpp
-  - test_atcoder/abc253h.test.cpp
-  - test_atcoder/abc236h.test.cpp
-  - test_atcoder/arc105.test.cpp
-  - test_atcoder/abc213g.test.cpp
-  - test_atcoder/abc321g.test.cpp
   - graph/chromatic_polynomial.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test/library_checker/math/sps_exp.test.cpp
+  - test/library_checker/math/powproj_sps.test.cpp
+  - test/library_checker/math/composition_sps.test.cpp
+  - test/library_checker/math/power_projection_of_sps.test.cpp
+  - test/library_checker/convolution/subset_convolution.test.cpp
+  - test/yukicoder/2507.test.cpp
+  - test_atcoder/arc105.test.cpp
+  - test_atcoder/abc236h.test.cpp
+  - test_atcoder/abc321g.test.cpp
+  - test_atcoder/abc306h.test.cpp
+  - test_atcoder/abc213g.test.cpp
+  - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
 redirect_from:

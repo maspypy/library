@@ -236,10 +236,10 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1728.test.cpp
-  - test/yukicoder/2264.test.cpp
   - test/yukicoder/2578.test.cpp
-  - test_atcoder/abc212g.test.cpp
+  - test/yukicoder/2264.test.cpp
   - test_atcoder/abc335g.test.cpp
+  - test_atcoder/abc212g.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:
