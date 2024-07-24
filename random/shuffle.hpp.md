@@ -61,6 +61,9 @@ data:
     path: test/mytest/nth_element_from_sorted_lists.test.cpp
     title: test/mytest/nth_element_from_sorted_lists.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/mytest/nth_element_from_sorted_matrix.test.cpp
+    title: test/mytest/nth_element_from_sorted_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/mytest/remove_one_edge.test.cpp
     title: test/mytest/remove_one_edge.test.cpp
   - icon: ':heavy_check_mark:'
@@ -118,6 +121,7 @@ data:
   - test/mytest/count_K4.test.cpp
   - test/mytest/st_numbering.test.cpp
   - test/mytest/find_even_cycle.test.cpp
+  - test/mytest/nth_element_from_sorted_matrix.test.cpp
   - test/mytest/remove_one_vertex.test.cpp
   - test/mytest/incremental_scc.test.cpp
   - test/aoj/CGL_5_A.test.cpp
