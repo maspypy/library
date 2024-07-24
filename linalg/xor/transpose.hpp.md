@@ -66,9 +66,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/vector_space_intersection.test.cpp
-  - test/mytest/QOJ5445.test.cpp
-  - test/mytest/xor_transpose.test.cpp
   - test/yukicoder/184.test.cpp
+  - test/mytest/xor_transpose.test.cpp
+  - test/mytest/QOJ5445.test.cpp
   - test_atcoder/abc141f.test.cpp
 documentation_of: linalg/xor/transpose.hpp
 layout: document

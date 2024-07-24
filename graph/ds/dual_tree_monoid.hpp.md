@@ -11,7 +11,7 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/tree/mst.test.cpp
     title: test/library_checker/tree/mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -251,8 +251,8 @@ data:
   verifiedWith:
   - test/library_checker/tree/mst.test.cpp
   - test/aoj/GRL_2_A.test.cpp
-  - test_atcoder/abc301h.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc301h.test.cpp
 documentation_of: graph/ds/dual_tree_monoid.hpp
 layout: document
 redirect_from:

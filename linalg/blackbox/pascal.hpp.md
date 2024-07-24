@@ -376,12 +376,12 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/pascal.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/2108.test.cpp
-  - test_atcoder/abc285h.test.cpp
+  - test/mytest/pascal.test.cpp
   - test_atcoder/abc260h.test.cpp
   - test_atcoder/abc267g.test.cpp
+  - test_atcoder/abc285h.test.cpp
 documentation_of: linalg/blackbox/pascal.hpp
 layout: document
 redirect_from:

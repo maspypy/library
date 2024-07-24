@@ -40,14 +40,14 @@ data:
   path: graph/shortest_path/restore_path.hpp
   requiredBy:
   - graph/tree_center.hpp
-  - graph/st_numbering.hpp
   - graph/tree_diameter.hpp
+  - graph/st_numbering.hpp
   timestamp: '2022-10-21 18:11:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/tree/tree_diameter.test.cpp
   - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/st_numbering.test.cpp
+  - test/library_checker/tree/tree_diameter.test.cpp
   - test/mytest/st_numbering.test.cpp
 documentation_of: graph/shortest_path/restore_path.hpp
 layout: document

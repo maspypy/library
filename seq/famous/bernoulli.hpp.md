@@ -408,8 +408,8 @@ data:
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
-  - seq/famous/riemann_zeta_even.hpp
   - poly/prefix_sum_of_polynomial.hpp
+  - seq/famous/riemann_zeta_even.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -14,7 +14,7 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/529.test.cpp
     title: test/yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc270_f.test.cpp
     title: test_atcoder/abc270_f.test.cpp
   - icon: ':x:'
@@ -391,12 +391,12 @@ data:
   - test/library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - test/library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - test/library_checker/tree/mst.test.cpp
-  - test/mytest/mo_on_tree.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/yukicoder/529.test.cpp
   - test/aoj/GRL_2_A.test.cpp
-  - test_atcoder/abc301h.test.cpp
+  - test/yukicoder/529.test.cpp
+  - test/yukicoder/1212.test.cpp
+  - test/mytest/mo_on_tree.test.cpp
   - test_atcoder/abc270_f.test.cpp
+  - test_atcoder/abc301h.test.cpp
 documentation_of: graph/ds/tree_monoid.hpp
 layout: document
 redirect_from:

@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/product_of_one_pm_xn.test.cpp
     title: test/mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc267h.test.cpp
     title: test_atcoder/abc267h.test.cpp
   - icon: ':x:'
@@ -428,8 +428,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/product_of_one_pm_xn.test.cpp
-  - test_atcoder/abc331g.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test_atcoder/abc331g.test.cpp
 documentation_of: poly/product_of_one_minus_xn.hpp
 layout: document
 redirect_from:

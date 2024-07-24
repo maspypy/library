@@ -204,10 +204,10 @@ data:
   timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/incremental_ch.test.cpp
   - test/mytest/convex_polygon_visible_range.test.cpp
   - test/mytest/max_dot.test.cpp
   - test/mytest/convex_polygon_side.test.cpp
-  - test/mytest/incremental_ch.test.cpp
   - test_atcoder/abc266c.test.cpp
 documentation_of: geo/incremental_convexhull.hpp
 layout: document
