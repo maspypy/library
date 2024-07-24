@@ -429,8 +429,8 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_labeled_forest.test.cpp
   - test/mytest/graph_count.test.cpp
+  - test/mytest/count_labeled_forest.test.cpp
 documentation_of: graph/count/count_labeled_forest.hpp
 layout: document
 redirect_from:

@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/902.test.cpp
     title: test/yukicoder/902.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281e.test.cpp
     title: test_atcoder/abc281e.test.cpp
   - icon: ':x:'
@@ -62,9 +62,9 @@ data:
   - test/yukicoder/2654.test.cpp
   - test/yukicoder/772.test.cpp
   - test/yukicoder/902.test.cpp
-  - test_atcoder/abc314g.test.cpp
-  - test_atcoder/abc312f.test.cpp
   - test_atcoder/abc281e.test.cpp
+  - test_atcoder/abc312f.test.cpp
+  - test_atcoder/abc314g.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document
 redirect_from:

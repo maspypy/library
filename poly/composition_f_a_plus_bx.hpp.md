@@ -395,8 +395,8 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2580.test.cpp
   - test/yukicoder/2583.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test_atcoder/arc133f.test.cpp
 documentation_of: poly/composition_f_a_plus_bx.hpp
 layout: document

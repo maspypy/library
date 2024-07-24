@@ -56,9 +56,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/matrix/inverse_matrix.test.cpp
+  - test/yukicoder/1303.test.cpp
   - test/yukicoder/1774.test.cpp
   - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1303.test.cpp
 documentation_of: linalg/matrix_inv.hpp
 layout: document
 redirect_from:

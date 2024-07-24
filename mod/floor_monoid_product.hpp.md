@@ -79,8 +79,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
-  - test/yukicoder/2362.test.cpp
   - test/mytest/floor_sum_of_polynomial.test.cpp
+  - test/yukicoder/2362.test.cpp
 documentation_of: mod/floor_monoid_product.hpp
 layout: document
 redirect_from:

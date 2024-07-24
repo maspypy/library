@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
@@ -63,10 +63,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc222h_2.test.cpp
     title: test_atcoder/abc222h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g.test.cpp
     title: test_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc276_g_2.test.cpp
     title: test_atcoder/abc276_g_2.test.cpp
   - icon: ':x:'
@@ -146,33 +146,33 @@ data:
   isVerificationFile: false
   path: ds/sliding_window_aggregation.hpp
   requiredBy:
-  - poly/sum_of_C_negative.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/from_log_differentiation.hpp
-  - poly/sparse_exp_of_div.hpp
-  - poly/prefix_product_of_poly.hpp
-  - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - poly/prefix_product_of_poly.hpp
+  - poly/lagrange_interpolate_iota.hpp
+  - poly/sparse_exp_of_div.hpp
+  - poly/sum_of_C_negative.hpp
+  - poly/from_log_differentiation.hpp
   timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/library_checker/math/factorial.test.cpp
-  - test/yukicoder/1117.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/1435_2.test.cpp
+  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/mytest/factorial_998.test.cpp
   - test/yukicoder/2026.test.cpp
   - test/yukicoder/1080_2.test.cpp
+  - test/yukicoder/1435_2.test.cpp
+  - test/yukicoder/1117.test.cpp
   - test/yukicoder/502_2.test.cpp
   - test/yukicoder/1036_3.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/arc160d.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test_atcoder/arc144d.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/arc144d.test.cpp
+  - test_atcoder/abc222h_2.test.cpp
+  - test_atcoder/arc160d.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document
 redirect_from:
