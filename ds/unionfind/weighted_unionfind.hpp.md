@@ -59,9 +59,9 @@ data:
   timestamp: '2024-07-05 14:51:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/yukicoder/1502.test.cpp
-  - test/yukicoder/2294.test.cpp
   - test/aoj/DSL_1_B.test.cpp
+  - test/yukicoder/2294.test.cpp
+  - test/yukicoder/1502.test.cpp
   - test_atcoder/abc280f.test.cpp
 documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document

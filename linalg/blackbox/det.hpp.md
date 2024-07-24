@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -94,12 +94,12 @@ data:
   timestamp: '2024-01-21 23:24:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/matrix/sparse_matrix_det.test.cpp
-  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/library_checker/matrix/sparse_matrix_det.test.cpp
   - test/yukicoder/310.test.cpp
   - test_atcoder/abc336g.test.cpp
 documentation_of: linalg/blackbox/det.hpp

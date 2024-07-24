@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -87,12 +87,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint>\
@@ -109,38 +109,38 @@ data:
   isVerificationFile: false
   path: mod/all_inverse.hpp
   requiredBy:
-  - mod/q_analogue.hpp
-  - poly/multivar_convolution_cyclic.hpp
+  - graph/chromatic.hpp
   - poly/multipoint.hpp
   - poly/composition_f_log_1_minus_x.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - poly/partial_frac_decomposition_1.hpp
+  - mod/q_analogue.hpp
   - linalg/blackbox/vandermonde.hpp
-  - graph/chromatic.hpp
   timestamp: '2022-11-23 08:11:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - graph/chromatic_polynomial.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/library_checker/graph/chromatic_number.test.cpp
-  - test/mytest/qbinom.test.cpp
-  - test/mytest/all_inverse.test.cpp
-  - test/mytest/chirp_z.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/vandermonde.test.cpp
-  - test/mytest/partial_frac.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/yukicoder/2166.test.cpp
   - test/yukicoder/2243.test.cpp
   - test/yukicoder/1575.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test_atcoder/abc272_h.test.cpp
+  - test/mytest/all_inverse.test.cpp
+  - test/mytest/partial_frac.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/qbinom.test.cpp
+  - test/mytest/chirp_z.test.cpp
+  - test/mytest/vandermonde.test.cpp
   - test_atcoder/abc241h.test.cpp
-  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc272_h.test.cpp
   - test_atcoder/abc260h.test.cpp
   - test_atcoder/abc267g.test.cpp
-  - graph/chromatic_polynomial.test.cpp
+  - test_atcoder/agc058d2.test.cpp
 documentation_of: mod/all_inverse.hpp
 layout: document
 redirect_from:

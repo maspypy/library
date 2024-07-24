@@ -28,10 +28,10 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy:
@@ -432,11 +432,11 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/power_projection_of_sps.test.cpp
-  - test/library_checker/math/powproj_sps.test.cpp
-  - test/library_checker/graph/chromatic_number.test.cpp
-  - test_atcoder/abc253h.test.cpp
   - graph/chromatic_polynomial.test.cpp
+  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/library_checker/math/powproj_sps.test.cpp
+  - test/library_checker/math/power_projection_of_sps.test.cpp
+  - test_atcoder/abc253h.test.cpp
 documentation_of: setfunc/power_projection_of_sps.hpp
 layout: document
 redirect_from:

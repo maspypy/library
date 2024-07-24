@@ -49,8 +49,8 @@ data:
   timestamp: '2023-12-23 11:53:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test_atcoder/abc245g.test.cpp
   - test_atcoder/abc245g2.test.cpp
+  - test_atcoder/abc245g.test.cpp
 documentation_of: alg/monoid/min2.hpp
 layout: document
 redirect_from:

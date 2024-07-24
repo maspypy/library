@@ -192,8 +192,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - test/mytest/seg2d.test.cpp
   - test/yukicoder/1600.test.cpp
+  - test/mytest/seg2d.test.cpp
   - test_atcoder/abc266h.test.cpp
   - test_atcoder/abc324g2.test.cpp
 documentation_of: ds/segtree/segtree_2d.hpp

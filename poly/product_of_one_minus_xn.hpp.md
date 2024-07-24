@@ -428,8 +428,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/product_of_one_pm_xn.test.cpp
-  - test_atcoder/abc331g.test.cpp
   - test_atcoder/abc267h.test.cpp
+  - test_atcoder/abc331g.test.cpp
 documentation_of: poly/product_of_one_minus_xn.hpp
 layout: document
 redirect_from:

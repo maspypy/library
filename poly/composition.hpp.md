@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy:
@@ -663,22 +663,22 @@ data:
   isVerificationFile: false
   path: poly/composition.hpp
   requiredBy:
-  - poly/compositional_inverse.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - poly/compositional_inverse.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
   - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/composition_dmint.test.cpp
   - test/library_checker/polynomial/composition_of_fps.test.cpp
+  - test/library_checker/polynomial/composition_dmint.test.cpp
+  - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/composition_1_minus_ex.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/mytest/compositional_inverset.test.cpp
+  - test/mytest/composition_ex_minus_1.test.cpp
 documentation_of: poly/composition.hpp
 layout: document
 redirect_from:

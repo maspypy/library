@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -233,8 +233,8 @@ data:
   timestamp: '2024-06-11 16:34:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
   - test_atcoder/abc336g.test.cpp
 documentation_of: graph/count/BEST.hpp
 layout: document

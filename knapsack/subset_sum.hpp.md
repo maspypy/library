@@ -273,8 +273,8 @@ data:
   timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/subset_sum.test.cpp
   - test/yukicoder/4_2.test.cpp
+  - test/mytest/subset_sum.test.cpp
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:
