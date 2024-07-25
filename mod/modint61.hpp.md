@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
+  - icon: ':x:'
+    path: graph/ds/rolling_hash_on_tree.hpp
+    title: graph/ds/rolling_hash_on_tree.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/matching_line_graph.test.cpp
     title: test/mytest/matching_line_graph.test.cpp
+  - icon: ':x:'
+    path: test/mytest/rolling_hash_on_tree.test.cpp
+    title: test/mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/tdpc_grid_dp.test.cpp
     title: test/mytest/tdpc_grid_dp.test.cpp
@@ -93,9 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc339f.test.cpp
     title: test_atcoder/abc339f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr\
@@ -161,6 +167,7 @@ data:
   path: mod/modint61.hpp
   requiredBy:
   - graph/maximum_matching_size.hpp
+  - graph/ds/rolling_hash_on_tree.hpp
   - graph/tree_dp/subtree_hash.hpp
   - alg/monoid/rollinghash.hpp
   - random/hash_vector.hpp
@@ -169,7 +176,7 @@ data:
   - mod/modular_subset_sum.hpp
   - other/connected_dp.hpp
   timestamp: '2023-12-22 20:53:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/graph/classify_tree.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
@@ -187,6 +194,7 @@ data:
   - test/yukicoder/578.test.cpp
   - test/yukicoder/1881.test.cpp
   - test/yukicoder/1397.test.cpp
+  - test/mytest/rolling_hash_on_tree.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/enumerate_unlabeled_tree.test.cpp
   - test/mytest/tdpc_grid_dp.test.cpp

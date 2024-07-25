@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree
@@ -401,8 +401,8 @@ data:
     \ != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b\
     \ - n0, 0)] = max(a - n0, 0);\n  }\n  f(par2, V2, n0, n1);\n  centroid_decomposition_1_dfs(par0,\
     \ V0, f);\n  centroid_decomposition_1_dfs(par1, V1, f);\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
-    f(par2, V2, color)\ncolor in [-1,0,1], -1 is virtual.\n*/\ntemplate <typename\
-    \ F>\nvoid centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n\
+    f(par, V, color)\ncolor in [-1,0,1], -1 is virtual.\n*/\ntemplate <typename F>\n\
+    void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n\
     \                                  F f) {\n  const int N = len(par);\n  assert(N\
     \ > 1);\n  if (N == 2) {\n    if (real[0] && real[1]) {\n      vc<int> color =\
     \ {0, 1};\n      f(par, vs, color);\n    }\n    return;\n  }\n  int c = -1;\n\
@@ -422,33 +422,34 @@ data:
     \ rea1[max(i - n0, 0)] = real[v];\n    }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v],\
     \ b = ord[par[v]];\n    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v]\
     \ != 1 && color[par[v]] != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]]\
-    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  if (real[c]) {\n\
-    \    color.assign(N, -1);\n    color[0] = 0;\n    FOR(i, 1, N) color[i] = rea2[i]\
-    \ ? 1 : -1;\n    f(par2, V2, color);\n    rea0[0] = rea1[0] = rea2[0] = 0;\n \
-    \ }\n  color.assign(N, -1);\n  FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ?\
-    \ 0 : 1);\n  f(par2, V2, color);\n  centroid_decomposition_2_dfs(par0, V0, rea0,\
-    \ f);\n  centroid_decomposition_2_dfs(par1, V1, rea1, f);\n}\n\n// f(par, V, color)\n\
-    // V: label in original tree, dfs order\n// color in [-1,0,1], color=-1: virtual\n\
-    template <int MODE, typename GT, typename F>\nvoid centroid_decomposition(GT&\
-    \ G, F f) {\n  static_assert(!GT::is_directed);\n  const int N = G.N;\n  if (N\
-    \ == 1) return;\n  vc<int> V(N), par(N, -1);\n  int l = 0, r = 0;\n  V[r++] =\
-    \ 0;\n  while (l < r) {\n    int v = V[l++];\n    for (auto& e: G[v]) {\n    \
-    \  if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n    }\n  }\n  assert(r ==\
-    \ N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]] = i;\n  vc<int> tmp(N,\
-    \ -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]] = new_idx[j];\n\
-    \  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE == 1 || MODE == 2);\n\
-    \  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par, V, f); }\n  elif\
-    \ constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V, f); }\n  else {\n\
-    \    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par, V, real, f);\n\
-    \  }\n}\n#line 2 \"graph/ds/contour_query_range.hpp\"\n\n// \u8DDD\u96E2 0 \u306F\
-    \u542B\u3081\u3066\u3044\u306A\u3044\u3053\u3068\u306B\u6CE8\u610F\uFF01\ntemplate\
-    \ <typename GT, bool WEIGHTED>\nstruct Contour_Query_Range {\n  using WT = std::conditional_t<WEIGHTED,\
-    \ typename GT::cost_type, int>;\n  int N;\n  vc<int> V;\n  vc<int> comp;\n  vc<WT>\
-    \ dep;\n  vc<int> info_idx, info_indptr;\n  vc<int> comp_range;\n\n  Contour_Query_Range(GT&\
-    \ G0) : N(G0.N) {\n    int p = 0;\n    comp_range = {0};\n    auto f = [&](vc<int>&\
-    \ par, vc<int>& vs, vc<int>& color) -> void {\n      const int n = len(par);\n\
-    \      vc<WT> dist(n);\n      vc<int> A, B;\n      FOR(v, 1, n) {\n        static_assert(!WEIGHTED);\n\
-    \        dist[v] = dist[par[v]] + 1;\n      }\n      FOR(v, n) {\n        if (color[v]\
+    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  // if (real[c])\
+    \ {\n  //   color.assign(N, -1);\n  //   color[0] = 0;\n  //   FOR(i, 1, N) color[i]\
+    \ = rea2[i] ? 1 : -1;\n  //   f(par2, V2, color);\n  //   rea0[0] = rea1[0] =\
+    \ rea2[0] = 0;\n  // }\n  color.assign(N, -1);\n  FOR(i, 1, N) if (rea2[i]) color[i]\
+    \ = (i <= n0 ? 0 : 1);\n  if (real[c]) color[0] = 2, rea0[0] = rea1[0] = rea2[0]\
+    \ = 0;\n  f(par2, V2, color);\n  centroid_decomposition_2_dfs(par0, V0, rea0,\
+    \ f);\n  centroid_decomposition_2_dfs(par1, V1, rea1, f);\n}\n\n// 0: f(par, V,\
+    \ indptr)\n// 1: f(par, V, n1, n2)\n// 2: f(par, V, color)\ntemplate <int MODE,\
+    \ typename GT, typename F>\nvoid centroid_decomposition(GT& G, F f) {\n  static_assert(!GT::is_directed);\n\
+    \  const int N = G.N;\n  if (N == 1) return;\n  vc<int> V(N), par(N, -1);\n  int\
+    \ l = 0, r = 0;\n  V[r++] = 0;\n  while (l < r) {\n    int v = V[l++];\n    for\
+    \ (auto& e: G[v]) {\n      if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n\
+    \    }\n  }\n  assert(r == N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]]\
+    \ = i;\n  vc<int> tmp(N, -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]]\
+    \ = new_idx[j];\n  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE ==\
+    \ 1 || MODE == 2);\n  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par,\
+    \ V, f); }\n  elif constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V,\
+    \ f); }\n  else {\n    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par,\
+    \ V, real, f);\n  }\n}\n#line 2 \"graph/ds/contour_query_range.hpp\"\n\n// \u8DDD\
+    \u96E2 0 \u306F\u542B\u3081\u3066\u3044\u306A\u3044\u3053\u3068\u306B\u6CE8\u610F\
+    \uFF01\ntemplate <typename GT, bool WEIGHTED>\nstruct Contour_Query_Range {\n\
+    \  using WT = std::conditional_t<WEIGHTED, typename GT::cost_type, int>;\n  int\
+    \ N;\n  vc<int> V;\n  vc<int> comp;\n  vc<WT> dep;\n  vc<int> info_idx, info_indptr;\n\
+    \  vc<int> comp_range;\n\n  Contour_Query_Range(GT& G0) : N(G0.N) {\n    int p\
+    \ = 0;\n    comp_range = {0};\n    auto f = [&](vc<int>& par, vc<int>& vs, vc<int>&\
+    \ color) -> void {\n      const int n = len(par);\n      vc<WT> dist(n);\n   \
+    \   vc<int> A, B;\n      FOR(v, 1, n) {\n        static_assert(!WEIGHTED);\n \
+    \       dist[v] = dist[par[v]] + 1;\n      }\n      FOR(v, n) {\n        if (color[v]\
     \ == 0) A.eb(v);\n        if (color[v] == 1) B.eb(v);\n      }\n      if (A.empty()\
     \ || B.empty()) return;\n      int mx_A = 0, mx_B = 0;\n      for (auto& v: A)\
     \ {\n        V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_A, dist[v]);\n\
@@ -505,8 +506,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-07-26 01:42:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
 layout: document

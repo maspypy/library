@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -176,8 +176,8 @@ data:
     \ != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]] != 0)\n      par1[max(b\
     \ - n0, 0)] = max(a - n0, 0);\n  }\n  f(par2, V2, n0, n1);\n  centroid_decomposition_1_dfs(par0,\
     \ V0, f);\n  centroid_decomposition_1_dfs(par1, V1, f);\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
-    f(par2, V2, color)\ncolor in [-1,0,1], -1 is virtual.\n*/\ntemplate <typename\
-    \ F>\nvoid centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n\
+    f(par, V, color)\ncolor in [-1,0,1], -1 is virtual.\n*/\ntemplate <typename F>\n\
+    void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,\n\
     \                                  F f) {\n  const int N = len(par);\n  assert(N\
     \ > 1);\n  if (N == 2) {\n    if (real[0] && real[1]) {\n      vc<int> color =\
     \ {0, 1};\n      f(par, vs, color);\n    }\n    return;\n  }\n  int c = -1;\n\
@@ -197,28 +197,28 @@ data:
     \ rea1[max(i - n0, 0)] = real[v];\n    }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v],\
     \ b = ord[par[v]];\n    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v]\
     \ != 1 && color[par[v]] != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]]\
-    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  if (real[c]) {\n\
-    \    color.assign(N, -1);\n    color[0] = 0;\n    FOR(i, 1, N) color[i] = rea2[i]\
-    \ ? 1 : -1;\n    f(par2, V2, color);\n    rea0[0] = rea1[0] = rea2[0] = 0;\n \
-    \ }\n  color.assign(N, -1);\n  FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ?\
-    \ 0 : 1);\n  f(par2, V2, color);\n  centroid_decomposition_2_dfs(par0, V0, rea0,\
-    \ f);\n  centroid_decomposition_2_dfs(par1, V1, rea1, f);\n}\n\n// f(par, V, color)\n\
-    // V: label in original tree, dfs order\n// color in [-1,0,1], color=-1: virtual\n\
-    template <int MODE, typename GT, typename F>\nvoid centroid_decomposition(GT&\
-    \ G, F f) {\n  static_assert(!GT::is_directed);\n  const int N = G.N;\n  if (N\
-    \ == 1) return;\n  vc<int> V(N), par(N, -1);\n  int l = 0, r = 0;\n  V[r++] =\
-    \ 0;\n  while (l < r) {\n    int v = V[l++];\n    for (auto& e: G[v]) {\n    \
-    \  if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n    }\n  }\n  assert(r ==\
-    \ N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]] = i;\n  vc<int> tmp(N,\
-    \ -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]] = new_idx[j];\n\
-    \  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE == 1 || MODE == 2);\n\
-    \  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par, V, f); }\n  elif\
-    \ constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V, f); }\n  else {\n\
-    \    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par, V, real, f);\n\
-    \  }\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ != 0)\n      par1[max(b - n0, 0)] = max(a - n0, 0);\n  }\n  // if (real[c])\
+    \ {\n  //   color.assign(N, -1);\n  //   color[0] = 0;\n  //   FOR(i, 1, N) color[i]\
+    \ = rea2[i] ? 1 : -1;\n  //   f(par2, V2, color);\n  //   rea0[0] = rea1[0] =\
+    \ rea2[0] = 0;\n  // }\n  color.assign(N, -1);\n  FOR(i, 1, N) if (rea2[i]) color[i]\
+    \ = (i <= n0 ? 0 : 1);\n  if (real[c]) color[0] = 2, rea0[0] = rea1[0] = rea2[0]\
+    \ = 0;\n  f(par2, V2, color);\n  centroid_decomposition_2_dfs(par0, V0, rea0,\
+    \ f);\n  centroid_decomposition_2_dfs(par1, V1, rea1, f);\n}\n\n// 0: f(par, V,\
+    \ indptr)\n// 1: f(par, V, n1, n2)\n// 2: f(par, V, color)\ntemplate <int MODE,\
+    \ typename GT, typename F>\nvoid centroid_decomposition(GT& G, F f) {\n  static_assert(!GT::is_directed);\n\
+    \  const int N = G.N;\n  if (N == 1) return;\n  vc<int> V(N), par(N, -1);\n  int\
+    \ l = 0, r = 0;\n  V[r++] = 0;\n  while (l < r) {\n    int v = V[l++];\n    for\
+    \ (auto& e: G[v]) {\n      if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n\
+    \    }\n  }\n  assert(r == N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]]\
+    \ = i;\n  vc<int> tmp(N, -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]]\
+    \ = new_idx[j];\n  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE ==\
+    \ 1 || MODE == 2);\n  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par,\
+    \ V, f); }\n  elif constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V,\
+    \ f); }\n  else {\n    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par,\
+    \ V, real, f);\n  }\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -537,7 +537,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-07-26 01:42:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
