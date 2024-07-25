@@ -124,7 +124,7 @@ void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
 
 /*
 https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d
-f(par2, V2, color)
+f(par, V, color)
 color in [-1,0,1], -1 is virtual.
 */
 template <typename F>
@@ -187,23 +187,24 @@ void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,
     if (color[v] != 0 && color[par[v]] != 0)
       par1[max(b - n0, 0)] = max(a - n0, 0);
   }
-  if (real[c]) {
-    color.assign(N, -1);
-    color[0] = 0;
-    FOR(i, 1, N) color[i] = rea2[i] ? 1 : -1;
-    f(par2, V2, color);
-    rea0[0] = rea1[0] = rea2[0] = 0;
-  }
+  // if (real[c]) {
+  //   color.assign(N, -1);
+  //   color[0] = 0;
+  //   FOR(i, 1, N) color[i] = rea2[i] ? 1 : -1;
+  //   f(par2, V2, color);
+  //   rea0[0] = rea1[0] = rea2[0] = 0;
+  // }
   color.assign(N, -1);
   FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ? 0 : 1);
+  if (real[c]) color[0] = 2, rea0[0] = rea1[0] = rea2[0] = 0;
   f(par2, V2, color);
   centroid_decomposition_2_dfs(par0, V0, rea0, f);
   centroid_decomposition_2_dfs(par1, V1, rea1, f);
 }
 
-// f(par, V, color)
-// V: label in original tree, dfs order
-// color in [-1,0,1], color=-1: virtual
+// 0: f(par, V, indptr)
+// 1: f(par, V, n1, n2)
+// 2: f(par, V, color)
 template <int MODE, typename GT, typename F>
 void centroid_decomposition(GT& G, F f) {
   static_assert(!GT::is_directed);
