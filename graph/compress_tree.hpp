@@ -5,14 +5,12 @@
 template <typename TREE>
 pair<vc<int>, typename TREE::Graph_type> compress_tree(TREE& tree, vc<int> V) {
   // 大事な点をリストアップする
-  // もともとの根は含まれるようにする
   sort(all(V), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
   int n = len(V);
   FOR(i, n) {
     int j = (i + 1 == n ? 0 : i + 1);
     V.eb(tree.lca(V[i], V[j]));
   }
-  V.eb(tree.V[0]);
   sort(all(V), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y]; });
   V.erase(unique(all(V)), V.end());
   // 辺を張ってグラフを作る
