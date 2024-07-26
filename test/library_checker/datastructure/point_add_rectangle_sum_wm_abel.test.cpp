@@ -27,7 +27,7 @@ void solve() {
     }
   }
 
-  Wavelet_Matrix_2D_Range<FenwickTree<Monoid_Add<ll>>, int, false, false> WM(
+  Wavelet_Matrix_2D_Range<int, false, false, FenwickTree<Monoid_Add<ll>>> WM(
       len(X), [&](int i) -> tuple<int, int, ll> {
         return {X[i], Y[i], W[i]};
       });
