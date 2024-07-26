@@ -1,6 +1,7 @@
 #include "ds/wavelet_matrix/wavelet_matrix.hpp"
 
-template <typename SEGTREE, typename XY, bool SMALL_X, bool SMALL_Y>
+template <typename XY, bool SMALL_X, bool SMALL_Y,
+          typename SEGTREE = Dummy_Data_Structure>
 struct Wavelet_Matrix_2D_Range {
   // 点群を X 昇順に並べる.
   Wavelet_Matrix<XY, SMALL_Y, SEGTREE> WM;
@@ -23,7 +24,10 @@ struct Wavelet_Matrix_2D_Range {
     n = m;
     vc<XY> X(n), Y(n);
     vc<T> S(n);
-    FOR(i, n) tie(X[i], Y[i], S[i]) = f(i);
+    FOR(i, n) {
+      auto tmp = f(i);
+      X[i] = get<0>(tmp), Y[i] = get<1>(tmp), S[i] = get<2>(tmp);
+    }
     new_idx = IDX_X.build(X);
     vc<int> I(n);
     FOR(i, n) I[new_idx[i]] = i;
