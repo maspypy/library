@@ -17,25 +17,27 @@ struct Contour_Query_Range {
     auto f = [&](vc<int>& par, vc<int>& vs, vc<int>& color) -> void {
       const int n = len(par);
       vc<WT> dist(n);
-      vc<int> A, B;
       FOR(v, 1, n) {
         static_assert(!WEIGHTED);
         dist[v] = dist[par[v]] + 1;
       }
-      FOR(v, n) {
-        if (color[v] == 0) A.eb(v);
-        if (color[v] == 1) B.eb(v);
+      FOR(c1, 2) {
+        vc<int> A, B;
+        FOR(v, n) {
+          if (color[v] == c1) A.eb(v);
+          if (color[v] > c1) B.eb(v);
+        }
+        if (A.empty() || B.empty()) continue;
+        int mx_A = 0, mx_B = 0;
+        for (auto& v: A) {
+          V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_A, dist[v]);
+        }
+        comp_range.eb(comp_range.back() + mx_A + 1), ++p;
+        for (auto& v: B) {
+          V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_B, dist[v]);
+        }
+        comp_range.eb(comp_range.back() + mx_B + 1), ++p;
       }
-      if (A.empty() || B.empty()) return;
-      int mx_A = 0, mx_B = 0;
-      for (auto& v: A) {
-        V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_A, dist[v]);
-      }
-      comp_range.eb(comp_range.back() + mx_A + 1), ++p;
-      for (auto& v: B) {
-        V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_B, dist[v]);
-      }
-      comp_range.eb(comp_range.back() + mx_B + 1), ++p;
     };
     centroid_decomposition<2>(G0, f);
     info_indptr.assign(N + 1, 0);
