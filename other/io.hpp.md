@@ -342,10 +342,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':heavy_check_mark:'
@@ -414,10 +414,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_sweep.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1488,7 +1488,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2062.test.cpp
     title: test/yukicoder/2062.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1785,10 +1785,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/913.test.cpp
     title: test/yukicoder/913.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
   - icon: ':heavy_check_mark:'

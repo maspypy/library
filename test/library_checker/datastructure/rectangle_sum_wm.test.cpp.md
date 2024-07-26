@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
@@ -419,18 +419,18 @@ data:
     \ dat[r]); }\n};\n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
     #line 7 \"test/library_checker/datastructure/rectangle_sum_wm.test.cpp\"\n\nvoid\
     \ solve() {\n  LL(N, Q);\n  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i],\
-    \ Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<Prefix_Sum<ll>, int, false, false> WM(\n\
+    \ Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<int, false, false, Prefix_Sum<ll>> WM(\n\
     \      N, [&](int i) -> tuple<int, int, ll> {\n        return {X[i], Y[i], W[i]};\n\
     \      });\n  FOR(q, Q) {\n    LL(a, c, b, d);\n    print(WM.prod(a, b, c, d));\n\
     \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\
     \n#include \"ds/static_range_product_group.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
-    \  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i], Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<Prefix_Sum<ll>,\
-    \ int, false, false> WM(\n      N, [&](int i) -> tuple<int, int, ll> {\n     \
-    \   return {X[i], Y[i], W[i]};\n      });\n  FOR(q, Q) {\n    LL(a, c, b, d);\n\
-    \    print(WM.prod(a, b, c, d));\n  }\n}\n\nsigned main() {\n  solve();\n\n  return\
-    \ 0;\n}\n"
+    \  vc<u32> X(N), Y(N), W(N);\n  FOR(i, N) read(X[i], Y[i], W[i]);\n  Wavelet_Matrix_2D_Range<int,\
+    \ false, false, Prefix_Sum<ll>> WM(\n      N, [&](int i) -> tuple<int, int, ll>\
+    \ {\n        return {X[i], Y[i], W[i]};\n      });\n  FOR(q, Q) {\n    LL(a, c,\
+    \ b, d);\n    print(WM.prod(a, b, c, d));\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -443,8 +443,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   requiredBy: []
-  timestamp: '2024-07-27 02:46:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-27 04:19:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
 layout: document

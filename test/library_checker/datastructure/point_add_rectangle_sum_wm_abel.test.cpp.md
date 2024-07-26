@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -469,12 +469,12 @@ data:
     \ query(Q);\n  FOR(q, Q) {\n    LL(t);\n    if (t == 0) {\n      U32(x, y, w);\n\
     \      X.eb(x);\n      Y.eb(y);\n      W.eb(0);\n      query[q] = mt(-1, x, y,\
     \ w);\n    } else {\n      U32(a, b, c, d);\n      query[q] = mt(a, c, b, d);\n\
-    \    }\n  }\n\n  Wavelet_Matrix_2D_Range<FenwickTree<Monoid_Add<ll>>, int, false,\
-    \ false> WM(\n      len(X), [&](int i) -> tuple<int, int, ll> {\n        return\
-    \ {X[i], Y[i], W[i]};\n      });\n  int idx = N;\n  FOR(q, Q) {\n    auto [a,\
-    \ b, c, d] = query[q];\n    if (a == u32(-1)) {\n      WM.multiply(idx++, d);\n\
-    \    } else {\n      print(WM.prod(a, b, c, d));\n    }\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n\n  return 0;\n}\n"
+    \    }\n  }\n\n  Wavelet_Matrix_2D_Range<int, false, false, FenwickTree<Monoid_Add<ll>>>\
+    \ WM(\n      len(X), [&](int i) -> tuple<int, int, ll> {\n        return {X[i],\
+    \ Y[i], W[i]};\n      });\n  int idx = N;\n  FOR(q, Q) {\n    auto [a, b, c, d]\
+    \ = query[q];\n    if (a == u32(-1)) {\n      WM.multiply(idx++, d);\n    } else\
+    \ {\n      print(WM.prod(a, b, c, d));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_add_rectangle_sum\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/wavelet_matrix/wavelet_matrix_2d_range.hpp\"\
     \n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n\
@@ -482,12 +482,12 @@ data:
     \  using QQ = tuple<u32, u32, u32, u32>;\n  vc<QQ> query(Q);\n  FOR(q, Q) {\n\
     \    LL(t);\n    if (t == 0) {\n      U32(x, y, w);\n      X.eb(x);\n      Y.eb(y);\n\
     \      W.eb(0);\n      query[q] = mt(-1, x, y, w);\n    } else {\n      U32(a,\
-    \ b, c, d);\n      query[q] = mt(a, c, b, d);\n    }\n  }\n\n  Wavelet_Matrix_2D_Range<FenwickTree<Monoid_Add<ll>>,\
-    \ int, false, false> WM(\n      len(X), [&](int i) -> tuple<int, int, ll> {\n\
-    \        return {X[i], Y[i], W[i]};\n      });\n  int idx = N;\n  FOR(q, Q) {\n\
-    \    auto [a, b, c, d] = query[q];\n    if (a == u32(-1)) {\n      WM.multiply(idx++,\
-    \ d);\n    } else {\n      print(WM.prod(a, b, c, d));\n    }\n  }\n}\n\nsigned\
-    \ main() {\n  solve();\n\n  return 0;\n}"
+    \ b, c, d);\n      query[q] = mt(a, c, b, d);\n    }\n  }\n\n  Wavelet_Matrix_2D_Range<int,\
+    \ false, false, FenwickTree<Monoid_Add<ll>>> WM(\n      len(X), [&](int i) ->\
+    \ tuple<int, int, ll> {\n        return {X[i], Y[i], W[i]};\n      });\n  int\
+    \ idx = N;\n  FOR(q, Q) {\n    auto [a, b, c, d] = query[q];\n    if (a == u32(-1))\
+    \ {\n      WM.multiply(idx++, d);\n    } else {\n      print(WM.prod(a, b, c,\
+    \ d));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -500,8 +500,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   requiredBy: []
-  timestamp: '2024-07-27 02:46:37+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-27 04:19:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
 layout: document
