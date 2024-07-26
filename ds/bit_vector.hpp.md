@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
@@ -18,19 +18,19 @@ data:
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
@@ -42,33 +42,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1625_2.test.cpp
     title: test/yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1919_2.test.cpp
     title: test/yukicoder/1919_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2065.test.cpp
     title: test/yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/919.test.cpp
     title: test/yukicoder/919.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/924.test.cpp
     title: test/yukicoder/924.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc127f_1.test.cpp
     title: test_atcoder/abc127f_1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test_atcoder/abc324g.test.cpp
     title: test_atcoder/abc324g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u64,\
@@ -76,21 +76,23 @@ data:
     \ }\n  void set(int i) { dat[i >> 6].fi |= u64(1) << (i & 63); }\n  void reset()\
     \ { fill(all(dat), pair<u64, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat)\
     \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\
-    \u306E 1 \u306E\u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k\
-    \ >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return\
-    \ (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R,\
-    \ f) - count(L, f); }\n  string to_string() {\n    string ans;\n    FOR(i, n)\
-    \ ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n"
+    \u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool f = true) {\n    auto\
+    \ [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) -\
+    \ 1));\n    return (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f\
+    \ = true) {\n    return count_prefix(R, f) - count_prefix(L, f);\n  }\n  string\
+    \ to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >>\
+    \ (i % 64) & 1);\n    return ans;\n  }\n};\n"
   code: "struct Bit_Vector {\n  int n;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int\
     \ n) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void set(int i) { dat[i\
     \ >> 6].fi |= u64(1) << (i & 63); }\n  void reset() { fill(all(dat), pair<u64,\
     \ u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
     \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
-    \ int count(int k, bool f) {\n    auto [a, b] = dat[k >> 6];\n    int ret = b\
-    \ + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n\
-    \  }\n  int count(int L, int R, bool f) { return count(R, f) - count(L, f); }\n\
-    \  string to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i /\
-    \ 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n"
+    \ int count_prefix(int k, bool f = true) {\n    auto [a, b] = dat[k >> 6];\n \
+    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
+    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) {\n    return count_prefix(R,\
+    \ f) - count_prefix(L, f);\n  }\n  string to_string() {\n    string ans;\n   \
+    \ FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n\
+    \  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/bit_vector.hpp
@@ -100,8 +102,8 @@ data:
   - ds/wavelet_matrix/wavelet_matrix_old.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - string/prefix_substring_LCS.hpp
-  timestamp: '2024-07-19 19:22:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-27 02:46:37+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/library_checker/datastructure/rectangle_sum_wm.test.cpp

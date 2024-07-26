@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -213,23 +213,24 @@ data:
     \ i) { dat[i >> 6].fi |= u64(1) << (i & 63); }\n  void reset() { fill(all(dat),\
     \ pair<u64, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i +\
     \ 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\
-    \u500B\u6570\n  int count(int k, bool f) {\n    auto [a, b] = dat[k >> 6];\n \
-    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f) { return count(R, f) - count(L,\
-    \ f); }\n  string to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i\
-    \ / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\
-    \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(is_same_v<T,\
-    \ int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi\
-    \ = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
-    \ - mi + 2, 0);\n    for (auto& x: X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x: X) { x = dat[x - mi]++; }\n  \
-    \  FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n\
-    \  }\n  int operator()(ll x) { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
-    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(is_same_v<T,\
-    \ int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi\
-    \ = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
-    \ - mi + 2, 0);\n    for (auto& x: X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x: X) { x = dat[x - mi]; }\n    return\
+    \u500B\u6570\n  int count_prefix(int k, bool f = true) {\n    auto [a, b] = dat[k\
+    \ >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return\
+    \ (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f = true) {\n    return\
+    \ count_prefix(R, f) - count_prefix(L, f);\n  }\n  string to_string() {\n    string\
+    \ ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return\
+    \ ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\n\
+    struct Index_Compression_DISTINCT_SMALL {\n  static_assert(is_same_v<T, int>);\n\
+    \  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi = 0, ma =\
+    \ -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi +\
+    \ 2, 0);\n    for (auto& x: X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i\
+    \ + 1] += dat[i];\n    for (auto& x: X) { x = dat[x - mi]++; }\n    FOR_R(i, 1,\
+    \ len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int operator()(ll\
+    \ x) { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(is_same_v<T, int>);\n\
+    \  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi = 0, ma =\
+    \ -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi +\
+    \ 2, 0);\n    for (auto& x: X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1)\
+    \ dat[i + 1] += dat[i];\n    for (auto& x: X) { x = dat[x - mi]; }\n    return\
     \ X;\n  }\n  int operator()(ll x) { return dat[clamp<ll>(x - mi, 0, ma - mi +\
     \ 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n\
     \  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n    vc<int>\
@@ -287,70 +288,71 @@ data:
     \ + p1, B.begin() + p0);\r\n      move(S1.begin(), S1.begin() + p1, S.begin()\
     \ + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\n    }\r\n  }\r\
     \n\r\n  // [L,R) x [0,y)\r\n  int prefix_count(int L, int R, Y y) {\r\n    int\
-    \ p = IDX(y);\r\n    if (p == 0) return 0;\r\n    if (p == K) return R - L;\r\n\
-    \    int cnt = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      int l0\
-    \ = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] -\
-    \ l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) cnt += r0 - l0, L = l1, R\
-    \ = r1;\r\n      if (!(p >> d & 1)) L = l0, R = r0;\r\n    }\r\n    return cnt;\r\
-    \n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int L, int R, Y y1, Y y2) {\r\
-    \n    return prefix_count(L, R, y2) - prefix_count(L, R, y1);\r\n  }\r\n\r\n \
-    \ // [L,R) x [0,y)\r\n  pair<int, T> prefix_count_and_prod(int L, int R, Y y)\
-    \ {\r\n    int p = IDX(y);\r\n    if (p == 0) return {0, Mono::unit()};\r\n  \
-    \  if (p == K) return {R - L, seg[log].prod(L, R)};\r\n    int cnt = 0;\r\n  \
-    \  T t = Mono::unit();\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      int\
-    \ l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d]\
-    \ - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) {\r\n        cnt += r0\
-    \ - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1;\r\n      }\r\n \
-    \     if (!(p >> d & 1)) L = l0, R = r0;\r\n    }\r\n    return {cnt, t};\r\n\
-    \  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int L, int R,\
-    \ Y y1, Y y2) {\r\n    if constexpr (has_inverse<Mono>::value) {\r\n      auto\
-    \ [c1, t1] = prefix_count_and_prod(L, R, y1);\r\n      auto [c2, t2] = prefix_count_and_prod(L,\
-    \ R, y2);\r\n      return {c2 - c1, Mono::op(Mono::inverse(t1), t2)};\r\n    }\r\
-    \n    int lo = IDX(y1), hi = IDX(y2), cnt = 0;\r\n    T t = Mono::unit();\r\n\
-    \    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {\r\n\
-    \      assert(b - a == (1 << d));\r\n      if (hi <= a || b <= lo) return;\r\n\
-    \      if (lo <= a && b <= hi) {\r\n        cnt += R - L, t = Mono::op(t, seg[d].prod(L,\
-    \ R));\r\n        return;\r\n      }\r\n      --d;\r\n      int c = (a + b) /\
-    \ 2;\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\n      int\
-    \ l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      dfs(dfs, d, l0, r0, a,\
-    \ c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\n    dfs(dfs, log, L, R, 0, 1 <<\
-    \ log);\r\n    return {cnt, t};\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  T prefix_prod(int\
-    \ L, int R, Y y) { return prefix_count_and_prod(L, R, y).se; }\r\n  // [L,R) x\
-    \ [y1,y2)\r\n  T prod(int L, int R, Y y1, Y y2) { return count_and_prod(L, R,\
-    \ y1, y2).se; }\r\n  T prod_all(int L, int R) { return seg[log].prod(L, R); }\r\
-    \n\r\n  Y kth(int L, int R, int k) {\r\n    assert(0 <= k && k < R - L);\r\n \
-    \   int p = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L,\
-    \ 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
-    \ - r0;\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else\
-    \ {\r\n        k -= r0 - l0, L = l1, R = r1, p |= 1 << d;\r\n      }\r\n    }\r\
-    \n    return ItoY[p];\r\n  }\r\n\r\n  // y \u4EE5\u4E0A\u6700\u5C0F OR infty<Y>\r\
-    \n  Y next(int L, int R, Y y) {\r\n    int k = IDX(y);\r\n    int p = K;\r\n\r\
-    \n    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int b) -> void {\r\
-    \n      if (p <= a || L == R || b <= k) return;\r\n      if (d == 0) {\r\n   \
-    \     chmin(p, a);\r\n        return;\r\n      }\r\n      --d;\r\n      int c\
-    \ = (a + b) / 2;\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R, 0);\r\
-    \n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      dfs(dfs, d, l0,\
-    \ r0, a, c), dfs(dfs, d, l1, r1, c, b);\r\n    };\r\n    dfs(dfs, log, L, R, 0,\
-    \ 1 << log);\r\n    return (p == K ? infty<Y> : ItoY[p]);\r\n  }\r\n\r\n  // y\
-    \ \u4EE5\u4E0B\u6700\u5927 OR -infty<T>\r\n  Y prev(int L, int R, Y y) {\r\n \
-    \   int k = IDX(y + 1);\r\n    int p = -1;\r\n    auto dfs = [&](auto& dfs, int\
-    \ d, int L, int R, int a, int b) -> void {\r\n      if (b - 1 <= p || L == R ||\
-    \ k <= a) return;\r\n      if (d == 0) {\r\n        chmax(p, a);\r\n        return;\r\
-    \n      }\r\n      --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count(L,\
-    \ 0), r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
-    \ - r0;\r\n      dfs(dfs, d, l1, r1, c, b), dfs(dfs, d, l0, r0, a, c);\r\n   \
-    \ };\r\n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == -1 ? -infty<Y>\
+    \ p = IDX(y);\r\n    if (L == R || p == 0) return 0;\r\n    if (p == K) return\
+    \ R - L;\r\n    int cnt = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n \
+    \     int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\n  \
+    \    int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1)\
+    \ cnt += r0 - l0, L = l1, R = r1;\r\n      if (!(p >> d & 1)) L = l0, R = r0;\r\
+    \n    }\r\n    return cnt;\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int\
+    \ L, int R, Y y1, Y y2) {\r\n    return prefix_count(L, R, y2) - prefix_count(L,\
+    \ R, y1);\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  pair<int, T> prefix_count_and_prod(int\
+    \ L, int R, Y y) {\r\n    int p = IDX(y);\r\n    if (p == 0) return {0, Mono::unit()};\r\
+    \n    if (p == K) return {R - L, seg[log].prod(L, R)};\r\n    int cnt = 0;\r\n\
+    \    T t = Mono::unit();\r\n    for (int d = log - 1; d >= 0; --d) {\r\n     \
+    \ int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\n      int\
+    \ l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1) {\r\n \
+    \       cnt += r0 - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1;\r\
+    \n      }\r\n      if (!(p >> d & 1)) L = l0, R = r0;\r\n    }\r\n    return {cnt,\
+    \ t};\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  pair<int, T> count_and_prod(int\
+    \ L, int R, Y y1, Y y2) {\r\n    if constexpr (has_inverse<Mono>::value) {\r\n\
+    \      auto [c1, t1] = prefix_count_and_prod(L, R, y1);\r\n      auto [c2, t2]\
+    \ = prefix_count_and_prod(L, R, y2);\r\n      return {c2 - c1, Mono::op(Mono::inverse(t1),\
+    \ t2)};\r\n    }\r\n    int lo = IDX(y1), hi = IDX(y2), cnt = 0;\r\n    T t =\
+    \ Mono::unit();\r\n    auto dfs = [&](auto& dfs, int d, int L, int R, int a, int\
+    \ b) -> void {\r\n      assert(b - a == (1 << d));\r\n      if (hi <= a || b <=\
+    \ lo) return;\r\n      if (lo <= a && b <= hi) {\r\n        cnt += R - L, t =\
+    \ Mono::op(t, seg[d].prod(L, R));\r\n        return;\r\n      }\r\n      --d;\r\
+    \n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count_prefix(L, 0), r0 =\
+    \ bv[d].count_prefix(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d]\
+    \ - r0;\r\n      dfs(dfs, d, l0, r0, a, c), dfs(dfs, d, l1, r1, c, b);\r\n   \
+    \ };\r\n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return {cnt, t};\r\n  }\r\
+    \n\r\n  // [L,R) x [y1,y2)\r\n  T prefix_prod(int L, int R, Y y) { return prefix_count_and_prod(L,\
+    \ R, y).se; }\r\n  // [L,R) x [y1,y2)\r\n  T prod(int L, int R, Y y1, Y y2) {\
+    \ return count_and_prod(L, R, y1, y2).se; }\r\n  T prod_all(int L, int R) { return\
+    \ seg[log].prod(L, R); }\r\n\r\n  Y kth(int L, int R, int k) {\r\n    assert(0\
+    \ <= k && k < R - L);\r\n    int p = 0;\r\n    for (int d = log - 1; d >= 0; --d)\
+    \ {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\
+    \n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (k < r0 -\
+    \ l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\n        k -= r0 - l0,\
+    \ L = l1, R = r1, p |= 1 << d;\r\n      }\r\n    }\r\n    return ItoY[p];\r\n\
+    \  }\r\n\r\n  // y \u4EE5\u4E0A\u6700\u5C0F OR infty<Y>\r\n  Y next(int L, int\
+    \ R, Y y) {\r\n    int k = IDX(y);\r\n    int p = K;\r\n\r\n    auto dfs = [&](auto&\
+    \ dfs, int d, int L, int R, int a, int b) -> void {\r\n      if (p <= a || L ==\
+    \ R || b <= k) return;\r\n      if (d == 0) {\r\n        chmin(p, a);\r\n    \
+    \    return;\r\n      }\r\n      --d;\r\n      int c = (a + b) / 2;\r\n      int\
+    \ l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\n      int l1\
+    \ = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      dfs(dfs, d, l0, r0, a, c),\
+    \ dfs(dfs, d, l1, r1, c, b);\r\n    };\r\n    dfs(dfs, log, L, R, 0, 1 << log);\r\
+    \n    return (p == K ? infty<Y> : ItoY[p]);\r\n  }\r\n\r\n  // y \u4EE5\u4E0B\u6700\
+    \u5927 OR -infty<T>\r\n  Y prev(int L, int R, Y y) {\r\n    int k = IDX(y + 1);\r\
+    \n    int p = -1;\r\n    auto dfs = [&](auto& dfs, int d, int L, int R, int a,\
+    \ int b) -> void {\r\n      if (b - 1 <= p || L == R || k <= a) return;\r\n  \
+    \    if (d == 0) {\r\n        chmax(p, a);\r\n        return;\r\n      }\r\n \
+    \     --d;\r\n      int c = (a + b) / 2;\r\n      int l0 = bv[d].count_prefix(L,\
+    \ 0), r0 = bv[d].count_prefix(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R\
+    \ + mid[d] - r0;\r\n      dfs(dfs, d, l1, r1, c, b), dfs(dfs, d, l0, r0, a, c);\r\
+    \n    };\r\n    dfs(dfs, log, L, R, 0, 1 << log);\r\n    return (p == -1 ? -infty<Y>\
     \ : ItoY[p]);\r\n  }\r\n\r\n  Y median(bool UPPER, int L, int R) {\r\n    assert(0\
     \ <= L && L < R && R <= n);\r\n    int k = (UPPER ? (R - L) / 2 : (R - L - 1)\
     \ / 2);\r\n    return kth(L, R, k);\r\n  }\r\n\r\n  pair<Y, T> kth_value_and_prod(int\
     \ L, int R, int k) {\r\n    assert(0 <= k && k <= R - L);\r\n    if (k == R -\
     \ L) return {infty<Y>, seg[log].prod(L, R)};\r\n    int p = 0;\r\n    T t = Mono::unit();\r\
-    \n    for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0),\
-    \ r0 = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] -\
-    \ r0;\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n      } else {\r\
-    \n        t = Mono::op(t, seg[d].prod(l0, r0)), k -= r0 - l0, L = l1, R = r1,\r\
-    \n        p |= 1 << d;\r\n      }\r\n    }\r\n    t = Mono::op(t, seg[0].prod(L,\
-    \ L + k));\r\n    return {ItoY[p], t};\r\n  }\r\n\r\n  T prod_index_range(int\
+    \n    for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L,\
+    \ 0), r0 = bv[d].count_prefix(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R\
+    \ + mid[d] - r0;\r\n      if (k < r0 - l0) {\r\n        L = l0, R = r0;\r\n  \
+    \    } else {\r\n        t = Mono::op(t, seg[d].prod(l0, r0)), k -= r0 - l0, L\
+    \ = l1, R = r1,\r\n        p |= 1 << d;\r\n      }\r\n    }\r\n    t = Mono::op(t,\
+    \ seg[0].prod(L, L + k));\r\n    return {ItoY[p], t};\r\n  }\r\n\r\n  T prod_index_range(int\
     \ L, int R, int k1, int k2) {\r\n    static_assert(has_inverse<Mono>::value);\r\
     \n    T t1 = kth_value_and_prod(L, R, k1).se;\r\n    T t2 = kth_value_and_prod(L,\
     \ R, k2).se;\r\n    return Mono::op(Mono::inverse(t1), t2);\r\n  }\r\n\r\n  //\
@@ -359,33 +361,34 @@ data:
     \ check, int L, int R) {\r\n    int cnt = 0;\r\n    T t = Mono::unit();\r\n  \
     \  assert(check(0, Mono::unit()));\r\n    if (check(R - L, seg[log].prod(L, R)))\
     \ {\r\n      return {R - L, seg[log].prod(L, R)};\r\n    }\r\n    for (int d =\
-    \ log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
+    \ log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
     \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      int cnt1\
     \ = cnt + r0 - l0;\r\n      T t1 = Mono::op(t, seg[d].prod(l0, r0));\r\n     \
     \ if (check(cnt1, t1)) {\r\n        cnt = cnt1, t = t1, L = l1, R = r1;\r\n  \
     \    } else {\r\n        L = l0, R = r0;\r\n      }\r\n    }\r\n    return {cnt,\
     \ t};\r\n  }\r\n\r\n  void set(int i, T t) {\r\n    assert(0 <= i && i < n);\r\
     \n    int L = i, R = i + 1;\r\n    seg[log].set(L, t);\r\n    for (int d = log\
-    \ - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0 = bv[d].count(R,\
+    \ - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
     \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0\
     \ < r0) L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].set(L,\
     \ t);\r\n    }\r\n  }\r\n  void multiply(int i, T t) {\r\n    assert(0 <= i &&\
     \ i < n);\r\n    int L = i, R = i + 1;\r\n    seg[log].multiply(L, t);\r\n   \
-    \ for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count(L, 0), r0\
-    \ = bv[d].count(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\
-    \n      if (l0 < r0) L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n\
-    \      seg[d].multiply(L, t);\r\n    }\r\n  }\r\n};\r\n#line 2 \"string/prefix_substring_LCS.hpp\"\
-    \n\n// https://codeforces.com/blog/entry/111625\nstruct Prefix_Substring_LCS {\n\
-    \  int N, M;\n  vc<Wavelet_Matrix<int, true>> WM;\n\n  template <typename STRING>\n\
-    \  Prefix_Substring_LCS(STRING S, STRING T) {\n    build(S, T);\n  }\n\n  template\
-    \ <typename STRING>\n  void build(STRING S, STRING T) {\n    N = len(S), M = len(T);\n\
-    \    vv(int, dph, N + 1, M + 1);\n    vv(int, dpv, N + 1, M + 1);\n    FOR(j,\
-    \ M + 1) dph[0][j] = j;\n    FOR(i, 1, N + 1) FOR(j, 1, M + 1) {\n      bool same\
-    \ = S[i - 1] == T[j - 1];\n      int a = dph[i - 1][j], b = dpv[i][j - 1];\n \
-    \     dph[i][j] = (same ? b : max(a, b));\n      dpv[i][j] = (same ? a : min(a,\
-    \ b));\n    }\n    FOR(i, N + 1) { WM.eb(Wavelet_Matrix<int, true>(dph[i])); }\n\
-    \  }\n\n  // LCS(S[0:n], T[L:R])\n  int query(int n, int L, int R) { return WM[n].count(L\
-    \ + 1, R + 1, 0, L + 1); }\n};\n#line 6 \"test/library_checker/string/prefix_substring_lcs.test.cpp\"\
+    \ for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L,\
+    \ 0), r0 = bv[d].count_prefix(R, 0);\r\n      int l1 = L + mid[d] - l0, r1 = R\
+    \ + mid[d] - r0;\r\n      if (l0 < r0) L = l0, R = r0;\r\n      if (l0 == r0)\
+    \ L = l1, R = r1;\r\n      seg[d].multiply(L, t);\r\n    }\r\n  }\r\n};\r\n#line\
+    \ 2 \"string/prefix_substring_LCS.hpp\"\n\n// https://codeforces.com/blog/entry/111625\n\
+    struct Prefix_Substring_LCS {\n  int N, M;\n  vc<Wavelet_Matrix<int, true>> WM;\n\
+    \n  template <typename STRING>\n  Prefix_Substring_LCS(STRING S, STRING T) {\n\
+    \    build(S, T);\n  }\n\n  template <typename STRING>\n  void build(STRING S,\
+    \ STRING T) {\n    N = len(S), M = len(T);\n    vv(int, dph, N + 1, M + 1);\n\
+    \    vv(int, dpv, N + 1, M + 1);\n    FOR(j, M + 1) dph[0][j] = j;\n    FOR(i,\
+    \ 1, N + 1) FOR(j, 1, M + 1) {\n      bool same = S[i - 1] == T[j - 1];\n    \
+    \  int a = dph[i - 1][j], b = dpv[i][j - 1];\n      dph[i][j] = (same ? b : max(a,\
+    \ b));\n      dpv[i][j] = (same ? a : min(a, b));\n    }\n    FOR(i, N + 1) {\
+    \ WM.eb(Wavelet_Matrix<int, true>(dph[i])); }\n  }\n\n  // LCS(S[0:n], T[L:R])\n\
+    \  int query(int n, int L, int R) { return WM[n].count(L + 1, R + 1, 0, L + 1);\
+    \ }\n};\n#line 6 \"test/library_checker/string/prefix_substring_lcs.test.cpp\"\
     \n\nvoid solve() {\n  INT(Q);\n  STR(S, T);\n  Prefix_Substring_LCS X(S, T);\n\
     \  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b, c));\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -405,7 +408,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
+  timestamp: '2024-07-27 02:46:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/string/prefix_substring_lcs.test.cpp
