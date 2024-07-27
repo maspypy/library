@@ -990,9 +990,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/primesum_mod4.test.cpp
     title: test/mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
-    path: test/mytest/rolling_hash_on_tree.test.cpp
-    title: test/mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/mytest/typical_dc.test.cpp
     title: test/mytest/typical_dc.test.cpp
@@ -2980,7 +2977,6 @@ data:
   - test/yukicoder/1776.test.cpp
   - test/yukicoder/1276.test.cpp
   - test/yukicoder/502.test.cpp
-  - test/mytest/rolling_hash_on_tree.test.cpp
   - test/mytest/count_labeled_forest.test.cpp
   - test/mytest/palindrome_decomposition_dp.test.cpp
   - test/mytest/primesum_mod4.test.cpp

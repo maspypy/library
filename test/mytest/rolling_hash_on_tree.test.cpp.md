@@ -20,9 +20,6 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
-  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':question:'
@@ -125,107 +122,17 @@ data:
     \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
     \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
-    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"other/io.hpp\"\
-    \n#define FASTIO\r\n#include <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\
-    \nnamespace fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\
-    \nchar obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil\
-    \ = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr\
-    \ Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\
-    \n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n\
-    \        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline\
-    \ void load() {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil\
-    \ + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir\
-    \ < SZ) ibuf[pir++] = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf,\
-    \ 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n\
-    \    if (pil + 1 > pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\
-    \n}\r\n\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n   \
-    \ if (pil + 1 > pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\
-    \n  do {\r\n    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\
-    \n  } while (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T\
-    \ &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\
-    \n  do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n\
-    \  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c ==\
-    \ '-') { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c)\
-    \ { x = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
-    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
-    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
-    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
-    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
-    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
-    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
-    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
-    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
-    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
-    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
-    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
-    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
-    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
-    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
-    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
-    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
-    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
-    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
-    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
-    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
-    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
-    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
-    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
-    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
-    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) \\\r\n  SHOW_IMPL(__VA_ARGS__,\
-    \ SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2, _3, _4,\
-    \ NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)), flush()\r\n#define\
-    \ SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\n#define SHOW3(x,\
-    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)), flush()\r\n#define\
-    \ SHOW4(x, y, z, w) \\\r\n  print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z),\
-    \ #w, \"=\", (w)), flush()\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define\
-    \ INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)\
-    \   \\\r\n  ll __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U32(...)   \\\
-    \r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define U64(...)   \\\r\n\
-    \  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define STR(...)      \\\r\n\
-    \  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define CHAR(...)   \\\r\n\
-    \  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)      \\\r\n\
-    \  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type, name,\
-    \ size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define VV(type,\
-    \ name, h, w)                     \\\r\n  vector<vector<type>> name(h, vector<type>(w));\
-    \ \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"\
-    ); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"\
-    Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1)\
-    \ { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n#line\
-    \ 5 \"test/mytest/rolling_hash_on_tree.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"graph/tree.hpp\"\
-    \n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
-    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
-    \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
-    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 4 \"test/mytest/rolling_hash_on_tree.test.cpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
+    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
+    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"graph/tree.hpp\"\n\r\n\
+    #line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm,\
+    \ to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed =\
+    \ false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n  int\
+    \ N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
     \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
     \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
     \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
@@ -504,7 +411,7 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 8 \"test/mytest/rolling_hash_on_tree.test.cpp\"\n\nvoid test_edge() {\n\
+    }\n#line 7 \"test/mytest/rolling_hash_on_tree.test.cpp\"\n\nvoid test_edge() {\n\
     \  ll N = RNG(1, 20);\n  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n\
     \  for (auto& [a, b]: edges) {\n    int x = RNG(0, 3);\n    G.add(a, b, x);\n\
     \  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n\
@@ -523,7 +430,7 @@ data:
     \  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges)\
     \ { G.add(a, b); }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0, 3);\n  G.build();\n\
     \  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\
-    \  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n      tree, [&](int i) ->\
+    \n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n      tree, [&](int i) ->\
     \ int { return A[i]; }, base);\n\n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b,\
     \ N) {\n    vc<int> P = tree.restore_path(a, b);\n    vc<int> S;\n    for (auto&\
     \ v: P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n  FOR(a, N) FOR(b, N) {\n    mint\
@@ -534,44 +441,43 @@ data:
     \ b, c, d);\n    assert(k == lcp);\n    if (ch == '<') assert(A < B);\n    if\
     \ (ch == '=') assert(A == B);\n    if (ch == '>') assert(A > B);\n  }\n}\n\nvoid\
     \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(500) test_edge();\n  FOR(500) test_vertex();\n  solve();\n\
+    signed main() {\n  FOR(300) test_edge();\n  FOR(300) test_vertex();\n  solve();\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
-    my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/rolling_hash_on_tree.hpp\"\
-    \n#include \"random/random_graph.hpp\"\n\nvoid test_edge() {\n  ll N = RNG(1,\
-    \ 20);\n  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a,\
-    \ b]: edges) {\n    int x = RNG(0, 3);\n    G.add(a, b, x);\n  }\n  G.build();\n\
-    \  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\
-    \n  Rolling_Hash_On_Tree<decltype(tree), true> RH(\n      tree, [&](int i) ->\
-    \ int { return G.edges[i].cost; }, base);\n\n  vvv(int, dat, N, N, 0);\n  FOR(a,\
-    \ N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a, b);\n    vc<int> S;\n \
-    \   FOR(i, len(P) - 1) {\n      int eid = tree.get_eid(P[i], P[i + 1]);\n    \
-    \  S.eb(G.edges[eid].cost);\n    }\n    dat[a][b] = S;\n  }\n\n  FOR(a, N) FOR(b,\
-    \ N) {\n    mint h = 0;\n    for (auto& x: dat[a][b]) { h = h * base + x; }\n\
-    \    assert(h == RH.get(a, b));\n  }\n  FOR(a, N) FOR(b, N) FOR(c, N) FOR(d, N)\
-    \ {\n    vc<int> A = dat[a][b], B = dat[c][d];\n    int lcp = 0;\n    while (lcp\
-    \ < len(A) && lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a,\
-    \ b, c, d);\n    assert(k == lcp);\n    if (ch == '<') assert(A < B);\n    if\
-    \ (ch == '=') assert(A == B);\n    if (ch == '>') assert(A > B);\n  }\n}\n\nvoid\
-    \ test_vertex() {\n  ll N = RNG(1, 20);\n  auto edges = random_tree(N);\n  Graph<int,\
-    \ 0> G(N);\n  for (auto& [a, b]: edges) { G.add(a, b); }\n  vc<int> A(N);\n  FOR(i,\
-    \ N) A[i] = RNG(0, 3);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using\
-    \ mint = modint61;\n  mint base = RNG_64();\n  Rolling_Hash_On_Tree<decltype(tree),\
-    \ false> RH(\n      tree, [&](int i) -> int { return A[i]; }, base);\n\n  vvv(int,\
-    \ dat, N, N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a,\
-    \ b);\n    vc<int> S;\n    for (auto& v: P) S.eb(A[v]);\n    dat[a][b] = S;\n\
-    \  }\n\n  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x: dat[a][b])\
-    \ { h = h * base + x; }\n    assert(h == RH.get(a, b));\n  }\n\n  FOR(a, N) FOR(b,\
-    \ N) FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n    int\
-    \ lcp = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n\
+    my_template.hpp\"\n\n#include \"graph/ds/rolling_hash_on_tree.hpp\"\n#include\
+    \ \"random/random_graph.hpp\"\n\nvoid test_edge() {\n  ll N = RNG(1, 20);\n  auto\
+    \ edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges)\
+    \ {\n    int x = RNG(0, 3);\n    G.add(a, b, x);\n  }\n  G.build();\n  Tree<decltype(G)>\
+    \ tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree),\
+    \ true> RH(\n      tree, [&](int i) -> int { return G.edges[i].cost; }, base);\n\
+    \n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a,\
+    \ b);\n    vc<int> S;\n    FOR(i, len(P) - 1) {\n      int eid = tree.get_eid(P[i],\
+    \ P[i + 1]);\n      S.eb(G.edges[eid].cost);\n    }\n    dat[a][b] = S;\n  }\n\
+    \n  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x: dat[a][b]) { h =\
+    \ h * base + x; }\n    assert(h == RH.get(a, b));\n  }\n  FOR(a, N) FOR(b, N)\
+    \ FOR(c, N) FOR(d, N) {\n    vc<int> A = dat[a][b], B = dat[c][d];\n    int lcp\
+    \ = 0;\n    while (lcp < len(A) && lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n\
     \    auto [k, ch] = RH.lcp_and_comp(a, b, c, d);\n    assert(k == lcp);\n    if\
     \ (ch == '<') assert(A < B);\n    if (ch == '=') assert(A == B);\n    if (ch ==\
-    \ '>') assert(A > B);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(500) test_edge();\n\
-    \  FOR(500) test_vertex();\n  solve();\n}\n"
+    \ '>') assert(A > B);\n  }\n}\n\nvoid test_vertex() {\n  ll N = RNG(1, 20);\n\
+    \  auto edges = random_tree(N);\n  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges)\
+    \ { G.add(a, b); }\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0, 3);\n  G.build();\n\
+    \  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n  mint base = RNG_64();\n\
+    \n  Rolling_Hash_On_Tree<decltype(tree), false> RH(\n      tree, [&](int i) ->\
+    \ int { return A[i]; }, base);\n\n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b,\
+    \ N) {\n    vc<int> P = tree.restore_path(a, b);\n    vc<int> S;\n    for (auto&\
+    \ v: P) S.eb(A[v]);\n    dat[a][b] = S;\n  }\n\n  FOR(a, N) FOR(b, N) {\n    mint\
+    \ h = 0;\n    for (auto& x: dat[a][b]) { h = h * base + x; }\n    assert(h ==\
+    \ RH.get(a, b));\n  }\n\n  FOR(a, N) FOR(b, N) FOR(c, N) FOR(d, N) {\n    vc<int>\
+    \ A = dat[a][b], B = dat[c][d];\n    int lcp = 0;\n    while (lcp < len(A) &&\
+    \ lcp < len(B) && A[lcp] == B[lcp]) ++lcp;\n    auto [k, ch] = RH.lcp_and_comp(a,\
+    \ b, c, d);\n    assert(k == lcp);\n    if (ch == '<') assert(A < B);\n    if\
+    \ (ch == '=') assert(A == B);\n    if (ch == '>') assert(A > B);\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(300) test_edge();\n  FOR(300) test_vertex();\n  solve();\n\
+    }\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
   - graph/ds/rolling_hash_on_tree.hpp
   - random/base.hpp
   - graph/tree.hpp
@@ -583,7 +489,7 @@ data:
   isVerificationFile: true
   path: test/mytest/rolling_hash_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-07-26 01:42:07+09:00'
+  timestamp: '2024-07-27 09:18:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/rolling_hash_on_tree.test.cpp
