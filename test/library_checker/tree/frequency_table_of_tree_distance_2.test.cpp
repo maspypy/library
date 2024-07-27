@@ -16,15 +16,17 @@ void solve() {
     int N = len(par);
     vc<int> dist(N);
     FOR(i, 1, N) { dist[i] = dist[par[i]] + 1; }
-    vi f(N), g(N);
-    FOR(i, N) {
-      if (color[i] == 0) f[dist[i]]++;
-      if (color[i] == 1) g[dist[i]]++;
+    FOR(p, 3) {
+      vi f(N), g(N);
+      FOR(i, N) {
+        if (color[i] == p) f[dist[i]]++;
+        if (color[i] > p) g[dist[i]]++;
+      }
+      while (len(f) && f.back() == 0) POP(f);
+      while (len(g) && g.back() == 0) POP(g);
+      f = convolution(f, g);
+      FOR(i, len(f)) ANS[i] += f[i];
     }
-    while (len(f) && f.back() == 0) POP(f);
-    while (len(g) && g.back() == 0) POP(g);
-    f = convolution(f, g);
-    FOR(i, len(f)) ANS[i] += f[i];
   };
   centroid_decomposition<2>(G, f);
   ANS.erase(ANS.begin());
