@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -335,27 +335,27 @@ data:
     \ int t2) {\n    int lcp = 0;\n    // heavy path \u306E\u9802\u70B9\u5217\n  \
     \  auto path1 = tree.get_path_decomposition(s1, t1, EDGE);\n    auto path2 = tree.get_path_decomposition(s2,\
     \ t2, EDGE);\n    reverse(all(path1));\n    reverse(all(path2));\n    while (len(path1)\
-    \ && len(path2)) {\n      auto [a, b] = POP(path1);\n      auto [c, d] = POP(path2);\n\
-    \      ll n1 = abs(a - b) + 1, n2 = abs(c - d) + 1;\n      ll n = min(n1, n2);\n\
-    \      if (n < n1) {\n        if (a <= b) { path1.eb(a + n, b), b = a + n - 1;\
-    \ }\n        if (a > b) { path1.eb(a - n, b), b = a - n + 1; }\n      }\n    \
-    \  if (n < n2) {\n        if (c <= d) { path2.eb(c + n, d), d = c + n - 1; }\n\
-    \        if (c > d) { path2.eb(c - n, d), d = c - n + 1; }\n      }\n      mint\
-    \ x1 = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n      if (x1 == x2) {\n\
-    \        lcp += n;\n        continue;\n      }\n      auto check = [&](ll n) ->\
-    \ bool {\n        if (n == 0) return 1;\n        mint x1 = (a <= b ? from_hld_pair(a,\
-    \ a + n - 1)\n                          : from_hld_pair(a, a - n + 1));\n    \
-    \    mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n                       \
-    \   : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n      };\n    \
-    \  ll k = binary_search(check, 0, n);\n      lcp += k;\n      a = (a <= b ? a\
-    \ + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a = tree.V[a], c =\
-    \ tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n      if (dat[a]\
-    \ == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return {lcp, '>'};\n\
-    \    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty()) return\
-    \ {lcp, '<'};\n    return {lcp, '='};\n  }\n\nprivate:\n  mint get_ud(int a, int\
-    \ b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a] *\
-    \ pow[tree.depth[b] - tree.depth[a]]);\n  }\n  mint get_du(int a, int b) {\n \
-    \   return (b == -1 ? dp2[a] : (dp2[a] - dp2[b]) * ipow[tree.depth[b] + 1]);\n\
+    \ && len(path2)) {\n      int a, b, c, d;\n      tie(a, b) = POP(path1), tie(c,\
+    \ d) = POP(path2);\n      ll n1 = abs(a - b) + 1, n2 = abs(c - d) + 1;\n     \
+    \ ll n = min(n1, n2);\n      if (n < n1) {\n        if (a <= b) { path1.eb(a +\
+    \ n, b), b = a + n - 1; }\n        if (a > b) { path1.eb(a - n, b), b = a - n\
+    \ + 1; }\n      }\n      if (n < n2) {\n        if (c <= d) { path2.eb(c + n,\
+    \ d), d = c + n - 1; }\n        if (c > d) { path2.eb(c - n, d), d = c - n + 1;\
+    \ }\n      }\n      mint x1 = from_hld_pair(a, b), x2 = from_hld_pair(c, d);\n\
+    \      if (x1 == x2) {\n        lcp += n;\n        continue;\n      }\n      auto\
+    \ check = [&](ll n) -> bool {\n        if (n == 0) return 1;\n        mint x1\
+    \ = (a <= b ? from_hld_pair(a, a + n - 1)\n                          : from_hld_pair(a,\
+    \ a - n + 1));\n        mint x2 = (c <= d ? from_hld_pair(c, c + n - 1)\n    \
+    \                      : from_hld_pair(c, c - n + 1));\n        return x1 == x2;\n\
+    \      };\n      ll k = binary_search(check, 0, n);\n      lcp += k;\n      a\
+    \ = (a <= b ? a + k : a - k);\n      c = (c <= d ? c + k : c - k);\n      a =\
+    \ tree.V[a], c = tree.V[c];\n      if (dat[a] < dat[c]) return {lcp, '<'};\n \
+    \     if (dat[a] == dat[c]) return {lcp, '='};\n      if (dat[a] > dat[c]) return\
+    \ {lcp, '>'};\n    }\n    if (!path1.empty()) return {lcp, '>'};\n    if (!path2.empty())\
+    \ return {lcp, '<'};\n    return {lcp, '='};\n  }\n\nprivate:\n  mint get_ud(int\
+    \ a, int b) {\n    return (a == -1 ? dp1[b]\n                    : dp1[b] - dp1[a]\
+    \ * pow[tree.depth[b] - tree.depth[a]]);\n  }\n  mint get_du(int a, int b) {\n\
+    \    return (b == -1 ? dp2[a] : (dp2[a] - dp2[b]) * ipow[tree.depth[b] + 1]);\n\
     \  }\n  mint from_hld_pair(int a, int b) {\n    if (a <= b) { return get_ud(tree.parent[tree.V[a]],\
     \ tree.V[b]); }\n    return get_du(tree.V[a], tree.parent[tree.V[b]]);\n  }\n\
     };\n#line 2 \"random/shuffle.hpp\"\n\ntemplate <typename T>\nvoid shuffle(vc<T>&\
@@ -489,8 +489,8 @@ data:
   isVerificationFile: true
   path: test/mytest/rolling_hash_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-07-27 09:18:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-27 09:54:41+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/rolling_hash_on_tree.test.cpp
 layout: document
