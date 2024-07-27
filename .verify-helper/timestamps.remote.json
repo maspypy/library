@@ -313,6 +313,7 @@
 "test/library_checker/tree/cartesian_tree.test.cpp": "2024-07-22 11:16:29 +0900",
 "test/library_checker/tree/frequency_table_of_tree_distance.test.cpp": "2024-07-26 01:42:07 +0900",
 "test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp": "2024-07-26 01:42:07 +0900",
+"test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp": "2024-07-27 09:31:52 +0900",
 "test/library_checker/tree/lca.test.cpp": "2024-07-22 11:16:29 +0900",
 "test/library_checker/tree/lca_directed.test.cpp": "2024-07-22 11:16:29 +0900",
 "test/library_checker/tree/lca_fast.test.cpp": "2024-07-22 11:16:29 +0900",
