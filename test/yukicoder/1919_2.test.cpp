@@ -25,7 +25,7 @@ void solve() {
     FOR(i, N) Y[i] = A[i] + B[i];
 
     using Grp = Monoid_Add_Pair<mint>;
-    Wavelet_Matrix_2D_Range<FenwickTree<Grp>, int, false, false> WM(
+    Wavelet_Matrix_2D_Range<int, false, false, FenwickTree<Grp>> WM(
         N, [&](int i) -> tuple<int, int, pair<mint, mint>> {
           return {X[i], Y[i], Grp::unit()};
         });
