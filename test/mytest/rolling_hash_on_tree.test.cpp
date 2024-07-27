@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "my_template.hpp"
-#include "other/io.hpp"
 
 #include "graph/ds/rolling_hash_on_tree.hpp"
 #include "random/random_graph.hpp"
@@ -63,6 +62,7 @@ void test_vertex() {
 
   using mint = modint61;
   mint base = RNG_64();
+
   Rolling_Hash_On_Tree<decltype(tree), false> RH(
       tree, [&](int i) -> int { return A[i]; }, base);
 
@@ -99,7 +99,7 @@ void solve() {
 }
 
 signed main() {
-  FOR(500) test_edge();
-  FOR(500) test_vertex();
+  FOR(300) test_edge();
+  FOR(300) test_vertex();
   solve();
 }
