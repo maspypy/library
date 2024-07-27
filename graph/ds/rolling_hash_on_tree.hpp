@@ -73,8 +73,8 @@ struct Rolling_Hash_On_Tree {
     reverse(all(path1));
     reverse(all(path2));
     while (len(path1) && len(path2)) {
-      auto [a, b] = POP(path1);
-      auto [c, d] = POP(path2);
+      int a, b, c, d;
+      tie(a, b) = POP(path1), tie(c, d) = POP(path2);
       ll n1 = abs(a - b) + 1, n2 = abs(c - d) + 1;
       ll n = min(n1, n2);
       if (n < n1) {
