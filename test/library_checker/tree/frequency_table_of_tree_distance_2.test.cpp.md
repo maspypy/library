@@ -4,22 +4,22 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -28,26 +28,26 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -685,23 +685,24 @@ data:
     \n\nvoid solve() {\n  LL(N);\n  Graph<int> G(N);\n  G.read_tree(0, 0);\n  vi ANS(N);\n\
     \  auto f = [&](vc<int>& par, vc<int>& V, vc<int>& color) -> void {\n    int N\
     \ = len(par);\n    vc<int> dist(N);\n    FOR(i, 1, N) { dist[i] = dist[par[i]]\
-    \ + 1; }\n    vi f(N), g(N);\n    FOR(i, N) {\n      if (color[i] == 0) f[dist[i]]++;\n\
-    \      if (color[i] == 1) g[dist[i]]++;\n    }\n    while (len(f) && f.back()\
-    \ == 0) POP(f);\n    while (len(g) && g.back() == 0) POP(g);\n    f = convolution(f,\
-    \ g);\n    FOR(i, len(f)) ANS[i] += f[i];\n  };\n  centroid_decomposition<2>(G,\
-    \ f);\n  ANS.erase(ANS.begin());\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \ + 1; }\n    FOR(p, 3) {\n      vi f(N), g(N);\n      FOR(i, N) {\n        if\
+    \ (color[i] == p) f[dist[i]]++;\n        if (color[i] > p) g[dist[i]]++;\n   \
+    \   }\n      while (len(f) && f.back() == 0) POP(f);\n      while (len(g) && g.back()\
+    \ == 0) POP(g);\n      f = convolution(f, g);\n      FOR(i, len(f)) ANS[i] +=\
+    \ f[i];\n    }\n  };\n  centroid_decomposition<2>(G, f);\n  ANS.erase(ANS.begin());\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/frequency_table_of_tree_distance\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/centroid_decomposition.hpp\"\
     \n#include \"poly/convolution.hpp\"\n\nvoid solve() {\n  LL(N);\n  Graph<int>\
     \ G(N);\n  G.read_tree(0, 0);\n  vi ANS(N);\n  auto f = [&](vc<int>& par, vc<int>&\
     \ V, vc<int>& color) -> void {\n    int N = len(par);\n    vc<int> dist(N);\n\
-    \    FOR(i, 1, N) { dist[i] = dist[par[i]] + 1; }\n    vi f(N), g(N);\n    FOR(i,\
-    \ N) {\n      if (color[i] == 0) f[dist[i]]++;\n      if (color[i] == 1) g[dist[i]]++;\n\
-    \    }\n    while (len(f) && f.back() == 0) POP(f);\n    while (len(g) && g.back()\
-    \ == 0) POP(g);\n    f = convolution(f, g);\n    FOR(i, len(f)) ANS[i] += f[i];\n\
-    \  };\n  centroid_decomposition<2>(G, f);\n  ANS.erase(ANS.begin());\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \    FOR(i, 1, N) { dist[i] = dist[par[i]] + 1; }\n    FOR(p, 3) {\n      vi f(N),\
+    \ g(N);\n      FOR(i, N) {\n        if (color[i] == p) f[dist[i]]++;\n       \
+    \ if (color[i] > p) g[dist[i]]++;\n      }\n      while (len(f) && f.back() ==\
+    \ 0) POP(f);\n      while (len(g) && g.back() == 0) POP(g);\n      f = convolution(f,\
+    \ g);\n      FOR(i, len(f)) ANS[i] += f[i];\n    }\n  };\n  centroid_decomposition<2>(G,\
+    \ f);\n  ANS.erase(ANS.begin());\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -720,8 +721,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   requiredBy: []
-  timestamp: '2024-07-26 01:42:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-07-27 09:31:52+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
 layout: document

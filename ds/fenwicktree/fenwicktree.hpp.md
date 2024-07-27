@@ -153,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1874.test.cpp
     title: test/yukicoder/1874.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1919_2.test.cpp
     title: test/yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -174,9 +174,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc202_f.test.cpp
     title: test_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -317,7 +317,7 @@ data:
   - seq/inversion.hpp
   - other/sliding_puzzle_solver.hpp
   timestamp: '2024-07-19 20:55:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp

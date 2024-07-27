@@ -97,7 +97,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
     - icon: ':heavy_check_mark:'
@@ -124,7 +124,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/lcm.hpp
       title: alg/monoid/lcm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -346,7 +346,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
@@ -468,7 +468,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -545,7 +545,7 @@ data:
     - icon: ':question:'
       path: ds/wavelet_matrix/wavelet_matrix.hpp
       title: ds/wavelet_matrix/wavelet_matrix.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
       title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     - icon: ':warning:'
@@ -755,7 +755,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/centroid_decomposition.hpp
       title: graph/centroid_decomposition.hpp
     - icon: ':heavy_check_mark:'
@@ -1122,7 +1122,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellmanford.hpp
       title: graph/shortest_path/bellmanford.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bfs01.hpp
       title: graph/shortest_path/bfs01.hpp
     - icon: ':heavy_check_mark:'
@@ -1277,7 +1277,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/binomial.hpp
       title: mod/binomial.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
     - icon: ':heavy_check_mark:'
@@ -1313,7 +1313,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/min_of_linear_segments.hpp
       title: mod/min_of_linear_segments.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/mod_inv.hpp
       title: mod/mod_inv.hpp
     - icon: ':heavy_check_mark:'
@@ -1331,13 +1331,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':question:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
@@ -1590,7 +1590,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/compositional_inverse.hpp
       title: poly/compositional_inverse.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution.hpp
       title: poly/convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1602,13 +1602,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/convolution_huge.hpp
       title: poly/convolution_huge.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_karatsuba.hpp
       title: poly/convolution_karatsuba.hpp
     - icon: ':heavy_check_mark:'
       path: poly/convolution_leq.hpp
       title: poly/convolution_leq.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/convolution_naive.hpp
       title: poly/convolution_naive.hpp
     - icon: ':heavy_check_mark:'
@@ -1620,7 +1620,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/differentiate.hpp
       title: poly/differentiate.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/fft.hpp
       title: poly/fft.hpp
     - icon: ':heavy_check_mark:'
@@ -1668,7 +1668,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/ntt.hpp
       title: poly/ntt.hpp
     - icon: ':heavy_check_mark:'
@@ -3012,7 +3012,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
       title: test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
       title: test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3874,7 +3874,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1625.test.cpp
       title: test/yukicoder/1625.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1625_2.test.cpp
       title: test/yukicoder/1625_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4045,7 +4045,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/yukicoder/1919.test.cpp
       title: test/yukicoder/1919.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/yukicoder/1919_2.test.cpp
       title: test/yukicoder/1919_2.test.cpp
     - icon: ':heavy_check_mark:'
