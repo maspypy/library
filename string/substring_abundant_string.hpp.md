@@ -17,13 +17,13 @@ data:
     - https://oeis.org/A094913
     - https://qoj.ac/contest/1096/problem/5434?v=1
     - https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf
-  bundledCode: "#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string,\
-    \ typename CHAR = char>\nvc<pair<CHAR, int>> run_length(STRING& S) {\n  vc<pair<CHAR,\
-    \ int>> res;\n  for (auto&& x: S) {\n    if (res.empty() || res.back().fi != x)\
-    \ { res.emplace_back(x, 0); }\n    res.back().se++;\n  }\n  return res;\n}\n#line\
-    \ 2 \"string/substring_abundant_string.hpp\"\n\n// \u90E8\u5206\u6587\u5B57\u5217\
-    \u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\u3067\u3042\u308B\u3088\u3046\u306A\
-    \ 01 \u6587\u5B57\u5217\u306E\u69CB\u6210\n// https://qoj.ac/contest/1096/problem/5434?v=1\n\
+  bundledCode: "#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string>\n\
+    vc<pair<typename STRING::value_type, int>> run_length(STRING& S) {\n  vc<pair<typename\
+    \ STRING::value_type, int>> res;\n  for (auto&& x: S) {\n    if (res.empty() ||\
+    \ res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n  }\n\
+    \  return res;\n}\n#line 2 \"string/substring_abundant_string.hpp\"\n\n// \u90E8\
+    \u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\u3067\u3042\
+    \u308B\u3088\u3046\u306A 01 \u6587\u5B57\u5217\u306E\u69CB\u6210\n// https://qoj.ac/contest/1096/problem/5434?v=1\n\
     // https://oeis.org/A094913\n// https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf\n\
     string substring_abundant_string(ll N) {\n  ll N0 = N;\n  N = 1;\n  while ((1\
     \ << N) + (N - 1) < N0) ++N;\n\n  string S = [&]() -> string {\n    if (N == 1)\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: false
   path: string/substring_abundant_string.hpp
   requiredBy: []
-  timestamp: '2023-01-31 20:02:48+09:00'
+  timestamp: '2024-07-29 11:54:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/substring_abundant.test.cpp

@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -184,51 +184,61 @@ data:
     \ else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
     \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
     \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
-    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
-    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
-    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
-    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
-    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
-    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
-    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
-    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
-    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
-    \n#line 2 \"graph/ds/static_toptree.hpp\"\n\n/*\n\u53C2\u8003 joitour tatyam\n\
-    \u30AF\u30E9\u30B9\u30BF\u3068\u306F\u6839\u304C\u6B20\u3051\u305F\u72B6\u614B\
-    \nN \u500B\u306E (\u9802+\u8FBA) \u3092\u30DE\u30FC\u30B8\u3057\u3066\u3044\u3063\
-    \u3066\uFF0C\u6728\u5168\u4F53\uFF0B\u6839\u304B\u3089\u89AA\u3078\u306E\u8FBA\
-    \u3068\u3059\u308B\uFF0E\nsingle(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\
-    \u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\nrake(x, y, u, v) uv(top down) \u304C\
-    \ boundary \u306B\u306A\u308B\u3088\u3046\u306B rake (maybe v=-1)\ncompress(x,y,a,b,c)\
-    \  (top-down) \u9806\u306B (a,b] + (b,c]\n*/\ntemplate <typename TREE>\nstruct\
-    \ Static_TopTree {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B; //\
-    \ A, B boundary (top-down)\n  vc<bool> is_compress;\n\n  Static_TopTree(TREE &tree)\
-    \ : tree(tree) { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N,\
-    \ -1), lch.assign(N, -1), rch.assign(N, -1), A.assign(N, -1),\n        B.assign(N,\
-    \ -1), is_compress.assign(N, 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v]\
-    \ = v; }\n    build_dfs(tree.V[0]);\n    assert(len(par) == 2 * N - 1);\n  }\n\
-    \n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\n  //\
-    \ single(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\
-    \u30E9\u30B9\u30BF\n  // rake(x, y, u, v) uv(top down) \u304C boundary \u306B\u306A\
-    \u308B\u3088\u3046\u306B rake (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down)\
-    \ \u9806\u306B (a,b] + (b,c]\n  template <typename Data, typename F1, typename\
-    \ F2, typename F3>\n  Data tree_dp(F1 single, F2 rake, F3 compress) {\n    auto\
-    \ dfs = [&](auto &dfs, int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n\
-    \      Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k])\
-    \ {\n        assert(B[lch[k]] == A[rch[k]]);\n        return compress(x, y, A[lch[k]],\
-    \ B[lch[k]], B[rch[k]]);\n      }\n      return rake(x, y, A[k], B[k]);\n    };\n\
-    \    return dfs(dfs, 2 * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r,\
-    \ int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r),\
-    \ A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n\
-    \  }\n  int build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto path\
-    \ = tree.heavy_path_at(v);\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
-    \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
-    \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
-    \ new_node(x, y, A[x], B[y], true);\n      }\n      assert(r == l + 1);\n    \
-    \  if (l == 0) { return path[l]; }\n      // sz, idx\n      pqg<pair<int, int>>\
-    \ que;\n      int p = path[l - 1];\n      for (auto &to: tree.collect_light(p))\
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  // \u8FBA\
+    \u306E\u5217\u306E\u60C5\u5831 (frm,to,str)\r\n  // str = \"heavy_up\", \"heavy_down\"\
+    , \"light_up\", \"light_down\"\r\n  vc<tuple<int, int, string>> get_path_decomposition_detail(int\
+    \ u, int v) {\r\n    vc<tuple<int, int, string>> up, down;\r\n    while (1) {\r\
+    \n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n   \
+    \     if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\r\n\
+    \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\r\n      } else\
+    \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
+    \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
+    \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
+    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
+    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
+    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
+    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
+    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
+    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
+    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
+    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
+    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
+    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
+    \    return {x, x};\r\n  }\r\n};\r\n#line 2 \"graph/ds/static_toptree.hpp\"\n\n\
+    /*\n\u53C2\u8003 joitour tatyam\n\u30AF\u30E9\u30B9\u30BF\u3068\u306F\u6839\u304C\
+    \u6B20\u3051\u305F\u72B6\u614B\nN \u500B\u306E (\u9802+\u8FBA) \u3092\u30DE\u30FC\
+    \u30B8\u3057\u3066\u3044\u3063\u3066\uFF0C\u6728\u5168\u4F53\uFF0B\u6839\u304B\
+    \u3089\u89AA\u3078\u306E\u8FBA\u3068\u3059\u308B\uFF0E\nsingle(v) : v \u3068\u305D\
+    \u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\nrake(x,\
+    \ y, u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
+    \ (maybe v=-1)\ncompress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n*/\n\
+    template <typename TREE>\nstruct Static_TopTree {\n  int N;\n  TREE &tree;\n \
+    \ vc<int> par, lch, rch, A, B; // A, B boundary (top-down)\n  vc<bool> is_compress;\n\
+    \n  Static_TopTree(TREE &tree) : tree(tree) { build(); }\n\n  void build() {\n\
+    \    N = tree.N;\n    par.assign(N, -1), lch.assign(N, -1), rch.assign(N, -1),\
+    \ A.assign(N, -1),\n        B.assign(N, -1), is_compress.assign(N, 0);\n    FOR(v,\
+    \ N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n    assert(len(par)\
+    \ == 2 * N - 1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\
+    \u3092\u5F97\u308B\n  // single(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\
+    \u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y, u, v) uv(top down)\
+    \ \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake (maybe v=-1)\n  //\
+    \ compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n  template <typename\
+    \ Data, typename F1, typename F2, typename F3>\n  Data tree_dp(F1 single, F2 rake,\
+    \ F3 compress) {\n    auto dfs = [&](auto &dfs, int k) -> Data {\n      if (0\
+    \ <= k && k < N) return single(k);\n      Data x = dfs(dfs, lch[k]), y = dfs(dfs,\
+    \ rch[k]);\n      if (is_compress[k]) {\n        assert(B[lch[k]] == A[rch[k]]);\n\
+    \        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);\n      }\n  \
+    \    return rake(x, y, A[k], B[k]);\n    };\n    return dfs(dfs, 2 * N - 2);\n\
+    \  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool c) {\n    int\
+    \ v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n\
+    \    par[l] = par[r] = v;\n    return v;\n  }\n  int build_dfs(int v) {\n    assert(tree.head[v]\
+    \ == v);\n    auto path = tree.heavy_path_at(v);\n    auto dfs = [&](auto &dfs,\
+    \ int l, int r) -> int {\n      // path[l:r)\n      if (l + 1 < r) {\n       \
+    \ int m = (l + r) / 2;\n        int x = dfs(dfs, l, m);\n        int y = dfs(dfs,\
+    \ m, r);\n        return new_node(x, y, A[x], B[y], true);\n      }\n      assert(r\
+    \ == l + 1);\n      if (l == 0) { return path[l]; }\n      // sz, idx\n      pqg<pair<int,\
+    \ int>> que;\n      int p = path[l - 1];\n      for (auto &to: tree.collect_light(p))\
     \ {\n        int x = build_dfs(to);\n        que.emplace(tree.subtree_size(to),\
     \ x);\n      }\n      if (que.empty()) { return path[l]; }\n      while (len(que)\
     \ >= 2) {\n        auto [s1, x] = POP(que);\n        auto [s2, y] = POP(que);\n\
@@ -589,7 +599,7 @@ data:
   isVerificationFile: false
   path: graph/count_matching_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-07-29 11:54:02+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count_matching_on_tree.hpp

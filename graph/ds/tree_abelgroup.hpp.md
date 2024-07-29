@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -24,15 +24,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1326.test.cpp
     title: test/yukicoder/1326.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1641.test.cpp
     title: test/yukicoder/1641.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -237,45 +237,56 @@ data:
     \ else {\r\n        up.eb(LID[u], LID[head[u]]);\r\n        u = parent[head[u]];\r\
     \n      }\r\n    }\r\n    if (LID[u] < LID[v]) down.eb(LID[u] + edge, LID[v]);\r\
     \n    elif (LID[v] + edge <= LID[u]) up.eb(LID[u], LID[v] + edge);\r\n    reverse(all(down));\r\
-    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  vc<int>\
-    \ restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u,\
-    \ v, 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n\
-    \      } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\
-    \n    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
-    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
-    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
-    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
-    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
-    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
-    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
-    \n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ AbelGroup, bool edge, bool path_query,\r\n          bool subtree_query>\r\n\
-    struct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\n  using X = typename MX::value_type;\r\
-    \n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE\
-    \ &tree) : tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::unit();\
-    \ });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
-    \ {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  Tree_AbelGroup(TREE &tree, F f) : tree(tree), N(tree.N) {\r\
-    \n    build(f);\r\n  }\r\n\r\n  template <typename F>\r\n  void build(F f) {\r\
-    \n    vc<X> bit_raw_1(2 * N);\r\n    vc<X> bit_raw_2(N);\r\n    FOR(v, N) {\r\n\
-    \      X x = MX::unit();\r\n      if (!edge) x = f(v);\r\n      if (edge) x =\
-    \ (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\n      bit_raw_1[tree.ELID(v)]\
-    \ = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\n      bit_raw_2[tree.LID[v]]\
-    \ = x;\r\n    }\r\n    if constexpr (path_query) bit.build(bit_raw_1);\r\n   \
-    \ if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\n  }\r\n\r\n  void\
-    \ add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) : i);\r\n    if constexpr\
-    \ (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v),\
-    \ MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query) bit_subtree.add(tree.LID[v],\
-    \ x);\r\n  }\r\n\r\n  X prod_path(int frm, int to) {\r\n    static_assert(path_query);\r\
-    \n    int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca)\
-    \ + 1, tree.ELID(frm) + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex\
-    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
-    \ + 1);\r\n    return MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int\
-    \ root = -1) {\r\n    static_assert(subtree_query);\r\n    int l = tree.LID[u],\
-    \ r = tree.RID[u];\r\n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\
-    \n    if (root == u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u,\
-    \ root)) return bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0,\
-    \ l + 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
+    \n    up.insert(up.end(), all(down));\r\n    return up;\r\n  }\r\n\r\n  // \u8FBA\
+    \u306E\u5217\u306E\u60C5\u5831 (frm,to,str)\r\n  // str = \"heavy_up\", \"heavy_down\"\
+    , \"light_up\", \"light_down\"\r\n  vc<tuple<int, int, string>> get_path_decomposition_detail(int\
+    \ u, int v) {\r\n    vc<tuple<int, int, string>> up, down;\r\n    while (1) {\r\
+    \n      if (head[u] == head[v]) break;\r\n      if (LID[u] < LID[v]) {\r\n   \
+    \     if (v != head[v]) down.eb(head[v], v, \"heavy_down\"), v = head[v];\r\n\
+    \        down.eb(parent[v], v, \"light_down\"), v = parent[v];\r\n      } else\
+    \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
+    \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
+    \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
+    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
+    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
+    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
+    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
+    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
+    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
+    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
+    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
+    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
+    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
+    \    return {x, x};\r\n  }\r\n};\r\n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\
+    \ntemplate <typename TREE, typename AbelGroup, bool edge, bool path_query,\r\n\
+    \          bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\
+    \n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX>\
+    \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
+    \ {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE\
+    \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X {\
+    \ return dat[i]; });\r\n  }\r\n\r\n  template <typename F>\r\n  Tree_AbelGroup(TREE\
+    \ &tree, F f) : tree(tree), N(tree.N) {\r\n    build(f);\r\n  }\r\n\r\n  template\
+    \ <typename F>\r\n  void build(F f) {\r\n    vc<X> bit_raw_1(2 * N);\r\n    vc<X>\
+    \ bit_raw_2(N);\r\n    FOR(v, N) {\r\n      X x = MX::unit();\r\n      if (!edge)\
+    \ x = f(v);\r\n      if (edge) x = (v == 0 ? MX::unit() : f(tree.v_to_e(v)));\r\
+    \n      bit_raw_1[tree.ELID(v)] = x;\r\n      bit_raw_1[tree.ERID(v)] = MX::inverse(x);\r\
+    \n      bit_raw_2[tree.LID[v]] = x;\r\n    }\r\n    if constexpr (path_query)\
+    \ bit.build(bit_raw_1);\r\n    if constexpr (subtree_query) bit_subtree.build(bit_raw_2);\r\
+    \n  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) :\
+    \ i);\r\n    if constexpr (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n\
+    \      bit.add(tree.ERID(v), MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query)\
+    \ bit_subtree.add(tree.LID[v], x);\r\n  }\r\n\r\n  X prod_path(int frm, int to)\
+    \ {\r\n    static_assert(path_query);\r\n    int lca = tree.LCA(frm, to);\r\n\
+    \    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) +\
+    \ 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
+    \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
+    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int root = -1) {\r\n \
+    \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
+    \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
+    \ bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0, l +\
+    \ 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\r\n#include \"graph/tree.hpp\"\
     \r\n\r\ntemplate <typename TREE, typename AbelGroup, bool edge, bool path_query,\r\
     \n          bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\
@@ -314,8 +325,8 @@ data:
   path: graph/ds/tree_abelgroup.hpp
   requiredBy:
   - graph/ds/incremental_centroid.hpp
-  timestamp: '2024-07-19 20:55:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-07-29 11:54:02+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/aoj/2636.test.cpp

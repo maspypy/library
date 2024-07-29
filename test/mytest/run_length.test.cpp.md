@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -101,24 +101,24 @@ data:
     \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvc<T> concat(vc<T>\
     \ &first, const Vectors &... others) {\n  vc<T> res = first;\n  (res.insert(res.end(),\
     \ others.begin(), others.end()), ...);\n  return res;\n}\n#endif\n#line 1 \"string/run_length.hpp\"\
-    \ntemplate <typename STRING = string, typename CHAR = char>\nvc<pair<CHAR, int>>\
-    \ run_length(STRING& S) {\n  vc<pair<CHAR, int>> res;\n  for (auto&& x: S) {\n\
-    \    if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n\
-    \  }\n  return res;\n}\n#line 4 \"test/mytest/run_length.test.cpp\"\n\nvoid test()\
-    \ {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res)\
-    \ == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n    assert(res[1].fi\
-    \ == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c' && res[2].se == 1);\n\
-    \    assert(res[3].fi == 'a' && res[3].se == 3);\n    assert(res[4].fi == 'b'\
-    \ && res[4].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res = run_length(A);\n\
-    \    assert(len(res) == 1);\n    assert(res[0].fi == 'a' && res[0].se == 6);\n\
-    \  }\n  {\n    string A = \"\";\n    auto res = run_length(A);\n    assert(len(res)\
-    \ == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1, 2};\n    auto res\
-    \ = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi == 1 && res[0].se\
-    \ == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n    assert(res[2].fi\
-    \ == 3 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se == 3);\n  \
-    \  assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve() {\n  int\
-    \ a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n\
-    \  test();\n  solve();\n\n  return 0;\n}\n"
+    \ntemplate <typename STRING = string>\nvc<pair<typename STRING::value_type, int>>\
+    \ run_length(STRING& S) {\n  vc<pair<typename STRING::value_type, int>> res;\n\
+    \  for (auto&& x: S) {\n    if (res.empty() || res.back().fi != x) { res.emplace_back(x,\
+    \ 0); }\n    res.back().se++;\n  }\n  return res;\n}\n#line 4 \"test/mytest/run_length.test.cpp\"\
+    \n\nvoid test() {\n  {\n    string A = \"aabbcaaab\";\n    auto res = run_length(A);\n\
+    \    assert(len(res) == 5);\n    assert(res[0].fi == 'a' && res[0].se == 2);\n\
+    \    assert(res[1].fi == 'b' && res[1].se == 2);\n    assert(res[2].fi == 'c'\
+    \ && res[2].se == 1);\n    assert(res[3].fi == 'a' && res[3].se == 3);\n    assert(res[4].fi\
+    \ == 'b' && res[4].se == 1);\n  }\n  {\n    string A = \"aaaaaa\";\n    auto res\
+    \ = run_length(A);\n    assert(len(res) == 1);\n    assert(res[0].fi == 'a' &&\
+    \ res[0].se == 6);\n  }\n  {\n    string A = \"\";\n    auto res = run_length(A);\n\
+    \    assert(len(res) == 0);\n  }\n  {\n    vc<int> A = {1, 1, 2, 2, 3, 1, 1, 1,\
+    \ 2};\n    auto res = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi\
+    \ == 1 && res[0].se == 2);\n    assert(res[1].fi == 2 && res[1].se == 2);\n  \
+    \  assert(res[2].fi == 3 && res[2].se == 1);\n    assert(res[3].fi == 1 && res[3].se\
+    \ == 3);\n    assert(res[4].fi == 2 && res[4].se == 1);\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"string/run_length.hpp\"\n\nvoid test() {\n  {\n    string A = \"\
     aabbcaaab\";\n    auto res = run_length(A);\n    assert(len(res) == 5);\n    assert(res[0].fi\
@@ -141,7 +141,7 @@ data:
   isVerificationFile: true
   path: test/mytest/run_length.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
+  timestamp: '2024-07-29 11:54:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/run_length.test.cpp
