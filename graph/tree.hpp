@@ -193,6 +193,25 @@ struct Tree {
     return up;
   }
 
+  // 辺の列の情報 (frm,to,str)
+  // str = "heavy_up", "heavy_down", "light_up", "light_down"
+  vc<tuple<int, int, string>> get_path_decomposition_detail(int u, int v) {
+    vc<tuple<int, int, string>> up, down;
+    while (1) {
+      if (head[u] == head[v]) break;
+      if (LID[u] < LID[v]) {
+        if (v != head[v]) down.eb(head[v], v, "heavy_down"), v = head[v];
+        down.eb(parent[v], v, "light_down"), v = parent[v];
+      } else {
+        if (u != head[u]) up.eb(u, head[u], "heavy_up"), u = head[u];
+        up.eb(u, parent[u], "light_up"), u = parent[u];
+      }
+    }
+    if (LID[u] < LID[v]) down.eb(u, v, "heavy_down");
+    elif (LID[v] < LID[u]) up.eb(u, v, "heavy_up");
+    return concat(up, down);
+  }
+
   vc<int> restore_path(int u, int v) {
     vc<int> P;
     for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {
