@@ -84,7 +84,8 @@
         "coroutine": "cpp",
         "stop_token": "cpp",
         "tmp": "cpp",
-        "cassert": "cpp"
+        "cassert": "cpp",
+        "rope": "cpp"
     },
     "[python]": {
         "editor.tabSize": 4,

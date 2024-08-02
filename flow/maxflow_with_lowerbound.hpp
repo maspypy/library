@@ -12,9 +12,14 @@ struct MaxFlow_With_LowerBound {
   vc<Edge_raw> dat;
 
   MaxFlow_With_LowerBound(int N, int s, int t)
-      : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {}
+      : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {
+    assert(0 <= s && s < N);
+    assert(0 <= t && t < N);
+  }
   void add(int frm, int to, Cap lo, Cap hi) {
     assert(!prepared);
+    assert(0 <= frm && frm < N);
+    assert(0 <= to && to < N);
     assert(Cap(0) <= lo && lo <= hi);
     dat.eb(frm, to, lo, hi);
   }
@@ -28,6 +33,11 @@ struct MaxFlow_With_LowerBound {
   vc<int> indptr;
   vc<int> idx;
   vc<int> level, que, prog;
+
+  void debug() {
+    print("frm,to,lo,hi");
+    for (auto& e: dat) print(e.frm, e.to, e.lo, e.hi);
+  }
 
   void build() {
     assert(!prepared);
@@ -74,10 +84,9 @@ struct MaxFlow_With_LowerBound {
       if (lo > 0 && G[idx[6 * i + 2]].cap > 0) valid = 0;
       if (lo > 0 && G[idx[6 * i + 4]].cap > 0) valid = 0;
     }
+    if (!valid) return flow_ans = -1;
     assert(a + b == a + c && c + d == b + d);
-    flow_ans = c + d;
-    if (!valid) flow_ans = -1;
-    return flow_ans;
+    return flow_ans = c + d;
   }
 
   void set_level(int s) {
