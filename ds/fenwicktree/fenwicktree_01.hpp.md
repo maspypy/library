@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
@@ -194,24 +194,24 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
+  - other/sliding_puzzle_solver.hpp
+  - seq/inversion.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - geo/count_points_in_triangles.hpp
-  - seq/inversion.hpp
-  - other/sliding_puzzle_solver.hpp
   timestamp: '2024-07-19 20:55:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-  - test/library_checker/datastructure/predecessor_problem_4.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
+  - test_atcoder/abc202_f.test.cpp
+  - test_atcoder/abc190f.test.cpp
   - test/yukicoder/1838.test.cpp
   - test/yukicoder/694.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test/aoj/ALDS1_2_A.test.cpp
   - test/mytest/fenwick01.test.cpp
-  - test_atcoder/abc190f.test.cpp
-  - test_atcoder/abc202_f.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/library_checker/datastructure/predecessor_problem_4.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

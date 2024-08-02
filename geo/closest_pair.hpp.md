@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -211,9 +211,9 @@ data:
   timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/geometry/closest_pair.test.cpp
-  - test/library_checker/geometry/closest_pair_dc.test.cpp
   - test/aoj/CGL_5_A.test.cpp
+  - test/library_checker/geometry/closest_pair_dc.test.cpp
+  - test/library_checker/geometry/closest_pair.test.cpp
 documentation_of: geo/closest_pair.hpp
 layout: document
 redirect_from:

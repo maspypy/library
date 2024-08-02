@@ -476,8 +476,8 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/mytest/poly_root_finding.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
 documentation_of: poly/poly_gcd.hpp
 layout: document
 redirect_from:

@@ -124,26 +124,28 @@ data:
     \ os << A.fi << \" \" << A.se;\r\n  return os;\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nostream &operator<<(ostream &os, const vector<T> &A) {\r\n  for (size_t\
     \ i = 0; i < A.size(); i++) {\r\n    if (i) os << \" \";\r\n    os << A[i];\r\n\
-    \  }\r\n  return os;\r\n}\r\n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\
-    \n}\r\n\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/split.hpp\"\nvc<string> split(string S, char\
-    \ sep = ',') {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if\
-    \ (s == sep)\r\n      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n\
-    \  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string seps = \"\
-    \ ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (count(all(seps),\
-    \ s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n\
-    \  return res;\r\n}\r\n#line 6 \"test/aoj/ITP1_9_A.test.cpp\"\n\nvoid solve()\
-    \ {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin, S)) {\n    for\
-    \ (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n        if (isupper(t))\
-    \ t = tolower(t);\n      ANS += token == T;\n    }\n  }\n  print(ANS);\n}\n\n\
-    signed main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout <<\
-    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \  }\r\n  return os;\r\n}\r\n\r\n// chatgpt helped me\r\nclass CoutInitializer\
+    \ {\r\npublic:\r\n  CoutInitializer() { std::cout << std::fixed << std::setprecision(15);\
+    \ }\r\n};\r\nstatic CoutInitializer init;\r\n\r\nvoid print() {\r\n  cout << \"\
+    \\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class... Tail>\r\n\
+    void print(Head &&head, Tail &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail))\
+    \ cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool\
+    \ t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\
+    \nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1)\
+    \ { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid\
+    \ no(bool t = 1) { yes(!t); }\r\n#line 1 \"string/split.hpp\"\nvc<string> split(string\
+    \ S, char sep = ',') {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\
+    \n    if (s == sep)\r\n      res.eb(\"\");\r\n    else\r\n      res.back() +=\
+    \ s;\r\n  }\r\n  return res;\r\n}\r\n\r\nvc<string> split(string S, string seps\
+    \ = \" ,\") {\r\n  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if\
+    \ (count(all(seps), s))\r\n      res.eb(\"\");\r\n    else\r\n      res.back()\
+    \ += s;\r\n  }\r\n  return res;\r\n}\r\n#line 6 \"test/aoj/ITP1_9_A.test.cpp\"\
+    \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
+    \ S)) {\n    for (auto&& token: split(S, ' ')) {\n      for (auto&& t: token)\n\
+    \        if (isupper(t)) t = tolower(t);\n      ANS += token == T;\n    }\n  }\n\
+    \  print(ANS);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
+    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
+    \n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP1_9_A\"\
     \n#include \"my_template.hpp\"\n#include \"other/io2.hpp\"\n#include \"string/split.hpp\"\
     \n\nvoid solve() {\n  STR(T);\n  string S;\n  ll ANS = 0;\n  while (getline(cin,\
@@ -159,7 +161,7 @@ data:
   isVerificationFile: true
   path: test/aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
+  timestamp: '2024-08-03 00:17:18+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/aoj/ITP1_9_A.test.cpp

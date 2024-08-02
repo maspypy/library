@@ -49,8 +49,8 @@ data:
   timestamp: '2023-11-15 20:12:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/string/lyndon.test.cpp
   - test/mytest/lex_minmax_suffix.test.cpp
+  - test/library_checker/string/lyndon.test.cpp
 documentation_of: string/lyndon.hpp
 layout: document
 redirect_from:

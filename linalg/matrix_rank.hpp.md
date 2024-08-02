@@ -58,12 +58,12 @@ data:
   timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/general_matching.test.cpp
-  - test/library_checker/matrix/solve_linear.test.cpp
   - test/yukicoder/1774.test.cpp
   - test/mytest/tutte.test.cpp
-  - test/mytest/matching.test.cpp
   - test/mytest/matching_line_graph.test.cpp
+  - test/mytest/matching.test.cpp
+  - test/library_checker/graph/general_matching.test.cpp
+  - test/library_checker/matrix/solve_linear.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document
 redirect_from:

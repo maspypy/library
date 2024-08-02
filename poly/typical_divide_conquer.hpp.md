@@ -428,8 +428,8 @@ data:
   timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/typical_dc.test.cpp
   - test_atcoder/abc333f.test.cpp
+  - test/mytest/typical_dc.test.cpp
 documentation_of: poly/typical_divide_conquer.hpp
 layout: document
 redirect_from:

@@ -71,9 +71,9 @@ data:
   timestamp: '2023-11-24 15:08:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/K_shortest_walk.test.cpp
   - test/yukicoder/1752.test.cpp
   - test/yukicoder/1154.test.cpp
+  - test/library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: ds/meldable_heap.hpp
 layout: document
 redirect_from:

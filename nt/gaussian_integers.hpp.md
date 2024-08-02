@@ -265,17 +265,17 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy:
-  - nt/four_square.hpp
   - nt/three_triangular.hpp
+  - nt/four_square.hpp
   - nt/three_square.hpp
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/gaussian_integers.test.cpp
   - test/yukicoder/1593.test.cpp
   - test/mytest/four_square.test.cpp
   - test/mytest/three_triangular.test.cpp
   - test/mytest/three_square.test.cpp
+  - test/library_checker/math/gaussian_integers.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

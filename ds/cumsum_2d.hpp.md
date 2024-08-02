@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -74,9 +74,9 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc228f.test.cpp
   - test/yukicoder/655.test.cpp
   - test/yukicoder/1141.test.cpp
-  - test_atcoder/abc228f.test.cpp
 documentation_of: ds/cumsum_2d.hpp
 layout: document
 redirect_from:

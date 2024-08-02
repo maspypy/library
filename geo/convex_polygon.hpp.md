@@ -206,9 +206,9 @@ data:
   timestamp: '2024-07-18 11:12:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/convex_polygon_visible_range.test.cpp
-  - test/mytest/max_dot.test.cpp
   - test/mytest/convex_polygon_side.test.cpp
+  - test/mytest/max_dot.test.cpp
+  - test/mytest/convex_polygon_visible_range.test.cpp
 documentation_of: geo/convex_polygon.hpp
 layout: document
 redirect_from:

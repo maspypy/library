@@ -225,10 +225,10 @@ data:
   timestamp: '2024-05-14 16:33:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1956.test.cpp
   - test/yukicoder/2119.test.cpp
   - test/yukicoder/590.test.cpp
   - test/yukicoder/187.test.cpp
-  - test/yukicoder/1956.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -308,9 +308,9 @@ data:
   timestamp: '2024-07-24 02:09:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
   - test_atcoder/abc202_f.test.cpp
+  - test/mytest/count_points_in_triangles.test.cpp
+  - test/library_checker/geometry/count_points_in_triangles.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

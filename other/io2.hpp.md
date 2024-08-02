@@ -31,14 +31,16 @@ data:
     \ os << A.fi << \" \" << A.se;\r\n  return os;\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nostream &operator<<(ostream &os, const vector<T> &A) {\r\n  for (size_t\
     \ i = 0; i < A.size(); i++) {\r\n    if (i) os << \" \";\r\n    os << A[i];\r\n\
-    \  }\r\n  return os;\r\n}\r\n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\
-    \n}\r\n\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n"
+    \  }\r\n  return os;\r\n}\r\n\r\n// chatgpt helped me\r\nclass CoutInitializer\
+    \ {\r\npublic:\r\n  CoutInitializer() { std::cout << std::fixed << std::setprecision(15);\
+    \ }\r\n};\r\nstatic CoutInitializer init;\r\n\r\nvoid print() {\r\n  cout << \"\
+    \\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class... Tail>\r\n\
+    void print(Head &&head, Tail &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail))\
+    \ cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool\
+    \ t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\
+    \nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1)\
+    \ { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid\
+    \ no(bool t = 1) { yes(!t); }\r\n"
   code: "#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define\
     \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define STR(...)\
     \      \\\r\n  string __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define CHR(...)\
@@ -59,19 +61,21 @@ data:
     \ os << A.fi << \" \" << A.se;\r\n  return os;\r\n}\r\n\r\ntemplate <typename\
     \ T>\r\nostream &operator<<(ostream &os, const vector<T> &A) {\r\n  for (size_t\
     \ i = 0; i < A.size(); i++) {\r\n    if (i) os << \" \";\r\n    os << A[i];\r\n\
-    \  }\r\n  return os;\r\n}\r\n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\
-    \n}\r\n\r\ntemplate <class Head, class... Tail>\r\nvoid print(Head &&head, Tail\
-    \ &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n\
-    \  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n"
+    \  }\r\n  return os;\r\n}\r\n\r\n// chatgpt helped me\r\nclass CoutInitializer\
+    \ {\r\npublic:\r\n  CoutInitializer() { std::cout << std::fixed << std::setprecision(15);\
+    \ }\r\n};\r\nstatic CoutInitializer init;\r\n\r\nvoid print() {\r\n  cout << \"\
+    \\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class... Tail>\r\n\
+    void print(Head &&head, Tail &&... tail) {\r\n  cout << head;\r\n  if (sizeof...(Tail))\
+    \ cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\nvoid YES(bool\
+    \ t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\
+    \nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1)\
+    \ { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid\
+    \ no(bool t = 1) { yes(!t); }\r\n"
   dependsOn: []
   isVerificationFile: false
   path: other/io2.hpp
   requiredBy: []
-  timestamp: '2024-05-29 22:32:29+09:00'
+  timestamp: '2024-08-03 00:17:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/aoj/ITP1_9_A.test.cpp

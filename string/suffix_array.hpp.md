@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
@@ -235,23 +235,23 @@ data:
   isVerificationFile: false
   path: string/suffix_array.hpp
   requiredBy:
-  - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
   - string/sort_substrings.hpp
+  - string/longest_common_substring.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
   timestamp: '2024-05-03 01:43:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/string/longest_common_substring.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
+  - test_atcoder/abc240ex.test.cpp
+  - test_atcoder/arc151_e.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/mytest/suffix_tree.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
   - test/mytest/lex_minmax_suffix.test.cpp
-  - test_atcoder/arc151_e.test.cpp
-  - test_atcoder/abc240ex.test.cpp
+  - test/mytest/longest_common_substr.test.cpp
+  - test/library_checker/string/longest_common_substring.test.cpp
+  - test/library_checker/string/number_of_substrings.test.cpp
+  - test/library_checker/string/suffix_array.test.cpp
+  - test/library_checker/string/suffix_array_vec.test.cpp
 documentation_of: string/suffix_array.hpp
 layout: document
 redirect_from:

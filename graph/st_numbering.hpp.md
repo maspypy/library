@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':question:'
@@ -242,8 +242,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/st_numbering.test.cpp
   - test/mytest/st_numbering.test.cpp
+  - test/library_checker/graph/st_numbering.test.cpp
 documentation_of: graph/st_numbering.hpp
 layout: document
 redirect_from:

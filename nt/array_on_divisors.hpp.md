@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -235,11 +235,11 @@ data:
   timestamp: '2024-05-27 02:22:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc335g.test.cpp
+  - test_atcoder/abc212g.test.cpp
   - test/yukicoder/1728.test.cpp
   - test/yukicoder/2578.test.cpp
   - test/yukicoder/2264.test.cpp
-  - test_atcoder/abc335g.test.cpp
-  - test_atcoder/abc212g.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:

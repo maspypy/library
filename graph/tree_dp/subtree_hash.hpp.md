@@ -303,8 +303,8 @@ data:
   timestamp: '2024-07-29 11:54:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/classify_tree.test.cpp
   - test/mytest/enumerate_unlabeled_tree.test.cpp
+  - test/library_checker/graph/classify_tree.test.cpp
 documentation_of: graph/tree_dp/subtree_hash.hpp
 layout: document
 redirect_from:

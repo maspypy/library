@@ -60,8 +60,8 @@ data:
   timestamp: '2024-04-09 15:17:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/math/min_of_mod_of_linear.test.cpp
   - test/yukicoder/2259.test.cpp
+  - test/library_checker/math/min_of_mod_of_linear.test.cpp
 documentation_of: mod/min_of_linear.hpp
 layout: document
 redirect_from:

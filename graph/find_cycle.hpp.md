@@ -169,9 +169,9 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/cycle_detection_undirected.test.cpp
-  - test/library_checker/graph/cycle_detection.test.cpp
   - test/mytest/find_cycle_minimum.test.cpp
+  - test/library_checker/graph/cycle_detection.test.cpp
+  - test/library_checker/graph/cycle_detection_undirected.test.cpp
 documentation_of: graph/find_cycle.hpp
 layout: document
 redirect_from:

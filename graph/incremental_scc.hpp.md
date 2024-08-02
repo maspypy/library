@@ -169,8 +169,8 @@ data:
   timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/graph/incremental_scc.test.cpp
   - test/mytest/incremental_scc.test.cpp
+  - test/library_checker/graph/incremental_scc.test.cpp
 documentation_of: graph/incremental_scc.hpp
 layout: document
 redirect_from:

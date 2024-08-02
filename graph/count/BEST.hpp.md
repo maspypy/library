@@ -233,9 +233,9 @@ data:
   timestamp: '2024-06-11 16:34:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test_atcoder/abc336g.test.cpp
   - test/library_checker/graph/counting_eulerian_dense.test.cpp
   - test/library_checker/graph/counting_eulerian_sparse.test.cpp
-  - test_atcoder/abc336g.test.cpp
 documentation_of: graph/count/BEST.hpp
 layout: document
 redirect_from:

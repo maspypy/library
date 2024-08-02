@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1332.test.cpp
     title: test/yukicoder/1332.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1600_2.test.cpp
     title: test/yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,9 +66,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc324g.test.cpp
     title: test_atcoder/abc324g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct\
@@ -140,30 +140,30 @@ data:
   isVerificationFile: false
   path: ds/index_compression.hpp
   requiredBy:
+  - string/prefix_substring_LCS.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
-  - string/prefix_substring_LCS.hpp
   timestamp: '2024-07-19 14:53:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/library_checker/string/prefix_substring_lcs.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1919_2.test.cpp
-  - test/yukicoder/2065.test.cpp
-  - test/yukicoder/1625_2.test.cpp
-  - test/yukicoder/919.test.cpp
-  - test/yukicoder/1332.test.cpp
-  - test/yukicoder/1600_2.test.cpp
-  - test/mytest/index_compression.test.cpp
-  - test/mytest/wavelet_matrix.test.cpp
   - test_atcoder/abc324g.test.cpp
   - test_atcoder/abc127f_1.test.cpp
+  - test/yukicoder/1332.test.cpp
+  - test/yukicoder/919.test.cpp
+  - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/2065.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/1919_2.test.cpp
+  - test/yukicoder/1600_2.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
+  - test/mytest/index_compression.test.cpp
+  - test/library_checker/string/prefix_substring_lcs.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/index_compression.hpp
 layout: document
 redirect_from:

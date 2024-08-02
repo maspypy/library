@@ -593,9 +593,9 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/composition_log_1_minus_x.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
 documentation_of: seq/famous/stirling_number_1.hpp
 layout: document
 redirect_from:

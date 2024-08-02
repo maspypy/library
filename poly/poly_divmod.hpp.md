@@ -96,7 +96,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/1962.test.cpp
     title: test/yukicoder/1962.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
@@ -473,39 +473,39 @@ data:
   isVerificationFile: false
   path: poly/poly_divmod.hpp
   requiredBy:
-  - poly/finding_root_of_polynomial.hpp
-  - poly/coef_of_rational_fps.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/poly_mod_pow.hpp
-  - poly/poly_gcd.hpp
   - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/poly_gcd.hpp
+  - poly/finding_root_of_polynomial.hpp
+  - poly/poly_mod_pow.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/polynomial/slice_rational.test.cpp
-  - test/library_checker/polynomial/polynomial_division.test.cpp
-  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/yukicoder/2305.test.cpp
-  - test/yukicoder/1547.test.cpp
-  - test/yukicoder/1844.test.cpp
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1962.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/2583.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/agc013e.test.cpp
+  - test/yukicoder/1516.test.cpp
   - test/yukicoder/2587.test.cpp
-  - test/yukicoder/2122.test.cpp
+  - test/yukicoder/579.test.cpp
+  - test/yukicoder/2583.test.cpp
+  - test/yukicoder/578.test.cpp
   - test/yukicoder/2587_2.test.cpp
   - test/yukicoder/1500.test.cpp
-  - test/yukicoder/1516.test.cpp
-  - test/mytest/coef_of_rational.test.cpp
+  - test/yukicoder/1547.test.cpp
+  - test/yukicoder/1844.test.cpp
+  - test/yukicoder/541.test.cpp
+  - test/yukicoder/1561.test.cpp
+  - test/yukicoder/2305.test.cpp
+  - test/yukicoder/1962.test.cpp
+  - test/yukicoder/2122.test.cpp
   - test/mytest/bell.test.cpp
   - test/mytest/poly_root_finding.test.cpp
-  - test_atcoder/agc013e.test.cpp
-  - test_atcoder/agc058d2.test.cpp
+  - test/mytest/coef_of_rational.test.cpp
+  - test/library_checker/polynomial/slice_rational.test.cpp
+  - test/library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/library_checker/polynomial/polynomial_division.test.cpp
+  - test/library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
 redirect_from:
