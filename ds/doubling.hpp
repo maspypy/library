@@ -53,17 +53,18 @@ struct Doubling {
     return {i, x};
   }
 
+  // check(to, monoid_sum)
   template <typename F>
   ll max_step(F check, int i) {
     assert(is_prepared);
     X x = Monoid::unit();
     ll step = 0;
-    assert(check(x));
+    assert(check(i, x));
     FOR_R(k, LOG) {
       int j = TO[k][i];
       if (j == -1) continue;
       X y = Monoid::op(x, DP[k][i]);
-      if (check(y)) {
+      if (check(j, y)) {
         step |= 1LL << k;
         i = j;
         x = y;
