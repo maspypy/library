@@ -63,9 +63,9 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/yukicoder/1270.test.cpp
   - test/yukicoder/1720.test.cpp
   - test/yukicoder/1234.test.cpp
-  - test/yukicoder/1270.test.cpp
   - test/aoj/DSL_2_H.test.cpp
   - test/library_checker/graph/common_interval_decomposition.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp

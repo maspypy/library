@@ -86,8 +86,8 @@ data:
   timestamp: '2023-08-19 23:10:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc301g.test.cpp
   - test/aoj/0350.test.cpp
+  - test_atcoder/abc301g.test.cpp
 documentation_of: nt/rational.hpp
 layout: document
 redirect_from:

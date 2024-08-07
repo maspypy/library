@@ -875,8 +875,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
   - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/library_checker/polynomial/compositional_inverse.test.cpp
 documentation_of: poly/compositional_inverse.hpp

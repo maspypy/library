@@ -95,8 +95,8 @@ data:
   timestamp: '2023-10-14 01:43:46+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2109.test.cpp
   - test/yukicoder/779.test.cpp
+  - test/yukicoder/2109.test.cpp
   - test/mytest/datetime.test.cpp
 documentation_of: datetime/datetime.hpp
 layout: document

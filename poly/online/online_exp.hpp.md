@@ -201,8 +201,8 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/online_exp.test.cpp
   - test/mytest/count_unlabeled_tree.test.cpp
+  - test/mytest/online_exp.test.cpp
 documentation_of: poly/online/online_exp.hpp
 layout: document
 redirect_from:

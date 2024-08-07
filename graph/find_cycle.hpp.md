@@ -170,8 +170,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/find_cycle_minimum.test.cpp
-  - test/library_checker/graph/cycle_detection.test.cpp
   - test/library_checker/graph/cycle_detection_undirected.test.cpp
+  - test/library_checker/graph/cycle_detection.test.cpp
 documentation_of: graph/find_cycle.hpp
 layout: document
 redirect_from:

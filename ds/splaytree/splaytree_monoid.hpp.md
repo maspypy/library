@@ -216,9 +216,9 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1441.test.cpp
-  - test/aoj/1508.test.cpp
   - test/mytest/splay.test.cpp
   - test/mytest/splay_monoid.test.cpp
+  - test/aoj/1508.test.cpp
 documentation_of: ds/splaytree/splaytree_monoid.hpp
 layout: document
 redirect_from:

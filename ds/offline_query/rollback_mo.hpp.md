@@ -73,8 +73,8 @@ data:
   timestamp: '2024-01-13 12:25:41+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
   - test/library_checker/datastructure/static_range_mode_query.test.cpp
+  - test/library_checker/datastructure/static_range_inversions_mo2.test.cpp
 documentation_of: ds/offline_query/rollback_mo.hpp
 layout: document
 redirect_from:

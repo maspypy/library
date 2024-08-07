@@ -207,8 +207,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/convex_polygon_side.test.cpp
-  - test/mytest/max_dot.test.cpp
   - test/mytest/convex_polygon_visible_range.test.cpp
+  - test/mytest/max_dot.test.cpp
 documentation_of: geo/convex_polygon.hpp
 layout: document
 redirect_from:

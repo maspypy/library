@@ -302,19 +302,19 @@ data:
   isVerificationFile: false
   path: graph/centroid_decomposition.hpp
   requiredBy:
-  - graph/tree_all_distances.hpp
   - graph/ds/contour_query_range.hpp
+  - graph/tree_all_distances.hpp
   timestamp: '2024-07-26 01:42:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2491.test.cpp
   - test/yukicoder/1038.test.cpp
   - test/yukicoder/1796_1.test.cpp
+  - test/yukicoder/2491.test.cpp
+  - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - test/library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - test/library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
 documentation_of: graph/centroid_decomposition.hpp
 layout: document
 redirect_from:

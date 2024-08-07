@@ -256,8 +256,8 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc298ex.test.cpp
   - test_atcoder/abc220f.test.cpp
+  - test_atcoder/abc298ex.test.cpp
 documentation_of: graph/tree_dp/subtree_depth_sum.hpp
 layout: document
 redirect_from:

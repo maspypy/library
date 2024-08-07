@@ -91,8 +91,8 @@ data:
   timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/minplus_conv_triple.test.cpp
   - test/mytest/minplus_convex.test.cpp
+  - test/mytest/minplus_conv_triple.test.cpp
   - test/library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - test/library_checker/convolution/minplus_convolution_conv_arb.test.cpp
 documentation_of: convex/minplus_convolution.hpp

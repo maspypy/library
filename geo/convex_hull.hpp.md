@@ -142,19 +142,19 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
-  - convex/fenchel.hpp
-  - test/library_checker/geometry/static_convex_hull.tset.cpp
-  - geo/minkowski_sum.hpp
   - geo/furthest_pair.hpp
+  - geo/minkowski_sum.hpp
   - geo/convex_polygon.hpp
+  - test/library_checker/geometry/static_convex_hull.tset.cpp
+  - convex/fenchel.hpp
   timestamp: '2024-07-18 11:12:06+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/arc130f.test.cpp
   - test/mytest/convex_polygon_side.test.cpp
-  - test/mytest/max_dot.test.cpp
   - test/mytest/convex_polygon_visible_range.test.cpp
+  - test/mytest/max_dot.test.cpp
   - test/library_checker/geometry/furthest_pair.test.cpp
+  - test_atcoder/arc130f.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:
