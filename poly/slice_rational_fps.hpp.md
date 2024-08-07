@@ -602,8 +602,8 @@ data:
   timestamp: '2024-07-22 13:52:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/agc013e.test.cpp
   - test/library_checker/polynomial/slice_rational.test.cpp
+  - test_atcoder/agc013e.test.cpp
 documentation_of: poly/slice_rational_fps.hpp
 layout: document
 redirect_from:

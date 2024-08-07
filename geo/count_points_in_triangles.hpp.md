@@ -21,7 +21,7 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -308,9 +308,9 @@ data:
   timestamp: '2024-07-24 02:09:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc202_f.test.cpp
   - test/mytest/count_points_in_triangles.test.cpp
   - test/library_checker/geometry/count_points_in_triangles.test.cpp
+  - test_atcoder/abc202_f.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

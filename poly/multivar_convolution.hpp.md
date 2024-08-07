@@ -397,8 +397,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1783.test.cpp
-  - test/library_checker/convolution/subset_convolution_multivar.test.cpp
   - test/library_checker/convolution/multivariate_convolution.test.cpp
+  - test/library_checker/convolution/subset_convolution_multivar.test.cpp
 documentation_of: poly/multivar_convolution.hpp
 layout: document
 redirect_from:

@@ -191,11 +191,11 @@ data:
   timestamp: '2024-01-26 19:43:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc324g2.test.cpp
-  - test_atcoder/abc266h.test.cpp
   - test/yukicoder/1600.test.cpp
   - test/mytest/seg2d.test.cpp
   - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - test_atcoder/abc266h.test.cpp
+  - test_atcoder/abc324g2.test.cpp
 documentation_of: ds/segtree/segtree_2d.hpp
 layout: document
 redirect_from:

@@ -423,9 +423,9 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/mytest/count_labeled_bridgeless.test.cpp
   - test/mytest/count_labeled_biconnected.test.cpp
   - test/mytest/count_labeled_connected.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
 documentation_of: graph/count/count_labeled_connected.hpp
 layout: document
 redirect_from:

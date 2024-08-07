@@ -82,9 +82,9 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/2259.test.cpp
+  - test/mytest/max_of_linear_segments.test.cpp
   - test/mytest/min_of_linear_segments.test.cpp
   - test/mytest/first_mod_range_of_linear.test.cpp
-  - test/mytest/max_of_linear_segments.test.cpp
   - test/library_checker/math/min_of_mod_of_linear.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document

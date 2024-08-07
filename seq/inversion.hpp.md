@@ -183,11 +183,11 @@ data:
   timestamp: '2024-07-19 20:55:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc190f.test.cpp
-  - test/yukicoder/1838.test.cpp
   - test/yukicoder/694.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
+  - test/yukicoder/1838.test.cpp
   - test/aoj/ALDS1_2_A.test.cpp
+  - test/aoj/ALDS1_5.test.cpp
+  - test_atcoder/abc190f.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':question:'
@@ -333,8 +333,8 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1216.test.cpp
   - test/yukicoder/1216_2.test.cpp
+  - test/yukicoder/1216.test.cpp
 documentation_of: graph/ds/static_tree_monoid.hpp
 layout: document
 redirect_from:

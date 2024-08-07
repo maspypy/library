@@ -59,9 +59,9 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/yukicoder/1774.test.cpp
+  - test/mytest/matching.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/matching_line_graph.test.cpp
-  - test/mytest/matching.test.cpp
   - test/library_checker/graph/general_matching.test.cpp
   - test/library_checker/matrix/solve_linear.test.cpp
 documentation_of: linalg/matrix_rank.hpp

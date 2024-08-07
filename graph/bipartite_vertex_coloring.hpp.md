@@ -172,27 +172,27 @@ data:
   isVerificationFile: false
   path: graph/bipartite_vertex_coloring.hpp
   requiredBy:
-  - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
+  - graph/bipartite_edge_coloring.hpp
   - flow/rank_maximal_bipartite_matching.hpp
   - flow/bipartite.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test_atcoder/abc237ex.test.cpp
-  - test_atcoder/abc274g.test.cpp
-  - test/yukicoder/1615.test.cpp
   - test/yukicoder/1911.test.cpp
   - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1745.test.cpp
   - test/yukicoder/1479.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/aoj/2251_2.test.cpp
+  - test/yukicoder/1745.test.cpp
+  - test/yukicoder/1615.test.cpp
+  - test/mytest/matching_ve.test.cpp
   - test/mytest/tutte.test.cpp
   - test/mytest/find_odd_cycle.test.cpp
-  - test/mytest/matching_ve.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/aoj/1566.test.cpp
+  - test/aoj/2251_2.test.cpp
   - test/library_checker/graph/bipartitematching.test.cpp
+  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test_atcoder/abc274g.test.cpp
+  - test_atcoder/abc237ex.test.cpp
 documentation_of: graph/bipartite_vertex_coloring.hpp
 layout: document
 redirect_from:
