@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/mo_on_tree.test.cpp
     title: test/mytest/mo_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/852/problem/I
@@ -171,39 +171,40 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
-    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
-    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
-    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
-    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
-    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
-    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
-    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
-    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
-    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
-    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
-    \    return {x, x};\r\n  }\r\n};\r\n#line 1 \"ds/offline_query/mo.hpp\"\n// Nsqrt(Q)\r\
-    \nstruct Mo {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int R) { LR.emplace_back(L,\
-    \ R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int, int>> LR) {\r\n    int\
-    \ N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N, r);\r\n    int Q\
-    \ = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3) * N / sqrt(2\
-    \ * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I), 0);\r\n\
-    \    sort(all(I), [&](int a, int b) {\r\n      int aa = LR[a].fi / bs, bb = LR[b].fi\
-    \ / bs;\r\n      if (aa != bb) return aa < bb;\r\n      return (aa & 1) ? LR[a].se\
-    \ > LR[b].se : LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto cost = [&](int\
-    \ a, int b) -> int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se\
-    \ - LR[I[b]].se);\r\n    };\r\n\r\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\
-    \u30B9\u3067\u6570\u30D1\u30FC\u30BB\u30F3\u30C8\r\n    FOR(k, Q - 5) {\r\n  \
-    \    if (cost(k, k + 2) + cost(k + 1, k + 3)\r\n          < cost(k, k + 1) + cost(k\
-    \ + 2, k + 3)) {\r\n        swap(I[k + 1], I[k + 2]);\r\n      }\r\n      if (cost(k,\
-    \ k + 3) + cost(k + 1, k + 4)\r\n          < cost(k, k + 1) + cost(k + 3, k +\
-    \ 4)) {\r\n        swap(I[k + 1], I[k + 3]);\r\n      }\r\n    }\r\n    return\
-    \ I;\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3, typename\
-    \ F4, typename F5>\r\n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query)\
-    \ {\r\n    auto I = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\n    for (auto\
-    \ idx: I) {\r\n      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se)\
-    \ add_r(r++);\r\n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se)\
-    \ rm_r(--r);\r\n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 3 \"graph/ds/mo_on_tree.hpp\"\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
+    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
+    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
+    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
+    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
+    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
+    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 1 \"ds/offline_query/mo.hpp\"\n// Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int,\
+    \ int>> LR;\r\n  void add(int L, int R) { LR.emplace_back(L, R); }\r\n\r\n  static\
+    \ vc<int> get_mo_order(vc<pair<int, int>> LR) {\r\n    int N = 1;\r\n    for (auto\
+    \ &&[l, r]: LR) chmax(N, l), chmax(N, r);\r\n    int Q = len(LR);\r\n    if (Q\
+    \ == 0) return {};\r\n    int bs = sqrt(3) * N / sqrt(2 * Q);\r\n    chmax(bs,\
+    \ 1);\r\n    vc<int> I(Q);\r\n    iota(all(I), 0);\r\n    sort(all(I), [&](int\
+    \ a, int b) {\r\n      int aa = LR[a].fi / bs, bb = LR[b].fi / bs;\r\n      if\
+    \ (aa != bb) return aa < bb;\r\n      return (aa & 1) ? LR[a].se > LR[b].se :\
+    \ LR[a].se < LR[b].se;\r\n    });\r\n\r\n    auto cost = [&](int a, int b) ->\
+    \ int {\r\n      return abs(LR[I[a]].fi - LR[I[b]].fi) + abs(LR[I[a]].se - LR[I[b]].se);\r\
+    \n    };\r\n\r\n    // \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\u3067\u6570\u30D1\
+    \u30FC\u30BB\u30F3\u30C8\r\n    FOR(k, Q - 5) {\r\n      if (cost(k, k + 2) +\
+    \ cost(k + 1, k + 3)\r\n          < cost(k, k + 1) + cost(k + 2, k + 3)) {\r\n\
+    \        swap(I[k + 1], I[k + 2]);\r\n      }\r\n      if (cost(k, k + 3) + cost(k\
+    \ + 1, k + 4)\r\n          < cost(k, k + 1) + cost(k + 3, k + 4)) {\r\n      \
+    \  swap(I[k + 1], I[k + 3]);\r\n      }\r\n    }\r\n    return I;\r\n  }\r\n\r\
+    \n  template <typename F1, typename F2, typename F3, typename F4, typename F5>\r\
+    \n  void calc(F1 add_l, F2 add_r, F3 rm_l, F4 rm_r, F5 query) {\r\n    auto I\
+    \ = get_mo_order(LR);\r\n    int l = 0, r = 0;\r\n    for (auto idx: I) {\r\n\
+    \      while (l > LR[idx].fi) add_l(--l);\r\n      while (r < LR[idx].se) add_r(r++);\r\
+    \n      while (l < LR[idx].fi) rm_l(l++);\r\n      while (r > LR[idx].se) rm_r(--r);\r\
+    \n      query(idx);\r\n    }\r\n  }\r\n};\r\n#line 3 \"graph/ds/mo_on_tree.hpp\"\
     \n\n// https://codeforces.com/contest/852/problem/I\ntemplate <typename TREE,\
     \ bool ORIENTED = false>\nstruct Mo_on_Tree {\n  TREE& tree;\n  vc<pair<int, int>>\
     \ LR;\n\n  Mo mo;\n  Mo_on_Tree(TREE& tree) : tree(tree) {}\n  void add(int u,\
@@ -313,8 +314,8 @@ data:
   isVerificationFile: false
   path: graph/ds/mo_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-07-29 11:54:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-07 16:19:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/mo_on_tree.test.cpp
 documentation_of: graph/ds/mo_on_tree.hpp

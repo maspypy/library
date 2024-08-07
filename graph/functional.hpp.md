@@ -12,13 +12,13 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1211.test.cpp
     title: test/yukicoder/1211.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1242.test.cpp
     title: test/yukicoder/1242.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2122.test.cpp
     title: test/yukicoder/2122.test.cpp
   - icon: ':x:'
@@ -26,7 +26,7 @@ data:
     title: test/yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -179,71 +179,71 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
-    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
-    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
-    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
-    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
-    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
-    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
-    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
-    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
-    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
-    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
-    \    return {x, x};\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\n\
-    struct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
-    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
-    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
-    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"graph/functional.hpp\"\
-    \n\r\n// N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\
-    \r\ntemplate <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n\
-    \  vc<int> TO;\r\n  vc<T> wt;\r\n  vc<int> root;\r\n  Graph<T, 1> G;\r\n\r\n \
-    \ FunctionalGraph() {}\r\n  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N),\
-    \ root(N, -1) {}\r\n\r\n  void add(int a, int b, T c = 1) {\r\n    assert(0 <=\
-    \ a && a < N);\r\n    assert(TO[a] == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n \
-    \   wt[a] = c;\r\n  }\r\n\r\n  pair<Graph<T, 1>, Tree<Graph<T, 1>>> build() {\r\
-    \n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
-    \ TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\
-    \n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    G.build(N + 1);\r\n    FOR(v,\
-    \ N) {\r\n      if (root[v] == v)\r\n        G.add(N, v, wt[v]);\r\n      else\r\
-    \n        G.add(TO[v], v, wt[v]);\r\n    }\r\n    G.build();\r\n    Tree<Graph<T,\
-    \ 1>> tree(G, N);\r\n    return {G, tree};\r\n  }\r\n\r\n  // a -> b \u306B\u304B\
-    \u304B\u308B\u56DE\u6570. \u4E0D\u53EF\u80FD\u306A\u3089 infty<int>. O(1).\r\n\
-    \  template <typename TREE>\r\n  int dist(TREE& tree, int a, int b) {\r\n    if\
-    \ (tree.in_subtree(a, b)) return tree.depth[a] - tree.depth[b];\r\n    int r =\
-    \ root[a];\r\n    int btm = TO[r];\r\n    // a -> r -> btm -> b\r\n    if (tree.in_subtree(btm,\
-    \ b)) {\r\n      int x = tree.depth[a] - tree.depth[r];\r\n      x += 1;\r\n \
-    \     x += tree.depth[btm] - tree.depth[b];\r\n      return x;\r\n    }\r\n  \
-    \  return infty<int>;\r\n  }\r\n\r\n  // functional graph \u306B\u5411\u304B\u3063\
-    \u3066\u9032\u3080\r\n  template <typename TREE>\r\n  int jump(TREE& tree, int\
-    \ v, ll step) {\r\n    int d = tree.depth[v];\r\n    if (step <= d - 1) return\
-    \ tree.jump(v, N, step);\r\n    v = root[v];\r\n    step -= d - 1;\r\n    int\
-    \ bottom = TO[v];\r\n    int c = tree.depth[bottom];\r\n    step %= c;\r\n   \
-    \ if (step == 0) return v;\r\n    return tree.jump(bottom, N, step - 1);\r\n \
-    \ }\r\n\r\n  // functional graph \u306B step \u56DE\u9032\u3080\r\n  template\
-    \ <typename TREE>\r\n  vc<int> jump_all(TREE& tree, ll step) {\r\n    vc<int>\
-    \ res(N, -1);\r\n    // v \u306E k \u500B\u5148\u3092 res[w] \u306B\u5165\u308C\
-    \u308B\r\n    vvc<pair<int, int>> query(N);\r\n    FOR(v, N) {\r\n      int d\
-    \ = tree.depth[v];\r\n      int r = root[v];\r\n      if (d - 1 > step) { query[v].eb(v,\
-    \ step); }\r\n      if (d - 1 <= step) {\r\n        ll k = step - (d - 1);\r\n\
-    \        int bottom = TO[r];\r\n        int c = tree.depth[bottom];\r\n      \
-    \  k %= c;\r\n        if (k == 0) {\r\n          res[v] = r;\r\n          continue;\r\
-    \n        }\r\n        query[bottom].eb(v, k - 1);\r\n      }\r\n    }\r\n\r\n\
-    \    vc<int> path;\r\n    auto dfs = [&](auto& dfs, int v) -> void {\r\n     \
-    \ path.eb(v);\r\n      for (auto&& [w, k]: query[v]) { res[w] = path[len(path)\
-    \ - 1 - k]; }\r\n      for (auto&& e: G[v]) dfs(dfs, e.to);\r\n      path.pop_back();\r\
-    \n    };\r\n    for (auto&& e: G[N]) { dfs(dfs, e.to); }\r\n    return res;\r\n\
-    \  }\r\n\r\n  template <typename TREE>\r\n  bool in_cycle(TREE& tree, int v) {\r\
-    \n    int r = root[v];\r\n    int bottom = TO[r];\r\n    return tree.in_subtree(bottom,\
-    \ v);\r\n  }\r\n\r\n  vc<int> collect_cycle(int r) {\r\n    assert(r == root[r]);\r\
-    \n    vc<int> cyc = {TO[r]};\r\n    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\
-    \n    return cyc;\r\n  }\r\n};\r\n"
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
+    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
+    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
+    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
+    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
+    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
+    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 3 \"graph/functional.hpp\"\n\r\n// N \u304C\u6839\
+    \u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\r\ntemplate <typename\
+    \ T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n  vc<int> TO;\r\n  vc<T>\
+    \ wt;\r\n  vc<int> root;\r\n  Graph<T, 1> G;\r\n\r\n  FunctionalGraph() {}\r\n\
+    \  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}\r\n\r\
+    \n  void add(int a, int b, T c = 1) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a]\
+    \ == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  pair<Graph<T,\
+    \ 1>, Tree<Graph<T, 1>>> build() {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\
+    \n    FOR(v, N) if (!uf.merge(v, TO[v])) { root[v] = v; }\r\n    FOR(v, N) if\
+    \ (root[v] == v) root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\
+    \n    G.build(N + 1);\r\n    FOR(v, N) {\r\n      if (root[v] == v)\r\n      \
+    \  G.add(N, v, wt[v]);\r\n      else\r\n        G.add(TO[v], v, wt[v]);\r\n  \
+    \  }\r\n    G.build();\r\n    Tree<Graph<T, 1>> tree(G, N);\r\n    return {G,\
+    \ tree};\r\n  }\r\n\r\n  // a -> b \u306B\u304B\u304B\u308B\u56DE\u6570. \u4E0D\
+    \u53EF\u80FD\u306A\u3089 infty<int>. O(1).\r\n  template <typename TREE>\r\n \
+    \ int dist(TREE& tree, int a, int b) {\r\n    if (tree.in_subtree(a, b)) return\
+    \ tree.depth[a] - tree.depth[b];\r\n    int r = root[a];\r\n    int btm = TO[r];\r\
+    \n    // a -> r -> btm -> b\r\n    if (tree.in_subtree(btm, b)) {\r\n      int\
+    \ x = tree.depth[a] - tree.depth[r];\r\n      x += 1;\r\n      x += tree.depth[btm]\
+    \ - tree.depth[b];\r\n      return x;\r\n    }\r\n    return infty<int>;\r\n \
+    \ }\r\n\r\n  // functional graph \u306B\u5411\u304B\u3063\u3066\u9032\u3080\r\n\
+    \  template <typename TREE>\r\n  int jump(TREE& tree, int v, ll step) {\r\n  \
+    \  int d = tree.depth[v];\r\n    if (step <= d - 1) return tree.jump(v, N, step);\r\
+    \n    v = root[v];\r\n    step -= d - 1;\r\n    int bottom = TO[v];\r\n    int\
+    \ c = tree.depth[bottom];\r\n    step %= c;\r\n    if (step == 0) return v;\r\n\
+    \    return tree.jump(bottom, N, step - 1);\r\n  }\r\n\r\n  // functional graph\
+    \ \u306B step \u56DE\u9032\u3080\r\n  template <typename TREE>\r\n  vc<int> jump_all(TREE&\
+    \ tree, ll step) {\r\n    vc<int> res(N, -1);\r\n    // v \u306E k \u500B\u5148\
+    \u3092 res[w] \u306B\u5165\u308C\u308B\r\n    vvc<pair<int, int>> query(N);\r\n\
+    \    FOR(v, N) {\r\n      int d = tree.depth[v];\r\n      int r = root[v];\r\n\
+    \      if (d - 1 > step) { query[v].eb(v, step); }\r\n      if (d - 1 <= step)\
+    \ {\r\n        ll k = step - (d - 1);\r\n        int bottom = TO[r];\r\n     \
+    \   int c = tree.depth[bottom];\r\n        k %= c;\r\n        if (k == 0) {\r\n\
+    \          res[v] = r;\r\n          continue;\r\n        }\r\n        query[bottom].eb(v,\
+    \ k - 1);\r\n      }\r\n    }\r\n\r\n    vc<int> path;\r\n    auto dfs = [&](auto&\
+    \ dfs, int v) -> void {\r\n      path.eb(v);\r\n      for (auto&& [w, k]: query[v])\
+    \ { res[w] = path[len(path) - 1 - k]; }\r\n      for (auto&& e: G[v]) dfs(dfs,\
+    \ e.to);\r\n      path.pop_back();\r\n    };\r\n    for (auto&& e: G[N]) { dfs(dfs,\
+    \ e.to); }\r\n    return res;\r\n  }\r\n\r\n  template <typename TREE>\r\n  bool\
+    \ in_cycle(TREE& tree, int v) {\r\n    int r = root[v];\r\n    int bottom = TO[r];\r\
+    \n    return tree.in_subtree(bottom, v);\r\n  }\r\n\r\n  vc<int> collect_cycle(int\
+    \ r) {\r\n    assert(r == root[r]);\r\n    vc<int> cyc = {TO[r]};\r\n    while\
+    \ (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\n    return cyc;\r\n  }\r\n};\r\n"
   code: "#include \"graph/tree.hpp\"\r\n#include \"ds/unionfind/unionfind.hpp\"\r\n\
     \r\n// N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\
     \r\ntemplate <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n\
@@ -295,8 +295,8 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2024-07-29 11:54:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-08-07 16:19:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1211.test.cpp
   - test/yukicoder/1242.test.cpp

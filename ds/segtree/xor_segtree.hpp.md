@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2265.test.cpp
     title: test/yukicoder/2265.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/xor_segtree.hpp\"\n// set,prod \u3069\u3061\u3089\
@@ -75,7 +75,7 @@ data:
   path: ds/segtree/xor_segtree.hpp
   requiredBy: []
   timestamp: '2023-04-08 04:27:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2265.test.cpp
 documentation_of: ds/segtree/xor_segtree.hpp

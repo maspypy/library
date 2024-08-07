@@ -164,33 +164,34 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
-    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
-    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
-    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
-    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
-    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
-    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
-    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
-    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
-    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
-    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
-    \    return {x, x};\r\n  }\r\n};\r\n#line 2 \"graph/compress_tree.hpp\"\n\n//\
-    \ (\u5727\u7E2E\u3055\u308C\u305F\u6728\u306E\u9802\u70B9\u30E9\u30D9\u30EB\u305F\
-    \u3061\u3001\u30B0\u30E9\u30D5)\n// \u65B0\u3057\u3044\u30B0\u30E9\u30D5\uFF1A\
-    \u8FBA\u91CD\u307F\u3042\u308A\ntemplate <typename TREE>\npair<vc<int>, typename\
-    \ TREE::Graph_type> compress_tree(TREE& tree, vc<int> V) {\n  // \u5927\u4E8B\u306A\
-    \u70B9\u3092\u30EA\u30B9\u30C8\u30A2\u30C3\u30D7\u3059\u308B\n  sort(all(V), [&](auto&\
-    \ x, auto& y) { return tree.LID[x] < tree.LID[y]; });\n  int n = len(V);\n  FOR(i,\
-    \ n) {\n    int j = (i + 1 == n ? 0 : i + 1);\n    V.eb(tree.lca(V[i], V[j]));\n\
-    \  }\n  sort(all(V), [&](auto& x, auto& y) { return tree.LID[x] < tree.LID[y];\
-    \ });\n  V.erase(unique(all(V)), V.end());\n  // \u8FBA\u3092\u5F35\u3063\u3066\
-    \u30B0\u30E9\u30D5\u3092\u4F5C\u308B\n  n = len(V);\n  using GT = typename TREE::Graph_type;\n\
-    \  using WT = typename GT::cost_type;\n  GT G(n);\n  vc<int> st = {0};\n  FOR(i,\
-    \ 1, n) {\n    while (1) {\n      int p = V[st.back()];\n      int v = V[i];\n\
-    \      if (tree.in_subtree(v, p)) break;\n      st.pop_back();\n    }\n    int\
-    \ p = V[st.back()];\n    int v = V[i];\n    WT d = tree.depth_weighted[v] - tree.depth_weighted[p];\n\
-    \    G.add(st.back(), i, d);\n    st.eb(i);\n  }\n  G.build();\n  return {V, G};\n\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
+    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
+    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
+    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
+    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
+    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
+    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 2 \"graph/compress_tree.hpp\"\n\n// (\u5727\u7E2E\u3055\u308C\u305F\u6728\
+    \u306E\u9802\u70B9\u30E9\u30D9\u30EB\u305F\u3061\u3001\u30B0\u30E9\u30D5)\n//\
+    \ \u65B0\u3057\u3044\u30B0\u30E9\u30D5\uFF1A\u8FBA\u91CD\u307F\u3042\u308A\ntemplate\
+    \ <typename TREE>\npair<vc<int>, typename TREE::Graph_type> compress_tree(TREE&\
+    \ tree, vc<int> V) {\n  // \u5927\u4E8B\u306A\u70B9\u3092\u30EA\u30B9\u30C8\u30A2\
+    \u30C3\u30D7\u3059\u308B\n  sort(all(V), [&](auto& x, auto& y) { return tree.LID[x]\
+    \ < tree.LID[y]; });\n  int n = len(V);\n  FOR(i, n) {\n    int j = (i + 1 ==\
+    \ n ? 0 : i + 1);\n    V.eb(tree.lca(V[i], V[j]));\n  }\n  sort(all(V), [&](auto&\
+    \ x, auto& y) { return tree.LID[x] < tree.LID[y]; });\n  V.erase(unique(all(V)),\
+    \ V.end());\n  // \u8FBA\u3092\u5F35\u3063\u3066\u30B0\u30E9\u30D5\u3092\u4F5C\
+    \u308B\n  n = len(V);\n  using GT = typename TREE::Graph_type;\n  using WT = typename\
+    \ GT::cost_type;\n  GT G(n);\n  vc<int> st = {0};\n  FOR(i, 1, n) {\n    while\
+    \ (1) {\n      int p = V[st.back()];\n      int v = V[i];\n      if (tree.in_subtree(v,\
+    \ p)) break;\n      st.pop_back();\n    }\n    int p = V[st.back()];\n    int\
+    \ v = V[i];\n    WT d = tree.depth_weighted[v] - tree.depth_weighted[p];\n   \
+    \ G.add(st.back(), i, d);\n    st.eb(i);\n  }\n  G.build();\n  return {V, G};\n\
     }\n"
   code: "#include \"graph/tree.hpp\"\n\n// (\u5727\u7E2E\u3055\u308C\u305F\u6728\u306E\
     \u9802\u70B9\u30E9\u30D9\u30EB\u305F\u3061\u3001\u30B0\u30E9\u30D5)\n// \u65B0\
@@ -214,7 +215,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2024-07-29 11:54:02+09:00'
+  timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

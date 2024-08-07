@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
@@ -43,25 +43,25 @@ data:
   - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'
@@ -70,26 +70,26 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"poly/composition_f_log_1_minus_x.hpp\"\n\n#line 2 \"poly/poly_taylor_shift.hpp\"\
@@ -721,7 +721,7 @@ data:
     \    if (a < i && b <= j) lhs += dp[i - a][j - b] * mint(i - a);\r\n        if\
     \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
     \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
-    \n}\r\n#line 3 \"seq/famous/stirling_number_1.hpp\"\n\r\ntemplate <typename mint>\r\
+    \n}\r\n#line 4 \"seq/famous/stirling_number_1.hpp\"\n\r\ntemplate <typename mint>\r\
     \nvc<mint> stirling_number_1_2d(int nmax, int kmax) {\r\n  vv(mint, A, nmax +\
     \ 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int i = 1; i <= nmax; ++i) {\r\n \
     \   for (int j = 0; j < i + 1; ++j) {\r\n      if (j > kmax) break;\r\n      mint\
@@ -745,16 +745,24 @@ data:
     \ inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn) { FOR(i, LIM + 1) if\
     \ (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\n  vc<mint>\
     \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k +\
-    \ i);\r\n\r\n  return res;\r\n}\r\n#line 5 \"poly/composition_f_log_1_minus_x.hpp\"\
-    \n\n/*\nf(log(1-x))\n2024/05/01 noshi\u5408\u6210\u306E\u65B9\u304C\u5C11\u3057\
-    \u9AD8\u901F\u306A\u306E\u3067\u4F7F\u308F\u306A\u3044\u304C\nmultipoint \u3092\
-    \u9AD8\u901F\u5316\u3059\u308B\u3068\u4F7F\u3048\u308B\u304B\u3082\n*/\ntemplate\
-    \ <typename mint>\nvc<mint> composition_f_log_1_minus_x(vc<mint> f) {\n  int N\
-    \ = len(f) - 1;\n  FOR(i, N + 1) f[i] *= fact<mint>(i);\n  vc<mint> S = stirling_number_1_n<mint>(N\
-    \ + 1, true);\n  reverse(all(S));\n  f = convolution<mint>(f, S);\n  f.resize(N\
-    \ + 1);\n  vc<mint> A(N + 1);\n  FOR(i, N + 1) A[i] = mint::raw(i);\n  f = partial_frac_decomposition_1(f,\
-    \ A);\n  FOR(i, len(f)) if (i & 1) f[i] = -f[i];\n  f = poly_taylor_shift<mint>(f,\
-    \ -1);\n  return f;\n}\n"
+    \ i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i) \u3092\u9006\u9806\u306B\u4E26\
+    \u3079\u305F\u3082\u306E\r\n// (1+0x)(1+1x)(1+2x)...(1+(N-1)x) \u3092 [x^K] \u307E\
+    \u3067\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_suffix(ll N,\
+    \ ll K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\
+    \r\n  vc<mint> num(K + 1), den(K + 1);\r\n  mint powN = 1;\r\n  FOR(k, K + 1)\
+    \ {\r\n    powN *= N;\r\n    num[k] = fact_inv<mint>(k + 1) * powN;\r\n    den[k]\
+    \ = fact_inv<mint>(k + 1);\r\n  }\r\n  vc<mint> S = fps_div<mint>(num, den);\r\
+    \n  FOR(i, K + 1) S[i] *= fact<mint>(i);\r\n  vc<mint> LOG_F(K + 1);\r\n  FOR(i,\
+    \ 1, K + 1) LOG_F[i] = S[i] * inv<mint>(i) * (2 * (i & 1) - 1);\r\n  return fps_exp(LOG_F);\r\
+    \n}\r\n#line 5 \"poly/composition_f_log_1_minus_x.hpp\"\n\n/*\nf(log(1-x))\n2024/05/01\
+    \ noshi\u5408\u6210\u306E\u65B9\u304C\u5C11\u3057\u9AD8\u901F\u306A\u306E\u3067\
+    \u4F7F\u308F\u306A\u3044\u304C\nmultipoint \u3092\u9AD8\u901F\u5316\u3059\u308B\
+    \u3068\u4F7F\u3048\u308B\u304B\u3082\n*/\ntemplate <typename mint>\nvc<mint> composition_f_log_1_minus_x(vc<mint>\
+    \ f) {\n  int N = len(f) - 1;\n  FOR(i, N + 1) f[i] *= fact<mint>(i);\n  vc<mint>\
+    \ S = stirling_number_1_n<mint>(N + 1, true);\n  reverse(all(S));\n  f = convolution<mint>(f,\
+    \ S);\n  f.resize(N + 1);\n  vc<mint> A(N + 1);\n  FOR(i, N + 1) A[i] = mint::raw(i);\n\
+    \  f = partial_frac_decomposition_1(f, A);\n  FOR(i, len(f)) if (i & 1) f[i] =\
+    \ -f[i];\n  f = poly_taylor_shift<mint>(f, -1);\n  return f;\n}\n"
   code: "\n#include \"poly/poly_taylor_shift.hpp\"\n#include \"poly/partial_frac_decomposition_1.hpp\"\
     \n#include \"seq/famous/stirling_number_1.hpp\"\n\n/*\nf(log(1-x))\n2024/05/01\
     \ noshi\u5408\u6210\u306E\u65B9\u304C\u5C11\u3057\u9AD8\u901F\u306A\u306E\u3067\
@@ -796,8 +804,8 @@ data:
   isVerificationFile: false
   path: poly/composition_f_log_1_minus_x.hpp
   requiredBy: []
-  timestamp: '2024-07-19 15:13:09+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-07 16:19:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/composition_log_1_minus_x.test.cpp
 documentation_of: poly/composition_f_log_1_minus_x.hpp

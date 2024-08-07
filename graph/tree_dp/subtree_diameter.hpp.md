@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   _extendedRequiredBy: []
@@ -169,19 +169,20 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
-    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
-    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
-    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
-    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
-    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
-    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
-    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
-    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
-    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
-    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
-    \    return {x, x};\r\n  }\r\n};\r\n#line 4 \"graph/tree_dp/rerooting_dp.hpp\"\
-    \n\r\ntemplate <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n  static_assert(!TREE::Graph_type::is_directed);\r\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
+    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
+    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
+    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
+    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
+    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
+    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 4 \"graph/tree_dp/rerooting_dp.hpp\"\n\r\ntemplate <typename TREE, typename\
+    \ Data>\r\nstruct Rerooting_dp {\r\n  static_assert(!TREE::Graph_type::is_directed);\r\
     \n  TREE& tree;\r\n  vc<Data> dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\
     \u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\
     \u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;   // full tree\r\n\r\n  template\
@@ -271,7 +272,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/subtree_diameter.hpp
   requiredBy: []
-  timestamp: '2024-07-29 11:54:02+09:00'
+  timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/subtree_diameter.hpp

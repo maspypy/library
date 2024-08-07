@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/rolling_hash_on_tree.test.cpp
     title: test/mytest/rolling_hash_on_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -179,61 +179,61 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
-    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
-    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
-    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
-    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
-    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
-    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
-    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
-    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
-    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
-    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
-    \    return {x, x};\r\n  }\r\n};\r\n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61\
-    \ {\r\n  static constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr\
-    \ modint61() : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr\
-    \ modint61(u64 x) : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x <\
-    \ 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr modint61(ll x)\r\n  \
-    \    : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\n\
-    \                                              : x) {}\r\n  static constexpr u64\
-    \ get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\n\
-    \    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
-    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
-    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const\
-    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
-    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
-    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
-    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
-    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
-    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
-    #endif\n#line 4 \"graph/ds/rolling_hash_on_tree.hpp\"\n\n// \u6728\u306E\u8FBA\
-    \u306B\u6587\u5B57\u304C\u3061\u3087\u3046\u3069\u3072\u3068\u3064\u66F8\u3044\
-    \u3066\u3042\u308B (static)\ntemplate <typename TREE, bool EDGE>\nstruct Rolling_Hash_On_Tree\
-    \ {\n  using mint = modint61;\n\n  TREE& tree;\n  int N;\n  mint base;\n  // edge\
-    \ \u306B\u6587\u5B57\u304C\u3042\u308B\u3068\u601D\u3063\u3066\n  // dp1: [root,v]\n\
-    \  // dp2: [v,root]\n  vc<int> dat;\n  vc<mint> dp1, dp2;\n  vc<mint> pow, ipow;\n\
-    \n  template <typename F>\n  Rolling_Hash_On_Tree(TREE& tree, F f, mint base_\
-    \ = 0)\n      : tree(tree), N(tree.N), base(base_) {\n    if (base == mint(0))\
-    \ base = RNG(mint::get_mod());\n    build(f);\n  }\n\n  template <typename F>\n\
-    \  void build(F f) {\n    dat.resize(N);\n    if constexpr (EDGE) {\n      FOR(i,\
-    \ N - 1) { dat[tree.e_to_v(i)] = f(i); }\n    } else {\n      FOR(i, N) { dat[i]\
-    \ = f(i); }\n    }\n    pow.resize(N + 1), ipow.resize(N + 1);\n    pow[0] = 1,\
-    \ pow[1] = base;\n    ipow[0] = 1, ipow[1] = base.inverse();\n    FOR(i, 2, N\
-    \ + 1) pow[i] = pow[i - 1] * pow[1];\n    FOR(i, 2, N + 1) ipow[i] = ipow[i -\
-    \ 1] * ipow[1];\n    int root = tree.V[0];\n    dp1.resize(N), dp2.resize(N);\n\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
+    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
+    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
+    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
+    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
+    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
+    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr u64\
+    \ mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL)\
+    \ {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x)\
+    \ : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
+    \ : x) {}\r\n  constexpr modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod))\
+    \ < 0) ? (x + static_cast<ll>(mod))\r\n                                      \
+    \        : x) {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n  modint61\
+    \ &operator+=(const modint61 &a) {\r\n    val = ((val += a.val) >= mod) ? (val\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const modint61\
+    \ &a) {\r\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned\
+    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >>\
+    \ 61) + (y & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 operator-() const { return modint61(val ? mod -\
+    \ val : u64(0)); }\r\n  modint61 &operator/=(const modint61 &a) { return (*this\
+    \ *= a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return\
+    \ modint61(*this) += p; }\r\n  modint61 operator-(const modint61 &p) const { return\
+    \ modint61(*this) -= p; }\r\n  modint61 operator*(const modint61 &p) const { return\
+    \ modint61(*this) *= p; }\r\n  modint61 operator/(const modint61 &p) const { return\
+    \ modint61(*this) /= p; }\r\n  bool operator==(const modint61 &p) const { return\
+    \ val == p.val; }\r\n  bool operator!=(const modint61 &p) const { return val !=\
+    \ p.val; }\r\n  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1,\
+    \ v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n \
+    \ modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\
+    \n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>=\
+    \ 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61\
+    \ &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val < modint61::mod);\r\
+    \n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n#endif\n#line 4 \"graph/ds/rolling_hash_on_tree.hpp\"\
+    \n\n// \u6728\u306E\u8FBA\u306B\u6587\u5B57\u304C\u3061\u3087\u3046\u3069\u3072\
+    \u3068\u3064\u66F8\u3044\u3066\u3042\u308B (static)\ntemplate <typename TREE,\
+    \ bool EDGE>\nstruct Rolling_Hash_On_Tree {\n  using mint = modint61;\n\n  TREE&\
+    \ tree;\n  int N;\n  mint base;\n  // edge \u306B\u6587\u5B57\u304C\u3042\u308B\
+    \u3068\u601D\u3063\u3066\n  // dp1: [root,v]\n  // dp2: [v,root]\n  vc<int> dat;\n\
+    \  vc<mint> dp1, dp2;\n  vc<mint> pow, ipow;\n\n  template <typename F>\n  Rolling_Hash_On_Tree(TREE&\
+    \ tree, F f, mint base_ = 0)\n      : tree(tree), N(tree.N), base(base_) {\n \
+    \   if (base == mint(0)) base = RNG(mint::get_mod());\n    build(f);\n  }\n\n\
+    \  template <typename F>\n  void build(F f) {\n    dat.resize(N);\n    if constexpr\
+    \ (EDGE) {\n      FOR(i, N - 1) { dat[tree.e_to_v(i)] = f(i); }\n    } else {\n\
+    \      FOR(i, N) { dat[i] = f(i); }\n    }\n    pow.resize(N + 1), ipow.resize(N\
+    \ + 1);\n    pow[0] = 1, pow[1] = base;\n    ipow[0] = 1, ipow[1] = base.inverse();\n\
+    \    FOR(i, 2, N + 1) pow[i] = pow[i - 1] * pow[1];\n    FOR(i, 2, N + 1) ipow[i]\
+    \ = ipow[i - 1] * ipow[1];\n    int root = tree.V[0];\n    dp1.resize(N), dp2.resize(N);\n\
     \    dp1[root] = dp2[root] = dat[0];\n    FOR(i, 1, N) {\n      int v = tree.V[i];\n\
     \      int d = tree.depth[v], p = tree.parent[v];\n      dp1[v] = base * dp1[p]\
     \ + dat[v];\n      dp2[v] = dp2[p] + pow[d] * dat[v];\n    }\n  }\n\n  mint get(int\
@@ -329,8 +329,8 @@ data:
   isVerificationFile: false
   path: graph/ds/rolling_hash_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-07-29 11:54:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-07 16:19:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/rolling_hash_on_tree.test.cpp
 documentation_of: graph/ds/rolling_hash_on_tree.hpp

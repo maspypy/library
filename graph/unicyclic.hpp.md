@@ -12,7 +12,7 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1254.test.cpp
     title: test/yukicoder/1254.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test_atcoder/abc266f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -174,45 +174,46 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    return concat(up, down);\r\n  }\r\
-    \n\r\n  vc<int> restore_path(int u, int v) {\r\n    vc<int> P;\r\n    for (auto\
-    \ &&[a, b]: get_path_decomposition(u, v, 0)) {\r\n      if (a <= b) {\r\n    \
-    \    FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else {\r\n        FOR_R(i, b, a +\
-    \ 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return P;\r\n  }\r\n\r\n  // path\
-    \ [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\
-    \n  // https://codeforces.com/problemset/problem/500/G\r\n  pair<int, int> path_intersection(int\
-    \ a, int b, int c, int d) {\r\n    int ab = lca(a, b), ac = lca(a, c), ad = lca(a,\
-    \ d);\r\n    int bc = lca(b, c), bd = lca(b, d), cd = lca(c, d);\r\n    int x\
-    \ = ab ^ ac ^ bc, y = ab ^ ad ^ bd; // meet(a,b,c), meet(a,b,d)\r\n    if (x !=\
-    \ y) return {x, y};\r\n    int z = ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n\
-    \    return {x, x};\r\n  }\r\n};\r\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\n\
-    struct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int\
-    \ n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
-    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
-    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
-    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
-    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
-    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
-    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 4 \"graph/unicyclic.hpp\"\
-    \n\ntemplate <typename GT>\nstruct UnicyclicGraph {\n  static_assert(!GT::is_directed);\n\
-    \  using T = typename GT::cost_type;\n  GT& G0;\n  int N;\n  int root;\n  int\
-    \ out_eid;\n  T out_cost;\n  vc<int> TO;\n  vc<int> cycle;     // \u6839\u306B\
-    \u5411\u304B\u3046\u3088\u3046\u306A\u9802\u70B9\u5217\n  vc<bool> in_cycle; //\
-    \ vertex id -> bool\n\n  UnicyclicGraph(GT& G) : G0(G), N(G.N) {\n    assert(N\
-    \ == G.M);\n    UnionFind uf(N);\n    TO.assign(N, -1);\n    FOR(eid, N) {\n \
-    \     auto& e = G.edges[eid];\n      if (uf.merge(e.frm, e.to)) continue;\n  \
-    \    out_eid = eid, out_cost = e.cost;\n      root = e.frm;\n      TO[root] =\
-    \ e.to;\n      break;\n    }\n    vc<bool> done(N);\n    vc<int> que = {root};\n\
-    \    while (len(que)) {\n      int v = POP(que);\n      done[v] = 1;\n      for\
-    \ (auto&& e: G[v]) {\n        if (done[e.to] || e.id == out_eid) continue;\n \
-    \       TO[e.to] = v;\n        que.eb(e.to);\n      }\n    }\n    cycle = {TO[root]};\n\
-    \    while (cycle.back() != root) cycle.eb(TO[cycle.back()]);\n    in_cycle.assign(N,\
-    \ 0);\n    for (auto&& v: cycle) in_cycle[v] = 1;\n  }\n\n  // {G, tree}\n  pair<Graph<T,\
-    \ 1>, Tree<Graph<T, 1>>> build(bool keep_eid = false) {\n    Graph<T, 1> G(N);\n\
-    \    FOR(eid, N) {\n      if (eid == out_eid) continue;\n      auto& e = G0.edges[eid];\n\
-    \      int a = e.frm, b = e.to;\n      if (TO[a] == b) swap(a, b);\n      assert(TO[b]\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
+    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
+    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
+    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
+    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
+    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
+    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
+    \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
+    \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
+    \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
+    \n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 4 \"graph/unicyclic.hpp\"\n\ntemplate <typename\
+    \ GT>\nstruct UnicyclicGraph {\n  static_assert(!GT::is_directed);\n  using T\
+    \ = typename GT::cost_type;\n  GT& G0;\n  int N;\n  int root;\n  int out_eid;\n\
+    \  T out_cost;\n  vc<int> TO;\n  vc<int> cycle;     // \u6839\u306B\u5411\u304B\
+    \u3046\u3088\u3046\u306A\u9802\u70B9\u5217\n  vc<bool> in_cycle; // vertex id\
+    \ -> bool\n\n  UnicyclicGraph(GT& G) : G0(G), N(G.N) {\n    assert(N == G.M);\n\
+    \    UnionFind uf(N);\n    TO.assign(N, -1);\n    FOR(eid, N) {\n      auto& e\
+    \ = G.edges[eid];\n      if (uf.merge(e.frm, e.to)) continue;\n      out_eid =\
+    \ eid, out_cost = e.cost;\n      root = e.frm;\n      TO[root] = e.to;\n     \
+    \ break;\n    }\n    vc<bool> done(N);\n    vc<int> que = {root};\n    while (len(que))\
+    \ {\n      int v = POP(que);\n      done[v] = 1;\n      for (auto&& e: G[v]) {\n\
+    \        if (done[e.to] || e.id == out_eid) continue;\n        TO[e.to] = v;\n\
+    \        que.eb(e.to);\n      }\n    }\n    cycle = {TO[root]};\n    while (cycle.back()\
+    \ != root) cycle.eb(TO[cycle.back()]);\n    in_cycle.assign(N, 0);\n    for (auto&&\
+    \ v: cycle) in_cycle[v] = 1;\n  }\n\n  // {G, tree}\n  pair<Graph<T, 1>, Tree<Graph<T,\
+    \ 1>>> build(bool keep_eid = false) {\n    Graph<T, 1> G(N);\n    FOR(eid, N)\
+    \ {\n      if (eid == out_eid) continue;\n      auto& e = G0.edges[eid];\n   \
+    \   int a = e.frm, b = e.to;\n      if (TO[a] == b) swap(a, b);\n      assert(TO[b]\
     \ == a);\n      int k = (keep_eid ? eid : -1);\n      G.add(a, b, e.cost, k);\n\
     \    }\n    G.build();\n    Tree<decltype(G)> tree(G, root);\n    return {G, tree};\n\
     \  };\n\n  template <typename TREE>\n  int dist(TREE& tree, int a, int b) {\n\
@@ -260,8 +261,8 @@ data:
   isVerificationFile: false
   path: graph/unicyclic.hpp
   requiredBy: []
-  timestamp: '2024-07-29 11:54:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-08-07 16:19:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test_atcoder/abc266f.test.cpp
   - test/yukicoder/1254.test.cpp

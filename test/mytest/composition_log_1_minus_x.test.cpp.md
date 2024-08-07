@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -25,10 +25,10 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   - icon: ':question:'
@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
@@ -52,25 +52,25 @@ data:
   - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':question:'
@@ -79,26 +79,26 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -824,7 +824,7 @@ data:
     \    if (a < i && b <= j) lhs += dp[i - a][j - b] * mint(i - a);\r\n        if\
     \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
     \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
-    \n}\r\n#line 3 \"seq/famous/stirling_number_1.hpp\"\n\r\ntemplate <typename mint>\r\
+    \n}\r\n#line 4 \"seq/famous/stirling_number_1.hpp\"\n\r\ntemplate <typename mint>\r\
     \nvc<mint> stirling_number_1_2d(int nmax, int kmax) {\r\n  vv(mint, A, nmax +\
     \ 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int i = 1; i <= nmax; ++i) {\r\n \
     \   for (int j = 0; j < i + 1; ++j) {\r\n      if (j > kmax) break;\r\n      mint\
@@ -848,34 +848,42 @@ data:
     \ inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn) { FOR(i, LIM + 1) if\
     \ (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\n  vc<mint>\
     \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k +\
-    \ i);\r\n\r\n  return res;\r\n}\r\n#line 5 \"poly/composition_f_log_1_minus_x.hpp\"\
-    \n\n/*\nf(log(1-x))\n2024/05/01 noshi\u5408\u6210\u306E\u65B9\u304C\u5C11\u3057\
-    \u9AD8\u901F\u306A\u306E\u3067\u4F7F\u308F\u306A\u3044\u304C\nmultipoint \u3092\
-    \u9AD8\u901F\u5316\u3059\u308B\u3068\u4F7F\u3048\u308B\u304B\u3082\n*/\ntemplate\
-    \ <typename mint>\nvc<mint> composition_f_log_1_minus_x(vc<mint> f) {\n  int N\
-    \ = len(f) - 1;\n  FOR(i, N + 1) f[i] *= fact<mint>(i);\n  vc<mint> S = stirling_number_1_n<mint>(N\
-    \ + 1, true);\n  reverse(all(S));\n  f = convolution<mint>(f, S);\n  f.resize(N\
-    \ + 1);\n  vc<mint> A(N + 1);\n  FOR(i, N + 1) A[i] = mint::raw(i);\n  f = partial_frac_decomposition_1(f,\
-    \ A);\n  FOR(i, len(f)) if (i & 1) f[i] = -f[i];\n  f = poly_taylor_shift<mint>(f,\
-    \ -1);\n  return f;\n}\n#line 2 \"poly/composition.hpp\"\n\r\n#line 6 \"poly/composition.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> composition_old(vc<mint>& Q, vc<mint>&\
-    \ P) {\r\n  int n = len(P);\r\n  assert(len(P) == len(Q));\r\n  int k = 1;\r\n\
-    \  while (k * k < n) ++k;\r\n  // compute powers of P\r\n  vv(mint, pow1, k +\
-    \ 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n  FOR3(i, 2, k + 1) {\r\n    pow1[i]\
-    \ = convolution(pow1[i - 1], pow1[1]);\r\n    pow1[i].resize(n);\r\n  }\r\n  vv(mint,\
-    \ pow2, k + 1);\r\n  pow2[0] = {1};\r\n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k\
-    \ + 1) {\r\n    pow2[i] = convolution(pow2[i - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\
-    \n  }\r\n  vc<mint> ANS(n);\r\n  FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n   \
-    \ FOR(j, k) {\r\n      if (k * i + j < len(Q)) {\r\n        mint coef = Q[k *\
-    \ i + j];\r\n        FOR(d, len(pow1[j])) f[d] += pow1[j][d] * coef;\r\n     \
-    \ }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\n    f.resize(n);\r\n    FOR(d,\
-    \ n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n}\r\n\r\n// f(g(x)), O(Nlog^2N)\r\
-    \ntemplate <typename mint>\r\nvc<mint> composition_0_ntt(vc<mint> f, vc<mint>\
-    \ g) {\r\n  assert(len(f) == len(g));\r\n  if (f.empty()) return {};\r\n\r\n \
-    \ int n0 = len(f);\r\n  int n = 1;\r\n  while (n < len(f)) n *= 2;\r\n  f.resize(n),\
-    \ g.resize(n);\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    // bit reverse order\r\n\
-    \    vc<int> btr(n);\r\n    int log = topbit(n);\r\n    FOR(i, n) { btr[i] = (btr[i\
-    \ >> 1] >> 1) + ((i & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\
+    \ i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i) \u3092\u9006\u9806\u306B\u4E26\
+    \u3079\u305F\u3082\u306E\r\n// (1+0x)(1+1x)(1+2x)...(1+(N-1)x) \u3092 [x^K] \u307E\
+    \u3067\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_suffix(ll N,\
+    \ ll K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\
+    \r\n  vc<mint> num(K + 1), den(K + 1);\r\n  mint powN = 1;\r\n  FOR(k, K + 1)\
+    \ {\r\n    powN *= N;\r\n    num[k] = fact_inv<mint>(k + 1) * powN;\r\n    den[k]\
+    \ = fact_inv<mint>(k + 1);\r\n  }\r\n  vc<mint> S = fps_div<mint>(num, den);\r\
+    \n  FOR(i, K + 1) S[i] *= fact<mint>(i);\r\n  vc<mint> LOG_F(K + 1);\r\n  FOR(i,\
+    \ 1, K + 1) LOG_F[i] = S[i] * inv<mint>(i) * (2 * (i & 1) - 1);\r\n  return fps_exp(LOG_F);\r\
+    \n}\r\n#line 5 \"poly/composition_f_log_1_minus_x.hpp\"\n\n/*\nf(log(1-x))\n2024/05/01\
+    \ noshi\u5408\u6210\u306E\u65B9\u304C\u5C11\u3057\u9AD8\u901F\u306A\u306E\u3067\
+    \u4F7F\u308F\u306A\u3044\u304C\nmultipoint \u3092\u9AD8\u901F\u5316\u3059\u308B\
+    \u3068\u4F7F\u3048\u308B\u304B\u3082\n*/\ntemplate <typename mint>\nvc<mint> composition_f_log_1_minus_x(vc<mint>\
+    \ f) {\n  int N = len(f) - 1;\n  FOR(i, N + 1) f[i] *= fact<mint>(i);\n  vc<mint>\
+    \ S = stirling_number_1_n<mint>(N + 1, true);\n  reverse(all(S));\n  f = convolution<mint>(f,\
+    \ S);\n  f.resize(N + 1);\n  vc<mint> A(N + 1);\n  FOR(i, N + 1) A[i] = mint::raw(i);\n\
+    \  f = partial_frac_decomposition_1(f, A);\n  FOR(i, len(f)) if (i & 1) f[i] =\
+    \ -f[i];\n  f = poly_taylor_shift<mint>(f, -1);\n  return f;\n}\n#line 2 \"poly/composition.hpp\"\
+    \n\r\n#line 6 \"poly/composition.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ composition_old(vc<mint>& Q, vc<mint>& P) {\r\n  int n = len(P);\r\n  assert(len(P)\
+    \ == len(Q));\r\n  int k = 1;\r\n  while (k * k < n) ++k;\r\n  // compute powers\
+    \ of P\r\n  vv(mint, pow1, k + 1);\r\n  pow1[0] = {1};\r\n  pow1[1] = P;\r\n \
+    \ FOR3(i, 2, k + 1) {\r\n    pow1[i] = convolution(pow1[i - 1], pow1[1]);\r\n\
+    \    pow1[i].resize(n);\r\n  }\r\n  vv(mint, pow2, k + 1);\r\n  pow2[0] = {1};\r\
+    \n  pow2[1] = pow1[k];\r\n  FOR3(i, 2, k + 1) {\r\n    pow2[i] = convolution(pow2[i\
+    \ - 1], pow2[1]);\r\n    pow2[i].resize(n);\r\n  }\r\n  vc<mint> ANS(n);\r\n \
+    \ FOR(i, k + 1) {\r\n    vc<mint> f(n);\r\n    FOR(j, k) {\r\n      if (k * i\
+    \ + j < len(Q)) {\r\n        mint coef = Q[k * i + j];\r\n        FOR(d, len(pow1[j]))\
+    \ f[d] += pow1[j][d] * coef;\r\n      }\r\n    }\r\n    f = convolution(f, pow2[i]);\r\
+    \n    f.resize(n);\r\n    FOR(d, n) ANS[d] += f[d];\r\n  }\r\n  return ANS;\r\n\
+    }\r\n\r\n// f(g(x)), O(Nlog^2N)\r\ntemplate <typename mint>\r\nvc<mint> composition_0_ntt(vc<mint>\
+    \ f, vc<mint> g) {\r\n  assert(len(f) == len(g));\r\n  if (f.empty()) return {};\r\
+    \n\r\n  int n0 = len(f);\r\n  int n = 1;\r\n  while (n < len(f)) n *= 2;\r\n \
+    \ f.resize(n), g.resize(n);\r\n\r\n  vc<mint> W(n);\r\n  {\r\n    // bit reverse\
+    \ order\r\n    vc<int> btr(n);\r\n    int log = topbit(n);\r\n    FOR(i, n) {\
+    \ btr[i] = (btr[i >> 1] >> 1) + ((i & 1) << (log - 1)); }\r\n    int t = mint::ntt_info().fi;\r\
     \n    mint r = mint::ntt_info().se;\r\n    mint dw = r.inverse().pow((1 << t)\
     \ / (2 * n));\r\n    mint w = 1;\r\n    for (auto& i: btr) { W[i] = w, w *= dw;\
     \ }\r\n  }\r\n\r\n  auto rec = [&](auto& rec, int n, int k, vc<mint>& Q) -> vc<mint>\
@@ -1007,8 +1015,8 @@ data:
   isVerificationFile: true
   path: test/mytest/composition_log_1_minus_x.test.cpp
   requiredBy: []
-  timestamp: '2024-07-22 11:16:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-07 16:19:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/composition_log_1_minus_x.test.cpp
 layout: document

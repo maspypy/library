@@ -31,25 +31,28 @@ data:
   - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
   - icon: ':question:'
@@ -59,22 +62,25 @@ data:
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/composition_log_1_minus_x.test.cpp
     title: test/mytest/composition_log_1_minus_x.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/mytest/stirling_1_suffix.test.cpp
+    title: test/mytest/stirling_1_suffix.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -516,13 +522,24 @@ data:
     \ return f;\r\n  ll N = len(f);\r\n  FOR(i, N) f[i] *= fact<mint>(i);\r\n  auto\
     \ b = powertable_1<mint>(c, N);\r\n  FOR(i, N) b[i] *= fact_inv<mint>(i);\r\n\
     \  reverse(all(f));\r\n  f = convolution(f, b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\
-    \n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n#line 3 \"seq/famous/stirling_number_1.hpp\"\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_2d(int nmax, int\
-    \ kmax) {\r\n  vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int\
-    \ i = 1; i <= nmax; ++i) {\r\n    for (int j = 0; j < i + 1; ++j) {\r\n      if\
-    \ (j > kmax) break;\r\n      mint &x = A[i][j];\r\n      if (j) x += A[i - 1][j\
-    \ - 1];\r\n      x -= A[i - 1][j] * mint(i - 1);\r\n    }\r\n  }\r\n}\r\n\r\n\
-    // x(x+1)...(x+n-1) \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\
+    \n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\n  return f;\r\n}\r\n#line 2 \"poly/fps_div.hpp\"\
+    \n\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\u529B\
+    \u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint> fps_div(vc<mint>\
+    \ f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return fps_div_sparse(f,\
+    \ g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n  f = convolution(f,\
+    \ g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\u3057 g \u306F sparse\n\
+    template <typename mint>\nvc<mint> fps_div_sparse(vc<mint> f, vc<mint>& g) {\n\
+    \  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n    for (auto&& x: f)\
+    \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
+    \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
+    \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
+    \    }\n  }\n  return f;\n}\n#line 4 \"seq/famous/stirling_number_1.hpp\"\n\r\n\
+    template <typename mint>\r\nvc<mint> stirling_number_1_2d(int nmax, int kmax)\
+    \ {\r\n  vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int i =\
+    \ 1; i <= nmax; ++i) {\r\n    for (int j = 0; j < i + 1; ++j) {\r\n      if (j\
+    \ > kmax) break;\r\n      mint &x = A[i][j];\r\n      if (j) x += A[i - 1][j -\
+    \ 1];\r\n      x -= A[i - 1][j] * mint(i - 1);\r\n    }\r\n  }\r\n}\r\n\r\n//\
+    \ x(x+1)...(x+n-1) \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\
     \u3046\u3061\u3001k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\
     \u308B\u3082\u306E\u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\
     \u3068\u304D\u306E\u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate\
@@ -540,32 +557,50 @@ data:
     \  FOR(i, LIM + 1) f[i] = inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn)\
     \ { FOR(i, LIM + 1) if (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\
     \n  vc<mint> res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k\
-    \ + i);\r\n\r\n  return res;\r\n}\r\n"
+    \ + i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i) \u3092\u9006\u9806\u306B\u4E26\
+    \u3079\u305F\u3082\u306E\r\n// (1+0x)(1+1x)(1+2x)...(1+(N-1)x) \u3092 [x^K] \u307E\
+    \u3067\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_suffix(ll N,\
+    \ ll K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\
+    \r\n  vc<mint> num(K + 1), den(K + 1);\r\n  mint powN = 1;\r\n  FOR(k, K + 1)\
+    \ {\r\n    powN *= N;\r\n    num[k] = fact_inv<mint>(k + 1) * powN;\r\n    den[k]\
+    \ = fact_inv<mint>(k + 1);\r\n  }\r\n  vc<mint> S = fps_div<mint>(num, den);\r\
+    \n  FOR(i, K + 1) S[i] *= fact<mint>(i);\r\n  vc<mint> LOG_F(K + 1);\r\n  FOR(i,\
+    \ 1, K + 1) LOG_F[i] = S[i] * inv<mint>(i) * (2 * (i & 1) - 1);\r\n  return fps_exp(LOG_F);\r\
+    \n}\r\n"
   code: "#include \"poly/fps_pow.hpp\"\r\n#include \"poly/poly_taylor_shift.hpp\"\r\
-    \n\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_2d(int nmax, int\
-    \ kmax) {\r\n  vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int\
-    \ i = 1; i <= nmax; ++i) {\r\n    for (int j = 0; j < i + 1; ++j) {\r\n      if\
-    \ (j > kmax) break;\r\n      mint &x = A[i][j];\r\n      if (j) x += A[i - 1][j\
-    \ - 1];\r\n      x -= A[i - 1][j] * mint(i - 1);\r\n    }\r\n  }\r\n}\r\n\r\n\
-    // x(x+1)...(x+n-1) \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\
-    \u3046\u3061\u3001k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\
-    \u308B\u3082\u306E\u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\
-    \u3068\u304D\u306E\u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> stirling_number_1_n(int n, bool sgn = false) {\r\
-    \n  auto dfs = [&](auto self, int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\
-    \n    if (n == 1) return {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto\
-    \ g = poly_taylor_shift(f, mint(n / 2));\r\n    f = convolution(f, g);\r\n   \
-    \ if (n & 1) {\r\n      g = {(n - 1), 1};\r\n      f = convolution(f, g);\r\n\
-    \    }\r\n    return f;\r\n  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn) { FOR(i,\
-    \ n + 1) if ((n + i) % 2 == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\r\n// k\
-    \ \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\u6319\u3002\
-    \r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_k(int k, int n_max,\
-    \ bool sgn = false) {\r\n  if (n_max < k) {\r\n    vc<mint> f(n_max + 1);\r\n\
-    \    return f;\r\n  }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n\
-    \  FOR(i, LIM + 1) f[i] = inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn)\
-    \ { FOR(i, LIM + 1) if (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\
-    \n  vc<mint> res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k\
-    \ + i);\r\n\r\n  return res;\r\n}\r\n"
+    \n#include \"poly/fps_div.hpp\"\r\n\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_2d(int\
+    \ nmax, int kmax) {\r\n  vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n\
+    \  for (int i = 1; i <= nmax; ++i) {\r\n    for (int j = 0; j < i + 1; ++j) {\r\
+    \n      if (j > kmax) break;\r\n      mint &x = A[i][j];\r\n      if (j) x +=\
+    \ A[i - 1][j - 1];\r\n      x -= A[i - 1][j] * mint(i - 1);\r\n    }\r\n  }\r\n\
+    }\r\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\
+    \u5217\u306E\u3046\u3061\u3001k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\
+    \u304B\u308C\u308B\u3082\u306E\u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\
+    \u3057\u305F\u3068\u304D\u306E\u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\
+    \u3002\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_n(int n, bool\
+    \ sgn = false) {\r\n  auto dfs = [&](auto self, int n) -> vc<mint> {\r\n    if\
+    \ (n == 0) return {1};\r\n    if (n == 1) return {0, 1};\r\n    auto f = self(self,\
+    \ n / 2);\r\n    auto g = poly_taylor_shift(f, mint(n / 2));\r\n    f = convolution(f,\
+    \ g);\r\n    if (n & 1) {\r\n      g = {(n - 1), 1};\r\n      f = convolution(f,\
+    \ g);\r\n    }\r\n    return f;\r\n  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn)\
+    \ { FOR(i, n + 1) if ((n + i) % 2 == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\
+    \r\n// k \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\
+    \u6319\u3002\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_k(int k,\
+    \ int n_max, bool sgn = false) {\r\n  if (n_max < k) {\r\n    vc<mint> f(n_max\
+    \ + 1);\r\n    return f;\r\n  }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM\
+    \ + 1);\r\n  FOR(i, LIM + 1) f[i] = inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\
+    \n  if (sgn) { FOR(i, LIM + 1) if (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf\
+    \ = fact_inv<mint>(k);\r\n  vc<mint> res(n_max + 1);\r\n  FOR(i, len(f)) res[k\
+    \ + i] = cf * f[i] * fact<mint>(k + i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i)\
+    \ \u3092\u9006\u9806\u306B\u4E26\u3079\u305F\u3082\u306E\r\n// (1+0x)(1+1x)(1+2x)...(1+(N-1)x)\
+    \ \u3092 [x^K] \u307E\u3067\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_suffix(ll\
+    \ N, ll K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\
+    \r\n  vc<mint> num(K + 1), den(K + 1);\r\n  mint powN = 1;\r\n  FOR(k, K + 1)\
+    \ {\r\n    powN *= N;\r\n    num[k] = fact_inv<mint>(k + 1) * powN;\r\n    den[k]\
+    \ = fact_inv<mint>(k + 1);\r\n  }\r\n  vc<mint> S = fps_div<mint>(num, den);\r\
+    \n  FOR(i, K + 1) S[i] *= fact<mint>(i);\r\n  vc<mint> LOG_F(K + 1);\r\n  FOR(i,\
+    \ 1, K + 1) LOG_F[i] = S[i] * inv<mint>(i) * (2 * (i & 1) - 1);\r\n  return fps_exp(LOG_F);\r\
+    \n}\r\n"
   dependsOn:
   - poly/fps_pow.hpp
   - poly/count_terms.hpp
@@ -586,14 +621,16 @@ data:
   - poly/poly_taylor_shift.hpp
   - mod/powertable.hpp
   - nt/primetable.hpp
+  - poly/fps_div.hpp
   isVerificationFile: false
   path: seq/famous/stirling_number_1.hpp
   requiredBy:
   - poly/composition_f_log_1_minus_x.hpp
-  timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-07 16:19:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/mytest/composition_log_1_minus_x.test.cpp
+  - test/mytest/stirling_1_suffix.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
 documentation_of: seq/famous/stirling_number_1.hpp
