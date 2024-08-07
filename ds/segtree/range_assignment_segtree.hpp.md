@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/datastructure/range_set_range_composite.test.cpp
     title: test/library_checker/datastructure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/range_assign.test.cpp
     title: test/mytest/range_assign.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -124,13 +124,13 @@ data:
     \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) { return monoid_pow<MX>(dat[a],\
     \ r - l); };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
     \    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n    return\
-    \ MX::op(MX::op(x, y), z);\n  }\n\n  void assign(int l, int r, X x) {\n    int\
-    \ a = cut.prev(l), b = cut.next(r);\n    if (a < l) seg.set(a, monoid_pow<MX>(dat[a],\
-    \ l - a));\n    if (r < b) {\n      X y = dat[cut.prev(r)];\n      dat[r] = y,\
-    \ cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));\n    }\n    cut.enumerate(l\
-    \ + 1, r,\n                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i);\
-    \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
-    \  }\n};\n"
+    \ MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all(); }\n\
+    \n  void assign(int l, int r, X x) {\n    int a = cut.prev(l), b = cut.next(r);\n\
+    \    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n    if (r < b) {\n\
+    \      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y,\
+    \ b - r));\n    }\n    cut.enumerate(l + 1, r, [&](int i) -> void { seg.set(i,\
+    \ MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x,\
+    \ r - l));\n  }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid_pow.hpp\"\n#include\
     \ \"ds/fastset.hpp\"\n\ntemplate <typename Monoid>\nstruct Range_Assignment_SegTree\
     \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  SegTree<MX>\
@@ -145,13 +145,13 @@ data:
     \ b = cut.next(l), c = cut.prev(r);\n    if (a == c) { return monoid_pow<MX>(dat[a],\
     \ r - l); };\n    assert(b <= c);\n    X x = monoid_pow<MX>(dat[a], b - l);\n\
     \    X y = seg.prod(b, c);\n    X z = monoid_pow<MX>(dat[c], r - c);\n    return\
-    \ MX::op(MX::op(x, y), z);\n  }\n\n  void assign(int l, int r, X x) {\n    int\
-    \ a = cut.prev(l), b = cut.next(r);\n    if (a < l) seg.set(a, monoid_pow<MX>(dat[a],\
-    \ l - a));\n    if (r < b) {\n      X y = dat[cut.prev(r)];\n      dat[r] = y,\
-    \ cut.insert(r), seg.set(r, monoid_pow<MX>(y, b - r));\n    }\n    cut.enumerate(l\
-    \ + 1, r,\n                  [&](int i) -> void { seg.set(i, MX::unit()), cut.erase(i);\
-    \ });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x, r - l));\n\
-    \  }\n};\n"
+    \ MX::op(MX::op(x, y), z);\n  }\n\n  X prod_all() { return seg.prod_all(); }\n\
+    \n  void assign(int l, int r, X x) {\n    int a = cut.prev(l), b = cut.next(r);\n\
+    \    if (a < l) seg.set(a, monoid_pow<MX>(dat[a], l - a));\n    if (r < b) {\n\
+    \      X y = dat[cut.prev(r)];\n      dat[r] = y, cut.insert(r), seg.set(r, monoid_pow<MX>(y,\
+    \ b - r));\n    }\n    cut.enumerate(l + 1, r, [&](int i) -> void { seg.set(i,\
+    \ MX::unit()), cut.erase(i); });\n    dat[l] = x, cut.insert(l), seg.set(l, monoid_pow<MX>(x,\
+    \ r - l));\n  }\n};\n"
   dependsOn:
   - ds/segtree/segtree.hpp
   - alg/monoid_pow.hpp
@@ -159,8 +159,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_assignment_segtree.hpp
   requiredBy: []
-  timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-08 00:31:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/mytest/range_assign.test.cpp
   - test/library_checker/datastructure/range_set_range_composite.test.cpp
