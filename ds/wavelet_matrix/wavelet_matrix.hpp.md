@@ -377,22 +377,22 @@ data:
   timestamp: '2024-07-27 02:46:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1600_2.test.cpp
-  - test/yukicoder/2065.test.cpp
-  - test/yukicoder/1332.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1625_2.test.cpp
-  - test/yukicoder/1919_2.test.cpp
-  - test/yukicoder/919.test.cpp
-  - test/mytest/wavelet_matrix.test.cpp
-  - test/library_checker/string/prefix_substring_lcs.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test_atcoder/abc324g.test.cpp
   - test_atcoder/abc127f_1.test.cpp
+  - test/yukicoder/1332.test.cpp
+  - test/yukicoder/919.test.cpp
+  - test/yukicoder/1625_2.test.cpp
+  - test/yukicoder/2065.test.cpp
+  - test/yukicoder/924.test.cpp
+  - test/yukicoder/1919_2.test.cpp
+  - test/yukicoder/1600_2.test.cpp
+  - test/mytest/wavelet_matrix.test.cpp
+  - test/library_checker/string/prefix_substring_lcs.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix.hpp
 layout: document
 redirect_from:

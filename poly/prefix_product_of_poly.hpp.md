@@ -545,14 +545,14 @@ data:
   timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/library_checker/math/factorial.test.cpp
   - test_atcoder/abc222h_2.test.cpp
   - test_atcoder/abc276_g.test.cpp
   - test_atcoder/abc276_g_2.test.cpp
+  - test/yukicoder/502_2.test.cpp
+  - test/yukicoder/2166.test.cpp
+  - test/yukicoder/1080_2.test.cpp
+  - test/mytest/factorial_998.test.cpp
+  - test/library_checker/math/factorial.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp
 layout: document
 redirect_from:

@@ -65,13 +65,13 @@ data:
   timestamp: '2024-07-20 04:13:38+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc127f_1.test.cpp
   - test/yukicoder/2065.test.cpp
   - test/yukicoder/924.test.cpp
   - test/mytest/wavelet_matrix.test.cpp
+  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
   - test/library_checker/datastructure/static_range_sum.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-  - test_atcoder/abc127f_1.test.cpp
 documentation_of: ds/static_range_product_group.hpp
 layout: document
 redirect_from:

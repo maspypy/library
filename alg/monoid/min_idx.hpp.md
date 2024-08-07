@@ -48,16 +48,16 @@ data:
   isVerificationFile: false
   path: alg/monoid/min_idx.hpp
   requiredBy:
-  - geo/manhattan_nns.hpp
   - alg/acted_monoid/minidx_add.hpp
+  - geo/manhattan_nns.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc301h.test.cpp
   - test/yukicoder/2361.test.cpp
   - test/mytest/minidx_add.test.cpp
   - test/mytest/suffix_tree.test.cpp
   - test/mytest/manhattan_nns.test.cpp
-  - test_atcoder/abc301h.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

@@ -78,8 +78,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/263.test.cpp
-  - test/yukicoder/2606.test.cpp
   - test/yukicoder/465.test.cpp
+  - test/yukicoder/2606.test.cpp
   - test/mytest/palindrome_decomposition_dp.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document

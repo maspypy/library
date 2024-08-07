@@ -413,8 +413,8 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2580.test.cpp
   - test/yukicoder/1357.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/library_checker/math/bernoulli.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document

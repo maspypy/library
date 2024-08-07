@@ -54,11 +54,11 @@ data:
   timestamp: '2024-01-29 21:47:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/count_labeled_undirected.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/mytest/count_labeled_connected.test.cpp
   - test/mytest/count_labeled_eulerian.test.cpp
+  - test/mytest/count_labeled_biconnected.test.cpp
+  - test/mytest/count_labeled_undirected.test.cpp
+  - test/mytest/count_labeled_connected.test.cpp
+  - test/mytest/count_labeled_bridgeless.test.cpp
 documentation_of: graph/count/count_labeled_undirected.hpp
 layout: document
 redirect_from:

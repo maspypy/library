@@ -544,10 +544,10 @@ data:
   timestamp: '2024-07-20 03:47:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1145.test.cpp
   - test/yukicoder/1575.test.cpp
   - test/yukicoder/2747.test.cpp
   - test/yukicoder/2459.test.cpp
+  - test/yukicoder/1145.test.cpp
 documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:

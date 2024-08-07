@@ -66,9 +66,9 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/abc318b.test.cpp
   - test/aoj/DSL_4_A.test.cpp
   - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - test_atcoder/abc318b.test.cpp
 documentation_of: alg/acted_monoid/minmincnt_add.hpp
 layout: document
 redirect_from:

@@ -193,10 +193,10 @@ data:
   timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2809.test.cpp
-  - test/mytest/sortable_array.test.cpp
   - test_atcoder/abc217e.test.cpp
   - test_atcoder/abc237g1.test.cpp
+  - test/yukicoder/2809.test.cpp
+  - test/mytest/sortable_array.test.cpp
 documentation_of: ds/sortable_array.hpp
 layout: document
 redirect_from:

@@ -33,8 +33,8 @@ data:
   timestamp: '2024-01-30 02:35:00+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/count_labeled_forest.test.cpp
   - test/mytest/graph_count.test.cpp
+  - test/mytest/count_labeled_forest.test.cpp
 documentation_of: graph/count/count_labeled_tree.hpp
 layout: document
 redirect_from:

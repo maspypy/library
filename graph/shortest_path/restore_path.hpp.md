@@ -47,8 +47,8 @@ data:
   verifiedWith:
   - test/mytest/st_numbering.test.cpp
   - test/library_checker/tree/tree_diameter.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
   - test/library_checker/graph/st_numbering.test.cpp
+  - test/library_checker/graph/shortest_path.test.cpp
 documentation_of: graph/shortest_path/restore_path.hpp
 layout: document
 redirect_from:

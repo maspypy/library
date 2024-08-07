@@ -6,19 +6,19 @@ data:
     path: bigint/base.hpp
     title: bigint/base.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_A.test.cpp
     title: test/aoj/NTL_2_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_B.test.cpp
     title: test/aoj/NTL_2_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_2_C.test.cpp
     title: test/aoj/NTL_2_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/bigint/addition_of_bigintegers.test.cpp
     title: test/library_checker/bigint/addition_of_bigintegers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
     title: test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - icon: ':x:'
@@ -72,21 +72,21 @@ data:
   timestamp: '2024-06-06 03:38:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/303.test.cpp
-  - test/yukicoder/2440.test.cpp
-  - test/yukicoder/2580.test.cpp
-  - test/yukicoder/2649.test.cpp
-  - test/yukicoder/2525.test.cpp
+  - test_atcoder/abc339f.test.cpp
   - test/yukicoder/2508.test.cpp
-  - test/mytest/bigint.test.cpp
-  - test/mytest/digit_sum.test.cpp
+  - test/yukicoder/2525.test.cpp
+  - test/yukicoder/2440.test.cpp
+  - test/yukicoder/303.test.cpp
+  - test/yukicoder/2649.test.cpp
+  - test/yukicoder/2580.test.cpp
   - test/aoj/NTL_2_C.test.cpp
   - test/aoj/NTL_2_B.test.cpp
   - test/aoj/NTL_2_A.test.cpp
+  - test/mytest/bigint.test.cpp
+  - test/mytest/digit_sum.test.cpp
+  - test/library_checker/sample/aplusb128.test.cpp
   - test/library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/library_checker/bigint/multiplication_of_bigintegers.test.cpp
-  - test/library_checker/sample/aplusb128.test.cpp
-  - test_atcoder/abc339f.test.cpp
 documentation_of: nt/digit_sum.hpp
 layout: document
 redirect_from:

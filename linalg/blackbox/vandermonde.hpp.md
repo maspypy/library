@@ -661,8 +661,8 @@ data:
   timestamp: '2024-07-20 03:47:44+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/vandermonde.test.cpp
   - test_atcoder/abc260h.test.cpp
+  - test/mytest/vandermonde.test.cpp
 documentation_of: linalg/blackbox/vandermonde.hpp
 layout: document
 redirect_from:

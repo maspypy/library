@@ -124,9 +124,9 @@ data:
   timestamp: '2023-06-11 16:53:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/kdtree_nns.test.cpp
-  - test/aoj/DSL_2_C.test.cpp
   - test_atcoder/abc234ex.test.cpp
+  - test/aoj/DSL_2_C.test.cpp
+  - test/mytest/kdtree_nns.test.cpp
 documentation_of: ds/kdtree/kdtree.hpp
 layout: document
 redirect_from:

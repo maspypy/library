@@ -247,8 +247,8 @@ data:
   isVerificationFile: false
   path: nt/three_square.hpp
   requiredBy:
-  - nt/four_square.hpp
   - nt/three_triangular.hpp
+  - nt/four_square.hpp
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

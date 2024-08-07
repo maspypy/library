@@ -156,9 +156,9 @@ data:
   timestamp: '2024-05-03 01:43:19+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test_atcoder/arc151_e.test.cpp
   - test/mytest/longest_common_substr.test.cpp
   - test/library_checker/string/longest_common_substring.test.cpp
-  - test_atcoder/arc151_e.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

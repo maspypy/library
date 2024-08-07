@@ -328,8 +328,8 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1326.test.cpp
   - test/yukicoder/1641.test.cpp
+  - test/yukicoder/1326.test.cpp
   - test/aoj/2636.test.cpp
   - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp

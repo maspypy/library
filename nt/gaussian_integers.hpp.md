@@ -265,9 +265,9 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy:
+  - nt/three_triangular.hpp
   - nt/four_square.hpp
   - nt/three_square.hpp
-  - nt/three_triangular.hpp
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

@@ -59,11 +59,11 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2292.test.cpp
-  - test/mytest/range_assign.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
   - test_atcoder/abc256ex.test.cpp
   - test_atcoder/abc256ex2.test.cpp
+  - test/yukicoder/2292.test.cpp
+  - test/aoj/DSL_2_I.test.cpp
+  - test/mytest/range_assign.test.cpp
 documentation_of: alg/acted_monoid/sum_assign.hpp
 layout: document
 redirect_from:

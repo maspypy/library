@@ -142,8 +142,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/aoj/DPL_2_A.test.cpp
   - test_atcoder/abc180e.test.cpp
+  - test/aoj/DPL_2_A.test.cpp
 documentation_of: graph/minimum_hamiltonian_cycle.hpp
 layout: document
 redirect_from:

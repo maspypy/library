@@ -41,10 +41,10 @@ data:
   - icon: ':x:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':heavy_check_mark:'
@@ -63,10 +63,10 @@ data:
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/ITP1_D_D.test.cpp
     title: test/aoj/ITP1_D_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
   - icon: ':x:'
@@ -330,83 +330,83 @@ data:
   isVerificationFile: false
   path: nt/factor.hpp
   requiredBy:
-  - nt/crt.hpp
-  - nt/all_lcm.hpp
-  - nt/divisors.hpp
-  - nt/euler_phi.hpp
-  - nt/four_square.hpp
-  - nt/three_square.hpp
+  - mod/mod_kth_root.hpp
+  - mod/tetration.hpp
+  - mod/mod_log.hpp
+  - mod/multiplicative_convolution_mod_p.hpp
+  - mod/primitive_root.hpp
+  - mod/dynamic_modint.hpp
+  - mod/binomial.hpp
+  - poly/multivar_convolution_cyclic.hpp
   - nt/gaussian_integers.hpp
   - nt/three_triangular.hpp
   - nt/array_on_divisors.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - mod/tetration.hpp
-  - mod/primitive_root.hpp
-  - mod/binomial.hpp
-  - mod/dynamic_modint.hpp
-  - mod/multiplicative_convolution_mod_p.hpp
-  - mod/mod_log.hpp
-  - mod/mod_kth_root.hpp
+  - nt/four_square.hpp
+  - nt/divisors.hpp
+  - nt/euler_phi.hpp
+  - nt/crt.hpp
+  - nt/all_lcm.hpp
+  - nt/three_square.hpp
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1881.test.cpp
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1339.test.cpp
-  - test/yukicoder/2613.test.cpp
-  - test/yukicoder/2578.test.cpp
-  - test/yukicoder/1667.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/1411.test.cpp
-  - test/yukicoder/2120.test.cpp
-  - test/yukicoder/2264.test.cpp
-  - test/yukicoder/1956.test.cpp
-  - test/yukicoder/2119.test.cpp
-  - test/yukicoder/2181.test.cpp
-  - test/yukicoder/1783.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/mytest/four_square.test.cpp
-  - test/mytest/31bit_modint.test.cpp
-  - test/mytest/three_triangular.test.cpp
-  - test/mytest/O1_inv.test.cpp
-  - test/mytest/geometric_sequence_sum.test.cpp
-  - test/mytest/three_square.test.cpp
-  - test/aoj/ITP1_D_D.test.cpp
-  - test/aoj/NTL_1_D.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/composition_dmint.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - test/library_checker/convolution/mul_modp_conv.test.cpp
-  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - test/library_checker/math/factorize.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/gaussian_integers.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/tetration.test.cpp
   - test_atcoder/abc335g.test.cpp
+  - test_atcoder/agc058d2.test.cpp
+  - test_atcoder/abc270_g.test.cpp
   - test_atcoder/abc212g.test.cpp
   - test_atcoder/abc222g.test.cpp
-  - test_atcoder/abc281g.test.cpp
-  - test_atcoder/abc270_g.test.cpp
-  - test_atcoder/agc058d2.test.cpp
   - test_atcoder/abc152e.test.cpp
+  - test_atcoder/abc281g.test.cpp
+  - test/yukicoder/1956.test.cpp
+  - test/yukicoder/1575.test.cpp
+  - test/yukicoder/1728.test.cpp
+  - test/yukicoder/1783.test.cpp
+  - test/yukicoder/1411.test.cpp
+  - test/yukicoder/2119.test.cpp
+  - test/yukicoder/1025.test.cpp
+  - test/yukicoder/2181.test.cpp
+  - test/yukicoder/2120.test.cpp
+  - test/yukicoder/1593.test.cpp
+  - test/yukicoder/590.test.cpp
+  - test/yukicoder/1667.test.cpp
+  - test/yukicoder/2578.test.cpp
+  - test/yukicoder/2264.test.cpp
+  - test/yukicoder/187.test.cpp
+  - test/yukicoder/2613.test.cpp
+  - test/yukicoder/1339.test.cpp
+  - test/yukicoder/1881.test.cpp
+  - test/yukicoder/1262.test.cpp
+  - test/aoj/NTL_1_D.test.cpp
+  - test/aoj/ITP1_D_D.test.cpp
+  - test/mytest/O1_inv.test.cpp
+  - test/mytest/four_square.test.cpp
+  - test/mytest/31bit_modint.test.cpp
+  - test/mytest/geometric_sequence_sum.test.cpp
+  - test/mytest/three_triangular.test.cpp
+  - test/mytest/three_square.test.cpp
+  - test/library_checker/convolution/mul_modp_conv.test.cpp
+  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps.test.cpp
+  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/library_checker/polynomial/composition_dmint.test.cpp
+  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/library_checker/math/primitive_root.test.cpp
+  - test/library_checker/math/tetration.test.cpp
+  - test/library_checker/math/kth_root_mod.test.cpp
+  - test/library_checker/math/factorize.test.cpp
+  - test/library_checker/math/gaussian_integers.test.cpp
+  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
 documentation_of: nt/factor.hpp
 layout: document
 redirect_from:
