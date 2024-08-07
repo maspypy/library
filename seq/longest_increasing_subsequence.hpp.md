@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/DPL_1_D.test.cpp
     title: test/aoj/DPL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/longest_increasing_subsequence.test.cpp
     title: test/library_checker/math/longest_increasing_subsequence.test.cpp
   - icon: ':x:'

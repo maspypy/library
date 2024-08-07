@@ -6,7 +6,7 @@ data:
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
     title: test/library_checker/math/sum_of_floor_of_linear_2.test.cpp
   - icon: ':heavy_check_mark:'

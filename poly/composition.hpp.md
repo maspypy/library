@@ -51,7 +51,7 @@ data:
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/polynomial/composition_dmint.test.cpp
     title: test/library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':x:'

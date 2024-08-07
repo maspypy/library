@@ -30,10 +30,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/det_mod.test.cpp
     title: test/library_checker/matrix/det_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/matrix/matrix_det.test.cpp
     title: test/library_checker/matrix/matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
