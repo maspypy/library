@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
@@ -18,25 +18,25 @@ data:
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
     title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
     title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':x:'
     path: test/library_checker/string/prefix_substring_lcs.test.cpp
     title: test/library_checker/string/prefix_substring_lcs.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/wavelet_matrix.test.cpp
     title: test/mytest/wavelet_matrix.test.cpp
   - icon: ':x:'
@@ -68,31 +68,35 @@ data:
     title: test_atcoder/abc324g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u64,\
-    \ u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 127) >> 6, {0, 0});\
-    \ }\n  void set(int i) { dat[i >> 6].fi |= u64(1) << (i & 63); }\n  void reset()\
-    \ { fill(all(dat), pair<u64, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat)\
+  bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool\
+    \ prepared = 0;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n\
+    \ + 127) >> 6, {0, 0}); }\n  void set(int i) {\n    assert(!prepared);\n    dat[i\
+    \ >> 6].fi |= u64(1) << (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64,\
+    \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
+    \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
+    \  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  bool operator[](int i) { return\
+    \ dat[i >> 6] >> (i & 63) & 1; }\n  int count_prefix(int k, bool f = true) {\n\
+    \    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a\
+    \ & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int\
+    \ count(int L, int R, bool f = true) { return count_prefix(R, f) - count_prefix(L,\
+    \ f); }\n  string to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i\
+    \ / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n"
+  code: "struct Bit_Vector {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>>\
+    \ dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n \
+    \ void set(int i) {\n    assert(!prepared);\n    dat[i >> 6].fi |= u64(1) << (i\
+    \ & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64, u32>{0, 0});\n \
+    \   prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n    FOR(i, len(dat)\
     \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\
-    \u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool f = true) {\n    auto\
-    \ [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) -\
-    \ 1));\n    return (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f\
-    \ = true) {\n    return count_prefix(R, f) - count_prefix(L, f);\n  }\n  string\
+    \u306E 1 \u306E\u500B\u6570\n  bool operator[](int i) { return dat[i >> 6] >>\
+    \ (i & 63) & 1; }\n  int count_prefix(int k, bool f = true) {\n    assert(prepared);\n\
+    \    auto [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k &\
+    \ 63)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int count(int L, int R,\
+    \ bool f = true) { return count_prefix(R, f) - count_prefix(L, f); }\n  string\
     \ to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >>\
     \ (i % 64) & 1);\n    return ans;\n  }\n};\n"
-  code: "struct Bit_Vector {\n  int n;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int\
-    \ n) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void set(int i) { dat[i\
-    \ >> 6].fi |= u64(1) << (i & 63); }\n  void reset() { fill(all(dat), pair<u64,\
-    \ u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
-    \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
-    \ int count_prefix(int k, bool f = true) {\n    auto [a, b] = dat[k >> 6];\n \
-    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) {\n    return count_prefix(R,\
-    \ f) - count_prefix(L, f);\n  }\n  string to_string() {\n    string ans;\n   \
-    \ FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n\
-    \  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/bit_vector.hpp
@@ -102,8 +106,8 @@ data:
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_old.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  timestamp: '2024-07-27 02:46:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-08-08 03:30:23+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1600_2.test.cpp
   - test/yukicoder/2065.test.cpp

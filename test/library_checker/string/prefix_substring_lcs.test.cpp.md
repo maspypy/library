@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -211,17 +211,19 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/library_checker/string/prefix_substring_lcs.test.cpp\"\
-    \n\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  vc<pair<u64,\
-    \ u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n + 127) >> 6, {0, 0});\
-    \ }\n  void set(int i) { dat[i >> 6].fi |= u64(1) << (i & 63); }\n  void reset()\
-    \ { fill(all(dat), pair<u64, u32>{0, 0}); }\n  void build() {\n    FOR(i, len(dat)\
-    \ - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\
-    \u306E 1 \u306E\u500B\u6570\n  int count_prefix(int k, bool f = true) {\n    auto\
-    \ [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) -\
-    \ 1));\n    return (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f\
-    \ = true) {\n    return count_prefix(R, f) - count_prefix(L, f);\n  }\n  string\
-    \ to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >>\
-    \ (i % 64) & 1);\n    return ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\
+    \n\n#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool prepared\
+    \ = 0;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int n) : n(n) { dat.assign((n\
+    \ + 127) >> 6, {0, 0}); }\n  void set(int i) {\n    assert(!prepared);\n    dat[i\
+    \ >> 6].fi |= u64(1) << (i & 63);\n  }\n  void reset() {\n    fill(all(dat), pair<u64,\
+    \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
+    \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
+    \  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  bool operator[](int i) { return\
+    \ dat[i >> 6] >> (i & 63) & 1; }\n  int count_prefix(int k, bool f = true) {\n\
+    \    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a\
+    \ & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int\
+    \ count(int L, int R, bool f = true) { return count_prefix(R, f) - count_prefix(L,\
+    \ f); }\n  string to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i\
+    \ / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\
     \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(is_same_v<T,\
     \ int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi\
     \ = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
@@ -411,7 +413,7 @@ data:
   isVerificationFile: true
   path: test/library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2024-08-07 19:12:47+09:00'
+  timestamp: '2024-08-08 03:30:23+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/library_checker/string/prefix_substring_lcs.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -129,29 +129,31 @@ data:
     \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
     \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
     \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"ds/bit_vector.hpp\"\n\
-    struct Bit_Vector {\n  int n;\n  vc<pair<u64, u32>> dat;\n  Bit_Vector(int n)\
-    \ : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void set(int i) { dat[i >>\
-    \ 6].fi |= u64(1) << (i & 63); }\n  void reset() { fill(all(dat), pair<u64, u32>{0,\
-    \ 0}); }\n  void build() {\n    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se\
-    \ + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n \
-    \ int count_prefix(int k, bool f = true) {\n    auto [a, b] = dat[k >> 6];\n \
-    \   int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret\
-    \ : k - ret);\n  }\n  int count(int L, int R, bool f = true) {\n    return count_prefix(R,\
-    \ f) - count_prefix(L, f);\n  }\n  string to_string() {\n    string ans;\n   \
-    \ FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n    return ans;\n\
-    \  }\n};\n#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct\
-    \ Index_Compression_DISTINCT_SMALL {\n  static_assert(is_same_v<T, int>);\n  int\
-    \ mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi = 0, ma = -1;\n\
-    \    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi + 2, 0);\n\
-    \    for (auto& x: X) dat[x - mi + 1]++;\n    FOR(i, len(dat) - 1) dat[i + 1]\
-    \ += dat[i];\n    for (auto& x: X) { x = dat[x - mi]++; }\n    FOR_R(i, 1, len(dat))\
-    \ dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n  }\n  int operator()(ll\
-    \ x) { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)]; }\n};\n\ntemplate <typename\
-    \ T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(is_same_v<T, int>);\n\
-    \  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi = 0, ma =\
-    \ -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma - mi +\
-    \ 2, 0);\n    for (auto& x: X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat) - 1)\
-    \ dat[i + 1] += dat[i];\n    for (auto& x: X) { x = dat[x - mi]; }\n    return\
+    struct Bit_Vector {\n  int n;\n  bool prepared = 0;\n  vc<pair<u64, u32>> dat;\n\
+    \  Bit_Vector(int n) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }\n  void set(int\
+    \ i) {\n    assert(!prepared);\n    dat[i >> 6].fi |= u64(1) << (i & 63);\n  }\n\
+    \  void reset() {\n    fill(all(dat), pair<u64, u32>{0, 0});\n    prepared = 0;\n\
+    \  }\n  void build() {\n    prepared = 1;\n    FOR(i, len(dat) - 1) dat[i + 1].se\
+    \ = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\
+    \u6570\n  bool operator[](int i) { return dat[i >> 6] >> (i & 63) & 1; }\n  int\
+    \ count_prefix(int k, bool f = true) {\n    assert(prepared);\n    auto [a, b]\
+    \ = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n\
+    \    return (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f = true)\
+    \ { return count_prefix(R, f) - count_prefix(L, f); }\n  string to_string() {\n\
+    \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
+    \    return ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\ntemplate <typename\
+    \ T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(is_same_v<T,\
+    \ int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi\
+    \ = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
+    \ - mi + 2, 0);\n    for (auto& x: X) dat[x - mi + 1]++;\n    FOR(i, len(dat)\
+    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x: X) { x = dat[x - mi]++; }\n  \
+    \  FOR_R(i, 1, len(dat)) dat[i] = dat[i - 1];\n    dat[0] = 0;\n    return X;\n\
+    \  }\n  int operator()(ll x) { return dat[clamp<ll>(x - mi, 0, ma - mi + 1)];\
+    \ }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_SMALL {\n  static_assert(is_same_v<T,\
+    \ int>);\n  int mi, ma;\n  vc<int> dat;\n  vc<int> build(vc<int> X) {\n    mi\
+    \ = 0, ma = -1;\n    if (!X.empty()) mi = MIN(X), ma = MAX(X);\n    dat.assign(ma\
+    \ - mi + 2, 0);\n    for (auto& x: X) dat[x - mi + 1] = 1;\n    FOR(i, len(dat)\
+    \ - 1) dat[i + 1] += dat[i];\n    for (auto& x: X) { x = dat[x - mi]; }\n    return\
     \ X;\n  }\n  int operator()(ll x) { return dat[clamp<ll>(x - mi, 0, ma - mi +\
     \ 1)]; }\n};\n\ntemplate <typename T>\nstruct Index_Compression_SAME_LARGE {\n\
     \  vc<T> dat;\n  vc<int> build(vc<T> X) {\n    vc<int> I = argsort(X);\n    vc<int>\
@@ -441,8 +443,8 @@ data:
   isVerificationFile: true
   path: test/mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-07-27 02:46:37+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-08 03:30:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/mytest/wavelet_matrix.test.cpp
 layout: document
