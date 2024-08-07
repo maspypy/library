@@ -1,5 +1,6 @@
 #include "poly/fps_pow.hpp"
 #include "poly/poly_taylor_shift.hpp"
+#include "poly/fps_div.hpp"
 
 template <typename mint>
 vc<mint> stirling_number_1_2d(int nmax, int kmax) {
@@ -55,4 +56,23 @@ vc<mint> stirling_number_1_k(int k, int n_max, bool sgn = false) {
   FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k + i);
 
   return res;
+}
+
+// s(n,i) を逆順に並べたもの
+// (1+0x)(1+1x)(1+2x)...(1+(N-1)x) を [x^K] まで
+template <typename mint>
+vc<mint> stirling_number_1_suffix(ll N, ll K) {
+  // まずは e^{Nx}-1 / e^x-1 を [x^K] まで
+  vc<mint> num(K + 1), den(K + 1);
+  mint powN = 1;
+  FOR(k, K + 1) {
+    powN *= N;
+    num[k] = fact_inv<mint>(k + 1) * powN;
+    den[k] = fact_inv<mint>(k + 1);
+  }
+  vc<mint> S = fps_div<mint>(num, den);
+  FOR(i, K + 1) S[i] *= fact<mint>(i);
+  vc<mint> LOG_F(K + 1);
+  FOR(i, 1, K + 1) LOG_F[i] = S[i] * inv<mint>(i) * (2 * (i & 1) - 1);
+  return fps_exp(LOG_F);
 }
