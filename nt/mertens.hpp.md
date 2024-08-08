@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
   - icon: ':question:'
