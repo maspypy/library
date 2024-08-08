@@ -18,7 +18,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/aoj/CGL_7_C.test.cpp
     title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2602.test.cpp
     title: test/yukicoder/2602.test.cpp
   - icon: ':x:'

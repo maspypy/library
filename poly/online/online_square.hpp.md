@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/online_square.test.cpp
     title: test/mytest/online_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2801.test.cpp
     title: test/yukicoder/2801.test.cpp
   - icon: ':x:'
