@@ -16,7 +16,7 @@ struct Bit_Vector {
     FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);
   }
   // [0, k) 内の 1 の個数
-  bool operator[](int i) { return dat[i >> 6] >> (i & 63) & 1; }
+  bool operator[](int i) { return dat[i >> 6].fi >> (i & 63) & 1; }
   int count_prefix(int k, bool f = true) {
     assert(prepared);
     auto [a, b] = dat[k >> 6];

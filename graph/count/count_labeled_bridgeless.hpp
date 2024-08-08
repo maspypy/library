@@ -7,6 +7,7 @@
 // https://oeis.org/A095983
 // N=1: 1
 // O(Nlog^2N)
+// https://atcoder.jp/contests/ttpc2023/tasks/ttpc2023_p
 template <typename mint>
 vc<mint> count_labeled_bridgeless(int N) {
   vc<mint> C = count_labeled_connected<mint>(N);
