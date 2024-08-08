@@ -39,7 +39,7 @@ void solve() {
     int s = LB(X, T[a]);
     int t = LB(X, H[b]);
     if (s >= t) { return 1; }
-    auto check = [&](auto e) -> bool { return e < t - s; };
+    auto check = [&](int i, auto e) -> bool { return e < t - s; };
     ll step = D.max_step(check, s);
     ll ANS = step + 2;
     if (ANS > N) ANS = -1;
