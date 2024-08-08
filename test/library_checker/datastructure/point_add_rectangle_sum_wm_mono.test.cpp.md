@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_add_rectangle_sum
@@ -221,10 +221,10 @@ data:
     \ u32>{0, 0});\n    prepared = 0;\n  }\n  void build() {\n    prepared = 1;\n\
     \    FOR(i, len(dat) - 1) dat[i + 1].se = dat[i].se + popcnt(dat[i].fi);\n  }\n\
     \  // [0, k) \u5185\u306E 1 \u306E\u500B\u6570\n  bool operator[](int i) { return\
-    \ dat[i >> 6] >> (i & 63) & 1; }\n  int count_prefix(int k, bool f = true) {\n\
-    \    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b + popcnt(a\
-    \ & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n  }\n  int\
-    \ count(int L, int R, bool f = true) { return count_prefix(R, f) - count_prefix(L,\
+    \ dat[i >> 6].fi >> (i & 63) & 1; }\n  int count_prefix(int k, bool f = true)\
+    \ {\n    assert(prepared);\n    auto [a, b] = dat[k >> 6];\n    int ret = b +\
+    \ popcnt(a & ((u64(1) << (k & 63)) - 1));\n    return (f ? ret : k - ret);\n \
+    \ }\n  int count(int L, int R, bool f = true) { return count_prefix(R, f) - count_prefix(L,\
     \ f); }\n  string to_string() {\n    string ans;\n    FOR(i, n) ans += '0' + (dat[i\
     \ / 64].fi >> (i % 64) & 1);\n    return ans;\n  }\n};\n#line 1 \"ds/index_compression.hpp\"\
     \ntemplate <typename T>\nstruct Index_Compression_DISTINCT_SMALL {\n  static_assert(is_same_v<T,\
@@ -489,8 +489,8 @@ data:
   isVerificationFile: true
   path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
   requiredBy: []
-  timestamp: '2024-08-08 03:30:23+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-08 19:22:51+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
 layout: document

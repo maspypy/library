@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -213,9 +213,9 @@ data:
     \  void reset() {\n    fill(all(dat), pair<u64, u32>{0, 0});\n    prepared = 0;\n\
     \  }\n  void build() {\n    prepared = 1;\n    FOR(i, len(dat) - 1) dat[i + 1].se\
     \ = dat[i].se + popcnt(dat[i].fi);\n  }\n  // [0, k) \u5185\u306E 1 \u306E\u500B\
-    \u6570\n  bool operator[](int i) { return dat[i >> 6] >> (i & 63) & 1; }\n  int\
-    \ count_prefix(int k, bool f = true) {\n    assert(prepared);\n    auto [a, b]\
-    \ = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n\
+    \u6570\n  bool operator[](int i) { return dat[i >> 6].fi >> (i & 63) & 1; }\n\
+    \  int count_prefix(int k, bool f = true) {\n    assert(prepared);\n    auto [a,\
+    \ b] = dat[k >> 6];\n    int ret = b + popcnt(a & ((u64(1) << (k & 63)) - 1));\n\
     \    return (f ? ret : k - ret);\n  }\n  int count(int L, int R, bool f = true)\
     \ { return count_prefix(R, f) - count_prefix(L, f); }\n  string to_string() {\n\
     \    string ans;\n    FOR(i, n) ans += '0' + (dat[i / 64].fi >> (i % 64) & 1);\n\
@@ -419,7 +419,7 @@ data:
   isVerificationFile: true
   path: test_atcoder/abc324g.test.cpp
   requiredBy: []
-  timestamp: '2024-08-08 03:30:23+09:00'
+  timestamp: '2024-08-08 19:22:51+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test_atcoder/abc324g.test.cpp

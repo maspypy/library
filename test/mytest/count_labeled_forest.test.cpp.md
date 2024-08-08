@@ -580,18 +580,20 @@ data:
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
     \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"graph/count/count_labeled_tree.hpp\"\
-    \n\n// https://oeis.org/A000272\ntemplate <typename mint>\nvc<mint> count_labeled_tree(ll\
-    \ nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1)\
-    \ : mint(n).pow(n - 2)); }\n  return f;\n}\n#line 3 \"graph/count/count_labeled_forest.hpp\"\
-    \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_labeled_forest(int\
-    \ N) {\n  vc<mint> f = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *=\
-    \ fact_inv<mint>(i);\n  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n\
-    \  return f;\n}\n#line 8 \"test/mytest/count_labeled_forest.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid test() {\n  vc<mint> F = count_labeled_forest<mint>(10);\n\
-    \  vi ANS = {1, 1, 2, 7, 38, 291, 2932, 36961, 561948, 10026505, 205608536};\n\
-    \  FOR(n, 11) { assert(F[n] == mint(ANS[n])); }\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \n\n// \u5927\u304D\u3055 (a1,a2.,,,.ak) \u306E\u6210\u5206\u3092\u6728\u306B\u3059\
+    \u308B\u3068\u304D: prod(a)*N^{k-2}\n// https://oeis.org/A000272\ntemplate <typename\
+    \ mint>\nvc<mint> count_labeled_tree(ll nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n,\
+    \ 1, nmax + 1) { f[n] = (n == 1 ? mint(1) : mint(n).pow(n - 2)); }\n  return f;\n\
+    }\n#line 3 \"graph/count/count_labeled_forest.hpp\"\n\n// https://oeis.org/A001858\n\
+    template <typename mint>\nvc<mint> count_labeled_forest(int N) {\n  vc<mint> f\
+    \ = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *= fact_inv<mint>(i);\n\
+    \  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n  return f;\n}\n\
+    #line 8 \"test/mytest/count_labeled_forest.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  vc<mint> F = count_labeled_forest<mint>(10);\n  vi ANS = {1,\
+    \ 1, 2, 7, 38, 291, 2932, 36961, 561948, 10026505, 205608536};\n  FOR(n, 11) {\
+    \ assert(F[n] == mint(ANS[n])); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/count/count_labeled_forest.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid test() {\n  vc<mint>\
@@ -620,7 +622,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_labeled_forest.test.cpp
   requiredBy: []
-  timestamp: '2024-08-07 19:12:47+09:00'
+  timestamp: '2024-08-08 19:22:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_labeled_forest.test.cpp

@@ -396,13 +396,14 @@ data:
     \ mint>\r\nvc<mint> fps_exp(vc<mint>& f) {\r\n  int n = count_terms(f);\r\n  int\
     \ t = (mint::can_ntt() ? 320 : 3000);\r\n  return (n <= t ? fps_exp_sparse<mint>(f)\
     \ : fps_exp_dense<mint>(f));\r\n}\r\n#line 2 \"graph/count/count_labeled_tree.hpp\"\
-    \n\n// https://oeis.org/A000272\ntemplate <typename mint>\nvc<mint> count_labeled_tree(ll\
-    \ nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n, 1, nmax + 1) { f[n] = (n == 1 ? mint(1)\
-    \ : mint(n).pow(n - 2)); }\n  return f;\n}\n#line 3 \"graph/count/count_labeled_forest.hpp\"\
-    \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_labeled_forest(int\
-    \ N) {\n  vc<mint> f = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *=\
-    \ fact_inv<mint>(i);\n  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n\
-    \  return f;\n}\n"
+    \n\n// \u5927\u304D\u3055 (a1,a2.,,,.ak) \u306E\u6210\u5206\u3092\u6728\u306B\u3059\
+    \u308B\u3068\u304D: prod(a)*N^{k-2}\n// https://oeis.org/A000272\ntemplate <typename\
+    \ mint>\nvc<mint> count_labeled_tree(ll nmax) {\n  vc<mint> f(nmax + 1);\n  FOR(n,\
+    \ 1, nmax + 1) { f[n] = (n == 1 ? mint(1) : mint(n).pow(n - 2)); }\n  return f;\n\
+    }\n#line 3 \"graph/count/count_labeled_forest.hpp\"\n\n// https://oeis.org/A001858\n\
+    template <typename mint>\nvc<mint> count_labeled_forest(int N) {\n  vc<mint> f\
+    \ = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *= fact_inv<mint>(i);\n\
+    \  f = fps_exp(f);\n  FOR(i, len(f)) f[i] *= fact<mint>(i);\n  return f;\n}\n"
   code: "#include \"poly/fps_exp.hpp\"\n#include \"graph/count/count_labeled_tree.hpp\"\
     \n\n// https://oeis.org/A001858\ntemplate <typename mint>\nvc<mint> count_labeled_forest(int\
     \ N) {\n  vc<mint> f = count_labeled_tree<mint>(N);\n  FOR(i, len(f)) f[i] *=\
@@ -426,7 +427,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_forest.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-08-08 19:22:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/mytest/count_labeled_forest.test.cpp

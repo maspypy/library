@@ -903,25 +903,26 @@ data:
     \    G1 = {G1.begin() + n, G1.end()};\n    G1 = fps_div(G1, G2);\n    FOR(i, n)\
     \ G[n + i] -= G1[i];\n  }\n  G.resize(N);\n  return G;\n}\n#line 5 \"graph/count/count_labeled_bridgeless.hpp\"\
     \n\n// \u6A4B\u306E\u306A\u3044\u9023\u7D50\u30B0\u30E9\u30D5\n// https://oeis.org/A095983\n\
-    // N=1: 1\n// O(Nlog^2N)\ntemplate <typename mint>\nvc<mint> count_labeled_bridgeless(int\
-    \ N) {\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i]\
-    \ *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i] = mint(i)\
-    \ * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n  E.pop_back();\n\
-    \n  // D(x)=B(E(x))\n  vc<mint> IE = compositional_inverse(E);\n  vc<mint> B =\
-    \ composition(D, IE);\n\n  vc<mint> A(N + 1);\n  FOR(i, 1, N + 1) A[i] = B[i]\
-    \ * inv<mint>(i);\n\n  FOR(i, 1, N + 1) A[i] *= fact<mint>(i);\n  return A;\n\
-    }\n\n// https://oeis.org/A095983\n// N \u3067\u306E\u5024\u306E\u307F, O(NlogN)\n\
-    template <typename mint>\nmint count_labeled_bridgeless_single(int N) {\n  if\
-    \ (N == 0) return 0;\n  vc<mint> C = count_labeled_connected<mint>(N);\n  FOR(i,\
-    \ N + 1) C[i] *= fact_inv<mint>(i);\n\n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i]\
-    \ = mint(i) * C[i];\n\n  vc<mint> E = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n\
-    \  E.pop_back();\n\n  // D(x)=B(E(x))\n  // [x^N]B(x) \u3092\u6C42\u3081\u305F\
-    \u3044\n  // Lagrange Inversion\n  // N[x^N]D(IE(x))=[x^{-1}]D'(x)E(x)^{-N}\n\
-    \  // =[x^{N-1}]D'(x)(E(x)/x)^{-N}\n\n  E.erase(E.begin());\n  E = fps_pow_1<mint>(E,\
-    \ -N);\n  D = differentiate(D);\n  mint ANS = 0;\n  FOR(i, N) ANS += D[i] * E[N\
-    \ - 1 - i];\n  ANS *= inv<mint>(N);\n\n  // [x^N]B(x) \u304C\u51FA\u305F\n  ANS\
-    \ *= inv<mint>(N);\n  ANS *= fact<mint>(N);\n  return ANS;\n}\n#line 5 \"test/mytest/count_labeled_bridgeless.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  auto A = count_labeled_bridgeless<mint>(10);\n\
+    // N=1: 1\n// O(Nlog^2N)\n// https://atcoder.jp/contests/ttpc2023/tasks/ttpc2023_p\n\
+    template <typename mint>\nvc<mint> count_labeled_bridgeless(int N) {\n  vc<mint>\
+    \ C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i] *= fact_inv<mint>(i);\n\
+    \n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i] = mint(i) * C[i];\n\n  vc<mint> E\
+    \ = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n  E.pop_back();\n\n  // D(x)=B(E(x))\n\
+    \  vc<mint> IE = compositional_inverse(E);\n  vc<mint> B = composition(D, IE);\n\
+    \n  vc<mint> A(N + 1);\n  FOR(i, 1, N + 1) A[i] = B[i] * inv<mint>(i);\n\n  FOR(i,\
+    \ 1, N + 1) A[i] *= fact<mint>(i);\n  return A;\n}\n\n// https://oeis.org/A095983\n\
+    // N \u3067\u306E\u5024\u306E\u307F, O(NlogN)\ntemplate <typename mint>\nmint\
+    \ count_labeled_bridgeless_single(int N) {\n  if (N == 0) return 0;\n  vc<mint>\
+    \ C = count_labeled_connected<mint>(N);\n  FOR(i, N + 1) C[i] *= fact_inv<mint>(i);\n\
+    \n  vc<mint> D(N + 1);\n  FOR(i, N + 1) D[i] = mint(i) * C[i];\n\n  vc<mint> E\
+    \ = fps_exp(D);\n  E.insert(E.begin(), mint(0));\n  E.pop_back();\n\n  // D(x)=B(E(x))\n\
+    \  // [x^N]B(x) \u3092\u6C42\u3081\u305F\u3044\n  // Lagrange Inversion\n  //\
+    \ N[x^N]D(IE(x))=[x^{-1}]D'(x)E(x)^{-N}\n  // =[x^{N-1}]D'(x)(E(x)/x)^{-N}\n\n\
+    \  E.erase(E.begin());\n  E = fps_pow_1<mint>(E, -N);\n  D = differentiate(D);\n\
+    \  mint ANS = 0;\n  FOR(i, N) ANS += D[i] * E[N - 1 - i];\n  ANS *= inv<mint>(N);\n\
+    \n  // [x^N]B(x) \u304C\u51FA\u305F\n  ANS *= inv<mint>(N);\n  ANS *= fact<mint>(N);\n\
+    \  return ANS;\n}\n#line 5 \"test/mytest/count_labeled_bridgeless.test.cpp\"\n\
+    \nusing mint = modint998;\n\nvoid test() {\n  auto A = count_labeled_bridgeless<mint>(10);\n\
     \  vi ANS = {\n      0,\n      1,\n      0,\n      1,\n      10,\n      253,\n\
     \      11968,\n      1047613,\n      169181040,\n      51017714393,\n      29180467201536,\n\
     \  };\n  FOR(i, 11) assert(A[i] == mint(ANS[i]));\n\n  FOR(i, 11) {\n    mint\
@@ -969,7 +970,7 @@ data:
   isVerificationFile: true
   path: test/mytest/count_labeled_bridgeless.test.cpp
   requiredBy: []
-  timestamp: '2024-07-23 21:27:24+09:00'
+  timestamp: '2024-08-08 19:22:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/mytest/count_labeled_bridgeless.test.cpp
