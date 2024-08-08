@@ -6,12 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/mytest/prefix_sum_of_binom.test.cpp
     title: test/mytest/prefix_sum_of_binom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2206.test.cpp
     title: test/yukicoder/2206.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/prefix_sum_of_binom.hpp\"\ntemplate <typename mint>\n\
@@ -63,7 +63,7 @@ data:
   path: mod/prefix_sum_of_binom.hpp
   requiredBy: []
   timestamp: '2024-04-12 12:45:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2206.test.cpp
   - test/mytest/prefix_sum_of_binom.test.cpp
