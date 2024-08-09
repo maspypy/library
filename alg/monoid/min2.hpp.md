@@ -6,7 +6,7 @@ data:
     path: graph/shortest_path/top2_dijkstra.hpp
     title: graph/shortest_path/top2_dijkstra.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc245g.test.cpp
     title: test_atcoder/abc245g.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test_atcoder/abc245g2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min2.hpp\"\n\ntemplate <typename T, typename\
@@ -47,7 +47,7 @@ data:
   requiredBy:
   - graph/shortest_path/top2_dijkstra.hpp
   timestamp: '2023-12-23 11:53:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test_atcoder/abc245g.test.cpp
   - test_atcoder/abc245g2.test.cpp

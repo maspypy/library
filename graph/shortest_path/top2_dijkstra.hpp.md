@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min2.hpp
     title: alg/monoid/min2.hpp
   - icon: ':question:'
