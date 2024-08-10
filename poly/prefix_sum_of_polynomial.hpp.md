@@ -37,17 +37,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\n\
@@ -376,18 +376,29 @@ data:
     \ F(n + 1), G(n + 1);\n  mint pow = 1;\n  FOR(i, n + 1) {\n    F[i] = fact_inv<mint>(2\
     \ * i) * pow;\n    G[i] = fact_inv<mint>(2 * i + 1) * pow;\n    pow *= inv<mint>(4);\n\
     \  }\n  F = fps_div<mint>(F, G);\n  vc<mint> B(N + 1);\n  if (1 <= N) B[1] = -inv<mint>(2);\n\
-    \  FOR(i, n + 1) B[2 * i] = F[i] * fact<mint>(2 * i);\n  return B;\n}\n#line 2\
-    \ \"poly/prefix_sum_of_polynomial.hpp\"\n\n// f: polynomial.\n// sum_{k in [0,n)}f(k)=g(n)\
-    \ \u3068\u306A\u308B g \u3092\u8FD4\u3059\ntemplate <typename mint>\nvc<mint>\
-    \ prefix_sum_of_polynomial(vc<mint> f, bool include_right_end) {\n  if (!include_right_end)\
-    \ {\n    auto F = prefix_sum_of_polynomial(f, false);\n    FOR(i, len(f)) F[i]\
-    \ -= f[i];\n    return F;\n  }\n  if (f.empty()) return {0};\n  if (len(f) ==\
-    \ 1) return {f[0], f[0]};\n  static vc<mint> B = {1};\n  ll d = len(f) - 1;\n\
-    \  if (d >= len(B)) {\n    ll n = max(d, len(B) * 2);\n    B = bernoulli_number<mint>(n);\n\
-    \    B[1] = inv<mint>(2);\n  }\n  FOR(i, d + 1) f[i] *= fact<mint>(i);\n  vc<mint>\
-    \ b(d + 1);\n  FOR(i, d + 1) b[d - i] = B[i] * fact_inv<mint>(i);\n  vc<mint>\
-    \ F = convolution<mint>(f, b);\n  F = {F.begin() + d - 1, F.end()};\n  F[0] =\
-    \ f[0];\n  FOR(i, len(F)) F[i] *= fact_inv<mint>(i);\n  return F;\n}\n"
+    \  FOR(i, n + 1) B[2 * i] = F[i] * fact<mint>(2 * i);\n  return B;\n}\n\ntemplate\
+    \ <typename mint>\nmint single_bernoulli(int n) {\n  // https://atcoder.jp/contests/xmascon23/tasks/xmascon23_e\n\
+    \  if (n == 0) return 1;\n  if (n == 1) return -inv<mint>(2);\n  /*\n  B_n = [x^n/n!]\
+    \ x / (exp(x)-1) = F(1-e^x)\n  F(x) = 1+(1/2)x+(1/3)x^2+...\n  \u3053\u308C\u3092\
+    \ x^n \u3067\u6253\u3061\u5207\u308B\n  F(x) = 1+(1/2)x+(1/3)x^2+...+(1/n+1)x^n,\
+    \ G(x) = F(1-x)\n  (xF(x)) d/dx = 1-x^{n+1}/1-x\n  ((1-x)G(x)) -d/dx = 1-(1-x)^{n+1}/x\
+    \ = H(x)\n  */\n  vc<mint> G(n + 2);\n  mint sm = 0;\n  FOR(i, 1, n + 2) {\n \
+    \   mint c = C<mint>(n + 1, i);\n    mint h = (i % 2 == 0 ? c : -c);\n    // H(x)\
+    \ = ... gx^{i-1}\n    G[i] = h * inv<mint>(i);\n    sm += inv<mint>(i);\n  }\n\
+    \  G[0] = sm;\n  FOR(i, n) G[i + 1] += G[i];\n  vc<mint> pow = powertable_2<mint>(n,\
+    \ n);\n  mint ans = 0;\n  FOR(i, n + 1) { ans += pow[i] * G[i]; }\n  return ans;\n\
+    }\n#line 2 \"poly/prefix_sum_of_polynomial.hpp\"\n\n// f: polynomial.\n// sum_{k\
+    \ in [0,n)}f(k)=g(n) \u3068\u306A\u308B g \u3092\u8FD4\u3059\ntemplate <typename\
+    \ mint>\nvc<mint> prefix_sum_of_polynomial(vc<mint> f, bool include_right_end)\
+    \ {\n  if (!include_right_end) {\n    auto F = prefix_sum_of_polynomial(f, false);\n\
+    \    FOR(i, len(f)) F[i] -= f[i];\n    return F;\n  }\n  if (f.empty()) return\
+    \ {0};\n  if (len(f) == 1) return {f[0], f[0]};\n  static vc<mint> B = {1};\n\
+    \  ll d = len(f) - 1;\n  if (d >= len(B)) {\n    ll n = max(d, len(B) * 2);\n\
+    \    B = bernoulli_number<mint>(n);\n    B[1] = inv<mint>(2);\n  }\n  FOR(i, d\
+    \ + 1) f[i] *= fact<mint>(i);\n  vc<mint> b(d + 1);\n  FOR(i, d + 1) b[d - i]\
+    \ = B[i] * fact_inv<mint>(i);\n  vc<mint> F = convolution<mint>(f, b);\n  F =\
+    \ {F.begin() + d - 1, F.end()};\n  F[0] = f[0];\n  FOR(i, len(F)) F[i] *= fact_inv<mint>(i);\n\
+    \  return F;\n}\n"
   code: "#include \"seq/famous/bernoulli.hpp\"\n\n// f: polynomial.\n// sum_{k in\
     \ [0,n)}f(k)=g(n) \u3068\u306A\u308B g \u3092\u8FD4\u3059\ntemplate <typename\
     \ mint>\nvc<mint> prefix_sum_of_polynomial(vc<mint> f, bool include_right_end)\
@@ -417,8 +428,8 @@ data:
   isVerificationFile: false
   path: poly/prefix_sum_of_polynomial.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-10 20:35:59+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/2580.test.cpp
 documentation_of: poly/prefix_sum_of_polynomial.hpp
