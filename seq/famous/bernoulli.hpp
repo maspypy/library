@@ -1,4 +1,5 @@
 #include "poly/fps_div.hpp"
+#include "mod/powertable.hpp"
 
 template <typename mint>
 vc<mint> bernoulli_number(int N) {
