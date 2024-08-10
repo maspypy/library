@@ -240,7 +240,7 @@ data:
       title: convex/smawk.hpp
   - name: datetime
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: datetime/datetime.hpp
       title: datetime/datetime.hpp
   - name: ds
@@ -851,7 +851,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/maximum_matching_size.hpp
       title: graph/maximum_matching_size.hpp
-    - icon: ':warning:'
+    - icon: ':x:'
       path: graph/maximum_weighted_antichain.hpp
       title: graph/maximum_weighted_antichain.hpp
     - icon: ':heavy_check_mark:'
@@ -1956,7 +1956,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/is_subseq.hpp
       title: string/is_subseq.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/is_substring.hpp
       title: string/is_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -2031,7 +2031,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/wildcard_pattern_matching.hpp
       title: string/wildcard_pattern_matching.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
   - name: test/library_checker/geometry
@@ -4755,6 +4755,12 @@ data:
     - icon: ':x:'
       path: test_atcoder/abc351g.test.cpp
       title: test_atcoder/abc351g.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc354g.test.cpp
+      title: test_atcoder/abc354g.test.cpp
+    - icon: ':x:'
+      path: test_atcoder/abc365a.test.cpp
+      title: test_atcoder/abc365a.test.cpp
     - icon: ':x:'
       path: test_atcoder/agc013e.test.cpp
       title: test_atcoder/agc013e.test.cpp

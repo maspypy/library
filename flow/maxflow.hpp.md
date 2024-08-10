@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/maximum_weighted_antichain.hpp
     title: graph/maximum_weighted_antichain.hpp
   _extendedVerifiedWith:
@@ -45,6 +45,9 @@ data:
   - icon: ':x:'
     path: test_atcoder/abc326g.test.cpp
     title: test_atcoder/abc326g.test.cpp
+  - icon: ':x:'
+    path: test_atcoder/abc354g.test.cpp
+    title: test_atcoder/abc354g.test.cpp
   - icon: ':x:'
     path: test_atcoder/arc107.test.cpp
     title: test_atcoder/arc107.test.cpp
@@ -235,6 +238,7 @@ data:
   - test/aoj/GRL_6_A.test.cpp
   - test/aoj/2251_1.test.cpp
   - test_atcoder/abc318g.test.cpp
+  - test_atcoder/abc354g.test.cpp
   - test_atcoder/abc193f.test.cpp
   - test_atcoder/arc107.test.cpp
   - test_atcoder/abc326g.test.cpp

@@ -8,10 +8,13 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test_atcoder/abc354g.test.cpp
+    title: test_atcoder/abc354g.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -186,8 +189,9 @@ data:
   path: graph/maximum_weighted_antichain.hpp
   requiredBy: []
   timestamp: '2024-06-11 22:40:57+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test_atcoder/abc354g.test.cpp
 documentation_of: graph/maximum_weighted_antichain.hpp
 layout: document
 redirect_from:

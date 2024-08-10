@@ -2,31 +2,25 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: mod/modint.hpp
-    title: mod/modint.hpp
-  - icon: ':question:'
-    path: mod/modint_common.hpp
-    title: mod/modint_common.hpp
+    path: datetime/datetime.hpp
+    title: datetime/datetime.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: string/zalgorithm.hpp
-    title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1848
+    PROBLEM: https://atcoder.jp/contests/abc365/tasks/abc365_a
     links:
-    - https://yukicoder.me/problems/no/1848
-  bundledCode: "#line 1 \"test/yukicoder/1848.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1848\"\
+    - https://atcoder.jp/contests/abc365/tasks/abc365_a
+  bundledCode: "#line 1 \"test_atcoder/abc365a.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc365/tasks/abc365_a\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -203,125 +197,62 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>\
-    \  // string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const\
-    \ STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int>\
-    \ z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n\
-    \    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i - j]);\n    while (i + k\
-    \ < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0]\
-    \ = n;\n  return z;\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n\
-    \  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1)\
-    \ : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if\
-    \ (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k +\
-    \ 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n\
-    \    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j,\
-    \ W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n\
-    }\n\ntemplate <typename mint, bool large = false, bool dense = false>\nmint C(ll\
-    \ n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr\
-    \ (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
-    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
-    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
-    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
-    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
-    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
-    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
-    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
-    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 6 \"test/yukicoder/1848.test.cpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
-    \ STR(S);\n  auto Ac = cumsum<ll>(A);\n\n  // 1 \u6587\u5B57\u76EE\u4EE5\u964D\
-    \n  vc<pair<char, int>> dat;\n  FOR(i, 1, N) dat.eb(S[i], A[i]);\n  auto Z = zalgorithm<decltype(dat)>(dat);\n\
-    \n  mint ANS = 0;\n  FOR(i, N) {\n    if (S[i] != S[0]) continue;\n    ll a =\
-    \ A[0], b = A[i];\n    ll k = min(a, b);\n    ANS += mint(k * (k + 1) / 2);\n\
-    \    ANS += mint(a * (b - k));\n\n    if (A[i] < A[0] || i == N - 1) continue;\n\
-    \    ll z = Z[i];\n    ll s = Ac[z + 1];\n    if (i + z + 1 < N && S[1 + z] ==\
-    \ S[1 + z + i]) {\n      s += min(A[1 + z], A[1 + z + i]);\n    }\n    ANS +=\
-    \ mint(s - a);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1848\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"string/zalgorithm.hpp\"\n#include \"mod/modint.hpp\"\
-    \n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n \
-    \ STR(S);\n  auto Ac = cumsum<ll>(A);\n\n  // 1 \u6587\u5B57\u76EE\u4EE5\u964D\
-    \n  vc<pair<char, int>> dat;\n  FOR(i, 1, N) dat.eb(S[i], A[i]);\n  auto Z = zalgorithm<decltype(dat)>(dat);\n\
-    \n  mint ANS = 0;\n  FOR(i, N) {\n    if (S[i] != S[0]) continue;\n    ll a =\
-    \ A[0], b = A[i];\n    ll k = min(a, b);\n    ANS += mint(k * (k + 1) / 2);\n\
-    \    ANS += mint(a * (b - k));\n\n    if (A[i] < A[0] || i == N - 1) continue;\n\
-    \    ll z = Z[i];\n    ll s = Ac[z + 1];\n    if (i + z + 1 < N && S[1 + z] ==\
-    \ S[1 + z + i]) {\n      s += min(A[1 + z], A[1 + z + i]);\n    }\n    ANS +=\
-    \ mint(s - a);\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 1 \"datetime/datetime.hpp\"\nstruct DateTime {\n  static\
+    \ constexpr int month_days[13]\n      = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30,\
+    \ 31, 30, 31};\n  int year, month, day;\n  DateTime(int y, int m, int d) : year(y),\
+    \ month(m), day(d) {}\n\n  // 1\u5E741\u67081\u65E5\u304C 0 \u3068\u306A\u308B\
+    \u3088\u3046\u306B\u5909\u63DB\n  int to_int() {\n    int y = (month <= 2 ? year\
+    \ - 1 : year);\n    int m = (month <= 2 ? month + 12 : month);\n    int d = day;\n\
+    \    return 365 * y + y / 4 - y / 100 + y / 400 + 306 * (m + 1) / 10 + d - 429;\n\
+    \  }\n\n  // to_int() \u306E\u9006\u95A2\u6570\n  static DateTime from_int(int\
+    \ x) {\n    int y = x * 400 / 146097 + 1;\n    int d = x - DateTime(y, 1, 1).to_int();\n\
+    \    int m = 1;\n    while (d >= 28) {\n      int k = month_days[m] + (m == 2\
+    \ && is_leap_year(y) ? 1 : 0);\n      if (d < k) break;\n      ++m;\n      d -=\
+    \ k;\n    }\n    if (m == 13) {\n      ++y;\n      m = 1;\n    }\n    ++d;\n \
+    \   return DateTime(y, m, d);\n  }\n\n  // \u65E5\u66DC\u65E5\u304C 0 \u3068\u3057\
+    \u3066\u3001\u66DC\u65E5\u3092 [0, 7) \u3067\u8FD4\u3059\n  int weekday() { return\
+    \ (to_int() + 1) % 7; }\n\n  DateTime& operator++() {\n    ++day;\n    int lim\
+    \ = month_days[month];\n    if (is_leap_year(year) && month == 2) lim = 29;\n\
+    \    if (day <= lim) return (*this);\n    day = 1;\n    ++month;\n    if (month\
+    \ == 13) {\n      ++year;\n      month = 1;\n    }\n    return (*this);\n  }\n\
+    \  DateTime operator++(int) {\n    DateTime tmp = *this;\n    ++*this;\n    return\
+    \ tmp;\n  }\n\n  bool operator==(DateTime const& rhs) const {\n    return to_tuple()\
+    \ == rhs.to_tuple();\n  }\n  bool operator!=(DateTime const& rhs) const {\n  \
+    \  return to_tuple() != rhs.to_tuple();\n  }\n  bool operator<(DateTime const&\
+    \ rhs) const {\n    return to_tuple() < rhs.to_tuple();\n  }\n  bool operator<=(DateTime\
+    \ const& rhs) const {\n    return to_tuple() <= rhs.to_tuple();\n  }\n  bool operator>(DateTime\
+    \ const& rhs) const {\n    return to_tuple() > rhs.to_tuple();\n  }\n  bool operator>=(DateTime\
+    \ const& rhs) const {\n    return to_tuple() >= rhs.to_tuple();\n  }\n\n  // yyyy[sep]mm[sep]dd\n\
+    \  string to_string(string sep = \"-\") {\n    string y = std::to_string(year);\n\
+    \    string m = std::to_string(month);\n    string d = std::to_string(day);\n\
+    \    while (len(y) < 4) y = \"0\" + y;\n    while (len(m) < 2) m = \"0\" + m;\n\
+    \    while (len(d) < 2) d = \"0\" + d;\n    return y + sep + m + sep + d;\n  }\n\
+    \n  tuple<int, int, int> to_tuple() const { return {year, month, day}; }\n\n \
+    \ static bool is_leap_year(int y) {\n    if (y % 400 == 0) return true;\n    return\
+    \ (y % 4 == 0 && y % 100 != 0);\n  }\n\n  static bool is_valid_date(int y, int\
+    \ m, int d) {\n    if (!(1 <= m && m <= 12)) return 0;\n    int mx = month_days[m];\n\
+    \    if (m == 2 && is_leap_year(y)) ++mx;\n    return (1 <= d && d <= mx);\n \
+    \ }\n};\n#line 5 \"test_atcoder/abc365a.test.cpp\"\n\nvoid solve() {\n  LL(N);\n\
+    \  ll ANS = 365 + (DateTime::is_leap_year(N));\n  print(ANS);\n}\n\nint main()\
+    \ {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc365/tasks/abc365_a\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"datetime/datetime.hpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  ll ANS = 365 + (DateTime::is_leap_year(N));\n\
+    \  print(ANS);\n}\n\nint main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - string/zalgorithm.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
+  - datetime/datetime.hpp
   isVerificationFile: true
-  path: test/yukicoder/1848.test.cpp
+  path: test_atcoder/abc365a.test.cpp
   requiredBy: []
-  timestamp: '2024-08-07 19:12:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-10 14:08:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/yukicoder/1848.test.cpp
+documentation_of: test_atcoder/abc365a.test.cpp
 layout: document
 redirect_from:
-- /verify/test/yukicoder/1848.test.cpp
-- /verify/test/yukicoder/1848.test.cpp.html
-title: test/yukicoder/1848.test.cpp
+- /verify/test_atcoder/abc365a.test.cpp
+- /verify/test_atcoder/abc365a.test.cpp.html
+title: test_atcoder/abc365a.test.cpp
 ---
