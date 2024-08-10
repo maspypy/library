@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'

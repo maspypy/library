@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':warning:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':warning:'
@@ -264,10 +264,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc281g.test.cpp
     title: test_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
   - icon: ':x:'

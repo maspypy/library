@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -67,7 +67,7 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'

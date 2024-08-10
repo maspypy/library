@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
@@ -123,15 +123,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/abc272_h.test.cpp
     title: test_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc013e.test.cpp
     title: test_atcoder/agc013e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/agc058d2.test.cpp
     title: test_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid\
@@ -257,7 +257,7 @@ data:
   - poly/slice_rational_fps.hpp
   - linalg/blackbox/vandermonde.hpp
   timestamp: '2024-04-23 20:14:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2166.test.cpp
   - test/yukicoder/1575.test.cpp

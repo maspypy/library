@@ -40,26 +40,26 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc013/tasks/agc013_e
@@ -744,7 +744,7 @@ data:
   path: test_atcoder/agc013e.test.cpp
   requiredBy: []
   timestamp: '2024-08-07 19:12:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test_atcoder/agc013e.test.cpp
 layout: document
