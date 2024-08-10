@@ -1,65 +1,71 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: mod/powertable.hpp
+    title: mod/powertable.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/primetable.hpp
+    title: nt/primetable.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':warning:'
     path: test/mytest/faulhaber.cpp
     title: test/mytest/faulhaber.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/library_checker/math/bernoulli.test.cpp
     title: test/library_checker/math/bernoulli.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1357.test.cpp
     title: test/yukicoder/1357.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascon23/tasks/xmascon23_e
@@ -384,9 +390,29 @@ data:
     \ x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int, mint>> dat;\n\
     \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
-    \    }\n  }\n  return f;\n}\n#line 2 \"seq/famous/bernoulli.hpp\"\n\ntemplate\
-    \ <typename mint>\nvc<mint> bernoulli_number(int N) {\n  int n = N / 2;\n  vc<mint>\
-    \ F(n + 1), G(n + 1);\n  mint pow = 1;\n  FOR(i, n + 1) {\n    F[i] = fact_inv<mint>(2\
+    \    }\n  }\n  return f;\n}\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename\
+    \ T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static\
+    \ int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
+    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
+    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int,\
+    \ int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n \
+    \       cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i)\
+    \ sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n     \
+    \ array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int i\
+    \ = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R -\
+    \ L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
+    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
+    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
+    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
+    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
+    \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
+    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
+    \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
+    \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
+    \  }\r\n  return f;\r\n}\r\n#line 3 \"seq/famous/bernoulli.hpp\"\n\ntemplate <typename\
+    \ mint>\nvc<mint> bernoulli_number(int N) {\n  int n = N / 2;\n  vc<mint> F(n\
+    \ + 1), G(n + 1);\n  mint pow = 1;\n  FOR(i, n + 1) {\n    F[i] = fact_inv<mint>(2\
     \ * i) * pow;\n    G[i] = fact_inv<mint>(2 * i + 1) * pow;\n    pow *= inv<mint>(4);\n\
     \  }\n  F = fps_div<mint>(F, G);\n  vc<mint> B(N + 1);\n  if (1 <= N) B[1] = -inv<mint>(2);\n\
     \  FOR(i, n + 1) B[2 * i] = F[i] * fact<mint>(2 * i);\n  return B;\n}\n\ntemplate\
@@ -401,13 +427,13 @@ data:
     \  G[0] = sm;\n  FOR(i, n) G[i + 1] += G[i];\n  vc<mint> pow = powertable_2<mint>(n,\
     \ n);\n  mint ans = 0;\n  FOR(i, n + 1) { ans += pow[i] * G[i]; }\n  return ans;\n\
     }\n"
-  code: "#include \"poly/fps_div.hpp\"\n\ntemplate <typename mint>\nvc<mint> bernoulli_number(int\
-    \ N) {\n  int n = N / 2;\n  vc<mint> F(n + 1), G(n + 1);\n  mint pow = 1;\n  FOR(i,\
-    \ n + 1) {\n    F[i] = fact_inv<mint>(2 * i) * pow;\n    G[i] = fact_inv<mint>(2\
-    \ * i + 1) * pow;\n    pow *= inv<mint>(4);\n  }\n  F = fps_div<mint>(F, G);\n\
-    \  vc<mint> B(N + 1);\n  if (1 <= N) B[1] = -inv<mint>(2);\n  FOR(i, n + 1) B[2\
-    \ * i] = F[i] * fact<mint>(2 * i);\n  return B;\n}\n\ntemplate <typename mint>\n\
-    mint single_bernoulli(int n) {\n  // https://atcoder.jp/contests/xmascon23/tasks/xmascon23_e\n\
+  code: "#include \"poly/fps_div.hpp\"\n#include \"mod/powertable.hpp\"\n\ntemplate\
+    \ <typename mint>\nvc<mint> bernoulli_number(int N) {\n  int n = N / 2;\n  vc<mint>\
+    \ F(n + 1), G(n + 1);\n  mint pow = 1;\n  FOR(i, n + 1) {\n    F[i] = fact_inv<mint>(2\
+    \ * i) * pow;\n    G[i] = fact_inv<mint>(2 * i + 1) * pow;\n    pow *= inv<mint>(4);\n\
+    \  }\n  F = fps_div<mint>(F, G);\n  vc<mint> B(N + 1);\n  if (1 <= N) B[1] = -inv<mint>(2);\n\
+    \  FOR(i, n + 1) B[2 * i] = F[i] * fact<mint>(2 * i);\n  return B;\n}\n\ntemplate\
+    \ <typename mint>\nmint single_bernoulli(int n) {\n  // https://atcoder.jp/contests/xmascon23/tasks/xmascon23_e\n\
     \  if (n == 0) return 1;\n  if (n == 1) return -inv<mint>(2);\n  /*\n  B_n = [x^n/n!]\
     \ x / (exp(x)-1) = F(1-e^x)\n  F(x) = 1+(1/2)x+(1/3)x^2+...\n  \u3053\u308C\u3092\
     \ x^n \u3067\u6253\u3061\u5207\u308B\n  F(x) = 1+(1/2)x+(1/3)x^2+...+(1/n+1)x^n,\
@@ -431,14 +457,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
+  - mod/powertable.hpp
+  - nt/primetable.hpp
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
   - test/mytest/faulhaber.cpp
   - seq/famous/riemann_zeta_even.hpp
   - poly/prefix_sum_of_polynomial.hpp
-  timestamp: '2024-08-10 20:35:59+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-08-11 03:15:49+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/2580.test.cpp
   - test/yukicoder/1357.test.cpp

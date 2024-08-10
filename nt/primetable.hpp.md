@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':heavy_check_mark:'
@@ -83,12 +83,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/prefix_sum_of_polynomial.hpp
+    title: poly/prefix_sum_of_polynomial.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/bernoulli.hpp
+    title: seq/famous/bernoulli.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/riemann_zeta_even.hpp
+    title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
@@ -98,10 +107,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
+  - icon: ':warning:'
+    path: test/mytest/faulhaber.cpp
+    title: test/mytest/faulhaber.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/aoj/NTL_1_D.test.cpp
     title: test/aoj/NTL_1_D.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/library_checker/math/bernoulli.test.cpp
+    title: test/library_checker/math/bernoulli.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/library_checker/math/counting_primes.test.cpp
     title: test/library_checker/math/counting_primes.test.cpp
@@ -202,6 +217,9 @@ data:
     path: test/yukicoder/1321.test.cpp
     title: test/yukicoder/1321.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/yukicoder/1357.test.cpp
+    title: test/yukicoder/1357.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/1392.test.cpp
     title: test/yukicoder/1392.test.cpp
   - icon: ':heavy_check_mark:'
@@ -240,7 +258,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/yukicoder/2266.test.cpp
     title: test/yukicoder/2266.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/yukicoder/2580.test.cpp
     title: test/yukicoder/2580.test.cpp
   - icon: ':heavy_check_mark:'
@@ -273,9 +291,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test_atcoder/arc153f.test.cpp
     title: test_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -306,6 +324,7 @@ data:
   isVerificationFile: false
   path: nt/primetable.hpp
   requiredBy:
+  - test/mytest/faulhaber.cpp
   - nt/primesum_mod6.hpp
   - nt/all_lcm.hpp
   - nt/gcd_convolution.hpp
@@ -322,11 +341,14 @@ data:
   - nt/lcm_convolution.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - seq/famous/riemann_zeta_even.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/surjection.hpp
+  - seq/famous/bernoulli.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/eulerian_number.hpp
   - poly/composition.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   - poly/poly_taylor_shift.hpp
   - poly/compositional_inverse.hpp
   - poly/composition_f_1_minus_ex.hpp
@@ -339,7 +361,7 @@ data:
   - mod/tetration.hpp
   - mod/powertable.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/yukicoder/1760.test.cpp
   - test/yukicoder/1881.test.cpp
@@ -362,6 +384,7 @@ data:
   - test/yukicoder/2005.test.cpp
   - test/yukicoder/1262.test.cpp
   - test/yukicoder/2587_2.test.cpp
+  - test/yukicoder/1357.test.cpp
   - test/mytest/composition_ex_minus_1.test.cpp
   - test/mytest/compositional_inverset.test.cpp
   - test/mytest/count_labeled_bridgeless.test.cpp
@@ -391,6 +414,7 @@ data:
   - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - test/library_checker/math/tetration.test.cpp
   - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/library_checker/math/bernoulli.test.cpp
   - test/library_checker/math/sum_of_exp_times_poly.test.cpp
   - test_atcoder/abc202_f.test.cpp
   - test_atcoder/abc249_ex.test.cpp
