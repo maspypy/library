@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test_atcoder/abc350_g.test.cpp
     title: test_atcoder/abc350_g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/ds/lct_node_base.hpp\"\n// SUBTREE : cluster \u304C\
@@ -44,7 +44,7 @@ data:
   path: graph/ds/lct_node_base.hpp
   requiredBy: []
   timestamp: '2023-12-23 13:05:50+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test_atcoder/abc350_g.test.cpp
 documentation_of: graph/ds/lct_node_base.hpp
