@@ -18,3 +18,15 @@ vc<mint> riemann_zeta_even(int N) {
   }
   return B;
 }
+
+// n-th of [0,0,1/6,0,1/90,...]
+template <typename mint>
+mint single_riemann_zeta_even(int n) {
+  assert(n % 2 == 0);
+  mint x = single_bernoulli<mint>(n);
+  x *= mint(2).pow(n);
+  x *= fact_inv<mint>(n);
+  if (n % 4 == 0) x = -x;
+  x *= inv<mint>(2);
+  return x;
+}
