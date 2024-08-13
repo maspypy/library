@@ -16,7 +16,7 @@ data:
   - icon: ':x:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':question:'
