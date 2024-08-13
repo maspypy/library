@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':x:'

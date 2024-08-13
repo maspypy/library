@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
   - icon: ':warning:'
@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
   - icon: ':x:'
