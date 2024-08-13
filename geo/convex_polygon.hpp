@@ -12,7 +12,7 @@ struct ConvexPolygon {
     assert(n >= 3);
     FOR(i, n) {
       int j = nxt_idx(i), k = nxt_idx(j);
-      assert((point[j] - point[i]).det(point[k] - point[i]) > 0);
+      assert((point[j] - point[i]).det(point[k] - point[i]) >= 0);
     }
   }
 
@@ -63,29 +63,21 @@ struct ConvexPolygon {
 
   // return {min, idx}. test した.
   pair<T, int> min_dot(P p) {
-    int idx = periodic_min_comp([&](int i, int j) -> bool {
-      return point[i].dot(p) < point[j].dot(p);
-    });
+    int idx = periodic_min_comp([&](int i, int j) -> bool { return point[i].dot(p) < point[j].dot(p); });
     return {point[idx].dot(p), idx};
   }
 
   // return {max, idx}. test した.
   pair<T, int> max_dot(P p) {
-    int idx = periodic_min_comp([&](int i, int j) -> bool {
-      return point[i].dot(p) > point[j].dot(p);
-    });
+    int idx = periodic_min_comp([&](int i, int j) -> bool { return point[i].dot(p) > point[j].dot(p); });
     return {point[idx].dot(p), idx};
   }
 
   // p から見える範囲. p 辺に沿って見えるところも見えるとする. test した.
   // 多角形からの反時計順は [l,r] だが p から見た偏角順は [r,l] なので注意
   pair<int, int> visible_range(P p) {
-    int a = periodic_min_comp([&](int i, int j) -> bool {
-      return ((point[i] - p).det(point[j] - p) < 0);
-    });
-    int b = periodic_min_comp([&](int i, int j) -> bool {
-      return ((point[i] - p).det(point[j] - p) > 0);
-    });
+    int a = periodic_min_comp([&](int i, int j) -> bool { return ((point[i] - p).det(point[j] - p) < 0); });
+    int b = periodic_min_comp([&](int i, int j) -> bool { return ((point[i] - p).det(point[j] - p) > 0); });
     if ((p - point[a]).det(p - point[prev_idx(a)]) == T(0)) a = prev_idx(a);
     if ((p - point[b]).det(p - point[nxt_idx(b)]) == T(0)) b = nxt_idx(b);
     return {a, b};
