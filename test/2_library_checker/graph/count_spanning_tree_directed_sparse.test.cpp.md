@@ -41,11 +41,13 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/counting_spanning_tree_directed
     links:
     - https://judge.yosupo.jp/problem/counting_spanning_tree_directed
-  bundledCode: "#line 1 \"test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp\"\
+  bundledCode: "#line 1 \"test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp\"\
     \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/counting_spanning_tree_directed\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
@@ -223,7 +225,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp\"\
+    \ yes(!t); }\r\n#line 5 \"test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp\"\
     \n\n#line 1 \"graph/count/count_spanning_tree.hpp\"\n\n#line 2 \"graph/base.hpp\"\
     \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
     };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
@@ -440,7 +442,7 @@ data:
     \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
     \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 8 \"test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp\"\
+    using modint998 = modint<998244353>;\n#line 8 \"test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M, r);\n  Graph<int, 1>\
     \ G(N);\n  G.read_graph(M, 0, 0);\n  mint ANS = count_spanning_tree_directed<mint,\
     \ true>(G, r);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -464,16 +466,16 @@ data:
   - random/base.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  isVerificationFile: false
-  path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+  isVerificationFile: true
+  path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-08-14 01:37:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-08-14 04:41:55+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+documentation_of: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
 layout: document
 redirect_from:
-- /library/test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
-- /library/test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp.html
-title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+- /verify/test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+- /verify/test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp.html
+title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
 ---

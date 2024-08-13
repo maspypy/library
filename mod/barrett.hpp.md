@@ -68,9 +68,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
-  - icon: ':warning:'
-    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
-    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
@@ -111,6 +108,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
@@ -192,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
   - icon: ':x:'
@@ -293,7 +293,6 @@ data:
   isVerificationFile: false
   path: mod/barrett.hpp
   requiredBy:
-  - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - nt/crt.hpp
   - nt/four_square.hpp
   - nt/three_square.hpp
@@ -356,6 +355,7 @@ data:
   - test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp

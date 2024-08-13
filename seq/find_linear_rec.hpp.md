@@ -17,9 +17,6 @@ data:
   - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':warning:'
-    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
-    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
@@ -27,6 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
@@ -108,7 +108,6 @@ data:
   isVerificationFile: false
   path: seq/find_linear_rec.hpp
   requiredBy:
-  - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   - seq/interpolate_linear_rec.hpp
@@ -130,6 +129,7 @@ data:
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/1755.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp

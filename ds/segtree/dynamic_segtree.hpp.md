@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/datastructure/range_kth_smallest_pseg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036.test.cpp
     title: test/3_yukicoder/1036.test.cpp
   - icon: ':x:'
