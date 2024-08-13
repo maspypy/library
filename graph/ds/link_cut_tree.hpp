@@ -47,7 +47,13 @@ struct Link_Cut_Tree {
 
   void cut(Node *a, Node *b) {
     evert(a);
+    SHOW("after ev");
+    debug();
+    flush();
     expose(b);
+    SHOW("after expose");
+    debug();
+    flush();
     assert(!b->p);
     assert((b->l) == a);
     // heavy edge -> no edge
@@ -200,10 +206,7 @@ struct Link_Cut_Tree {
   void debug() {
     print("p, l, r, rev");
     auto f = [&](np c) -> int { return (c ? c->idx : -1); };
-    FOR(i, len(nodes)) {
-      print(i, ",", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r),
-            (*this)[i]->rev);
-    }
+    FOR(i, len(nodes)) { print(i, ",", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r), (*this)[i]->rev); }
     FOR(i, len(nodes)) {
       np c = (*this)[i];
       if (c->l) assert(c->l->p == c);
