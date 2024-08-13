@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/tetration.test.cpp
     title: test/2_library_checker/math/tetration.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
@@ -174,7 +174,7 @@ data:
   path: mod/tetration.hpp
   requiredBy: []
   timestamp: '2023-11-02 05:00:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/math/tetration.test.cpp
 documentation_of: mod/tetration.hpp

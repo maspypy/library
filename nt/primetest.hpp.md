@@ -14,7 +14,7 @@ data:
   - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
   - icon: ':x:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -59,10 +59,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_query.hpp
     title: seq/famous/stirling_number_query.hpp
   _extendedVerifiedWith:
@@ -114,25 +114,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/gaussian_integers.test.cpp
     title: test/2_library_checker/math/gaussian_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/kth_root_mod.test.cpp
     title: test/2_library_checker/math/kth_root_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/primality_test.test.cpp
     title: test/2_library_checker/math/primality_test.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/primitive_root.test.cpp
     title: test/2_library_checker/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_mod_p_1.test.cpp
     title: test/2_library_checker/math/stirling_mod_p_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_mod_p_2.test.cpp
     title: test/2_library_checker/math/stirling_mod_p_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/tetration.test.cpp
     title: test/2_library_checker/math/tetration.test.cpp
   - icon: ':x:'

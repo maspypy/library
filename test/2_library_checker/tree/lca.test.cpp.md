@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -352,13 +352,13 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
-    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
-    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
-    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
-    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
-    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
-    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    concat(up,\
+    \ down);\r\n    return up;\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v)\
+    \ {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v,\
+    \ 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n   \
+    \   } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n\
+    \    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
+    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
     \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
@@ -383,7 +383,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/lca.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-14 03:27:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/lca.test.cpp

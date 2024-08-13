@@ -12,7 +12,7 @@ data:
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/sort_segtree_1.test.cpp
     title: test/2_library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':x:'

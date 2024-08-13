@@ -107,7 +107,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':warning:'
@@ -288,19 +288,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'

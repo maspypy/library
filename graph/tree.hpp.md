@@ -5,7 +5,7 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
@@ -26,28 +26,28 @@ data:
   - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':x:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':x:'
@@ -62,7 +62,7 @@ data:
   - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':x:'
@@ -71,50 +71,50 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':x:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/QOJ5445.test.cpp
     title: test/1_mytest/QOJ5445.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
   - icon: ':x:'
@@ -278,7 +278,7 @@ data:
     title: test/5_atcoder/agc023f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -432,13 +432,13 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
-    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
-    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
-    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
-    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
-    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
-    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    concat(up,\
+    \ down);\r\n    return up;\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v)\
+    \ {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v,\
+    \ 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n   \
+    \   } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n\
+    \    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
+    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
     \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
@@ -527,13 +527,13 @@ data:
     \ {\r\n        if (u != head[u]) up.eb(u, head[u], \"heavy_up\"), u = head[u];\r\
     \n        up.eb(u, parent[u], \"light_up\"), u = parent[u];\r\n      }\r\n   \
     \ }\r\n    if (LID[u] < LID[v]) down.eb(u, v, \"heavy_down\");\r\n    elif (LID[v]\
-    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    return\
-    \ concat(up, down);\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v) {\r\n \
-    \   vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v, 0)) {\r\
-    \n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n      } else\
-    \ {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n    return\
-    \ P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A. \u7A7A\
-    \u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
+    \ < LID[u]) up.eb(u, v, \"heavy_up\");\r\n    reverse(all(down));\r\n    concat(up,\
+    \ down);\r\n    return up;\r\n  }\r\n\r\n  vc<int> restore_path(int u, int v)\
+    \ {\r\n    vc<int> P;\r\n    for (auto &&[a, b]: get_path_decomposition(u, v,\
+    \ 0)) {\r\n      if (a <= b) {\r\n        FOR(i, a, b + 1) P.eb(V[i]);\r\n   \
+    \   } else {\r\n        FOR_R(i, b, a + 1) P.eb(V[i]);\r\n      }\r\n    }\r\n\
+    \    return P;\r\n  }\r\n\r\n  // path [a,b] \u3068 [c,d] \u306E\u4EA4\u308F\u308A\
+    . \u7A7A\u306A\u3089\u3070 {-1,-1}.\r\n  // https://codeforces.com/problemset/problem/500/G\r\
     \n  pair<int, int> path_intersection(int a, int b, int c, int d) {\r\n    int\
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
@@ -571,8 +571,8 @@ data:
   - graph/compress_tree.hpp
   - graph/minimum_spanning_tree.hpp
   - graph/unicyclic.hpp
-  timestamp: '2024-08-07 16:19:15+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-08-14 03:27:27+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc351g.test.cpp
   - test/5_atcoder/abc269ex2.test.cpp

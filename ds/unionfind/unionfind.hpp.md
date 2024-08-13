@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':x:'
@@ -62,13 +62,13 @@ data:
   - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':x:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   _extendedVerifiedWith:
@@ -84,7 +84,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -117,13 +117,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_vertex.test.cpp
     title: test/1_mytest/remove_one_vertex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'

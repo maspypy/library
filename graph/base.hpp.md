@@ -47,7 +47,7 @@ data:
   - icon: ':x:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
   - icon: ':x:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/mo_on_tree.hpp
     title: graph/ds/mo_on_tree.hpp
   - icon: ':warning:'
@@ -116,25 +116,25 @@ data:
   - icon: ':question:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':x:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':question:'
@@ -260,7 +260,7 @@ data:
   - icon: ':x:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':x:'
@@ -272,7 +272,7 @@ data:
   - icon: ':x:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':x:'
@@ -281,7 +281,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':warning:'
@@ -290,13 +290,13 @@ data:
   - icon: ':x:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':question:'
     path: graph/two_edge_component.hpp
     title: graph/two_edge_component.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   - icon: ':x:'
@@ -305,7 +305,7 @@ data:
   - icon: ':x:'
     path: other/dice.hpp
     title: other/dice.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':x:'
@@ -318,7 +318,7 @@ data:
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/QOJ5445.test.cpp
     title: test/1_mytest/QOJ5445.test.cpp
   - icon: ':heavy_check_mark:'
@@ -333,7 +333,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -360,7 +360,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -372,7 +372,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_vertex.test.cpp
     title: test/1_mytest/remove_one_vertex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -384,31 +384,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_tree.test.cpp
     title: test/1_mytest/suffix_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -429,7 +429,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -501,7 +501,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/two_edge_component.test.cpp
     title: test/2_library_checker/graph/two_edge_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/twosat.test.cpp
     title: test/2_library_checker/math/twosat.test.cpp
   - icon: ':x:'

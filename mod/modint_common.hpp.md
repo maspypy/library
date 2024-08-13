@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: bigint/binary.hpp
     title: bigint/binary.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -59,7 +59,7 @@ data:
   - icon: ':x:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':question:'
@@ -74,7 +74,7 @@ data:
   - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':question:'
@@ -200,7 +200,7 @@ data:
   - icon: ':question:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
@@ -308,7 +308,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':x:'
@@ -317,7 +317,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':question:'
@@ -332,13 +332,13 @@ data:
   - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/limit_poly_exp_sum.hpp
     title: seq/limit_poly_exp_sum.hpp
   - icon: ':x:'
@@ -480,7 +480,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -570,7 +570,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -675,7 +675,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
@@ -726,49 +726,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/gcd_convolution.test.cpp
     title: test/2_library_checker/math/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/lcm_convolution.test.cpp
     title: test/2_library_checker/math/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/partition.test.cpp
     title: test/2_library_checker/math/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/power_projection_of_sps.test.cpp
     title: test/2_library_checker/math/power_projection_of_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/powproj_sps.test.cpp
     title: test/2_library_checker/math/powproj_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sps_exp.test.cpp
     title: test/2_library_checker/math/sps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/totient_sum.test.cpp
     title: test/2_library_checker/math/totient_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/matix/pow_of_matrix.test.cpp
     title: test/2_library_checker/matix/pow_of_matrix.test.cpp
   - icon: ':x:'

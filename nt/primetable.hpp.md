@@ -14,13 +14,13 @@ data:
   - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':x:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':x:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
   - icon: ':x:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
   - icon: ':question:'
@@ -98,7 +98,7 @@ data:
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':question:'
@@ -162,28 +162,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/gcd_convolution.test.cpp
     title: test/2_library_checker/math/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/lcm_convolution.test.cpp
     title: test/2_library_checker/math/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
     title: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/tetration.test.cpp
     title: test/2_library_checker/math/tetration.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/totient_sum.test.cpp
     title: test/2_library_checker/math/totient_sum.test.cpp
   - icon: ':x:'

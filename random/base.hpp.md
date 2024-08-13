@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
   - icon: ':x:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':question:'
@@ -56,7 +56,7 @@ data:
   - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
   - icon: ':x:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -116,7 +116,7 @@ data:
   - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
@@ -125,7 +125,7 @@ data:
   - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -249,7 +249,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -363,7 +363,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minplus_convex.test.cpp
     title: test/1_mytest/minplus_convex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -471,7 +471,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_vertex.test.cpp
     title: test/1_mytest/remove_one_vertex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -534,7 +534,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tournament.test.cpp
     title: test/1_mytest/tournament.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -579,7 +579,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -612,19 +612,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/gaussian_integers.test.cpp
     title: test/2_library_checker/math/gaussian_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/kth_root_mod.test.cpp
     title: test/2_library_checker/math/kth_root_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/primitive_root.test.cpp
     title: test/2_library_checker/math/primitive_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sqrt_mod.test.cpp
     title: test/2_library_checker/math/sqrt_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/tetration.test.cpp
     title: test/2_library_checker/math/tetration.test.cpp
   - icon: ':x:'
