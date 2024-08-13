@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -270,10 +270,10 @@ data:
     \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
     \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
     \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  return concat(lower, origin,\
-    \ upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
-    \ argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>&\
-    \ P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  concat(lower, origin, upper);\r\
+    \n  return lower;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
+    \u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
+    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
     \n  return angle_sort<T>(tmp);\r\n}\r\n#line 6 \"test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n  auto I = angle_sort(P);\n  P\
     \ = rearrange(P, I);\n  FOR(i, N) print(P[i]);\n}\n\nsigned main() {\n  solve();\n\
@@ -291,7 +291,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-14 01:08:02+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp

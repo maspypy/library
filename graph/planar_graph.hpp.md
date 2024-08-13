@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
@@ -158,10 +158,10 @@ data:
     \ if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x\
     \ > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
     \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  return concat(lower, origin,\
-    \ upper);\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
-    \ argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>&\
-    \ P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  concat(lower, origin, upper);\r\
+    \n  return lower;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
+    \u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
+    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
     \n  return angle_sort<T>(tmp);\r\n}\r\n#line 4 \"graph/planar_graph.hpp\"\n\n\
     /*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\
     \u306A\u3044\u3068\u304D\u306B\u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\
@@ -233,7 +233,7 @@ data:
   isVerificationFile: false
   path: graph/planar_graph.hpp
   requiredBy: []
-  timestamp: '2024-07-24 02:09:25+09:00'
+  timestamp: '2024-08-14 01:08:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1777.test.cpp

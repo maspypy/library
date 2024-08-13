@@ -57,7 +57,7 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: test/5_atcoder/abc260h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\
@@ -659,7 +659,7 @@ data:
   path: linalg/blackbox/vandermonde.hpp
   requiredBy: []
   timestamp: '2024-07-20 03:47:44+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc260h.test.cpp
   - test/1_mytest/vandermonde.test.cpp

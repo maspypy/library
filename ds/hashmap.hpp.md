@@ -11,7 +11,7 @@ data:
   - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':x:'
@@ -32,14 +32,14 @@ data:
   - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
   - icon: ':x:'
@@ -158,7 +158,7 @@ data:
     title: test/5_atcoder/arc157a.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -229,7 +229,7 @@ data:
   - ds/static_range_frequency.hpp
   - ds/to_small_key.hpp
   timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc335g.test.cpp
   - test/5_atcoder/abc220g.test.cpp

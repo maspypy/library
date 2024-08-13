@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/seg2d.test.cpp
     title: test/1_mytest/seg2d.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/5_atcoder/abc324g2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\n// \u70B9\u306E\u91CD\u8907\
@@ -189,7 +189,7 @@ data:
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
   timestamp: '2024-01-26 19:43:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc266h.test.cpp
   - test/5_atcoder/abc324g2.test.cpp
