@@ -9,7 +9,7 @@ data:
     title: enumerate/bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/3_yukicoder/4_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/755/problem/F
@@ -187,12 +187,12 @@ data:
     \ M);\n  auto dp2 = calc(M, N);\n  int t = 0;\n  FOR_R(s, len(dp1)) {\n    while\
     \ (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) { ++t; }\n    if (dp1[s]\
     \ + dp2[t] == target) {\n      vc<int> I1 = restore(0, M, dp1[s]);\n      vc<int>\
-    \ I2 = restore(M, N, dp2[t]);\n      return concat(I1, I2);\n    }\n  }\n  return\
-    \ {};\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals, T target) {\n\
-    \  if (target <= 0) return {};\n  int n = len(vals);\n  if (n == 0) return {};\n\
-    \  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\u6574\u3092\
-    \u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution 2: O(N\
-    \ target / w)\n  // solution 3: O(sum^1.5 / w)\n  // solution 4: O(2^(N/2))\n\
+    \ I2 = restore(M, N, dp2[t]);\n      concat(I1, I2);\n      return I1;\n    }\n\
+    \  }\n  return {};\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals,\
+    \ T target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n ==\
+    \ 0) return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\
+    \u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution\
+    \ 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  // solution 4: O(2^(N/2))\n\
     \  double x1 = double(len(vals)) * mx;\n  double x2 = double(len(vals)) * target\
     \ / 500.0;\n  double x3 = pow(SUM<double>(vals), 1.5) / 500.0;\n  double x4 =\
     \ pow(2.0, 0.5 * len(vals));\n  double mi = min({x1, x2, x3, x4});\n  if (x1 ==\
@@ -253,12 +253,12 @@ data:
     \ M);\n  auto dp2 = calc(M, N);\n  int t = 0;\n  FOR_R(s, len(dp1)) {\n    while\
     \ (t + 1 < len(dp2) && dp1[s] + dp2[t + 1] <= target) { ++t; }\n    if (dp1[s]\
     \ + dp2[t] == target) {\n      vc<int> I1 = restore(0, M, dp1[s]);\n      vc<int>\
-    \ I2 = restore(M, N, dp2[t]);\n      return concat(I1, I2);\n    }\n  }\n  return\
-    \ {};\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals, T target) {\n\
-    \  if (target <= 0) return {};\n  int n = len(vals);\n  if (n == 0) return {};\n\
-    \  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\u6574\u3092\
-    \u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution 2: O(N\
-    \ target / w)\n  // solution 3: O(sum^1.5 / w)\n  // solution 4: O(2^(N/2))\n\
+    \ I2 = restore(M, N, dp2[t]);\n      concat(I1, I2);\n      return I1;\n    }\n\
+    \  }\n  return {};\n}\n\ntemplate <typename T>\nvc<int> subset_sum(vc<T>& vals,\
+    \ T target) {\n  if (target <= 0) return {};\n  int n = len(vals);\n  if (n ==\
+    \ 0) return {};\n  int mx = MAX(vals);\n\n  // \u3057\u304D\u3044\u5024\u306E\u8ABF\
+    \u6574\u3092\u3057\u3066\u3044\u306A\u3044\n  // solution 1: O(N mx))\n  // solution\
+    \ 2: O(N target / w)\n  // solution 3: O(sum^1.5 / w)\n  // solution 4: O(2^(N/2))\n\
     \  double x1 = double(len(vals)) * mx;\n  double x2 = double(len(vals)) * target\
     \ / 500.0;\n  double x3 = pow(SUM<double>(vals), 1.5) / 500.0;\n  double x4 =\
     \ pow(2.0, 0.5 * len(vals));\n  double mi = min({x1, x2, x3, x4});\n  if (x1 ==\
@@ -271,8 +271,8 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-08-14 03:51:13+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/4_2.test.cpp
   - test/1_mytest/subset_sum.test.cpp
