@@ -14,7 +14,7 @@ struct HashMap {
 
   // size を保ったまま. size=0 にするときは build すること.
   void clear() { used.assign(len(used), 0); }
-  int size() { return len(used) - cap; }
+  int size() { return len(used) / 2 - cap; }
 
   int index(const u64& k) {
     int i = 0;
@@ -52,8 +52,7 @@ private:
   vc<bool> used;
 
   u64 hash(u64 x) {
-    static const u64 FIXED_RANDOM
-        = std::chrono::steady_clock::now().time_since_epoch().count();
+    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();
     x += FIXED_RANDOM;
     x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;
     x = (x ^ (x >> 27)) * 0x94d049bb133111eb;
@@ -62,7 +61,7 @@ private:
 
   void extend() {
     vc<pair<u64, Val>> dat;
-    dat.reserve(len(used) - cap);
+    dat.reserve(len(used) / 2 - cap);
     FOR(i, len(used)) {
       if (used[i]) dat.eb(key[i], val[i]);
     }
