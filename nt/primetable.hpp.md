@@ -26,7 +26,7 @@ data:
   - icon: ':x:'
     path: nt/factor_interval.hpp
     title: nt/factor_interval.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
   - icon: ':x:'
@@ -56,7 +56,7 @@ data:
   - icon: ':x:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -150,16 +150,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/bernoulli.test.cpp
     title: test/2_library_checker/math/bernoulli.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/counting_primes.test.cpp
     title: test/2_library_checker/math/counting_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/enumerate_primes.test.cpp
     title: test/2_library_checker/math/enumerate_primes.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/gcd_convolution.test.cpp
     title: test/2_library_checker/math/gcd_convolution.test.cpp
   - icon: ':x:'

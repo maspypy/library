@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_ceil_ranges.test.cpp
     title: test/1_mytest/floor_ceil_ranges.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/enumerate_quotients.test.cpp
     title: test/2_library_checker/math/enumerate_quotients.test.cpp
   - icon: ':x:'
