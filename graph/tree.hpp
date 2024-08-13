@@ -210,7 +210,8 @@ struct Tree {
     if (LID[u] < LID[v]) down.eb(u, v, "heavy_down");
     elif (LID[v] < LID[u]) up.eb(u, v, "heavy_up");
     reverse(all(down));
-    return concat(up, down);
+    concat(up, down);
+    return up;
   }
 
   vc<int> restore_path(int u, int v) {
