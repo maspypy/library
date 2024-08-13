@@ -174,7 +174,8 @@ vc<int> subset_sum_solution_4(vc<T>& vals, T target) {
     if (dp1[s] + dp2[t] == target) {
       vc<int> I1 = restore(0, M, dp1[s]);
       vc<int> I2 = restore(M, N, dp2[t]);
-      return concat(I1, I2);
+      concat(I1, I2);
+      return I1;
     }
   }
   return {};
