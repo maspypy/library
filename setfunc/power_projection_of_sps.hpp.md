@@ -35,16 +35,16 @@ data:
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: graph/chromatic_polynomial.test.cpp
-    title: graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/math/power_projection_of_sps.test.cpp
     title: test/2_library_checker/math/power_projection_of_sps.test.cpp
@@ -56,7 +56,7 @@ data:
     title: test/5_atcoder/abc253h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
@@ -430,13 +430,13 @@ data:
   requiredBy:
   - graph/chromatic.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/abc253h.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/math/power_projection_of_sps.test.cpp
   - test/2_library_checker/math/powproj_sps.test.cpp
-  - graph/chromatic_polynomial.test.cpp
 documentation_of: setfunc/power_projection_of_sps.hpp
 layout: document
 redirect_from:

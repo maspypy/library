@@ -17,6 +17,9 @@ data:
   - icon: ':x:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
+  - icon: ':warning:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
@@ -89,6 +92,7 @@ data:
   isVerificationFile: false
   path: linalg/blackbox/det.hpp
   requiredBy:
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   timestamp: '2024-01-21 23:24:39+09:00'

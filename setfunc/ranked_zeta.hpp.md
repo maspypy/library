@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':x:'
@@ -28,14 +28,14 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: graph/chromatic_polynomial.test.cpp
-    title: graph/chromatic_polynomial.test.cpp
-  - icon: ':x:'
     path: test/2_library_checker/convolution/subset_convolution.test.cpp
     title: test/2_library_checker/convolution/subset_convolution.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/math/composition_sps.test.cpp
     title: test/2_library_checker/math/composition_sps.test.cpp
@@ -131,12 +131,12 @@ data:
   - test/3_yukicoder/2507.test.cpp
   - test/2_library_checker/convolution/subset_convolution.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/math/composition_sps.test.cpp
   - test/2_library_checker/math/power_projection_of_sps.test.cpp
   - test/2_library_checker/math/sps_exp.test.cpp
   - test/2_library_checker/math/powproj_sps.test.cpp
   - test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
-  - graph/chromatic_polynomial.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
 redirect_from:

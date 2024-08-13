@@ -44,7 +44,7 @@ data:
   - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':question:'
@@ -62,9 +62,6 @@ data:
   - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/faulhaber.cpp
-    title: test/1_mytest/faulhaber.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
@@ -93,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/faulhaber.test.cpp
+    title: test/1_mytest/faulhaber.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
@@ -225,7 +225,6 @@ data:
   isVerificationFile: false
   path: mod/powertable.hpp
   requiredBy:
-  - test/1_mytest/faulhaber.cpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
   - seq/famous/riemann_zeta_even.hpp
@@ -286,6 +285,7 @@ data:
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/eulerian_number.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
 documentation_of: mod/powertable.hpp

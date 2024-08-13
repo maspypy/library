@@ -5,7 +5,7 @@ data:
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
   - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':question:'
@@ -67,9 +67,6 @@ data:
     title: seq/famous/stirling_number_query.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: graph/chromatic_polynomial.test.cpp
-    title: graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
     title: test/1_mytest/31bit_modint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -87,21 +84,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_triangular.test.cpp
     title: test/1_mytest/three_triangular.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/math/binomial_coefficient.test.cpp
     title: test/2_library_checker/math/binomial_coefficient.test.cpp
@@ -376,6 +376,7 @@ data:
   - test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/math/primality_test.test.cpp
   - test/2_library_checker/math/factorize.test.cpp
   - test/2_library_checker/math/discrete_logarithm_mod.test.cpp
@@ -396,7 +397,6 @@ data:
   - test/4_aoj/ITP1_D_D.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp
   - test/4_aoj/ALDS1_1_C.test.cpp
-  - graph/chromatic_polynomial.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

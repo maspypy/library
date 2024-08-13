@@ -414,12 +414,11 @@ data:
     \ [&](vc<pair<int, int>> edges) -> void {\n    ++cnt;\n    assert(len(edges) ==\
     \ n - 1);\n    // if (n <= 6) { print(n, \",\", edges); }\n    UnionFind uf(n);\n\
     \    for (auto& [a, b]: edges) { assert(uf.merge(a, b)); }\n  });\n  // https://oeis.org/A000055\n\
-    \  vi AC = {\n      0,       1,       1,        1,        2,         3,      6,\n\
-    \      11,      23,      47,       106,      235,       551,    1301,\n      3159,\
-    \    7741,    19320,    48629,    123867,    317955, 823065,\n      2144505, 5623756,\
-    \ 14828074, 39299897, 104636890,\n  };\n  assert(cnt == AC[n]);\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(n, 1, 21) test(n);\n  solve();\n  return 0;\n}\n"
+    \  vi AC = {\n      0, 1, 1, 1, 2, 3, 6, 11, 23, 47, 106, 235, 551, 1301, 3159,\
+    \ 7741, 19320, 48629, 123867, 317955, 823065, 2144505, 5623756, 14828074, 39299897,\
+    \ 104636890,\n  };\n  assert(cnt == AC[n]);\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(n,\
+    \ 1, 21) test(n);\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"ds/unionfind/unionfind.hpp\"\n#include \"graph/tree_dp/subtree_hash.hpp\"\
     \n#include \"enumerate/unlabeled_tree.hpp\"\n\nvoid test(int n) {\n  /*\n  \u30FB\
@@ -429,12 +428,11 @@ data:
     \ int>> edges) -> void {\n    ++cnt;\n    assert(len(edges) == n - 1);\n    //\
     \ if (n <= 6) { print(n, \",\", edges); }\n    UnionFind uf(n);\n    for (auto&\
     \ [a, b]: edges) { assert(uf.merge(a, b)); }\n  });\n  // https://oeis.org/A000055\n\
-    \  vi AC = {\n      0,       1,       1,        1,        2,         3,      6,\n\
-    \      11,      23,      47,       106,      235,       551,    1301,\n      3159,\
-    \    7741,    19320,    48629,    123867,    317955, 823065,\n      2144505, 5623756,\
-    \ 14828074, 39299897, 104636890,\n  };\n  assert(cnt == AC[n]);\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(n, 1, 21) test(n);\n  solve();\n  return 0;\n}\n"
+    \  vi AC = {\n      0, 1, 1, 1, 2, 3, 6, 11, 23, 47, 106, 235, 551, 1301, 3159,\
+    \ 7741, 19320, 48629, 123867, 317955, 823065, 2144505, 5623756, 14828074, 39299897,\
+    \ 104636890,\n  };\n  assert(cnt == AC[n]);\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(n,\
+    \ 1, 21) test(n);\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - ds/unionfind/unionfind.hpp
@@ -448,7 +446,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-14 01:37:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_unlabeled_tree.test.cpp

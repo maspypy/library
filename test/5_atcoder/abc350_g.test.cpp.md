@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: graph/ds/lct_node_base.hpp
     title: graph/ds/lct_node_base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'
@@ -218,44 +218,43 @@ data:
     \ -> heavy edge\n    assert(!(c->p));\n    assert(!(p->r));\n    c->p = p;\n \
     \   p->r = c;\n    p->update();\n  }\n\n  // parent(c)==p \u3068\u306A\u308B\u3088\
     \u3046\u306B link.\n  void link(int c, int p) { return link(&nodes[c], &nodes[p]);\
-    \ }\n\n  void cut(Node *a, Node *b) {\n    evert(a);\n    SHOW(\"after ev\");\n\
-    \    debug();\n    flush();\n    expose(b);\n    SHOW(\"after expose\");\n   \
-    \ debug();\n    flush();\n    assert(!b->p);\n    assert((b->l) == a);\n    //\
-    \ heavy edge -> no edge\n    b->l->p = nullptr;\n    b->l = nullptr;\n    b->update();\n\
-    \  }\n\n  void cut(int a, int b) { return cut(&nodes[a], &nodes[b]); }\n\n  //\
-    \ c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c \u306F splay\
-    \ tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  // c \u306F push \u6E08\u306B\u306A\
-    \u308B\n  void evert(Node *c) {\n    expose(c);\n    c->reverse();\n    c->push();\n\
-    \  }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\u3059\u308B.\n  // c\
-    \ \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n  void evert(int c)\
-    \ { evert(&nodes[c]); }\n\n  Node *lca(Node *u, Node *v) {\n    assert(get_root(u)\
-    \ == get_root(v));\n    expose(u);\n    return expose(v);\n  }\n\n  int lca(int\
-    \ u, int v) { return lca(&nodes[u], &nodes[v])->idx; }\n\n  // \u8FBA\u306E\u500B\
-    \u6570\n  int dist(int u, int v) {\n    evert(u), expose(v);\n    return ((*this)[v]->size)\
-    \ - 1;\n  }\n\n  Node *jump(Node *u, Node *v, int k) {\n    evert(v);\n    expose(u);\n\
-    \    assert(0 <= k && k < (u->size));\n    while (1) {\n      u->push();\n   \
-    \   int rs = (u->r ? u->r->size : 0);\n      if (k < rs) {\n        u = u->r;\n\
-    \        continue;\n      }\n      if (k == rs) { break; }\n      k -= rs + 1;\n\
-    \      u = u->l;\n    }\n    splay(u);\n    return u;\n  }\n\n  int jump(int u,\
-    \ int v, int k) {\n    auto c = jump((*this)[u], (*this)[v], k);\n    return c->idx;\n\
-    \  }\n\n  // [root, c] \u304C\u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\
-    \u3088\u3046\u306B\u5909\u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay\
-    \ tree \u306E\u6839\u3068\u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path\
-    \ query \u306F\u3053\u306E\u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B\
-    .\n  // c \u306F push \u6E08\u306B\u306A\u308B\n  virtual Node *expose(Node *c)\
-    \ {\n    Node *now = c;\n    Node *rp = nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\
-    \u305F\u30D1\u30B9\n    while (now) {\n      splay(now);\n      // heavy -> light,\
-    \ light -> heavy.\n      if (now->r) { now->add_light(now->r); }\n      if (rp)\
-    \ { now->erase_light(rp); }\n      now->r = rp;\n      now->update();\n      rp\
-    \ = now;\n      now = now->p;\n    }\n    splay(c);\n    return rp;\n  }\n\n \
-    \ // [root, c] \u304C\u3072\u3068\u3064\u306E splay tree \u306B\u306A\u308B\u3088\
-    \u3046\u306B\u5909\u66F4\u3059\u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree\
-    \ \u306E\u6839\u3068\u3044\u3046\u72B6\u614B\u306B\u306A\u308B.\n  // path query\
-    \ \u306F\u3053\u306E\u72B6\u614B\u3067 c \u306E data \u3092\u898B\u308B.\n  int\
-    \ expose(int c) {\n    Node *x = expose(&nodes[c]);\n    if (!x) return -1;\n\
-    \    return x->idx;\n  }\n\n  Node *get_parent(Node *x) {\n    expose(x);\n  \
-    \  if (!x->l) return nullptr;\n    x = x->l;\n    while (x->r) x = x->r;\n   \
-    \ return x;\n  }\n\n  int get_parent(int x) {\n    Node *p = get_parent((*this)[x]);\n\
+    \ }\n\n  void cut(Node *a, Node *b) {\n    evert(a);\n    expose(b);\n    assert(!b->p);\n\
+    \    assert((b->l) == a);\n    // heavy edge -> no edge\n    b->l->p = nullptr;\n\
+    \    b->l = nullptr;\n    b->update();\n  }\n\n  void cut(int a, int b) { return\
+    \ cut(&nodes[a], &nodes[b]); }\n\n  // c \u3092 underlying tree \u306E\u6839\u3068\
+    \u3059\u308B.\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\u308B.\n\
+    \  // c \u306F push \u6E08\u306B\u306A\u308B\n  void evert(Node *c) {\n    expose(c);\n\
+    \    c->reverse();\n    c->push();\n  }\n\n  // c \u3092 underlying tree \u306E\
+    \u6839\u3068\u3059\u308B.\n  // c \u306F splay tree \u306E\u6839\u306B\u3082\u306A\
+    \u308B.\n  void evert(int c) { evert(&nodes[c]); }\n\n  Node *lca(Node *u, Node\
+    \ *v) {\n    assert(get_root(u) == get_root(v));\n    expose(u);\n    return expose(v);\n\
+    \  }\n\n  int lca(int u, int v) { return lca(&nodes[u], &nodes[v])->idx; }\n\n\
+    \  // \u8FBA\u306E\u500B\u6570\n  int dist(int u, int v) {\n    evert(u), expose(v);\n\
+    \    return ((*this)[v]->size) - 1;\n  }\n\n  Node *jump(Node *u, Node *v, int\
+    \ k) {\n    evert(v);\n    expose(u);\n    assert(0 <= k && k < (u->size));\n\
+    \    while (1) {\n      u->push();\n      int rs = (u->r ? u->r->size : 0);\n\
+    \      if (k < rs) {\n        u = u->r;\n        continue;\n      }\n      if\
+    \ (k == rs) { break; }\n      k -= rs + 1;\n      u = u->l;\n    }\n    splay(u);\n\
+    \    return u;\n  }\n\n  int jump(int u, int v, int k) {\n    auto c = jump((*this)[u],\
+    \ (*this)[v], k);\n    return c->idx;\n  }\n\n  // [root, c] \u304C\u3072\u3068\
+    \u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\
+    \u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\
+    \u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\
+    \u3067 c \u306E data \u3092\u898B\u308B.\n  // c \u306F push \u6E08\u306B\u306A\
+    \u308B\n  virtual Node *expose(Node *c) {\n    Node *now = c;\n    Node *rp =\
+    \ nullptr; // \u4ECA\u307E\u3067\u4F5C\u3063\u305F\u30D1\u30B9\n    while (now)\
+    \ {\n      splay(now);\n      // heavy -> light, light -> heavy.\n      if (now->r)\
+    \ { now->add_light(now->r); }\n      if (rp) { now->erase_light(rp); }\n     \
+    \ now->r = rp;\n      now->update();\n      rp = now;\n      now = now->p;\n \
+    \   }\n    splay(c);\n    return rp;\n  }\n\n  // [root, c] \u304C\u3072\u3068\
+    \u3064\u306E splay tree \u306B\u306A\u308B\u3088\u3046\u306B\u5909\u66F4\u3059\
+    \u308B.\n  // c \u304C\u53F3\u7AEF\u3067 splay tree \u306E\u6839\u3068\u3044\u3046\
+    \u72B6\u614B\u306B\u306A\u308B.\n  // path query \u306F\u3053\u306E\u72B6\u614B\
+    \u3067 c \u306E data \u3092\u898B\u308B.\n  int expose(int c) {\n    Node *x =\
+    \ expose(&nodes[c]);\n    if (!x) return -1;\n    return x->idx;\n  }\n\n  Node\
+    \ *get_parent(Node *x) {\n    expose(x);\n    x->push();\n    if (!x->l) return\
+    \ nullptr;\n    x = x->l, x->push();\n    while (x->r) x = x->r, x->push();\n\
+    \    return x;\n  }\n\n  int get_parent(int x) {\n    Node *p = get_parent((*this)[x]);\n\
     \    return (p ? p->idx : -1);\n  }\n\n  void set(Node *c, typename Node::VX x)\
     \ {\n    evert(c);\n    c->set(x);\n  }\n\n  void set(int c, typename Node::VX\
     \ x) { set((*this)[c], x); }\n\n  typename Node::X prod_path(int a, int b) {\n\
@@ -345,7 +344,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc350_g.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-14 01:37:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc350_g.test.cpp

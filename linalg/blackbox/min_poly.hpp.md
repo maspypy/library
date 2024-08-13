@@ -17,6 +17,9 @@ data:
   - icon: ':x:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
+  - icon: ':warning:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
@@ -87,6 +90,7 @@ data:
   isVerificationFile: false
   path: linalg/blackbox/min_poly.hpp
   requiredBy:
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   - linalg/blackbox/det.hpp

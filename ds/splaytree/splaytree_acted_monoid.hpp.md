@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_am.test.cpp
     title: test/1_mytest/splay_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -209,7 +209,7 @@ data:
   path: ds/splaytree/splaytree_acted_monoid.hpp
   requiredBy: []
   timestamp: '2024-07-18 12:34:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/1_mytest/splay_am.test.cpp

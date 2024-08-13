@@ -28,10 +28,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
-    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bigint.test.cpp
@@ -503,8 +500,7 @@ data:
   - poly/fft.hpp
   isVerificationFile: false
   path: bigint/binary.hpp
-  requiredBy:
-  - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+  requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

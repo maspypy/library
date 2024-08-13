@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':question:'
@@ -25,9 +25,6 @@ data:
     title: poly/partial_frac_decomposition_1.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: graph/chromatic_polynomial.test.cpp
-    title: graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +45,9 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
@@ -133,6 +133,7 @@ data:
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/qbinom.test.cpp
@@ -140,7 +141,6 @@ data:
   - test/1_mytest/all_inverse.test.cpp
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/chirp_z.test.cpp
-  - graph/chromatic_polynomial.test.cpp
 documentation_of: mod/all_inverse.hpp
 layout: document
 redirect_from:

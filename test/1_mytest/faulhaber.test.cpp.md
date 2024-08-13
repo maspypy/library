@@ -46,18 +46,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/faulhaber.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
+  bundledCode: "#line 1 \"test/1_mytest/faulhaber.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -140,8 +142,8 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/faulhaber.cpp\"\n\n\
-    #line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/faulhaber.test.cpp\"\
+    \n\n#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
     \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
     \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
@@ -498,8 +500,8 @@ data:
     \ = ... gx^{i-1}\n    G[i] = h * inv<mint>(i);\n    sm += inv<mint>(i);\n  }\n\
     \  G[0] = sm;\n  FOR(i, n) G[i + 1] += G[i];\n  vc<mint> pow = powertable_2<mint>(n,\
     \ n);\n  mint ans = 0;\n  FOR(i, n + 1) { ans += pow[i] * G[i]; }\n  return ans;\n\
-    }\n#line 6 \"test/1_mytest/faulhaber.cpp\"\n\n// sum_[1,n]i^p=f(n)\ntemplate <typename\
-    \ mint>\nvc<mint> faulhaber_formula(int p) {\n  vc<mint> F = bernoulli_number<mint>(p\
+    }\n#line 6 \"test/1_mytest/faulhaber.test.cpp\"\n\n// sum_[1,n]i^p=f(n)\ntemplate\
+    \ <typename mint>\nvc<mint> faulhaber_formula(int p) {\n  vc<mint> F = bernoulli_number<mint>(p\
     \ + 1);\n  if (1 <= p) F[1] = inv<mint>(2);\n  reverse(all(F));\n  F[0] = 0;\n\
     \  FOR(r, p + 1) { F[p - r + 1] *= fact<mint>(p) * fact_inv<mint>(r) * fact_inv<mint>(p\
     \ + 1 - r); }\n  return F;\n}\n\nvoid test() {\n  using mint = modint107;\n  FOR(p,\
@@ -537,16 +539,16 @@ data:
   - poly/fft.hpp
   - mod/powertable.hpp
   - nt/primetable.hpp
-  isVerificationFile: false
-  path: test/1_mytest/faulhaber.cpp
+  isVerificationFile: true
+  path: test/1_mytest/faulhaber.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-08-14 01:37:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/faulhaber.cpp
+documentation_of: test/1_mytest/faulhaber.test.cpp
 layout: document
 redirect_from:
-- /library/test/1_mytest/faulhaber.cpp
-- /library/test/1_mytest/faulhaber.cpp.html
-title: test/1_mytest/faulhaber.cpp
+- /verify/test/1_mytest/faulhaber.test.cpp
+- /verify/test/1_mytest/faulhaber.test.cpp.html
+title: test/1_mytest/faulhaber.test.cpp
 ---

@@ -50,7 +50,7 @@ data:
   - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':warning:'
@@ -314,10 +314,10 @@ data:
   - icon: ':question:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
+  - icon: ':warning:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: graph/chromatic_polynomial.test.cpp
-    title: graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/1_mytest/QOJ5445.test.cpp
     title: test/1_mytest/QOJ5445.test.cpp
@@ -426,6 +426,9 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
@@ -1013,6 +1016,7 @@ data:
   requiredBy:
   - game/graph_game.hpp
   - geo/manhattan_mst.hpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - enumerate/labeled_tree.hpp
   - enumerate/triangle.hpp
   - string/suffix_tree.hpp
@@ -1243,6 +1247,7 @@ data:
   - test/2_library_checker/graph/classify_tree.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/complement_graph_unionfind.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/graph/biconnected_component.test.cpp
   - test/2_library_checker/graph/manhattan_mst.test.cpp
   - test/2_library_checker/graph/two_edge_component.test.cpp
@@ -1300,7 +1305,6 @@ data:
   - test/4_aoj/ITP1_11_D.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/2995.test.cpp
-  - graph/chromatic_polynomial.test.cpp
 documentation_of: graph/base.hpp
 layout: document
 redirect_from:

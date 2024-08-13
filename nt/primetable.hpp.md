@@ -89,7 +89,7 @@ data:
   - icon: ':x:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':question:'
@@ -107,9 +107,6 @@ data:
   - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/faulhaber.cpp
-    title: test/1_mytest/faulhaber.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
@@ -138,6 +135,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/faulhaber.test.cpp
+    title: test/1_mytest/faulhaber.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/prime_sum.test.cpp
     title: test/1_mytest/prime_sum.test.cpp
@@ -324,7 +324,6 @@ data:
   isVerificationFile: false
   path: nt/primetable.hpp
   requiredBy:
-  - test/1_mytest/faulhaber.cpp
   - nt/primesum_mod6.hpp
   - nt/all_lcm.hpp
   - nt/gcd_convolution.hpp
@@ -420,6 +419,7 @@ data:
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/eulerian_number.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp

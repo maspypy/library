@@ -35,7 +35,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -83,7 +83,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':x:'
@@ -98,13 +98,7 @@ data:
   - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/faulhaber.cpp
-    title: test/1_mytest/faulhaber.cpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: graph/chromatic_polynomial.test.cpp
-    title: graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
@@ -127,6 +121,9 @@ data:
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/faulhaber.test.cpp
+    title: test/1_mytest/faulhaber.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
@@ -141,6 +138,9 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/math/bernoulli.test.cpp
     title: test/2_library_checker/math/bernoulli.test.cpp
@@ -627,7 +627,6 @@ data:
   isVerificationFile: false
   path: poly/fps_div.hpp
   requiredBy:
-  - test/1_mytest/faulhaber.cpp
   - graph/chromatic.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
@@ -692,6 +691,7 @@ data:
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
@@ -707,8 +707,8 @@ data:
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/bell.test.cpp
-  - graph/chromatic_polynomial.test.cpp
 documentation_of: poly/fps_div.hpp
 layout: document
 redirect_from:

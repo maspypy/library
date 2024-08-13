@@ -5,7 +5,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':x:'
@@ -61,9 +61,6 @@ data:
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: graph/chromatic_polynomial.test.cpp
-    title: graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,6 +96,9 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+    title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
@@ -373,6 +373,7 @@ data:
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/math/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
@@ -386,7 +387,6 @@ data:
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/bell.test.cpp
-  - graph/chromatic_polynomial.test.cpp
 documentation_of: poly/ntt_doubling.hpp
 layout: document
 redirect_from:

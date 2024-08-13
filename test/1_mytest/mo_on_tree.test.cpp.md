@@ -583,33 +583,30 @@ data:
     \ ORIENTED> mo(tree);\n      for (auto&& [a, b]: query) mo.add(a, b);\n\n    \
     \  if constexpr (!EDGE) {\n        AFF f = Mono::unit();\n        auto init =\
     \ [&]() -> void { f = dat[0]; };\n        auto add_l = [&](int v) -> void { f\
-    \ = Mono::op(dat[v], f); };\n        auto rm_l\n            = [&](int v) -> void\
-    \ { f = Mono::op(Mono::inverse(dat[v]), f); };\n        auto add_r = [&](int v)\
-    \ -> void { f = Mono::op(f, dat[v]); };\n        auto rm_r\n            = [&](int\
-    \ v) -> void { f = Mono::op(f, Mono::inverse(dat[v])); };\n        auto ans =\
-    \ [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi, query[q].se));\n\
-    \        };\n        mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);\n  \
-    \    } else {\n        AFF f = Mono::unit();\n        auto get = [&](int a, int\
-    \ b) -> int {\n          return tree.v_to_e((tree.parent[a] == b ? a : b));\n\
-    \        };\n        auto init = [&]() -> void {};\n        auto add_l\n     \
-    \       = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)], f); };\n  \
-    \      auto rm_l = [&](int a, int b) -> void {\n          f = Mono::op(Mono::inverse(dat[get(a,\
-    \ b)]), f);\n        };\n        auto add_r\n            = [&](int a, int b) ->\
-    \ void { f = Mono::op(f, dat[get(a, b)]); };\n        auto rm_r = [&](int a, int\
-    \ b) -> void {\n          f = Mono::op(f, Mono::inverse(dat[get(a, b)]));\n  \
-    \      };\n        auto ans = [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi,\
-    \ query[q].se));\n        };\n        mo.calc_edge(init, add_l, add_r, rm_l, rm_r,\
-    \ ans);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  // \u30D1\u30B9\u306E\
-    \u5411\u304D\u304C\u53EF\u9006\u3067\u9802\u70B9\u53EF\u63DB\u30E2\u30CE\u30A4\
-    \u30C9\u7A4D\n  test<Monoid_Add_Pair<mint>, false>();\n  // \u30D1\u30B9\u306E\
-    \u5411\u304D\u304C\u4E0D\u53EF\u9006\u3067\u9802\u70B9\u975E\u53EF\u63DB\u30E2\
-    \u30CE\u30A4\u30C9\u7A4D\n  test<Monoid_Affine<mint>, false>();\n  // \u30D1\u30B9\
-    \u306E\u5411\u304D\u304C\u53EF\u9006\u3067\u8FBA\u53EF\u63DB\u30E2\u30CE\u30A4\
-    \u30C9\u7A4D\n  test<Monoid_Add_Pair<mint>, true>();\n  // \u30D1\u30B9\u306E\u5411\
-    \u304D\u304C\u4E0D\u53EF\u9006\u3067\u8FBA\u975E\u53EF\u63DB\u30E2\u30CE\u30A4\
-    \u30C9\u7A4D\n  test<Monoid_Affine<mint>, true>();\n  solve();\n  return 0;\n\
-    }\n"
+    \ = Mono::op(dat[v], f); };\n        auto rm_l = [&](int v) -> void { f = Mono::op(Mono::inverse(dat[v]),\
+    \ f); };\n        auto add_r = [&](int v) -> void { f = Mono::op(f, dat[v]); };\n\
+    \        auto rm_r = [&](int v) -> void { f = Mono::op(f, Mono::inverse(dat[v]));\
+    \ };\n        auto ans = [&](int q) -> void { assert(f == TM.prod_path(query[q].fi,\
+    \ query[q].se)); };\n        mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);\n\
+    \      } else {\n        AFF f = Mono::unit();\n        auto get = [&](int a,\
+    \ int b) -> int { return tree.v_to_e((tree.parent[a] == b ? a : b)); };\n    \
+    \    auto init = [&]() -> void {};\n        auto add_l = [&](int a, int b) ->\
+    \ void { f = Mono::op(dat[get(a, b)], f); };\n        auto rm_l = [&](int a, int\
+    \ b) -> void { f = Mono::op(Mono::inverse(dat[get(a, b)]), f); };\n        auto\
+    \ add_r = [&](int a, int b) -> void { f = Mono::op(f, dat[get(a, b)]); };\n  \
+    \      auto rm_r = [&](int a, int b) -> void { f = Mono::op(f, Mono::inverse(dat[get(a,\
+    \ b)])); };\n        auto ans = [&](int q) -> void { assert(f == TM.prod_path(query[q].fi,\
+    \ query[q].se)); };\n        mo.calc_edge(init, add_l, add_r, rm_l, rm_r, ans);\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  // \u30D1\u30B9\u306E\u5411\u304D\
+    \u304C\u53EF\u9006\u3067\u9802\u70B9\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u7A4D\
+    \n  test<Monoid_Add_Pair<mint>, false>();\n  // \u30D1\u30B9\u306E\u5411\u304D\
+    \u304C\u4E0D\u53EF\u9006\u3067\u9802\u70B9\u975E\u53EF\u63DB\u30E2\u30CE\u30A4\
+    \u30C9\u7A4D\n  test<Monoid_Affine<mint>, false>();\n  // \u30D1\u30B9\u306E\u5411\
+    \u304D\u304C\u53EF\u9006\u3067\u8FBA\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u7A4D\
+    \n  test<Monoid_Add_Pair<mint>, true>();\n  // \u30D1\u30B9\u306E\u5411\u304D\u304C\
+    \u4E0D\u53EF\u9006\u3067\u8FBA\u975E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u7A4D\
+    \n  test<Monoid_Affine<mint>, true>();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"graph/tree.hpp\"\n#include \"graph/ds/mo_on_tree.hpp\"\
     \n#include \"graph/ds/tree_monoid.hpp\"\n#include \"alg/monoid/affine.hpp\"\n\
@@ -627,33 +624,30 @@ data:
     \ ORIENTED> mo(tree);\n      for (auto&& [a, b]: query) mo.add(a, b);\n\n    \
     \  if constexpr (!EDGE) {\n        AFF f = Mono::unit();\n        auto init =\
     \ [&]() -> void { f = dat[0]; };\n        auto add_l = [&](int v) -> void { f\
-    \ = Mono::op(dat[v], f); };\n        auto rm_l\n            = [&](int v) -> void\
-    \ { f = Mono::op(Mono::inverse(dat[v]), f); };\n        auto add_r = [&](int v)\
-    \ -> void { f = Mono::op(f, dat[v]); };\n        auto rm_r\n            = [&](int\
-    \ v) -> void { f = Mono::op(f, Mono::inverse(dat[v])); };\n        auto ans =\
-    \ [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi, query[q].se));\n\
-    \        };\n        mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);\n  \
-    \    } else {\n        AFF f = Mono::unit();\n        auto get = [&](int a, int\
-    \ b) -> int {\n          return tree.v_to_e((tree.parent[a] == b ? a : b));\n\
-    \        };\n        auto init = [&]() -> void {};\n        auto add_l\n     \
-    \       = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)], f); };\n  \
-    \      auto rm_l = [&](int a, int b) -> void {\n          f = Mono::op(Mono::inverse(dat[get(a,\
-    \ b)]), f);\n        };\n        auto add_r\n            = [&](int a, int b) ->\
-    \ void { f = Mono::op(f, dat[get(a, b)]); };\n        auto rm_r = [&](int a, int\
-    \ b) -> void {\n          f = Mono::op(f, Mono::inverse(dat[get(a, b)]));\n  \
-    \      };\n        auto ans = [&](int q) -> void {\n          assert(f == TM.prod_path(query[q].fi,\
-    \ query[q].se));\n        };\n        mo.calc_edge(init, add_l, add_r, rm_l, rm_r,\
-    \ ans);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  // \u30D1\u30B9\u306E\
-    \u5411\u304D\u304C\u53EF\u9006\u3067\u9802\u70B9\u53EF\u63DB\u30E2\u30CE\u30A4\
-    \u30C9\u7A4D\n  test<Monoid_Add_Pair<mint>, false>();\n  // \u30D1\u30B9\u306E\
-    \u5411\u304D\u304C\u4E0D\u53EF\u9006\u3067\u9802\u70B9\u975E\u53EF\u63DB\u30E2\
-    \u30CE\u30A4\u30C9\u7A4D\n  test<Monoid_Affine<mint>, false>();\n  // \u30D1\u30B9\
-    \u306E\u5411\u304D\u304C\u53EF\u9006\u3067\u8FBA\u53EF\u63DB\u30E2\u30CE\u30A4\
-    \u30C9\u7A4D\n  test<Monoid_Add_Pair<mint>, true>();\n  // \u30D1\u30B9\u306E\u5411\
-    \u304D\u304C\u4E0D\u53EF\u9006\u3067\u8FBA\u975E\u53EF\u63DB\u30E2\u30CE\u30A4\
-    \u30C9\u7A4D\n  test<Monoid_Affine<mint>, true>();\n  solve();\n  return 0;\n\
-    }\n"
+    \ = Mono::op(dat[v], f); };\n        auto rm_l = [&](int v) -> void { f = Mono::op(Mono::inverse(dat[v]),\
+    \ f); };\n        auto add_r = [&](int v) -> void { f = Mono::op(f, dat[v]); };\n\
+    \        auto rm_r = [&](int v) -> void { f = Mono::op(f, Mono::inverse(dat[v]));\
+    \ };\n        auto ans = [&](int q) -> void { assert(f == TM.prod_path(query[q].fi,\
+    \ query[q].se)); };\n        mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);\n\
+    \      } else {\n        AFF f = Mono::unit();\n        auto get = [&](int a,\
+    \ int b) -> int { return tree.v_to_e((tree.parent[a] == b ? a : b)); };\n    \
+    \    auto init = [&]() -> void {};\n        auto add_l = [&](int a, int b) ->\
+    \ void { f = Mono::op(dat[get(a, b)], f); };\n        auto rm_l = [&](int a, int\
+    \ b) -> void { f = Mono::op(Mono::inverse(dat[get(a, b)]), f); };\n        auto\
+    \ add_r = [&](int a, int b) -> void { f = Mono::op(f, dat[get(a, b)]); };\n  \
+    \      auto rm_r = [&](int a, int b) -> void { f = Mono::op(f, Mono::inverse(dat[get(a,\
+    \ b)])); };\n        auto ans = [&](int q) -> void { assert(f == TM.prod_path(query[q].fi,\
+    \ query[q].se)); };\n        mo.calc_edge(init, add_l, add_r, rm_l, rm_r, ans);\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  // \u30D1\u30B9\u306E\u5411\u304D\
+    \u304C\u53EF\u9006\u3067\u9802\u70B9\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u7A4D\
+    \n  test<Monoid_Add_Pair<mint>, false>();\n  // \u30D1\u30B9\u306E\u5411\u304D\
+    \u304C\u4E0D\u53EF\u9006\u3067\u9802\u70B9\u975E\u53EF\u63DB\u30E2\u30CE\u30A4\
+    \u30C9\u7A4D\n  test<Monoid_Affine<mint>, false>();\n  // \u30D1\u30B9\u306E\u5411\
+    \u304D\u304C\u53EF\u9006\u3067\u8FBA\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u7A4D\
+    \n  test<Monoid_Add_Pair<mint>, true>();\n  // \u30D1\u30B9\u306E\u5411\u304D\u304C\
+    \u4E0D\u53EF\u9006\u3067\u8FBA\u975E\u53EF\u63DB\u30E2\u30CE\u30A4\u30C9\u7A4D\
+    \n  test<Monoid_Affine<mint>, true>();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -671,7 +665,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/mo_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-14 01:37:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/mo_on_tree.test.cpp

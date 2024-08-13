@@ -17,6 +17,9 @@ data:
   - icon: ':x:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
+  - icon: ':warning:'
+    path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
@@ -105,6 +108,7 @@ data:
   isVerificationFile: false
   path: seq/find_linear_rec.hpp
   requiredBy:
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   - seq/interpolate_linear_rec.hpp

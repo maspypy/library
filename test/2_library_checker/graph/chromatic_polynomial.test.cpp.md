@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':question:'
@@ -73,7 +73,7 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':question:'
@@ -84,35 +84,35 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/chromatic_polynomial
     links:
     - https://judge.yosupo.jp/problem/chromatic_polynomial
-  bundledCode: "#line 1 \"graph/chromatic_polynomial.test.cpp\"\n#define PROBLEM \"\
-    https://judge.yosupo.jp/problem/chromatic_polynomial\"\n\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
-    \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
-    \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned long\
-    \ long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 =\
-    \ __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...) vector<vector<vector<type>>>\
+  bundledCode: "#line 1 \"test/2_library_checker/graph/chromatic_polynomial.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_polynomial\"\n\n\
+    #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
+    \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\n\
+    template <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128\
+    \ infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...) vector<vector<vector<type>>>\
     \ name(h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...) \\\n  vector<vector<vector<vector<type>>>> name(a, vector<vector<vector<type>>>(b,\
     \ vector<vector<type>>(c, vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n\
@@ -270,20 +270,20 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"graph/chromatic_polynomial.test.cpp\"\n\n#line 2 \"\
-    graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T\
-    \ cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed = false>\n\
-    struct Graph {\n  static constexpr bool is_directed = directed;\n  int N, M;\n\
-    \  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n\
-    \  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg,\
-    \ vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const\
-    \ Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin()\
-    \ const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n \
-    \   }\n\n    const edge_type* end() const {\n      if (l == r) { return 0; }\n\
-    \      return &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n  \
-    \  int l, r;\n  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() :\
-    \ N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n\
-    \  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
+    \ yes(!t); }\r\n#line 5 \"test/2_library_checker/graph/chromatic_polynomial.test.cpp\"\
+    \n\n#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int\
+    \ frm, to;\n  T cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed\
+    \ = false>\nstruct Graph {\n  static constexpr bool is_directed = directed;\n\
+    \  int N, M;\n  using cost_type = T;\n  using edge_type = Edge<T>;\n  vector<edge_type>\
+    \ edges;\n  vector<int> indptr;\n  vector<edge_type> csr_edges;\n  vc<int> vc_deg,\
+    \ vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class OutgoingEdges {\n  public:\n\
+    \    OutgoingEdges(const Graph* G, int l, int r) : G(G), l(l), r(r) {}\n\n   \
+    \ const edge_type* begin() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[l];\n    }\n\n    const edge_type* end() const {\n      if (l\
+    \ == r) { return 0; }\n      return &G->csr_edges[r];\n    }\n\n  private:\n \
+    \   const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared() { return prepared;\
+    \ }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0)\
+    \ {}\n\n  void build(int n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n\
     \    indptr.clear();\n    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n\
     \    vc_outdeg.clear();\n  }\n\n  void add(int frm, int to, T cost = 1, int i\
     \ = -1) {\n    assert(!prepared);\n    assert(0 <= frm && 0 <= to && to < N);\n\
@@ -940,10 +940,10 @@ data:
     \ (!ng[s]) f[s] = 1;\r\n  }\r\n  vc<mint> wt(1 << N);\r\n  wt.back() = 1;\r\n\
     \  vc<mint> Y = power_projection_of_sps<mint, MAX_N>(wt, f, N + 1);\r\n  vc<mint>\
     \ X(N + 1);\r\n  FOR(i, N + 1) X[i] = i;\r\n  return multipoint_interpolate<mint>(X,\
-    \ Y);\r\n}\r\n#line 8 \"graph/chromatic_polynomial.test.cpp\"\n\nusing mint =\
-    \ modint998;\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n  G.read_graph(M,\
-    \ 0, 0);\n  auto f = chromatic_polynomial<mint, 20>(G);\n  print(f);\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \ Y);\r\n}\r\n#line 8 \"test/2_library_checker/graph/chromatic_polynomial.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n\
+    \  G.read_graph(M, 0, 0);\n  auto f = chromatic_polynomial<mint, 20>(G);\n  print(f);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/chromatic_polynomial\"\n\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/chromatic.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
@@ -978,15 +978,15 @@ data:
   - setfunc/subset_convolution.hpp
   - setfunc/ranked_zeta.hpp
   isVerificationFile: true
-  path: graph/chromatic_polynomial.test.cpp
+  path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-14 01:37:11+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: graph/chromatic_polynomial.test.cpp
+documentation_of: test/2_library_checker/graph/chromatic_polynomial.test.cpp
 layout: document
 redirect_from:
-- /verify/graph/chromatic_polynomial.test.cpp
-- /verify/graph/chromatic_polynomial.test.cpp.html
-title: graph/chromatic_polynomial.test.cpp
+- /verify/test/2_library_checker/graph/chromatic_polynomial.test.cpp
+- /verify/test/2_library_checker/graph/chromatic_polynomial.test.cpp.html
+title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
 ---

@@ -50,10 +50,10 @@ data:
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/faulhaber.cpp
-    title: test/1_mytest/faulhaber.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/faulhaber.test.cpp
+    title: test/1_mytest/faulhaber.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/math/bernoulli.test.cpp
     title: test/2_library_checker/math/bernoulli.test.cpp
@@ -65,7 +65,7 @@ data:
     title: test/3_yukicoder/2580.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascon23/tasks/xmascon23_e
@@ -462,15 +462,15 @@ data:
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
-  - test/1_mytest/faulhaber.cpp
   - seq/famous/riemann_zeta_even.hpp
   - poly/prefix_sum_of_polynomial.hpp
   timestamp: '2024-08-11 03:15:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/2_library_checker/math/bernoulli.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:
