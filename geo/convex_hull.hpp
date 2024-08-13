@@ -2,9 +2,10 @@
 
 #include "geo/base.hpp"
 
-template <typename T>
-vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full",
-                       bool sorted = false) {
+// allow_180=true で同一座標点があるとこわれる
+// full なら I[0] が sorted で min になる
+template <typename T, bool allow_180 = false>
+vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full", bool sorted = false) {
   assert(mode == "full" || mode == "lower" || mode == "upper");
   ll N = XY.size();
   if (N == 1) return {0};
@@ -19,9 +20,12 @@ vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full",
   } else {
     I = argsort(XY);
   }
+  if constexpr (allow_180) { FOR(i, N - 1) assert(XY[i] != XY[i + 1]); }
 
   auto check = [&](ll i, ll j, ll k) -> bool {
-    return (XY[j] - XY[i]).det(XY[k] - XY[i]) > 0;
+    ll det = (XY[j] - XY[i]).det(XY[k] - XY[i]);
+    if constexpr (allow_180) return det >= 0;
+    return det > 0;
   };
 
   auto calc = [&]() {

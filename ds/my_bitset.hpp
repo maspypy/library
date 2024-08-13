@@ -200,10 +200,12 @@ struct My_Bitset {
     assert(p.N == R - L);
     int a = 0, b = p.N;
     while (L < R && (L & 63)) {
-      if (!p[a++]) (*this)[L++] = 0;
+      if (!p[a]) (*this)[L] = 0;
+      a++, L++;
     }
     while (L < R && (R & 63)) {
-      if (!p[--b]) (*this)[--R] = 0;
+      --b, --R;
+      if (!p[b]) (*this)[R] = 0;
     }
     // p[a:b] を [L:R] に
     int l = L >> 6, r = R >> 6;

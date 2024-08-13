@@ -1,6 +1,7 @@
 #include "geo/dynamicupperhull.hpp"
 
 // https://codeforces.com/contest/1599/problem/D
+// 出力は反時計回りである
 vvc<int> convex_layers(vc<Point<ll>> points) {
   int N = len(points);
   DynamicUpperHull<Point<ll>> DUH(points, 1);
