@@ -41,7 +41,7 @@ data:
   - icon: ':x:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':x:'
@@ -89,7 +89,7 @@ data:
   - icon: ':x:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
   - icon: ':x:'
@@ -396,7 +396,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':x:'
