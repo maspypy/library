@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_B.test.cpp
-    title: test/aoj/DPL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_F.test.cpp
-    title: test/aoj/DPL_1_F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_1_H.test.cpp
-    title: test/aoj/DPL_1_H.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/4_aoj/DPL_1_B.test.cpp
+    title: test/4_aoj/DPL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DPL_1_F.test.cpp
+    title: test/4_aoj/DPL_1_F.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DPL_1_H.test.cpp
+    title: test/4_aoj/DPL_1_H.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"knapsack/knapsack01.hpp\"\n/*\nknapsack01 \u306E\u5168\u5217\
@@ -92,11 +92,11 @@ data:
   path: knapsack/knapsack01.hpp
   requiredBy: []
   timestamp: '2024-02-02 05:06:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DPL_1_H.test.cpp
-  - test/aoj/DPL_1_B.test.cpp
-  - test/aoj/DPL_1_F.test.cpp
+  - test/4_aoj/DPL_1_H.test.cpp
+  - test/4_aoj/DPL_1_B.test.cpp
+  - test/4_aoj/DPL_1_F.test.cpp
 documentation_of: knapsack/knapsack01.hpp
 layout: document
 redirect_from:

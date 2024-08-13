@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/899.test.cpp
-    title: test/yukicoder/899.test.cpp
+    path: test/3_yukicoder/899.test.cpp
+    title: test/3_yukicoder/899.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -160,7 +160,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/899.test.cpp
+  - test/3_yukicoder/899.test.cpp
 documentation_of: graph/ds/bfs_numbering.hpp
 layout: document
 redirect_from:

@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc245g2.test.cpp
-    title: test_atcoder/abc245g2.test.cpp
+    path: test/5_atcoder/abc245g2.test.cpp
+    title: test/5_atcoder/abc245g2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -132,7 +132,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc245g2.test.cpp
+  - test/5_atcoder/abc245g2.test.cpp
 documentation_of: graph/shortest_path/top2_dijkstra.hpp
 layout: document
 redirect_from:

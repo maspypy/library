@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/626.test.cpp
-    title: test/yukicoder/626.test.cpp
+    path: test/3_yukicoder/626.test.cpp
+    title: test/3_yukicoder/626.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -44,7 +44,7 @@ data:
   timestamp: '2022-10-21 17:08:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/626.test.cpp
+  - test/3_yukicoder/626.test.cpp
 documentation_of: knapsack/knapsack_branch_bound.hpp
 layout: document
 redirect_from:

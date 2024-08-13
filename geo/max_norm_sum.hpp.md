@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc139f.test.cpp
-    title: test_atcoder/abc139f.test.cpp
+    path: test/5_atcoder/abc139f.test.cpp
+    title: test/5_atcoder/abc139f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -139,7 +139,7 @@ data:
   timestamp: '2024-07-24 02:09:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc139f.test.cpp
+  - test/5_atcoder/abc139f.test.cpp
 documentation_of: geo/max_norm_sum.hpp
 layout: document
 redirect_from:

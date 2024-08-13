@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/simple_perm.test.cpp
-    title: test/mytest/simple_perm.test.cpp
+    path: test/1_mytest/simple_perm.test.cpp
+    title: test/1_mytest/simple_perm.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -222,7 +222,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/simple_perm.test.cpp
+  - test/1_mytest/simple_perm.test.cpp
 documentation_of: seq/famous/simple_permutations.hpp
 layout: document
 redirect_from:

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_freq.test.cpp
-    title: test/library_checker/datastructure/static_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_frequency.test.cpp
-    title: test/library_checker/datastructure/static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_mode_query.test.cpp
-    title: test/library_checker/datastructure/static_range_mode_query.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/2_library_checker/datastructure/static_range_freq.test.cpp
+    title: test/2_library_checker/datastructure/static_range_freq.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/datastructure/static_range_frequency.test.cpp
+    title: test/2_library_checker/datastructure/static_range_frequency.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/datastructure/static_range_mode_query.test.cpp
+    title: test/2_library_checker/datastructure/static_range_mode_query.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -67,11 +67,11 @@ data:
   requiredBy:
   - ds/static_range_frequency.hpp
   timestamp: '2024-07-03 07:03:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/static_range_mode_query.test.cpp
-  - test/library_checker/datastructure/static_range_frequency.test.cpp
-  - test/library_checker/datastructure/static_range_freq.test.cpp
+  - test/2_library_checker/datastructure/static_range_mode_query.test.cpp
+  - test/2_library_checker/datastructure/static_range_frequency.test.cpp
+  - test/2_library_checker/datastructure/static_range_freq.test.cpp
 documentation_of: ds/to_small_key.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':x:'
@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/summin_assign.test.cpp
-    title: test/mytest/summin_assign.test.cpp
+    path: test/1_mytest/summin_assign.test.cpp
+    title: test/1_mytest/summin_assign.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -48,7 +48,7 @@ data:
   timestamp: '2023-12-17 01:33:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/summin_assign.test.cpp
+  - test/1_mytest/summin_assign.test.cpp
 documentation_of: alg/acted_monoid/summin_assign.hpp
 layout: document
 redirect_from:

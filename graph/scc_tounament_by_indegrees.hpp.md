@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/scc_tournament.test.cpp
-    title: test/mytest/scc_tournament.test.cpp
+    path: test/1_mytest/scc_tournament.test.cpp
+    title: test/1_mytest/scc_tournament.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -31,7 +31,7 @@ data:
   timestamp: '2023-03-15 22:02:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/scc_tournament.test.cpp
+  - test/1_mytest/scc_tournament.test.cpp
 documentation_of: graph/scc_tounament_by_indegrees.hpp
 layout: document
 redirect_from:

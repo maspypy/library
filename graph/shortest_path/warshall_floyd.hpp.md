@@ -6,21 +6,21 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_1_C.test.cpp
-    title: test/aoj/GRL_1_C.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1344.test.cpp
-    title: test/yukicoder/1344.test.cpp
+    path: test/3_yukicoder/1344.test.cpp
+    title: test/3_yukicoder/1344.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/17.test.cpp
-    title: test/yukicoder/17.test.cpp
+    path: test/3_yukicoder/17.test.cpp
+    title: test/3_yukicoder/17.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1789.test.cpp
-    title: test/yukicoder/1789.test.cpp
+    path: test/3_yukicoder/1789.test.cpp
+    title: test/3_yukicoder/1789.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/GRL_1_C.test.cpp
+    title: test/4_aoj/GRL_1_C.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -118,12 +118,12 @@ data:
   path: graph/shortest_path/warshall_floyd.hpp
   requiredBy: []
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/17.test.cpp
-  - test/yukicoder/1789.test.cpp
-  - test/yukicoder/1344.test.cpp
-  - test/aoj/GRL_1_C.test.cpp
+  - test/3_yukicoder/17.test.cpp
+  - test/3_yukicoder/1789.test.cpp
+  - test/3_yukicoder/1344.test.cpp
+  - test/4_aoj/GRL_1_C.test.cpp
 documentation_of: graph/shortest_path/warshall_floyd.hpp
 layout: document
 redirect_from:

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/nth_element_from_sorted_lists.test.cpp
-    title: test/mytest/nth_element_from_sorted_lists.test.cpp
+    path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
+    title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -48,7 +48,7 @@ data:
   timestamp: '2024-07-24 14:39:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/nth_element_from_sorted_lists.test.cpp
+  - test/1_mytest/nth_element_from_sorted_lists.test.cpp
 documentation_of: convex/nth_element_from_sorted_lists.hpp
 layout: document
 redirect_from:

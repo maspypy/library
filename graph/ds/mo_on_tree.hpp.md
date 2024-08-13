@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
   - icon: ':question:'
@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/mo_on_tree.test.cpp
-    title: test/mytest/mo_on_tree.test.cpp
+    path: test/1_mytest/mo_on_tree.test.cpp
+    title: test/1_mytest/mo_on_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -317,7 +317,7 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/mo_on_tree.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
 documentation_of: graph/ds/mo_on_tree.hpp
 layout: document
 redirect_from:

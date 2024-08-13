@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1777.test.cpp
-    title: test/yukicoder/1777.test.cpp
+    path: test/3_yukicoder/1777.test.cpp
+    title: test/3_yukicoder/1777.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -236,7 +236,7 @@ data:
   timestamp: '2024-07-24 02:09:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1777.test.cpp
+  - test/3_yukicoder/1777.test.cpp
 documentation_of: graph/planar_graph.hpp
 layout: document
 redirect_from:

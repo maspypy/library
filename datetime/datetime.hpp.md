@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/datetime.test.cpp
-    title: test/mytest/datetime.test.cpp
+    path: test/1_mytest/datetime.test.cpp
+    title: test/1_mytest/datetime.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2109.test.cpp
-    title: test/yukicoder/2109.test.cpp
+    path: test/3_yukicoder/2109.test.cpp
+    title: test/3_yukicoder/2109.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/779.test.cpp
-    title: test/yukicoder/779.test.cpp
+    path: test/3_yukicoder/779.test.cpp
+    title: test/3_yukicoder/779.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc365a.test.cpp
-    title: test_atcoder/abc365a.test.cpp
+    path: test/5_atcoder/abc365a.test.cpp
+    title: test/5_atcoder/abc365a.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -98,10 +98,10 @@ data:
   timestamp: '2023-10-14 01:43:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/779.test.cpp
-  - test/yukicoder/2109.test.cpp
-  - test/mytest/datetime.test.cpp
-  - test_atcoder/abc365a.test.cpp
+  - test/5_atcoder/abc365a.test.cpp
+  - test/3_yukicoder/779.test.cpp
+  - test/3_yukicoder/2109.test.cpp
+  - test/1_mytest/datetime.test.cpp
 documentation_of: datetime/datetime.hpp
 layout: document
 redirect_from:

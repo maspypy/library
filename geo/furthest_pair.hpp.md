@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/geometry/furthest_pair.test.cpp
-    title: test/library_checker/geometry/furthest_pair.test.cpp
+    path: test/2_library_checker/geometry/furthest_pair.test.cpp
+    title: test/2_library_checker/geometry/furthest_pair.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -136,7 +136,7 @@ data:
   timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/geometry/furthest_pair.test.cpp
+  - test/2_library_checker/geometry/furthest_pair.test.cpp
 documentation_of: geo/furthest_pair.hpp
 layout: document
 redirect_from:

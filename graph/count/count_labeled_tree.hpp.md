@@ -7,11 +7,11 @@ data:
     title: graph/count/count_labeled_forest.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/count_labeled_forest.test.cpp
-    title: test/mytest/count_labeled_forest.test.cpp
+    path: test/1_mytest/count_labeled_forest.test.cpp
+    title: test/1_mytest/count_labeled_forest.test.cpp
   - icon: ':x:'
-    path: test/mytest/graph_count.test.cpp
-    title: test/mytest/graph_count.test.cpp
+    path: test/1_mytest/graph_count.test.cpp
+    title: test/1_mytest/graph_count.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -36,8 +36,8 @@ data:
   timestamp: '2024-08-08 19:22:51+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/count_labeled_forest.test.cpp
-  - test/mytest/graph_count.test.cpp
+  - test/1_mytest/count_labeled_forest.test.cpp
+  - test/1_mytest/graph_count.test.cpp
 documentation_of: graph/count/count_labeled_tree.hpp
 layout: document
 redirect_from:

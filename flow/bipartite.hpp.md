@@ -7,56 +7,56 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy:
   - icon: ':x:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1566.test.cpp
-    title: test/aoj/1566.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_2.test.cpp
-    title: test/aoj/2251_2.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/bipartite_edge_coloring.test.cpp
-    title: test/library_checker/graph/bipartite_edge_coloring.test.cpp
+    path: test/1_mytest/matching_ve.test.cpp
+    title: test/1_mytest/matching_ve.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/bipartitematching.test.cpp
-    title: test/library_checker/graph/bipartitematching.test.cpp
+    path: test/1_mytest/tutte.test.cpp
+    title: test/1_mytest/tutte.test.cpp
   - icon: ':x:'
-    path: test/mytest/matching_ve.test.cpp
-    title: test/mytest/matching_ve.test.cpp
+    path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
+    title: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   - icon: ':x:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
+    path: test/2_library_checker/graph/bipartitematching.test.cpp
+    title: test/2_library_checker/graph/bipartitematching.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1479.test.cpp
-    title: test/yukicoder/1479.test.cpp
+    path: test/3_yukicoder/1479.test.cpp
+    title: test/3_yukicoder/1479.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1744.test.cpp
-    title: test/yukicoder/1744.test.cpp
+    path: test/3_yukicoder/1744.test.cpp
+    title: test/3_yukicoder/1744.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1745.test.cpp
-    title: test/yukicoder/1745.test.cpp
+    path: test/3_yukicoder/1745.test.cpp
+    title: test/3_yukicoder/1745.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc237ex.test.cpp
-    title: test_atcoder/abc237ex.test.cpp
+    path: test/4_aoj/1566.test.cpp
+    title: test/4_aoj/1566.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc274g.test.cpp
-    title: test_atcoder/abc274g.test.cpp
+    path: test/4_aoj/2251_2.test.cpp
+    title: test/4_aoj/2251_2.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc237ex.test.cpp
+    title: test/5_atcoder/abc237ex.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc274g.test.cpp
+    title: test/5_atcoder/abc274g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - http://www.misojiro.t.u-tokyo.ac.jp/~murota/lect-ouyousurigaku/dm050410.pdf
@@ -310,19 +310,19 @@ data:
   - graph/maximum_antichain.hpp
   - graph/bipartite_edge_coloring.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1744.test.cpp
-  - test/yukicoder/1479.test.cpp
-  - test/yukicoder/1745.test.cpp
-  - test/mytest/matching_ve.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/aoj/1566.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/library_checker/graph/bipartitematching.test.cpp
-  - test/library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test_atcoder/abc274g.test.cpp
-  - test_atcoder/abc237ex.test.cpp
+  - test/5_atcoder/abc274g.test.cpp
+  - test/5_atcoder/abc237ex.test.cpp
+  - test/3_yukicoder/1744.test.cpp
+  - test/3_yukicoder/1479.test.cpp
+  - test/3_yukicoder/1745.test.cpp
+  - test/2_library_checker/graph/bipartitematching.test.cpp
+  - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/4_aoj/1566.test.cpp
+  - test/4_aoj/2251_2.test.cpp
 documentation_of: flow/bipartite.hpp
 layout: document
 redirect_from:

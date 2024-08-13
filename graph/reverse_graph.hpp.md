@@ -16,17 +16,17 @@ data:
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/K_shortest_walk.test.cpp
-    title: test/library_checker/graph/K_shortest_walk.test.cpp
+    path: test/2_library_checker/graph/K_shortest_walk.test.cpp
+    title: test/2_library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/domninator_tree.test.cpp
-    title: test/library_checker/graph/domninator_tree.test.cpp
+    path: test/2_library_checker/graph/domninator_tree.test.cpp
+    title: test/2_library_checker/graph/domninator_tree.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1601.test.cpp
-    title: test/yukicoder/1601.test.cpp
+    path: test/3_yukicoder/1601.test.cpp
+    title: test/3_yukicoder/1601.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc209e.test.cpp
-    title: test_atcoder/abc209e.test.cpp
+    path: test/5_atcoder/abc209e.test.cpp
+    title: test/5_atcoder/abc209e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -119,10 +119,10 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1601.test.cpp
-  - test/library_checker/graph/domninator_tree.test.cpp
-  - test/library_checker/graph/K_shortest_walk.test.cpp
-  - test_atcoder/abc209e.test.cpp
+  - test/5_atcoder/abc209e.test.cpp
+  - test/3_yukicoder/1601.test.cpp
+  - test/2_library_checker/graph/domninator_tree.test.cpp
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

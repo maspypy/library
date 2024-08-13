@@ -10,14 +10,14 @@ data:
   - icon: ':x:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/K_shortest_walk.test.cpp
-    title: test/library_checker/graph/K_shortest_walk.test.cpp
+    path: test/2_library_checker/graph/K_shortest_walk.test.cpp
+    title: test/2_library_checker/graph/K_shortest_walk.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -202,7 +202,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/shortest_path/K_shortest_walk.hpp
 layout: document
 redirect_from:

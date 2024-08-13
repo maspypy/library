@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree.test.cpp
-    title: test/mytest/dynamic_lazy_segtree.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2292.test.cpp
-    title: test/yukicoder/2292.test.cpp
+    path: test/3_yukicoder/2292.test.cpp
+    title: test/3_yukicoder/2292.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/789_2.test.cpp
-    title: test/yukicoder/789_2.test.cpp
+    path: test/3_yukicoder/789_2.test.cpp
+    title: test/3_yukicoder/789_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -199,10 +199,10 @@ data:
   timestamp: '2023-06-11 17:03:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/789_2.test.cpp
-  - test/yukicoder/2292.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/3_yukicoder/789_2.test.cpp
+  - test/3_yukicoder/2292.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
 documentation_of: ds/segtree/dynamic_lazy_segtree.hpp
 layout: document
 redirect_from:

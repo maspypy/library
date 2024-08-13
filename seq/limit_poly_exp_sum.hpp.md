@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-    title: test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+    path: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+    title: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -119,7 +119,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
 documentation_of: seq/limit_poly_exp_sum.hpp
 layout: document
 redirect_from:

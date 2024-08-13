@@ -11,43 +11,43 @@ data:
   - icon: ':x:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/blackbox_solve_linear.test.cpp
+    title: test/1_mytest/blackbox_solve_linear.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
-    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
-    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/matrix/det_mod.test.cpp
-    title: test/library_checker/matrix/det_mod.test.cpp
+    path: test/2_library_checker/matrix/det_mod.test.cpp
+    title: test/2_library_checker/matrix/det_mod.test.cpp
   - icon: ':x:'
-    path: test/library_checker/matrix/matrix_det.test.cpp
-    title: test/library_checker/matrix/matrix_det.test.cpp
+    path: test/2_library_checker/matrix/matrix_det.test.cpp
+    title: test/2_library_checker/matrix/matrix_det.test.cpp
   - icon: ':x:'
-    path: test/mytest/blackbox_solve_linear.test.cpp
-    title: test/mytest/blackbox_solve_linear.test.cpp
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc336g.test.cpp
-    title: test_atcoder/abc336g.test.cpp
+    path: test/5_atcoder/abc336g.test.cpp
+    title: test/5_atcoder/abc336g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
@@ -99,18 +99,18 @@ data:
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   timestamp: '2023-10-24 14:53:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1303.test.cpp
-  - test/mytest/blackbox_solve_linear.test.cpp
-  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - test/library_checker/graph/counting_eulerian_dense.test.cpp
-  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
-  - test/library_checker/matrix/det_mod.test.cpp
-  - test/library_checker/matrix/matrix_det.test.cpp
-  - test_atcoder/abc336g.test.cpp
+  - test/5_atcoder/abc336g.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/matrix/det_mod.test.cpp
+  - test/2_library_checker/matrix/matrix_det.test.cpp
+  - test/1_mytest/blackbox_solve_linear.test.cpp
 documentation_of: linalg/det.hpp
 layout: document
 redirect_from:

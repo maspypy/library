@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/matching_ve.test.cpp
-    title: test/mytest/matching_ve.test.cpp
+    path: test/1_mytest/matching_ve.test.cpp
+    title: test/1_mytest/matching_ve.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -48,7 +48,7 @@ data:
   timestamp: '2023-11-03 17:01:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/matching_ve.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
 documentation_of: graph/maximum_matching_between_vertex_edge.hpp
 layout: document
 redirect_from:

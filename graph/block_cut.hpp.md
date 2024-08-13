@@ -9,27 +9,27 @@ data:
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_3_A.test.cpp
-    title: test/aoj/GRL_3_A.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/biconnected_component.test.cpp
-    title: test/library_checker/graph/biconnected_component.test.cpp
+    path: test/1_mytest/st_numbering.test.cpp
+    title: test/1_mytest/st_numbering.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/st_numbering.test.cpp
-    title: test/library_checker/graph/st_numbering.test.cpp
+    path: test/2_library_checker/graph/biconnected_component.test.cpp
+    title: test/2_library_checker/graph/biconnected_component.test.cpp
   - icon: ':x:'
-    path: test/mytest/st_numbering.test.cpp
-    title: test/mytest/st_numbering.test.cpp
+    path: test/2_library_checker/graph/st_numbering.test.cpp
+    title: test/2_library_checker/graph/st_numbering.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1326.test.cpp
-    title: test/yukicoder/1326.test.cpp
+    path: test/3_yukicoder/1326.test.cpp
+    title: test/3_yukicoder/1326.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
+    path: test/4_aoj/GRL_3_A.test.cpp
+    title: test/4_aoj/GRL_3_A.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc153f.test.cpp
+    title: test/5_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://twitter.com/noshi91/status/1529858538650374144?s=20&t=eznpFbuD9BDhfTb4PplFUg
@@ -157,14 +157,14 @@ data:
   requiredBy:
   - graph/st_numbering.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1326.test.cpp
-  - test/mytest/st_numbering.test.cpp
-  - test/aoj/GRL_3_A.test.cpp
-  - test/library_checker/graph/st_numbering.test.cpp
-  - test/library_checker/graph/biconnected_component.test.cpp
-  - test_atcoder/arc153f.test.cpp
+  - test/5_atcoder/arc153f.test.cpp
+  - test/3_yukicoder/1326.test.cpp
+  - test/2_library_checker/graph/st_numbering.test.cpp
+  - test/2_library_checker/graph/biconnected_component.test.cpp
+  - test/1_mytest/st_numbering.test.cpp
+  - test/4_aoj/GRL_3_A.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:

@@ -2,55 +2,55 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
   - icon: ':x:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/1508.test.cpp
-    title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
-    title: test/library_checker/datastructure/range_reverse_range_sum.test.cpp
+    path: test/1_mytest/cf702_F_splay.test.cpp
+    title: test/1_mytest/cf702_F_splay.test.cpp
   - icon: ':x:'
-    path: test/mytest/cf702_F_splay.test.cpp
-    title: test/mytest/cf702_F_splay.test.cpp
+    path: test/1_mytest/splay.test.cpp
+    title: test/1_mytest/splay.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay.test.cpp
-    title: test/mytest/splay.test.cpp
+    path: test/1_mytest/splay_am.test.cpp
+    title: test/1_mytest/splay_am.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
+    path: test/1_mytest/splay_cm.test.cpp
+    title: test/1_mytest/splay_cm.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay_cm.test.cpp
-    title: test/mytest/splay_cm.test.cpp
+    path: test/1_mytest/splay_monoid.test.cpp
+    title: test/1_mytest/splay_monoid.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay_monoid.test.cpp
-    title: test/mytest/splay_monoid.test.cpp
+    path: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1441.test.cpp
-    title: test/yukicoder/1441.test.cpp
+    path: test/2_library_checker/datastructure/range_reverse_range_sum.test.cpp
+    title: test/2_library_checker/datastructure/range_reverse_range_sum.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc350f.test.cpp
-    title: test_atcoder/abc350f.test.cpp
+    path: test/3_yukicoder/1441.test.cpp
+    title: test/3_yukicoder/1441.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc153b.test.cpp
-    title: test_atcoder/arc153b.test.cpp
+    path: test/4_aoj/1508.test.cpp
+    title: test/4_aoj/1508.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc350f.test.cpp
+    title: test/5_atcoder/abc350f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc153b.test.cpp
+    title: test/5_atcoder/arc153b.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -335,17 +335,17 @@ data:
   timestamp: '2024-07-18 12:34:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1441.test.cpp
-  - test/mytest/splay.test.cpp
-  - test/mytest/splay_cm.test.cpp
-  - test/mytest/splay_am.test.cpp
-  - test/mytest/splay_monoid.test.cpp
-  - test/mytest/cf702_F_splay.test.cpp
-  - test/aoj/1508.test.cpp
-  - test/library_checker/datastructure/range_reverse_range_sum.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test_atcoder/arc153b.test.cpp
-  - test_atcoder/abc350f.test.cpp
+  - test/5_atcoder/arc153b.test.cpp
+  - test/5_atcoder/abc350f.test.cpp
+  - test/3_yukicoder/1441.test.cpp
+  - test/2_library_checker/datastructure/range_reverse_range_sum.test.cpp
+  - test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/1_mytest/splay.test.cpp
+  - test/1_mytest/splay_cm.test.cpp
+  - test/1_mytest/splay_am.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
+  - test/4_aoj/1508.test.cpp
 documentation_of: ds/splaytree/splaytree.hpp
 layout: document
 redirect_from:

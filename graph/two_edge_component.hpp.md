@@ -6,21 +6,21 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_3_B.test.cpp
-    title: test/aoj/GRL_3_B.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/two_edge_component.test.cpp
-    title: test/library_checker/graph/two_edge_component.test.cpp
+    path: test/2_library_checker/graph/two_edge_component.test.cpp
+    title: test/2_library_checker/graph/two_edge_component.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1983.test.cpp
-    title: test/yukicoder/1983.test.cpp
+    path: test/3_yukicoder/1983.test.cpp
+    title: test/3_yukicoder/1983.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/529.test.cpp
-    title: test/yukicoder/529.test.cpp
+    path: test/3_yukicoder/529.test.cpp
+    title: test/3_yukicoder/529.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/GRL_3_B.test.cpp
+    title: test/4_aoj/GRL_3_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -123,12 +123,12 @@ data:
   path: graph/two_edge_component.hpp
   requiredBy: []
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1983.test.cpp
-  - test/yukicoder/529.test.cpp
-  - test/aoj/GRL_3_B.test.cpp
-  - test/library_checker/graph/two_edge_component.test.cpp
+  - test/3_yukicoder/1983.test.cpp
+  - test/3_yukicoder/529.test.cpp
+  - test/2_library_checker/graph/two_edge_component.test.cpp
+  - test/4_aoj/GRL_3_B.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:

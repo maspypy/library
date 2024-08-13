@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/matrix/solve_linear.test.cpp
-    title: test/library_checker/matrix/solve_linear.test.cpp
+    path: test/2_library_checker/matrix/solve_linear.test.cpp
+    title: test/2_library_checker/matrix/solve_linear.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -55,7 +55,7 @@ data:
   timestamp: '2023-11-16 18:26:59+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/matrix/solve_linear.test.cpp
+  - test/2_library_checker/matrix/solve_linear.test.cpp
 documentation_of: linalg/solve_linear.hpp
 layout: document
 redirect_from:

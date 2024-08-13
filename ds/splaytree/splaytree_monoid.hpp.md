@@ -6,21 +6,21 @@ data:
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508.test.cpp
-    title: test/aoj/1508.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay.test.cpp
-    title: test/mytest/splay.test.cpp
+    path: test/1_mytest/splay.test.cpp
+    title: test/1_mytest/splay.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay_monoid.test.cpp
-    title: test/mytest/splay_monoid.test.cpp
+    path: test/1_mytest/splay_monoid.test.cpp
+    title: test/1_mytest/splay_monoid.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1441.test.cpp
-    title: test/yukicoder/1441.test.cpp
+    path: test/3_yukicoder/1441.test.cpp
+    title: test/3_yukicoder/1441.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/1508.test.cpp
+    title: test/4_aoj/1508.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -213,12 +213,12 @@ data:
   path: ds/splaytree/splaytree_monoid.hpp
   requiredBy: []
   timestamp: '2024-07-18 12:34:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1441.test.cpp
-  - test/mytest/splay.test.cpp
-  - test/mytest/splay_monoid.test.cpp
-  - test/aoj/1508.test.cpp
+  - test/3_yukicoder/1441.test.cpp
+  - test/1_mytest/splay.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
+  - test/4_aoj/1508.test.cpp
 documentation_of: ds/splaytree/splaytree_monoid.hpp
 layout: document
 redirect_from:

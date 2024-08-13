@@ -6,39 +6,39 @@ data:
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/double_ended_pq_2.test.cpp
-    title: test/library_checker/datastructure/double_ended_pq_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
-    title: test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_segtree_sparse.test.cpp
-    title: test/mytest/dynamic_segtree_sparse.test.cpp
+    path: test/1_mytest/dynamic_segtree_sparse.test.cpp
+    title: test/1_mytest/dynamic_segtree_sparse.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1649_2.test.cpp
-    title: test/yukicoder/1649_2.test.cpp
+    path: test/2_library_checker/datastructure/double_ended_pq_2.test.cpp
+    title: test/2_library_checker/datastructure/double_ended_pq_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1826_2.test.cpp
-    title: test/yukicoder/1826_2.test.cpp
+    path: test/2_library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+    title: test/2_library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2242.test.cpp
-    title: test/yukicoder/2242.test.cpp
+    path: test/3_yukicoder/1649_2.test.cpp
+    title: test/3_yukicoder/1649_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2627.test.cpp
-    title: test/yukicoder/2627.test.cpp
+    path: test/3_yukicoder/1826_2.test.cpp
+    title: test/3_yukicoder/1826_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/789_3.test.cpp
-    title: test/yukicoder/789_3.test.cpp
+    path: test/3_yukicoder/2242.test.cpp
+    title: test/3_yukicoder/2242.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc241d.test.cpp
-    title: test_atcoder/abc241d.test.cpp
+    path: test/3_yukicoder/2627.test.cpp
+    title: test/3_yukicoder/2627.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc281e_2.test.cpp
-    title: test_atcoder/abc281e_2.test.cpp
+    path: test/3_yukicoder/789_3.test.cpp
+    title: test/3_yukicoder/789_3.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc241d.test.cpp
+    title: test/5_atcoder/abc241d.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc281e_2.test.cpp
+    title: test/5_atcoder/abc281e_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/671/D
@@ -203,18 +203,18 @@ data:
   requiredBy:
   - ds/my_multiset.hpp
   timestamp: '2024-03-30 00:47:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2627.test.cpp
-  - test/yukicoder/789_3.test.cpp
-  - test/yukicoder/2242.test.cpp
-  - test/yukicoder/1649_2.test.cpp
-  - test/yukicoder/1826_2.test.cpp
-  - test/mytest/dynamic_segtree_sparse.test.cpp
-  - test/library_checker/datastructure/double_ended_pq_2.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
-  - test_atcoder/abc281e_2.test.cpp
-  - test_atcoder/abc241d.test.cpp
+  - test/5_atcoder/abc281e_2.test.cpp
+  - test/5_atcoder/abc241d.test.cpp
+  - test/3_yukicoder/2627.test.cpp
+  - test/3_yukicoder/789_3.test.cpp
+  - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/1649_2.test.cpp
+  - test/3_yukicoder/1826_2.test.cpp
+  - test/2_library_checker/datastructure/double_ended_pq_2.test.cpp
+  - test/2_library_checker/datastructure/range_kth_smallest_pseg_sp.test.cpp
+  - test/1_mytest/dynamic_segtree_sparse.test.cpp
 documentation_of: ds/segtree/dynamic_segtree_sparse.hpp
 layout: document
 redirect_from:

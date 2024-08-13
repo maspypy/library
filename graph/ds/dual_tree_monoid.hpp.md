@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
   - icon: ':question:'
@@ -16,17 +16,17 @@ data:
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
+    path: test/2_library_checker/tree/mst.test.cpp
+    title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':x:'
-    path: test/library_checker/tree/mst.test.cpp
-    title: test/library_checker/tree/mst.test.cpp
+    path: test/4_aoj/GRL_2_A.test.cpp
+    title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_f.test.cpp
-    title: test_atcoder/abc270_f.test.cpp
+    path: test/5_atcoder/abc270_f.test.cpp
+    title: test/5_atcoder/abc270_f.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc301h.test.cpp
-    title: test_atcoder/abc301h.test.cpp
+    path: test/5_atcoder/abc301h.test.cpp
+    title: test/5_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -260,10 +260,10 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/GRL_2_A.test.cpp
-  - test/library_checker/tree/mst.test.cpp
-  - test_atcoder/abc301h.test.cpp
-  - test_atcoder/abc270_f.test.cpp
+  - test/5_atcoder/abc301h.test.cpp
+  - test/5_atcoder/abc270_f.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
 documentation_of: graph/ds/dual_tree_monoid.hpp
 layout: document
 redirect_from:

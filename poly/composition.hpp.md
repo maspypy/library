@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -34,56 +34,56 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_1_minus_ex.test.cpp
+    title: test/1_mytest/composition_1_minus_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_ex_minus_1.test.cpp
+    title: test/1_mytest/composition_ex_minus_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_log_1_minus_x.test.cpp
+    title: test/1_mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/compositional_inverset.test.cpp
+    title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_biconnected.test.cpp
+    title: test/1_mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_bridgeless.test.cpp
+    title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/composition_dmint.test.cpp
-    title: test/library_checker/polynomial/composition_dmint.test.cpp
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/composition_of_fps.test.cpp
-    title: test/library_checker/polynomial/composition_of_fps.test.cpp
+    path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
+    title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/compositional_inverse.test.cpp
-    title: test/library_checker/polynomial/compositional_inverse.test.cpp
+    path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-    title: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':x:'
-    path: test/mytest/composition_1_minus_ex.test.cpp
-    title: test/mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
-    path: test/mytest/composition_ex_minus_1.test.cpp
-    title: test/mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
-    path: test/mytest/composition_log_1_minus_x.test.cpp
-    title: test/mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
-    path: test/mytest/compositional_inverset.test.cpp
-    title: test/mytest/compositional_inverset.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_labeled_biconnected.test.cpp
-    title: test/mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_labeled_bridgeless.test.cpp
-    title: test/mytest/count_labeled_bridgeless.test.cpp
+    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/composition.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -667,18 +667,18 @@ data:
   - graph/count/count_labeled_biconnected.hpp
   - poly/compositional_inverse.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/library_checker/polynomial/composition_dmint.test.cpp
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
-  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
 documentation_of: poly/composition.hpp
 layout: document
 redirect_from:

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/knight_distance.test.cpp
-    title: test/mytest/knight_distance.test.cpp
+    path: test/1_mytest/knight_distance.test.cpp
+    title: test/1_mytest/knight_distance.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -27,7 +27,7 @@ data:
   timestamp: '2022-10-21 20:47:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/knight_distance.test.cpp
+  - test/1_mytest/knight_distance.test.cpp
 documentation_of: other/knight_distance.hpp
 layout: document
 redirect_from:

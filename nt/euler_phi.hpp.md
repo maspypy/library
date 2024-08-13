@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -24,18 +24,18 @@ data:
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_D.test.cpp
-    title: test/aoj/NTL_1_D.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/tetration.test.cpp
-    title: test/library_checker/math/tetration.test.cpp
+    path: test/2_library_checker/math/tetration.test.cpp
+    title: test/2_library_checker/math/tetration.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1262.test.cpp
-    title: test/yukicoder/1262.test.cpp
+    path: test/3_yukicoder/1262.test.cpp
+    title: test/3_yukicoder/1262.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/NTL_1_D.test.cpp
+    title: test/4_aoj/NTL_1_D.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -142,11 +142,11 @@ data:
   requiredBy:
   - mod/tetration.hpp
   timestamp: '2023-11-02 05:00:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1262.test.cpp
-  - test/aoj/NTL_1_D.test.cpp
-  - test/library_checker/math/tetration.test.cpp
+  - test/3_yukicoder/1262.test.cpp
+  - test/2_library_checker/math/tetration.test.cpp
+  - test/4_aoj/NTL_1_D.test.cpp
 documentation_of: nt/euler_phi.hpp
 layout: document
 redirect_from:

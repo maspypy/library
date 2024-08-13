@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc301g.test.cpp
-    title: test_atcoder/abc301g.test.cpp
+    path: test/5_atcoder/abc301g.test.cpp
+    title: test/5_atcoder/abc301g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -72,7 +72,7 @@ data:
   timestamp: '2024-05-27 19:13:45+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc301g.test.cpp
+  - test/5_atcoder/abc301g.test.cpp
 documentation_of: geo3d/cross_point.hpp
 layout: document
 redirect_from:

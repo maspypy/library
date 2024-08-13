@@ -7,11 +7,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc350f.test.cpp
-    title: test_atcoder/abc350f.test.cpp
+    path: test/5_atcoder/abc350f.test.cpp
+    title: test/5_atcoder/abc350f.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc153b.test.cpp
-    title: test_atcoder/arc153b.test.cpp
+    path: test/5_atcoder/arc153b.test.cpp
+    title: test/5_atcoder/arc153b.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -191,8 +191,8 @@ data:
   timestamp: '2024-07-18 12:34:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/arc153b.test.cpp
-  - test_atcoder/abc350f.test.cpp
+  - test/5_atcoder/arc153b.test.cpp
+  - test/5_atcoder/abc350f.test.cpp
 documentation_of: ds/splaytree/splaytree_basic.hpp
 layout: document
 redirect_from:

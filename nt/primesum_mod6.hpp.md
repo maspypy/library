@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/primesum_mod6.test.cpp
-    title: test/mytest/primesum_mod6.test.cpp
+    path: test/1_mytest/primesum_mod6.test.cpp
+    title: test/1_mytest/primesum_mod6.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -86,7 +86,7 @@ data:
   timestamp: '2023-08-06 13:04:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/primesum_mod6.test.cpp
+  - test/1_mytest/primesum_mod6.test.cpp
 documentation_of: nt/primesum_mod6.hpp
 layout: document
 redirect_from:

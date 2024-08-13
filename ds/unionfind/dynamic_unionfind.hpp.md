@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/persistent_unionfind.test.cpp
-    title: test/library_checker/datastructure/persistent_unionfind.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/2_library_checker/datastructure/persistent_unionfind.test.cpp
+    title: test/2_library_checker/datastructure/persistent_unionfind.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT,\
@@ -64,9 +64,9 @@ data:
   path: ds/unionfind/dynamic_unionfind.hpp
   requiredBy: []
   timestamp: '2023-08-19 23:46:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/datastructure/persistent_unionfind.test.cpp
+  - test/2_library_checker/datastructure/persistent_unionfind.test.cpp
 documentation_of: ds/unionfind/dynamic_unionfind.hpp
 layout: document
 redirect_from:

@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':x:'
@@ -27,33 +27,33 @@ data:
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/NTL_1_D.test.cpp
-    title: test/aoj/NTL_1_D.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/gcd_convolution.test.cpp
-    title: test/library_checker/math/gcd_convolution.test.cpp
+    path: test/2_library_checker/math/gcd_convolution.test.cpp
+    title: test/2_library_checker/math/gcd_convolution.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/lcm_convolution.test.cpp
-    title: test/library_checker/math/lcm_convolution.test.cpp
+    path: test/2_library_checker/math/lcm_convolution.test.cpp
+    title: test/2_library_checker/math/lcm_convolution.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/tetration.test.cpp
-    title: test/library_checker/math/tetration.test.cpp
+    path: test/2_library_checker/math/tetration.test.cpp
+    title: test/2_library_checker/math/tetration.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1262.test.cpp
-    title: test/yukicoder/1262.test.cpp
+    path: test/3_yukicoder/1262.test.cpp
+    title: test/3_yukicoder/1262.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1666.test.cpp
-    title: test/yukicoder/1666.test.cpp
+    path: test/3_yukicoder/1666.test.cpp
+    title: test/3_yukicoder/1666.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1760.test.cpp
-    title: test/yukicoder/1760.test.cpp
+    path: test/3_yukicoder/1760.test.cpp
+    title: test/3_yukicoder/1760.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2266.test.cpp
-    title: test/yukicoder/2266.test.cpp
+    path: test/3_yukicoder/2266.test.cpp
+    title: test/3_yukicoder/2266.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/NTL_1_D.test.cpp
+    title: test/4_aoj/NTL_1_D.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -104,16 +104,16 @@ data:
   - nt/lcm_convolution.hpp
   - mod/tetration.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1760.test.cpp
-  - test/yukicoder/1666.test.cpp
-  - test/yukicoder/2266.test.cpp
-  - test/yukicoder/1262.test.cpp
-  - test/aoj/NTL_1_D.test.cpp
-  - test/library_checker/math/lcm_convolution.test.cpp
-  - test/library_checker/math/gcd_convolution.test.cpp
-  - test/library_checker/math/tetration.test.cpp
+  - test/3_yukicoder/1760.test.cpp
+  - test/3_yukicoder/1666.test.cpp
+  - test/3_yukicoder/2266.test.cpp
+  - test/3_yukicoder/1262.test.cpp
+  - test/2_library_checker/math/lcm_convolution.test.cpp
+  - test/2_library_checker/math/gcd_convolution.test.cpp
+  - test/2_library_checker/math/tetration.test.cpp
+  - test/4_aoj/NTL_1_D.test.cpp
 documentation_of: nt/zeta.hpp
 layout: document
 redirect_from:

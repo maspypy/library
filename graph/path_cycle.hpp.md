@@ -5,22 +5,22 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/count_clique.test.cpp
-    title: test/mytest/count_clique.test.cpp
-  - icon: ':x:'
-    path: test/mytest/count_indep_set.test.cpp
-    title: test/mytest/count_indep_set.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_clique.test.cpp
+    title: test/1_mytest/count_clique.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_indep_set.test.cpp
+    title: test/1_mytest/count_indep_set.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -129,10 +129,10 @@ data:
   - graph/count/count_independent_set.hpp
   - graph/count/count_clique.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_indep_set.test.cpp
-  - test/mytest/count_clique.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
+  - test/1_mytest/count_clique.test.cpp
 documentation_of: graph/path_cycle.hpp
 layout: document
 redirect_from:

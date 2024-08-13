@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   _extendedRequiredBy:
@@ -43,14 +43,14 @@ data:
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/2580.test.cpp
-    title: test/yukicoder/2580.test.cpp
+    path: test/3_yukicoder/2580.test.cpp
+    title: test/3_yukicoder/2580.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2583.test.cpp
-    title: test/yukicoder/2583.test.cpp
+    path: test/3_yukicoder/2583.test.cpp
+    title: test/3_yukicoder/2583.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc133f.test.cpp
-    title: test_atcoder/arc133f.test.cpp
+    path: test/5_atcoder/arc133f.test.cpp
+    title: test/5_atcoder/arc133f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -395,9 +395,9 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2583.test.cpp
-  - test/yukicoder/2580.test.cpp
-  - test_atcoder/arc133f.test.cpp
+  - test/5_atcoder/arc133f.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/2580.test.cpp
 documentation_of: poly/composition_f_a_plus_bx.hpp
 layout: document
 redirect_from:

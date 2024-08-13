@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
@@ -22,8 +22,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/2636.test.cpp
-    title: test/aoj/2636.test.cpp
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -380,7 +380,7 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/2636.test.cpp
+  - test/4_aoj/2636.test.cpp
 documentation_of: graph/ds/incremental_centroid.hpp
 layout: document
 redirect_from:

@@ -4,23 +4,23 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    title: test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    path: test/1_mytest/ARC30D.test.cpp
+    title: test/1_mytest/ARC30D.test.cpp
   - icon: ':x:'
-    path: test/mytest/ARC30D.test.cpp
-    title: test/mytest/ARC30D.test.cpp
+    path: test/1_mytest/rbst_am.test.cpp
+    title: test/1_mytest/rbst_am.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
+    path: test/1_mytest/rbst_am_2.test.cpp
+    title: test/1_mytest/rbst_am_2.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am_2.test.cpp
-    title: test/mytest/rbst_am_2.test.cpp
+    path: test/1_mytest/rbst_am_persistent.test.cpp
+    title: test/1_mytest/rbst_am_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
+    path: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    title: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/686.test.cpp
-    title: test/yukicoder/686.test.cpp
+    path: test/3_yukicoder/686.test.cpp
+    title: test/3_yukicoder/686.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -297,12 +297,12 @@ data:
   timestamp: '2022-12-04 13:46:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/686.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/ARC30D.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/3_yukicoder/686.test.cpp
+  - test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/1_mytest/rbst_am_2.test.cpp
+  - test/1_mytest/ARC30D.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
 documentation_of: ds/randomized_bst/rbst_acted_monoid.hpp
 layout: document
 redirect_from:

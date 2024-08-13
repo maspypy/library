@@ -7,17 +7,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/is_substring.test.cpp
-    title: test/mytest/is_substring.test.cpp
+    path: test/1_mytest/is_substring.test.cpp
+    title: test/1_mytest/is_substring.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc237ex.test.cpp
-    title: test_atcoder/abc237ex.test.cpp
+    path: test/5_atcoder/abc237ex.test.cpp
+    title: test/5_atcoder/abc237ex.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc279b.test.cpp
-    title: test_atcoder/abc279b.test.cpp
+    path: test/5_atcoder/abc279b.test.cpp
+    title: test/5_atcoder/abc279b.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc354g.test.cpp
-    title: test_atcoder/abc354g.test.cpp
+    path: test/5_atcoder/abc354g.test.cpp
+    title: test/5_atcoder/abc354g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -51,10 +51,10 @@ data:
   timestamp: '2022-10-12 08:06:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/is_substring.test.cpp
-  - test_atcoder/abc354g.test.cpp
-  - test_atcoder/abc279b.test.cpp
-  - test_atcoder/abc237ex.test.cpp
+  - test/5_atcoder/abc354g.test.cpp
+  - test/5_atcoder/abc279b.test.cpp
+  - test/5_atcoder/abc237ex.test.cpp
+  - test/1_mytest/is_substring.test.cpp
 documentation_of: string/is_substring.hpp
 layout: document
 redirect_from:

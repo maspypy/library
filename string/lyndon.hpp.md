@@ -7,11 +7,11 @@ data:
     title: string/lex_min_suffix_for_all_prefix.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/string/lyndon.test.cpp
-    title: test/library_checker/string/lyndon.test.cpp
+    path: test/1_mytest/lex_minmax_suffix.test.cpp
+    title: test/1_mytest/lex_minmax_suffix.test.cpp
   - icon: ':x:'
-    path: test/mytest/lex_minmax_suffix.test.cpp
-    title: test/mytest/lex_minmax_suffix.test.cpp
+    path: test/2_library_checker/string/lyndon.test.cpp
+    title: test/2_library_checker/string/lyndon.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -49,8 +49,8 @@ data:
   timestamp: '2023-11-15 20:12:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/lex_minmax_suffix.test.cpp
-  - test/library_checker/string/lyndon.test.cpp
+  - test/2_library_checker/string/lyndon.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
 documentation_of: string/lyndon.hpp
 layout: document
 redirect_from:

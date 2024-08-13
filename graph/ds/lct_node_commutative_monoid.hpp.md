@@ -6,21 +6,21 @@ data:
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-    title: test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    title: test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2295.test.cpp
-    title: test/yukicoder/2295.test.cpp
+    path: test/2_library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+    title: test/2_library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2296.test.cpp
-    title: test/yukicoder/2296.test.cpp
+    path: test/2_library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
+    title: test/2_library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2295.test.cpp
+    title: test/3_yukicoder/2295.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2296.test.cpp
+    title: test/3_yukicoder/2296.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/ds/lct_node_commutative_monoid.hpp\"\n\n// SUBTREE\
@@ -74,12 +74,12 @@ data:
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
   timestamp: '2023-12-03 14:24:05+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2295.test.cpp
-  - test/yukicoder/2296.test.cpp
-  - test/library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - test/library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/3_yukicoder/2295.test.cpp
+  - test/3_yukicoder/2296.test.cpp
+  - test/2_library_checker/datastructure/dynamic_tree_vertex_add_subtree_sum.test.cpp
+  - test/2_library_checker/datastructure/dynamic_tree_vertex_add_path_sum.test.cpp
 documentation_of: graph/ds/lct_node_commutative_monoid.hpp
 layout: document
 redirect_from:

@@ -37,8 +37,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/arc162f.test.cpp
-    title: test_atcoder/arc162f.test.cpp
+    path: test/5_atcoder/arc162f.test.cpp
+    title: test/5_atcoder/arc162f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -410,7 +410,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/arc162f.test.cpp
+  - test/5_atcoder/arc162f.test.cpp
 documentation_of: poly/fps_inv_2d.hpp
 layout: document
 redirect_from:

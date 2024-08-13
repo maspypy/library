@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -214,9 +214,9 @@ data:
   timestamp: '2024-06-11 17:38:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
 documentation_of: graph/count/count_spanning_tree.hpp
 layout: document
 redirect_from:

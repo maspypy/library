@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/minplus_convolution.hpp
     title: convex/minplus_convolution.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/minplus_conv_triple.test.cpp
-    title: test/mytest/minplus_conv_triple.test.cpp
+    path: test/1_mytest/minplus_conv_triple.test.cpp
+    title: test/1_mytest/minplus_conv_triple.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -156,7 +156,7 @@ data:
   timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/minplus_conv_triple.test.cpp
+  - test/1_mytest/minplus_conv_triple.test.cpp
 documentation_of: convex/minplus_convolution_of_triples.hpp
 layout: document
 redirect_from:

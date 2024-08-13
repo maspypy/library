@@ -12,39 +12,39 @@ data:
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_D.test.cpp
-    title: test/aoj/DSL_2_D.test.cpp
   - icon: ':x:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_affine_point_add.test.cpp
-    title: test/library_checker/datastructure/range_affine_point_add.test.cpp
+    path: test/1_mytest/range_closest_pair.test.cpp
+    title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':x:'
-    path: test/library_checker/tree/mst.test.cpp
-    title: test/library_checker/tree/mst.test.cpp
+    path: test/2_library_checker/datastructure/range_affine_point_add.test.cpp
+    title: test/2_library_checker/datastructure/range_affine_point_add.test.cpp
   - icon: ':x:'
-    path: test/mytest/range_closest_pair.test.cpp
-    title: test/mytest/range_closest_pair.test.cpp
+    path: test/2_library_checker/tree/mst.test.cpp
+    title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1524.test.cpp
-    title: test/yukicoder/1524.test.cpp
+    path: test/3_yukicoder/1524.test.cpp
+    title: test/3_yukicoder/1524.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2498.test.cpp
-    title: test/yukicoder/2498.test.cpp
+    path: test/3_yukicoder/2498.test.cpp
+    title: test/3_yukicoder/2498.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/913.test.cpp
-    title: test/yukicoder/913.test.cpp
+    path: test/3_yukicoder/913.test.cpp
+    title: test/3_yukicoder/913.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_f.test.cpp
-    title: test_atcoder/abc270_f.test.cpp
+    path: test/4_aoj/DSL_2_D.test.cpp
+    title: test/4_aoj/DSL_2_D.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc301h.test.cpp
-    title: test_atcoder/abc301h.test.cpp
+    path: test/4_aoj/GRL_2_A.test.cpp
+    title: test/4_aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc270_f.test.cpp
+    title: test/5_atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc301h.test.cpp
+    title: test/5_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
@@ -90,18 +90,18 @@ data:
   - graph/ds/dual_tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-04 02:25:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1524.test.cpp
-  - test/yukicoder/2498.test.cpp
-  - test/yukicoder/913.test.cpp
-  - test/mytest/range_closest_pair.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/DSL_2_D.test.cpp
-  - test/library_checker/tree/mst.test.cpp
-  - test/library_checker/datastructure/range_affine_point_add.test.cpp
-  - test_atcoder/abc301h.test.cpp
-  - test_atcoder/abc270_f.test.cpp
+  - test/5_atcoder/abc301h.test.cpp
+  - test/5_atcoder/abc270_f.test.cpp
+  - test/3_yukicoder/1524.test.cpp
+  - test/3_yukicoder/2498.test.cpp
+  - test/3_yukicoder/913.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/datastructure/range_affine_point_add.test.cpp
+  - test/1_mytest/range_closest_pair.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
+  - test/4_aoj/DSL_2_D.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document
 redirect_from:

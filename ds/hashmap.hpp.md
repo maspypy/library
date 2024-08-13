@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':x:'
@@ -36,129 +36,129 @@ data:
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_5_A.test.cpp
-    title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-    title: test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/set_xor_min.test.cpp
-    title: test/library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_freq.test.cpp
-    title: test/library_checker/datastructure/static_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_frequency.test.cpp
-    title: test/library_checker/datastructure/static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_mode_query.test.cpp
-    title: test/library_checker/datastructure/static_range_mode_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/geometry/closest_pair.test.cpp
-    title: test/library_checker/geometry/closest_pair.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/closest_pair_dc.test.cpp
-    title: test/library_checker/geometry/closest_pair_dc.test.cpp
+    path: test/1_mytest/range_closest_pair.test.cpp
+    title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/eulerwalk_d.test.cpp
-    title: test/library_checker/graph/eulerwalk_d.test.cpp
+    path: test/1_mytest/tdpc_grid_dp.test.cpp
+    title: test/1_mytest/tdpc_grid_dp.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/eulerwalk_ud.test.cpp
-    title: test/library_checker/graph/eulerwalk_ud.test.cpp
+    path: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
+    title: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    path: test/2_library_checker/datastructure/set_xor_min.test.cpp
+    title: test/2_library_checker/datastructure/set_xor_min.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/kth_root_mod.test.cpp
-    title: test/library_checker/math/kth_root_mod.test.cpp
+    path: test/2_library_checker/datastructure/static_range_freq.test.cpp
+    title: test/2_library_checker/datastructure/static_range_freq.test.cpp
   - icon: ':x:'
-    path: test/mytest/range_closest_pair.test.cpp
-    title: test/mytest/range_closest_pair.test.cpp
+    path: test/2_library_checker/datastructure/static_range_frequency.test.cpp
+    title: test/2_library_checker/datastructure/static_range_frequency.test.cpp
   - icon: ':x:'
-    path: test/mytest/tdpc_grid_dp.test.cpp
-    title: test/mytest/tdpc_grid_dp.test.cpp
+    path: test/2_library_checker/datastructure/static_range_mode_query.test.cpp
+    title: test/2_library_checker/datastructure/static_range_mode_query.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
+    path: test/2_library_checker/geometry/closest_pair.test.cpp
+    title: test/2_library_checker/geometry/closest_pair.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1383.test.cpp
-    title: test/yukicoder/1383.test.cpp
+    path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
+    title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1397.test.cpp
-    title: test/yukicoder/1397.test.cpp
+    path: test/2_library_checker/graph/eulerwalk_d.test.cpp
+    title: test/2_library_checker/graph/eulerwalk_d.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1561.test.cpp
-    title: test/yukicoder/1561.test.cpp
+    path: test/2_library_checker/graph/eulerwalk_ud.test.cpp
+    title: test/2_library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1634.test.cpp
-    title: test/yukicoder/1634.test.cpp
+    path: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1726.test.cpp
-    title: test/yukicoder/1726.test.cpp
+    path: test/2_library_checker/math/kth_root_mod.test.cpp
+    title: test/2_library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1728.test.cpp
-    title: test/yukicoder/1728.test.cpp
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1769.test.cpp
-    title: test/yukicoder/1769.test.cpp
+    path: test/3_yukicoder/1383.test.cpp
+    title: test/3_yukicoder/1383.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
+    path: test/3_yukicoder/1397.test.cpp
+    title: test/3_yukicoder/1397.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2102.test.cpp
-    title: test/yukicoder/2102.test.cpp
+    path: test/3_yukicoder/1561.test.cpp
+    title: test/3_yukicoder/1561.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2167.test.cpp
-    title: test/yukicoder/2167.test.cpp
+    path: test/3_yukicoder/1634.test.cpp
+    title: test/3_yukicoder/1634.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2264.test.cpp
-    title: test/yukicoder/2264.test.cpp
+    path: test/3_yukicoder/1726.test.cpp
+    title: test/3_yukicoder/1726.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2578.test.cpp
-    title: test/yukicoder/2578.test.cpp
+    path: test/3_yukicoder/1728.test.cpp
+    title: test/3_yukicoder/1728.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/263.test.cpp
-    title: test/yukicoder/263.test.cpp
+    path: test/3_yukicoder/1769.test.cpp
+    title: test/3_yukicoder/1769.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/541.test.cpp
-    title: test/yukicoder/541.test.cpp
+    path: test/3_yukicoder/1881.test.cpp
+    title: test/3_yukicoder/1881.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/578.test.cpp
-    title: test/yukicoder/578.test.cpp
+    path: test/3_yukicoder/2102.test.cpp
+    title: test/3_yukicoder/2102.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/579.test.cpp
-    title: test/yukicoder/579.test.cpp
+    path: test/3_yukicoder/2167.test.cpp
+    title: test/3_yukicoder/2167.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc212g.test.cpp
-    title: test_atcoder/abc212g.test.cpp
+    path: test/3_yukicoder/2264.test.cpp
+    title: test/3_yukicoder/2264.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc220g.test.cpp
-    title: test_atcoder/abc220g.test.cpp
+    path: test/3_yukicoder/2578.test.cpp
+    title: test/3_yukicoder/2578.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222g.test.cpp
-    title: test_atcoder/abc222g.test.cpp
+    path: test/3_yukicoder/263.test.cpp
+    title: test/3_yukicoder/263.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc227g.test.cpp
-    title: test_atcoder/abc227g.test.cpp
+    path: test/3_yukicoder/541.test.cpp
+    title: test/3_yukicoder/541.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_g.test.cpp
-    title: test_atcoder/abc270_g.test.cpp
+    path: test/3_yukicoder/578.test.cpp
+    title: test/3_yukicoder/578.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc273_e.test.cpp
-    title: test_atcoder/abc273_e.test.cpp
+    path: test/3_yukicoder/579.test.cpp
+    title: test/3_yukicoder/579.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc335g.test.cpp
-    title: test_atcoder/abc335g.test.cpp
+    path: test/4_aoj/CGL_5_A.test.cpp
+    title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc339f.test.cpp
-    title: test_atcoder/abc339f.test.cpp
+    path: test/5_atcoder/abc212g.test.cpp
+    title: test/5_atcoder/abc212g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc157a.test.cpp
-    title: test_atcoder/arc157a.test.cpp
+    path: test/5_atcoder/abc220g.test.cpp
+    title: test/5_atcoder/abc220g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc222g.test.cpp
+    title: test/5_atcoder/abc222g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc227g.test.cpp
+    title: test/5_atcoder/abc227g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc270_g.test.cpp
+    title: test/5_atcoder/abc270_g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc273_e.test.cpp
+    title: test/5_atcoder/abc273_e.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc335g.test.cpp
+    title: test/5_atcoder/abc335g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc339f.test.cpp
+    title: test/5_atcoder/abc339f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc157a.test.cpp
+    title: test/5_atcoder/arc157a.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -229,48 +229,48 @@ data:
   - ds/static_range_frequency.hpp
   - ds/to_small_key.hpp
   timestamp: '2024-05-14 16:33:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/579.test.cpp
-  - test/yukicoder/1881.test.cpp
-  - test/yukicoder/1769.test.cpp
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/263.test.cpp
-  - test/yukicoder/1339.test.cpp
-  - test/yukicoder/2578.test.cpp
-  - test/yukicoder/1726.test.cpp
-  - test/yukicoder/1561.test.cpp
-  - test/yukicoder/1634.test.cpp
-  - test/yukicoder/1397.test.cpp
-  - test/yukicoder/578.test.cpp
-  - test/yukicoder/2264.test.cpp
-  - test/yukicoder/2167.test.cpp
-  - test/yukicoder/541.test.cpp
-  - test/yukicoder/1383.test.cpp
-  - test/yukicoder/2102.test.cpp
-  - test/mytest/tdpc_grid_dp.test.cpp
-  - test/mytest/range_closest_pair.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
-  - test/library_checker/graph/eulerwalk_d.test.cpp
-  - test/library_checker/graph/eulerwalk_ud.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/datastructure/set_xor_min.test.cpp
-  - test/library_checker/datastructure/static_range_mode_query.test.cpp
-  - test/library_checker/datastructure/static_range_frequency.test.cpp
-  - test/library_checker/datastructure/associative_array_hashmap.test.cpp
-  - test/library_checker/datastructure/static_range_freq.test.cpp
-  - test/library_checker/geometry/closest_pair_dc.test.cpp
-  - test/library_checker/geometry/closest_pair.test.cpp
-  - test_atcoder/abc335g.test.cpp
-  - test_atcoder/abc220g.test.cpp
-  - test_atcoder/abc212g.test.cpp
-  - test_atcoder/abc339f.test.cpp
-  - test_atcoder/abc222g.test.cpp
-  - test_atcoder/abc227g.test.cpp
-  - test_atcoder/abc273_e.test.cpp
-  - test_atcoder/abc270_g.test.cpp
-  - test_atcoder/arc157a.test.cpp
+  - test/5_atcoder/abc335g.test.cpp
+  - test/5_atcoder/abc220g.test.cpp
+  - test/5_atcoder/abc212g.test.cpp
+  - test/5_atcoder/abc339f.test.cpp
+  - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc227g.test.cpp
+  - test/5_atcoder/abc273_e.test.cpp
+  - test/5_atcoder/abc270_g.test.cpp
+  - test/5_atcoder/arc157a.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/1881.test.cpp
+  - test/3_yukicoder/1769.test.cpp
+  - test/3_yukicoder/1728.test.cpp
+  - test/3_yukicoder/263.test.cpp
+  - test/3_yukicoder/1339.test.cpp
+  - test/3_yukicoder/2578.test.cpp
+  - test/3_yukicoder/1726.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1634.test.cpp
+  - test/3_yukicoder/1397.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/2264.test.cpp
+  - test/3_yukicoder/2167.test.cpp
+  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/1383.test.cpp
+  - test/3_yukicoder/2102.test.cpp
+  - test/2_library_checker/graph/eulerwalk_d.test.cpp
+  - test/2_library_checker/graph/eulerwalk_ud.test.cpp
+  - test/2_library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/math/kth_root_mod.test.cpp
+  - test/2_library_checker/datastructure/set_xor_min.test.cpp
+  - test/2_library_checker/datastructure/static_range_mode_query.test.cpp
+  - test/2_library_checker/datastructure/static_range_frequency.test.cpp
+  - test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
+  - test/2_library_checker/datastructure/static_range_freq.test.cpp
+  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
+  - test/2_library_checker/geometry/closest_pair.test.cpp
+  - test/1_mytest/tdpc_grid_dp.test.cpp
+  - test/1_mytest/range_closest_pair.test.cpp
+  - test/4_aoj/CGL_5_A.test.cpp
 documentation_of: ds/hashmap.hpp
 layout: document
 redirect_from:

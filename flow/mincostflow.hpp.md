@@ -3,39 +3,39 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/GRL_6_B.test.cpp
-    title: test/aoj/GRL_6_B.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/assignment_mcf.test.cpp
-    title: test/library_checker/graph/assignment_mcf.test.cpp
+    path: test/2_library_checker/graph/assignment_mcf.test.cpp
+    title: test/2_library_checker/graph/assignment_mcf.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1288.test.cpp
-    title: test/yukicoder/1288.test.cpp
+    path: test/3_yukicoder/1288.test.cpp
+    title: test/3_yukicoder/1288.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1301.test.cpp
-    title: test/yukicoder/1301.test.cpp
+    path: test/3_yukicoder/1301.test.cpp
+    title: test/3_yukicoder/1301.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1324.test.cpp
-    title: test/yukicoder/1324.test.cpp
+    path: test/3_yukicoder/1324.test.cpp
+    title: test/3_yukicoder/1324.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1341.test.cpp
-    title: test/yukicoder/1341.test.cpp
+    path: test/3_yukicoder/1341.test.cpp
+    title: test/3_yukicoder/1341.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1676.test.cpp
-    title: test/yukicoder/1676.test.cpp
+    path: test/3_yukicoder/1676.test.cpp
+    title: test/3_yukicoder/1676.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1678.test.cpp
-    title: test/yukicoder/1678.test.cpp
+    path: test/3_yukicoder/1678.test.cpp
+    title: test/3_yukicoder/1678.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2604.test.cpp
-    title: test/yukicoder/2604.test.cpp
+    path: test/3_yukicoder/2604.test.cpp
+    title: test/3_yukicoder/2604.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc214h.test.cpp
-    title: test_atcoder/abc214h.test.cpp
+    path: test/4_aoj/GRL_6_B.test.cpp
+    title: test/4_aoj/GRL_6_B.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc214h.test.cpp
+    title: test/5_atcoder/abc214h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -255,18 +255,18 @@ data:
   path: flow/mincostflow.hpp
   requiredBy: []
   timestamp: '2023-10-14 01:47:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1301.test.cpp
-  - test/yukicoder/1324.test.cpp
-  - test/yukicoder/1341.test.cpp
-  - test/yukicoder/1678.test.cpp
-  - test/yukicoder/2604.test.cpp
-  - test/yukicoder/1288.test.cpp
-  - test/yukicoder/1676.test.cpp
-  - test/aoj/GRL_6_B.test.cpp
-  - test/library_checker/graph/assignment_mcf.test.cpp
-  - test_atcoder/abc214h.test.cpp
+  - test/5_atcoder/abc214h.test.cpp
+  - test/3_yukicoder/1301.test.cpp
+  - test/3_yukicoder/1324.test.cpp
+  - test/3_yukicoder/1341.test.cpp
+  - test/3_yukicoder/1678.test.cpp
+  - test/3_yukicoder/2604.test.cpp
+  - test/3_yukicoder/1288.test.cpp
+  - test/3_yukicoder/1676.test.cpp
+  - test/2_library_checker/graph/assignment_mcf.test.cpp
+  - test/4_aoj/GRL_6_B.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document
 redirect_from:

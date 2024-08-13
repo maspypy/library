@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
-    title: test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+    title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -78,7 +78,7 @@ data:
   timestamp: '2023-12-22 20:53:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/string/zalgorithm_by_rollinghash2.test.cpp
+  - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
 documentation_of: alg/monoid/rollinghash.hpp
 layout: document
 redirect_from:

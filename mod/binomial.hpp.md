@@ -28,17 +28,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/binomial_coefficient.test.cpp
-    title: test/library_checker/math/binomial_coefficient.test.cpp
+    path: test/2_library_checker/math/binomial_coefficient.test.cpp
+    title: test/2_library_checker/math/binomial_coefficient.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2120.test.cpp
-    title: test/yukicoder/2120.test.cpp
+    path: test/3_yukicoder/2120.test.cpp
+    title: test/3_yukicoder/2120.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2181.test.cpp
-    title: test/yukicoder/2181.test.cpp
+    path: test/3_yukicoder/2181.test.cpp
+    title: test/3_yukicoder/2181.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2613.test.cpp
-    title: test/yukicoder/2613.test.cpp
+    path: test/3_yukicoder/2613.test.cpp
+    title: test/3_yukicoder/2613.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -248,10 +248,10 @@ data:
   timestamp: '2023-11-02 05:38:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2613.test.cpp
-  - test/yukicoder/2120.test.cpp
-  - test/yukicoder/2181.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
+  - test/3_yukicoder/2613.test.cpp
+  - test/3_yukicoder/2120.test.cpp
+  - test/3_yukicoder/2181.test.cpp
+  - test/2_library_checker/math/binomial_coefficient.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document
 redirect_from:

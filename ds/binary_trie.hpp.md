@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/set_xor_min.test.cpp
-    title: test/library_checker/datastructure/set_xor_min.test.cpp
+    path: test/1_mytest/binary_trie.test.cpp
+    title: test/1_mytest/binary_trie.test.cpp
   - icon: ':x:'
-    path: test/mytest/binary_trie.test.cpp
-    title: test/mytest/binary_trie.test.cpp
+    path: test/2_library_checker/datastructure/set_xor_min.test.cpp
+    title: test/2_library_checker/datastructure/set_xor_min.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc218g.test.cpp
-    title: test_atcoder/abc218g.test.cpp
+    path: test/5_atcoder/abc218g.test.cpp
+    title: test/5_atcoder/abc218g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -147,9 +147,9 @@ data:
   timestamp: '2023-04-15 19:50:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/binary_trie.test.cpp
-  - test/library_checker/datastructure/set_xor_min.test.cpp
-  - test_atcoder/abc218g.test.cpp
+  - test/5_atcoder/abc218g.test.cpp
+  - test/2_library_checker/datastructure/set_xor_min.test.cpp
+  - test/1_mytest/binary_trie.test.cpp
 documentation_of: ds/binary_trie.hpp
 layout: document
 redirect_from:

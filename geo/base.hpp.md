@@ -11,25 +11,25 @@ data:
   - icon: ':warning:'
     path: geo/apollonian_circle.hpp
     title: geo/apollonian_circle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':x:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':x:'
@@ -38,10 +38,10 @@ data:
   - icon: ':x:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':x:'
@@ -53,121 +53,121 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':x:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/projection.hpp
     title: geo/projection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
   - icon: ':x:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   - icon: ':warning:'
-    path: test/library_checker/geometry/static_convex_hull.tset.cpp
-    title: test/library_checker/geometry/static_convex_hull.tset.cpp
+    path: test/2_library_checker/geometry/static_convex_hull.tset.cpp
+    title: test/2_library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_1_A.test.cpp
-    title: test/aoj/CGL_1_A.test.cpp
+    path: test/1_mytest/convex_polygon_side.test.cpp
+    title: test/1_mytest/convex_polygon_side.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_1_B.test.cpp
-    title: test/aoj/CGL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_A.test.cpp
-    title: test/aoj/CGL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_B.test.cpp
-    title: test/aoj/CGL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_C.test.cpp
-    title: test/aoj/CGL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_D.test.cpp
-    title: test/aoj/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_3_B.test.cpp
-    title: test/aoj/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_5_A.test.cpp
-    title: test/aoj/CGL_5_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_B.test.cpp
-    title: test/aoj/CGL_7_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_C.test.cpp
-    title: test/aoj/CGL_7_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/geometry/closest_pair.test.cpp
-    title: test/library_checker/geometry/closest_pair.test.cpp
+    path: test/1_mytest/convex_polygon_visible_range.test.cpp
+    title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/closest_pair_dc.test.cpp
-    title: test/library_checker/geometry/closest_pair_dc.test.cpp
+    path: test/1_mytest/count_points_in_triangles.test.cpp
+    title: test/1_mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/convex_layers.test.cpp
-    title: test/library_checker/geometry/convex_layers.test.cpp
+    path: test/1_mytest/incremental_ch.test.cpp
+    title: test/1_mytest/incremental_ch.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
-    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    path: test/1_mytest/max_dot.test.cpp
+    title: test/1_mytest/max_dot.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/furthest_pair.test.cpp
-    title: test/library_checker/geometry/furthest_pair.test.cpp
+    path: test/2_library_checker/geometry/closest_pair.test.cpp
+    title: test/2_library_checker/geometry/closest_pair.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/sort_points_by_argument.test.cpp
-    title: test/library_checker/geometry/sort_points_by_argument.test.cpp
+    path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
+    title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-    title: test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
+    path: test/2_library_checker/geometry/convex_layers.test.cpp
+    title: test/2_library_checker/geometry/convex_layers.test.cpp
   - icon: ':x:'
-    path: test/mytest/convex_polygon_side.test.cpp
-    title: test/mytest/convex_polygon_side.test.cpp
+    path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':x:'
-    path: test/mytest/convex_polygon_visible_range.test.cpp
-    title: test/mytest/convex_polygon_visible_range.test.cpp
+    path: test/2_library_checker/geometry/furthest_pair.test.cpp
+    title: test/2_library_checker/geometry/furthest_pair.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_points_in_triangles.test.cpp
-    title: test/mytest/count_points_in_triangles.test.cpp
+    path: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
+    title: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - icon: ':x:'
-    path: test/mytest/incremental_ch.test.cpp
-    title: test/mytest/incremental_ch.test.cpp
+    path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+    title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - icon: ':x:'
-    path: test/mytest/max_dot.test.cpp
-    title: test/mytest/max_dot.test.cpp
+    path: test/3_yukicoder/1777.test.cpp
+    title: test/3_yukicoder/1777.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1777.test.cpp
-    title: test/yukicoder/1777.test.cpp
+    path: test/3_yukicoder/2602.test.cpp
+    title: test/3_yukicoder/2602.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2602.test.cpp
-    title: test/yukicoder/2602.test.cpp
+    path: test/4_aoj/CGL_1_A.test.cpp
+    title: test/4_aoj/CGL_1_A.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc139f.test.cpp
-    title: test_atcoder/abc139f.test.cpp
+    path: test/4_aoj/CGL_1_B.test.cpp
+    title: test/4_aoj/CGL_1_B.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc151f.test.cpp
-    title: test_atcoder/abc151f.test.cpp
+    path: test/4_aoj/CGL_2_A.test.cpp
+    title: test/4_aoj/CGL_2_A.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc202_f.test.cpp
-    title: test_atcoder/abc202_f.test.cpp
+    path: test/4_aoj/CGL_2_B.test.cpp
+    title: test/4_aoj/CGL_2_B.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc220g.test.cpp
-    title: test_atcoder/abc220g.test.cpp
+    path: test/4_aoj/CGL_2_C.test.cpp
+    title: test/4_aoj/CGL_2_C.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc266c.test.cpp
-    title: test_atcoder/abc266c.test.cpp
+    path: test/4_aoj/CGL_2_D.test.cpp
+    title: test/4_aoj/CGL_2_D.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc314.test.cpp
-    title: test_atcoder/abc314.test.cpp
+    path: test/4_aoj/CGL_3_B.test.cpp
+    title: test/4_aoj/CGL_3_B.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc064c.test.cpp
-    title: test_atcoder/arc064c.test.cpp
+    path: test/4_aoj/CGL_5_A.test.cpp
+    title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc130f.test.cpp
-    title: test_atcoder/arc130f.test.cpp
+    path: test/4_aoj/CGL_7_B.test.cpp
+    title: test/4_aoj/CGL_7_B.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_7_C.test.cpp
+    title: test/4_aoj/CGL_7_C.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc139f.test.cpp
+    title: test/5_atcoder/abc139f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc151f.test.cpp
+    title: test/5_atcoder/abc151f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc202_f.test.cpp
+    title: test/5_atcoder/abc202_f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc220g.test.cpp
+    title: test/5_atcoder/abc220g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc266c.test.cpp
+    title: test/5_atcoder/abc266c.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc314.test.cpp
+    title: test/5_atcoder/abc314.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc064c.test.cpp
+    title: test/5_atcoder/arc064c.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc130f.test.cpp
+    title: test/5_atcoder/arc130f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -321,44 +321,44 @@ data:
   - geo/outcircle.hpp
   - geo/reflection.hpp
   - geo/max_norm_sum.hpp
-  - test/library_checker/geometry/static_convex_hull.tset.cpp
+  - test/2_library_checker/geometry/static_convex_hull.tset.cpp
   - graph/planar_graph.hpp
   - convex/fenchel.hpp
   timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1777.test.cpp
-  - test/yukicoder/2602.test.cpp
-  - test/mytest/convex_polygon_side.test.cpp
-  - test/mytest/convex_polygon_visible_range.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/mytest/max_dot.test.cpp
-  - test/mytest/incremental_ch.test.cpp
-  - test/aoj/CGL_5_A.test.cpp
-  - test/aoj/CGL_3_B.test.cpp
-  - test/aoj/CGL_7_C.test.cpp
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_1_B.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test/aoj/CGL_1_A.test.cpp
-  - test/aoj/CGL_2_A.test.cpp
-  - test/library_checker/geometry/closest_pair_dc.test.cpp
-  - test/library_checker/geometry/furthest_pair.test.cpp
-  - test/library_checker/geometry/closest_pair.test.cpp
-  - test/library_checker/geometry/convex_layers.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - test_atcoder/abc202_f.test.cpp
-  - test_atcoder/abc220g.test.cpp
-  - test_atcoder/arc064c.test.cpp
-  - test_atcoder/abc266c.test.cpp
-  - test_atcoder/arc130f.test.cpp
-  - test_atcoder/abc151f.test.cpp
-  - test_atcoder/abc139f.test.cpp
-  - test_atcoder/abc314.test.cpp
+  - test/5_atcoder/abc202_f.test.cpp
+  - test/5_atcoder/abc220g.test.cpp
+  - test/5_atcoder/arc064c.test.cpp
+  - test/5_atcoder/abc266c.test.cpp
+  - test/5_atcoder/arc130f.test.cpp
+  - test/5_atcoder/abc151f.test.cpp
+  - test/5_atcoder/abc139f.test.cpp
+  - test/5_atcoder/abc314.test.cpp
+  - test/3_yukicoder/1777.test.cpp
+  - test/3_yukicoder/2602.test.cpp
+  - test/2_library_checker/geometry/closest_pair_dc.test.cpp
+  - test/2_library_checker/geometry/furthest_pair.test.cpp
+  - test/2_library_checker/geometry/closest_pair.test.cpp
+  - test/2_library_checker/geometry/convex_layers.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/incremental_ch.test.cpp
+  - test/4_aoj/CGL_5_A.test.cpp
+  - test/4_aoj/CGL_3_B.test.cpp
+  - test/4_aoj/CGL_7_C.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
+  - test/4_aoj/CGL_2_D.test.cpp
+  - test/4_aoj/CGL_2_B.test.cpp
+  - test/4_aoj/CGL_1_B.test.cpp
+  - test/4_aoj/CGL_2_C.test.cpp
+  - test/4_aoj/CGL_1_A.test.cpp
+  - test/4_aoj/CGL_2_A.test.cpp
 documentation_of: geo/base.hpp
 layout: document
 redirect_from:

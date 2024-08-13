@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':x:'
@@ -13,14 +13,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/string/longest_common_substring.test.cpp
-    title: test/library_checker/string/longest_common_substring.test.cpp
+    path: test/1_mytest/longest_common_substr.test.cpp
+    title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':x:'
-    path: test/mytest/longest_common_substr.test.cpp
-    title: test/mytest/longest_common_substr.test.cpp
+    path: test/2_library_checker/string/longest_common_substring.test.cpp
+    title: test/2_library_checker/string/longest_common_substring.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc151_e.test.cpp
-    title: test_atcoder/arc151_e.test.cpp
+    path: test/5_atcoder/arc151_e.test.cpp
+    title: test/5_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -156,9 +156,9 @@ data:
   timestamp: '2024-05-03 01:43:19+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/longest_common_substr.test.cpp
-  - test/library_checker/string/longest_common_substring.test.cpp
-  - test_atcoder/arc151_e.test.cpp
+  - test/5_atcoder/arc151_e.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

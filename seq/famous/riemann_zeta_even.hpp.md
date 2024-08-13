@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -49,8 +49,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1357.test.cpp
-    title: test/yukicoder/1357.test.cpp
+    path: test/3_yukicoder/1357.test.cpp
+    title: test/3_yukicoder/1357.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -457,7 +457,7 @@ data:
   timestamp: '2024-08-11 03:15:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1357.test.cpp
+  - test/3_yukicoder/1357.test.cpp
 documentation_of: seq/famous/riemann_zeta_even.hpp
 layout: document
 redirect_from:

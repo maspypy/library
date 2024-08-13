@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
@@ -19,8 +19,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc151f.test.cpp
-    title: test_atcoder/abc151f.test.cpp
+    path: test/5_atcoder/abc151f.test.cpp
+    title: test/5_atcoder/abc151f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -163,7 +163,7 @@ data:
   timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc151f.test.cpp
+  - test/5_atcoder/abc151f.test.cpp
 documentation_of: geo/minimum_enclosing_circle.hpp
 layout: document
 redirect_from:

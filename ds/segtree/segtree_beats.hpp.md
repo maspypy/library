@@ -8,22 +8,22 @@ data:
   - icon: ':x:'
     path: ds/segtree/beats_summin_chmax.hpp
     title: ds/segtree/beats_summin_chmax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/beats_summinmax_chminchmax.hpp
     title: ds/segtree/beats_summinmax_chminchmax.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
-    title: test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1526.test.cpp
-    title: test/yukicoder/1526.test.cpp
+    path: test/2_library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+    title: test/2_library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1526_2.test.cpp
-    title: test/yukicoder/1526_2.test.cpp
+    path: test/3_yukicoder/1526.test.cpp
+    title: test/3_yukicoder/1526.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1526_2.test.cpp
+    title: test/3_yukicoder/1526_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -118,11 +118,11 @@ data:
   - ds/segtree/beats_summinmax_chminchmax.hpp
   - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2023-01-31 23:12:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1526_2.test.cpp
-  - test/yukicoder/1526.test.cpp
-  - test/library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
+  - test/3_yukicoder/1526_2.test.cpp
+  - test/3_yukicoder/1526.test.cpp
+  - test/2_library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp
 layout: document
 redirect_from:

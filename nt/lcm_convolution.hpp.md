@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/lcm_convolution.test.cpp
-    title: test/library_checker/math/lcm_convolution.test.cpp
+    path: test/2_library_checker/math/lcm_convolution.test.cpp
+    title: test/2_library_checker/math/lcm_convolution.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1760.test.cpp
-    title: test/yukicoder/1760.test.cpp
+    path: test/3_yukicoder/1760.test.cpp
+    title: test/3_yukicoder/1760.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -58,8 +58,8 @@ data:
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1760.test.cpp
-  - test/library_checker/math/lcm_convolution.test.cpp
+  - test/3_yukicoder/1760.test.cpp
+  - test/2_library_checker/math/lcm_convolution.test.cpp
 documentation_of: nt/lcm_convolution.hpp
 layout: document
 redirect_from:

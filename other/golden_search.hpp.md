@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc314.test.cpp
-    title: test_atcoder/abc314.test.cpp
+    path: test/5_atcoder/abc314.test.cpp
+    title: test/5_atcoder/abc314.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -44,7 +44,7 @@ data:
   timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc314.test.cpp
+  - test/5_atcoder/abc314.test.cpp
 documentation_of: other/golden_search.hpp
 layout: document
 redirect_from:

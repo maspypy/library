@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/enumerate_multisets.test.cpp
-    title: test/mytest/enumerate_multisets.test.cpp
+    path: test/1_mytest/enumerate_multisets.test.cpp
+    title: test/1_mytest/enumerate_multisets.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -32,7 +32,7 @@ data:
   timestamp: '2024-03-10 03:27:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/enumerate_multisets.test.cpp
+  - test/1_mytest/enumerate_multisets.test.cpp
 documentation_of: enumerate/multiset.hpp
 layout: document
 redirect_from:

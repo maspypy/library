@@ -5,13 +5,13 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/max_assign.hpp
     title: alg/acted_monoid/max_assign.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':x:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':x:'
@@ -21,63 +21,63 @@ data:
     path: alg/acted_monoid/summin_assign.hpp
     title: alg/acted_monoid/summin_assign.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_D.test.cpp
-    title: test/aoj/DSL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_F.test.cpp
-    title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_I.test.cpp
-    title: test/aoj/DSL_2_I.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree.test.cpp
-    title: test/mytest/dynamic_lazy_segtree.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/max_assign.test.cpp
-    title: test/mytest/max_assign.test.cpp
+    path: test/1_mytest/max_assign.test.cpp
+    title: test/1_mytest/max_assign.test.cpp
   - icon: ':x:'
-    path: test/mytest/range_assign.test.cpp
-    title: test/mytest/range_assign.test.cpp
+    path: test/1_mytest/range_assign.test.cpp
+    title: test/1_mytest/range_assign.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
+    path: test/1_mytest/rbst_am.test.cpp
+    title: test/1_mytest/rbst_am.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
+    path: test/1_mytest/rbst_am_persistent.test.cpp
+    title: test/1_mytest/rbst_am_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_monoid.test.cpp
-    title: test/mytest/rbst_monoid.test.cpp
+    path: test/1_mytest/rbst_monoid.test.cpp
+    title: test/1_mytest/rbst_monoid.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_monoid_persistent.test.cpp
-    title: test/mytest/rbst_monoid_persistent.test.cpp
+    path: test/1_mytest/rbst_monoid_persistent.test.cpp
+    title: test/1_mytest/rbst_monoid_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay_monoid.test.cpp
-    title: test/mytest/splay_monoid.test.cpp
+    path: test/1_mytest/splay_monoid.test.cpp
+    title: test/1_mytest/splay_monoid.test.cpp
   - icon: ':x:'
-    path: test/mytest/summax_assign.test.cpp
-    title: test/mytest/summax_assign.test.cpp
+    path: test/1_mytest/summax_assign.test.cpp
+    title: test/1_mytest/summax_assign.test.cpp
   - icon: ':x:'
-    path: test/mytest/summin_assign.test.cpp
-    title: test/mytest/summin_assign.test.cpp
+    path: test/1_mytest/summin_assign.test.cpp
+    title: test/1_mytest/summin_assign.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1548.test.cpp
-    title: test/yukicoder/1548.test.cpp
+    path: test/3_yukicoder/1548.test.cpp
+    title: test/3_yukicoder/1548.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2292.test.cpp
-    title: test/yukicoder/2292.test.cpp
+    path: test/3_yukicoder/2292.test.cpp
+    title: test/3_yukicoder/2292.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc256ex.test.cpp
-    title: test_atcoder/abc256ex.test.cpp
+    path: test/4_aoj/DSL_2_D.test.cpp
+    title: test/4_aoj/DSL_2_D.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc256ex2.test.cpp
-    title: test_atcoder/abc256ex2.test.cpp
+    path: test/4_aoj/DSL_2_F.test.cpp
+    title: test/4_aoj/DSL_2_F.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DSL_2_I.test.cpp
+    title: test/4_aoj/DSL_2_I.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc256ex.test.cpp
+    title: test/5_atcoder/abc256ex.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc256ex2.test.cpp
+    title: test/5_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
@@ -99,26 +99,26 @@ data:
   - alg/acted_monoid/max_assign.hpp
   - alg/acted_monoid/powersums_assign.hpp
   timestamp: '2023-10-14 20:28:40+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1548.test.cpp
-  - test/yukicoder/2292.test.cpp
-  - test/mytest/summin_assign.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/mytest/max_assign.test.cpp
-  - test/mytest/range_assign.test.cpp
-  - test/mytest/rbst_monoid_persistent.test.cpp
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/rbst_monoid.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/splay_monoid.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - test/aoj/DSL_2_I.test.cpp
-  - test/aoj/DSL_2_D.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
-  - test_atcoder/abc256ex.test.cpp
-  - test_atcoder/abc256ex2.test.cpp
+  - test/5_atcoder/abc256ex.test.cpp
+  - test/5_atcoder/abc256ex2.test.cpp
+  - test/3_yukicoder/1548.test.cpp
+  - test/3_yukicoder/2292.test.cpp
+  - test/1_mytest/summin_assign.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/max_assign.test.cpp
+  - test/1_mytest/range_assign.test.cpp
+  - test/1_mytest/rbst_monoid_persistent.test.cpp
+  - test/1_mytest/summax_assign.test.cpp
+  - test/1_mytest/rbst_monoid.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/4_aoj/DSL_2_I.test.cpp
+  - test/4_aoj/DSL_2_D.test.cpp
+  - test/4_aoj/DSL_2_F.test.cpp
 documentation_of: alg/monoid/assign.hpp
 layout: document
 redirect_from:

@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':question:'
@@ -37,7 +37,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':question:'
@@ -46,23 +46,23 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1145.test.cpp
-    title: test/yukicoder/1145.test.cpp
+    path: test/3_yukicoder/1145.test.cpp
+    title: test/3_yukicoder/1145.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1575.test.cpp
-    title: test/yukicoder/1575.test.cpp
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2459.test.cpp
-    title: test/yukicoder/2459.test.cpp
+    path: test/3_yukicoder/2459.test.cpp
+    title: test/3_yukicoder/2459.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2747.test.cpp
-    title: test/yukicoder/2747.test.cpp
+    path: test/3_yukicoder/2747.test.cpp
+    title: test/3_yukicoder/2747.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -544,10 +544,10 @@ data:
   timestamp: '2024-07-20 03:47:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1145.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/2747.test.cpp
-  - test/yukicoder/2459.test.cpp
+  - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/2459.test.cpp
 documentation_of: seq/sum_of_powers.hpp
 layout: document
 redirect_from:

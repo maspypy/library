@@ -49,7 +49,7 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':question:'
@@ -58,11 +58,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/vandermonde.test.cpp
-    title: test/mytest/vandermonde.test.cpp
+    path: test/1_mytest/vandermonde.test.cpp
+    title: test/1_mytest/vandermonde.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc260h.test.cpp
-    title: test_atcoder/abc260h.test.cpp
+    path: test/5_atcoder/abc260h.test.cpp
+    title: test/5_atcoder/abc260h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -661,8 +661,8 @@ data:
   timestamp: '2024-07-20 03:47:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/vandermonde.test.cpp
-  - test_atcoder/abc260h.test.cpp
+  - test/5_atcoder/abc260h.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
 documentation_of: linalg/blackbox/vandermonde.hpp
 layout: document
 redirect_from:

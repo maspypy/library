@@ -3,24 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-    title: test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - icon: ':x:'
-    path: test/mytest/seg2d.test.cpp
-    title: test/mytest/seg2d.test.cpp
+    path: test/1_mytest/seg2d.test.cpp
+    title: test/1_mytest/seg2d.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1600.test.cpp
-    title: test/yukicoder/1600.test.cpp
+    path: test/2_library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+    title: test/2_library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc266h.test.cpp
-    title: test_atcoder/abc266h.test.cpp
+    path: test/3_yukicoder/1600.test.cpp
+    title: test/3_yukicoder/1600.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc324g2.test.cpp
-    title: test_atcoder/abc324g2.test.cpp
+    path: test/5_atcoder/abc266h.test.cpp
+    title: test/5_atcoder/abc266h.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc324g2.test.cpp
+    title: test/5_atcoder/abc324g2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\n// \u70B9\u306E\u91CD\u8907\
@@ -189,13 +189,13 @@ data:
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
   timestamp: '2024-01-26 19:43:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1600.test.cpp
-  - test/mytest/seg2d.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
-  - test_atcoder/abc266h.test.cpp
-  - test_atcoder/abc324g2.test.cpp
+  - test/5_atcoder/abc266h.test.cpp
+  - test/5_atcoder/abc324g2.test.cpp
+  - test/3_yukicoder/1600.test.cpp
+  - test/2_library_checker/datastructure/point_add_rectangle_sum_seg2d.test.cpp
+  - test/1_mytest/seg2d.test.cpp
 documentation_of: ds/segtree/segtree_2d.hpp
 layout: document
 redirect_from:

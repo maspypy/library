@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/common_interval_decomposition.test.cpp
-    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+    path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
+    path: test/3_yukicoder/1720.test.cpp
+    title: test/3_yukicoder/1720.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -181,8 +181,8 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1720.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
+  - test/3_yukicoder/1720.test.cpp
+  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
 documentation_of: seq/common_interval_decomposition.hpp
 layout: document
 redirect_from:

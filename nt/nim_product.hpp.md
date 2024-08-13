@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/nim_product.test.cpp
-    title: test/library_checker/math/nim_product.test.cpp
+    path: test/2_library_checker/math/nim_product.test.cpp
+    title: test/2_library_checker/math/nim_product.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -50,7 +50,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/nim_product.test.cpp
+  - test/2_library_checker/math/nim_product.test.cpp
 documentation_of: nt/nim_product.hpp
 layout: document
 redirect_from:

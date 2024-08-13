@@ -10,17 +10,17 @@ data:
     title: nt/all_lcm.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1411.test.cpp
-    title: test/yukicoder/1411.test.cpp
+    path: test/3_yukicoder/1411.test.cpp
+    title: test/3_yukicoder/1411.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1575.test.cpp
-    title: test/yukicoder/1575.test.cpp
+    path: test/3_yukicoder/1575.test.cpp
+    title: test/3_yukicoder/1575.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1881.test.cpp
-    title: test/yukicoder/1881.test.cpp
+    path: test/3_yukicoder/1881.test.cpp
+    title: test/3_yukicoder/1881.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc152e.test.cpp
-    title: test_atcoder/abc152e.test.cpp
+    path: test/5_atcoder/abc152e.test.cpp
+    title: test/5_atcoder/abc152e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -55,10 +55,10 @@ data:
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1881.test.cpp
-  - test/yukicoder/1575.test.cpp
-  - test/yukicoder/1411.test.cpp
-  - test_atcoder/abc152e.test.cpp
+  - test/5_atcoder/abc152e.test.cpp
+  - test/3_yukicoder/1881.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/1411.test.cpp
 documentation_of: nt/lpf_table.hpp
 layout: document
 redirect_from:

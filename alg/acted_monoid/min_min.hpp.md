@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/min_min.test.cpp
-    title: test/mytest/min_min.test.cpp
+    path: test/1_mytest/min_min.test.cpp
+    title: test/1_mytest/min_min.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -36,7 +36,7 @@ data:
   timestamp: '2023-02-02 02:12:17+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/min_min.test.cpp
+  - test/1_mytest/min_min.test.cpp
 documentation_of: alg/acted_monoid/min_min.hpp
 layout: document
 redirect_from:

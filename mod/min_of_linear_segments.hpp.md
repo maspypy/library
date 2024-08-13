@@ -13,20 +13,20 @@ data:
     title: mod/min_of_linear.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/min_of_mod_of_linear.test.cpp
-    title: test/library_checker/math/min_of_mod_of_linear.test.cpp
+    path: test/1_mytest/first_mod_range_of_linear.test.cpp
+    title: test/1_mytest/first_mod_range_of_linear.test.cpp
   - icon: ':x:'
-    path: test/mytest/first_mod_range_of_linear.test.cpp
-    title: test/mytest/first_mod_range_of_linear.test.cpp
+    path: test/1_mytest/max_of_linear_segments.test.cpp
+    title: test/1_mytest/max_of_linear_segments.test.cpp
   - icon: ':x:'
-    path: test/mytest/max_of_linear_segments.test.cpp
-    title: test/mytest/max_of_linear_segments.test.cpp
+    path: test/1_mytest/min_of_linear_segments.test.cpp
+    title: test/1_mytest/min_of_linear_segments.test.cpp
   - icon: ':x:'
-    path: test/mytest/min_of_linear_segments.test.cpp
-    title: test/mytest/min_of_linear_segments.test.cpp
+    path: test/2_library_checker/math/min_of_mod_of_linear.test.cpp
+    title: test/2_library_checker/math/min_of_mod_of_linear.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2259.test.cpp
-    title: test/yukicoder/2259.test.cpp
+    path: test/3_yukicoder/2259.test.cpp
+    title: test/3_yukicoder/2259.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -81,11 +81,11 @@ data:
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2259.test.cpp
-  - test/mytest/max_of_linear_segments.test.cpp
-  - test/mytest/min_of_linear_segments.test.cpp
-  - test/mytest/first_mod_range_of_linear.test.cpp
-  - test/library_checker/math/min_of_mod_of_linear.test.cpp
+  - test/3_yukicoder/2259.test.cpp
+  - test/2_library_checker/math/min_of_mod_of_linear.test.cpp
+  - test/1_mytest/max_of_linear_segments.test.cpp
+  - test/1_mytest/min_of_linear_segments.test.cpp
+  - test/1_mytest/first_mod_range_of_linear.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document
 redirect_from:

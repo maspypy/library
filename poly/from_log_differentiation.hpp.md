@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -52,20 +52,20 @@ data:
     title: poly/sparse_exp_of_div.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1080_2.test.cpp
-    title: test/yukicoder/1080_2.test.cpp
+    path: test/3_yukicoder/1080_2.test.cpp
+    title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
+    path: test/3_yukicoder/2166.test.cpp
+    title: test/3_yukicoder/2166.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222h_2.test.cpp
-    title: test_atcoder/abc222h_2.test.cpp
+    path: test/5_atcoder/abc222h_2.test.cpp
+    title: test/5_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc276_g.test.cpp
-    title: test_atcoder/abc276_g.test.cpp
+    path: test/5_atcoder/abc276_g.test.cpp
+    title: test/5_atcoder/abc276_g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc276_g_2.test.cpp
-    title: test_atcoder/abc276_g_2.test.cpp
+    path: test/5_atcoder/abc276_g_2.test.cpp
+    title: test/5_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -556,11 +556,11 @@ data:
   timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
+  - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
 documentation_of: poly/from_log_differentiation.hpp
 layout: document
 redirect_from:

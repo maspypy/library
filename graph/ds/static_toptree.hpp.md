@@ -22,23 +22,23 @@ data:
     title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/tree_walk_gf.test.cpp
-    title: test/mytest/tree_walk_gf.test.cpp
+    path: test/1_mytest/tree_walk_gf.test.cpp
+    title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2258.test.cpp
-    title: test/yukicoder/2258.test.cpp
+    path: test/3_yukicoder/2258.test.cpp
+    title: test/3_yukicoder/2258.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2587.test.cpp
-    title: test/yukicoder/2587.test.cpp
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2587_2.test.cpp
-    title: test/yukicoder/2587_2.test.cpp
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc269ex2.test.cpp
-    title: test_atcoder/abc269ex2.test.cpp
+    path: test/5_atcoder/abc269ex2.test.cpp
+    title: test/5_atcoder/abc269ex2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc351g.test.cpp
-    title: test_atcoder/abc351g.test.cpp
+    path: test/5_atcoder/abc351g.test.cpp
+    title: test/5_atcoder/abc351g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -299,12 +299,12 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2258.test.cpp
-  - test/yukicoder/2587.test.cpp
-  - test/yukicoder/2587_2.test.cpp
-  - test/mytest/tree_walk_gf.test.cpp
-  - test_atcoder/abc351g.test.cpp
-  - test_atcoder/abc269ex2.test.cpp
+  - test/5_atcoder/abc351g.test.cpp
+  - test/5_atcoder/abc269ex2.test.cpp
+  - test/3_yukicoder/2258.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:

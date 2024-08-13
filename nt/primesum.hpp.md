@@ -13,26 +13,26 @@ data:
     title: nt/primesum_mod6.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/counting_primes.test.cpp
-    title: test/library_checker/math/counting_primes.test.cpp
+    path: test/1_mytest/prime_sum.test.cpp
+    title: test/1_mytest/prime_sum.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/totient_sum.test.cpp
-    title: test/library_checker/math/totient_sum.test.cpp
+    path: test/1_mytest/primesum_mod4.test.cpp
+    title: test/1_mytest/primesum_mod4.test.cpp
   - icon: ':x:'
-    path: test/mytest/prime_sum.test.cpp
-    title: test/mytest/prime_sum.test.cpp
+    path: test/1_mytest/primesum_mod6.test.cpp
+    title: test/1_mytest/primesum_mod6.test.cpp
   - icon: ':x:'
-    path: test/mytest/primesum_mod4.test.cpp
-    title: test/mytest/primesum_mod4.test.cpp
+    path: test/2_library_checker/math/counting_primes.test.cpp
+    title: test/2_library_checker/math/counting_primes.test.cpp
   - icon: ':x:'
-    path: test/mytest/primesum_mod6.test.cpp
-    title: test/mytest/primesum_mod6.test.cpp
+    path: test/2_library_checker/math/totient_sum.test.cpp
+    title: test/2_library_checker/math/totient_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1276.test.cpp
-    title: test/yukicoder/1276.test.cpp
+    path: test/3_yukicoder/1276.test.cpp
+    title: test/3_yukicoder/1276.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1781.test.cpp
-    title: test/yukicoder/1781.test.cpp
+    path: test/3_yukicoder/1781.test.cpp
+    title: test/3_yukicoder/1781.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -109,13 +109,13 @@ data:
   timestamp: '2023-08-06 13:04:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1276.test.cpp
-  - test/yukicoder/1781.test.cpp
-  - test/mytest/prime_sum.test.cpp
-  - test/mytest/primesum_mod6.test.cpp
-  - test/mytest/primesum_mod4.test.cpp
-  - test/library_checker/math/totient_sum.test.cpp
-  - test/library_checker/math/counting_primes.test.cpp
+  - test/3_yukicoder/1276.test.cpp
+  - test/3_yukicoder/1781.test.cpp
+  - test/2_library_checker/math/totient_sum.test.cpp
+  - test/2_library_checker/math/counting_primes.test.cpp
+  - test/1_mytest/prime_sum.test.cpp
+  - test/1_mytest/primesum_mod6.test.cpp
+  - test/1_mytest/primesum_mod4.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:

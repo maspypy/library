@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_1_B.test.cpp
-    title: test/aoj/DSL_1_B.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1502.test.cpp
-    title: test/yukicoder/1502.test.cpp
+    path: test/3_yukicoder/1502.test.cpp
+    title: test/3_yukicoder/1502.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2294.test.cpp
-    title: test/yukicoder/2294.test.cpp
+    path: test/3_yukicoder/2294.test.cpp
+    title: test/3_yukicoder/2294.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc280f.test.cpp
-    title: test_atcoder/abc280f.test.cpp
+    path: test/4_aoj/DSL_1_B.test.cpp
+    title: test/4_aoj/DSL_1_B.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc280f.test.cpp
+    title: test/5_atcoder/abc280f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\ntemplate <typename\
@@ -57,12 +57,12 @@ data:
   path: ds/unionfind/weighted_unionfind.hpp
   requiredBy: []
   timestamp: '2024-07-05 14:51:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2294.test.cpp
-  - test/yukicoder/1502.test.cpp
-  - test/aoj/DSL_1_B.test.cpp
-  - test_atcoder/abc280f.test.cpp
+  - test/5_atcoder/abc280f.test.cpp
+  - test/3_yukicoder/2294.test.cpp
+  - test/3_yukicoder/1502.test.cpp
+  - test/4_aoj/DSL_1_B.test.cpp
 documentation_of: ds/unionfind/weighted_unionfind.hpp
 layout: document
 redirect_from:

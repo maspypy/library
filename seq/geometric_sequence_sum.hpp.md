@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/geometric_sequence_sum.test.cpp
-    title: test/mytest/geometric_sequence_sum.test.cpp
+    path: test/1_mytest/geometric_sequence_sum.test.cpp
+    title: test/1_mytest/geometric_sequence_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -52,7 +52,7 @@ data:
   timestamp: '2024-01-01 04:07:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/geometric_sequence_sum.test.cpp
+  - test/1_mytest/geometric_sequence_sum.test.cpp
 documentation_of: seq/geometric_sequence_sum.hpp
 layout: document
 redirect_from:

@@ -5,10 +5,10 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':x:'
@@ -39,72 +39,72 @@ data:
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_bipartite.test.cpp
+    title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    path: test/1_mytest/factorial_998.test.cpp
+    title: test/1_mytest/factorial_998.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/factorial.test.cpp
-    title: test/library_checker/math/factorial.test.cpp
+    path: test/1_mytest/powerquery.test.cpp
+    title: test/1_mytest/powerquery.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    path: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    path: test/2_library_checker/math/factorial.test.cpp
+    title: test/2_library_checker/math/factorial.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
+    path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':x:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
+    path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'
-    path: test/mytest/powerquery.test.cpp
-    title: test/mytest/powerquery.test.cpp
+    path: test/3_yukicoder/1080_2.test.cpp
+    title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1080_2.test.cpp
-    title: test/yukicoder/1080_2.test.cpp
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
+    path: test/3_yukicoder/2005.test.cpp
+    title: test/3_yukicoder/2005.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2005.test.cpp
-    title: test/yukicoder/2005.test.cpp
+    path: test/3_yukicoder/2166.test.cpp
+    title: test/3_yukicoder/2166.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
+    path: test/3_yukicoder/2747.test.cpp
+    title: test/3_yukicoder/2747.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2747.test.cpp
-    title: test/yukicoder/2747.test.cpp
+    path: test/3_yukicoder/502_2.test.cpp
+    title: test/3_yukicoder/502_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/502_2.test.cpp
-    title: test/yukicoder/502_2.test.cpp
+    path: test/3_yukicoder/899.test.cpp
+    title: test/3_yukicoder/899.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/899.test.cpp
-    title: test/yukicoder/899.test.cpp
+    path: test/5_atcoder/abc222g.test.cpp
+    title: test/5_atcoder/abc222g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222g.test.cpp
-    title: test_atcoder/abc222g.test.cpp
+    path: test/5_atcoder/abc222h_2.test.cpp
+    title: test/5_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222h_2.test.cpp
-    title: test_atcoder/abc222h_2.test.cpp
+    path: test/5_atcoder/abc270_g.test.cpp
+    title: test/5_atcoder/abc270_g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_g.test.cpp
-    title: test_atcoder/abc270_g.test.cpp
+    path: test/5_atcoder/abc276_g.test.cpp
+    title: test/5_atcoder/abc276_g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc276_g.test.cpp
-    title: test_atcoder/abc276_g.test.cpp
+    path: test/5_atcoder/abc276_g_2.test.cpp
+    title: test/5_atcoder/abc276_g_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc276_g_2.test.cpp
-    title: test_atcoder/abc276_g_2.test.cpp
+    path: test/5_atcoder/arc144d.test.cpp
+    title: test/5_atcoder/arc144d.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc144d.test.cpp
-    title: test_atcoder/arc144d.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc160d.test.cpp
-    title: test_atcoder/arc160d.test.cpp
+    path: test/5_atcoder/arc160d.test.cpp
+    title: test/5_atcoder/arc160d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -134,29 +134,29 @@ data:
   - mod/mod_log.hpp
   - ds/power_query.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1339.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/2747.test.cpp
-  - test/yukicoder/899.test.cpp
-  - test/yukicoder/2005.test.cpp
-  - test/mytest/count_bipartite.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/mytest/powerquery.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/factorial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test_atcoder/arc144d.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/arc160d.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
-  - test_atcoder/abc222g.test.cpp
-  - test_atcoder/abc270_g.test.cpp
+  - test/5_atcoder/arc144d.test.cpp
+  - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/arc160d.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
+  - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc270_g.test.cpp
+  - test/3_yukicoder/1339.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/899.test.cpp
+  - test/3_yukicoder/2005.test.cpp
+  - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/2_library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/math/factorial.test.cpp
+  - test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/1_mytest/count_bipartite.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
+  - test/1_mytest/powerquery.test.cpp
 documentation_of: alg/monoid/mul.hpp
 layout: document
 redirect_from:

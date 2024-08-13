@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/floor_ceil_ranges.test.cpp
-    title: test/mytest/floor_ceil_ranges.test.cpp
+    path: test/1_mytest/floor_ceil_ranges.test.cpp
+    title: test/1_mytest/floor_ceil_ranges.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -32,7 +32,7 @@ data:
   timestamp: '2023-02-17 11:47:17+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/floor_ceil_ranges.test.cpp
+  - test/1_mytest/floor_ceil_ranges.test.cpp
 documentation_of: enumerate/ceil_range.hpp
 layout: document
 redirect_from:

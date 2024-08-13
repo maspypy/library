@@ -10,8 +10,8 @@ data:
     title: graph/blackbox/complement_graph_distance.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc319g.test.cpp
-    title: test_atcoder/abc319g.test.cpp
+    path: test/5_atcoder/abc319g.test.cpp
+    title: test/5_atcoder/abc319g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -116,7 +116,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc319g.test.cpp
+  - test/5_atcoder/abc319g.test.cpp
 documentation_of: graph/blackbox/complement_graph_bfs.hpp
 layout: document
 redirect_from:

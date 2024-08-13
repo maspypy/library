@@ -7,11 +7,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/string/run_enumerate.test.cpp
-    title: test/library_checker/string/run_enumerate.test.cpp
+    path: test/2_library_checker/string/run_enumerate.test.cpp
+    title: test/2_library_checker/string/run_enumerate.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/run_enumerate_vec.test.cpp
-    title: test/library_checker/string/run_enumerate_vec.test.cpp
+    path: test/2_library_checker/string/run_enumerate_vec.test.cpp
+    title: test/2_library_checker/string/run_enumerate_vec.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -85,8 +85,8 @@ data:
   timestamp: '2023-11-15 20:12:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/string/run_enumerate.test.cpp
-  - test/library_checker/string/run_enumerate_vec.test.cpp
+  - test/2_library_checker/string/run_enumerate.test.cpp
+  - test/2_library_checker/string/run_enumerate_vec.test.cpp
 documentation_of: string/run_enumerate.hpp
 layout: document
 redirect_from:

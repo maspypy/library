@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
@@ -21,57 +21,57 @@ data:
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-    title: test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-    title: test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-    title: test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/prefix_substring_lcs.test.cpp
-    title: test/library_checker/string/prefix_substring_lcs.test.cpp
+    path: test/1_mytest/wavelet_matrix.test.cpp
+    title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':x:'
-    path: test/mytest/wavelet_matrix.test.cpp
-    title: test/mytest/wavelet_matrix.test.cpp
+    path: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
+    title: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1332.test.cpp
-    title: test/yukicoder/1332.test.cpp
+    path: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
+    title: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1600_2.test.cpp
-    title: test/yukicoder/1600_2.test.cpp
+    path: test/2_library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+    title: test/2_library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1625_2.test.cpp
-    title: test/yukicoder/1625_2.test.cpp
+    path: test/2_library_checker/datastructure/rectangle_sum_wm.test.cpp
+    title: test/2_library_checker/datastructure/rectangle_sum_wm.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1919_2.test.cpp
-    title: test/yukicoder/1919_2.test.cpp
+    path: test/2_library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+    title: test/2_library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2065.test.cpp
-    title: test/yukicoder/2065.test.cpp
+    path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
+    title: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/919.test.cpp
-    title: test/yukicoder/919.test.cpp
+    path: test/3_yukicoder/1332.test.cpp
+    title: test/3_yukicoder/1332.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/924.test.cpp
-    title: test/yukicoder/924.test.cpp
+    path: test/3_yukicoder/1600_2.test.cpp
+    title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc127f_1.test.cpp
-    title: test_atcoder/abc127f_1.test.cpp
+    path: test/3_yukicoder/1625_2.test.cpp
+    title: test/3_yukicoder/1625_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc324g.test.cpp
-    title: test_atcoder/abc324g.test.cpp
+    path: test/3_yukicoder/1919_2.test.cpp
+    title: test/3_yukicoder/1919_2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2065.test.cpp
+    title: test/3_yukicoder/2065.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/919.test.cpp
+    title: test/3_yukicoder/919.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/924.test.cpp
+    title: test/3_yukicoder/924.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc127f_1.test.cpp
+    title: test/5_atcoder/abc127f_1.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc324g.test.cpp
+    title: test/5_atcoder/abc324g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool\
@@ -377,24 +377,24 @@ data:
   - graph/ds/tree_wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   timestamp: '2024-08-08 19:22:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1600_2.test.cpp
-  - test/yukicoder/2065.test.cpp
-  - test/yukicoder/1332.test.cpp
-  - test/yukicoder/924.test.cpp
-  - test/yukicoder/1625_2.test.cpp
-  - test/yukicoder/1919_2.test.cpp
-  - test/yukicoder/919.test.cpp
-  - test/mytest/wavelet_matrix.test.cpp
-  - test/library_checker/string/prefix_substring_lcs.test.cpp
-  - test/library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - test/library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-  - test_atcoder/abc324g.test.cpp
-  - test_atcoder/abc127f_1.test.cpp
+  - test/5_atcoder/abc324g.test.cpp
+  - test/5_atcoder/abc127f_1.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/2065.test.cpp
+  - test/3_yukicoder/1332.test.cpp
+  - test/3_yukicoder/924.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/919.test.cpp
+  - test/2_library_checker/string/prefix_substring_lcs.test.cpp
+  - test/2_library_checker/datastructure/range_kth_smallest_wavelet.test.cpp
+  - test/2_library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/datastructure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+  - test/1_mytest/wavelet_matrix.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix.hpp
 layout: document
 redirect_from:

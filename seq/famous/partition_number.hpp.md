@@ -37,11 +37,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/partition.test.cpp
-    title: test/library_checker/math/partition.test.cpp
+    path: test/1_mytest/enum_partitions.test.cpp
+    title: test/1_mytest/enum_partitions.test.cpp
   - icon: ':x:'
-    path: test/mytest/enum_partitions.test.cpp
-    title: test/mytest/enum_partitions.test.cpp
+    path: test/2_library_checker/math/partition.test.cpp
+    title: test/2_library_checker/math/partition.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -395,8 +395,8 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/enum_partitions.test.cpp
-  - test/library_checker/math/partition.test.cpp
+  - test/2_library_checker/math/partition.test.cpp
+  - test/1_mytest/enum_partitions.test.cpp
 documentation_of: seq/famous/partition_number.hpp
 layout: document
 redirect_from:

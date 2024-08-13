@@ -4,29 +4,29 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_4_A.test.cpp
-    title: test/aoj/DSL_4_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc318b.test.cpp
-    title: test_atcoder/abc318b.test.cpp
+    path: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    title: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DSL_4_A.test.cpp
+    title: test/4_aoj/DSL_4_A.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc318b.test.cpp
+    title: test/5_atcoder/abc318b.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\u5024\u3001\
@@ -64,11 +64,11 @@ data:
   - graph/count/count_connected_intervals.hpp
   - ds/rectangle_union.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DSL_4_A.test.cpp
-  - test/library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - test_atcoder/abc318b.test.cpp
+  - test/5_atcoder/abc318b.test.cpp
+  - test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/4_aoj/DSL_4_A.test.cpp
 documentation_of: alg/acted_monoid/minmincnt_add.hpp
 layout: document
 redirect_from:

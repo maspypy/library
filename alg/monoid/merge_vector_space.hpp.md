@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/184.test.cpp
-    title: test/yukicoder/184.test.cpp
+    path: test/3_yukicoder/184.test.cpp
+    title: test/3_yukicoder/184.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -77,7 +77,7 @@ data:
   timestamp: '2024-05-04 19:37:33+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/184.test.cpp
+  - test/3_yukicoder/184.test.cpp
 documentation_of: alg/monoid/merge_vector_space.hpp
 layout: document
 redirect_from:

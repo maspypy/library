@@ -7,14 +7,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/online_square.test.cpp
-    title: test/mytest/online_square.test.cpp
+    path: test/1_mytest/online_square.test.cpp
+    title: test/1_mytest/online_square.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2801.test.cpp
-    title: test/yukicoder/2801.test.cpp
+    path: test/3_yukicoder/2801.test.cpp
+    title: test/3_yukicoder/2801.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc315h2.test.cpp
-    title: test_atcoder/abc315h2.test.cpp
+    path: test/5_atcoder/abc315h2.test.cpp
+    title: test/5_atcoder/abc315h2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -110,9 +110,9 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2801.test.cpp
-  - test/mytest/online_square.test.cpp
-  - test_atcoder/abc315h2.test.cpp
+  - test/5_atcoder/abc315h2.test.cpp
+  - test/3_yukicoder/2801.test.cpp
+  - test/1_mytest/online_square.test.cpp
 documentation_of: poly/online/online_square.hpp
 layout: document
 redirect_from:

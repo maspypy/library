@@ -2,25 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/and_convolution.hpp
     title: setfunc/and_convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/or_convolution.hpp
     title: setfunc/or_convolution.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/bitwise_and_convolution.test.cpp
-    title: test/library_checker/convolution/bitwise_and_convolution.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/bitwise_or_convolution.test.cpp
-    title: test/library_checker/convolution/bitwise_or_convolution.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc105.test.cpp
-    title: test_atcoder/arc105.test.cpp
+    path: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
+    title: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
+    title: test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc105.test.cpp
+    title: test/5_atcoder/arc105.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>&\
@@ -56,11 +56,11 @@ data:
   - setfunc/and_convolution.hpp
   - setfunc/or_convolution.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/convolution/bitwise_and_convolution.test.cpp
-  - test/library_checker/convolution/bitwise_or_convolution.test.cpp
-  - test_atcoder/arc105.test.cpp
+  - test/5_atcoder/arc105.test.cpp
+  - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
+  - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
 documentation_of: setfunc/zeta.hpp
 layout: document
 redirect_from:

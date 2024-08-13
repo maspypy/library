@@ -31,14 +31,14 @@ data:
     title: nt/three_triangular.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/four_square.test.cpp
-    title: test/mytest/four_square.test.cpp
+    path: test/1_mytest/four_square.test.cpp
+    title: test/1_mytest/four_square.test.cpp
   - icon: ':x:'
-    path: test/mytest/three_square.test.cpp
-    title: test/mytest/three_square.test.cpp
+    path: test/1_mytest/three_square.test.cpp
+    title: test/1_mytest/three_square.test.cpp
   - icon: ':x:'
-    path: test/mytest/three_triangular.test.cpp
-    title: test/mytest/three_triangular.test.cpp
+    path: test/1_mytest/three_triangular.test.cpp
+    title: test/1_mytest/three_triangular.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -252,9 +252,9 @@ data:
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/four_square.test.cpp
-  - test/mytest/three_triangular.test.cpp
-  - test/mytest/three_square.test.cpp
+  - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/three_square.test.cpp
 documentation_of: nt/three_square.hpp
 layout: document
 redirect_from:

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':x:'
@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/tree/tree_diameter.test.cpp
-    title: test/library_checker/tree/tree_diameter.test.cpp
+    path: test/2_library_checker/tree/tree_diameter.test.cpp
+    title: test/2_library_checker/tree/tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -132,7 +132,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/tree/tree_diameter.test.cpp
+  - test/2_library_checker/tree/tree_diameter.test.cpp
 documentation_of: graph/tree_diameter.hpp
 layout: document
 redirect_from:

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/rbst_commutative_persistent.test.cpp
-    title: test/mytest/rbst_commutative_persistent.test.cpp
+    path: test/1_mytest/rbst_commutative_persistent.test.cpp
+    title: test/1_mytest/rbst_commutative_persistent.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -234,7 +234,7 @@ data:
   timestamp: '2022-12-04 00:54:54+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/rbst_commutative_persistent.test.cpp
+  - test/1_mytest/rbst_commutative_persistent.test.cpp
 documentation_of: ds/randomized_bst/rbst_commutative_monoid.hpp
 layout: document
 redirect_from:

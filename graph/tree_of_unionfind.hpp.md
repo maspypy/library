@@ -10,11 +10,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1451.test.cpp
-    title: test/yukicoder/1451.test.cpp
+    path: test/3_yukicoder/1451.test.cpp
+    title: test/3_yukicoder/1451.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc314f.test.cpp
-    title: test_atcoder/abc314f.test.cpp
+    path: test/5_atcoder/abc314f.test.cpp
+    title: test/5_atcoder/abc314f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -133,8 +133,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1451.test.cpp
-  - test_atcoder/abc314f.test.cpp
+  - test/5_atcoder/abc314f.test.cpp
+  - test/3_yukicoder/1451.test.cpp
 documentation_of: graph/tree_of_unionfind.hpp
 layout: document
 redirect_from:

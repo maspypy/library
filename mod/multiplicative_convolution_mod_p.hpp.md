@@ -51,15 +51,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/mul_modp_conv.test.cpp
-    title: test/library_checker/convolution/mul_modp_conv.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2613.test.cpp
-    title: test/yukicoder/2613.test.cpp
+    path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+    title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2613.test.cpp
+    title: test/3_yukicoder/2613.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -485,10 +485,10 @@ data:
   path: mod/multiplicative_convolution_mod_p.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2613.test.cpp
-  - test/library_checker/convolution/mul_modp_conv.test.cpp
+  - test/3_yukicoder/2613.test.cpp
+  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
 documentation_of: mod/multiplicative_convolution_mod_p.hpp
 layout: document
 redirect_from:

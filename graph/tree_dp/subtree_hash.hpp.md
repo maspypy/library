@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -19,11 +19,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/classify_tree.test.cpp
-    title: test/library_checker/graph/classify_tree.test.cpp
+    path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
+    title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - icon: ':x:'
-    path: test/mytest/enumerate_unlabeled_tree.test.cpp
-    title: test/mytest/enumerate_unlabeled_tree.test.cpp
+    path: test/2_library_checker/graph/classify_tree.test.cpp
+    title: test/2_library_checker/graph/classify_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -303,8 +303,8 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/enumerate_unlabeled_tree.test.cpp
-  - test/library_checker/graph/classify_tree.test.cpp
+  - test/2_library_checker/graph/classify_tree.test.cpp
+  - test/1_mytest/enumerate_unlabeled_tree.test.cpp
 documentation_of: graph/tree_dp/subtree_hash.hpp
 layout: document
 redirect_from:

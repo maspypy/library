@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
   - icon: ':x:'
@@ -18,30 +18,30 @@ data:
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DPL_2_A.test.cpp
-    title: test/aoj/DPL_2_A.test.cpp
   - icon: ':x:'
-    path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-    title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
+    path: test/1_mytest/subset_sum.test.cpp
+    title: test/1_mytest/subset_sum.test.cpp
   - icon: ':x:'
-    path: test/mytest/subset_sum.test.cpp
-    title: test/mytest/subset_sum.test.cpp
+    path: test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
+    title: test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/114.test.cpp
-    title: test/yukicoder/114.test.cpp
+    path: test/3_yukicoder/114.test.cpp
+    title: test/3_yukicoder/114.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2507.test.cpp
-    title: test/yukicoder/2507.test.cpp
+    path: test/3_yukicoder/2507.test.cpp
+    title: test/3_yukicoder/2507.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/4_2.test.cpp
-    title: test/yukicoder/4_2.test.cpp
+    path: test/3_yukicoder/4_2.test.cpp
+    title: test/3_yukicoder/4_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc180e.test.cpp
-    title: test_atcoder/abc180e.test.cpp
+    path: test/4_aoj/DPL_2_A.test.cpp
+    title: test/4_aoj/DPL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc180e.test.cpp
+    title: test/5_atcoder/abc180e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32\
@@ -68,15 +68,15 @@ data:
   - knapsack/subset_sum.hpp
   - linalg/hafnian.hpp
   timestamp: '2023-05-04 20:25:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/114.test.cpp
-  - test/yukicoder/4_2.test.cpp
-  - test/yukicoder/2507.test.cpp
-  - test/mytest/subset_sum.test.cpp
-  - test/aoj/DPL_2_A.test.cpp
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
-  - test_atcoder/abc180e.test.cpp
+  - test/5_atcoder/abc180e.test.cpp
+  - test/3_yukicoder/114.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/2507.test.cpp
+  - test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
+  - test/4_aoj/DPL_2_A.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
 redirect_from:

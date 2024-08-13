@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
@@ -17,46 +17,46 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_2_A.test.cpp
-    title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_5.test.cpp
-    title: test/aoj/ALDS1_5.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/predecessor_problem_4.test.cpp
-    title: test/library_checker/datastructure/predecessor_problem_4.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-    title: test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
-    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    path: test/1_mytest/count_points_in_triangles.test.cpp
+    title: test/1_mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_points_in_triangles.test.cpp
-    title: test/mytest/count_points_in_triangles.test.cpp
+    path: test/1_mytest/fenwick01.test.cpp
+    title: test/1_mytest/fenwick01.test.cpp
   - icon: ':x:'
-    path: test/mytest/fenwick01.test.cpp
-    title: test/mytest/fenwick01.test.cpp
+    path: test/2_library_checker/datastructure/predecessor_problem_4.test.cpp
+    title: test/2_library_checker/datastructure/predecessor_problem_4.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1838.test.cpp
-    title: test/yukicoder/1838.test.cpp
+    path: test/2_library_checker/datastructure/static_range_inversions_mo_3.test.cpp
+    title: test/2_library_checker/datastructure/static_range_inversions_mo_3.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/694.test.cpp
-    title: test/yukicoder/694.test.cpp
+    path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc190f.test.cpp
-    title: test_atcoder/abc190f.test.cpp
+    path: test/3_yukicoder/1838.test.cpp
+    title: test/3_yukicoder/1838.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc202_f.test.cpp
-    title: test_atcoder/abc202_f.test.cpp
+    path: test/3_yukicoder/694.test.cpp
+    title: test/3_yukicoder/694.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/ALDS1_2_A.test.cpp
+    title: test/4_aoj/ALDS1_2_A.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/ALDS1_5.test.cpp
+    title: test/4_aoj/ALDS1_5.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc190f.test.cpp
+    title: test/5_atcoder/abc190f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc202_f.test.cpp
+    title: test/5_atcoder/abc202_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
@@ -199,19 +199,19 @@ data:
   - seq/inversion.hpp
   - other/sliding_puzzle_solver.hpp
   timestamp: '2024-07-19 20:55:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/694.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/mytest/fenwick01.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test/library_checker/datastructure/predecessor_problem_4.test.cpp
-  - test/library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test_atcoder/abc202_f.test.cpp
-  - test_atcoder/abc190f.test.cpp
+  - test/5_atcoder/abc202_f.test.cpp
+  - test/5_atcoder/abc190f.test.cpp
+  - test/3_yukicoder/694.test.cpp
+  - test/3_yukicoder/1838.test.cpp
+  - test/2_library_checker/datastructure/predecessor_problem_4.test.cpp
+  - test/2_library_checker/datastructure/static_range_inversions_mo_3.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/fenwick01.test.cpp
+  - test/4_aoj/ALDS1_2_A.test.cpp
+  - test/4_aoj/ALDS1_5.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

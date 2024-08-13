@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -16,8 +16,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/tree/lca_fast.test.cpp
-    title: test/library_checker/tree/lca_fast.test.cpp
+    path: test/2_library_checker/tree/lca_fast.test.cpp
+    title: test/2_library_checker/tree/lca_fast.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -246,7 +246,7 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/tree/lca_fast.test.cpp
+  - test/2_library_checker/tree/lca_fast.test.cpp
 documentation_of: graph/fast_lca.hpp
 layout: document
 redirect_from:

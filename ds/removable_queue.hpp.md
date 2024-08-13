@@ -6,30 +6,30 @@ data:
     path: ds/slide_split_sum.hpp
     title: ds/slide_split_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/double_ended_pq.test.cpp
-    title: test/library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2654.test.cpp
-    title: test/yukicoder/2654.test.cpp
+    path: test/2_library_checker/datastructure/double_ended_pq.test.cpp
+    title: test/2_library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/772.test.cpp
-    title: test/yukicoder/772.test.cpp
+    path: test/3_yukicoder/2654.test.cpp
+    title: test/3_yukicoder/2654.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/902.test.cpp
-    title: test/yukicoder/902.test.cpp
+    path: test/3_yukicoder/772.test.cpp
+    title: test/3_yukicoder/772.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc281e.test.cpp
-    title: test_atcoder/abc281e.test.cpp
+    path: test/3_yukicoder/902.test.cpp
+    title: test/3_yukicoder/902.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc312f.test.cpp
-    title: test_atcoder/abc312f.test.cpp
+    path: test/5_atcoder/abc281e.test.cpp
+    title: test/5_atcoder/abc281e.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc314g.test.cpp
-    title: test_atcoder/abc314g.test.cpp
+    path: test/5_atcoder/abc312f.test.cpp
+    title: test/5_atcoder/abc312f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc314g.test.cpp
+    title: test/5_atcoder/abc314g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
@@ -56,15 +56,15 @@ data:
   requiredBy:
   - ds/slide_split_sum.hpp
   timestamp: '2024-02-24 23:26:31+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/772.test.cpp
-  - test/yukicoder/902.test.cpp
-  - test/yukicoder/2654.test.cpp
-  - test/library_checker/datastructure/double_ended_pq.test.cpp
-  - test_atcoder/abc314g.test.cpp
-  - test_atcoder/abc312f.test.cpp
-  - test_atcoder/abc281e.test.cpp
+  - test/5_atcoder/abc314g.test.cpp
+  - test/5_atcoder/abc312f.test.cpp
+  - test/5_atcoder/abc281e.test.cpp
+  - test/3_yukicoder/772.test.cpp
+  - test/3_yukicoder/902.test.cpp
+  - test/3_yukicoder/2654.test.cpp
+  - test/2_library_checker/datastructure/double_ended_pq.test.cpp
 documentation_of: ds/removable_queue.hpp
 layout: document
 redirect_from:

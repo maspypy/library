@@ -23,67 +23,67 @@ data:
   - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
   - icon: ':x:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/blackbox_solve_linear.test.cpp
+    title: test/1_mytest/blackbox_solve_linear.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/factorial.test.cpp
-    title: test/library_checker/math/factorial.test.cpp
+    path: test/1_mytest/factorial_998.test.cpp
+    title: test/1_mytest/factorial_998.test.cpp
   - icon: ':x:'
-    path: test/library_checker/matix/pow_of_matrix.test.cpp
-    title: test/library_checker/matix/pow_of_matrix.test.cpp
+    path: test/1_mytest/min_poly.test.cpp
+    title: test/1_mytest/min_poly.test.cpp
   - icon: ':x:'
-    path: test/library_checker/matrix/matrix_product.test.cpp
-    title: test/library_checker/matrix/matrix_product.test.cpp
+    path: test/2_library_checker/math/factorial.test.cpp
+    title: test/2_library_checker/math/factorial.test.cpp
   - icon: ':x:'
-    path: test/mytest/blackbox_solve_linear.test.cpp
-    title: test/mytest/blackbox_solve_linear.test.cpp
+    path: test/2_library_checker/matix/pow_of_matrix.test.cpp
+    title: test/2_library_checker/matix/pow_of_matrix.test.cpp
   - icon: ':x:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
+    path: test/2_library_checker/matrix/matrix_product.test.cpp
+    title: test/2_library_checker/matrix/matrix_product.test.cpp
   - icon: ':x:'
-    path: test/mytest/min_poly.test.cpp
-    title: test/mytest/min_poly.test.cpp
+    path: test/3_yukicoder/1080_2.test.cpp
+    title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1080_2.test.cpp
-    title: test/yukicoder/1080_2.test.cpp
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
+    path: test/3_yukicoder/1750.test.cpp
+    title: test/3_yukicoder/1750.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1750.test.cpp
-    title: test/yukicoder/1750.test.cpp
+    path: test/3_yukicoder/1810.test.cpp
+    title: test/3_yukicoder/1810.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1810.test.cpp
-    title: test/yukicoder/1810.test.cpp
+    path: test/3_yukicoder/1907.test.cpp
+    title: test/3_yukicoder/1907.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1907.test.cpp
-    title: test/yukicoder/1907.test.cpp
+    path: test/3_yukicoder/2166.test.cpp
+    title: test/3_yukicoder/2166.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
+    path: test/3_yukicoder/426.test.cpp
+    title: test/3_yukicoder/426.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/426.test.cpp
-    title: test/yukicoder/426.test.cpp
+    path: test/3_yukicoder/502_2.test.cpp
+    title: test/3_yukicoder/502_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/502_2.test.cpp
-    title: test/yukicoder/502_2.test.cpp
+    path: test/5_atcoder/abc222h_2.test.cpp
+    title: test/5_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222h_2.test.cpp
-    title: test_atcoder/abc222h_2.test.cpp
+    path: test/5_atcoder/abc276_g.test.cpp
+    title: test/5_atcoder/abc276_g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc276_g.test.cpp
-    title: test_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc276_g_2.test.cpp
-    title: test_atcoder/abc276_g_2.test.cpp
+    path: test/5_atcoder/abc276_g_2.test.cpp
+    title: test/5_atcoder/abc276_g_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -235,25 +235,25 @@ data:
   - linalg/matrix_pow.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/426.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1750.test.cpp
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1810.test.cpp
-  - test/mytest/blackbox_solve_linear.test.cpp
-  - test/mytest/min_poly.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/library_checker/matix/pow_of_matrix.test.cpp
-  - test/library_checker/math/factorial.test.cpp
-  - test/library_checker/matrix/matrix_product.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
+  - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
+  - test/3_yukicoder/426.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/1750.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1810.test.cpp
+  - test/2_library_checker/matix/pow_of_matrix.test.cpp
+  - test/2_library_checker/math/factorial.test.cpp
+  - test/2_library_checker/matrix/matrix_product.test.cpp
+  - test/1_mytest/blackbox_solve_linear.test.cpp
+  - test/1_mytest/min_poly.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
 documentation_of: linalg/matrix_mul.hpp
 layout: document
 redirect_from:

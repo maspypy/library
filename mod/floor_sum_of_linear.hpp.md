@@ -13,32 +13,32 @@ data:
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-    title: test/library_checker/math/min_of_mod_of_linear_2.test.cpp
+    path: test/1_mytest/mod_sum_of_linear.test.cpp
+    title: test/1_mytest/mod_sum_of_linear.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/sum_of_floor_of_linear.test.cpp
-    title: test/library_checker/math/sum_of_floor_of_linear.test.cpp
+    path: test/1_mytest/range_freq_of_linear.test.cpp
+    title: test/1_mytest/range_freq_of_linear.test.cpp
   - icon: ':x:'
-    path: test/mytest/mod_sum_of_linear.test.cpp
-    title: test/mytest/mod_sum_of_linear.test.cpp
+    path: test/2_library_checker/math/min_of_mod_of_linear_2.test.cpp
+    title: test/2_library_checker/math/min_of_mod_of_linear_2.test.cpp
   - icon: ':x:'
-    path: test/mytest/range_freq_of_linear.test.cpp
-    title: test/mytest/range_freq_of_linear.test.cpp
+    path: test/2_library_checker/math/sum_of_floor_of_linear.test.cpp
+    title: test/2_library_checker/math/sum_of_floor_of_linear.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1201.test.cpp
-    title: test/yukicoder/1201.test.cpp
+    path: test/3_yukicoder/1201.test.cpp
+    title: test/3_yukicoder/1201.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2066.test.cpp
-    title: test/yukicoder/2066.test.cpp
+    path: test/3_yukicoder/2066.test.cpp
+    title: test/3_yukicoder/2066.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2266.test.cpp
-    title: test/yukicoder/2266.test.cpp
+    path: test/3_yukicoder/2266.test.cpp
+    title: test/3_yukicoder/2266.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2280.test.cpp
-    title: test/yukicoder/2280.test.cpp
+    path: test/3_yukicoder/2280.test.cpp
+    title: test/3_yukicoder/2280.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2440.test.cpp
-    title: test/yukicoder/2440.test.cpp
+    path: test/3_yukicoder/2440.test.cpp
+    title: test/3_yukicoder/2440.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -75,15 +75,15 @@ data:
   timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1201.test.cpp
-  - test/yukicoder/2440.test.cpp
-  - test/yukicoder/2280.test.cpp
-  - test/yukicoder/2066.test.cpp
-  - test/yukicoder/2266.test.cpp
-  - test/mytest/mod_sum_of_linear.test.cpp
-  - test/mytest/range_freq_of_linear.test.cpp
-  - test/library_checker/math/min_of_mod_of_linear_2.test.cpp
-  - test/library_checker/math/sum_of_floor_of_linear.test.cpp
+  - test/3_yukicoder/1201.test.cpp
+  - test/3_yukicoder/2440.test.cpp
+  - test/3_yukicoder/2280.test.cpp
+  - test/3_yukicoder/2066.test.cpp
+  - test/3_yukicoder/2266.test.cpp
+  - test/2_library_checker/math/min_of_mod_of_linear_2.test.cpp
+  - test/2_library_checker/math/sum_of_floor_of_linear.test.cpp
+  - test/1_mytest/mod_sum_of_linear.test.cpp
+  - test/1_mytest/range_freq_of_linear.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp
 layout: document
 redirect_from:

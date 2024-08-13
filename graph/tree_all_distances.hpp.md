@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':question:'
@@ -40,8 +40,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
-    title: test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
+    title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -540,7 +540,7 @@ data:
   timestamp: '2024-07-26 01:42:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/tree/frequency_table_of_tree_distance.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/tree_all_distances.hpp
 layout: document
 redirect_from:

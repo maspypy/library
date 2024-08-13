@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
+    path: test/1_mytest/matching_line_graph.test.cpp
+    title: test/1_mytest/matching_line_graph.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -126,7 +126,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/matching_line_graph.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
 documentation_of: graph/maximum_matching_of_line_graph.hpp
 layout: document
 redirect_from:

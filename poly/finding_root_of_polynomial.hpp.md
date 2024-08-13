@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':x:'
@@ -49,8 +49,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/poly_root_finding.test.cpp
-    title: test/mytest/poly_root_finding.test.cpp
+    path: test/1_mytest/poly_root_finding.test.cpp
+    title: test/1_mytest/poly_root_finding.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -478,7 +478,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/poly_root_finding.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
 documentation_of: poly/finding_root_of_polynomial.hpp
 layout: document
 redirect_from:

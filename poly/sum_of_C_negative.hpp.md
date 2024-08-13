@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/arc144d.test.cpp
-    title: test_atcoder/arc144d.test.cpp
+    path: test/5_atcoder/arc144d.test.cpp
+    title: test/5_atcoder/arc144d.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc160d.test.cpp
-    title: test_atcoder/arc160d.test.cpp
+    path: test/5_atcoder/arc160d.test.cpp
+    title: test/5_atcoder/arc160d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -79,8 +79,8 @@ data:
   timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/arc144d.test.cpp
-  - test_atcoder/arc160d.test.cpp
+  - test/5_atcoder/arc144d.test.cpp
+  - test/5_atcoder/arc160d.test.cpp
 documentation_of: poly/sum_of_C_negative.hpp
 layout: document
 redirect_from:

@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc227g.test.cpp
-    title: test_atcoder/abc227g.test.cpp
+    path: test/5_atcoder/abc227g.test.cpp
+    title: test/5_atcoder/abc227g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -49,7 +49,7 @@ data:
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc227g.test.cpp
+  - test/5_atcoder/abc227g.test.cpp
 documentation_of: nt/factor_interval.hpp
 layout: document
 redirect_from:

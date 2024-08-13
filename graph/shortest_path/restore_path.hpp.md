@@ -13,17 +13,17 @@ data:
     title: graph/tree_diameter.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/shortest_path.test.cpp
-    title: test/library_checker/graph/shortest_path.test.cpp
+    path: test/1_mytest/st_numbering.test.cpp
+    title: test/1_mytest/st_numbering.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/st_numbering.test.cpp
-    title: test/library_checker/graph/st_numbering.test.cpp
+    path: test/2_library_checker/graph/shortest_path.test.cpp
+    title: test/2_library_checker/graph/shortest_path.test.cpp
   - icon: ':x:'
-    path: test/library_checker/tree/tree_diameter.test.cpp
-    title: test/library_checker/tree/tree_diameter.test.cpp
+    path: test/2_library_checker/graph/st_numbering.test.cpp
+    title: test/2_library_checker/graph/st_numbering.test.cpp
   - icon: ':x:'
-    path: test/mytest/st_numbering.test.cpp
-    title: test/mytest/st_numbering.test.cpp
+    path: test/2_library_checker/tree/tree_diameter.test.cpp
+    title: test/2_library_checker/tree/tree_diameter.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -45,10 +45,10 @@ data:
   timestamp: '2022-10-21 18:11:46+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/st_numbering.test.cpp
-  - test/library_checker/tree/tree_diameter.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
-  - test/library_checker/graph/st_numbering.test.cpp
+  - test/2_library_checker/tree/tree_diameter.test.cpp
+  - test/2_library_checker/graph/shortest_path.test.cpp
+  - test/2_library_checker/graph/st_numbering.test.cpp
+  - test/1_mytest/st_numbering.test.cpp
 documentation_of: graph/shortest_path/restore_path.hpp
 layout: document
 redirect_from:

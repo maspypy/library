@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/prefix_sum_of_binom.test.cpp
-    title: test/mytest/prefix_sum_of_binom.test.cpp
+    path: test/1_mytest/prefix_sum_of_binom.test.cpp
+    title: test/1_mytest/prefix_sum_of_binom.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2206.test.cpp
-    title: test/yukicoder/2206.test.cpp
+    path: test/3_yukicoder/2206.test.cpp
+    title: test/3_yukicoder/2206.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -65,8 +65,8 @@ data:
   timestamp: '2024-04-12 12:45:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2206.test.cpp
-  - test/mytest/prefix_sum_of_binom.test.cpp
+  - test/3_yukicoder/2206.test.cpp
+  - test/1_mytest/prefix_sum_of_binom.test.cpp
 documentation_of: mod/prefix_sum_of_binom.hpp
 layout: document
 redirect_from:

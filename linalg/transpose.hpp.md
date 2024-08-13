@@ -7,8 +7,8 @@ data:
     title: other/sliding_puzzle_solver.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/2108.test.cpp
-    title: test/yukicoder/2108.test.cpp
+    path: test/3_yukicoder/2108.test.cpp
+    title: test/3_yukicoder/2108.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -29,7 +29,7 @@ data:
   timestamp: '2023-10-24 15:46:44+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2108.test.cpp
+  - test/3_yukicoder/2108.test.cpp
 documentation_of: linalg/transpose.hpp
 layout: document
 redirect_from:

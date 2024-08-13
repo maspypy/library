@@ -10,8 +10,8 @@ data:
     title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/prufer.test.cpp
-    title: test/mytest/prufer.test.cpp
+    path: test/1_mytest/prufer.test.cpp
+    title: test/1_mytest/prufer.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -129,7 +129,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/prufer.test.cpp
+  - test/1_mytest/prufer.test.cpp
 documentation_of: graph/prufer_code.hpp
 layout: document
 redirect_from:

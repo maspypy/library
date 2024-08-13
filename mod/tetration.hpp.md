@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
   - icon: ':question:'
@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   - icon: ':question:'
@@ -28,8 +28,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/tetration.test.cpp
-    title: test/library_checker/math/tetration.test.cpp
+    path: test/2_library_checker/math/tetration.test.cpp
+    title: test/2_library_checker/math/tetration.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -176,7 +176,7 @@ data:
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/tetration.test.cpp
+  - test/2_library_checker/math/tetration.test.cpp
 documentation_of: mod/tetration.hpp
 layout: document
 redirect_from:

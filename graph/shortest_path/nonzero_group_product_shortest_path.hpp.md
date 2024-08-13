@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1602.test.cpp
-    title: test/yukicoder/1602.test.cpp
+    path: test/3_yukicoder/1602.test.cpp
+    title: test/3_yukicoder/1602.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -185,7 +185,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1602.test.cpp
+  - test/3_yukicoder/1602.test.cpp
 documentation_of: graph/shortest_path/nonzero_group_product_shortest_path.hpp
 layout: document
 redirect_from:

@@ -10,23 +10,23 @@ data:
     title: alg/acted_monoid/summax_assign.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree.test.cpp
-    title: test/mytest/dynamic_lazy_segtree.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/kdtree_am.test.cpp
-    title: test/mytest/kdtree_am.test.cpp
+    path: test/1_mytest/kdtree_am.test.cpp
+    title: test/1_mytest/kdtree_am.test.cpp
   - icon: ':x:'
-    path: test/mytest/kdtree_monoid.test.cpp
-    title: test/mytest/kdtree_monoid.test.cpp
+    path: test/1_mytest/kdtree_monoid.test.cpp
+    title: test/1_mytest/kdtree_monoid.test.cpp
   - icon: ':x:'
-    path: test/mytest/summax_add.test.cpp
-    title: test/mytest/summax_add.test.cpp
+    path: test/1_mytest/summax_add.test.cpp
+    title: test/1_mytest/summax_add.test.cpp
   - icon: ':x:'
-    path: test/mytest/summax_assign.test.cpp
-    title: test/mytest/summax_assign.test.cpp
+    path: test/1_mytest/summax_assign.test.cpp
+    title: test/1_mytest/summax_assign.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -51,12 +51,12 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/summax_add.test.cpp
-  - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/mytest/kdtree_am.test.cpp
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/kdtree_monoid.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/1_mytest/summax_add.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/kdtree_am.test.cpp
+  - test/1_mytest/summax_assign.test.cpp
+  - test/1_mytest/kdtree_monoid.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
 documentation_of: alg/monoid/summax.hpp
 layout: document
 redirect_from:

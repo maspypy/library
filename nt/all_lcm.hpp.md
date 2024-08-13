@@ -22,8 +22,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc152e.test.cpp
-    title: test_atcoder/abc152e.test.cpp
+    path: test/5_atcoder/abc152e.test.cpp
+    title: test/5_atcoder/abc152e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -130,7 +130,7 @@ data:
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc152e.test.cpp
+  - test/5_atcoder/abc152e.test.cpp
 documentation_of: nt/all_lcm.hpp
 layout: document
 redirect_from:

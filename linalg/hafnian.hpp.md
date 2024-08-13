@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -16,8 +16,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/matrix/hafnian_of_matrix.test.cpp
-    title: test/library_checker/matrix/hafnian_of_matrix.test.cpp
+    path: test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
+    title: test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -111,7 +111,7 @@ data:
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/matrix/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
 documentation_of: linalg/hafnian.hpp
 layout: document
 redirect_from:

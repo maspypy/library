@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -35,19 +35,19 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':x:'
@@ -56,94 +56,94 @@ data:
   - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_1_minus_ex.test.cpp
+    title: test/1_mytest/composition_1_minus_ex.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_ex_minus_1.test.cpp
+    title: test/1_mytest/composition_ex_minus_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_f_x_plus_1x.test.cpp
+    title: test/1_mytest/composition_f_x_plus_1x.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/composition_log_1_minus_x.test.cpp
+    title: test/1_mytest/composition_log_1_minus_x.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/compositional_inverset.test.cpp
+    title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_biconnected.test.cpp
+    title: test/1_mytest/count_labeled_biconnected.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_bridgeless.test.cpp
+    title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
+    path: test/1_mytest/stirling_1_suffix.test.cpp
+    title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-    title: test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    path: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
+    title: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/composition_dmint.test.cpp
-    title: test/library_checker/polynomial/composition_dmint.test.cpp
+    path: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/composition_of_fps.test.cpp
-    title: test/library_checker/polynomial/composition_of_fps.test.cpp
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/compositional_inverse.test.cpp
-    title: test/library_checker/polynomial/compositional_inverse.test.cpp
+    path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
+    title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-    title: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-    title: test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
+    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - icon: ':x:'
-    path: test/mytest/composition_1_minus_ex.test.cpp
-    title: test/mytest/composition_1_minus_ex.test.cpp
+    path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
+    title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - icon: ':x:'
-    path: test/mytest/composition_ex_minus_1.test.cpp
-    title: test/mytest/composition_ex_minus_1.test.cpp
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
   - icon: ':x:'
-    path: test/mytest/composition_f_x_plus_1x.test.cpp
-    title: test/mytest/composition_f_x_plus_1x.test.cpp
+    path: test/3_yukicoder/1875.test.cpp
+    title: test/3_yukicoder/1875.test.cpp
   - icon: ':x:'
-    path: test/mytest/composition_log_1_minus_x.test.cpp
-    title: test/mytest/composition_log_1_minus_x.test.cpp
+    path: test/3_yukicoder/1907.test.cpp
+    title: test/3_yukicoder/1907.test.cpp
   - icon: ':x:'
-    path: test/mytest/compositional_inverset.test.cpp
-    title: test/mytest/compositional_inverset.test.cpp
+    path: test/3_yukicoder/2580.test.cpp
+    title: test/3_yukicoder/2580.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_labeled_biconnected.test.cpp
-    title: test/mytest/count_labeled_biconnected.test.cpp
+    path: test/3_yukicoder/2583.test.cpp
+    title: test/3_yukicoder/2583.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_labeled_bridgeless.test.cpp
-    title: test/mytest/count_labeled_bridgeless.test.cpp
+    path: test/3_yukicoder/2587.test.cpp
+    title: test/3_yukicoder/2587.test.cpp
   - icon: ':x:'
-    path: test/mytest/stirling_1_suffix.test.cpp
-    title: test/mytest/stirling_1_suffix.test.cpp
+    path: test/3_yukicoder/2587_2.test.cpp
+    title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1875.test.cpp
-    title: test/yukicoder/1875.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/1907.test.cpp
-    title: test/yukicoder/1907.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2580.test.cpp
-    title: test/yukicoder/2580.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2583.test.cpp
-    title: test/yukicoder/2583.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2587.test.cpp
-    title: test/yukicoder/2587.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2587_2.test.cpp
-    title: test/yukicoder/2587_2.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc133f.test.cpp
-    title: test_atcoder/arc133f.test.cpp
+    path: test/5_atcoder/arc133f.test.cpp
+    title: test/5_atcoder/arc133f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\
@@ -493,31 +493,31 @@ data:
   - poly/composition_f_a_plus_bx.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2583.test.cpp
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/2580.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1875.test.cpp
-  - test/yukicoder/2587.test.cpp
-  - test/yukicoder/2587_2.test.cpp
-  - test/mytest/composition_ex_minus_1.test.cpp
-  - test/mytest/compositional_inverset.test.cpp
-  - test/mytest/count_labeled_bridgeless.test.cpp
-  - test/mytest/composition_log_1_minus_x.test.cpp
-  - test/mytest/composition_1_minus_ex.test.cpp
-  - test/mytest/stirling_1_suffix.test.cpp
-  - test/mytest/count_labeled_biconnected.test.cpp
-  - test/mytest/composition_f_x_plus_1x.test.cpp
-  - test/library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test/library_checker/polynomial/composition_dmint.test.cpp
-  - test/library_checker/polynomial/composition_of_fps.test.cpp
-  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/compositional_inverse.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test_atcoder/arc133f.test.cpp
+  - test/5_atcoder/arc133f.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1875.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
+  - test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
+  - test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/stirling_1_suffix.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/composition_f_x_plus_1x.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document
 redirect_from:

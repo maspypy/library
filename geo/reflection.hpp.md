@@ -6,12 +6,12 @@ data:
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_1_B.test.cpp
-    title: test/aoj/CGL_1_B.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/4_aoj/CGL_1_B.test.cpp
+    title: test/4_aoj/CGL_1_B.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/reflection.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -90,9 +90,9 @@ data:
   path: geo/reflection.hpp
   requiredBy: []
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/CGL_1_B.test.cpp
+  - test/4_aoj/CGL_1_B.test.cpp
 documentation_of: geo/reflection.hpp
 layout: document
 redirect_from:

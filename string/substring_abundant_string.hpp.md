@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/substring_abundant.test.cpp
-    title: test/mytest/substring_abundant.test.cpp
+    path: test/1_mytest/substring_abundant.test.cpp
+    title: test/1_mytest/substring_abundant.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -105,7 +105,7 @@ data:
   timestamp: '2024-07-29 11:54:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/substring_abundant.test.cpp
+  - test/1_mytest/substring_abundant.test.cpp
 documentation_of: string/substring_abundant_string.hpp
 layout: document
 redirect_from:

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/reduce_intervals.test.cpp
-    title: test/mytest/reduce_intervals.test.cpp
+    path: test/1_mytest/reduce_intervals.test.cpp
+    title: test/1_mytest/reduce_intervals.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -51,7 +51,7 @@ data:
   timestamp: '2023-12-22 20:53:57+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/reduce_intervals.test.cpp
+  - test/1_mytest/reduce_intervals.test.cpp
 documentation_of: other/reduce_intervals.hpp
 layout: document
 redirect_from:

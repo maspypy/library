@@ -7,11 +7,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1170.test.cpp
-    title: test/yukicoder/1170.test.cpp
+    path: test/3_yukicoder/1170.test.cpp
+    title: test/3_yukicoder/1170.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1868.test.cpp
-    title: test/yukicoder/1868.test.cpp
+    path: test/3_yukicoder/1868.test.cpp
+    title: test/3_yukicoder/1868.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -132,8 +132,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1170.test.cpp
-  - test/yukicoder/1868.test.cpp
+  - test/3_yukicoder/1170.test.cpp
+  - test/3_yukicoder/1868.test.cpp
 documentation_of: graph/range_to_range_graph.hpp
 layout: document
 redirect_from:

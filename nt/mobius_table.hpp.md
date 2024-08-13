@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:
@@ -16,11 +16,11 @@ data:
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1760.test.cpp
-    title: test/yukicoder/1760.test.cpp
+    path: test/3_yukicoder/1760.test.cpp
+    title: test/3_yukicoder/1760.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2266.test.cpp
-    title: test/yukicoder/2266.test.cpp
+    path: test/3_yukicoder/2266.test.cpp
+    title: test/3_yukicoder/2266.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -65,8 +65,8 @@ data:
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1760.test.cpp
-  - test/yukicoder/2266.test.cpp
+  - test/3_yukicoder/1760.test.cpp
+  - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/mobius_table.hpp
 layout: document
 redirect_from:

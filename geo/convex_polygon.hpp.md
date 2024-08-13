@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy:
@@ -12,18 +12,18 @@ data:
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/convex_polygon_side.test.cpp
+    title: test/1_mytest/convex_polygon_side.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/convex_polygon_visible_range.test.cpp
+    title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':x:'
-    path: test/mytest/convex_polygon_side.test.cpp
-    title: test/mytest/convex_polygon_side.test.cpp
-  - icon: ':x:'
-    path: test/mytest/convex_polygon_visible_range.test.cpp
-    title: test/mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_dot.test.cpp
-    title: test/mytest/max_dot.test.cpp
+    path: test/1_mytest/max_dot.test.cpp
+    title: test/1_mytest/max_dot.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/1906/problem/D
@@ -205,11 +205,11 @@ data:
   requiredBy:
   - geo/minkowski_sum.hpp
   timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/convex_polygon_side.test.cpp
-  - test/mytest/convex_polygon_visible_range.test.cpp
-  - test/mytest/max_dot.test.cpp
+  - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/max_dot.test.cpp
 documentation_of: geo/convex_polygon.hpp
 layout: document
 redirect_from:

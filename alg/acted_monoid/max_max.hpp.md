@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/max_max.test.cpp
-    title: test/mytest/max_max.test.cpp
+    path: test/1_mytest/max_max.test.cpp
+    title: test/1_mytest/max_max.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -36,7 +36,7 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/max_max.test.cpp
+  - test/1_mytest/max_max.test.cpp
 documentation_of: alg/acted_monoid/max_max.hpp
 layout: document
 redirect_from:

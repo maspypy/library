@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/2654.test.cpp
-    title: test/yukicoder/2654.test.cpp
+    path: test/3_yukicoder/2654.test.cpp
+    title: test/3_yukicoder/2654.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc281e.test.cpp
-    title: test_atcoder/abc281e.test.cpp
+    path: test/5_atcoder/abc281e.test.cpp
+    title: test/5_atcoder/abc281e.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc312f.test.cpp
-    title: test_atcoder/abc312f.test.cpp
+    path: test/5_atcoder/abc312f.test.cpp
+    title: test/5_atcoder/abc312f.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc314g.test.cpp
-    title: test_atcoder/abc314g.test.cpp
+    path: test/5_atcoder/abc314g.test.cpp
+    title: test/5_atcoder/abc314g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -81,10 +81,10 @@ data:
   timestamp: '2024-07-03 07:03:22+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2654.test.cpp
-  - test_atcoder/abc314g.test.cpp
-  - test_atcoder/abc312f.test.cpp
-  - test_atcoder/abc281e.test.cpp
+  - test/5_atcoder/abc314g.test.cpp
+  - test/5_atcoder/abc312f.test.cpp
+  - test/5_atcoder/abc281e.test.cpp
+  - test/3_yukicoder/2654.test.cpp
 documentation_of: ds/slide_split_sum.hpp
 layout: document
 redirect_from:

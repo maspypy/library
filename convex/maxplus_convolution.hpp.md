@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/maxplus_concave.test.cpp
-    title: test/mytest/maxplus_concave.test.cpp
+    path: test/1_mytest/maxplus_concave.test.cpp
+    title: test/1_mytest/maxplus_concave.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc348g.test.cpp
-    title: test_atcoder/abc348g.test.cpp
+    path: test/5_atcoder/abc348g.test.cpp
+    title: test/5_atcoder/abc348g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -80,8 +80,8 @@ data:
   timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/maxplus_concave.test.cpp
-  - test_atcoder/abc348g.test.cpp
+  - test/5_atcoder/abc348g.test.cpp
+  - test/1_mytest/maxplus_concave.test.cpp
 documentation_of: convex/maxplus_convolution.hpp
 layout: document
 redirect_from:

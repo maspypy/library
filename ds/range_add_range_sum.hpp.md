@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_E.test.cpp
-    title: test/aoj/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_G.test.cpp
-    title: test/aoj/DSL_2_G.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/4_aoj/DSL_2_E.test.cpp
+    title: test/4_aoj/DSL_2_E.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DSL_2_G.test.cpp
+    title: test/4_aoj/DSL_2_G.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -123,10 +123,10 @@ data:
   path: ds/range_add_range_sum.hpp
   requiredBy: []
   timestamp: '2024-07-19 20:55:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/DSL_2_E.test.cpp
-  - test/aoj/DSL_2_G.test.cpp
+  - test/4_aoj/DSL_2_E.test.cpp
+  - test/4_aoj/DSL_2_G.test.cpp
 documentation_of: ds/range_add_range_sum.hpp
 layout: document
 redirect_from:

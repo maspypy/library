@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1891.test.cpp
-    title: test/yukicoder/1891.test.cpp
+    path: test/3_yukicoder/1891.test.cpp
+    title: test/3_yukicoder/1891.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -58,7 +58,7 @@ data:
   timestamp: '2023-04-08 01:03:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1891.test.cpp
+  - test/3_yukicoder/1891.test.cpp
 documentation_of: ds/sparse_table/xor_disjoint_sparse_table.hpp
 layout: document
 redirect_from:

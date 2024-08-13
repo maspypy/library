@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc141e.test.cpp
-    title: test_atcoder/abc141e.test.cpp
+    path: test/5_atcoder/abc141e.test.cpp
+    title: test/5_atcoder/abc141e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -27,7 +27,7 @@ data:
   timestamp: '2023-09-02 04:19:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc141e.test.cpp
+  - test/5_atcoder/abc141e.test.cpp
 documentation_of: string/all_pair_lcp.hpp
 layout: document
 redirect_from:

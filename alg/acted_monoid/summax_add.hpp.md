@@ -10,11 +10,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/kdtree_am.test.cpp
-    title: test/mytest/kdtree_am.test.cpp
+    path: test/1_mytest/kdtree_am.test.cpp
+    title: test/1_mytest/kdtree_am.test.cpp
   - icon: ':x:'
-    path: test/mytest/summax_add.test.cpp
-    title: test/mytest/summax_add.test.cpp
+    path: test/1_mytest/summax_add.test.cpp
+    title: test/1_mytest/summax_add.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -51,8 +51,8 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/summax_add.test.cpp
-  - test/mytest/kdtree_am.test.cpp
+  - test/1_mytest/summax_add.test.cpp
+  - test/1_mytest/kdtree_am.test.cpp
 documentation_of: alg/acted_monoid/summax_add.hpp
 layout: document
 redirect_from:

@@ -4,20 +4,20 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1602.test.cpp
-    title: test/yukicoder/1602.test.cpp
+    path: test/3_yukicoder/1602.test.cpp
+    title: test/3_yukicoder/1602.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1641.test.cpp
-    title: test/yukicoder/1641.test.cpp
+    path: test/3_yukicoder/1641.test.cpp
+    title: test/3_yukicoder/1641.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1790.test.cpp
-    title: test/yukicoder/1790.test.cpp
+    path: test/3_yukicoder/1790.test.cpp
+    title: test/3_yukicoder/1790.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2293.test.cpp
-    title: test/yukicoder/2293.test.cpp
+    path: test/3_yukicoder/2293.test.cpp
+    title: test/3_yukicoder/2293.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2294.test.cpp
-    title: test/yukicoder/2294.test.cpp
+    path: test/3_yukicoder/2294.test.cpp
+    title: test/3_yukicoder/2294.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -41,11 +41,11 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1790.test.cpp
-  - test/yukicoder/2294.test.cpp
-  - test/yukicoder/1641.test.cpp
-  - test/yukicoder/2293.test.cpp
-  - test/yukicoder/1602.test.cpp
+  - test/3_yukicoder/1790.test.cpp
+  - test/3_yukicoder/2294.test.cpp
+  - test/3_yukicoder/1641.test.cpp
+  - test/3_yukicoder/2293.test.cpp
+  - test/3_yukicoder/1602.test.cpp
 documentation_of: alg/monoid/xor.hpp
 layout: document
 redirect_from:

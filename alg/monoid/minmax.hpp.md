@@ -6,15 +6,15 @@ data:
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ITP2_3_B.test.cpp
-    title: test/aoj/ITP2_3_B.test.cpp
   - icon: ':x:'
-    path: test/mytest/minmax_add.test.cpp
-    title: test/mytest/minmax_add.test.cpp
+    path: test/1_mytest/minmax_add.test.cpp
+    title: test/1_mytest/minmax_add.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/ITP2_3_B.test.cpp
+    title: test/4_aoj/ITP2_3_B.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/minmax.hpp\"\n\r\ntemplate <class X>\r\nstruct\
@@ -35,10 +35,10 @@ data:
   requiredBy:
   - alg/acted_monoid/minmax_add.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/minmax_add.test.cpp
-  - test/aoj/ITP2_3_B.test.cpp
+  - test/1_mytest/minmax_add.test.cpp
+  - test/4_aoj/ITP2_3_B.test.cpp
 documentation_of: alg/monoid/minmax.hpp
 layout: document
 redirect_from:

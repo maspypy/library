@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
     title: graph/ds/incremental_centroid.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/2636.test.cpp
-    title: test/aoj/2636.test.cpp
+    path: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - icon: ':x:'
-    path: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    title: test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+    path: test/3_yukicoder/1326.test.cpp
+    title: test/3_yukicoder/1326.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1326.test.cpp
-    title: test/yukicoder/1326.test.cpp
+    path: test/3_yukicoder/1641.test.cpp
+    title: test/3_yukicoder/1641.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1641.test.cpp
-    title: test/yukicoder/1641.test.cpp
+    path: test/4_aoj/2636.test.cpp
+    title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -328,10 +328,10 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1326.test.cpp
-  - test/yukicoder/1641.test.cpp
-  - test/aoj/2636.test.cpp
-  - test/library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/3_yukicoder/1326.test.cpp
+  - test/3_yukicoder/1641.test.cpp
+  - test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
+  - test/4_aoj/2636.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document
 redirect_from:

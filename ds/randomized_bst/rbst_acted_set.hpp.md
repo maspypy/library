@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/cf702_F.test.cpp
-    title: test/mytest/cf702_F.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/cf702_F.test.cpp
+    title: test/1_mytest/cf702_F.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/randomized_bst/rbst_acted_set.hpp\"\ntemplate <typename\
@@ -221,9 +221,9 @@ data:
   path: ds/randomized_bst/rbst_acted_set.hpp
   requiredBy: []
   timestamp: '2022-12-04 00:54:54+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/cf702_F.test.cpp
+  - test/1_mytest/cf702_F.test.cpp
 documentation_of: ds/randomized_bst/rbst_acted_set.hpp
 layout: document
 redirect_from:

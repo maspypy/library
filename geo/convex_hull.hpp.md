@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':x:'
@@ -18,27 +18,27 @@ data:
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
   - icon: ':warning:'
-    path: test/library_checker/geometry/static_convex_hull.tset.cpp
-    title: test/library_checker/geometry/static_convex_hull.tset.cpp
+    path: test/2_library_checker/geometry/static_convex_hull.tset.cpp
+    title: test/2_library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/convex_polygon_side.test.cpp
+    title: test/1_mytest/convex_polygon_side.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/convex_polygon_visible_range.test.cpp
+    title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':x:'
-    path: test/library_checker/geometry/furthest_pair.test.cpp
-    title: test/library_checker/geometry/furthest_pair.test.cpp
+    path: test/1_mytest/max_dot.test.cpp
+    title: test/1_mytest/max_dot.test.cpp
   - icon: ':x:'
-    path: test/mytest/convex_polygon_side.test.cpp
-    title: test/mytest/convex_polygon_side.test.cpp
+    path: test/2_library_checker/geometry/furthest_pair.test.cpp
+    title: test/2_library_checker/geometry/furthest_pair.test.cpp
   - icon: ':x:'
-    path: test/mytest/convex_polygon_visible_range.test.cpp
-    title: test/mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_dot.test.cpp
-    title: test/mytest/max_dot.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/arc130f.test.cpp
-    title: test_atcoder/arc130f.test.cpp
+    path: test/5_atcoder/arc130f.test.cpp
+    title: test/5_atcoder/arc130f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -153,16 +153,16 @@ data:
   - geo/furthest_pair.hpp
   - geo/minkowski_sum.hpp
   - geo/convex_polygon.hpp
-  - test/library_checker/geometry/static_convex_hull.tset.cpp
+  - test/2_library_checker/geometry/static_convex_hull.tset.cpp
   - convex/fenchel.hpp
   timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/convex_polygon_side.test.cpp
-  - test/mytest/convex_polygon_visible_range.test.cpp
-  - test/mytest/max_dot.test.cpp
-  - test/library_checker/geometry/furthest_pair.test.cpp
-  - test_atcoder/arc130f.test.cpp
+  - test/5_atcoder/arc130f.test.cpp
+  - test/2_library_checker/geometry/furthest_pair.test.cpp
+  - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/max_dot.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

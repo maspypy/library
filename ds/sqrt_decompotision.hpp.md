@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1234_2.test.cpp
-    title: test/yukicoder/1234_2.test.cpp
+    path: test/3_yukicoder/1234_2.test.cpp
+    title: test/3_yukicoder/1234_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -95,7 +95,7 @@ data:
   timestamp: '2023-07-25 22:13:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1234_2.test.cpp
+  - test/3_yukicoder/1234_2.test.cpp
 documentation_of: ds/sqrt_decompotision.hpp
 layout: document
 redirect_from:

@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':x:'
@@ -22,14 +22,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/geometry/count_points_in_triangles.test.cpp
-    title: test/library_checker/geometry/count_points_in_triangles.test.cpp
+    path: test/1_mytest/count_points_in_triangles.test.cpp
+    title: test/1_mytest/count_points_in_triangles.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_points_in_triangles.test.cpp
-    title: test/mytest/count_points_in_triangles.test.cpp
+    path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+    title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc202_f.test.cpp
-    title: test_atcoder/abc202_f.test.cpp
+    path: test/5_atcoder/abc202_f.test.cpp
+    title: test/5_atcoder/abc202_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -308,9 +308,9 @@ data:
   timestamp: '2024-07-24 02:09:25+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/count_points_in_triangles.test.cpp
-  - test/library_checker/geometry/count_points_in_triangles.test.cpp
-  - test_atcoder/abc202_f.test.cpp
+  - test/5_atcoder/abc202_f.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

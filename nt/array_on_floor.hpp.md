@@ -10,11 +10,11 @@ data:
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/enumerate_quotients2.test.cpp
-    title: test/library_checker/math/enumerate_quotients2.test.cpp
+    path: test/2_library_checker/math/enumerate_quotients2.test.cpp
+    title: test/2_library_checker/math/enumerate_quotients2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2266.test.cpp
-    title: test/yukicoder/2266.test.cpp
+    path: test/3_yukicoder/2266.test.cpp
+    title: test/3_yukicoder/2266.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -55,8 +55,8 @@ data:
   timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2266.test.cpp
-  - test/library_checker/math/enumerate_quotients2.test.cpp
+  - test/3_yukicoder/2266.test.cpp
+  - test/2_library_checker/math/enumerate_quotients2.test.cpp
 documentation_of: nt/array_on_floor.hpp
 layout: document
 redirect_from:

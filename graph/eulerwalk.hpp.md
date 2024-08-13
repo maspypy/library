@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -16,14 +16,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/eulerwalk_d.test.cpp
-    title: test/library_checker/graph/eulerwalk_d.test.cpp
+    path: test/2_library_checker/graph/eulerwalk_d.test.cpp
+    title: test/2_library_checker/graph/eulerwalk_d.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/eulerwalk_ud.test.cpp
-    title: test/library_checker/graph/eulerwalk_ud.test.cpp
+    path: test/2_library_checker/graph/eulerwalk_ud.test.cpp
+    title: test/2_library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc157a.test.cpp
-    title: test_atcoder/arc157a.test.cpp
+    path: test/5_atcoder/arc157a.test.cpp
+    title: test/5_atcoder/arc157a.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -231,9 +231,9 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/graph/eulerwalk_d.test.cpp
-  - test/library_checker/graph/eulerwalk_ud.test.cpp
-  - test_atcoder/arc157a.test.cpp
+  - test/5_atcoder/arc157a.test.cpp
+  - test/2_library_checker/graph/eulerwalk_d.test.cpp
+  - test/2_library_checker/graph/eulerwalk_ud.test.cpp
 documentation_of: graph/eulerwalk.hpp
 layout: document
 redirect_from:

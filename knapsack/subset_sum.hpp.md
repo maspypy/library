@@ -4,17 +4,17 @@ data:
   - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/subset_sum.test.cpp
-    title: test/mytest/subset_sum.test.cpp
+    path: test/1_mytest/subset_sum.test.cpp
+    title: test/1_mytest/subset_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/4_2.test.cpp
-    title: test/yukicoder/4_2.test.cpp
+    path: test/3_yukicoder/4_2.test.cpp
+    title: test/3_yukicoder/4_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -274,8 +274,8 @@ data:
   timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/4_2.test.cpp
-  - test/mytest/subset_sum.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:

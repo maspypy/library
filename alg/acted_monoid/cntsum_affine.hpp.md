@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/255.test.cpp
-    title: test/yukicoder/255.test.cpp
+    path: test/3_yukicoder/255.test.cpp
+    title: test/3_yukicoder/255.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -51,7 +51,7 @@ data:
   timestamp: '2023-07-25 22:13:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/255.test.cpp
+  - test/3_yukicoder/255.test.cpp
 documentation_of: alg/acted_monoid/cntsum_affine.hpp
 layout: document
 redirect_from:

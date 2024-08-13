@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc224h.test.cpp
-    title: test_atcoder/abc224h.test.cpp
+    path: test/5_atcoder/abc224h.test.cpp
+    title: test/5_atcoder/abc224h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -129,7 +129,7 @@ data:
   timestamp: '2023-05-03 04:52:35+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc224h.test.cpp
+  - test/5_atcoder/abc224h.test.cpp
 documentation_of: flow/dual_mcf.hpp
 layout: document
 redirect_from:

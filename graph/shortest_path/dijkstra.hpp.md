@@ -12,36 +12,36 @@ data:
     path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
     title: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/0275.test.cpp
-    title: test/aoj/0275.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_1.test.cpp
-    title: test/aoj/2251_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/2251_2.test.cpp
-    title: test/aoj/2251_2.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/K_shortest_walk.test.cpp
-    title: test/library_checker/graph/K_shortest_walk.test.cpp
+    path: test/2_library_checker/graph/K_shortest_walk.test.cpp
+    title: test/2_library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/shortest_path.test.cpp
-    title: test/library_checker/graph/shortest_path.test.cpp
+    path: test/2_library_checker/graph/shortest_path.test.cpp
+    title: test/2_library_checker/graph/shortest_path.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1601.test.cpp
-    title: test/yukicoder/1601.test.cpp
+    path: test/3_yukicoder/1601.test.cpp
+    title: test/3_yukicoder/1601.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1602.test.cpp
-    title: test/yukicoder/1602.test.cpp
+    path: test/3_yukicoder/1602.test.cpp
+    title: test/3_yukicoder/1602.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc064c.test.cpp
-    title: test_atcoder/arc064c.test.cpp
+    path: test/4_aoj/0275.test.cpp
+    title: test/4_aoj/0275.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc151_e.test.cpp
-    title: test_atcoder/arc151_e.test.cpp
+    path: test/4_aoj/2251_1.test.cpp
+    title: test/4_aoj/2251_1.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/2251_2.test.cpp
+    title: test/4_aoj/2251_2.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc064c.test.cpp
+    title: test/5_atcoder/arc064c.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc151_e.test.cpp
+    title: test/5_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -172,17 +172,17 @@ data:
   - graph/shortest_path/K_shortest_walk.hpp
   - graph/shortest_path/nonzero_group_product_shortest_path.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1601.test.cpp
-  - test/yukicoder/1602.test.cpp
-  - test/aoj/0275.test.cpp
-  - test/aoj/2251_1.test.cpp
-  - test/aoj/2251_2.test.cpp
-  - test/library_checker/graph/shortest_path.test.cpp
-  - test/library_checker/graph/K_shortest_walk.test.cpp
-  - test_atcoder/arc064c.test.cpp
-  - test_atcoder/arc151_e.test.cpp
+  - test/5_atcoder/arc064c.test.cpp
+  - test/5_atcoder/arc151_e.test.cpp
+  - test/3_yukicoder/1601.test.cpp
+  - test/3_yukicoder/1602.test.cpp
+  - test/2_library_checker/graph/shortest_path.test.cpp
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
+  - test/4_aoj/0275.test.cpp
+  - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/2251_2.test.cpp
 documentation_of: graph/shortest_path/dijkstra.hpp
 layout: document
 redirect_from:

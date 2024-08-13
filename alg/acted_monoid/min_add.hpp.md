@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   _extendedRequiredBy:
@@ -12,24 +12,24 @@ data:
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_H.test.cpp
-    title: test/aoj/DSL_2_H.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/common_interval_decomposition.test.cpp
-    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+    path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1234.test.cpp
-    title: test/yukicoder/1234.test.cpp
+    path: test/3_yukicoder/1234.test.cpp
+    title: test/3_yukicoder/1234.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1270.test.cpp
-    title: test/yukicoder/1270.test.cpp
+    path: test/3_yukicoder/1270.test.cpp
+    title: test/3_yukicoder/1270.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
+    path: test/3_yukicoder/1720.test.cpp
+    title: test/3_yukicoder/1720.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DSL_2_H.test.cpp
+    title: test/4_aoj/DSL_2_H.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -61,13 +61,13 @@ data:
   requiredBy:
   - seq/common_interval_decomposition.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1720.test.cpp
-  - test/yukicoder/1234.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
+  - test/3_yukicoder/1270.test.cpp
+  - test/3_yukicoder/1720.test.cpp
+  - test/3_yukicoder/1234.test.cpp
+  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
+  - test/4_aoj/DSL_2_H.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document
 redirect_from:

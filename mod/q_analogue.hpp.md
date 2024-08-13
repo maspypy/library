@@ -13,8 +13,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/qbinom.test.cpp
-    title: test/mytest/qbinom.test.cpp
+    path: test/1_mytest/qbinom.test.cpp
+    title: test/1_mytest/qbinom.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -137,7 +137,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/qbinom.test.cpp
+  - test/1_mytest/qbinom.test.cpp
 documentation_of: mod/q_analogue.hpp
 layout: document
 redirect_from:

@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/686.test.cpp
-    title: test/yukicoder/686.test.cpp
+    path: test/3_yukicoder/686.test.cpp
+    title: test/3_yukicoder/686.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -47,7 +47,7 @@ data:
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/686.test.cpp
+  - test/3_yukicoder/686.test.cpp
 documentation_of: alg/acted_monoid/max_add.hpp
 layout: document
 redirect_from:

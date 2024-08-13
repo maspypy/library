@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc220g.test.cpp
-    title: test_atcoder/abc220g.test.cpp
+    path: test/5_atcoder/abc220g.test.cpp
+    title: test/5_atcoder/abc220g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -92,7 +92,7 @@ data:
   timestamp: '2024-06-28 09:49:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc220g.test.cpp
+  - test/5_atcoder/abc220g.test.cpp
 documentation_of: geo/perpendicular_bisector.hpp
 layout: document
 redirect_from:

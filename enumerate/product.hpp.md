@@ -7,20 +7,20 @@ data:
     title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/enumerate_products.test.cpp
-    title: test/mytest/enumerate_products.test.cpp
+    path: test/1_mytest/enumerate_products.test.cpp
+    title: test/1_mytest/enumerate_products.test.cpp
   - icon: ':x:'
-    path: test/mytest/fibonacci_search.test.cpp
-    title: test/mytest/fibonacci_search.test.cpp
+    path: test/1_mytest/fibonacci_search.test.cpp
+    title: test/1_mytest/fibonacci_search.test.cpp
   - icon: ':x:'
-    path: test/mytest/prufer.test.cpp
-    title: test/mytest/prufer.test.cpp
+    path: test/1_mytest/prufer.test.cpp
+    title: test/1_mytest/prufer.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc233c.test.cpp
-    title: test_atcoder/abc233c.test.cpp
+    path: test/5_atcoder/abc233c.test.cpp
+    title: test/5_atcoder/abc233c.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc153f.test.cpp
-    title: test_atcoder/arc153f.test.cpp
+    path: test/5_atcoder/arc153f.test.cpp
+    title: test/5_atcoder/arc153f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -44,11 +44,11 @@ data:
   timestamp: '2023-01-23 21:04:48+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/enumerate_products.test.cpp
-  - test/mytest/fibonacci_search.test.cpp
-  - test/mytest/prufer.test.cpp
-  - test_atcoder/abc233c.test.cpp
-  - test_atcoder/arc153f.test.cpp
+  - test/5_atcoder/abc233c.test.cpp
+  - test/5_atcoder/arc153f.test.cpp
+  - test/1_mytest/enumerate_products.test.cpp
+  - test/1_mytest/fibonacci_search.test.cpp
+  - test/1_mytest/prufer.test.cpp
 documentation_of: enumerate/product.hpp
 layout: document
 redirect_from:

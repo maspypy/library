@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':question:'
@@ -52,11 +52,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1907.test.cpp
-    title: test/yukicoder/1907.test.cpp
+    path: test/3_yukicoder/1907.test.cpp
+    title: test/3_yukicoder/1907.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -486,8 +486,8 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1907.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/1907.test.cpp
 documentation_of: linalg/det_A_plus_xB.hpp
 layout: document
 redirect_from:

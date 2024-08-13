@@ -4,26 +4,26 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/offline_query/rectangle_add_rectangle_sum.hpp
     title: ds/offline_query/rectangle_add_rectangle_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-    title: test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
-    title: test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1490.test.cpp
-    title: test/yukicoder/1490.test.cpp
+    path: test/2_library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+    title: test/2_library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+    title: test/2_library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1490.test.cpp
+    title: test/3_yukicoder/1490.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -170,11 +170,11 @@ data:
   requiredBy:
   - ds/offline_query/rectangle_add_rectangle_sum.hpp
   timestamp: '2024-07-19 20:55:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1490.test.cpp
-  - test/library_checker/datastructure/rectangle_sum_cf2d.test.cpp
-  - test/library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/3_yukicoder/1490.test.cpp
+  - test/2_library_checker/datastructure/rectangle_sum_cf2d.test.cpp
+  - test/2_library_checker/datastructure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/offline_query/coeffient_query_2d.hpp
 layout: document
 redirect_from:

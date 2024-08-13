@@ -4,17 +4,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1036.test.cpp
-    title: test/yukicoder/1036.test.cpp
+    path: test/3_yukicoder/1036.test.cpp
+    title: test/3_yukicoder/1036.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1036_2.test.cpp
-    title: test/yukicoder/1036_2.test.cpp
+    path: test/3_yukicoder/1036_2.test.cpp
+    title: test/3_yukicoder/1036_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1036_3.test.cpp
-    title: test/yukicoder/1036_3.test.cpp
+    path: test/3_yukicoder/1036_3.test.cpp
+    title: test/3_yukicoder/1036_3.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1036_4.test.cpp
-    title: test/yukicoder/1036_4.test.cpp
+    path: test/3_yukicoder/1036_4.test.cpp
+    title: test/3_yukicoder/1036_4.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -34,10 +34,10 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1036.test.cpp
-  - test/yukicoder/1036_2.test.cpp
-  - test/yukicoder/1036_4.test.cpp
-  - test/yukicoder/1036_3.test.cpp
+  - test/3_yukicoder/1036.test.cpp
+  - test/3_yukicoder/1036_2.test.cpp
+  - test/3_yukicoder/1036_4.test.cpp
+  - test/3_yukicoder/1036_3.test.cpp
 documentation_of: alg/monoid/gcd.hpp
 layout: document
 redirect_from:

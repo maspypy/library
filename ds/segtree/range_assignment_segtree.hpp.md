@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/range_set_range_composite.test.cpp
-    title: test/library_checker/datastructure/range_set_range_composite.test.cpp
   - icon: ':x:'
-    path: test/mytest/range_assign.test.cpp
-    title: test/mytest/range_assign.test.cpp
+    path: test/1_mytest/range_assign.test.cpp
+    title: test/1_mytest/range_assign.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/datastructure/range_set_range_composite.test.cpp
+    title: test/2_library_checker/datastructure/range_set_range_composite.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -160,10 +160,10 @@ data:
   path: ds/segtree/range_assignment_segtree.hpp
   requiredBy: []
   timestamp: '2024-08-08 00:31:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/range_assign.test.cpp
-  - test/library_checker/datastructure/range_set_range_composite.test.cpp
+  - test/2_library_checker/datastructure/range_set_range_composite.test.cpp
+  - test/1_mytest/range_assign.test.cpp
 documentation_of: ds/segtree/range_assignment_segtree.hpp
 layout: document
 redirect_from:

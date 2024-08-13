@@ -13,8 +13,8 @@ data:
     title: seq/domino_standard_tableaux.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/2149.test.cpp
-    title: test/yukicoder/2149.test.cpp
+    path: test/3_yukicoder/2149.test.cpp
+    title: test/3_yukicoder/2149.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -116,7 +116,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2149.test.cpp
+  - test/3_yukicoder/2149.test.cpp
 documentation_of: seq/hook_length_formula.hpp
 layout: document
 redirect_from:

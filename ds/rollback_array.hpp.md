@@ -5,25 +5,25 @@ data:
   - icon: ':warning:'
     path: ds/segtree/rollback_lazy_segtree.hpp
     title: ds/segtree/rollback_lazy_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   - icon: ':x:'
     path: ds/unionfind/rollback_weighted_unionfind.hpp
     title: ds/unionfind/rollback_weighted_unionfind.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/add_remove_query.test.cpp
-    title: test/library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    title: test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2293.test.cpp
-    title: test/yukicoder/2293.test.cpp
+    path: test/2_library_checker/datastructure/add_remove_query.test.cpp
+    title: test/2_library_checker/datastructure/add_remove_query.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/2_library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2293.test.cpp
+    title: test/3_yukicoder/2293.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
@@ -56,11 +56,11 @@ data:
   - ds/unionfind/rollback_unionfind.hpp
   - ds/unionfind/rollback_weighted_unionfind.hpp
   timestamp: '2023-06-23 23:19:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2293.test.cpp
-  - test/library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-  - test/library_checker/datastructure/add_remove_query.test.cpp
+  - test/3_yukicoder/2293.test.cpp
+  - test/2_library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/2_library_checker/datastructure/add_remove_query.test.cpp
 documentation_of: ds/rollback_array.hpp
 layout: document
 redirect_from:

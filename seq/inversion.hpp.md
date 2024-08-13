@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   _extendedRequiredBy:
@@ -15,24 +15,24 @@ data:
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_2_A.test.cpp
-    title: test/aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_5.test.cpp
-    title: test/aoj/ALDS1_5.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1838.test.cpp
-    title: test/yukicoder/1838.test.cpp
+    path: test/3_yukicoder/1838.test.cpp
+    title: test/3_yukicoder/1838.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/694.test.cpp
-    title: test/yukicoder/694.test.cpp
+    path: test/3_yukicoder/694.test.cpp
+    title: test/3_yukicoder/694.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc190f.test.cpp
-    title: test_atcoder/abc190f.test.cpp
+    path: test/4_aoj/ALDS1_2_A.test.cpp
+    title: test/4_aoj/ALDS1_2_A.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/ALDS1_5.test.cpp
+    title: test/4_aoj/ALDS1_5.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc190f.test.cpp
+    title: test/5_atcoder/abc190f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
@@ -181,13 +181,13 @@ data:
   requiredBy:
   - other/sliding_puzzle_solver.hpp
   timestamp: '2024-07-19 20:55:35+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/694.test.cpp
-  - test/yukicoder/1838.test.cpp
-  - test/aoj/ALDS1_2_A.test.cpp
-  - test/aoj/ALDS1_5.test.cpp
-  - test_atcoder/abc190f.test.cpp
+  - test/5_atcoder/abc190f.test.cpp
+  - test/3_yukicoder/694.test.cpp
+  - test/3_yukicoder/1838.test.cpp
+  - test/4_aoj/ALDS1_2_A.test.cpp
+  - test/4_aoj/ALDS1_5.test.cpp
 documentation_of: seq/inversion.hpp
 layout: document
 redirect_from:

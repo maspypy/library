@@ -34,11 +34,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/typical_dc.test.cpp
-    title: test/mytest/typical_dc.test.cpp
+    path: test/1_mytest/typical_dc.test.cpp
+    title: test/1_mytest/typical_dc.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc333f.test.cpp
-    title: test_atcoder/abc333f.test.cpp
+    path: test/5_atcoder/abc333f.test.cpp
+    title: test/5_atcoder/abc333f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -428,8 +428,8 @@ data:
   timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/typical_dc.test.cpp
-  - test_atcoder/abc333f.test.cpp
+  - test/5_atcoder/abc333f.test.cpp
+  - test/1_mytest/typical_dc.test.cpp
 documentation_of: poly/typical_divide_conquer.hpp
 layout: document
 redirect_from:

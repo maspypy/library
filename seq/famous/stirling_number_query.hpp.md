@@ -10,11 +10,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/stirling_mod_p_1.test.cpp
-    title: test/library_checker/math/stirling_mod_p_1.test.cpp
+    path: test/2_library_checker/math/stirling_mod_p_1.test.cpp
+    title: test/2_library_checker/math/stirling_mod_p_1.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/stirling_mod_p_2.test.cpp
-    title: test/library_checker/math/stirling_mod_p_2.test.cpp
+    path: test/2_library_checker/math/stirling_mod_p_2.test.cpp
+    title: test/2_library_checker/math/stirling_mod_p_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -128,8 +128,8 @@ data:
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/stirling_mod_p_2.test.cpp
-  - test/library_checker/math/stirling_mod_p_1.test.cpp
+  - test/2_library_checker/math/stirling_mod_p_2.test.cpp
+  - test/2_library_checker/math/stirling_mod_p_1.test.cpp
 documentation_of: seq/famous/stirling_number_query.hpp
 layout: document
 redirect_from:

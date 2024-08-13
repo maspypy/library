@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/all_but_one_products.test.cpp
-    title: test/mytest/all_but_one_products.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/all_but_one_products.test.cpp
+    title: test/1_mytest/all_but_one_products.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/all_but_one_products.hpp\"\ntemplate <typename Monoid,\
@@ -27,9 +27,9 @@ data:
   path: other/all_but_one_products.hpp
   requiredBy: []
   timestamp: '2022-10-01 13:28:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/all_but_one_products.test.cpp
+  - test/1_mytest/all_but_one_products.test.cpp
 documentation_of: other/all_but_one_products.hpp
 layout: document
 redirect_from:

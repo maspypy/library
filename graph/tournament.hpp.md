@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/tournament.test.cpp
-    title: test/mytest/tournament.test.cpp
+    path: test/1_mytest/tournament.test.cpp
+    title: test/1_mytest/tournament.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -39,7 +39,7 @@ data:
   timestamp: '2023-08-06 04:00:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/tournament.test.cpp
+  - test/1_mytest/tournament.test.cpp
 documentation_of: graph/tournament.hpp
 layout: document
 redirect_from:

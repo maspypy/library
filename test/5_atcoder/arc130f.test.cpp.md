@@ -1,0 +1,455 @@
+---
+data:
+  _extendedDependsOn:
+  - icon: ':x:'
+    path: convex/cht_monotone.hpp
+    title: convex/cht_monotone.hpp
+  - icon: ':x:'
+    path: convex/fenchel.hpp
+    title: convex/fenchel.hpp
+  - icon: ':question:'
+    path: geo/base.hpp
+    title: geo/base.hpp
+  - icon: ':question:'
+    path: geo/convex_hull.hpp
+    title: geo/convex_hull.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
+  - icon: ':question:'
+    path: my_template.hpp
+    title: my_template.hpp
+  - icon: ':question:'
+    path: other/io.hpp
+    title: other/io.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: true
+  _pathExtension: cpp
+  _verificationStatusIcon: ':x:'
+  attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://atcoder.jp/contests/arc130/tasks/arc130_f
+    links:
+    - https://atcoder.jp/contests/arc130/tasks/arc130_f
+  bundledCode: "#line 1 \"test/5_atcoder/arc130f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
+    \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\n\
+    template <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128\
+    \ infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...) vector<vector<vector<type>>>\
+    \ name(h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
+    \ name, a, b, c, ...) \\\n  vector<vector<vector<vector<type>>>> name(a, vector<vector<vector<type>>>(b,\
+    \ vector<vector<type>>(c, vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n\
+    #define FOR1(a) for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i =\
+    \ 0; i < ll(a); ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define\
+    \ FOR4(i, a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for\
+    \ (ll i = (a)-1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = (a)-1; i >=\
+    \ ll(0); --i)\n#define FOR3_R(i, a, b) for (ll i = (b)-1; i >= ll(a); --i)\n#define\
+    \ overload4(a, b, c, d, e, ...) e\n#define overload3(a, b, c, d, ...) d\n#define\
+    \ FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n#define\
+    \ FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\n#define\
+    \ FOR_subset(t, s) for (ll t = (s); t >= 0; t = (t == 0 ? -1 : (t - 1) & (s)))\n\
+    #define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define elif else\
+    \ if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
+    #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
+    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
+    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
+    \ return __builtin_popcountll(x); }\nint popcnt_mod_2(int x) { return __builtin_parity(x);\
+    \ }\nint popcnt_mod_2(u32 x) { return __builtin_parity(x); }\nint popcnt_mod_2(ll\
+    \ x) { return __builtin_parityll(x); }\nint popcnt_mod_2(u64 x) { return __builtin_parityll(x);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
+    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
+    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
+    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
+    T floor(T a, T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename\
+    \ T>\nT ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename\
+    \ T>\nT bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename\
+    \ T>\npair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q\
+    \ * y};\n}\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n\
+    \  T sm = 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v)\
+    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n#define LB(c, x)\
+    \ distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c, x) distance((c).begin(),\
+    \ upper_bound(all(c), (x)))\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
+    \ x.end()), x.shrink_to_fit()\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n\
+    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\ntemplate <typename\
+    \ T>\nT POP(pq<T> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\n\
+    template <typename T>\nT POP(pqg<T> &que) {\n  T a = que.top();\n  que.pop();\n\
+    \  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n\
+    \  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\nll binary_search(F\
+    \ check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n\
+    \  while (abs(ok - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok\
+    \ : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
+    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
+    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
+    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  return\
+    \ (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T\
+    \ &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int>\
+    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
+    \ S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n\
+    }\n\ntemplate <typename T, typename U>\nvector<T> cumsum(vector<U> &A, int off\
+    \ = 1) {\n  int N = A.size();\n  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
+    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
+    \ sort\ntemplate <typename T>\nvector<int> argsort(const vector<T> &A) {\n  vector<int>\
+    \ ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids), [&](int i, int j) { return\
+    \ (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
+    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
+    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
+    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
+    \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
+    \ others.end()), ...);\n}\n#endif\n#line 1 \"other/io.hpp\"\n#define FASTIO\r\n\
+    #include <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\nnamespace\
+    \ fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\nchar\
+    \ obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil = 0,\
+    \ pir = 0, por = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr\
+    \ Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\
+    \n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n\
+    \        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline\
+    \ void load() {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil\
+    \ + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir\
+    \ < SZ) ibuf[pir++] = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf,\
+    \ 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n\
+    \    if (pil + 1 > pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\
+    \n}\r\n\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n   \
+    \ if (pil + 1 > pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\
+    \n  do {\r\n    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\
+    \n  } while (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T\
+    \ &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename\
+    \ T>\r\nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\
+    \n  do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n\
+    \  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c ==\
+    \ '-') { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c)\
+    \ { x = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
+    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
+    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
+    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
+    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
+    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
+    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
+    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
+    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
+    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
+    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
+    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
+    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
+    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
+    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
+    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
+    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
+    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
+    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
+    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
+    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
+    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
+    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
+    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
+    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
+    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
+    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
+    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
+    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
+    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
+    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
+    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
+    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
+    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
+    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
+    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
+    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
+    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
+    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
+    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
+    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
+    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
+    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
+    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
+    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
+    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
+    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
+    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
+    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
+    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) SHOW_IMPL(__VA_ARGS__,\
+    \ SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1,\
+    \ _2, _3, _4, _5, _6, NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)),\
+    \ flush()\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\
+    \n#define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)),\
+    \ flush()\r\n#define SHOW4(x, y, z, w) print(#x, \"=\", (x), #y, \"=\", (y), #z,\
+    \ \"=\", (z), #w, \"=\", (w)), flush()\r\n#define SHOW5(x, y, z, w, v) print(#x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", (v)),\
+    \ flush()\r\n#define SHOW6(x, y, z, w, v, u) print(#x, \"=\", (x), #y, \"=\",\
+    \ (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", (v), #u, \"=\", (u)), flush()\r\
+    \n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__;\
+    \ \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n\
+    \  read(__VA_ARGS__)\r\n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
+    \n#define U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
+    \ CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)\
+    \      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
+    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
+    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
+    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
+    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
+    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
+    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
+    \ yes(!t); }\r\n#line 4 \"test/5_atcoder/arc130f.test.cpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  static vvc<mint>\
+    \ C;\n  static int H = 0, W = 0;\n  auto calc = [&](int i, int j) -> mint {\n\
+    \    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n    return C[i - 1][j]\
+    \ + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n    FOR(i, H) {\n     \
+    \ C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j] = calc(i, j); }\n    }\n\
+    \    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n + 1);\n    FOR(i, H, n +\
+    \ 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j] = calc(i, j); }\n   \
+    \ }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate <typename mint, bool\
+    \ large = false, bool dense = false>\nmint C(ll n, ll k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  if constexpr (dense) return C_dense<mint>(n,\
+    \ k);\n  if constexpr (!large) return multinomial<mint>(n, k, n - k);\n  k = min(k,\
+    \ n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n\
+    }\n\ntemplate <typename mint, bool large = false>\nmint C_inv(ll n, ll k) {\n\
+    \  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if (!large) return fact_inv<mint>(n)\
+    \ * fact<mint>(k) * fact<mint>(n - k);\n  return mint(1) / C<mint, 1>(n, k);\n\
+    }\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint, bool large = false, bool dense\
+    \ = false>\nmint C_negative(ll n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return\
+    \ mint(0);\n  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint,\
+    \ large, dense>(n + d - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int\
+    \ mod>\nstruct modint {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod\
+    \ < u32(1) << 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n\
+    \    x.val = v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr\
+    \ modint(u32 x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod)\
+    \ {}\n  constexpr modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x)\
+    \ : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %=\
+    \ mod) < 0 ? x + mod : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0\
+    \ ? x + mod : x){};\n  bool operator<(const modint &other) const { return val\
+    \ < other.val; }\n  modint &operator+=(const modint &p) {\n    if ((val += p.val)\
+    \ >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator-=(const modint\
+    \ &p) {\n    if ((val += umod - p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator*=(const modint &p) {\n    val = u64(val) * p.val % umod;\n\
+    \    return *this;\n  }\n  modint &operator/=(const modint &p) {\n    *this *=\
+    \ p.inverse();\n    return *this;\n  }\n  modint operator-() const { return modint::raw(val\
+    \ ? mod - val : u32(0)); }\n  modint operator+(const modint &p) const { return\
+    \ modint(*this) += p; }\n  modint operator-(const modint &p) const { return modint(*this)\
+    \ -= p; }\n  modint operator*(const modint &p) const { return modint(*this) *=\
+    \ p; }\n  modint operator/(const modint &p) const { return modint(*this) /= p;\
+    \ }\n  bool operator==(const modint &p) const { return val == p.val; }\n  bool\
+    \ operator!=(const modint &p) const { return val != p.val; }\n  modint inverse()\
+    \ const {\n    int a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n \
+    \     t = a / b;\n      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n   \
+    \ return modint(u);\n  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n  \
+    \  modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
+    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
+    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
+    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
+    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1004535809) return {21, 836905998};\n    if (mod == 1045430273) return {20,\
+    \ 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod == 1053818881)\
+    \ return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt()\
+    \ { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
+    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
+    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
+    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const\
+    \ Point p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
+    \ Point p) {\n    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point\
+    \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
+    \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
+    \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
+    \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
+    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
+    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
+    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
+    \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
+    \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>\
+    \ &p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>\
+    \ &p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
+    \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
+    \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
+    \ T x = (B - A).det(C - A);\n  if (x > 0) return 1;\n  if (x < 0) return -1;\n\
+    \  return 0;\n}\n\ntemplate <typename REAL, typename T, typename U>\nREAL dist(Point<T>\
+    \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
+    \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
+    \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
+    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c =\
+    \ A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
+    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
+    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
+    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\
+    \u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\
+    \u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T,\
+    \ long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /=\
+    \ g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n    if (b == 0 && a\
+    \ < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line other) { return\
+    \ a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line other) { return\
+    \ a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment\
+    \ {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n \
+    \ Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
+    \ y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
+    \    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C -\
+    \ A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() {\
+    \ return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
+    \ O;\n  REAL r;\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
+    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>>\
+    \ points;\n  T a;\n\n  template <typename A, typename B>\n  Polygon(vc<pair<A,\
+    \ B>> pairs) {\n    for (auto &&[a, b]: pairs) points.eb(Point<T>(a, b));\n  \
+    \  build();\n  }\n  Polygon(vc<Point<T>> points) : points(points) { build(); }\n\
+    \n  int size() { return len(points); }\n\n  template <typename REAL>\n  REAL area()\
+    \ {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
+    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
+    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
+    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
+    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
+    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
+    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
+    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
+    #line 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\
+    \u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0]\
+    \ \u304C sorted \u3067 min \u306B\u306A\u308B\ntemplate <typename T, bool allow_180\
+    \ = false>\nvector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"full\"\
+    , bool sorted = false) {\n  assert(mode == \"full\" || mode == \"lower\" || mode\
+    \ == \"upper\");\n  ll N = XY.size();\n  if (N == 1) return {0};\n  if (N == 2)\
+    \ {\n    if (XY[0] < XY[1]) return {0, 1};\n    if (XY[1] < XY[0]) return {1,\
+    \ 0};\n    return {0};\n  }\n  vc<int> I(N);\n  if (sorted) {\n    FOR(i, N) I[i]\
+    \ = i;\n  } else {\n    I = argsort(XY);\n  }\n  if constexpr (allow_180) { FOR(i,\
+    \ N - 1) assert(XY[i] != XY[i + 1]); }\n\n  auto check = [&](ll i, ll j, ll k)\
+    \ -> bool {\n    ll det = (XY[j] - XY[i]).det(XY[k] - XY[i]);\n    if constexpr\
+    \ (allow_180) return det >= 0;\n    return det > 0;\n  };\n\n  auto calc = [&]()\
+    \ {\n    vector<int> P;\n    for (auto&& k: I) {\n      while (P.size() > 1) {\n\
+    \        auto i = P[P.size() - 2];\n        auto j = P[P.size() - 1];\n      \
+    \  if (check(i, j, k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n\
+    \    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode ==\
+    \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
+    \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
+    \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
+    \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
+    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"convex/fenchel.hpp\"\
+    \n\n// (L,R,a,b)\uFF1A\u50BE\u304D\u304C [L,R) \u306E\u3068\u304D (a,b) \u3092\
+    \u901A\u308B\ntemplate <typename T>\nvc<tuple<T, T, T, T>> Fenchel(vc<Point<T>>\
+    \ XY, string mode, bool sorted) {\n  if (mode == \"upper\") {\n    for (auto&&\
+    \ p: XY) p.y = -p.y;\n    vc<tuple<T, T, T, T>> res;\n    for (auto&& [L, R, a,\
+    \ b]: Fenchel(XY, \"lower\", sorted)) {\n      T l = (R == infty<T> ? -infty<T>\
+    \ : 1 - R);\n      T r = (L == -infty<T> ? infty<T> : 1 - L);\n      chmax(l,\
+    \ -infty<T>), chmin(r, infty<T>);\n      res.eb(l, r, a, -b);\n    }\n    reverse(all(res));\n\
+    \    return res;\n  }\n  auto I = ConvexHull(XY, \"lower\", sorted);\n  XY = rearrange(XY,\
+    \ I);\n  vc<tuple<T, T, T, T>> res;\n\n  ll lo = -infty<ll>;\n  FOR(i, len(XY))\
+    \ {\n    T hi = infty<T>;\n    if (i + 1 < len(XY)) {\n      chmin(hi, floor(XY[i\
+    \ + 1].y - XY[i].y, XY[i + 1].x - XY[i].x) + 1);\n    };\n    if (lo < hi) res.eb(lo,\
+    \ hi, XY[i].x, XY[i].y);\n    lo = hi;\n  }\n  return res;\n}\n#line 1 \"convex/cht_monotone.hpp\"\
+    \ntemplate <typename T, bool isMin>\r\nstruct CHT_monotone {\r\n  static_assert(is_same_v<T,\
+    \ ll> || std::is_floating_point_v<T>);\r\n  struct Line {\r\n    T a, b;\r\n \
+    \   int idx;\r\n  };\r\n  deque<Line> H;\r\n  int nxt_idx = 0;\r\n\r\n  CHT_monotone()\
+    \ = default;\r\n\r\n  bool empty() const { return H.empty(); }\r\n  void clear()\
+    \ { H.clear(); }\r\n\r\n  inline int sgn(T x) { return x == 0 ? 0 : (x < 0 ? -1\
+    \ : 1); }\r\n  using D = long double;\r\n  inline bool check(const Line &a, const\
+    \ Line &b, const Line &c) {\r\n    if (b.b == a.b || c.b == b.b)\r\n      return\
+    \ sgn(b.a - a.a) * sgn(c.b - b.b) >= sgn(c.a - b.a) * sgn(b.b - a.b);\r\n    //\
+    \ return (b.a-a.a)*(c.b-b.b) >= (b.b-a.b)*(c.a-b.a);\r\n    return D(b.a - a.a)\
+    \ * sgn(c.b - b.b) / D(abs(b.b - a.b))\r\n           >= D(c.a - b.a) * sgn(b.b\
+    \ - a.b) / D(abs(c.b - b.b));\r\n  }\r\n\r\n  void add(T a, T b, int idx = -1)\
+    \ {\r\n    if (idx == -1) { idx = nxt_idx++; }\r\n    if (!isMin) a *= -1, b *=\
+    \ -1;\r\n    Line L{a, b, idx};\r\n    if (empty()) {\r\n      H.emplace_front(L);\r\
+    \n      return;\r\n    }\r\n    if (H.front().a <= a) {\r\n      if (H.front().a\
+    \ == a) {\r\n        if (H.front().b <= b) return;\r\n        H.pop_front();\r\
+    \n      }\r\n      while (H.size() >= 2 && check(L, H.front(), H[1])) { H.pop_front();\
+    \ }\r\n      H.emplace_front(L);\r\n    } else {\r\n      assert(a <= H.back().a);\r\
+    \n      if (H.back().a == a) {\r\n        if (H.back().b <= b) return;\r\n   \
+    \     H.pop_back();\r\n      }\r\n      while (H.size() >= 2 && check(H[H.size()\
+    \ - 2], H.back(), L)) H.pop_back();\r\n      H.emplace_back(L);\r\n    }\r\n \
+    \ }\r\n\r\n  inline T get_y(const Line &a, const T &x) { return a.a * x + a.b;\
+    \ }\r\n\r\n  pair<T, int> query(T x) {\r\n    assert(!empty());\r\n    int l =\
+    \ -1, r = H.size() - 1;\r\n    while (l + 1 < r) {\r\n      int m = (l + r) >>\
+    \ 1;\r\n      if (get_y(H[m], x) >= get_y(H[m + 1], x))\r\n        l = m;\r\n\
+    \      else\r\n        r = m;\r\n    }\r\n    if (isMin) return {get_y(H[r], x),\
+    \ H[r].idx};\r\n    return {-get_y(H[r], x), H[r].idx};\r\n  }\r\n\r\n  pair<T,\
+    \ int> query_monotone_inc(T x) {\r\n    assert(!empty());\r\n    while (H.size()\
+    \ >= 2 && get_y(H.front(), x) >= get_y(H[1], x))\r\n      H.pop_front();\r\n \
+    \   if (isMin) return {get_y(H.front(), x), H.front().idx};\r\n    return {-get_y(H.front(),\
+    \ x), H.front().idx};\r\n  }\r\n\r\n  pair<T, int> query_monotone_dec(T x) {\r\
+    \n    assert(!empty());\r\n    while (H.size() >= 2 && get_y(H.back(), x) >= get_y(H[H.size()\
+    \ - 2], x))\r\n      H.pop_back();\r\n    if (isMin) return {get_y(H.back(), x),\
+    \ H.back().idx};\r\n    return {-get_y(H.back(), x), H.back().idx};\r\n  }\r\n\
+    };\n#line 8 \"test/5_atcoder/arc130f.test.cpp\"\n\nusing mint = modint998;\n\n\
+    void solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>> XY(N);\n  FOR(i, N)\
+    \ XY[i] = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n  for (auto&& [L, R, a,\
+    \ b]: Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>) { cht.add(L, b\
+    \ - a * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a * (R - 1)); }\n\
+    \  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/arc130/tasks/arc130_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"convex/fenchel.hpp\"\n#include \"convex/cht_monotone.hpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  vc<Point<ll>>\
+    \ XY(N);\n  FOR(i, N) XY[i] = {i, A[i]};\n\n  CHT_monotone<ll, false> cht;\n \
+    \ for (auto&& [L, R, a, b]: Fenchel(XY, \"lower\", true)) {\n    if (L != -infty<ll>)\
+    \ { cht.add(L, b - a * L); }\n    if (R != infty<ll>) { cht.add(R - 1, b - a *\
+    \ (R - 1)); }\n  }\n\n  FOR(i, N) A[i] = cht.query_monotone_inc(i).fi;\n  print(SUM<ll>(A));\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  dependsOn:
+  - my_template.hpp
+  - other/io.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
+  - convex/fenchel.hpp
+  - geo/convex_hull.hpp
+  - geo/base.hpp
+  - convex/cht_monotone.hpp
+  isVerificationFile: true
+  path: test/5_atcoder/arc130f.test.cpp
+  requiredBy: []
+  timestamp: '2024-08-13 23:38:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
+  verifiedWith: []
+documentation_of: test/5_atcoder/arc130f.test.cpp
+layout: document
+redirect_from:
+- /verify/test/5_atcoder/arc130f.test.cpp
+- /verify/test/5_atcoder/arc130f.test.cpp.html
+title: test/5_atcoder/arc130f.test.cpp
+---

@@ -7,20 +7,20 @@ data:
     title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/min_cost_matching_on_line.test.cpp
-    title: test/mytest/min_cost_matching_on_line.test.cpp
+    path: test/1_mytest/min_cost_matching_on_line.test.cpp
+    title: test/1_mytest/min_cost_matching_on_line.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1077.test.cpp
-    title: test/yukicoder/1077.test.cpp
+    path: test/3_yukicoder/1077.test.cpp
+    title: test/3_yukicoder/1077.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc127f.test.cpp
-    title: test_atcoder/abc127f.test.cpp
+    path: test/5_atcoder/abc127f.test.cpp
+    title: test/5_atcoder/abc127f.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc217h.test.cpp
-    title: test_atcoder/abc217h.test.cpp
+    path: test/5_atcoder/abc217h.test.cpp
+    title: test/5_atcoder/abc217h.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc123d.test.cpp
-    title: test_atcoder/arc123d.test.cpp
+    path: test/5_atcoder/arc123d.test.cpp
+    title: test/5_atcoder/arc123d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -112,11 +112,11 @@ data:
   timestamp: '2023-11-10 12:48:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1077.test.cpp
-  - test/mytest/min_cost_matching_on_line.test.cpp
-  - test_atcoder/abc217h.test.cpp
-  - test_atcoder/arc123d.test.cpp
-  - test_atcoder/abc127f.test.cpp
+  - test/5_atcoder/abc217h.test.cpp
+  - test/5_atcoder/arc123d.test.cpp
+  - test/5_atcoder/abc127f.test.cpp
+  - test/3_yukicoder/1077.test.cpp
+  - test/1_mytest/min_cost_matching_on_line.test.cpp
 documentation_of: convex/slope.hpp
 layout: document
 redirect_from:

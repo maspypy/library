@@ -6,24 +6,24 @@ data:
     path: nt/crt.hpp
     title: nt/crt.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/coprime_factorization.test.cpp
+    title: test/1_mytest/coprime_factorization.test.cpp
   - icon: ':x:'
-    path: test/mytest/coprime_factorization.test.cpp
-    title: test/mytest/coprime_factorization.test.cpp
+    path: test/3_yukicoder/187.test.cpp
+    title: test/3_yukicoder/187.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/187.test.cpp
-    title: test/yukicoder/187.test.cpp
+    path: test/3_yukicoder/1956.test.cpp
+    title: test/3_yukicoder/1956.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1956.test.cpp
-    title: test/yukicoder/1956.test.cpp
+    path: test/3_yukicoder/2119.test.cpp
+    title: test/3_yukicoder/2119.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2119.test.cpp
-    title: test/yukicoder/2119.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
+    path: test/3_yukicoder/590.test.cpp
+    title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/coprime_factorization.hpp\"\n\n/*\n\u4E92\u3044\u306B\
@@ -68,13 +68,13 @@ data:
   requiredBy:
   - nt/crt.hpp
   timestamp: '2023-08-20 12:39:16+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/1956.test.cpp
-  - test/yukicoder/2119.test.cpp
-  - test/mytest/coprime_factorization.test.cpp
+  - test/3_yukicoder/590.test.cpp
+  - test/3_yukicoder/187.test.cpp
+  - test/3_yukicoder/1956.test.cpp
+  - test/3_yukicoder/2119.test.cpp
+  - test/1_mytest/coprime_factorization.test.cpp
 documentation_of: nt/coprime_factorization.hpp
 layout: document
 redirect_from:

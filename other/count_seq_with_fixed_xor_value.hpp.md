@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc288ex.test.cpp
-    title: test_atcoder/abc288ex.test.cpp
+    path: test/5_atcoder/abc288ex.test.cpp
+    title: test/5_atcoder/abc288ex.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -157,7 +157,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc288ex.test.cpp
+  - test/5_atcoder/abc288ex.test.cpp
 documentation_of: other/count_seq_with_fixed_xor_value.hpp
 layout: document
 redirect_from:

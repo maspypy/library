@@ -10,11 +10,11 @@ data:
     title: alg/acted_monoid/summin_assign.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/summin_add.test.cpp
-    title: test/mytest/summin_add.test.cpp
+    path: test/1_mytest/summin_add.test.cpp
+    title: test/1_mytest/summin_add.test.cpp
   - icon: ':x:'
-    path: test/mytest/summin_assign.test.cpp
-    title: test/mytest/summin_assign.test.cpp
+    path: test/1_mytest/summin_assign.test.cpp
+    title: test/1_mytest/summin_assign.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -39,8 +39,8 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/summin_assign.test.cpp
-  - test/mytest/summin_add.test.cpp
+  - test/1_mytest/summin_assign.test.cpp
+  - test/1_mytest/summin_add.test.cpp
 documentation_of: alg/monoid/summin.hpp
 layout: document
 redirect_from:

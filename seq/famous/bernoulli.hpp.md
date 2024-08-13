@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
@@ -51,18 +51,18 @@ data:
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':warning:'
-    path: test/mytest/faulhaber.cpp
-    title: test/mytest/faulhaber.cpp
+    path: test/1_mytest/faulhaber.cpp
+    title: test/1_mytest/faulhaber.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/bernoulli.test.cpp
-    title: test/library_checker/math/bernoulli.test.cpp
+    path: test/2_library_checker/math/bernoulli.test.cpp
+    title: test/2_library_checker/math/bernoulli.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1357.test.cpp
-    title: test/yukicoder/1357.test.cpp
+    path: test/3_yukicoder/1357.test.cpp
+    title: test/3_yukicoder/1357.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2580.test.cpp
-    title: test/yukicoder/2580.test.cpp
+    path: test/3_yukicoder/2580.test.cpp
+    title: test/3_yukicoder/2580.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -462,15 +462,15 @@ data:
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
-  - test/mytest/faulhaber.cpp
+  - test/1_mytest/faulhaber.cpp
   - seq/famous/riemann_zeta_even.hpp
   - poly/prefix_sum_of_polynomial.hpp
   timestamp: '2024-08-11 03:15:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2580.test.cpp
-  - test/yukicoder/1357.test.cpp
-  - test/library_checker/math/bernoulli.test.cpp
+  - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/1357.test.cpp
+  - test/2_library_checker/math/bernoulli.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:

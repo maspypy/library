@@ -4,14 +4,14 @@ data:
   - icon: ':x:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/manhattan_nns.test.cpp
-    title: test/mytest/manhattan_nns.test.cpp
+    path: test/1_mytest/manhattan_nns.test.cpp
+    title: test/1_mytest/manhattan_nns.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -113,7 +113,7 @@ data:
   timestamp: '2023-04-14 22:06:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/manhattan_nns.test.cpp
+  - test/1_mytest/manhattan_nns.test.cpp
 documentation_of: geo/manhattan_nns.hpp
 layout: document
 redirect_from:

@@ -40,7 +40,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':question:'
@@ -49,11 +49,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/polynomial/slice_rational.test.cpp
-    title: test/library_checker/polynomial/slice_rational.test.cpp
+    path: test/2_library_checker/polynomial/slice_rational.test.cpp
+    title: test/2_library_checker/polynomial/slice_rational.test.cpp
   - icon: ':x:'
-    path: test_atcoder/agc013e.test.cpp
-    title: test_atcoder/agc013e.test.cpp
+    path: test/5_atcoder/agc013e.test.cpp
+    title: test/5_atcoder/agc013e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -602,8 +602,8 @@ data:
   timestamp: '2024-07-22 13:52:12+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/polynomial/slice_rational.test.cpp
-  - test_atcoder/agc013e.test.cpp
+  - test/5_atcoder/agc013e.test.cpp
+  - test/2_library_checker/polynomial/slice_rational.test.cpp
 documentation_of: poly/slice_rational_fps.hpp
 layout: document
 redirect_from:

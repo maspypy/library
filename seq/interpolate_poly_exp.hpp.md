@@ -7,8 +7,8 @@ data:
     title: seq/interpolate_poly_exp_sum.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -34,7 +34,7 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
 documentation_of: seq/interpolate_poly_exp.hpp
 layout: document
 redirect_from:

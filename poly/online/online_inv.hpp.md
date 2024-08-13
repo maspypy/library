@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':x:'
@@ -19,8 +19,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/online_inv.test.cpp
-    title: test/mytest/online_inv.test.cpp
+    path: test/1_mytest/online_inv.test.cpp
+    title: test/1_mytest/online_inv.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -201,7 +201,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/online_inv.test.cpp
+  - test/1_mytest/online_inv.test.cpp
 documentation_of: poly/online/online_inv.hpp
 layout: document
 redirect_from:

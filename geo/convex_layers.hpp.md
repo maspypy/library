@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/geometry/convex_layers.test.cpp
-    title: test/library_checker/geometry/convex_layers.test.cpp
+    path: test/2_library_checker/geometry/convex_layers.test.cpp
+    title: test/2_library_checker/geometry/convex_layers.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -169,7 +169,7 @@ data:
   timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/geometry/convex_layers.test.cpp
+  - test/2_library_checker/geometry/convex_layers.test.cpp
 documentation_of: geo/convex_layers.hpp
 layout: document
 redirect_from:

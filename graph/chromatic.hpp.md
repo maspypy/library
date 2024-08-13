@@ -79,8 +79,8 @@ data:
     path: graph/chromatic_polynomial.test.cpp
     title: graph/chromatic_polynomial.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/chromatic_number.test.cpp
-    title: test/library_checker/graph/chromatic_number.test.cpp
+    path: test/2_library_checker/graph/chromatic_number.test.cpp
+    title: test/2_library_checker/graph/chromatic_number.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -812,7 +812,7 @@ data:
   timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
   - graph/chromatic_polynomial.test.cpp
 documentation_of: graph/chromatic.hpp
 layout: document

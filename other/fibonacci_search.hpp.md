@@ -7,17 +7,17 @@ data:
     title: convex/monge.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/fibonacci_search.test.cpp
-    title: test/mytest/fibonacci_search.test.cpp
+    path: test/1_mytest/fibonacci_search.test.cpp
+    title: test/1_mytest/fibonacci_search.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2276.test.cpp
-    title: test/yukicoder/2276.test.cpp
+    path: test/3_yukicoder/2276.test.cpp
+    title: test/3_yukicoder/2276.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2627.test.cpp
-    title: test/yukicoder/2627.test.cpp
+    path: test/3_yukicoder/2627.test.cpp
+    title: test/3_yukicoder/2627.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/705.test.cpp
-    title: test/yukicoder/705.test.cpp
+    path: test/3_yukicoder/705.test.cpp
+    title: test/3_yukicoder/705.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -60,10 +60,10 @@ data:
   timestamp: '2024-01-01 07:01:30+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2627.test.cpp
-  - test/yukicoder/2276.test.cpp
-  - test/yukicoder/705.test.cpp
-  - test/mytest/fibonacci_search.test.cpp
+  - test/3_yukicoder/2627.test.cpp
+  - test/3_yukicoder/2276.test.cpp
+  - test/3_yukicoder/705.test.cpp
+  - test/1_mytest/fibonacci_search.test.cpp
 documentation_of: other/fibonacci_search.hpp
 layout: document
 redirect_from:

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc241d.test.cpp
-    title: test_atcoder/abc241d.test.cpp
+    path: test/5_atcoder/abc241d.test.cpp
+    title: test/5_atcoder/abc241d.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc281e_2.test.cpp
-    title: test_atcoder/abc281e_2.test.cpp
+    path: test/5_atcoder/abc281e_2.test.cpp
+    title: test/5_atcoder/abc281e_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -140,8 +140,8 @@ data:
   timestamp: '2024-03-30 00:47:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc281e_2.test.cpp
-  - test_atcoder/abc241d.test.cpp
+  - test/5_atcoder/abc281e_2.test.cpp
+  - test/5_atcoder/abc241d.test.cpp
 documentation_of: ds/my_multiset.hpp
 layout: document
 redirect_from:

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc222g.test.cpp
-    title: test_atcoder/abc222g.test.cpp
+    path: test/5_atcoder/abc222g.test.cpp
+    title: test/5_atcoder/abc222g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_g.test.cpp
-    title: test_atcoder/abc270_g.test.cpp
+    path: test/5_atcoder/abc270_g.test.cpp
+    title: test/5_atcoder/abc270_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -44,8 +44,8 @@ data:
   timestamp: '2023-07-25 22:13:04+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc222g.test.cpp
-  - test_atcoder/abc270_g.test.cpp
+  - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc270_g.test.cpp
 documentation_of: alg/acted_set/affine.hpp
 layout: document
 redirect_from:

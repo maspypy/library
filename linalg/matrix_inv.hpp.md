@@ -10,17 +10,17 @@ data:
     title: linalg/matrix_lowrank_update.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/matrix/inverse_matrix.test.cpp
-    title: test/library_checker/matrix/inverse_matrix.test.cpp
+    path: test/2_library_checker/matrix/inverse_matrix.test.cpp
+    title: test/2_library_checker/matrix/inverse_matrix.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1774.test.cpp
-    title: test/yukicoder/1774.test.cpp
+    path: test/3_yukicoder/1774.test.cpp
+    title: test/3_yukicoder/1774.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1907.test.cpp
-    title: test/yukicoder/1907.test.cpp
+    path: test/3_yukicoder/1907.test.cpp
+    title: test/3_yukicoder/1907.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -55,10 +55,10 @@ data:
   timestamp: '2023-10-24 14:07:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/1907.test.cpp
-  - test/yukicoder/1774.test.cpp
-  - test/library_checker/matrix/inverse_matrix.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1774.test.cpp
+  - test/2_library_checker/matrix/inverse_matrix.test.cpp
 documentation_of: linalg/matrix_inv.hpp
 layout: document
 redirect_from:

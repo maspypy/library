@@ -10,8 +10,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/domninator_tree.test.cpp
-    title: test/library_checker/graph/domninator_tree.test.cpp
+    path: test/2_library_checker/graph/domninator_tree.test.cpp
+    title: test/2_library_checker/graph/domninator_tree.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -136,7 +136,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/graph/domninator_tree.test.cpp
+  - test/2_library_checker/graph/domninator_tree.test.cpp
 documentation_of: graph/dominator_tree.hpp
 layout: document
 redirect_from:

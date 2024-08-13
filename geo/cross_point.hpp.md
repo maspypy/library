@@ -5,28 +5,28 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_B.test.cpp
-    title: test/aoj/CGL_2_B.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_C.test.cpp
-    title: test/aoj/CGL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_2_D.test.cpp
-    title: test/aoj/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/CGL_7_B.test.cpp
-    title: test/aoj/CGL_7_B.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc314.test.cpp
-    title: test_atcoder/abc314.test.cpp
+    path: test/4_aoj/CGL_2_B.test.cpp
+    title: test/4_aoj/CGL_2_B.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_2_C.test.cpp
+    title: test/4_aoj/CGL_2_C.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_2_D.test.cpp
+    title: test/4_aoj/CGL_2_D.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/CGL_7_B.test.cpp
+    title: test/4_aoj/CGL_7_B.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc314.test.cpp
+    title: test/5_atcoder/abc314.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/2/problem/C
@@ -184,13 +184,13 @@ data:
   requiredBy:
   - geo/distance.hpp
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/CGL_7_B.test.cpp
-  - test/aoj/CGL_2_D.test.cpp
-  - test/aoj/CGL_2_B.test.cpp
-  - test/aoj/CGL_2_C.test.cpp
-  - test_atcoder/abc314.test.cpp
+  - test/5_atcoder/abc314.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
+  - test/4_aoj/CGL_2_D.test.cpp
+  - test/4_aoj/CGL_2_B.test.cpp
+  - test/4_aoj/CGL_2_C.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
 redirect_from:

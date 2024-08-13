@@ -5,10 +5,10 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':x:'
@@ -51,135 +51,135 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508.test.cpp
-    title: test/aoj/1508.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/1508_2.test.cpp
-    title: test/aoj/1508_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_F.test.cpp
-    title: test/aoj/DSL_2_F.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/DSL_2_H.test.cpp
-    title: test/aoj/DSL_2_H.test.cpp
   - icon: ':x:'
-    path: test/aoj/GRL_2_A.test.cpp
-    title: test/aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticrmq.test.cpp
-    title: test/library_checker/datastructure/staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticrmq_dst.test.cpp
-    title: test/library_checker/datastructure/staticrmq_dst.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticrmq_seg.test.cpp
-    title: test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-    title: test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
-    title: test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
+    path: test/1_mytest/dynamic_segtree_sparse.test.cpp
+    title: test/1_mytest/dynamic_segtree_sparse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/common_interval_decomposition.test.cpp
-    title: test/library_checker/graph/common_interval_decomposition.test.cpp
+    path: test/1_mytest/lex_minmax_suffix.test.cpp
+    title: test/1_mytest/lex_minmax_suffix.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/longest_common_substring.test.cpp
-    title: test/library_checker/string/longest_common_substring.test.cpp
+    path: test/1_mytest/longest_common_substr.test.cpp
+    title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/number_of_substrings.test.cpp
-    title: test/library_checker/string/number_of_substrings.test.cpp
+    path: test/1_mytest/max_min.test.cpp
+    title: test/1_mytest/max_min.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/suffix_array.test.cpp
-    title: test/library_checker/string/suffix_array.test.cpp
+    path: test/1_mytest/min_max.test.cpp
+    title: test/1_mytest/min_max.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/suffix_array_vec.test.cpp
-    title: test/library_checker/string/suffix_array_vec.test.cpp
+    path: test/1_mytest/min_min.test.cpp
+    title: test/1_mytest/min_min.test.cpp
   - icon: ':x:'
-    path: test/library_checker/tree/lca_fast.test.cpp
-    title: test/library_checker/tree/lca_fast.test.cpp
+    path: test/1_mytest/range_closest_pair.test.cpp
+    title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':x:'
-    path: test/library_checker/tree/mst.test.cpp
-    title: test/library_checker/tree/mst.test.cpp
+    path: test/1_mytest/range_mex.test.cpp
+    title: test/1_mytest/range_mex.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_segtree_sparse.test.cpp
-    title: test/mytest/dynamic_segtree_sparse.test.cpp
+    path: test/1_mytest/rbst_am.test.cpp
+    title: test/1_mytest/rbst_am.test.cpp
   - icon: ':x:'
-    path: test/mytest/lex_minmax_suffix.test.cpp
-    title: test/mytest/lex_minmax_suffix.test.cpp
+    path: test/1_mytest/rbst_am_persistent.test.cpp
+    title: test/1_mytest/rbst_am_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/longest_common_substr.test.cpp
-    title: test/mytest/longest_common_substr.test.cpp
+    path: test/1_mytest/rbst_test.test.cpp
+    title: test/1_mytest/rbst_test.test.cpp
   - icon: ':x:'
-    path: test/mytest/max_min.test.cpp
-    title: test/mytest/max_min.test.cpp
+    path: test/1_mytest/seg2d.test.cpp
+    title: test/1_mytest/seg2d.test.cpp
   - icon: ':x:'
-    path: test/mytest/min_max.test.cpp
-    title: test/mytest/min_max.test.cpp
+    path: test/1_mytest/suffix_tree.test.cpp
+    title: test/1_mytest/suffix_tree.test.cpp
   - icon: ':x:'
-    path: test/mytest/min_min.test.cpp
-    title: test/mytest/min_min.test.cpp
+    path: test/1_mytest/wavelet_matrix.test.cpp
+    title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':x:'
-    path: test/mytest/range_closest_pair.test.cpp
-    title: test/mytest/range_closest_pair.test.cpp
+    path: test/2_library_checker/datastructure/staticrmq.test.cpp
+    title: test/2_library_checker/datastructure/staticrmq.test.cpp
   - icon: ':x:'
-    path: test/mytest/range_mex.test.cpp
-    title: test/mytest/range_mex.test.cpp
+    path: test/2_library_checker/datastructure/staticrmq_dst.test.cpp
+    title: test/2_library_checker/datastructure/staticrmq_dst.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am.test.cpp
-    title: test/mytest/rbst_am.test.cpp
+    path: test/2_library_checker/datastructure/staticrmq_seg.test.cpp
+    title: test/2_library_checker/datastructure/staticrmq_seg.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am_persistent.test.cpp
-    title: test/mytest/rbst_am_persistent.test.cpp
+    path: test/2_library_checker/datastructure/staticrmq_sparse.test.cpp
+    title: test/2_library_checker/datastructure/staticrmq_sparse.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_test.test.cpp
-    title: test/mytest/rbst_test.test.cpp
+    path: test/2_library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
+    title: test/2_library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
   - icon: ':x:'
-    path: test/mytest/seg2d.test.cpp
-    title: test/mytest/seg2d.test.cpp
+    path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
+    title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':x:'
-    path: test/mytest/suffix_tree.test.cpp
-    title: test/mytest/suffix_tree.test.cpp
+    path: test/2_library_checker/string/longest_common_substring.test.cpp
+    title: test/2_library_checker/string/longest_common_substring.test.cpp
   - icon: ':x:'
-    path: test/mytest/wavelet_matrix.test.cpp
-    title: test/mytest/wavelet_matrix.test.cpp
+    path: test/2_library_checker/string/number_of_substrings.test.cpp
+    title: test/2_library_checker/string/number_of_substrings.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1212.test.cpp
-    title: test/yukicoder/1212.test.cpp
+    path: test/2_library_checker/string/suffix_array.test.cpp
+    title: test/2_library_checker/string/suffix_array.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1234.test.cpp
-    title: test/yukicoder/1234.test.cpp
+    path: test/2_library_checker/string/suffix_array_vec.test.cpp
+    title: test/2_library_checker/string/suffix_array_vec.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1270.test.cpp
-    title: test/yukicoder/1270.test.cpp
+    path: test/2_library_checker/tree/lca_fast.test.cpp
+    title: test/2_library_checker/tree/lca_fast.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1600.test.cpp
-    title: test/yukicoder/1600.test.cpp
+    path: test/2_library_checker/tree/mst.test.cpp
+    title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1600_2.test.cpp
-    title: test/yukicoder/1600_2.test.cpp
+    path: test/3_yukicoder/1212.test.cpp
+    title: test/3_yukicoder/1212.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1720.test.cpp
-    title: test/yukicoder/1720.test.cpp
+    path: test/3_yukicoder/1234.test.cpp
+    title: test/3_yukicoder/1234.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2361.test.cpp
-    title: test/yukicoder/2361.test.cpp
+    path: test/3_yukicoder/1270.test.cpp
+    title: test/3_yukicoder/1270.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/913.test.cpp
-    title: test/yukicoder/913.test.cpp
+    path: test/3_yukicoder/1600.test.cpp
+    title: test/3_yukicoder/1600.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc240ex.test.cpp
-    title: test_atcoder/abc240ex.test.cpp
+    path: test/3_yukicoder/1600_2.test.cpp
+    title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_f.test.cpp
-    title: test_atcoder/abc270_f.test.cpp
+    path: test/3_yukicoder/1720.test.cpp
+    title: test/3_yukicoder/1720.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc151_e.test.cpp
-    title: test_atcoder/arc151_e.test.cpp
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/913.test.cpp
+    title: test/3_yukicoder/913.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/1508.test.cpp
+    title: test/4_aoj/1508.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/1508_2.test.cpp
+    title: test/4_aoj/1508_2.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DSL_2_F.test.cpp
+    title: test/4_aoj/DSL_2_F.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/DSL_2_H.test.cpp
+    title: test/4_aoj/DSL_2_H.test.cpp
+  - icon: ':x:'
+    path: test/4_aoj/GRL_2_A.test.cpp
+    title: test/4_aoj/GRL_2_A.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc240ex.test.cpp
+    title: test/5_atcoder/abc240ex.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc270_f.test.cpp
+    title: test/5_atcoder/abc270_f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc151_e.test.cpp
+    title: test/5_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -212,50 +212,50 @@ data:
   - seq/common_interval_decomposition.hpp
   - ds/offline_query/range_mex_query.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1600_2.test.cpp
-  - test/yukicoder/913.test.cpp
-  - test/yukicoder/1270.test.cpp
-  - test/yukicoder/1212.test.cpp
-  - test/yukicoder/1600.test.cpp
-  - test/yukicoder/1720.test.cpp
-  - test/yukicoder/2361.test.cpp
-  - test/yukicoder/1234.test.cpp
-  - test/mytest/range_mex.test.cpp
-  - test/mytest/dynamic_segtree_sparse.test.cpp
-  - test/mytest/longest_common_substr.test.cpp
-  - test/mytest/seg2d.test.cpp
-  - test/mytest/min_max.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/mytest/max_min.test.cpp
-  - test/mytest/lex_minmax_suffix.test.cpp
-  - test/mytest/rbst_am.test.cpp
-  - test/mytest/rbst_am_persistent.test.cpp
-  - test/mytest/min_min.test.cpp
-  - test/mytest/range_closest_pair.test.cpp
-  - test/mytest/wavelet_matrix.test.cpp
-  - test/mytest/rbst_test.test.cpp
-  - test/aoj/1508.test.cpp
-  - test/aoj/1508_2.test.cpp
-  - test/aoj/DSL_2_H.test.cpp
-  - test/aoj/GRL_2_A.test.cpp
-  - test/aoj/DSL_2_F.test.cpp
-  - test/library_checker/tree/lca_fast.test.cpp
-  - test/library_checker/tree/mst.test.cpp
-  - test/library_checker/string/number_of_substrings.test.cpp
-  - test/library_checker/string/longest_common_substring.test.cpp
-  - test/library_checker/string/suffix_array.test.cpp
-  - test/library_checker/string/suffix_array_vec.test.cpp
-  - test/library_checker/graph/common_interval_decomposition.test.cpp
-  - test/library_checker/datastructure/staticrmq.test.cpp
-  - test/library_checker/datastructure/staticrmq_seg.test.cpp
-  - test/library_checker/datastructure/staticrmq_dst.test.cpp
-  - test/library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
-  - test/library_checker/datastructure/staticrmq_sparse.test.cpp
-  - test_atcoder/abc270_f.test.cpp
-  - test_atcoder/arc151_e.test.cpp
-  - test_atcoder/abc240ex.test.cpp
+  - test/5_atcoder/abc270_f.test.cpp
+  - test/5_atcoder/arc151_e.test.cpp
+  - test/5_atcoder/abc240ex.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/913.test.cpp
+  - test/3_yukicoder/1270.test.cpp
+  - test/3_yukicoder/1212.test.cpp
+  - test/3_yukicoder/1600.test.cpp
+  - test/3_yukicoder/1720.test.cpp
+  - test/3_yukicoder/2361.test.cpp
+  - test/3_yukicoder/1234.test.cpp
+  - test/2_library_checker/tree/lca_fast.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/string/number_of_substrings.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/string/suffix_array.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/graph/common_interval_decomposition.test.cpp
+  - test/2_library_checker/datastructure/staticrmq.test.cpp
+  - test/2_library_checker/datastructure/staticrmq_seg.test.cpp
+  - test/2_library_checker/datastructure/staticrmq_dst.test.cpp
+  - test/2_library_checker/datastructure/staticrmq_sqrt_tree.test.cpp
+  - test/2_library_checker/datastructure/staticrmq_sparse.test.cpp
+  - test/1_mytest/range_mex.test.cpp
+  - test/1_mytest/dynamic_segtree_sparse.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
+  - test/1_mytest/seg2d.test.cpp
+  - test/1_mytest/min_max.test.cpp
+  - test/1_mytest/suffix_tree.test.cpp
+  - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
+  - test/1_mytest/min_min.test.cpp
+  - test/1_mytest/range_closest_pair.test.cpp
+  - test/1_mytest/wavelet_matrix.test.cpp
+  - test/1_mytest/rbst_test.test.cpp
+  - test/4_aoj/1508.test.cpp
+  - test/4_aoj/1508_2.test.cpp
+  - test/4_aoj/DSL_2_H.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
+  - test/4_aoj/DSL_2_F.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

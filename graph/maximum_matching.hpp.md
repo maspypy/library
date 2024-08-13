@@ -7,11 +7,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/general_matching.test.cpp
-    title: test/library_checker/graph/general_matching.test.cpp
+    path: test/1_mytest/matching.test.cpp
+    title: test/1_mytest/matching.test.cpp
   - icon: ':x:'
-    path: test/mytest/matching.test.cpp
-    title: test/mytest/matching.test.cpp
+    path: test/2_library_checker/graph/general_matching.test.cpp
+    title: test/2_library_checker/graph/general_matching.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -181,8 +181,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/matching.test.cpp
-  - test/library_checker/graph/general_matching.test.cpp
+  - test/2_library_checker/graph/general_matching.test.cpp
+  - test/1_mytest/matching.test.cpp
 documentation_of: graph/maximum_matching.hpp
 layout: document
 redirect_from:

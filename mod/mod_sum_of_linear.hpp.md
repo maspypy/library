@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/mod_sum_of_linear.test.cpp
-    title: test/mytest/mod_sum_of_linear.test.cpp
+    path: test/1_mytest/mod_sum_of_linear.test.cpp
+    title: test/1_mytest/mod_sum_of_linear.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -42,7 +42,7 @@ data:
   timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/mod_sum_of_linear.test.cpp
+  - test/1_mytest/mod_sum_of_linear.test.cpp
 documentation_of: mod/mod_sum_of_linear.hpp
 layout: document
 redirect_from:

@@ -4,11 +4,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/string/number_of_subsequences.test.cpp
-    title: test/library_checker/string/number_of_subsequences.test.cpp
+    path: test/2_library_checker/string/number_of_subsequences.test.cpp
+    title: test/2_library_checker/string/number_of_subsequences.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1493.test.cpp
-    title: test/yukicoder/1493.test.cpp
+    path: test/3_yukicoder/1493.test.cpp
+    title: test/3_yukicoder/1493.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -40,8 +40,8 @@ data:
   timestamp: '2024-06-11 19:43:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1493.test.cpp
-  - test/library_checker/string/number_of_subsequences.test.cpp
+  - test/3_yukicoder/1493.test.cpp
+  - test/2_library_checker/string/number_of_subsequences.test.cpp
 documentation_of: string/count_subseq.hpp
 layout: document
 redirect_from:

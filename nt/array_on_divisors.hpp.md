@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
@@ -19,20 +19,20 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/yukicoder/1728.test.cpp
-    title: test/yukicoder/1728.test.cpp
+    path: test/3_yukicoder/1728.test.cpp
+    title: test/3_yukicoder/1728.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2264.test.cpp
-    title: test/yukicoder/2264.test.cpp
+    path: test/3_yukicoder/2264.test.cpp
+    title: test/3_yukicoder/2264.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2578.test.cpp
-    title: test/yukicoder/2578.test.cpp
+    path: test/3_yukicoder/2578.test.cpp
+    title: test/3_yukicoder/2578.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc212g.test.cpp
-    title: test_atcoder/abc212g.test.cpp
+    path: test/5_atcoder/abc212g.test.cpp
+    title: test/5_atcoder/abc212g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc335g.test.cpp
-    title: test_atcoder/abc335g.test.cpp
+    path: test/5_atcoder/abc335g.test.cpp
+    title: test/5_atcoder/abc335g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -235,11 +235,11 @@ data:
   timestamp: '2024-05-27 02:22:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1728.test.cpp
-  - test/yukicoder/2578.test.cpp
-  - test/yukicoder/2264.test.cpp
-  - test_atcoder/abc335g.test.cpp
-  - test_atcoder/abc212g.test.cpp
+  - test/5_atcoder/abc335g.test.cpp
+  - test/5_atcoder/abc212g.test.cpp
+  - test/3_yukicoder/1728.test.cpp
+  - test/3_yukicoder/2578.test.cpp
+  - test/3_yukicoder/2264.test.cpp
 documentation_of: nt/array_on_divisors.hpp
 layout: document
 redirect_from:

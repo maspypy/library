@@ -7,14 +7,14 @@ data:
     title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/dyadic_rational.test.cpp
-    title: test/mytest/dyadic_rational.test.cpp
+    path: test/1_mytest/dyadic_rational.test.cpp
+    title: test/1_mytest/dyadic_rational.test.cpp
   - icon: ':x:'
-    path: test/mytest/partizan.test.cpp
-    title: test/mytest/partizan.test.cpp
+    path: test/1_mytest/partizan.test.cpp
+    title: test/1_mytest/partizan.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc229h.test.cpp
-    title: test_atcoder/abc229h.test.cpp
+    path: test/5_atcoder/abc229h.test.cpp
+    title: test/5_atcoder/abc229h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -99,9 +99,9 @@ data:
   timestamp: '2022-09-29 20:05:16+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/dyadic_rational.test.cpp
-  - test/mytest/partizan.test.cpp
-  - test_atcoder/abc229h.test.cpp
+  - test/5_atcoder/abc229h.test.cpp
+  - test/1_mytest/dyadic_rational.test.cpp
+  - test/1_mytest/partizan.test.cpp
 documentation_of: game/dyadic_rational.hpp
 layout: document
 redirect_from:

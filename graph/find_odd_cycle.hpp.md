@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/find_odd_cycle.test.cpp
-    title: test/mytest/find_odd_cycle.test.cpp
+    path: test/1_mytest/find_odd_cycle.test.cpp
+    title: test/1_mytest/find_odd_cycle.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -155,7 +155,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/find_odd_cycle.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
 documentation_of: graph/find_odd_cycle.hpp
 layout: document
 redirect_from:

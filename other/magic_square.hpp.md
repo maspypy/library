@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/magic_square.test.cpp
-    title: test/mytest/magic_square.test.cpp
+    path: test/1_mytest/magic_square.test.cpp
+    title: test/1_mytest/magic_square.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -30,7 +30,7 @@ data:
   timestamp: '2022-11-27 18:59:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/magic_square.test.cpp
+  - test/1_mytest/magic_square.test.cpp
 documentation_of: other/magic_square.hpp
 layout: document
 redirect_from:

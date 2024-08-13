@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
   - icon: ':question:'
@@ -39,12 +39,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/count_clique.test.cpp
-    title: test/mytest/count_clique.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_clique.test.cpp
+    title: test/1_mytest/count_clique.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://contest.ucup.ac/contest/1358/problem/7514
@@ -547,9 +547,9 @@ data:
   path: graph/count/count_clique.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_clique.test.cpp
+  - test/1_mytest/count_clique.test.cpp
 documentation_of: graph/count/count_clique.hpp
 layout: document
 redirect_from:

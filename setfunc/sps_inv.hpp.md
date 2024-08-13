@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc306h.test.cpp
-    title: test_atcoder/abc306h.test.cpp
+    path: test/5_atcoder/abc306h.test.cpp
+    title: test/5_atcoder/abc306h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -50,7 +50,7 @@ data:
   timestamp: '2024-04-04 19:08:10+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc306h.test.cpp
+  - test/5_atcoder/abc306h.test.cpp
 documentation_of: setfunc/sps_inv.hpp
 layout: document
 redirect_from:

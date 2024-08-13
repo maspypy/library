@@ -5,13 +5,13 @@ data:
   - icon: ':x:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
   - icon: ':x:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':x:'
@@ -32,10 +32,10 @@ data:
   - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':question:'
@@ -59,193 +59,193 @@ data:
   - icon: ':x:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':x:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-    title: test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
+    path: test/1_mytest/31bit_modint.test.cpp
+    title: test/1_mytest/31bit_modint.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/convolution_mod_dmint.test.cpp
-    title: test/library_checker/convolution/convolution_mod_dmint.test.cpp
+    path: test/1_mytest/O1_inv.test.cpp
+    title: test/1_mytest/O1_inv.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/convolution_mod_setntt.test.cpp
-    title: test/library_checker/convolution/convolution_mod_setntt.test.cpp
+    path: test/1_mytest/blackbox_solve_linear.test.cpp
+    title: test/1_mytest/blackbox_solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/library_checker/convolution/mul_modp_conv.test.cpp
-    title: test/library_checker/convolution/mul_modp_conv.test.cpp
+    path: test/1_mytest/count_bipartite.test.cpp
+    title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    path: test/1_mytest/four_square.test.cpp
+    title: test/1_mytest/four_square.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    path: test/1_mytest/geometric_sequence_sum.test.cpp
+    title: test/1_mytest/geometric_sequence_sum.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-    title: test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    path: test/1_mytest/three_square.test.cpp
+    title: test/1_mytest/three_square.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
-    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    path: test/1_mytest/three_triangular.test.cpp
+    title: test/1_mytest/three_triangular.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
-    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/binomial_coefficient.test.cpp
-    title: test/library_checker/math/binomial_coefficient.test.cpp
+    path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+    title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/gaussian_integers.test.cpp
-    title: test/library_checker/math/gaussian_integers.test.cpp
+    path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
+    title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/kth_root_mod.test.cpp
-    title: test/library_checker/math/kth_root_mod.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-    title: test/library_checker/math/multivariate_convolution_cyclic.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/primitive_root.test.cpp
-    title: test/library_checker/math/primitive_root.test.cpp
+    path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+    title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/sqrt_mod.test.cpp
-    title: test/library_checker/math/sqrt_mod.test.cpp
+    path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/tetration.test.cpp
-    title: test/library_checker/math/tetration.test.cpp
+    path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - icon: ':x:'
-    path: test/library_checker/matrix/det_mod.test.cpp
-    title: test/library_checker/matrix/det_mod.test.cpp
+    path: test/2_library_checker/math/binomial_coefficient.test.cpp
+    title: test/2_library_checker/math/binomial_coefficient.test.cpp
   - icon: ':x:'
-    path: test/library_checker/matrix/matrix_det.test.cpp
-    title: test/library_checker/matrix/matrix_det.test.cpp
+    path: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/composition_dmint.test.cpp
-    title: test/library_checker/polynomial/composition_dmint.test.cpp
+    path: test/2_library_checker/math/gaussian_integers.test.cpp
+    title: test/2_library_checker/math/gaussian_integers.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-    title: test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    path: test/2_library_checker/math/kth_root_mod.test.cpp
+    title: test/2_library_checker/math/kth_root_mod.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-    title: test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
+    path: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
+    title: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-    title: test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+    path: test/2_library_checker/math/primitive_root.test.cpp
+    title: test/2_library_checker/math/primitive_root.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/inv_of_fps.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps.test.cpp
+    path: test/2_library_checker/math/sqrt_mod.test.cpp
+    title: test/2_library_checker/math/sqrt_mod.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    path: test/2_library_checker/math/tetration.test.cpp
+    title: test/2_library_checker/math/tetration.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-    title: test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    path: test/2_library_checker/matrix/det_mod.test.cpp
+    title: test/2_library_checker/matrix/det_mod.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-    title: test/library_checker/polynomial/log_of_fps_dmint.test.cpp
+    path: test/2_library_checker/matrix/matrix_det.test.cpp
+    title: test/2_library_checker/matrix/matrix_det.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-    title: test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+    path: test/2_library_checker/polynomial/composition_dmint.test.cpp
+    title: test/2_library_checker/polynomial/composition_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
+    path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-    title: test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+    path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/sqrt_of_fps.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps.test.cpp
+    path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-    title: test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
   - icon: ':x:'
-    path: test/mytest/31bit_modint.test.cpp
-    title: test/mytest/31bit_modint.test.cpp
+    path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
   - icon: ':x:'
-    path: test/mytest/O1_inv.test.cpp
-    title: test/mytest/O1_inv.test.cpp
+    path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
-    path: test/mytest/blackbox_solve_linear.test.cpp
-    title: test/mytest/blackbox_solve_linear.test.cpp
+    path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - icon: ':x:'
-    path: test/mytest/count_bipartite.test.cpp
-    title: test/mytest/count_bipartite.test.cpp
+    path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
-    path: test/mytest/four_square.test.cpp
-    title: test/mytest/four_square.test.cpp
+    path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - icon: ':x:'
-    path: test/mytest/geometric_sequence_sum.test.cpp
-    title: test/mytest/geometric_sequence_sum.test.cpp
+    path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+    title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
-    path: test/mytest/three_square.test.cpp
-    title: test/mytest/three_square.test.cpp
+    path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
+    title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
   - icon: ':x:'
-    path: test/mytest/three_triangular.test.cpp
-    title: test/mytest/three_triangular.test.cpp
+    path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+    title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1025.test.cpp
-    title: test/yukicoder/1025.test.cpp
+    path: test/3_yukicoder/1025.test.cpp
+    title: test/3_yukicoder/1025.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1303.test.cpp
-    title: test/yukicoder/1303.test.cpp
+    path: test/3_yukicoder/1303.test.cpp
+    title: test/3_yukicoder/1303.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1593.test.cpp
-    title: test/yukicoder/1593.test.cpp
+    path: test/3_yukicoder/1593.test.cpp
+    title: test/3_yukicoder/1593.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1667.test.cpp
-    title: test/yukicoder/1667.test.cpp
+    path: test/3_yukicoder/1667.test.cpp
+    title: test/3_yukicoder/1667.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1783.test.cpp
-    title: test/yukicoder/1783.test.cpp
+    path: test/3_yukicoder/1783.test.cpp
+    title: test/3_yukicoder/1783.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/187.test.cpp
-    title: test/yukicoder/187.test.cpp
+    path: test/3_yukicoder/187.test.cpp
+    title: test/3_yukicoder/187.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1956.test.cpp
-    title: test/yukicoder/1956.test.cpp
+    path: test/3_yukicoder/1956.test.cpp
+    title: test/3_yukicoder/1956.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2119.test.cpp
-    title: test/yukicoder/2119.test.cpp
+    path: test/3_yukicoder/2119.test.cpp
+    title: test/3_yukicoder/2119.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2120.test.cpp
-    title: test/yukicoder/2120.test.cpp
+    path: test/3_yukicoder/2120.test.cpp
+    title: test/3_yukicoder/2120.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2181.test.cpp
-    title: test/yukicoder/2181.test.cpp
+    path: test/3_yukicoder/2181.test.cpp
+    title: test/3_yukicoder/2181.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2613.test.cpp
-    title: test/yukicoder/2613.test.cpp
+    path: test/3_yukicoder/2613.test.cpp
+    title: test/3_yukicoder/2613.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/590.test.cpp
-    title: test/yukicoder/590.test.cpp
+    path: test/3_yukicoder/590.test.cpp
+    title: test/3_yukicoder/590.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222g.test.cpp
-    title: test_atcoder/abc222g.test.cpp
+    path: test/5_atcoder/abc222g.test.cpp
+    title: test/5_atcoder/abc222g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_g.test.cpp
-    title: test_atcoder/abc270_g.test.cpp
+    path: test/5_atcoder/abc270_g.test.cpp
+    title: test/5_atcoder/abc270_g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc281g.test.cpp
-    title: test_atcoder/abc281g.test.cpp
+    path: test/5_atcoder/abc281g.test.cpp
+    title: test/5_atcoder/abc281g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc335g.test.cpp
-    title: test_atcoder/abc335g.test.cpp
+    path: test/5_atcoder/abc335g.test.cpp
+    title: test/5_atcoder/abc335g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc336g.test.cpp
-    title: test_atcoder/abc336g.test.cpp
+    path: test/5_atcoder/abc336g.test.cpp
+    title: test/5_atcoder/abc336g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/agc058d2.test.cpp
-    title: test_atcoder/agc058d2.test.cpp
+    path: test/5_atcoder/agc058d2.test.cpp
+    title: test/5_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -315,65 +315,65 @@ data:
   timestamp: '2023-10-17 07:10:25+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/1303.test.cpp
-  - test/yukicoder/590.test.cpp
-  - test/yukicoder/1339.test.cpp
-  - test/yukicoder/2613.test.cpp
-  - test/yukicoder/1667.test.cpp
-  - test/yukicoder/187.test.cpp
-  - test/yukicoder/2120.test.cpp
-  - test/yukicoder/1956.test.cpp
-  - test/yukicoder/2119.test.cpp
-  - test/yukicoder/2181.test.cpp
-  - test/yukicoder/1783.test.cpp
-  - test/yukicoder/1025.test.cpp
-  - test/yukicoder/1593.test.cpp
-  - test/mytest/count_bipartite.test.cpp
-  - test/mytest/four_square.test.cpp
-  - test/mytest/blackbox_solve_linear.test.cpp
-  - test/mytest/31bit_modint.test.cpp
-  - test/mytest/three_triangular.test.cpp
-  - test/mytest/O1_inv.test.cpp
-  - test/mytest/geometric_sequence_sum.test.cpp
-  - test/mytest/three_square.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/composition_dmint.test.cpp
-  - test/library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/inv_of_fps.test.cpp
-  - test/library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - test/library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/library_checker/convolution/convolution_mod_dmint.test.cpp
-  - test/library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - test/library_checker/convolution/mul_modp_conv.test.cpp
-  - test/library_checker/convolution/convolution_mod_setntt.test.cpp
-  - test/library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - test/library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - test/library_checker/graph/counting_eulerian_dense.test.cpp
-  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/library_checker/math/primitive_root.test.cpp
-  - test/library_checker/math/sqrt_mod.test.cpp
-  - test/library_checker/math/kth_root_mod.test.cpp
-  - test/library_checker/math/gaussian_integers.test.cpp
-  - test/library_checker/math/binomial_coefficient.test.cpp
-  - test/library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/library_checker/math/tetration.test.cpp
-  - test/library_checker/matrix/det_mod.test.cpp
-  - test/library_checker/matrix/matrix_det.test.cpp
-  - test_atcoder/abc336g.test.cpp
-  - test_atcoder/abc335g.test.cpp
-  - test_atcoder/abc222g.test.cpp
-  - test_atcoder/abc281g.test.cpp
-  - test_atcoder/abc270_g.test.cpp
-  - test_atcoder/agc058d2.test.cpp
+  - test/5_atcoder/abc336g.test.cpp
+  - test/5_atcoder/abc335g.test.cpp
+  - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc281g.test.cpp
+  - test/5_atcoder/abc270_g.test.cpp
+  - test/5_atcoder/agc058d2.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/590.test.cpp
+  - test/3_yukicoder/1339.test.cpp
+  - test/3_yukicoder/2613.test.cpp
+  - test/3_yukicoder/1667.test.cpp
+  - test/3_yukicoder/187.test.cpp
+  - test/3_yukicoder/2120.test.cpp
+  - test/3_yukicoder/1956.test.cpp
+  - test/3_yukicoder/2119.test.cpp
+  - test/3_yukicoder/2181.test.cpp
+  - test/3_yukicoder/1783.test.cpp
+  - test/3_yukicoder/1025.test.cpp
+  - test/3_yukicoder/1593.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/math/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/math/primitive_root.test.cpp
+  - test/2_library_checker/math/sqrt_mod.test.cpp
+  - test/2_library_checker/math/kth_root_mod.test.cpp
+  - test/2_library_checker/math/gaussian_integers.test.cpp
+  - test/2_library_checker/math/binomial_coefficient.test.cpp
+  - test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
+  - test/2_library_checker/math/tetration.test.cpp
+  - test/2_library_checker/matrix/det_mod.test.cpp
+  - test/2_library_checker/matrix/matrix_det.test.cpp
+  - test/1_mytest/count_bipartite.test.cpp
+  - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/blackbox_solve_linear.test.cpp
+  - test/1_mytest/31bit_modint.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/O1_inv.test.cpp
+  - test/1_mytest/geometric_sequence_sum.test.cpp
+  - test/1_mytest/three_square.test.cpp
 documentation_of: mod/barrett.hpp
 layout: document
 redirect_from:

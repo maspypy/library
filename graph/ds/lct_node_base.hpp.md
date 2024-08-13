@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc350_g.test.cpp
-    title: test_atcoder/abc350_g.test.cpp
+    path: test/5_atcoder/abc350_g.test.cpp
+    title: test/5_atcoder/abc350_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -46,7 +46,7 @@ data:
   timestamp: '2023-12-23 13:05:50+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc350_g.test.cpp
+  - test/5_atcoder/abc350_g.test.cpp
 documentation_of: graph/ds/lct_node_base.hpp
 layout: document
 redirect_from:

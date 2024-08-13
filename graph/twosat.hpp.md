@@ -4,14 +4,14 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/twosat.test.cpp
-    title: test/library_checker/math/twosat.test.cpp
+    path: test/2_library_checker/math/twosat.test.cpp
+    title: test/2_library_checker/math/twosat.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -146,7 +146,7 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/twosat.test.cpp
+  - test/2_library_checker/math/twosat.test.cpp
 documentation_of: graph/twosat.hpp
 layout: document
 redirect_from:

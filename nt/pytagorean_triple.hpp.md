@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/pytagorean_triples.test.cpp
-    title: test/mytest/pytagorean_triples.test.cpp
+    path: test/1_mytest/pytagorean_triples.test.cpp
+    title: test/1_mytest/pytagorean_triples.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -46,7 +46,7 @@ data:
   timestamp: '2023-11-03 16:49:01+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/pytagorean_triples.test.cpp
+  - test/1_mytest/pytagorean_triples.test.cpp
 documentation_of: nt/pytagorean_triple.hpp
 layout: document
 redirect_from:

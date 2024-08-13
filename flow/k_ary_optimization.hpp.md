@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/arc107.test.cpp
-    title: test_atcoder/arc107.test.cpp
+    path: test/5_atcoder/arc107.test.cpp
+    title: test/5_atcoder/arc107.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -178,7 +178,7 @@ data:
   timestamp: '2024-04-19 22:50:36+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/arc107.test.cpp
+  - test/5_atcoder/arc107.test.cpp
 documentation_of: flow/k_ary_optimization.hpp
 layout: document
 redirect_from:

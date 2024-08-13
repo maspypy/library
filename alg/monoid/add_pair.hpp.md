@@ -9,39 +9,39 @@ data:
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/cf702_F.test.cpp
+    title: test/1_mytest/cf702_F.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/cf702_F_splay.test.cpp
+    title: test/1_mytest/cf702_F_splay.test.cpp
   - icon: ':x:'
-    path: test/mytest/cf702_F.test.cpp
-    title: test/mytest/cf702_F.test.cpp
+    path: test/1_mytest/mo_on_tree.test.cpp
+    title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':x:'
-    path: test/mytest/cf702_F_splay.test.cpp
-    title: test/mytest/cf702_F_splay.test.cpp
+    path: test/3_yukicoder/1919.test.cpp
+    title: test/3_yukicoder/1919.test.cpp
   - icon: ':x:'
-    path: test/mytest/mo_on_tree.test.cpp
-    title: test/mytest/mo_on_tree.test.cpp
+    path: test/3_yukicoder/1919_2.test.cpp
+    title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1919.test.cpp
-    title: test/yukicoder/1919.test.cpp
+    path: test/3_yukicoder/235.test.cpp
+    title: test/3_yukicoder/235.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1919_2.test.cpp
-    title: test/yukicoder/1919_2.test.cpp
+    path: test/3_yukicoder/2491.test.cpp
+    title: test/3_yukicoder/2491.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/235.test.cpp
-    title: test/yukicoder/235.test.cpp
+    path: test/3_yukicoder/255.test.cpp
+    title: test/3_yukicoder/255.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2491.test.cpp
-    title: test/yukicoder/2491.test.cpp
+    path: test/3_yukicoder/2627.test.cpp
+    title: test/3_yukicoder/2627.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/255.test.cpp
-    title: test/yukicoder/255.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/2627.test.cpp
-    title: test/yukicoder/2627.test.cpp
-  - icon: ':x:'
-    path: test/yukicoder/749.test.cpp
-    title: test/yukicoder/749.test.cpp
+    path: test/3_yukicoder/749.test.cpp
+    title: test/3_yukicoder/749.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate <typename E>\r\n\
@@ -63,18 +63,18 @@ data:
   - alg/acted_monoid/cntsum_add.hpp
   - alg/acted_monoid/cntsum_affine.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/2627.test.cpp
-  - test/yukicoder/1919.test.cpp
-  - test/yukicoder/235.test.cpp
-  - test/yukicoder/749.test.cpp
-  - test/yukicoder/255.test.cpp
-  - test/yukicoder/2491.test.cpp
-  - test/yukicoder/1919_2.test.cpp
-  - test/mytest/mo_on_tree.test.cpp
-  - test/mytest/cf702_F.test.cpp
-  - test/mytest/cf702_F_splay.test.cpp
+  - test/3_yukicoder/2627.test.cpp
+  - test/3_yukicoder/1919.test.cpp
+  - test/3_yukicoder/235.test.cpp
+  - test/3_yukicoder/749.test.cpp
+  - test/3_yukicoder/255.test.cpp
+  - test/3_yukicoder/2491.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/cf702_F.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

@@ -24,63 +24,63 @@ data:
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-    title: test/library_checker/datastructure/queue_operate_all_composite.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/factorial.test.cpp
-    title: test/library_checker/math/factorial.test.cpp
+    path: test/1_mytest/factorial_998.test.cpp
+    title: test/1_mytest/factorial_998.test.cpp
   - icon: ':x:'
-    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    path: test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
+    title: test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
   - icon: ':x:'
-    path: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-    title: test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    path: test/2_library_checker/math/factorial.test.cpp
+    title: test/2_library_checker/math/factorial.test.cpp
   - icon: ':x:'
-    path: test/mytest/factorial_998.test.cpp
-    title: test/mytest/factorial_998.test.cpp
+    path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1036_3.test.cpp
-    title: test/yukicoder/1036_3.test.cpp
+    path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+    title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1080_2.test.cpp
-    title: test/yukicoder/1080_2.test.cpp
+    path: test/3_yukicoder/1036_3.test.cpp
+    title: test/3_yukicoder/1036_3.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1117.test.cpp
-    title: test/yukicoder/1117.test.cpp
+    path: test/3_yukicoder/1080_2.test.cpp
+    title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1435_2.test.cpp
-    title: test/yukicoder/1435_2.test.cpp
+    path: test/3_yukicoder/1117.test.cpp
+    title: test/3_yukicoder/1117.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2026.test.cpp
-    title: test/yukicoder/2026.test.cpp
+    path: test/3_yukicoder/1435_2.test.cpp
+    title: test/3_yukicoder/1435_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2166.test.cpp
-    title: test/yukicoder/2166.test.cpp
+    path: test/3_yukicoder/2026.test.cpp
+    title: test/3_yukicoder/2026.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2747.test.cpp
-    title: test/yukicoder/2747.test.cpp
+    path: test/3_yukicoder/2166.test.cpp
+    title: test/3_yukicoder/2166.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/502_2.test.cpp
-    title: test/yukicoder/502_2.test.cpp
+    path: test/3_yukicoder/2747.test.cpp
+    title: test/3_yukicoder/2747.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222h_2.test.cpp
-    title: test_atcoder/abc222h_2.test.cpp
+    path: test/3_yukicoder/502_2.test.cpp
+    title: test/3_yukicoder/502_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc276_g.test.cpp
-    title: test_atcoder/abc276_g.test.cpp
+    path: test/5_atcoder/abc222h_2.test.cpp
+    title: test/5_atcoder/abc222h_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc276_g_2.test.cpp
-    title: test_atcoder/abc276_g_2.test.cpp
+    path: test/5_atcoder/abc276_g.test.cpp
+    title: test/5_atcoder/abc276_g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc144d.test.cpp
-    title: test_atcoder/arc144d.test.cpp
+    path: test/5_atcoder/abc276_g_2.test.cpp
+    title: test/5_atcoder/abc276_g_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc160d.test.cpp
-    title: test_atcoder/arc160d.test.cpp
+    path: test/5_atcoder/arc144d.test.cpp
+    title: test/5_atcoder/arc144d.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/arc160d.test.cpp
+    title: test/5_atcoder/arc160d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
@@ -157,26 +157,26 @@ data:
   - poly/lagrange_interpolate_iota.hpp
   - poly/sum_of_C_negative.hpp
   timestamp: '2024-07-23 21:27:24+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/502_2.test.cpp
-  - test/yukicoder/1080_2.test.cpp
-  - test/yukicoder/2166.test.cpp
-  - test/yukicoder/1435_2.test.cpp
-  - test/yukicoder/2747.test.cpp
-  - test/yukicoder/1117.test.cpp
-  - test/yukicoder/1036_3.test.cpp
-  - test/yukicoder/2026.test.cpp
-  - test/mytest/factorial_998.test.cpp
-  - test/library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/library_checker/math/factorial.test.cpp
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test_atcoder/arc144d.test.cpp
-  - test_atcoder/abc222h_2.test.cpp
-  - test_atcoder/abc276_g.test.cpp
-  - test_atcoder/arc160d.test.cpp
-  - test_atcoder/abc276_g_2.test.cpp
+  - test/5_atcoder/arc144d.test.cpp
+  - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/arc160d.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1435_2.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/1117.test.cpp
+  - test/3_yukicoder/1036_3.test.cpp
+  - test/3_yukicoder/2026.test.cpp
+  - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/2_library_checker/math/factorial.test.cpp
+  - test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document
 redirect_from:

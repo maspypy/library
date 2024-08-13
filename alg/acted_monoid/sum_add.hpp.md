@@ -6,33 +6,33 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/ARC30D.test.cpp
+    title: test/1_mytest/ARC30D.test.cpp
   - icon: ':x:'
-    path: test/aoj/GRL_5_E.test.cpp
-    title: test/aoj/GRL_5_E.test.cpp
+    path: test/1_mytest/fenwick_raq.test.cpp
+    title: test/1_mytest/fenwick_raq.test.cpp
   - icon: ':x:'
-    path: test/mytest/ARC30D.test.cpp
-    title: test/mytest/ARC30D.test.cpp
+    path: test/1_mytest/rbst_am_2.test.cpp
+    title: test/1_mytest/rbst_am_2.test.cpp
   - icon: ':x:'
-    path: test/mytest/fenwick_raq.test.cpp
-    title: test/mytest/fenwick_raq.test.cpp
+    path: test/1_mytest/splay_am.test.cpp
+    title: test/1_mytest/splay_am.test.cpp
   - icon: ':x:'
-    path: test/mytest/rbst_am_2.test.cpp
-    title: test/mytest/rbst_am_2.test.cpp
+    path: test/3_yukicoder/1197.test.cpp
+    title: test/3_yukicoder/1197.test.cpp
   - icon: ':x:'
-    path: test/mytest/splay_am.test.cpp
-    title: test/mytest/splay_am.test.cpp
+    path: test/3_yukicoder/789_2.test.cpp
+    title: test/3_yukicoder/789_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1197.test.cpp
-    title: test/yukicoder/1197.test.cpp
+    path: test/4_aoj/GRL_5_E.test.cpp
+    title: test/4_aoj/GRL_5_E.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/789_2.test.cpp
-    title: test/yukicoder/789_2.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc234g.test.cpp
-    title: test_atcoder/abc234g.test.cpp
+    path: test/5_atcoder/abc234g.test.cpp
+    title: test/5_atcoder/abc234g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -57,16 +57,16 @@ data:
   path: alg/acted_monoid/sum_add.hpp
   requiredBy: []
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/yukicoder/789_2.test.cpp
-  - test/yukicoder/1197.test.cpp
-  - test/mytest/splay_am.test.cpp
-  - test/mytest/rbst_am_2.test.cpp
-  - test/mytest/ARC30D.test.cpp
-  - test/mytest/fenwick_raq.test.cpp
-  - test/aoj/GRL_5_E.test.cpp
-  - test_atcoder/abc234g.test.cpp
+  - test/5_atcoder/abc234g.test.cpp
+  - test/3_yukicoder/789_2.test.cpp
+  - test/3_yukicoder/1197.test.cpp
+  - test/1_mytest/splay_am.test.cpp
+  - test/1_mytest/rbst_am_2.test.cpp
+  - test/1_mytest/ARC30D.test.cpp
+  - test/1_mytest/fenwick_raq.test.cpp
+  - test/4_aoj/GRL_5_E.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp
 layout: document
 redirect_from:

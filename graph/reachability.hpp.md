@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/0275.test.cpp
-    title: test/aoj/0275.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/4_aoj/0275.test.cpp
+    title: test/4_aoj/0275.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -142,9 +142,9 @@ data:
   path: graph/reachability.hpp
   requiredBy: []
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/0275.test.cpp
+  - test/4_aoj/0275.test.cpp
 documentation_of: graph/reachability.hpp
 layout: document
 redirect_from:

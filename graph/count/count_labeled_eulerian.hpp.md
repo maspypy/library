@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/count_labeled_undirected.hpp
     title: graph/count/count_labeled_undirected.hpp
   - icon: ':question:'
@@ -34,7 +34,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':question:'
@@ -42,12 +42,12 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/mytest/count_labeled_eulerian.test.cpp
-    title: test/mytest/count_labeled_eulerian.test.cpp
-  _isVerificationFailed: true
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_labeled_eulerian.test.cpp
+    title: test/1_mytest/count_labeled_eulerian.test.cpp
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://oeis.org/A033678
@@ -408,9 +408,9 @@ data:
   path: graph/count/count_labeled_eulerian.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/mytest/count_labeled_eulerian.test.cpp
+  - test/1_mytest/count_labeled_eulerian.test.cpp
 documentation_of: graph/count/count_labeled_eulerian.hpp
 layout: document
 redirect_from:

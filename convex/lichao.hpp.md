@@ -3,21 +3,21 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
-    title: test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
-    title: test/library_checker/datastructure/segment_add_get_min_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1867.test.cpp
-    title: test/yukicoder/1867.test.cpp
+    path: test/2_library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
+    title: test/2_library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/705_2.test.cpp
-    title: test/yukicoder/705_2.test.cpp
+    path: test/2_library_checker/datastructure/segment_add_get_min_2.test.cpp
+    title: test/2_library_checker/datastructure/segment_add_get_min_2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1867.test.cpp
+    title: test/3_yukicoder/1867.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/705_2.test.cpp
+    title: test/3_yukicoder/705_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/lichao.hpp\"\n/*\nstruct F {\n  using value_type\
@@ -102,12 +102,12 @@ data:
   path: convex/lichao.hpp
   requiredBy: []
   timestamp: '2024-01-14 14:14:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/705_2.test.cpp
-  - test/yukicoder/1867.test.cpp
-  - test/library_checker/datastructure/segment_add_get_min_2.test.cpp
-  - test/library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
+  - test/3_yukicoder/705_2.test.cpp
+  - test/3_yukicoder/1867.test.cpp
+  - test/2_library_checker/datastructure/segment_add_get_min_2.test.cpp
+  - test/2_library_checker/datastructure/line_add_get_min_lichao_2.test.cpp
 documentation_of: convex/lichao.hpp
 layout: document
 redirect_from:

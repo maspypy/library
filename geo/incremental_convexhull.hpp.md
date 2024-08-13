@@ -6,24 +6,24 @@ data:
     title: geo/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/convex_polygon_side.test.cpp
+    title: test/1_mytest/convex_polygon_side.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/convex_polygon_visible_range.test.cpp
+    title: test/1_mytest/convex_polygon_visible_range.test.cpp
   - icon: ':x:'
-    path: test/mytest/convex_polygon_side.test.cpp
-    title: test/mytest/convex_polygon_side.test.cpp
+    path: test/1_mytest/incremental_ch.test.cpp
+    title: test/1_mytest/incremental_ch.test.cpp
   - icon: ':x:'
-    path: test/mytest/convex_polygon_visible_range.test.cpp
-    title: test/mytest/convex_polygon_visible_range.test.cpp
+    path: test/1_mytest/max_dot.test.cpp
+    title: test/1_mytest/max_dot.test.cpp
   - icon: ':x:'
-    path: test/mytest/incremental_ch.test.cpp
-    title: test/mytest/incremental_ch.test.cpp
-  - icon: ':x:'
-    path: test/mytest/max_dot.test.cpp
-    title: test/mytest/max_dot.test.cpp
-  - icon: ':x:'
-    path: test_atcoder/abc266c.test.cpp
-    title: test_atcoder/abc266c.test.cpp
+    path: test/5_atcoder/abc266c.test.cpp
+    title: test/5_atcoder/abc266c.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -202,13 +202,13 @@ data:
   path: geo/incremental_convexhull.hpp
   requiredBy: []
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/mytest/convex_polygon_side.test.cpp
-  - test/mytest/convex_polygon_visible_range.test.cpp
-  - test/mytest/max_dot.test.cpp
-  - test/mytest/incremental_ch.test.cpp
-  - test_atcoder/abc266c.test.cpp
+  - test/5_atcoder/abc266c.test.cpp
+  - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/incremental_ch.test.cpp
 documentation_of: geo/incremental_convexhull.hpp
 layout: document
 redirect_from:

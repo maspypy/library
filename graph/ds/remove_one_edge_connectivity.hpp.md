@@ -7,8 +7,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/remove_one_edge.test.cpp
-    title: test/mytest/remove_one_edge.test.cpp
+    path: test/1_mytest/remove_one_edge.test.cpp
+    title: test/1_mytest/remove_one_edge.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -145,7 +145,7 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/remove_one_edge.test.cpp
+  - test/1_mytest/remove_one_edge.test.cpp
 documentation_of: graph/ds/remove_one_edge_connectivity.hpp
 layout: document
 redirect_from:

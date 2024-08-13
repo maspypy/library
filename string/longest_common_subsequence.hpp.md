@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/aoj/ALDS1_10_C.test.cpp
-    title: test/aoj/ALDS1_10_C.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/4_aoj/ALDS1_10_C.test.cpp
+    title: test/4_aoj/ALDS1_10_C.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/longest_common_subsequence.hpp\"\n\ntemplate <typename\
@@ -45,9 +45,9 @@ data:
   path: string/longest_common_subsequence.hpp
   requiredBy: []
   timestamp: '2022-10-21 16:42:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/ALDS1_10_C.test.cpp
+  - test/4_aoj/ALDS1_10_C.test.cpp
 documentation_of: string/longest_common_subsequence.hpp
 layout: document
 redirect_from:

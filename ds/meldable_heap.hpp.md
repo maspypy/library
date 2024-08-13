@@ -7,14 +7,14 @@ data:
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/K_shortest_walk.test.cpp
-    title: test/library_checker/graph/K_shortest_walk.test.cpp
+    path: test/2_library_checker/graph/K_shortest_walk.test.cpp
+    title: test/2_library_checker/graph/K_shortest_walk.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1154.test.cpp
-    title: test/yukicoder/1154.test.cpp
+    path: test/3_yukicoder/1154.test.cpp
+    title: test/3_yukicoder/1154.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1752.test.cpp
-    title: test/yukicoder/1752.test.cpp
+    path: test/3_yukicoder/1752.test.cpp
+    title: test/3_yukicoder/1752.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -71,9 +71,9 @@ data:
   timestamp: '2023-11-24 15:08:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1154.test.cpp
-  - test/yukicoder/1752.test.cpp
-  - test/library_checker/graph/K_shortest_walk.test.cpp
+  - test/3_yukicoder/1154.test.cpp
+  - test/3_yukicoder/1752.test.cpp
+  - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: ds/meldable_heap.hpp
 layout: document
 redirect_from:

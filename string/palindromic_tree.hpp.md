@@ -7,17 +7,17 @@ data:
     title: string/palindrome_decomposition_dp.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/palindrome_decomposition_dp.test.cpp
-    title: test/mytest/palindrome_decomposition_dp.test.cpp
+    path: test/1_mytest/palindrome_decomposition_dp.test.cpp
+    title: test/1_mytest/palindrome_decomposition_dp.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2606.test.cpp
-    title: test/yukicoder/2606.test.cpp
+    path: test/3_yukicoder/2606.test.cpp
+    title: test/3_yukicoder/2606.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/263.test.cpp
-    title: test/yukicoder/263.test.cpp
+    path: test/3_yukicoder/263.test.cpp
+    title: test/3_yukicoder/263.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/465.test.cpp
-    title: test/yukicoder/465.test.cpp
+    path: test/3_yukicoder/465.test.cpp
+    title: test/3_yukicoder/465.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -77,10 +77,10 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/263.test.cpp
-  - test/yukicoder/2606.test.cpp
-  - test/yukicoder/465.test.cpp
-  - test/mytest/palindrome_decomposition_dp.test.cpp
+  - test/3_yukicoder/263.test.cpp
+  - test/3_yukicoder/2606.test.cpp
+  - test/3_yukicoder/465.test.cpp
+  - test/1_mytest/palindrome_decomposition_dp.test.cpp
 documentation_of: string/palindromic_tree.hpp
 layout: document
 redirect_from:

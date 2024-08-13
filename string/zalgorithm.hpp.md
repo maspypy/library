@@ -13,32 +13,32 @@ data:
     title: string/run_enumerate.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/string/run_enumerate.test.cpp
-    title: test/library_checker/string/run_enumerate.test.cpp
+    path: test/1_mytest/is_substring.test.cpp
+    title: test/1_mytest/is_substring.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/run_enumerate_vec.test.cpp
-    title: test/library_checker/string/run_enumerate_vec.test.cpp
+    path: test/2_library_checker/string/run_enumerate.test.cpp
+    title: test/2_library_checker/string/run_enumerate.test.cpp
   - icon: ':x:'
-    path: test/library_checker/string/zalgorithm.test.cpp
-    title: test/library_checker/string/zalgorithm.test.cpp
+    path: test/2_library_checker/string/run_enumerate_vec.test.cpp
+    title: test/2_library_checker/string/run_enumerate_vec.test.cpp
   - icon: ':x:'
-    path: test/mytest/is_substring.test.cpp
-    title: test/mytest/is_substring.test.cpp
+    path: test/2_library_checker/string/zalgorithm.test.cpp
+    title: test/2_library_checker/string/zalgorithm.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1848.test.cpp
-    title: test/yukicoder/1848.test.cpp
+    path: test/3_yukicoder/1848.test.cpp
+    title: test/3_yukicoder/1848.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2626_2.test.cpp
-    title: test/yukicoder/2626_2.test.cpp
+    path: test/3_yukicoder/2626_2.test.cpp
+    title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc237ex.test.cpp
-    title: test_atcoder/abc237ex.test.cpp
+    path: test/5_atcoder/abc237ex.test.cpp
+    title: test/5_atcoder/abc237ex.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc279b.test.cpp
-    title: test_atcoder/abc279b.test.cpp
+    path: test/5_atcoder/abc279b.test.cpp
+    title: test/5_atcoder/abc279b.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc354g.test.cpp
-    title: test_atcoder/abc354g.test.cpp
+    path: test/5_atcoder/abc354g.test.cpp
+    title: test/5_atcoder/abc354g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -67,15 +67,15 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2626_2.test.cpp
-  - test/yukicoder/1848.test.cpp
-  - test/mytest/is_substring.test.cpp
-  - test/library_checker/string/run_enumerate.test.cpp
-  - test/library_checker/string/run_enumerate_vec.test.cpp
-  - test/library_checker/string/zalgorithm.test.cpp
-  - test_atcoder/abc354g.test.cpp
-  - test_atcoder/abc279b.test.cpp
-  - test_atcoder/abc237ex.test.cpp
+  - test/5_atcoder/abc354g.test.cpp
+  - test/5_atcoder/abc279b.test.cpp
+  - test/5_atcoder/abc237ex.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
+  - test/3_yukicoder/1848.test.cpp
+  - test/2_library_checker/string/run_enumerate.test.cpp
+  - test/2_library_checker/string/run_enumerate_vec.test.cpp
+  - test/2_library_checker/string/zalgorithm.test.cpp
+  - test/1_mytest/is_substring.test.cpp
 documentation_of: string/zalgorithm.hpp
 layout: document
 redirect_from:

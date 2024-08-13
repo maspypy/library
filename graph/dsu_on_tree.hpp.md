@@ -10,11 +10,11 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/aoj/2995.test.cpp
-    title: test/aoj/2995.test.cpp
+    path: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':x:'
-    path: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-    title: test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+    path: test/4_aoj/2995.test.cpp
+    title: test/4_aoj/2995.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -215,8 +215,8 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/aoj/2995.test.cpp
-  - test/library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
+  - test/4_aoj/2995.test.cpp
 documentation_of: graph/dsu_on_tree.hpp
 layout: document
 redirect_from:

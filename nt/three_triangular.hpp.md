@@ -28,8 +28,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/three_triangular.test.cpp
-    title: test/mytest/three_triangular.test.cpp
+    path: test/1_mytest/three_triangular.test.cpp
+    title: test/1_mytest/three_triangular.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -226,7 +226,7 @@ data:
   timestamp: '2024-05-24 21:01:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/three_triangular.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
 documentation_of: nt/three_triangular.hpp
 layout: document
 redirect_from:

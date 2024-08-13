@@ -16,14 +16,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test_atcoder/abc213g.test.cpp
-    title: test_atcoder/abc213g.test.cpp
+    path: test/5_atcoder/abc213g.test.cpp
+    title: test/5_atcoder/abc213g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc321g.test.cpp
-    title: test_atcoder/abc321g.test.cpp
+    path: test/5_atcoder/abc321g.test.cpp
+    title: test/5_atcoder/abc321g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/arc105.test.cpp
-    title: test_atcoder/arc105.test.cpp
+    path: test/5_atcoder/arc105.test.cpp
+    title: test/5_atcoder/arc105.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -171,9 +171,9 @@ data:
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test_atcoder/abc321g.test.cpp
-  - test_atcoder/arc105.test.cpp
-  - test_atcoder/abc213g.test.cpp
+  - test/5_atcoder/abc321g.test.cpp
+  - test/5_atcoder/arc105.test.cpp
+  - test/5_atcoder/abc213g.test.cpp
 documentation_of: setfunc/sps_log.hpp
 layout: document
 redirect_from:

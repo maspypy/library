@@ -4,14 +4,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/kth_root_integer.test.cpp
-    title: test/library_checker/math/kth_root_integer.test.cpp
+    path: test/2_library_checker/math/kth_root_integer.test.cpp
+    title: test/2_library_checker/math/kth_root_integer.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1260.test.cpp
-    title: test/yukicoder/1260.test.cpp
+    path: test/3_yukicoder/1260.test.cpp
+    title: test/3_yukicoder/1260.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1666.test.cpp
-    title: test/yukicoder/1666.test.cpp
+    path: test/3_yukicoder/1666.test.cpp
+    title: test/3_yukicoder/1666.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -42,9 +42,9 @@ data:
   timestamp: '2023-11-07 17:48:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1666.test.cpp
-  - test/yukicoder/1260.test.cpp
-  - test/library_checker/math/kth_root_integer.test.cpp
+  - test/3_yukicoder/1666.test.cpp
+  - test/3_yukicoder/1260.test.cpp
+  - test/2_library_checker/math/kth_root_integer.test.cpp
 documentation_of: nt/integer_kth_root.hpp
 layout: document
 redirect_from:

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/range_closest_pair.test.cpp
-    title: test/mytest/range_closest_pair.test.cpp
+    path: test/1_mytest/range_closest_pair.test.cpp
+    title: test/1_mytest/range_closest_pair.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -205,7 +205,7 @@ data:
   timestamp: '2024-05-14 16:33:21+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/range_closest_pair.test.cpp
+  - test/1_mytest/range_closest_pair.test.cpp
 documentation_of: geo/range_closest_pair_query.hpp
 layout: document
 redirect_from:

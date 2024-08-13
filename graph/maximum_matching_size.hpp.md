@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
@@ -13,17 +13,17 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/general_matching.test.cpp
-    title: test/library_checker/graph/general_matching.test.cpp
+    path: test/1_mytest/matching.test.cpp
+    title: test/1_mytest/matching.test.cpp
   - icon: ':x:'
-    path: test/mytest/matching.test.cpp
-    title: test/mytest/matching.test.cpp
+    path: test/1_mytest/matching_line_graph.test.cpp
+    title: test/1_mytest/matching_line_graph.test.cpp
   - icon: ':x:'
-    path: test/mytest/matching_line_graph.test.cpp
-    title: test/mytest/matching_line_graph.test.cpp
+    path: test/1_mytest/tutte.test.cpp
+    title: test/1_mytest/tutte.test.cpp
   - icon: ':x:'
-    path: test/mytest/tutte.test.cpp
-    title: test/mytest/tutte.test.cpp
+    path: test/2_library_checker/graph/general_matching.test.cpp
+    title: test/2_library_checker/graph/general_matching.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -93,10 +93,10 @@ data:
   timestamp: '2024-01-19 02:38:11+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/matching.test.cpp
-  - test/mytest/tutte.test.cpp
-  - test/mytest/matching_line_graph.test.cpp
-  - test/library_checker/graph/general_matching.test.cpp
+  - test/2_library_checker/graph/general_matching.test.cpp
+  - test/1_mytest/matching.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
 documentation_of: graph/maximum_matching_size.hpp
 layout: document
 redirect_from:

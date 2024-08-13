@@ -10,7 +10,7 @@ data:
   - icon: ':x:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':question:'
@@ -25,14 +25,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/graph/counting_eulerian_dense.test.cpp
-    title: test/library_checker/graph/counting_eulerian_dense.test.cpp
+    path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - icon: ':x:'
-    path: test/library_checker/graph/counting_eulerian_sparse.test.cpp
-    title: test/library_checker/graph/counting_eulerian_sparse.test.cpp
+    path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+    title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc336g.test.cpp
-    title: test_atcoder/abc336g.test.cpp
+    path: test/5_atcoder/abc336g.test.cpp
+    title: test/5_atcoder/abc336g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -233,9 +233,9 @@ data:
   timestamp: '2024-06-11 16:34:43+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/graph/counting_eulerian_dense.test.cpp
-  - test/library_checker/graph/counting_eulerian_sparse.test.cpp
-  - test_atcoder/abc336g.test.cpp
+  - test/5_atcoder/abc336g.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
 documentation_of: graph/count/BEST.hpp
 layout: document
 redirect_from:

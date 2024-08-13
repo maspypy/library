@@ -10,20 +10,20 @@ data:
     title: geo/manhattan_nns.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/manhattan_nns.test.cpp
-    title: test/mytest/manhattan_nns.test.cpp
+    path: test/1_mytest/manhattan_nns.test.cpp
+    title: test/1_mytest/manhattan_nns.test.cpp
   - icon: ':x:'
-    path: test/mytest/minidx_add.test.cpp
-    title: test/mytest/minidx_add.test.cpp
+    path: test/1_mytest/minidx_add.test.cpp
+    title: test/1_mytest/minidx_add.test.cpp
   - icon: ':x:'
-    path: test/mytest/suffix_tree.test.cpp
-    title: test/mytest/suffix_tree.test.cpp
+    path: test/1_mytest/suffix_tree.test.cpp
+    title: test/1_mytest/suffix_tree.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/2361.test.cpp
-    title: test/yukicoder/2361.test.cpp
+    path: test/3_yukicoder/2361.test.cpp
+    title: test/3_yukicoder/2361.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc301h.test.cpp
-    title: test_atcoder/abc301h.test.cpp
+    path: test/5_atcoder/abc301h.test.cpp
+    title: test/5_atcoder/abc301h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -53,11 +53,11 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/2361.test.cpp
-  - test/mytest/minidx_add.test.cpp
-  - test/mytest/suffix_tree.test.cpp
-  - test/mytest/manhattan_nns.test.cpp
-  - test_atcoder/abc301h.test.cpp
+  - test/5_atcoder/abc301h.test.cpp
+  - test/3_yukicoder/2361.test.cpp
+  - test/1_mytest/minidx_add.test.cpp
+  - test/1_mytest/suffix_tree.test.cpp
+  - test/1_mytest/manhattan_nns.test.cpp
 documentation_of: alg/monoid/min_idx.hpp
 layout: document
 redirect_from:

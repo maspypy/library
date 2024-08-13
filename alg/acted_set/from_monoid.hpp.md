@@ -10,17 +10,17 @@ data:
     title: nt/discrete_log.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/library_checker/math/discrete_logarithm_mod.test.cpp
+    path: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
   - icon: ':x:'
-    path: test/yukicoder/1339.test.cpp
-    title: test/yukicoder/1339.test.cpp
+    path: test/3_yukicoder/1339.test.cpp
+    title: test/3_yukicoder/1339.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc222g.test.cpp
-    title: test_atcoder/abc222g.test.cpp
+    path: test/5_atcoder/abc222g.test.cpp
+    title: test/5_atcoder/abc222g.test.cpp
   - icon: ':x:'
-    path: test_atcoder/abc270_g.test.cpp
-    title: test_atcoder/abc270_g.test.cpp
+    path: test/5_atcoder/abc270_g.test.cpp
+    title: test/5_atcoder/abc270_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -42,10 +42,10 @@ data:
   timestamp: '2022-11-28 21:09:42+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/yukicoder/1339.test.cpp
-  - test/library_checker/math/discrete_logarithm_mod.test.cpp
-  - test_atcoder/abc222g.test.cpp
-  - test_atcoder/abc270_g.test.cpp
+  - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc270_g.test.cpp
+  - test/3_yukicoder/1339.test.cpp
+  - test/2_library_checker/math/discrete_logarithm_mod.test.cpp
 documentation_of: alg/acted_set/from_monoid.hpp
 layout: document
 redirect_from:

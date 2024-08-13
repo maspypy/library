@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
   - icon: ':question:'
@@ -43,8 +43,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/library_checker/math/sum_of_exp_times_poly.test.cpp
+    path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -455,7 +455,7 @@ data:
   timestamp: '2024-07-23 21:27:24+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
 documentation_of: seq/interpolate_poly_exp_sum.hpp
 layout: document
 redirect_from:

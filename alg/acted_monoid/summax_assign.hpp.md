@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
   - icon: ':x:'
@@ -10,14 +10,14 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree.test.cpp
-    title: test/mytest/dynamic_lazy_segtree.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree.test.cpp
   - icon: ':x:'
-    path: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
-    title: test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+    path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+    title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':x:'
-    path: test/mytest/summax_assign.test.cpp
-    title: test/mytest/summax_assign.test.cpp
+    path: test/1_mytest/summax_assign.test.cpp
+    title: test/1_mytest/summax_assign.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -54,9 +54,9 @@ data:
   timestamp: '2023-10-14 20:28:40+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/mytest/dynamic_lazy_segtree.test.cpp
-  - test/mytest/summax_assign.test.cpp
-  - test/mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/summax_assign.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
 documentation_of: alg/acted_monoid/summax_assign.hpp
 layout: document
 redirect_from:
