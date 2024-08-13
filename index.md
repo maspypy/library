@@ -553,7 +553,7 @@ data:
       title: ds/wavelet_matrix/wavelet_matrix_old.hpp
   - name: enumerate
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -1207,7 +1207,7 @@ data:
       title: linalg/blackbox/vandermonde.hpp
   - name: linalg
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/characteristic_poly.hpp
       title: linalg/characteristic_poly.hpp
     - icon: ':question:'
@@ -1216,10 +1216,10 @@ data:
     - icon: ':x:'
       path: linalg/det_A_plus_xB.hpp
       title: linalg/det_A_plus_xB.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/hafnian.hpp
       title: linalg/hafnian.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: linalg/matrix_inv.hpp
       title: linalg/matrix_inv.hpp
     - icon: ':x:'
@@ -1237,7 +1237,7 @@ data:
     - icon: ':x:'
       path: linalg/rot90.hpp
       title: linalg/rot90.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: linalg/solve_linear.hpp
       title: linalg/solve_linear.hpp
     - icon: ':x:'
@@ -1563,7 +1563,7 @@ data:
     - icon: ':warning:'
       path: poly/composed_sum.hpp
       title: poly/composed_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/composition.hpp
       title: poly/composition.hpp
     - icon: ':heavy_check_mark:'
@@ -1587,7 +1587,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/composition_f_x_plus_1x.hpp
       title: poly/composition_f_x_plus_1x.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/compositional_inverse.hpp
       title: poly/compositional_inverse.hpp
     - icon: ':question:'
@@ -3168,48 +3168,48 @@ data:
       title: test/2_library_checker/matix/pow_of_matrix.test.cpp
   - name: test/2_library_checker/matrix
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/charactereistic_poly.test.cpp
       title: test/2_library_checker/matrix/charactereistic_poly.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/det_mod.test.cpp
       title: test/2_library_checker/matrix/det_mod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
       title: test/2_library_checker/matrix/hafnian_of_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/inverse_matrix.test.cpp
       title: test/2_library_checker/matrix/inverse_matrix.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/matrix_det.test.cpp
       title: test/2_library_checker/matrix/matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/matrix_product.test.cpp
       title: test/2_library_checker/matrix/matrix_product.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/matrix_product_mod2.test.cpp
       title: test/2_library_checker/matrix/matrix_product_mod2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/solve_linear.test.cpp
       title: test/2_library_checker/matrix/solve_linear.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/sparse_matrix_det.test.cpp
       title: test/2_library_checker/matrix/sparse_matrix_det.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/matrix/vector_space_intersection.test.cpp
       title: test/2_library_checker/matrix/vector_space_intersection.test.cpp
   - name: test/2_library_checker/polynomial
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/composition_dmint.test.cpp
       title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/composition_of_fps.test.cpp
       title: test/2_library_checker/polynomial/composition_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/compositional_inverse.test.cpp
       title: test/2_library_checker/polynomial/compositional_inverse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
       title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     - icon: ':x:'

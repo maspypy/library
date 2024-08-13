@@ -30,7 +30,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/matrix/matrix_product_mod2.test.cpp
     title: test/2_library_checker/matrix/matrix_product_mod2.test.cpp
   - icon: ':x:'

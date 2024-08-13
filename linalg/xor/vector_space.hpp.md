@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/QOJ5445.test.cpp
     title: test/1_mytest/QOJ5445.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/matrix/vector_space_intersection.test.cpp
     title: test/2_library_checker/matrix/vector_space_intersection.test.cpp
   - icon: ':x:'

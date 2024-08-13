@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/matrix/sparse_matrix_det.test.cpp
     title: test/2_library_checker/matrix/sparse_matrix_det.test.cpp
   - icon: ':x:'
