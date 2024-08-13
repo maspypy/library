@@ -51,34 +51,20 @@ void test() {
         AFF f = Mono::unit();
         auto init = [&]() -> void { f = dat[0]; };
         auto add_l = [&](int v) -> void { f = Mono::op(dat[v], f); };
-        auto rm_l
-            = [&](int v) -> void { f = Mono::op(Mono::inverse(dat[v]), f); };
+        auto rm_l = [&](int v) -> void { f = Mono::op(Mono::inverse(dat[v]), f); };
         auto add_r = [&](int v) -> void { f = Mono::op(f, dat[v]); };
-        auto rm_r
-            = [&](int v) -> void { f = Mono::op(f, Mono::inverse(dat[v])); };
-        auto ans = [&](int q) -> void {
-          assert(f == TM.prod_path(query[q].fi, query[q].se));
-        };
+        auto rm_r = [&](int v) -> void { f = Mono::op(f, Mono::inverse(dat[v])); };
+        auto ans = [&](int q) -> void { assert(f == TM.prod_path(query[q].fi, query[q].se)); };
         mo.calc_vertex(init, add_l, add_r, rm_l, rm_r, ans);
       } else {
         AFF f = Mono::unit();
-        auto get = [&](int a, int b) -> int {
-          return tree.v_to_e((tree.parent[a] == b ? a : b));
-        };
+        auto get = [&](int a, int b) -> int { return tree.v_to_e((tree.parent[a] == b ? a : b)); };
         auto init = [&]() -> void {};
-        auto add_l
-            = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)], f); };
-        auto rm_l = [&](int a, int b) -> void {
-          f = Mono::op(Mono::inverse(dat[get(a, b)]), f);
-        };
-        auto add_r
-            = [&](int a, int b) -> void { f = Mono::op(f, dat[get(a, b)]); };
-        auto rm_r = [&](int a, int b) -> void {
-          f = Mono::op(f, Mono::inverse(dat[get(a, b)]));
-        };
-        auto ans = [&](int q) -> void {
-          assert(f == TM.prod_path(query[q].fi, query[q].se));
-        };
+        auto add_l = [&](int a, int b) -> void { f = Mono::op(dat[get(a, b)], f); };
+        auto rm_l = [&](int a, int b) -> void { f = Mono::op(Mono::inverse(dat[get(a, b)]), f); };
+        auto add_r = [&](int a, int b) -> void { f = Mono::op(f, dat[get(a, b)]); };
+        auto rm_r = [&](int a, int b) -> void { f = Mono::op(f, Mono::inverse(dat[get(a, b)])); };
+        auto ans = [&](int q) -> void { assert(f == TM.prod_path(query[q].fi, query[q].se)); };
         mo.calc_edge(init, add_l, add_r, rm_l, rm_r, ans);
       }
     }
