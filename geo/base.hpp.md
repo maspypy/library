@@ -68,9 +68,6 @@ data:
   - icon: ':x:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
-  - icon: ':warning:'
-    path: test/2_library_checker/geometry/static_convex_hull.tset.cpp
-    title: test/2_library_checker/geometry/static_convex_hull.tset.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_side.test.cpp
@@ -108,6 +105,9 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/geometry/static_convex_hull.test.cpp
+    title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
@@ -321,7 +321,6 @@ data:
   - geo/outcircle.hpp
   - geo/reflection.hpp
   - geo/max_norm_sum.hpp
-  - test/2_library_checker/geometry/static_convex_hull.tset.cpp
   - graph/planar_graph.hpp
   - convex/fenchel.hpp
   timestamp: '2024-06-28 09:49:29+09:00'
@@ -342,6 +341,7 @@ data:
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/convex_layers.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp

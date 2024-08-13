@@ -3,9 +3,6 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: test/2_library_checker/geometry/static_convex_hull.tset.cpp
-    title: test/2_library_checker/geometry/static_convex_hull.tset.cpp
-  - icon: ':warning:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
   _extendedVerifiedWith:
@@ -24,13 +21,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_tournament.test.cpp
     title: test/1_mytest/count_labeled_tournament.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/palindrome_decomposition_dp.test.cpp
     title: test/1_mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod4.test.cpp
     title: test/1_mytest/primesum_mod4.test.cpp
   - icon: ':x:'
@@ -339,6 +336,9 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/geometry/static_convex_hull.test.cpp
+    title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
@@ -2408,7 +2408,6 @@ data:
   path: other/io.hpp
   requiredBy:
   - test/2_library_checker/graph/count_spanning_tree_directed_sparse_test.cpp
-  - test/2_library_checker/geometry/static_convex_hull.tset.cpp
   timestamp: '2024-08-07 19:12:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
@@ -3056,6 +3055,7 @@ data:
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/convex_layers.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   - test/2_library_checker/matrix/sparse_matrix_det.test.cpp

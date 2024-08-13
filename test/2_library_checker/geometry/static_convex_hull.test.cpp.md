@@ -15,13 +15,15 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/static_convex_hull
     links:
     - https://judge.yosupo.jp/problem/static_convex_hull
-  bundledCode: "#line 1 \"test/2_library_checker/geometry/static_convex_hull.tset.cpp\"\
+  bundledCode: "#line 1 \"test/2_library_checker/geometry/static_convex_hull.test.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n#line\
     \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
@@ -199,7 +201,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/geometry/static_convex_hull.tset.cpp\"\
+    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/geometry/static_convex_hull.test.cpp\"\
     \n\n#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
     \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
     \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
@@ -282,7 +284,7 @@ data:
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
     \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
     \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
-    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 6 \"test/2_library_checker/geometry/static_convex_hull.tset.cpp\"\
+    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 6 \"test/2_library_checker/geometry/static_convex_hull.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(pi, point, N);\n  vc<int> I = ConvexHull(point);\n\
     \  print(len(I));\n  for (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n\
     \  INT(T);\n  FOR(T) solve();\n}\n"
@@ -290,22 +292,22 @@ data:
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_hull.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(pi, point, N);\n  vc<int> I = ConvexHull(point);\n\
     \  print(len(I));\n  for (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n\
-    \  INT(T);\n  FOR(T) solve();\n}"
+    \  INT(T);\n  FOR(T) solve();\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - geo/convex_hull.hpp
   - geo/base.hpp
-  isVerificationFile: false
-  path: test/2_library_checker/geometry/static_convex_hull.tset.cpp
+  isVerificationFile: true
+  path: test/2_library_checker/geometry/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-08-14 00:13:09+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/2_library_checker/geometry/static_convex_hull.tset.cpp
+documentation_of: test/2_library_checker/geometry/static_convex_hull.test.cpp
 layout: document
 redirect_from:
-- /library/test/2_library_checker/geometry/static_convex_hull.tset.cpp
-- /library/test/2_library_checker/geometry/static_convex_hull.tset.cpp.html
-title: test/2_library_checker/geometry/static_convex_hull.tset.cpp
+- /verify/test/2_library_checker/geometry/static_convex_hull.test.cpp
+- /verify/test/2_library_checker/geometry/static_convex_hull.test.cpp.html
+title: test/2_library_checker/geometry/static_convex_hull.test.cpp
 ---
