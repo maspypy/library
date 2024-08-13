@@ -5,14 +5,14 @@ data:
   - icon: ':warning:'
     path: seq/interpolate_periodic_sequence.hpp
     title: seq/interpolate_periodic_sequence.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
   - icon: ':x:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
   - icon: ':x:'
@@ -41,7 +41,7 @@ data:
     title: test/5_atcoder/abc354g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  //\
@@ -65,7 +65,7 @@ data:
   - string/is_substring.hpp
   - seq/interpolate_periodic_sequence.hpp
   timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc354g.test.cpp
   - test/5_atcoder/abc279b.test.cpp
