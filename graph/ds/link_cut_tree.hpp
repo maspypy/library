@@ -47,13 +47,7 @@ struct Link_Cut_Tree {
 
   void cut(Node *a, Node *b) {
     evert(a);
-    SHOW("after ev");
-    debug();
-    flush();
     expose(b);
-    SHOW("after expose");
-    debug();
-    flush();
     assert(!b->p);
     assert((b->l) == a);
     // heavy edge -> no edge
@@ -147,9 +141,10 @@ struct Link_Cut_Tree {
 
   Node *get_parent(Node *x) {
     expose(x);
+    x->push();
     if (!x->l) return nullptr;
-    x = x->l;
-    while (x->r) x = x->r;
+    x = x->l, x->push();
+    while (x->r) x = x->r, x->push();
     return x;
   }
 
