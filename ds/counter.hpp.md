@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -79,66 +79,67 @@ data:
     \ FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
     \   }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R,\
     \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
-    \ (L < R && (L & 63)) {\n      if (!p[a++]) (*this)[L++] = 0;\n    }\n    while\
-    \ (L < R && (R & 63)) {\n      if (!p[--b]) (*this)[--R] = 0;\n    }\n    // p[a:b]\
-    \ \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t\
-    \ = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l +\
-    \ i] &= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64\
-    \ - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i] >> hi) | (p.dat[1 + s + i]\
-    \ << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 or\n  void or_to_range(int\
-    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
-    \    while (L < R && (L & 63)) {\n      dat[L >> 6] |= u64(p[a]) << (L & 63);\n\
-    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
-    \    dat[R >> 6] |= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
-    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
-    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
-    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
-    \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
-    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
-    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
-    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
-    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
-    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
-    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
-    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
-    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\
-    \u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i)\
-    \ { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n  void set()\
-    \ {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat),\
-    \ 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i];\
-    \ }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size())\
-    \ break;\n      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat))\
-    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
-    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static\
-    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
-    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
-    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
-    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"ds/counter.hpp\"\n\n// mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\u3067\
-    \u4F7F\u3048\u308B\n// most_freq_key\uFF1AO(sqrt(N)+KEY_MAX/w)\n// \u305D\u308C\
-    \u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\nstruct Counter {\n \
-    \ int N;\n  int thresh;\n  int ma;\n  vc<int> freq;\n  vc<int> freq_cnt;\n  vc<My_Bitset>\
-    \ freq_to_key;\n\n  // key \u304C [0, N), \u8981\u7D20\u6570\u304C\u5E38\u306B\
-    \ [0, N]\n  Counter(int N) : N(N) {\n    thresh = sqrtl(N);\n    ma = 0;\n   \
-    \ freq.assign(N, 0);\n    freq_cnt.assign(N + 1, 0);\n    freq_cnt[0] = N;\n \
-    \   if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key.assign(thresh + 1, My_Bitset(N));\n\
-    \    }\n  }\n\n  void insert(int k) {\n    assert(0 <= k && k < N);\n    if (ma\
-    \ == freq[k]) ++ma;\n    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh,\
-    \ freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--, freq[k]++, freq_cnt[freq[k]]++;\n\
-    \    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh, freq[k])][k]\
-    \ = 1;\n    }\n  }\n  void add(int k) { insert(k); }\n\n  void erase(int k) {\n\
-    \    assert(0 <= k && k < N);\n    if (ma == freq[k] && freq_cnt[freq[k]] == 1)\
-    \ --ma;\n    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh,\
-    \ freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--, freq[k]--, freq_cnt[freq[k]]++;\n\
-    \    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key[min(thresh, freq[k])][k]\
-    \ = 1;\n    }\n  }\n  void remove(int k) { erase(k); }\n\n  int operator[](int\
-    \ x) { return freq[x]; }\n\n  int max_freq() { return ma; }\n  int max_freq_key()\
-    \ {\n    static_assert(USE_MAX_FREQ_KEY);\n    if (ma < thresh) return freq_to_key[mx]._Find_first();\n\
-    \    My_Bitset& b = freq_to_key[thresh];\n    int p = b._Find_first();\n    while\
-    \ (1) {\n      if (freq[p] == mx) return p;\n      p = b._Find_next(p);\n    }\n\
-    \    assert(0);\n    return -1;\n  }\n};\n"
+    \ (L < R && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++, L++;\n \
+    \   }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b]) (*this)[R]\
+    \ = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >>\
+    \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
+    \ {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n      int hi =\
+    \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i]\
+    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
+    \ or\n  void or_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R -\
+    \ L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      dat[L >>\
+    \ 6] |= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L < R && (R\
+    \ & 63)) {\n      --b, --R;\n      dat[R >> 6] |= u64(p[b]) << (R & 63);\n   \
+    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
+    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
+    \ n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n     \
+    \ int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1\
+    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void\
+    \ set_range(int L, int R) {\n    while (L < R && (L & 63)) { set(L++); }\n   \
+    \ while (L < R && (R & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] =\
+    \ u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int\
+    \ L, int R) {\n    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R\
+    \ && (R & 63)) { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n\
+    \  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int R) {\n    while (L\
+    \ < R && (L & 63)) { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R);\
+    \ }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\
+    \u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n\
+    \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
+    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
+    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
+    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
+    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
+    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
+    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
+    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
+    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
+    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
+    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"ds/counter.hpp\"\n\n\
+    // mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\u3067\u4F7F\u3048\u308B\n// most_freq_key\uFF1A\
+    O(sqrt(N)+KEY_MAX/w)\n// \u305D\u308C\u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\n\
+    struct Counter {\n  int N;\n  int thresh;\n  int ma;\n  vc<int> freq;\n  vc<int>\
+    \ freq_cnt;\n  vc<My_Bitset> freq_to_key;\n\n  // key \u304C [0, N), \u8981\u7D20\
+    \u6570\u304C\u5E38\u306B [0, N]\n  Counter(int N) : N(N) {\n    thresh = sqrtl(N);\n\
+    \    ma = 0;\n    freq.assign(N, 0);\n    freq_cnt.assign(N + 1, 0);\n    freq_cnt[0]\
+    \ = N;\n    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key.assign(thresh\
+    \ + 1, My_Bitset(N));\n    }\n  }\n\n  void insert(int k) {\n    assert(0 <= k\
+    \ && k < N);\n    if (ma == freq[k]) ++ma;\n    if constexpr (USE_MAX_FREQ_KEY)\
+    \ {\n      freq_to_key[min(thresh, freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--,\
+    \ freq[k]++, freq_cnt[freq[k]]++;\n    if constexpr (USE_MAX_FREQ_KEY) {\n   \
+    \   freq_to_key[min(thresh, freq[k])][k] = 1;\n    }\n  }\n  void add(int k) {\
+    \ insert(k); }\n\n  void erase(int k) {\n    assert(0 <= k && k < N);\n    if\
+    \ (ma == freq[k] && freq_cnt[freq[k]] == 1) --ma;\n    if constexpr (USE_MAX_FREQ_KEY)\
+    \ {\n      freq_to_key[min(thresh, freq[k])][k] = 0;\n    }\n    freq_cnt[freq[k]]--,\
+    \ freq[k]--, freq_cnt[freq[k]]++;\n    if constexpr (USE_MAX_FREQ_KEY) {\n   \
+    \   freq_to_key[min(thresh, freq[k])][k] = 1;\n    }\n  }\n  void remove(int k)\
+    \ { erase(k); }\n\n  int operator[](int x) { return freq[x]; }\n\n  int max_freq()\
+    \ { return ma; }\n  int max_freq_key() {\n    static_assert(USE_MAX_FREQ_KEY);\n\
+    \    if (ma < thresh) return freq_to_key[mx]._Find_first();\n    My_Bitset& b\
+    \ = freq_to_key[thresh];\n    int p = b._Find_first();\n    while (1) {\n    \
+    \  if (freq[p] == mx) return p;\n      p = b._Find_next(p);\n    }\n    assert(0);\n\
+    \    return -1;\n  }\n};\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\
     \u3067\u4F7F\u3048\u308B\n// most_freq_key\uFF1AO(sqrt(N)+KEY_MAX/w)\n// \u305D\
     \u308C\u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\nstruct Counter\
@@ -168,7 +169,7 @@ data:
   isVerificationFile: false
   path: ds/counter.hpp
   requiredBy: []
-  timestamp: '2024-02-23 19:58:02+09:00'
+  timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/counter.hpp

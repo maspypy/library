@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/furthest_pair.test.cpp
     title: test/library_checker/geometry/furthest_pair.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -79,36 +79,40 @@ data:
     \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
     \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
     \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\n\ntemplate\
-    \ <typename T>\nvector<int> ConvexHull(vector<Point<T>>& XY, string mode = \"\
-    full\",\n                       bool sorted = false) {\n  assert(mode == \"full\"\
+    #line 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true\
+    \ \u3067\u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\
+    \u308B\n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\n\
+    template <typename T, bool allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>&\
+    \ XY, string mode = \"full\", bool sorted = false) {\n  assert(mode == \"full\"\
     \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
     \ 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n   \
     \ if (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n  vc<int> I(N);\n \
     \ if (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n \
-    \ }\n\n  auto check = [&](ll i, ll j, ll k) -> bool {\n    return (XY[j] - XY[i]).det(XY[k]\
-    \ - XY[i]) > 0;\n  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&&\
-    \ k: I) {\n      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n \
-    \       auto j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n      \
-    \  P.pop_back();\n      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int>\
-    \ P;\n  if (mode == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n\
-    \    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\"\
-    ) {\n    if (!P.empty()) P.pop_back();\n    reverse(all(I));\n    vc<int> Q =\
-    \ calc();\n    P.insert(P.end(), all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n\
-    \  while (len(P) >= 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n\
-    }\n#line 3 \"geo/furthest_pair.hpp\"\n\ntemplate <typename T>\npair<int, int>\
-    \ furthest_pair(vc<Point<T>> point) {\n  T best = -1;\n  pair<int, int> ANS =\
-    \ {-1, -1};\n\n  auto upd = [&](int i, int j) -> void {\n    Point<T> p = point[i]\
-    \ - point[j];\n    ll d = p.dot(p);\n    if (chmax(best, d)) ANS = {i, j};\n \
-    \ };\n  upd(0, 1);\n\n  auto I = ConvexHull(point);\n  int n = len(I);\n  if (n\
-    \ == 1) return ANS;\n  if (n == 2) { return {I[0], I[1]}; }\n  /*\n  \u76F4\u5F84\
-    \u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\u51F8\u5305\u3092\u306F\
-    \u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\u306F\u3055\u3093\u3067\
-    \u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\n  p[i]p[i+1] \u306E\
-    \u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\u3088\u3044\n  */\n\
-    \  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point, I);\n  int j =\
-    \ 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n && (C[i + 1] - C[i]).det(C[j\
-    \ + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n  return ANS;\n}\n"
+    \ }\n  if constexpr (allow_180) { FOR(i, N - 1) assert(XY[i] != XY[i + 1]); }\n\
+    \n  auto check = [&](ll i, ll j, ll k) -> bool {\n    ll det = (XY[j] - XY[i]).det(XY[k]\
+    \ - XY[i]);\n    if constexpr (allow_180) return det >= 0;\n    return det > 0;\n\
+    \  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n\
+    \      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n        auto\
+    \ j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n\
+    \      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode\
+    \ == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
+    \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
+    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"geo/furthest_pair.hpp\"\
+    \n\ntemplate <typename T>\npair<int, int> furthest_pair(vc<Point<T>> point) {\n\
+    \  T best = -1;\n  pair<int, int> ANS = {-1, -1};\n\n  auto upd = [&](int i, int\
+    \ j) -> void {\n    Point<T> p = point[i] - point[j];\n    ll d = p.dot(p);\n\
+    \    if (chmax(best, d)) ANS = {i, j};\n  };\n  upd(0, 1);\n\n  auto I = ConvexHull(point);\n\
+    \  int n = len(I);\n  if (n == 1) return ANS;\n  if (n == 2) { return {I[0], I[1]};\
+    \ }\n  /*\n  \u76F4\u5F84\u3068\u5782\u76F4\u306A\u5E73\u884C\u7DDA 2 \u672C\u3067\
+    \u51F8\u5305\u3092\u306F\u3055\u3081\u308B\n  \u5E73\u884C\u7DDA 2 \u672C\u3067\
+    \u306F\u3055\u3093\u3067\u5F15\u3063\u304B\u304B\u308B 2 \u70B9\u304C\u5019\u88DC\
+    \n  p[i]p[i+1] \u306E\u53CD\u5BFE\u5074\u3092\u5019\u88DC\u3068\u3059\u308C\u3070\
+    \u3088\u3044\n  */\n  FOR(i, n) I.eb(I[i]);\n\n  vc<Point<T>> C = rearrange(point,\
+    \ I);\n  int j = 1;\n  FOR(i, n) {\n    chmax(j, i);\n    while (j < 2 * n &&\
+    \ (C[i + 1] - C[i]).det(C[j + 1] - C[j]) > 0) ++j;\n    upd(I[i], I[j]);\n  }\n\
+    \  return ANS;\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\n\ntemplate <typename\
     \ T>\npair<int, int> furthest_pair(vc<Point<T>> point) {\n  T best = -1;\n  pair<int,\
     \ int> ANS = {-1, -1};\n\n  auto upd = [&](int i, int j) -> void {\n    Point<T>\
@@ -129,8 +133,8 @@ data:
   isVerificationFile: false
   path: geo/furthest_pair.hpp
   requiredBy: []
-  timestamp: '2024-07-18 11:12:06+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-13 20:27:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/geometry/furthest_pair.test.cpp
 documentation_of: geo/furthest_pair.hpp

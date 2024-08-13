@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/dynamicupperhull.hpp
     title: geo/dynamicupperhull.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/library_checker/geometry/convex_layers.test.cpp
     title: test/library_checker/geometry/convex_layers.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/1599/problem/D
@@ -142,7 +142,8 @@ data:
     \    FOR(i, len(P)) print(i, P[i].x, P[i].y);\r\n    print(\"seg\");\r\n    FOR(i,\
     \ len(seg)) print(i, seg[i].l, seg[i].r, seg[i].bl, seg[i].br);\r\n    print(\"\
     get\");\r\n    print(get());\r\n  }\r\n};\r\n#line 2 \"geo/convex_layers.hpp\"\
-    \n\n// https://codeforces.com/contest/1599/problem/D\nvvc<int> convex_layers(vc<Point<ll>>\
+    \n\n// https://codeforces.com/contest/1599/problem/D\n// \u51FA\u529B\u306F\u53CD\
+    \u6642\u8A08\u56DE\u308A\u3067\u3042\u308B\nvvc<int> convex_layers(vc<Point<ll>>\
     \ points) {\n  int N = len(points);\n  DynamicUpperHull<Point<ll>> DUH(points,\
     \ 1);\n  FOR(i, N) points[i] = -points[i];\n  DynamicUpperHull<Point<ll>> DLH(points,\
     \ 1);\n  vvc<int> ANS;\n  int done = 0;\n  int k = 0;\n  while (done < N) {\n\
@@ -151,7 +152,8 @@ data:
     \    }\n    ANS.eb(A);\n    for (auto&& i: A) {\n      ++done;\n      DUH.erase(i);\n\
     \      DLH.erase(i);\n    }\n  }\n  return ANS;\n}\n"
   code: "#include \"geo/dynamicupperhull.hpp\"\n\n// https://codeforces.com/contest/1599/problem/D\n\
-    vvc<int> convex_layers(vc<Point<ll>> points) {\n  int N = len(points);\n  DynamicUpperHull<Point<ll>>\
+    // \u51FA\u529B\u306F\u53CD\u6642\u8A08\u56DE\u308A\u3067\u3042\u308B\nvvc<int>\
+    \ convex_layers(vc<Point<ll>> points) {\n  int N = len(points);\n  DynamicUpperHull<Point<ll>>\
     \ DUH(points, 1);\n  FOR(i, N) points[i] = -points[i];\n  DynamicUpperHull<Point<ll>>\
     \ DLH(points, 1);\n  vvc<int> ANS;\n  int done = 0;\n  int k = 0;\n  while (done\
     \ < N) {\n    ++k;\n    auto A = DLH.get();\n    auto B = DUH.get();\n    if (len(A)\
@@ -164,8 +166,8 @@ data:
   isVerificationFile: false
   path: geo/convex_layers.hpp
   requiredBy: []
-  timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-13 20:27:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/library_checker/geometry/convex_layers.test.cpp
 documentation_of: geo/convex_layers.hpp

@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/mytest/subset_sum.test.cpp
     title: test/mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/4_2.test.cpp
     title: test/yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/755/problem/F
@@ -89,67 +89,68 @@ data:
     \ FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
     \   }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R,\
     \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
-    \ (L < R && (L & 63)) {\n      if (!p[a++]) (*this)[L++] = 0;\n    }\n    while\
-    \ (L < R && (R & 63)) {\n      if (!p[--b]) (*this)[--R] = 0;\n    }\n    // p[a:b]\
-    \ \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t\
-    \ = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l +\
-    \ i] &= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64\
-    \ - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i] >> hi) | (p.dat[1 + s + i]\
-    \ << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 or\n  void or_to_range(int\
-    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
-    \    while (L < R && (L & 63)) {\n      dat[L >> 6] |= u64(p[a]) << (L & 63);\n\
-    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
-    \    dat[R >> 6] |= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
-    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
-    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
-    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
-    \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
-    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
-    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
-    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
-    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
-    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
-    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
-    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
-    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\
-    \u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i)\
-    \ { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n  void set()\
-    \ {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat),\
-    \ 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i];\
-    \ }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size())\
-    \ break;\n      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat))\
-    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
-    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static\
-    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
-    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
-    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
-    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 1 \"enumerate/bits.hpp\"\ntemplate <typename F>\nvoid enumerate_bits_32(u32\
-    \ s, F f) {\n  while (s) {\n    int i = __builtin_ctz(s);\n    f(i);\n    s ^=\
-    \ 1 << i;\n  }\n}\n\ntemplate <typename F>\nvoid enumerate_bits_64(u64 s, F f)\
-    \ {\n  while (s) {\n    int i = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1)\
-    \ << i;\n  }\n}\n\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
-    \ b, int L, int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p\
-    \ < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
-    \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
-    \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
-    \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
-    \ { sb += vals[b++]; }\n  if (b == n && sb != target) return {};\n\n  int off\
-    \ = target - mx + 1;\n  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n\
-    \  dp[sb - off] = b;\n  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par =\
-    \ PAR[i];\n    int a = vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a],\
-    \ dp[j])) { par[j + a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k,\
-    \ max(dp[j], 0), newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j\
-    \ - vals[k]] = k;\n      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1]\
-    \ == -1) return {};\n  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while\
-    \ (i >= b) {\n    int p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n\
-    \      j -= vals[i--];\n    }\n    elif (p == -1) { --i; }\n    else {\n     \
-    \ use[p] = !use[p];\n      j += vals[p];\n    }\n  }\n  while (i >= 0) {\n   \
-    \ use[i] = !use[i];\n    --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\
-    \n  ll sm = 0;\n  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n\
-    \  return I;\n}\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
+    \ (L < R && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++, L++;\n \
+    \   }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b]) (*this)[R]\
+    \ = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >>\
+    \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
+    \ {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n      int hi =\
+    \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i]\
+    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
+    \ or\n  void or_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R -\
+    \ L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      dat[L >>\
+    \ 6] |= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L < R && (R\
+    \ & 63)) {\n      --b, --R;\n      dat[R >> 6] |= u64(p[b]) << (R & 63);\n   \
+    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
+    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
+    \ n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n     \
+    \ int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1\
+    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void\
+    \ set_range(int L, int R) {\n    while (L < R && (L & 63)) { set(L++); }\n   \
+    \ while (L < R && (R & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] =\
+    \ u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int\
+    \ L, int R) {\n    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R\
+    \ && (R & 63)) { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n\
+    \  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int R) {\n    while (L\
+    \ < R && (L & 63)) { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R);\
+    \ }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\
+    \u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n\
+    \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
+    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
+    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
+    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
+    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
+    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
+    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
+    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
+    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
+    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
+    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 1 \"enumerate/bits.hpp\"\
+    \ntemplate <typename F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n\
+    \    int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
+    \ <typename F>\nvoid enumerate_bits_64(u64 s, F f) {\n  while (s) {\n    int i\
+    \ = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1) << i;\n  }\n}\n\ntemplate\
+    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F\
+    \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
+    \    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\n\n// O(N\
+    \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
+    \ int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx = MAX(vals);\n\
+    \  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++];\
+    \ }\n  if (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n\
+    \  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n\
+    \  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a =\
+    \ vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j +\
+    \ a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0),\
+    \ newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n\
+    \      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n\
+    \  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int\
+    \ p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n\
+    \    }\n    elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n   \
+    \   j += vals[p];\n    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n   \
+    \ --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n\
+    \  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n  return I;\n\
+    }\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
     \ vals, int target) {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset\
     \ dp(1, 1);\n  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n\
     \    if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size =\
@@ -270,8 +271,8 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2024-07-23 21:27:24+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-13 20:27:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/4_2.test.cpp
   - test/mytest/subset_sum.test.cpp

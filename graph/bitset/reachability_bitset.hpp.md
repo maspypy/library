@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -80,48 +80,48 @@ data:
     \ FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
     \   }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R,\
     \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
-    \ (L < R && (L & 63)) {\n      if (!p[a++]) (*this)[L++] = 0;\n    }\n    while\
-    \ (L < R && (R & 63)) {\n      if (!p[--b]) (*this)[--R] = 0;\n    }\n    // p[a:b]\
-    \ \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t\
-    \ = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l +\
-    \ i] &= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64\
-    \ - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i] >> hi) | (p.dat[1 + s + i]\
-    \ << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 or\n  void or_to_range(int\
-    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
-    \    while (L < R && (L & 63)) {\n      dat[L >> 6] |= u64(p[a]) << (L & 63);\n\
-    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
-    \    dat[R >> 6] |= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
-    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
-    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
-    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
-    \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
-    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
-    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
-    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
-    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
-    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
-    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
-    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
-    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\
-    \u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i)\
-    \ { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n  void set()\
-    \ {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat),\
-    \ 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i];\
-    \ }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size())\
-    \ break;\n      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat))\
-    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
-    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static\
-    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
-    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
-    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
-    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"graph/bitset/reachability_bitset.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
-    vc<My_Bitset> reachability_bitset(vc<My_Bitset> G) {\n  int N = len(G);\n  FOR(i,\
-    \ N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k] and G[k][j]\n    FOR(i, N) {\n\
-    \      if (!G[i][k]) continue;\n      G[i] |= G[k];\n    }\n  }\n  return G;\n\
-    }\n"
+    \ (L < R && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++, L++;\n \
+    \   }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b]) (*this)[R]\
+    \ = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >>\
+    \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
+    \ {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n      int hi =\
+    \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i]\
+    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
+    \ or\n  void or_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R -\
+    \ L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      dat[L >>\
+    \ 6] |= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L < R && (R\
+    \ & 63)) {\n      --b, --R;\n      dat[R >> 6] |= u64(p[b]) << (R & 63);\n   \
+    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
+    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
+    \ n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n     \
+    \ int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1\
+    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void\
+    \ set_range(int L, int R) {\n    while (L < R && (L & 63)) { set(L++); }\n   \
+    \ while (L < R && (R & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] =\
+    \ u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int\
+    \ L, int R) {\n    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R\
+    \ && (R & 63)) { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n\
+    \  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int R) {\n    while (L\
+    \ < R && (L & 63)) { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R);\
+    \ }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\
+    \u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n\
+    \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
+    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
+    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
+    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
+    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
+    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
+    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
+    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
+    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
+    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
+    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"graph/bitset/reachability_bitset.hpp\"\
+    \n\n// https://codeforces.com/contest/641/problem/F\nvc<My_Bitset> reachability_bitset(vc<My_Bitset>\
+    \ G) {\n  int N = len(G);\n  FOR(i, N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k]\
+    \ and G[k][j]\n    FOR(i, N) {\n      if (!G[i][k]) continue;\n      G[i] |= G[k];\n\
+    \    }\n  }\n  return G;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
     vc<My_Bitset> reachability_bitset(vc<My_Bitset> G) {\n  int N = len(G);\n  FOR(i,\
     \ N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k] and G[k][j]\n    FOR(i, N) {\n\
@@ -132,7 +132,7 @@ data:
   isVerificationFile: false
   path: graph/bitset/reachability_bitset.hpp
   requiredBy: []
-  timestamp: '2024-04-27 11:55:26+09:00'
+  timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bitset/reachability_bitset.hpp

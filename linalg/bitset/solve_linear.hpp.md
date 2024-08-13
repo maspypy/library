@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/yukicoder/1421.test.cpp
     title: test/yukicoder/1421.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
@@ -82,57 +82,58 @@ data:
     \ FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
     \   }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R,\
     \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
-    \ (L < R && (L & 63)) {\n      if (!p[a++]) (*this)[L++] = 0;\n    }\n    while\
-    \ (L < R && (R & 63)) {\n      if (!p[--b]) (*this)[--R] = 0;\n    }\n    // p[a:b]\
-    \ \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t\
-    \ = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l +\
-    \ i] &= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64\
-    \ - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i] >> hi) | (p.dat[1 + s + i]\
-    \ << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 or\n  void or_to_range(int\
-    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
-    \    while (L < R && (L & 63)) {\n      dat[L >> 6] |= u64(p[a]) << (L & 63);\n\
-    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
-    \    dat[R >> 6] |= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
-    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
-    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] |= p.dat[s\
-    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
-    \ FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int L,\
-    \ int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R && (R\
-    \ & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\n\
-    \  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
-    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
-    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
-    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
-    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
-    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\
-    \u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i)\
-    \ { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n  void set()\
-    \ {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat),\
-    \ 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i];\
-    \ }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size())\
-    \ break;\n      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat))\
-    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  int _Find_first()\
-    \ { return next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static\
-    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
-    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
-    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
-    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
-    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
-    #line 2 \"linalg/bitset/solve_linear.hpp\"\n\n// \u884C\u30D9\u30AF\u30C8\u30EB\
-    \u3092 bitset \u306B\u3059\u308B\n// (2000, 8000) \u3067 300ms \u7A0B\u5EA6\uFF08\
-    ABC276H\uFF09\ntemplate <typename BS, typename T>\nvc<BS> solve_linear(int n,\
-    \ int m, vc<BS> A, vc<T> b) {\n  assert(len(b) == n);\n  int rk = 0;\n  FOR(j,\
-    \ m) {\n    if (rk == n) break;\n    FOR(i, rk + 1, n) if (A[i][j]) {\n      swap(A[rk],\
-    \ A[i]);\n      if (b[rk] != b[i]) b[rk] = !b[rk], b[i] = !b[i];\n      break;\n\
-    \    }\n    if (!A[rk][j]) continue;\n    FOR(i, n) if (i != rk) {\n      if (A[i][j])\
-    \ { b[i] = b[i] ^ b[rk], A[i] = A[i] ^ A[rk]; }\n    }\n    ++rk;\n  }\n  FOR(i,\
-    \ rk, n) if (b[i]) return {};\n  vc<BS> res(1);\n  if constexpr (is_same_v<BS,\
-    \ My_Bitset>) { res[0].resize(m); }\n\n  vc<int> pivot(m, -1);\n  int p = 0;\n\
-    \  FOR(i, rk) {\n    while (!A[i][p]) ++p;\n    res[0][p] = b[i], pivot[p] = i;\n\
-    \  }\n  FOR(j, m) if (pivot[j] == -1) {\n    BS x;\n    if constexpr (is_same_v<BS,\
-    \ My_Bitset>) { x.resize(m); }\n\n    x[j] = 1;\n    FOR(k, j) if (pivot[k] !=\
-    \ -1 && A[pivot[k]][j]) x[k] = 1;\n    res.eb(x);\n  }\n  return res;\n}\n"
+    \ (L < R && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++, L++;\n \
+    \   }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b]) (*this)[R]\
+    \ = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >>\
+    \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
+    \ {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n      int hi =\
+    \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i]\
+    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
+    \ or\n  void or_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R -\
+    \ L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      dat[L >>\
+    \ 6] |= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L < R && (R\
+    \ & 63)) {\n      --b, --R;\n      dat[R >> 6] |= u64(p[b]) << (R & 63);\n   \
+    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
+    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
+    \ n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n     \
+    \ int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1\
+    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void\
+    \ set_range(int L, int R) {\n    while (L < R && (L & 63)) { set(L++); }\n   \
+    \ while (L < R && (R & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] =\
+    \ u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int\
+    \ L, int R) {\n    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R\
+    \ && (R & 63)) { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n\
+    \  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int R) {\n    while (L\
+    \ < R && (L & 63)) { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R);\
+    \ }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\
+    \u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n\
+    \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
+    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
+    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
+    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
+    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
+    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
+    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
+    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
+    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
+    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
+    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/solve_linear.hpp\"\
+    \n\n// \u884C\u30D9\u30AF\u30C8\u30EB\u3092 bitset \u306B\u3059\u308B\n// (2000,\
+    \ 8000) \u3067 300ms \u7A0B\u5EA6\uFF08ABC276H\uFF09\ntemplate <typename BS, typename\
+    \ T>\nvc<BS> solve_linear(int n, int m, vc<BS> A, vc<T> b) {\n  assert(len(b)\
+    \ == n);\n  int rk = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    FOR(i, rk\
+    \ + 1, n) if (A[i][j]) {\n      swap(A[rk], A[i]);\n      if (b[rk] != b[i]) b[rk]\
+    \ = !b[rk], b[i] = !b[i];\n      break;\n    }\n    if (!A[rk][j]) continue;\n\
+    \    FOR(i, n) if (i != rk) {\n      if (A[i][j]) { b[i] = b[i] ^ b[rk], A[i]\
+    \ = A[i] ^ A[rk]; }\n    }\n    ++rk;\n  }\n  FOR(i, rk, n) if (b[i]) return {};\n\
+    \  vc<BS> res(1);\n  if constexpr (is_same_v<BS, My_Bitset>) { res[0].resize(m);\
+    \ }\n\n  vc<int> pivot(m, -1);\n  int p = 0;\n  FOR(i, rk) {\n    while (!A[i][p])\
+    \ ++p;\n    res[0][p] = b[i], pivot[p] = i;\n  }\n  FOR(j, m) if (pivot[j] ==\
+    \ -1) {\n    BS x;\n    if constexpr (is_same_v<BS, My_Bitset>) { x.resize(m);\
+    \ }\n\n    x[j] = 1;\n    FOR(k, j) if (pivot[k] != -1 && A[pivot[k]][j]) x[k]\
+    \ = 1;\n    res.eb(x);\n  }\n  return res;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// \u884C\u30D9\u30AF\u30C8\u30EB\u3092\
     \ bitset \u306B\u3059\u308B\n// (2000, 8000) \u3067 300ms \u7A0B\u5EA6\uFF08ABC276H\uFF09\
     \ntemplate <typename BS, typename T>\nvc<BS> solve_linear(int n, int m, vc<BS>\
@@ -152,8 +153,8 @@ data:
   isVerificationFile: false
   path: linalg/bitset/solve_linear.hpp
   requiredBy: []
-  timestamp: '2024-02-23 19:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-08-13 20:27:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/yukicoder/1421.test.cpp
 documentation_of: linalg/bitset/solve_linear.hpp
