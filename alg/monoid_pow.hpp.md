@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
   _extendedVerifiedWith:
@@ -24,7 +24,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
   - icon: ':x:'

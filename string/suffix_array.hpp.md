@@ -17,7 +17,7 @@ data:
   - icon: ':x:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':x:'
