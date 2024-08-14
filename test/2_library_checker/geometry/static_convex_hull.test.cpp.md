@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_convex_hull
@@ -284,15 +284,16 @@ data:
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
     \    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n\
     \  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >= 2 && XY[P[0]]\
-    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 6 \"test/2_library_checker/geometry/static_convex_hull.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, point, N);\n  vc<int> I = ConvexHull(point);\n\
-    \  print(len(I));\n  for (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n\
-    \  INT(T);\n  FOR(T) solve();\n}\n"
+    \ == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 7 \"test/2_library_checker/geometry/static_convex_hull.test.cpp\"\
+    \n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n  VEC(P, point, N);\n  vc<int>\
+    \ I = ConvexHull(point);\n  print(len(I));\n  for (auto& i: I) print(point[i]);\n\
+    }\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_convex_hull\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/convex_hull.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(pi, point, N);\n  vc<int> I = ConvexHull(point);\n\
-    \  print(len(I));\n  for (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n\
-    \  INT(T);\n  FOR(T) solve();\n}\n"
+    \n#include \"geo/base.hpp\"\n\nusing P = Point<ll>;\nvoid solve() {\n  LL(N);\n\
+    \  VEC(P, point, N);\n  vc<int> I = ConvexHull(point);\n  print(len(I));\n  for\
+    \ (auto& i: I) print(point[i]);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
+    }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -301,8 +302,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2024-08-14 00:13:09+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-14 12:08:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/static_convex_hull.test.cpp
 layout: document

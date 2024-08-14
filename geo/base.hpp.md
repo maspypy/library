@@ -85,9 +85,6 @@ data:
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/geo/static_convex_hull.test.cpp
-    title: test/2_library_checker/geo/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -108,7 +105,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   - icon: ':x:'
@@ -339,7 +336,6 @@ data:
   - test/5_atcoder/abc314.test.cpp
   - test/3_yukicoder/1777.test.cpp
   - test/3_yukicoder/2602.test.cpp
-  - test/2_library_checker/geo/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp

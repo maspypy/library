@@ -28,12 +28,9 @@ data:
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/geo/static_convex_hull.test.cpp
-    title: test/2_library_checker/geo/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
   - icon: ':x:'
@@ -161,7 +158,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/arc130f.test.cpp
-  - test/2_library_checker/geo/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
