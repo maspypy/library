@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':x:'
