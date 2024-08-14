@@ -3,10 +3,12 @@
 #include "other/io.hpp"
 
 #include "geo/convex_hull.hpp"
+#include "geo/base.hpp"
 
+using P = Point<ll>;
 void solve() {
   LL(N);
-  VEC(pi, point, N);
+  VEC(P, point, N);
   vc<int> I = ConvexHull(point);
   print(len(I));
   for (auto& i: I) print(point[i]);
