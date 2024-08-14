@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/math/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2062.test.cpp
     title: test/3_yukicoder/2062.test.cpp
   - icon: ':x:'
