@@ -6,12 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_12_B.test.cpp
     title: test/4_aoj/ALDS1_12_B.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/shortest_path/dial.hpp\"\n// not verified\r\n#line\
@@ -125,7 +125,7 @@ data:
   path: graph/shortest_path/dial.hpp
   requiredBy: []
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/ALDS1_12_B.test.cpp
 documentation_of: graph/shortest_path/dial.hpp

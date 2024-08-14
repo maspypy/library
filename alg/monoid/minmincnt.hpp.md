@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
     title: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
   - icon: ':x:'
