@@ -1857,16 +1857,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc213g.test.cpp
     title: test/5_atcoder/abc213g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc214h.test.cpp
     title: test/5_atcoder/abc214h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc217e.test.cpp
     title: test/5_atcoder/abc217e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc217h.test.cpp
     title: test/5_atcoder/abc217h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc218c.test.cpp
     title: test/5_atcoder/abc218c.test.cpp
   - icon: ':x:'
