@@ -635,7 +635,7 @@ data:
     - icon: ':question:'
       path: game/dyadic_rational.hpp
       title: game/dyadic_rational.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: game/graph_game.hpp
       title: game/graph_game.hpp
     - icon: ':question:'
@@ -881,7 +881,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/reachability.hpp
       title: graph/reachability.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/reverse_graph.hpp
       title: graph/reverse_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -1906,7 +1906,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/for_nck.hpp
       title: setfunc/for_nck.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/hadamard.hpp
       title: setfunc/hadamard.hpp
     - icon: ':heavy_check_mark:'
@@ -1927,7 +1927,7 @@ data:
     - icon: ':x:'
       path: setfunc/sps_inv.hpp
       title: setfunc/sps_inv.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
     - icon: ':question:'
@@ -4452,16 +4452,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc202_f.test.cpp
       title: test/5_atcoder/abc202_f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc209e.test.cpp
       title: test/5_atcoder/abc209e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc212g.test.cpp
       title: test/5_atcoder/abc212g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc212h.test.cpp
       title: test/5_atcoder/abc212h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc213g.test.cpp
       title: test/5_atcoder/abc213g.test.cpp
     - icon: ':x:'
