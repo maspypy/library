@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   - icon: ':question:'
