@@ -11,19 +11,10 @@ struct Intervals_Fast {
   vc<T> dat;
   FastSet ss;
 
-  Intervals_Fast(int N, T none_val)
-      : LLIM(0),
-        RLIM(N),
-        none_val(none_val),
-        total_num(0),
-        total_len(0),
-        dat(N, none_val),
-        ss(N) {
-    ss.insert(0);
-  }
+  Intervals_Fast(int N, T none_val) : LLIM(0), RLIM(N), none_val(none_val), total_num(0), total_len(0), dat(N, none_val), ss(N) { ss.insert(0); }
 
   // x を含む区間の情報の取得 l, r, t
-  tuple<int, int, T> get(int x, bool ERASE) {
+  tuple<int, int, T> get(int x, bool ERASE = false) {
     int l = ss.prev(x);
     int r = ss.next(x + 1);
     T t = dat[l];
@@ -39,7 +30,7 @@ struct Intervals_Fast {
   // [L, R) 内の全データの取得
   // f(l,r,x)
   template <typename F>
-  void enumerate_range(int L, int R, F f, bool ERASE) {
+  void enumerate_range(int L, int R, F f, bool ERASE = false) {
     assert(LLIM <= L && L <= R && R <= RLIM);
     if (L == R) return;
     if (!ERASE) {
@@ -110,7 +101,8 @@ template <typename T, typename X = ll>
 struct Intervals {
   static constexpr X LLIM = -infty<X>;
   static constexpr X RLIM = infty<X>;
-  const T none_val;
+  T none_val;
+  // const T none_val;
   // none_val でない区間の個数と長さ合計
   int total_num;
   X total_len;
@@ -122,7 +114,7 @@ struct Intervals {
   }
 
   // x を含む区間の情報の取得 l, r, t
-  tuple<X, X, T> get(X x, bool ERASE) {
+  tuple<X, X, T> get(X x, bool ERASE = false) {
     auto it2 = dat.upper_bound(x);
     auto it1 = prev(it2);
     auto [l, tl] = *it1;
@@ -138,7 +130,7 @@ struct Intervals {
 
   // [L, R) 内の全データの取得 f(l, r, t)
   template <typename F>
-  void enumerate_range(X L, X R, F f, bool ERASE) {
+  void enumerate_range(X L, X R, F f, bool ERASE = false) {
     assert(LLIM <= L && L <= R && R <= RLIM);
     if (!ERASE) {
       auto it = prev(dat.upper_bound(L));
