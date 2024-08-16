@@ -66,12 +66,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc230h.test.cpp
     title: test/5_atcoder/abc230h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc315h.test.cpp
     title: test/5_atcoder/abc315h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -255,7 +255,7 @@ data:
   - poly/online/online_log.hpp
   - poly/online/online_exp_garner.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc230h.test.cpp
   - test/5_atcoder/abc315h.test.cpp
