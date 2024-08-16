@@ -120,17 +120,25 @@ data:
     \ }\n      elif (j == len(Y)) { P.eb(X[i++]); }\n      else {\n        if (check(X[i],\
     \ Y[j])) {\n          P.eb(X[i++]);\n        } else {\n          P.eb(Y[j++]);\n\
     \        }\n      }\n    }\n    return P;\n  };\n  return dfs(dfs, 0, n);\n}\n\
-    #line 6 \"test/1_mytest/tournament.test.cpp\"\n\nvoid test() {\n  auto gen = [&](int\
-    \ N) -> vvc<bool> {\n    vv(bool, mat, N, N);\n    FOR(i, N) FOR(j, i) {\n   \
-    \   bool b = RNG(0, 2);\n      if (b) mat[i][j] = 1;\n      if (!b) mat[j][i]\
-    \ = 1;\n    }\n    return mat;\n  };\n\n  FOR(10) {\n    FOR(N, 1, 20) {\n   \
-    \   auto G = gen(N);\n      auto check = [&](int i, int j) -> bool { return G[i][j];\
-    \ };\n      auto P = hamiltonian_path_in_tournament(N, check);\n      vc<bool>\
-    \ use(N);\n      for (auto&& x: P) use[x] = 1;\n      assert(len(P) == N);\n \
-    \     assert(SUM<int>(use) == N);\n      FOR(i, N - 1) {\n        ll a = P[i],\
-    \ b = P[i + 1];\n        assert(G[a][b]);\n      }\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \n// https://atcoder.jp/contests/joisp2024/tasks/joisp2024_l\nvc<string> from_outdegrees(vc<int>\
+    \ A) {\n  int N = len(A);\n  vc<int> F(N);\n  for (auto& x: A) F[x]++;\n\n  vc<string>\
+    \ ANS(N, string(N, '-'));\n  FOR(i, N) {\n    int lose = N - 1 - i - A[i];\n \
+    \   F[A[i]]--;\n    FOR(j, i + 1, N) { ANS[i][j] = '1', ANS[j][i] = '0'; }\n \
+    \   int p = N;\n    FOR_R(x, N) {\n      int k = min(lose, F[x]);\n      p -=\
+    \ F[x];\n      FOR(j, p, p + k) { ANS[i][j] = '0', ANS[j][i] = '1'; }\n      lose\
+    \ -= k;\n    }\n    FOR(j, i + 1, N) {\n      if (ANS[i][j] == '0') {\n      \
+    \  F[A[j]]--;\n        A[j]--;\n        F[A[j]]++;\n      }\n    }\n  }\n  return\
+    \ ANS;\n}\n#line 6 \"test/1_mytest/tournament.test.cpp\"\n\nvoid test() {\n  auto\
+    \ gen = [&](int N) -> vvc<bool> {\n    vv(bool, mat, N, N);\n    FOR(i, N) FOR(j,\
+    \ i) {\n      bool b = RNG(0, 2);\n      if (b) mat[i][j] = 1;\n      if (!b)\
+    \ mat[j][i] = 1;\n    }\n    return mat;\n  };\n\n  FOR(10) {\n    FOR(N, 1, 20)\
+    \ {\n      auto G = gen(N);\n      auto check = [&](int i, int j) -> bool { return\
+    \ G[i][j]; };\n      auto P = hamiltonian_path_in_tournament(N, check);\n    \
+    \  vc<bool> use(N);\n      for (auto&& x: P) use[x] = 1;\n      assert(len(P)\
+    \ == N);\n      assert(SUM<int>(use) == N);\n      FOR(i, N - 1) {\n        ll\
+    \ a = P[i], b = P[i + 1];\n        assert(G[a][b]);\n      }\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"graph/tournament.hpp\"\n\nvoid test()\
     \ {\n  auto gen = [&](int N) -> vvc<bool> {\n    vv(bool, mat, N, N);\n    FOR(i,\
@@ -150,7 +158,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/tournament.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-16 19:16:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/tournament.test.cpp

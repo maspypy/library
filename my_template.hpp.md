@@ -634,6 +634,9 @@ data:
     path: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
     title: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+    title: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/double_ended_pq.test.cpp
     title: test/2_library_checker/datastructure/double_ended_pq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2502,10 +2505,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256d.test.cpp
     title: test/5_atcoder/abc256d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc256ex.test.cpp
     title: test/5_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc256ex2.test.cpp
     title: test/5_atcoder/abc256ex2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2559,7 +2562,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc274g.test.cpp
     title: test/5_atcoder/abc274g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc276_g.test.cpp
     title: test/5_atcoder/abc276_g.test.cpp
   - icon: ':x:'
@@ -3562,6 +3565,7 @@ data:
   - test/2_library_checker/datastructure/predecessor_problem_2.test.cpp
   - test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/2_library_checker/datastructure/rect_add_pt_get.test.cpp
+  - test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
   - test/2_library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/2_library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - test/2_library_checker/sample/aplusb128.test.cpp

@@ -54,7 +54,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/sum_affine.hpp
       title: alg/acted_monoid/sum_affine.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/acted_monoid/sum_assign.hpp
       title: alg/acted_monoid/sum_assign.hpp
     - icon: ':heavy_check_mark:'
@@ -109,7 +109,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/arithmetic_expression.hpp
       title: alg/monoid/arithmetic_expression.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/assign.hpp
       title: alg/monoid/assign.hpp
     - icon: ':heavy_check_mark:'
@@ -266,7 +266,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
     - icon: ':question:'
@@ -278,7 +278,7 @@ data:
     - icon: ':question:'
       path: ds/index_compression.hpp
       title: ds/index_compression.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/intervals.hpp
       title: ds/intervals.hpp
     - icon: ':heavy_check_mark:'
@@ -2680,6 +2680,9 @@ data:
       path: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
       title: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+      title: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/datastructure/double_ended_pq.test.cpp
       title: test/2_library_checker/datastructure/double_ended_pq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4572,10 +4575,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc256d.test.cpp
       title: test/5_atcoder/abc256d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc256ex.test.cpp
       title: test/5_atcoder/abc256ex.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc256ex2.test.cpp
       title: test/5_atcoder/abc256ex2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4629,7 +4632,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc274g.test.cpp
       title: test/5_atcoder/abc274g.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc276_g.test.cpp
       title: test/5_atcoder/abc276_g.test.cpp
     - icon: ':x:'

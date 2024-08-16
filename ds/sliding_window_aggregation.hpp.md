@@ -28,6 +28,9 @@ data:
     path: test/1_mytest/factorial_998.test.cpp
     title: test/1_mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+    title: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
     title: test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
   - icon: ':heavy_check_mark:'
@@ -66,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc222h_2.test.cpp
     title: test/5_atcoder/abc222h_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc276_g.test.cpp
     title: test/5_atcoder/abc276_g.test.cpp
   - icon: ':x:'
@@ -86,7 +89,7 @@ data:
   bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
     struct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
     \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
-    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
+    \n  Sliding_Window_Aggregation() : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
     \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
     \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
     \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
@@ -111,40 +114,39 @@ data:
     \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
     \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
     \ }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild() {\n    vc<X>\
-    \ X = concat(dat_l, dat_r);\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i,\
-    \ m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz\
-    \ == len(X));\n  }\n};\n"
+    \ X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n    clear();\n \
+    \   int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X))\
+    \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n"
   code: "template <class Monoid>\nstruct Sliding_Window_Aggregation {\n  using X =\
     \ typename Monoid::value_type;\n  using value_type = X;\n  int sz = 0;\n  vc<X>\
-    \ dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation()\n      :\
-    \ cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}\n\n  int size() { return sz;\
-    \ }\n\n  void push(X x) {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n\
-    \  }\n\n  void pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) ==\
-    \ 0) {\n      cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n     \
-    \ while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n\
-    \        dat.pop_back();\n      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod()\
-    \ { return cum_l.back(); }\n  X rprod() { return cum_r; }\n\n  X prod() { return\
-    \ Monoid::op(cum_l.back(), cum_r); }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\
-    \u898B\u3048\u3066\u9045\u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\
-    \u3044\u3068\u304D\u306F\u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct\
-    \ SWAG_deque {\n  using X = typename Monoid::value_type;\n  using value_type =\
-    \ X;\n  int sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  SWAG_deque()\
-    \ : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}\n\n  int size()\
-    \ { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n   \
-    \ cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n  \
-    \  ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x, cum_l.back()));\n  }\n\n\
-    \  void push(X x) { push_back(x); }\n\n  void clear() {\n    sz = 0;\n    dat_l.clear(),\
-    \ dat_r.clear();\n    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};\n  }\n\
-    \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
-    \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
-    \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
-    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
-    \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
-    \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
-    \ }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild() {\n    vc<X>\
-    \ X = concat(dat_l, dat_r);\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i,\
-    \ m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz\
-    \ == len(X));\n  }\n};\n"
+    \ dat;\n  vc<X> cum_l;\n  X cum_r;\n\n  Sliding_Window_Aggregation() : cum_l({Monoid::unit()}),\
+    \ cum_r(Monoid::unit()) {}\n\n  int size() { return sz; }\n\n  void push(X x)\
+    \ {\n    ++sz;\n    cum_r = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void\
+    \ pop() {\n    --sz;\n    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n    \
+    \  cum_l = {Monoid::unit()};\n      cum_r = Monoid::unit();\n      while (len(dat)\
+    \ > 1) {\n        cum_l.eb(Monoid::op(dat.back(), cum_l.back()));\n        dat.pop_back();\n\
+    \      }\n      dat.pop_back();\n    }\n  }\n\n  X lprod() { return cum_l.back();\
+    \ }\n  X rprod() { return cum_r; }\n\n  X prod() { return Monoid::op(cum_l.back(),\
+    \ cum_r); }\n};\n\n// \u5B9A\u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\
+    \u304F\u306A\u308B\u306E\u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\
+    \u4F7F\u308F\u306A\u3044\ntemplate <class Monoid>\nstruct SWAG_deque {\n  using\
+    \ X = typename Monoid::value_type;\n  using value_type = X;\n  int sz;\n  vc<X>\
+    \ dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\n  SWAG_deque() : sz(0), cum_l({Monoid::unit()}),\
+    \ cum_r({Monoid::unit()}) {}\n\n  int size() { return sz; }\n\n  void push_back(X\
+    \ x) {\n    ++sz;\n    dat_r.eb(x);\n    cum_r.eb(Monoid::op(cum_r.back(), x));\n\
+    \  }\n\n  void push_front(X x) {\n    ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x,\
+    \ cum_l.back()));\n  }\n\n  void push(X x) { push_back(x); }\n\n  void clear()\
+    \ {\n    sz = 0;\n    dat_l.clear(), dat_r.clear();\n    cum_l = {Monoid::unit()},\
+    \ cum_r = {Monoid::unit()};\n  }\n\n  void pop_front() {\n    if (sz == 1) return\
+    \ clear();\n    if (dat_l.empty()) rebuild();\n    --sz;\n    dat_l.pop_back();\n\
+    \    cum_l.pop_back();\n  }\n\n  void pop_back() {\n    if (sz == 1) return clear();\n\
+    \    if (dat_r.empty()) rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n\
+    \  }\n\n  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n\
+    \  X rprod() { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(),\
+    \ cum_r.back()); }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild()\
+    \ {\n    vc<X> X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n  \
+    \  clear();\n    int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i,\
+    \ m, len(X)) push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: ds/sliding_window_aggregation.hpp
@@ -156,7 +158,7 @@ data:
   - poly/from_log_differentiation.hpp
   - poly/lagrange_interpolate_iota.hpp
   - poly/sum_of_C_negative.hpp
-  timestamp: '2024-07-23 21:27:24+09:00'
+  timestamp: '2024-08-16 19:16:03+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/arc144d.test.cpp
@@ -176,6 +178,7 @@ data:
   - test/2_library_checker/math/factorial.test.cpp
   - test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
+  - test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
   - test/1_mytest/factorial_998.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document

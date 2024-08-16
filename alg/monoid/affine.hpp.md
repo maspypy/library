@@ -22,6 +22,9 @@ data:
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+    title: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -130,6 +133,7 @@ data:
   - test/2_library_checker/datastructure/sort_segtree.test.cpp
   - test/2_library_checker/datastructure/range_set_range_composite.test.cpp
   - test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp

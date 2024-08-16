@@ -631,6 +631,9 @@ data:
     path: test/2_library_checker/convolution/subset_convolution_multivar.test.cpp
     title: test/2_library_checker/convolution/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+    title: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1314,7 +1317,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc272_h.test.cpp
     title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc276_g.test.cpp
     title: test/5_atcoder/abc276_g.test.cpp
   - icon: ':x:'
@@ -1867,6 +1870,7 @@ data:
   - test/2_library_checker/datastructure/sort_segtree.test.cpp
   - test/2_library_checker/datastructure/range_set_range_composite.test.cpp
   - test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
   - test/2_library_checker/bigint/addition_of_bigintegers.test.cpp
   - test/2_library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - test/2_library_checker/sample/aplusb128.test.cpp

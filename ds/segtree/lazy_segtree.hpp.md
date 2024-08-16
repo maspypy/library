@@ -114,10 +114,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc234g.test.cpp
     title: test/5_atcoder/abc234g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc256ex.test.cpp
     title: test/5_atcoder/abc256ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc256ex2.test.cpp
     title: test/5_atcoder/abc256ex2.test.cpp
   - icon: ':x:'

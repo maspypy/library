@@ -23,7 +23,7 @@ data:
   bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
     struct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
     \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
-    \n  Sliding_Window_Aggregation()\n      : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
+    \n  Sliding_Window_Aggregation() : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
     \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
     \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
     \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
@@ -48,17 +48,17 @@ data:
     \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
     \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
     \ }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild() {\n    vc<X>\
-    \ X = concat(dat_l, dat_r);\n    clear();\n    int m = len(X) / 2;\n    FOR_R(i,\
-    \ m) push_front(X[i]);\n    FOR(i, m, len(X)) push_back(X[i]);\n    assert(sz\
-    \ == len(X));\n  }\n};\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\
-    \nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\n  static\
-    \ constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\n  static\
-    \ constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n  static constexpr\
-    \ X unit() { return X(1); }\r\n  static constexpr bool commute = true;\r\n};\r\
-    \n#line 3 \"poly/sum_of_C_negative.hpp\"\n\n// calculate [x^N] f(x)(1-x)^{-K}\
-    \ in O(deg(f)+K).\ntemplate <typename mint>\nmint sum_of_C_negative(ll N, ll K,\
-    \ vc<mint>& f) {\n  assert(K >= 0);\n  if (N < 0) return mint(1);\n  if (K ==\
-    \ 0) { return (N < len(f) ? f[N] : mint(0)); }\n  K -= 1;\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
+    \ X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n    clear();\n \
+    \   int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X))\
+    \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 2 \"alg/monoid/mul.hpp\"\
+    \n\r\ntemplate <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n\
+    \  using X = T;\r\n  static constexpr X op(const X &x, const X &y) noexcept {\
+    \ return x * y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ X(1) / x; }\r\n  static constexpr X unit() { return X(1); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"poly/sum_of_C_negative.hpp\"\n\n// calculate\
+    \ [x^N] f(x)(1-x)^{-K} in O(deg(f)+K).\ntemplate <typename mint>\nmint sum_of_C_negative(ll\
+    \ N, ll K, vc<mint>& f) {\n  assert(K >= 0);\n  if (N < 0) return mint(1);\n \
+    \ if (K == 0) { return (N < len(f) ? f[N] : mint(0)); }\n  K -= 1;\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
     \ seg;\n  FOR(i, K) seg.push(N + K - i);\n  mint ANS = 0;\n  FOR(i, len(f)) {\n\
     \    ANS += f[i] * seg.prod();\n    seg.push(N - i);\n    seg.pop();\n  }\n  return\
     \ ANS * fact_inv<mint>(K);\n}\n"
@@ -76,7 +76,7 @@ data:
   isVerificationFile: false
   path: poly/sum_of_C_negative.hpp
   requiredBy: []
-  timestamp: '2024-07-23 21:27:24+09:00'
+  timestamp: '2024-08-16 19:16:03+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/arc144d.test.cpp
