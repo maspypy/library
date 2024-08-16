@@ -729,10 +729,10 @@ data:
       title: geo/triangle_area.hpp
   - name: geo3d
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo3d/base.hpp
       title: geo3d/base.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo3d/cross_point.hpp
       title: geo3d/cross_point.hpp
   - name: graph
@@ -1131,7 +1131,7 @@ data:
     - icon: ':question:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/grid_bfs.hpp
       title: graph/shortest_path/grid_bfs.hpp
     - icon: ':heavy_check_mark:'
@@ -1148,10 +1148,10 @@ data:
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/subtree_depth_sum.hpp
       title: graph/tree_dp/subtree_depth_sum.hpp
     - icon: ':warning:'
@@ -1475,7 +1475,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/range_rational_count.hpp
       title: nt/range_rational_count.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/rational.hpp
       title: nt/rational.hpp
     - icon: ':heavy_check_mark:'
@@ -4662,13 +4662,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc288ex.test.cpp
       title: test/5_atcoder/abc288ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc298ex.test.cpp
       title: test/5_atcoder/abc298ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc301e.test.cpp
       title: test/5_atcoder/abc301e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc301g.test.cpp
       title: test/5_atcoder/abc301g.test.cpp
     - icon: ':x:'
