@@ -122,7 +122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':question:'
@@ -513,7 +513,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc331g.test.cpp
     title: test/5_atcoder/abc331g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc013e.test.cpp
     title: test/5_atcoder/agc013e.test.cpp
   - icon: ':x:'
