@@ -65,7 +65,7 @@ data:
   - icon: ':question:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -287,7 +287,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':heavy_check_mark:'
@@ -813,10 +813,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc241h.test.cpp
     title: test/5_atcoder/abc241h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc253h.test.cpp
     title: test/5_atcoder/abc253h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc260h.test.cpp
     title: test/5_atcoder/abc260h.test.cpp
   - icon: ':x:'

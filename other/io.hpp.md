@@ -1956,25 +1956,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc245g2.test.cpp
     title: test/5_atcoder/abc245g2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc249_ex.test.cpp
     title: test/5_atcoder/abc249_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc253h.test.cpp
     title: test/5_atcoder/abc253h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256d.test.cpp
     title: test/5_atcoder/abc256d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256ex.test.cpp
     title: test/5_atcoder/abc256ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256ex2.test.cpp
     title: test/5_atcoder/abc256ex2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc259g.test.cpp
     title: test/5_atcoder/abc259g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc260h.test.cpp
     title: test/5_atcoder/abc260h.test.cpp
   - icon: ':x:'
