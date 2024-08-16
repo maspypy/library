@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -471,7 +471,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d.hpp
       title: ds/segtree/segtree_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -1090,7 +1090,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/remove_one_edge_connectivity.hpp
       title: graph/ds/remove_one_edge_connectivity.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/remove_one_vertex_connectivity.hpp
       title: graph/ds/remove_one_vertex_connectivity.hpp
     - icon: ':heavy_check_mark:'
@@ -1701,7 +1701,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
     - icon: ':heavy_check_mark:'
@@ -1734,7 +1734,7 @@ data:
     - icon: ':question:'
       path: poly/transposed_ntt.hpp
       title: poly/transposed_ntt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/typical_divide_conquer.hpp
       title: poly/typical_divide_conquer.hpp
   - name: poly/online
@@ -4713,19 +4713,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc324g.test.cpp
       title: test/5_atcoder/abc324g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc324g2.test.cpp
       title: test/5_atcoder/abc324g2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc326g.test.cpp
       title: test/5_atcoder/abc326g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc331g.test.cpp
       title: test/5_atcoder/abc331g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc333f.test.cpp
       title: test/5_atcoder/abc333f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc334g.test.cpp
       title: test/5_atcoder/abc334g.test.cpp
     - icon: ':x:'
