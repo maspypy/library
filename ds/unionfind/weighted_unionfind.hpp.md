@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_1_B.test.cpp
     title: test/4_aoj/DSL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc280f.test.cpp
     title: test/5_atcoder/abc280f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/unionfind/weighted_unionfind.hpp\"\ntemplate <typename\
@@ -57,7 +57,7 @@ data:
   path: ds/unionfind/weighted_unionfind.hpp
   requiredBy: []
   timestamp: '2024-07-05 14:51:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc280f.test.cpp
   - test/3_yukicoder/2294.test.cpp
