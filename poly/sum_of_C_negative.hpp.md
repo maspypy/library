@@ -9,7 +9,7 @@ data:
     title: ds/sliding_window_aggregation.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc144d.test.cpp
     title: test/5_atcoder/arc144d.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/5_atcoder/arc160d.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
@@ -77,7 +77,7 @@ data:
   path: poly/sum_of_C_negative.hpp
   requiredBy: []
   timestamp: '2024-08-16 19:16:03+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/arc144d.test.cpp
   - test/5_atcoder/arc160d.test.cpp
