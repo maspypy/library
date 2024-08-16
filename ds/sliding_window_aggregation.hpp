@@ -7,8 +7,7 @@ struct Sliding_Window_Aggregation {
   vc<X> cum_l;
   X cum_r;
 
-  Sliding_Window_Aggregation()
-      : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}
+  Sliding_Window_Aggregation() : cum_l({Monoid::unit()}), cum_r(Monoid::unit()) {}
 
   int size() { return sz; }
 
@@ -96,7 +95,9 @@ struct SWAG_deque {
 
 private:
   void rebuild() {
-    vc<X> X = concat(dat_l, dat_r);
+    vc<X> X;
+    reverse(all(dat_l));
+    concat(X, dat_l, dat_r);
     clear();
     int m = len(X) / 2;
     FOR_R(i, m) push_front(X[i]);
