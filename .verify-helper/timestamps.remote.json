@@ -45,6 +45,7 @@
 "test/1_mytest/count_labeled_tournament.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/count_labeled_undirected.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/count_points_in_triangles.test.cpp": "2024-08-14 01:08:02 +0900",
+"test/1_mytest/count_unbordered_string.test.cpp": "2024-08-18 02:41:11 +0900",
 "test/1_mytest/count_unlabeled_tree.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/datetime.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/digit_sum.test.cpp": "2024-08-13 23:38:32 +0900",
