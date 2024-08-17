@@ -1948,6 +1948,9 @@ data:
       path: string/count_subseq.hpp
       title: string/count_subseq.hpp
     - icon: ':heavy_check_mark:'
+      path: string/count_unborderd_string.hpp
+      title: string/count_unborderd_string.hpp
+    - icon: ':heavy_check_mark:'
       path: string/double_ended_palindromic_tree.hpp
       title: string/double_ended_palindromic_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2175,6 +2178,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_points_in_triangles.test.cpp
       title: test/1_mytest/count_points_in_triangles.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/count_unbordered_string.test.cpp
+      title: test/1_mytest/count_unbordered_string.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_unlabeled_tree.test.cpp
       title: test/1_mytest/count_unlabeled_tree.test.cpp

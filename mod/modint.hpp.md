@@ -439,6 +439,9 @@ data:
     path: test/1_mytest/count_labeled_undirected.test.cpp
     title: test/1_mytest/count_labeled_undirected.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_unbordered_string.test.cpp
+    title: test/1_mytest/count_unbordered_string.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_unlabeled_tree.test.cpp
     title: test/1_mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1913,6 +1916,7 @@ data:
   - test/1_mytest/count_unlabeled_tree.test.cpp
   - test/1_mytest/product_of_one_pm_xn.test.cpp
   - test/1_mytest/rbst_commutative_persistent.test.cpp
+  - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/online_square.test.cpp
   - test/1_mytest/graph_count.test.cpp

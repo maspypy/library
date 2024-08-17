@@ -142,6 +142,9 @@ data:
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_unbordered_string.test.cpp
+    title: test/1_mytest/count_unbordered_string.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_unlabeled_tree.test.cpp
     title: test/1_mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3636,6 +3639,7 @@ data:
   - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/rbst_commutative_persistent.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
+  - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/online_square.test.cpp
   - test/1_mytest/matching.test.cpp
