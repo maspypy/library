@@ -6,9 +6,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/5_atcoder/agc060c.test.cpp
+    title: test/5_atcoder/agc060c.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qoj.ac/problem/5
@@ -70,8 +73,9 @@ data:
   path: mod/O1_inverse.hpp
   requiredBy: []
   timestamp: '2024-04-04 04:49:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/5_atcoder/agc060c.test.cpp
   - test/1_mytest/O1_inv.test.cpp
 documentation_of: mod/O1_inverse.hpp
 layout: document

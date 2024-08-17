@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -180,15 +180,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281g.test.cpp
     title: test/5_atcoder/abc281g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/agc060c.test.cpp
+    title: test/5_atcoder/agc060c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc133f.test.cpp
     title: test/5_atcoder/arc133f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -245,10 +248,11 @@ data:
   - poly/composition_f_a_plus_bx.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc202_f.test.cpp
   - test/5_atcoder/abc249_ex.test.cpp
+  - test/5_atcoder/agc060c.test.cpp
   - test/5_atcoder/arc153f.test.cpp
   - test/5_atcoder/abc281g.test.cpp
   - test/5_atcoder/arc133f.test.cpp

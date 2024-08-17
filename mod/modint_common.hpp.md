@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':heavy_check_mark:'
@@ -1383,6 +1383,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc058d2.test.cpp
     title: test/5_atcoder/agc058d2.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/agc060c.test.cpp
+    title: test/5_atcoder/agc060c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc105.test.cpp
     title: test/5_atcoder/arc105.test.cpp
@@ -1407,9 +1410,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc162f.test.cpp
     title: test/5_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -1606,7 +1609,7 @@ data:
   - setfunc/power_projection_of_sps.hpp
   - setfunc/sps_log.hpp
   timestamp: '2023-11-01 19:15:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc226f.test.cpp
   - test/5_atcoder/abc212h.test.cpp
@@ -1630,6 +1633,7 @@ data:
   - test/5_atcoder/abc249_ex.test.cpp
   - test/5_atcoder/arc144d.test.cpp
   - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/agc060c.test.cpp
   - test/5_atcoder/abc315h.test.cpp
   - test/5_atcoder/abc272_h.test.cpp
   - test/5_atcoder/abc276_g.test.cpp

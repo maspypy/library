@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -285,15 +285,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281g.test.cpp
     title: test/5_atcoder/abc281g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/agc060c.test.cpp
+    title: test/5_atcoder/agc060c.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc133f.test.cpp
     title: test/5_atcoder/arc133f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -360,10 +363,11 @@ data:
   - mod/tetration.hpp
   - mod/powertable.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc202_f.test.cpp
   - test/5_atcoder/abc249_ex.test.cpp
+  - test/5_atcoder/agc060c.test.cpp
   - test/5_atcoder/arc153f.test.cpp
   - test/5_atcoder/abc227g.test.cpp
   - test/5_atcoder/abc281g.test.cpp
