@@ -8,7 +8,7 @@ vc<T> solve_linear_real(vc<vc<T>> a, vc<T> b, int n = -1, int m = -1) {
   assert(n == len(a) && n == len(b));
   FOR(i, n) assert(len(a[i]) == n);
   FOR(i, n) {
-    Re mx = abs(a[i][i]);
+    T mx = abs(a[i][i]);
     int k = i;
     FOR(j, i + 1, n) if (chmax(mx, abs(a[j][i]))) k = j;
     if (k != i) { swap(a[i], a[k]), swap(b[i], b[k]); }
