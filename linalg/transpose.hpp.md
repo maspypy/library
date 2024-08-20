@@ -5,10 +5,16 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/coef_of_rational_fps_2d.hpp
+    title: poly/coef_of_rational_fps_2d.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_atcoder/agc058d.test.cpp
+    title: test/5_atcoder/agc058d.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -25,10 +31,12 @@ data:
   isVerificationFile: false
   path: linalg/transpose.hpp
   requiredBy:
+  - poly/coef_of_rational_fps_2d.hpp
   - other/sliding_puzzle_solver.hpp
   timestamp: '2023-10-24 15:46:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_atcoder/agc058d.test.cpp
   - test/3_yukicoder/2108.test.cpp
 documentation_of: linalg/transpose.hpp
 layout: document

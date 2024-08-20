@@ -1,56 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: linalg/transpose.hpp
+    title: linalg/transpose.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc058/tasks/agc058_d
@@ -554,13 +557,18 @@ data:
     \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
     \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
-    \ - j];\n    }\n  }\n  return f;\n}\n#line 3 \"poly/coef_of_rational_fps_2d.hpp\"\
+    \ - j];\n    }\n  }\n  return f;\n}\n#line 1 \"linalg/transpose.hpp\"\ntemplate\
+    \ <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W = -1) {\n\
+    \  if (H == -1) { H = len(A), W = len(A[0]); }\n  vc<VC> B(W, VC(H, A[0][0]));\n\
+    \  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n}\n#line 4 \"poly/coef_of_rational_fps_2d.hpp\"\
     \n\n// P, Q \u304C x \u306B\u3064\u3044\u3066 O(1) \u6B21\u3067\u3042\u308B\u3068\
     \u3059\u308B\n// ANS(x) = [y^N]P/Q \u3092 M \u6B21\u307E\u3067\n// https://atcoder.jp/contests/nadafes2022_day2/tasks/nadafes2022_day2_p\n\
-    template <typename mint>\nvc<mint> coef_of_rational_fps_2d(vvc<mint> P, vvc<mint>\
-    \ Q, int N, int M) {\n  int m = max(len(P[0]) - 1, len(Q[0]) - 1);\n  chmin(m,\
-    \ N);\n  FOR(i, len(P)) P[i].resize(m + 1);\n  FOR(i, len(Q)) Q[i].resize(m +\
-    \ 1);\n  if (len(P) > M + 1) P.resize(M + 1);\n  if (len(Q) > M + 1) Q.resize(M\
+    // (2^n,2^m) \u6B21\u304C\u305F\u304F\u3055\u3093\u51FA\u3066\u304D\u3066\u3044\
+    \u308B\u3068\u5B9A\u6570\u500D\u304C\u3072\u3069\u304F\u306A\u3063\u3066\u3057\
+    \u307E\u3046\ntemplate <typename mint>\nvc<mint> coef_of_rational_fps_2d(vvc<mint>\
+    \ P, vvc<mint> Q, int N, int M) {\n  int m = max(len(P[0]) - 1, len(Q[0]) - 1);\n\
+    \  chmin(m, N);\n  FOR(i, len(P)) P[i].resize(m + 1);\n  FOR(i, len(Q)) Q[i].resize(m\
+    \ + 1);\n  if (len(P) > M + 1) P.resize(M + 1);\n  if (len(Q) > M + 1) Q.resize(M\
     \ + 1);\n  while (len(P) < len(Q)) P.eb(vc<mint>(m + 1));\n  while (len(Q) < len(P))\
     \ Q.eb(vc<mint>(m + 1));\n\n  // P(y)Q(-y) \u306E\u7279\u5B9A\u306E parity, Q(y)Q(-y)\
     \ \u306E\u5076\u6570\u6B21\u3092\u53D6\u308A\u51FA\u3059\n  while (N > 0) {\n\
@@ -579,10 +587,42 @@ data:
     \ FOR(i, 2 * H - 1) FOR(j, W) { nxtQ[i][j] = G[W * i + j]; }\n    swap(P, nxtP),\
     \ swap(Q, nxtQ);\n    N /= 2;\n  }\n  vc<mint> f(M + 1), g(M + 1);\n  FOR(i, M\
     \ + 1) if (i < len(P)) f[i] = P[i][0];\n  FOR(i, M + 1) if (i < len(Q)) g[i] =\
-    \ Q[i][0];\n  return fps_div<mint>(f, g);\n}\n#line 7 \"test/5_atcoder/agc058d.test.cpp\"\
+    \ Q[i][0];\n  return fps_div<mint>(f, g);\n}\n\n/*\n[y^N] F(x,y)/G(x,y) \u3092\
+    \ [x^M] \u307E\u3067\u3002\n[y^0] G = 1 \u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\
+    \u3002\ndeg G = (3, 1) \u306E (N,M)=(3\xD710^6,10^6) \u3067 400 ms \u306E\u5B9F\
+    \u7E3E\u304C\u3042\u308B\u304C\u3001\u304B\u306A\u308A\u758E\u3060\u304B\u3089\
+    \u304B\u3082\u3002\nhttps://atcoder.jp/contests/agc058/tasks/agc058_d\n*/\ntemplate\
+    \ <typename mint>\nvc<mint> coef_of_rational_fps_2d_old(vector<vector<mint>> F,\
+    \ vector<vector<mint>> G, int N, int M) {\n  using poly = vc<mint>;\n  assert(G[0][0]\
+    \ == mint(1));\n  F = transpose(F), G = transpose(G);\n  FOR(j, 1, len(G[0]))\
+    \ assert(G[0][j] == mint(0));\n\n  // x^N mod reverse(G) \u3092\u8A08\u7B97\u3059\
+    \u308B\n  int m = len(G) - 1;\n\n  auto add_at = [&](poly& f, int i, mint x) ->\
+    \ void {\n    if (len(f) <= i) f.resize(i + 1);\n    f[i] += x;\n  };\n\n  auto\
+    \ simplify = [&](poly& f) -> void {\n    if (len(f) >= M + 1) f.resize(M + 1);\n\
+    \    while (len(f) && f.back() == mint(0)) f.pop_back();\n  };\n\n  auto dfs =\
+    \ [&](auto& dfs, int n) -> vc<poly> {\n    if (n == 0) { return {poly({mint(1)})};\
+    \ }\n    vc<poly> f = dfs(dfs, n / 2);\n    // 2 \u4E57\u3057\u305F\u3044\n  \
+    \  int nf = 0;\n    FOR(i, len(f)) chmax(nf, len(f[i]));\n    int K = 1;\n   \
+    \ while (K < 2 * nf) K *= 2;\n    FOR(i, len(f)) {\n      f[i].resize(K);\n  \
+    \    ntt(f[i], 0);\n    }\n    vc<poly> g(2 * len(f) - 1);\n    FOR(i, 2 * len(f)\
+    \ - 1) g[i].resize(K);\n    FOR(i, len(f)) FOR(j, len(f)) { FOR(k, K) g[i + j][k]\
+    \ += f[i][k] * f[j][k]; }\n    FOR(i, len(g)) ntt(g[i], 1);\n    swap(f, g);\n\
+    \n    if (n % 2 == 1) { f.insert(f.begin(), poly({})); }\n    FOR_R(i, m, len(f))\
+    \ {\n      FOR(j, 1, m + 1) {\n        FOR(ny, len(G[j])) {\n          mint cf\
+    \ = -G[j][ny];\n          if (cf == mint(0)) continue;\n          FOR(k, len(f[i]))\
+    \ {\n            mint& x = f[i][k];\n            if (x == mint(0)) continue;\n\
+    \            add_at(f[i - j], k + ny, cf * x);\n          }\n        }\n     \
+    \ }\n    }\n    f.resize(m);\n    FOR(i, m) simplify(f[i]);\n    return f;\n \
+    \ };\n\n  vc<poly> h = dfs(dfs, N);\n  // \u7DDA\u5F62\u6F38\u5316\u5F0F\u306E\
+    \u6700\u521D\u306E\u65B9\u3092\u6C42\u3081\u308B\n  vc<poly> A(m);\n  FOR(i, m)\
+    \ {\n    A[i] = (i < len(F) ? F[i] : poly());\n    FOR(j, 1, i + 1) {\n      int\
+    \ k = i - j;\n      poly tmp = convolution(A[k], G[j]);\n      FOR(t, len(tmp))\
+    \ { add_at(A[i], t, -tmp[t]); }\n    }\n  }\n\n  vc<mint> res(M + 1);\n  FOR(i,\
+    \ m) {\n    vc<mint> f = convolution(h[i], A[i]);\n    f.resize(M + 1);\n    FOR(i,\
+    \ len(f)) add_at(res, i, f[i]);\n  }\n  return res;\n}\n#line 7 \"test/5_atcoder/agc058d.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(A, B, C);\n  ll N = A + B\
     \ + C;\n\n  vv(mint, F, 1, 4);\n  vv(mint, G, 2, 4);\n  F[0][0] = 3, F[0][1] =\
-    \ -1;\n  G[0][0] = 1, G[0][1] = -1, G[1][3] = 2;\n\n  auto g = coef_of_rational_fps_2d(F,\
+    \ -1;\n  G[0][0] = 1, G[0][1] = -1, G[1][3] = 2;\n\n  auto g = coef_of_rational_fps_2d_old(F,\
     \ G, N, min({A, B, C}));\n  FOR(i, len(g)) g[i] *= inv<mint>(2);\n  g[0] = 1;\n\
     \n  mint ANS = 0;\n\n  FOR(t, len(g)) {\n    ll a = A - t, b = B - t, c = C -\
     \ t;\n    if (min({a, b, c}) < 0) break;\n    mint cf = fact<mint>(a + b + c)\
@@ -594,13 +634,13 @@ data:
     \n#include \"poly/coef_of_rational_fps_2d.hpp\"\n\nusing mint = modint998;\n\n\
     void solve() {\n  LL(A, B, C);\n  ll N = A + B + C;\n\n  vv(mint, F, 1, 4);\n\
     \  vv(mint, G, 2, 4);\n  F[0][0] = 3, F[0][1] = -1;\n  G[0][0] = 1, G[0][1] =\
-    \ -1, G[1][3] = 2;\n\n  auto g = coef_of_rational_fps_2d(F, G, N, min({A, B, C}));\n\
-    \  FOR(i, len(g)) g[i] *= inv<mint>(2);\n  g[0] = 1;\n\n  mint ANS = 0;\n\n  FOR(t,\
-    \ len(g)) {\n    ll a = A - t, b = B - t, c = C - t;\n    if (min({a, b, c}) <\
-    \ 0) break;\n    mint cf = fact<mint>(a + b + c) * fact_inv<mint>(a) * fact_inv<mint>(b)\
-    \ * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n  }\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n\
-    \  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ -1, G[1][3] = 2;\n\n  auto g = coef_of_rational_fps_2d_old(F, G, N, min({A,\
+    \ B, C}));\n  FOR(i, len(g)) g[i] *= inv<mint>(2);\n  g[0] = 1;\n\n  mint ANS\
+    \ = 0;\n\n  FOR(t, len(g)) {\n    ll a = A - t, b = B - t, c = C - t;\n    if\
+    \ (min({a, b, c}) < 0) break;\n    mint cf = fact<mint>(a + b + c) * fact_inv<mint>(a)\
+    \ * fact_inv<mint>(b) * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
+    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -617,11 +657,12 @@ data:
   - poly/fps_div.hpp
   - poly/count_terms.hpp
   - poly/fps_inv.hpp
+  - linalg/transpose.hpp
   isVerificationFile: true
   path: test/5_atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2024-08-21 03:26:52+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-21 04:17:01+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/agc058d.test.cpp
 layout: document
