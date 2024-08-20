@@ -581,27 +581,31 @@ data:
     \ + 1) if (i < len(P)) f[i] = P[i][0];\n  FOR(i, M + 1) if (i < len(Q)) g[i] =\
     \ Q[i][0];\n  return fps_div<mint>(f, g);\n}\n#line 7 \"test/5_atcoder/agc058d.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(A, B, C);\n  ll N = A + B\
-    \ + C;\n\n  using poly = vc<mint>;\n  vc<poly> F(2), G(4);\n  F[0] = {mint(3)};\n\
-    \  F[1] = {mint(-1)};\n  G[0] = {mint(1)};\n  G[1] = {mint(-1)};\n  G[3] = {mint(0),\
-    \ mint(2)};\n\n  auto g = coef_of_rational_fps_2d(F, G, N);\n  FOR(i, len(g))\
-    \ g[i] *= inv<mint>(2);\n  g[0] = 1;\n\n  mint ANS = 0;\n\n  FOR(t, len(g)) {\n\
-    \    ll a = A - t, b = B - t, c = C - t;\n    if (min({a, b, c}) < 0) break;\n\
-    \    mint cf = fact<mint>(a + b + c) * fact_inv<mint>(a) * fact_inv<mint>(b)\n\
-    \              * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \ + C;\n\n  using poly = vc<mint>;\n  // vc<poly> F(2), G(4);\n  // F[0] = {mint(3)};\n\
+    \  // F[1] = {mint(-1)};\n  // G[0] = {mint(1)};\n  // G[1] = {mint(-1)};\n  //\
+    \ G[3] = {mint(0), mint(2)};\n  vv(mint, F, 1, 4);\n  vv(mint, G, 2, 4);\n  F[0][0]\
+    \ = 3, F[0][1] = -1;\n  G[0][0] = 1, G[0][1] = -1, G[1][3] = 2;\n\n  auto g =\
+    \ coef_of_rational_fps_2d(F, G, N, min(A, B, C));\n  FOR(i, len(g)) g[i] *= inv<mint>(2);\n\
+    \  g[0] = 1;\n\n  mint ANS = 0;\n\n  FOR(t, len(g)) {\n    ll a = A - t, b = B\
+    \ - t, c = C - t;\n    if (min({a, b, c}) < 0) break;\n    mint cf = fact<mint>(a\
+    \ + b + c) * fact_inv<mint>(a) * fact_inv<mint>(b) * fact_inv<mint>(c);\n    ANS\
+    \ += g[t] * cf;\n  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed <<\
+    \ setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/agc058/tasks/agc058_d\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"poly/convolution.hpp\"\
     \n#include \"poly/coef_of_rational_fps_2d.hpp\"\n\nusing mint = modint998;\n\n\
     void solve() {\n  LL(A, B, C);\n  ll N = A + B + C;\n\n  using poly = vc<mint>;\n\
-    \  vc<poly> F(2), G(4);\n  F[0] = {mint(3)};\n  F[1] = {mint(-1)};\n  G[0] = {mint(1)};\n\
-    \  G[1] = {mint(-1)};\n  G[3] = {mint(0), mint(2)};\n\n  auto g = coef_of_rational_fps_2d(F,\
-    \ G, N);\n  FOR(i, len(g)) g[i] *= inv<mint>(2);\n  g[0] = 1;\n\n  mint ANS =\
-    \ 0;\n\n  FOR(t, len(g)) {\n    ll a = A - t, b = B - t, c = C - t;\n    if (min({a,\
-    \ b, c}) < 0) break;\n    mint cf = fact<mint>(a + b + c) * fact_inv<mint>(a)\
-    \ * fact_inv<mint>(b)\n              * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n\
-    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  // vc<poly> F(2), G(4);\n  // F[0] = {mint(3)};\n  // F[1] = {mint(-1)};\n\
+    \  // G[0] = {mint(1)};\n  // G[1] = {mint(-1)};\n  // G[3] = {mint(0), mint(2)};\n\
+    \  vv(mint, F, 1, 4);\n  vv(mint, G, 2, 4);\n  F[0][0] = 3, F[0][1] = -1;\n  G[0][0]\
+    \ = 1, G[0][1] = -1, G[1][3] = 2;\n\n  auto g = coef_of_rational_fps_2d(F, G,\
+    \ N, min(A, B, C));\n  FOR(i, len(g)) g[i] *= inv<mint>(2);\n  g[0] = 1;\n\n \
+    \ mint ANS = 0;\n\n  FOR(t, len(g)) {\n    ll a = A - t, b = B - t, c = C - t;\n\
+    \    if (min({a, b, c}) < 0) break;\n    mint cf = fact<mint>(a + b + c) * fact_inv<mint>(a)\
+    \ * fact_inv<mint>(b) * fact_inv<mint>(c);\n    ANS += g[t] * cf;\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
+    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -621,7 +625,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2024-08-20 10:42:19+09:00'
+  timestamp: '2024-08-21 03:18:18+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/agc058d.test.cpp
