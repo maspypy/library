@@ -25,9 +25,9 @@ data:
     \ {\n  using T = typename FUNC::value_type;\n  vc<FUNC> funcs;\n\n  static inline\
     \ T evaluate(FUNC &f, ll x) { return f(x); }\n\n  struct Node {\n    int fid;\n\
     \    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n  ll L, R;\n\n  using np\
-    \ = Node *;\n\n  Dynamic_LiChao_Tree(ll L, ll R) : pid(0), L(L), R(R) {\n    pool\
-    \ = new Node[NODES];\n  }\n\n  void reset() {\n    funcs.clear();\n    pid = 0;\n\
-    \  }\n\n  np new_root() { return nullptr; }\n\n  np new_node() {\n    pool[pid].fid\
+    \ = Node *;\n\n  Dynamic_LiChao_Tree(ll L, ll R) : pid(0), L(L), R(R) { pool =\
+    \ new Node[NODES]; }\n\n  void reset() {\n    funcs.clear();\n    pid = 0;\n \
+    \ }\n\n  np new_root() { return nullptr; }\n\n  np new_node() {\n    pool[pid].fid\
     \ = -1;\n    pool[pid].l = nullptr, pool[pid].r = nullptr;\n    return &(pool[pid++]);\n\
     \  }\n\n  np add_line(np root, FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n\
     \    if (!root) root = new_node();\n    return add_line_rec(root, fid, L, R);\n\
@@ -81,10 +81,10 @@ data:
     \ T = typename FUNC::value_type;\n  vc<FUNC> funcs;\n\n  static inline T evaluate(FUNC\
     \ &f, ll x) { return f(x); }\n\n  struct Node {\n    int fid;\n    Node *l, *r;\n\
     \  };\n\n  Node *pool;\n  int pid;\n  ll L, R;\n\n  using np = Node *;\n\n  Dynamic_LiChao_Tree(ll\
-    \ L, ll R) : pid(0), L(L), R(R) {\n    pool = new Node[NODES];\n  }\n\n  void\
-    \ reset() {\n    funcs.clear();\n    pid = 0;\n  }\n\n  np new_root() { return\
-    \ nullptr; }\n\n  np new_node() {\n    pool[pid].fid = -1;\n    pool[pid].l =\
-    \ nullptr, pool[pid].r = nullptr;\n    return &(pool[pid++]);\n  }\n\n  np add_line(np\
+    \ L, ll R) : pid(0), L(L), R(R) { pool = new Node[NODES]; }\n\n  void reset()\
+    \ {\n    funcs.clear();\n    pid = 0;\n  }\n\n  np new_root() { return nullptr;\
+    \ }\n\n  np new_node() {\n    pool[pid].fid = -1;\n    pool[pid].l = nullptr,\
+    \ pool[pid].r = nullptr;\n    return &(pool[pid++]);\n  }\n\n  np add_line(np\
     \ root, FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n    if (!root)\
     \ root = new_node();\n    return add_line_rec(root, fid, L, R);\n  }\n\n  // [xl,\
     \ xr)\n  np add_segment(np root, ll xl, ll xr, FUNC f) {\n    int fid = len(funcs);\n\
@@ -130,7 +130,7 @@ data:
   isVerificationFile: false
   path: convex/dynamic_lichao.hpp
   requiredBy: []
-  timestamp: '2024-06-11 22:40:57+09:00'
+  timestamp: '2024-08-20 10:42:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/datastructure/line_add_get_min_lichao.test.cpp

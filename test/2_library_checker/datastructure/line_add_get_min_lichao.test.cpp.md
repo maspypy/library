@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -210,7 +210,7 @@ data:
     \ funcs;\n\n  static inline T evaluate(FUNC &f, ll x) { return f(x); }\n\n  struct\
     \ Node {\n    int fid;\n    Node *l, *r;\n  };\n\n  Node *pool;\n  int pid;\n\
     \  ll L, R;\n\n  using np = Node *;\n\n  Dynamic_LiChao_Tree(ll L, ll R) : pid(0),\
-    \ L(L), R(R) {\n    pool = new Node[NODES];\n  }\n\n  void reset() {\n    funcs.clear();\n\
+    \ L(L), R(R) { pool = new Node[NODES]; }\n\n  void reset() {\n    funcs.clear();\n\
     \    pid = 0;\n  }\n\n  np new_root() { return nullptr; }\n\n  np new_node() {\n\
     \    pool[pid].fid = -1;\n    pool[pid].l = nullptr, pool[pid].r = nullptr;\n\
     \    return &(pool[pid++]);\n  }\n\n  np add_line(np root, FUNC f) {\n    int\
@@ -279,7 +279,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/datastructure/line_add_get_min_lichao.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-20 10:42:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/datastructure/line_add_get_min_lichao.test.cpp
