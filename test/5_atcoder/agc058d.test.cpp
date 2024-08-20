@@ -16,7 +16,7 @@ void solve() {
   F[0][0] = 3, F[0][1] = -1;
   G[0][0] = 1, G[0][1] = -1, G[1][3] = 2;
 
-  auto g = coef_of_rational_fps_2d(F, G, N, min({A, B, C}));
+  auto g = coef_of_rational_fps_2d_old(F, G, N, min({A, B, C}));
   FOR(i, len(g)) g[i] *= inv<mint>(2);
   g[0] = 1;
 
