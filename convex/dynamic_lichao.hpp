@@ -28,9 +28,7 @@ struct Dynamic_LiChao_Tree {
 
   using np = Node *;
 
-  Dynamic_LiChao_Tree(ll L, ll R) : pid(0), L(L), R(R) {
-    pool = new Node[NODES];
-  }
+  Dynamic_LiChao_Tree(ll L, ll R) : pid(0), L(L), R(R) { pool = new Node[NODES]; }
 
   void reset() {
     funcs.clear();
