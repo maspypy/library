@@ -11,19 +11,12 @@ void solve() {
   LL(A, B, C);
   ll N = A + B + C;
 
-  using poly = vc<mint>;
-  // vc<poly> F(2), G(4);
-  // F[0] = {mint(3)};
-  // F[1] = {mint(-1)};
-  // G[0] = {mint(1)};
-  // G[1] = {mint(-1)};
-  // G[3] = {mint(0), mint(2)};
   vv(mint, F, 1, 4);
   vv(mint, G, 2, 4);
   F[0][0] = 3, F[0][1] = -1;
   G[0][0] = 1, G[0][1] = -1, G[1][3] = 2;
 
-  auto g = coef_of_rational_fps_2d(F, G, N, min(A, B, C));
+  auto g = coef_of_rational_fps_2d(F, G, N, min({A, B, C}));
   FOR(i, len(g)) g[i] *= inv<mint>(2);
   g[0] = 1;
 
