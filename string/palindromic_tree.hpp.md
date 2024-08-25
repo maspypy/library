@@ -12,15 +12,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2606.test.cpp
     title: test/3_yukicoder/2606.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/465.test.cpp
     title: test/3_yukicoder/465.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/palindromic_tree.hpp\"\n// palindromic tree \u3092\
@@ -75,7 +75,7 @@ data:
   requiredBy:
   - string/palindrome_decomposition_dp.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/263.test.cpp
   - test/3_yukicoder/2606.test.cpp

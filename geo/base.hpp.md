@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: geo/apollonian_circle.hpp
     title: geo/apollonian_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':heavy_check_mark:'
@@ -56,7 +56,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
   - icon: ':heavy_check_mark:'
@@ -135,7 +135,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_3_B.test.cpp
     title: test/4_aoj/CGL_3_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -153,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc202_f.test.cpp
     title: test/5_atcoder/abc202_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc220g.test.cpp
     title: test/5_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,9 +168,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc130f.test.cpp
     title: test/5_atcoder/arc130f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -324,7 +324,7 @@ data:
   - graph/planar_graph.hpp
   - convex/fenchel.hpp
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc202_f.test.cpp
   - test/5_atcoder/abc220g.test.cpp
