@@ -13,7 +13,10 @@ struct HashMap {
   }
 
   // size を保ったまま. size=0 にするときは build すること.
-  void clear() { used.assign(len(used), 0); }
+  void clear() {
+    used.assign(len(used), 0);
+    cap = (mask + 1) / 2;
+  }
   int size() { return len(used) / 2 - cap; }
 
   int index(const u64& k) {
