@@ -435,6 +435,9 @@ data:
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/segtree
     pages:
+    - icon: ':x:'
+      path: ds/segtree/beats_kinetic.hpp
+      title: ds/segtree/beats_kinetic.hpp
     - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summax_chmin.hpp
       title: ds/segtree/beats_summax_chmin.hpp
@@ -477,7 +480,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d_dense.hpp
       title: ds/segtree/segtree_2d_dense.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
     - icon: ':heavy_check_mark:'
@@ -4830,6 +4833,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/arc162f.test.cpp
       title: test/5_atcoder/arc162f.test.cpp
+    - icon: ':x:'
+      path: test/5_atcoder/jsc2024d.test.cpp
+      title: test/5_atcoder/jsc2024d.test.cpp
+    - icon: ':x:'
+      path: test/5_atcoder/jsc2024d2.test.cpp
+      title: test/5_atcoder/jsc2024d2.test.cpp
 layout: toppage
 ---
 ライブラリ整備を支援する / Support developping this library
