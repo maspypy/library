@@ -151,7 +151,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/monoid_for_floor_sum.hpp
       title: alg/monoid/monoid_for_floor_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -177,7 +177,7 @@ data:
       title: alg/monoid/xor.hpp
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
   - name: bigint
@@ -1298,13 +1298,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/first_mod_range_of_linear.hpp
       title: mod/first_mod_range_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/floor_monoid_product.hpp
       title: mod/floor_monoid_product.hpp
     - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear_polynomial.hpp
       title: mod/floor_sum_of_linear_polynomial.hpp
     - icon: ':heavy_check_mark:'
@@ -4016,7 +4016,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2361.test.cpp
       title: test/3_yukicoder/2361.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2362.test.cpp
       title: test/3_yukicoder/2362.test.cpp
     - icon: ':heavy_check_mark:'

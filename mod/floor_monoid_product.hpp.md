@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://qoj.ac/contest/1411/problem/7620
@@ -76,7 +76,7 @@ data:
   requiredBy:
   - mod/floor_sum_of_linear_polynomial.hpp
   timestamp: '2024-01-23 03:59:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
   - test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp
