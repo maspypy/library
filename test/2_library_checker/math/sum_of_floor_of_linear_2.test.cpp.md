@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/sum_of_floor_of_linear
@@ -277,14 +277,14 @@ data:
     \ Data, U>(Mono::to_x(), Mono::to_y(), N, a, b, mod);\n  Data offset = Mono::unit();\n\
     \  offset.dx = T(ADD_X), offset.dy = T(ADD_Y);\n  A = Mono::op(offset, A);\n \
     \ return A.dp;\n};\n#line 6 \"test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp\"\
-    \n\nvoid solve() {\n  u32 n, m, a, b;\n  read(n, m, a, b);\n  print(floor_sum_of_linear_polynomial_nonnegative<u64,\
-    \ 0, 0, u64>(n, a, b, m));\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    \n\nvoid solve() {\n  u32 n, m, a, b;\n  read(n, m, a, b);\n  auto x = floor_sum_of_linear_polynomial_nonnegative<u64,\
+    \ 0, 1, u64>(n, a, b, m);\n  print(x[0][1]);\n}\n\nsigned main() {\n  INT(T);\n\
+    \  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/sum_of_floor_of_linear\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/floor_sum_of_linear_polynomial.hpp\"\
-    \n\nvoid solve() {\n  u32 n, m, a, b;\n  read(n, m, a, b);\n  print(floor_sum_of_linear_polynomial_nonnegative<u64,\
-    \ 0, 0, u64>(n, a, b, m));\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    \n\nvoid solve() {\n  u32 n, m, a, b;\n  read(n, m, a, b);\n  auto x = floor_sum_of_linear_polynomial_nonnegative<u64,\
+    \ 0, 1, u64>(n, a, b, m);\n  print(x[0][1]);\n}\n\nsigned main() {\n  INT(T);\n\
+    \  FOR(T) solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -295,8 +295,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2024-08-26 02:13:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-26 02:37:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp
 layout: document
