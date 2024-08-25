@@ -7,7 +7,7 @@
 void solve() {
   u32 n, m, a, b;
   read(n, m, a, b);
-  print(floor_sum_of_linear_polynomial<u64, 0, u64>(n, a, b, m));
+  print(floor_sum_of_linear_polynomial_nonnegative<u64, 0, 0, u64>(n, a, b, m));
 }
 
 signed main() {
