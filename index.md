@@ -435,7 +435,7 @@ data:
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/segtree
     pages:
-    - icon: ':x:'
+    - icon: ':warning:'
       path: ds/segtree/beats_kinetic.hpp
       title: ds/segtree/beats_kinetic.hpp
     - icon: ':heavy_check_mark:'
@@ -480,7 +480,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d_dense.hpp
       title: ds/segtree/segtree_2d_dense.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
     - icon: ':heavy_check_mark:'
@@ -1375,7 +1375,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1525,7 +1525,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -4833,12 +4833,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/arc162f.test.cpp
       title: test/5_atcoder/arc162f.test.cpp
-    - icon: ':x:'
-      path: test/5_atcoder/jsc2024d.test.cpp
-      title: test/5_atcoder/jsc2024d.test.cpp
-    - icon: ':x:'
-      path: test/5_atcoder/jsc2024d2.test.cpp
-      title: test/5_atcoder/jsc2024d2.test.cpp
 layout: toppage
 ---
 ライブラリ整備を支援する / Support developping this library

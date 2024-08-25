@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: ds/segtree/beats_kinetic.hpp
     title: ds/segtree/beats_kinetic.hpp
   - icon: ':heavy_check_mark:'
@@ -24,15 +24,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1526_2.test.cpp
     title: test/3_yukicoder/1526_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/jsc2024d.test.cpp
-    title: test/5_atcoder/jsc2024d.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/jsc2024d2.test.cpp
-    title: test/5_atcoder/jsc2024d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_beats.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -128,10 +122,8 @@ data:
   - ds/segtree/beats_summinmax_chminchmax.hpp
   - ds/segtree/beats_summax_chmin.hpp
   timestamp: '2023-01-31 23:12:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/jsc2024d.test.cpp
-  - test/5_atcoder/jsc2024d2.test.cpp
   - test/3_yukicoder/1526_2.test.cpp
   - test/3_yukicoder/1526.test.cpp
   - test/2_library_checker/datastructure/range_chmin_chmax_add_range_sum.test.cpp

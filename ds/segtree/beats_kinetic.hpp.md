@@ -1,20 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/jsc2024d.test.cpp
-    title: test/5_atcoder/jsc2024d.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/jsc2024d2.test.cpp
-    title: test/5_atcoder/jsc2024d2.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://atcoder.jp/contests/jsc2024-final/tasks/jsc2024_final_d
@@ -190,10 +184,8 @@ data:
   path: ds/segtree/beats_kinetic.hpp
   requiredBy: []
   timestamp: '2024-08-26 04:14:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/jsc2024d.test.cpp
-  - test/5_atcoder/jsc2024d2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/segtree/beats_kinetic.hpp
 layout: document
 redirect_from:

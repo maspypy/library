@@ -2214,15 +2214,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc162f.test.cpp
     title: test/5_atcoder/arc162f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/jsc2024d.test.cpp
-    title: test/5_atcoder/jsc2024d.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/jsc2024d2.test.cpp
-    title: test/5_atcoder/jsc2024d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/21623
@@ -2420,7 +2414,7 @@ data:
   path: other/io.hpp
   requiredBy: []
   timestamp: '2024-08-07 19:12:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc226f.test.cpp
   - test/5_atcoder/abc212h.test.cpp
@@ -2452,7 +2446,6 @@ data:
   - test/5_atcoder/agc013e.test.cpp
   - test/5_atcoder/abc335g.test.cpp
   - test/5_atcoder/abc333f.test.cpp
-  - test/5_atcoder/jsc2024d.test.cpp
   - test/5_atcoder/abc237g.test.cpp
   - test/5_atcoder/abc314f.test.cpp
   - test/5_atcoder/abc237g1.test.cpp
@@ -2538,7 +2531,6 @@ data:
   - test/5_atcoder/abc280f.test.cpp
   - test/5_atcoder/abc298ex.test.cpp
   - test/5_atcoder/abc213g.test.cpp
-  - test/5_atcoder/jsc2024d2.test.cpp
   - test/5_atcoder/abc141e.test.cpp
   - test/5_atcoder/abc240ex.test.cpp
   - test/5_atcoder/abc139f.test.cpp
