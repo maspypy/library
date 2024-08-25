@@ -367,6 +367,7 @@
 "test/2_library_checker/math/sum_of_exp_times_poly.test.cpp": "2024-08-16 19:16:03 +0900",
 "test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/2_library_checker/math/sum_of_floor_of_linear.test.cpp": "2024-08-13 23:38:32 +0900",
+"test/2_library_checker/math/sum_of_floor_of_linear_2.test.cpp": "2024-08-26 02:37:11 +0900",
 "test/2_library_checker/math/tetration.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/2_library_checker/math/totient_sum.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/2_library_checker/math/twosat.test.cpp": "2024-08-13 23:38:32 +0900",
