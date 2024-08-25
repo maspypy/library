@@ -1,4 +1,4 @@
-#define PROBLEM "https://atcoder.jp/contests/jsc2024-final/tasks/jsc2024_final_d"
+#define PROBLEM "https://atcoder.jp/contests/JSC2024Final/tasks/JSC2024Final_d"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -16,7 +16,7 @@ void solve() {
   FOR(i, N - 1) chmin(mrk[i + 1], mrk[i]);
 
   ll n = len(X);
-  Beats_Kinetic_Max<ll, ll> seg(n, [&](int i) -> pi { return {X[i], 0}; });
+  Beats_Kinetic_Max<int, ll> seg(n, [&](int i) -> pair<int, ll> { return {X[i], 0}; });
 
   ll ADD = A[0];
   FOR(i, 1, N) {
