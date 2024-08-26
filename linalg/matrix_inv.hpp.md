@@ -9,9 +9,9 @@ data:
     path: linalg/matrix_lowrank_update.hpp
     title: linalg/matrix_lowrank_update.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/matrix/inverse_matrix.test.cpp
-    title: test/2_library_checker/matrix/inverse_matrix.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
+    title: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
@@ -21,9 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/matrix_inv.hpp\"\n// (det, invA) \u3092\u304B\u3048\
@@ -53,12 +53,12 @@ data:
   - linalg/det_A_plus_xB.hpp
   - linalg/matrix_lowrank_update.hpp
   timestamp: '2023-10-24 14:07:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1774.test.cpp
-  - test/2_library_checker/matrix/inverse_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
 documentation_of: linalg/matrix_inv.hpp
 layout: document
 redirect_from:

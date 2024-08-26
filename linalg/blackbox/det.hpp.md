@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy:
@@ -36,18 +36,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/matrix/sparse_matrix_det.test.cpp
-    title: test/2_library_checker/matrix/sparse_matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
+    title: test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc336g.test.cpp
     title: test/5_atcoder/abc336g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -95,7 +95,7 @@ data:
   - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
   timestamp: '2024-01-21 23:24:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc336g.test.cpp
   - test/3_yukicoder/310.test.cpp
@@ -105,7 +105,7 @@ data:
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - test/2_library_checker/matrix/sparse_matrix_det.test.cpp
+  - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
 documentation_of: linalg/blackbox/det.hpp
 layout: document
 redirect_from:

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/static_range_frequency.test.cpp
-    title: test/2_library_checker/datastructure/static_range_frequency.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
+    title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/static_range_frequency.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\
@@ -80,9 +80,9 @@ data:
   path: ds/static_range_frequency.hpp
   requiredBy: []
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/2_library_checker/datastructure/static_range_frequency.test.cpp
+  - test/2_library_checker/data_structure/static_range_frequency.test.cpp
 documentation_of: ds/static_range_frequency.hpp
 layout: document
 redirect_from:

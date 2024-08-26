@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-    title: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-    title: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/rectangle_sum_wm.test.cpp
-    title: test/2_library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
-    title: test/2_library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+    title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+    title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+    title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+    title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
@@ -36,9 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool\
@@ -277,15 +277,15 @@ data:
   path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   requiredBy: []
   timestamp: '2024-08-08 19:22:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
-  - test/2_library_checker/datastructure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/datastructure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/2_library_checker/datastructure/rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -21,21 +21,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod6.test.cpp
     title: test/1_mytest/primesum_mod6.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/counting_primes.test.cpp
-    title: test/2_library_checker/math/counting_primes.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/totient_sum.test.cpp
-    title: test/2_library_checker/math/totient_sum.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/counting_primes.test.cpp
+    title: test/2_library_checker/number_theory/counting_primes.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/totient_sum.test.cpp
+    title: test/2_library_checker/number_theory/totient_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1781.test.cpp
     title: test/3_yukicoder/1781.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -107,12 +107,12 @@ data:
   - nt/primesum_mod6.hpp
   - nt/primesum_mod4.hpp
   timestamp: '2023-08-06 13:04:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1781.test.cpp
-  - test/2_library_checker/math/totient_sum.test.cpp
-  - test/2_library_checker/math/counting_primes.test.cpp
+  - test/2_library_checker/number_theory/totient_sum.test.cpp
+  - test/2_library_checker/number_theory/counting_primes.test.cpp
   - test/1_mytest/prime_sum.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp

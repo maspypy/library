@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/add_remove_query.test.cpp
-    title: test/2_library_checker/datastructure/add_remove_query.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-    title: test/2_library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-  _isVerificationFailed: false
+    path: test/2_library_checker/data_structure/add_remove_query.test.cpp
+    title: test/2_library_checker/data_structure/add_remove_query.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
+    title: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
@@ -52,10 +52,10 @@ data:
   path: ds/unionfind/rollback_unionfind.hpp
   requiredBy: []
   timestamp: '2023-08-06 03:58:50+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/datastructure/dynamic_graph_vertex_add_component_sum.test.cpp
-  - test/2_library_checker/datastructure/add_remove_query.test.cpp
+  - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/2_library_checker/data_structure/add_remove_query.test.cpp
 documentation_of: ds/unionfind/rollback_unionfind.hpp
 layout: document
 redirect_from:

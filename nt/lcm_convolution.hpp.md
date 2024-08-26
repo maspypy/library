@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/lcm_convolution.test.cpp
-    title: test/2_library_checker/math/lcm_convolution.test.cpp
+    path: test/2_library_checker/convolution/lcm_convolution.test.cpp
+    title: test/2_library_checker/convolution/lcm_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1760.test.cpp
     title: test/3_yukicoder/1760.test.cpp
@@ -59,7 +59,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1760.test.cpp
-  - test/2_library_checker/math/lcm_convolution.test.cpp
+  - test/2_library_checker/convolution/lcm_convolution.test.cpp
 documentation_of: nt/lcm_convolution.hpp
 layout: document
 redirect_from:

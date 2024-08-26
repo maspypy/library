@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -38,13 +38,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
@@ -53,10 +53,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -96,24 +96,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/bernoulli.test.cpp
-    title: test/2_library_checker/math/bernoulli.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
-    title: test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-    title: test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/stirling_number_of_the_second_kind.test.cpp
-    title: test/2_library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-    title: test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/bernoulli.test.cpp
+    title: test/2_library_checker/number_theory/bernoulli.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
+    title: test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
@@ -189,9 +189,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -248,7 +248,7 @@ data:
   - poly/composition_f_a_plus_bx.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc202_f.test.cpp
   - test/5_atcoder/abc249_ex.test.cpp
@@ -275,12 +275,12 @@ data:
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/2_library_checker/math/sum_of_exp_times_poly_limit.test.cpp
-  - test/2_library_checker/math/stirling_number_of_the_second_kind.test.cpp
-  - test/2_library_checker/math/stirling_number_of_the_first_kind.test.cpp
-  - test/2_library_checker/math/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/2_library_checker/math/bernoulli.test.cpp
-  - test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp

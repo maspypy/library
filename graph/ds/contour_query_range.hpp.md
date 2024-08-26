@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-    title: test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
-    title: test/2_library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+    title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+    title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -261,11 +261,11 @@ data:
   path: graph/ds/contour_query_range.hpp
   requiredBy: []
   timestamp: '2024-07-27 04:33:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1038.test.cpp
-  - test/2_library_checker/datastructure/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/2_library_checker/datastructure/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
 documentation_of: graph/ds/contour_query_range.hpp
 layout: document
 redirect_from:

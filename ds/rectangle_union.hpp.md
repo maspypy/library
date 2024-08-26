@@ -4,20 +4,20 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
+    title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
@@ -148,7 +148,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc318b.test.cpp
-  - test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - test/4_aoj/DSL_4_A.test.cpp
 documentation_of: ds/rectangle_union.hpp
 layout: document

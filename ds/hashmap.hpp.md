@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':heavy_check_mark:'
@@ -20,19 +20,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
@@ -43,20 +43,20 @@ data:
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
-    title: test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/set_xor_min.test.cpp
-    title: test/2_library_checker/datastructure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/static_range_freq.test.cpp
-    title: test/2_library_checker/datastructure/static_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/static_range_frequency.test.cpp
-    title: test/2_library_checker/datastructure/static_range_frequency.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/static_range_mode_query.test.cpp
-    title: test/2_library_checker/datastructure/static_range_mode_query.test.cpp
+    path: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
+    title: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/set_xor_min.test.cpp
+    title: test/2_library_checker/data_structure/set_xor_min.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/static_range_freq.test.cpp
+    title: test/2_library_checker/data_structure/static_range_freq.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
+    title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
+    title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
@@ -69,22 +69,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/eulerwalk_ud.test.cpp
     title: test/2_library_checker/graph/eulerwalk_ud.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/kth_root_mod.test.cpp
-    title: test/2_library_checker/math/kth_root_mod.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+    title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1383.test.cpp
     title: test/3_yukicoder/1383.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -99,10 +99,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1769.test.cpp
     title: test/3_yukicoder/1769.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2102.test.cpp
     title: test/3_yukicoder/2102.test.cpp
   - icon: ':heavy_check_mark:'
@@ -114,16 +114,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'
@@ -150,15 +150,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc335g.test.cpp
     title: test/5_atcoder/abc335g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc157a.test.cpp
     title: test/5_atcoder/arc157a.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -229,7 +229,7 @@ data:
   - ds/static_range_frequency.hpp
   - ds/to_small_key.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc335g.test.cpp
   - test/5_atcoder/abc220g.test.cpp
@@ -259,13 +259,13 @@ data:
   - test/3_yukicoder/2102.test.cpp
   - test/2_library_checker/graph/eulerwalk_d.test.cpp
   - test/2_library_checker/graph/eulerwalk_ud.test.cpp
-  - test/2_library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/2_library_checker/math/kth_root_mod.test.cpp
-  - test/2_library_checker/datastructure/set_xor_min.test.cpp
-  - test/2_library_checker/datastructure/static_range_mode_query.test.cpp
-  - test/2_library_checker/datastructure/static_range_frequency.test.cpp
-  - test/2_library_checker/datastructure/associative_array_hashmap.test.cpp
-  - test/2_library_checker/datastructure/static_range_freq.test.cpp
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - test/2_library_checker/data_structure/set_xor_min.test.cpp
+  - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
+  - test/2_library_checker/data_structure/static_range_frequency.test.cpp
+  - test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
+  - test/2_library_checker/data_structure/static_range_freq.test.cpp
   - test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp

@@ -4,8 +4,8 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/double_ended_q.test.cpp
-    title: test/2_library_checker/datastructure/double_ended_q.test.cpp
+    path: test/2_library_checker/data_structure/double_ended_q.test.cpp
+    title: test/2_library_checker/data_structure/double_ended_q.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -97,7 +97,7 @@ data:
   timestamp: '2024-07-18 10:54:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/datastructure/double_ended_q.test.cpp
+  - test/2_library_checker/data_structure/double_ended_q.test.cpp
 documentation_of: ds/double_end_queue.hpp
 layout: document
 redirect_from:

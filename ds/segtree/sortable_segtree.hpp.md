@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/sort_segtree.test.cpp
-    title: test/2_library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/sort_segtree_1.test.cpp
-    title: test/2_library_checker/datastructure/sort_segtree_1.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/sort_segtree.test.cpp
+    title: test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+    title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237g.test.cpp
     title: test/5_atcoder/abc237g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63)\
@@ -235,11 +235,11 @@ data:
   path: ds/segtree/sortable_segtree.hpp
   requiredBy: []
   timestamp: '2024-04-27 11:55:26+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc237g.test.cpp
-  - test/2_library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/2_library_checker/datastructure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
 documentation_of: ds/segtree/sortable_segtree.hpp
 layout: document
 redirect_from:

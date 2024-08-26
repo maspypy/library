@@ -58,11 +58,11 @@ data:
     path: test/1_mytest/summin_assign.test.cpp
     title: test/1_mytest/summin_assign.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/range_affine_range_sum.test.cpp
-    title: test/2_library_checker/datastructure/range_affine_range_sum.test.cpp
+    path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
+    title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
+    title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
@@ -123,9 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc318b.test.cpp
     title: test/5_atcoder/abc318b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -251,7 +251,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - ds/rectangle_union.hpp
   timestamp: '2023-05-21 00:13:10+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc234g.test.cpp
   - test/5_atcoder/abc318b.test.cpp
@@ -268,8 +268,8 @@ data:
   - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/1234.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - test/2_library_checker/datastructure/range_affine_range_sum.test.cpp
-  - test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
+  - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - test/1_mytest/summax_add.test.cpp
   - test/1_mytest/summin_assign.test.cpp
   - test/1_mytest/minidx_add.test.cpp

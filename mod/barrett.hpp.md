@@ -11,37 +11,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':warning:'
     path: mod/dynamic_modint_64.hpp
     title: mod/dynamic_modint_64.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
   - icon: ':heavy_check_mark:'
@@ -106,6 +106,12 @@ data:
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+    title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,36 +129,30 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/binomial_coefficient.test.cpp
-    title: test/2_library_checker/math/binomial_coefficient.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
-    title: test/2_library_checker/math/discrete_logarithm_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/gaussian_integers.test.cpp
-    title: test/2_library_checker/math/gaussian_integers.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/kth_root_mod.test.cpp
-    title: test/2_library_checker/math/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
-    title: test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/primitive_root.test.cpp
-    title: test/2_library_checker/math/primitive_root.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/sqrt_mod.test.cpp
-    title: test/2_library_checker/math/sqrt_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/tetration.test.cpp
-    title: test/2_library_checker/math/tetration.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/matrix/det_mod.test.cpp
-    title: test/2_library_checker/matrix/det_mod.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/matrix/matrix_det.test.cpp
-    title: test/2_library_checker/matrix/matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/det_mod.test.cpp
+    title: test/2_library_checker/linear_algebra/det_mod.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/matrix_det.test.cpp
+    title: test/2_library_checker/linear_algebra/matrix_det.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+    title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/gaussian_integers.test.cpp
+    title: test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+    title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/primitive_root.test.cpp
+    title: test/2_library_checker/number_theory/primitive_root.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/sqrt_mod.test.cpp
+    title: test/2_library_checker/number_theory/sqrt_mod.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/number_theory/tetration.test.cpp
+    title: test/2_library_checker/number_theory/tetration.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
@@ -249,9 +249,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc058d2.test.cpp
     title: test/5_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
@@ -316,7 +316,7 @@ data:
   - mod/mod_sqrt.hpp
   - mod/mod_kth_root.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc336g.test.cpp
   - test/5_atcoder/abc335g.test.cpp
@@ -352,6 +352,7 @@ data:
   - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
   - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
   - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/convolution/mul_modp_conv.test.cpp
   - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
@@ -360,16 +361,15 @@ data:
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - test/2_library_checker/math/discrete_logarithm_mod.test.cpp
-  - test/2_library_checker/math/primitive_root.test.cpp
-  - test/2_library_checker/math/sqrt_mod.test.cpp
-  - test/2_library_checker/math/kth_root_mod.test.cpp
-  - test/2_library_checker/math/gaussian_integers.test.cpp
-  - test/2_library_checker/math/binomial_coefficient.test.cpp
-  - test/2_library_checker/math/multivariate_convolution_cyclic.test.cpp
-  - test/2_library_checker/math/tetration.test.cpp
-  - test/2_library_checker/matrix/det_mod.test.cpp
-  - test/2_library_checker/matrix/matrix_det.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - test/2_library_checker/linear_algebra/det_mod.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_det.test.cpp
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/number_theory/primitive_root.test.cpp
+  - test/2_library_checker/number_theory/sqrt_mod.test.cpp
+  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - test/2_library_checker/number_theory/tetration.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp

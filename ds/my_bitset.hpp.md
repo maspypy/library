@@ -30,9 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/matrix/matrix_product_mod2.test.cpp
-    title: test/2_library_checker/matrix/matrix_product_mod2.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
+    title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1400.test.cpp
     title: test/3_yukicoder/1400.test.cpp
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc350g2.test.cpp
     title: test/5_atcoder/abc350g2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -290,7 +290,7 @@ data:
   - linalg/bitset/det.hpp
   - ds/counter.hpp
   timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc350g2.test.cpp
   - test/3_yukicoder/4_2.test.cpp
@@ -301,7 +301,7 @@ data:
   - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/421.test.cpp
   - test/3_yukicoder/2490.test.cpp
-  - test/2_library_checker/matrix/matrix_product_mod2.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - test/1_mytest/subset_sum.test.cpp
   - test/1_mytest/mybitset.test.cpp
 documentation_of: ds/my_bitset.hpp

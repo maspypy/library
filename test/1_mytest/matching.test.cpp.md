@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching.hpp
     title: graph/maximum_matching.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -237,51 +237,51 @@ data:
     \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
     \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
     \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
-    \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
-    \n                                              : x) {}\r\n  static constexpr\
-    \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
-    \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
-    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
-    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const\
-    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
-    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
-    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
-    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
-    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
-    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
-    #endif\n#line 1 \"linalg/matrix_rank.hpp\"\ntemplate <typename T>\nint matrix_rank(vc<vc<T>>\
-    \ a, int n = -1, int m = -1) {\n  if (n == 0) return 0;\n  if (n == -1) { n =\
-    \ len(a), m = len(a[0]); }\n  assert(n == len(a) && m == len(a[0]));\n  int rk\
-    \ = 0;\n  FOR(j, m) {\n    if (rk == n) break;\n    if (a[rk][j] == 0) {\n   \
-    \   FOR(i, rk + 1, n) if (a[i][j] != T(0)) {\n        swap(a[rk], a[i]);\n   \
-    \     break;\n      }\n    }\n    if (a[rk][j] == 0) continue;\n    T c = T(1)\
-    \ / a[rk][j];\n    FOR(k, j, m) a[rk][k] *= c;\n    FOR(i, rk + 1, n) {\n    \
-    \  T c = a[i][j];\n      FOR3(k, j, m) { a[i][k] -= a[rk][k] * c; }\n    }\n \
-    \   ++rk;\n  }\n  return rk;\n}\n#line 4 \"graph/maximum_matching_size.hpp\"\n\
-    \ntemplate <typename GT>\nint maximum_matching_size(GT& G) {\n  static_assert(!GT::is_directed);\n\
-    \  using mint = modint61;\n  int N = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&&\
-    \ e: G.edges) {\n    mint x = RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n\
-    \    tutte[i][j] += x;\n    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte,\
-    \ N, N) / 2;\n}\n#line 7 \"test/1_mytest/matching.test.cpp\"\n\nvoid test() {\n\
-    \  FOR(N, 0, 100) {\n    FOR(M, 0, 100) {\n      if (N == 0 && M > 0) break;\n\
-    \      Graph<int, 0> G(N);\n      FOR(M) {\n        int a = RNG(0, N);\n     \
-    \   int b = RNG(0, N);\n        G.add(a, b);\n      }\n      G.build();\n    \
-    \  int x = maximum_matching(G).fi;\n      int y = maximum_matching_size(G);\n\
-    \      assert(x == y);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \ modint61(ll x) : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\
+    \ : x) {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n\r\n  modint61\
+    \ &operator+=(const modint61 &a) {\r\n    val = ((val += a.val) >= mod) ? (val\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const modint61\
+    \ &a) {\r\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned\
+    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >>\
+    \ 61) + (y & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 operator-() const { return modint61(val ? mod -\
+    \ val : u64(0)); }\r\n  modint61 &operator/=(const modint61 &a) { return (*this\
+    \ *= a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return\
+    \ modint61(*this) += p; }\r\n  modint61 operator-(const modint61 &p) const { return\
+    \ modint61(*this) -= p; }\r\n  modint61 operator*(const modint61 &p) const { return\
+    \ modint61(*this) *= p; }\r\n  modint61 operator/(const modint61 &p) const { return\
+    \ modint61(*this) /= p; }\r\n  bool operator<(const modint61 &other) const { return\
+    \ val < other.val; }\r\n  bool operator==(const modint61 &p) const { return val\
+    \ == p.val; }\r\n  bool operator!=(const modint61 &p) const { return val != p.val;\
+    \ }\r\n  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0,\
+    \ t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61\
+    \ pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\
+    \n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>=\
+    \ 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61\
+    \ &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val < modint61::mod);\r\
+    \n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n#endif\n#line 1 \"linalg/matrix_rank.hpp\"\
+    \ntemplate <typename T>\nint matrix_rank(vc<vc<T>> a, int n = -1, int m = -1)\
+    \ {\n  if (n == 0) return 0;\n  if (n == -1) { n = len(a), m = len(a[0]); }\n\
+    \  assert(n == len(a) && m == len(a[0]));\n  int rk = 0;\n  FOR(j, m) {\n    if\
+    \ (rk == n) break;\n    if (a[rk][j] == 0) {\n      FOR(i, rk + 1, n) if (a[i][j]\
+    \ != T(0)) {\n        swap(a[rk], a[i]);\n        break;\n      }\n    }\n   \
+    \ if (a[rk][j] == 0) continue;\n    T c = T(1) / a[rk][j];\n    FOR(k, j, m) a[rk][k]\
+    \ *= c;\n    FOR(i, rk + 1, n) {\n      T c = a[i][j];\n      FOR3(k, j, m) {\
+    \ a[i][k] -= a[rk][k] * c; }\n    }\n    ++rk;\n  }\n  return rk;\n}\n#line 4\
+    \ \"graph/maximum_matching_size.hpp\"\n\ntemplate <typename GT>\nint maximum_matching_size(GT&\
+    \ G) {\n  static_assert(!GT::is_directed);\n  using mint = modint61;\n  int N\
+    \ = G.N;\n  vv(mint, tutte, N, N);\n  for (auto&& e: G.edges) {\n    mint x =\
+    \ RNG(mint::get_mod());\n    int i = e.frm, j = e.to;\n    tutte[i][j] += x;\n\
+    \    tutte[j][i] -= x;\n  }\n  return matrix_rank(tutte, N, N) / 2;\n}\n#line\
+    \ 7 \"test/1_mytest/matching.test.cpp\"\n\nvoid test() {\n  FOR(N, 0, 100) {\n\
+    \    FOR(M, 0, 100) {\n      if (N == 0 && M > 0) break;\n      Graph<int, 0>\
+    \ G(N);\n      FOR(M) {\n        int a = RNG(0, N);\n        int b = RNG(0, N);\n\
+    \        G.add(a, b);\n      }\n      G.build();\n      int x = maximum_matching(G).fi;\n\
+    \      int y = maximum_matching_size(G);\n      assert(x == y);\n    }\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/maximum_matching.hpp\"\n#include \"graph/maximum_matching_size.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  FOR(N, 0, 100) {\n    FOR(M,\
@@ -302,7 +302,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/matching.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-27 05:16:49+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/matching.test.cpp

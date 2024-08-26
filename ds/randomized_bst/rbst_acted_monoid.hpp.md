@@ -16,8 +16,8 @@ data:
     path: test/1_mytest/rbst_am_persistent.test.cpp
     title: test/1_mytest/rbst_am_persistent.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    title: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+    title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
@@ -298,7 +298,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/686.test.cpp
-  - test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/1_mytest/rbst_am_2.test.cpp
   - test/1_mytest/ARC30D.test.cpp
   - test/1_mytest/rbst_am.test.cpp

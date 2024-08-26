@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -37,11 +37,11 @@ data:
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/bigint/addition_of_bigintegers.test.cpp
-    title: test/2_library_checker/bigint/addition_of_bigintegers.test.cpp
+    path: test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
+    title: test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/bigint/multiplication_of_bigintegers.test.cpp
-    title: test/2_library_checker/bigint/multiplication_of_bigintegers.test.cpp
+    path: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
+    title: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/sample/aplusb128.test.cpp
     title: test/2_library_checker/sample/aplusb128.test.cpp
@@ -72,12 +72,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/504/problem/D
@@ -583,7 +583,7 @@ data:
   path: bigint/base.hpp
   requiredBy: []
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc339f.test.cpp
   - test/3_yukicoder/303.test.cpp
@@ -592,9 +592,9 @@ data:
   - test/3_yukicoder/2649.test.cpp
   - test/3_yukicoder/2525.test.cpp
   - test/3_yukicoder/2508.test.cpp
-  - test/2_library_checker/bigint/addition_of_bigintegers.test.cpp
-  - test/2_library_checker/bigint/multiplication_of_bigintegers.test.cpp
   - test/2_library_checker/sample/aplusb128.test.cpp
+  - test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
+  - test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
   - test/1_mytest/bigint.test.cpp
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp

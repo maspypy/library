@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sum_of_C_negative.hpp
     title: poly/sum_of_C_negative.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -28,17 +28,17 @@ data:
     path: test/1_mytest/factorial_998.test.cpp
     title: test/1_mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
-    title: test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
-    title: test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/factorial.test.cpp
-    title: test/2_library_checker/math/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
-    title: test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
+    path: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+    title: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
+    title: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+    title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
@@ -81,9 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc160d.test.cpp
     title: test/5_atcoder/arc160d.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class Monoid>\n\
@@ -159,7 +159,7 @@ data:
   - poly/lagrange_interpolate_iota.hpp
   - poly/sum_of_C_negative.hpp
   timestamp: '2024-08-16 19:16:03+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/arc144d.test.cpp
   - test/5_atcoder/abc222h_2.test.cpp
@@ -175,10 +175,10 @@ data:
   - test/3_yukicoder/1036_3.test.cpp
   - test/3_yukicoder/2026.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/2_library_checker/math/factorial.test.cpp
-  - test/2_library_checker/math/sum_of_exp_times_poly.test.cpp
-  - test/2_library_checker/datastructure/queue_operate_all_composite.test.cpp
-  - test/2_library_checker/datastructure/deque_operate_all_compsite.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
+  - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - test/1_mytest/factorial_998.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document

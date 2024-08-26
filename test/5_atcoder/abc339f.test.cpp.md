@@ -1,62 +1,62 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc339/tasks/abc339_f
@@ -635,54 +635,55 @@ data:
     \  u64 val;\r\n  constexpr modint61() : val(0ULL) {}\r\n  constexpr modint61(u32\
     \ x) : val(x) {}\r\n  constexpr modint61(u64 x) : val(x % mod) {}\r\n  constexpr\
     \ modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod)) : x) {}\r\n  constexpr\
-    \ modint61(ll x)\r\n      : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\r\
-    \n                                              : x) {}\r\n  static constexpr\
-    \ u64 get_mod() { return mod; }\r\n  modint61 &operator+=(const modint61 &a) {\r\
-    \n    val = ((val += a.val) >= mod) ? (val - mod) : val;\r\n    return *this;\r\
-    \n  }\r\n  modint61 &operator-=(const modint61 &a) {\r\n    val = ((val -= a.val)\
-    \ >= mod) ? (val + mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator*=(const\
-    \ modint61 &a) {\r\n    const unsigned __int128 y = static_cast<unsigned __int128>(val)\
-    \ * a.val;\r\n    val = (y >> 61) + (y & mod);\r\n    val = (val >= mod) ? (val\
-    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 operator-() const {\
-    \ return modint61(val ? mod - val : u64(0)); }\r\n  modint61 &operator/=(const\
-    \ modint61 &a) { return (*this *= a.inverse()); }\r\n  modint61 operator+(const\
-    \ modint61 &p) const { return modint61(*this) += p; }\r\n  modint61 operator-(const\
-    \ modint61 &p) const { return modint61(*this) -= p; }\r\n  modint61 operator*(const\
-    \ modint61 &p) const { return modint61(*this) *= p; }\r\n  modint61 operator/(const\
-    \ modint61 &p) const { return modint61(*this) /= p; }\r\n  bool operator==(const\
-    \ modint61 &p) const { return val == p.val; }\r\n  bool operator!=(const modint61\
-    \ &p) const { return val != p.val; }\r\n  modint61 inverse() const {\r\n    ll\
-    \ a = val, b = mod, u = 1, v = 0, t;\r\n    while (b > 0) {\r\n      t = a / b;\r\
-    \n      swap(a -= t * b, b), swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\
-    \n  }\r\n  modint61 pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1),\
-    \ mul(val);\r\n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul\
-    \ *= mul, n >>= 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\
-    \nvoid rd(modint61 &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val\
-    \ < modint61::mod);\r\n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n\
-    #endif\n#line 5 \"random/hash_vector.hpp\"\n\ntemplate <typename T>\nu64 hash_vector(vc<T>\
-    \ X) {\n  using mint = modint61;\n  static vc<mint> hash_base;\n  int n = len(X);\n\
-    \  while (len(hash_base) <= n) { hash_base.eb(RNG(mint::get_mod())); }\n  mint\
-    \ H = 0;\n  FOR(i, n) H += hash_base[i] * mint(X[i]);\n  H += hash_base[n];\n\
-    \  return H.val;\n}\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate\
-    \ <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\
-    \u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void\
-    \ build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap\
-    \ = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\
-    \n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\
-    \u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\
-    \n    used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int\
-    \ size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n\
-    \    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i + 1) &\
-    \ mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n\
-    \    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i]) { used[i]\
-    \ = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\
-    \n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\n  \
-    \  return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
-    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
-    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
-    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
-    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
-    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \ modint61(ll x) : val(((x %= static_cast<ll>(mod)) < 0) ? (x + static_cast<ll>(mod))\
+    \ : x) {}\r\n  static constexpr u64 get_mod() { return mod; }\r\n\r\n  modint61\
+    \ &operator+=(const modint61 &a) {\r\n    val = ((val += a.val) >= mod) ? (val\
+    \ - mod) : val;\r\n    return *this;\r\n  }\r\n  modint61 &operator-=(const modint61\
+    \ &a) {\r\n    val = ((val -= a.val) >= mod) ? (val + mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 &operator*=(const modint61 &a) {\r\n    const unsigned\
+    \ __int128 y = static_cast<unsigned __int128>(val) * a.val;\r\n    val = (y >>\
+    \ 61) + (y & mod);\r\n    val = (val >= mod) ? (val - mod) : val;\r\n    return\
+    \ *this;\r\n  }\r\n  modint61 operator-() const { return modint61(val ? mod -\
+    \ val : u64(0)); }\r\n  modint61 &operator/=(const modint61 &a) { return (*this\
+    \ *= a.inverse()); }\r\n  modint61 operator+(const modint61 &p) const { return\
+    \ modint61(*this) += p; }\r\n  modint61 operator-(const modint61 &p) const { return\
+    \ modint61(*this) -= p; }\r\n  modint61 operator*(const modint61 &p) const { return\
+    \ modint61(*this) *= p; }\r\n  modint61 operator/(const modint61 &p) const { return\
+    \ modint61(*this) /= p; }\r\n  bool operator<(const modint61 &other) const { return\
+    \ val < other.val; }\r\n  bool operator==(const modint61 &p) const { return val\
+    \ == p.val; }\r\n  bool operator!=(const modint61 &p) const { return val != p.val;\
+    \ }\r\n  modint61 inverse() const {\r\n    ll a = val, b = mod, u = 1, v = 0,\
+    \ t;\r\n    while (b > 0) {\r\n      t = a / b;\r\n      swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\r\n    }\r\n    return modint61(u);\r\n  }\r\n  modint61\
+    \ pow(ll n) const {\r\n    assert(n >= 0);\r\n    modint61 ret(1), mul(val);\r\
+    \n    while (n > 0) {\r\n      if (n & 1) ret *= mul;\r\n      mul *= mul, n >>=\
+    \ 1;\r\n    }\r\n    return ret;\r\n  }\r\n};\r\n\r\n#ifdef FASTIO\r\nvoid rd(modint61\
+    \ &x) {\r\n  fastio::rd(x.val);\r\n  assert(0 <= x.val && x.val < modint61::mod);\r\
+    \n}\r\n\r\nvoid wt(modint61 x) { fastio::wt(x.val); }\r\n#endif\n#line 5 \"random/hash_vector.hpp\"\
+    \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
+    \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
+    \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
+    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n#line 2 \"ds/hashmap.hpp\"\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
+    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
+    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap\
+    \ = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\
+    \r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i]\
+    \ && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val&\
+    \ operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\
+    \n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\
+    \n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n\
+    \  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
+    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i],\
+    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val>\
+    \ val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64\
+    \ FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
@@ -727,8 +728,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc339f.test.cpp
   requiredBy: []
-  timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-27 05:16:49+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc339f.test.cpp
 layout: document

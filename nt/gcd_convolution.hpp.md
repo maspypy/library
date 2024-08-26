@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/gcd_convolution.test.cpp
-    title: test/2_library_checker/math/gcd_convolution.test.cpp
+    path: test/2_library_checker/convolution/gcd_convolution.test.cpp
+    title: test/2_library_checker/convolution/gcd_convolution.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -55,7 +55,7 @@ data:
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/math/gcd_convolution.test.cpp
+  - test/2_library_checker/convolution/gcd_convolution.test.cpp
 documentation_of: nt/gcd_convolution.hpp
 layout: document
 redirect_from:

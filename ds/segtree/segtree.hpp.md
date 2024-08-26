@@ -8,16 +8,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/uniqueproductquery.hpp
     title: ds/offline_query/uniqueproductquery.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -45,39 +45,39 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-    title: test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-    title: test/2_library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/predecessor_problem_3.test.cpp
-    title: test/2_library_checker/datastructure/predecessor_problem_3.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/range_set_range_composite.test.cpp
-    title: test/2_library_checker/datastructure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/sort_segtree.test.cpp
-    title: test/2_library_checker/datastructure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/sort_segtree_1.test.cpp
-    title: test/2_library_checker/datastructure/sort_segtree_1.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/staticrmq_seg.test.cpp
-    title: test/2_library_checker/datastructure/staticrmq_seg.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    title: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    title: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-    title: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+    title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
+    title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
+    title: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+    title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/sort_segtree.test.cpp
+    title: test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+    title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+    title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036_2.test.cpp
     title: test/3_yukicoder/1036_2.test.cpp
@@ -123,9 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc301h.test.cpp
     title: test/5_atcoder/abc301h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -220,7 +220,7 @@ data:
   - ds/segtree/sortable_segtree.hpp
   - ds/segtree/range_assignment_segtree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc237g.test.cpp
   - test/5_atcoder/abc174f.test.cpp
@@ -235,17 +235,17 @@ data:
   - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/1435.test.cpp
   - test/3_yukicoder/2361.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
-  - test/2_library_checker/datastructure/staticrmq_seg.test.cpp
-  - test/2_library_checker/datastructure/predecessor_problem_3.test.cpp
-  - test/2_library_checker/datastructure/point_set_range_composite_monoid.test.cpp
-  - test/2_library_checker/datastructure/sort_segtree_1.test.cpp
-  - test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/2_library_checker/datastructure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/2_library_checker/datastructure/sort_segtree.test.cpp
-  - test/2_library_checker/datastructure/range_set_range_composite.test.cpp
-  - test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
+  - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp

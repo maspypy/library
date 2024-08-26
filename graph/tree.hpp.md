@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -38,16 +38,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/static_tree_monoid.hpp
     title: graph/ds/static_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -71,7 +71,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/subtree_diameter.hpp
     title: graph/tree_dp/subtree_diameter.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':warning:'
@@ -99,22 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-    title: test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-    title: test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-    title: test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-    title: test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-    title: test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -132,6 +117,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
+    title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+    title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+    title: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+    title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+    title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
@@ -276,9 +276,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc023f.test.cpp
     title: test/5_atcoder/agc023f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -572,7 +572,7 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/unicyclic.hpp
   timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc351g.test.cpp
   - test/5_atcoder/abc269ex2.test.cpp
@@ -621,13 +621,13 @@ data:
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/lca_directed.test.cpp
+  - test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
-  - test/2_library_checker/datastructure/vertex_add_subtree_sum_dsu.test.cpp
-  - test/2_library_checker/datastructure/vertex_add_path_sum_monoid_c.test.cpp
-  - test/2_library_checker/datastructure/vertex_add_subtree_sum_monoid.test.cpp
-  - test/2_library_checker/datastructure/vertex_set_path_composite_monoid.test.cpp
-  - test/2_library_checker/datastructure/vertex_add_path_sum_abelgroup.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp

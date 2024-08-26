@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/predecessor_problem_4.test.cpp
-    title: test/2_library_checker/datastructure/predecessor_problem_4.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/static_range_inversions_mo_3.test.cpp
-    title: test/2_library_checker/datastructure/static_range_inversions_mo_3.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
+    title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
+    title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
@@ -54,9 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc202_f.test.cpp
     title: test/5_atcoder/abc202_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
@@ -199,14 +199,14 @@ data:
   - seq/inversion.hpp
   - other/sliding_puzzle_solver.hpp
   timestamp: '2024-07-19 20:55:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc202_f.test.cpp
   - test/5_atcoder/abc190f.test.cpp
   - test/3_yukicoder/694.test.cpp
   - test/3_yukicoder/1838.test.cpp
-  - test/2_library_checker/datastructure/predecessor_problem_4.test.cpp
-  - test/2_library_checker/datastructure/static_range_inversions_mo_3.test.cpp
+  - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
+  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/fenwick01.test.cpp

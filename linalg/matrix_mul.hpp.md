@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -39,15 +39,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/math/factorial.test.cpp
-    title: test/2_library_checker/math/factorial.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/matix/pow_of_matrix.test.cpp
-    title: test/2_library_checker/matix/pow_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/matrix/matrix_product.test.cpp
-    title: test/2_library_checker/matrix/matrix_product.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+    title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/matrix_product.test.cpp
+    title: test/2_library_checker/linear_algebra/matrix_product.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
+    title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
@@ -81,9 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc276_g_2.test.cpp
     title: test/5_atcoder/abc276_g_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -235,7 +235,7 @@ data:
   - linalg/matrix_pow.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc222h_2.test.cpp
   - test/5_atcoder/abc276_g.test.cpp
@@ -248,9 +248,9 @@ data:
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1810.test.cpp
-  - test/2_library_checker/matix/pow_of_matrix.test.cpp
-  - test/2_library_checker/math/factorial.test.cpp
-  - test/2_library_checker/matrix/matrix_product.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_product.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/factorial_998.test.cpp

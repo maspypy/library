@@ -13,8 +13,8 @@ data:
     title: graph/count/count_connected_intervals.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
-    title: test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+    path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
+    title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
@@ -51,7 +51,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc318b.test.cpp
-  - test/2_library_checker/datastructure/area_of_union_of_rectangles.test.cpp
+  - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - test/4_aoj/DSL_4_A.test.cpp
 documentation_of: alg/monoid/minmincnt.hpp
 layout: document

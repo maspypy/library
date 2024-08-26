@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -34,11 +34,11 @@ data:
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    title: test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/datastructure/range_reverse_range_sum.test.cpp
-    title: test/2_library_checker/datastructure/range_reverse_range_sum.test.cpp
+    path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+    title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
+    title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1441.test.cpp
     title: test/3_yukicoder/1441.test.cpp
@@ -51,9 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153b.test.cpp
     title: test/5_atcoder/arc153b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -333,13 +333,13 @@ data:
   - ds/splaytree/splaytree_monoid.hpp
   - ds/splaytree/splaytree_basic.hpp
   timestamp: '2024-07-18 12:34:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/arc153b.test.cpp
   - test/5_atcoder/abc350f.test.cpp
   - test/3_yukicoder/1441.test.cpp
-  - test/2_library_checker/datastructure/range_reverse_range_sum.test.cpp
-  - test/2_library_checker/datastructure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/splay_am.test.cpp
