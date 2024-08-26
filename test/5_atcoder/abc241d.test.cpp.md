@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/dynamic_segtree_sparse.hpp
     title: ds/segtree/dynamic_segtree_sparse.hpp
   - icon: ':question:'

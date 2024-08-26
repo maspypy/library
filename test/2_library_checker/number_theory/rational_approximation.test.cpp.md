@@ -4,6 +4,9 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':x:'
+    path: nt/rational_binary_search.hpp
+    title: nt/rational_binary_search.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
@@ -195,22 +198,7 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/number_theory/rational_approximation.test.cpp\"\
-    \n\n// 0/1 OK, 1/0 NG\n// return : (a,b,c,d) such that a/b OK, c/d NG.\ntemplate\
-    \ <typename T, typename F>\ntuple<T, T, T, T> rational_binary_search(F check,\
-    \ T N) {\n  assert(check(0, 1) && !check(1, 0));\n  auto dfs = [&](auto& dfs,\
-    \ bool side, T& a, T& b, T c, T d) -> void {\n    if (a + c > N || b + d > N)\
-    \ return;\n    if (check(a + c, b + d) == side) {\n      a += c, b += d;\n   \
-    \   dfs(dfs, side, a, b, c + c, d + d);\n    }\n    if (a + c <= N && b + d <=\
-    \ N && check(a + c, b + d) == side) a += c, b += d;\n  };\n\n  T a = 0, b = 1,\
-    \ c = 1, d = 0;\n  while (a + c <= N && b + d <= N) { dfs(dfs, true, a, b, c,\
-    \ d), dfs(dfs, false, c, d, a, b); }\n  return {a, b, c, d};\n}\n\nvoid solve()\
-    \ {\n  LL(N, x, y);\n  auto [a, b, c, d] = rational_binary_search<int>([&](ll\
-    \ a, ll b) -> bool { return a * y <= b * x; }, N);\n  if (a * y == b * x) {\n\
-    \    print(a, b, a, b);\n  } else {\n    print(a, b, c, d);\n  }\n}\n\nint main()\
-    \ {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rational_approximation\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n// 0/1 OK, 1/0 NG\n\
+    \ yes(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\n// 0/1 OK, 1/0 NG\n\
     // return : (a,b,c,d) such that a/b OK, c/d NG.\ntemplate <typename T, typename\
     \ F>\ntuple<T, T, T, T> rational_binary_search(F check, T N) {\n  assert(check(0,\
     \ 1) && !check(1, 0));\n  auto dfs = [&](auto& dfs, bool side, T& a, T& b, T c,\
@@ -219,18 +207,25 @@ data:
     \ d + d);\n    }\n    if (a + c <= N && b + d <= N && check(a + c, b + d) == side)\
     \ a += c, b += d;\n  };\n\n  T a = 0, b = 1, c = 1, d = 0;\n  while (a + c <=\
     \ N && b + d <= N) { dfs(dfs, true, a, b, c, d), dfs(dfs, false, c, d, a, b);\
-    \ }\n  return {a, b, c, d};\n}\n\nvoid solve() {\n  LL(N, x, y);\n  auto [a, b,\
-    \ c, d] = rational_binary_search<int>([&](ll a, ll b) -> bool { return a * y <=\
-    \ b * x; }, N);\n  if (a * y == b * x) {\n    print(a, b, a, b);\n  } else {\n\
-    \    print(a, b, c, d);\n  }\n}\n\nint main() {\n  INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    \ }\n  return {a, b, c, d};\n}\n#line 5 \"test/2_library_checker/number_theory/rational_approximation.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, x, y);\n  auto [a, b, c, d] = rational_binary_search<int>([&](ll\
+    \ a, ll b) -> bool { return a * y <= b * x; }, N);\n  if (a * y == b * x) {\n\
+    \    print(a, b, a, b);\n  } else {\n    print(a, b, c, d);\n  }\n}\n\nint main()\
+    \ {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rational_approximation\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/rational_binary_search.hpp\"\
+    \n\nvoid solve() {\n  LL(N, x, y);\n  auto [a, b, c, d] = rational_binary_search<int>([&](ll\
+    \ a, ll b) -> bool { return a * y <= b * x; }, N);\n  if (a * y == b * x) {\n\
+    \    print(a, b, a, b);\n  } else {\n    print(a, b, c, d);\n  }\n}\n\nint main()\
+    \ {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - nt/rational_binary_search.hpp
   isVerificationFile: true
   path: test/2_library_checker/number_theory/rational_approximation.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
+  timestamp: '2024-08-27 06:05:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/rational_approximation.test.cpp
