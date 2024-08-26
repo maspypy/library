@@ -12,9 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc268_ex.test.cpp
     title: test/5_atcoder/abc268_ex.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/5_atcoder/abc362g.test.cpp
+    title: test/5_atcoder/abc362g.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -79,9 +82,10 @@ data:
   path: string/trie.hpp
   requiredBy: []
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc268_ex.test.cpp
+  - test/5_atcoder/abc362g.test.cpp
   - test/3_yukicoder/1269.test.cpp
 documentation_of: string/trie.hpp
 layout: document

@@ -4,28 +4,27 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/fenwicktree/fenwicktree_2d.hpp
-    title: ds/fenwicktree/fenwicktree_2d.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
+  - icon: ':question:'
+    path: string/trie.hpp
+    title: string/trie.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
+    PROBLEM: https://atcoder.jp/contests/abc362/tasks/abc362_g
     links:
-    - https://judge.yosupo.jp/problem/rectangle_sum
-  bundledCode: "#line 1 \"test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://atcoder.jp/contests/abc362/tasks/abc362_g
+  bundledCode: "#line 1 \"test/5_atcoder/abc362g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc362/tasks/abc362_g\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -201,110 +200,68 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp\"\
-    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwicktree/fenwicktree_2d.hpp\"\
-    \n\r\ntemplate <typename Monoid, typename XY, bool SMALL_X = false>\r\nstruct\
-    \ FenwickTree_2D {\r\n  using G = Monoid;\r\n  using E = typename G::value_type;\r\
-    \n  static_assert(G::commute);\r\n  int N;\r\n  vc<XY> keyX;\r\n  XY min_X;\r\n\
-    \  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D(vc<XY>&\
-    \ X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }\r\n  FenwickTree_2D(vc<XY>& X,\
-    \ vc<XY>& Y) { build(X, Y); }\r\n\r\n  inline int xtoi(XY x) {\r\n    if constexpr\
-    \ (SMALL_X) {\r\n      return clamp<int>(x - min_X, 0, N);\r\n    } else {\r\n\
-    \      return LB(keyX, x);\r\n    }\r\n  }\r\n  inline int nxt(int i) { return\
-    \ i + ((i + 1) & -(i + 1)); }\r\n  inline int prev(int i) { return i - ((i + 1)\
-    \ & -(i + 1)); }\r\n\r\n  void build(vc<XY> X, vc<XY> Y, vc<E> wt) {\r\n    assert(len(X)\
-    \ == len(Y));\r\n    if constexpr (!SMALL_X) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
-    \n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
-    \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
-    \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    auto I = argsort(Y);\r\
-    \n    X = rearrange(X, I), Y = rearrange(Y, I), wt = rearrange(wt, I);\r\n\r\n\
-    \    FOR(i, len(X)) X[i] = xtoi(X[i]);\r\n\r\n    vc<XY> last_y(N, -infty<XY>\
-    \ - 1);\r\n    indptr.assign(N + 1, 0);\r\n    FOR(i, len(X)) {\r\n      int ix\
-    \ = X[i];\r\n      XY y = Y[i];\r\n      while (ix < N) {\r\n        if (last_y[ix]\
-    \ == y) break;\r\n        last_y[ix] = y, indptr[ix + 1]++, ix = nxt(ix);\r\n\
-    \      }\r\n    }\r\n    FOR(i, N) indptr[i + 1] += indptr[i];\r\n    keyY.resize(indptr.back());\r\
-    \n    dat.assign(indptr.back(), G::unit());\r\n    fill(all(last_y), -infty<XY>\
-    \ - 1);\r\n    vc<int> prog = indptr;\r\n    FOR(i, len(X)) {\r\n      int ix\
-    \ = X[i];\r\n      XY y = Y[i];\r\n      E w = wt[i];\r\n      while (ix < N)\
-    \ {\r\n        if (last_y[ix] != y) {\r\n          last_y[ix] = y, keyY[prog[ix]]\
-    \ = y, dat[prog[ix]] = w;\r\n          prog[ix]++;\r\n        } else {\r\n   \
-    \       dat[prog[ix] - 1] = G::op(dat[prog[ix] - 1], w);\r\n        }\r\n    \
-    \    ix = nxt(ix);\r\n      }\r\n    }\r\n    FOR(i, N) {\r\n      int n = indptr[i\
-    \ + 1] - indptr[i];\r\n      FOR(j, n - 1) {\r\n        int k = nxt(j);\r\n  \
-    \      if (k < n)\r\n          dat[indptr[i] + k] = G::op(dat[indptr[i] + k],\
-    \ dat[indptr[i] + j]);\r\n      }\r\n    }\r\n  }\r\n\r\n  void build(vc<XY> X,\
-    \ vc<XY> Y) {\r\n    assert(len(X) == len(Y));\r\n    if constexpr (!SMALL_X)\
-    \ {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N = len(keyX);\r\n    }\
-    \ else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) ==\
-    \ 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N) keyX[i]\
-    \ = min_X + i;\r\n    }\r\n\r\n    auto I = argsort(Y);\r\n    X = rearrange(X,\
-    \ I), Y = rearrange(Y, I);\r\n\r\n    FOR(i, len(X)) X[i] = xtoi(X[i]);\r\n\r\n\
-    \    vc<XY> last_y(N, -infty<XY> - 1);\r\n    indptr.assign(N + 1, 0);\r\n   \
-    \ FOR(i, len(X)) {\r\n      int ix = X[i];\r\n      XY y = Y[i];\r\n      while\
-    \ (ix < N) {\r\n        if (last_y[ix] == y) break;\r\n        last_y[ix] = y,\
-    \ indptr[ix + 1]++, ix = nxt(ix);\r\n      }\r\n    }\r\n    FOR(i, N) indptr[i\
-    \ + 1] += indptr[i];\r\n    keyY.resize(indptr.back());\r\n    dat.assign(indptr.back(),\
-    \ G::unit());\r\n    fill(all(last_y), -infty<XY> - 1);\r\n    vc<int> prog =\
-    \ indptr;\r\n    FOR(i, len(X)) {\r\n      int ix = X[i];\r\n      XY y = Y[i];\r\
-    \n      while (ix < N) {\r\n        if (last_y[ix] == y) break;\r\n        last_y[ix]\
-    \ = y, keyY[prog[ix]++] = y, ix = nxt(ix);\r\n      }\r\n    }\r\n  }\r\n\r\n\
-    \  void add(XY x, XY y, E val) { multiply(x, y, val); }\r\n  void multiply(XY\
-    \ x, XY y, E val) {\r\n    int i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n \
-    \   while (i < N) { multiply_i(i, y, val), i = nxt(i); }\r\n  }\r\n\r\n  E sum(XY\
-    \ lx, XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n  E prod(XY lx,\
-    \ XY rx, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int\
-    \ L = xtoi(lx) - 1, R = xtoi(rx) - 1;\r\n    while (L < R) { pos = G::op(pos,\
-    \ prod_i(R, ly, ry)), R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, prod_i(L,\
-    \ ly, ry)), L = prev(L); }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\
-    \n\r\n  E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }\r\n  E prefix_prod(XY\
-    \ rx, XY ry) {\r\n    E pos = G::unit();\r\n    int R = xtoi(rx) - 1;\r\n    while\
-    \ (R >= 0) { pos = G::op(pos, prefix_prod_i(R, ry)), R = prev(R); }\r\n    return\
-    \ pos;\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i, XY y, E val) {\r\n \
-    \   int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin()\
-    \ + LID;\r\n    int j = lower_bound(it, it + n, y) - it;\r\n    while (j < n)\
-    \ { dat[LID + j] = G::op(dat[LID + j], val), j = nxt(j); }\r\n  }\r\n\r\n  E prod_i(int\
-    \ i, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int LID\
-    \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() +\
-    \ LID;\r\n    int L = lower_bound(it, it + n, ly) - it - 1;\r\n    int R = lower_bound(it,\
-    \ it + n, ry) - it - 1;\r\n    while (L < R) { pos = G::op(pos, dat[LID + R]),\
-    \ R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, dat[LID + L]), L = prev(L);\
-    \ }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod_i(int\
-    \ i, XY ry) {\r\n    E pos = G::unit();\r\n    int LID = indptr[i], n = indptr[i\
-    \ + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int R = lower_bound(it,\
-    \ it + n, ry) - it - 1;\r\n    while (R >= 0) { pos = G::op(pos, dat[LID + R]),\
-    \ R = prev(R); }\r\n    return pos;\r\n  }\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x,\
-    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  FenwickTree_2D<Monoid_Add<ll>,\
-    \ ll, false> bit(X, Y, W);\n  FOR(Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l,\
-    \ r, d, u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree_2d.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x,\
-    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  FenwickTree_2D<Monoid_Add<ll>,\
-    \ ll, false> bit(X, Y, W);\n  FOR(Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l,\
-    \ r, d, u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 4 \"test/5_atcoder/abc362g.test.cpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 2 \"string/trie.hpp\"\n\r\ntemplate <int\
+    \ sigma>\r\nstruct Trie {\r\n  using ARR = array<int, sigma>;\r\n  int n_node;\r\
+    \n  vc<ARR> TO;\r\n  vc<int> parent;\r\n  vc<int> suffix_link;\r\n  vc<int> words;\r\
+    \n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node = 0;\r\n    new_node();\r\
+    \n  }\r\n\r\n  template <typename STRING>\r\n  int add(STRING S, int off) {\r\n\
+    \    int v = 0;\r\n    for (auto&& ss: S) {\r\n      int s = ss - off;\r\n   \
+    \   assert(0 <= s && s < sigma);\r\n      if (TO[v][s] == -1) {\r\n        TO[v][s]\
+    \ = new_node();\r\n        parent.back() = v;\r\n      }\r\n      v = TO[v][s];\r\
+    \n    }\r\n    words.eb(v);\r\n    return v;\r\n  }\r\n\r\n  int add_char(int\
+    \ v, int c, int off) {\r\n    c -= off;\r\n    if (TO[v][c] != -1) return TO[v][c];\r\
+    \n    TO[v][c] = new_node();\r\n    parent.back() = v;\r\n    return TO[v][c];\r\
+    \n  }\r\n\r\n  void calc_suffix_link(bool upd_TO) {\r\n    suffix_link.assign(n_node,\
+    \ -1);\r\n    BFS.resize(n_node);\r\n    int p = 0, q = 0;\r\n    BFS[q++] = 0;\r\
+    \n    while (p < q) {\r\n      int v = BFS[p++];\r\n      FOR(s, sigma) {\r\n\
+    \        int w = TO[v][s];\r\n        if (w == -1) continue;\r\n        BFS[q++]\
+    \ = w;\r\n        int f = suffix_link[v];\r\n        while (f != -1 && TO[f][s]\
+    \ == -1) f = suffix_link[f];\r\n        suffix_link[w] = (f == -1 ? 0 : TO[f][s]);\r\
+    \n      }\r\n    }\r\n    if (!upd_TO) return;\r\n    for (auto&& v: BFS) {\r\n\
+    \      FOR(s, sigma) if (TO[v][s] == -1) {\r\n        int f = suffix_link[v];\r\
+    \n        TO[v][s] = (f == -1 ? 0 : TO[f][s]);\r\n      }\r\n    }\r\n  }\r\n\r\
+    \n  vc<int> calc_count() {\r\n    assert(!suffix_link.empty());\r\n    vc<int>\
+    \ count(n_node);\r\n    for (auto&& x: words) count[x]++;\r\n    for (auto&& v:\
+    \ BFS)\r\n      if (v) { count[v] += count[suffix_link[v]]; }\r\n    return count;\r\
+    \n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    parent.eb(-1);\r\n    TO.eb(ARR{});\r\
+    \n    fill(all(TO.back()), -1);\r\n    return n_node++;\r\n  }\r\n};\r\n#line\
+    \ 7 \"test/5_atcoder/abc362g.test.cpp\"\n\nvoid solve() {\n  STR(S);\n  INT(Q);\n\
+    \n  Trie<26> trie;\n  FOR(Q) {\n    STR(t);\n    trie.add(t, 'a');\n  }\n\n  trie.calc_suffix_link(1);\n\
+    \n  ll n = trie.n_node;\n  vc<int> dp(n);\n  int v = 0;\n\n  for (auto &ch: S)\
+    \ {\n    v = trie.TO[v][ch - 'a'];\n    dp[v]++;\n  }\n\n  vc<int> V = trie.BFS;\n\
+    \  reverse(all(V));\n  for (auto &v: V) {\n    int p = trie.suffix_link[v];\n\
+    \    if (p != -1) dp[p] += dp[v];\n  }\n\n  FOR(q, Q) {\n    int v = trie.words[q];\n\
+    \    print(dp[v]);\n  }\n}\n\nint main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc362/tasks/abc362_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/add.hpp\"\
+    \n#include \"string/trie.hpp\"\n\nvoid solve() {\n  STR(S);\n  INT(Q);\n\n  Trie<26>\
+    \ trie;\n  FOR(Q) {\n    STR(t);\n    trie.add(t, 'a');\n  }\n\n  trie.calc_suffix_link(1);\n\
+    \n  ll n = trie.n_node;\n  vc<int> dp(n);\n  int v = 0;\n\n  for (auto &ch: S)\
+    \ {\n    v = trie.TO[v][ch - 'a'];\n    dp[v]++;\n  }\n\n  vc<int> V = trie.BFS;\n\
+    \  reverse(all(V));\n  for (auto &v: V) {\n    int p = trie.suffix_link[v];\n\
+    \    if (p != -1) dp[p] += dp[v];\n  }\n\n  FOR(q, Q) {\n    int v = trie.words[q];\n\
+    \    print(dp[v]);\n  }\n}\n\nint main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/fenwicktree/fenwicktree_2d.hpp
   - alg/monoid/add.hpp
+  - string/trie.hpp
   isVerificationFile: true
-  path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
+  path: test/5_atcoder/abc362g.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-27 06:23:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
+documentation_of: test/5_atcoder/abc362g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-- /verify/test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp.html
-title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
+- /verify/test/5_atcoder/abc362g.test.cpp
+- /verify/test/5_atcoder/abc362g.test.cpp.html
+title: test/5_atcoder/abc362g.test.cpp
 ---

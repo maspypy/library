@@ -93,19 +93,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -177,9 +177,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -212,7 +212,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - ds/offline_query/range_mex_query.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc270_f.test.cpp
   - test/5_atcoder/arc151_e.test.cpp

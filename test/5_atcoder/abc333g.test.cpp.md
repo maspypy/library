@@ -2,14 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/monoid/mul.hpp
-    title: alg/monoid/mul.hpp
-  - icon: ':question:'
-    path: ds/sliding_window_aggregation.hpp
-    title: ds/sliding_window_aggregation.hpp
-  - icon: ':question:'
-    path: linalg/matrix_mul.hpp
-    title: linalg/matrix_mul.hpp
+    path: bigint/base.hpp
+    title: bigint/base.hpp
   - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
@@ -26,6 +20,12 @@ data:
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':question:'
+    path: nt/digit_sum.hpp
+    title: nt/digit_sum.hpp
+  - icon: ':x:'
+    path: nt/rational_binary_search.hpp
+    title: nt/rational_binary_search.hpp
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':question:'
@@ -40,58 +40,39 @@ data:
   - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/from_log_differentiation.hpp
-    title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
-    path: poly/lagrange_interpolate_iota.hpp
-    title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
-    path: poly/ntt_doubling.hpp
-    title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/prefix_product_of_poly.hpp
-    title: poly/prefix_product_of_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sum_of_rationals.hpp
-    title: poly/sum_of_rationals.hpp
-  - icon: ':heavy_check_mark:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://atcoder.jp/contests/abc276/tasks/abc276_g
+    PROBLEM: https://atcoder.jp/contests/abc333/tasks/abc333_g
     links:
-    - https://atcoder.jp/contests/abc276/tasks/abc276_g
-  bundledCode: "#line 1 \"test/5_atcoder/abc276_g_2.test.cpp\"\n#define PROBLEM \"\
-    https://atcoder.jp/contests/abc276/tasks/abc276_g\"\n\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
-    \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
-    \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned long\
-    \ long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 =\
-    \ __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...) vector<vector<vector<type>>>\
+    - https://atcoder.jp/contests/abc333/tasks/abc333_g
+  bundledCode: "#line 1 \"test/5_atcoder/abc333g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc333/tasks/abc333_g\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+    )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
+    \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
+    \nusing namespace std;\n\nusing ll = long long;\nusing u32 = unsigned int;\nusing\
+    \ u64 = unsigned long long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\n\
+    using f128 = __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate\
+    \ <>\nconstexpr int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll>\
+    \ = 2'020'000'000'000'000'000;\ntemplate <>\nconstexpr u32 infty<u32> = infty<int>;\n\
+    template <>\nconstexpr u64 infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128\
+    \ infty<i128> = i128(infty<ll>) * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr\
+    \ double infty<double> = infty<ll>;\ntemplate <>\nconstexpr long double infty<long\
+    \ double> = infty<ll>;\n\nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate\
+    \ <class T>\nusing vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\n\
+    template <class T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc\
+    \ = vector<vvvc<T>>;\ntemplate <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate\
+    \ <class T>\nusing pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T,\
+    \ vector<T>, greater<T>>;\n\n#define vv(type, name, h, ...) vector<vector<type>>\
+    \ name(h, vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...) vector<vector<vector<type>>>\
     \ name(h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
     \ name, a, b, c, ...) \\\n  vector<vector<vector<vector<type>>>> name(a, vector<vector<vector<type>>>(b,\
     \ vector<vector<type>>(c, vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n\
@@ -249,10 +230,19 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n \
-    \ template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ yes(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\n// 0/1 OK, 1/0 NG\n\
+    // return : (a,b,c,d) such that a/b OK, c/d NG.\ntemplate <typename T, typename\
+    \ F>\ntuple<T, T, T, T> rational_binary_search(F check, T N) {\n  assert(check(0,\
+    \ 1) && !check(1, 0));\n  auto dfs = [&](auto& dfs, bool side, T& a, T& b, T c,\
+    \ T d) -> void {\n    if (a + c > N || b + d > N) return;\n    if (check(a + c,\
+    \ b + d) == side) {\n      a += c, b += d;\n      dfs(dfs, side, a, b, c + c,\
+    \ d + d);\n    }\n    if (a + c <= N && b + d <= N && check(a + c, b + d) == side)\
+    \ a += c, b += d;\n  };\n\n  T a = 0, b = 1, c = 1, d = 0;\n  while (a + c <=\
+    \ N && b + d <= N) { dfs(dfs, true, a, b, c, d), dfs(dfs, false, c, d, a, b);\
+    \ }\n  return {a, b, c, d};\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -323,44 +313,43 @@ data:
     \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
     \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"poly/sum_of_rationals.hpp\"\n\n\
-    #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
-    \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
-    \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
-    \r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
-    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
-    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
-    #line 2 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64 a, u64 n, u32\
-    \ mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n & 1) res = res *\
-    \ a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n}\n\ntemplate <typename\
-    \ T, u32 p0, u32 p1>\nT CRT2(u64 a0, u64 a1) {\n  static_assert(p0 < p1);\n  static\
-    \ constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  u64 c = (a1 - a0\
-    \ + p1) * x0_1 % p1;\n  return a0 + c * p0;\n}\n\ntemplate <typename T, u32 p0,\
-    \ u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0 < p1 &&\
-    \ p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n\
-    \  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n\
-    \  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n\
-    \  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  return\
-    \ T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2,\
-    \ u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0\
-    \ < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    using modint998 = modint<998244353>;\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long\
+    \ \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\
+    \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\
+    \u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod\
+    \ == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val\
+    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
+    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
+    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/crt3.hpp\"\n\nconstexpr\
+    \ u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n\
+    \  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n\
+    \  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0,\
+    \ u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n\
+    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64\
+    \ a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
     \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
-    \ p2 - 2, p2);\n  static constexpr u64 x3\n      = mod_pow_constexpr(u64(p0) *\
-    \ p1 % p3 * p2 % p3, p3 - 2, p3);\n  static constexpr u64 x4\n      = mod_pow_constexpr(u64(p0)\
-    \ * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0)\
-    \ * p1;\n  static constexpr u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1)\
-    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
-    \ p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3\
-    \ - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c *\
-    \ p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 + p4) * x4 % p4;\n  return\
-    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 2 \"poly/convolution_naive.hpp\"\
-    \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
-    \nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()),\
-    \ m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b, a);\r\n  if\
-    \ (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m)\
-    \ ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class T, typename\
-    \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ p2 - 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0\
+    \ + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) *\
+    \ x2 % p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32\
+    \ p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3,\
+    \ u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static\
+    \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
+    \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
+    \ x3\n      = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static\
+    \ constexpr u64 x4\n      = mod_pow_constexpr(u64(p0) * p1 % p4 * p2 % p4 * p3\
+    \ % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0) * p1;\n  static constexpr\
+    \ u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 =\
+    \ a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1\
+    \ + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3 - ans_2 % p3 + p3)\
+    \ * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c * p2) * p01;\n  c = static_cast<u64>(a4\
+    \ - ans_3 % p4 + p4) * x4 % p4;\n  return T(ans_3) + T(c) * T(p01) * T(p23);\n\
+    }\n#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
+    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
+    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
+    \ a);\r\n  if (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n)\
+    \ FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class\
+    \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
     \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
@@ -534,269 +523,158 @@ data:
     \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n  \
     \  if (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return\
     \ convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/ntt_doubling.hpp\"\
-    \n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\
-    \u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067 2^k+1 \u306B\
-    \u3059\u308B\ntemplate <typename mint, bool transposed = false>\nvoid ntt_doubling(vector<mint>&\
-    \ a) {\n  static array<mint, 30> root;\n  static bool prepared = 0;\n  if (!prepared)\
-    \ {\n    prepared = 1;\n    const int rank2 = mint::ntt_info().fi;\n    root[rank2]\
-    \ = mint::ntt_info().se;\n    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i\
-    \ + 1]; }\n  }\n\n  if constexpr (!transposed) {\n    const int M = (int)a.size();\n\
-    \    auto b = a;\n    ntt(b, 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n\
-    \    FOR(i, M) b[i] *= r, r *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b),\
-    \ back_inserter(a));\n  } else {\n    const int M = len(a) / 2;\n    vc<mint>\
-    \ tmp = {a.begin(), a.begin() + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a,\
-    \ 0);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r\
-    \ *= zeta;\n    transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n\
-    #line 5 \"poly/sum_of_rationals.hpp\"\n\n// \u6709\u7406\u5F0F\u306E\u548C\u3092\
-    \u8A08\u7B97\u3059\u308B\u3002\u5206\u5272\u7D71\u6CBB O(Nlog^2N)\u3002N \u306F\
-    \u6B21\u6570\u306E\u548C\u3002\ntemplate <typename mint>\npair<vc<mint>, vc<mint>>\
-    \ sum_of_rationals(vc<pair<vc<mint>, vc<mint>>> dat) {\n  if (len(dat) == 0) {\n\
-    \    vc<mint> f = {0}, g = {1};\n    return {f, g};\n  }\n  using P = pair<vc<mint>,\
-    \ vc<mint>>;\n  auto add = [&](P& a, P& b) -> P {\n    int na = len(a.fi) - 1,\
-    \ da = len(a.se) - 1;\n    int nb = len(b.fi) - 1, db = len(b.se) - 1;\n    int\
-    \ n = max(na + db, da + nb);\n    vc<mint> num(n + 1);\n    {\n      auto f =\
-    \ convolution(a.fi, b.se);\n      FOR(i, len(f)) num[i] += f[i];\n    }\n    {\n\
-    \      auto f = convolution(a.se, b.fi);\n      FOR(i, len(f)) num[i] += f[i];\n\
-    \    }\n    auto den = convolution(a.se, b.se);\n    return {num, den};\n  };\n\
-    \n  while (len(dat) > 1) {\n    int n = len(dat);\n    FOR(i, 1, n, 2) { dat[i\
-    \ - 1] = add(dat[i - 1], dat[i]); }\n    FOR(i, ceil(n, 2)) dat[i] = dat[2 * i];\n\
-    \    dat.resize(ceil(n, 2));\n  }\n  return dat[0];\n}\n\n// sum wt[i]/(1-A[i]x)\n\
-    template <typename mint>\npair<vc<mint>, vc<mint>> sum_of_rationals_1(vc<mint>\
-    \ A, vc<mint> wt) {\n  using poly = vc<mint>;\n  if (!mint::can_ntt()) {\n   \
-    \ vc<pair<poly, poly>> rationals;\n    FOR(i, len(A)) rationals.eb(poly({wt[i]}),\
-    \ poly({mint(1), -A[i]}));\n    return sum_of_rationals(rationals);\n  }\n  int\
-    \ n = 1;\n  while (n < len(A)) n *= 2;\n  int k = topbit(n);\n  vc<mint> F(n),\
-    \ G(n);\n  vc<mint> nxt_F(n), nxt_G(n);\n  FOR(i, len(A)) F[i] = -A[i], G[i] =\
-    \ wt[i];\n  int D = 6;\n\n  FOR(d, k) {\n    int b = 1 << d;\n    if (d < D) {\n\
-    \      fill(all(nxt_F), mint(0)), fill(all(nxt_G), mint(0));\n      for (int L\
-    \ = 0; L < n; L += 2 * b) {\n        FOR(i, b) FOR(j, b) nxt_F[L + i + j] += F[L\
-    \ + i] * F[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L +\
-    \ i] * G[L + b + j];\n        FOR(i, b) FOR(j, b) nxt_G[L + i + j] += F[L + b\
-    \ + i] * G[L + j];\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L + b +\
-    \ i];\n        FOR(i, b) nxt_G[L + b + i] += G[L + i] + G[L + b + i];\n      }\n\
-    \    }\n    elif (d == D) {\n      for (int L = 0; L < n; L += 2 * b) {\n    \
-    \    poly f1 = {F.begin() + L, F.begin() + L + b};\n        poly f2 = {F.begin()\
-    \ + L + b, F.begin() + L + 2 * b};\n        poly g1 = {G.begin() + L, G.begin()\
-    \ + L + b};\n        poly g2 = {G.begin() + L + b, G.begin() + L + 2 * b};\n \
-    \       f1.resize(2 * b), f2.resize(2 * b), g1.resize(2 * b), g2.resize(2 * b);\n\
-    \        ntt(f1, 0), ntt(f2, 0), ntt(g1, 0), ntt(g2, 0);\n        FOR(i, b) f1[i]\
-    \ += 1, f2[i] += 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n      \
-    \  FOR(i, 2 * b) nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L\
-    \ + i] = g1[i] * f2[i] + g2[i] * f1[i];\n      }\n    }\n    else {\n      for\
-    \ (int L = 0; L < n; L += 2 * b) {\n        poly f1 = {F.begin() + L, F.begin()\
-    \ + L + b};\n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\n \
-    \       poly g1 = {G.begin() + L, G.begin() + L + b};\n        poly g2 = {G.begin()\
-    \ + L + b, G.begin() + L + 2 * b};\n        ntt_doubling(f1), ntt_doubling(f2),\
-    \ ntt_doubling(g1), ntt_doubling(g2);\n        FOR(i, b) f1[i] += 1, f2[i] +=\
-    \ 1;\n        FOR(i, b, 2 * b) f1[i] -= 1, f2[i] -= 1;\n        FOR(i, 2 * b)\
-    \ nxt_F[L + i] = f1[i] * f2[i] - 1;\n        FOR(i, 2 * b) nxt_G[L + i] = g1[i]\
-    \ * f2[i] + g2[i] * f1[i];\n      }\n    }\n    swap(F, nxt_F), swap(G, nxt_G);\n\
-    \  }\n  if (k - 1 >= D) ntt(F, 1), ntt(G, 1);\n  F.eb(1);\n  reverse(all(F)),\
-    \ reverse(all(G));\n  F.resize(len(A) + 1);\n  G.resize(len(A));\n  return {G,\
-    \ F};\n}\n#line 2 \"poly/from_log_differentiation.hpp\"\n\n#line 3 \"linalg/matrix_mul.hpp\"\
-    \n\r\ntemplate <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\
-    \nvc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n\
-    \                     int N2 = -1, int N3 = -1) {\r\n  if (N1 == -1) { N1 = len(A),\
-    \ N2 = len(B), N3 = len(B[0]); }\r\n  vv(u32, b, N3, N2);\r\n  FOR(i, N2) FOR(j,\
-    \ N3) b[j][i] = B[i][j].val;\r\n  vv(T, C, N1, N3);\r\n\r\n  if ((T::get_mod()\
-    \ < (1 << 30)) && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u64 sm =\
-    \ 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] =\
-    \ sm;\r\n    }\r\n  } else {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u128 sm =\
-    \ 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] =\
-    \ T::raw(sm % (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate\
-    \ <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
-    \ matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n        \
-    \             int N2 = -1, int N3 = -1) {\r\n  if (N1 == -1) { N1 = len(A), N2\
-    \ = len(B), N3 = len(B[0]); }\r\n  vv(T, b, N2, N3);\r\n  FOR(i, N2) FOR(j, N3)\
-    \ b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\n  FOR(n, N1) FOR(m, N2) FOR(k,\
-    \ N3) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n\r\n// square-matrix\
-    \ defined as array\r\ntemplate <class T, int N,\r\n          typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
-    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
-    \  array<array<T, N>, N> C{};\r\n\r\n  if ((T::get_mod() < (1 << 30)) && N <=\
-    \ 16) {\r\n    FOR(i, N) FOR(k, N) {\r\n      u64 sm = 0;\r\n      FOR(j, N) sm\
-    \ += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\n    }\r\n  }\
-    \ else {\r\n    FOR(i, N) FOR(k, N) {\r\n      u128 sm = 0;\r\n      FOR(j, N)\
-    \ sm += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\n    }\r\n\
-    \  }\r\n  return C;\r\n}\r\n\r\n// square-matrix defined as array\r\ntemplate\
-    \ <class T, int N,\r\n          typename enable_if<!has_mod<T>::value>::type*\
-    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
-    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
-    \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
-    \ * B[j][k];\r\n  return C;\r\n}\r\n#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate\
-    \ <class T>\r\nstruct Monoid_Mul {\r\n  using value_type = T;\r\n  using X = T;\r\
-    \n  static constexpr X op(const X &x, const X &y) noexcept { return x * y; }\r\
-    \n  static constexpr X inverse(const X &x) noexcept { return X(1) / x; }\r\n \
-    \ static constexpr X unit() { return X(1); }\r\n  static constexpr bool commute\
-    \ = true;\r\n};\r\n#line 1 \"ds/sliding_window_aggregation.hpp\"\ntemplate <class\
-    \ Monoid>\nstruct Sliding_Window_Aggregation {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  int sz = 0;\n  vc<X> dat;\n  vc<X> cum_l;\n  X cum_r;\n\
-    \n  Sliding_Window_Aggregation() : cum_l({Monoid::unit()}), cum_r(Monoid::unit())\
-    \ {}\n\n  int size() { return sz; }\n\n  void push(X x) {\n    ++sz;\n    cum_r\
-    \ = Monoid::op(cum_r, x);\n    dat.eb(x);\n  }\n\n  void pop() {\n    --sz;\n\
-    \    cum_l.pop_back();\n    if (len(cum_l) == 0) {\n      cum_l = {Monoid::unit()};\n\
-    \      cum_r = Monoid::unit();\n      while (len(dat) > 1) {\n        cum_l.eb(Monoid::op(dat.back(),\
-    \ cum_l.back()));\n        dat.pop_back();\n      }\n      dat.pop_back();\n \
-    \   }\n  }\n\n  X lprod() { return cum_l.back(); }\n  X rprod() { return cum_r;\
-    \ }\n\n  X prod() { return Monoid::op(cum_l.back(), cum_r); }\n};\n\n// \u5B9A\
-    \u6570\u500D\u306F\u76EE\u306B\u898B\u3048\u3066\u9045\u304F\u306A\u308B\u306E\
-    \u3067\u3001queue \u3067\u3088\u3044\u3068\u304D\u306F\u4F7F\u308F\u306A\u3044\
-    \ntemplate <class Monoid>\nstruct SWAG_deque {\n  using X = typename Monoid::value_type;\n\
-    \  using value_type = X;\n  int sz;\n  vc<X> dat_l, dat_r;\n  vc<X> cum_l, cum_r;\n\
-    \n  SWAG_deque() : sz(0), cum_l({Monoid::unit()}), cum_r({Monoid::unit()}) {}\n\
-    \n  int size() { return sz; }\n\n  void push_back(X x) {\n    ++sz;\n    dat_r.eb(x);\n\
-    \    cum_r.eb(Monoid::op(cum_r.back(), x));\n  }\n\n  void push_front(X x) {\n\
-    \    ++sz;\n    dat_l.eb(x);\n    cum_l.eb(Monoid::op(x, cum_l.back()));\n  }\n\
-    \n  void push(X x) { push_back(x); }\n\n  void clear() {\n    sz = 0;\n    dat_l.clear(),\
-    \ dat_r.clear();\n    cum_l = {Monoid::unit()}, cum_r = {Monoid::unit()};\n  }\n\
-    \n  void pop_front() {\n    if (sz == 1) return clear();\n    if (dat_l.empty())\
-    \ rebuild();\n    --sz;\n    dat_l.pop_back();\n    cum_l.pop_back();\n  }\n\n\
-    \  void pop_back() {\n    if (sz == 1) return clear();\n    if (dat_r.empty())\
-    \ rebuild();\n    --sz;\n    dat_r.pop_back();\n    cum_r.pop_back();\n  }\n\n\
-    \  void pop() { pop_front(); }\n\n  X lprod() { return cum_l.back(); }\n  X rprod()\
-    \ { return cum_r.back(); }\n  X prod() { return Monoid::op(cum_l.back(), cum_r.back());\
-    \ }\n  X prod_all() { return prod(); }\n\nprivate:\n  void rebuild() {\n    vc<X>\
-    \ X;\n    reverse(all(dat_l));\n    concat(X, dat_l, dat_r);\n    clear();\n \
-    \   int m = len(X) / 2;\n    FOR_R(i, m) push_front(X[i]);\n    FOR(i, m, len(X))\
-    \ push_back(X[i]);\n    assert(sz == len(X));\n  }\n};\n#line 5 \"poly/lagrange_interpolate_iota.hpp\"\
-    \n\r\n// Input: f(0), ..., f(n-1) and c. Return: f(c)\r\ntemplate <typename T,\
-    \ typename enable_if<has_mod<T>::value>::type * = nullptr>\r\nT lagrange_interpolate_iota(vc<T>\
-    \ &f, T c) {\r\n  int n = len(f);\r\n  if (int(c.val) < n) return f[c.val];\r\n\
-    \  auto a = f;\r\n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<T>(i) * fact_inv<T>(n\
-    \ - 1 - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n  }\r\n  vc<T> lp(n +\
-    \ 1), rp(n + 1);\r\n  lp[0] = rp[n] = 1;\r\n  FOR(i, n) lp[i + 1] = lp[i] * (c\
-    \ - i);\r\n  FOR_R(i, n) rp[i] = rp[i + 1] * (c - i);\r\n  T ANS = 0;\r\n  FOR(i,\
-    \ n) ANS += a[i] * lp[i] * rp[i + 1];\r\n  return ANS;\r\n}\r\n\r\n// mod \u3058\
-    \u3083\u306A\u3044\u5834\u5408\u3002\u304B\u306A\u308A\u4F4E\u6B21\u306E\u591A\
-    \u9805\u5F0F\u3092\u60F3\u5B9A\u3057\u3066\u3044\u308B\u3002O(n^2)\r\n// Input:\
-    \ f(0), ..., f(n-1) and c. Return: f(c)\r\ntemplate <typename T, typename enable_if<!has_mod<T>::value>::type\
-    \ * = nullptr>\r\nT lagrange_interpolate_iota(vc<T> &f, T c) {\r\n  const int\
-    \ LIM = 10;\r\n  int n = len(f);\r\n  assert(n < LIM);\r\n\r\n  // (-1)^{i-j}\
-    \ binom(i,j)\r\n  static vvc<int> C;\r\n  if (C.empty()) {\r\n    C.assign(LIM,\
-    \ vc<int>(LIM));\r\n    C[0][0] = 1;\r\n    FOR(n, 1, LIM) FOR(k, n + 1) {\r\n\
-    \      C[n][k] += C[n - 1][k];\r\n      if (k) C[n][k] += C[n - 1][k - 1];\r\n\
-    \    }\r\n    FOR(n, LIM) FOR(k, n + 1) if ((n + k) % 2) C[n][k] = -C[n][k];\r\
-    \n  }\r\n  // f(x) = sum a_i binom(x,i)\r\n  vc<T> a(n);\r\n  FOR(i, n) FOR(j,\
-    \ i + 1) { a[i] += f[j] * C[i][j]; }\r\n\r\n  T res = 0;\r\n  T b = 1;\r\n  FOR(i,\
-    \ n) {\r\n    res += a[i] * b;\r\n    b = b * (c - i) / (1 + i);\r\n  }\r\n  return\
-    \ res;\r\n}\r\n\r\n// Input: f(0), ..., f(n-1) and c, m\r\n// Return: f(c), f(c+1),\
-    \ ..., f(c+m-1)\r\n// Complexity: M(n, n + m)\r\ntemplate <typename mint>\r\n\
-    vc<mint> lagrange_interpolate_iota(vc<mint> &f, mint c, int m) {\r\n  if (m <=\
-    \ 60) {\r\n    vc<mint> ANS(m);\r\n    FOR(i, m) ANS[i] = lagrange_interpolate_iota(f,\
-    \ c + mint(i));\r\n    return ANS;\r\n  }\r\n  ll n = len(f);\r\n  auto a = f;\r\
-    \n  FOR(i, n) {\r\n    a[i] = a[i] * fact_inv<mint>(i) * fact_inv<mint>(n - 1\
-    \ - i);\r\n    if ((n - 1 - i) & 1) a[i] = -a[i];\r\n  }\r\n  // x = c, c+1, ...\
-    \ \u306B\u5BFE\u3057\u3066 a0/x + a1/(x-1) + ... \u3092\u6C42\u3081\u3066\u304A\
-    \u304F\r\n  vc<mint> b(n + m - 1);\r\n  FOR(i, n + m - 1) b[i] = mint(1) / (c\
-    \ + mint(i - n + 1));\r\n  a = convolution(a, b);\r\n\r\n  Sliding_Window_Aggregation<Monoid_Mul<mint>>\
-    \ swag;\r\n  vc<mint> ANS(m);\r\n  ll L = 0, R = 0;\r\n  FOR(i, m) {\r\n    while\
-    \ (L < i) { swag.pop(), ++L; }\r\n    while (R - L < n) { swag.push(c + mint((R++)\
-    \ - n + 1)); }\r\n    auto coef = swag.prod();\r\n    if (coef == 0) {\r\n   \
-    \   ANS[i] = f[(c + i).val];\r\n    } else {\r\n      ANS[i] = a[i + n - 1] *\
-    \ coef;\r\n    }\r\n  }\r\n  return ANS;\r\n}\r\n#line 4 \"poly/prefix_product_of_poly.hpp\"\
-    \n\n// A[k-1]...A[0] \u3092\u8A08\u7B97\u3059\u308B\n// \u30A2\u30EB\u30B4\u30EA\
-    \u30BA\u30E0\u53C2\u8003\uFF1Ahttps://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs\n\
-    // \u5B9F\u88C5\u53C2\u8003\uFF1Ahttps://nyaannyaan.github.io/library/matrix/polynomial-matrix-prefix-prod.hpp\n\
-    template <typename T>\nvc<vc<T>> prefix_product_of_poly_matrix(vc<vc<vc<T>>>&\
-    \ A, ll k) {\n  int n = len(A);\n\n  using MAT = vc<vc<T>>;\n  auto shift = [&](vc<MAT>&\
-    \ G, T x) -> vc<MAT> {\n    int d = len(G);\n    vvv(T, H, d, n, n);\n    FOR(i,\
-    \ n) FOR(j, n) {\n      vc<T> g(d);\n      FOR(l, d) g[l] = G[l][i][j];\n    \
-    \  auto h = lagrange_interpolate_iota(g, x, d);\n      FOR(l, d) H[l][i][j] =\
-    \ h[l];\n    }\n    return H;\n  };\n\n  auto evaluate = [&](vc<T>& f, T x) ->\
-    \ T {\n    T res = 0;\n    T p = 1;\n    FOR(i, len(f)) {\n      res += f[i] *\
-    \ p;\n      p *= x;\n    }\n    return res;\n  };\n\n  ll deg = 1;\n  FOR(i, n)\
-    \ FOR(j, n) chmax(deg, len(A[i][j]) - 1);\n\n  vc<MAT> G(deg + 1);\n  ll v = 1;\n\
-    \  while (deg * v * v < k) v *= 2;\n  T iv = T(1) / T(v);\n\n  FOR(i, len(G))\
-    \ {\n    T x = T(v) * T(i);\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k]\
-    \ = evaluate(A[j][k], x);\n    G[i] = mat;\n  }\n\n  for (ll w = 1; w != v; w\
-    \ *= 2) {\n    T W = w;\n    auto G1 = shift(G, W * iv);\n    auto G2 = shift(G,\
-    \ (W * T(deg) * T(v) + T(v)) * iv);\n    auto G3 = shift(G, (W * T(deg) * T(v)\
-    \ + T(v) + W) * iv);\n    FOR(i, w * deg + 1) {\n      G[i] = matrix_mul(G1[i],\
-    \ G[i]);\n      G2[i] = matrix_mul(G3[i], G2[i]);\n    }\n    copy(G2.begin(),\
-    \ G2.end() - 1, back_inserter(G));\n  }\n\n  vv(T, res, n, n);\n  FOR(i, n) res[i][i]\
-    \ = 1;\n  ll i = 0;\n  while (i + v <= k) res = matrix_mul(G[i / v], res), i +=\
-    \ v;\n  while (i < k) {\n    vv(T, mat, n, n);\n    FOR(j, n) FOR(k, n) mat[j][k]\
-    \ = evaluate(A[j][k], i);\n    res = matrix_mul(mat, res);\n    ++i;\n  }\n  return\
-    \ res;\n}\n\n// f[k-1]...f[0] \u3092\u8A08\u7B97\u3059\u308B\ntemplate <typename\
-    \ T>\nT prefix_product_of_poly(vc<T>& f, ll k) {\n  vc<vc<vc<T>>> A(1);\n  A[0].resize(1);\n\
-    \  A[0][0] = f;\n  auto res = prefix_product_of_poly_matrix(A, k);\n  return res[0][0];\n\
-    }\n#line 2 \"seq/kth_term_of_p_recursive.hpp\"\n\n// a0, ..., a_{r-1} \u304A\u3088\
-    \u3073 f_0, ..., f_r \u3092\u4E0E\u3048\u308B\n// a_r f_0(0) + a_{r-1}f_1(0) +\
-    \ ... = 0\n// a_{r+1} f_0(1) + a_{r}f_1(1) + ... = 0\ntemplate <typename T>\n\
-    T kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs, ll k) {\n  int r = len(a);\n\
-    \  assert(len(fs) == r + 1);\n  if (k < r) return a[k];\n\n  vc<vc<vc<T>>> A;\n\
-    \  A.resize(r);\n  FOR(i, r) A[i].resize(r);\n  FOR(i, r) {\n    // A[0][i] =\
-    \ -fs[i + 1];\n    for (auto&& x: fs[i + 1]) A[0][i].eb(-x);\n  }\n  FOR3(i, 1,\
-    \ r) A[i][i - 1] = fs[0];\n  vc<T> den = fs[0];\n  auto res = prefix_product_of_poly_matrix(A,\
-    \ k - r + 1);\n  reverse(all(a));\n  T ANS = 0;\n  FOR(j, r) ANS += res[0][j]\
-    \ * a[j];\n  ANS /= prefix_product_of_poly(den, k - r + 1);\n  return ANS;\n}\n\
-    #line 4 \"poly/from_log_differentiation.hpp\"\n\n// \u5BFE\u6570\u5FAE\u5206 F'/F\
-    \ = a(x)/b(x) \u304B\u3089 F \u3092\u5FA9\u5143\u3059\u308B\u3002\n// a, b \u304C\
-    \ sparse \u3067\u3042\u308C\u3070\u3001O(N(K1+K2)) \u6642\u9593\u3067\u3067\u304D\
-    \u308B\n// [0, N] \u3092\u8A08\u7B97\ntemplate <typename mint>\nvc<mint> from_log_differentiation(int\
-    \ N, const vc<mint>& a, const vc<mint>& b) {\n  assert(b[0] == mint(1));\n  using\
-    \ P = pair<int, mint>;\n\n  vc<P> dat_a, dat_b;\n  FOR(i, len(a)) if (a[i] !=\
-    \ mint(0)) dat_a.eb(i, a[i]);\n  FOR(i, 1, len(b)) if (b[i] != mint(0)) dat_b.eb(i,\
-    \ b[i]);\n\n  vc<mint> f(N + 1);\n  vc<mint> df(N);\n  f[0] = mint(1);\n  FOR(n,\
-    \ N) {\n    mint v = 0;\n    for (auto&& [i, bi]: dat_b) {\n      if (i > n) break;\n\
-    \      v -= bi * df[n - i];\n    }\n    for (auto&& [i, ai]: dat_a) {\n      if\
-    \ (i > n) break;\n      v += ai * f[n - i];\n    }\n    df[n] = v;\n    f[n +\
-    \ 1] = df[n] * inv<mint>(n + 1);\n  }\n  return f;\n}\n\n// F'/F = a/b \u306E\u89E3\
-    \u306E\u3001[x^K]F \u3092\u6C42\u3081\u308B\u3002\u53F3\u8FBA\u306F\u4F4E\u6B21\
-    \u306E\u6709\u7406\u5F0F\u3002\ntemplate <typename mint>\nmint from_log_differentiation_kth(int\
-    \ K, vc<mint>& a, vc<mint>& b) {\n  assert(b[0] == mint(1));\n  int r = max(len(a),\
-    \ len(b) - 1);\n  vvc<mint> c(r + 1);\n  FOR(i, r + 1) {\n    mint c0 = 0, c1\
-    \ = 0;\n    if (i < len(b)) c0 += mint(r - i) * b[i];\n    if (i < len(b)) c1\
-    \ += b[i];\n    if (0 <= i - 1 && i - 1 < len(b)) c0 -= a[i - 1];\n    c[i] =\
-    \ {c0, c1};\n  }\n  auto f = from_log_differentiation(r - 1, a, b);\n  mint ANS\
-    \ = kth_term_of_p_recursive(f, c, K);\n  return ANS;\n}\n#line 8 \"test/5_atcoder/abc276_g_2.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  --N;\n  M -= N;\n\
-    \  if (M < 0) return print(0);\n  using poly = vc<mint>;\n  vc<pair<poly, poly>>\
-    \ rationals;\n  rationals.eb(poly{N}, poly{1, 1});\n  rationals.eb(poly{2, 2,\
-    \ 3 * N + 2}, poly{1, 0, 0, -1});\n  auto [a, b] = sum_of_rationals(rationals);\n\
-    \  auto ANS = from_log_differentiation_kth(M, a, b);\n  print(ANS);\n}\n\nsigned\
-    \ main() { solve(); }\n"
-  code: "#define PROBLEM \"https://atcoder.jp/contests/abc276/tasks/abc276_g\"\n\n\
-    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"mod/modint.hpp\"\
-    \n#include \"poly/sum_of_rationals.hpp\"\n#include \"poly/from_log_differentiation.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  --N;\n  M -= N;\n\
-    \  if (M < 0) return print(0);\n  using poly = vc<mint>;\n  vc<pair<poly, poly>>\
-    \ rationals;\n  rationals.eb(poly{N}, poly{1, 1});\n  rationals.eb(poly{2, 2,\
-    \ 3 * N + 2}, poly{1, 0, 0, -1});\n  auto [a, b] = sum_of_rationals(rationals);\n\
-    \  auto ANS = from_log_differentiation_kth(M, a, b);\n  print(ANS);\n}\n\nsigned\
-    \ main() { solve(); }"
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 2 \"nt/digit_sum.hpp\"\
+    \n\nint digit_sum(u64 x) {\n  const int K = 100'000;\n  static vc<int> dp(K);\n\
+    \  if (dp[1] == 0) { FOR(x, 1, K) dp[x] = dp[x / 10] + (x % 10); }\n  int res\
+    \ = 0;\n  while (x) {\n    res += dp[x % K];\n    x /= K;\n  }\n  return res;\n\
+    }\n#line 3 \"bigint/base.hpp\"\n\n// 10^9 \u305A\u3064\u533A\u5207\u3063\u3066\
+    \nstruct BigInteger {\n  static constexpr int TEN[]\n      = {1,      10,    \
+    \  100,      1000,      10000,\n         100000, 1000000, 10000000, 100000000,\
+    \ 1000000000};\n  static constexpr int LOG = 9;\n  static constexpr int MOD =\
+    \ TEN[LOG];\n  using bint = BigInteger;\n  int sgn;\n  vc<int> dat;\n\n  BigInteger()\
+    \ : sgn(0) {}\n  BigInteger(i128 val) {\n    if (val == 0) {\n      sgn = 0;\n\
+    \      return;\n    }\n    sgn = 1;\n    if (val != 0) {\n      if (val < 0) sgn\
+    \ = -1, val = -val;\n      while (val > 0) { dat.eb(val % MOD), val /= MOD; }\n\
+    \    }\n  }\n  BigInteger(string s) {\n    assert(!s.empty());\n    sgn = 1;\n\
+    \    if (s[0] == '-') {\n      sgn = -1;\n      s.erase(s.begin());\n      assert(!s.empty());\n\
+    \    }\n    if (s[0] == '0') {\n      sgn = 0;\n      return;\n    }\n    reverse(all(s));\n\
+    \    int n = len(s);\n    int m = ceil(n, LOG);\n    dat.assign(m, 0);\n    FOR(i,\
+    \ n) { dat[i / LOG] += TEN[i % LOG] * (s[i] - '0'); }\n  }\n  bint &operator=(const\
+    \ bint &p) {\n    sgn = p.sgn, dat = p.dat;\n    return *this;\n  }\n  bool operator<(const\
+    \ bint &p) const {\n    if (sgn != p.sgn) { return sgn < p.sgn; }\n    if (sgn\
+    \ == 0) return false;\n    if (len(dat) != len(p.dat)) {\n      if (sgn == 1)\
+    \ return len(dat) < len(p.dat);\n      if (sgn == -1) return len(dat) > len(p.dat);\n\
+    \    }\n    FOR_R(i, len(dat)) {\n      if (dat[i] == p.dat[i]) continue;\n  \
+    \    if (sgn == 1) return dat[i] < p.dat[i];\n      if (sgn == -1) return dat[i]\
+    \ > p.dat[i];\n    }\n    return false;\n  }\n  bool operator>(const bint &p)\
+    \ const { return p < *this; }\n  bool operator<=(const bint &p) const { return\
+    \ !(*this > p); }\n  bool operator>=(const bint &p) const { return !(*this < p);\
+    \ }\n  bint &operator+=(const bint p) {\n    if (sgn == 0) { return *this = p;\
+    \ }\n    if (p.sgn == 0) return *this;\n    if (sgn != p.sgn) {\n      *this -=\
+    \ (-p);\n      return *this;\n    }\n    int n = max(len(dat), len(p.dat));\n\
+    \    dat.resize(n + 1);\n    FOR(i, n) {\n      if (i < len(p.dat)) dat[i] +=\
+    \ p.dat[i];\n      if (dat[i] >= MOD) dat[i] -= MOD, dat[i + 1] += 1;\n    }\n\
+    \    while (len(dat) && dat.back() == 0) dat.pop_back();\n    if (dat.empty())\
+    \ sgn = 0;\n    return *this;\n  }\n  bint &operator-=(const bint p) {\n    if\
+    \ (p.sgn == 0) return *this;\n    if (sgn == 0) return *this = (-p);\n    if (sgn\
+    \ != p.sgn) {\n      *this += (-p);\n      return *this;\n    }\n    if ((sgn\
+    \ == 1 && *this < p) || (sgn == -1 && *this > p)) {\n      *this = p - *this;\n\
+    \      sgn = -sgn;\n      return *this;\n    }\n    FOR(i, len(p.dat)) { dat[i]\
+    \ -= p.dat[i]; }\n    FOR(i, len(dat) - 1) {\n      if (dat[i] < 0) dat[i] +=\
+    \ MOD, dat[i + 1] -= 1;\n    }\n    while (len(dat) && dat.back() == 0) { dat.pop_back();\
+    \ }\n    if (dat.empty()) sgn = 0;\n    return *this;\n  }\n  bint &operator*=(const\
+    \ bint &p) {\n    sgn *= p.sgn;\n    if (sgn == 0) {\n      dat.clear();\n   \
+    \ } else {\n      dat = convolve(dat, p.dat);\n    }\n    return *this;\n  }\n\
+    \  // bint &operator/=(const bint &p) { return *this; }\n  bint operator-() const\
+    \ {\n    bint p = *this;\n    p.sgn *= -1;\n    return p;\n  }\n  bint operator+(const\
+    \ bint &p) const { return bint(*this) += p; }\n  bint operator-(const bint &p)\
+    \ const { return bint(*this) -= p; }\n  bint operator*(const bint &p) const {\
+    \ return bint(*this) *= p; }\n  // bint operator/(const modint &p) const { return\
+    \ modint(*this) /= p; }\n  bool operator==(const bint &p) const {\n    return\
+    \ (sgn == p.sgn && dat == p.dat);\n  }\n  bool operator!=(const bint &p) const\
+    \ { return !((*this) == p); }\n\n  vc<int> convolve(const vc<int> &a, const vc<int>\
+    \ &b) {\n    int n = len(a), m = len(b);\n    if (!n || !m) return {};\n    if\
+    \ (min(n, m) <= 500) {\n      vc<int> c(n + m - 1);\n      u128 x = 0;\n     \
+    \ FOR(k, n + m - 1) {\n        int s = max<int>(0, k + 1 - m), t = min<int>(k,\
+    \ n - 1);\n        FOR(i, s, t + 1) { x += u64(a[i]) * b[k - i]; }\n        c[k]\
+    \ = x % MOD, x = x / MOD;\n      }\n      while (x > 0) { c.eb(x % MOD), x = x\
+    \ / MOD; }\n      return c;\n    }\n    static constexpr int p0 = 167772161;\n\
+    \    static constexpr int p1 = 469762049;\n    static constexpr int p2 = 754974721;\n\
+    \    using mint0 = modint<p0>;\n    using mint1 = modint<p1>;\n    using mint2\
+    \ = modint<p2>;\n    vc<mint0> a0(all(a)), b0(all(b));\n    vc<mint1> a1(all(a)),\
+    \ b1(all(b));\n    vc<mint2> a2(all(a)), b2(all(b));\n    auto c0 = convolution_ntt<mint0>(a0,\
+    \ b0);\n    auto c1 = convolution_ntt<mint1>(a1, b1);\n    auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\n    vc<int> c(len(c0));\n    u128 x = 0;\n    FOR(i, n + m - 1) {\n  \
+    \    x += CRT3<u128, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\n      c[i]\
+    \ = x % MOD, x = x / MOD;\n    }\n    while (x) { c.eb(x % MOD), x = x / MOD;\
+    \ }\n    return c;\n  }\n\n  string to_string() {\n    if (dat.empty()) return\
+    \ \"0\";\n    string s;\n    for (int x: dat) {\n      FOR(LOG) {\n        s +=\
+    \ '0' + (x % 10);\n        x = x / 10;\n      }\n    }\n    while (s.back() ==\
+    \ '0') s.pop_back();\n    if (sgn == -1) s += '-';\n    reverse(all(s));\n   \
+    \ return s;\n  }\n\n  // https://codeforces.com/contest/504/problem/D\n  string\
+    \ to_binary_string() {\n    assert(sgn >= 0);\n    vc<u32> A(all(dat));\n    string\
+    \ ANS;\n    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n\
+    \      if (A.empty()) break;\n      u64 rem = 0;\n      FOR_R(i, len(A)) {\n \
+    \       rem = rem * MOD + A[i];\n        A[i] = rem >> 32;\n        rem &= u32(-1);\n\
+    \      }\n      FOR(i, 32) { ANS += '0' + (rem >> i & 1); }\n    }\n    while\
+    \ (len(ANS) && ANS.back() == '0') ANS.pop_back();\n    reverse(all(ANS));\n  \
+    \  if (ANS.empty()) ANS += '0';\n    return ANS;\n  }\n\n  // https://codeforces.com/contest/759/problem/E\n\
+    \  pair<bint, int> divmod(int p) {\n    vc<int> after;\n    ll rm = 0;\n    FOR_R(i,\
+    \ len(dat)) {\n      rm = rm * MOD + dat[i];\n      after.eb(rm / p);\n      rm\
+    \ = rm % p;\n    }\n    reverse(all(after));\n    while (len(after) && after.back()\
+    \ == 0) POP(after);\n    bint q;\n    q.sgn = sgn;\n    q.dat = after;\n    rm\
+    \ *= sgn;\n    if (rm < 0) {\n      rm += p;\n      q -= 1;\n    }\n    return\
+    \ {q, rm};\n  }\n\n  // https://codeforces.com/problemset/problem/582/D\n  vc<int>\
+    \ base_p_representation(int p) {\n    vc<u32> A(all(dat));\n    vc<int> res;\n\
+    \    while (1) {\n      while (len(A) && A.back() == u32(0)) POP(A);\n      if\
+    \ (A.empty()) break;\n      u64 rm = 0;\n      FOR_R(i, len(A)) {\n        rm\
+    \ = rm * MOD + A[i];\n        A[i] = rm / p;\n        rm %= p;\n      }\n    \
+    \  res.eb(rm);\n    }\n    reverse(all(res));\n    return res;\n  }\n\n  // overflow\
+    \ \u7121\u8996\u3057\u3066\u8A08\u7B97\n  ll to_ll() {\n    ll x = 0;\n    FOR_R(i,\
+    \ len(dat)) x = MOD * x + dat[i];\n    return sgn * x;\n  }\n\n  // https://codeforces.com/contest/986/problem/D\n\
+    \  bint pow(ll n) {\n    assert(n >= 0);\n    auto dfs = [&](auto &dfs, ll n)\
+    \ -> bint {\n      if (n == 1) return (*this);\n      bint x = dfs(dfs, n / 2);\n\
+    \      x *= x;\n      if (n & 1) x *= (*this);\n      return x;\n    };\n    if\
+    \ (n == 0) return bint(1);\n    return dfs(dfs, n);\n  }\n\n  // https://codeforces.com/contest/986/problem/D\n\
+    \  double log10() {\n    assert(!dat.empty() && sgn == 1);\n    if (len(dat) <=\
+    \ 3) {\n      double x = 0;\n      FOR_R(i, len(dat)) x = MOD * x + dat[i];\n\
+    \      return std::log10(x);\n    }\n    double x = 0;\n    FOR(i, 4) x = MOD\
+    \ * x + dat[len(dat) - 1 - i];\n    x = std::log10(x);\n    x += double(LOG) *\
+    \ (len(dat) - 4);\n    return x;\n  }\n\n  int digit_sum() {\n    int ans = 0;\n\
+    \    for (auto &x: dat) ans += ::digit_sum(x); // global \u306B\u3042\u308B digit_sum\n\
+    \    return ans;\n  }\n};\n\n#ifdef FASTIO\nvoid wt(BigInteger x) { fastio::wt(x.to_string());\
+    \ }\nvoid rd(BigInteger &x) {\n  string s;\n  fastio::rd(s);\n  x = BigInteger(s);\n\
+    }\n#endif\n#line 6 \"test/5_atcoder/abc333g.test.cpp\"\n\nusing T = BigInteger;\n\
+    \nvoid solve() {\n  STR(S);\n  LL(N);\n  i128 B = 1;\n  i128 A = 1;\n  if (count(all(S),\
+    \ '.') == 0) {\n    B = 1;\n    A = stoi(S);\n  } else {\n    int p = S.find('.');\n\
+    \    A = stoi(S.substr(0, p));\n    S = S.substr(p + 1);\n    while (len(S)) {\n\
+    \      B *= 10;\n      A = 10 * A + (S[0] - '0');\n      S = S.substr(1);\n  \
+    \  }\n  }\n\n  auto [a, b, c, d] = rational_binary_search<ll>(\n      [&](i128\
+    \ a, i128 b) -> bool {\n        // a/b <= A/B\n        return a * B <= A * b;\n\
+    \      },\n      N);\n\n  // A/B-a/b vs c/d-A/B\n  // (Ab-Ba)/(Bb) bs (Bc-Ad)/(Bd)\n\
+    \  // d(Ab-Ba) bs b(Bc-Ad)\n\n  T LHS = T(d) * T(A * b - B * a);\n  T RHS = T(b)\
+    \ * T(B * c - A * d);\n  if (LHS <= RHS)\n    print(a, b);\n  else\n    print(c,\
+    \ d);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n \
+    \ return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc333/tasks/abc333_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/rational_binary_search.hpp\"\
+    \n#include \"bigint/base.hpp\"\n\nusing T = BigInteger;\n\nvoid solve() {\n  STR(S);\n\
+    \  LL(N);\n  i128 B = 1;\n  i128 A = 1;\n  if (count(all(S), '.') == 0) {\n  \
+    \  B = 1;\n    A = stoi(S);\n  } else {\n    int p = S.find('.');\n    A = stoi(S.substr(0,\
+    \ p));\n    S = S.substr(p + 1);\n    while (len(S)) {\n      B *= 10;\n     \
+    \ A = 10 * A + (S[0] - '0');\n      S = S.substr(1);\n    }\n  }\n\n  auto [a,\
+    \ b, c, d] = rational_binary_search<ll>(\n      [&](i128 a, i128 b) -> bool {\n\
+    \        // a/b <= A/B\n        return a * B <= A * b;\n      },\n      N);\n\n\
+    \  // A/B-a/b vs c/d-A/B\n  // (Ab-Ba)/(Bb) bs (Bc-Ad)/(Bd)\n  // d(Ab-Ba) bs\
+    \ b(Bc-Ad)\n\n  T LHS = T(d) * T(A * b - B * a);\n  T RHS = T(b) * T(B * c - A\
+    \ * d);\n  if (LHS <= RHS)\n    print(a, b);\n  else\n    print(c, d);\n}\n\n\
+    signed main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - nt/rational_binary_search.hpp
+  - bigint/base.hpp
+  - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - poly/sum_of_rationals.hpp
-  - poly/convolution.hpp
   - mod/mod_inv.hpp
   - mod/crt3.hpp
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
-  - poly/ntt_doubling.hpp
-  - poly/from_log_differentiation.hpp
-  - seq/kth_term_of_p_recursive.hpp
-  - poly/prefix_product_of_poly.hpp
-  - linalg/matrix_mul.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - alg/monoid/mul.hpp
-  - ds/sliding_window_aggregation.hpp
+  - nt/digit_sum.hpp
   isVerificationFile: true
-  path: test/5_atcoder/abc276_g_2.test.cpp
+  path: test/5_atcoder/abc333g.test.cpp
   requiredBy: []
-  timestamp: '2024-08-16 19:16:03+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-27 06:23:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/5_atcoder/abc276_g_2.test.cpp
+documentation_of: test/5_atcoder/abc333g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/5_atcoder/abc276_g_2.test.cpp
-- /verify/test/5_atcoder/abc276_g_2.test.cpp.html
-title: test/5_atcoder/abc276_g_2.test.cpp
+- /verify/test/5_atcoder/abc333g.test.cpp
+- /verify/test/5_atcoder/abc333g.test.cpp.html
+title: test/5_atcoder/abc333g.test.cpp
 ---

@@ -215,7 +215,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -227,7 +227,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -272,7 +272,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':heavy_check_mark:'
@@ -486,13 +486,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - icon: ':x:'
@@ -858,6 +858,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc333f.test.cpp
     title: test/5_atcoder/abc333f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc333g.test.cpp
+    title: test/5_atcoder/abc333g.test.cpp
   - icon: ':x:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
@@ -1362,6 +1365,7 @@ data:
   - test/5_atcoder/abc241h.test.cpp
   - test/5_atcoder/abc260h.test.cpp
   - test/5_atcoder/abc345g.test.cpp
+  - test/5_atcoder/abc333g.test.cpp
   - test/5_atcoder/abc269ex2.test.cpp
   - test/5_atcoder/abc253h.test.cpp
   - test/5_atcoder/abc267h.test.cpp

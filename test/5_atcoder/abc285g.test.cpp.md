@@ -1,12 +1,9 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/fenwicktree/fenwicktree_2d.hpp
-    title: ds/fenwicktree/fenwicktree_2d.hpp
+  - icon: ':x:'
+    path: flow/maxflow_with_lowerbound.hpp
+    title: flow/maxflow_with_lowerbound.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -15,17 +12,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/rectangle_sum
+    PROBLEM: https://atcoder.jp/contests/abc285/tasks/abc285_g
     links:
-    - https://judge.yosupo.jp/problem/rectangle_sum
-  bundledCode: "#line 1 \"test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://atcoder.jp/contests/abc285/tasks/abc285_g
+  bundledCode: "#line 1 \"test/5_atcoder/abc285g.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc285/tasks/abc285_g\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -201,110 +197,101 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp\"\
-    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/fenwicktree/fenwicktree_2d.hpp\"\
-    \n\r\ntemplate <typename Monoid, typename XY, bool SMALL_X = false>\r\nstruct\
-    \ FenwickTree_2D {\r\n  using G = Monoid;\r\n  using E = typename G::value_type;\r\
-    \n  static_assert(G::commute);\r\n  int N;\r\n  vc<XY> keyX;\r\n  XY min_X;\r\n\
-    \  vc<int> indptr;\r\n  vc<XY> keyY;\r\n  vc<E> dat;\r\n\r\n  FenwickTree_2D(vc<XY>&\
-    \ X, vc<XY>& Y, vc<E> wt) { build(X, Y, wt); }\r\n  FenwickTree_2D(vc<XY>& X,\
-    \ vc<XY>& Y) { build(X, Y); }\r\n\r\n  inline int xtoi(XY x) {\r\n    if constexpr\
-    \ (SMALL_X) {\r\n      return clamp<int>(x - min_X, 0, N);\r\n    } else {\r\n\
-    \      return LB(keyX, x);\r\n    }\r\n  }\r\n  inline int nxt(int i) { return\
-    \ i + ((i + 1) & -(i + 1)); }\r\n  inline int prev(int i) { return i - ((i + 1)\
-    \ & -(i + 1)); }\r\n\r\n  void build(vc<XY> X, vc<XY> Y, vc<E> wt) {\r\n    assert(len(X)\
-    \ == len(Y));\r\n    if constexpr (!SMALL_X) {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\
-    \n      N = len(keyX);\r\n    } else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\
-    \n      N = (len(X) == 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\
-    \n      FOR(i, N) keyX[i] = min_X + i;\r\n    }\r\n\r\n    auto I = argsort(Y);\r\
-    \n    X = rearrange(X, I), Y = rearrange(Y, I), wt = rearrange(wt, I);\r\n\r\n\
-    \    FOR(i, len(X)) X[i] = xtoi(X[i]);\r\n\r\n    vc<XY> last_y(N, -infty<XY>\
-    \ - 1);\r\n    indptr.assign(N + 1, 0);\r\n    FOR(i, len(X)) {\r\n      int ix\
-    \ = X[i];\r\n      XY y = Y[i];\r\n      while (ix < N) {\r\n        if (last_y[ix]\
-    \ == y) break;\r\n        last_y[ix] = y, indptr[ix + 1]++, ix = nxt(ix);\r\n\
-    \      }\r\n    }\r\n    FOR(i, N) indptr[i + 1] += indptr[i];\r\n    keyY.resize(indptr.back());\r\
-    \n    dat.assign(indptr.back(), G::unit());\r\n    fill(all(last_y), -infty<XY>\
-    \ - 1);\r\n    vc<int> prog = indptr;\r\n    FOR(i, len(X)) {\r\n      int ix\
-    \ = X[i];\r\n      XY y = Y[i];\r\n      E w = wt[i];\r\n      while (ix < N)\
-    \ {\r\n        if (last_y[ix] != y) {\r\n          last_y[ix] = y, keyY[prog[ix]]\
-    \ = y, dat[prog[ix]] = w;\r\n          prog[ix]++;\r\n        } else {\r\n   \
-    \       dat[prog[ix] - 1] = G::op(dat[prog[ix] - 1], w);\r\n        }\r\n    \
-    \    ix = nxt(ix);\r\n      }\r\n    }\r\n    FOR(i, N) {\r\n      int n = indptr[i\
-    \ + 1] - indptr[i];\r\n      FOR(j, n - 1) {\r\n        int k = nxt(j);\r\n  \
-    \      if (k < n)\r\n          dat[indptr[i] + k] = G::op(dat[indptr[i] + k],\
-    \ dat[indptr[i] + j]);\r\n      }\r\n    }\r\n  }\r\n\r\n  void build(vc<XY> X,\
-    \ vc<XY> Y) {\r\n    assert(len(X) == len(Y));\r\n    if constexpr (!SMALL_X)\
-    \ {\r\n      keyX = X;\r\n      UNIQUE(keyX);\r\n      N = len(keyX);\r\n    }\
-    \ else {\r\n      min_X = (len(X) == 0 ? 0 : MIN(X));\r\n      N = (len(X) ==\
-    \ 0 ? 0 : MAX(X)) - min_X + 1;\r\n      keyX.resize(N);\r\n      FOR(i, N) keyX[i]\
-    \ = min_X + i;\r\n    }\r\n\r\n    auto I = argsort(Y);\r\n    X = rearrange(X,\
-    \ I), Y = rearrange(Y, I);\r\n\r\n    FOR(i, len(X)) X[i] = xtoi(X[i]);\r\n\r\n\
-    \    vc<XY> last_y(N, -infty<XY> - 1);\r\n    indptr.assign(N + 1, 0);\r\n   \
-    \ FOR(i, len(X)) {\r\n      int ix = X[i];\r\n      XY y = Y[i];\r\n      while\
-    \ (ix < N) {\r\n        if (last_y[ix] == y) break;\r\n        last_y[ix] = y,\
-    \ indptr[ix + 1]++, ix = nxt(ix);\r\n      }\r\n    }\r\n    FOR(i, N) indptr[i\
-    \ + 1] += indptr[i];\r\n    keyY.resize(indptr.back());\r\n    dat.assign(indptr.back(),\
-    \ G::unit());\r\n    fill(all(last_y), -infty<XY> - 1);\r\n    vc<int> prog =\
-    \ indptr;\r\n    FOR(i, len(X)) {\r\n      int ix = X[i];\r\n      XY y = Y[i];\r\
-    \n      while (ix < N) {\r\n        if (last_y[ix] == y) break;\r\n        last_y[ix]\
-    \ = y, keyY[prog[ix]++] = y, ix = nxt(ix);\r\n      }\r\n    }\r\n  }\r\n\r\n\
-    \  void add(XY x, XY y, E val) { multiply(x, y, val); }\r\n  void multiply(XY\
-    \ x, XY y, E val) {\r\n    int i = xtoi(x);\r\n    assert(keyX[i] == x);\r\n \
-    \   while (i < N) { multiply_i(i, y, val), i = nxt(i); }\r\n  }\r\n\r\n  E sum(XY\
-    \ lx, XY rx, XY ly, XY ry) { return prod(lx, rx, ly, ry); }\r\n  E prod(XY lx,\
-    \ XY rx, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int\
-    \ L = xtoi(lx) - 1, R = xtoi(rx) - 1;\r\n    while (L < R) { pos = G::op(pos,\
-    \ prod_i(R, ly, ry)), R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, prod_i(L,\
-    \ ly, ry)), L = prev(L); }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\
-    \n\r\n  E prefix_sum(XY rx, XY ry) { return prefix_prod(rx, ry); }\r\n  E prefix_prod(XY\
-    \ rx, XY ry) {\r\n    E pos = G::unit();\r\n    int R = xtoi(rx) - 1;\r\n    while\
-    \ (R >= 0) { pos = G::op(pos, prefix_prod_i(R, ry)), R = prev(R); }\r\n    return\
-    \ pos;\r\n  }\r\n\r\nprivate:\r\n  void multiply_i(int i, XY y, E val) {\r\n \
-    \   int LID = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin()\
-    \ + LID;\r\n    int j = lower_bound(it, it + n, y) - it;\r\n    while (j < n)\
-    \ { dat[LID + j] = G::op(dat[LID + j], val), j = nxt(j); }\r\n  }\r\n\r\n  E prod_i(int\
-    \ i, XY ly, XY ry) {\r\n    E pos = G::unit(), neg = G::unit();\r\n    int LID\
-    \ = indptr[i], n = indptr[i + 1] - indptr[i];\r\n    auto it = keyY.begin() +\
-    \ LID;\r\n    int L = lower_bound(it, it + n, ly) - it - 1;\r\n    int R = lower_bound(it,\
-    \ it + n, ry) - it - 1;\r\n    while (L < R) { pos = G::op(pos, dat[LID + R]),\
-    \ R = prev(R); }\r\n    while (R < L) { neg = G::op(neg, dat[LID + L]), L = prev(L);\
-    \ }\r\n    return G::op(pos, G::inverse(neg));\r\n  }\r\n\r\n  E prefix_prod_i(int\
-    \ i, XY ry) {\r\n    E pos = G::unit();\r\n    int LID = indptr[i], n = indptr[i\
-    \ + 1] - indptr[i];\r\n    auto it = keyY.begin() + LID;\r\n    int R = lower_bound(it,\
-    \ it + n, ry) - it - 1;\r\n    while (R >= 0) { pos = G::op(pos, dat[LID + R]),\
-    \ R = prev(R); }\r\n    return pos;\r\n  }\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x,\
-    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  FenwickTree_2D<Monoid_Add<ll>,\
-    \ ll, false> bit(X, Y, W);\n  FOR(Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l,\
-    \ r, d, u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rectangle_sum\"\n\n#include\
-    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree_2d.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  vi X(N), Y(N), W(N);\n  FOR(i, N) {\n    LL(x,\
-    \ y, w);\n    X[i] = x, Y[i] = y, W[i] = w;\n  }\n  FenwickTree_2D<Monoid_Add<ll>,\
-    \ ll, false> bit(X, Y, W);\n  FOR(Q) {\n    LL(l, d, r, u);\n    print(bit.sum(l,\
-    \ r, d, u));\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  solve();\n\n  return 0;\n}\n"
+    \ yes(!t); }\r\n#line 4 \"test/5_atcoder/abc285g.test.cpp\"\n\n#line 1 \"flow/maxflow_with_lowerbound.hpp\"\
+    \n\ntemplate <typename Cap>\nstruct MaxFlow_With_LowerBound {\n  int N, s, t,\
+    \ S, T;\n  Cap flow_ans;\n  bool prepared = 0;\n\n  struct Edge_raw {\n    int\
+    \ frm, to;\n    Cap lo, hi;\n  };\n  vc<Edge_raw> dat;\n\n  MaxFlow_With_LowerBound(int\
+    \ N, int s, int t)\n      : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {\n\
+    \    assert(0 <= s && s < N);\n    assert(0 <= t && t < N);\n  }\n  void add(int\
+    \ frm, int to, Cap lo, Cap hi) {\n    assert(!prepared);\n    assert(0 <= frm\
+    \ && frm < N);\n    assert(0 <= to && to < N);\n    assert(Cap(0) <= lo && lo\
+    \ <= hi);\n    dat.eb(frm, to, lo, hi);\n  }\n\n  struct Edge {\n    int rev,\
+    \ to;\n    Cap cap, flow;\n  };\n\n  vc<Edge> G;\n  vc<int> indptr;\n  vc<int>\
+    \ idx;\n  vc<int> level, que, prog;\n\n  void debug() {\n    print(\"frm,to,lo,hi\"\
+    );\n    for (auto& e: dat) print(e.frm, e.to, e.lo, e.hi);\n  }\n\n  void build()\
+    \ {\n    assert(!prepared);\n    prepared = 1;\n    int M = len(dat);\n    idx.assign(6\
+    \ * M, -1);\n    vc<int> cnt(N + 2);\n    FOR(i, M) {\n      auto [frm, to, lo,\
+    \ hi] = dat[i];\n      if (frm == to) continue;\n      if (lo < hi) cnt[frm]++,\
+    \ cnt[to]++;\n      if (0 < lo) cnt[S]++, cnt[to]++, cnt[frm]++, cnt[T]++;\n \
+    \   }\n    indptr = cumsum<int>(cnt);\n    int m = indptr.back();\n    G.resize(m);\n\
+    \    vc<int> prog = indptr;\n    auto add = [&](int i, int j, int a, int b, Cap\
+    \ c) -> void {\n      int p = prog[a]++, q = prog[b]++;\n      idx[i] = p, idx[j]\
+    \ = q;\n      G[p] = {q, b, c, 0};\n      G[q] = {p, a, 0, 0};\n    };\n    FOR(i,\
+    \ M) {\n      auto [frm, to, lo, hi] = dat[i];\n      if (frm == to) continue;\n\
+    \      if (lo < hi) add(6 * i + 0, 6 * i + 1, frm, to, hi - lo);\n      if (0\
+    \ < lo) {\n        add(6 * i + 2, 6 * i + 3, S, to, lo);\n        add(6 * i +\
+    \ 4, 6 * i + 5, frm, T, lo);\n        cnt[S]++, cnt[to]++, cnt[frm]++, cnt[T]++;\n\
+    \      }\n    }\n  }\n\n  Cap flow() {\n    build();\n    Cap a = flow_st(S, T),\
+    \ b = flow_st(S, t), c = flow_st(s, T),\n        d = flow_st(s, t);\n    bool\
+    \ valid = 1;\n    int M = len(dat);\n    FOR(i, M) {\n      auto [frm, to, lo,\
+    \ hi] = dat[i];\n      if (lo > 0 && G[idx[6 * i + 2]].cap > 0) valid = 0;\n \
+    \     if (lo > 0 && G[idx[6 * i + 4]].cap > 0) valid = 0;\n    }\n    if (!valid)\
+    \ return flow_ans = -1;\n    assert(a + b == a + c && c + d == b + d);\n    return\
+    \ flow_ans = c + d;\n  }\n\n  void set_level(int s) {\n    level.assign(N + 2,\
+    \ infty<int>);\n    que.resize(N + 2);\n    int ql = 0, qr = 0;\n    auto upd\
+    \ = [&](int v, int d) -> void {\n      if (chmin(level[v], d)) que[qr++] = v;\n\
+    \    };\n    upd(s, 0);\n    while (ql < qr) {\n      int v = que[ql++];\n   \
+    \   FOR(i, indptr[v], indptr[v + 1]) {\n        auto& e = G[i];\n        if (e.cap\
+    \ > 0) upd(e.to, level[v] + 1);\n      }\n    }\n  }\n\n  Cap flow_dfs(int s,\
+    \ int t) {\n    prog = indptr;\n    auto dfs = [&](auto& dfs, int v, Cap lim)\
+    \ -> Cap {\n      if (v == t) return lim;\n      Cap res = 0;\n      for (int&\
+    \ i = prog[v]; i < indptr[v + 1]; ++i) {\n        auto& e = G[i];\n        if\
+    \ (e.cap > 0 && level[e.to] == level[v] + 1) {\n          Cap a = dfs(dfs, e.to,\
+    \ min(lim, e.cap));\n          if (a == Cap(0)) continue;\n          e.cap -=\
+    \ a, e.flow += a;\n          G[e.rev].cap += a, G[e.rev].flow -= a;\n        \
+    \  res += a, lim -= a;\n          if (lim == Cap(0)) break;\n        }\n     \
+    \ }\n      return res;\n    };\n    return dfs(dfs, s, infty<Cap>);\n  }\n\n \
+    \ Cap flow_st(int s, int t) {\n    Cap ans = 0;\n    while (1) {\n      set_level(s);\n\
+    \      if (level[t] == infty<int>) break;\n      ans += flow_dfs(s, t);\n    }\n\
+    \    return ans;\n  }\n\n  // add \u3057\u305F\u9806\u306B\u3072\u3068\u3068\u304A\
+    \u308A\n  vc<Cap> get_flow_result() {\n    assert(flow_ans != Cap(-1));\n    int\
+    \ M = len(dat);\n    vc<Cap> res(M);\n    FOR(i, M) {\n      auto [frm, to, lo,\
+    \ hi] = dat[i];\n      Cap flow = (lo < hi ? G[idx[6 * i + 1]].cap + lo : lo);\n\
+    \      // print(frm, to, lo, hi, flow);\n      res[i] = flow;\n    }\n    return\
+    \ res;\n  }\n};\n#line 6 \"test/5_atcoder/abc285g.test.cpp\"\n\nvoid solve() {\n\
+    \  INT(H, W);\n  auto idx = [&](int x, int y) -> int { return W * x + y; };\n\
+    \  int s = idx(H, 0);\n  int t = s + 1;\n  MaxFlow_With_LowerBound<int> G(t +\
+    \ 1, s, t);\n  VEC(string, A, H);\n  auto isin = [&](int x, int y) -> bool { return\
+    \ (0 <= x && x < H && 0 <= y && y < W); };\n  int dx[] = {1, 0, -1, 0, 1, 1, -1,\
+    \ -1};\n  int dy[] = {0, 1, 0, -1, 1, -1, 1, -1};\n  FOR(i, H) FOR(j, W) {\n \
+    \   if (A[i][j] == '2') {\n      if ((i + j) % 2 == 0) G.add(s, idx(i, j), 1,\
+    \ 1);\n      if ((i + j) % 2 == 1) G.add(idx(i, j), t, 1, 1);\n    }\n    elif\
+    \ (A[i][j] == '?') {\n      if ((i + j) % 2 == 0) G.add(s, idx(i, j), 0, 1);\n\
+    \      if ((i + j) % 2 == 1) G.add(idx(i, j), t, 0, 1);\n    }\n    if ((i + j)\
+    \ % 2 == 0) {\n      FOR(d, 4) {\n        int ni = i + dx[d], nj = j + dy[d];\n\
+    \        if (!isin(ni, nj)) continue;\n        G.add(idx(i, j), idx(ni, nj), 0,\
+    \ 1);\n      }\n    }\n  }\n  int F = G.flow();\n  Yes(F != -1);\n}\n\nsigned\
+    \ main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc285/tasks/abc285_g\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"flow/maxflow_with_lowerbound.hpp\"\
+    \n\nvoid solve() {\n  INT(H, W);\n  auto idx = [&](int x, int y) -> int { return\
+    \ W * x + y; };\n  int s = idx(H, 0);\n  int t = s + 1;\n  MaxFlow_With_LowerBound<int>\
+    \ G(t + 1, s, t);\n  VEC(string, A, H);\n  auto isin = [&](int x, int y) -> bool\
+    \ { return (0 <= x && x < H && 0 <= y && y < W); };\n  int dx[] = {1, 0, -1, 0,\
+    \ 1, 1, -1, -1};\n  int dy[] = {0, 1, 0, -1, 1, -1, 1, -1};\n  FOR(i, H) FOR(j,\
+    \ W) {\n    if (A[i][j] == '2') {\n      if ((i + j) % 2 == 0) G.add(s, idx(i,\
+    \ j), 1, 1);\n      if ((i + j) % 2 == 1) G.add(idx(i, j), t, 1, 1);\n    }\n\
+    \    elif (A[i][j] == '?') {\n      if ((i + j) % 2 == 0) G.add(s, idx(i, j),\
+    \ 0, 1);\n      if ((i + j) % 2 == 1) G.add(idx(i, j), t, 0, 1);\n    }\n    if\
+    \ ((i + j) % 2 == 0) {\n      FOR(d, 4) {\n        int ni = i + dx[d], nj = j\
+    \ + dy[d];\n        if (!isin(ni, nj)) continue;\n        G.add(idx(i, j), idx(ni,\
+    \ nj), 0, 1);\n      }\n    }\n  }\n  int F = G.flow();\n  Yes(F != -1);\n}\n\n\
+    signed main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/fenwicktree/fenwicktree_2d.hpp
-  - alg/monoid/add.hpp
+  - flow/maxflow_with_lowerbound.hpp
   isVerificationFile: true
-  path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
+  path: test/5_atcoder/abc285g.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-27 06:23:28+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
+documentation_of: test/5_atcoder/abc285g.test.cpp
 layout: document
 redirect_from:
-- /verify/test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-- /verify/test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp.html
-title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
+- /verify/test/5_atcoder/abc285g.test.cpp
+- /verify/test/5_atcoder/abc285g.test.cpp.html
+title: test/5_atcoder/abc285g.test.cpp
 ---

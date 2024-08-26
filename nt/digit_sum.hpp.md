@@ -49,6 +49,9 @@ data:
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
   - icon: ':x:'
+    path: test/5_atcoder/abc333g.test.cpp
+    title: test/5_atcoder/abc333g.test.cpp
+  - icon: ':x:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
   _isVerificationFailed: true
@@ -72,6 +75,7 @@ data:
   timestamp: '2024-06-06 03:38:35+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/5_atcoder/abc333g.test.cpp
   - test/5_atcoder/abc339f.test.cpp
   - test/3_yukicoder/303.test.cpp
   - test/3_yukicoder/2440.test.cpp

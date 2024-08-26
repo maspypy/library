@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -350,7 +350,7 @@ data:
   path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
   requiredBy: []
   timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_frequency.test.cpp
 layout: document

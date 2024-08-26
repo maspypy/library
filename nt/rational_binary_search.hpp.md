@@ -6,6 +6,9 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/number_theory/rational_approximation.test.cpp
     title: test/2_library_checker/number_theory/rational_approximation.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc333g.test.cpp
+    title: test/5_atcoder/abc333g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':x:'
@@ -37,6 +40,7 @@ data:
   timestamp: '2024-08-27 06:05:08+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/5_atcoder/abc333g.test.cpp
   - test/2_library_checker/number_theory/rational_approximation.test.cpp
 documentation_of: nt/rational_binary_search.hpp
 layout: document
