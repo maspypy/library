@@ -618,7 +618,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/maxflow_with_lowerbound.hpp
       title: flow/maxflow_with_lowerbound.hpp
     - icon: ':heavy_check_mark:'
@@ -1375,7 +1375,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1528,7 +1528,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -4678,7 +4678,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc283f.test.cpp
       title: test/5_atcoder/abc283f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc285g.test.cpp
       title: test/5_atcoder/abc285g.test.cpp
     - icon: ':heavy_check_mark:'
