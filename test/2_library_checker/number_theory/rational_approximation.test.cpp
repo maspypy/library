@@ -4,8 +4,8 @@
 #include "nt/rational_binary_search.hpp"
 
 void solve() {
-  LL(N, x, y);
-  auto [a, b, c, d] = rational_binary_search<int>([&](ll a, ll b) -> bool { return a * y <= b * x; }, N);
+  U64(N, x, y);
+  auto [a, b, c, d] = rational_binary_search<u32>([&](u64 a, u64 b) -> bool { return a * y <= b * x; }, N);
   if (a * y == b * x) {
     print(a, b, a, b);
   } else {

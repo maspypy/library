@@ -66,7 +66,7 @@ class CoutInitializer {
 public:
   CoutInitializer() { std::cout << std::fixed << std::setprecision(15); }
 };
-static CoutInitializer init;
+static CoutInitializer cout_initializer;
 
 void print() {
   cout << "\n";
