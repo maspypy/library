@@ -111,9 +111,9 @@ vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
     return res;
   }
 
-  static constexpr u64 MOD1 = 754974721; // 2^24
-  static constexpr u64 MOD2 = 167772161; // 2^25
-  static constexpr u64 MOD3 = 469762049; // 2^26
+  static constexpr u32 MOD1 = 167772161; // 2^25
+  static constexpr u32 MOD2 = 469762049; // 2^26
+  static constexpr u32 MOD3 = 754974721; // 2^24
 
   using mint1 = modint<MOD1>;
   using mint2 = modint<MOD2>;
