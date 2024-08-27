@@ -8,7 +8,7 @@ struct MaxFlow_With_LowerBound {
   struct Edge_raw {
     int frm, to;
     Cap lo, hi;
-    Edge_raw(int frm, int to, Cap lo, Cap hi) : frm(frm), to(to), lo(lo), hi(hi);
+    Edge_raw(int frm, int to, Cap lo, Cap hi) : frm(frm), to(to), lo(lo), hi(hi){};
   };
   vc<Edge_raw> dat;
 
