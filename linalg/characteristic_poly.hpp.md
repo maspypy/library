@@ -6,7 +6,7 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
     title: test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename T>\r\
@@ -76,7 +76,7 @@ data:
   requiredBy:
   - linalg/det_A_plus_xB.hpp
   timestamp: '2022-10-12 08:04:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1907.test.cpp
