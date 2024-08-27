@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_unlabeled_tree.hpp
     title: graph/count/count_unlabeled_tree.hpp
   - icon: ':question:'
@@ -19,16 +19,16 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
@@ -37,14 +37,14 @@ data:
   - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -415,9 +415,9 @@ data:
     \n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\n  if (i128(abs_sum_a)\
     \ * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a, b);\r\n \
     \   vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i] + .5));\r\
-    \n    return res;\r\n  }\r\n\r\n  static constexpr u64 MOD1 = 754974721; // 2^24\r\
-    \n  static constexpr u64 MOD2 = 167772161; // 2^25\r\n  static constexpr u64 MOD3\
-    \ = 469762049; // 2^26\r\n\r\n  using mint1 = modint<MOD1>;\r\n  using mint2 =\
+    \n    return res;\r\n  }\r\n\r\n  static constexpr u32 MOD1 = 167772161; // 2^25\r\
+    \n  static constexpr u32 MOD2 = 469762049; // 2^26\r\n  static constexpr u32 MOD3\
+    \ = 754974721; // 2^24\r\n\r\n  using mint1 = modint<MOD1>;\r\n  using mint2 =\
     \ modint<MOD2>;\r\n  using mint3 = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\
     \n  vc<mint2> a2(n), b2(m);\r\n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i]\
     \ = a[i], a2[i] = a[i], a3[i] = a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i],\
@@ -474,8 +474,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 23:30:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-28 00:31:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_unlabeled_tree.test.cpp
 layout: document

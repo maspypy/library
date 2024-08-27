@@ -27,13 +27,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
     title: test/1_mytest/all_inverse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell.test.cpp
     title: test/1_mytest/bell.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell_number.test.cpp
     title: test/1_mytest/bell_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/bigint.test.cpp
     title: test/1_mytest/bigint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,7 +45,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/blackbox_solve_linear.test.cpp
     title: test/1_mytest/blackbox_solve_linear.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/catalan_convolution.test.cpp
     title: test/1_mytest/catalan_convolution.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,31 +57,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf940f.test.cpp
     title: test/1_mytest/cf940f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/chirp_z.test.cpp
     title: test/1_mytest/chirp_z.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/coef_of_rational.test.cpp
     title: test/1_mytest/coef_of_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_f_x_plus_1x.test.cpp
     title: test/1_mytest/composition_f_x_plus_1x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv2d.test.cpp
     title: test/1_mytest/conv2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/conv_leq.test.cpp
     title: test/1_mytest/conv_leq.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,7 +90,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/convolution_all_1.test.cpp
     title: test/1_mytest/convolution_all_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -102,37 +102,37 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_P3P4P5.test.cpp
     title: test/1_mytest/count_P3P4P5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_clique.test.cpp
     title: test/1_mytest/count_clique.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_connected.test.cpp
     title: test/1_mytest/count_labeled_connected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_dag.test.cpp
     title: test/1_mytest/count_labeled_dag.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_eulerian.test.cpp
     title: test/1_mytest/count_labeled_eulerian.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_forest.test.cpp
     title: test/1_mytest/count_labeled_forest.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_strong.test.cpp
     title: test/1_mytest/count_labeled_strong.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_tournament.test.cpp
     title: test/1_mytest/count_labeled_tournament.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,7 +144,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_unbordered_string.test.cpp
     title: test/1_mytest/count_unbordered_string.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_unlabeled_tree.test.cpp
     title: test/1_mytest/count_unlabeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,7 +168,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
     title: test/1_mytest/dynamic_segtree_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enum_partitions.test.cpp
     title: test/1_mytest/enum_partitions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -180,16 +180,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/factorial_998.test.cpp
     title: test/1_mytest/factorial_998.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/factorial_digit.test.cpp
     title: test/1_mytest/factorial_digit.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/faulhaber.test.cpp
     title: test/1_mytest/faulhaber.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,7 +231,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum.test.cpp
     title: test/1_mytest/geometric_sequence_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
   - icon: ':heavy_check_mark:'
@@ -351,34 +351,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
     title: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_exp.test.cpp
     title: test/1_mytest/online_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_inv.test.cpp
     title: test/1_mytest/online_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_log.test.cpp
     title: test/1_mytest/online_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_pow.test.cpp
     title: test/1_mytest/online_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_square.test.cpp
     title: test/1_mytest/online_square.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/palindrome_decomposition_dp.test.cpp
     title: test/1_mytest/palindrome_decomposition_dp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
   - icon: ':x:'

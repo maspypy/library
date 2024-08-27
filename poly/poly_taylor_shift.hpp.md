@@ -19,35 +19,35 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_biconnected.hpp
     title: graph/count/count_labeled_biconnected.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition.hpp
     title: poly/composition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
   - icon: ':x:'
@@ -56,41 +56,41 @@ data:
   - icon: ':x:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex_minus_1.hpp
     title: poly/composition_f_ex_minus_1.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_x_plus_1x.hpp
     title: poly/composition_f_x_plus_1x.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_1_minus_ex.test.cpp
     title: test/1_mytest/composition_1_minus_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_ex_minus_1.test.cpp
     title: test/1_mytest/composition_ex_minus_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_f_x_plus_1x.test.cpp
     title: test/1_mytest/composition_f_x_plus_1x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/composition_log_1_minus_x.test.cpp
     title: test/1_mytest/composition_log_1_minus_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_bridgeless.test.cpp
     title: test/1_mytest/count_labeled_bridgeless.test.cpp
   - icon: ':x:'
@@ -143,7 +143,7 @@ data:
     title: test/5_atcoder/arc133f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\
@@ -426,9 +426,9 @@ data:
     \n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\n  if (i128(abs_sum_a)\
     \ * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a, b);\r\n \
     \   vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i] + .5));\r\
-    \n    return res;\r\n  }\r\n\r\n  static constexpr u64 MOD1 = 754974721; // 2^24\r\
-    \n  static constexpr u64 MOD2 = 167772161; // 2^25\r\n  static constexpr u64 MOD3\
-    \ = 469762049; // 2^26\r\n\r\n  using mint1 = modint<MOD1>;\r\n  using mint2 =\
+    \n    return res;\r\n  }\r\n\r\n  static constexpr u32 MOD1 = 167772161; // 2^25\r\
+    \n  static constexpr u32 MOD2 = 469762049; // 2^26\r\n  static constexpr u32 MOD3\
+    \ = 754974721; // 2^24\r\n\r\n  using mint1 = modint<MOD1>;\r\n  using mint2 =\
     \ modint<MOD2>;\r\n  using mint3 = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\
     \n  vc<mint2> a2(n), b2(m);\r\n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i]\
     \ = a[i], a2[i] = a[i], a3[i] = a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i],\
@@ -483,8 +483,8 @@ data:
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/composition_f_a_plus_bx.hpp
   - linalg/det_A_plus_xB.hpp
-  timestamp: '2024-08-27 23:30:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-08-28 00:31:16+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/arc133f.test.cpp
   - test/3_yukicoder/2583.test.cpp
