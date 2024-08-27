@@ -126,10 +126,10 @@ data:
     \ {\r\n  for (size_t i = 0; i < A.size(); i++) {\r\n    if (i) os << \" \";\r\n\
     \    os << A[i];\r\n  }\r\n  return os;\r\n}\r\n\r\n// chatgpt helped me\r\nclass\
     \ CoutInitializer {\r\npublic:\r\n  CoutInitializer() { std::cout << std::fixed\
-    \ << std::setprecision(15); }\r\n};\r\nstatic CoutInitializer init;\r\n\r\nvoid\
-    \ print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class\
-    \ Head, class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  cout\
-    \ << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\
+    \ << std::setprecision(15); }\r\n};\r\nstatic CoutInitializer cout_initializer;\r\
+    \n\r\nvoid print() {\r\n  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate\
+    \ <class Head, class... Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n\
+    \  cout << head;\r\n  if (sizeof...(Tail)) cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\
     \n}\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool\
     \ t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
     \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
@@ -161,7 +161,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP1_9_A.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-08-27 20:48:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/ITP1_9_A.test.cpp

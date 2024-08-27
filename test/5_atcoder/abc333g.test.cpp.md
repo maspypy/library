@@ -1,53 +1,53 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/rational_binary_search.hpp
     title: nt/rational_binary_search.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc333/tasks/abc333_g
@@ -230,9 +230,10 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\n// 0/1 OK, 1/0 NG\n\
-    // return : (a,b,c,d) such that a/b OK, c/d NG.\ntemplate <typename T, typename\
-    \ F>\ntuple<T, T, T, T> rational_binary_search(F check, T N) {\n  assert(check(0,\
+    \ yes(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\n// 0/1 OK, 1/0 NG.\
+    \ 3N \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044. unsigned\
+    \ OK.\n// return : (a,b,c,d) such that a/b OK, c/d NG.\ntemplate <typename T,\
+    \ typename F>\ntuple<T, T, T, T> rational_binary_search(F check, T N) {\n  assert(check(0,\
     \ 1) && !check(1, 0));\n  auto dfs = [&](auto& dfs, bool side, T& a, T& b, T c,\
     \ T d) -> void {\n    if (a + c > N || b + d > N) return;\n    if (check(a + c,\
     \ b + d) == side) {\n      a += c, b += d;\n      dfs(dfs, side, a, b, c + c,\
@@ -668,8 +669,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc333g.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 06:23:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-27 20:48:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc333g.test.cpp
 layout: document

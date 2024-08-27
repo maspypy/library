@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/rational_binary_search.hpp
     title: nt/rational_binary_search.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rational_approximation
@@ -198,9 +198,10 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\n// 0/1 OK, 1/0 NG\n\
-    // return : (a,b,c,d) such that a/b OK, c/d NG.\ntemplate <typename T, typename\
-    \ F>\ntuple<T, T, T, T> rational_binary_search(F check, T N) {\n  assert(check(0,\
+    \ yes(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\n// 0/1 OK, 1/0 NG.\
+    \ 3N \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044. unsigned\
+    \ OK.\n// return : (a,b,c,d) such that a/b OK, c/d NG.\ntemplate <typename T,\
+    \ typename F>\ntuple<T, T, T, T> rational_binary_search(F check, T N) {\n  assert(check(0,\
     \ 1) && !check(1, 0));\n  auto dfs = [&](auto& dfs, bool side, T& a, T& b, T c,\
     \ T d) -> void {\n    if (a + c > N || b + d > N) return;\n    if (check(a + c,\
     \ b + d) == side) {\n      a += c, b += d;\n      dfs(dfs, side, a, b, c + c,\
@@ -208,16 +209,16 @@ data:
     \ a += c, b += d;\n  };\n\n  T a = 0, b = 1, c = 1, d = 0;\n  while (a + c <=\
     \ N && b + d <= N) { dfs(dfs, true, a, b, c, d), dfs(dfs, false, c, d, a, b);\
     \ }\n  return {a, b, c, d};\n}\n#line 5 \"test/2_library_checker/number_theory/rational_approximation.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, x, y);\n  auto [a, b, c, d] = rational_binary_search<int>([&](ll\
-    \ a, ll b) -> bool { return a * y <= b * x; }, N);\n  if (a * y == b * x) {\n\
+    \n\nvoid solve() {\n  U64(N, x, y);\n  auto [a, b, c, d] = rational_binary_search<u32>([&](u64\
+    \ a, u64 b) -> bool { return a * y <= b * x; }, N);\n  if (a * y == b * x) {\n\
     \    print(a, b, a, b);\n  } else {\n    print(a, b, c, d);\n  }\n}\n\nint main()\
     \ {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rational_approximation\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/rational_binary_search.hpp\"\
-    \n\nvoid solve() {\n  LL(N, x, y);\n  auto [a, b, c, d] = rational_binary_search<int>([&](ll\
-    \ a, ll b) -> bool { return a * y <= b * x; }, N);\n  if (a * y == b * x) {\n\
+    \n\nvoid solve() {\n  U64(N, x, y);\n  auto [a, b, c, d] = rational_binary_search<u32>([&](u64\
+    \ a, u64 b) -> bool { return a * y <= b * x; }, N);\n  if (a * y == b * x) {\n\
     \    print(a, b, a, b);\n  } else {\n    print(a, b, c, d);\n  }\n}\n\nint main()\
-    \ {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -225,8 +226,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/rational_approximation.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 06:05:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-27 20:48:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/rational_approximation.test.cpp
 layout: document
