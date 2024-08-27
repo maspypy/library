@@ -87,9 +87,7 @@ void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
   ord[c] = 0;
   int p = 1;
   FOR(v, 1, N) {
-    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {
-      color[v] = 0, ord[v] = p++, take += sz[v];
-    }
+    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) { color[v] = 0, ord[v] = p++, take += sz[v]; }
   }
   FOR(i, 1, N) {
     if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;
@@ -114,8 +112,7 @@ void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
     if (a > b) swap(a, b);
     par2[b] = a;
     if (color[v] != 1 && color[par[v]] != 1) par0[b] = a;
-    if (color[v] != 0 && color[par[v]] != 0)
-      par1[max(b - n0, 0)] = max(a - n0, 0);
+    if (color[v] != 0 && color[par[v]] != 0) par1[max(b - n0, 0)] = max(a - n0, 0);
   }
   f(par2, V2, n0, n1);
   centroid_decomposition_1_dfs(par0, V0, f);
@@ -128,8 +125,7 @@ f(par, V, color)
 color in [-1,0,1], -1 is virtual.
 */
 template <typename F>
-void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,
-                                  F f) {
+void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real, F f) {
   const int N = len(par);
   assert(N > 1);
   if (N == 2) {
@@ -154,9 +150,7 @@ void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,
   ord[c] = 0;
   int p = 1;
   FOR(v, 1, N) {
-    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) {
-      color[v] = 0, ord[v] = p++, take += sz[v];
-    }
+    if (par[v] == c && take + sz[v] <= floor<int>(N - 1, 2)) { color[v] = 0, ord[v] = p++, take += sz[v]; }
   }
   FOR(i, 1, N) {
     if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;
@@ -175,25 +169,15 @@ void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real,
     int i = ord[v];
     V2[i] = vs[v], rea2[i] = real[v];
     if (color[v] != 1) { V0[i] = vs[v], rea0[i] = real[v]; }
-    if (color[v] != 0) {
-      V1[max(i - n0, 0)] = vs[v], rea1[max(i - n0, 0)] = real[v];
-    }
+    if (color[v] != 0) { V1[max(i - n0, 0)] = vs[v], rea1[max(i - n0, 0)] = real[v]; }
   }
   FOR(v, 1, N) {
     int a = ord[v], b = ord[par[v]];
     if (a > b) swap(a, b);
     par2[b] = a;
     if (color[v] != 1 && color[par[v]] != 1) par0[b] = a;
-    if (color[v] != 0 && color[par[v]] != 0)
-      par1[max(b - n0, 0)] = max(a - n0, 0);
+    if (color[v] != 0 && color[par[v]] != 0) par1[max(b - n0, 0)] = max(a - n0, 0);
   }
-  // if (real[c]) {
-  //   color.assign(N, -1);
-  //   color[0] = 0;
-  //   FOR(i, 1, N) color[i] = rea2[i] ? 1 : -1;
-  //   f(par2, V2, color);
-  //   rea0[0] = rea1[0] = rea2[0] = 0;
-  // }
   color.assign(N, -1);
   FOR(i, 1, N) if (rea2[i]) color[i] = (i <= n0 ? 0 : 1);
   if (real[c]) color[0] = 2, rea0[0] = rea1[0] = rea2[0] = 0;
