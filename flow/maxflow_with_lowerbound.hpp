@@ -8,11 +8,11 @@ struct MaxFlow_With_LowerBound {
   struct Edge_raw {
     int frm, to;
     Cap lo, hi;
+    Edge_raw(int frm, int to, Cap lo, Cap hi) : frm(frm), to(to), lo(lo), hi(hi);
   };
   vc<Edge_raw> dat;
 
-  MaxFlow_With_LowerBound(int N, int s, int t)
-      : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {
+  MaxFlow_With_LowerBound(int N, int s, int t) : N(N), s(s), t(t), S(N), T(N + 1), flow_ans(0) {
     assert(0 <= s && s < N);
     assert(0 <= t && t < N);
   }
@@ -21,7 +21,7 @@ struct MaxFlow_With_LowerBound {
     assert(0 <= frm && frm < N);
     assert(0 <= to && to < N);
     assert(Cap(0) <= lo && lo <= hi);
-    dat.eb(frm, to, lo, hi);
+    dat.eb(Edge_raw(frm, to, lo, hi));
   }
 
   struct Edge {
@@ -75,8 +75,7 @@ struct MaxFlow_With_LowerBound {
 
   Cap flow() {
     build();
-    Cap a = flow_st(S, T), b = flow_st(S, t), c = flow_st(s, T),
-        d = flow_st(s, t);
+    Cap a = flow_st(S, T), b = flow_st(S, t), c = flow_st(s, T), d = flow_st(s, t);
     bool valid = 1;
     int M = len(dat);
     FOR(i, M) {
