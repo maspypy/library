@@ -173,7 +173,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -314,7 +314,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':x:'
@@ -642,13 +642,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/sample/aplusb128.test.cpp
     title: test/2_library_checker/sample/aplusb128.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
     title: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
     title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
@@ -696,7 +696,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'

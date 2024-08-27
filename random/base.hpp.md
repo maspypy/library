@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/rollinghash.hpp
     title: alg/monoid/rollinghash.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':x:'
@@ -669,10 +669,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
     title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -693,13 +693,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'

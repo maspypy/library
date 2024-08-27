@@ -100,7 +100,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/affine.hpp
       title: alg/monoid/affine.hpp
     - icon: ':warning:'
@@ -154,7 +154,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/monoid_for_floor_sum.hpp
       title: alg/monoid/monoid_for_floor_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/monoid_reverse.hpp
       title: alg/monoid/monoid_reverse.hpp
     - icon: ':heavy_check_mark:'
@@ -163,7 +163,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/or.hpp
       title: alg/monoid/or.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/rollinghash.hpp
       title: alg/monoid/rollinghash.hpp
     - icon: ':heavy_check_mark:'
@@ -346,7 +346,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree.hpp
       title: ds/fenwicktree/fenwicktree.hpp
     - icon: ':heavy_check_mark:'
@@ -471,7 +471,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -491,7 +491,7 @@ data:
       title: ds/segtree/xor_segtree.hpp
   - name: ds/sparse_table
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/sparse_table/disjoint_sparse_table.hpp
       title: ds/sparse_table/disjoint_sparse_table.hpp
     - icon: ':heavy_check_mark:'
@@ -740,7 +740,7 @@ data:
       title: geo3d/cross_point.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -758,7 +758,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/centroid_decomposition.hpp
       title: graph/centroid_decomposition.hpp
     - icon: ':heavy_check_mark:'
@@ -791,7 +791,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/dominator_tree.hpp
       title: graph/dominator_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/dsu_on_tree.hpp
       title: graph/dsu_on_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -911,7 +911,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1057,7 +1057,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/bfs_numbering.hpp
       title: graph/ds/bfs_numbering.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/contour_query_range.hpp
       title: graph/ds/contour_query_range.hpp
     - icon: ':heavy_check_mark:'
@@ -1075,13 +1075,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/lct_node_base.hpp
       title: graph/ds/lct_node_base.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/lct_node_commutative_monoid.hpp
       title: graph/ds/lct_node_commutative_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/lct_node_monoid.hpp
       title: graph/ds/lct_node_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/link_cut_tree.hpp
       title: graph/ds/link_cut_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1105,10 +1105,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/static_tree_monoid.hpp
       title: graph/ds/static_tree_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/tree_abelgroup.hpp
       title: graph/ds/tree_abelgroup.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/tree_monoid.hpp
       title: graph/ds/tree_monoid.hpp
     - icon: ':warning:'
@@ -1125,7 +1125,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bellmanford.hpp
       title: graph/shortest_path/bellmanford.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/bfs01.hpp
       title: graph/shortest_path/bfs01.hpp
     - icon: ':heavy_check_mark:'
@@ -1671,7 +1671,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/multipoint.hpp
       title: poly/multipoint.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -1921,16 +1921,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/or_convolution.hpp
       title: setfunc/or_convolution.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/power_projection_of_sps.hpp
       title: setfunc/power_projection_of_sps.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/ranked_zeta.hpp
       title: setfunc/ranked_zeta.hpp
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_composition.hpp
       title: setfunc/sps_composition.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/sps_exp.hpp
       title: setfunc/sps_exp.hpp
     - icon: ':heavy_check_mark:'
@@ -1939,7 +1939,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_log.hpp
       title: setfunc/sps_log.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/subset_convolution.hpp
       title: setfunc/subset_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -2001,7 +2001,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/prefix_substring_LCS.hpp
       title: string/prefix_substring_LCS.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: string/rollinghash.hpp
       title: string/rollinghash.hpp
     - icon: ':x:'
@@ -3282,19 +3282,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/set_power_series/composition_sps.test.cpp
       title: test/2_library_checker/set_power_series/composition_sps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
       title: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
       title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/set_power_series/sps_exp.test.cpp
       title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
       title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
       title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
   - name: test/2_library_checker/string
@@ -3341,10 +3341,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/zalgorithm.test.cpp
       title: test/2_library_checker/string/zalgorithm.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
       title: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
       title: test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - name: test/2_library_checker/tree
@@ -3352,16 +3352,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/cartesian_tree.test.cpp
       title: test/2_library_checker/tree/cartesian_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
       title: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3391,25 +3391,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/tree_diameter.test.cpp
       title: test/2_library_checker/tree/tree_diameter.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
       title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
       title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
       title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
       title: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
       title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
       title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
       title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - name: test/3_yukicoder
@@ -3585,7 +3585,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1392.test.cpp
       title: test/3_yukicoder/1392.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1397.test.cpp
       title: test/3_yukicoder/1397.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3660,7 +3660,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1549.test.cpp
       title: test/3_yukicoder/1549.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1561.test.cpp
       title: test/3_yukicoder/1561.test.cpp
     - icon: ':heavy_check_mark:'
