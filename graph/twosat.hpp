@@ -20,6 +20,8 @@ struct TwoSat {
     a = (a >= 0 ? 2 * a + 1 : 2 * (~a));
     edges.eb(a ^ 1, a);
   }
+
+  // 勝手に待遇辺も入る
   void implies(int a, int b) { add(~a, b); }
   void debug() {
     for (auto& [a, b]: edges) {

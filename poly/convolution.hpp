@@ -59,9 +59,7 @@ vector<mint> convolution_garner(const vector<mint>& a, const vector<mint>& b) {
   auto c1 = convolution_ntt<mint1>(a1, b1);
   auto c2 = convolution_ntt<mint2>(a2, b2);
   vc<mint> c(len(c0));
-  FOR(i, n + m - 1) {
-    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);
-  }
+  FOR(i, n + m - 1) { c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val); }
   return c;
 }
 
@@ -94,9 +92,7 @@ vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
   }
   CFFT::fft(fa, sz >> 1);
   vector<double> ret(need);
-  for (int i = 0; i < need; i++) {
-    ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x);
-  }
+  for (int i = 0; i < need; i++) { ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x); }
   return ret;
 }
 
@@ -115,17 +111,9 @@ vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
     return res;
   }
 
-  static constexpr unsigned long long MOD1 = 754974721; // 2^24
-  static constexpr unsigned long long MOD2 = 167772161; // 2^25
-  static constexpr unsigned long long MOD3 = 469762049; // 2^26
-  static constexpr unsigned long long M2M3 = MOD2 * MOD3;
-  static constexpr unsigned long long M1M3 = MOD1 * MOD3;
-  static constexpr unsigned long long M1M2 = MOD1 * MOD2;
-  static constexpr unsigned long long M1M2M3 = MOD1 * MOD2 * MOD3;
-
-  static const unsigned long long i1 = mod_inv(MOD2 * MOD3, MOD1);
-  static const unsigned long long i2 = mod_inv(MOD1 * MOD3, MOD2);
-  static const unsigned long long i3 = mod_inv(MOD1 * MOD2, MOD3);
+  static constexpr u64 MOD1 = 754974721; // 2^24
+  static constexpr u64 MOD2 = 167772161; // 2^25
+  static constexpr u64 MOD3 = 469762049; // 2^26
 
   using mint1 = modint<MOD1>;
   using mint2 = modint<MOD2>;
@@ -141,20 +129,13 @@ vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
   auto c2 = convolution_ntt<mint2>(a2, b2);
   auto c3 = convolution_ntt<mint3>(a3, b3);
 
-  vc<ll> c(n + m - 1);
+  u128 prod = u128(MOD1) * MOD2 * MOD3;
+  vc<ll> res(n + m - 1);
   FOR(i, n + m - 1) {
-    u64 x = 0;
-    x += (c1[i].val * i1) % MOD1 * M2M3;
-    x += (c2[i].val * i2) % MOD2 * M1M3;
-    x += (c3[i].val * i3) % MOD3 * M1M2;
-    ll diff = c1[i].val - ((long long)(x) % (long long)(MOD1));
-    if (diff < 0) diff += MOD1;
-    static constexpr unsigned long long offset[5]
-        = {0, 0, M1M2M3, 2 * M1M2M3, 3 * M1M2M3};
-    x -= offset[diff % 5];
-    c[i] = x;
+    u128 x = CRT3<u128, MOD1, MOD2, MOD3>(c1[i].val, c2[i].val, c3[i].val);
+    res[i] = (x < prod / 2 ? ll(x) : -ll(prod - x));
   }
-  return c;
+  return res;
 }
 
 template <typename mint>
