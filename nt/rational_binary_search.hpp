@@ -1,5 +1,5 @@
 
-// 0/1 OK, 1/0 NG
+// 0/1 OK, 1/0 NG. 3N がオーバーフローしない. unsigned OK.
 // return : (a,b,c,d) such that a/b OK, c/d NG.
 template <typename T, typename F>
 tuple<T, T, T, T> rational_binary_search(F check, T N) {
