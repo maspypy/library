@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -153,6 +153,12 @@ data:
   - icon: ':x:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc349f.test.cpp
+    title: test/5_atcoder/abc349f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc349g.test.cpp
+    title: test/5_atcoder/abc349g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc157a.test.cpp
     title: test/5_atcoder/arc157a.test.cpp
@@ -236,9 +242,11 @@ data:
   - test/5_atcoder/abc212g.test.cpp
   - test/5_atcoder/abc339f.test.cpp
   - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc349f.test.cpp
   - test/5_atcoder/abc227g.test.cpp
   - test/5_atcoder/abc273_e.test.cpp
   - test/5_atcoder/abc270_g.test.cpp
+  - test/5_atcoder/abc349g.test.cpp
   - test/5_atcoder/arc157a.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/1881.test.cpp

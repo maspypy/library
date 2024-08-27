@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -232,6 +232,12 @@ data:
     path: test/5_atcoder/abc335g.test.cpp
     title: test/5_atcoder/abc335g.test.cpp
   - icon: ':x:'
+    path: test/5_atcoder/abc349f.test.cpp
+    title: test/5_atcoder/abc349f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc349g.test.cpp
+    title: test/5_atcoder/abc349g.test.cpp
+  - icon: ':x:'
     path: test/5_atcoder/agc058d2.test.cpp
     title: test/5_atcoder/agc058d2.test.cpp
   _isVerificationFailed: true
@@ -353,9 +359,11 @@ data:
   - test/5_atcoder/abc335g.test.cpp
   - test/5_atcoder/abc212g.test.cpp
   - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc349f.test.cpp
   - test/5_atcoder/abc281g.test.cpp
   - test/5_atcoder/abc270_g.test.cpp
   - test/5_atcoder/agc058d2.test.cpp
+  - test/5_atcoder/abc349g.test.cpp
   - test/5_atcoder/abc152e.test.cpp
   - test/3_yukicoder/1881.test.cpp
   - test/3_yukicoder/1728.test.cpp

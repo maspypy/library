@@ -33,9 +33,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc335g.test.cpp
     title: test/5_atcoder/abc335g.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/5_atcoder/abc349f.test.cpp
+    title: test/5_atcoder/abc349f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc349g.test.cpp
+    title: test/5_atcoder/abc349g.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -234,10 +240,12 @@ data:
   path: nt/array_on_divisors.hpp
   requiredBy: []
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc335g.test.cpp
   - test/5_atcoder/abc212g.test.cpp
+  - test/5_atcoder/abc349f.test.cpp
+  - test/5_atcoder/abc349g.test.cpp
   - test/3_yukicoder/1728.test.cpp
   - test/3_yukicoder/2578.test.cpp
   - test/3_yukicoder/2264.test.cpp

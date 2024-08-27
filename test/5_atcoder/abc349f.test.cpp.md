@@ -33,15 +33,15 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/1728
+    PROBLEM: https://atcoder.jp/contests/abc349/tasks/abc349_f
     links:
-    - https://yukicoder.me/problems/no/1728
-  bundledCode: "#line 1 \"test/3_yukicoder/1728.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/1728\"\
+    - https://atcoder.jp/contests/abc349/tasks/abc349_f
+  bundledCode: "#line 1 \"test/5_atcoder/abc349f.test.cpp\"\n#define PROBLEM \"https://atcoder.jp/contests/abc349/tasks/abc349_f\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -218,12 +218,13 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\
+    \ yes(!t); }\r\n#line 4 \"test/5_atcoder/abc349f.test.cpp\"\n\n#line 2 \"nt/factor.hpp\"\
+    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
+    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
+    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
+    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
+    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\
     \n\n// odd mod.\n// x \u306E\u4EE3\u308F\u308A\u306B rx \u3092\u6301\u3064\ntemplate\
     \ <int id, typename U1, typename U2>\nstruct Mongomery_modint {\n  using mint\
     \ = Mongomery_modint;\n  inline static U1 m, r, n2;\n  static constexpr int W\
@@ -428,20 +429,22 @@ data:
     \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 6 \"test/3_yukicoder/1728.test.cpp\"\n\nusing mint = modint107;\n\nvoid\
-    \ solve() {\n  LL(N, C);\n\n  mint ANS = 0;\n  // \u56DE\u8EE2\n  Array_On_Divisors<mint>\
-    \ f(N);\n  f.set_euler_phi();\n  f.enumerate(\n      [&](ll d, mint phi) -> void\
-    \ { ANS += phi * mint(C).pow(2 * N / d); });\n  ANS += mint(C).pow(N) * mint(N);\n\
-    \  ANS /= mint(N + N);\n  print(ANS);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T)\
-    \ solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/1728\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"nt/array_on_divisors.hpp\"\n#include \"\
-    mod/modint.hpp\"\n\nusing mint = modint107;\n\nvoid solve() {\n  LL(N, C);\n\n\
-    \  mint ANS = 0;\n  // \u56DE\u8EE2\n  Array_On_Divisors<mint> f(N);\n  f.set_euler_phi();\n\
-    \  f.enumerate(\n      [&](ll d, mint phi) -> void { ANS += phi * mint(C).pow(2\
-    \ * N / d); });\n  ANS += mint(C).pow(N) * mint(N);\n  ANS /= mint(N + N);\n \
-    \ print(ANS);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n\
-    }"
+    #line 7 \"test/5_atcoder/abc349f.test.cpp\"\n\nusing mint = modint998;\n\nvoid\
+    \ solve() {\n  LL(N, M);\n  auto pf = factor(M);\n  VEC(ll, A, N);\n  Array_On_Divisors<int>\
+    \ div_cnt(pf);\n  for (auto &x: A) {\n    if (M % x == 0) div_cnt[x]++;\n  }\n\
+    \  div_cnt.divisor_zeta();\n  Array_On_Divisors<mint> dp(pf);\n  div_cnt.enumerate([&](ll\
+    \ d, int cnt) -> void { dp[d] = mint(2).pow(cnt) - 1; });\n  dp.divisor_mobius();\n\
+    \  print(dp[M]);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://atcoder.jp/contests/abc349/tasks/abc349_f\"\n#include\
+    \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/array_on_divisors.hpp\"\
+    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
+    \ LL(N, M);\n  auto pf = factor(M);\n  VEC(ll, A, N);\n  Array_On_Divisors<int>\
+    \ div_cnt(pf);\n  for (auto &x: A) {\n    if (M % x == 0) div_cnt[x]++;\n  }\n\
+    \  div_cnt.divisor_zeta();\n  Array_On_Divisors<mint> dp(pf);\n  div_cnt.enumerate([&](ll\
+    \ d, int cnt) -> void { dp[d] = mint(2).pow(cnt) - 1; });\n  dp.divisor_mobius();\n\
+    \  print(dp[M]);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -454,15 +457,15 @@ data:
   - mod/modint.hpp
   - mod/modint_common.hpp
   isVerificationFile: true
-  path: test/3_yukicoder/1728.test.cpp
+  path: test/5_atcoder/abc349f.test.cpp
   requiredBy: []
-  timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-27 23:47:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/3_yukicoder/1728.test.cpp
+documentation_of: test/5_atcoder/abc349f.test.cpp
 layout: document
 redirect_from:
-- /verify/test/3_yukicoder/1728.test.cpp
-- /verify/test/3_yukicoder/1728.test.cpp.html
-title: test/3_yukicoder/1728.test.cpp
+- /verify/test/5_atcoder/abc349f.test.cpp
+- /verify/test/5_atcoder/abc349f.test.cpp.html
+title: test/5_atcoder/abc349f.test.cpp
 ---

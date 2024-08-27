@@ -1377,6 +1377,12 @@ data:
   - icon: ':x:'
     path: test/5_atcoder/abc345g.test.cpp
     title: test/5_atcoder/abc345g.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc349f.test.cpp
+    title: test/5_atcoder/abc349f.test.cpp
+  - icon: ':x:'
+    path: test/5_atcoder/abc349g.test.cpp
+    title: test/5_atcoder/abc349g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc351g.test.cpp
     title: test/5_atcoder/abc351g.test.cpp
@@ -1653,6 +1659,7 @@ data:
   - test/5_atcoder/abc318h.test.cpp
   - test/5_atcoder/abc269ex.test.cpp
   - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc349f.test.cpp
   - test/5_atcoder/abc334g.test.cpp
   - test/5_atcoder/abc160f.test.cpp
   - test/5_atcoder/abc227g.test.cpp
@@ -1672,6 +1679,7 @@ data:
   - test/5_atcoder/arc154f.test.cpp
   - test/5_atcoder/abc200f.test.cpp
   - test/5_atcoder/arc133f.test.cpp
+  - test/5_atcoder/abc349g.test.cpp
   - test/5_atcoder/abc152e.test.cpp
   - test/3_yukicoder/1269.test.cpp
   - test/3_yukicoder/303.test.cpp

@@ -1394,7 +1394,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: nt/array_on_divisors.hpp
       title: nt/array_on_divisors.hpp
     - icon: ':heavy_check_mark:'
@@ -4771,6 +4771,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc348g.test.cpp
       title: test/5_atcoder/abc348g.test.cpp
+    - icon: ':x:'
+      path: test/5_atcoder/abc349f.test.cpp
+      title: test/5_atcoder/abc349f.test.cpp
+    - icon: ':x:'
+      path: test/5_atcoder/abc349g.test.cpp
+      title: test/5_atcoder/abc349g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350_g.test.cpp
       title: test/5_atcoder/abc350_g.test.cpp
