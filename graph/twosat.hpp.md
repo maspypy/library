@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -108,14 +108,15 @@ data:
     \    edges.eb(a ^ 1, b);\r\n    edges.eb(b ^ 1, a);\r\n  }\r\n  void set(int a)\
     \ {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n      values[~a]\
     \ = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    edges.eb(a ^ 1, a);\r\
-    \n  }\r\n  void implies(int a, int b) { add(~a, b); }\r\n  void debug() {\r\n\
-    \    for (auto& [a, b]: edges) {\r\n      string A, B;\r\n      if (a % 2 == 0)\
-    \ A = \"([\" + to_string(a / 2) + \"] == 0)\";\r\n      if (a % 2 == 1) A = \"\
-    ([\" + to_string(a / 2) + \"] == 1)\";\r\n      if (b % 2 == 0) B = \"([\" + to_string(b\
-    \ / 2) + \"] == 0)\";\r\n      if (b % 2 == 1) B = \"([\" + to_string(b / 2) +\
-    \ \"] == 1)\";\r\n      print(A, \"->\", B);\r\n    }\r\n  }\r\n\r\n  pair<bool,\
-    \ vc<int>> calc() {\r\n    UNIQUE(edges);\r\n    for (auto&& [a, b]: edges) G.add(a,\
-    \ b);\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
+    \n  }\r\n\r\n  // \u52DD\u624B\u306B\u5F85\u9047\u8FBA\u3082\u5165\u308B\r\n \
+    \ void implies(int a, int b) { add(~a, b); }\r\n  void debug() {\r\n    for (auto&\
+    \ [a, b]: edges) {\r\n      string A, B;\r\n      if (a % 2 == 0) A = \"([\" +\
+    \ to_string(a / 2) + \"] == 0)\";\r\n      if (a % 2 == 1) A = \"([\" + to_string(a\
+    \ / 2) + \"] == 1)\";\r\n      if (b % 2 == 0) B = \"([\" + to_string(b / 2) +\
+    \ \"] == 0)\";\r\n      if (b % 2 == 1) B = \"([\" + to_string(b / 2) + \"] ==\
+    \ 1)\";\r\n      print(A, \"->\", B);\r\n    }\r\n  }\r\n\r\n  pair<bool, vc<int>>\
+    \ calc() {\r\n    UNIQUE(edges);\r\n    for (auto&& [a, b]: edges) G.add(a, b);\r\
+    \n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
     \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
     \ values};\r\n      values[i] = comp[2 * i] < comp[2 * i + 1];\r\n    }\r\n  \
     \  return {true, values};\r\n  }\r\n};\n"
@@ -126,12 +127,13 @@ data:
     \ : 2 * (~b));\r\n    edges.eb(a ^ 1, b);\r\n    edges.eb(b ^ 1, a);\r\n  }\r\n\
     \  void set(int a) {\r\n    if (a >= 0)\r\n      values[a] = 1;\r\n    else\r\n\
     \      values[~a] = 0;\r\n    a = (a >= 0 ? 2 * a + 1 : 2 * (~a));\r\n    edges.eb(a\
-    \ ^ 1, a);\r\n  }\r\n  void implies(int a, int b) { add(~a, b); }\r\n  void debug()\
-    \ {\r\n    for (auto& [a, b]: edges) {\r\n      string A, B;\r\n      if (a %\
-    \ 2 == 0) A = \"([\" + to_string(a / 2) + \"] == 0)\";\r\n      if (a % 2 == 1)\
-    \ A = \"([\" + to_string(a / 2) + \"] == 1)\";\r\n      if (b % 2 == 0) B = \"\
-    ([\" + to_string(b / 2) + \"] == 0)\";\r\n      if (b % 2 == 1) B = \"([\" + to_string(b\
-    \ / 2) + \"] == 1)\";\r\n      print(A, \"->\", B);\r\n    }\r\n  }\r\n\r\n  pair<bool,\
+    \ ^ 1, a);\r\n  }\r\n\r\n  // \u52DD\u624B\u306B\u5F85\u9047\u8FBA\u3082\u5165\
+    \u308B\r\n  void implies(int a, int b) { add(~a, b); }\r\n  void debug() {\r\n\
+    \    for (auto& [a, b]: edges) {\r\n      string A, B;\r\n      if (a % 2 == 0)\
+    \ A = \"([\" + to_string(a / 2) + \"] == 0)\";\r\n      if (a % 2 == 1) A = \"\
+    ([\" + to_string(a / 2) + \"] == 1)\";\r\n      if (b % 2 == 0) B = \"([\" + to_string(b\
+    \ / 2) + \"] == 0)\";\r\n      if (b % 2 == 1) B = \"([\" + to_string(b / 2) +\
+    \ \"] == 1)\";\r\n      print(A, \"->\", B);\r\n    }\r\n  }\r\n\r\n  pair<bool,\
     \ vc<int>> calc() {\r\n    UNIQUE(edges);\r\n    for (auto&& [a, b]: edges) G.add(a,\
     \ b);\r\n    G.build();\r\n    ll n = len(values);\r\n    auto [C, comp] = strongly_connected_component(G);\r\
     \n    FOR(i, n) {\r\n      if (comp[2 * i] == comp[2 * i + 1]) return {false,\
@@ -143,7 +145,7 @@ data:
   isVerificationFile: false
   path: graph/twosat.hpp
   requiredBy: []
-  timestamp: '2024-07-18 10:59:42+09:00'
+  timestamp: '2024-08-27 23:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/other/twosat.test.cpp
