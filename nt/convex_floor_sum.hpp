@@ -38,7 +38,8 @@ ANS_TYPE convex_floor_sum(U N, F1 above, F2 slope) {
   vc<tuple<U, U, U, U>> SBT;
   SBT.eb(1, 0, 0, 1);
   while (x < N - 1) {
-    auto [a, b, c, d] = SBT.back();
+    U a, b, c, d;
+    tie(a, b, c, d) = SBT.back();
     if (!check(x + c, y + d)) {
       POP(SBT);
       continue;
