@@ -1,3 +1,5 @@
+#include "nt/convex_floor_sum.hpp"
+
 // sum_[1,N] sigma_0(n)
 template <typename T = u64>
 T sigma_0_sum_small(u64 N) {
