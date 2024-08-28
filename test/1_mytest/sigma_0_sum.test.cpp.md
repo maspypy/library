@@ -1,31 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: mod/floor_sum_of_linear.hpp
-    title: mod/floor_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/range_freq_of_linear.hpp
-    title: mod/range_freq_of_linear.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
-    path: random/base.hpp
-    title: random/base.hpp
+  - icon: ':x:'
+    path: nt/convex_floor_sum.hpp
+    title: nt/convex_floor_sum.hpp
+  - icon: ':x:'
+    path: nt/sigma_0_sum.hpp
+    title: nt/sigma_0_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/range_freq_of_linear.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+    - https://oeis.org/A057494
+  bundledCode: "#line 1 \"test/1_mytest/sigma_0_sum.test.cpp\"\n#define PROBLEM \"\
+    https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n\
+    #include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -107,65 +105,71 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"test/1_mytest/range_freq_of_linear.test.cpp\"\
-    \n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
-    \ b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\
-    \u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O = i128,\
-    \ typename I = long long>\nO floor_sum_of_linear(I L, I R, I a, I b, I mod) {\n\
-    \  assert(L <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n  if (b < 0)\
-    \ {\n    I k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N) * O(k);\n  }\n\
-    \n  while (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n    res += (N & 1\
-    \ ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b >=\
-    \ mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n \
-    \   tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n\
-    \  return res;\n}\n#line 2 \"mod/range_freq_of_linear.hpp\"\n\n// sum_{x in [L,R)}\
-    \ floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\
-    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename\
-    \ O = i128, typename I = long long>\nI range_freq_of_linear(I L, I R, I a, I b,\
-    \ I mod, I lo, I hi) {\n  if (lo >= hi) return 0;\n  assert(0 <= lo && lo < hi\
-    \ && hi <= mod);\n\n  O x1 = floor_sum_of_linear<O, I>(L, R, a, b - lo, mod);\n\
-    \  O x2 = floor_sum_of_linear<O, I>(L, R, a, b - hi, mod);\n  return x1 - x2;\n\
-    }\n#line 6 \"test/1_mytest/range_freq_of_linear.test.cpp\"\n\nvoid test() {\n\
-    \  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n    if (L > R)\
-    \ swap(L, R);\n    int a = RNG(-1000, 1000);\n    int b = RNG(-1000, 1000);\n\
-    \    int mod = RNG(1, 1000);\n    int lo = RNG(0, mod);\n    int hi = RNG(0, mod);\n\
-    \    if (lo > hi) swap(lo, hi);\n\n    ll ANS = 0;\n    FOR(x, L, R) {\n     \
-    \ ll v = a * x + b;\n      v %= mod;\n      if (v < 0) v += mod;\n      if (lo\
-    \ <= v && v < hi) ++ANS;\n    }\n    assert(ANS == range_freq_of_linear(L, R,\
-    \ a, b, mod, lo, hi));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n\
-    \  return 0;\n}\n"
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/sigma_0_sum.test.cpp\"\
+    \n\n#line 1 \"nt/convex_floor_sum.hpp\"\n\n// f: \u51F8, \u975E\u8CA0, \u5358\u8ABF\
+    \u5897\u52A0\u3092\u4EEE\u5B9A\n// above(x,y) : y > f(x)\n// slope(x,a,b) : f'(x)\
+    \ >= a/b\n// return : sum_[0,N) floor(f(x))\n// https://qoj.ac/contest/1195/problem/6188\n\
+    template <typename U, typename ANS_TYPE, typename F1, typename F2>\nANS_TYPE convex_floor_sum(U\
+    \ N, F1 above, F2 slope) {\n  if (N == 0) return 0;\n  auto check = [&](U x, U\
+    \ y) -> bool { return x < N && above(x, y); };\n\n  using T = ANS_TYPE;\n  auto\
+    \ max_add = [&](auto f, U& a, U& b, U c, U d) -> void {\n    auto dfs = [&](auto&\
+    \ dfs, U c, U d) -> void {\n      if (!f(a + c, b + d)) return;\n      a += c,\
+    \ b += d, dfs(dfs, c + c, d + d);\n      if (f(a + c, b + d)) a += c, b += d;\n\
+    \    };\n    dfs(dfs, c, d);\n  };\n\n  assert(!above(0, 0));\n  U x = 0, y =\
+    \ 0;\n  max_add([&](U x, U y) -> bool { return !above(x, y); }, x, y, 0, 1);\n\
+    \  ++y;\n  T ANS = 2 * (y - 1); //  [0,1) x [1,y)\n\n  auto add_ANS = [&](U& x,\
+    \ U& y, U a, U b) -> void {\n    U x0 = x, y0 = y;\n    max_add(check, x, y, a,\
+    \ b);\n    U n = (x - x0) / a;\n    //  (x0,y0) to (x,y)\n    ANS += 2 * (y0 -\
+    \ 1) * (x - x0);\n    ANS += (x - x0 + 1) * (y - y0 + 1) - (n + 1);\n  };\n\n\
+    \  add_ANS(x, y, 1, 0);\n  vc<tuple<U, U, U, U>> SBT;\n  SBT.eb(1, 0, 0, 1);\n\
+    \  while (x < N - 1) {\n    auto [a, b, c, d] = SBT.back();\n    if (!check(x\
+    \ + c, y + d)) {\n      POP(SBT);\n      continue;\n    }\n    auto f = [&](u64\
+    \ a, u64 b) -> bool {\n      if (x + a >= N) return 0;\n      if (above(x + a,\
+    \ y + b)) return 0;\n      if (slope(x + a, d, c)) return 0;\n      return 1;\n\
+    \    };\n    max_add(f, a, b, c, d);\n    if (check(x + a + c, y + b + d)) {\n\
+    \      max_add([&](U a, U b) -> bool { return check(x + a, y + b); }, c, d, a,\
+    \ b);\n      SBT.eb(a, b, c, d);\n      continue;\n    }\n    add_ANS(x, y, c,\
+    \ d);\n  }\n  ANS /= T(2);\n  return ANS;\n}\n#line 1 \"nt/sigma_0_sum.hpp\"\n\
+    // sum_[1,N] sigma_0(n)\ntemplate <typename T = u64>\nT sigma_0_sum_small(u64\
+    \ N) {\n  u32 sq = sqrtl(N);\n  T ANS = 0;\n  for (u32 d = 1; d <= sq; ++d) {\
+    \ ANS += N / d; }\n  return 2 * ANS - u64(sq) * sq;\n}\n\n// https://oeis.org/A006218\n\
+    // sigma0(1)+...+sigma0(N) = sum floor(N/i)\ntemplate <typename T = u64>\nT sigma_0_sum_large(u64\
+    \ N) {\n  u32 sq = sqrtl(N);\n  auto above = [&](u128 x, u128 y) -> bool { return\
+    \ y * (sq - x) > N; };\n  auto slope = [&](u128 x, u128 a, u128 b) -> bool {\n\
+    \    x = sq - x;\n    return a * x * x <= N * b;\n  };\n  T ANS = convex_floor_sum<u64,\
+    \ T>(sq, above, slope);\n  return 2 * ANS - u64(sq) * sq;\n}\n\ntemplate <typename\
+    \ T = u64>\nT sigma_0_sum(u64 N) {\n  return (N < (1e14) ? sigma_0_sum_small<T>(N)\
+    \ : sigma_0_sum_large<T>(N));\n}\n#line 6 \"test/1_mytest/sigma_0_sum.test.cpp\"\
+    \n\nvoid test() {\n  FOR(N, 1, 10000) {\n    u64 ans = 0;\n    FOR(x, 1, N + 1)\
+    \ ans += N / x;\n    assert(ans == sigma_0_sum_small(N));\n    assert(ans == sigma_0_sum_large(N));\n\
+    \  }\n  u64 N = 1'000'000'000'000'000;\n  u64 ANS = 34'693'207'724'724'246; //\
+    \ https://oeis.org/A057494\n  u64 a = sigma_0_sum_small(N);\n  u64 b = sigma_0_sum_small(N);\n\
+    \  assert(a == ANS && b == ANS);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
+    \ >> b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  test();\n  solve();\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"random/base.hpp\"\n\n#include \"mod/range_freq_of_linear.hpp\"\n\n\
-    void test() {\n  FOR(100) {\n    int L = RNG(1000);\n    int R = RNG(1000);\n\
-    \    if (L > R) swap(L, R);\n    int a = RNG(-1000, 1000);\n    int b = RNG(-1000,\
-    \ 1000);\n    int mod = RNG(1, 1000);\n    int lo = RNG(0, mod);\n    int hi =\
-    \ RNG(0, mod);\n    if (lo > hi) swap(lo, hi);\n\n    ll ANS = 0;\n    FOR(x,\
-    \ L, R) {\n      ll v = a * x + b;\n      v %= mod;\n      if (v < 0) v += mod;\n\
-    \      if (lo <= v && v < hi) ++ANS;\n    }\n    assert(ANS == range_freq_of_linear(L,\
-    \ R, a, b, mod, lo, hi));\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \n\n#include \"nt/convex_floor_sum.hpp\"\n#include \"nt/sigma_0_sum.hpp\"\n\n\
+    void test() {\n  FOR(N, 1, 10000) {\n    u64 ans = 0;\n    FOR(x, 1, N + 1) ans\
+    \ += N / x;\n    assert(ans == sigma_0_sum_small(N));\n    assert(ans == sigma_0_sum_large(N));\n\
+    \  }\n  u64 N = 1'000'000'000'000'000;\n  u64 ANS = 34'693'207'724'724'246; //\
+    \ https://oeis.org/A057494\n  u64 a = sigma_0_sum_small(N);\n  u64 b = sigma_0_sum_small(N);\n\
+    \  assert(a == ANS && b == ANS);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
+    \ >> b;\n  cout << a + b << \"\\n\";\n}\n\nint main() {\n  test();\n  solve();\n\
+    }"
   dependsOn:
   - my_template.hpp
-  - random/base.hpp
-  - mod/range_freq_of_linear.hpp
-  - mod/floor_sum_of_linear.hpp
+  - nt/convex_floor_sum.hpp
+  - nt/sigma_0_sum.hpp
   isVerificationFile: true
-  path: test/1_mytest/range_freq_of_linear.test.cpp
+  path: test/1_mytest/sigma_0_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-28 10:30:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/1_mytest/range_freq_of_linear.test.cpp
+documentation_of: test/1_mytest/sigma_0_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/range_freq_of_linear.test.cpp
-- /verify/test/1_mytest/range_freq_of_linear.test.cpp.html
-title: test/1_mytest/range_freq_of_linear.test.cpp
+- /verify/test/1_mytest/sigma_0_sum.test.cpp
+- /verify/test/1_mytest/sigma_0_sum.test.cpp.html
+title: test/1_mytest/sigma_0_sum.test.cpp
 ---

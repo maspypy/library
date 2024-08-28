@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/sigma_0_sum.hpp
     title: nt/sigma_0_sum.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc230/tasks/abc230_e
@@ -197,12 +197,19 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/sigma_0_sum.hpp\"\n// sum_[1,N] sigma_0(n)\nll sigma_0_sum(ll\
-    \ N) {\n  assert(N <= (1LL << 50));\n  ll sq = sqrtl(N);\n  ll ANS = 0;\n  for\
-    \ (int d = 1; d <= sq; ++d) { ANS += ll(double(N) / d); }\n  return 2 * ANS -\
-    \ sq * sq;\n}\n#line 5 \"test/5_atcoder/abc230e.test.cpp\"\n\nvoid solve() {\n\
-    \  LL(N);\n  print(sigma_0_sum(N));\n}\n\nsigned main() {\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ yes(!t); }\r\n#line 1 \"nt/sigma_0_sum.hpp\"\n// sum_[1,N] sigma_0(n)\ntemplate\
+    \ <typename T = u64>\nT sigma_0_sum_small(u64 N) {\n  u32 sq = sqrtl(N);\n  T\
+    \ ANS = 0;\n  for (u32 d = 1; d <= sq; ++d) { ANS += N / d; }\n  return 2 * ANS\
+    \ - u64(sq) * sq;\n}\n\n// https://oeis.org/A006218\n// sigma0(1)+...+sigma0(N)\
+    \ = sum floor(N/i)\ntemplate <typename T = u64>\nT sigma_0_sum_large(u64 N) {\n\
+    \  u32 sq = sqrtl(N);\n  auto above = [&](u128 x, u128 y) -> bool { return y *\
+    \ (sq - x) > N; };\n  auto slope = [&](u128 x, u128 a, u128 b) -> bool {\n   \
+    \ x = sq - x;\n    return a * x * x <= N * b;\n  };\n  T ANS = convex_floor_sum<u64,\
+    \ T>(sq, above, slope);\n  return 2 * ANS - u64(sq) * sq;\n}\n\ntemplate <typename\
+    \ T = u64>\nT sigma_0_sum(u64 N) {\n  return (N < (1e14) ? sigma_0_sum_small<T>(N)\
+    \ : sigma_0_sum_large<T>(N));\n}\n#line 5 \"test/5_atcoder/abc230e.test.cpp\"\n\
+    \nvoid solve() {\n  LL(N);\n  print(sigma_0_sum(N));\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc230/tasks/abc230_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/sigma_0_sum.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  print(sigma_0_sum(N));\n}\n\nsigned main() {\n\
@@ -214,8 +221,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc230e.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-08-28 10:30:14+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc230e.test.cpp
 layout: document
