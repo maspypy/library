@@ -1,7 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 
-#include "nt/convex_floor_sum.hpp"
 #include "nt/sigma_0_sum.hpp"
 
 void test() {
