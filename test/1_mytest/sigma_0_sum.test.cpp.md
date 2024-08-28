@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/convex_floor_sum.hpp
     title: nt/convex_floor_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/sigma_0_sum.hpp
     title: nt/sigma_0_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -122,15 +122,15 @@ data:
     \ b);\n    U n = (x - x0) / a;\n    //  (x0,y0) to (x,y)\n    ANS += 2 * (y0 -\
     \ 1) * (x - x0);\n    ANS += (x - x0 + 1) * (y - y0 + 1) - (n + 1);\n  };\n\n\
     \  add_ANS(x, y, 1, 0);\n  vc<tuple<U, U, U, U>> SBT;\n  SBT.eb(1, 0, 0, 1);\n\
-    \  while (x < N - 1) {\n    auto [a, b, c, d] = SBT.back();\n    if (!check(x\
-    \ + c, y + d)) {\n      POP(SBT);\n      continue;\n    }\n    auto f = [&](u64\
-    \ a, u64 b) -> bool {\n      if (x + a >= N) return 0;\n      if (above(x + a,\
-    \ y + b)) return 0;\n      if (slope(x + a, d, c)) return 0;\n      return 1;\n\
-    \    };\n    max_add(f, a, b, c, d);\n    if (check(x + a + c, y + b + d)) {\n\
-    \      max_add([&](U a, U b) -> bool { return check(x + a, y + b); }, c, d, a,\
-    \ b);\n      SBT.eb(a, b, c, d);\n      continue;\n    }\n    add_ANS(x, y, c,\
-    \ d);\n  }\n  ANS /= T(2);\n  return ANS;\n}\n#line 1 \"nt/sigma_0_sum.hpp\"\n\
-    // sum_[1,N] sigma_0(n)\ntemplate <typename T = u64>\nT sigma_0_sum_small(u64\
+    \  while (x < N - 1) {\n    U a, b, c, d;\n    tie(a, b, c, d) = SBT.back();\n\
+    \    if (!check(x + c, y + d)) {\n      POP(SBT);\n      continue;\n    }\n  \
+    \  auto f = [&](u64 a, u64 b) -> bool {\n      if (x + a >= N) return 0;\n   \
+    \   if (above(x + a, y + b)) return 0;\n      if (slope(x + a, d, c)) return 0;\n\
+    \      return 1;\n    };\n    max_add(f, a, b, c, d);\n    if (check(x + a + c,\
+    \ y + b + d)) {\n      max_add([&](U a, U b) -> bool { return check(x + a, y +\
+    \ b); }, c, d, a, b);\n      SBT.eb(a, b, c, d);\n      continue;\n    }\n   \
+    \ add_ANS(x, y, c, d);\n  }\n  ANS /= T(2);\n  return ANS;\n}\n#line 1 \"nt/sigma_0_sum.hpp\"\
+    \n// sum_[1,N] sigma_0(n)\ntemplate <typename T = u64>\nT sigma_0_sum_small(u64\
     \ N) {\n  u32 sq = sqrtl(N);\n  T ANS = 0;\n  for (u32 d = 1; d <= sq; ++d) {\
     \ ANS += N / d; }\n  return 2 * ANS - u64(sq) * sq;\n}\n\n// https://oeis.org/A006218\n\
     // sigma0(1)+...+sigma0(N) = sum floor(N/i)\ntemplate <typename T = u64>\nT sigma_0_sum_large(u64\
@@ -163,8 +163,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sigma_0_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-08-28 10:30:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-08-28 14:07:46+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sigma_0_sum.test.cpp
 layout: document

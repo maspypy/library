@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sigma_0_sum.test.cpp
     title: test/1_mytest/sigma_0_sum.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/5_atcoder/abc230e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://oeis.org/A006218
@@ -41,7 +41,7 @@ data:
   path: nt/sigma_0_sum.hpp
   requiredBy: []
   timestamp: '2024-08-28 10:30:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc230e.test.cpp
   - test/1_mytest/sigma_0_sum.test.cpp

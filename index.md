@@ -97,6 +97,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
+    - icon: ':x:'
+      path: alg/monoid/add_chmin_chmax_with_cost.hpp
+      title: alg/monoid/add_chmin_chmax_with_cost.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
@@ -471,7 +474,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -1400,7 +1403,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/array_on_floor.hpp
       title: nt/array_on_floor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/convex_floor_sum.hpp
       title: nt/convex_floor_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1490,7 +1493,7 @@ data:
     - icon: ':question:'
       path: nt/rational_binary_search.hpp
       title: nt/rational_binary_search.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: nt/sigma_0_sum.hpp
       title: nt/sigma_0_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -2532,7 +2535,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/segtree_xor_prod.test.cpp
       title: test/1_mytest/segtree_xor_prod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/sigma_0_sum.test.cpp
       title: test/1_mytest/sigma_0_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4804,6 +4807,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc365a.test.cpp
       title: test/5_atcoder/abc365a.test.cpp
+    - icon: ':x:'
+      path: test/5_atcoder/abc365f.test.cpp
+      title: test/5_atcoder/abc365f.test.cpp
     - icon: ':x:'
       path: test/5_atcoder/agc013e.test.cpp
       title: test/5_atcoder/agc013e.test.cpp

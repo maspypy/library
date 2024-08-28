@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/sigma_0_sum.hpp
     title: nt/sigma_0_sum.hpp
   - icon: ':question:'

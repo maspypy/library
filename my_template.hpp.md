@@ -480,7 +480,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sigma_0_sum.test.cpp
     title: test/1_mytest/sigma_0_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2716,6 +2716,9 @@ data:
     path: test/5_atcoder/abc365a.test.cpp
     title: test/5_atcoder/abc365a.test.cpp
   - icon: ':x:'
+    path: test/5_atcoder/abc365f.test.cpp
+    title: test/5_atcoder/abc365f.test.cpp
+  - icon: ':x:'
     path: test/5_atcoder/agc013e.test.cpp
     title: test/5_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3072,6 +3075,7 @@ data:
   - test/5_atcoder/abc319g.test.cpp
   - test/5_atcoder/abc285h.test.cpp
   - test/5_atcoder/abc280f.test.cpp
+  - test/5_atcoder/abc365f.test.cpp
   - test/5_atcoder/abc298ex.test.cpp
   - test/5_atcoder/abc213g.test.cpp
   - test/5_atcoder/abc141e.test.cpp
