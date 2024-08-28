@@ -1378,7 +1378,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1403,7 +1403,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/array_on_floor.hpp
       title: nt/array_on_floor.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/convex_floor_sum.hpp
       title: nt/convex_floor_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -1493,7 +1493,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/rational_binary_search.hpp
       title: nt/rational_binary_search.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/sigma_0_sum.hpp
       title: nt/sigma_0_sum.hpp
     - icon: ':heavy_check_mark:'
@@ -2535,7 +2535,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/segtree_xor_prod.test.cpp
       title: test/1_mytest/segtree_xor_prod.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/sigma_0_sum.test.cpp
       title: test/1_mytest/sigma_0_sum.test.cpp
     - icon: ':heavy_check_mark:'
