@@ -480,7 +480,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/sigma_0_sum.test.cpp
     title: test/1_mytest/sigma_0_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2457,7 +2457,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc229h.test.cpp
     title: test/5_atcoder/abc229h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc230e.test.cpp
     title: test/5_atcoder/abc230e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2715,19 +2715,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc365a.test.cpp
     title: test/5_atcoder/abc365a.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc365f.test.cpp
     title: test/5_atcoder/abc365f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc013e.test.cpp
     title: test/5_atcoder/agc013e.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc023f.test.cpp
     title: test/5_atcoder/agc023f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc058d.test.cpp
     title: test/5_atcoder/agc058d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc058d2.test.cpp
     title: test/5_atcoder/agc058d2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2748,7 +2748,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc130f.test.cpp
     title: test/5_atcoder/arc130f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc133f.test.cpp
     title: test/5_atcoder/arc133f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2763,7 +2763,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153b2.test.cpp
     title: test/5_atcoder/arc153b2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
   - icon: ':x:'

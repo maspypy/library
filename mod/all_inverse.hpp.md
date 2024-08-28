@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -87,12 +87,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc272_h.test.cpp
     title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc058d2.test.cpp
     title: test/5_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/all_inverse.hpp\"\ntemplate <typename mint>\nvc<mint>\
@@ -117,7 +117,7 @@ data:
   - linalg/blackbox/vandermonde.hpp
   - mod/q_analogue.hpp
   timestamp: '2022-11-23 08:11:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc241h.test.cpp
   - test/5_atcoder/abc260h.test.cpp
