@@ -159,6 +159,7 @@
 "test/1_mytest/scc_tournament.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/seg2d.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/segtree_xor_prod.test.cpp": "2024-08-13 23:38:32 +0900",
+"test/1_mytest/sigma_0_sum.test.cpp": "2024-08-29 06:56:24 +0900",
 "test/1_mytest/simple_perm.test.cpp": "2024-08-28 00:31:16 +0900",
 "test/1_mytest/slice_rational_fps.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/smawk.test.cpp": "2024-08-13 23:38:32 +0900",
