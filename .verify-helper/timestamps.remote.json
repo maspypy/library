@@ -921,5 +921,8 @@
 "test/5_atcoder/arc153b.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/5_atcoder/arc153b2.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/5_atcoder/arc153f.test.cpp": "2024-08-28 00:31:16 +0900",
-"test/5_atcoder/arc157a.test.cpp": "2024-08-26 01:20:39 +0900"
+"test/5_atcoder/arc154f.test.cpp": "2024-08-28 00:31:16 +0900",
+"test/5_atcoder/arc157a.test.cpp": "2024-08-26 01:20:39 +0900",
+"test/5_atcoder/arc160d.test.cpp": "2024-08-28 00:31:16 +0900",
+"test/5_atcoder/arc162f.test.cpp": "2024-08-28 00:31:16 +0900"
 }
