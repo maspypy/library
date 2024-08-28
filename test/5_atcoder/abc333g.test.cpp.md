@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/rational_binary_search.hpp
     title: nt/rational_binary_search.hpp
   - icon: ':question:'
@@ -45,9 +45,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc333/tasks/abc333_g
@@ -661,7 +661,7 @@ data:
   path: test/5_atcoder/abc333g.test.cpp
   requiredBy: []
   timestamp: '2024-08-28 00:31:16+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc333g.test.cpp
 layout: document
