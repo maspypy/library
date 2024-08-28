@@ -1,7 +1,7 @@
 
 // f: 凸, 非負, 単調増加を仮定
 // above(x,y) : y > f(x)
-// slope(x,a,b) : f'(x) >= b/a
+// slope(x,a,b) : f'(x) >= a/b
 // return : sum_[0,N) floor(f(x))
 // https://qoj.ac/contest/1195/problem/6188
 template <typename U, typename ANS_TYPE, typename F1, typename F2>
@@ -23,12 +23,13 @@ ANS_TYPE convex_floor_sum(U N, F1 above, F2 slope) {
   U x = 0, y = 0;
   max_add([&](U x, U y) -> bool { return !above(x, y); }, x, y, 0, 1);
   ++y;
-  T ANS = 2 * (y - 1);
+  T ANS = 2 * (y - 1); //  [0,1) x [1,y)
 
   auto add_ANS = [&](U& x, U& y, U a, U b) -> void {
     U x0 = x, y0 = y;
     max_add(check, x, y, a, b);
     U n = (x - x0) / a;
+    //  (x0,y0) to (x,y)
     ANS += 2 * (y0 - 1) * (x - x0);
     ANS += (x - x0 + 1) * (y - y0 + 1) - (n + 1);
   };
@@ -45,7 +46,7 @@ ANS_TYPE convex_floor_sum(U N, F1 above, F2 slope) {
     auto f = [&](u64 a, u64 b) -> bool {
       if (x + a >= N) return 0;
       if (above(x + a, y + b)) return 0;
-      if (slope(x + a, c, d)) return 0;
+      if (slope(x + a, d, c)) return 0;
       return 1;
     };
     max_add(f, a, b, c, d);

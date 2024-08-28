@@ -15,7 +15,7 @@ T sigma_0_sum_large(u64 N) {
   auto above = [&](u128 x, u128 y) -> bool { return y * (sq - x) > N; };
   auto slope = [&](u128 x, u128 a, u128 b) -> bool {
     x = sq - x;
-    return b * x * x <= N * a;
+    return a * x * x <= N * b;
   };
   T ANS = convex_floor_sum<u64, T>(sq, above, slope);
   return 2 * ANS - u64(sq) * sq;
