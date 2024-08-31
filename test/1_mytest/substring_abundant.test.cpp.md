@@ -105,8 +105,8 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 1 \"string/run_length.hpp\"\ntemplate\
-    \ <typename STRING = string>\nvc<pair<typename STRING::value_type, int>> run_length(STRING&\
-    \ S) {\n  vc<pair<typename STRING::value_type, int>> res;\n  for (auto&& x: S)\
+    \ <typename STRING = string>\nvc<pair<typename STRING::value_type, ll>> run_length(STRING&\
+    \ S) {\n  vc<pair<typename STRING::value_type, ll>> res;\n  for (auto&& x: S)\
     \ {\n    if (res.empty() || res.back().fi != x) { res.emplace_back(x, 0); }\n\
     \    res.back().se++;\n  }\n  return res;\n}\n#line 2 \"string/substring_abundant_string.hpp\"\
     \n\n// \u90E8\u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\
@@ -169,7 +169,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/substring_abundant.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-09-01 00:45:16+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/substring_abundant.test.cpp

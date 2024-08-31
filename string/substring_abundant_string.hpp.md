@@ -18,8 +18,8 @@ data:
     - https://qoj.ac/contest/1096/problem/5434?v=1
     - https://www.mimuw.edu.pl/~rytter/MYPAPERS/paper.pdf
   bundledCode: "#line 1 \"string/run_length.hpp\"\ntemplate <typename STRING = string>\n\
-    vc<pair<typename STRING::value_type, int>> run_length(STRING& S) {\n  vc<pair<typename\
-    \ STRING::value_type, int>> res;\n  for (auto&& x: S) {\n    if (res.empty() ||\
+    vc<pair<typename STRING::value_type, ll>> run_length(STRING& S) {\n  vc<pair<typename\
+    \ STRING::value_type, ll>> res;\n  for (auto&& x: S) {\n    if (res.empty() ||\
     \ res.back().fi != x) { res.emplace_back(x, 0); }\n    res.back().se++;\n  }\n\
     \  return res;\n}\n#line 2 \"string/substring_abundant_string.hpp\"\n\n// \u90E8\
     \u5206\u6587\u5B57\u5217\u306E\u7A2E\u985E\u6570\u304C\u6700\u5927\u3067\u3042\
@@ -102,7 +102,7 @@ data:
   isVerificationFile: false
   path: string/substring_abundant_string.hpp
   requiredBy: []
-  timestamp: '2024-07-29 11:54:02+09:00'
+  timestamp: '2024-09-01 00:45:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/substring_abundant.test.cpp
