@@ -13,9 +13,7 @@ struct Lazy_Tree_Monoid {
     using Monoid_A = MA;
     using X = typename Monoid_X::value_type;
     using A = typename Monoid_A::value_type;
-    static X act(const X &x, const A &a, const ll &size) {
-      return ActedMonoid::act(x, a, size);
-    }
+    static X act(const X &x, const A &a, const ll &size) { return ActedMonoid::act(x, a, size); }
   };
 
   TREE &tree;
@@ -43,9 +41,7 @@ struct Lazy_Tree_Monoid {
       seg.build(N, f_v);
       if constexpr (!MX::commute) { seg_r.build(N, f_v); }
     } else {
-      auto f_e = [&](int i) -> X {
-        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));
-      };
+      auto f_e = [&](int i) -> X { return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i]))); };
       seg.build(N, f_e);
       if constexpr (!MX::commute) { seg_r.build(N, f_e); }
     }
@@ -79,10 +75,16 @@ struct Lazy_Tree_Monoid {
     return val;
   }
 
-  X prod_subtree(int u) {
-    static_assert(MX::commute);
-    int l = tree.LID[u], r = tree.RID[u];
-    return seg.prod(l + edge, r);
+  X prod_subtree(int u, int root = -1) {
+    if (root == u) return prod_all();
+    if (root == -1 || tree.in_subtree(u, root)) {
+      int l = tree.LID[u], r = tree.RID[u];
+      return seg.prod(l + edge, r);
+    }
+    assert(!edge); // さぼり
+    u = tree.jump(u, root, 1);
+    int L = tree.LID[u], R = tree.RID[u];
+    return MX::op(seg.prod(0, L), seg.prod(R, N));
   }
 
   X prod_all() {
@@ -147,8 +149,7 @@ struct Lazy_Tree_Monoid {
 
   // closed range [a,b] を heavy path の形式に応じて
   inline X get_prod(int a, int b) {
-    if constexpr (MX::commute)
-      return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
+    if constexpr (MX::commute) return (a <= b ? seg.prod(a, b + 1) : seg.prod(b, a + 1));
     return (a <= b ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1));
   }
 
