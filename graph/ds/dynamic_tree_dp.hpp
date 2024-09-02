@@ -1,49 +1,35 @@
 #include "graph/ds/static_toptree.hpp"
 
+// reroot できない簡易版
 // https://codeforces.com/contest/1172/problem/E
 // https://codeforces.com/contest/1942/problem/H
 // single(v) : v とその親辺を合わせたクラスタ
-// rake(x, y, u, v) uv(top down) が boundary になるように rake (maybe v=-1)
-// compress(x,y,a,b,c)  (top-down) 順に (a,b] + (b,c]
-template <typename TREE, typename Data>
+// rake(L,R) : L の boundary を維持
+// compress(L,R)  (top-down) 順に L,R
+template <typename TREE, typename TREE_DP>
 struct Dynamic_Tree_Dp {
+  using X = typename TREE_DP::value_type;
   Static_TopTree<TREE> STT;
-  vc<Data> dp;
+  vc<X> dp;
 
-  Dynamic_Tree_Dp(TREE& tree) : STT(tree) {}
-
-  template <typename F1, typename F2, typename F3>
-  Data init_dp(F1 single, F2 rake, F3 compress) {
-    int n = len(STT.par);
-    dp.resize(n);
-    FOR(i, n) { upd(i, single, rake, compress); }
-    return dp.back();
+  template <typename F>
+  Dynamic_Tree_Dp(TREE& tree, F f) : STT(tree) {
+    int N = tree.N;
+    dp.resize(2 * N - 1);
+    FOR(i, N) dp[i] = f(i);
+    FOR(i, N, 2 * N - 1) update(i);
   }
 
-  template <typename F1, typename F2, typename F3>
-  Data recalc(int v, F1 single, F2 rake, F3 compress) {
-    assert(!dp.empty());
-    for (int k = v; k != -1; k = STT.par[k]) { upd(k, single, rake, compress); }
-    return dp.back();
+  void set(int v, X x) {
+    dp[v] = x;
+    for (int i = STT.par[v]; i != -1; i = STT.par[i]) update(i);
   }
 
-  Data get() { return dp.back(); }
+  X prod_all() { return dp.back(); }
 
 private:
-  template <typename F1, typename F2, typename F3>
-  void upd(int k, F1 single, F2 rake, F3 compress) {
-    if (0 <= k && k < STT.N) {
-      dp[k] = single(k);
-      return;
-    }
-    int l = STT.lch[k], r = STT.rch[k];
-    if (STT.is_compress[k]) {
-      int a = STT.A[l], b = STT.B[l];
-      int c = STT.A[r], d = STT.B[r];
-      assert(b == c);
-      dp[k] = compress(dp[l], dp[r], a, b, d);
-    } else {
-      dp[k] = rake(dp[l], dp[r], STT.A[k], STT.B[k]);
-    }
+  inline void update(int i) {
+    X &L = dp[STT.lch[i]], &R = dp[STT.rch[i]];
+    dp[i] = (STT.is_compress[i] ? TREE_DP::compress(L, R) : TREE_DP::rake(L, R));
   }
 };
