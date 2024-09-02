@@ -1,4 +1,6 @@
-template <typename STRING>  // string, vector どちらでも
+#pragma once
+
+template <typename STRING> // string, vector どちらでも
 vector<int> zalgorithm(const STRING& s) {
   int n = int(s.size());
   if (n == 0) return {};
