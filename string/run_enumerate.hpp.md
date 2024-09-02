@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
@@ -17,7 +17,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  //\
+  bundledCode: "#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> //\
     \ string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const\
     \ STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int>\
     \ z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n\
@@ -82,7 +82,7 @@ data:
   isVerificationFile: false
   path: string/run_enumerate.hpp
   requiredBy: []
-  timestamp: '2023-11-15 20:12:22+09:00'
+  timestamp: '2024-09-03 08:13:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/run_enumerate.test.cpp

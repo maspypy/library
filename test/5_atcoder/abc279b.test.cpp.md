@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc279/tasks/abc279_b
@@ -200,8 +200,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/5_atcoder/abc279b.test.cpp\"\n\n#line 1 \"string/zalgorithm.hpp\"\
-    \ntemplate <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
+    \ yes(!t); }\r\n#line 5 \"test/5_atcoder/abc279b.test.cpp\"\n\n#line 2 \"string/zalgorithm.hpp\"\
+    \n\ntemplate <typename STRING> // string, vector \u3069\u3061\u3089\u3067\u3082\
     \nvector<int> zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
     \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
     \ i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
@@ -227,8 +227,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc279b.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-03 08:13:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc279b.test.cpp
 layout: document

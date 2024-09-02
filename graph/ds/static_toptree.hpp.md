@@ -1,49 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2258.test.cpp
     title: test/3_yukicoder/2258.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc269ex2.test.cpp
     title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc351g.test.cpp
     title: test/5_atcoder/abc351g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
+    links:
+    - https://atcoder.jp/contests/abc351/editorial/9910
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
@@ -207,85 +208,77 @@ data:
     \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
     \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
     \n#line 2 \"graph/ds/static_toptree.hpp\"\n\n/*\n\u53C2\u8003 joitour tatyam\n\
-    \u30AF\u30E9\u30B9\u30BF\u3068\u306F\u6839\u304C\u6B20\u3051\u305F\u72B6\u614B\
-    \nN \u500B\u306E (\u9802+\u8FBA) \u3092\u30DE\u30FC\u30B8\u3057\u3066\u3044\u3063\
-    \u3066\uFF0C\u6728\u5168\u4F53\uFF0B\u6839\u304B\u3089\u89AA\u3078\u306E\u8FBA\
-    \u3068\u3059\u308B\uFF0E\nsingle(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\
-    \u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\nrake(x, y, u, v) uv(top down) \u304C\
-    \ boundary \u306B\u306A\u308B\u3088\u3046\u306B rake (maybe v=-1)\ncompress(x,y,a,b,c)\
-    \  (top-down) \u9806\u306B (a,b] + (b,c]\n*/\ntemplate <typename TREE>\nstruct\
-    \ Static_TopTree {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B; //\
-    \ A, B boundary (top-down)\n  vc<bool> is_compress;\n\n  Static_TopTree(TREE &tree)\
-    \ : tree(tree) { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N,\
-    \ -1), lch.assign(N, -1), rch.assign(N, -1), A.assign(N, -1),\n        B.assign(N,\
-    \ -1), is_compress.assign(N, 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v]\
-    \ = v; }\n    build_dfs(tree.V[0]);\n    assert(len(par) == 2 * N - 1);\n  }\n\
-    \n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\n  //\
-    \ single(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\
-    \u30E9\u30B9\u30BF\n  // rake(x, y, u, v) uv(top down) \u304C boundary \u306B\u306A\
-    \u308B\u3088\u3046\u306B rake (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down)\
-    \ \u9806\u306B (a,b] + (b,c]\n  template <typename Data, typename F1, typename\
-    \ F2, typename F3>\n  Data tree_dp(F1 single, F2 rake, F3 compress) {\n    auto\
-    \ dfs = [&](auto &dfs, int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n\
-    \      Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k])\
-    \ {\n        assert(B[lch[k]] == A[rch[k]]);\n        return compress(x, y, A[lch[k]],\
-    \ B[lch[k]], B[rch[k]]);\n      }\n      return rake(x, y, A[k], B[k]);\n    };\n\
-    \    return dfs(dfs, 2 * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r,\
-    \ int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r),\
-    \ A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n\
-    \  }\n  int build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto path\
-    \ = tree.heavy_path_at(v);\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
-    \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
-    \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
-    \ new_node(x, y, A[x], B[y], true);\n      }\n      assert(r == l + 1);\n    \
-    \  if (l == 0) { return path[l]; }\n      // sz, idx\n      pqg<pair<int, int>>\
-    \ que;\n      int p = path[l - 1];\n      for (auto &to: tree.collect_light(p))\
-    \ {\n        int x = build_dfs(to);\n        que.emplace(tree.subtree_size(to),\
-    \ x);\n      }\n      if (que.empty()) { return path[l]; }\n      while (len(que)\
-    \ >= 2) {\n        auto [s1, x] = POP(que);\n        auto [s2, y] = POP(que);\n\
-    \        int z = new_node(x, y, p, -1, false);\n        que.emplace(s1 + s2, z);\n\
-    \      }\n      auto [s, x] = POP(que);\n      return new_node(path[l], x, p,\
-    \ path[l], false);\n    };\n    return dfs(dfs, 0, len(path));\n  }\n};\n"
+    \u30AF\u30E9\u30B9\u30BF\u306F\u6839\u304C virtual \u306A\u3082\u306E\u306E\u307F\
+    \u3067\u3042\u308B\u3088\u3046\u306A\u7C21\u6613\u7248\nN \u500B\u306E (\u9802\
+    +\u8FBA) \u3092\u30DE\u30FC\u30B8\u3057\u3066\u3044\u3063\u3066\uFF0C\u6728\u5168\
+    \u4F53\uFF0B\u6839\u304B\u3089\u89AA\u3078\u306E\u8FBA\u3068\u3059\u308B\uFF0E\
+    \nsingle(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\
+    \u30E9\u30B9\u30BF\nrake(L,R) : L \u306E boundary \u3092\u7DAD\u6301\ncompress(L,R)\
+    \  (top-down) \u9806\u306B x,y\n*/\ntemplate <typename TREE>\nstruct Static_TopTree\
+    \ {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B; // A, B boundary\
+    \ (top-down)\n  vc<bool> is_compress;\n\n  Static_TopTree(TREE &tree) : tree(tree)\
+    \ { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N, -1), lch.assign(N,\
+    \ -1), rch.assign(N, -1), A.assign(N, -1), B.assign(N, -1), is_compress.assign(N,\
+    \ 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n\
+    \    assert(len(par) == 2 * N - 1);\n  }\n\nprivate:\n  int new_node(int l, int\
+    \ r, int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l),\
+    \ rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n\
+    \    return v;\n  }\n\n  // height, node idx\n  // compress \u53C2\u8003\uFF1A\
+    https://atcoder.jp/contests/abc351/editorial/9910\n  // \u305F\u3060\u3057 heavy\
+    \ path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\u8003\u616E\u3057\u306A\u3044\
+    \n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto\
+    \ path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n    stack.eb(0,\
+    \ path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto [h2, k2] =\
+    \ POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1, h2) +\
+    \ 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
+    \ {\n      pqg<pair<int, int>> que;\n      int k = path[i];\n      que.emplace(0,\
+    \ k);\n      for (auto &c: tree.collect_light(path[i - 1])) { que.emplace(build_dfs(c));\
+    \ }\n      while (len(que) >= 2) {\n        auto [h1, i1] = POP(que);\n      \
+    \  auto [h2, i2] = POP(que);\n        if (i2 == k) swap(i1, i2);\n        int\
+    \ i3 = new_node(i1, i2, A[i1], B[i1], false);\n        if (k == i1) k = i3;\n\
+    \        que.emplace(max(h1, h2) + 1, i3);\n      }\n      stack.eb(POP(que));\n\
+    \n      while (1) {\n        int n = len(stack);\n        if (n >= 3 && (stack[n\
+    \ - 3].fi == stack[n - 2].fi || stack[n - 3].fi <= stack[n - 1].fi)) {\n     \
+    \     auto [h3, k3] = POP(stack);\n          merge_last_two(), stack.eb(h3, k3);\n\
+    \        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two();\
+    \ }\n        else break;\n      }\n    }\n    while (len(stack) >= 2) { merge_last_two();\
+    \ }\n    return POP(stack);\n  }\n};\n"
   code: "#include \"graph/tree.hpp\"\n\n/*\n\u53C2\u8003 joitour tatyam\n\u30AF\u30E9\
-    \u30B9\u30BF\u3068\u306F\u6839\u304C\u6B20\u3051\u305F\u72B6\u614B\nN \u500B\u306E\
-    \ (\u9802+\u8FBA) \u3092\u30DE\u30FC\u30B8\u3057\u3066\u3044\u3063\u3066\uFF0C\
-    \u6728\u5168\u4F53\uFF0B\u6839\u304B\u3089\u89AA\u3078\u306E\u8FBA\u3068\u3059\
-    \u308B\uFF0E\nsingle(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\
-    \u305F\u30AF\u30E9\u30B9\u30BF\nrake(x, y, u, v) uv(top down) \u304C boundary\
-    \ \u306B\u306A\u308B\u3088\u3046\u306B rake (maybe v=-1)\ncompress(x,y,a,b,c)\
-    \  (top-down) \u9806\u306B (a,b] + (b,c]\n*/\ntemplate <typename TREE>\nstruct\
-    \ Static_TopTree {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B; //\
-    \ A, B boundary (top-down)\n  vc<bool> is_compress;\n\n  Static_TopTree(TREE &tree)\
-    \ : tree(tree) { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N,\
-    \ -1), lch.assign(N, -1), rch.assign(N, -1), A.assign(N, -1),\n        B.assign(N,\
-    \ -1), is_compress.assign(N, 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v]\
-    \ = v; }\n    build_dfs(tree.V[0]);\n    assert(len(par) == 2 * N - 1);\n  }\n\
-    \n  // \u6728\u5168\u4F53\u3067\u306E\u96C6\u7D04\u5024\u3092\u5F97\u308B\n  //\
-    \ single(v) : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\
-    \u30E9\u30B9\u30BF\n  // rake(x, y, u, v) uv(top down) \u304C boundary \u306B\u306A\
-    \u308B\u3088\u3046\u306B rake (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down)\
-    \ \u9806\u306B (a,b] + (b,c]\n  template <typename Data, typename F1, typename\
-    \ F2, typename F3>\n  Data tree_dp(F1 single, F2 rake, F3 compress) {\n    auto\
-    \ dfs = [&](auto &dfs, int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n\
-    \      Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k])\
-    \ {\n        assert(B[lch[k]] == A[rch[k]]);\n        return compress(x, y, A[lch[k]],\
-    \ B[lch[k]], B[rch[k]]);\n      }\n      return rake(x, y, A[k], B[k]);\n    };\n\
-    \    return dfs(dfs, 2 * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r,\
-    \ int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r),\
-    \ A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n\
-    \  }\n  int build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto path\
-    \ = tree.heavy_path_at(v);\n    auto dfs = [&](auto &dfs, int l, int r) -> int\
-    \ {\n      // path[l:r)\n      if (l + 1 < r) {\n        int m = (l + r) / 2;\n\
-    \        int x = dfs(dfs, l, m);\n        int y = dfs(dfs, m, r);\n        return\
-    \ new_node(x, y, A[x], B[y], true);\n      }\n      assert(r == l + 1);\n    \
-    \  if (l == 0) { return path[l]; }\n      // sz, idx\n      pqg<pair<int, int>>\
-    \ que;\n      int p = path[l - 1];\n      for (auto &to: tree.collect_light(p))\
-    \ {\n        int x = build_dfs(to);\n        que.emplace(tree.subtree_size(to),\
-    \ x);\n      }\n      if (que.empty()) { return path[l]; }\n      while (len(que)\
-    \ >= 2) {\n        auto [s1, x] = POP(que);\n        auto [s2, y] = POP(que);\n\
-    \        int z = new_node(x, y, p, -1, false);\n        que.emplace(s1 + s2, z);\n\
-    \      }\n      auto [s, x] = POP(que);\n      return new_node(path[l], x, p,\
-    \ path[l], false);\n    };\n    return dfs(dfs, 0, len(path));\n  }\n};"
+    \u30B9\u30BF\u306F\u6839\u304C virtual \u306A\u3082\u306E\u306E\u307F\u3067\u3042\
+    \u308B\u3088\u3046\u306A\u7C21\u6613\u7248\nN \u500B\u306E (\u9802+\u8FBA) \u3092\
+    \u30DE\u30FC\u30B8\u3057\u3066\u3044\u3063\u3066\uFF0C\u6728\u5168\u4F53\uFF0B\
+    \u6839\u304B\u3089\u89AA\u3078\u306E\u8FBA\u3068\u3059\u308B\uFF0E\nsingle(v)\
+    \ : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\
+    \u30B9\u30BF\nrake(L,R) : L \u306E boundary \u3092\u7DAD\u6301\ncompress(L,R)\
+    \  (top-down) \u9806\u306B x,y\n*/\ntemplate <typename TREE>\nstruct Static_TopTree\
+    \ {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B; // A, B boundary\
+    \ (top-down)\n  vc<bool> is_compress;\n\n  Static_TopTree(TREE &tree) : tree(tree)\
+    \ { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N, -1), lch.assign(N,\
+    \ -1), rch.assign(N, -1), A.assign(N, -1), B.assign(N, -1), is_compress.assign(N,\
+    \ 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n\
+    \    assert(len(par) == 2 * N - 1);\n  }\n\nprivate:\n  int new_node(int l, int\
+    \ r, int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l),\
+    \ rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n\
+    \    return v;\n  }\n\n  // height, node idx\n  // compress \u53C2\u8003\uFF1A\
+    https://atcoder.jp/contests/abc351/editorial/9910\n  // \u305F\u3060\u3057 heavy\
+    \ path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\u8003\u616E\u3057\u306A\u3044\
+    \n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto\
+    \ path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n    stack.eb(0,\
+    \ path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto [h2, k2] =\
+    \ POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1, h2) +\
+    \ 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
+    \ {\n      pqg<pair<int, int>> que;\n      int k = path[i];\n      que.emplace(0,\
+    \ k);\n      for (auto &c: tree.collect_light(path[i - 1])) { que.emplace(build_dfs(c));\
+    \ }\n      while (len(que) >= 2) {\n        auto [h1, i1] = POP(que);\n      \
+    \  auto [h2, i2] = POP(que);\n        if (i2 == k) swap(i1, i2);\n        int\
+    \ i3 = new_node(i1, i2, A[i1], B[i1], false);\n        if (k == i1) k = i3;\n\
+    \        que.emplace(max(h1, h2) + 1, i3);\n      }\n      stack.eb(POP(que));\n\
+    \n      while (1) {\n        int n = len(stack);\n        if (n >= 3 && (stack[n\
+    \ - 3].fi == stack[n - 2].fi || stack[n - 3].fi <= stack[n - 1].fi)) {\n     \
+    \     auto [h3, k3] = POP(stack);\n          merge_last_two(), stack.eb(h3, k3);\n\
+    \        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two();\
+    \ }\n        else break;\n      }\n    }\n    while (len(stack) >= 2) { merge_last_two();\
+    \ }\n    return POP(stack);\n  }\n};"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -296,8 +289,8 @@ data:
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/tree_walk_generating_function.hpp
   - graph/ds/dynamic_tree_dp.hpp
-  timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-03 08:13:21+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/abc351g.test.cpp
   - test/5_atcoder/abc269ex2.test.cpp

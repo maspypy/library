@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

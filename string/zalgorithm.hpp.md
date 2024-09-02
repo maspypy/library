@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_periodic_sequence.hpp
     title: seq/interpolate_periodic_sequence.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -31,32 +31,35 @@ data:
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2858.test.cpp
+    title: test/3_yukicoder/2858.test.cpp
+  - icon: ':x:'
     path: test/5_atcoder/abc237ex.test.cpp
     title: test/5_atcoder/abc237ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc279b.test.cpp
     title: test/5_atcoder/abc279b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc354g.test.cpp
     title: test/5_atcoder/abc354g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  //\
+  bundledCode: "#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> //\
     \ string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const\
     \ STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int>\
     \ z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n\
     \    k = (j + z[j] <= i) ? 0 : min(j + z[j] - i, z[i - j]);\n    while (i + k\
     \ < n && s[k] == s[i + k]) k++;\n    if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0]\
     \ = n;\n  return z;\n}\n"
-  code: "template <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\
-    \nvector<int> zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n\
-    \ == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0;\
-    \ i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
-    \ - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n    if (j +\
-    \ z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n"
+  code: "#pragma once\n\ntemplate <typename STRING> // string, vector \u3069\u3061\
+    \u3089\u3067\u3082\nvector<int> zalgorithm(const STRING& s) {\n  int n = int(s.size());\n\
+    \  if (n == 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1,\
+    \ j = 0; i < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j\
+    \ + z[j] - i, z[i - j]);\n    while (i + k < n && s[k] == s[i + k]) k++;\n   \
+    \ if (j + z[j] < i + z[i]) j = i;\n  }\n  z[0] = n;\n  return z;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: string/zalgorithm.hpp
@@ -64,14 +67,15 @@ data:
   - string/run_enumerate.hpp
   - string/is_substring.hpp
   - seq/interpolate_periodic_sequence.hpp
-  timestamp: '2022-04-16 04:26:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-03 08:13:21+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc354g.test.cpp
   - test/5_atcoder/abc279b.test.cpp
   - test/5_atcoder/abc237ex.test.cpp
   - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/1848.test.cpp
+  - test/3_yukicoder/2858.test.cpp
   - test/2_library_checker/string/run_enumerate.test.cpp
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
   - test/2_library_checker/string/zalgorithm.test.cpp

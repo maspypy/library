@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
@@ -199,7 +199,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/2_library_checker/string/zalgorithm.test.cpp\"\n\
-    \r\n#line 1 \"string/zalgorithm.hpp\"\ntemplate <typename STRING>  // string,\
+    \r\n#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> // string,\
     \ vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const STRING&\
     \ s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int> z(n);\n\
     \  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n   \
@@ -221,7 +221,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-09-03 08:13:21+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/zalgorithm.test.cpp

@@ -6,6 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/enumerate_palindromes.test.cpp
     title: test/2_library_checker/string/enumerate_palindromes.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2858.test.cpp
+    title: test/3_yukicoder/2858.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -43,6 +46,7 @@ data:
   timestamp: '2022-04-23 14:12:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2858.test.cpp
   - test/2_library_checker/string/enumerate_palindromes.test.cpp
 documentation_of: string/manacher.hpp
 layout: document

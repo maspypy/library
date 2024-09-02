@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_Ex
@@ -396,8 +396,8 @@ data:
     \  auto match = BM.matching();\n  assert(len(cover) == len(match));\n  vc<bool>\
     \ ok(n, 1);\n  for (auto&& v: cover) { ok[v % n] = 0; }\n  vc<int> antichain;\n\
     \  FOR(v, n) if (ok[v]) antichain.eb(v);\n  for (auto&& e: G.edges) { assert(!ok[e.frm]\
-    \ || !ok[e.to]); }\n  return antichain;\n}\n#line 1 \"string/zalgorithm.hpp\"\n\
-    template <typename STRING>  // string, vector \u3069\u3061\u3089\u3067\u3082\n\
+    \ || !ok[e.to]); }\n  return antichain;\n}\n#line 2 \"string/zalgorithm.hpp\"\n\
+    \ntemplate <typename STRING> // string, vector \u3069\u3061\u3089\u3067\u3082\n\
     vector<int> zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n ==\
     \ 0) return {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i\
     \ < n; i++) {\n    int& k = z[i];\n    k = (j + z[j] <= i) ? 0 : min(j + z[j]\
@@ -439,8 +439,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc237ex.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-03 08:13:21+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc237ex.test.cpp
 layout: document
