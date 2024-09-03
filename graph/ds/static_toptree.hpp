@@ -25,6 +25,24 @@ struct Static_TopTree {
     assert(len(par) == 2 * N - 1);
   }
 
+  // 木全体での集約値を得る
+  // single(v) : v とその親辺を合わせたクラスタ
+  // rake(x, y, u, v) uv(top down) が boundary になるように rake (maybe v=-1)
+  // compress(x,y,a,b,c)  (top-down) 順に (a,b] + (b,c]
+  template <typename Data, typename F1, typename F2, typename F3>
+  Data tree_dp(F1 single, F2 rake, F3 compress) {
+    auto dfs = [&](auto &dfs, int k) -> Data {
+      if (0 <= k && k < N) return single(k);
+      Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);
+      if (is_compress[k]) {
+        assert(B[lch[k]] == A[rch[k]]);
+        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);
+      }
+      return rake(x, y, A[k], B[k]);
+    };
+    return dfs(dfs, 2 * N - 2);
+  }
+
 private:
   int new_node(int l, int r, int a, int b, bool c) {
     int v = len(par);
