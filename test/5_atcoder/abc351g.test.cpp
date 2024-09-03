@@ -9,6 +9,20 @@ using mint = modint998;
 
 using Data = pair<mint, mint>;
 
+struct DP {
+  using value_type = Data;
+  static Data rake(Data& L, Data& R) {
+    mint c = R.se;
+    auto [a, b] = L;
+    return {a * c, b * c};
+  }
+  static Data compress(Data& L, Data& R) {
+    auto [a, b] = L;
+    auto [c, d] = R;
+    return {a * c, a * d + b};
+  }
+};
+
 void solve() {
   LL(N, Q);
   Graph<int, 1> G(N);
@@ -20,26 +34,15 @@ void solve() {
   G.build();
   Tree<decltype(G)> tree(G);
 
-  Dynamic_Tree_Dp<decltype(tree), Data> X(tree);
   auto single = [&](int v) -> Data { return {1, A[v]}; };
-  auto rake = [&](Data x, Data y, int u, int v) -> Data {
-    mint c = y.se;
-    auto [a, b] = x;
-    return {a * c, b * c};
-  };
-  auto compress = [&](Data x, Data y, int u, int v, int w) -> Data {
-    auto [a, b] = x;
-    auto [c, d] = y;
-    return {a * c, a * d + b};
-  };
-  X.init_dp(single, rake, compress);
-
+  Dynamic_Tree_Dp<decltype(tree), DP> X(tree, single);
   FOR(Q) {
     INT(v, x);
     --v;
     A[v] = x;
-    Data a = X.recalc(v, single, rake, compress);
-    print(a.se);
+    X.set(v, single(v));
+    auto ans = X.prod_all();
+    print(ans.se);
   }
 }
 
