@@ -28,6 +28,9 @@ data:
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2258.test.cpp
     title: test/3_yukicoder/2258.test.cpp
   - icon: ':heavy_check_mark:'
@@ -321,6 +324,7 @@ data:
   - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document

@@ -910,6 +910,9 @@ data:
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1793,6 +1796,7 @@ data:
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp

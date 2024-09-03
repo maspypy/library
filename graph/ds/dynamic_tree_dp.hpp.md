@@ -13,6 +13,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+    title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc351g.test.cpp
     title: test/5_atcoder/abc351g.test.cpp
   _isVerificationFailed: false
@@ -268,6 +271,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc351g.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
 documentation_of: graph/ds/dynamic_tree_dp.hpp
 layout: document
 redirect_from:
