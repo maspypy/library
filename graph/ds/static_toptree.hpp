@@ -29,16 +29,17 @@ struct Static_TopTree {
   // single(v) : v とその親辺を合わせたクラスタ
   // rake(x, y, u, v) uv(top down) が boundary になるように rake (maybe v=-1)
   // compress(x,y,a,b,c)  (top-down) 順に (a,b] + (b,c]
-  template <typename Data, typename F1, typename F2, typename F3>
-  Data tree_dp(F1 single, F2 rake, F3 compress) {
+  template <typename TREE_DP, typename F>
+  TREE_DP::value_type tree_dp(F single) {
+    using Data = typename TREE_DP::value_type;
     auto dfs = [&](auto &dfs, int k) -> Data {
       if (0 <= k && k < N) return single(k);
       Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);
       if (is_compress[k]) {
         assert(B[lch[k]] == A[rch[k]]);
-        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);
+        return TREE_DP::compress(x, y);
       }
-      return rake(x, y, A[k], B[k]);
+      return TREE_DP::rake(x, y);
     };
     return dfs(dfs, 2 * N - 2);
   }
