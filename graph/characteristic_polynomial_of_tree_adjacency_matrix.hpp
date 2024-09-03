@@ -54,7 +54,6 @@ vc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(Graph<int, 
   Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);
   vc<mint> ANS(G.N + 1);
   FOR(i, len(X[0][1])) { ANS[2 * i] += X[0][1][i]; }
-  SHOW(ANS);
   return ANS;
 }
 
