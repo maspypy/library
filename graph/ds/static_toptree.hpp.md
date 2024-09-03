@@ -8,7 +8,7 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':warning:'
@@ -20,7 +20,7 @@ data:
   - icon: ':x:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
@@ -30,7 +30,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/2258.test.cpp
     title: test/3_yukicoder/2258.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/5_atcoder/abc351g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://atcoder.jp/contests/abc351/editorial/9910
@@ -223,17 +223,27 @@ data:
     \ { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N, -1), lch.assign(N,\
     \ -1), rch.assign(N, -1), A.assign(N, -1), B.assign(N, -1), is_compress.assign(N,\
     \ 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n\
-    \    assert(len(par) == 2 * N - 1);\n  }\n\nprivate:\n  int new_node(int l, int\
-    \ r, int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l),\
-    \ rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n\
-    \    return v;\n  }\n\n  // height, node idx\n  // compress \u53C2\u8003\uFF1A\
-    https://atcoder.jp/contests/abc351/editorial/9910\n  // \u305F\u3060\u3057 heavy\
-    \ path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\u8003\u616E\u3057\u306A\u3044\
-    \n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto\
-    \ path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n    stack.eb(0,\
-    \ path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto [h2, k2] =\
-    \ POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1, h2) +\
-    \ 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
+    \    assert(len(par) == 2 * N - 1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\
+    \u96C6\u7D04\u5024\u3092\u5F97\u308B\n  // single(v) : v \u3068\u305D\u306E\u89AA\
+    \u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y,\
+    \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
+    \ (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
+    \  template <typename Data, typename F1, typename F2, typename F3>\n  Data tree_dp(F1\
+    \ single, F2 rake, F3 compress) {\n    auto dfs = [&](auto &dfs, int k) -> Data\
+    \ {\n      if (0 <= k && k < N) return single(k);\n      Data x = dfs(dfs, lch[k]),\
+    \ y = dfs(dfs, rch[k]);\n      if (is_compress[k]) {\n        assert(B[lch[k]]\
+    \ == A[rch[k]]);\n        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);\n\
+    \      }\n      return rake(x, y, A[k], B[k]);\n    };\n    return dfs(dfs, 2\
+    \ * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool\
+    \ c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a),\
+    \ B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n\
+    \  // height, node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
+    \  // \u305F\u3060\u3057 heavy path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\
+    \u8003\u616E\u3057\u306A\u3044\n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v]\
+    \ == v);\n    auto path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n\
+    \    stack.eb(0, path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto\
+    \ [h2, k2] = POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1,\
+    \ h2) + 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
     \ {\n      pqg<pair<int, int>> que;\n      int k = path[i];\n      que.emplace(0,\
     \ k);\n      for (auto &c: tree.collect_light(path[i - 1])) { que.emplace(build_dfs(c));\
     \ }\n      while (len(que) >= 2) {\n        auto [h1, i1] = POP(que);\n      \
@@ -259,17 +269,27 @@ data:
     \ { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N, -1), lch.assign(N,\
     \ -1), rch.assign(N, -1), A.assign(N, -1), B.assign(N, -1), is_compress.assign(N,\
     \ 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n\
-    \    assert(len(par) == 2 * N - 1);\n  }\n\nprivate:\n  int new_node(int l, int\
-    \ r, int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l),\
-    \ rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n\
-    \    return v;\n  }\n\n  // height, node idx\n  // compress \u53C2\u8003\uFF1A\
-    https://atcoder.jp/contests/abc351/editorial/9910\n  // \u305F\u3060\u3057 heavy\
-    \ path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\u8003\u616E\u3057\u306A\u3044\
-    \n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto\
-    \ path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n    stack.eb(0,\
-    \ path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto [h2, k2] =\
-    \ POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1, h2) +\
-    \ 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
+    \    assert(len(par) == 2 * N - 1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\
+    \u96C6\u7D04\u5024\u3092\u5F97\u308B\n  // single(v) : v \u3068\u305D\u306E\u89AA\
+    \u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y,\
+    \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
+    \ (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
+    \  template <typename Data, typename F1, typename F2, typename F3>\n  Data tree_dp(F1\
+    \ single, F2 rake, F3 compress) {\n    auto dfs = [&](auto &dfs, int k) -> Data\
+    \ {\n      if (0 <= k && k < N) return single(k);\n      Data x = dfs(dfs, lch[k]),\
+    \ y = dfs(dfs, rch[k]);\n      if (is_compress[k]) {\n        assert(B[lch[k]]\
+    \ == A[rch[k]]);\n        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);\n\
+    \      }\n      return rake(x, y, A[k], B[k]);\n    };\n    return dfs(dfs, 2\
+    \ * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool\
+    \ c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a),\
+    \ B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n\
+    \  // height, node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
+    \  // \u305F\u3060\u3057 heavy path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\
+    \u8003\u616E\u3057\u306A\u3044\n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v]\
+    \ == v);\n    auto path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n\
+    \    stack.eb(0, path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto\
+    \ [h2, k2] = POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1,\
+    \ h2) + 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
     \ {\n      pqg<pair<int, int>> que;\n      int k = path[i];\n      que.emplace(0,\
     \ k);\n      for (auto &c: tree.collect_light(path[i - 1])) { que.emplace(build_dfs(c));\
     \ }\n      while (len(que) >= 2) {\n        auto [h1, i1] = POP(que);\n      \
@@ -293,8 +313,8 @@ data:
   - graph/tree_walk_generating_function.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/dynamic_tree_dp.hpp
-  timestamp: '2024-09-03 08:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-03 13:10:55+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc351g.test.cpp
   - test/5_atcoder/abc269ex2.test.cpp
