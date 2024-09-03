@@ -4,50 +4,19 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
+  - icon: ':x:'
+    path: graph/ds/static_toptree.hpp
+    title: graph/ds/static_toptree.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  _extendedRequiredBy:
-  - icon: ':x:'
-    path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-    title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':warning:'
-    path: graph/count_matching_on_tree.hpp
-    title: graph/count_matching_on_tree.hpp
-  - icon: ':warning:'
-    path: graph/ds/dynamic_rerooting_tree_dp.hpp
-    title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':x:'
-    path: graph/ds/dynamic_tree_dp.hpp
-    title: graph/ds/dynamic_tree_dp.hpp
-  - icon: ':x:'
-    path: graph/tree_walk_generating_function.hpp
-    title: graph/tree_walk_generating_function.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/tree_walk_gf.test.cpp
-    title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2258.test.cpp
-    title: test/3_yukicoder/2258.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2587.test.cpp
-    title: test/3_yukicoder/2587.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2587_2.test.cpp
-    title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex2.test.cpp
-    title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc351g.test.cpp
-    title: test/5_atcoder/abc351g.test.cpp
-  _isVerificationFailed: true
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links:
-    - https://atcoder.jp/contests/abc351/editorial/9910
+    links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
@@ -245,67 +214,73 @@ data:
     \     auto [h3, k3] = POP(stack);\n          merge_last_two(), stack.eb(h3, k3);\n\
     \        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two();\
     \ }\n        else break;\n      }\n    }\n    while (len(stack) >= 2) { merge_last_two();\
-    \ }\n    return POP(stack);\n  }\n};\n"
-  code: "#include \"graph/tree.hpp\"\n\n/*\n\u53C2\u8003 joitour tatyam\n\u30AF\u30E9\
-    \u30B9\u30BF\u306F\u6839\u304C virtual \u306A\u3082\u306E\u306E\u307F\u3067\u3042\
-    \u308B\u3088\u3046\u306A\u7C21\u6613\u7248\nN \u500B\u306E (\u9802+\u8FBA) \u3092\
-    \u30DE\u30FC\u30B8\u3057\u3066\u3044\u3063\u3066\uFF0C\u6728\u5168\u4F53\uFF0B\
-    \u6839\u304B\u3089\u89AA\u3078\u306E\u8FBA\u3068\u3059\u308B\uFF0E\nsingle(v)\
-    \ : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\
-    \u30B9\u30BF\nrake(L,R) : L \u306E boundary \u3092\u7DAD\u6301\ncompress(L,R)\
-    \  (top-down) \u9806\u306B x,y\n*/\ntemplate <typename TREE>\nstruct Static_TopTree\
-    \ {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B; // A, B boundary\
-    \ (top-down)\n  vc<bool> is_compress;\n\n  Static_TopTree(TREE &tree) : tree(tree)\
-    \ { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N, -1), lch.assign(N,\
-    \ -1), rch.assign(N, -1), A.assign(N, -1), B.assign(N, -1), is_compress.assign(N,\
-    \ 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n\
-    \    assert(len(par) == 2 * N - 1);\n  }\n\nprivate:\n  int new_node(int l, int\
-    \ r, int a, int b, bool c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l),\
-    \ rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n\
-    \    return v;\n  }\n\n  // height, node idx\n  // compress \u53C2\u8003\uFF1A\
-    https://atcoder.jp/contests/abc351/editorial/9910\n  // \u305F\u3060\u3057 heavy\
-    \ path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\u8003\u616E\u3057\u306A\u3044\
-    \n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v] == v);\n    auto\
-    \ path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n    stack.eb(0,\
-    \ path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto [h2, k2] =\
-    \ POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1, h2) +\
-    \ 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
-    \ {\n      pqg<pair<int, int>> que;\n      int k = path[i];\n      que.emplace(0,\
-    \ k);\n      for (auto &c: tree.collect_light(path[i - 1])) { que.emplace(build_dfs(c));\
-    \ }\n      while (len(que) >= 2) {\n        auto [h1, i1] = POP(que);\n      \
-    \  auto [h2, i2] = POP(que);\n        if (i2 == k) swap(i1, i2);\n        int\
-    \ i3 = new_node(i1, i2, A[i1], B[i1], false);\n        if (k == i1) k = i3;\n\
-    \        que.emplace(max(h1, h2) + 1, i3);\n      }\n      stack.eb(POP(que));\n\
-    \n      while (1) {\n        int n = len(stack);\n        if (n >= 3 && (stack[n\
-    \ - 3].fi == stack[n - 2].fi || stack[n - 3].fi <= stack[n - 1].fi)) {\n     \
-    \     auto [h3, k3] = POP(stack);\n          merge_last_two(), stack.eb(h3, k3);\n\
-    \        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two();\
-    \ }\n        else break;\n      }\n    }\n    while (len(stack) >= 2) { merge_last_two();\
-    \ }\n    return POP(stack);\n  }\n};"
+    \ }\n    return POP(stack);\n  }\n};\n#line 2 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
+    \n\n/*\nrake: (a<-b], (a<-c] -> (a<-b].\nrake2: (a->b], (a<-c] -> (a->b].\nrake3:\
+    \ [a<-b), (a<-c] -> [a<-b). typically rake3==rake.\ncompress: (a<-b], (b<-c] ->\
+    \ (a<-c].\ncompress2: [a<-b), [b<-c) -> [a<-c). typically compress2(L,R) == compress(R,L).\n\
+    */\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_Dp\
+    \ {\n  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n\
+    \  vc<pair<X, X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_Dp(TREE&\
+    \ tree, F f) : STT(tree) {\n    assert(tree.V[0] == 0); // \u3055\u307C\u308A\n\
+    \    int N = tree.N;\n    dp.resize(2 * N - 1);\n    dp[0].fi = dp[0].se = TREE_DP::unit();\n\
+    \    FOR(i, 1, N) dp[i] = f(i);\n    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n\
+    \  // v \u3068\u89AA\u3092\u7D50\u3076\u8FBA. \u89AA\u304C virtual / \u5B50\u304C\
+    \ virtual\n  void set(int v, pair<X, X> x) {\n    assert(v > 0);\n    dp[v] =\
+    \ x;\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) update(i);\n  }\n\n\
+    \  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b = TREE_DP::unit(),\
+    \ c = TREE_DP::unit();\n    while (1) {\n      int p = STT.par[i];\n      if (p\
+    \ == -1) break;\n      int l = STT.lch[p], r = STT.rch[p];\n      if (STT.is_compress[p])\
+    \ {\n        if (l == i) {\n          b = TREE_DP::compress(b, dp[r].fi);\n  \
+    \      } else {\n          a = TREE_DP::compress2(dp[l].se, a);\n        }\n \
+    \     } else {\n        if (STT.lch[p] == i) {\n          a = TREE_DP::rake2(a,\
+    \ dp[r].fi);\n        } else {\n          a = TREE_DP::rake3(a, b);\n        \
+    \  c = TREE_DP::compress2(a, c);\n          a = TREE_DP::unit(), b = dp[l].fi;\n\
+    \        }\n      }\n      i = p;\n    }\n    a = TREE_DP::rake3(a, b);\n    return\
+    \ TREE_DP::compress2(a, c);\n  }\n\nprivate:\n  inline void update(int i) {\n\
+    \    auto& [L1, L2] = dp[STT.lch[i]];\n    auto& [R1, R2] = dp[STT.rch[i]];\n\
+    \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(L2,\
+    \ R2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::rake2(L2,\
+    \ R1)};\n    }\n  }\n};\n"
+  code: "#include \"graph/ds/static_toptree.hpp\"\n\n/*\nrake: (a<-b], (a<-c] -> (a<-b].\n\
+    rake2: (a->b], (a<-c] -> (a->b].\nrake3: [a<-b), (a<-c] -> [a<-b). typically rake3==rake.\n\
+    compress: (a<-b], (b<-c] -> (a<-c].\ncompress2: [a<-b), [b<-c) -> [a<-c). typically\
+    \ compress2(L,R) == compress(R,L).\n*/\ntemplate <typename TREE, typename TREE_DP>\n\
+    struct Dynamic_Rerooting_Tree_Dp {\n  using X = typename TREE_DP::value_type;\n\
+    \  Static_TopTree<TREE> STT;\n  vc<pair<X, X>> dp;\n\n  template <typename F>\n\
+    \  Dynamic_Rerooting_Tree_Dp(TREE& tree, F f) : STT(tree) {\n    assert(tree.V[0]\
+    \ == 0); // \u3055\u307C\u308A\n    int N = tree.N;\n    dp.resize(2 * N - 1);\n\
+    \    dp[0].fi = dp[0].se = TREE_DP::unit();\n    FOR(i, 1, N) dp[i] = f(i);\n\
+    \    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  // v \u3068\u89AA\u3092\u7D50\u3076\
+    \u8FBA. \u89AA\u304C virtual / \u5B50\u304C virtual\n  void set(int v, pair<X,\
+    \ X> x) {\n    assert(v > 0);\n    dp[v] = x;\n    for (int i = STT.par[v]; i\
+    \ != -1; i = STT.par[i]) update(i);\n  }\n\n  X prod_all(int v) {\n    int i =\
+    \ v;\n    X a = dp[i].se, b = TREE_DP::unit(), c = TREE_DP::unit();\n    while\
+    \ (1) {\n      int p = STT.par[i];\n      if (p == -1) break;\n      int l = STT.lch[p],\
+    \ r = STT.rch[p];\n      if (STT.is_compress[p]) {\n        if (l == i) {\n  \
+    \        b = TREE_DP::compress(b, dp[r].fi);\n        } else {\n          a =\
+    \ TREE_DP::compress2(dp[l].se, a);\n        }\n      } else {\n        if (STT.lch[p]\
+    \ == i) {\n          a = TREE_DP::rake2(a, dp[r].fi);\n        } else {\n    \
+    \      a = TREE_DP::rake3(a, b);\n          c = TREE_DP::compress2(a, c);\n  \
+    \        a = TREE_DP::unit(), b = dp[l].fi;\n        }\n      }\n      i = p;\n\
+    \    }\n    a = TREE_DP::rake3(a, b);\n    return TREE_DP::compress2(a, c);\n\
+    \  }\n\nprivate:\n  inline void update(int i) {\n    auto& [L1, L2] = dp[STT.lch[i]];\n\
+    \    auto& [R1, R2] = dp[STT.rch[i]];\n    if (STT.is_compress[i]) {\n      dp[i]\
+    \ = {TREE_DP::compress(L1, R1), TREE_DP::compress2(L2, R2)};\n    } else {\n \
+    \     dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::rake2(L2, R1)};\n    }\n  }\n};\n"
   dependsOn:
+  - graph/ds/static_toptree.hpp
   - graph/tree.hpp
   - graph/base.hpp
   isVerificationFile: false
-  path: graph/ds/static_toptree.hpp
-  requiredBy:
-  - graph/count_matching_on_tree.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - graph/tree_walk_generating_function.hpp
-  - graph/ds/dynamic_rerooting_tree_dp.hpp
-  - graph/ds/dynamic_tree_dp.hpp
-  timestamp: '2024-09-03 08:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc351g.test.cpp
-  - test/5_atcoder/abc269ex2.test.cpp
-  - test/3_yukicoder/2258.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-documentation_of: graph/ds/static_toptree.hpp
+  path: graph/ds/dynamic_rerooting_tree_dp.hpp
+  requiredBy: []
+  timestamp: '2024-09-03 12:42:01+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: graph/ds/dynamic_rerooting_tree_dp.hpp
 layout: document
 redirect_from:
-- /library/graph/ds/static_toptree.hpp
-- /library/graph/ds/static_toptree.hpp.html
-title: graph/ds/static_toptree.hpp
+- /library/graph/ds/dynamic_rerooting_tree_dp.hpp
+- /library/graph/ds/dynamic_rerooting_tree_dp.hpp.html
+title: graph/ds/dynamic_rerooting_tree_dp.hpp
 ---

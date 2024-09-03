@@ -1066,6 +1066,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/dual_tree_monoid.hpp
       title: graph/ds/dual_tree_monoid.hpp
+    - icon: ':warning:'
+      path: graph/ds/dynamic_rerooting_tree_dp.hpp
+      title: graph/ds/dynamic_rerooting_tree_dp.hpp
     - icon: ':x:'
       path: graph/ds/dynamic_tree_dp.hpp
       title: graph/ds/dynamic_tree_dp.hpp
