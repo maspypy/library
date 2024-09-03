@@ -33,10 +33,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237ex.test.cpp
     title: test/5_atcoder/abc237ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc279b.test.cpp
     title: test/5_atcoder/abc279b.test.cpp
   - icon: ':x:'

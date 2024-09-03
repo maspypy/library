@@ -600,7 +600,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/binary_optimization.hpp
       title: flow/binary_optimization.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: flow/bipartite.hpp
       title: flow/bipartite.hpp
     - icon: ':heavy_check_mark:'
@@ -749,7 +749,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/bipartite_edge_coloring.hpp
       title: graph/bipartite_edge_coloring.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/bipartite_vertex_coloring.hpp
       title: graph/bipartite_vertex_coloring.hpp
     - icon: ':warning:'
@@ -767,7 +767,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/centroid_decomposition_old.hpp
       title: graph/centroid_decomposition_old.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
       title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -836,7 +836,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/incremental_scc.hpp
       title: graph/incremental_scc.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':heavy_check_mark:'
@@ -902,7 +902,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/steiner_tree.hpp
       title: graph/steiner_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/strongly_connected_component.hpp
       title: graph/strongly_connected_component.hpp
     - icon: ':warning:'
@@ -929,7 +929,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/tree_walk_generating_function.hpp
       title: graph/tree_walk_generating_function.hpp
     - icon: ':heavy_check_mark:'
@@ -1105,7 +1105,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/rolling_hash_on_tree.hpp
       title: graph/ds/rolling_hash_on_tree.hpp
-    - icon: ':question:'
+    - icon: ':x:'
       path: graph/ds/static_toptree.hpp
       title: graph/ds/static_toptree.hpp
     - icon: ':heavy_check_mark:'
@@ -4083,7 +4083,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2583.test.cpp
       title: test/3_yukicoder/2583.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2587.test.cpp
       title: test/3_yukicoder/2587.test.cpp
     - icon: ':x:'
@@ -4573,7 +4573,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc236h.test.cpp
       title: test/5_atcoder/abc236h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc237ex.test.cpp
       title: test/5_atcoder/abc237ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4675,7 +4675,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc276_g_2.test.cpp
       title: test/5_atcoder/abc276_g_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc279b.test.cpp
       title: test/5_atcoder/abc279b.test.cpp
     - icon: ':heavy_check_mark:'

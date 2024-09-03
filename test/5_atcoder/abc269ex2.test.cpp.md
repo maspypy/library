@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':question:'
@@ -412,16 +412,16 @@ data:
     \u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y,\
     \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
     \ (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
-    \  template <typename Data, typename F1, typename F2, typename F3>\n  Data tree_dp(F1\
-    \ single, F2 rake, F3 compress) {\n    auto dfs = [&](auto &dfs, int k) -> Data\
-    \ {\n      if (0 <= k && k < N) return single(k);\n      Data x = dfs(dfs, lch[k]),\
-    \ y = dfs(dfs, rch[k]);\n      if (is_compress[k]) {\n        assert(B[lch[k]]\
-    \ == A[rch[k]]);\n        return compress(x, y, A[lch[k]], B[lch[k]], B[rch[k]]);\n\
-    \      }\n      return rake(x, y, A[k], B[k]);\n    };\n    return dfs(dfs, 2\
-    \ * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool\
-    \ c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a),\
-    \ B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n\
-    \  // height, node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
+    \  template <typename TREE_DP, typename F>\n  TREE_DP::value_type tree_dp(F single)\
+    \ {\n    using Data = typename TREE_DP::value_type;\n    auto dfs = [&](auto &dfs,\
+    \ int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n      Data x\
+    \ = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k]) {\n   \
+    \     assert(B[lch[k]] == A[rch[k]]);\n        return TREE_DP::compress(x, y);\n\
+    \      }\n      return TREE_DP::rake(x, y);\n    };\n    return dfs(dfs, 2 * N\
+    \ - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool c) {\n\
+    \    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b),\
+    \ is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n  // height,\
+    \ node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
     \  // \u305F\u3060\u3057 heavy path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\
     \u8003\u616E\u3057\u306A\u3044\n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v]\
     \ == v);\n    auto path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n\
@@ -715,49 +715,44 @@ data:
     \ convolution_karatsuba<mint>(a, b);\r\n    return convolution_ntt(a, b);\r\n\
     \  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\r\n\
     \  return convolution_garner(a, b);\r\n}\r\n#line 8 \"test/5_atcoder/abc269ex2.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n\
+    \n\nusing mint = modint998;\n\nusing poly = vc<mint>;\nusing Data = pair<poly,\
+    \ poly>;\n\n/*\nempty \u3082\u542B\u3081\u3066\nheavy path \u4E0A\u306E\u70B9\u306A\
+    \u3057\u30FB\u3042\u308A\n*/\n\nstruct TREE_DP {\n  using value_type = Data;\n\
+    \  static Data rake(Data &L, Data &R) {\n    auto &[f1, g1] = L;\n    auto &[f2,\
+    \ g2] = R;\n    if (len(f2) < len(g2)) swap(f2, g2);\n    FOR(i, len(g2)) f2[i]\
+    \ += g2[i];\n    f1 = convolution(f1, f2);\n    g1 = convolution(g1, f2);\n  \
+    \  return {f1, g1};\n  }\n  static Data compress(Data &L, Data &R) {\n    auto\
+    \ &[f1, g1] = L;\n    auto &[f2, g2] = R;\n    poly f = convolution<mint>(f1,\
+    \ f2);\n    // g1(x) + f1(x)g2(x)\n    poly g = convolution<mint>(f1, g2);\n \
+    \   if (len(g) < len(g1)) swap(g, g1);\n    FOR(i, len(g1)) g[i] += g1[i];\n \
+    \   return {f, g};\n  }\n};\n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n\
     \  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)>\
-    \ tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n  /*\n  heavy path \u4E0A\
-    \u306E\u70B9\u306A\u3057\u30FB\u3042\u308A\n  */\n  using poly = vc<mint>;\n \
-    \ using Data = pair<poly, poly>;\n\n  auto single = [&](int v) -> Data {\n   \
-    \ poly f = {1};\n    poly g = {0, 1};\n    return {f, g};\n  };\n\n  auto rake\
-    \ = [&](Data &x, Data &y, int u, int v) -> Data {\n    auto &[f1, g1] = x;\n \
-    \   auto &[f2, g2] = y;\n    if (v == -1) {\n      if (len(f1) < len(g1)) swap(f1,\
-    \ g1);\n      if (len(f2) < len(g2)) swap(f2, g2);\n      FOR(i, len(g1)) f1[i]\
-    \ += g1[i];\n      FOR(i, len(g2)) f2[i] += g2[i];\n      poly f = convolution<mint>(f1,\
-    \ f2);\n      return {f, {}};\n    }\n    if (len(f2) < len(g2)) swap(f2, g2);\n\
-    \    FOR(i, len(g2)) f2[i] += g2[i];\n    poly g = f2;\n    g.insert(g.begin(),\
-    \ 0);\n    return {f2, g};\n  };\n\n  auto compress = [&](Data &x, Data &y, int\
-    \ a, int b, int c) -> Data {\n    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n\
-    \    poly f = convolution<mint>(f1, f2);\n    // g1(x) + f1(x)g2(x)\n    poly\
-    \ g = convolution<mint>(f1, g2);\n    FOR(i, len(g1)) g[i] += g1[i];\n\n    return\
-    \ {f, g};\n  };\n\n  auto [f, g] = STT.tree_dp<Data>(single, rake, compress);\n\
-    \  vc<mint> ANS(N + 1);\n  FOR(i, len(f)) ANS[i] += f[i];\n  FOR(i, len(g)) ANS[i]\
-    \ += g[i];\n  FOR(i, 1, N + 1) print(ANS[i]);\n}\n\nsigned main() {\n  int T =\
-    \ 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n\n  auto single = [&](int\
+    \ v) -> Data {\n    poly f = {1};\n    poly g = {0, 1};\n    return {f, g};\n\
+    \  };\n\n  auto [f, g] = STT.tree_dp<TREE_DP>(single);\n  vc<mint> ANS(N + 1);\n\
+    \  FOR(i, len(f)) ANS[i] += f[i];\n  FOR(i, len(g)) ANS[i] += g[i];\n  FOR(i,\
+    \ 1, N + 1) print(ANS[i]);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
+    \  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc269/tasks/abc269_Ex\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/static_toptree.hpp\"\
-    \n#include \"poly/convolution.hpp\"\n\nusing mint = modint998;\n\nvoid solve()\
-    \ {\n  LL(N);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p,\
-    \ v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Static_TopTree<decltype(tree)>\
-    \ STT(tree);\n  /*\n  heavy path \u4E0A\u306E\u70B9\u306A\u3057\u30FB\u3042\u308A\
-    \n  */\n  using poly = vc<mint>;\n  using Data = pair<poly, poly>;\n\n  auto single\
-    \ = [&](int v) -> Data {\n    poly f = {1};\n    poly g = {0, 1};\n    return\
-    \ {f, g};\n  };\n\n  auto rake = [&](Data &x, Data &y, int u, int v) -> Data {\n\
-    \    auto &[f1, g1] = x;\n    auto &[f2, g2] = y;\n    if (v == -1) {\n      if\
-    \ (len(f1) < len(g1)) swap(f1, g1);\n      if (len(f2) < len(g2)) swap(f2, g2);\n\
-    \      FOR(i, len(g1)) f1[i] += g1[i];\n      FOR(i, len(g2)) f2[i] += g2[i];\n\
-    \      poly f = convolution<mint>(f1, f2);\n      return {f, {}};\n    }\n   \
-    \ if (len(f2) < len(g2)) swap(f2, g2);\n    FOR(i, len(g2)) f2[i] += g2[i];\n\
-    \    poly g = f2;\n    g.insert(g.begin(), 0);\n    return {f2, g};\n  };\n\n\
-    \  auto compress = [&](Data &x, Data &y, int a, int b, int c) -> Data {\n    auto\
-    \ &[f1, g1] = x;\n    auto &[f2, g2] = y;\n    poly f = convolution<mint>(f1,\
-    \ f2);\n    // g1(x) + f1(x)g2(x)\n    poly g = convolution<mint>(f1, g2);\n \
-    \   FOR(i, len(g1)) g[i] += g1[i];\n\n    return {f, g};\n  };\n\n  auto [f, g]\
-    \ = STT.tree_dp<Data>(single, rake, compress);\n  vc<mint> ANS(N + 1);\n  FOR(i,\
-    \ len(f)) ANS[i] += f[i];\n  FOR(i, len(g)) ANS[i] += g[i];\n  FOR(i, 1, N + 1)\
-    \ print(ANS[i]);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    \n#include \"poly/convolution.hpp\"\n\nusing mint = modint998;\n\nusing poly =\
+    \ vc<mint>;\nusing Data = pair<poly, poly>;\n\n/*\nempty \u3082\u542B\u3081\u3066\
+    \nheavy path \u4E0A\u306E\u70B9\u306A\u3057\u30FB\u3042\u308A\n*/\n\nstruct TREE_DP\
+    \ {\n  using value_type = Data;\n  static Data rake(Data &L, Data &R) {\n    auto\
+    \ &[f1, g1] = L;\n    auto &[f2, g2] = R;\n    if (len(f2) < len(g2)) swap(f2,\
+    \ g2);\n    FOR(i, len(g2)) f2[i] += g2[i];\n    f1 = convolution(f1, f2);\n \
+    \   g1 = convolution(g1, f2);\n    return {f1, g1};\n  }\n  static Data compress(Data\
+    \ &L, Data &R) {\n    auto &[f1, g1] = L;\n    auto &[f2, g2] = R;\n    poly f\
+    \ = convolution<mint>(f1, f2);\n    // g1(x) + f1(x)g2(x)\n    poly g = convolution<mint>(f1,\
+    \ g2);\n    if (len(g) < len(g1)) swap(g, g1);\n    FOR(i, len(g1)) g[i] += g1[i];\n\
+    \    return {f, g};\n  }\n};\n\nvoid solve() {\n  LL(N);\n  Graph<int, 1> G(N);\n\
+    \  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)>\
+    \ tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n\n  auto single = [&](int\
+    \ v) -> Data {\n    poly f = {1};\n    poly g = {0, 1};\n    return {f, g};\n\
+    \  };\n\n  auto [f, g] = STT.tree_dp<TREE_DP>(single);\n  vc<mint> ANS(N + 1);\n\
+    \  FOR(i, len(f)) ANS[i] += f[i];\n  FOR(i, len(g)) ANS[i] += g[i];\n  FOR(i,\
+    \ 1, N + 1) print(ANS[i]);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
+    \  FOR(T) solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -776,7 +771,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc269ex2.test.cpp
   requiredBy: []
-  timestamp: '2024-09-03 13:10:55+09:00'
+  timestamp: '2024-09-03 13:58:08+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc269ex2.test.cpp
