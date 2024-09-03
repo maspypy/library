@@ -68,8 +68,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
-  - test/1_mytest/floor_sum_of_polynomial.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
+  - test/1_mytest/floor_sum_of_polynomial.test.cpp
 documentation_of: alg/monoid/monoid_for_floor_sum.hpp
 layout: document
 redirect_from:

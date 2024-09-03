@@ -56,18 +56,18 @@ data:
   isVerificationFile: false
   path: convex/monotone_minima.hpp
   requiredBy:
+  - convex/maxplus_convolution.hpp
   - convex/minplus_convolution_of_triples.hpp
   - convex/minplus_convolution.hpp
-  - convex/maxplus_convolution.hpp
   timestamp: '2023-07-06 21:02:18+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc348g.test.cpp
-  - test/1_mytest/minplus_conv_triple.test.cpp
-  - test/1_mytest/minplus_convex.test.cpp
-  - test/1_mytest/maxplus_concave.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
   - test/2_library_checker/convolution/minplus_convolution_conv_arb.test.cpp
+  - test/1_mytest/minplus_convex.test.cpp
+  - test/1_mytest/maxplus_concave.test.cpp
+  - test/1_mytest/minplus_conv_triple.test.cpp
 documentation_of: convex/monotone_minima.hpp
 layout: document
 redirect_from:

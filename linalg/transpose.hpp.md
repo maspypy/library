@@ -31,13 +31,13 @@ data:
   isVerificationFile: false
   path: linalg/transpose.hpp
   requiredBy:
-  - other/sliding_puzzle_solver.hpp
   - poly/coef_of_rational_fps_2d.hpp
+  - other/sliding_puzzle_solver.hpp
   timestamp: '2023-10-24 15:46:44+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2108.test.cpp
   - test/5_atcoder/agc058d.test.cpp
+  - test/3_yukicoder/2108.test.cpp
 documentation_of: linalg/transpose.hpp
 layout: document
 redirect_from:

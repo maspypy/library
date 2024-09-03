@@ -104,17 +104,17 @@ data:
   timestamp: '2023-10-24 14:53:54+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1303.test.cpp
   - test/5_atcoder/abc336g.test.cpp
-  - test/1_mytest/blackbox_solve_linear.test.cpp
-  - test/2_library_checker/linear_algebra/matrix_det.test.cpp
-  - test/2_library_checker/linear_algebra/det_mod.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/3_yukicoder/1303.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
-  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/linear_algebra/det_mod.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_det.test.cpp
+  - test/1_mytest/blackbox_solve_linear.test.cpp
 documentation_of: linalg/det.hpp
 layout: document
 redirect_from:

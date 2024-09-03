@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -453,15 +453,15 @@ data:
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
-  - poly/prefix_sum_of_polynomial.hpp
   - seq/famous/riemann_zeta_even.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1357.test.cpp
-  - test/1_mytest/faulhaber.test.cpp
   - test/2_library_checker/number_theory/bernoulli.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:

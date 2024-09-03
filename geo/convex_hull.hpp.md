@@ -151,18 +151,18 @@ data:
   path: geo/convex_hull.hpp
   requiredBy:
   - geo/furthest_pair.hpp
-  - geo/convex_polygon.hpp
   - geo/minkowski_sum.hpp
+  - geo/convex_polygon.hpp
   - convex/fenchel.hpp
   timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/arc130f.test.cpp
+  - test/2_library_checker/geometry/furthest_pair.test.cpp
+  - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/max_dot.test.cpp
-  - test/2_library_checker/geometry/furthest_pair.test.cpp
-  - test/2_library_checker/geometry/static_convex_hull.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

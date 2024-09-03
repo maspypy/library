@@ -148,8 +148,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc218g.test.cpp
-  - test/1_mytest/binary_trie.test.cpp
   - test/2_library_checker/data_structure/set_xor_min.test.cpp
+  - test/1_mytest/binary_trie.test.cpp
 documentation_of: ds/binary_trie.hpp
 layout: document
 redirect_from:

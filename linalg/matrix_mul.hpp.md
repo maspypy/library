@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
@@ -228,32 +228,32 @@ data:
   path: linalg/matrix_mul.hpp
   requiredBy:
   - random/random_matrix.hpp
+  - seq/kth_term_of_p_recursive.hpp
+  - poly/sparse_exp_of_div.hpp
   - poly/prefix_product_of_poly.hpp
   - poly/from_log_differentiation.hpp
-  - poly/sparse_exp_of_div.hpp
-  - seq/kth_term_of_p_recursive.hpp
   - linalg/matrix_pow.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1750.test.cpp
-  - test/3_yukicoder/1810.test.cpp
-  - test/3_yukicoder/1303.test.cpp
-  - test/3_yukicoder/502_2.test.cpp
-  - test/3_yukicoder/426.test.cpp
-  - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/1080_2.test.cpp
-  - test/3_yukicoder/2166.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
   - test/5_atcoder/abc222h_2.test.cpp
   - test/5_atcoder/abc276_g.test.cpp
-  - test/1_mytest/min_poly.test.cpp
-  - test/1_mytest/factorial_998.test.cpp
-  - test/1_mytest/blackbox_solve_linear.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
+  - test/3_yukicoder/426.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/1750.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1810.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/1_mytest/blackbox_solve_linear.test.cpp
+  - test/1_mytest/min_poly.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
 documentation_of: linalg/matrix_mul.hpp
 layout: document
 redirect_from:

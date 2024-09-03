@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc269ex2.test.cpp
     title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc351g.test.cpp
     title: test/5_atcoder/abc351g.test.cpp
   _isVerificationFailed: true
@@ -308,19 +308,19 @@ data:
   isVerificationFile: false
   path: graph/ds/static_toptree.hpp
   requiredBy:
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/count_matching_on_tree.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/tree_walk_generating_function.hpp
-  - graph/ds/dynamic_tree_dp.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
+  - graph/ds/dynamic_tree_dp.hpp
   timestamp: '2024-09-03 14:57:04+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2258.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/5_atcoder/abc351g.test.cpp
   - test/5_atcoder/abc269ex2.test.cpp
+  - test/3_yukicoder/2258.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document

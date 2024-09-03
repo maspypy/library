@@ -1069,7 +1069,7 @@ data:
     - icon: ':warning:'
       path: graph/ds/dynamic_rerooting_tree_dp.hpp
       title: graph/ds/dynamic_rerooting_tree_dp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/dynamic_tree_dp.hpp
       title: graph/ds/dynamic_tree_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -1340,13 +1340,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
       path: mod/modint61.hpp
       title: mod/modint61.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/modint_common.hpp
       title: mod/modint_common.hpp
     - icon: ':heavy_check_mark:'
@@ -4801,7 +4801,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350g2.test.cpp
       title: test/5_atcoder/abc350g2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc351g.test.cpp
       title: test/5_atcoder/abc351g.test.cpp
     - icon: ':heavy_check_mark:'

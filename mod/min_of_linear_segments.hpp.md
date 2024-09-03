@@ -75,17 +75,17 @@ data:
   isVerificationFile: false
   path: mod/min_of_linear_segments.hpp
   requiredBy:
-  - mod/min_of_linear.hpp
   - mod/max_of_linear_segments.hpp
   - mod/first_mod_range_of_linear.hpp
+  - mod/min_of_linear.hpp
   timestamp: '2022-08-16 06:06:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2259.test.cpp
-  - test/1_mytest/first_mod_range_of_linear.test.cpp
+  - test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
   - test/1_mytest/max_of_linear_segments.test.cpp
   - test/1_mytest/min_of_linear_segments.test.cpp
-  - test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
+  - test/1_mytest/first_mod_range_of_linear.test.cpp
 documentation_of: mod/min_of_linear_segments.hpp
 layout: document
 redirect_from:

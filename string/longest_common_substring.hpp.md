@@ -157,8 +157,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/arc151_e.test.cpp
-  - test/1_mytest/longest_common_substr.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
 documentation_of: string/longest_common_substring.hpp
 layout: document
 redirect_from:

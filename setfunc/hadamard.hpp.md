@@ -43,9 +43,9 @@ data:
   timestamp: '2023-09-18 22:09:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_atcoder/abc212h.test.cpp
   - test/3_yukicoder/1142.test.cpp
   - test/3_yukicoder/1753.test.cpp
-  - test/5_atcoder/abc212h.test.cpp
   - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
 documentation_of: setfunc/hadamard.hpp
 layout: document

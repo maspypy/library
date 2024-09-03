@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc351/tasks/abc351_g
@@ -509,31 +509,30 @@ data:
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 7 \"test/5_atcoder/abc351g.test.cpp\"\n\nusing mint = modint998;\n\nusing\
-    \ Data = pair<mint, mint>;\n\nvoid solve() {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n\
-    \  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  VEC(mint, A, N);\n\
-    \  G.build();\n  Tree<decltype(G)> tree(G);\n\n  Dynamic_Tree_Dp<decltype(tree),\
-    \ Data> X(tree);\n  auto single = [&](int v) -> Data { return {1, A[v]}; };\n\
-    \  auto rake = [&](Data x, Data y, int u, int v) -> Data {\n    mint c = y.se;\n\
-    \    auto [a, b] = x;\n    return {a * c, b * c};\n  };\n  auto compress = [&](Data\
-    \ x, Data y, int u, int v, int w) -> Data {\n    auto [a, b] = x;\n    auto [c,\
-    \ d] = y;\n    return {a * c, a * d + b};\n  };\n  X.init_dp(single, rake, compress);\n\
-    \n  FOR(Q) {\n    INT(v, x);\n    --v;\n    A[v] = x;\n    Data a = X.recalc(v,\
-    \ single, rake, compress);\n    print(a.se);\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \ Data = pair<mint, mint>;\n\nstruct DP {\n  using value_type = Data;\n  static\
+    \ Data rake(Data& L, Data& R) {\n    mint c = R.se;\n    auto [a, b] = L;\n  \
+    \  return {a * c, b * c};\n  }\n  static Data compress(Data& L, Data& R) {\n \
+    \   auto [a, b] = L;\n    auto [c, d] = R;\n    return {a * c, a * d + b};\n \
+    \ }\n};\n\nvoid solve() {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N)\
+    \ {\n    INT(p);\n    G.add(--p, v);\n  }\n  VEC(mint, A, N);\n  G.build();\n\
+    \  Tree<decltype(G)> tree(G);\n\n  auto single = [&](int v) -> Data { return {1,\
+    \ A[v]}; };\n  Dynamic_Tree_Dp<decltype(tree), DP> X(tree, single);\n  FOR(Q)\
+    \ {\n    INT(v, x);\n    --v;\n    A[v] = x;\n    X.set(v, single(v));\n    auto\
+    \ ans = X.prod_all();\n    print(ans.se);\n  }\n}\n\nsigned main() {\n  solve();\n\
     \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc351/tasks/abc351_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/dynamic_tree_dp.hpp\"\
     \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nusing Data = pair<mint,\
-    \ mint>;\n\nvoid solve() {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N)\
-    \ {\n    INT(p);\n    G.add(--p, v);\n  }\n  VEC(mint, A, N);\n  G.build();\n\
-    \  Tree<decltype(G)> tree(G);\n\n  Dynamic_Tree_Dp<decltype(tree), Data> X(tree);\n\
-    \  auto single = [&](int v) -> Data { return {1, A[v]}; };\n  auto rake = [&](Data\
-    \ x, Data y, int u, int v) -> Data {\n    mint c = y.se;\n    auto [a, b] = x;\n\
-    \    return {a * c, b * c};\n  };\n  auto compress = [&](Data x, Data y, int u,\
-    \ int v, int w) -> Data {\n    auto [a, b] = x;\n    auto [c, d] = y;\n    return\
-    \ {a * c, a * d + b};\n  };\n  X.init_dp(single, rake, compress);\n\n  FOR(Q)\
-    \ {\n    INT(v, x);\n    --v;\n    A[v] = x;\n    Data a = X.recalc(v, single,\
-    \ rake, compress);\n    print(a.se);\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}"
+    \ mint>;\n\nstruct DP {\n  using value_type = Data;\n  static Data rake(Data&\
+    \ L, Data& R) {\n    mint c = R.se;\n    auto [a, b] = L;\n    return {a * c,\
+    \ b * c};\n  }\n  static Data compress(Data& L, Data& R) {\n    auto [a, b] =\
+    \ L;\n    auto [c, d] = R;\n    return {a * c, a * d + b};\n  }\n};\n\nvoid solve()\
+    \ {\n  LL(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p,\
+    \ v);\n  }\n  VEC(mint, A, N);\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n\
+    \  auto single = [&](int v) -> Data { return {1, A[v]}; };\n  Dynamic_Tree_Dp<decltype(tree),\
+    \ DP> X(tree, single);\n  FOR(Q) {\n    INT(v, x);\n    --v;\n    A[v] = x;\n\
+    \    X.set(v, single(v));\n    auto ans = X.prod_all();\n    print(ans.se);\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -546,8 +545,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc351g.test.cpp
   requiredBy: []
-  timestamp: '2024-09-03 14:57:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-03 15:35:17+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc351g.test.cpp
 layout: document

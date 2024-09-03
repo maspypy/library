@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -531,20 +531,20 @@ data:
   isVerificationFile: false
   path: poly/prefix_product_of_poly.hpp
   requiredBy:
-  - poly/from_log_differentiation.hpp
-  - poly/sparse_exp_of_div.hpp
   - seq/kth_term_of_p_recursive.hpp
+  - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
-  - test/5_atcoder/abc222h_2.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
-  - test/1_mytest/factorial_998.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp
 layout: document
 redirect_from:

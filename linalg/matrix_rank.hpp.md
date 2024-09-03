@@ -59,11 +59,11 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1774.test.cpp
-  - test/1_mytest/tutte.test.cpp
-  - test/1_mytest/matching.test.cpp
-  - test/1_mytest/matching_line_graph.test.cpp
-  - test/2_library_checker/linear_algebra/solve_linear.test.cpp
   - test/2_library_checker/graph/general_matching.test.cpp
+  - test/2_library_checker/linear_algebra/solve_linear.test.cpp
+  - test/1_mytest/matching.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/matching_line_graph.test.cpp
 documentation_of: linalg/matrix_rank.hpp
 layout: document
 redirect_from:
