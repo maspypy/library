@@ -5,12 +5,10 @@
 // ループなし：1600ms(N=10^5)
 // ループあり：3300ms(N=10^5)
 template <bool ALLOW_LOOP, typename mint, typename F>
-pair<vc<mint>, vc<mint>> tree_walk_generating_function(Graph<int, 0>& G, int s,
-                                                       int t, F weight) {
+pair<vc<mint>, vc<mint>> tree_walk_generating_function(Graph<int, 0>& G, int s, int t, F weight) {
   int N = G.N;
   // 分母
-  auto f = characteristic_poly_of_tree_adjacency_matrix<ALLOW_LOOP, mint>(
-      G, weight);
+  auto f = characteristic_poly_of_tree_adjacency_matrix<ALLOW_LOOP, mint>(G, weight);
   // 分子
   // (s,t) パスに沿って成分をかけたものの符号調整 + 他の成分
   using poly = vc<mint>;
@@ -35,8 +33,7 @@ pair<vc<mint>, vc<mint>> tree_walk_generating_function(Graph<int, 0>& G, int s,
     if (on_path[r] || uf[r] != r) continue;
     vc<int>& V = comp[r];
     Graph<int, 0> H = G.rearrange(V);
-    poly f = characteristic_poly_of_tree_adjacency_matrix<ALLOW_LOOP, mint>(
-        H, [&](int i, int j) -> mint { return weight(V[i], V[j]); });
+    poly f = characteristic_poly_of_tree_adjacency_matrix<ALLOW_LOOP, mint>(H, [&](int i, int j) -> mint { return weight(V[i], V[j]); });
     polys.eb(f);
   }
   poly B = convolution_all<mint>(polys);
