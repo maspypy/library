@@ -11,10 +11,13 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+    title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -285,8 +288,9 @@ data:
   path: graph/ds/dynamic_rerooting_tree_dp.hpp
   requiredBy: []
   timestamp: '2024-09-03 14:57:04+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
 documentation_of: graph/ds/dynamic_rerooting_tree_dp.hpp
 layout: document
 redirect_from:

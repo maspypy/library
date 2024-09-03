@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -510,6 +510,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+    title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
@@ -1221,6 +1224,7 @@ data:
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/2507.test.cpp
   - test/2_library_checker/tree/lca.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp

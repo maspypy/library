@@ -769,6 +769,9 @@ data:
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+    title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2858,6 +2861,7 @@ data:
   - test/3_yukicoder/1755.test.cpp
   - test/2_library_checker/tree/lca.test.cpp
   - test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp

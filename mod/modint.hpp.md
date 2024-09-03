@@ -895,6 +895,9 @@ data:
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+    title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1799,6 +1802,7 @@ data:
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/2062.test.cpp
   - test/3_yukicoder/1755.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
