@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':question:'
@@ -224,16 +224,16 @@ data:
     \u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y,\
     \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
     \ (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
-    \  template <typename TREE_DP, typename F>\n  TREE_DP::value_type tree_dp(F single)\
-    \ {\n    using Data = typename TREE_DP::value_type;\n    auto dfs = [&](auto &dfs,\
-    \ int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n      Data x\
-    \ = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k]) {\n   \
-    \     assert(B[lch[k]] == A[rch[k]]);\n        return TREE_DP::compress(x, y);\n\
-    \      }\n      return TREE_DP::rake(x, y);\n    };\n    return dfs(dfs, 2 * N\
-    \ - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool c) {\n\
-    \    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b),\
-    \ is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n  // height,\
-    \ node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
+    \  template <typename TREE_DP, typename F>\n  typename TREE_DP::value_type tree_dp(F\
+    \ single) {\n    using Data = typename TREE_DP::value_type;\n    auto dfs = [&](auto\
+    \ &dfs, int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n     \
+    \ Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k])\
+    \ {\n        assert(B[lch[k]] == A[rch[k]]);\n        return TREE_DP::compress(x,\
+    \ y);\n      }\n      return TREE_DP::rake(x, y);\n    };\n    return dfs(dfs,\
+    \ 2 * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool\
+    \ c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a),\
+    \ B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n\
+    \  // height, node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
     \  // \u305F\u3060\u3057 heavy path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\
     \u8003\u616E\u3057\u306A\u3044\n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v]\
     \ == v);\n    auto path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n\
@@ -596,7 +596,7 @@ data:
   isVerificationFile: false
   path: graph/count_matching_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-09-03 13:58:08+09:00'
+  timestamp: '2024-09-03 14:57:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count_matching_on_tree.hpp

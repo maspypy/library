@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':question:'
@@ -44,22 +44,22 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -242,16 +242,16 @@ data:
     \u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\u30B9\u30BF\n  // rake(x, y,\
     \ u, v) uv(top down) \u304C boundary \u306B\u306A\u308B\u3088\u3046\u306B rake\
     \ (maybe v=-1)\n  // compress(x,y,a,b,c)  (top-down) \u9806\u306B (a,b] + (b,c]\n\
-    \  template <typename TREE_DP, typename F>\n  TREE_DP::value_type tree_dp(F single)\
-    \ {\n    using Data = typename TREE_DP::value_type;\n    auto dfs = [&](auto &dfs,\
-    \ int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n      Data x\
-    \ = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k]) {\n   \
-    \     assert(B[lch[k]] == A[rch[k]]);\n        return TREE_DP::compress(x, y);\n\
-    \      }\n      return TREE_DP::rake(x, y);\n    };\n    return dfs(dfs, 2 * N\
-    \ - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool c) {\n\
-    \    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b),\
-    \ is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n  // height,\
-    \ node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
+    \  template <typename TREE_DP, typename F>\n  typename TREE_DP::value_type tree_dp(F\
+    \ single) {\n    using Data = typename TREE_DP::value_type;\n    auto dfs = [&](auto\
+    \ &dfs, int k) -> Data {\n      if (0 <= k && k < N) return single(k);\n     \
+    \ Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k])\
+    \ {\n        assert(B[lch[k]] == A[rch[k]]);\n        return TREE_DP::compress(x,\
+    \ y);\n      }\n      return TREE_DP::rake(x, y);\n    };\n    return dfs(dfs,\
+    \ 2 * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool\
+    \ c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a),\
+    \ B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n\
+    \  // height, node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
     \  // \u305F\u3060\u3057 heavy path \u306E\u9078\u3073\u65B9\u307E\u3067\u306F\
     \u8003\u616E\u3057\u306A\u3044\n  pair<int, int> build_dfs(int v) {\n    assert(tree.head[v]\
     \ == v);\n    auto path = tree.heavy_path_at(v);\n    vc<pair<int, int>> stack;\n\
@@ -575,120 +575,86 @@ data:
     \ convolution_karatsuba<mint>(a, b);\r\n    return convolution_ntt(a, b);\r\n\
     \  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\r\n\
     \  return convolution_garner(a, b);\r\n}\r\n#line 5 \"graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp\"\
-    \n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\u5F0F\u306E reverse\
-    \ \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1AA[i][j]\n// \u5076\
-    \u6570\u6B21\u3060\u3051\u3057\u304B\u51FA\u3066\u3053\u306A\u3044\u306E\u3067\
-    \ loop \u3042\u308A\u3088\u308A\u9AD8\u901F\ntemplate <typename mint, typename\
-    \ F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(\n\
-    \    Graph<int, 0>& G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int,\
-    \ 0>> tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n\n  // u, v \u306F\
-    \u3082\u3046\u8A08\u7B97\u3057\u305F\u304B\n  using Data = array<array<poly, 2>,\
-    \ 2>;\n  auto add = [&](poly& f, poly& g) -> void {\n    if (len(f) < len(g))\
-    \ f.resize(len(g));\n    FOR(i, len(g)) f[i] += g[i];\n  };\n  auto single = [&](int\
-    \ v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n    mint wt = (p ==\
-    \ -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0] = poly{mint(1)};\n\
-    \    X[0][1] = poly{mint(1)};                   // loop\n    if (p != -1) X[1][1]\
-    \ = poly{mint(0), -wt}; // match\n    return X;\n  };\n  auto rake = [&](Data&\
-    \ X, Data& Y, int u, int v) -> Data {\n    Y[0][0].clear(), Y[1][0].clear();\n\
-    \    if (v == -1) {\n      X[0][0].clear(), X[1][0].clear();\n      Data Z;\n\
-    \      poly F00 = convolution<mint>(X[0][1], Y[0][1]);\n      poly F01 = convolution<mint>(X[0][1],\
-    \ Y[1][1]);\n      poly F10 = convolution<mint>(X[1][1], Y[0][1]);\n      add(Z[0][1],\
-    \ F00), add(Z[1][1], F01), add(Z[1][1], F10);\n      return Z;\n    }\n    Data\
-    \ Z;\n    poly &f = Y[0][1], &g = Y[1][1];\n    add(Z[0][0], f), add(Z[1][0],\
-    \ g);\n    add(Z[0][1], f), add(Z[1][1], g);\n    f = convolution<mint>(f, X[1][1]);\n\
-    \    add(Z[1][1], f);\n    return Z;\n  };\n  auto compress = [&](Data& X, Data&\
-    \ Y, int a, int b, int c) -> Data {\n    Data Z;\n    FOR(p, 2) FOR(q, 2) FOR(r,\
-    \ 2) {\n      poly f = X[p][q], &g = Y[1 - q][r];\n      f = convolution<mint>(f,\
-    \ g);\n      add(Z[p][r], f);\n    }\n    return Z;\n  };\n  Data X = STT.tree_dp<Data>(single,\
-    \ rake, compress);\n  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[2 *\
-    \ i] += X[0][1][i]; }\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\n\
-    vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(\n    Graph<int,\
+    \n\ntemplate <typename mint>\nstruct TREE_ADJ_MATRIX_DP {\n  using poly = vc<mint>;\n\
+    \  using Data = array<array<poly, 2>, 2>;\n  using value_type = Data;\n\n  static\
+    \ void add(poly& f, poly g) {\n    if (len(f) < len(g)) f.resize(len(g));\n  \
+    \  FOR(i, len(g)) f[i] += g[i];\n  };\n\n  static Data rake(Data L, Data R) {\n\
+    \    Data Z;\n    add(Z[0][0], convolution(L[0][0], R[0][1]));\n    add(Z[0][1],\
+    \ convolution(L[0][1], R[0][1]));\n    add(Z[1][0], convolution(L[0][0], R[1][1]));\n\
+    \    add(Z[1][1], convolution(L[0][1], R[1][1]));\n    add(Z[1][0], convolution(L[1][0],\
+    \ R[0][1]));\n    add(Z[1][1], convolution(L[1][1], R[0][1]));\n    return Z;\n\
+    \  }\n  static Data compress(Data L, Data R) {\n    Data Z;\n    FOR(p, 2) FOR(q,\
+    \ 2) FOR(r, 2) { add(Z[p][r], convolution<mint>(L[p][q], R[1 - q][r])); }\n  \
+    \  return Z;\n  }\n};\n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\
+    \u5F0F\u306E reverse \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1A\
+    A[i][j]\n// \u5076\u6570\u6B21\u3060\u3051\u3057\u304B\u51FA\u3066\u3053\u306A\
+    \u3044\u306E\u3067 loop \u3042\u308A\u3088\u308A\u9AD8\u901F\ntemplate <typename\
+    \ mint, typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(Graph<int,\
     \ 0>& G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n\
     \  Static_TopTree<decltype(tree)> STT(tree);\n\n  // u, v \u306F\u3082\u3046\u8A08\
-    \u7B97\u3057\u305F\u304B\n  using Data = array<array<poly, 2>, 2>;\n  auto add\
-    \ = [&](poly& f, poly& g) -> void {\n    if (len(f) < len(g)) f.resize(len(g));\n\
-    \    FOR(i, len(g)) f[i] += g[i];\n  };\n  auto single = [&](int v) -> Data {\n\
-    \    Data X;\n    int p = tree.parent[v];\n    mint wt = (p == -1 ? mint(0) :\
-    \ weight(p, v) * weight(v, p));\n    X[0][0] = poly{mint(1)};\n    X[0][1] = poly{mint(1),\
-    \ -weight(v, v)};             // loop\n    if (p != -1) X[1][1] = poly{mint(0),\
-    \ mint(0), -wt}; // match\n    return X;\n  };\n  auto rake = [&](Data& X, Data&\
-    \ Y, int u, int v) -> Data {\n    Y[0][0].clear(), Y[1][0].clear();\n    if (v\
-    \ == -1) {\n      X[0][0].clear(), X[1][0].clear();\n      Data Z;\n      poly\
-    \ F00 = convolution<mint>(X[0][1], Y[0][1]);\n      poly F01 = convolution<mint>(X[0][1],\
-    \ Y[1][1]);\n      poly F10 = convolution<mint>(X[1][1], Y[0][1]);\n      add(Z[0][1],\
-    \ F00), add(Z[1][1], F01), add(Z[1][1], F10);\n      return Z;\n    }\n    Data\
-    \ Z;\n    FOR(a, 2) FOR(b, 2) FOR(c, 2) {\n      if (a && c) continue;\n     \
-    \ poly f = convolution(X[a][b], Y[c][1]);\n      add(Z[a + c][b], f);\n    }\n\
-    \    return Z;\n  };\n  auto compress = [&](Data& X, Data& Y, int a, int b, int\
-    \ c) -> Data {\n    Data Z;\n    FOR(p, 2) FOR(q, 2) FOR(r, 2) {\n      poly f\
-    \ = X[p][q], &g = Y[1 - q][r];\n      f = convolution<mint>(f, g);\n      add(Z[p][r],\
-    \ f);\n    }\n    return Z;\n  };\n  Data X = STT.tree_dp<Data>(single, rake,\
-    \ compress);\n  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[i] += X[0][1][i];\
-    \ }\n  return ANS;\n}\n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\
+    \u7B97\u3057\u305F\u304B\n  using Data = array<array<poly, 2>, 2>;\n  auto single\
+    \ = [&](int v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n    mint wt\
+    \ = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0] = poly{mint(1)};\n\
+    \    X[0][1] = poly{mint(1)};                   // loop\n    if (p != -1) X[1][1]\
+    \ = poly{mint(0), -wt}; // match\n    return X;\n  };\n  Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);\n\
+    \  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[2 * i] += X[0][1][i];\
+    \ }\n  SHOW(ANS);\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\n\
+    vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int, 0>&\
+    \ G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n \
+    \ Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data = array<array<poly,\
+    \ 2>, 2>;\n  auto single = [&](int v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n\
+    \    mint wt = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0]\
+    \ = poly{mint(1)};\n    X[0][1] = poly{mint(1), -weight(v, v)};             //\
+    \ loop\n    if (p != -1) X[1][1] = poly{mint(0), mint(0), -wt}; // match\n   \
+    \ return X;\n  };\n  Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);\n\
+    \  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[i] += X[0][1][i]; }\n\
+    \  return ANS;\n}\n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\
     \u5F0F\u306E reverse \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1A\
     A[i][j]\ntemplate <bool ALLOW_LOOP, typename mint, typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix(Graph<int,\
-    \ 0>& G,\n                                                      F weight) {\n\
-    \  if constexpr (ALLOW_LOOP) {\n    return characteristic_poly_of_tree_adjacency_matrix_allow_loop<mint>(\n\
-    \        G, weight);\n  } else {\n    return characteristic_poly_of_tree_adjacency_matrix_not_allow_loop<mint>(\n\
-    \        G, weight);\n  }\n}\n"
+    \ 0>& G, F weight) {\n  if constexpr (ALLOW_LOOP) {\n    return characteristic_poly_of_tree_adjacency_matrix_allow_loop<mint>(G,\
+    \ weight);\n  } else {\n    return characteristic_poly_of_tree_adjacency_matrix_not_allow_loop<mint>(G,\
+    \ weight);\n  }\n}\n"
   code: "#include \"graph/ds/static_toptree.hpp\"\n#include \"graph/shortest_path/bfs01.hpp\"\
     \n#include \"ds/unionfind/unionfind.hpp\"\n#include \"poly/convolution.hpp\"\n\
-    \n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\u5F0F\u306E reverse\
-    \ \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1AA[i][j]\n// \u5076\
-    \u6570\u6B21\u3060\u3051\u3057\u304B\u51FA\u3066\u3053\u306A\u3044\u306E\u3067\
-    \ loop \u3042\u308A\u3088\u308A\u9AD8\u901F\ntemplate <typename mint, typename\
-    \ F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(\n\
-    \    Graph<int, 0>& G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int,\
-    \ 0>> tree(G);\n  Static_TopTree<decltype(tree)> STT(tree);\n\n  // u, v \u306F\
-    \u3082\u3046\u8A08\u7B97\u3057\u305F\u304B\n  using Data = array<array<poly, 2>,\
-    \ 2>;\n  auto add = [&](poly& f, poly& g) -> void {\n    if (len(f) < len(g))\
-    \ f.resize(len(g));\n    FOR(i, len(g)) f[i] += g[i];\n  };\n  auto single = [&](int\
-    \ v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n    mint wt = (p ==\
-    \ -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0] = poly{mint(1)};\n\
-    \    X[0][1] = poly{mint(1)};                   // loop\n    if (p != -1) X[1][1]\
-    \ = poly{mint(0), -wt}; // match\n    return X;\n  };\n  auto rake = [&](Data&\
-    \ X, Data& Y, int u, int v) -> Data {\n    Y[0][0].clear(), Y[1][0].clear();\n\
-    \    if (v == -1) {\n      X[0][0].clear(), X[1][0].clear();\n      Data Z;\n\
-    \      poly F00 = convolution<mint>(X[0][1], Y[0][1]);\n      poly F01 = convolution<mint>(X[0][1],\
-    \ Y[1][1]);\n      poly F10 = convolution<mint>(X[1][1], Y[0][1]);\n      add(Z[0][1],\
-    \ F00), add(Z[1][1], F01), add(Z[1][1], F10);\n      return Z;\n    }\n    Data\
-    \ Z;\n    poly &f = Y[0][1], &g = Y[1][1];\n    add(Z[0][0], f), add(Z[1][0],\
-    \ g);\n    add(Z[0][1], f), add(Z[1][1], g);\n    f = convolution<mint>(f, X[1][1]);\n\
-    \    add(Z[1][1], f);\n    return Z;\n  };\n  auto compress = [&](Data& X, Data&\
-    \ Y, int a, int b, int c) -> Data {\n    Data Z;\n    FOR(p, 2) FOR(q, 2) FOR(r,\
-    \ 2) {\n      poly f = X[p][q], &g = Y[1 - q][r];\n      f = convolution<mint>(f,\
-    \ g);\n      add(Z[p][r], f);\n    }\n    return Z;\n  };\n  Data X = STT.tree_dp<Data>(single,\
-    \ rake, compress);\n  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[2 *\
-    \ i] += X[0][1][i]; }\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\n\
-    vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(\n    Graph<int,\
+    \ntemplate <typename mint>\nstruct TREE_ADJ_MATRIX_DP {\n  using poly = vc<mint>;\n\
+    \  using Data = array<array<poly, 2>, 2>;\n  using value_type = Data;\n\n  static\
+    \ void add(poly& f, poly g) {\n    if (len(f) < len(g)) f.resize(len(g));\n  \
+    \  FOR(i, len(g)) f[i] += g[i];\n  };\n\n  static Data rake(Data L, Data R) {\n\
+    \    Data Z;\n    add(Z[0][0], convolution(L[0][0], R[0][1]));\n    add(Z[0][1],\
+    \ convolution(L[0][1], R[0][1]));\n    add(Z[1][0], convolution(L[0][0], R[1][1]));\n\
+    \    add(Z[1][1], convolution(L[0][1], R[1][1]));\n    add(Z[1][0], convolution(L[1][0],\
+    \ R[0][1]));\n    add(Z[1][1], convolution(L[1][1], R[0][1]));\n    return Z;\n\
+    \  }\n  static Data compress(Data L, Data R) {\n    Data Z;\n    FOR(p, 2) FOR(q,\
+    \ 2) FOR(r, 2) { add(Z[p][r], convolution<mint>(L[p][q], R[1 - q][r])); }\n  \
+    \  return Z;\n  }\n};\n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\
+    \u5F0F\u306E reverse \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1A\
+    A[i][j]\n// \u5076\u6570\u6B21\u3060\u3051\u3057\u304B\u51FA\u3066\u3053\u306A\
+    \u3044\u306E\u3067 loop \u3042\u308A\u3088\u308A\u9AD8\u901F\ntemplate <typename\
+    \ mint, typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_not_allow_loop(Graph<int,\
     \ 0>& G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n\
     \  Static_TopTree<decltype(tree)> STT(tree);\n\n  // u, v \u306F\u3082\u3046\u8A08\
-    \u7B97\u3057\u305F\u304B\n  using Data = array<array<poly, 2>, 2>;\n  auto add\
-    \ = [&](poly& f, poly& g) -> void {\n    if (len(f) < len(g)) f.resize(len(g));\n\
-    \    FOR(i, len(g)) f[i] += g[i];\n  };\n  auto single = [&](int v) -> Data {\n\
-    \    Data X;\n    int p = tree.parent[v];\n    mint wt = (p == -1 ? mint(0) :\
-    \ weight(p, v) * weight(v, p));\n    X[0][0] = poly{mint(1)};\n    X[0][1] = poly{mint(1),\
-    \ -weight(v, v)};             // loop\n    if (p != -1) X[1][1] = poly{mint(0),\
-    \ mint(0), -wt}; // match\n    return X;\n  };\n  auto rake = [&](Data& X, Data&\
-    \ Y, int u, int v) -> Data {\n    Y[0][0].clear(), Y[1][0].clear();\n    if (v\
-    \ == -1) {\n      X[0][0].clear(), X[1][0].clear();\n      Data Z;\n      poly\
-    \ F00 = convolution<mint>(X[0][1], Y[0][1]);\n      poly F01 = convolution<mint>(X[0][1],\
-    \ Y[1][1]);\n      poly F10 = convolution<mint>(X[1][1], Y[0][1]);\n      add(Z[0][1],\
-    \ F00), add(Z[1][1], F01), add(Z[1][1], F10);\n      return Z;\n    }\n    Data\
-    \ Z;\n    FOR(a, 2) FOR(b, 2) FOR(c, 2) {\n      if (a && c) continue;\n     \
-    \ poly f = convolution(X[a][b], Y[c][1]);\n      add(Z[a + c][b], f);\n    }\n\
-    \    return Z;\n  };\n  auto compress = [&](Data& X, Data& Y, int a, int b, int\
-    \ c) -> Data {\n    Data Z;\n    FOR(p, 2) FOR(q, 2) FOR(r, 2) {\n      poly f\
-    \ = X[p][q], &g = Y[1 - q][r];\n      f = convolution<mint>(f, g);\n      add(Z[p][r],\
-    \ f);\n    }\n    return Z;\n  };\n  Data X = STT.tree_dp<Data>(single, rake,\
-    \ compress);\n  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[i] += X[0][1][i];\
-    \ }\n  return ANS;\n}\n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\
+    \u7B97\u3057\u305F\u304B\n  using Data = array<array<poly, 2>, 2>;\n  auto single\
+    \ = [&](int v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n    mint wt\
+    \ = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0] = poly{mint(1)};\n\
+    \    X[0][1] = poly{mint(1)};                   // loop\n    if (p != -1) X[1][1]\
+    \ = poly{mint(0), -wt}; // match\n    return X;\n  };\n  Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);\n\
+    \  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[2 * i] += X[0][1][i];\
+    \ }\n  SHOW(ANS);\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\n\
+    vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int, 0>&\
+    \ G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n \
+    \ Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data = array<array<poly,\
+    \ 2>, 2>;\n  auto single = [&](int v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n\
+    \    mint wt = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0]\
+    \ = poly{mint(1)};\n    X[0][1] = poly{mint(1), -weight(v, v)};             //\
+    \ loop\n    if (p != -1) X[1][1] = poly{mint(0), mint(0), -wt}; // match\n   \
+    \ return X;\n  };\n  Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);\n\
+    \  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[i] += X[0][1][i]; }\n\
+    \  return ANS;\n}\n\n// det(I-xA) \u306E\u8A08\u7B97 (\u56FA\u6709\u591A\u9805\
     \u5F0F\u306E reverse \u306B\u306A\u3063\u3066\u3044\u308B)\n// weight(i,j)\uFF1A\
     A[i][j]\ntemplate <bool ALLOW_LOOP, typename mint, typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix(Graph<int,\
-    \ 0>& G,\n                                                      F weight) {\n\
-    \  if constexpr (ALLOW_LOOP) {\n    return characteristic_poly_of_tree_adjacency_matrix_allow_loop<mint>(\n\
-    \        G, weight);\n  } else {\n    return characteristic_poly_of_tree_adjacency_matrix_not_allow_loop<mint>(\n\
-    \        G, weight);\n  }\n}\n"
+    \ 0>& G, F weight) {\n  if constexpr (ALLOW_LOOP) {\n    return characteristic_poly_of_tree_adjacency_matrix_allow_loop<mint>(G,\
+    \ weight);\n  } else {\n    return characteristic_poly_of_tree_adjacency_matrix_not_allow_loop<mint>(G,\
+    \ weight);\n  }\n}\n"
   dependsOn:
   - graph/ds/static_toptree.hpp
   - graph/tree.hpp
@@ -708,8 +674,8 @@ data:
   path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   requiredBy:
   - graph/tree_walk_generating_function.hpp
-  timestamp: '2024-09-03 13:58:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-03 14:57:04+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
