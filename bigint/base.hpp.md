@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -16,19 +16,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -579,21 +579,21 @@ data:
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/2525.test.cpp
+  - test/3_yukicoder/2440.test.cpp
+  - test/3_yukicoder/303.test.cpp
+  - test/3_yukicoder/2508.test.cpp
+  - test/3_yukicoder/2649.test.cpp
   - test/5_atcoder/abc333g.test.cpp
   - test/5_atcoder/abc339f.test.cpp
-  - test/3_yukicoder/303.test.cpp
-  - test/3_yukicoder/2440.test.cpp
-  - test/3_yukicoder/2580.test.cpp
-  - test/3_yukicoder/2649.test.cpp
-  - test/3_yukicoder/2525.test.cpp
-  - test/3_yukicoder/2508.test.cpp
-  - test/2_library_checker/sample/aplusb128.test.cpp
-  - test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
-  - test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
-  - test/1_mytest/bigint.test.cpp
-  - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp
+  - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_A.test.cpp
+  - test/1_mytest/bigint.test.cpp
+  - test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
+  - test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
+  - test/2_library_checker/sample/aplusb128.test.cpp
 documentation_of: bigint/base.hpp
 layout: document
 redirect_from:

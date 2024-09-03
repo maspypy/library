@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -133,8 +133,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc314f.test.cpp
   - test/3_yukicoder/1451.test.cpp
+  - test/5_atcoder/abc314f.test.cpp
 documentation_of: graph/tree_of_unionfind.hpp
 layout: document
 redirect_from:

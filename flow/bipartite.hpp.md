@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -307,22 +307,22 @@ data:
   isVerificationFile: false
   path: flow/bipartite.hpp
   requiredBy:
-  - graph/maximum_antichain.hpp
   - graph/bipartite_edge_coloring.hpp
+  - graph/maximum_antichain.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc274g.test.cpp
-  - test/5_atcoder/abc237ex.test.cpp
-  - test/3_yukicoder/1744.test.cpp
-  - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1745.test.cpp
+  - test/3_yukicoder/1479.test.cpp
+  - test/3_yukicoder/1744.test.cpp
+  - test/5_atcoder/abc237ex.test.cpp
+  - test/5_atcoder/abc274g.test.cpp
+  - test/4_aoj/2251_2.test.cpp
+  - test/4_aoj/1566.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
   - test/2_library_checker/graph/bipartitematching.test.cpp
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/tutte.test.cpp
-  - test/4_aoj/1566.test.cpp
-  - test/4_aoj/2251_2.test.cpp
 documentation_of: flow/bipartite.hpp
 layout: document
 redirect_from:

@@ -98,9 +98,9 @@ data:
   timestamp: '2023-10-14 01:43:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc365a.test.cpp
-  - test/3_yukicoder/779.test.cpp
   - test/3_yukicoder/2109.test.cpp
+  - test/3_yukicoder/779.test.cpp
+  - test/5_atcoder/abc365a.test.cpp
   - test/1_mytest/datetime.test.cpp
 documentation_of: datetime/datetime.hpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -10,16 +10,16 @@ data:
   - icon: ':question:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -28,27 +28,27 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -57,9 +57,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -598,10 +598,9 @@ data:
     \    X[0][1] = poly{mint(1)};                   // loop\n    if (p != -1) X[1][1]\
     \ = poly{mint(0), -wt}; // match\n    return X;\n  };\n  Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);\n\
     \  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[2 * i] += X[0][1][i];\
-    \ }\n  SHOW(ANS);\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\n\
-    vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int, 0>&\
-    \ G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n \
-    \ Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data = array<array<poly,\
+    \ }\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int,\
+    \ 0>& G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n\
+    \  Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data = array<array<poly,\
     \ 2>, 2>;\n  auto single = [&](int v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n\
     \    mint wt = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0]\
     \ = poly{mint(1)};\n    X[0][1] = poly{mint(1), -weight(v, v)};             //\
@@ -639,10 +638,9 @@ data:
     \    X[0][1] = poly{mint(1)};                   // loop\n    if (p != -1) X[1][1]\
     \ = poly{mint(0), -wt}; // match\n    return X;\n  };\n  Data X = STT.tree_dp<TREE_ADJ_MATRIX_DP<mint>>(single);\n\
     \  vc<mint> ANS(G.N + 1);\n  FOR(i, len(X[0][1])) { ANS[2 * i] += X[0][1][i];\
-    \ }\n  SHOW(ANS);\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\n\
-    vc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int, 0>&\
-    \ G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n \
-    \ Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data = array<array<poly,\
+    \ }\n  return ANS;\n}\n\ntemplate <typename mint, typename F>\nvc<mint> characteristic_poly_of_tree_adjacency_matrix_allow_loop(Graph<int,\
+    \ 0>& G, F weight) {\n  using poly = vc<mint>;\n  Tree<Graph<int, 0>> tree(G);\n\
+    \  Static_TopTree<decltype(tree)> STT(tree);\n\n  using Data = array<array<poly,\
     \ 2>, 2>;\n  auto single = [&](int v) -> Data {\n    Data X;\n    int p = tree.parent[v];\n\
     \    mint wt = (p == -1 ? mint(0) : weight(p, v) * weight(v, p));\n    X[0][0]\
     \ = poly{mint(1)};\n    X[0][1] = poly{mint(1), -weight(v, v)};             //\
@@ -674,11 +672,11 @@ data:
   path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   requiredBy:
   - graph/tree_walk_generating_function.hpp
-  timestamp: '2024-09-03 14:57:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-09-03 15:19:10+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
 layout: document

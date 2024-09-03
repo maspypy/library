@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -299,9 +299,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1211.test.cpp
-  - test/3_yukicoder/590.test.cpp
-  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/1242.test.cpp
+  - test/3_yukicoder/590.test.cpp
 documentation_of: graph/functional.hpp
 layout: document
 redirect_from:

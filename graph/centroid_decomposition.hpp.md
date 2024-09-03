@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   _extendedRequiredBy:
@@ -296,19 +296,19 @@ data:
   isVerificationFile: false
   path: graph/centroid_decomposition.hpp
   requiredBy:
-  - graph/ds/contour_query_range.hpp
   - graph/tree_all_distances.hpp
+  - graph/ds/contour_query_range.hpp
   timestamp: '2024-08-27 23:30:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
+  - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/2491.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
 documentation_of: graph/centroid_decomposition.hpp
 layout: document
 redirect_from:

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,22 +13,22 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
@@ -502,31 +502,31 @@ data:
   isVerificationFile: false
   path: poly/sum_of_rationals.hpp
   requiredBy:
-  - seq/sum_of_powers.hpp
-  - poly/composition_f_ex.hpp
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_ex_minus_1.hpp
   - poly/product_of_pow_of_linear.hpp
   - poly/sum_of_exp_bx.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_ex.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - seq/sum_of_powers.hpp
   - linalg/blackbox/vandermonde.hpp
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc260h.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/arc154f.test.cpp
-  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1145.test.cpp
   - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/1962.test.cpp
   - test/3_yukicoder/2459.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
+  - test/3_yukicoder/1875.test.cpp
+  - test/5_atcoder/arc154f.test.cpp
+  - test/5_atcoder/abc260h.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/abc281g.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
 documentation_of: poly/sum_of_rationals.hpp
 layout: document
 redirect_from:

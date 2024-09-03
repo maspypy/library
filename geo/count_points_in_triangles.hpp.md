@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -310,8 +310,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc202_f.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

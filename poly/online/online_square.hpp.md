@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -110,8 +110,8 @@ data:
   timestamp: '2023-12-29 16:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc315h2.test.cpp
   - test/3_yukicoder/2801.test.cpp
+  - test/5_atcoder/abc315h2.test.cpp
   - test/1_mytest/online_square.test.cpp
 documentation_of: poly/online/online_square.hpp
 layout: document
