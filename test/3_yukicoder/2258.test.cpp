@@ -101,7 +101,7 @@ void solve() {
           return dfs(dfs, r, L2, R2, d2, cu + a, 0);
         }
       }
-      if (a + cv >= large) { return lch[k]; }
+      if (a + cv >= large) { return dfs(dfs, l, L1, R1, d1, cu + b, cv); }
       int kk = dfs(dfs, r, L2, R2, d2, cu + cv + a, 0);
       return (kk == -1 ? STT.A[k] : kk);
     };
