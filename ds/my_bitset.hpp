@@ -87,6 +87,20 @@ struct My_Bitset {
     return ans;
   }
 
+  int dot(T &p) {
+    assert(N == p.N);
+    int ans = 0;
+    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);
+    return ans;
+  }
+
+  int dot_mod_2(T &p) {
+    assert(N == p.N);
+    int ans = 0;
+    FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);
+    return ans;
+  }
+
   int next(int i) {
     chmax(i, 0);
     if (i >= N) return N;
@@ -193,6 +207,13 @@ struct My_Bitset {
       int lo = 64 - hi;
       FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
     }
+  }
+
+  // 行列基本変形で使うやつ
+  // p は [i:N) にしかないとして p を xor する
+  void xor_suffix(int i, My_Bitset &p) {
+    assert(N == p.N && 0 <= i && i < N);
+    FOR(k, i / 64, len(dat)) { dat[k] ^= p.dat[k]; }
   }
 
   // [L,R) に p を and
