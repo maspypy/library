@@ -17,8 +17,13 @@ vc<BS> mat_inv(vc<BS> A) {
     FOR(k, N) {
       if (i == k) continue;
       if (A[k][i]) {
-        A[k] ^= A[i];
-        B[k] ^= B[i];
+        if constexpr (is_same_v<BS, My_Bitset>) {
+          A[k].xor_suffix(i, A[i]);
+          B[k] ^= B[i];
+        } else {
+          A[k] ^= A[i];
+          B[k] ^= B[i];
+        }
       }
     }
   }
