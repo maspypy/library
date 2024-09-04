@@ -1,14 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+    title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
@@ -41,46 +44,54 @@ data:
     \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
     \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
     \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
-    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int next(int i) {\n    chmax(i,\
-    \ 0);\n    if (i >= N) return N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n\
-    \      int s = i & 63;\n      x = (x >> s) << s;\n      if (x) return (k << 6)\
-    \ | lowbit(x);\n    }\n    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] ==\
-    \ 0) continue;\n      return (idx << 6) | lowbit(dat[idx]);\n    }\n    return\
-    \ N;\n  }\n\n  int prev(int i) {\n    chmin(i, N - 1);\n    if (i <= -1) return\
-    \ -1;\n    int k = i >> 6;\n    if ((i & 63) < 63) {\n      u64 x = dat[k];\n\
-    \      x &= (u64(1) << ((i & 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n\
-    \      --k;\n    }\n    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n\
-    \      return (idx << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n \
-    \ My_Bitset range(int L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n\
-    \    int rm = (R - L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R\
-    \ - 1]);\n      --R;\n    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n\
-    \    int lo = 64 - hi;\n    int s = L >> 6;\n    if (hi == 0) {\n      FOR(i,\
-    \ n) { p.dat[i] ^= dat[s + i]; }\n    } else {\n      FOR(i, n) { p.dat[i] ^=\
-    \ (dat[s + i] >> hi) ^ (dat[s + i + 1] << lo); }\n    }\n    return p;\n  }\n\n\
-    \  int count_range(int L, int R) {\n    assert(L <= R);\n    int cnt = 0;\n  \
-    \  while ((L < R) && (L & 63)) cnt += (*this)[L++];\n    while ((L < R) && (R\
-    \ & 63)) cnt += (*this)[--R];\n    int l = L >> 6, r = R >> 6;\n    FOR(i, l,\
-    \ r) cnt += popcnt(dat[i]);\n    return cnt;\n  }\n\n  // [L,R) \u306B p \u3092\
-    \u4EE3\u5165\n  void assign_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N\
-    \ == R - L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) { (*this)[L++]\
-    \ = bool(p[a++]); }\n    while (L < R && (R & 63)) { (*this)[--R] = bool(p[--b]);\
-    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
-    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
-    \ n) dat[l + i] = p.dat[s + i];\n    } else {\n      int hi = a & 63;\n      int\
-    \ lo = 64 - hi;\n      FOR(i, n) dat[l + i] = (p.dat[s + i] >> hi) | (p.dat[1\
-    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092 xor\n  void xor_to_range(int\
+    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N\
+    \ == p.N);\n    int ans = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n\
+    \    return ans;\n  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int\
+    \ ans = 0;\n    FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n   \
+    \ return ans;\n  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return\
+    \ N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n\
+    \      x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n\
+    \    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return\
+    \ (idx << 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int\
+    \ i) {\n    chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n\
+    \    if ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i &\
+    \ 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n\
+    \    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx\
+    \ << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
+    \ L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n    int rm = (R -\
+    \ L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n\
+    \    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n\
+    \    int s = L >> 6;\n    if (hi == 0) {\n      FOR(i, n) { p.dat[i] ^= dat[s\
+    \ + i]; }\n    } else {\n      FOR(i, n) { p.dat[i] ^= (dat[s + i] >> hi) ^ (dat[s\
+    \ + i + 1] << lo); }\n    }\n    return p;\n  }\n\n  int count_range(int L, int\
+    \ R) {\n    assert(L <= R);\n    int cnt = 0;\n    while ((L < R) && (L & 63))\
+    \ cnt += (*this)[L++];\n    while ((L < R) && (R & 63)) cnt += (*this)[--R];\n\
+    \    int l = L >> 6, r = R >> 6;\n    FOR(i, l, r) cnt += popcnt(dat[i]);\n  \
+    \  return cnt;\n  }\n\n  // [L,R) \u306B p \u3092\u4EE3\u5165\n  void assign_to_range(int\
     \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
-    \    while (L < R && (L & 63)) {\n      dat[L >> 6] ^= u64(p[a]) << (L & 63);\n\
-    \      ++a, ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n  \
-    \    dat[R >> 6] ^= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R]\
+    \    while (L < R && (L & 63)) { (*this)[L++] = bool(p[a++]); }\n    while (L\
+    \ < R && (R & 63)) { (*this)[--R] = bool(p[--b]); }\n    // p[a:b] \u3092 [L:R]\
     \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
-    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] ^= p.dat[s\
+    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] = p.dat[s\
     \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
-    \ FOR(i, n) dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n \
-    \   }\n  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R,\
+    \ FOR(i, n) dat[l + i] = (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n  \
+    \  }\n  }\n\n  // [L,R) \u306B p \u3092 xor\n  void xor_to_range(int L, int R,\
     \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
-    \ (L < R && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++, L++;\n \
-    \   }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b]) (*this)[R]\
+    \ (L < R && (L & 63)) {\n      dat[L >> 6] ^= u64(p[a]) << (L & 63);\n      ++a,\
+    \ ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      dat[R >>\
+    \ 6] ^= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n   \
+    \ int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n    int n = r\
+    \ - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] ^= p.dat[s + i];\n  \
+    \  } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n      FOR(i, n)\
+    \ dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\
+    \n  // \u884C\u5217\u57FA\u672C\u5909\u5F62\u3067\u4F7F\u3046\u3084\u3064\n  //\
+    \ p \u306F [i:N) \u306B\u3057\u304B\u306A\u3044\u3068\u3057\u3066 p \u3092 xor\
+    \ \u3059\u308B\n  void xor_suffix(int i, My_Bitset &p) {\n    assert(N == p.N\
+    \ && 0 <= i && i < N);\n    FOR(k, i / 64, len(dat)) { dat[k] ^= p.dat[k]; }\n\
+    \  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R, My_Bitset\
+    \ &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while (L < R\
+    \ && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++, L++;\n    }\n \
+    \   while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b]) (*this)[R]\
     \ = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >>\
     \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
     \ {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n      int hi =\
@@ -123,24 +134,28 @@ data:
     \  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n\
     \      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if\
     \ (!A[i][i]) return {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if\
-    \ (A[k][i]) {\n        A[k] ^= A[i];\n        B[k] ^= B[i];\n      }\n    }\n\
-    \  }\n  return B;\n}\n"
+    \ (A[k][i]) {\n        if constexpr (is_same_v<BS, My_Bitset>) {\n          A[k].xor_suffix(i,\
+    \ A[i]);\n          B[k] ^= B[i];\n        } else {\n          A[k] ^= A[i];\n\
+    \          B[k] ^= B[i];\n        }\n      }\n    }\n  }\n  return B;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// det = 0 \u306E\u5834\u5408\u306B\u306F\
     \ empty \u3092\u304B\u3048\u3059\ntemplate <typename BS>\nvc<BS> mat_inv(vc<BS>\
     \ A) {\n  int N = len(A);\n  vc<BS> B(N);\n  if constexpr (is_same_v<BS, My_Bitset>)\
     \ { FOR(i, N) B[i] = BS(N); }\n  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k,\
     \ i + 1, N) if (A[k][i]) {\n      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n\
     \      break;\n    }\n    if (!A[i][i]) return {};\n    FOR(k, N) {\n      if\
-    \ (i == k) continue;\n      if (A[k][i]) {\n        A[k] ^= A[i];\n        B[k]\
-    \ ^= B[i];\n      }\n    }\n  }\n  return B;\n}\n"
+    \ (i == k) continue;\n      if (A[k][i]) {\n        if constexpr (is_same_v<BS,\
+    \ My_Bitset>) {\n          A[k].xor_suffix(i, A[i]);\n          B[k] ^= B[i];\n\
+    \        } else {\n          A[k] ^= A[i];\n          B[k] ^= B[i];\n        }\n\
+    \      }\n    }\n  }\n  return B;\n}\n"
   dependsOn:
   - ds/my_bitset.hpp
   isVerificationFile: false
   path: linalg/bitset/mat_inv.hpp
   requiredBy: []
-  timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-09-04 18:44:03+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
 documentation_of: linalg/bitset/mat_inv.hpp
 layout: document
 redirect_from:

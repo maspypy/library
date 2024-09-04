@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':question:'
+    path: ds/my_bitset.hpp
+    title: ds/my_bitset.hpp
   - icon: ':heavy_check_mark:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
-    path: ds/segtree/dynamic_segtree.hpp
-    title: ds/segtree/dynamic_segtree.hpp
+    path: linalg/bitset/mat_inv.hpp
+    title: linalg/bitset/mat_inv.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -20,11 +20,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/789
+    PROBLEM: https://judge.yosupo.jp/problem/inverse_matrix_mod_2
     links:
-    - https://yukicoder.me/problems/no/789
-  bundledCode: "#line 1 \"test/3_yukicoder/789.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/789\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/inverse_matrix_mod_2
+  bundledCode: "#line 1 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix_mod_2\"\n#line\
+    \ 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -200,118 +201,158 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\
-    \u3042\u308B\u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\u306F\u305D\u3063\
-    \u3061\u3067\r\ntemplate <typename Monoid, bool PERSISTENT, int NODES>\r\nstruct\
-    \ Dynamic_SegTree {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
-    \n  using F = function<X(ll, ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\
-    \n    Node *l, *r;\r\n    X x;\r\n  };\r\n\r\n  const ll L0, R0;\r\n  Node *pool;\r\
-    \n  int pid;\r\n  using np = Node *;\r\n\r\n  Dynamic_SegTree(\r\n      ll L0,\
-    \ ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\r\n    \
-    \  : default_prod(default_prod), L0(L0), R0(R0), pid(0) {\r\n    pool = new Node[NODES];\r\
-    \n  }\r\n\r\n  np new_root() { return new_node(L0, R0); }\r\n\r\n  np new_node(const\
-    \ X x) {\r\n    pool[pid].l = pool[pid].r = nullptr;\r\n    pool[pid].x = x;\r\
-    \n    return &(pool[pid++]);\r\n  }\r\n\r\n  np new_node(ll l, ll r) { return\
-    \ new_node(default_prod(l, r)); }\r\n  np new_node() { return new_node(L0, R0);\
-    \ }\r\n\r\n  np new_node(const vc<X> &dat) {\r\n    assert(L0 == 0 && R0 == len(dat));\r\
-    \n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\r\n      if (l == r) return\
-    \ nullptr;\r\n      if (r == l + 1) return new_node(dat[l]);\r\n      ll m = (l\
-    \ + r) / 2;\r\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\r\n\
-    \      X x = MX::op(l_root->x, r_root->x);\r\n      np root = new_node(x);\r\n\
-    \      root->l = l_root, root->r = r_root;\r\n      return root;\r\n    };\r\n\
-    \    return dfs(dfs, 0, len(dat));\r\n  }\r\n\r\n  X prod(np root, ll l, ll r)\
-    \ {\r\n    assert(L0 <= l && l <= r && r <= R0);\r\n    if (!root || l == r) return\
-    \ MX::unit();\r\n    X x = MX::unit();\r\n    prod_rec(root, L0, R0, l, r, x);\r\
-    \n    return x;\r\n  }\r\n\r\n  np set(np root, ll i, const X &x) {\r\n    assert(root\
-    \ && L0 <= i && i < R0);\r\n    return set_rec(root, L0, R0, i, x);\r\n  }\r\n\
-    \r\n  np multiply(np root, ll i, const X &x) {\r\n    assert(root && L0 <= i &&\
-    \ i < R0);\r\n    return multiply_rec(root, L0, R0, i, x);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll max_right(np root, F check, ll L) {\r\n    assert(pid &&\
-    \ root && L0 <= L && L <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\
-    \n    return max_right_rec(root, check, L0, R0, L, x);\r\n  }\r\n\r\n  template\
-    \ <typename F>\r\n  ll min_left(np root, F check, ll R) {\r\n    assert(pid &&\
-    \ L0 <= R && R <= R0 && check(MX::unit()));\r\n    X x = MX::unit();\r\n    return\
-    \ min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\n\r\n  // (idx, val)\r\n \
-    \ template <typename F>\r\n  void enumerate(np root, F f) {\r\n    if (!root)\
-    \ return;\r\n    auto dfs = [&](auto &dfs, np c, ll l, ll r) -> void {\r\n   \
-    \   if (!c) return;\r\n      if (r - l == 1) {\r\n        f(l, c->x);\r\n    \
-    \    return;\r\n      }\r\n      ll m = (l + r) / 2;\r\n      dfs(dfs, c->l, l,\
-    \ m);\r\n      dfs(dfs, c->r, m, r);\r\n    };\r\n    dfs(dfs, root, L0, R0);\r\
-    \n    return;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\nprivate:\r\n  np\
-    \ copy_node(np c) {\r\n    if (!c || !PERSISTENT) return c;\r\n    pool[pid].l\
-    \ = c->l, pool[pid].r = c->r;\r\n    pool[pid].x = c->x;\r\n    return &(pool[pid++]);\r\
-    \n  }\r\n\r\n  np set_rec(np c, ll l, ll r, ll i, const X &x) {\r\n    if (r ==\
-    \ l + 1) {\r\n      c = copy_node(c);\r\n      c->x = x;\r\n      return c;\r\n\
-    \    }\r\n    ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\n    if (i <\
-    \ m) {\r\n      if (!c->l) c->l = new_node(l, m);\r\n      c->l = set_rec(c->l,\
-    \ l, m, i, x);\r\n    } else {\r\n      if (!c->r) c->r = new_node(m, r);\r\n\
-    \      c->r = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x\
-    \ : default_prod(l, m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\
-    \n    c->x = MX::op(xl, xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np\
-    \ c, ll l, ll r, ll i, const X &x, bool make_copy = true) {\r\n    if (r == l\
-    \ + 1) {\r\n      if (make_copy) c = copy_node(c);\r\n      c->x = MX::op(c->x,\
-    \ x);\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    if (make_copy)\
-    \ c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      bool make = true;\r\n   \
-    \   if (!c->l) c->l = new_node(l, m), make = false;\r\n      c->l = multiply_rec(c->l,\
-    \ l, m, i, x, make);\r\n    } else {\r\n      bool make = true;\r\n      if (!c->r)\
-    \ c->r = new_node(m, r), make = false;\r\n      c->r = multiply_rec(c->r, m, r,\
-    \ i, x, make);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\
-    \n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
-    \n    return c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr,\
-    \ X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\
-    \n    if (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\
-    \n    }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n   \
-    \   return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql,\
-    \ qr, x);\r\n    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  template <typename\
-    \ F>\r\n  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {\r\n\
-    \    if (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x, c->x))) {\r\
-    \n      x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n    if (r == l +\
-    \ 1) return l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l = new_node(l,\
-    \ m);\r\n    ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n    if (k != R0)\
-    \ return k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return max_right_rec(c->r,\
-    \ check, m, r, ql, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll min_left_rec(np\
-    \ c, const F &check, ll l, ll r, ll qr, X &x) {\r\n    if (qr <= l) return L0;\r\
-    \n    if (r <= qr && check(MX::op(c->x, x))) {\r\n      x = MX::op(x, c->x);\r\
-    \n      return L0;\r\n    }\r\n    if (r == l + 1) return r;\r\n    ll m = (l\
-    \ + r) / 2;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    ll k = min_left_rec(c->r,\
-    \ check, m, r, qr, x);\r\n    if (k != L0) return k;\r\n    if (!c->l) c->l =\
-    \ new_node(l, m);\r\n    return min_left_rec(c->l, check, l, m, qr, x);\r\n  }\r\
-    \n};\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/3_yukicoder/789.test.cpp\"\
-    \n\nvoid solve() {\n  Dynamic_SegTree<Monoid_Add<ll>, false, 4000000> seg(0, 1LL\
-    \ << 30);\n  auto root = seg.new_node();\n  LL(Q);\n  ll ANS = 0;\n  FOR(Q) {\n\
-    \    LL(t, a, b);\n    if (t == 0) { seg.multiply(root, a, b); }\n    if (t ==\
-    \ 1) { ANS += seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_segtree.hpp\"\n#include\
-    \ \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  Dynamic_SegTree<Monoid_Add<ll>,\
-    \ false, 4000000> seg(0, 1LL << 30);\n  auto root = seg.new_node();\n  LL(Q);\n\
-    \  ll ANS = 0;\n  FOR(Q) {\n    LL(t, a, b);\n    if (t == 0) { seg.multiply(root,\
-    \ a, b); }\n    if (t == 1) { ANS += seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
-    \ << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return\
-    \ 0;\n}\n"
+    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\
+    \n\n#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
+    // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
+    \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
+    \u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\u3057\u305F\u304F\u306A\u3044\u3068\
+    \u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\u8981\u306A\u3068\u304D\u306B\u4F7F\
+    \u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n  int N;\n  vc<u64> dat;\n\
+    \n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int N = 0, int x = 0) : N(N) {\n\
+    \    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
+    \ + 63) >> 6, v);\n    if (N) dat.back() >>= (64 * len(dat) - N);\n  }\n\n  int\
+    \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
+    \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
+    \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
+    \    }\n    N = size;\n  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n\
+    \    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator bool() const\
+    \ { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64\
+    \ value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n      dat[index\
+    \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
+    \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
+    \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
+    \ operator[](int i) { return Proxy(dat, i); }\n\n  bool operator==(const T &p)\
+    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return\
+    \ false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
+    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
+    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
+    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
+    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
+    \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
+    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
+    \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
+    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N\
+    \ == p.N);\n    int ans = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n\
+    \    return ans;\n  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int\
+    \ ans = 0;\n    FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n   \
+    \ return ans;\n  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return\
+    \ N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n\
+    \      x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n\
+    \    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return\
+    \ (idx << 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int\
+    \ i) {\n    chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n\
+    \    if ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i &\
+    \ 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n\
+    \    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx\
+    \ << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
+    \ L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n    int rm = (R -\
+    \ L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n\
+    \    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n\
+    \    int s = L >> 6;\n    if (hi == 0) {\n      FOR(i, n) { p.dat[i] ^= dat[s\
+    \ + i]; }\n    } else {\n      FOR(i, n) { p.dat[i] ^= (dat[s + i] >> hi) ^ (dat[s\
+    \ + i + 1] << lo); }\n    }\n    return p;\n  }\n\n  int count_range(int L, int\
+    \ R) {\n    assert(L <= R);\n    int cnt = 0;\n    while ((L < R) && (L & 63))\
+    \ cnt += (*this)[L++];\n    while ((L < R) && (R & 63)) cnt += (*this)[--R];\n\
+    \    int l = L >> 6, r = R >> 6;\n    FOR(i, l, r) cnt += popcnt(dat[i]);\n  \
+    \  return cnt;\n  }\n\n  // [L,R) \u306B p \u3092\u4EE3\u5165\n  void assign_to_range(int\
+    \ L, int R, My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n\
+    \    while (L < R && (L & 63)) { (*this)[L++] = bool(p[a++]); }\n    while (L\
+    \ < R && (R & 63)) { (*this)[--R] = bool(p[--b]); }\n    // p[a:b] \u3092 [L:R]\
+    \ \u306B\n    int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n \
+    \   int n = r - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] = p.dat[s\
+    \ + i];\n    } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n     \
+    \ FOR(i, n) dat[l + i] = (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n  \
+    \  }\n  }\n\n  // [L,R) \u306B p \u3092 xor\n  void xor_to_range(int L, int R,\
+    \ My_Bitset &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while\
+    \ (L < R && (L & 63)) {\n      dat[L >> 6] ^= u64(p[a]) << (L & 63);\n      ++a,\
+    \ ++L;\n    }\n    while (L < R && (R & 63)) {\n      --b, --R;\n      dat[R >>\
+    \ 6] ^= u64(p[b]) << (R & 63);\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n   \
+    \ int l = L >> 6, r = R >> 6;\n    int s = a >> 6, t = b >> t;\n    int n = r\
+    \ - l;\n    if (!(a & 63)) {\n      FOR(i, n) dat[l + i] ^= p.dat[s + i];\n  \
+    \  } else {\n      int hi = a & 63;\n      int lo = 64 - hi;\n      FOR(i, n)\
+    \ dat[l + i] ^= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\
+    \n  // \u884C\u5217\u57FA\u672C\u5909\u5F62\u3067\u4F7F\u3046\u3084\u3064\n  //\
+    \ p \u306F [i:N) \u306B\u3057\u304B\u306A\u3044\u3068\u3057\u3066 p \u3092 xor\
+    \ \u3059\u308B\n  void xor_suffix(int i, My_Bitset &p) {\n    assert(N == p.N\
+    \ && 0 <= i && i < N);\n    FOR(k, i / 64, len(dat)) { dat[k] ^= p.dat[k]; }\n\
+    \  }\n\n  // [L,R) \u306B p \u3092 and\n  void and_to_range(int L, int R, My_Bitset\
+    \ &p) {\n    assert(p.N == R - L);\n    int a = 0, b = p.N;\n    while (L < R\
+    \ && (L & 63)) {\n      if (!p[a]) (*this)[L] = 0;\n      a++, L++;\n    }\n \
+    \   while (L < R && (R & 63)) {\n      --b, --R;\n      if (!p[b]) (*this)[R]\
+    \ = 0;\n    }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >>\
+    \ 6;\n    int s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63))\
+    \ {\n      FOR(i, n) dat[l + i] &= p.dat[s + i];\n    } else {\n      int hi =\
+    \ a & 63;\n      int lo = 64 - hi;\n      FOR(i, n) dat[l + i] &= (p.dat[s + i]\
+    \ >> hi) | (p.dat[1 + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u306B p \u3092\
+    \ or\n  void or_to_range(int L, int R, My_Bitset &p) {\n    assert(p.N == R -\
+    \ L);\n    int a = 0, b = p.N;\n    while (L < R && (L & 63)) {\n      dat[L >>\
+    \ 6] |= u64(p[a]) << (L & 63);\n      ++a, ++L;\n    }\n    while (L < R && (R\
+    \ & 63)) {\n      --b, --R;\n      dat[R >> 6] |= u64(p[b]) << (R & 63);\n   \
+    \ }\n    // p[a:b] \u3092 [L:R] \u306B\n    int l = L >> 6, r = R >> 6;\n    int\
+    \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
+    \ n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n     \
+    \ int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1\
+    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void\
+    \ set_range(int L, int R) {\n    while (L < R && (L & 63)) { set(L++); }\n   \
+    \ while (L < R && (R & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] =\
+    \ u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int\
+    \ L, int R) {\n    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R\
+    \ && (R & 63)) { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n\
+    \  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int R) {\n    while (L\
+    \ < R && (L & 63)) { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R);\
+    \ }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\
+    \u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n\
+    \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
+    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
+    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
+    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
+    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
+    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
+    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
+    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
+    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
+    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
+    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
+    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
+    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/mat_inv.hpp\"\
+    \n\n// det = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\n\
+    template <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS>\
+    \ B(N);\n  if constexpr (is_same_v<BS, My_Bitset>) { FOR(i, N) B[i] = BS(N); }\n\
+    \  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n\
+    \      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if\
+    \ (!A[i][i]) return {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if\
+    \ (A[k][i]) {\n        if constexpr (is_same_v<BS, My_Bitset>) {\n          A[k].xor_suffix(i,\
+    \ A[i]);\n          B[k] ^= B[i];\n        } else {\n          A[k] ^= A[i];\n\
+    \          B[k] ^= B[i];\n        }\n      }\n    }\n  }\n  return B;\n}\n#line\
+    \ 6 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\n\n\
+    using BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
+    \ N) {\n    STR(S);\n    mat[i].resize(N);\n    FOR(j, N) mat[i][j] = (S[j] ==\
+    \ '1');\n  }\n  mat = mat_inv(mat);\n  if (mat.empty()) return print(-1);\n  FOR(i,\
+    \ N) print(mat[i].to_string());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/inverse_matrix_mod_2\"\n\
+    #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"linalg/bitset/mat_inv.hpp\"\
+    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
+    \ N) {\n    STR(S);\n    mat[i].resize(N);\n    FOR(j, N) mat[i][j] = (S[j] ==\
+    \ '1');\n  }\n  mat = mat_inv(mat);\n  if (mat.empty()) return print(-1);\n  FOR(i,\
+    \ N) print(mat[i].to_string());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/segtree/dynamic_segtree.hpp
-  - alg/monoid/add.hpp
+  - linalg/bitset/mat_inv.hpp
+  - ds/my_bitset.hpp
   isVerificationFile: true
-  path: test/3_yukicoder/789.test.cpp
+  path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-09-04 18:44:03+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/3_yukicoder/789.test.cpp
+documentation_of: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
 layout: document
 redirect_from:
-- /verify/test/3_yukicoder/789.test.cpp
-- /verify/test/3_yukicoder/789.test.cpp.html
-title: test/3_yukicoder/789.test.cpp
+- /verify/test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
+- /verify/test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp.html
+title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
 ---
