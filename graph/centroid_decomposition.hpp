@@ -193,7 +193,7 @@ template <int MODE, typename GT, typename F>
 void centroid_decomposition(GT& G, F f) {
   static_assert(!GT::is_directed);
   const int N = G.N;
-  if (N == 1) return;
+  if (MODE != 0 && N == 1) return;
   vc<int> V(N), par(N, -1);
   int l = 0, r = 0;
   V[r++] = 0;
