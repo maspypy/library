@@ -55,8 +55,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2280.test.cpp
-  - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   - test/1_mytest/range_freq_of_linear.test.cpp
+  - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
 documentation_of: mod/range_freq_of_linear.hpp
 layout: document
 redirect_from:

@@ -262,8 +262,8 @@ data:
   verifiedWith:
   - test/5_atcoder/abc301h.test.cpp
   - test/5_atcoder/abc270_f.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
 documentation_of: graph/ds/dual_tree_monoid.hpp
 layout: document
 redirect_from:

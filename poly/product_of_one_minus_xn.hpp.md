@@ -418,8 +418,8 @@ data:
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc267h.test.cpp
   - test/5_atcoder/abc331g.test.cpp
+  - test/5_atcoder/abc267h.test.cpp
   - test/1_mytest/product_of_one_pm_xn.test.cpp
 documentation_of: poly/product_of_one_minus_xn.hpp
 layout: document

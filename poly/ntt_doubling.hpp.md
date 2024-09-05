@@ -313,80 +313,80 @@ data:
   isVerificationFile: false
   path: poly/ntt_doubling.hpp
   requiredBy:
+  - poly/product_of_pow_of_linear.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - poly/sum_of_rationals.hpp
+  - poly/sum_of_exp_bx.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/multipoint.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/composition_f_ex.hpp
+  - poly/convolution_all.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/composition_f_ex_minus_1.hpp
   - graph/chromatic.hpp
   - graph/tree_walk_generating_function.hpp
   - seq/sum_of_powers.hpp
   - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
-  - poly/multipoint.hpp
-  - poly/composition_f_ex.hpp
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/convolution_all.hpp
-  - poly/partial_frac_decomposition_1.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/sum_of_rationals.hpp
-  - poly/product_of_pow_of_linear.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/coef_of_rational_fps.hpp
   - linalg/blackbox/vandermonde.hpp
   timestamp: '2024-07-19 12:50:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc241h.test.cpp
-  - test/5_atcoder/abc260h.test.cpp
+  - test/3_yukicoder/1500.test.cpp
+  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/2459.test.cpp
+  - test/3_yukicoder/1857.test.cpp
+  - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/1875.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/5_atcoder/arc154f.test.cpp
   - test/5_atcoder/abc272_h.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/abc241h.test.cpp
+  - test/5_atcoder/agc058d2.test.cpp
+  - test/5_atcoder/abc260h.test.cpp
   - test/5_atcoder/abc276_g_2.test.cpp
   - test/5_atcoder/abc269ex.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
   - test/5_atcoder/abc267g.test.cpp
-  - test/5_atcoder/arc154f.test.cpp
-  - test/3_yukicoder/1857.test.cpp
-  - test/3_yukicoder/1962.test.cpp
-  - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/2305.test.cpp
-  - test/3_yukicoder/1145.test.cpp
-  - test/3_yukicoder/1392.test.cpp
-  - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/1500.test.cpp
-  - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/541.test.cpp
-  - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
+  - test/5_atcoder/abc281g.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/convolution_all_1.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/chirp_z.test.cpp
+  - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
+  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
+  - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
-  - test/1_mytest/composition_1_minus_ex.test.cpp
-  - test/1_mytest/coef_of_rational.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/1_mytest/convolution_all_1.test.cpp
-  - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/chirp_z.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/1_mytest/bell.test.cpp
 documentation_of: poly/ntt_doubling.hpp
 layout: document
 redirect_from:

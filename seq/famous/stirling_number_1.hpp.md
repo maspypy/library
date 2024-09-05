@@ -620,10 +620,10 @@ data:
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/stirling_1_suffix.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/stirling_1_suffix.test.cpp
 documentation_of: seq/famous/stirling_number_1.hpp
 layout: document
 redirect_from:

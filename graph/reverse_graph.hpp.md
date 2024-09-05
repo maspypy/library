@@ -114,15 +114,15 @@ data:
   path: graph/reverse_graph.hpp
   requiredBy:
   - game/graph_game.hpp
-  - graph/dominator_tree.hpp
   - graph/shortest_path/K_shortest_walk.hpp
+  - graph/dominator_tree.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc209e.test.cpp
   - test/3_yukicoder/1601.test.cpp
-  - test/2_library_checker/graph/domninator_tree.test.cpp
+  - test/5_atcoder/abc209e.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
+  - test/2_library_checker/graph/domninator_tree.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

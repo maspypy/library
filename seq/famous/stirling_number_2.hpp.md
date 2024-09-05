@@ -582,11 +582,11 @@ data:
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/arc153f.test.cpp
-  - test/3_yukicoder/1321.test.cpp
   - test/3_yukicoder/1392.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/3_yukicoder/1321.test.cpp
+  - test/5_atcoder/arc153f.test.cpp
   - test/1_mytest/bell.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
 documentation_of: seq/famous/stirling_number_2.hpp
 layout: document
 redirect_from:

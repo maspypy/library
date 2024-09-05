@@ -81,10 +81,10 @@ data:
   timestamp: '2024-07-03 07:03:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc314g.test.cpp
+  - test/3_yukicoder/2654.test.cpp
   - test/5_atcoder/abc312f.test.cpp
   - test/5_atcoder/abc281e.test.cpp
-  - test/3_yukicoder/2654.test.cpp
+  - test/5_atcoder/abc314g.test.cpp
 documentation_of: ds/slide_split_sum.hpp
 layout: document
 redirect_from:

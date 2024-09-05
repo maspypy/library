@@ -548,11 +548,11 @@ data:
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc222h_2.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
+  - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/abc276_g.test.cpp
 documentation_of: poly/from_log_differentiation.hpp
 layout: document
 redirect_from:

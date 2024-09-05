@@ -340,46 +340,46 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
-  - string/wildcard_pattern_matching.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/partial_frac_decomposition_1.hpp
+  - poly/multipoint.hpp
+  - poly/multivar_convolution_cyclic.hpp
+  - poly/typical_divide_conquer.hpp
   - graph/chromatic.hpp
   - seq/count_grid_path.hpp
-  - poly/multipoint.hpp
-  - poly/typical_divide_conquer.hpp
-  - poly/partial_frac_decomposition_1.hpp
-  - poly/multivar_convolution_cyclic.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/slice_rational_fps.hpp
   - linalg/blackbox/vandermonde.hpp
+  - string/wildcard_pattern_matching.hpp
   timestamp: '2024-07-19 15:13:09+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc241h.test.cpp
-  - test/5_atcoder/abc260h.test.cpp
-  - test/5_atcoder/agc013e.test.cpp
-  - test/5_atcoder/abc333f.test.cpp
-  - test/5_atcoder/abc272_h.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
-  - test/5_atcoder/abc267g.test.cpp
-  - test/3_yukicoder/2626.test.cpp
-  - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/2231.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/2231.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/2626.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/5_atcoder/abc272_h.test.cpp
+  - test/5_atcoder/abc241h.test.cpp
+  - test/5_atcoder/agc013e.test.cpp
+  - test/5_atcoder/agc058d2.test.cpp
+  - test/5_atcoder/abc260h.test.cpp
+  - test/5_atcoder/abc267g.test.cpp
+  - test/5_atcoder/abc333f.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/chirp_z.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/typical_dc.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
+  - test/2_library_checker/polynomial/slice_rational.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
-  - test/1_mytest/typical_dc.test.cpp
-  - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/chirp_z.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

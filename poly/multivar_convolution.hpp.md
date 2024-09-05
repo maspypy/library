@@ -388,8 +388,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1783.test.cpp
-  - test/2_library_checker/convolution/multivariate_convolution.test.cpp
   - test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution.test.cpp
 documentation_of: poly/multivar_convolution.hpp
 layout: document
 redirect_from:

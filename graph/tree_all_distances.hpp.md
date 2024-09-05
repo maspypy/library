@@ -203,10 +203,10 @@ data:
     \ f);\n  centroid_decomposition_2_dfs(par1, V1, rea1, f);\n}\n\n// 0: f(par, V,\
     \ indptr)\n// 1: f(par, V, n1, n2)\n// 2: f(par, V, color)\ntemplate <int MODE,\
     \ typename GT, typename F>\nvoid centroid_decomposition(GT& G, F f) {\n  static_assert(!GT::is_directed);\n\
-    \  const int N = G.N;\n  if (N == 1) return;\n  vc<int> V(N), par(N, -1);\n  int\
-    \ l = 0, r = 0;\n  V[r++] = 0;\n  while (l < r) {\n    int v = V[l++];\n    for\
-    \ (auto& e: G[v]) {\n      if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n\
-    \    }\n  }\n  assert(r == N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]]\
+    \  const int N = G.N;\n  if (MODE != 0 && N == 1) return;\n  vc<int> V(N), par(N,\
+    \ -1);\n  int l = 0, r = 0;\n  V[r++] = 0;\n  while (l < r) {\n    int v = V[l++];\n\
+    \    for (auto& e: G[v]) {\n      if (e.to != par[v]) V[r++] = e.to, par[e.to]\
+    \ = v;\n    }\n  }\n  assert(r == N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]]\
     \ = i;\n  vc<int> tmp(N, -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]]\
     \ = new_idx[j];\n  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE ==\
     \ 1 || MODE == 2);\n  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par,\
@@ -525,7 +525,7 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2024-08-28 00:31:16+09:00'
+  timestamp: '2024-09-05 10:28:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp

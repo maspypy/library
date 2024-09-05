@@ -172,27 +172,27 @@ data:
   isVerificationFile: false
   path: graph/bipartite_vertex_coloring.hpp
   requiredBy:
-  - graph/maximum_antichain.hpp
   - graph/bipartite_edge_coloring.hpp
-  - flow/rank_maximal_bipartite_matching.hpp
+  - graph/maximum_antichain.hpp
   - flow/bipartite.hpp
+  - flow/rank_maximal_bipartite_matching.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc274g.test.cpp
-  - test/5_atcoder/abc237ex.test.cpp
-  - test/3_yukicoder/1911.test.cpp
-  - test/3_yukicoder/1744.test.cpp
-  - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1745.test.cpp
   - test/3_yukicoder/1615.test.cpp
+  - test/3_yukicoder/1479.test.cpp
+  - test/3_yukicoder/1911.test.cpp
+  - test/3_yukicoder/1744.test.cpp
+  - test/5_atcoder/abc237ex.test.cpp
+  - test/5_atcoder/abc274g.test.cpp
+  - test/4_aoj/2251_2.test.cpp
+  - test/4_aoj/1566.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
   - test/2_library_checker/graph/bipartitematching.test.cpp
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/tutte.test.cpp
-  - test/1_mytest/find_odd_cycle.test.cpp
-  - test/4_aoj/1566.test.cpp
-  - test/4_aoj/2251_2.test.cpp
 documentation_of: graph/bipartite_vertex_coloring.hpp
 layout: document
 redirect_from:
