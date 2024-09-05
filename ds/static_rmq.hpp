@@ -1,6 +1,7 @@
 #include "ds/sparse_table/sparse_table.hpp"
 
 // 構築 O(N), クエリ O(1)
+// static_range_product より遅いっぽいので使うことはなさそうだ
 template <typename Monoid>
 struct Static_RMQ {
   using MX = Monoid;
