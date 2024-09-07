@@ -2,32 +2,28 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/my_bitset.hpp"
+#include "linalg/bitset/matrix_mul_mod_2.hpp"
 
 using BS = My_Bitset;
 
 void solve() {
   INT(N, M, K);
-
   vc<BS> A(N, BS(M));
   vc<BS> B(M, BS(K));
-  vc<BS> C(N, BS(K));
 
   FOR(i, N) {
     FOR(j, M) {
       CHAR(ch);
-      A[i][j] = ch - '0';
+      A[i][j] = (ch - '0');
     }
   }
-  FOR(j, M) {
-    FOR(k, K) {
+  FOR(i, M) {
+    FOR(j, K) {
       CHAR(ch);
-      B[j][k] = ch - '0';
+      B[i][j] = (ch - '0');
     }
   }
-  FOR(i, N) FOR(j, M) {
-    if (A[i][j]) C[i] ^= B[j];
-  }
+  vc<BS> C = matrix_mul_mod_2(A, B, N, M, K);
   FOR(i, N) { print(C[i].to_string()); }
 }
 
