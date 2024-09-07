@@ -29,6 +29,13 @@ struct My_Bitset {
     N = size;
   }
 
+  static T from_string(string &S) {
+    int N = len(S);
+    T ANS(N);
+    FOR(i, N) ANS[i] = (S[i] == '1');
+    return ANS;
+  }
+
   // thanks to chatgpt!
   class Proxy {
   public:
