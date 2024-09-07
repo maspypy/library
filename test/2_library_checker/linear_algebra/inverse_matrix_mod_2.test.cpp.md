@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -214,38 +214,40 @@ data:
     \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
     \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
     \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
-    \    }\n    N = size;\n  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n\
-    \    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator bool() const\
-    \ { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64\
-    \ value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n      dat[index\
-    \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
-    \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
-    \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
-    \ operator[](int i) { return Proxy(dat, i); }\n\n  bool operator==(const T &p)\
-    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return\
-    \ false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
-    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
-    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
-    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
-    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
-    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
-    \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
-    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
-    \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
-    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N\
-    \ == p.N);\n    int ans = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n\
-    \    return ans;\n  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int\
-    \ ans = 0;\n    FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n   \
-    \ return ans;\n  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return\
-    \ N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n\
-    \      x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n\
-    \    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return\
-    \ (idx << 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int\
-    \ i) {\n    chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n\
-    \    if ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i &\
-    \ 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n\
-    \    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx\
-    \ << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
+    \    }\n    N = size;\n  }\n\n  static T from_string(string &S) {\n    int N =\
+    \ len(S);\n    T ANS(N);\n    FOR(i, N) ANS[i] = (S[i] == '1');\n    return ANS;\n\
+    \  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n    Proxy(vc<u64>\
+    \ &d, int i) : dat(d), index(i) {}\n    operator bool() const { return (dat[index\
+    \ >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64 value) {\n      dat[index\
+    \ >> 6] &= ~(u64(1) << (index & 63));\n      dat[index >> 6] |= (value & 1) <<\
+    \ (index & 63);\n      return *this;\n    }\n    void flip() {\n      dat[index\
+    \ >> 6] ^= (u64(1) << (index & 63)); // XOR to flip the bit\n    }\n\n  private:\n\
+    \    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy operator[](int i) { return\
+    \ Proxy(dat, i); }\n\n  bool operator==(const T &p) {\n    assert(N == p.N);\n\
+    \    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return false;\n    return true;\n\
+    \  }\n\n  T &operator&=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
+    \ dat[i] &= p.dat[i];\n    return *this;\n  }\n  T &operator|=(const T &p) {\n\
+    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] |= p.dat[i];\n    return *this;\n\
+    \  }\n  T &operator^=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
+    \ dat[i] ^= p.dat[i];\n    return *this;\n  }\n  T operator&(const T &p) const\
+    \ { return T(*this) &= p; }\n  T operator|(const T &p) const { return T(*this)\
+    \ |= p; }\n  T operator^(const T &p) const { return T(*this) ^= p; }\n  T operator~()\
+    \ const {\n    T p = (*this);\n    p.flip_range(0, N);\n    return p;\n  }\n\n\
+    \  int count() {\n    int ans = 0;\n    for (u64 val: dat) ans += popcnt(val);\n\
+    \    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans\
+    \ = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n\
+    \  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n   \
+    \ FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n    return ans;\n\
+    \  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n   \
+    \ int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n     \
+    \ x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx,\
+    \ k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return (idx <<\
+    \ 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int i) {\n \
+    \   chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n    if\
+    \ ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i & 63) +\
+    \ 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n   \
+    \ FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx <<\
+    \ 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
     \ L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n    int rm = (R -\
     \ L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n\
     \    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n\
@@ -346,7 +348,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-09-04 18:44:03+09:00'
+  timestamp: '2024-09-08 04:43:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp

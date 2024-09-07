@@ -287,7 +287,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/meldable_heap.hpp
       title: ds/meldable_heap.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/my_bitset.hpp
       title: ds/my_bitset.hpp
     - icon: ':heavy_check_mark:'
@@ -335,7 +335,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/static_range_product_group.hpp
       title: ds/static_range_product_group.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/static_rmq.hpp
       title: ds/static_rmq.hpp
     - icon: ':heavy_check_mark:'
@@ -1195,6 +1195,9 @@ data:
       path: linalg/bitset/mat_inv.hpp
       title: linalg/bitset/mat_inv.hpp
     - icon: ':heavy_check_mark:'
+      path: linalg/bitset/matrix_mul_mod_2.hpp
+      title: linalg/bitset/matrix_mul_mod_2.hpp
+    - icon: ':heavy_check_mark:'
       path: linalg/bitset/solve_linear.hpp
       title: linalg/bitset/solve_linear.hpp
   - name: linalg/blackbox
@@ -1381,7 +1384,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1537,7 +1540,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2883,6 +2886,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+      title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/unionfind.test.cpp
       title: test/2_library_checker/data_structure/unionfind.test.cpp
@@ -4807,7 +4813,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350f.test.cpp
       title: test/5_atcoder/abc350f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc350g2.test.cpp
       title: test/5_atcoder/abc350g2.test.cpp
     - icon: ':heavy_check_mark:'

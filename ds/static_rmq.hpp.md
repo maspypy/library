@@ -5,10 +5,13 @@ data:
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\
@@ -96,8 +99,9 @@ data:
   path: ds/static_rmq.hpp
   requiredBy: []
   timestamp: '2024-09-06 01:41:02+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/2_library_checker/data_structure/staticrmq_x.test.cpp
 documentation_of: ds/static_rmq.hpp
 layout: document
 redirect_from:

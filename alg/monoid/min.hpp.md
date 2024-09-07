@@ -109,6 +109,9 @@ data:
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -247,6 +250,7 @@ data:
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/2_library_checker/data_structure/staticrmq_dst.test.cpp

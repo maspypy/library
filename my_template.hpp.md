@@ -817,6 +817,9 @@ data:
     path: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/unionfind.test.cpp
     title: test/2_library_checker/data_structure/unionfind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2712,7 +2715,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc350f.test.cpp
     title: test/5_atcoder/abc350f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc350g2.test.cpp
     title: test/5_atcoder/abc350g2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2790,9 +2793,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc162f.test.cpp
     title: test/5_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/96344
@@ -2968,7 +2971,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1383.test.cpp
@@ -3828,6 +3831,7 @@ data:
   - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_x.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
