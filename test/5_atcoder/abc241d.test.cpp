@@ -7,7 +7,7 @@
 
 void solve() {
   LL(Q);
-  My_Multiset<200100> X;
+  My_Multiset X(Q);
   auto c = X.new_root();
   FOR(Q) {
     LL(t);

@@ -8,7 +8,7 @@
 void solve() {
   LL(N, Q, val);
   VEC(int, A, N);
-  Sortable_Array<10'000'000> X(MAX(A) + 1, A);
+  Sortable_Array X(10'000'000, MAX(A) + 1, A);
   FOR(Q) {
     LL(t, L, R);
     --L;
