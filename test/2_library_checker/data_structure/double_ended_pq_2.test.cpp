@@ -10,7 +10,7 @@ void solve() {
   VEC(int, A, N);
   const int LIM = 1'000'000'000;
 
-  Dynamic_SegTree_Sparse<Monoid_Add<int>, false, 1'000'000> seg(-LIM, LIM + 1);
+  Dynamic_SegTree_Sparse<Monoid_Add<int>, false> seg(N + Q, -LIM, LIM + 1);
   using np = typename decltype(seg)::np;
   np root = nullptr;
   for (auto&& a: A) root = seg.multiply(root, a, 1);

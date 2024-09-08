@@ -23,7 +23,7 @@ void solve() {
   VEC(pi, XY, N);
   ll LIM = 1 << 30;
 
-  Dynamic_SegTree_Sparse<Mono, false, 200000> seg(-LIM, LIM);
+  Dynamic_SegTree_Sparse<Mono, false> seg(N, -LIM, LIM);
   using np = decltype(seg)::np;
 
   mint ANS = 0;

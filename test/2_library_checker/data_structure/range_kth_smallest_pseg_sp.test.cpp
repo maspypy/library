@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Dynamic_SegTree_Sparse<Monoid_Add<int>, true, 5'000'000> seg(0, N);
+  Dynamic_SegTree_Sparse<Monoid_Add<int>, true> seg(5'000'000, 0, N);
   using np = decltype(seg)::np;
   auto I = argsort(A);
 

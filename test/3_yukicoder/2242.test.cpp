@@ -14,7 +14,7 @@ void solve() {
   LL(N);
   VEC(int, H, N);
   VEC(int, T, N);
-  Dynamic_SegTree_Sparse<Monoid_Max<int>, 0, 200'100> seg(0, infty<int> + 10);
+  Dynamic_SegTree_Sparse<Monoid_Max<int>, 0> seg(N, 0, infty<int>);
   auto root = seg.new_root();
   FOR(i, N) { root = seg.multiply(root, H[i], T[i]); }
 
