@@ -290,7 +290,7 @@ data:
     - icon: ':question:'
       path: ds/my_bitset.hpp
       title: ds/my_bitset.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
     - icon: ':heavy_check_mark:'
@@ -462,7 +462,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/dynamic_segtree.hpp
       title: ds/segtree/dynamic_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_segtree_sparse.hpp
       title: ds/segtree/dynamic_segtree_sparse.hpp
     - icon: ':heavy_check_mark:'
@@ -4603,7 +4603,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc240ex.test.cpp
       title: test/5_atcoder/abc240ex.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc241d.test.cpp
       title: test/5_atcoder/abc241d.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4702,7 +4702,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc281e.test.cpp
       title: test/5_atcoder/abc281e.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc281e_2.test.cpp
       title: test/5_atcoder/abc281e_2.test.cpp
     - icon: ':heavy_check_mark:'
