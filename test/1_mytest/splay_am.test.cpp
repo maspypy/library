@@ -11,12 +11,10 @@ using mint = modint998;
 void test() {
   using AM = ActedMonoid_Sum_Add<int>;
 
-  SplayTree_ActedMonoid<AM, 100> X;
-
   FOR(1000) {
-    X.reset();
     int N = RNG(1, 10);
     int Q = RNG(1, 1000);
+    SplayTree_ActedMonoid<AM> X(N);
     vc<int> A(N);
     FOR(i, N) A[i] = RNG(1, 10);
 

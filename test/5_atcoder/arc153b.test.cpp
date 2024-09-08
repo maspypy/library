@@ -6,7 +6,7 @@
 void solve() {
   LL(H, W);
   VEC(string, G, H);
-  SplayTree_Basic<int, 300'000> X;
+  SplayTree_Basic<int> X(H + W);
 
   vc<int> A(H), B(W);
   iota(all(A), 0), iota(all(B), 0);

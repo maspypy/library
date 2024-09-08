@@ -43,8 +43,8 @@ struct Node_Basic {
     rev ^= 1;
   }
 };
-template <typename S, int NODES>
-using SplayTree_Basic = SplayTree<Node_Basic<S>, NODES>;
+template <typename S>
+using SplayTree_Basic = SplayTree<Node_Basic<S>>;
 } // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_Basic;

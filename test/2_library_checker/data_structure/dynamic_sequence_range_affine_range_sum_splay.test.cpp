@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -10,11 +9,11 @@
 using mint = modint998;
 
 void solve() {
-  using AM = ActedMonoid_Sum_Affine<mint>;
-  SplayTree_ActedMonoid<AM, 1'000'000> X;
-  using P = typename AM::X;
-
   INT(N, Q);
+
+  using AM = ActedMonoid_Sum_Affine<mint>;
+  SplayTree_ActedMonoid<AM> X(N + Q);
+
   VEC(mint, dat, N);
   auto root = X.new_node(dat);
 

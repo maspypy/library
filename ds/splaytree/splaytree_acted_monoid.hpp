@@ -72,8 +72,8 @@ struct Node_AM {
     rev ^= 1;
   }
 };
-template <typename ActedMonoid, int NODES>
-using SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>, NODES>;
+template <typename ActedMonoid>
+using SplayTree_ActedMonoid = SplayTree<Node_AM<ActedMonoid>>;
 } // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_ActedMonoid;

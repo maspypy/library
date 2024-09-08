@@ -8,7 +8,7 @@ void solve() {
   LL(N, Q);
   VEC(int, A, N);
 
-  SplayTree_Monoid<Monoid_Min<int>, 500'000> ST;
+  SplayTree_Monoid<Monoid_Min<int>> ST(N);
   auto root = ST.new_node(A);
   FOR(Q) {
     LL(t);
@@ -30,13 +30,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

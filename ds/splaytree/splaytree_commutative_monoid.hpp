@@ -64,8 +64,8 @@ struct Node_CM {
     rev ^= 1;
   }
 };
-template <typename Monoid, int NODES>
-using SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>, NODES>;
+template <typename Monoid>
+using SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>>;
 } // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_Commutative_Monoid;

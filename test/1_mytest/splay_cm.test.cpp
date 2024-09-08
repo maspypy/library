@@ -9,13 +9,12 @@ using mint = modint998;
 
 void test() {
   using Mono = Monoid_Add<int>;
-  SplayTree_Commutative_Monoid<Mono, 100> X;
-  using np = decltype(X)::np;
 
   FOR(1000) {
-    X.reset();
     int N = RNG(1, 20);
     int Q = RNG(1, 1000);
+    SplayTree_Commutative_Monoid<Mono> X(N);
+    using np = decltype(X)::np;
     vc<int> A(N);
     FOR(i, N) A[i] = RNG(0, 100);
     np root = X.new_node(A);
