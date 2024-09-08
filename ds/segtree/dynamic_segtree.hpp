@@ -1,7 +1,7 @@
 #pragma once
 
 // sparse もあるので状況によってはそっちで
-template <typename Monoid, bool PERSISTENT, int NODES>
+template <typename Monoid, bool PERSISTENT>
 struct Dynamic_SegTree {
   using MX = Monoid;
   using X = typename MX::value_type;
@@ -13,20 +13,22 @@ struct Dynamic_SegTree {
     X x;
   };
 
+  const int NODES;
   const ll L0, R0;
   Node *pool;
   int pid;
   using np = Node *;
 
   Dynamic_SegTree(
-      ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })
-      : default_prod(default_prod), L0(L0), R0(R0), pid(0) {
+      int NODES, ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })
+      : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0), pid(0) {
     pool = new Node[NODES];
   }
 
   np new_root() { return new_node(L0, R0); }
 
   np new_node(const X x) {
+    assert(pid < NODES);
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
     return &(pool[pid++]);
@@ -173,6 +175,7 @@ private:
     prod_rec(c->r, m, r, ql, qr, x);
   }
 
+  // これ new node 作ってるのはさぼり
   template <typename F>
   ll max_right_rec(np c, const F &check, ll l, ll r, ll ql, X &x) {
     if (r <= ql) return R0;
@@ -189,6 +192,7 @@ private:
     return max_right_rec(c->r, check, m, r, ql, x);
   }
 
+  // これ new node 作ってるのはさぼり
   template <typename F>
   ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X &x) {
     if (qr <= l) return L0;

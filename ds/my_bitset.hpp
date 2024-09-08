@@ -318,6 +318,18 @@ struct My_Bitset {
     return false;
   }
 
+  bool ALL() {
+    dat.resize((N + 63) >> 6);
+    int r = N & 63;
+    if (r != 0) {
+      u64 mask = (u64(1) << r) - 1;
+      if (dat.back() != mask) return 0;
+    }
+    for (int i = 0; i < N / 64; ++i)
+      if (dat[i] != u64(-1)) return false;
+    return true;
+  }
+
   int _Find_first() { return next(0); }
   int _Find_next(int p) { return next(p + 1); }
 
