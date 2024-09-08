@@ -1,15 +1,17 @@
 #pragma once
 // Node 型を別に定義して使う
-template <typename Node, int NODES = 1'000'000>
+template <typename Node>
 struct SplayTree {
   Node *pool;
+  const int NODES;
   int pid;
   using np = Node *;
   using X = typename Node::value_type;
   using A = typename Node::operator_type;
   vc<np> FREE;
 
-  SplayTree() : pid(0) { pool = new Node[NODES]; }
+  SplayTree(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
+  ~SplayTree() { delete[] pool; }
 
   void free_subtree(np c) {
     auto dfs = [&](auto &dfs, np c) -> void {
@@ -28,6 +30,7 @@ struct SplayTree {
   np new_root() { return nullptr; }
 
   np new_node(const X &x) {
+    assert(!FREE.empty() || pid < NODES);
     np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));
     Node::new_node(n, x);
     return n;

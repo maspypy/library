@@ -9,7 +9,7 @@
 void solve() {
   STR(S);
   ll N = len(S);
-  SplayTree_Basic<char, 1 << 20> ST;
+  SplayTree_Basic<char> ST(1 << 20);
   using np = decltype(ST)::np;
 
   int p = 0;

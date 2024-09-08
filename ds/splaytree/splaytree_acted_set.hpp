@@ -65,8 +65,8 @@ struct Node_AS {
     rev ^= 1;
   }
 };
-template <typename ActedSet, int NODES>
-using SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>, NODES>;
+template <typename ActedSet>
+using SplayTree_ActedSet = SplayTree<Node_AS<ActedSet>>;
 } // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_ActedSet;

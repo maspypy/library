@@ -9,14 +9,13 @@ using mint = modint998;
 
 void test() {
   using Mono = Monoid_Assign<int, -1>;
-  SplayTree_Monoid<Mono, 100> X;
 
   FOR(1000) {
-    X.reset();
     int N = RNG(1, 20);
     int Q = RNG(1, 1000);
     vc<int> A(N);
     FOR(i, N) A[i] = RNG(0, 100);
+    SplayTree_Monoid<Mono> X(N);
     auto root = X.new_node(A);
 
     FOR(Q) {

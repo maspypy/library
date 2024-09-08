@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
   VEC(ll, A, N);
-  SplayTree_Monoid<Monoid_Add<ll>, 200'000> ST;
+  SplayTree_Monoid<Monoid_Add<ll>> ST(N);
   auto root = ST.new_node(A);
   FOR(Q) {
     LL(t, l, r);

@@ -69,8 +69,8 @@ struct Node_Monoid {
     rev ^= 1;
   }
 };
-template <typename Monoid, int NODES>
-using SplayTree_Monoid = SplayTree<Node_Monoid<Monoid>, NODES>;
+template <typename Monoid>
+using SplayTree_Monoid = SplayTree<Node_Monoid<Monoid>>;
 } // namespace SplayTreeNodes
 
 using SplayTreeNodes::SplayTree_Monoid;
