@@ -299,16 +299,16 @@ data:
     \ < m) {\n      if (!(n->l)) n->l = new_node(0);\n      set_rec(n->l, l, m, k);\n\
     \    }\n    if (m <= k) {\n      if (!(n->r)) n->r = new_node(0);\n      set_rec(n->r,\
     \ m, r, k);\n    }\n    update(n);\n  }\n};\n#line 7 \"test/5_atcoder/abc217e.test.cpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array<15'000'000>\
-    \ X(infty<int> + 1, vc<int>(Q));\n  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n\
-    \      INT(x);\n      X.set(R++, x);\n    }\n    if (t == 2) {\n      print(X.get(L));\n\
+    \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array X(15'000'000,\
+    \ infty<int> + 1, vc<int>(Q));\n  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n \
+    \     INT(x);\n      X.set(R++, x);\n    }\n    if (t == 2) {\n      print(X.get(L));\n\
     \      L++;\n    }\n    if (t == 3) {\n      if (L < R) X.sort_inc(L, R);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc217/tasks/abc217_e\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/sortable_array.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array<15'000'000>\
-    \ X(infty<int> + 1, vc<int>(Q));\n  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n\
-    \      INT(x);\n      X.set(R++, x);\n    }\n    if (t == 2) {\n      print(X.get(L));\n\
+    \n\nvoid solve() {\n  LL(Q);\n  int L = 0, R = 0;\n  Sortable_Array X(15'000'000,\
+    \ infty<int> + 1, vc<int>(Q));\n  FOR(Q) {\n    INT(t);\n    if (t == 1) {\n \
+    \     INT(x);\n      X.set(R++, x);\n    }\n    if (t == 2) {\n      print(X.get(L));\n\
     \      L++;\n    }\n    if (t == 3) {\n      if (L < R) X.sort_inc(L, R);\n  \
     \  }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
@@ -319,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc217e.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 04:17:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc217e.test.cpp

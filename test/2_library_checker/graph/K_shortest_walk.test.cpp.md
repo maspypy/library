@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/k_shortest_walk
@@ -334,7 +334,7 @@ data:
     \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
     \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>);\
-    \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X(G.N + G.M);\n\
+    \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X(20 * G.M);\n\
     \  using np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool>\
     \ vis(N);\n  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v\
     \ = POP(st);\n    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to]\
@@ -354,16 +354,16 @@ data:
     \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(infty<T>);\n  return ANS;\n\
     }\n#line 6 \"test/2_library_checker/graph/K_shortest_walk.test.cpp\"\n\nvoid solve()\
     \ {\n  INT(N, M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n\
-    \  auto ANS = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1, s, t, K);\n  for\
-    \ (auto &&x: ANS) {\n    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \  auto ANS = K_shortest_walk<ll, decltype(G1)>(G1, s, t, K);\n  for (auto &&x:\
+    \ ANS) {\n    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/k_shortest_walk\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/base.hpp\"\n\
     #include \"graph/shortest_path/K_shortest_walk.hpp\"\n\nvoid solve() {\n  INT(N,\
     \ M, s, t, K);\n  Graph<int, 1> G1(N);\n  G1.read_graph(M, 1, 0);\n  auto ANS\
-    \ = K_shortest_walk<ll, decltype(G1), 5'000'000>(G1, s, t, K);\n  for (auto &&x:\
-    \ ANS) {\n    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}"
+    \ = K_shortest_walk<ll, decltype(G1)>(G1, s, t, K);\n  for (auto &&x: ANS) {\n\
+    \    if (x == infty<ll>) x = -1;\n    print(x);\n  }\n}\n\nsigned main() {\n \
+    \ solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -375,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/K_shortest_walk.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 04:35:28+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/K_shortest_walk.test.cpp
 layout: document

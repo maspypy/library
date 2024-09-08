@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc241/tasks/abc241_d
@@ -297,9 +297,9 @@ data:
     \  pair<ll, i128> suffix_kth(np c, ll k) {\n    auto [cnt, sm] = seg.prod_all(c);\n\
     \    assert(k <= cnt);\n    if (k == cnt) return {-infty<ll>, sm};\n    auto [a,\
     \ b] = prefix_kth(c, cnt - 1 - k);\n    return {a, sm - b - a};\n  }\n};\n#line\
-    \ 7 \"test/5_atcoder/abc241d.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  My_Multiset<200100>\
-    \ X;\n  auto c = X.new_root();\n  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n  \
-    \    LL(x);\n      c = X.add(c, x);\n    }\n    if (t == 2) {\n      LL(x, k);\n\
+    \ 7 \"test/5_atcoder/abc241d.test.cpp\"\n\nvoid solve() {\n  LL(Q);\n  My_Multiset\
+    \ X(Q);\n  auto c = X.new_root();\n  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n\
+    \      LL(x);\n      c = X.add(c, x);\n    }\n    if (t == 2) {\n      LL(x, k);\n\
     \      auto [cnt, sm] = X.get_range(c, -infty<ll>, x + 1);\n      if (cnt < k)\
     \ {\n        print(-1);\n      } else {\n        ll ans = X.prefix_kth(c, cnt\
     \ - k).fi;\n        print(ans);\n      }\n    }\n    if (t == 3) {\n      LL(x,\
@@ -309,7 +309,7 @@ data:
     \ solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc241/tasks/abc241_d\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/my_multiset.hpp\"\
-    \n\nvoid solve() {\n  LL(Q);\n  My_Multiset<200100> X;\n  auto c = X.new_root();\n\
+    \n\nvoid solve() {\n  LL(Q);\n  My_Multiset X(Q);\n  auto c = X.new_root();\n\
     \  FOR(Q) {\n    LL(t);\n    if (t == 1) {\n      LL(x);\n      c = X.add(c, x);\n\
     \    }\n    if (t == 2) {\n      LL(x, k);\n      auto [cnt, sm] = X.get_range(c,\
     \ -infty<ll>, x + 1);\n      if (cnt < k) {\n        print(-1);\n      } else\
@@ -317,7 +317,7 @@ data:
     \  }\n    }\n    if (t == 3) {\n      LL(x, k);\n      auto [cnt, sm] = X.get_range(c,\
     \ x, infty<ll>);\n      if (cnt < k) {\n        print(-1);\n      } else {\n \
     \       ll ans = X.suffix_kth(c, cnt - k).fi;\n        print(ans);\n      }\n\
-    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -326,8 +326,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc241d.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 04:17:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc241d.test.cpp
 layout: document

@@ -98,7 +98,7 @@ data:
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"graph/directed_mst.hpp\"\
     \n\ntemplate <typename GT>\nstruct Directed_MST_Solver {\n  using T = typename\
     \ GT::cost_type;\n  GT &G;\n\n  Directed_MST_Solver(GT &G) : G(G), pid(0) { pool\
-    \ = new Node[G.N + G.M]; }\n  ~Directed_MST_Solver() { delete[] pool; }\n\n  vc<int>\
+    \ = new Node[2 * G.N]; }\n  ~Directed_MST_Solver() { delete[] pool; }\n\n  vc<int>\
     \ calc(int root) {\n    int N = G.N, M = G.M;\n    vc<np> que(N);\n    for (auto\
     \ &e: G.edges) { que[e.to] = meld(que[e.to], new_node(e.frm, e.cost, e.id)); }\n\
     \    vc<char> used(N + M);\n    used[root] = 2;\n    vc<Edge> best_edge(N + M);\n\
@@ -130,15 +130,15 @@ data:
     \ || (a->l->s < a->r->s)) swap(a->l, a->r);\n    a->s = (a->r ? a->r->s : 0) +\
     \ 1;\n    return a;\n  }\n\n  Edge pop(np &a) {\n    Edge e = a->e;\n    a = meld(add(a->l,\
     \ a->lazy), add(a->r, a->lazy));\n    return e;\n  }\n};\n\ntemplate <typename\
-    \ GT, int MAX_N>\npair<typename GT::cost_type, vc<int>> directed_mst(GT &G, int\
-    \ root) {\n  Directed_MST_Solver<GT, 2 * MAX_N> D(G);\n  using T = typename GT::cost_type;\n\
-    \  auto I = D.calc(root);\n  T cost = 0;\n  for (auto &i: I) cost += G.edges[i].cost;\n\
+    \ GT>\npair<typename GT::cost_type, vc<int>> directed_mst(GT &G, int root) {\n\
+    \  Directed_MST_Solver<GT> D(G);\n  using T = typename GT::cost_type;\n  auto\
+    \ I = D.calc(root);\n  T cost = 0;\n  for (auto &i: I) cost += G.edges[i].cost;\n\
     \  return {cost, I};\n};\n"
   code: "#include \"graph/base.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n\n\
     template <typename GT>\nstruct Directed_MST_Solver {\n  using T = typename GT::cost_type;\n\
-    \  GT &G;\n\n  Directed_MST_Solver(GT &G) : G(G), pid(0) { pool = new Node[G.N\
-    \ + G.M]; }\n  ~Directed_MST_Solver() { delete[] pool; }\n\n  vc<int> calc(int\
-    \ root) {\n    int N = G.N, M = G.M;\n    vc<np> que(N);\n    for (auto &e: G.edges)\
+    \  GT &G;\n\n  Directed_MST_Solver(GT &G) : G(G), pid(0) { pool = new Node[2 *\
+    \ G.N]; }\n  ~Directed_MST_Solver() { delete[] pool; }\n\n  vc<int> calc(int root)\
+    \ {\n    int N = G.N, M = G.M;\n    vc<np> que(N);\n    for (auto &e: G.edges)\
     \ { que[e.to] = meld(que[e.to], new_node(e.frm, e.cost, e.id)); }\n    vc<char>\
     \ used(N + M);\n    used[root] = 2;\n    vc<Edge> best_edge(N + M);\n    vc<int>\
     \ par(N + M, -1); // merge \u904E\u7A0B\u306E\u6728\n    vc<int> rt(N + M);\n\
@@ -169,9 +169,9 @@ data:
     \ || (a->l->s < a->r->s)) swap(a->l, a->r);\n    a->s = (a->r ? a->r->s : 0) +\
     \ 1;\n    return a;\n  }\n\n  Edge pop(np &a) {\n    Edge e = a->e;\n    a = meld(add(a->l,\
     \ a->lazy), add(a->r, a->lazy));\n    return e;\n  }\n};\n\ntemplate <typename\
-    \ GT, int MAX_N>\npair<typename GT::cost_type, vc<int>> directed_mst(GT &G, int\
-    \ root) {\n  Directed_MST_Solver<GT, 2 * MAX_N> D(G);\n  using T = typename GT::cost_type;\n\
-    \  auto I = D.calc(root);\n  T cost = 0;\n  for (auto &i: I) cost += G.edges[i].cost;\n\
+    \ GT>\npair<typename GT::cost_type, vc<int>> directed_mst(GT &G, int root) {\n\
+    \  Directed_MST_Solver<GT> D(G);\n  using T = typename GT::cost_type;\n  auto\
+    \ I = D.calc(root);\n  T cost = 0;\n  for (auto &i: I) cost += G.edges[i].cost;\n\
     \  return {cost, I};\n};\n"
   dependsOn:
   - graph/base.hpp
@@ -179,7 +179,7 @@ data:
   isVerificationFile: false
   path: graph/directed_mst.hpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 04:35:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/graph/directed_mst.test.cpp

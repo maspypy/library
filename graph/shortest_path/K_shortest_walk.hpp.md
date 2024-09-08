@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\ntemplate <typename VAL, bool PERSISTENT,\
@@ -147,7 +147,7 @@ data:
     \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
     \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>);\
-    \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X(G.N + G.M);\n\
+    \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X(20 * G.M);\n\
     \  using np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool>\
     \ vis(N);\n  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v\
     \ = POP(st);\n    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to]\
@@ -173,7 +173,7 @@ data:
     \ int t, int K) {\n  static_assert(GT::is_directed);\n  int N = G.N;\n  auto RG\
     \ = reverse_graph(G);\n  auto [dist, par] = dijkstra<T, decltype(RG)>(RG, t);\n\
     \  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }\n\n  using P = pair<T,\
-    \ int>;\n  Meldable_Heap<P, true, true> X(G.N + G.M);\n  using np = typename decltype(X)::np;\n\
+    \ int>;\n  Meldable_Heap<P, true, true> X(20 * G.M);\n  using np = typename decltype(X)::np;\n\
     \  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int> st = {t};\n  vis[t]\
     \ = 1;\n  while (len(st)) {\n    int v = POP(st);\n    bool done = 0;\n    for\
     \ (auto &&e: G[v]) {\n      if (dist[e.to] == infty<T>) continue;\n      if (!done\
@@ -199,8 +199,8 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-09 04:35:28+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/shortest_path/K_shortest_walk.hpp

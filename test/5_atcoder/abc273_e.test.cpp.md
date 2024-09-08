@@ -245,28 +245,26 @@ data:
     \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 6 \"test/5_atcoder/abc273_e.test.cpp\"\
-    \n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000> X(0);\n  using np =\
-    \ typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_root();\n\
-    \  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q) {\n    STR(S);\n\
-    \    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++, x);\n  \
-    \  }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n    if (S\
-    \ == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n    if (S\
-    \ == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n    }\n    ll\
-    \ x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\n  ll T = 1;\n  //\
-    \ LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  Dynamic_Array<int, true> X(3e6, 0);\n  using np = typename\
+    \ decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A = X.new_root();\n  int A_size\
+    \ = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q) {\n    STR(S);\n    if (S ==\
+    \ \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++, x);\n    }\n    if (S\
+    \ == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n    if (S == \"SAVE\"\
+    ) {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n    if (S == \"LOAD\"\
+    ) {\n      INT(z);\n      tie(A, A_size) = note[z];\n    }\n    ll x = -1;\n \
+    \   if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc273/tasks/abc273_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/dynamic_array.hpp\"\
-    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true, 3'000'000>\
-    \ X(0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np\
-    \ A = X.new_root();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q)\
+    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  Dynamic_Array<int, true> X(3e6,\
+    \ 0);\n  using np = typename decltype(X)::np;\n\n  LL(Q);\n  vi ANS;\n\n  np A\
+    \ = X.new_root();\n  int A_size = 0;\n  HashMap<pair<np, int>> note;\n\n  FOR(Q)\
     \ {\n    STR(S);\n    if (S == \"ADD\") {\n      INT(x);\n      A = X.set(A, A_size++,\
     \ x);\n    }\n    if (S == \"DELETE\") {\n      if (A_size) --A_size;\n    }\n\
     \    if (S == \"SAVE\") {\n      INT(y);\n      note[y] = {A, A_size};\n    }\n\
     \    if (S == \"LOAD\") {\n      INT(z);\n      tie(A, A_size) = note[z];\n  \
     \  }\n    ll x = -1;\n    if (A_size) x = X.get(A, A_size - 1);\n    ANS.eb(x);\n\
-    \  }\n  print(ANS);\n}\n\nsigned main() {\n  cout << fixed << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n  return 0;\n}\n"
+    \  }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -275,7 +273,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc273_e.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 04:17:45+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc273_e.test.cpp
