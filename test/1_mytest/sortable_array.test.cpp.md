@@ -213,7 +213,7 @@ data:
     \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
     \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/sortable_array.test.cpp\"\
     \n\nvoid test() {\n  int N = RNG(1, 64);\n  int MAX = RNG(2, 20);\n  vc<int> A(N);\n\
-    \  FOR(i, N) A[i] = RNG(MAX);\n  Sortable_Array<1000> X(MAX, A);\n\n  int Q =\
+    \  FOR(i, N) A[i] = RNG(MAX);\n  Sortable_Array X(1000, MAX, A);\n\n  int Q =\
     \ 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n    if (t == 0) {\n      vc<int>\
     \ B = X.get_all();\n      assert(A == B);\n    }\n    if (t == 0) {\n      int\
     \ idx = RNG(0, N);\n      assert(A[idx] == X.get(idx));\n    }\n    if (t == 2)\
@@ -229,7 +229,7 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"ds/sortable_array.hpp\"\n#include \"random/base.hpp\"\
     \n\nvoid test() {\n  int N = RNG(1, 64);\n  int MAX = RNG(2, 20);\n  vc<int> A(N);\n\
-    \  FOR(i, N) A[i] = RNG(MAX);\n  Sortable_Array<1000> X(MAX, A);\n\n  int Q =\
+    \  FOR(i, N) A[i] = RNG(MAX);\n  Sortable_Array X(1000, MAX, A);\n\n  int Q =\
     \ 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n    if (t == 0) {\n      vc<int>\
     \ B = X.get_all();\n      assert(A == B);\n    }\n    if (t == 0) {\n      int\
     \ idx = RNG(0, N);\n      assert(A[idx] == X.get(idx));\n    }\n    if (t == 2)\
@@ -250,7 +250,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 04:44:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/sortable_array.test.cpp

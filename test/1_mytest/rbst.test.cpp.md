@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/randomized_bst/rbst.hpp
     title: ds/randomized_bst/rbst.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -191,7 +191,7 @@ data:
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/1_mytest/rbst.test.cpp\"\
-    \n\nvoid test() {\n  RBST<int, true, 10000> X;\n  using np = decltype(X)::np;\n\
+    \n\nvoid test() {\n  RBST<int, true> X(10000);\n  using np = decltype(X)::np;\n\
     \n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
     \    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots =\
     \ {X.new_node(AA[0])};\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3};\n \
@@ -209,7 +209,7 @@ data:
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"ds/randomized_bst/rbst.hpp\"\n#include \"random/base.hpp\"\n\nvoid\
-    \ test() {\n  RBST<int, true, 10000> X;\n  using np = decltype(X)::np;\n\n  FOR(1000)\
+    \ test() {\n  RBST<int, true> X(10000);\n  using np = decltype(X)::np;\n\n  FOR(1000)\
     \ {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vvc<int>\
     \ AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots = {X.new_node(AA[0])};\n\
     \n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3};\n      int t = cand[RNG(0,\
@@ -231,8 +231,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 04:44:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst.test.cpp
 layout: document

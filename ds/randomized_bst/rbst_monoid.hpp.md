@@ -3,16 +3,16 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid.test.cpp
     title: test/1_mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_2.test.cpp
     title: test/1_mytest/rbst_monoid_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_persistent.test.cpp
     title: test/1_mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_test.test.cpp
     title: test/1_mytest/rbst_test.test.cpp
   - icon: ':x:'
@@ -20,15 +20,15 @@ data:
     title: test/4_aoj/1508_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename\
     \ Monoid, bool PERSISTENT>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
     \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  int NODES;\n  Node *pool;\n  int\
-    \ pid;\n  using np = Node *;\n\n  RBST_Monoid() : NODES(NODES), pid(0) { pool\
-    \ = new Node[NODES]; }\n  ~RBST_Monoid() { delete[] pool; }\n\n  void reset()\
+    \ pid;\n  using np = Node *;\n\n  RBST_Monoid(int NODES) : NODES(NODES), pid(0)\
+    \ { pool = new Node[NODES]; }\n  ~RBST_Monoid() { delete[] pool; }\n\n  void reset()\
     \ { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r =\
     \ nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod\
     \ = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
@@ -138,16 +138,16 @@ data:
   code: "template <typename Monoid, bool PERSISTENT>\nstruct RBST_Monoid {\n  using\
     \ X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X\
     \ x, prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n\
-    \  };\n\n  int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid()\
-    \ : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_Monoid() { delete[]\
-    \ pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
-    \  pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n\
-    \    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto\
-    \ dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n\
-    \      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n\
-    \      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n  \
-    \    np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
+    \  };\n\n  int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid(int\
+    \ NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_Monoid()\
+    \ { delete[] pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x)\
+    \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
+    \ = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev\
+    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n\
+    \    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l +\
+    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
+    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
     \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
     \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l\
     \ = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n\
@@ -250,8 +250,8 @@ data:
   isVerificationFile: false
   path: ds/randomized_bst/rbst_monoid.hpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-09 04:44:30+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/1508_2.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp

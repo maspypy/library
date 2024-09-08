@@ -129,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_queue.test.cpp
     title: test/2_library_checker/data_structure/persistent_queue.test.cpp
   - icon: ':x:'
@@ -2031,7 +2031,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc272_h.test.cpp
     title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc273_e.test.cpp
     title: test/5_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'

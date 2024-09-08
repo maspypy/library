@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/catalan_convolution.test.cpp
     title: test/1_mytest/catalan_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf702_F.test.cpp
     title: test/1_mytest/cf702_F.test.cpp
   - icon: ':heavy_check_mark:'
@@ -162,7 +162,7 @@ data:
   - icon: ':x:'
     path: test/1_mytest/dynamic_lazy_segtree.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - icon: ':heavy_check_mark:'
@@ -426,7 +426,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_mex.test.cpp
     title: test/1_mytest/range_mex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst.test.cpp
     title: test/1_mytest/rbst.test.cpp
   - icon: ':x:'
@@ -441,16 +441,16 @@ data:
   - icon: ':x:'
     path: test/1_mytest/rbst_commutative_persistent.test.cpp
     title: test/1_mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid.test.cpp
     title: test/1_mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_2.test.cpp
     title: test/1_mytest/rbst_monoid_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_persistent.test.cpp
     title: test/1_mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_test.test.cpp
     title: test/1_mytest/rbst_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -669,7 +669,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_queue.test.cpp
     title: test/2_library_checker/data_structure/persistent_queue.test.cpp
   - icon: ':x:'
@@ -2574,7 +2574,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc272_h.test.cpp
     title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc273_e.test.cpp
     title: test/5_atcoder/abc273_e.test.cpp
   - icon: ':heavy_check_mark:'

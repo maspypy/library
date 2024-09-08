@@ -100,7 +100,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax_with_cost.hpp
       title: alg/monoid/add_chmin_chmax_with_cost.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_pair.hpp
       title: alg/monoid/add_pair.hpp
     - icon: ':question:'
@@ -266,13 +266,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
     - icon: ':question:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -421,19 +421,19 @@ data:
       title: ds/offline_query/uniqueproductquery.hpp
   - name: ds/randomized_bst
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst.hpp
       title: ds/randomized_bst/rbst.hpp
     - icon: ':x:'
       path: ds/randomized_bst/rbst_acted_monoid.hpp
       title: ds/randomized_bst/rbst_acted_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/randomized_bst/rbst_acted_set.hpp
       title: ds/randomized_bst/rbst_acted_set.hpp
     - icon: ':x:'
       path: ds/randomized_bst/rbst_commutative_monoid.hpp
       title: ds/randomized_bst/rbst_commutative_monoid.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/randomized_bst/rbst_monoid.hpp
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/segtree
@@ -2109,7 +2109,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/catalan_convolution.test.cpp
       title: test/1_mytest/catalan_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/cf702_F.test.cpp
       title: test/1_mytest/cf702_F.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2223,7 +2223,7 @@ data:
     - icon: ':x:'
       path: test/1_mytest/dynamic_lazy_segtree.test.cpp
       title: test/1_mytest/dynamic_lazy_segtree.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
       title: test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2490,7 +2490,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_mex.test.cpp
       title: test/1_mytest/range_mex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst.test.cpp
       title: test/1_mytest/rbst.test.cpp
     - icon: ':x:'
@@ -2505,16 +2505,16 @@ data:
     - icon: ':x:'
       path: test/1_mytest/rbst_commutative_persistent.test.cpp
       title: test/1_mytest/rbst_commutative_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_monoid.test.cpp
       title: test/1_mytest/rbst_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_monoid_2.test.cpp
       title: test/1_mytest/rbst_monoid_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_monoid_persistent.test.cpp
       title: test/1_mytest/rbst_monoid_persistent.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/rbst_test.test.cpp
       title: test/1_mytest/rbst_test.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2742,7 +2742,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/persistent_queue.test.cpp
       title: test/2_library_checker/data_structure/persistent_queue.test.cpp
     - icon: ':x:'
@@ -4678,7 +4678,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc272_h.test.cpp
       title: test/5_atcoder/abc272_h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc273_e.test.cpp
       title: test/5_atcoder/abc273_e.test.cpp
     - icon: ':heavy_check_mark:'

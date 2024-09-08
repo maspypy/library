@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   - icon: ':x:'
@@ -233,8 +233,8 @@ data:
     \n    assert(PA.get(c, x) == new_sz);\r\n    c = PA.set(c, y, x);\r\n    assert(PA.get(c,\
     \ y) == x);\r\n    return {c, true};\r\n  }\r\n\r\n  ll size(np c, int x) { return\
     \ -PA.get(c, root(c, x)); }\r\n};\r\n#line 6 \"test/2_library_checker/data_structure/persistent_unionfind.test.cpp\"\
-    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  Dynamic_UnionFind<true, 1'500'000>\
-    \ uf;\r\n  using np = typename decltype(uf)::np;\r\n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_root());\r\
+    \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\n  Dynamic_UnionFind<true> uf;\r\n \
+    \ using np = typename decltype(uf)::np;\r\n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_root());\r\
     \n\r\n  FOR(Q) {\r\n    LL(t, k, u, v);\r\n    ++k;\r\n    auto root = roots[k];\r\
     \n    if (t == 0) {\r\n      root = uf.merge(root, u, v).fi;\r\n    } else {\r\
     \n      bool ok = uf.root(root, u) == uf.root(root, v);\r\n      print(ok ? 1\
@@ -244,8 +244,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_unionfind\"\r\
     \n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include \"\
     ds/unionfind/dynamic_unionfind.hpp\"\r\n\r\nvoid solve() {\r\n  LL(N, Q);\r\n\r\
-    \n  Dynamic_UnionFind<true, 1'500'000> uf;\r\n  using np = typename decltype(uf)::np;\r\
-    \n  vc<np> roots;\r\n\r\n  roots.eb(uf.new_root());\r\n\r\n  FOR(Q) {\r\n    LL(t,\
+    \n  Dynamic_UnionFind<true> uf;\r\n  using np = typename decltype(uf)::np;\r\n\
+    \  vc<np> roots;\r\n\r\n  roots.eb(uf.new_root());\r\n\r\n  FOR(Q) {\r\n    LL(t,\
     \ k, u, v);\r\n    ++k;\r\n    auto root = roots[k];\r\n    if (t == 0) {\r\n\
     \      root = uf.merge(root, u, v).fi;\r\n    } else {\r\n      bool ok = uf.root(root,\
     \ u) == uf.root(root, v);\r\n      print(ok ? 1 : 0);\r\n    }\r\n    roots.eb(root);\r\
@@ -259,7 +259,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 04:44:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/persistent_unionfind.test.cpp

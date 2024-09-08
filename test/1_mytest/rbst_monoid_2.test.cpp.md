@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -200,8 +200,8 @@ data:
     \ PERSISTENT>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
     \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  int NODES;\n  Node *pool;\n  int\
-    \ pid;\n  using np = Node *;\n\n  RBST_Monoid() : NODES(NODES), pid(0) { pool\
-    \ = new Node[NODES]; }\n  ~RBST_Monoid() { delete[] pool; }\n\n  void reset()\
+    \ pid;\n  using np = Node *;\n\n  RBST_Monoid(int NODES) : NODES(NODES), pid(0)\
+    \ { pool = new Node[NODES]; }\n  ~RBST_Monoid() { delete[] pool; }\n\n  void reset()\
     \ { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r =\
     \ nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod\
     \ = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
@@ -314,7 +314,7 @@ data:
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/rbst_monoid_2.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n\
-    \  RBST_Monoid<Mono, false, 100> X;\n  auto rnd_affine = [&]() -> pair<mint, mint>\
+    \  RBST_Monoid<Mono, false> X(100);\n  auto rnd_affine = [&]() -> pair<mint, mint>\
     \ {\n    int a = RNG(0, 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\
     \n  using T = typename Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n  \
     \  int N = 2;\n    int Q = RNG(1, 1000);\n    vc<T> A(N);\n    FOR(i, N) A[i]\
@@ -339,7 +339,7 @@ data:
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     ds/randomized_bst/rbst_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid test() {\n  using Mono = Monoid_Affine<mint>;\n  RBST_Monoid<Mono,\
-    \ false, 100> X;\n  auto rnd_affine = [&]() -> pair<mint, mint> {\n    int a =\
+    \ false> X(100);\n  auto rnd_affine = [&]() -> pair<mint, mint> {\n    int a =\
     \ RNG(0, 3);\n    int b = RNG(0, 3);\n    return {a, b};\n  };\n\n  using T =\
     \ typename Mono::value_type;\n\n  FOR(1000) {\n    X.reset();\n    int N = 2;\n\
     \    int Q = RNG(1, 1000);\n    vc<T> A(N);\n    FOR(i, N) A[i] = rnd_affine();\n\
@@ -370,8 +370,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_2.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 04:44:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_2.test.cpp
 layout: document

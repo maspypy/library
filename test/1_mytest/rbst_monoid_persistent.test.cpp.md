@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -195,16 +195,16 @@ data:
     \ntemplate <typename Monoid, bool PERSISTENT>\nstruct RBST_Monoid {\n  using X\
     \ = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n    X x,\
     \ prod, rev_prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\
-    \n  int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid()\
-    \ : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_Monoid() { delete[]\
-    \ pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
-    \  pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n\
-    \    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto\
-    \ dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n\
-    \      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n\
-    \      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n  \
-    \    np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
+    \n  int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_Monoid(int\
+    \ NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_Monoid()\
+    \ { delete[] pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x)\
+    \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
+    \ = x;\n    pool[pid].rev_prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev\
+    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n\
+    \    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      u32 m = (l +\
+    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
+    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
     \      update(root);\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
     \  }\n\n  np copy_node(np &n) {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l\
     \ = n->l, pool[pid].r = n->r;\n    pool[pid].x = n->x;\n    pool[pid].prod = n->prod;\n\
@@ -309,7 +309,7 @@ data:
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/rbst_monoid_persistent.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int,\
-    \ -1>;\n  RBST_Monoid<Mono, true, 10000> X;\n  using np = decltype(X)::np;\n\n\
+    \ -1>;\n  RBST_Monoid<Mono, true> X(10000);\n  using np = decltype(X)::np;\n\n\
     \  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
     \    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots =\
     \ {X.new_node(AA[0])};\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n\
@@ -334,7 +334,7 @@ data:
     \n#include \"alg/monoid/assign.hpp\"\n#include \"mod/modint.hpp\"\n#include \"\
     ds/randomized_bst/rbst_monoid.hpp\"\n#include \"random/base.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid test() {\n  using Mono = Monoid_Assign<int, -1>;\n  RBST_Monoid<Mono,\
-    \ true, 10000> X;\n  using np = decltype(X)::np;\n\n  FOR(1000) {\n    X.reset();\n\
+    \ true> X(10000);\n  using np = decltype(X)::np;\n\n  FOR(1000) {\n    X.reset();\n\
     \    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vvc<int> AA(1);\n   \
     \ FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots = {X.new_node(AA[0])};\n\n\
     \    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0,\
@@ -364,8 +364,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_persistent.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 04:44:30+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_persistent.test.cpp
 layout: document

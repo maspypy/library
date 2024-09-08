@@ -252,55 +252,54 @@ data:
     \    root->r = n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line\
     \ 5 \"test/1_mytest/ARC30D.test.cpp\"\n\nvoid test_ARC30D_case1() {\n  using AM\
     \ = ActedMonoid_Sum_Add<ll>;\n  const int MAX = 1000;\n\n  const int N = 5;\n\
-    \  const int Q = 5;\n  vi dat = {1, 2, 3, 4, 5};\n\n  RBST_ActedMonoid<AM, true,\
-    \ MAX> RBST;\n  auto root = RBST.new_node(dat);\n\n  auto query_1 = [&](int L,\
-    \ int R, int x) -> void {\n    root = RBST.apply(root, --L, R, x);\n  };\n  auto\
-    \ query_2 = [&](int a, int b, int c, int d) -> void {\n    auto [xl, xm, xr] =\
-    \ RBST.split3(root, --a, b);\n    auto [yl, ym, yr] = RBST.split3(root, --c, d);\n\
-    \    root = RBST.merge3(xl, ym, xr);\n  };\n  auto query_3 = [&](int L, int R,\
-    \ int ANS) -> void {\n    assert(RBST.prod(root, --L, R) == ANS);\n  };\n\n  query_3(1,\
-    \ 5, 15);\n  query_1(1, 3, 1);\n  query_3(1, 3, 9);\n  query_2(1, 3, 2, 4);\n\
-    \  query_3(1, 5, 20);\n}\n\nvoid test_ARC30D_case2() {\n  using AM = ActedMonoid_Sum_Add<ll>;\n\
-    \  const int MAX = 1000;\n\n  const int N = 10;\n  const int Q = 30;\n  vi dat\
-    \ = {-5, -5, -2, -1, 2, -2, 0, -4, 2, 5};\n\n  RBST_ActedMonoid<AM, true, MAX>\
-    \ RBST;\n  auto root = RBST.new_node(dat);\n\n  auto query_1 = [&](int L, int\
-    \ R, int x) -> void {\n    root = RBST.apply(root, --L, R, x);\n  };\n  auto query_2\
+    \  const int Q = 5;\n  vi dat = {1, 2, 3, 4, 5};\n\n  RBST_ActedMonoid<AM, true>\
+    \ RBST(MAX);\n  auto root = RBST.new_node(dat);\n\n  auto query_1 = [&](int L,\
+    \ int R, int x) -> void { root = RBST.apply(root, --L, R, x); };\n  auto query_2\
     \ = [&](int a, int b, int c, int d) -> void {\n    auto [xl, xm, xr] = RBST.split3(root,\
     \ --a, b);\n    auto [yl, ym, yr] = RBST.split3(root, --c, d);\n    root = RBST.merge3(xl,\
-    \ ym, xr);\n  };\n  auto query_3 = [&](int L, int R, int ANS) -> void {\n    assert(RBST.prod(root,\
-    \ --L, R) == ANS);\n  };\n\n  query_2(9, 10, 9, 10);\n  query_2(3, 5, 2, 4);\n\
-    \  query_1(2, 10, -1);\n  query_2(1, 7, 1, 7);\n  query_3(1, 4, -20);\n\n  query_2(1,\
-    \ 6, 2, 7);\n  query_2(5, 8, 6, 9);\n  query_3(4, 8, -8);\n  query_3(1, 10, -18);\n\
-    \  query_3(9, 9, 1);\n\n  query_1(3, 8, -1);\n  query_2(4, 9, 1, 6);\n  query_3(2,\
-    \ 7, -29);\n  query_1(9, 10, -4);\n  query_1(6, 9, -5);\n\n  query_1(4, 6, -7);\n\
-    \  query_3(2, 5, -36);\n  query_2(10, 10, 7, 7);\n  query_1(3, 4, -10);\n  query_3(4,\
-    \ 9, -78);\n\n  query_3(8, 9, -18);\n  query_2(6, 7, 8, 9);\n  query_3(3, 5, -50);\n\
-    \  query_3(3, 9, -86);\n  query_1(2, 10, -10);\n\n  query_2(4, 6, 4, 6);\n  query_2(4,\
-    \ 9, 5, 10);\n  query_1(2, 6, 7);\n  query_3(7, 8, -38);\n  query_1(3, 6, 3);\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test_ARC30D_case1();\n  test_ARC30D_case2();\n\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ ym, xr);\n  };\n  auto query_3 = [&](int L, int R, int ANS) -> void { assert(RBST.prod(root,\
+    \ --L, R) == ANS); };\n\n  query_3(1, 5, 15);\n  query_1(1, 3, 1);\n  query_3(1,\
+    \ 3, 9);\n  query_2(1, 3, 2, 4);\n  query_3(1, 5, 20);\n}\n\nvoid test_ARC30D_case2()\
+    \ {\n  using AM = ActedMonoid_Sum_Add<ll>;\n  const int MAX = 1000;\n\n  const\
+    \ int N = 10;\n  const int Q = 30;\n  vi dat = {-5, -5, -2, -1, 2, -2, 0, -4,\
+    \ 2, 5};\n\n  RBST_ActedMonoid<AM, true> RBST(MAX);\n  auto root = RBST.new_node(dat);\n\
+    \n  auto query_1 = [&](int L, int R, int x) -> void { root = RBST.apply(root,\
+    \ --L, R, x); };\n  auto query_2 = [&](int a, int b, int c, int d) -> void {\n\
+    \    auto [xl, xm, xr] = RBST.split3(root, --a, b);\n    auto [yl, ym, yr] = RBST.split3(root,\
+    \ --c, d);\n    root = RBST.merge3(xl, ym, xr);\n  };\n  auto query_3 = [&](int\
+    \ L, int R, int ANS) -> void { assert(RBST.prod(root, --L, R) == ANS); };\n\n\
+    \  query_2(9, 10, 9, 10);\n  query_2(3, 5, 2, 4);\n  query_1(2, 10, -1);\n  query_2(1,\
+    \ 7, 1, 7);\n  query_3(1, 4, -20);\n\n  query_2(1, 6, 2, 7);\n  query_2(5, 8,\
+    \ 6, 9);\n  query_3(4, 8, -8);\n  query_3(1, 10, -18);\n  query_3(9, 9, 1);\n\n\
+    \  query_1(3, 8, -1);\n  query_2(4, 9, 1, 6);\n  query_3(2, 7, -29);\n  query_1(9,\
+    \ 10, -4);\n  query_1(6, 9, -5);\n\n  query_1(4, 6, -7);\n  query_3(2, 5, -36);\n\
+    \  query_2(10, 10, 7, 7);\n  query_1(3, 4, -10);\n  query_3(4, 9, -78);\n\n  query_3(8,\
+    \ 9, -18);\n  query_2(6, 7, 8, 9);\n  query_3(3, 5, -50);\n  query_3(3, 9, -86);\n\
+    \  query_1(2, 10, -10);\n\n  query_2(4, 6, 4, 6);\n  query_2(4, 9, 5, 10);\n \
+    \ query_1(2, 6, 7);\n  query_3(7, 8, -38);\n  query_1(3, 6, 3);\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test_ARC30D_case1();\n  test_ARC30D_case2();\n\n  solve();\n\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/sum_add.hpp\"\n#include \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
     \n\nvoid test_ARC30D_case1() {\n  using AM = ActedMonoid_Sum_Add<ll>;\n  const\
     \ int MAX = 1000;\n\n  const int N = 5;\n  const int Q = 5;\n  vi dat = {1, 2,\
-    \ 3, 4, 5};\n\n  RBST_ActedMonoid<AM, true, MAX> RBST;\n  auto root = RBST.new_node(dat);\n\
-    \n  auto query_1 = [&](int L, int R, int x) -> void {\n    root = RBST.apply(root,\
-    \ --L, R, x);\n  };\n  auto query_2 = [&](int a, int b, int c, int d) -> void\
-    \ {\n    auto [xl, xm, xr] = RBST.split3(root, --a, b);\n    auto [yl, ym, yr]\
-    \ = RBST.split3(root, --c, d);\n    root = RBST.merge3(xl, ym, xr);\n  };\n  auto\
-    \ query_3 = [&](int L, int R, int ANS) -> void {\n    assert(RBST.prod(root, --L,\
-    \ R) == ANS);\n  };\n\n  query_3(1, 5, 15);\n  query_1(1, 3, 1);\n  query_3(1,\
-    \ 3, 9);\n  query_2(1, 3, 2, 4);\n  query_3(1, 5, 20);\n}\n\nvoid test_ARC30D_case2()\
-    \ {\n  using AM = ActedMonoid_Sum_Add<ll>;\n  const int MAX = 1000;\n\n  const\
-    \ int N = 10;\n  const int Q = 30;\n  vi dat = {-5, -5, -2, -1, 2, -2, 0, -4,\
-    \ 2, 5};\n\n  RBST_ActedMonoid<AM, true, MAX> RBST;\n  auto root = RBST.new_node(dat);\n\
-    \n  auto query_1 = [&](int L, int R, int x) -> void {\n    root = RBST.apply(root,\
-    \ --L, R, x);\n  };\n  auto query_2 = [&](int a, int b, int c, int d) -> void\
-    \ {\n    auto [xl, xm, xr] = RBST.split3(root, --a, b);\n    auto [yl, ym, yr]\
-    \ = RBST.split3(root, --c, d);\n    root = RBST.merge3(xl, ym, xr);\n  };\n  auto\
-    \ query_3 = [&](int L, int R, int ANS) -> void {\n    assert(RBST.prod(root, --L,\
-    \ R) == ANS);\n  };\n\n  query_2(9, 10, 9, 10);\n  query_2(3, 5, 2, 4);\n  query_1(2,\
+    \ 3, 4, 5};\n\n  RBST_ActedMonoid<AM, true> RBST(MAX);\n  auto root = RBST.new_node(dat);\n\
+    \n  auto query_1 = [&](int L, int R, int x) -> void { root = RBST.apply(root,\
+    \ --L, R, x); };\n  auto query_2 = [&](int a, int b, int c, int d) -> void {\n\
+    \    auto [xl, xm, xr] = RBST.split3(root, --a, b);\n    auto [yl, ym, yr] = RBST.split3(root,\
+    \ --c, d);\n    root = RBST.merge3(xl, ym, xr);\n  };\n  auto query_3 = [&](int\
+    \ L, int R, int ANS) -> void { assert(RBST.prod(root, --L, R) == ANS); };\n\n\
+    \  query_3(1, 5, 15);\n  query_1(1, 3, 1);\n  query_3(1, 3, 9);\n  query_2(1,\
+    \ 3, 2, 4);\n  query_3(1, 5, 20);\n}\n\nvoid test_ARC30D_case2() {\n  using AM\
+    \ = ActedMonoid_Sum_Add<ll>;\n  const int MAX = 1000;\n\n  const int N = 10;\n\
+    \  const int Q = 30;\n  vi dat = {-5, -5, -2, -1, 2, -2, 0, -4, 2, 5};\n\n  RBST_ActedMonoid<AM,\
+    \ true> RBST(MAX);\n  auto root = RBST.new_node(dat);\n\n  auto query_1 = [&](int\
+    \ L, int R, int x) -> void { root = RBST.apply(root, --L, R, x); };\n  auto query_2\
+    \ = [&](int a, int b, int c, int d) -> void {\n    auto [xl, xm, xr] = RBST.split3(root,\
+    \ --a, b);\n    auto [yl, ym, yr] = RBST.split3(root, --c, d);\n    root = RBST.merge3(xl,\
+    \ ym, xr);\n  };\n  auto query_3 = [&](int L, int R, int ANS) -> void { assert(RBST.prod(root,\
+    \ --L, R) == ANS); };\n\n  query_2(9, 10, 9, 10);\n  query_2(3, 5, 2, 4);\n  query_1(2,\
     \ 10, -1);\n  query_2(1, 7, 1, 7);\n  query_3(1, 4, -20);\n\n  query_2(1, 6, 2,\
     \ 7);\n  query_2(5, 8, 6, 9);\n  query_3(4, 8, -8);\n  query_3(1, 10, -18);\n\
     \  query_3(9, 9, 1);\n\n  query_1(3, 8, -1);\n  query_2(4, 9, 1, 6);\n  query_3(2,\
@@ -311,7 +310,7 @@ data:
     \ 9, 5, 10);\n  query_1(2, 6, 7);\n  query_3(7, 8, -38);\n  query_1(3, 6, 3);\n\
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
     ;\n}\n\nsigned main() {\n  test_ARC30D_case1();\n  test_ARC30D_case2();\n\n  solve();\n\
-    \n  return 0;\n}\n"
+    \n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - alg/acted_monoid/sum_add.hpp
@@ -320,7 +319,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/ARC30D.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 04:44:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/ARC30D.test.cpp

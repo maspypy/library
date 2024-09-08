@@ -265,7 +265,7 @@ data:
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
     \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/rbst_am.test.cpp\"\
     \n\nvoid test() {\n  using AM = ActedMonoid_Min_Assign<int, -1>;\n  using MonoX\
-    \ = typename AM::Monoid_X;\n\n  RBST_ActedMonoid<AM, false, 100> X;\n  FOR(1000)\
+    \ = typename AM::Monoid_X;\n\n  RBST_ActedMonoid<AM, false> X(100);\n  FOR(1000)\
     \ {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vc<int>\
     \ A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto root = X.new_node(A);\n\n\
     \    FOR(Q) {\n      int t = RNG(0, 7);\n      if (t == 0) {\n        int i =\
@@ -289,8 +289,8 @@ data:
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"alg/acted_monoid/min_assign.hpp\"\n#include \"ds/randomized_bst/rbst_acted_monoid.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  using AM = ActedMonoid_Min_Assign<int,\
-    \ -1>;\n  using MonoX = typename AM::Monoid_X;\n\n  RBST_ActedMonoid<AM, false,\
-    \ 100> X;\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q =\
+    \ -1>;\n  using MonoX = typename AM::Monoid_X;\n\n  RBST_ActedMonoid<AM, false>\
+    \ X(100);\n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q =\
     \ RNG(1, 1000);\n    vc<int> A(N);\n    FOR(i, N) A[i] = RNG(1, 100);\n    auto\
     \ root = X.new_node(A);\n\n    FOR(Q) {\n      int t = RNG(0, 7);\n      if (t\
     \ == 0) {\n        int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n\
@@ -321,7 +321,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_am.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 04:44:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am.test.cpp

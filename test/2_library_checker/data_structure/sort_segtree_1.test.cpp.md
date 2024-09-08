@@ -36,7 +36,7 @@ data:
     links:
     - https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
   bundledCode: "#line 1 \"test/2_library_checker/data_structure/sort_segtree_1.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -434,7 +434,7 @@ data:
     \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
     \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 8 \"test/2_library_checker/data_structure/sort_segtree_1.test.cpp\"\
+    using modint998 = modint<998244353>;\n#line 7 \"test/2_library_checker/data_structure/sort_segtree_1.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\
     \u307F\u3059\u308B\u65B9\n\n  using AFF = Monoid_Affine<mint>;\n  LL(N, Q);\n\
     \  vc<int> key(N);\n  vc<pair<mint, mint>> seg_raw(N);\n  FOR(i, N) { read(key[i]),\
@@ -444,14 +444,14 @@ data:
     \    }\n    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n\
     \    }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l,\
     \ r, 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
-    \ k);\n\n  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);\n\n\
+    \ k);\n\n  Sortable_SegTree<AFF> seg(4000000, len(all_key), key, seg_raw);\n\n\
     \  for (auto&& [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key,\
     \ b);\n      seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n  \
     \    auto f = seg.prod(a, b);\n      print(AFF::eval(f, c));\n    }\n    if (t\
     \ == 2) { seg.sort_inc(a, b); }\n    if (t == 3) { seg.sort_dec(a, b); }\n  }\n\
     }\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout\
     \ << setprecision(15);\n\n  ll T = 1;\n  FOR(T) solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_sort_range_composite\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/sortable_segtree.hpp\"\
     \n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid solve() {\n  // \u30AF\u30A8\u30EA\u5148\u8AAD\u307F\u3059\
@@ -463,7 +463,7 @@ data:
     \    if (t == 1) {\n      LL(l, r, x);\n      query[q] = {t, l, r, x, 0};\n  \
     \  }\n    if (t == 2 || t == 3) {\n      LL(l, r);\n      query[q] = {t, l, r,\
     \ 0, 0};\n    }\n  }\n\n  UNIQUE(all_key);\n  for (auto&& k: key) k = LB(all_key,\
-    \ k);\n\n  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);\n\n\
+    \ k);\n\n  Sortable_SegTree<AFF> seg(4000000, len(all_key), key, seg_raw);\n\n\
     \  for (auto&& [t, a, b, c, d]: query) {\n    if (t == 0) {\n      b = LB(all_key,\
     \ b);\n      seg.set(a, b, {mint(c), mint(d)});\n    }\n    if (t == 1) {\n  \
     \    auto f = seg.prod(a, b);\n      print(AFF::eval(f, c));\n    }\n    if (t\
@@ -482,7 +482,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 04:11:40+09:00'
+  timestamp: '2024-09-09 04:44:30+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/sort_segtree_1.test.cpp

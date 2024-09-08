@@ -6,18 +6,18 @@ data:
     path: ds/unionfind/dynamic_unionfind.hpp
     title: ds/unionfind/dynamic_unionfind.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_queue.test.cpp
     title: test/2_library_checker/data_structure/persistent_queue.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
     title: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc273_e.test.cpp
     title: test/5_atcoder/abc273_e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT>\r\
@@ -64,7 +64,7 @@ data:
   requiredBy:
   - ds/unionfind/dynamic_unionfind.hpp
   timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc273_e.test.cpp
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
