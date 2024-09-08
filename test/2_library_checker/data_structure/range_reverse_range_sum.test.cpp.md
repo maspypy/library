@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
@@ -205,22 +205,23 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
-    \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES\
-    \ = 1'000'000>\nstruct SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node\
-    \ *;\n  using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
-    \  vc<np> FREE;\n\n  SplayTree() : pid(0) { pool = new Node[NODES]; }\n\n  void\
-    \ free_subtree(np c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if\
-    \ (c->l) dfs(dfs, c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n\
-    \    };\n    dfs(dfs, c);\n  }\n\n  void reset() {\n    pid = 0;\n    FREE.clear();\n\
-    \  }\n\n  np new_root() { return nullptr; }\n\n  np new_node(const X &x) {\n \
-    \   np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));\n    Node::new_node(n,\
-    \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
-    \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
-    \    if (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n  \
-    \    np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n    \
-    \  np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n  \
-    \    if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n    \
-    \  root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
+    \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node>\nstruct SplayTree\
+    \ {\n  Node *pool;\n  const int NODES;\n  int pid;\n  using np = Node *;\n  using\
+    \ X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
+    \  vc<np> FREE;\n\n  SplayTree(int NODES) : NODES(NODES), pid(0) { pool = new\
+    \ Node[NODES]; }\n  ~SplayTree() { delete[] pool; }\n\n  void free_subtree(np\
+    \ c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs,\
+    \ c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs,\
+    \ c);\n  }\n\n  void reset() {\n    pid = 0;\n    FREE.clear();\n  }\n\n  np new_root()\
+    \ { return nullptr; }\n\n  np new_node(const X &x) {\n    assert(!FREE.empty()\
+    \ || pid < NODES);\n    np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));\n\
+    \    Node::new_node(n, x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat)\
+    \ {\n    auto dfs = [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m = (l +\
+    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
+    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
+    \      if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n  \
+    \    root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
     \  }\n\n  u32 get_size(np root) { return (root ? root->size : 0); }\n\n  np merge(np\
     \ l_root, np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return\
     \ l_root;\n    assert((!l_root->p) && (!r_root->p));\n    splay_kth(r_root, 0);\
@@ -358,8 +359,8 @@ data:
     \ { return x; }\n  void set(const X &xx) {\n    x = xx;\n    update();\n  }\n\
     \  void multiply(const X &xx) {\n    x = Monoid::op(x, xx);\n    update();\n \
     \ }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate <typename\
-    \ Monoid, int NODES>\nusing SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>,\
-    \ NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Commutative_Monoid;\n\
+    \ Monoid>\nusing SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>>;\n\
+    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Commutative_Monoid;\n\
     #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
@@ -386,8 +387,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-09 03:35:35+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
 layout: document

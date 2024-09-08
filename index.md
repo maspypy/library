@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -508,7 +508,7 @@ data:
       title: ds/sparse_table/xor_disjoint_sparse_table.hpp
   - name: ds/splaytree
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
     - icon: ':heavy_check_mark:'
@@ -517,10 +517,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_acted_set.hpp
       title: ds/splaytree/splaytree_acted_set.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: ds/splaytree/splaytree_basic.hpp
       title: ds/splaytree/splaytree_basic.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/splaytree/splaytree_commutative_monoid.hpp
       title: ds/splaytree/splaytree_commutative_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -2811,7 +2811,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
       title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4813,7 +4813,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350_g.test.cpp
       title: test/5_atcoder/abc350_g.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc350f.test.cpp
       title: test/5_atcoder/abc350f.test.cpp
     - icon: ':x:'
@@ -4873,7 +4873,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/arc151_e.test.cpp
       title: test/5_atcoder/arc151_e.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/arc153b.test.cpp
       title: test/5_atcoder/arc153b.test.cpp
     - icon: ':heavy_check_mark:'

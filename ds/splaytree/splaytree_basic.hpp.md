@@ -1,39 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc350f.test.cpp
     title: test/5_atcoder/abc350f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/arc153b.test.cpp
     title: test/5_atcoder/arc153b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
-    \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node, int NODES\
-    \ = 1'000'000>\nstruct SplayTree {\n  Node *pool;\n  int pid;\n  using np = Node\
-    \ *;\n  using X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
-    \  vc<np> FREE;\n\n  SplayTree() : pid(0) { pool = new Node[NODES]; }\n\n  void\
-    \ free_subtree(np c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if\
-    \ (c->l) dfs(dfs, c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n\
-    \    };\n    dfs(dfs, c);\n  }\n\n  void reset() {\n    pid = 0;\n    FREE.clear();\n\
-    \  }\n\n  np new_root() { return nullptr; }\n\n  np new_node(const X &x) {\n \
-    \   np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));\n    Node::new_node(n,\
-    \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
-    \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
-    \    if (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n  \
-    \    np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n    \
-    \  np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n  \
-    \    if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n    \
-    \  root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
+    \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node>\nstruct SplayTree\
+    \ {\n  Node *pool;\n  const int NODES;\n  int pid;\n  using np = Node *;\n  using\
+    \ X = typename Node::value_type;\n  using A = typename Node::operator_type;\n\
+    \  vc<np> FREE;\n\n  SplayTree(int NODES) : NODES(NODES), pid(0) { pool = new\
+    \ Node[NODES]; }\n  ~SplayTree() { delete[] pool; }\n\n  void free_subtree(np\
+    \ c) {\n    auto dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs,\
+    \ c->l);\n      if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs,\
+    \ c);\n  }\n\n  void reset() {\n    pid = 0;\n    FREE.clear();\n  }\n\n  np new_root()\
+    \ { return nullptr; }\n\n  np new_node(const X &x) {\n    assert(!FREE.empty()\
+    \ || pid < NODES);\n    np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));\n\
+    \    Node::new_node(n, x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat)\
+    \ {\n    auto dfs = [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return\
+    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m = (l +\
+    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
+    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
+    \      if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n  \
+    \    root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
     \  }\n\n  u32 get_size(np root) { return (root ? root->size : 0); }\n\n  np merge(np\
     \ l_root, np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return\
     \ l_root;\n    assert((!l_root->p) && (!r_root->p));\n    splay_kth(r_root, 0);\
@@ -165,8 +166,8 @@ data:
     \u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\
     \u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const\
     \ S &xx) {\n    x = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n\
-    \    rev ^= 1;\n  }\n};\ntemplate <typename S, int NODES>\nusing SplayTree_Basic\
-    \ = SplayTree<Node_Basic<S>, NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n"
+    \    rev ^= 1;\n  }\n};\ntemplate <typename S>\nusing SplayTree_Basic = SplayTree<Node_Basic<S>>;\n\
+    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n"
   code: "#include \"ds/splaytree/splaytree.hpp\"\n\nnamespace SplayTreeNodes {\ntemplate\
     \ <typename S>\nstruct Node_Basic {\n  using value_type = S;\n  using operator_type\
     \ = int;\n  using np = Node_Basic *;\n\n  np p, l, r;\n  bool rev;\n  S x;\n \
@@ -181,15 +182,15 @@ data:
     \u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\
     \u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const\
     \ S &xx) {\n    x = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n\
-    \    rev ^= 1;\n  }\n};\ntemplate <typename S, int NODES>\nusing SplayTree_Basic\
-    \ = SplayTree<Node_Basic<S>, NODES>;\n} // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n"
+    \    rev ^= 1;\n  }\n};\ntemplate <typename S>\nusing SplayTree_Basic = SplayTree<Node_Basic<S>>;\n\
+    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n"
   dependsOn:
   - ds/splaytree/splaytree.hpp
   isVerificationFile: false
   path: ds/splaytree/splaytree_basic.hpp
   requiredBy: []
-  timestamp: '2024-07-18 12:34:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-09 03:35:35+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/arc153b.test.cpp
   - test/5_atcoder/abc350f.test.cpp
