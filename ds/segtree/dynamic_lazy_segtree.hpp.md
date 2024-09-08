@@ -20,17 +20,18 @@ data:
   _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\ntemplate <typename\
-    \ ActedMonoid, bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n\
-    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
-    \ X = typename AM::X;\n  using A = typename AM::A;\n  using F = function<X(ll,\
-    \ ll)>;\n  F default_prod;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n  \
-    \  A lazy;\n  };\n\n  int NODES;\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0,\
-    \ F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\n      : default_prod(default_prod),\
-    \ NODES(NODES), L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n \
-    \ ~Dynamic_Lazy_SegTree() { delete[] pool; }\n\n  np new_root() { return new_node(L0,\
-    \ R0); }\n\n  np new_node(const X x) {\n    pool[pid].l = pool[pid].r = nullptr;\n\
+  bundledCode: "#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\n// Q*2logN \u7A0B\
+    \u5EA6\u5FC5\u8981\ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree\
+    \ {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA\
+    \ = typename AM::Monoid_A;\n  using X = typename AM::X;\n  using A = typename\
+    \ AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct Node\
+    \ {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  const int NODES;\n  const\
+    \ ll L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n\
+    \      int NODES, ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return\
+    \ MX::unit(); })\n      : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0),\
+    \ pid(0) {\n    pool = new Node[NODES];\n  }\n  ~Dynamic_Lazy_SegTree() { delete[]\
+    \ pool; }\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
+    \ X x) {\n    assert(pid < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n\
     \    pool[pid].x = x;\n    pool[pid].lazy = MA::unit();\n    return &(pool[pid++]);\n\
     \  }\n\n  np new_node(ll l, ll r) { return new_node(default_prod(l, r)); }\n \
     \ np new_node() { return new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat)\
@@ -107,18 +108,19 @@ data:
     \    prop(c, l, r);\n    ll m = (l + r) / 2;\n    ll k = min_left_rec(c->r, check,\
     \ m, r, qr, x);\n    if (m < k) return k;\n    return min_left_rec(c->l, check,\
     \ l, m, qr, x);\n  }\n};\n"
-  code: "#pragma once\n\ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct\
-    \ Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n\
-    \  using MA = typename AM::Monoid_A;\n  using X = typename AM::X;\n  using A =\
-    \ typename AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct\
-    \ Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  int NODES;\n  const\
-    \ ll L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n\
-    \      int NODES, ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return\
-    \ MX::unit(); })\n      : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0),\
-    \ pid(0) {\n    pool = new Node[NODES];\n  }\n  ~Dynamic_Lazy_SegTree() { delete[]\
-    \ pool; }\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
-    \ X x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n   \
-    \ pool[pid].lazy = MA::unit();\n    return &(pool[pid++]);\n  }\n\n  np new_node(ll\
+  code: "#pragma once\n\n// Q*2logN \u7A0B\u5EA6\u5FC5\u8981\ntemplate <typename ActedMonoid,\
+    \ bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n\
+    \  using MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using\
+    \ X = typename AM::X;\n  using A = typename AM::A;\n  using F = function<X(ll,\
+    \ ll)>;\n  F default_prod;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n  \
+    \  A lazy;\n  };\n\n  const int NODES;\n  const ll L0, R0;\n  Node *pool;\n  int\
+    \ pid;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n      int NODES, ll L0,\
+    \ ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\n      :\
+    \ default_prod(default_prod), NODES(NODES), L0(L0), R0(R0), pid(0) {\n    pool\
+    \ = new Node[NODES];\n  }\n  ~Dynamic_Lazy_SegTree() { delete[] pool; }\n\n  np\
+    \ new_root() { return new_node(L0, R0); }\n\n  np new_node(const X x) {\n    assert(pid\
+    \ < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n\
+    \    pool[pid].lazy = MA::unit();\n    return &(pool[pid++]);\n  }\n\n  np new_node(ll\
     \ l, ll r) { return new_node(default_prod(l, r)); }\n  np new_node() { return\
     \ new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0 == 0\
     \ && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\n\
@@ -198,7 +200,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/dynamic_lazy_segtree.hpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
+  timestamp: '2024-09-09 05:21:21+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/789_2.test.cpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/randomized_bst/rbst_acted_monoid.hpp
     title: ds/randomized_bst/rbst_acted_monoid.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -127,8 +127,8 @@ data:
     \n  struct Node {\n    Node *l, *r;\n    X x, prod; // lazy, rev \u53CD\u6620\u6E08\
     \n    A lazy;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  const int\
     \ NODES;\n  int pid;\n  using np = Node *;\n\n  RBST_ActedMonoid(int NODES) :\
-    \ pid(0) { pool = new Node[NODES]; }\n  ~RBST_ActedMonoid() { delete[] pool; }\n\
-    \n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
+    \ NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_ActedMonoid() { delete[]\
+    \ pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
     \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
     \  pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
     \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n\
@@ -313,8 +313,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_am_2.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 04:44:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 05:21:21+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_am_2.test.cpp
 layout: document

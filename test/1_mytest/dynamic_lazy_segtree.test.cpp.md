@@ -128,44 +128,44 @@ data:
     \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a, const\
     \ ll& size) {\r\n    if (a == Monoid_A::unit()) return x;\r\n    return {E(size)\
     \ * a, a};\r\n  }\r\n};\r\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\n\
-    template <typename ActedMonoid, bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree\
-    \ {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA\
-    \ = typename AM::Monoid_A;\n  using X = typename AM::X;\n  using A = typename\
-    \ AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct Node\
-    \ {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  int NODES;\n  const ll\
-    \ L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n\
-    \      int NODES, ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return\
-    \ MX::unit(); })\n      : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0),\
-    \ pid(0) {\n    pool = new Node[NODES];\n  }\n  ~Dynamic_Lazy_SegTree() { delete[]\
-    \ pool; }\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
-    \ X x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n   \
-    \ pool[pid].lazy = MA::unit();\n    return &(pool[pid++]);\n  }\n\n  np new_node(ll\
-    \ l, ll r) { return new_node(default_prod(l, r)); }\n  np new_node() { return\
-    \ new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0 == 0\
-    \ && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node * {\n\
-    \      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
-    \      ll m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
-    \ m, r);\n      X x = MX::op(l_root->x, r_root->x);\n      np root = new_node(x);\n\
-    \      root->l = l_root, root->r = r_root;\n      return root;\n    };\n    return\
-    \ dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np root, ll l, ll r) {\n    if (l ==\
-    \ r || !root) return MX::unit();\n    assert(pid && L0 <= l && l < r && r <= R0);\n\
-    \    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x, MA::unit());\n   \
-    \ return x;\n  }\n\n  X prod_all(np root) { return prod(root, L0, R0); }\n\n \
-    \ np set(np root, ll i, const X &x) {\n    assert(pid && L0 <= i && i < R0);\n\
-    \    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i,\
-    \ const X &x) {\n    assert(pid && L0 <= i && i < R0);\n    return multiply_rec(root,\
-    \ L0, R0, i, x);\n  }\n\n  np apply(np root, ll l, ll r, const A &a) {\n    if\
-    \ (l == r) return root;\n    assert(pid && L0 <= l && l < r && r <= R0);\n   \
-    \ return apply_rec(root, L0, R0, l, r, a);\n  }\n\n  template <typename F>\n \
-    \ ll max_right(np root, F check, ll L) {\n    assert(pid && L0 <= L && L <= R0\
-    \ && check(MX::unit()));\n    X x = MX::unit();\n    return max_right_rec(root,\
-    \ check, L0, R0, L, x);\n  }\n\n  template <typename F>\n  ll min_left(np root,\
-    \ F check, ll R) {\n    assert(pid && L0 <= R && R <= R0 && check(MX::unit()));\n\
-    \    X x = MX::unit();\n    return min_left_rec(root, check, L0, R0, R, x);\n\
-    \  }\n\n  // f(idx, val)\n  template <typename F>\n  void enumerate(np root, F\
-    \ f) {\n    auto dfs = [&](auto &dfs, np c, ll l, ll r, A a) -> void {\n     \
-    \ if (!c) return;\n      if (r - l == 1) {\n        f(l, AM::act(c->x, a, 1));\n\
-    \        return;\n      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy,\
+    // Q*2logN \u7A0B\u5EA6\u5FC5\u8981\ntemplate <typename ActedMonoid, bool PERSISTENT>\n\
+    struct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename\
+    \ AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename AM::X;\n\
+    \  using A = typename AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\
+    \n  struct Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  const int\
+    \ NODES;\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\
+    \n  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0, F default_prod = [](ll\
+    \ l, ll r) -> X { return MX::unit(); })\n      : default_prod(default_prod), NODES(NODES),\
+    \ L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n  ~Dynamic_Lazy_SegTree()\
+    \ { delete[] pool; }\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
+    \ X x) {\n    assert(pid < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n\
+    \    pool[pid].x = x;\n    pool[pid].lazy = MA::unit();\n    return &(pool[pid++]);\n\
+    \  }\n\n  np new_node(ll l, ll r) { return new_node(default_prod(l, r)); }\n \
+    \ np new_node() { return new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat)\
+    \ {\n    assert(L0 == 0 && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll\
+    \ l, ll r) -> Node * {\n      if (l == r) return nullptr;\n      if (r == l +\
+    \ 1) return new_node(dat[l]);\n      ll m = (l + r) / 2;\n      np l_root = dfs(dfs,\
+    \ l, m), r_root = dfs(dfs, m, r);\n      X x = MX::op(l_root->x, r_root->x);\n\
+    \      np root = new_node(x);\n      root->l = l_root, root->r = r_root;\n   \
+    \   return root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np\
+    \ root, ll l, ll r) {\n    if (l == r || !root) return MX::unit();\n    assert(pid\
+    \ && L0 <= l && l < r && r <= R0);\n    X x = MX::unit();\n    prod_rec(root,\
+    \ L0, R0, l, r, x, MA::unit());\n    return x;\n  }\n\n  X prod_all(np root) {\
+    \ return prod(root, L0, R0); }\n\n  np set(np root, ll i, const X &x) {\n    assert(pid\
+    \ && L0 <= i && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n  np\
+    \ multiply(np root, ll i, const X &x) {\n    assert(pid && L0 <= i && i < R0);\n\
+    \    return multiply_rec(root, L0, R0, i, x);\n  }\n\n  np apply(np root, ll l,\
+    \ ll r, const A &a) {\n    if (l == r) return root;\n    assert(pid && L0 <= l\
+    \ && l < r && r <= R0);\n    return apply_rec(root, L0, R0, l, r, a);\n  }\n\n\
+    \  template <typename F>\n  ll max_right(np root, F check, ll L) {\n    assert(pid\
+    \ && L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n    return\
+    \ max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename F>\n\
+    \  ll min_left(np root, F check, ll R) {\n    assert(pid && L0 <= R && R <= R0\
+    \ && check(MX::unit()));\n    X x = MX::unit();\n    return min_left_rec(root,\
+    \ check, L0, R0, R, x);\n  }\n\n  // f(idx, val)\n  template <typename F>\n  void\
+    \ enumerate(np root, F f) {\n    auto dfs = [&](auto &dfs, np c, ll l, ll r, A\
+    \ a) -> void {\n      if (!c) return;\n      if (r - l == 1) {\n        f(l, AM::act(c->x,\
+    \ a, 1));\n        return;\n      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy,\
     \ a);\n      dfs(dfs, c->l, l, m, a);\n      dfs(dfs, c->r, m, r, a);\n    };\n\
     \    dfs(dfs, root, L0, R0, MA::unit());\n  }\n\n  void reset() { pid = 0; }\n\
     \nprivate:\n  np copy_node(np c) {\n    if (!c || !PERSISTENT) return c;\n   \
@@ -272,7 +272,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_lazy_segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 04:44:30+09:00'
+  timestamp: '2024-09-09 05:21:21+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_lazy_segtree.test.cpp
