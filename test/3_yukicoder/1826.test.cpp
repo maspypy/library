@@ -15,8 +15,8 @@ void solve() {
   auto I = argsort(X);
   X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
 
-  ll LIM = 1LL << 32;
-  Dynamic_SegTree<Monoid_Max<ll>, false, 8000000> seg(-LIM, LIM);
+  ll LIM = 1LL << 31;
+  Dynamic_SegTree<Monoid_Max<ll>, false> seg(35 * (N + 1), -LIM, LIM);
   auto root = seg.new_node(-LIM, LIM);
   root = seg.set(root, 0, 0);
 

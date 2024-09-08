@@ -8,7 +8,7 @@ void solve() {
   LL(N);
   VEC(ll, A, N);
   auto f = [&](ll L, ll R) -> ll { return 0; };
-  Dynamic_SegTree<Monoid_Gcd<ll>, false, 1'000'000> seg(0, N, f);
+  Dynamic_SegTree<Monoid_Gcd<ll>, false> seg(2 * N, 0, N, f);
   auto root = seg.new_node(A);
 
   ll ANS1 = 0;
@@ -28,13 +28,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }

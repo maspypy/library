@@ -5,9 +5,9 @@
 #include "alg/monoid/add.hpp"
 
 void solve() {
-  Dynamic_SegTree<Monoid_Add<ll>, false, 4000000> seg(0, 1LL << 30);
-  auto root = seg.new_node();
   LL(Q);
+  Dynamic_SegTree<Monoid_Add<ll>, false> seg(1 + 30 * Q, 0, 1LL << 30);
+  auto root = seg.new_node();
   ll ANS = 0;
   FOR(Q) {
     LL(t, a, b);
@@ -18,13 +18,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
