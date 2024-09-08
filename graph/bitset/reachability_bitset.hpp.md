@@ -121,13 +121,17 @@ data:
     \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
     \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
     \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
-    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
-    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
-    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
-    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
-    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"graph/bitset/reachability_bitset.hpp\"\
+    \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
+    \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
+    \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
+    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
+    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
+    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
+    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
+    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
+    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
+    string My_Bitset::TO_STR[256];\n#line 2 \"graph/bitset/reachability_bitset.hpp\"\
     \n\n// https://codeforces.com/contest/641/problem/F\nvc<My_Bitset> reachability_bitset(vc<My_Bitset>\
     \ G) {\n  int N = len(G);\n  FOR(i, N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k]\
     \ and G[k][j]\n    FOR(i, N) {\n      if (!G[i][k]) continue;\n      G[i] |= G[k];\n\
@@ -142,7 +146,7 @@ data:
   isVerificationFile: false
   path: graph/bitset/reachability_bitset.hpp
   requiredBy: []
-  timestamp: '2024-09-08 04:43:29+09:00'
+  timestamp: '2024-09-09 02:35:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bitset/reachability_bitset.hpp

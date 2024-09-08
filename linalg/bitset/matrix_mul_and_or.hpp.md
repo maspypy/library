@@ -5,15 +5,13 @@ data:
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-    title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://contest.ucup.ac/contest/1784/problem/9246
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
     // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
     \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
@@ -133,38 +131,36 @@ data:
     \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
     \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
     \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
-    \n\n// Method of Four Russians O(NMK/wlogN)\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>&\
+    string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_and_or.hpp\"\
+    \n\n// https://contest.ucup.ac/contest/1784/problem/9246\n// C[i][k] |= A[i][j]\
+    \ && B[j][k]\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>&\
+    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1\
+    \ == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
+    \  vc<BS> tmp(1 << 8, BS(N3));\n  for (int L = 0; L < N2; L += 8) {\n    int R\
+    \ = min(L + 8, N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s |\
+    \ 1 << i] = tmp[s] | B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64]\
+    \ >> (L & 63) & 255;\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
+  code: "#include \"ds/my_bitset.hpp\"\n\n// https://contest.ucup.ac/contest/1784/problem/9246\n\
+    // C[i][k] |= A[i][j] && B[j][k]\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>&\
     \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS =\
     \ My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n\
-    \  vc<BS> C(N1, BS(N3));\n\n  /*\n  \u524D\u8A08\u7B97 MK2^t/t\n  \u5F8C\u8A08\
-    \u7B97 NMK/t\n  (N) -> (2^t/t + N/t)\n  */\n  vc<BS> tmp(1 << 8, BS(N3));\n\n\
-    \  for (int L = 0; L < N2; L += 8) {\n    int R = min(L + 8, N2);\n    int n =\
-    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n\
-    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & 255;\n      C[i]\
-    \ ^= tmp[s];\n    }\n  }\n  return C;\n}\n"
-  code: "#include \"ds/my_bitset.hpp\"\n\n// Method of Four Russians O(NMK/wlogN)\n\
-    vc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1,\
-    \ int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 =\
-    \ len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\n  /*\n  \u524D\
-    \u8A08\u7B97 MK2^t/t\n  \u5F8C\u8A08\u7B97 NMK/t\n  (N) -> (2^t/t + N/t)\n  */\n\
-    \  vc<BS> tmp(1 << 8, BS(N3));\n\n  for (int L = 0; L < N2; L += 8) {\n    int\
-    \ R = min(L + 8, N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s\
-    \ | 1 << i] = tmp[s] ^ B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L /\
-    \ 64] >> (L & 63) & 255;\n      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}"
+    \  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << 8, BS(N3));\n  for (int L = 0; L <\
+    \ N2; L += 8) {\n    int R = min(L + 8, N2);\n    int n = R - L;\n    FOR(i, n)\
+    \ FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L + i];\n    FOR(i, N1) {\n    \
+    \  u32 s = A[i].dat[L / 64] >> (L & 63) & 255;\n      C[i] |= tmp[s];\n    }\n\
+    \  }\n  return C;\n}"
   dependsOn:
   - ds/my_bitset.hpp
   isVerificationFile: false
-  path: linalg/bitset/matrix_mul_mod_2.hpp
+  path: linalg/bitset/matrix_mul_and_or.hpp
   requiredBy: []
   timestamp: '2024-09-09 02:35:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-documentation_of: linalg/bitset/matrix_mul_mod_2.hpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: linalg/bitset/matrix_mul_and_or.hpp
 layout: document
 redirect_from:
-- /library/linalg/bitset/matrix_mul_mod_2.hpp
-- /library/linalg/bitset/matrix_mul_mod_2.hpp.html
-title: linalg/bitset/matrix_mul_mod_2.hpp
+- /library/linalg/bitset/matrix_mul_and_or.hpp
+- /library/linalg/bitset/matrix_mul_and_or.hpp.html
+title: linalg/bitset/matrix_mul_and_or.hpp
 ---

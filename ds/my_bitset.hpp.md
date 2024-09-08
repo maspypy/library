@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
+  - icon: ':warning:'
+    path: linalg/bitset/matrix_mul_and_or.hpp
+    title: linalg/bitset/matrix_mul_and_or.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
@@ -182,13 +185,17 @@ data:
     \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
     \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
     \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
-    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
-    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
-    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
-    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
-    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n"
+    \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
+    \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
+    \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
+    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
+    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
+    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
+    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
+    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
+    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
+    string My_Bitset::TO_STR[256];\n"
   code: "#pragma once\n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
     // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
     \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
@@ -297,13 +304,17 @@ data:
     \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
     \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
     \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
-    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
-    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
-    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
-    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
-    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];"
+    \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
+    \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
+    \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
+    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
+    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
+    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
+    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
+    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
+    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
+    string My_Bitset::TO_STR[256];"
   dependsOn: []
   isVerificationFile: false
   path: ds/my_bitset.hpp
@@ -313,10 +324,11 @@ data:
   - graph/bitset/bfs_bitset.hpp
   - linalg/bitset/matrix_mul_mod_2.hpp
   - linalg/bitset/mat_inv.hpp
+  - linalg/bitset/matrix_mul_and_or.hpp
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/det.hpp
   - ds/counter.hpp
-  timestamp: '2024-09-08 04:43:29+09:00'
+  timestamp: '2024-09-09 02:35:54+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2490.test.cpp

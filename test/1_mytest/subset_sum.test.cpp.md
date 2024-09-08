@@ -220,37 +220,40 @@ data:
     \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
     \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
     \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
-    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
-    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
-    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
-    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
-    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 1 \"enumerate/bits.hpp\"\
-    \ntemplate <typename F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n\
-    \    int i = __builtin_ctz(s);\n    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate\
-    \ <typename F>\nvoid enumerate_bits_64(u64 s, F f) {\n  while (s) {\n    int i\
-    \ = __builtin_ctzll(s);\n    f(i);\n    s ^= u64(1) << i;\n  }\n}\n\ntemplate\
-    \ <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F\
-    \ f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n    f(p);\n\
-    \    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\n\n// O(N\
-    \ MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>& vals,\
-    \ int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx = MAX(vals);\n\
-    \  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target) { sb += vals[b++];\
-    \ }\n  if (b == n && sb != target) return {};\n\n  int off = target - mx + 1;\n\
-    \  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n  dp[sb - off] = b;\n\
-    \  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par = PAR[i];\n    int a =\
-    \ vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a], dp[j])) { par[j +\
-    \ a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k, max(dp[j], 0),\
-    \ newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j - vals[k]] = k;\n\
-    \      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1] == -1) return {};\n\
-    \  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while (i >= b) {\n    int\
-    \ p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n      j -= vals[i--];\n\
-    \    }\n    elif (p == -1) { --i; }\n    else {\n      use[p] = !use[p];\n   \
-    \   j += vals[p];\n    }\n  }\n  while (i >= 0) {\n    use[i] = !use[i];\n   \
-    \ --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\n  ll sm = 0;\n\
-    \  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n  return I;\n\
-    }\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
+    \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
+    \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
+    \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
+    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
+    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
+    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
+    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
+    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
+    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
+    string My_Bitset::TO_STR[256];\n#line 1 \"enumerate/bits.hpp\"\ntemplate <typename\
+    \ F>\nvoid enumerate_bits_32(u32 s, F f) {\n  while (s) {\n    int i = __builtin_ctz(s);\n\
+    \    f(i);\n    s ^= 1 << i;\n  }\n}\n\ntemplate <typename F>\nvoid enumerate_bits_64(u64\
+    \ s, F f) {\n  while (s) {\n    int i = __builtin_ctzll(s);\n    f(i);\n    s\
+    \ ^= u64(1) << i;\n  }\n}\n\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p\
+    \ < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
+    \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
+    \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
+    \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
+    \ { sb += vals[b++]; }\n  if (b == n && sb != target) return {};\n\n  int off\
+    \ = target - mx + 1;\n  vc<int> dp(2 * mx, -1);\n  vv(int, PAR, n, 2 * mx, -1);\n\
+    \  dp[sb - off] = b;\n  FOR3(i, b, n) {\n    auto newdp = dp;\n    auto& par =\
+    \ PAR[i];\n    int a = vals[i];\n    FOR(j, mx) {\n      if (chmax(newdp[j + a],\
+    \ dp[j])) { par[j + a] = -2; }\n    }\n    FOR3_R(j, mx, 2 * mx) {\n      FOR3_R(k,\
+    \ max(dp[j], 0), newdp[j]) {\n        if (chmax(newdp[j - vals[k]], k)) par[j\
+    \ - vals[k]] = k;\n      }\n    }\n    swap(dp, newdp);\n  }\n  if (dp[mx - 1]\
+    \ == -1) return {};\n  vc<bool> use(n);\n  int i = n - 1, j = mx - 1;\n  while\
+    \ (i >= b) {\n    int p = PAR[i][j];\n    if (p == -2) {\n      use[i] = !use[i];\n\
+    \      j -= vals[i--];\n    }\n    elif (p == -1) { --i; }\n    else {\n     \
+    \ use[p] = !use[p];\n      j += vals[p];\n    }\n  }\n  while (i >= 0) {\n   \
+    \ use[i] = !use[i];\n    --i;\n  }\n  vc<int> I;\n  FOR(i, n) if (use[i]) I.eb(i);\n\
+    \n  ll sm = 0;\n  for (auto&& i: I) sm += vals[i];\n  assert(sm == target);\n\n\
+    \  return I;\n}\n\n// O(N target / w)\ntemplate <typename T>\nvc<int> subset_sum_solution_2(vc<T>&\
     \ vals, int target) {\n  int n = len(vals);\n  auto I = argsort(vals);\n  My_Bitset\
     \ dp(1, 1);\n  vc<int> last(target + 1, -1);\n  FOR(k, n) {\n    int v = vals[I[k]];\n\
     \    if (v > target) continue;\n    My_Bitset newdp = dp;\n    int new_size =\
@@ -339,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-09-08 04:43:29+09:00'
+  timestamp: '2024-09-09 02:35:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/subset_sum.test.cpp

@@ -120,19 +120,23 @@ data:
     \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
     \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
     \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
-    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
-    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
-    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
-    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
-    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"ds/counter.hpp\"\n\n\
-    // mo + \u6700\u983B\u5024\u30AF\u30A8\u30EA\u3067\u4F7F\u3048\u308B\n// most_freq_key\uFF1A\
-    O(sqrt(N)+KEY_MAX/w)\n// \u305D\u308C\u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\n\
-    struct Counter {\n  int N;\n  int thresh;\n  int ma;\n  vc<int> freq;\n  vc<int>\
-    \ freq_cnt;\n  vc<My_Bitset> freq_to_key;\n\n  // key \u304C [0, N), \u8981\u7D20\
-    \u6570\u304C\u5E38\u306B [0, N]\n  Counter(int N) : N(N) {\n    thresh = sqrtl(N);\n\
-    \    ma = 0;\n    freq.assign(N, 0);\n    freq_cnt.assign(N + 1, 0);\n    freq_cnt[0]\
+    \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
+    \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
+    \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
+    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
+    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
+    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
+    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
+    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
+    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
+    string My_Bitset::TO_STR[256];\n#line 2 \"ds/counter.hpp\"\n\n// mo + \u6700\u983B\
+    \u5024\u30AF\u30A8\u30EA\u3067\u4F7F\u3048\u308B\n// most_freq_key\uFF1AO(sqrt(N)+KEY_MAX/w)\n\
+    // \u305D\u308C\u4EE5\u5916\u306F O(1)\ntemplate <int USE_MAX_FREQ_KEY>\nstruct\
+    \ Counter {\n  int N;\n  int thresh;\n  int ma;\n  vc<int> freq;\n  vc<int> freq_cnt;\n\
+    \  vc<My_Bitset> freq_to_key;\n\n  // key \u304C [0, N), \u8981\u7D20\u6570\u304C\
+    \u5E38\u306B [0, N]\n  Counter(int N) : N(N) {\n    thresh = sqrtl(N);\n    ma\
+    \ = 0;\n    freq.assign(N, 0);\n    freq_cnt.assign(N + 1, 0);\n    freq_cnt[0]\
     \ = N;\n    if constexpr (USE_MAX_FREQ_KEY) {\n      freq_to_key.assign(thresh\
     \ + 1, My_Bitset(N));\n    }\n  }\n\n  void insert(int k) {\n    assert(0 <= k\
     \ && k < N);\n    if (ma == freq[k]) ++ma;\n    if constexpr (USE_MAX_FREQ_KEY)\
@@ -179,7 +183,7 @@ data:
   isVerificationFile: false
   path: ds/counter.hpp
   requiredBy: []
-  timestamp: '2024-09-08 04:43:29+09:00'
+  timestamp: '2024-09-09 02:35:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/counter.hpp

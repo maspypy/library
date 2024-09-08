@@ -311,13 +311,17 @@ data:
     \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
     \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
     \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int\
-    \ p) { return next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string()\
-    \ const {\n    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto\
-    \ &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n\
-    \    return S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n     \
-    \ string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n\
-    \    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
+    \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
+    \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
+    \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
+    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
+    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
+    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
+    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
+    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
+    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
+    string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
     \n\n// Method of Four Russians O(NMK/wlogN)\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>&\
     \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS =\
     \ My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n\
@@ -349,7 +353,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   requiredBy: []
-  timestamp: '2024-09-08 04:43:29+09:00'
+  timestamp: '2024-09-09 02:35:54+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
