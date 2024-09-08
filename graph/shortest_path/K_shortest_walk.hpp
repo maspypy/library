@@ -3,7 +3,7 @@
 #include "graph/reverse_graph.hpp"
 
 // infty<T> 埋めして必ず長さ K にしたものをかえす。
-template <typename T, typename GT, int NODES>
+template <typename T, typename GT>
 vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   static_assert(GT::is_directed);
   int N = G.N;
@@ -12,7 +12,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }
 
   using P = pair<T, int>;
-  Meldable_Heap<P, true, NODES, true> X;
+  Meldable_Heap<P, true, true> X(G.N + G.M);
   using np = typename decltype(X)::np;
   vc<np> nodes(N, nullptr);
 

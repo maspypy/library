@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename T, bool PERSISTENT, int NODES>
+template <typename T, bool PERSISTENT>
 struct Dynamic_Array {
   static constexpr int LOG = 4;
   static constexpr int MASK = (1 << LOG) - 1;
@@ -8,15 +8,14 @@ struct Dynamic_Array {
     T x;
     Node* ch[1 << LOG] = {};
   };
+  const int NODES;
   Node* pool;
   int pid;
   using np = Node*;
   const T x0;
 
-  Dynamic_Array(T default_value) : pid(0), x0(default_value) {
-    pool = new Node[NODES];
-  }
-
+  Dynamic_Array(int NODES, T default_value) : NODES(NODES), pid(0), x0(default_value) { pool = new Node[NODES]; }
+  ~Dynamic_Array() { delete[] pool; }
   np new_root() {
     pool[pid].x = x0;
     fill(pool[pid].ch, pool[pid].ch + (1 << LOG), nullptr);

@@ -1,4 +1,4 @@
-template <typename ActedSet, bool PERSISTENT, int NODES>
+template <typename ActedSet, bool PERSISTENT>
 struct RBST_ActedSet {
   using Monoid_A = typename ActedSet::Monoid_A;
   using A = typename ActedSet::A;
@@ -13,11 +13,12 @@ struct RBST_ActedSet {
   };
 
   Node *pool;
+  const int NODES;
   int pid;
   using np = Node *;
 
-  RBST_ActedSet() : pid(0) { pool = new Node[NODES]; }
-
+  RBST_ActedSet(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
+  ~RBST_ActedSet() { delete[] pool; }
   void reset() { pid = 0; }
 
   np new_node(const S &s) {
