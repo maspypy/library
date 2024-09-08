@@ -8,7 +8,7 @@ void solve() {
   LL(Q);
   vc<int> L, R;
 
-  Dynamic_Array<int, true, 2'000'000> X(0);
+  Dynamic_Array<int, true> X(2000000, 0);
   using np = typename decltype(X)::np;
   vc<np> roots;
 
@@ -32,11 +32,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
-
   return 0;
 }

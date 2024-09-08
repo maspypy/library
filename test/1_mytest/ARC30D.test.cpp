@@ -11,20 +11,16 @@ void test_ARC30D_case1() {
   const int Q = 5;
   vi dat = {1, 2, 3, 4, 5};
 
-  RBST_ActedMonoid<AM, true, MAX> RBST;
+  RBST_ActedMonoid<AM, true> RBST(MAX);
   auto root = RBST.new_node(dat);
 
-  auto query_1 = [&](int L, int R, int x) -> void {
-    root = RBST.apply(root, --L, R, x);
-  };
+  auto query_1 = [&](int L, int R, int x) -> void { root = RBST.apply(root, --L, R, x); };
   auto query_2 = [&](int a, int b, int c, int d) -> void {
     auto [xl, xm, xr] = RBST.split3(root, --a, b);
     auto [yl, ym, yr] = RBST.split3(root, --c, d);
     root = RBST.merge3(xl, ym, xr);
   };
-  auto query_3 = [&](int L, int R, int ANS) -> void {
-    assert(RBST.prod(root, --L, R) == ANS);
-  };
+  auto query_3 = [&](int L, int R, int ANS) -> void { assert(RBST.prod(root, --L, R) == ANS); };
 
   query_3(1, 5, 15);
   query_1(1, 3, 1);
@@ -41,20 +37,16 @@ void test_ARC30D_case2() {
   const int Q = 30;
   vi dat = {-5, -5, -2, -1, 2, -2, 0, -4, 2, 5};
 
-  RBST_ActedMonoid<AM, true, MAX> RBST;
+  RBST_ActedMonoid<AM, true> RBST(MAX);
   auto root = RBST.new_node(dat);
 
-  auto query_1 = [&](int L, int R, int x) -> void {
-    root = RBST.apply(root, --L, R, x);
-  };
+  auto query_1 = [&](int L, int R, int x) -> void { root = RBST.apply(root, --L, R, x); };
   auto query_2 = [&](int a, int b, int c, int d) -> void {
     auto [xl, xm, xr] = RBST.split3(root, --a, b);
     auto [yl, ym, yr] = RBST.split3(root, --c, d);
     root = RBST.merge3(xl, ym, xr);
   };
-  auto query_3 = [&](int L, int R, int ANS) -> void {
-    assert(RBST.prod(root, --L, R) == ANS);
-  };
+  auto query_3 = [&](int L, int R, int ANS) -> void { assert(RBST.prod(root, --L, R) == ANS); };
 
   query_2(9, 10, 9, 10);
   query_2(3, 5, 2, 4);

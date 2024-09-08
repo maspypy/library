@@ -6,7 +6,7 @@
 
 void test() {
   using Mono = Monoid_Min<int>;
-  RBST_Monoid<Mono, false, 100> X;
+  RBST_Monoid<Mono, false> X(100);
   FOR(1000) {
     X.reset();
     int N = RNG(1, 20);

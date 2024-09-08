@@ -8,7 +8,7 @@ void test() {
   using AM = ActedMonoid_Sum_Add<int>;
   using MonoX = typename AM::Monoid_X;
 
-  RBST_ActedMonoid<AM, false, 100> X;
+  RBST_ActedMonoid<AM, false> X(100);
   FOR(1000) {
     X.reset();
     int N = RNG(1, 3);

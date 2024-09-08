@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
+#define PROBLEM "https://judge.yosupo.jp/problem/dynamic_sequence_range_affine_range_sum"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
@@ -12,7 +11,7 @@ using mint = modint998;
 void solve() {
   LL(N, Q);
   VEC(mint, A, N);
-  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false, 1'000'000> X;
+  RBST_ActedMonoid<ActedMonoid_Sum_Affine<mint>, false> X(N + Q);
   auto root = X.new_node(A);
 
   FOR(Q) {

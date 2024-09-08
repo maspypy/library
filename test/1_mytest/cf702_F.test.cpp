@@ -30,7 +30,7 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
 
   const int MAX = 5'00'000;
 
-  RBST_ActedSet<AS, false, MAX> X;
+  RBST_ActedSet<AS, false> X(MAX);
   using np = decltype(X)::np;
   using S = typename AS::S;
   np root = X.new_node(dat);
@@ -43,14 +43,12 @@ vc<int> solve_cf702F(vc<pair<int, int>> CQ, vc<int> query) {
       root = X.new_node(dat);
     }
     np nm, nr;
-    tie(root, nr)
-        = X.split_max_right(root, [&](S& s) { return get<0>(s) < c; });
+    tie(root, nr) = X.split_max_right(root, [&](S& s) { return get<0>(s) < c; });
     nr = X.apply(nr, {-c, 1});
     tie(nm, nr) = X.split_max_right(nr, [&](S& s) { return get<0>(s) < c; });
     for (auto [val, cnt, idx]: X.get_all(nm)) {
       ll t = val;
-      auto [l_root, r_root]
-          = X.split_max_right(root, [&](S& s) { return get<0>(s) < t; });
+      auto [l_root, r_root] = X.split_max_right(root, [&](S& s) { return get<0>(s) < t; });
       root = X.merge(l_root, X.new_node({val, cnt, idx}));
       root = X.merge(root, r_root);
     }
