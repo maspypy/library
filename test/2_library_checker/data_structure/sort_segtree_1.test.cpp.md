@@ -7,10 +7,10 @@ data:
   - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
@@ -287,40 +287,41 @@ data:
     \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
     \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
     \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
-    \  }\n};\n#line 3 \"ds/segtree/sortable_segtree.hpp\"\n\ntemplate <typename Monoid,\
-    \ int NODES>\nstruct Sortable_SegTree {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  const int N, KEY_MAX;\n\n  struct Node {\n    X x, rev_x;\n\
-    \    int size;\n    Node *l, *r;\n  };\n  Node* pool;\n  int pid;\n  using np\
-    \ = Node*;\n\n  FastSet ss;      // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\
+    \  }\n};\n#line 3 \"ds/segtree/sortable_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
+    struct Sortable_SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  const int N, KEY_MAX;\n\n  struct Node {\n    X x, rev_x;\n    int size;\n\
+    \    Node *l, *r;\n  };\n  Node* pool;\n  const int NODES;\n  int pid;\n  using\
+    \ np = Node*;\n\n  FastSet ss;      // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\
     \u3092\u8868\u3059 fastset\n  SegTree<MX> seg; // \u533A\u9593\u3092\u96C6\u7D04\
     \u3057\u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\u306E\u305B\u305F\
     \ segtree\n  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic\
     \ segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_SegTree(int\
-    \ KEY_MAX, vector<int> key, vector<X> dat)\n      : N(key.size()), KEY_MAX(KEY_MAX),\
-    \ pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n    init(key,\
-    \ dat);\n  }\n\n  void set(int i, int key, const X& x) {\n    assert(key < KEY_MAX);\n\
-    \    split_at(i), split_at(i + 1);\n    rev[i] = 0, root[i] = new_node();\n  \
-    \  set_rec(root[i], 0, KEY_MAX, key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all()\
-    \ { return seg.prod_all(); }\n\n  X prod(int l, int r) {\n    if (pid > NODES\
-    \ * 0.9) rebuild();\n    split_at(l), split_at(r);\n    return seg.prod(l, r);\n\
-    \  }\n\n  void sort_inc(int l, int r) {\n    split_at(l), split_at(r);\n    while\
-    \ (1) {\n      if (pid > NODES * 0.9) rebuild();\n      np c = root[l];\n    \
-    \  int i = ss.next(l + 1);\n      if (i == r) break;\n      root[l] = merge(c,\
-    \ root[i]);\n      ss.erase(i), seg.set(i, MX::unit());\n    }\n    rev[l] = 0,\
-    \ seg.set(l, root[l]->x);\n  };\n\n  void sort_dec(int l, int r) {\n    if (pid\
-    \ > NODES * 0.9) rebuild();\n    sort_inc(l, r), rev[l] = 1;\n    seg.set(l, root[l]->rev_x);\n\
-    \  };\n\n  pair<vc<int>, vc<X>> get_all() {\n    vector<int> key;\n    vector<X>\
-    \ dat;\n    key.reserve(N);\n    dat.reserve(N);\n    auto dfs = [&](auto& dfs,\
-    \ np n, int l, int r, bool rev) -> void {\n      if (!n) return;\n      if (r\
-    \ == l + 1) {\n        key.eb(l), dat.eb(n->x);\n        return;\n      }\n  \
-    \    int m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs,\
-    \ n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l,\
-    \ l, m, rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs,\
-    \ root[i], 0, KEY_MAX, rev[i]);\n    }\n    return {key, dat};\n  }\n\nprivate:\n\
-    \  void init(vector<int>& key, vector<X>& dat) {\n    rev.assign(N, 0), root.clear(),\
-    \ root.reserve(N);\n    seg.build(N, [&](int i) -> X { return dat[i]; });\n  \
-    \  for (int i = 0; i < N; ++i) {\n      ss.insert(i);\n      root.eb(new_node(MX::unit()));\n\
-    \      assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);\n\
+    \ NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), NOES(NODES),\
+    \ KEY_MAX(KEY_MAX), pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n\
+    \    init(key, dat);\n  }\n  ~Sortable_SegTree() { delete[] pool; }\n  void set(int\
+    \ i, int key, const X& x) {\n    assert(key < KEY_MAX);\n    split_at(i), split_at(i\
+    \ + 1);\n    rev[i] = 0, root[i] = new_node();\n    set_rec(root[i], 0, KEY_MAX,\
+    \ key, x);\n    seg.set(i, x);\n  }\n\n  X prod_all() { return seg.prod_all();\
+    \ }\n\n  X prod(int l, int r) {\n    if (pid > NODES * 0.9) rebuild();\n    split_at(l),\
+    \ split_at(r);\n    return seg.prod(l, r);\n  }\n\n  void sort_inc(int l, int\
+    \ r) {\n    split_at(l), split_at(r);\n    while (1) {\n      if (pid > NODES\
+    \ * 0.9) rebuild();\n      np c = root[l];\n      int i = ss.next(l + 1);\n  \
+    \    if (i == r) break;\n      root[l] = merge(c, root[i]);\n      ss.erase(i),\
+    \ seg.set(i, MX::unit());\n    }\n    rev[l] = 0, seg.set(l, root[l]->x);\n  };\n\
+    \n  void sort_dec(int l, int r) {\n    if (pid > NODES * 0.9) rebuild();\n   \
+    \ sort_inc(l, r), rev[l] = 1;\n    seg.set(l, root[l]->rev_x);\n  };\n\n  pair<vc<int>,\
+    \ vc<X>> get_all() {\n    vector<int> key;\n    vector<X> dat;\n    key.reserve(N);\n\
+    \    dat.reserve(N);\n    auto dfs = [&](auto& dfs, np n, int l, int r, bool rev)\
+    \ -> void {\n      if (!n) return;\n      if (r == l + 1) {\n        key.eb(l),\
+    \ dat.eb(n->x);\n        return;\n      }\n      int m = (l + r) / 2;\n      if\
+    \ (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m, r, rev); }\n      if (rev)\
+    \ { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m, rev); }\n    };\n    for (int\
+    \ i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n\
+    \    }\n    return {key, dat};\n  }\n\nprivate:\n  void init(vector<int>& key,\
+    \ vector<X>& dat) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n  \
+    \  seg.build(N, [&](int i) -> X { return dat[i]; });\n    for (int i = 0; i <\
+    \ N; ++i) {\n      ss.insert(i);\n      root.eb(new_node(MX::unit()));\n     \
+    \ assert(key[i] < KEY_MAX);\n      set_rec(root[i], 0, KEY_MAX, key[i], dat[i]);\n\
     \    }\n  }\n\n  // x \u304C\u5DE6\u7AEF\u306B\u306A\u308B\u3088\u3046\u306B\u3059\
     \u308B\n  void split_at(int x) {\n    if (x == N || ss[x]) return;\n    int a\
     \ = ss.prev(x), b = ss.next(a + 1);\n    ss.insert(x);\n    if (!rev[a]) {\n \
@@ -481,8 +482,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-09 04:11:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
 layout: document

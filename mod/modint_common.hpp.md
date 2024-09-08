@@ -143,7 +143,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -666,10 +666,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1014,9 +1014,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1618.test.cpp
     title: test/3_yukicoder/1618.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/1649.test.cpp
-    title: test/3_yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1649_2.test.cpp
     title: test/3_yukicoder/1649_2.test.cpp
@@ -1026,7 +1023,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1685.test.cpp
     title: test/3_yukicoder/1685.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1711,7 +1708,6 @@ data:
   - test/3_yukicoder/1269.test.cpp
   - test/3_yukicoder/1857.test.cpp
   - test/3_yukicoder/2360.test.cpp
-  - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/2305.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1493.test.cpp

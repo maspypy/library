@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/common_interval_decomposition_tree
@@ -281,13 +281,13 @@ data:
     \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
     \ (x == infty<E>) return x;\r\n    return x + a;\r\n  }\r\n};\r\n#line 3 \"seq/common_interval_decomposition.hpp\"\
-    \n\ntemplate <int NODES>\nstruct Common_Inverval_Decomposition {\n  struct Node\
-    \ {\n    vc<Node*> ch;\n    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node*\
-    \ pool;\n  Node* root;\n  int pid;\n\n  Common_Inverval_Decomposition(vc<int>&\
-    \ P) : pid(0) {\n    pool = new Node[NODES];\n    build(P);\n  }\n\n  Node* new_node(bool\
-    \ inc, bool dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n \
-    \   pool[pid].dec = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo\
-    \ = lo;\n    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
+    \n\nstruct Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
+    \    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node* pool;\n  Node* root;\n\
+    \  int pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool\
+    \ = new Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool\
+    \ dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
+    \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
+    \    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
     \ P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N,\
     \ 0));\n\n    vc<Node*> st;\n    vc<int> mi = {-1}, ma = {-1};\n    FOR(i, N)\
     \ {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n        int j = POP(mi);\n\
@@ -342,8 +342,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-09 04:11:40+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/common_interval_decomposition.test.cpp
 layout: document

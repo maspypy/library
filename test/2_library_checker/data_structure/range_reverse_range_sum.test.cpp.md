@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_reverse_range_sum
@@ -367,17 +367,17 @@ data:
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
     \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
     \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 7 \"test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\n  SplayTree_Commutative_Monoid<Monoid_Add<ll>,\
-    \ 200'100> ST;\n  auto root = ST.new_node(A);\n\n  FOR(Q) {\n    LL(t, L, R);\n\
-    \    if (t == 0) {\n      ST.reverse(root, L, R);\n    } else {\n      print(ST.prod(root,\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A, N);\n\n  SplayTree_Commutative_Monoid<Monoid_Add<ll>>\
+    \ ST(N);\n  auto root = ST.new_node(A);\n\n  FOR(Q) {\n    LL(t, L, R);\n    if\
+    \ (t == 0) {\n      ST.reverse(root, L, R);\n    } else {\n      print(ST.prod(root,\
     \ L, R));\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/range_reverse_range_sum\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/splaytree/splaytree_commutative_monoid.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A,\
-    \ N);\n\n  SplayTree_Commutative_Monoid<Monoid_Add<ll>, 200'100> ST;\n  auto root\
-    \ = ST.new_node(A);\n\n  FOR(Q) {\n    LL(t, L, R);\n    if (t == 0) {\n     \
-    \ ST.reverse(root, L, R);\n    } else {\n      print(ST.prod(root, L, R));\n \
-    \   }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \ N);\n\n  SplayTree_Commutative_Monoid<Monoid_Add<ll>> ST(N);\n  auto root =\
+    \ ST.new_node(A);\n\n  FOR(Q) {\n    LL(t, L, R);\n    if (t == 0) {\n      ST.reverse(root,\
+    \ L, R);\n    } else {\n      print(ST.prod(root, L, R));\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -387,8 +387,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:35:35+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 04:11:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
 layout: document

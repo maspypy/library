@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':question:'
@@ -10,20 +10,20 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -97,13 +97,13 @@ data:
     \n  using X = typename Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\
     \n  static constexpr X act(const X &x, const A &a, const ll &size) {\r\n    if\
     \ (x == infty<E>) return x;\r\n    return x + a;\r\n  }\r\n};\r\n#line 3 \"seq/common_interval_decomposition.hpp\"\
-    \n\ntemplate <int NODES>\nstruct Common_Inverval_Decomposition {\n  struct Node\
-    \ {\n    vc<Node*> ch;\n    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node*\
-    \ pool;\n  Node* root;\n  int pid;\n\n  Common_Inverval_Decomposition(vc<int>&\
-    \ P) : pid(0) {\n    pool = new Node[NODES];\n    build(P);\n  }\n\n  Node* new_node(bool\
-    \ inc, bool dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n \
-    \   pool[pid].dec = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo\
-    \ = lo;\n    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
+    \n\nstruct Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
+    \    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node* pool;\n  Node* root;\n\
+    \  int pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool\
+    \ = new Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool\
+    \ dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
+    \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
+    \    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
     \ P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N,\
     \ 0));\n\n    vc<Node*> st;\n    vc<int> mi = {-1}, ma = {-1};\n    FOR(i, N)\
     \ {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n        int j = POP(mi);\n\
@@ -134,13 +134,13 @@ data:
     \ n->r, n->lo, n->hi);\n      for (auto&& c: n->ch) dfs(dfs, c);\n    };\n   \
     \ dfs(dfs, root);\n  };\n};\n"
   code: "#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/min_add.hpp\"\
-    \n\ntemplate <int NODES>\nstruct Common_Inverval_Decomposition {\n  struct Node\
-    \ {\n    vc<Node*> ch;\n    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node*\
-    \ pool;\n  Node* root;\n  int pid;\n\n  Common_Inverval_Decomposition(vc<int>&\
-    \ P) : pid(0) {\n    pool = new Node[NODES];\n    build(P);\n  }\n\n  Node* new_node(bool\
-    \ inc, bool dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n \
-    \   pool[pid].dec = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo\
-    \ = lo;\n    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
+    \n\nstruct Common_Inverval_Decomposition {\n  struct Node {\n    vc<Node*> ch;\n\
+    \    bool inc, dec;\n    int l, r, lo, hi;\n  };\n\n  Node* pool;\n  Node* root;\n\
+    \  int pid;\n\n  Common_Inverval_Decomposition(vc<int>& P) : pid(0) {\n    pool\
+    \ = new Node[2 * len(P)];\n    build(P);\n  }\n\n  Node* new_node(bool inc, bool\
+    \ dec, int l, int r, int lo, int hi) {\n    pool[pid].inc = inc;\n    pool[pid].dec\
+    \ = dec;\n    pool[pid].l = l;\n    pool[pid].r = r;\n    pool[pid].lo = lo;\n\
+    \    pool[pid].hi = hi;\n    return &(pool[pid++]);\n  }\n\n  void build(vc<int>&\
     \ P) {\n    int N = len(P);\n    Lazy_SegTree<ActedMonoid_Min_Add<int>> seg(vc<int>(N,\
     \ 0));\n\n    vc<Node*> st;\n    vc<int> mi = {-1}, ma = {-1};\n    FOR(i, N)\
     \ {\n      while (mi.back() != -1 && P[i] < P[mi.back()]) {\n        int j = POP(mi);\n\
@@ -178,8 +178,8 @@ data:
   isVerificationFile: false
   path: seq/common_interval_decomposition.hpp
   requiredBy: []
-  timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-09 04:11:40+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1720.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp

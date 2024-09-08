@@ -198,7 +198,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
     title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,10 +231,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -369,7 +369,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1098,9 +1098,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1643.test.cpp
     title: test/3_yukicoder/1643.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/1649.test.cpp
-    title: test/3_yukicoder/1649.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1649_2.test.cpp
     title: test/3_yukicoder/1649_2.test.cpp
@@ -1125,7 +1122,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1718.test.cpp
     title: test/3_yukicoder/1718.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1950,7 +1947,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237ex.test.cpp
     title: test/5_atcoder/abc237ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc237g.test.cpp
     title: test/5_atcoder/abc237g.test.cpp
   - icon: ':x:'
@@ -2657,7 +2654,6 @@ data:
   - test/3_yukicoder/184.test.cpp
   - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/1201.test.cpp
-  - test/3_yukicoder/1649.test.cpp
   - test/3_yukicoder/1956.test.cpp
   - test/3_yukicoder/2305.test.cpp
   - test/3_yukicoder/4_2.test.cpp
