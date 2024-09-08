@@ -5,7 +5,7 @@
 #include "ds/hashmap.hpp"
 
 void solve() {
-  Dynamic_Array<int, true, 3'000'000> X(0);
+  Dynamic_Array<int, true> X(3e6, 0);
   using np = typename decltype(X)::np;
 
   LL(Q);
@@ -40,11 +40,6 @@ void solve() {
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

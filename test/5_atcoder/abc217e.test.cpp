@@ -8,7 +8,7 @@
 void solve() {
   LL(Q);
   int L = 0, R = 0;
-  Sortable_Array<15'000'000> X(infty<int> + 1, vc<int>(Q));
+  Sortable_Array X(15'000'000, infty<int> + 1, vc<int>(Q));
   FOR(Q) {
     INT(t);
     if (t == 1) {

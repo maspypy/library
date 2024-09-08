@@ -7,7 +7,7 @@
 
 void solve() {
   LL(N, M, K);
-  My_Multiset<200100> X;
+  My_Multiset X(N);
   auto root = X.new_root();
   VEC(ll, A, N);
   vi ANS;
