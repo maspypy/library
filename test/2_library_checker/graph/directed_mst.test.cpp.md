@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/directed_mst.hpp
     title: graph/directed_mst.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/directedmst
@@ -284,50 +284,49 @@ data:
     \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
     \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
     \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 3 \"graph/directed_mst.hpp\"\
-    \n\ntemplate <typename GT, int NODES>\nstruct Directed_MST_Solver {\n  using T\
-    \ = typename GT::cost_type;\n  GT &G;\n\n  Directed_MST_Solver(GT &G) : G(G),\
-    \ pid(0) {\n    pool = new Node[NODES];\n    assert(G.N + G.M <= NODES);\n  }\n\
-    \n  vc<int> calc(int root) {\n    int N = G.N, M = G.M;\n    vc<np> que(N);\n\
-    \    for (auto &e: G.edges) {\n      que[e.to] = meld(que[e.to], new_node(e.frm,\
-    \ e.cost, e.id));\n    }\n    vc<char> used(N + M);\n    used[root] = 2;\n   \
-    \ vc<Edge> best_edge(N + M);\n    vc<int> par(N + M, -1); // merge \u904E\u7A0B\
-    \u306E\u6728\n    vc<int> rt(N + M);\n    FOR(i, N) rt[i] = i;\n    UnionFind\
-    \ uf(N + M);\n    int nxt = N;\n    for (int s = 0; s < N; ++s) {\n      if (used[s]\
-    \ != 0) continue;\n      vc<int> path = {s};\n      while (1) {\n        int a\
-    \ = path.back();\n        assert(used[a] == 0);\n        used[a] = 1;\n      \
-    \  if (!que[a]) { return {}; }\n        best_edge[a] = pop(que[a]);\n        int\
-    \ to = rt[uf[best_edge[a].to]];\n        if (used[to] == 0) {\n          path.eb(to);\n\
-    \          continue;\n        }\n        if (used[to] == 2) break;\n        //\
-    \ cycle \u767A\u898B\n        int v = nxt++;\n        que.eb(nullptr);\n     \
-    \   while (1) {\n          int w = POP(path);\n          T sub = best_edge[w].cost;\n\
-    \          que[v] = meld(que[v], add(que[w], -sub));\n          uf.merge(v, w),\
-    \ par[w] = v;\n          used[w] = 2;\n          if (w == to) break;\n       \
-    \ }\n        rt[uf[v]] = v;\n        path.eb(v);\n      }\n      for (auto &v:\
-    \ path) used[v] = 2;\n    }\n\n    vc<int> res;\n    vc<bool> done(nxt);\n   \
-    \ done[root] = 1;\n    FOR_R(v, nxt) {\n      if (done[v]) continue;\n      int\
-    \ id = best_edge[v].id;\n      res.eb(id);\n      int x = G.edges[id].to;\n  \
-    \    while (x != -1 && !done[x]) { done[x] = 1, x = par[x]; }\n    }\n    return\
-    \ res;\n  }\n\nprivate:\n  struct Edge {\n    int to, id;\n    T cost;\n  };\n\
-    \n  struct Node {\n    Node *l, *r;\n    Edge e;\n    T lazy;\n    int s;\n  };\n\
-    \n  Node *pool;\n  using np = Node *;\n  int pid;\n\n  np new_node(int to, T cost,\
-    \ int id) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].s = 1;\n\
-    \    pool[pid].e = Edge{to, id, cost};\n    pool[pid].lazy = 0;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np add(np a, T x) {\n    if (a) a->e.cost += x, a->lazy += x;\n    return\
-    \ a;\n  }\n\n  np meld(np a, np b) {\n    if (!a) return b;\n    if (!b) return\
-    \ a;\n    if ((a->e.cost) > (b->e.cost)) swap(a, b);\n    b = add(b, -(a->lazy));\n\
-    \    a->r = (a->r ? meld(a->r, b) : b);\n    if (!(a->l) || (a->l->s < a->r->s))\
-    \ swap(a->l, a->r);\n    a->s = (a->r ? a->r->s : 0) + 1;\n    return a;\n  }\n\
-    \n  Edge pop(np &a) {\n    Edge e = a->e;\n    a = meld(add(a->l, a->lazy), add(a->r,\
-    \ a->lazy));\n    return e;\n  }\n};\n\ntemplate <typename GT, int MAX_N>\npair<typename\
-    \ GT::cost_type, vc<int>> directed_mst(GT &G, int root) {\n  Directed_MST_Solver<GT,\
-    \ 2 * MAX_N> D(G);\n  using T = typename GT::cost_type;\n  auto I = D.calc(root);\n\
-    \  T cost = 0;\n  for (auto &i: I) cost += G.edges[i].cost;\n  return {cost, I};\n\
-    };\n#line 6 \"test/2_library_checker/graph/directed_mst.test.cpp\"\n\nvoid solve()\
-    \ {\n  INT(N, M, s);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1, 0);\n  auto [cost,\
-    \ I] = directed_mst<decltype(G), 200'000>(G, s);\n  vc<int> par(N, -1);\n  par[s]\
-    \ = s;\n  for (auto &idx: I) {\n    auto &e = G.edges[idx];\n    par[e.to] = e.frm;\n\
-    \  }\n  print(cost);\n  print(par);\n}\n\nsigned main() {\n  solve();\n  return\
-    \ 0;\n}\n"
+    \n\ntemplate <typename GT>\nstruct Directed_MST_Solver {\n  using T = typename\
+    \ GT::cost_type;\n  GT &G;\n\n  Directed_MST_Solver(GT &G) : G(G), pid(0) { pool\
+    \ = new Node[G.N + G.M]; }\n  ~Directed_MST_Solver() { delete[] pool; }\n\n  vc<int>\
+    \ calc(int root) {\n    int N = G.N, M = G.M;\n    vc<np> que(N);\n    for (auto\
+    \ &e: G.edges) { que[e.to] = meld(que[e.to], new_node(e.frm, e.cost, e.id)); }\n\
+    \    vc<char> used(N + M);\n    used[root] = 2;\n    vc<Edge> best_edge(N + M);\n\
+    \    vc<int> par(N + M, -1); // merge \u904E\u7A0B\u306E\u6728\n    vc<int> rt(N\
+    \ + M);\n    FOR(i, N) rt[i] = i;\n    UnionFind uf(N + M);\n    int nxt = N;\n\
+    \    for (int s = 0; s < N; ++s) {\n      if (used[s] != 0) continue;\n      vc<int>\
+    \ path = {s};\n      while (1) {\n        int a = path.back();\n        assert(used[a]\
+    \ == 0);\n        used[a] = 1;\n        if (!que[a]) { return {}; }\n        best_edge[a]\
+    \ = pop(que[a]);\n        int to = rt[uf[best_edge[a].to]];\n        if (used[to]\
+    \ == 0) {\n          path.eb(to);\n          continue;\n        }\n        if\
+    \ (used[to] == 2) break;\n        // cycle \u767A\u898B\n        int v = nxt++;\n\
+    \        que.eb(nullptr);\n        while (1) {\n          int w = POP(path);\n\
+    \          T sub = best_edge[w].cost;\n          que[v] = meld(que[v], add(que[w],\
+    \ -sub));\n          uf.merge(v, w), par[w] = v;\n          used[w] = 2;\n   \
+    \       if (w == to) break;\n        }\n        rt[uf[v]] = v;\n        path.eb(v);\n\
+    \      }\n      for (auto &v: path) used[v] = 2;\n    }\n\n    vc<int> res;\n\
+    \    vc<bool> done(nxt);\n    done[root] = 1;\n    FOR_R(v, nxt) {\n      if (done[v])\
+    \ continue;\n      int id = best_edge[v].id;\n      res.eb(id);\n      int x =\
+    \ G.edges[id].to;\n      while (x != -1 && !done[x]) { done[x] = 1, x = par[x];\
+    \ }\n    }\n    return res;\n  }\n\nprivate:\n  struct Edge {\n    int to, id;\n\
+    \    T cost;\n  };\n\n  struct Node {\n    Node *l, *r;\n    Edge e;\n    T lazy;\n\
+    \    int s;\n  };\n\n  Node *pool;\n  using np = Node *;\n  int pid;\n\n  np new_node(int\
+    \ to, T cost, int id) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].s\
+    \ = 1;\n    pool[pid].e = Edge{to, id, cost};\n    pool[pid].lazy = 0;\n    return\
+    \ &(pool[pid++]);\n  }\n\n  np add(np a, T x) {\n    if (a) a->e.cost += x, a->lazy\
+    \ += x;\n    return a;\n  }\n\n  np meld(np a, np b) {\n    if (!a) return b;\n\
+    \    if (!b) return a;\n    if ((a->e.cost) > (b->e.cost)) swap(a, b);\n    b\
+    \ = add(b, -(a->lazy));\n    a->r = (a->r ? meld(a->r, b) : b);\n    if (!(a->l)\
+    \ || (a->l->s < a->r->s)) swap(a->l, a->r);\n    a->s = (a->r ? a->r->s : 0) +\
+    \ 1;\n    return a;\n  }\n\n  Edge pop(np &a) {\n    Edge e = a->e;\n    a = meld(add(a->l,\
+    \ a->lazy), add(a->r, a->lazy));\n    return e;\n  }\n};\n\ntemplate <typename\
+    \ GT, int MAX_N>\npair<typename GT::cost_type, vc<int>> directed_mst(GT &G, int\
+    \ root) {\n  Directed_MST_Solver<GT, 2 * MAX_N> D(G);\n  using T = typename GT::cost_type;\n\
+    \  auto I = D.calc(root);\n  T cost = 0;\n  for (auto &i: I) cost += G.edges[i].cost;\n\
+    \  return {cost, I};\n};\n#line 6 \"test/2_library_checker/graph/directed_mst.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N, M, s);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1,\
+    \ 0);\n  auto [cost, I] = directed_mst<decltype(G), 200'000>(G, s);\n  vc<int>\
+    \ par(N, -1);\n  par[s] = s;\n  for (auto &idx: I) {\n    auto &e = G.edges[idx];\n\
+    \    par[e.to] = e.frm;\n  }\n  print(cost);\n  print(par);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/directedmst\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/directed_mst.hpp\"\
     \n\nvoid solve() {\n  INT(N, M, s);\n  Graph<ll, 1> G(N);\n  G.read_graph(M, 1,\
@@ -344,8 +343,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/directed_mst.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-09 03:53:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/directed_mst.test.cpp
 layout: document

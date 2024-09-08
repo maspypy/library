@@ -3,25 +3,26 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/cf702_F.test.cpp
     title: test/1_mytest/cf702_F.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/randomized_bst/rbst_acted_set.hpp\"\ntemplate <typename\
-    \ ActedSet, bool PERSISTENT, int NODES>\nstruct RBST_ActedSet {\n  using Monoid_A\
-    \ = typename ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n  using S\
-    \ = typename ActedSet::S;\n\n  struct Node {\n    Node *l, *r;\n    S s;\n   \
-    \ A lazy;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n \
-    \ using np = Node *;\n\n  RBST_ActedSet() : pid(0) { pool = new Node[NODES]; }\n\
-    \n  void reset() { pid = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].s = s;\n    pool[pid].lazy = Monoid_A::unit();\n\
-    \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
-    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
+    \ ActedSet, bool PERSISTENT>\nstruct RBST_ActedSet {\n  using Monoid_A = typename\
+    \ ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n  using S = typename\
+    \ ActedSet::S;\n\n  struct Node {\n    Node *l, *r;\n    S s;\n    A lazy;\n \
+    \   u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  const int NODES;\n  int\
+    \ pid;\n  using np = Node *;\n\n  RBST_ActedSet(int NODES) : NODES(NODES), pid(0)\
+    \ { pool = new Node[NODES]; }\n  ~RBST_ActedSet() { delete[] pool; }\n  void reset()\
+    \ { pid = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l = pool[pid].r =\
+    \ nullptr;\n    pool[pid].s = s;\n    pool[pid].lazy = Monoid_A::unit();\n   \
+    \ pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\
+    \n  np new_node(const vc<S> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32\
+    \ r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
     \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
     \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
     \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
@@ -114,12 +115,13 @@ data:
     \      return {root, n2};\n    }\n    auto [n1, n2] = split_max_right_rec(root->l,\
     \ check);\n    root->l = n2;\n    update(root);\n    return {n1, root};\n  }\n\
     };\n"
-  code: "template <typename ActedSet, bool PERSISTENT, int NODES>\nstruct RBST_ActedSet\
-    \ {\n  using Monoid_A = typename ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n\
+  code: "template <typename ActedSet, bool PERSISTENT>\nstruct RBST_ActedSet {\n \
+    \ using Monoid_A = typename ActedSet::Monoid_A;\n  using A = typename ActedSet::A;\n\
     \  using S = typename ActedSet::S;\n\n  struct Node {\n    Node *l, *r;\n    S\
-    \ s;\n    A lazy;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int\
-    \ pid;\n  using np = Node *;\n\n  RBST_ActedSet() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l\
+    \ s;\n    A lazy;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  const\
+    \ int NODES;\n  int pid;\n  using np = Node *;\n\n  RBST_ActedSet(int NODES) :\
+    \ NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_ActedSet() { delete[]\
+    \ pool; }\n  void reset() { pid = 0; }\n\n  np new_node(const S &s) {\n    pool[pid].l\
     \ = pool[pid].r = nullptr;\n    pool[pid].s = s;\n    pool[pid].lazy = Monoid_A::unit();\n\
     \    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
     \  }\n\n  np new_node(const vc<S> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
@@ -220,8 +222,8 @@ data:
   isVerificationFile: false
   path: ds/randomized_bst/rbst_acted_set.hpp
   requiredBy: []
-  timestamp: '2022-12-04 00:54:54+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-09 03:53:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/cf702_F.test.cpp
 documentation_of: ds/randomized_bst/rbst_acted_set.hpp

@@ -3,37 +3,38 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/ARC30D.test.cpp
     title: test/1_mytest/ARC30D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_am.test.cpp
     title: test/1_mytest/rbst_am.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_am_2.test.cpp
     title: test/1_mytest/rbst_am_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rbst_am_persistent.test.cpp
     title: test/1_mytest/rbst_am_persistent.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/randomized_bst/rbst_acted_monoid.hpp\"\ntemplate <typename\
-    \ ActedMonoid, bool PERSISTENT, int NODES>\nstruct RBST_ActedMonoid {\n  using\
-    \ Monoid_X = typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
+    \ ActedMonoid, bool PERSISTENT>\nstruct RBST_ActedMonoid {\n  using Monoid_X =\
+    \ typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename ActedMonoid::Monoid_A;\n\
     \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod; // lazy, rev \u53CD\u6620\u6E08\
-    \n    A lazy;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n\
-    \  using np = Node *;\n\n  RBST_ActedMonoid() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
+    \n    A lazy;\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  const int\
+    \ NODES;\n  int pid;\n  using np = Node *;\n\n  RBST_ActedMonoid(int NODES) :\
+    \ pid(0) { pool = new Node[NODES]; }\n  ~RBST_ActedMonoid() { delete[] pool; }\n\
+    \n  void reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l\
     \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n  \
     \  pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size = 1;\n    pool[pid].rev\
     \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n\
@@ -158,14 +159,15 @@ data:
     \ {\n      root->l = nullptr;\n      update(root);\n      return {left, root};\n\
     \    }\n    x = y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n\
     \    root->r = n1;\n    update(root);\n    return {root, n2};\n  }\n};\n"
-  code: "template <typename ActedMonoid, bool PERSISTENT, int NODES>\nstruct RBST_ActedMonoid\
+  code: "template <typename ActedMonoid, bool PERSISTENT>\nstruct RBST_ActedMonoid\
     \ {\n  using Monoid_X = typename ActedMonoid::Monoid_X;\n  using Monoid_A = typename\
     \ ActedMonoid::Monoid_A;\n  using X = typename Monoid_X::value_type;\n  using\
     \ A = typename Monoid_A::value_type;\n\n  struct Node {\n    Node *l, *r;\n  \
     \  X x, prod; // lazy, rev \u53CD\u6620\u6E08\n    A lazy;\n    u32 size;\n  \
-    \  bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_ActedMonoid()\
-    \ : pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np\
-    \ new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
+    \  bool rev;\n  };\n\n  Node *pool;\n  const int NODES;\n  int pid;\n  using np\
+    \ = Node *;\n\n  RBST_ActedMonoid(int NODES) : pid(0) { pool = new Node[NODES];\
+    \ }\n  ~RBST_ActedMonoid() { delete[] pool; }\n\n  void reset() { pid = 0; }\n\
+    \n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
     \ = x;\n    pool[pid].prod = x;\n    pool[pid].lazy = Monoid_A::unit();\n    pool[pid].size\
     \ = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n  }\n\n  np new_node(const\
     \ vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l, u32 r) -> np {\n      if\
@@ -294,8 +296,8 @@ data:
   isVerificationFile: false
   path: ds/randomized_bst/rbst_acted_monoid.hpp
   requiredBy: []
-  timestamp: '2022-12-04 13:46:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-09 03:53:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/686.test.cpp
   - test/1_mytest/rbst_am_persistent.test.cpp

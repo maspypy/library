@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/randomized_bst/rbst_commutative_monoid.hpp
     title: ds/randomized_bst/rbst_commutative_monoid.hpp
   - icon: ':question:'
@@ -16,14 +16,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -194,18 +194,19 @@ data:
     \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 1 \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\
-    \ntemplate <typename CommutativeMonoid, bool PERSISTENT, int NODES>\nstruct RBST_CommutativeMonoid\
-    \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
-    \n  struct Node {\n    Node *l, *r;\n    X x, prod; // rev \u53CD\u6620\u6E08\n\
-    \    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using np =\
-    \ Node *;\n\n  RBST_CommutativeMonoid() : pid(0) {\n    assert(Monoid::commute);\n\
-    \    pool = new Node[NODES];\n  }\n\n  void reset() { pid = 0; }\n\n  np new_node(const\
-    \ X &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n  \
-    \  pool[pid].prod = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return\
-    \ &(pool[pid++]);\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto\
-    \ &dfs, u32 l, u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r\
-    \ == l + 1) return new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root\
-    \ = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
+    \ntemplate <typename CommutativeMonoid, bool PERSISTENT>\nstruct RBST_CommutativeMonoid\
+    \ {\n  static_assert(Monoid::commute);\n  using Monoid = CommutativeMonoid;\n\
+    \  using X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
+    \    X x, prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\
+    \n  const int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_CommutativeMonoid(int\
+    \ NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_CommutativeMonoid()\
+    \ { delete[] pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x)\
+    \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
+    \ = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
+    \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
+    \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
+    \ new_node(dat[l]);\n      u32 m = (l + r) / 2;\n      np l_root = dfs(dfs, l,\
+    \ m);\n      np r_root = dfs(dfs, m + 1, r);\n      np root = new_node(dat[m]);\n\
     \      root->l = l_root, root->r = r_root;\n      update(root);\n      return\
     \ root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  np copy_node(np &n)\
     \ {\n    if (!n || !PERSISTENT) return n;\n    pool[pid].l = n->l, pool[pid].r\
@@ -362,8 +363,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_commutative_persistent.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-09 03:53:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_commutative_persistent.test.cpp
 layout: document

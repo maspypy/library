@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/randomized_bst/rbst_monoid.hpp
     title: ds/randomized_bst/rbst_monoid.hpp
   - icon: ':question:'
@@ -16,14 +16,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -197,12 +197,13 @@ data:
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 1 \"ds/randomized_bst/rbst_monoid.hpp\"\ntemplate <typename Monoid, bool\
-    \ PERSISTENT, int NODES>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
+    \ PERSISTENT>\nstruct RBST_Monoid {\n  using X = typename Monoid::value_type;\n\
     \n  struct Node {\n    Node *l, *r;\n    X x, prod, rev_prod; // rev \u53CD\u6620\
-    \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  Node *pool;\n  int pid;\n  using\
-    \ np = Node *;\n\n  RBST_Monoid() : pid(0) { pool = new Node[NODES]; }\n\n  void\
-    \ reset() { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r\
-    \ = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod\
+    \u6E08\n    u32 size;\n    bool rev;\n  };\n\n  int NODES;\n  Node *pool;\n  int\
+    \ pid;\n  using np = Node *;\n\n  RBST_Monoid() : NODES(NODES), pid(0) { pool\
+    \ = new Node[NODES]; }\n  ~RBST_Monoid() { delete[] pool; }\n\n  void reset()\
+    \ { pid = 0; }\n\n  np new_node(const X &x) {\n    pool[pid].l = pool[pid].r =\
+    \ nullptr;\n    pool[pid].x = x;\n    pool[pid].prod = x;\n    pool[pid].rev_prod\
     \ = x;\n    pool[pid].size = 1;\n    pool[pid].rev = 0;\n    return &(pool[pid++]);\n\
     \  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs = [&](auto &dfs, u32 l,\
     \ u32 r) -> np {\n      if (l == r) return nullptr;\n      if (r == l + 1) return\
@@ -284,30 +285,30 @@ data:
     \ = Monoid::op(root->x, x);\n      update(root);\n      return root;\n    }\n\
     \    root = copy_node(root);\n    root->r = multiply_rec(root->r, k - (1 + sl),\
     \ x);\n    update(root);\n    return root;\n  }\n\n  X prod_rec(np root, u32 l,\
-    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) {\n      return (rev\
-    \ ? root->rev_prod : root->prod);\n    }\n    np left = (rev ? root->r : root->l);\n\
-    \    np right = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size :\
-    \ 0);\n    X res = Monoid::unit();\n    if (l < sl) {\n      X y = prod_rec(left,\
-    \ l, min(r, sl), rev ^ root->rev);\n      res = Monoid::op(res, y);\n    }\n \
-    \   if (l <= sl && sl < r) res = Monoid::op(res, root->x);\n    u32 k = 1 + sl;\n\
-    \    if (k < r) {\n      X y = prod_rec(right, max(k, l) - k, r - k, rev ^ root->rev);\n\
-    \      res = Monoid::op(res, y);\n    }\n    return res;\n  }\n\n  X get_rec(np\
-    \ root, u32 k, bool rev) {\n    np left = (rev ? root->r : root->l);\n    np right\
-    \ = (rev ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    if\
-    \ (k == sl) return root->x;\n    rev ^= root->rev;\n    if (k < sl) return get_rec(left,\
-    \ k, rev);\n    return get_rec(right, k - (1 + sl), rev);\n  }\n\n  template <typename\
-    \ F>\n  pair<np, np> split_max_right_rec(np root, const F &check, X &x) {\n  \
-    \  if (!root) return {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n\
-    \    X y = Monoid::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n   \
-    \   return {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n\
-    \    if (left) {\n      X y = Monoid::op(x, root->l->prod);\n      if (!check(y))\
-    \ {\n        auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l\
-    \ = n2;\n        update(root);\n        return {n1, root};\n      }\n      x =\
-    \ y;\n    }\n    y = Monoid::op(x, root->x);\n    if (!check(y)) {\n      root->l\
-    \ = nullptr;\n      update(root);\n      return {left, root};\n    }\n    x =\
-    \ y;\n    auto [n1, n2] = split_max_right_rec(right, check, x);\n    root->r =\
-    \ n1;\n    update(root);\n    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
+    \ u32 r, bool rev) {\n    if (l == 0 && r == root->size) { return (rev ? root->rev_prod\
+    \ : root->prod); }\n    np left = (rev ? root->r : root->l);\n    np right = (rev\
+    \ ? root->l : root->r);\n    u32 sl = (left ? left->size : 0);\n    X res = Monoid::unit();\n\
+    \    if (l < sl) {\n      X y = prod_rec(left, l, min(r, sl), rev ^ root->rev);\n\
+    \      res = Monoid::op(res, y);\n    }\n    if (l <= sl && sl < r) res = Monoid::op(res,\
+    \ root->x);\n    u32 k = 1 + sl;\n    if (k < r) {\n      X y = prod_rec(right,\
+    \ max(k, l) - k, r - k, rev ^ root->rev);\n      res = Monoid::op(res, y);\n \
+    \   }\n    return res;\n  }\n\n  X get_rec(np root, u32 k, bool rev) {\n    np\
+    \ left = (rev ? root->r : root->l);\n    np right = (rev ? root->l : root->r);\n\
+    \    u32 sl = (left ? left->size : 0);\n    if (k == sl) return root->x;\n   \
+    \ rev ^= root->rev;\n    if (k < sl) return get_rec(left, k, rev);\n    return\
+    \ get_rec(right, k - (1 + sl), rev);\n  }\n\n  template <typename F>\n  pair<np,\
+    \ np> split_max_right_rec(np root, const F &check, X &x) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    prop(root);\n    root = copy_node(root);\n    X y =\
+    \ Monoid::op(x, root->prod);\n    if (check(y)) {\n      x = y;\n      return\
+    \ {root, nullptr};\n    }\n    np left = root->l, right = root->r;\n    if (left)\
+    \ {\n      X y = Monoid::op(x, root->l->prod);\n      if (!check(y)) {\n     \
+    \   auto [n1, n2] = split_max_right_rec(left, check, x);\n        root->l = n2;\n\
+    \        update(root);\n        return {n1, root};\n      }\n      x = y;\n  \
+    \  }\n    y = Monoid::op(x, root->x);\n    if (!check(y)) {\n      root->l = nullptr;\n\
+    \      update(root);\n      return {left, root};\n    }\n    x = y;\n    auto\
+    \ [n1, n2] = split_max_right_rec(right, check, x);\n    root->r = n1;\n    update(root);\n\
+    \    return {root, n2};\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
     \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
     \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
     \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
@@ -369,8 +370,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst_monoid_2.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-09 03:53:08+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst_monoid_2.test.cpp
 layout: document

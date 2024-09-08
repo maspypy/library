@@ -1,33 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/meldable_heap.hpp
     title: ds/meldable_heap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/meldable_heap.hpp\"\n\ntemplate <typename VAL, bool PERSISTENT,\
-    \ int NODES, bool TOP_IS_MIN>\nstruct Meldable_Heap {\n  struct Node {\n    Node\
-    \ *l, *r;\n    VAL x;\n    u32 size, dist; // dist: leaf \u307E\u3067\u306E\u8DDD\
-    \u96E2\n  };\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Meldable_Heap()\
-    \ : pid(0) { pool = new Node[NODES]; }\n\n  np new_root() { return nullptr; }\n\
+    \ bool TOP_IS_MIN>\nstruct Meldable_Heap {\n  struct Node {\n    Node *l, *r;\n\
+    \    VAL x;\n    u32 size, dist; // dist: leaf \u307E\u3067\u306E\u8DDD\u96E2\n\
+    \  };\n  Node *pool;\n  const int NODES;\n  int pid;\n  using np = Node *;\n\n\
+    \  Meldable_Heap(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n\
+    \  ~Meldable_Heap() { delete[] pool; }\n  np new_root() { return nullptr; }\n\
     \  np new_node(const VAL &x) {\n    pool[pid].l = pool[pid].r = nullptr;\n   \
     \ pool[pid].x = x, pool[pid].size = 1, pool[pid].dist = 1;\n    return &(pool[pid++]);\n\
     \  }\n  np copy_node(np a) {\n    if (!a || !PERSISTENT) return a;\n    np b =\
@@ -143,11 +144,11 @@ data:
     \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/shortest_path/K_shortest_walk.hpp\"\
     \n\n// infty<T> \u57CB\u3081\u3057\u3066\u5FC5\u305A\u9577\u3055 K \u306B\u3057\
     \u305F\u3082\u306E\u3092\u304B\u3048\u3059\u3002\ntemplate <typename T, typename\
-    \ GT, int NODES>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
+    \ GT>\nvc<T> K_shortest_walk(GT &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n\
     \  int N = G.N;\n  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T,\
     \ decltype(RG)>(RG, t);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>);\
-    \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, NODES, true> X;\n \
-    \ using np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool>\
+    \ }\n\n  using P = pair<T, int>;\n  Meldable_Heap<P, true, true> X(G.N + G.M);\n\
+    \  using np = typename decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool>\
     \ vis(N);\n  vc<int> st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v\
     \ = POP(st);\n    bool done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to]\
     \ == infty<T>) continue;\n      if (!done && par[v] == e.to && dist[v] == dist[e.to]\
@@ -168,29 +169,28 @@ data:
   code: "#include \"ds/meldable_heap.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
     \n#include \"graph/reverse_graph.hpp\"\n\n// infty<T> \u57CB\u3081\u3057\u3066\
     \u5FC5\u305A\u9577\u3055 K \u306B\u3057\u305F\u3082\u306E\u3092\u304B\u3048\u3059\
-    \u3002\ntemplate <typename T, typename GT, int NODES>\nvc<T> K_shortest_walk(GT\
-    \ &G, int s, int t, int K) {\n  static_assert(GT::is_directed);\n  int N = G.N;\n\
-    \  auto RG = reverse_graph(G);\n  auto [dist, par] = dijkstra<T, decltype(RG)>(RG,\
-    \ t);\n  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }\n\n  using P\
-    \ = pair<T, int>;\n  Meldable_Heap<P, true, NODES, true> X;\n  using np = typename\
-    \ decltype(X)::np;\n  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int>\
-    \ st = {t};\n  vis[t] = 1;\n  while (len(st)) {\n    int v = POP(st);\n    bool\
-    \ done = 0;\n    for (auto &&e: G[v]) {\n      if (dist[e.to] == infty<T>) continue;\n\
-    \      if (!done && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {\n    \
-    \    done = 1;\n        continue;\n      }\n      T cost = -dist[v] + e.cost +\
-    \ dist[e.to];\n      nodes[v] = X.push(nodes[v], {cost, e.to});\n    }\n    for\
-    \ (auto &&e: RG[v]) {\n      if (vis[e.to]) continue;\n      if (par[e.to] ==\
-    \ v) {\n        nodes[e.to] = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to]\
-    \ = 1;\n        st.eb(e.to);\n      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T>\
-    \ ANS = {base};\n  if (nodes[s]) {\n    using PAIR = pair<T, np>;\n    auto comp\
-    \ = [](auto a, auto b) { return a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>,\
-    \ decltype(comp)> que(comp);\n    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n\
-    \    while (len(ANS) < K && len(que)) {\n      auto [d, n] = que.top();\n    \
-    \  que.pop();\n      ANS.eb(d);\n      if (n->l) que.emplace(d + (n->l->x.fi)\
-    \ - (n->x.fi), n->l);\n      if (n->r) que.emplace(d + (n->r->x.fi) - (n->x.fi),\
-    \ n->r);\n      np m = nodes[n->x.se];\n      if (m) { que.emplace(d + m->x.fi,\
-    \ m); }\n    }\n  }\n  while (len(ANS) < K) ANS.eb(infty<T>);\n  return ANS;\n\
-    }\n"
+    \u3002\ntemplate <typename T, typename GT>\nvc<T> K_shortest_walk(GT &G, int s,\
+    \ int t, int K) {\n  static_assert(GT::is_directed);\n  int N = G.N;\n  auto RG\
+    \ = reverse_graph(G);\n  auto [dist, par] = dijkstra<T, decltype(RG)>(RG, t);\n\
+    \  if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }\n\n  using P = pair<T,\
+    \ int>;\n  Meldable_Heap<P, true, true> X(G.N + G.M);\n  using np = typename decltype(X)::np;\n\
+    \  vc<np> nodes(N, nullptr);\n\n  vc<bool> vis(N);\n  vc<int> st = {t};\n  vis[t]\
+    \ = 1;\n  while (len(st)) {\n    int v = POP(st);\n    bool done = 0;\n    for\
+    \ (auto &&e: G[v]) {\n      if (dist[e.to] == infty<T>) continue;\n      if (!done\
+    \ && par[v] == e.to && dist[v] == dist[e.to] + e.cost) {\n        done = 1;\n\
+    \        continue;\n      }\n      T cost = -dist[v] + e.cost + dist[e.to];\n\
+    \      nodes[v] = X.push(nodes[v], {cost, e.to});\n    }\n    for (auto &&e: RG[v])\
+    \ {\n      if (vis[e.to]) continue;\n      if (par[e.to] == v) {\n        nodes[e.to]\
+    \ = X.meld(nodes[e.to], nodes[v]);\n        vis[e.to] = 1;\n        st.eb(e.to);\n\
+    \      }\n    }\n  }\n\n  T base = dist[s];\n  vc<T> ANS = {base};\n  if (nodes[s])\
+    \ {\n    using PAIR = pair<T, np>;\n    auto comp = [](auto a, auto b) { return\
+    \ a.fi > b.fi; };\n    priority_queue<PAIR, vc<PAIR>, decltype(comp)> que(comp);\n\
+    \    que.emplace(base + X.top(nodes[s]).fi, nodes[s]);\n    while (len(ANS) <\
+    \ K && len(que)) {\n      auto [d, n] = que.top();\n      que.pop();\n      ANS.eb(d);\n\
+    \      if (n->l) que.emplace(d + (n->l->x.fi) - (n->x.fi), n->l);\n      if (n->r)\
+    \ que.emplace(d + (n->r->x.fi) - (n->x.fi), n->r);\n      np m = nodes[n->x.se];\n\
+    \      if (m) { que.emplace(d + m->x.fi, m); }\n    }\n  }\n  while (len(ANS)\
+    \ < K) ANS.eb(infty<T>);\n  return ANS;\n}\n"
   dependsOn:
   - ds/meldable_heap.hpp
   - graph/shortest_path/dijkstra.hpp
@@ -199,8 +199,8 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/K_shortest_walk.hpp
   requiredBy: []
-  timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-09 03:53:08+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
 documentation_of: graph/shortest_path/K_shortest_walk.hpp
