@@ -6,7 +6,7 @@ struct Directed_MST_Solver {
   using T = typename GT::cost_type;
   GT &G;
 
-  Directed_MST_Solver(GT &G) : G(G), pid(0) { pool = new Node[G.N + G.M]; }
+  Directed_MST_Solver(GT &G) : G(G), pid(0) { pool = new Node[2 * G.N]; }
   ~Directed_MST_Solver() { delete[] pool; }
 
   vc<int> calc(int root) {
@@ -114,9 +114,9 @@ private:
   }
 };
 
-template <typename GT, int MAX_N>
+template <typename GT>
 pair<typename GT::cost_type, vc<int>> directed_mst(GT &G, int root) {
-  Directed_MST_Solver<GT, 2 * MAX_N> D(G);
+  Directed_MST_Solver<GT> D(G);
   using T = typename GT::cost_type;
   auto I = D.calc(root);
   T cost = 0;
