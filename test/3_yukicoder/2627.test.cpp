@@ -41,7 +41,7 @@ void solve() {
   ll q, r;
   tie(q, r) = divmod(U - L + 1, K);
   ll LIM = ceil<ll>(1LL << 40, K);
-  Dynamic_SegTree_Sparse<Monoid_Add_Pair<ll>, false, 2000000> seg(0, LIM);
+  Dynamic_SegTree_Sparse<Monoid_Add_Pair<ll>, false> seg(10 * N, 0, LIM);
   using np = decltype(seg)::np;
 
   np X = seg.new_root();
@@ -70,8 +70,7 @@ void solve() {
     return ans;
   };
 
-  auto best
-      = [&]() -> ll { return fibonacci_search<i128, true>(eval, 0, LIM).fi; };
+  auto best = [&]() -> ll { return fibonacci_search<i128, true>(eval, 0, LIM).fi; };
 
   ll ANS = infty<ll>;
   FOR(L, K) {

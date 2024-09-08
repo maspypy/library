@@ -2,8 +2,8 @@
 
 // 常にほとんどの要素が unit であることが保証されるような動的セグ木
 // したがって、default_prod の類は持たせられず、acted monoid も一般には扱えない
-// 永続化しない場合のノード数を O(N) に抑えることができるのが利点
-template <typename Monoid, bool PERSISTENT, int NODES>
+// 追加 N 回のときノード数 N 以下が保証される
+template <typename Monoid, bool PERSISTENT>
 struct Dynamic_SegTree_Sparse {
   using MX = Monoid;
   using X = typename MX::value_type;
@@ -13,16 +13,15 @@ struct Dynamic_SegTree_Sparse {
     Node *l, *r;
     X prod, x;
   };
-
+  const int NODES;
   const ll L0, R0;
   Node *pool;
   int pid;
   using np = Node *;
   vc<np> FREE;
 
-  Dynamic_SegTree_Sparse(ll L0, ll R0) : L0(L0), R0(R0), pid(0) {
-    pool = new Node[NODES];
-  }
+  Dynamic_SegTree_Sparse(int NODES, ll L0, ll R0) : NODES(NODES), L0(L0), R0(R0), pid(0) { pool = new Node[NODES]; }
+  ~Dynamic_SegTree_Sparse() { delete[] pool; }
 
   // 木 dp のマージのときなどに使用すると MLE 回避できることがある
   // https://codeforces.com/problemset/problem/671/D
@@ -44,6 +43,7 @@ struct Dynamic_SegTree_Sparse {
       c->prod = c->x = x;
       return c;
     }
+    assert(pid < NODES);
     pool[pid].idx = idx;
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = pool[pid].prod = x;
@@ -120,6 +120,7 @@ private:
 
   np copy_node(np c) {
     if (!c || !PERSISTENT) return c;
+    assert(pid < NODES);
     pool[pid].idx = c->idx;
     pool[pid].l = c->l;
     pool[pid].r = c->r;

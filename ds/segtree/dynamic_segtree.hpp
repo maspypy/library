@@ -24,6 +24,7 @@ struct Dynamic_SegTree {
       : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0), pid(0) {
     pool = new Node[NODES];
   }
+  ~Dynamic_SegTree() { delete[] pool; }
 
   np new_root() { return new_node(L0, R0); }
 

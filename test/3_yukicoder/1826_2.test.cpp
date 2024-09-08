@@ -16,7 +16,7 @@ void solve() {
   X = rearrange(X, I), Y = rearrange(Y, I), V = rearrange(V, I);
 
   ll LIM = 1LL << 32;
-  Dynamic_SegTree_Sparse<Monoid_Max<ll>, false, 8000000> seg(-LIM, LIM);
+  Dynamic_SegTree_Sparse<Monoid_Max<ll>, false> seg(N + 1, -LIM, LIM);
   using np = typename decltype(seg)::np;
   np root = nullptr;
   root = seg.set(root, 0, 0);
@@ -31,13 +31,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
