@@ -1,7 +1,6 @@
 #include "ds/segtree/lazy_segtree.hpp"
 #include "alg/acted_monoid/min_add.hpp"
 
-template <int NODES>
 struct Common_Inverval_Decomposition {
   struct Node {
     vc<Node*> ch;
@@ -14,7 +13,7 @@ struct Common_Inverval_Decomposition {
   int pid;
 
   Common_Inverval_Decomposition(vc<int>& P) : pid(0) {
-    pool = new Node[NODES];
+    pool = new Node[2 * len(P)];
     build(P);
   }
 
