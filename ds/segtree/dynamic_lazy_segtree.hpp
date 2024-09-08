@@ -1,6 +1,6 @@
 #pragma once
 
-template <typename ActedMonoid, bool PERSISTENT, int NODES>
+template <typename ActedMonoid, bool PERSISTENT>
 struct Dynamic_Lazy_SegTree {
   using AM = ActedMonoid;
   using MX = typename AM::Monoid_X;
@@ -16,16 +16,18 @@ struct Dynamic_Lazy_SegTree {
     A lazy;
   };
 
+  int NODES;
   const ll L0, R0;
   Node *pool;
   int pid;
   using np = Node *;
 
   Dynamic_Lazy_SegTree(
-      ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })
-      : default_prod(default_prod), L0(L0), R0(R0), pid(0) {
+      int NODES, ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return MX::unit(); })
+      : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0), pid(0) {
     pool = new Node[NODES];
   }
+  ~Dynamic_Lazy_SegTree() { delete[] pool; }
 
   np new_root() { return new_node(L0, R0); }
 

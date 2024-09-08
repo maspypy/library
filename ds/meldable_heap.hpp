@@ -1,5 +1,5 @@
 
-template <typename VAL, bool PERSISTENT, int NODES, bool TOP_IS_MIN>
+template <typename VAL, bool PERSISTENT, bool TOP_IS_MIN>
 struct Meldable_Heap {
   struct Node {
     Node *l, *r;
@@ -7,11 +7,12 @@ struct Meldable_Heap {
     u32 size, dist; // dist: leaf までの距離
   };
   Node *pool;
+  const int NODES;
   int pid;
   using np = Node *;
 
-  Meldable_Heap() : pid(0) { pool = new Node[NODES]; }
-
+  Meldable_Heap(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
+  ~Meldable_Heap() { delete[] pool; }
   np new_root() { return nullptr; }
   np new_node(const VAL &x) {
     pool[pid].l = pool[pid].r = nullptr;

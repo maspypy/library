@@ -1,5 +1,5 @@
 // 単に S の元の列を管理する
-template <typename S, bool PERSISTENT, int NODES>
+template <typename S, bool PERSISTENT>
 struct RBST {
   struct Node {
     Node *l, *r;
@@ -8,11 +8,13 @@ struct RBST {
     bool rev;
   };
 
+  const int NODES;
   Node *pool;
   int pid;
   using np = Node *;
 
-  RBST() : pid(0) { pool = new Node[NODES]; }
+  RBST(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
+  ~RBST() { delete[] pool; }
 
   void reset() { pid = 0; }
 

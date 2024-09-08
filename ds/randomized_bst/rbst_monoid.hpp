@@ -1,4 +1,4 @@
-template <typename Monoid, bool PERSISTENT, int NODES>
+template <typename Monoid, bool PERSISTENT>
 struct RBST_Monoid {
   using X = typename Monoid::value_type;
 
@@ -9,11 +9,13 @@ struct RBST_Monoid {
     bool rev;
   };
 
+  int NODES;
   Node *pool;
   int pid;
   using np = Node *;
 
-  RBST_Monoid() : pid(0) { pool = new Node[NODES]; }
+  RBST_Monoid() : NODES(NODES), pid(0) { pool = new Node[NODES]; }
+  ~RBST_Monoid() { delete[] pool; }
 
   void reset() { pid = 0; }
 
@@ -246,9 +248,7 @@ private:
   }
 
   X prod_rec(np root, u32 l, u32 r, bool rev) {
-    if (l == 0 && r == root->size) {
-      return (rev ? root->rev_prod : root->prod);
-    }
+    if (l == 0 && r == root->size) { return (rev ? root->rev_prod : root->prod); }
     np left = (rev ? root->r : root->l);
     np right = (rev ? root->l : root->r);
     u32 sl = (left ? left->size : 0);

@@ -1,22 +1,18 @@
 #include "graph/base.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
-template <typename GT, int NODES>
+template <typename GT>
 struct Directed_MST_Solver {
   using T = typename GT::cost_type;
   GT &G;
 
-  Directed_MST_Solver(GT &G) : G(G), pid(0) {
-    pool = new Node[NODES];
-    assert(G.N + G.M <= NODES);
-  }
+  Directed_MST_Solver(GT &G) : G(G), pid(0) { pool = new Node[G.N + G.M]; }
+  ~Directed_MST_Solver() { delete[] pool; }
 
   vc<int> calc(int root) {
     int N = G.N, M = G.M;
     vc<np> que(N);
-    for (auto &e: G.edges) {
-      que[e.to] = meld(que[e.to], new_node(e.frm, e.cost, e.id));
-    }
+    for (auto &e: G.edges) { que[e.to] = meld(que[e.to], new_node(e.frm, e.cost, e.id)); }
     vc<char> used(N + M);
     used[root] = 2;
     vc<Edge> best_edge(N + M);

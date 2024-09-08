@@ -1,12 +1,12 @@
 #include "ds/dynamic_array.hpp"
 
-template <bool PERSISTENT, int NODES>
+template <bool PERSISTENT>
 struct Dynamic_UnionFind {
   // 経路圧縮なし
-  Dynamic_Array<int, PERSISTENT, NODES> PA;
+  Dynamic_Array<int, PERSISTENT> PA;
   using np = typename decltype(PA)::np;
 
-  Dynamic_UnionFind() : PA(-1) {}
+  Dynamic_UnionFind() : PA(NODES, -1) {}
 
   np new_root() { return PA.new_root(); }
 

@@ -2,7 +2,6 @@
 #include "ds/segtree/dynamic_segtree_sparse.hpp"
 
 // key,cnt は long long, sum は i128
-template <int NODES>
 struct My_Multiset {
   struct Mono {
     using value_type = pair<ll, i128>; // cnt, sum
@@ -11,16 +10,14 @@ struct My_Multiset {
     static constexpr X unit() { return {0, 0}; }
     static constexpr bool commute = 1;
   };
-  Dynamic_SegTree_Sparse<Mono, false, NODES> seg;
+  Dynamic_SegTree_Sparse<Mono, false> seg;
   using np = typename decltype(seg)::np;
 
-  My_Multiset() : seg(-infty<ll>, infty<ll>) {}
+  My_Multiset(int NODES) : seg(NODES, -infty<ll>, infty<ll>) {}
 
   void reset() { seg.reset(); }
   np new_root() { return seg.new_root(); }
-  np add(np c, ll k, ll cnt = 1) {
-    return seg.multiply(c, k, {cnt, i128(k) * cnt});
-  }
+  np add(np c, ll k, ll cnt = 1) { return seg.multiply(c, k, {cnt, i128(k) * cnt}); }
 
   pair<ll, i128> get_range(np c, ll L, ll R) { return seg.prod(c, L, R); }
   pair<ll, i128> get_all(np c) { return seg.prod_all(c); }
