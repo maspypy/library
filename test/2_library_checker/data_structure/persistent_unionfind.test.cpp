@@ -7,7 +7,7 @@
 void solve() {
   LL(N, Q);
 
-  Dynamic_UnionFind<true, 1'500'000> uf;
+  Dynamic_UnionFind<true> uf;
   using np = typename decltype(uf)::np;
   vc<np> roots;
 

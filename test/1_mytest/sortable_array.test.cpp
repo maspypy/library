@@ -10,7 +10,7 @@ void test() {
   int MAX = RNG(2, 20);
   vc<int> A(N);
   FOR(i, N) A[i] = RNG(MAX);
-  Sortable_Array<1000> X(MAX, A);
+  Sortable_Array X(1000, MAX, A);
 
   int Q = 1000;
   FOR(Q) {

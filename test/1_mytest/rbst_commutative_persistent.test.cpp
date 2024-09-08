@@ -9,7 +9,7 @@ using mint = modint998;
 
 void test() {
   using Mono = Monoid_Add<int>;
-  RBST_CommutativeMonoid<Mono, true, 10000> X;
+  RBST_CommutativeMonoid<Mono, true> X(10000);
   using np = decltype(X)::np;
 
   FOR(1000) {

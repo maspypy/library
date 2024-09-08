@@ -1,5 +1,4 @@
-#define PROBLEM \
-  "https://judge.yosupo.jp/problem/point_set_range_sort_range_composite"
+#define PROBLEM "https://judge.yosupo.jp/problem/point_set_range_sort_range_composite"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "ds/segtree/sortable_segtree.hpp"
@@ -40,7 +39,7 @@ void solve() {
   UNIQUE(all_key);
   for (auto&& k: key) k = LB(all_key, k);
 
-  Sortable_SegTree<AFF, 4000000> seg(len(all_key), key, seg_raw);
+  Sortable_SegTree<AFF> seg(4000000, len(all_key), key, seg_raw);
 
   for (auto&& [t, a, b, c, d]: query) {
     if (t == 0) {
