@@ -12,7 +12,7 @@ vc<T> K_shortest_walk(GT &G, int s, int t, int K) {
   if (dist[s] == infty<T>) { return vc<T>(K, infty<T>); }
 
   using P = pair<T, int>;
-  Meldable_Heap<P, true, true> X(G.N + G.M);
+  Meldable_Heap<P, true, true> X(20 * G.M);
   using np = typename decltype(X)::np;
   vc<np> nodes(N, nullptr);
 

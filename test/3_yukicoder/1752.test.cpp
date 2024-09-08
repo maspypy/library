@@ -14,7 +14,7 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_tree();
 
-  Meldable_Heap<ll, false, 100000, false> X;
+  Meldable_Heap<ll, false, false> X(N);
   using np = decltype(X)::np;
 
   auto dfs = [&](auto& dfs, int v, int p) -> np {
