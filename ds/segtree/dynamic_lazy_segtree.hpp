@@ -1,5 +1,6 @@
 #pragma once
 
+// Q*2logN 程度必要
 template <typename ActedMonoid, bool PERSISTENT>
 struct Dynamic_Lazy_SegTree {
   using AM = ActedMonoid;
@@ -16,7 +17,7 @@ struct Dynamic_Lazy_SegTree {
     A lazy;
   };
 
-  int NODES;
+  const int NODES;
   const ll L0, R0;
   Node *pool;
   int pid;
@@ -32,6 +33,7 @@ struct Dynamic_Lazy_SegTree {
   np new_root() { return new_node(L0, R0); }
 
   np new_node(const X x) {
+    assert(pid < NODES);
     pool[pid].l = pool[pid].r = nullptr;
     pool[pid].x = x;
     pool[pid].lazy = MA::unit();
