@@ -18,7 +18,7 @@ struct RBST_ActedMonoid {
   int pid;
   using np = Node *;
 
-  RBST_ActedMonoid(int NODES) : pid(0) { pool = new Node[NODES]; }
+  RBST_ActedMonoid(int NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }
   ~RBST_ActedMonoid() { delete[] pool; }
 
   void reset() { pid = 0; }
