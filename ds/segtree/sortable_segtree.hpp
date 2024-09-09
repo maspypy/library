@@ -22,7 +22,7 @@ struct Sortable_SegTree {
   vector<np> root; // 区間の左端に、dynamic segtree の node を乗せる
   vector<bool> rev;
 
-  Sortable_SegTree(int NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), NOES(NODES), KEY_MAX(KEY_MAX), pid(0), ss(key.size()), seg(dat) {
+  Sortable_SegTree(int NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), KEY_MAX(KEY_MAX), NODES(NODES), pid(0), ss(key.size()), seg(dat) {
     pool = new Node[NODES];
     init(key, dat);
   }

@@ -17,7 +17,7 @@ struct Sortable_Array {
   vector<np> root; // 区間の左端に、dynamic segtree の node を乗せる
   vector<bool> rev;
 
-  Sortable_Array(int NODES, int KEY_MAX, vector<int> key) : N(key.size()), KEY_MAX(KEY_MAX), pid(0), ss(key.size()) {
+  Sortable_Array(int NODES, int KEY_MAX, vector<int> key) : N(key.size()), KEY_MAX(KEY_MAX), NODES(NODES), pid(0), ss(key.size()) {
     pool = new Node[NODES];
     init(key);
   }
