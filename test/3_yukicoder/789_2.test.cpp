@@ -5,10 +5,10 @@
 #include "alg/acted_monoid/sum_add.hpp"
 
 void solve() {
-  using AM = ActedMonoid_Sum_Add<ll>;
-  Dynamic_Lazy_SegTree<AM, false, 2000000> seg(0, 1LL << 30);
-  auto root = seg.new_node();
   LL(Q);
+  using AM = ActedMonoid_Sum_Add<ll>;
+  Dynamic_Lazy_SegTree<AM, false> seg(60 * Q, 0, infty<int>);
+  auto root = seg.new_node();
   ll ANS = 0;
   FOR(Q) {
     LL(t, a, b);
@@ -19,13 +19,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
