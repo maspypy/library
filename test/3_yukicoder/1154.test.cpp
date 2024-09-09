@@ -14,7 +14,7 @@ void solve() {
 
   ll ANS = 0;
 
-  Meldable_Heap<ll, false, 1000, false> X;
+  Meldable_Heap<ll, false, false> X(N);
   using np = decltype(X)::np;
 
   auto dfs = [&](auto& dfs, int v, int p) -> np {
