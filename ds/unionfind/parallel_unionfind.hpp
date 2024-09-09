@@ -1,11 +1,13 @@
 #include "ds/unionfind/unionfind.hpp"
 
+// same(L1,R1,L2,R2) みたいなことは出来ないと思う(必要なら rolling hash かな)
 struct Range_Parallel_UnionFind {
   int N;
   int log;
+  int n_comp;
   // ufs[i][a]==ufs[i][b] iff [a,...,a+2^i) == [b,...,b+2^i)
   vc<UnionFind> ufs;
-  Range_Parallel_UnionFind(int n) : N(n) {
+  Range_Parallel_UnionFind(int n) : N(n), n_comp(n) {
     log = 1;
     while ((1 << log) < n) ++log;
     ufs.resize(log);
@@ -14,6 +16,8 @@ struct Range_Parallel_UnionFind {
       ufs[i].build(N - n + 1);
     }
   }
+
+  int operator[](int i) { return ufs[0][i]; }
 
   // f(r1,r2) : 成分 r2 を r1 にマージ
   template <typename F>
@@ -33,6 +37,13 @@ struct Range_Parallel_UnionFind {
     merge_inner(0, i, j, f);
   }
 
+  void merge(int L1, int R1, int L2, int R2) {
+    merge(L1, R1, L2, R2, [&](int i, int j) -> void {});
+  }
+  void merge(int i, int j) {
+    merge(i, j, [&](int i, int j) -> void {});
+  }
+
   template <typename F>
   void merge_inner(int k, int L1, int L2, const F& f) {
     if (k == 0) {
@@ -40,6 +51,7 @@ struct Range_Parallel_UnionFind {
       if (a == b) return;
       ufs[0].merge(a, b);
       int c = ufs[0][a];
+      --n_comp;
       return f(c, a ^ b ^ c);
     }
     if (!ufs[k].merge(L1, L2)) return;

@@ -1,16 +1,17 @@
-
-template <typename Mono, typename T>
-vc<T> static_monoid_products(vc<T>& A, vc<pair<int, int>>& query) {
+// f(q, Lprod, Rprod)
+// f 以外で呼ばれるものはすべて単項追加
+// https://qoj.ac/contest/1784/problem/9245
+template <typename Mono, typename T, typename F>
+void static_monoid_products(vc<T>& A, vc<pair<int, int>>& query, F f) {
   int N = len(A), Q = len(query);
-
-  vc<T> ANS(Q);
   vvc<int> IDS(N);
   FOR(q, Q) {
     auto [L, R] = query[q];
-    if (L == R) { ANS[q] = Mono::unit(); }
-    elif (R <= L + 32) {
-      ANS[q] = A[L];
-      FOR(i, L + 1, R) ANS[q] = Mono::op(ANS[q], A[i]);
+    if (L == R) { f(q, Mono::unit(), Mono::unit()); }
+    elif (R <= L + 16) {
+      T ans = A[L];
+      FOR(i, L + 1, R) ans = Mono::op(ans, A[i]);
+      f(q, ans, Mono::unit());
     }
     else {
       --R;
@@ -36,8 +37,7 @@ vc<T> static_monoid_products(vc<T>& A, vc<pair<int, int>>& query) {
     // 答の計算
     for (int q: I) {
       auto [a, b] = query[q];
-      ANS[q] = Mono::op(dp[a], dp[b]);
+      f(q, dp[a], dp[b]);
     }
   }
-  return ANS;
 }
