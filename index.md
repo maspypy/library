@@ -3330,6 +3330,9 @@ data:
   - name: test/2_library_checker/string
     pages:
     - icon: ':heavy_check_mark:'
+      path: test/2_library_checker/string/eertree.test.cpp
+      title: test/2_library_checker/string/eertree.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/string/enumerate_palindromes.test.cpp
       title: test/2_library_checker/string/enumerate_palindromes.test.cpp
     - icon: ':heavy_check_mark:'

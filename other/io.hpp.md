@@ -694,6 +694,9 @@ data:
     path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/eertree.test.cpp
+    title: test/2_library_checker/string/eertree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/enumerate_palindromes.test.cpp
     title: test/2_library_checker/string/enumerate_palindromes.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3199,6 +3202,7 @@ data:
   - test/2_library_checker/string/number_of_subsequences.test.cpp
   - test/2_library_checker/string/online_z.test.cpp
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
+  - test/2_library_checker/string/eertree.test.cpp
   - test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
   - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
