@@ -19,21 +19,21 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/common_interval_decomposition_tree
     links:
     - https://judge.yosupo.jp/problem/common_interval_decomposition_tree
   bundledCode: "#line 1 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/common_interval_decomposition_tree\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/common_interval_decomposition_tree\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
@@ -316,16 +316,16 @@ data:
     \ == 1);\n    root = POP(st);\n    return;\n  }\n\n  void debug() {\n    auto\
     \ dfs = [&](auto& dfs, Node* n) -> void {\n      print(\"l, r, lo, hi\", n->l,\
     \ n->r, n->lo, n->hi);\n      for (auto&& c: n->ch) dfs(dfs, c);\n    };\n   \
-    \ dfs(dfs, root);\n  };\n};\n#line 6 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Inverval_Decomposition<1000000>\
+    \ dfs(dfs, root);\n  };\n};\n#line 5 \"test/2_library_checker/graph/common_interval_decomposition.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Inverval_Decomposition\
     \ X(P);\n  int nxt = 0;\n  auto dfs = [&](auto& dfs, auto n, int p) -> void {\n\
     \    string t = (n->inc || n->dec || (n->r - n->l == 1) ? \"linear\" : \"prime\"\
     );\n    print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c: n->ch)\
     \ dfs(dfs, c, v);\n  };\n  print(X.pid);\n  dfs(dfs, X.root, -1);\n}\n\nsigned\
     \ main() {\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/common_interval_decomposition_tree\"\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/common_interval_decomposition_tree\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/common_interval_decomposition.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Inverval_Decomposition<1000000>\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, P, N);\n  Common_Inverval_Decomposition\
     \ X(P);\n  int nxt = 0;\n  auto dfs = [&](auto& dfs, auto n, int p) -> void {\n\
     \    string t = (n->inc || n->dec || (n->r - n->l == 1) ? \"linear\" : \"prime\"\
     );\n    print(p, n->l, n->r - 1, t);\n    int v = nxt++;\n    for (auto&& c: n->ch)\
@@ -342,8 +342,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 04:11:40+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 09:54:15+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/common_interval_decomposition.test.cpp
 layout: document
