@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/dynamic_array.hpp
     title: ds/dynamic_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
     title: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/dynamic_array.hpp\"\n\r\ntemplate <typename T, bool PERSISTENT>\r\
@@ -35,9 +35,9 @@ data:
     \n  }\r\n};\r\n#line 2 \"ds/unionfind/dynamic_unionfind.hpp\"\n\r\ntemplate <bool\
     \ PERSISTENT>\r\nstruct Dynamic_UnionFind {\r\n  // \u7D4C\u8DEF\u5727\u7E2E\u306A\
     \u3057\r\n  Dynamic_Array<int, PERSISTENT> PA;\r\n  using np = typename decltype(PA)::np;\r\
-    \n\r\n  Dynamic_UnionFind() : PA(NODES, -1) {}\r\n\r\n  np new_root() { return\
-    \ PA.new_root(); }\r\n\r\n  int root(np c, int x) {\r\n    while (1) {\r\n   \
-    \   int p = PA.get(c, x);\r\n      assert(x != p);\r\n      if (p < 0) break;\r\
+    \n\r\n  Dynamic_UnionFind(int N) : PA(15 * N, -1) {}\r\n\r\n  np new_root() {\
+    \ return PA.new_root(); }\r\n\r\n  int root(np c, int x) {\r\n    while (1) {\r\
+    \n      int p = PA.get(c, x);\r\n      assert(x != p);\r\n      if (p < 0) break;\r\
     \n      x = p;\r\n    }\r\n    return x;\r\n  }\r\n\r\n  pair<np, bool> merge(np\
     \ c, int x, int y) {\r\n    x = root(c, x), y = root(c, y);\r\n    if (x == y)\
     \ return {c, false};\r\n    if (-PA.get(c, x) < -PA.get(c, y)) swap(x, y);\r\n\
@@ -47,9 +47,9 @@ data:
     \ -PA.get(c, root(c, x)); }\r\n};\r\n"
   code: "#include \"ds/dynamic_array.hpp\"\r\n\r\ntemplate <bool PERSISTENT>\r\nstruct\
     \ Dynamic_UnionFind {\r\n  // \u7D4C\u8DEF\u5727\u7E2E\u306A\u3057\r\n  Dynamic_Array<int,\
-    \ PERSISTENT> PA;\r\n  using np = typename decltype(PA)::np;\r\n\r\n  Dynamic_UnionFind()\
-    \ : PA(NODES, -1) {}\r\n\r\n  np new_root() { return PA.new_root(); }\r\n\r\n\
-    \  int root(np c, int x) {\r\n    while (1) {\r\n      int p = PA.get(c, x);\r\
+    \ PERSISTENT> PA;\r\n  using np = typename decltype(PA)::np;\r\n\r\n  Dynamic_UnionFind(int\
+    \ N) : PA(15 * N, -1) {}\r\n\r\n  np new_root() { return PA.new_root(); }\r\n\r\
+    \n  int root(np c, int x) {\r\n    while (1) {\r\n      int p = PA.get(c, x);\r\
     \n      assert(x != p);\r\n      if (p < 0) break;\r\n      x = p;\r\n    }\r\n\
     \    return x;\r\n  }\r\n\r\n  pair<np, bool> merge(np c, int x, int y) {\r\n\
     \    x = root(c, x), y = root(c, y);\r\n    if (x == y) return {c, false};\r\n\
@@ -63,8 +63,8 @@ data:
   isVerificationFile: false
   path: ds/unionfind/dynamic_unionfind.hpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-09 09:33:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/persistent_unionfind.test.cpp
 documentation_of: ds/unionfind/dynamic_unionfind.hpp

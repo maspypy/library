@@ -9,10 +9,10 @@ data:
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/5_atcoder/abc237g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63)\
@@ -106,8 +106,8 @@ data:
     \u3057\u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\u306E\u305B\u305F\
     \ segtree\n  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic\
     \ segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_SegTree(int\
-    \ NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), NOES(NODES),\
-    \ KEY_MAX(KEY_MAX), pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n\
+    \ NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), KEY_MAX(KEY_MAX),\
+    \ NODES(NODES), pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n\
     \    init(key, dat);\n  }\n  ~Sortable_SegTree() { delete[] pool; }\n  void set(int\
     \ i, int key, const X& x) {\n    assert(key < KEY_MAX);\n    split_at(i), split_at(i\
     \ + 1);\n    rev[i] = 0, root[i] = new_node();\n    set_rec(root[i], 0, KEY_MAX,\
@@ -173,7 +173,7 @@ data:
     \u7AEF\u306B\u306E\u305B\u305F segtree\n  vector<np> root; // \u533A\u9593\u306E\
     \u5DE6\u7AEF\u306B\u3001dynamic segtree \u306E node \u3092\u4E57\u305B\u308B\n\
     \  vector<bool> rev;\n\n  Sortable_SegTree(int NODES, int KEY_MAX, vector<int>\
-    \ key, vector<X> dat) : N(key.size()), NOES(NODES), KEY_MAX(KEY_MAX), pid(0),\
+    \ key, vector<X> dat) : N(key.size()), KEY_MAX(KEY_MAX), NODES(NODES), pid(0),\
     \ ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n    init(key, dat);\n\
     \  }\n  ~Sortable_SegTree() { delete[] pool; }\n  void set(int i, int key, const\
     \ X& x) {\n    assert(key < KEY_MAX);\n    split_at(i), split_at(i + 1);\n   \
@@ -235,8 +235,8 @@ data:
   isVerificationFile: false
   path: ds/segtree/sortable_segtree.hpp
   requiredBy: []
-  timestamp: '2024-09-09 04:11:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-09 09:33:13+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc237g.test.cpp
   - test/2_library_checker/data_structure/sort_segtree.test.cpp

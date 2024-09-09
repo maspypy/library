@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   - icon: ':question:'
@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_sort_range_composite
@@ -296,8 +296,8 @@ data:
     \u3057\u305F\u5024\u3092\u533A\u9593\u306E\u5DE6\u7AEF\u306B\u306E\u305B\u305F\
     \ segtree\n  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic\
     \ segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_SegTree(int\
-    \ NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), NOES(NODES),\
-    \ KEY_MAX(KEY_MAX), pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n\
+    \ NODES, int KEY_MAX, vector<int> key, vector<X> dat) : N(key.size()), KEY_MAX(KEY_MAX),\
+    \ NODES(NODES), pid(0), ss(key.size()), seg(dat) {\n    pool = new Node[NODES];\n\
     \    init(key, dat);\n  }\n  ~Sortable_SegTree() { delete[] pool; }\n  void set(int\
     \ i, int key, const X& x) {\n    assert(key < KEY_MAX);\n    split_at(i), split_at(i\
     \ + 1);\n    rev[i] = 0, root[i] = new_node();\n    set_rec(root[i], 0, KEY_MAX,\
@@ -482,8 +482,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/sort_segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 04:44:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 09:33:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/sort_segtree.test.cpp
 layout: document

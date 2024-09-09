@@ -3,20 +3,20 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_commutative_persistent.test.cpp
     title: test/1_mytest/rbst_commutative_persistent.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/randomized_bst/rbst_commutative_monoid.hpp\"\ntemplate\
     \ <typename CommutativeMonoid, bool PERSISTENT>\nstruct RBST_CommutativeMonoid\
-    \ {\n  static_assert(Monoid::commute);\n  using Monoid = CommutativeMonoid;\n\
-    \  using X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
-    \    X x, prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\
-    \n  const int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_CommutativeMonoid(int\
+    \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
+    \  static_assert(Monoid::commute);\n\n  struct Node {\n    Node *l, *r;\n    X\
+    \ x, prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\n \
+    \ const int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_CommutativeMonoid(int\
     \ NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_CommutativeMonoid()\
     \ { delete[] pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x)\
     \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
@@ -121,10 +121,10 @@ data:
     \ [n1, n2] = split_max_right_rec(right, check, x);\n    root->r = n1;\n    update(root);\n\
     \    return {root, n2};\n  }\n};\n"
   code: "template <typename CommutativeMonoid, bool PERSISTENT>\nstruct RBST_CommutativeMonoid\
-    \ {\n  static_assert(Monoid::commute);\n  using Monoid = CommutativeMonoid;\n\
-    \  using X = typename Monoid::value_type;\n\n  struct Node {\n    Node *l, *r;\n\
-    \    X x, prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\
-    \n  const int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_CommutativeMonoid(int\
+    \ {\n  using Monoid = CommutativeMonoid;\n  using X = typename Monoid::value_type;\n\
+    \  static_assert(Monoid::commute);\n\n  struct Node {\n    Node *l, *r;\n    X\
+    \ x, prod; // rev \u53CD\u6620\u6E08\n    u32 size;\n    bool rev;\n  };\n\n \
+    \ const int NODES;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  RBST_CommutativeMonoid(int\
     \ NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~RBST_CommutativeMonoid()\
     \ { delete[] pool; }\n\n  void reset() { pid = 0; }\n\n  np new_node(const X &x)\
     \ {\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].prod\
@@ -232,8 +232,8 @@ data:
   isVerificationFile: false
   path: ds/randomized_bst/rbst_commutative_monoid.hpp
   requiredBy: []
-  timestamp: '2024-09-09 03:53:08+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-09 09:33:13+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/rbst_commutative_persistent.test.cpp
 documentation_of: ds/randomized_bst/rbst_commutative_monoid.hpp

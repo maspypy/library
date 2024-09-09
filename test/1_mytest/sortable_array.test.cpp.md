@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -149,28 +149,28 @@ data:
     \  FastSet ss;      // \u533A\u9593\u306E\u5DE6\u7AEF\u5168\u4F53\u3092\u8868\u3059\
     \ fastset\n  vector<np> root; // \u533A\u9593\u306E\u5DE6\u7AEF\u306B\u3001dynamic\
     \ segtree \u306E node \u3092\u4E57\u305B\u308B\n  vector<bool> rev;\n\n  Sortable_Array(int\
-    \ NODES, int KEY_MAX, vector<int> key) : N(key.size()), KEY_MAX(KEY_MAX), pid(0),\
-    \ ss(key.size()) {\n    pool = new Node[NODES];\n    init(key);\n  }\n  ~Sortable_Array()\
-    \ { delete[] pool; }\n\n  void set(int i, int key) {\n    assert(0 <= key && key\
-    \ < KEY_MAX);\n    split_at(i), split_at(i + 1);\n    rev[i] = 0, root[i] = new_node(0);\n\
-    \    set_rec(root[i], 0, KEY_MAX, key);\n  }\n\n  void sort_inc(int l, int r)\
-    \ {\n    if (l == r) return;\n    split_at(l), split_at(r);\n    while (1) {\n\
-    \      if (pid > NODES * 0.9) rebuild();\n      np c = root[l];\n      int i =\
-    \ ss.next(l + 1);\n      if (i == r) break;\n      root[l] = merge(0, KEY_MAX,\
-    \ c, root[i]);\n      ss.erase(i);\n    }\n    rev[l] = 0;\n  };\n\n  void sort_dec(int\
-    \ l, int r) {\n    if (l == r) return;\n    if (pid > NODES * 0.9) rebuild();\n\
-    \    sort_inc(l, r), rev[l] = 1;\n  };\n\n  vc<int> get_all() {\n    vector<int>\
-    \ key;\n    key.reserve(N);\n    auto dfs = [&](auto& dfs, np n, int l, int r,\
-    \ bool rev) -> void {\n      if (!n || !n->size) return;\n      if (r == l + 1)\
-    \ {\n        FOR(n->size) key.eb(l);\n        return;\n      }\n      int m =\
-    \ (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev), dfs(dfs, n->r, m,\
-    \ r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs, n->l, l, m,\
-    \ rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i]) dfs(dfs,\
-    \ root[i], 0, KEY_MAX, rev[i]);\n    }\n    return key;\n  }\n\n  int get(int\
-    \ idx) {\n    auto dfs = [&](auto& dfs, np n, int l, int r, int k) -> int {\n\
-    \      if (r == l + 1) { return l; }\n      int m = (l + r) / 2;\n      int s\
-    \ = (n->l ? n->l->size : 0);\n      if (k < s) return dfs(dfs, n->l, l, m, k);\n\
-    \      return dfs(dfs, n->r, m, r, k - s);\n    };\n    int i = ss.prev(idx);\n\
+    \ NODES, int KEY_MAX, vector<int> key) : N(key.size()), KEY_MAX(KEY_MAX), NODES(NODES),\
+    \ pid(0), ss(key.size()) {\n    pool = new Node[NODES];\n    init(key);\n  }\n\
+    \  ~Sortable_Array() { delete[] pool; }\n\n  void set(int i, int key) {\n    assert(0\
+    \ <= key && key < KEY_MAX);\n    split_at(i), split_at(i + 1);\n    rev[i] = 0,\
+    \ root[i] = new_node(0);\n    set_rec(root[i], 0, KEY_MAX, key);\n  }\n\n  void\
+    \ sort_inc(int l, int r) {\n    if (l == r) return;\n    split_at(l), split_at(r);\n\
+    \    while (1) {\n      if (pid > NODES * 0.9) rebuild();\n      np c = root[l];\n\
+    \      int i = ss.next(l + 1);\n      if (i == r) break;\n      root[l] = merge(0,\
+    \ KEY_MAX, c, root[i]);\n      ss.erase(i);\n    }\n    rev[l] = 0;\n  };\n\n\
+    \  void sort_dec(int l, int r) {\n    if (l == r) return;\n    if (pid > NODES\
+    \ * 0.9) rebuild();\n    sort_inc(l, r), rev[l] = 1;\n  };\n\n  vc<int> get_all()\
+    \ {\n    vector<int> key;\n    key.reserve(N);\n    auto dfs = [&](auto& dfs,\
+    \ np n, int l, int r, bool rev) -> void {\n      if (!n || !n->size) return;\n\
+    \      if (r == l + 1) {\n        FOR(n->size) key.eb(l);\n        return;\n \
+    \     }\n      int m = (l + r) / 2;\n      if (!rev) { dfs(dfs, n->l, l, m, rev),\
+    \ dfs(dfs, n->r, m, r, rev); }\n      if (rev) { dfs(dfs, n->r, m, r, rev), dfs(dfs,\
+    \ n->l, l, m, rev); }\n    };\n    for (int i = 0; i < N; ++i) {\n      if (ss[i])\
+    \ dfs(dfs, root[i], 0, KEY_MAX, rev[i]);\n    }\n    return key;\n  }\n\n  int\
+    \ get(int idx) {\n    auto dfs = [&](auto& dfs, np n, int l, int r, int k) ->\
+    \ int {\n      if (r == l + 1) { return l; }\n      int m = (l + r) / 2;\n   \
+    \   int s = (n->l ? n->l->size : 0);\n      if (k < s) return dfs(dfs, n->l, l,\
+    \ m, k);\n      return dfs(dfs, n->r, m, r, k - s);\n    };\n    int i = ss.prev(idx);\n\
     \    int k = idx - i;\n    int s = root[i]->size;\n    if (rev[i]) k = s - 1 -\
     \ k;\n    return dfs(dfs, root[i], 0, KEY_MAX, k);\n  }\n\nprivate:\n  void init(vector<int>&\
     \ key) {\n    rev.assign(N, 0), root.clear(), root.reserve(N);\n    ss.build(N,\
@@ -250,8 +250,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/sortable_array.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 04:44:30+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 09:33:13+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sortable_array.test.cpp
 layout: document
