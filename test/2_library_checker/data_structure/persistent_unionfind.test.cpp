@@ -1,5 +1,6 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/persistent_unionfind"
 #include "my_template.hpp"
+
 #include "other/io.hpp"
 
 #include "ds/unionfind/dynamic_unionfind.hpp"
@@ -7,7 +8,7 @@
 void solve() {
   LL(N, Q);
 
-  Dynamic_UnionFind<true> uf;
+  Dynamic_UnionFind<true> uf(Q);
   using np = typename decltype(uf)::np;
   vc<np> roots;
 
@@ -28,10 +29,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
   solve();
 
   return 0;

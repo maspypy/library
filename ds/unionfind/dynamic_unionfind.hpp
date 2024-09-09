@@ -6,7 +6,7 @@ struct Dynamic_UnionFind {
   Dynamic_Array<int, PERSISTENT> PA;
   using np = typename decltype(PA)::np;
 
-  Dynamic_UnionFind() : PA(NODES, -1) {}
+  Dynamic_UnionFind(int N) : PA(15 * N, -1) {}
 
   np new_root() { return PA.new_root(); }
 

@@ -1,8 +1,8 @@
 template <typename CommutativeMonoid, bool PERSISTENT>
 struct RBST_CommutativeMonoid {
-  static_assert(Monoid::commute);
   using Monoid = CommutativeMonoid;
   using X = typename Monoid::value_type;
+  static_assert(Monoid::commute);
 
   struct Node {
     Node *l, *r;
