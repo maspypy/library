@@ -8,7 +8,7 @@ void solve() {
   INT(N, Q, X);
   VEC(int, A, N);
   for (auto&& x: A) --x;
-  Sortable_SegTree<Monoid_Add<int>, 10'000'000> seg(N, A, A);
+  Sortable_SegTree<Monoid_Add<int>> seg(10'000'000, N, A, A);
   FOR(Q) {
     INT(t, L, R);
     --L;
