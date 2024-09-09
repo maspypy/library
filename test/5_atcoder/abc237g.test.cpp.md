@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc237/tasks/abc237_g
@@ -352,7 +352,7 @@ data:
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
     \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/5_atcoder/abc237g.test.cpp\"\
     \n\nvoid solve() {\n  INT(N, Q, X);\n  VEC(int, A, N);\n  for (auto&& x: A) --x;\n\
-    \  Sortable_SegTree<Monoid_Add<int>, 10'000'000> seg(N, A, A);\n  FOR(Q) {\n \
+    \  Sortable_SegTree<Monoid_Add<int>> seg(10'000'000, N, A, A);\n  FOR(Q) {\n \
     \   INT(t, L, R);\n    --L;\n    if (t == 1) seg.sort_inc(L, R);\n    if (t ==\
     \ 2) seg.sort_dec(L, R);\n  }\n  auto ANS = seg.get_all().fi;\n  for (auto&& x:\
     \ ANS) ++x;\n  FOR(i, N) if (ANS[i] == X) return print(i + 1);\n}\n\nsigned main()\
@@ -360,8 +360,8 @@ data:
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc237/tasks/abc237_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/segtree/sortable_segtree.hpp\"\
     \n#include \"alg/monoid/add.hpp\"\n\nvoid solve() {\n  INT(N, Q, X);\n  VEC(int,\
-    \ A, N);\n  for (auto&& x: A) --x;\n  Sortable_SegTree<Monoid_Add<int>, 10'000'000>\
-    \ seg(N, A, A);\n  FOR(Q) {\n    INT(t, L, R);\n    --L;\n    if (t == 1) seg.sort_inc(L,\
+    \ A, N);\n  for (auto&& x: A) --x;\n  Sortable_SegTree<Monoid_Add<int>> seg(10'000'000,\
+    \ N, A, A);\n  FOR(Q) {\n    INT(t, L, R);\n    --L;\n    if (t == 1) seg.sort_inc(L,\
     \ R);\n    if (t == 2) seg.sort_dec(L, R);\n  }\n  auto ANS = seg.get_all().fi;\n\
     \  for (auto&& x: ANS) ++x;\n  FOR(i, N) if (ANS[i] == X) return print(i + 1);\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}"
@@ -375,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc237g.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 09:33:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-09 10:34:50+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc237g.test.cpp
 layout: document
