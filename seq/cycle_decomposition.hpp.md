@@ -4,22 +4,17 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: seq/cycle_decomposition.hpp
-    title: seq/cycle_decomposition.hpp
-  _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/5_atcoder/abc350f.test.cpp
-    title: test/5_atcoder/abc350f.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/5_atcoder/arc153b.test.cpp
-    title: test/5_atcoder/arc153b.test.cpp
+    path: ds/splaytree/splaytree_basic.hpp
+    title: ds/splaytree/splaytree_basic.hpp
+  _extendedRequiredBy: []
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    links: []
+    links:
+    - https://atcoder.jp/contests/jag2017summer-day3/tasks/jag2017summer_day3_k
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
     \u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate <typename Node>\nstruct SplayTree\
     \ {\n  Node *pool;\n  const int NODES;\n  int pid;\n  using np = Node *;\n  using\
@@ -170,38 +165,60 @@ data:
     \u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const\
     \ S &xx) {\n    x = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n\
     \    rev ^= 1;\n  }\n};\ntemplate <typename S>\nusing SplayTree_Basic = SplayTree<Node_Basic<S>>;\n\
-    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n"
-  code: "#include \"ds/splaytree/splaytree.hpp\"\n\nnamespace SplayTreeNodes {\ntemplate\
-    \ <typename S>\nstruct Node_Basic {\n  using value_type = S;\n  using operator_type\
-    \ = int;\n  using np = Node_Basic *;\n\n  np p, l, r;\n  bool rev;\n  S x;\n \
-    \ u32 size;\n\n  static void new_node(np n, const S &x) {\n    n->p = n->l = n->r\
-    \ = nullptr;\n    n->x = x, n->size = 1, n->rev = 0;\n  }\n\n  void update() {\n\
-    \    size = 1;\n    if (l) { size += l->size; }\n    if (r) { size += r->size;\
-    \ }\n  }\n\n  void prop() {\n    if (rev) {\n      if (l) { l->rev ^= 1, swap(l->l,\
-    \ l->r); }\n      if (r) { r->rev ^= 1, swap(r->l, r->r); }\n      rev = 0;\n\
-    \    }\n  }\n\n  // update, prop \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
-    \u306E\u306F\u3001splay \u5F8C\u3067\u3042\u308B\u3053\u3068\u304C\u60F3\u5B9A\
-    \u3055\u308C\u3066\u3044\u308B\u3002\n  // \u3057\u305F\u304C\u3063\u3066\u305D\
-    \u306E\u6642\u70B9\u3067 update, prop \u6E08\u3067\u3042\u308B\u3053\u3068\u3092\
-    \u4EEE\u5B9A\u3057\u3066\u3088\u3044\u3002\n  S get() { return x; }\n  void set(const\
-    \ S &xx) {\n    x = xx;\n    update();\n  }\n  void reverse() {\n    swap(l, r);\n\
-    \    rev ^= 1;\n  }\n};\ntemplate <typename S>\nusing SplayTree_Basic = SplayTree<Node_Basic<S>>;\n\
-    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n"
+    } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Basic;\n#line\
+    \ 2 \"seq/cycle_decomposition.hpp\"\n\n// \u9806\u5217\u306E\u30B5\u30A4\u30AF\
+    \u30EB\u5206\u89E3\u3092\u7BA1\u7406\n// https://atcoder.jp/contests/jag2017summer-day3/tasks/jag2017summer_day3_k\n\
+    struct Cycle_Decomposition {\n  int N, n_comp;\n  SplayTree_Basic<int> ST;\n \
+    \ using np = decltype(ST)::np;\n  vc<np> node;\n\n  Cycle_Decomposition(int N)\
+    \ : N(N), n_comp(N), ST(N), node(N) { FOR(i, N) node[i] = ST.new_node(i); }\n\n\
+    \  // v \u304C\u5C5E\u3059\u308B\u6210\u5206\u306E\u756A\u53F7, \u305D\u306E\u6210\
+    \u5206\u306E\u4F55\u756A\u76EE\u304B\n  pair<int, int> get(int v) {\n    ST.splay(node[v],\
+    \ true);\n    np root = node[v];\n    int idx = (root->l ? root->l->size : 0);\n\
+    \    ST.splay_kth(root, 0);\n    return {root->x, idx};\n  }\n\n  int get_comp(int\
+    \ v) { return get(v).fi; }\n  int size(int v) {\n    ST.splay(node[v], true);\n\
+    \    return node[v]->size;\n  }\n\n  // \u672B\u5C3E\u306B\u79FB\u52D5\n  // [a,b,...,v,...]\
+    \ \u306E\u3068\u304D\u306B [...,a,b,...,v] \u306B\u5909\u5F62\n  void rotate(int\
+    \ v) {\n    ST.splay(node[v], true);\n    int ls = (node[v]->l ? node[v]->l->size\
+    \ : 0);\n    auto [l, r] = ST.split(node[v], ls + 1);\n    ST.merge(r, l);\n \
+    \ }\n\n  void swap(int i, int j) {\n    if (get_comp(i) != get_comp(j)) {\n  \
+    \    --n_comp;\n      rotate(i), rotate(j);\n      ST.splay(node[i], true), ST.splay(node[j],\
+    \ true);\n      ST.merge(node[i], node[j]);\n    } else {\n      ++n_comp;\n \
+    \     rotate(j);\n      ST.splay(node[i], true);\n      int k = (node[i]->l ?\
+    \ node[i]->l->size : 0) + 1;\n      ST.split(node[i], k);\n      ST.splay(node[i],\
+    \ true), ST.splay(node[j], true);\n    }\n  }\n};\n"
+  code: "#include \"ds/splaytree/splaytree_basic.hpp\"\n\n// \u9806\u5217\u306E\u30B5\
+    \u30A4\u30AF\u30EB\u5206\u89E3\u3092\u7BA1\u7406\n// https://atcoder.jp/contests/jag2017summer-day3/tasks/jag2017summer_day3_k\n\
+    struct Cycle_Decomposition {\n  int N, n_comp;\n  SplayTree_Basic<int> ST;\n \
+    \ using np = decltype(ST)::np;\n  vc<np> node;\n\n  Cycle_Decomposition(int N)\
+    \ : N(N), n_comp(N), ST(N), node(N) { FOR(i, N) node[i] = ST.new_node(i); }\n\n\
+    \  // v \u304C\u5C5E\u3059\u308B\u6210\u5206\u306E\u756A\u53F7, \u305D\u306E\u6210\
+    \u5206\u306E\u4F55\u756A\u76EE\u304B\n  pair<int, int> get(int v) {\n    ST.splay(node[v],\
+    \ true);\n    np root = node[v];\n    int idx = (root->l ? root->l->size : 0);\n\
+    \    ST.splay_kth(root, 0);\n    return {root->x, idx};\n  }\n\n  int get_comp(int\
+    \ v) { return get(v).fi; }\n  int size(int v) {\n    ST.splay(node[v], true);\n\
+    \    return node[v]->size;\n  }\n\n  // \u672B\u5C3E\u306B\u79FB\u52D5\n  // [a,b,...,v,...]\
+    \ \u306E\u3068\u304D\u306B [...,a,b,...,v] \u306B\u5909\u5F62\n  void rotate(int\
+    \ v) {\n    ST.splay(node[v], true);\n    int ls = (node[v]->l ? node[v]->l->size\
+    \ : 0);\n    auto [l, r] = ST.split(node[v], ls + 1);\n    ST.merge(r, l);\n \
+    \ }\n\n  void swap(int i, int j) {\n    if (get_comp(i) != get_comp(j)) {\n  \
+    \    --n_comp;\n      rotate(i), rotate(j);\n      ST.splay(node[i], true), ST.splay(node[j],\
+    \ true);\n      ST.merge(node[i], node[j]);\n    } else {\n      ++n_comp;\n \
+    \     rotate(j);\n      ST.splay(node[i], true);\n      int k = (node[i]->l ?\
+    \ node[i]->l->size : 0) + 1;\n      ST.split(node[i], k);\n      ST.splay(node[i],\
+    \ true), ST.splay(node[j], true);\n    }\n  }\n};"
   dependsOn:
+  - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree.hpp
   isVerificationFile: false
-  path: ds/splaytree/splaytree_basic.hpp
-  requiredBy:
-  - seq/cycle_decomposition.hpp
-  timestamp: '2024-09-09 03:35:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/5_atcoder/arc153b.test.cpp
-  - test/5_atcoder/abc350f.test.cpp
-documentation_of: ds/splaytree/splaytree_basic.hpp
+  path: seq/cycle_decomposition.hpp
+  requiredBy: []
+  timestamp: '2024-09-10 04:34:30+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: seq/cycle_decomposition.hpp
 layout: document
 redirect_from:
-- /library/ds/splaytree/splaytree_basic.hpp
-- /library/ds/splaytree/splaytree_basic.hpp.html
-title: ds/splaytree/splaytree_basic.hpp
+- /library/seq/cycle_decomposition.hpp
+- /library/seq/cycle_decomposition.hpp.html
+title: seq/cycle_decomposition.hpp
 ---

@@ -265,6 +265,9 @@ data:
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
+    title: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -963,6 +966,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1340.test.cpp
+    title: test/3_yukicoder/1340.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1341.test.cpp
     title: test/3_yukicoder/1341.test.cpp
@@ -2708,6 +2714,7 @@ data:
   - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1263.test.cpp
   - test/3_yukicoder/4_1.test.cpp
+  - test/3_yukicoder/1340.test.cpp
   - test/3_yukicoder/924.test.cpp
   - test/3_yukicoder/2491.test.cpp
   - test/3_yukicoder/1288.test.cpp
@@ -3142,6 +3149,7 @@ data:
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
   - test/2_library_checker/data_structure/double_ended_q.test.cpp
   - test/2_library_checker/data_structure/unionfind.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
   - test/2_library_checker/data_structure/static_range_frequency.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp

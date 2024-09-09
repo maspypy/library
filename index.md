@@ -413,7 +413,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/rollback_mo.hpp
       title: ds/offline_query/rollback_mo.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/static_monoid_products.hpp
       title: ds/offline_query/static_monoid_products.hpp
     - icon: ':heavy_check_mark:'
@@ -1194,7 +1194,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/bitset/mat_inv.hpp
       title: linalg/bitset/mat_inv.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: linalg/bitset/matrix_mul_and_or.hpp
       title: linalg/bitset/matrix_mul_and_or.hpp
     - icon: ':heavy_check_mark:'
@@ -1821,6 +1821,9 @@ data:
     - icon: ':warning:'
       path: seq/count_grid_path.hpp
       title: seq/count_grid_path.hpp
+    - icon: ':warning:'
+      path: seq/cycle_decomposition.hpp
+      title: seq/cycle_decomposition.hpp
     - icon: ':heavy_check_mark:'
       path: seq/domino_standard_tableaux.hpp
       title: seq/domino_standard_tableaux.hpp
@@ -2878,6 +2881,9 @@ data:
       path: test/2_library_checker/data_structure/staticrmq.test.cpp
       title: test/2_library_checker/data_structure/staticrmq.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
+      title: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
       title: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3600,6 +3606,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1339.test.cpp
       title: test/3_yukicoder/1339.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/3_yukicoder/1340.test.cpp
+      title: test/3_yukicoder/1340.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1341.test.cpp
       title: test/3_yukicoder/1341.test.cpp

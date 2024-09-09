@@ -134,30 +134,30 @@ data:
     \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
     \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
     string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
-    \n\n// Method of Four Russians O(NMK/wlogN)\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>&\
-    \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS =\
-    \ My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n\
-    \  vc<BS> C(N1, BS(N3));\n\n  /*\n  \u524D\u8A08\u7B97 MK2^t/t\n  \u5F8C\u8A08\
-    \u7B97 NMK/t\n  (N) -> (2^t/t + N/t)\n  */\n  vc<BS> tmp(1 << 8, BS(N3));\n\n\
-    \  for (int L = 0; L < N2; L += 8) {\n    int R = min(L + 8, N2);\n    int n =\
-    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n\
-    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & 255;\n      C[i]\
-    \ ^= tmp[s];\n    }\n  }\n  return C;\n}\n"
+    \n\n// Method of Four Russians O(NMK/wlogN)\n// (N1/K+2^K)/K N2 N3 / w\ntemplate\
+    \ <int K = 8>\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>&\
+    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  static_assert(64 % K == 0);\n\
+    \  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]);\
+    \ }\n  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << K, BS(N3));\n\n  for (int L =\
+    \ 0; L < N2; L += 8) {\n    int R = min(L + K, N2);\n    int n = R - L;\n    FOR(i,\
+    \ n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n    FOR(i, N1) {\n \
+    \     u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n      C[i] ^= tmp[s];\n\
+    \    }\n  }\n  return C;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// Method of Four Russians O(NMK/wlogN)\n\
-    vc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1,\
-    \ int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 =\
-    \ len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\n  /*\n  \u524D\
-    \u8A08\u7B97 MK2^t/t\n  \u5F8C\u8A08\u7B97 NMK/t\n  (N) -> (2^t/t + N/t)\n  */\n\
-    \  vc<BS> tmp(1 << 8, BS(N3));\n\n  for (int L = 0; L < N2; L += 8) {\n    int\
-    \ R = min(L + 8, N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s\
-    \ | 1 << i] = tmp[s] ^ B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L /\
-    \ 64] >> (L & 63) & 255;\n      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}"
+    // (N1/K+2^K)/K N2 N3 / w\ntemplate <int K = 8>\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>&\
+    \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  static_assert(64\
+    \ % K == 0);\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B),\
+    \ N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << K, BS(N3));\n\n\
+    \  for (int L = 0; L < N2; L += 8) {\n    int R = min(L + K, N2);\n    int n =\
+    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n\
+    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
+    \      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}"
   dependsOn:
   - ds/my_bitset.hpp
   isVerificationFile: false
   path: linalg/bitset/matrix_mul_mod_2.hpp
   requiredBy: []
-  timestamp: '2024-09-09 02:35:54+09:00'
+  timestamp: '2024-09-10 04:34:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp

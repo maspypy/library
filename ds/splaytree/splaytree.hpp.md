@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
+  - icon: ':warning:'
+    path: seq/cycle_decomposition.hpp
+    title: seq/cycle_decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf702_F_splay.test.cpp
@@ -329,6 +332,7 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree.hpp
   requiredBy:
+  - seq/cycle_decomposition.hpp
   - ds/splaytree/splaytree_acted_monoid.hpp
   - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree_commutative_monoid.hpp

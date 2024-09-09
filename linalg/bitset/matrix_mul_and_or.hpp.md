@@ -5,10 +5,13 @@ data:
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1340.test.cpp
+    title: test/3_yukicoder/1340.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://contest.ucup.ac/contest/1784/problem/9246
@@ -133,30 +136,32 @@ data:
     \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
     string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_and_or.hpp\"\
     \n\n// https://contest.ucup.ac/contest/1784/problem/9246\n// C[i][k] |= A[i][j]\
-    \ && B[j][k]\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>&\
-    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1\
-    \ == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
-    \  vc<BS> tmp(1 << 8, BS(N3));\n  for (int L = 0; L < N2; L += 8) {\n    int R\
-    \ = min(L + 8, N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s |\
-    \ 1 << i] = tmp[s] | B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64]\
-    \ >> (L & 63) & 255;\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
+    \ && B[j][k]\ntemplate <int K = 8>\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>&\
+    \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  static_assert(64\
+    \ % K == 0);\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B),\
+    \ N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << K, BS(N3));\n\
+    \  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n    int n =\
+    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L + i];\n\
+    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
+    \      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// https://contest.ucup.ac/contest/1784/problem/9246\n\
-    // C[i][k] |= A[i][j] && B[j][k]\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>&\
-    \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS =\
-    \ My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n\
-    \  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << 8, BS(N3));\n  for (int L = 0; L <\
-    \ N2; L += 8) {\n    int R = min(L + 8, N2);\n    int n = R - L;\n    FOR(i, n)\
-    \ FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L + i];\n    FOR(i, N1) {\n    \
-    \  u32 s = A[i].dat[L / 64] >> (L & 63) & 255;\n      C[i] |= tmp[s];\n    }\n\
-    \  }\n  return C;\n}"
+    // C[i][k] |= A[i][j] && B[j][k]\ntemplate <int K = 8>\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>&\
+    \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  static_assert(64\
+    \ % K == 0);\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B),\
+    \ N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << K, BS(N3));\n\
+    \  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n    int n =\
+    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L + i];\n\
+    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
+    \      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}"
   dependsOn:
   - ds/my_bitset.hpp
   isVerificationFile: false
   path: linalg/bitset/matrix_mul_and_or.hpp
   requiredBy: []
-  timestamp: '2024-09-09 02:35:54+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2024-09-10 04:34:30+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/3_yukicoder/1340.test.cpp
 documentation_of: linalg/bitset/matrix_mul_and_or.hpp
 layout: document
 redirect_from:
