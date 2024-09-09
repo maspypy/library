@@ -12,7 +12,7 @@ void solve() {
   LL(N, K);
   VEC(int, A, N);
   for (auto&& x: A) --x;
-  Common_Inverval_Decomposition<400000> X(A);
+  Common_Inverval_Decomposition X(A);
 
   auto dfs = [&](auto& dfs, auto n) -> vc<mint> {
     vc<mint> dp;

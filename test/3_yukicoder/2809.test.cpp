@@ -27,7 +27,7 @@ void solve() {
 
   vc<int> now(N);
   FOR(i, N) now[i] = A[i];
-  Sortable_Array<20000000> SA(len(X), now);
+  Sortable_Array SA(20000000, len(X), now);
 
   for (auto& [t, k, x]: query) {
     if (t == 1) {
