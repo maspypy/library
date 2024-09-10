@@ -272,6 +272,12 @@ struct My_Bitset {
       FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1 + s + i] << lo);
     }
   }
+  // 行列基本変形で使うやつ
+  // p は [i:N) にしかないとして p を or する
+  void or_suffix(int i, My_Bitset &p) {
+    assert(N == p.N && 0 <= i && i < N);
+    FOR(k, i / 64, len(dat)) { dat[k] |= p.dat[k]; }
+  }
 
   // [L,R) を 1 に変更
   void set_range(int L, int R) {
