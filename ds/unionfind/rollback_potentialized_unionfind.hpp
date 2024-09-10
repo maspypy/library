@@ -1,12 +1,12 @@
 #include "ds/rollback_array.hpp"
 
 template <typename Group>
-struct Rollback_Weighted_UnionFind {
+struct Rollback_Potentialized_UnionFind {
   using E = typename Group::value_type;
   using P = pair<int, E>;
   Rollback_Array<P> dat; // parent or -size
 
-  Rollback_Weighted_UnionFind(int n) : dat(vc<P>(n, P(-1, Group::unit()))) {}
+  Rollback_Potentialized_UnionFind(int n) : dat(vc<P>(n, P(-1, Group::unit()))) {}
 
   P get(int v) {
     // 経路圧縮はしないように

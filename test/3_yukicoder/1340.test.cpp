@@ -16,8 +16,8 @@ void solve() {
   vc<BS> B(N, BS(N));
   FOR(i, N) B[i][i] = 1;
   while (T) {
-    if (T & 1) B = matrix_mul_and_or<4>(B, A);
-    A = matrix_mul_and_or<4>(A, A);
+    if (T & 1) B = matrix_mul_and_or(B, A);
+    A = matrix_mul_and_or(A, A);
     T /= 2;
   }
   ll ANS = B[0].count();

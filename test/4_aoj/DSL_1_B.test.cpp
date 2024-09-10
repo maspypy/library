@@ -1,13 +1,12 @@
-#define PROBLEM \
-  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B"
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_1_B"
 #include "my_template.hpp"
 #include "other/io.hpp"
 #include "alg/monoid/add.hpp"
-#include "ds/unionfind/weighted_unionfind.hpp"
+#include "ds/unionfind/potentialized_unionfind.hpp"
 
 void solve() {
   LL(N, Q);
-  Weighted_UnionFind<Monoid_Add<ll>> uf(N);
+  Potentialized_UnionFind<Monoid_Add<ll>> uf(N);
   FOR(Q) {
     LL(t);
     if (t == 0) {
@@ -26,13 +25,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }

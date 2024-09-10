@@ -1,14 +1,14 @@
 #define PROBLEM "https://yukicoder.me/problems/no/2293"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "ds/unionfind/rollback_weighted_unionfind.hpp"
+#include "ds/unionfind/rollback_potentialized_unionfind.hpp"
 #include "alg/monoid/xor.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint998;
 void solve() {
   LL(N, Q);
-  Rollback_Weighted_UnionFind<Monoid_Xor<int>> uf(N);
+  Rollback_Potentialized_UnionFind<Monoid_Xor<int>> uf(N);
 
   int init = uf.time();
   int comp = N;
