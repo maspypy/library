@@ -1418,7 +1418,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/coprime_factorization.hpp
       title: nt/coprime_factorization.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: nt/count_by_factor_type.hpp
       title: nt/count_by_factor_type.hpp
     - icon: ':heavy_check_mark:'
@@ -2177,6 +2177,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_bipartite.test.cpp
       title: test/1_mytest/count_bipartite.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/count_by_factor_type.test.cpp
+      title: test/1_mytest/count_by_factor_type.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_clique.test.cpp
       title: test/1_mytest/count_clique.test.cpp

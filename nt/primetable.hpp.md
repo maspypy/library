@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: nt/count_by_factor_type.hpp
     title: nt/count_by_factor_type.hpp
   - icon: ':heavy_check_mark:'
@@ -129,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/compositional_inverset.test.cpp
     title: test/1_mytest/compositional_inverset.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_by_factor_type.test.cpp
+    title: test/1_mytest/count_by_factor_type.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_biconnected.test.cpp
     title: test/1_mytest/count_labeled_biconnected.test.cpp
@@ -406,6 +409,7 @@ data:
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/prime_sum.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp

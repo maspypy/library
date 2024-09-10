@@ -109,6 +109,9 @@ data:
     path: test/1_mytest/count_bipartite.test.cpp
     title: test/1_mytest/count_bipartite.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_by_factor_type.test.cpp
+    title: test/1_mytest/count_by_factor_type.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_clique.test.cpp
     title: test/1_mytest/count_clique.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3534,6 +3537,7 @@ data:
   - test/1_mytest/count_labeled_undirected.test.cpp
   - test/1_mytest/first_mod_range_of_linear.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/binary_trie.test.cpp
   - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/nth_element_from_sorted_matrix.test.cpp
