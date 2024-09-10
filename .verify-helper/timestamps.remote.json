@@ -84,6 +84,7 @@
 "test/1_mytest/kdtree_am.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/kdtree_monoid.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/kdtree_nns.test.cpp": "2024-08-13 23:38:32 +0900",
+"test/1_mytest/kinetic.test.cpp": "2024-09-10 18:12:56 +0900",
 "test/1_mytest/knight_distance.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/lex_minmax_suffix.test.cpp": "2024-08-13 23:38:32 +0900",
 "test/1_mytest/longest_common_substr.test.cpp": "2024-08-13 23:38:32 +0900",
