@@ -46,6 +46,9 @@ data:
     path: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
     title: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+    title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -279,6 +282,7 @@ data:
   - test/2_library_checker/data_structure/static_range_frequency.test.cpp
   - test/2_library_checker/data_structure/set_xor_min.test.cpp
   - test/2_library_checker/data_structure/static_range_freq.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
 documentation_of: ds/hashmap.hpp
 layout: document
 redirect_from:

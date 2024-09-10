@@ -61,6 +61,9 @@ data:
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1502.test.cpp
+    title: test/3_yukicoder/1502.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1891.test.cpp
     title: test/3_yukicoder/1891.test.cpp
   - icon: ':heavy_check_mark:'
@@ -111,6 +114,7 @@ data:
   timestamp: '2023-07-25 22:13:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1502.test.cpp
   - test/3_yukicoder/2342_2.test.cpp
   - test/3_yukicoder/2342.test.cpp
   - test/3_yukicoder/1891.test.cpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/matrix_product_mod_2
@@ -325,16 +325,18 @@ data:
     \    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n    FOR(s,\
     \ 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s]\
     \ = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
-    \n\n// Method of Four Russians O(NMK/wlogN)\n// (N1/K+2^K)/K N2 N3 / w\ntemplate\
-    \ <int K = 8>\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>&\
-    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  static_assert(64 % K == 0);\n\
-    \  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]);\
-    \ }\n  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << K, BS(N3));\n\n  for (int L =\
-    \ 0; L < N2; L += 8) {\n    int R = min(L + K, N2);\n    int n = R - L;\n    FOR(i,\
-    \ n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n    FOR(i, N1) {\n \
-    \     u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n      C[i] ^= tmp[s];\n\
-    \    }\n  }\n  return C;\n}\n#line 6 \"test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp\"\
-    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  INT(N, M, K);\n  vc<BS> A(N, BS(M));\n\
+    \n\n// Method of Four Russians O(NMK/wlogN)\n// (N1/K+2^K)/K N2 N3 / w\nvc<My_Bitset>\
+    \ matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1,\
+    \ int N3 = -1) {\n  static_assert(64 % K == 0);\n  using BS = My_Bitset;\n  if\
+    \ (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
+    \  if (N1 < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] ^= B[j];\n\
+    \    }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
+    \ << K, BS(N3));\n\n  for (int L = 0; L < N2; L += 8) {\n    int R = min(L + K,\
+    \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
+    \ ^ B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
+    \ ((1 << K) - 1);\n      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n#line 6\
+    \ \"test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp\"\n\nusing\
+    \ BS = My_Bitset;\n\nvoid solve() {\n  INT(N, M, K);\n  vc<BS> A(N, BS(M));\n\
     \  vc<BS> B(M, BS(K));\n\n  FOR(i, N) {\n    FOR(j, M) {\n      CHAR(ch);\n  \
     \    A[i][j] = (ch - '0');\n    }\n  }\n  FOR(i, M) {\n    FOR(j, K) {\n     \
     \ CHAR(ch);\n      B[i][j] = (ch - '0');\n    }\n  }\n  vc<BS> C = matrix_mul_mod_2(A,\
@@ -356,8 +358,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   requiredBy: []
-  timestamp: '2024-09-10 11:20:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-10 16:34:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
 layout: document

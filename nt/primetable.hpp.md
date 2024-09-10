@@ -20,6 +20,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
+  - icon: ':warning:'
+    path: nt/count_by_factor_type.hpp
+    title: nt/count_by_factor_type.hpp
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
@@ -329,6 +332,7 @@ data:
   requiredBy:
   - nt/mertens.hpp
   - nt/lcm_convolution.hpp
+  - nt/count_by_factor_type.hpp
   - nt/gcd_convolution.hpp
   - nt/euler_phi.hpp
   - nt/range_rational_count.hpp

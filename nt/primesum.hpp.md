@@ -5,6 +5,9 @@ data:
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: nt/count_by_factor_type.hpp
+    title: nt/count_by_factor_type.hpp
   - icon: ':heavy_check_mark:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
@@ -104,6 +107,7 @@ data:
   isVerificationFile: false
   path: nt/primesum.hpp
   requiredBy:
+  - nt/count_by_factor_type.hpp
   - nt/primesum_mod6.hpp
   - nt/primesum_mod4.hpp
   timestamp: '2023-08-06 13:04:29+09:00'
