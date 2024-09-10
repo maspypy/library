@@ -286,6 +286,9 @@ data:
     path: test/2_library_checker/data_structure/unionfind.test.cpp
     title: test/2_library_checker/data_structure/unionfind.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+    title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3154,6 +3157,7 @@ data:
   - test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
   - test/2_library_checker/data_structure/static_range_freq.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
+  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   - test/2_library_checker/data_structure/associative_array.test.cpp

@@ -4,6 +4,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+    title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/unionfind_with_potential.test.cpp
     title: test/2_library_checker/unionfind_with_potential.test.cpp
   _isVerificationFailed: false
@@ -59,6 +62,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/unionfind_with_potential.test.cpp
+  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
 documentation_of: ds/unionfind/potentialized_unionfind.hpp
 layout: document
 redirect_from:

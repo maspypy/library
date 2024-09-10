@@ -2904,6 +2904,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/unionfind.test.cpp
       title: test/2_library_checker/data_structure/unionfind.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+      title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - name: test/2_library_checker/enumerative_combinatorics
     pages:
     - icon: ':heavy_check_mark:'

@@ -40,6 +40,9 @@ data:
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+    title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -254,6 +257,7 @@ data:
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
 documentation_of: linalg/matrix_mul.hpp
 layout: document
 redirect_from:
