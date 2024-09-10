@@ -220,6 +220,9 @@ data:
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+    title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -726,6 +729,7 @@ data:
   - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
   - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
 documentation_of: alg/monoid/add.hpp
 layout: document

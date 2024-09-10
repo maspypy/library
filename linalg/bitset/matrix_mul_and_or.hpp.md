@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1340.test.cpp
     title: test/3_yukicoder/1340.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://contest.ucup.ac/contest/1784/problem/9246
@@ -108,58 +108,64 @@ data:
     \ s = a >> 6, t = b >> t;\n    int n = r - l;\n    if (!(a & 63)) {\n      FOR(i,\
     \ n) dat[l + i] |= p.dat[s + i];\n    } else {\n      int hi = a & 63;\n     \
     \ int lo = 64 - hi;\n      FOR(i, n) dat[l + i] |= (p.dat[s + i] >> hi) | (p.dat[1\
-    \ + s + i] << lo);\n    }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void\
-    \ set_range(int L, int R) {\n    while (L < R && (L & 63)) { set(L++); }\n   \
-    \ while (L < R && (R & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] =\
-    \ u64(-1);\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int\
-    \ L, int R) {\n    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R\
-    \ && (R & 63)) { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n\
-    \  }\n\n  // [L,R) \u3092 flip\n  void flip_range(int L, int R) {\n    while (L\
-    \ < R && (L & 63)) { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R);\
-    \ }\n    FOR(i, L >> 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\
-    \u69D8\u3092\u5408\u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n\
-    \  void reset(int i) { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip();\
-    \ }\n  void set() {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void\
-    \ reset() { fill(all(dat), 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) {\
-    \ dat[i] = u64(-1) ^ dat[i]; }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n\
-    \      if (64 * i + k >= size()) break;\n      flip(64 * i + k);\n    }\n  }\n\
-    \  bool any() {\n    FOR(i, len(dat)) {\n      if (dat[i]) return true;\n    }\n\
-    \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
-    \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
-    \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
-    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
-    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
-    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
-    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
-    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
-    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_and_or.hpp\"\
-    \n\n// https://contest.ucup.ac/contest/1784/problem/9246\n// C[i][k] |= A[i][j]\
-    \ && B[j][k]\ntemplate <int K = 8>\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>&\
-    \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  static_assert(64\
-    \ % K == 0);\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B),\
-    \ N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << K, BS(N3));\n\
-    \  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n    int n =\
-    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L + i];\n\
-    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
-    \      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
-  code: "#include \"ds/my_bitset.hpp\"\n\n// https://contest.ucup.ac/contest/1784/problem/9246\n\
-    // C[i][k] |= A[i][j] && B[j][k]\ntemplate <int K = 8>\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>&\
-    \ A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  static_assert(64\
-    \ % K == 0);\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 = len(B),\
-    \ N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  vc<BS> tmp(1 << K, BS(N3));\n\
-    \  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n    int n =\
-    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L + i];\n\
-    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
-    \      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}"
+    \ + s + i] << lo);\n    }\n  }\n  // \u884C\u5217\u57FA\u672C\u5909\u5F62\u3067\
+    \u4F7F\u3046\u3084\u3064\n  // p \u306F [i:N) \u306B\u3057\u304B\u306A\u3044\u3068\
+    \u3057\u3066 p \u3092 or \u3059\u308B\n  void or_suffix(int i, My_Bitset &p) {\n\
+    \    assert(N == p.N && 0 <= i && i < N);\n    FOR(k, i / 64, len(dat)) { dat[k]\
+    \ |= p.dat[k]; }\n  }\n\n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void set_range(int\
+    \ L, int R) {\n    while (L < R && (L & 63)) { set(L++); }\n    while (L < R &&\
+    \ (R & 63)) { set(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(-1);\n  }\n\
+    \n  // [L,R) \u3092 1 \u306B\u5909\u66F4\n  void reset_range(int L, int R) {\n\
+    \    while (L < R && (L & 63)) { reset(L++); }\n    while (L < R && (R & 63))\
+    \ { reset(--R); }\n    FOR(i, L >> 6, R >> 6) dat[i] = u64(0);\n  }\n\n  // [L,R)\
+    \ \u3092 flip\n  void flip_range(int L, int R) {\n    while (L < R && (L & 63))\
+    \ { flip(L++); }\n    while (L < R && (R & 63)) { flip(--R); }\n    FOR(i, L >>\
+    \ 6, R >> 6) dat[i] ^= u64(-1);\n  }\n\n  // bitset \u306B\u4ED5\u69D8\u3092\u5408\
+    \u308F\u305B\u308B\n  void set(int i) { (*this)[i] = 1; }\n  void reset(int i)\
+    \ { (*this)[i] = 0; }\n  void flip(int i) { (*this)[i].flip(); }\n  void set()\
+    \ {\n    fill(all(dat), u64(-1));\n    resize(N);\n  }\n  void reset() { fill(all(dat),\
+    \ 0); }\n  void flip() {\n    FOR(i, len(dat) - 1) { dat[i] = u64(-1) ^ dat[i];\
+    \ }\n    int i = len(dat) - 1;\n    FOR(k, 64) {\n      if (64 * i + k >= size())\
+    \ break;\n      flip(64 * i + k);\n    }\n  }\n  bool any() {\n    FOR(i, len(dat))\
+    \ {\n      if (dat[i]) return true;\n    }\n    return false;\n  }\n\n  bool ALL()\
+    \ {\n    dat.resize((N + 63) >> 6);\n    int r = N & 63;\n    if (r != 0) {\n\
+    \      u64 mask = (u64(1) << r) - 1;\n      if (dat.back() != mask) return 0;\n\
+    \    }\n    for (int i = 0; i < N / 64; ++i)\n      if (dat[i] != u64(-1)) return\
+    \ false;\n    return true;\n  }\n\n  int _Find_first() { return next(0); }\n \
+    \ int _Find_next(int p) { return next(p + 1); }\n\n  static string TO_STR[256];\n\
+    \  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n    string\
+    \ S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n\
+    \    S.resize(N);\n    return S;\n  }\n\n  static void precompute() {\n    FOR(s,\
+    \ 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s]\
+    \ = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_and_or.hpp\"\
+    \n\n// Boolean Matrix Multiplication C[i][k] |= A[i][j] && B[j][k]\n// https://contest.ucup.ac/contest/1784/problem/9246\n\
+    template <int K = 8>\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>&\
+    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1\
+    \ == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
+    \  if (N1 < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] |= B[j];\n\
+    \    }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
+    \ << K, BS(N3));\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K,\
+    \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
+    \ | B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
+    \ ((1 << K) - 1);\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
+  code: "#include \"ds/my_bitset.hpp\"\n\n// Boolean Matrix Multiplication C[i][k]\
+    \ |= A[i][j] && B[j][k]\n// https://contest.ucup.ac/contest/1784/problem/9246\n\
+    template <int K = 8>\nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>&\
+    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1\
+    \ == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
+    \  if (N1 < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] |= B[j];\n\
+    \    }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
+    \ << K, BS(N3));\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K,\
+    \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
+    \ | B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
+    \ ((1 << K) - 1);\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
   dependsOn:
   - ds/my_bitset.hpp
   isVerificationFile: false
   path: linalg/bitset/matrix_mul_and_or.hpp
   requiredBy: []
-  timestamp: '2024-09-10 04:34:30+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-10 11:20:00+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1340.test.cpp
 documentation_of: linalg/bitset/matrix_mul_and_or.hpp

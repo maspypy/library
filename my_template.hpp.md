@@ -697,6 +697,9 @@ data:
     path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+    title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1509,7 +1512,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1340.test.cpp
     title: test/3_yukicoder/1340.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2724,7 +2727,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc350f.test.cpp
     title: test/5_atcoder/abc350f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc350g2.test.cpp
     title: test/5_atcoder/abc350g2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2802,9 +2805,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc162f.test.cpp
     title: test/5_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/96344
@@ -2980,7 +2983,7 @@ data:
   path: my_template.hpp
   requiredBy: []
   timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1383.test.cpp
@@ -3897,6 +3900,7 @@ data:
   - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
   - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/string/lyndon.test.cpp

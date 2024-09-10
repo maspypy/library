@@ -2,20 +2,17 @@
 data:
   _extendedDependsOn:
   - icon: ':heavy_check_mark:'
-    path: alg/acted_monoid/minmincnt_add.hpp
-    title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
-    path: alg/monoid/minmincnt.hpp
-    title: alg/monoid/minmincnt.hpp
+    path: ds/fenwicktree/fenwicktree.hpp
+    title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/rectangle_union.hpp
-    title: ds/rectangle_union.hpp
+    path: ds/fenwicktree/fenwicktree_01.hpp
+    title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':heavy_check_mark:'
-    path: ds/segtree/lazy_segtree.hpp
-    title: ds/segtree/lazy_segtree.hpp
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -29,12 +26,12 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
+    PROBLEM: https://judge.yosupo.jp/problem/point_set_range_frequency
     links:
-    - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A
-  bundledCode: "#line 1 \"test/4_aoj/DSL_4_A.test.cpp\"\n#define PROBLEM \\\r\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\"\r\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/point_set_range_frequency
+  bundledCode: "#line 1 \"test/2_library_checker/data_structure/point_set_range_freq.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_frequency\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -210,126 +207,175 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename\
-    \ ActedMonoid>\nstruct Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX =\
-    \ typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename\
-    \ MX::value_type;\n  using A = typename MA::value_type;\n  int n, log, size;\n\
-    \  vc<X> dat;\n  vc<A> laz;\n\n  Lazy_SegTree() {}\n  Lazy_SegTree(int n) { build(n);\
-    \ }\n  template <typename F>\n  Lazy_SegTree(int n, F f) {\n    build(n, f);\n\
-    \  }\n  Lazy_SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    laz.assign(size, MA::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i,\
-    \ 1, size) update(i);\n  }\n\n  void update(int k) { dat[k] = MX::op(dat[2 * k],\
-    \ dat[2 * k + 1]); }\n  void set(int p, X x) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    dat[p]\
-    \ = x;\n    for (int i = 1; i <= log; i++) update(p >> i);\n  }\n  void multiply(int\
-    \ p, const X& x) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int\
-    \ i = log; i >= 1; i--) push(p >> i);\n    dat[p] = MX::op(dat[p], x);\n    for\
-    \ (int i = 1; i <= log; i++) update(p >> i);\n  }\n\n  X get(int p) {\n    assert(0\
-    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
-    \ i);\n    return dat[p];\n  }\n\n  vc<X> get_all() {\n    FOR(k, 1, size) { push(k);\
-    \ }\n    return {dat.begin() + size, dat.begin() + size + n};\n  }\n\n  X prod(int\
-    \ l, int r) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return\
-    \ MX::unit();\n    l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n\
-    \      if (((l >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r)\
-    \ push((r - 1) >> i);\n    }\n    X xl = MX::unit(), xr = MX::unit();\n    while\
-    \ (l < r) {\n      if (l & 1) xl = MX::op(xl, dat[l++]);\n      if (r & 1) xr\
-    \ = MX::op(dat[--r], xr);\n      l >>= 1, r >>= 1;\n    }\n    return MX::op(xl,\
-    \ xr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  void apply(int l, int r,\
-    \ A a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n \
-    \   l += size, r += size;\n    for (int i = log; i >= 1; i--) {\n      if (((l\
-    \ >> i) << i) != l) push(l >> i);\n      if (((r >> i) << i) != r) push((r - 1)\
-    \ >> i);\n    }\n    int l2 = l, r2 = r;\n    while (l < r) {\n      if (l & 1)\
-    \ apply_at(l++, a);\n      if (r & 1) apply_at(--r, a);\n      l >>= 1, r >>=\
-    \ 1;\n    }\n    l = l2, r = r2;\n    for (int i = 1; i <= log; i++) {\n     \
-    \ if (((l >> i) << i) != l) update(l >> i);\n      if (((r >> i) << i) != r) update((r\
-    \ - 1) >> i);\n    }\n  }\n\n  template <typename F>\n  int max_right(const F\
-    \ check, int l) {\n    assert(0 <= l && l <= n);\n    assert(check(MX::unit()));\n\
-    \    if (l == n) return n;\n    l += size;\n    for (int i = log; i >= 1; i--)\
-    \ push(l >> i);\n    X sm = MX::unit();\n    do {\n      while (l % 2 == 0) l\
-    \ >>= 1;\n      if (!check(MX::op(sm, dat[l]))) {\n        while (l < size) {\n\
-    \          push(l);\n          l = (2 * l);\n          if (check(MX::op(sm, dat[l])))\
-    \ { sm = MX::op(sm, dat[l++]); }\n        }\n        return l - size;\n      }\n\
-    \      sm = MX::op(sm, dat[l++]);\n    } while ((l & -l) != l);\n    return n;\n\
-    \  }\n\n  template <typename F>\n  int min_left(const F check, int r) {\n    assert(0\
-    \ <= r && r <= n);\n    assert(check(MX::unit()));\n    if (r == 0) return 0;\n\
-    \    r += size;\n    for (int i = log; i >= 1; i--) push((r - 1) >> i);\n    X\
-    \ sm = MX::unit();\n    do {\n      r--;\n      while (r > 1 && (r % 2)) r >>=\
-    \ 1;\n      if (!check(MX::op(dat[r], sm))) {\n        while (r < size) {\n  \
-    \        push(r);\n          r = (2 * r + 1);\n          if (check(MX::op(dat[r],\
-    \ sm))) { sm = MX::op(dat[r--], sm); }\n        }\n        return r + 1 - size;\n\
-    \      }\n      sm = MX::op(dat[r], sm);\n    } while ((r & -r) != r);\n    return\
-    \ 0;\n  }\n\nprivate:\n  void apply_at(int k, A a) {\n    ll sz = 1 << (log -\
-    \ topbit(k));\n    dat[k] = AM::act(dat[k], a, sz);\n    if (k < size) laz[k]\
-    \ = MA::op(laz[k], a);\n  }\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    apply_at(2 * k, laz[k]), apply_at(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n};\n#line 2 \"alg/monoid/minmincnt.hpp\"\n\r\n// \u6700\u5C0F\
-    \u5024\u3001\u6700\u5C0F\u5024\u306E\u500B\u6570\r\ntemplate <typename E>\r\n\
-    struct Monoid_MinMincnt {\r\n  using value_type = pair<E, E>;\r\n  using X = value_type;\r\
-    \n  static X op(X x, X y) {\r\n    auto [xmin, xmincnt] = x;\r\n    auto [ymin,\
-    \ ymincnt] = y;\r\n    if (xmin > ymin) return y;\r\n    if (xmin < ymin) return\
-    \ x;\r\n    return {xmin, xmincnt + ymincnt};\r\n  }\r\n  static constexpr X unit()\
-    \ { return {infty<E>, 0}; }\r\n  static constexpr bool commute = true;\r\n};\n\
-    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"alg/acted_monoid/minmincnt_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_MinMincnt_Add {\r\n  using Monoid_X\
-    \ = Monoid_MinMincnt<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    auto [xmin,\
-    \ xmincnt] = x;\r\n    if (xmin == infty<E>) return x;\r\n    return {xmin + a,\
-    \ xmincnt};\r\n  }\r\n};\r\n#line 3 \"ds/rectangle_union.hpp\"\n\r\ntemplate <typename\
-    \ XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT = tuple<XY, XY, XY, XY>;\r\
-    \n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr,\
-    \ XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr),\
-    \ Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template\
-    \ <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    int N = len(X);\r\n \
-    \   vc<int> ord_x = argsort(X);\r\n    vc<int> ord_y = argsort(Y);\r\n    vc<int>\
-    \ rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]] = i;\r\n    X = rearrange(X, ord_x);\r\
-    \n    Y = rearrange(Y, ord_y);\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
-    \n    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> {\r\n      return\
-    \ {0, Y[i + 1] - Y[i]};\r\n    });\r\n\r\n    ANS_TYPE ANS = 0;\r\n    XY total\
-    \ = Y.back() - Y[0];\r\n    FOR(i, N - 1) {\r\n      int k = ord_x[i] / 2;\r\n\
-    \      int a = (ord_x[i] & 1 ? -1 : 1);\r\n      seg.apply(rk_y[2 * k], rk_y[2\
-    \ * k + 1], a);\r\n      auto [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE\
-    \ dy = total - (min == 0 ? mincnt : 0);\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\
-    \n      ANS += dx * dy;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n#line 6 \"\
-    test/4_aoj/DSL_4_A.test.cpp\"\n\r\nvoid solve() {\r\n  LL(N);\r\n  Rectangle_Union<int>\
-    \ RU;\r\n  FOR(N) {\r\n    LL(a, b, c, d);\r\n    RU.add_rect(a, c, b, d);\r\n\
-    \  }\r\n  print(RU.calc());\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
-    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  ll T\
-    \ = 1;\r\n  // LL(T);\r\n  FOR(_, T) solve();\r\n\r\n  return 0;\r\n}\r\n"
-  code: "#define PROBLEM \\\r\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DSL_4_A\"\
-    \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"ds/rectangle_union.hpp\"\
-    \r\n\r\nvoid solve() {\r\n  LL(N);\r\n  Rectangle_Union<int> RU;\r\n  FOR(N) {\r\
-    \n    LL(a, b, c, d);\r\n    RU.add_rect(a, c, b, d);\r\n  }\r\n  print(RU.calc());\r\
-    \n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\
-    \n  cout << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(_, T)\
-    \ solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/data_structure/point_set_range_freq.test.cpp\"\
+    \n\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
+    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
+    \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
+    \ vc<E>& v) { build(v); }\n\n  void build(int m) {\n    n = m;\n    dat.assign(m,\
+    \ G::unit());\n    total = G::unit();\n  }\n  void build(const vc<E>& v) {\n \
+    \   build(len(v), [&](int i) -> E { return v[i]; });\n  }\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m;\n    dat.clear();\n    dat.reserve(n);\n\
+    \    total = G::unit();\n    FOR(i, n) { dat.eb(f(i)); }\n    for (int i = 1;\
+    \ i <= n; ++i) {\n      int j = i + (i & -i);\n      if (j <= n) dat[j - 1] =\
+    \ G::op(dat[i - 1], dat[j - 1]);\n    }\n    total = prefix_sum(m);\n  }\n\n \
+    \ E prod_all() { return total; }\n  E sum_all() { return total; }\n  E sum(int\
+    \ k) { return prefix_sum(k); }\n  E prod(int k) { return prefix_prod(k); }\n \
+    \ E prefix_sum(int k) { return prefix_prod(k); }\n  E prefix_prod(int k) {\n \
+    \   chmin(k, n);\n    E ret = G::unit();\n    for (; k > 0; k -= k & -k) ret =\
+    \ G::op(ret, dat[k - 1]);\n    return ret;\n  }\n  E sum(int L, int R) { return\
+    \ prod(L, R); }\n  E prod(int L, int R) {\n    chmax(L, 0), chmin(R, n);\n   \
+    \ if (L == 0) return prefix_prod(R);\n    assert(0 <= L && L <= R && R <= n);\n\
+    \    E pos = G::unit(), neg = G::unit();\n    while (L < R) { pos = G::op(pos,\
+    \ dat[R - 1]), R -= R & -R; }\n    while (R < L) { neg = G::op(neg, dat[L - 1]),\
+    \ L -= L & -L; }\n    return G::op(pos, G::inverse(neg));\n  }\n\n  vc<E> get_all()\
+    \ {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i, i + 1);\n    return res;\n\
+    \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
+    \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
+    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
+    \ F>\n  int max_right(const F check, int L = 0) {\n    assert(check(G::unit()));\n\
+    \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
+    \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= 1; }\n        if (i == 0) { return topbit(n) +\
+    \ 1; }\n        int k = lowbit(i) - 1;\n        if (i + (1 << k) > n) return k;\n\
+    \        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (!check(t)) { return\
+    \ k; }\n        s = G::op(s, G::inverse(dat[i - 1])), i -= i & -i;\n      }\n\
+    \    }();\n    while (k) {\n      --k;\n      if (i + (1 << k) - 1 < len(dat))\
+    \ {\n        E t = G::op(s, dat[i + (1 << k) - 1]);\n        if (check(t)) { i\
+    \ += (1 << k), s = t; }\n      }\n    }\n    return i;\n  }\n\n  // check(i, x)\n\
+    \  template <class F>\n  int max_right_with_index(const F check, int L = 0) {\n\
+    \    assert(check(L, G::unit()));\n    E s = G::unit();\n    int i = L;\n    //\
+    \ 2^k \u9032\u3080\u3068\u30C0\u30E1\n    int k = [&]() {\n      while (1) {\n\
+    \        if (i % 2 == 1) { s = G::op(s, G::inverse(dat[i - 1])), i -= 1; }\n \
+    \       if (i == 0) { return topbit(n) + 1; }\n        int k = lowbit(i) - 1;\n\
+    \        if (i + (1 << k) > n) return k;\n        E t = G::op(s, dat[i + (1 <<\
+    \ k) - 1]);\n        if (!check(i + (1 << k), t)) { return k; }\n        s = G::op(s,\
+    \ G::inverse(dat[i - 1])), i -= i & -i;\n      }\n    }();\n    while (k) {\n\
+    \      --k;\n      if (i + (1 << k) - 1 < len(dat)) {\n        E t = G::op(s,\
+    \ dat[i + (1 << k) - 1]);\n        if (check(i + (1 << k), t)) { i += (1 << k),\
+    \ s = t; }\n      }\n    }\n    return i;\n  }\n\n  template <class F>\n  int\
+    \ min_left(const F check, int R) {\n    assert(check(G::unit()));\n    E s = G::unit();\n\
+    \    int i = R;\n    // false \u306B\u306A\u308B\u3068\u3053\u308D\u307E\u3067\
+    \u623B\u308B\n    int k = 0;\n    while (i > 0 && check(s)) {\n      s = G::op(s,\
+    \ dat[i - 1]);\n      k = lowbit(i);\n      i -= i & -i;\n    }\n    if (check(s))\
+    \ {\n      assert(i == 0);\n      return 0;\n    }\n    // 2^k \u9032\u3080\u3068\
+    \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
+    \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
+    \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
+    \ bool { return x <= k; }, L);\n  }\n};\n#line 4 \"ds/fenwicktree/fenwicktree_01.hpp\"\
+    \n\nstruct FenwickTree_01 {\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
+    \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
+    \ build(int m) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
+    \ u64(0));\n    bit.build(n);\n  }\n\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n\
+    \    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }\n    bit.build(n, [&](int\
+    \ i) -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return bit.sum_all();\
+    \ }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int k) {\n \
+    \   int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1) << (k\
+    \ % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    if (L ==\
+    \ 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L / 64] &\
+    \ ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1) << (R\
+    \ % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n  }\n\n\
+    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    if (x == -1) remove(k);\n\
+    \  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
+    \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
+    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
+    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
+    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
+    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
+    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
+    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
+    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
+    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
+    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
+    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
+    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
+    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
+    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
+    \  return 64 * idx + topbit(dat[idx]);\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\n\r\
+    \n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
+    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
+    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap\
+    \ = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\
+    \r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i]\
+    \ && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val&\
+    \ operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\
+    \n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\
+    \n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n\
+    \  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
+    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i],\
+    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val>\
+    \ val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64\
+    \ FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 7 \"test/2_library_checker/data_structure/point_set_range_freq.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N, Q);\n  HashMap<int> MP(N + Q);\n  vvc<pair<int, int>>\
+    \ dat(N + Q);\n  int p = 0;\n  auto get = [&](int x) -> int {\n    int k = MP.get(x,\
+    \ -1);\n    return (k == -1 ? MP[x] = p++ : k);\n  };\n\n  vc<int> A(N);\n\n \
+    \ FOR(i, N) {\n    INT(x);\n    A[i] = get(x);\n    dat[A[i]].eb(0, i);\n  }\n\
+    \n  vc<pair<int, int>> LR;\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n   \
+    \   INT(i, v);\n      v = get(v);\n      dat[A[i]].eb(1, i);\n      A[i] = v;\n\
+    \      dat[A[i]].eb(0, i);\n    }\n    if (t == 1) {\n      INT(L, R, x);\n  \
+    \    x = get(x);\n      dat[x].eb(2, len(LR));\n      LR.eb(L, R);\n    }\n  }\n\
+    \  FOR(i, N) { dat[A[i]].eb(1, i); }\n  Q = len(LR);\n  vc<int> ANS(Q);\n\n  FenwickTree_01\
+    \ bit(N);\n  FOR(x, p) {\n    for (auto& [t, i]: dat[x]) {\n      if (t == 0)\
+    \ bit.add(i);\n      elif (t == 1) bit.remove(i);\n      else {\n        auto\
+    \ [L, R] = LR[i];\n        ANS[i] = bit.sum(L, R);\n      }\n    }\n  }\n  for\
+    \ (auto& x: ANS) print(x);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_range_frequency\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree_01.hpp\"\
+    \n#include \"ds/hashmap.hpp\"\n\nvoid solve() {\n  INT(N, Q);\n  HashMap<int>\
+    \ MP(N + Q);\n  vvc<pair<int, int>> dat(N + Q);\n  int p = 0;\n  auto get = [&](int\
+    \ x) -> int {\n    int k = MP.get(x, -1);\n    return (k == -1 ? MP[x] = p++ :\
+    \ k);\n  };\n\n  vc<int> A(N);\n\n  FOR(i, N) {\n    INT(x);\n    A[i] = get(x);\n\
+    \    dat[A[i]].eb(0, i);\n  }\n\n  vc<pair<int, int>> LR;\n\n  FOR(Q) {\n    INT(t);\n\
+    \    if (t == 0) {\n      INT(i, v);\n      v = get(v);\n      dat[A[i]].eb(1,\
+    \ i);\n      A[i] = v;\n      dat[A[i]].eb(0, i);\n    }\n    if (t == 1) {\n\
+    \      INT(L, R, x);\n      x = get(x);\n      dat[x].eb(2, len(LR));\n      LR.eb(L,\
+    \ R);\n    }\n  }\n  FOR(i, N) { dat[A[i]].eb(1, i); }\n  Q = len(LR);\n  vc<int>\
+    \ ANS(Q);\n\n  FenwickTree_01 bit(N);\n  FOR(x, p) {\n    for (auto& [t, i]: dat[x])\
+    \ {\n      if (t == 0) bit.add(i);\n      elif (t == 1) bit.remove(i);\n     \
+    \ else {\n        auto [L, R] = LR[i];\n        ANS[i] = bit.sum(L, R);\n    \
+    \  }\n    }\n  }\n  for (auto& x: ANS) print(x);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - ds/rectangle_union.hpp
-  - ds/segtree/lazy_segtree.hpp
-  - alg/acted_monoid/minmincnt_add.hpp
-  - alg/monoid/minmincnt.hpp
+  - ds/fenwicktree/fenwicktree_01.hpp
+  - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
+  - ds/hashmap.hpp
   isVerificationFile: true
-  path: test/4_aoj/DSL_4_A.test.cpp
+  path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-09-10 11:20:00+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/4_aoj/DSL_4_A.test.cpp
+documentation_of: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
 layout: document
 redirect_from:
-- /verify/test/4_aoj/DSL_4_A.test.cpp
-- /verify/test/4_aoj/DSL_4_A.test.cpp.html
-title: test/4_aoj/DSL_4_A.test.cpp
+- /verify/test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+- /verify/test/2_library_checker/data_structure/point_set_range_freq.test.cpp.html
+title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
 ---
