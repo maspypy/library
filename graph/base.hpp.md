@@ -317,6 +317,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
+  - icon: ':warning:'
+    path: test/1_mytest/enumerate_labeled_tree.hpp
+    title: test/1_mytest/enumerate_labeled_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/QOJ5445.test.cpp
@@ -1029,6 +1032,7 @@ data:
   - game/graph_game.hpp
   - enumerate/triangle.hpp
   - enumerate/labeled_tree.hpp
+  - test/1_mytest/enumerate_labeled_tree.hpp
   - graph/toposort.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/minimum_cost_cycle.hpp

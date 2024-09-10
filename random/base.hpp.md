@@ -298,6 +298,9 @@ data:
     path: test/1_mytest/kdtree_nns.test.cpp
     title: test/1_mytest/kdtree_nns.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/kinetic.test.cpp
+    title: test/1_mytest/kinetic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1100,6 +1103,7 @@ data:
   - test/1_mytest/typical_dc.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/matching.test.cpp
+  - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp

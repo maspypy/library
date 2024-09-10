@@ -16,6 +16,9 @@ data:
     path: test/1_mytest/count_labeled_tournament.test.cpp
     title: test/1_mytest/count_labeled_tournament.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/kinetic.test.cpp
+    title: test/1_mytest/kinetic.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2959,6 +2962,7 @@ data:
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/typical_dc.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
+  - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/count_labeled_tournament.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp

@@ -438,7 +438,7 @@ data:
       title: ds/randomized_bst/rbst_monoid.hpp
   - name: ds/segtree
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_kinetic.hpp
       title: ds/segtree/beats_kinetic.hpp
     - icon: ':heavy_check_mark:'
@@ -2067,6 +2067,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/zalgorithm.hpp
       title: string/zalgorithm.hpp
+  - name: test/1_mytest
+    pages:
+    - icon: ':warning:'
+      path: test/1_mytest/enumerate_labeled_tree.hpp
+      title: test/1_mytest/enumerate_labeled_tree.hpp
   verificationCategories:
   - name: test/1_mytest
     pages:
@@ -2325,6 +2330,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/kdtree_nns.test.cpp
       title: test/1_mytest/kdtree_nns.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/kinetic.test.cpp
+      title: test/1_mytest/kinetic.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/knight_distance.test.cpp
       title: test/1_mytest/knight_distance.test.cpp

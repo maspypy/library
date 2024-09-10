@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/1_mytest/enumerate_labeled_tree.hpp
+    title: test/1_mytest/enumerate_labeled_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
@@ -258,6 +261,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_nns.test.cpp
     title: test/1_mytest/kdtree_nns.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/kinetic.test.cpp
+    title: test/1_mytest/kinetic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/knight_distance.test.cpp
     title: test/1_mytest/knight_distance.test.cpp
@@ -2987,7 +2993,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: my_template.hpp
-  requiredBy: []
+  requiredBy:
+  - test/1_mytest/enumerate_labeled_tree.hpp
   timestamp: '2024-08-13 20:27:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -3642,6 +3649,7 @@ data:
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/matching.test.cpp
+  - test/1_mytest/kinetic.test.cpp
   - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/floor_ceil_ranges.test.cpp

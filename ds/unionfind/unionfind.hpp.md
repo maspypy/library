@@ -71,6 +71,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
+  - icon: ':warning:'
+    path: test/1_mytest/enumerate_labeled_tree.hpp
+    title: test/1_mytest/enumerate_labeled_tree.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_K4.test.cpp
@@ -305,6 +308,7 @@ data:
   requiredBy:
   - random/random_graph.hpp
   - geo/manhattan_mst.hpp
+  - test/1_mytest/enumerate_labeled_tree.hpp
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/blackbox/interval_graph_unionfind.hpp
   - graph/blackbox/mst.hpp

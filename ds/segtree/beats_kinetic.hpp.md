@@ -5,10 +5,13 @@ data:
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/kinetic.test.cpp
+    title: test/1_mytest/kinetic.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/jsc2024-final/tasks/jsc2024_final_d
@@ -184,8 +187,9 @@ data:
   path: ds/segtree/beats_kinetic.hpp
   requiredBy: []
   timestamp: '2024-08-26 04:14:45+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/kinetic.test.cpp
 documentation_of: ds/segtree/beats_kinetic.hpp
 layout: document
 redirect_from:

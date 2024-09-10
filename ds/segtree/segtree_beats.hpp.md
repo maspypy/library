@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_kinetic.hpp
     title: ds/segtree/beats_kinetic.hpp
   - icon: ':heavy_check_mark:'
@@ -15,6 +15,9 @@ data:
     path: ds/segtree/beats_summinmax_chminchmax.hpp
     title: ds/segtree/beats_summinmax_chminchmax.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/kinetic.test.cpp
+    title: test/1_mytest/kinetic.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
@@ -126,6 +129,7 @@ data:
   verifiedWith:
   - test/3_yukicoder/1526.test.cpp
   - test/3_yukicoder/1526_2.test.cpp
+  - test/1_mytest/kinetic.test.cpp
   - test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
 documentation_of: ds/segtree/segtree_beats.hpp
 layout: document
