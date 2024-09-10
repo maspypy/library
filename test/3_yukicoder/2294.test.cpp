@@ -3,7 +3,7 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/unionfind/weighted_unionfind.hpp"
+#include "ds/unionfind/potentialized_unionfind.hpp"
 #include "alg/monoid/xor.hpp"
 #include "mod/modint.hpp"
 
@@ -16,7 +16,7 @@ void solve() {
   vc<ARR> dat(N);
   FOR(v, N) { FOR(k, K) dat[v][k][0] = 1, dat[v][k][1] = 0; }
 
-  Weighted_UnionFind<Monoid_Xor<int>> uf(N);
+  Potentialized_UnionFind<Monoid_Xor<int>> uf(N);
 
   auto query_1 = [&](ll v, ll val) -> void {
     int a = v0, b = v;

@@ -3,12 +3,12 @@
 #include "my_template.hpp"
 #include "other/io.hpp"
 
-#include "ds/unionfind/weighted_unionfind.hpp"
+#include "ds/unionfind/potentialized_unionfind.hpp"
 #include "alg/monoid/add.hpp"
 
 void solve() {
   LL(N, M, Q);
-  Weighted_UnionFind<Monoid_Add<ll>> uf(N);
+  Potentialized_UnionFind<Monoid_Add<ll>> uf(N);
   vi neg(N);
 
   FOR(M) {
