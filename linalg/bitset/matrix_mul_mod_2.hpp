@@ -3,7 +3,6 @@
 // Method of Four Russians O(NMK/wlogN)
 // (N1/K+2^K)/K N2 N3 / w
 vc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {
-  static_assert(64 % K == 0);
   using BS = My_Bitset;
   if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }
   vc<BS> C(N1, BS(N3));
