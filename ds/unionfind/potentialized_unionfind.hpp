@@ -1,5 +1,5 @@
 template <typename Group>
-struct Weighted_UnionFind {
+struct Potentialized_UnionFind {
   using E = typename Group::value_type;
   int N;
   int n_comp;
@@ -7,8 +7,7 @@ struct Weighted_UnionFind {
   vc<int> par;
   vc<int> size;
 
-  Weighted_UnionFind(int N)
-      : N(N), n_comp(N), vals(N, Group::unit()), size(N, 1) {
+  Potentialized_UnionFind(int N) : N(N), n_comp(N), vals(N, Group::unit()), size(N, 1) {
     par.resize(N);
     iota(all(par), 0);
   }
@@ -27,11 +26,20 @@ struct Weighted_UnionFind {
 
   pair<int, E> operator[](int v) { return get(v); }
 
+  // is_same / path value
+  pair<bool, E> get_path(int u, int v) {
+    auto [ru, xu] = get(u);
+    auto [rv, xv] = get(v);
+    if (ru != rv) return {false, Group::unit()};
+    return {true, Group::op(Group::inverse(xu), xv)};
+  }
+
+  // if same : do nothing.
   // P[to]==P[frm]x
   bool merge(int frm, int to, E x) {
     auto [v1, x1] = get(frm);
     auto [v2, x2] = get(to);
-    if (v1 == v2) return false;
+    if (v1 == v2) return false; // same
     if (size[v1] < size[v2]) {
       swap(v1, v2);
       swap(x1, x2);
