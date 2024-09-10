@@ -28,9 +28,6 @@ data:
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-    title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
   - icon: ':heavy_check_mark:'
@@ -215,7 +212,6 @@ data:
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

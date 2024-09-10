@@ -70,9 +70,6 @@ data:
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-    title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -364,7 +361,6 @@ data:
   - test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree.hpp
 layout: document
 redirect_from:

@@ -220,9 +220,6 @@ data:
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-    title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -318,6 +315,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/unionfind_with_potential.test.cpp
+    title: test/2_library_checker/unionfind_with_potential.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
@@ -460,9 +460,6 @@ data:
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/4_aoj/DSL_1_B.test.cpp
-    title: test/4_aoj/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_E.test.cpp
     title: test/4_aoj/DSL_2_E.test.cpp
   - icon: ':heavy_check_mark:'
@@ -516,9 +513,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc268_ex.test.cpp
     title: test/5_atcoder/abc268_ex.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/5_atcoder/abc280f.test.cpp
-    title: test/5_atcoder/abc280f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc318b.test.cpp
     title: test/5_atcoder/abc318b.test.cpp
@@ -656,13 +650,11 @@ data:
   - test/5_atcoder/abc266h_2.test.cpp
   - test/5_atcoder/abc324g.test.cpp
   - test/5_atcoder/abc190f.test.cpp
-  - test/5_atcoder/abc280f.test.cpp
   - test/4_aoj/DSL_2_E.test.cpp
   - test/4_aoj/2636.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
   - test/4_aoj/DSL_2_H.test.cpp
   - test/4_aoj/DSL_2_I.test.cpp
-  - test/4_aoj/DSL_1_B.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/2842_2.test.cpp
@@ -697,6 +689,7 @@ data:
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
+  - test/2_library_checker/unionfind_with_potential.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
@@ -729,7 +722,6 @@ data:
   - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
   - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
 documentation_of: alg/monoid/add.hpp
 layout: document

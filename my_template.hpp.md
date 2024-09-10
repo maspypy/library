@@ -697,9 +697,6 @@ data:
     path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-    title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1357,6 +1354,9 @@ data:
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/unionfind_with_potential.test.cpp
+    title: test/2_library_checker/unionfind_with_potential.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1575,9 +1575,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1502.test.cpp
-    title: test/3_yukicoder/1502.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
@@ -1936,12 +1933,6 @@ data:
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2293.test.cpp
-    title: test/3_yukicoder/2293.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2294.test.cpp
-    title: test/3_yukicoder/2294.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2295.test.cpp
     title: test/3_yukicoder/2295.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2281,9 +2272,6 @@ data:
     path: test/4_aoj/DPL_5_C.test.cpp
     title: test/4_aoj/DPL_5_C.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/4_aoj/DSL_1_B.test.cpp
-    title: test/4_aoj/DSL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_C.test.cpp
     title: test/4_aoj/DSL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2607,9 +2595,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc279b.test.cpp
     title: test/5_atcoder/abc279b.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/5_atcoder/abc280f.test.cpp
-    title: test/5_atcoder/abc280f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281e.test.cpp
     title: test/5_atcoder/abc281e.test.cpp
@@ -3016,7 +3001,6 @@ data:
   - test/3_yukicoder/1775.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
-  - test/3_yukicoder/1502.test.cpp
   - test/3_yukicoder/1752.test.cpp
   - test/3_yukicoder/1170.test.cpp
   - test/3_yukicoder/1357.test.cpp
@@ -3041,7 +3025,6 @@ data:
   - test/3_yukicoder/705.test.cpp
   - test/3_yukicoder/2490.test.cpp
   - test/3_yukicoder/1324.test.cpp
-  - test/3_yukicoder/2293.test.cpp
   - test/3_yukicoder/1295.test.cpp
   - test/3_yukicoder/2265.test.cpp
   - test/3_yukicoder/2858.test.cpp
@@ -3112,7 +3095,6 @@ data:
   - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1397.test.cpp
-  - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/2276.test.cpp
   - test/3_yukicoder/1260.test.cpp
   - test/3_yukicoder/1881.test.cpp
@@ -3394,7 +3376,6 @@ data:
   - test/5_atcoder/abc349g.test.cpp
   - test/5_atcoder/abc226f.test.cpp
   - test/5_atcoder/abc270_f.test.cpp
-  - test/5_atcoder/abc280f.test.cpp
   - test/5_atcoder/abc349f.test.cpp
   - test/5_atcoder/abc281e_2.test.cpp
   - test/5_atcoder/abc318g.test.cpp
@@ -3443,7 +3424,6 @@ data:
   - test/4_aoj/DPL_2_A.test.cpp
   - test/4_aoj/ITP1_D_D.test.cpp
   - test/4_aoj/NTL_2_C.test.cpp
-  - test/4_aoj/DSL_1_B.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/ALDS1_10_C.test.cpp
   - test/4_aoj/NTL_1_E.test.cpp
@@ -3790,6 +3770,7 @@ data:
   - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/2_library_checker/tree/cartesian_tree.test.cpp
   - test/2_library_checker/tree/tree_diameter.test.cpp
+  - test/2_library_checker/unionfind_with_potential.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/convex_layers.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
@@ -3900,7 +3881,6 @@ data:
   - test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
   - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
   - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/string/lyndon.test.cpp

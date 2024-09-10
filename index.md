@@ -535,17 +535,17 @@ data:
       path: ds/unionfind/parallel_unionfind.hpp
       title: ds/unionfind/parallel_unionfind.hpp
     - icon: ':heavy_check_mark:'
+      path: ds/unionfind/potentialized_unionfind.hpp
+      title: ds/unionfind/potentialized_unionfind.hpp
+    - icon: ':warning:'
+      path: ds/unionfind/rollback_potentialized_unionfind.hpp
+      title: ds/unionfind/rollback_potentialized_unionfind.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':heavy_check_mark:'
-      path: ds/unionfind/rollback_weighted_unionfind.hpp
-      title: ds/unionfind/rollback_weighted_unionfind.hpp
-    - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
-    - icon: ':heavy_check_mark:'
-      path: ds/unionfind/weighted_unionfind.hpp
-      title: ds/unionfind/weighted_unionfind.hpp
   - name: ds/wavelet_matrix
     pages:
     - icon: ':heavy_check_mark:'
@@ -2772,7 +2772,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3454,6 +3454,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
       title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+  - name: test/2_library_checker
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: test/2_library_checker/unionfind_with_potential.test.cpp
+      title: test/2_library_checker/unionfind_with_potential.test.cpp
   - name: test/3_yukicoder
     pages:
     - icon: ':heavy_check_mark:'
@@ -3675,7 +3680,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1500.test.cpp
       title: test/3_yukicoder/1500.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/1502.test.cpp
       title: test/3_yukicoder/1502.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4035,10 +4040,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2292.test.cpp
       title: test/3_yukicoder/2292.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2293.test.cpp
       title: test/3_yukicoder/2293.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2294.test.cpp
       title: test/3_yukicoder/2294.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4382,7 +4387,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DPL_5_C.test.cpp
       title: test/4_aoj/DPL_5_C.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/4_aoj/DSL_1_B.test.cpp
       title: test/4_aoj/DSL_1_B.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4711,7 +4716,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc279b.test.cpp
       title: test/5_atcoder/abc279b.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc280f.test.cpp
       title: test/5_atcoder/abc280f.test.cpp
     - icon: ':heavy_check_mark:'

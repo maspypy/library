@@ -5,13 +5,10 @@ data:
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2293.test.cpp
-    title: test/3_yukicoder/2293.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
@@ -25,7 +22,7 @@ data:
     \ dat[idx]; }\r\n  void set(int idx, T x) {\r\n    history.eb(idx, dat[idx]);\r\
     \n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all() {\r\n    vc<T> res(N);\r\n\
     \    FOR(i, N) res[i] = get(i);\r\n    return res;\r\n  }\r\n};\r\n#line 2 \"\
-    ds/unionfind/rollback_weighted_unionfind.hpp\"\n\ntemplate <typename Group>\n\
+    ds/unionfind/rollback_potentialized_unionfind.hpp\"\n\ntemplate <typename Group>\n\
     struct Rollback_Weighted_UnionFind {\n  using E = typename Group::value_type;\n\
     \  using P = pair<int, E>;\n  Rollback_Array<P> dat; // parent or -size\n\n  Rollback_Weighted_UnionFind(int\
     \ n) : dat(vc<P>(n, P(-1, Group::unit()))) {}\n\n  P get(int v) {\n    // \u7D4C\
@@ -58,16 +55,15 @@ data:
   dependsOn:
   - ds/rollback_array.hpp
   isVerificationFile: false
-  path: ds/unionfind/rollback_weighted_unionfind.hpp
+  path: ds/unionfind/rollback_potentialized_unionfind.hpp
   requiredBy: []
-  timestamp: '2023-06-23 23:19:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/3_yukicoder/2293.test.cpp
-documentation_of: ds/unionfind/rollback_weighted_unionfind.hpp
+  timestamp: '2024-09-10 11:48:49+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: ds/unionfind/rollback_potentialized_unionfind.hpp
 layout: document
 redirect_from:
-- /library/ds/unionfind/rollback_weighted_unionfind.hpp
-- /library/ds/unionfind/rollback_weighted_unionfind.hpp.html
-title: ds/unionfind/rollback_weighted_unionfind.hpp
+- /library/ds/unionfind/rollback_potentialized_unionfind.hpp
+- /library/ds/unionfind/rollback_potentialized_unionfind.hpp.html
+title: ds/unionfind/rollback_potentialized_unionfind.hpp
 ---

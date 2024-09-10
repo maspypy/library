@@ -907,6 +907,9 @@ data:
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/unionfind_with_potential.test.cpp
+    title: test/2_library_checker/unionfind_with_potential.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
   - icon: ':heavy_check_mark:'
@@ -963,9 +966,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1502.test.cpp
-    title: test/3_yukicoder/1502.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
@@ -1122,12 +1122,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2265.test.cpp
     title: test/3_yukicoder/2265.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2293.test.cpp
-    title: test/3_yukicoder/2293.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2294.test.cpp
-    title: test/3_yukicoder/2294.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2295.test.cpp
     title: test/3_yukicoder/2295.test.cpp
@@ -1654,7 +1648,6 @@ data:
   - test/3_yukicoder/1810.test.cpp
   - test/3_yukicoder/310.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
-  - test/3_yukicoder/1502.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/2525.test.cpp
@@ -1665,7 +1658,6 @@ data:
   - test/3_yukicoder/1755.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/1141.test.cpp
-  - test/3_yukicoder/2293.test.cpp
   - test/3_yukicoder/2265.test.cpp
   - test/3_yukicoder/1919.test.cpp
   - test/3_yukicoder/2801.test.cpp
@@ -1699,7 +1691,6 @@ data:
   - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1397.test.cpp
-  - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/1260.test.cpp
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1891.test.cpp
@@ -1967,6 +1958,7 @@ data:
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+  - test/2_library_checker/unionfind_with_potential.test.cpp
   - test/2_library_checker/graph/enumerate_cliques.test.cpp
   - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
   - test/2_library_checker/graph/incremental_scc.test.cpp
