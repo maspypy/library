@@ -13,7 +13,7 @@ map<vc<int>, ll> count_by_factor_type(ll N) {
   // 1 and prime
   map<vc<int>, ll> ANS;
   ANS[vc<int>()] = 1;
-  ANS[vc<int>({1})] = X[N];
+  if (X[N] > 0) ANS[vc<int>({1})] = X[N];
 
   auto add = [&](vc<int> F, int k) -> vc<int> {
     int p = len(F);
@@ -29,7 +29,8 @@ map<vc<int>, ll> count_by_factor_type(ll N) {
     ANS[nxt1]++;
     vc<int> Uk = add(U, k);
     vc<int> nxt2 = add(Uk, 1);
-    ANS[nxt2] += X[N / t] - X[P[i]];
+    ll cnt = X[N / t] - X[P[i]];
+    if (cnt > 0) ANS[nxt2] += X[N / t] - X[P[i]];
     ll lim = sqrtl(double(N) / t);
     if (P[i] <= lim) { dfs(dfs, t * P[i], i, k + 1, U); }
     FOR(j, i + 1, len(P)) {
