@@ -15,7 +15,7 @@ vc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1, 
   const int K = (N1 < 1200 ? 4 : 8);
   vc<BS> tmp(1 << K, BS(N3));
 
-  for (int L = 0; L < N2; L += 8) {
+  for (int L = 0; L < N2; L += K) {
     int R = min(L + K, N2);
     int n = R - L;
     FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];
