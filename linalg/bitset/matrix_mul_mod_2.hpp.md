@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
@@ -143,7 +143,7 @@ data:
     \ len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  if (N1 < 50) {\n    FOR(i,\
     \ N1) FOR(j, N2) {\n      if (A[i][j]) C[i] ^= B[j];\n    }\n    return C;\n \
     \ }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1 << K, BS(N3));\n\n \
-    \ for (int L = 0; L < N2; L += 8) {\n    int R = min(L + K, N2);\n    int n =\
+    \ for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n    int n =\
     \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n\
     \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
     \      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n"
@@ -153,7 +153,7 @@ data:
     \ == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
     \  if (N1 < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] ^= B[j];\n\
     \    }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
-    \ << K, BS(N3));\n\n  for (int L = 0; L < N2; L += 8) {\n    int R = min(L + K,\
+    \ << K, BS(N3));\n\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K,\
     \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
     \ ^ B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
     \ ((1 << K) - 1);\n      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n"
@@ -162,8 +162,8 @@ data:
   isVerificationFile: false
   path: linalg/bitset/matrix_mul_mod_2.hpp
   requiredBy: []
-  timestamp: '2024-09-10 16:56:26+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-10 17:33:47+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
 documentation_of: linalg/bitset/matrix_mul_mod_2.hpp

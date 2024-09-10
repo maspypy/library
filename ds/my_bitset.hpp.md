@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_and_or.hpp
     title: linalg/bitset/matrix_mul_and_or.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   - icon: ':heavy_check_mark:'
@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,9 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc350g2.test.cpp
     title: test/5_atcoder/abc350g2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -338,7 +338,7 @@ data:
   - linalg/bitset/det.hpp
   - ds/counter.hpp
   timestamp: '2024-09-10 11:20:00+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2490.test.cpp
   - test/3_yukicoder/142.test.cpp
