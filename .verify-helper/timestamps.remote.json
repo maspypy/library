@@ -275,6 +275,7 @@
 "test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp": "2024-08-27 05:16:49 +0900",
 "test/2_library_checker/data_structure/staticrmq_x.test.cpp": "2024-09-06 01:43:48 +0900",
 "test/2_library_checker/data_structure/unionfind.test.cpp": "2024-08-27 05:16:49 +0900",
+"test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp": "2024-09-10 11:56:01 +0900",
 "test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp": "2024-08-27 05:16:49 +0900",
 "test/2_library_checker/enumerative_combinatorics/factori998.test.cpp": "2024-08-27 05:16:49 +0900",
 "test/2_library_checker/enumerative_combinatorics/factorial.test.cpp": "2024-08-28 00:31:16 +0900",
