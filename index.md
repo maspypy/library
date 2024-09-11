@@ -574,6 +574,9 @@ data:
     - icon: ':warning:'
       path: enumerate/labeled_tree.hpp
       title: enumerate/labeled_tree.hpp
+    - icon: ':warning:'
+      path: enumerate/maximal_independent_set.hpp
+      title: enumerate/maximal_independent_set.hpp
     - icon: ':heavy_check_mark:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
