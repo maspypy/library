@@ -1,6 +1,7 @@
 #include "graph/ds/static_toptree.hpp"
 
 /*
+https://github.com/maspypy/library/blob/main/graph/ds/stt_dp_memo.png
 rake: (a<-b], (a<-c] -> (a<-b].
 rake2: (a->b], (a<-c] -> (a->b].
 rake3: [a<-b), (a<-c] -> [a<-b). typically rake3==rake.

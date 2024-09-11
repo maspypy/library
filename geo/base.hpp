@@ -79,9 +79,7 @@ struct Line {
   T a, b, c;
 
   Line(T a, T b, T c) : a(a), b(b), c(c) {}
-  Line(Point<T> A, Point<T> B) {
-    a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x;
-  }
+  Line(Point<T> A, Point<T> B) { a = A.y - B.y, b = B.x - A.x, c = A.x * B.y - A.y * B.x; }
   Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 
   template <typename U>
@@ -112,11 +110,9 @@ struct Segment {
   Point<T> A, B;
 
   Segment(Point<T> A, Point<T> B) : A(A), B(B) {}
-  Segment(T x1, T y1, T x2, T y2)
-      : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}
+  Segment(T x1, T y1, T x2, T y2) : Segment(Point<T>(x1, y1), Point<T>(x2, y2)) {}
 
   bool contain(Point<T> C) {
-    static_assert(is_integral<T>::value);
     T det = (C - A).det(B - A);
     if (det != 0) return 0;
     return (C - A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;
@@ -135,52 +131,5 @@ struct Circle {
   bool contain(Point<T> p) {
     REAL dx = p.x - O.x, dy = p.y - O.y;
     return dx * dx + dy * dy <= r * r;
-  }
-};
-
-template <typename T>
-struct Polygon {
-  vc<Point<T>> points;
-  T a;
-
-  template <typename A, typename B>
-  Polygon(vc<pair<A, B>> pairs) {
-    for (auto &&[a, b]: pairs) points.eb(Point<T>(a, b));
-    build();
-  }
-  Polygon(vc<Point<T>> points) : points(points) { build(); }
-
-  int size() { return len(points); }
-
-  template <typename REAL>
-  REAL area() {
-    return a * 0.5;
-  }
-
-  template <enable_if_t<is_integral<T>::value, int> = 0>
-  T area_2() {
-    return a;
-  }
-
-  bool is_convex() {
-    FOR(j, len(points)) {
-      int i = (j == 0 ? len(points) - 1 : j - 1);
-      int k = (j == len(points) - 1 ? 0 : j + 1);
-      if ((points[j] - points[i]).det(points[k] - points[j]) < 0) return false;
-    }
-    return true;
-  }
-
-private:
-  void build() {
-    a = 0;
-    FOR(i, len(points)) {
-      int j = (i + 1 == len(points) ? 0 : i + 1);
-      a += points[i].det(points[j]);
-    }
-    if (a < 0) {
-      a = -a;
-      reverse(all(points));
-    }
   }
 };
