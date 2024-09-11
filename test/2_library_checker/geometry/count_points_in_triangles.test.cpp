@@ -20,7 +20,7 @@ void solve() {
   LL(Q);
   FOR(Q) {
     INT(a, b, c);
-    print(X.query(a, b, c));
+    print(X.count3(a, b, c));
   }
 }
 

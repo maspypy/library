@@ -27,7 +27,7 @@ void test() {
   Count_Points_In_Triangles X(A, B);
   FOR(100) {
     int i = RNG(0, N), j = RNG(0, N), k = RNG(0, N);
-    int me = X.query(i, j, k);
+    int me = X.count3(i, j, k);
     int naive = 0;
     for (auto&& p: B) {
       ll s1 = (A[j] - A[i]).det(p - A[i]);
