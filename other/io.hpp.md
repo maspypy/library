@@ -336,7 +336,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/convex_layers.test.cpp
     title: test/2_library_checker/geometry/convex_layers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1516,6 +1516,9 @@ data:
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2645.test.cpp
+    title: test/3_yukicoder/2645.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2649.test.cpp
     title: test/3_yukicoder/2649.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1533,6 +1536,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2859.test.cpp
+    title: test/3_yukicoder/2859.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/303.test.cpp
     title: test/3_yukicoder/303.test.cpp
@@ -1842,7 +1848,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc127f_1.test.cpp
     title: test/5_atcoder/abc127f_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc139f.test.cpp
     title: test/5_atcoder/abc139f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1851,7 +1857,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc141f.test.cpp
     title: test/5_atcoder/abc141f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc151f.test.cpp
     title: test/5_atcoder/abc151f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1917,7 +1923,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc220f.test.cpp
     title: test/5_atcoder/abc220f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc220g.test.cpp
     title: test/5_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2506,6 +2512,7 @@ data:
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/1502.test.cpp
   - test/3_yukicoder/1752.test.cpp
+  - test/3_yukicoder/2859.test.cpp
   - test/3_yukicoder/1170.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/1303.test.cpp
@@ -2588,6 +2595,7 @@ data:
   - test/3_yukicoder/421.test.cpp
   - test/3_yukicoder/1069.test.cpp
   - test/3_yukicoder/1685.test.cpp
+  - test/3_yukicoder/2645.test.cpp
   - test/3_yukicoder/2507.test.cpp
   - test/3_yukicoder/1323.test.cpp
   - test/3_yukicoder/1320.test.cpp

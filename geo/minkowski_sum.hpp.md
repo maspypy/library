@@ -21,22 +21,22 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/87/problem/E
-  bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
-    \  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n\
-    \  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
-    \ B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const Point p) {\n    x +=\
-    \ p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const Point p) {\n\
-    \    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point p) const\
-    \ { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const { return {x\
-    \ - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x == p.x && y\
-    \ == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y != p.y; }\n\
-    \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
-    \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
-    \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
-    \    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y;\
-    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n\n  double norm()\
-    \ { return sqrtl(x * x + y * y); }\n  double angle() { return atan2(y, x); }\n\
-    \n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+  bundledCode: "#line 2 \"geo/convex_polygon.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
+    \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
+    \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
+    \ A, typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const\
+    \ Point p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
+    \ Point p) {\n    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point\
+    \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
+    \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
+    \ p.x && y == p.y; }\n  bool operator!=(Point p) const { return x != p.x || y\
+    \ != p.y; }\n  Point operator-() const { return {-x, -y}; }\n  Point operator*(T\
+    \ t) const { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x\
+    \ / t, y / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return\
+    \ x < p.x;\n    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x\
+    \ + y * other.y; }\n  T det(Point other) { return x * other.y - y * other.x; }\n\
+    \n  double norm() { return sqrtl(x * x + y * y); }\n  double angle() { return\
+    \ atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
     \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>\
     \ &p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>\
@@ -90,7 +90,7 @@ data:
     \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
     \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
     \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
-    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 3 \"geo/convex_polygon.hpp\"\
+    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 5 \"geo/convex_polygon.hpp\"\
     \n\n// n=2 \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\
     \ntemplate <typename T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int\
     \ n;\n  vc<P> point;\n\n  ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_)\
@@ -146,24 +146,24 @@ data:
     \ T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\
     \n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\n\
     }\r\n#line 4 \"geo/minkowski_sum.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
-    template <typename T>\nConvexPolygon<T> minkowski_sum(ConvexPolygon<T> A, ConvexPolygon<T>\
+    template <typename T>\nvc<Point<T>> minkowski_sum(vc<Point<T>> A, vc<Point<T>>\
     \ B) {\n  using P = Point<T>;\n  vc<P> F;\n  P p(0, 0);\n  FOR(2) {\n    swap(A,\
-    \ B);\n    vc<P> point = A.point;\n    int n = len(point);\n    FOR(i, n) {\n\
-    \      int j = (i + 1) % n;\n      F.eb(point[j] - point[i]);\n    }\n    p =\
-    \ p + MIN(point);\n  }\n  auto I = angle_sort(F);\n  int n = len(I);\n  F = rearrange(F,\
-    \ I);\n  vc<P> point(n);\n  FOR(i, n - 1) point[i + 1] = point[i] + F[i];\n  P\
-    \ add = p - MIN(point);\n  for (auto& x: point) x = x + add;\n  I = ConvexHull(point);\n\
-    \  point = rearrange(point, I);\n  return ConvexPolygon<T>(point, true);\n}\n"
+    \ B);\n    vc<P> point = A;\n    int n = len(point);\n    FOR(i, n) {\n      int\
+    \ j = (i + 1) % n;\n      F.eb(point[j] - point[i]);\n    }\n    p = p + MIN(point);\n\
+    \  }\n  auto I = angle_sort(F);\n  int n = len(I);\n  F = rearrange(F, I);\n \
+    \ vc<P> point(n);\n  FOR(i, n - 1) point[i + 1] = point[i] + F[i];\n  P add =\
+    \ p - MIN(point);\n  for (auto& x: point) x = x + add;\n  I = ConvexHull(point);\n\
+    \  point = rearrange(point, I);\n  return point;\n}\n"
   code: "#include \"geo/convex_polygon.hpp\"\n#include \"geo/angle_sort.hpp\"\n#include\
     \ \"geo/convex_hull.hpp\"\n\n// https://codeforces.com/contest/87/problem/E\n\
-    template <typename T>\nConvexPolygon<T> minkowski_sum(ConvexPolygon<T> A, ConvexPolygon<T>\
+    template <typename T>\nvc<Point<T>> minkowski_sum(vc<Point<T>> A, vc<Point<T>>\
     \ B) {\n  using P = Point<T>;\n  vc<P> F;\n  P p(0, 0);\n  FOR(2) {\n    swap(A,\
-    \ B);\n    vc<P> point = A.point;\n    int n = len(point);\n    FOR(i, n) {\n\
-    \      int j = (i + 1) % n;\n      F.eb(point[j] - point[i]);\n    }\n    p =\
-    \ p + MIN(point);\n  }\n  auto I = angle_sort(F);\n  int n = len(I);\n  F = rearrange(F,\
-    \ I);\n  vc<P> point(n);\n  FOR(i, n - 1) point[i + 1] = point[i] + F[i];\n  P\
-    \ add = p - MIN(point);\n  for (auto& x: point) x = x + add;\n  I = ConvexHull(point);\n\
-    \  point = rearrange(point, I);\n  return ConvexPolygon<T>(point, true);\n}\n"
+    \ B);\n    vc<P> point = A;\n    int n = len(point);\n    FOR(i, n) {\n      int\
+    \ j = (i + 1) % n;\n      F.eb(point[j] - point[i]);\n    }\n    p = p + MIN(point);\n\
+    \  }\n  auto I = angle_sort(F);\n  int n = len(I);\n  F = rearrange(F, I);\n \
+    \ vc<P> point(n);\n  FOR(i, n - 1) point[i + 1] = point[i] + F[i];\n  P add =\
+    \ p - MIN(point);\n  for (auto& x: point) x = x + add;\n  I = ConvexHull(point);\n\
+    \  point = rearrange(point, I);\n  return point;\n}\n"
   dependsOn:
   - geo/convex_polygon.hpp
   - geo/base.hpp
@@ -172,7 +172,7 @@ data:
   isVerificationFile: false
   path: geo/minkowski_sum.hpp
   requiredBy: []
-  timestamp: '2024-09-11 14:08:39+09:00'
+  timestamp: '2024-09-12 07:35:54+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minkowski_sum.hpp

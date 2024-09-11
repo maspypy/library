@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/count_points_in_triangle
@@ -422,13 +422,13 @@ data:
     \ \"test/2_library_checker/geometry/count_points_in_triangles.test.cpp\"\n\nusing\
     \ P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> A(N);\n  FOR(i, N) read(A[i]);\n\
     \  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles\
-    \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b,\
+    \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.count3(a, b,\
     \ c));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/count_points_in_triangle\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"geo/count_points_in_triangles.hpp\"\
     \n\nusing P = Point<ll>;\n\nvoid solve() {\n  LL(N);\n  vc<P> A(N);\n  FOR(i,\
     \ N) read(A[i]);\n  LL(M);\n  vc<P> B(M);\n  FOR(i, M) read(B[i]);\n\n  Count_Points_In_Triangles\
-    \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.query(a, b,\
+    \ X(A, B);\n\n  LL(Q);\n  FOR(Q) {\n    INT(a, b, c);\n    print(X.count3(a, b,\
     \ c));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
@@ -443,8 +443,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2024-09-11 14:08:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-12 07:35:54+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
 layout: document
