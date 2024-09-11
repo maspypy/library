@@ -23,7 +23,7 @@ struct Count_Points_In_Triangles {
     build();
   }
 
-  int query(int i, int j, int k) {
+  int count3(int i, int j, int k) {
     i = new_idx[i], j = new_idx[j], k = new_idx[k];
     if (i > j) swap(i, j);
     if (j > k) swap(j, k);
@@ -35,6 +35,9 @@ struct Count_Points_In_Triangles {
     int x = tri[i][k] - tri[i][j] - tri[j][k];
     return x - seg[i][j] - seg[j][k] - point[j];
   }
+
+  // segment
+  int count2(int i, int j) { return seg[i][j]; }
 
 private:
   P take_origin() {
@@ -71,8 +74,7 @@ private:
       FOR(k, m) C[k] = B[k] - A[j];
       vc<int> I(m);
       FOR(i, m) I[i] = i;
-      sort(all(I),
-           [&](auto& a, auto& b) -> bool { return C[a].det(C[b]) > 0; });
+      sort(all(I), [&](auto& a, auto& b) -> bool { return C[a].det(C[b]) > 0; });
       C = rearrange(C, I);
       vc<int> rk(m);
       FOR(k, m) rk[I[k]] = k;
@@ -82,16 +84,8 @@ private:
       FOR_R(i, j) {
         while (k > 0 && A[i].det(B[k - 1]) > 0) { bit.add(rk[--k], 1); }
         P p = A[i] - A[j];
-        int lb = binary_search(
-            [&](int n) -> bool {
-              return (n == 0 ? true : C[n - 1].det(p) > 0);
-            },
-            0, m + 1);
-        int ub = binary_search(
-            [&](int n) -> bool {
-              return (n == 0 ? true : C[n - 1].det(p) >= 0);
-            },
-            0, m + 1);
+        int lb = binary_search([&](int n) -> bool { return (n == 0 ? true : C[n - 1].det(p) > 0); }, 0, m + 1);
+        int ub = binary_search([&](int n) -> bool { return (n == 0 ? true : C[n - 1].det(p) >= 0); }, 0, m + 1);
         seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);
       }
     }

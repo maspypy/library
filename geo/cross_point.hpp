@@ -46,11 +46,11 @@ int count_cross(Segment<T> S1, Segment<T> S2, bool include_ends) {
   bool ok1 = 0, ok2 = 0;
 
   if (include_ends) {
-    ok1 = (a1 <= 0) && (0 <= b1);
-    ok2 = (a2 <= 0) && (0 <= b2);
+    ok1 = (a1 <= T(0)) && (T(0) <= b1);
+    ok2 = (a2 <= T(0)) && (T(0) <= b2);
   } else {
-    ok1 = (a1 < 0) && (0 < b1);
-    ok2 = (a2 < 0) && (0 < b2);
+    ok1 = (a1 < T(0)) && (T(0) < b1);
+    ok2 = (a2 < T(0)) && (T(0) < b2);
   }
   return (ok1 && ok2 ? 1 : 0);
 }
