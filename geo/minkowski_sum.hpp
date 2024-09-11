@@ -4,13 +4,13 @@
 
 // https://codeforces.com/contest/87/problem/E
 template <typename T>
-ConvexPolygon<T> minkowski_sum(ConvexPolygon<T> A, ConvexPolygon<T> B) {
+vc<Point<T>> minkowski_sum(vc<Point<T>> A, vc<Point<T>> B) {
   using P = Point<T>;
   vc<P> F;
   P p(0, 0);
   FOR(2) {
     swap(A, B);
-    vc<P> point = A.point;
+    vc<P> point = A;
     int n = len(point);
     FOR(i, n) {
       int j = (i + 1) % n;
@@ -27,5 +27,5 @@ ConvexPolygon<T> minkowski_sum(ConvexPolygon<T> A, ConvexPolygon<T> B) {
   for (auto& x: point) x = x + add;
   I = ConvexHull(point);
   point = rearrange(point, I);
-  return ConvexPolygon<T>(point, true);
+  return point;
 }
