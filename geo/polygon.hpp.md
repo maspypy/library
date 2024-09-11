@@ -16,6 +16,7 @@ data:
     links:
     - https://atcoder.jp/contests/JAG2014Spring/tasks/icpc2014spring_f
     - https://atcoder.jp/contests/jag2016-domestic/tasks/jag2016secretspring_e
+    - https://github.com/maspypy/library/blob/main/geo/polygon_side.png
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
     \  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n\
     \  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
@@ -125,10 +126,15 @@ data:
     \       if (A.y > p.y) continue;\n        if (B.y <= p.y) continue;\n        if\
     \ ((A - p).det(B - p) > 0) ++cnt;\n      }\n    }\n    return (cnt % 2 == 0 ?\
     \ -1 : 1);\n  }\n\n  // point[i] \u306E\u8FD1\u508D\u3060\u3051\u3067\u898B\u305F\
-    \ side\n  int side_at(int i, Point<T> p) {\n    p -= point[i];\n    Point<T> L\
-    \ = point[(i + 1) % n] - point[i];\n    Point<T> R = point[(i + n - 1) % n] -\
-    \ point[i];\n  }\n\n  // \u7DDA\u5206\u304C\u5185\u90E8\u30FB\u5916\u90E8\u305D\
-    \u308C\u305E\u308C\u3092\u901A\u308B\u304B\n  // https://atcoder.jp/contests/jag2016-domestic/tasks/jag2016secretspring_e\n\
+    \ side\n  // https://github.com/maspypy/library/blob/main/geo/polygon_side.png\n\
+    \  int side_at(int i, Point<T> p) {\n    int n = len(point);\n    p -= point[i];\n\
+    \    if (p.x == T(0) && p.y == T(0)) return 0;\n    Point<T> L = point[(i + 1)\
+    \ % n] - point[i];\n    Point<T> R = point[(i + n - 1) % n] - point[i];\n    auto\
+    \ sgn = [&](T x) -> int {\n      if (x == T(0)) return 0;\n      return (x > T(0)\
+    \ ? 1 : -1);\n    };\n    int x = sgn(L.det(p)) + sgn(p.det(R)) + sgn(R.det(L));\n\
+    \    if (x == 0) return x;\n    return (x > 0 ? 1 : -1);\n  }\n\n  // \u7DDA\u5206\
+    \u304C\u5185\u90E8\u30FB\u5916\u90E8\u305D\u308C\u305E\u308C\u3092\u901A\u308B\
+    \u304B\n  // https://atcoder.jp/contests/jag2016-domestic/tasks/jag2016secretspring_e\n\
     \  // https://atcoder.jp/contests/JAG2014Spring/tasks/icpc2014spring_f\n  pair<bool,\
     \ bool> side_segment(Point<T> L, Point<T> R) {\n    Segment<T> S(L, R);\n    //\
     \ \u307E\u305A\u7DDA\u5206\u3068\u975E\u81EA\u660E\u306B\u4EA4\u308F\u308B\u30D1\
@@ -137,7 +143,7 @@ data:
     \ { return {1, 1}; }\n    }\n    bool in = 0, out = 0;\n    if (side(L) == 1 ||\
     \ side(R) == 1) in = 1;\n    if (side(L) == -1 || side(R) == -1) out = 1;\n  \
     \  FOR(i, n) {\n      if (!S.contain(point[i])) continue;\n      for (auto& p:\
-    \ {L, R}) {\n        int k = side_at(B, p);\n        if (k == 1) in = 1;\n   \
+    \ {L, R}) {\n        int k = side_at(i, p);\n        if (k == 1) in = 1;\n   \
     \     if (k == -1) out = 1;\n      }\n    }\n    return {in, out};\n  }\n\nprivate:\n\
     \  void build() {\n    a = 0;\n    FOR(i, len(point)) {\n      int j = (i + 1\
     \ == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n    }\n   \
@@ -160,9 +166,13 @@ data:
     \ + 1) % n];\n      FOR(2) {\n        swap(A, B);\n        if (A.y > p.y) continue;\n\
     \        if (B.y <= p.y) continue;\n        if ((A - p).det(B - p) > 0) ++cnt;\n\
     \      }\n    }\n    return (cnt % 2 == 0 ? -1 : 1);\n  }\n\n  // point[i] \u306E\
-    \u8FD1\u508D\u3060\u3051\u3067\u898B\u305F side\n  int side_at(int i, Point<T>\
-    \ p) {\n    p -= point[i];\n    Point<T> L = point[(i + 1) % n] - point[i];\n\
-    \    Point<T> R = point[(i + n - 1) % n] - point[i];\n  }\n\n  // \u7DDA\u5206\
+    \u8FD1\u508D\u3060\u3051\u3067\u898B\u305F side\n  // https://github.com/maspypy/library/blob/main/geo/polygon_side.png\n\
+    \  int side_at(int i, Point<T> p) {\n    int n = len(point);\n    p -= point[i];\n\
+    \    if (p.x == T(0) && p.y == T(0)) return 0;\n    Point<T> L = point[(i + 1)\
+    \ % n] - point[i];\n    Point<T> R = point[(i + n - 1) % n] - point[i];\n    auto\
+    \ sgn = [&](T x) -> int {\n      if (x == T(0)) return 0;\n      return (x > T(0)\
+    \ ? 1 : -1);\n    };\n    int x = sgn(L.det(p)) + sgn(p.det(R)) + sgn(R.det(L));\n\
+    \    if (x == 0) return x;\n    return (x > 0 ? 1 : -1);\n  }\n\n  // \u7DDA\u5206\
     \u304C\u5185\u90E8\u30FB\u5916\u90E8\u305D\u308C\u305E\u308C\u3092\u901A\u308B\
     \u304B\n  // https://atcoder.jp/contests/jag2016-domestic/tasks/jag2016secretspring_e\n\
     \  // https://atcoder.jp/contests/JAG2014Spring/tasks/icpc2014spring_f\n  pair<bool,\
@@ -173,7 +183,7 @@ data:
     \ { return {1, 1}; }\n    }\n    bool in = 0, out = 0;\n    if (side(L) == 1 ||\
     \ side(R) == 1) in = 1;\n    if (side(L) == -1 || side(R) == -1) out = 1;\n  \
     \  FOR(i, n) {\n      if (!S.contain(point[i])) continue;\n      for (auto& p:\
-    \ {L, R}) {\n        int k = side_at(B, p);\n        if (k == 1) in = 1;\n   \
+    \ {L, R}) {\n        int k = side_at(i, p);\n        if (k == 1) in = 1;\n   \
     \     if (k == -1) out = 1;\n      }\n    }\n    return {in, out};\n  }\n\nprivate:\n\
     \  void build() {\n    a = 0;\n    FOR(i, len(point)) {\n      int j = (i + 1\
     \ == len(point) ? 0 : i + 1);\n      a += point[i].det(point[j]);\n    }\n   \
@@ -184,7 +194,7 @@ data:
   isVerificationFile: false
   path: geo/polygon.hpp
   requiredBy: []
-  timestamp: '2024-09-11 14:08:39+09:00'
+  timestamp: '2024-09-11 14:29:40+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/polygon.hpp
