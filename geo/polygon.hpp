@@ -50,10 +50,20 @@ struct Polygon {
   }
 
   // point[i] の近傍だけで見た side
+  // https://github.com/maspypy/library/blob/main/geo/polygon_side.png
   int side_at(int i, Point<T> p) {
+    int n = len(point);
     p -= point[i];
+    if (p.x == T(0) && p.y == T(0)) return 0;
     Point<T> L = point[(i + 1) % n] - point[i];
     Point<T> R = point[(i + n - 1) % n] - point[i];
+    auto sgn = [&](T x) -> int {
+      if (x == T(0)) return 0;
+      return (x > T(0) ? 1 : -1);
+    };
+    int x = sgn(L.det(p)) + sgn(p.det(R)) + sgn(R.det(L));
+    if (x == 0) return x;
+    return (x > 0 ? 1 : -1);
   }
 
   // 線分が内部・外部それぞれを通るか
@@ -73,7 +83,7 @@ struct Polygon {
     FOR(i, n) {
       if (!S.contain(point[i])) continue;
       for (auto& p: {L, R}) {
-        int k = side_at(B, p);
+        int k = side_at(i, p);
         if (k == 1) in = 1;
         if (k == -1) out = 1;
       }
