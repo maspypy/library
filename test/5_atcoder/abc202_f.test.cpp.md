@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc202/tasks/abc202_f
@@ -256,42 +256,29 @@ data:
     \ A, Point<U> B) {\n  REAL dx = REAL(A.x) - REAL(B.x);\n  REAL dy = REAL(A.y)\
     \ - REAL(B.y);\n  return sqrt(dx * dx + dy * dy);\n}\n\n// ax+by+c\ntemplate <typename\
     \ T>\nstruct Line {\n  T a, b, c;\n\n  Line(T a, T b, T c) : a(a), b(b), c(c)\
-    \ {}\n  Line(Point<T> A, Point<T> B) {\n    a = A.y - B.y, b = B.x - A.x, c =\
-    \ A.x * B.y - A.y * B.x;\n  }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1,\
-    \ y1), Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n\
-    \    return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U\
-    \ x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\
-    \u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\
-    \u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T,\
+    \ {}\n  Line(Point<T> A, Point<T> B) { a = A.y - B.y, b = B.x - A.x, c = A.x *\
+    \ B.y - A.y * B.x; }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n  \
+    \  return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x,\
+    \ U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\
+    \u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\
+    \u308B\n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T,\
     \ long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /=\
     \ g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n    if (b == 0 && a\
     \ < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line other) { return\
     \ a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line other) { return\
     \ a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment\
     \ {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n \
-    \ Segment(T x1, T y1, T x2, T y2)\n      : Segment(Point<T>(x1, y1), Point<T>(x2,\
-    \ y2)) {}\n\n  bool contain(Point<T> C) {\n    static_assert(is_integral<T>::value);\n\
-    \    T det = (C - A).det(B - A);\n    if (det != 0) return 0;\n    return (C -\
-    \ A).dot(B - A) >= 0 && (C - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() {\
-    \ return Line(A, B); }\n};\n\ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL>\
-    \ O;\n  REAL r;\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL\
-    \ x, REAL y, REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
-    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
-    \ <= r * r;\n  }\n};\n\ntemplate <typename T>\nstruct Polygon {\n  vc<Point<T>>\
-    \ points;\n  T a;\n\n  template <typename A, typename B>\n  Polygon(vc<pair<A,\
-    \ B>> pairs) {\n    for (auto &&[a, b]: pairs) points.eb(Point<T>(a, b));\n  \
-    \  build();\n  }\n  Polygon(vc<Point<T>> points) : points(points) { build(); }\n\
-    \n  int size() { return len(points); }\n\n  template <typename REAL>\n  REAL area()\
-    \ {\n    return a * 0.5;\n  }\n\n  template <enable_if_t<is_integral<T>::value,\
-    \ int> = 0>\n  T area_2() {\n    return a;\n  }\n\n  bool is_convex() {\n    FOR(j,\
-    \ len(points)) {\n      int i = (j == 0 ? len(points) - 1 : j - 1);\n      int\
-    \ k = (j == len(points) - 1 ? 0 : j + 1);\n      if ((points[j] - points[i]).det(points[k]\
-    \ - points[j]) < 0) return false;\n    }\n    return true;\n  }\n\nprivate:\n\
-    \  void build() {\n    a = 0;\n    FOR(i, len(points)) {\n      int j = (i + 1\
-    \ == len(points) ? 0 : i + 1);\n      a += points[i].det(points[j]);\n    }\n\
-    \    if (a < 0) {\n      a = -a;\n      reverse(all(points));\n    }\n  }\n};\n\
-    #line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\
-    \u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
+    \ Segment(T x1, T y1, T x2, T y2) : Segment(Point<T>(x1, y1), Point<T>(x2, y2))\
+    \ {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if\
+    \ (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A -\
+    \ B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
+    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
+    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
+    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
+    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
+    \ 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
+    \u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
     \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
     \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
     \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
@@ -415,37 +402,37 @@ data:
     \u308B B[k] \u306E\u6570\u3048\u4E0A\u3052\n  Count_Points_In_Triangles(const\
     \ vc<P>& A, const vc<P>& B) : A(A), B(B) {\n    for (auto&& p: A) assert(max(abs(p.x),\
     \ abs(p.y)) < LIM);\n    for (auto&& p: B) assert(max(abs(p.x), abs(p.y)) < LIM);\n\
-    \    build();\n  }\n\n  int query(int i, int j, int k) {\n    i = new_idx[i],\
+    \    build();\n  }\n\n  int count3(int i, int j, int k) {\n    i = new_idx[i],\
     \ j = new_idx[j], k = new_idx[k];\n    if (i > j) swap(i, j);\n    if (j > k)\
     \ swap(j, k);\n    if (i > j) swap(i, j);\n    assert(i <= j && j <= k);\n   \
     \ ll d = (A[j] - A[i]).det(A[k] - A[i]);\n    if (d == 0) return 0;\n    if (d\
     \ > 0) { return tri[i][j] + tri[j][k] - tri[i][k] - seg[i][k]; }\n    int x =\
     \ tri[i][k] - tri[i][j] - tri[j][k];\n    return x - seg[i][j] - seg[j][k] - point[j];\n\
-    \  }\n\nprivate:\n  P take_origin() {\n    // OAiAj, OAiBj \u304C\u540C\u4E00\u76F4\
-    \u7DDA\u4E0A\u306B\u306A\u3089\u306A\u3044\u3088\u3046\u306B\u3059\u308B\n   \
-    \ // fail prob: at most N(N+M)/LIM\n    return P{-LIM, RNG(-LIM, LIM)};\n  }\n\
-    \n  void build() {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n\
-    \    for (auto&& p: B) p = p - O;\n    int N = len(A), M = len(B);\n    vc<int>\
-    \ I = angle_sort(A);\n    A = rearrange(A, I);\n    new_idx.resize(N);\n    FOR(i,\
-    \ N) new_idx[I[i]] = i;\n\n    I = angle_sort(B);\n    B = rearrange(B, I);\n\n\
-    \    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n    tri.assign(N, vc<int>(N));\n\
-    \n    // point\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++ point[i];\n\n    int\
-    \ m = 0;\n    FOR(j, N) {\n      // OA[i]A[j], B[k]\n      while (m < M && A[j].det(B[m])\
+    \  }\n\n  // segment\n  int count2(int i, int j) { return seg[i][j]; }\n\nprivate:\n\
+    \  P take_origin() {\n    // OAiAj, OAiBj \u304C\u540C\u4E00\u76F4\u7DDA\u4E0A\
+    \u306B\u306A\u3089\u306A\u3044\u3088\u3046\u306B\u3059\u308B\n    // fail prob:\
+    \ at most N(N+M)/LIM\n    return P{-LIM, RNG(-LIM, LIM)};\n  }\n\n  void build()\
+    \ {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n    for (auto&&\
+    \ p: B) p = p - O;\n    int N = len(A), M = len(B);\n    vc<int> I = angle_sort(A);\n\
+    \    A = rearrange(A, I);\n    new_idx.resize(N);\n    FOR(i, N) new_idx[I[i]]\
+    \ = i;\n\n    I = angle_sort(B);\n    B = rearrange(B, I);\n\n    point.assign(N,\
+    \ 0);\n    seg.assign(N, vc<int>(N));\n    tri.assign(N, vc<int>(N));\n\n    //\
+    \ point\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++ point[i];\n\n    int m =\
+    \ 0;\n    FOR(j, N) {\n      // OA[i]A[j], B[k]\n      while (m < M && A[j].det(B[m])\
     \ < 0) ++m;\n      vc<P> C(m);\n      FOR(k, m) C[k] = B[k] - A[j];\n      vc<int>\
-    \ I(m);\n      FOR(i, m) I[i] = i;\n      sort(all(I),\n           [&](auto& a,\
-    \ auto& b) -> bool { return C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n\
-    \      vc<int> rk(m);\n      FOR(k, m) rk[I[k]] = k;\n      FenwickTree_01 bit(m);\n\
-    \n      int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k\
-    \ - 1]) > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int\
-    \ lb = binary_search(\n            [&](int n) -> bool {\n              return\
-    \ (n == 0 ? true : C[n - 1].det(p) > 0);\n            },\n            0, m + 1);\n\
-    \        int ub = binary_search(\n            [&](int n) -> bool {\n         \
-    \     return (n == 0 ? true : C[n - 1].det(p) >= 0);\n            },\n       \
-    \     0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
-    \      }\n    }\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ I(m);\n      FOR(i, m) I[i] = i;\n      sort(all(I), [&](auto& a, auto& b) ->\
+    \ bool { return C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n      vc<int>\
+    \ rk(m);\n      FOR(k, m) rk[I[k]] = k;\n      FenwickTree_01 bit(m);\n\n    \
+    \  int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k - 1])\
+    \ > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int lb =\
+    \ binary_search([&](int n) -> bool { return (n == 0 ? true : C[n - 1].det(p) >\
+    \ 0); }, 0, m + 1);\n        int ub = binary_search([&](int n) -> bool { return\
+    \ (n == 0 ? true : C[n - 1].det(p) >= 0); }, 0, m + 1);\n        seg[i][j] +=\
+    \ bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n      }\n    }\n  }\n};\n#line 2\
+    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
+    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -581,8 +568,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2024-08-14 01:08:02+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-11 14:08:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc202_f.test.cpp
 layout: document

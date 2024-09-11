@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://github.com/maspypy/library/blob/main/graph/ds/stt_dp_memo.png
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
     \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
     \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
@@ -228,9 +229,10 @@ data:
     \        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two();\
     \ }\n        else break;\n      }\n    }\n    while (len(stack) >= 2) { merge_last_two();\
     \ }\n    return POP(stack);\n  }\n};\n#line 2 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
-    \n\n/*\nrake: (a<-b], (a<-c] -> (a<-b].\nrake2: (a->b], (a<-c] -> (a->b].\nrake3:\
-    \ [a<-b), (a<-c] -> [a<-b). typically rake3==rake.\ncompress: (a<-b], (b<-c] ->\
-    \ (a<-c].\ncompress2: [a<-b), [b<-c) -> [a<-c). typically compress2(L,R) == compress(R,L).\n\
+    \n\n/*\nhttps://github.com/maspypy/library/blob/main/graph/ds/stt_dp_memo.png\n\
+    rake: (a<-b], (a<-c] -> (a<-b].\nrake2: (a->b], (a<-c] -> (a->b].\nrake3: [a<-b),\
+    \ (a<-c] -> [a<-b). typically rake3==rake.\ncompress: (a<-b], (b<-c] -> (a<-c].\n\
+    compress2: [a<-b), [b<-c) -> [a<-c). typically compress2(L,R) == compress(R,L).\n\
     */\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_Dp\
     \ {\n  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n\
     \  vc<pair<X, X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_Dp(TREE&\
@@ -254,32 +256,33 @@ data:
     \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(L2,\
     \ R2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::rake2(L2,\
     \ R1)};\n    }\n  }\n};\n"
-  code: "#include \"graph/ds/static_toptree.hpp\"\n\n/*\nrake: (a<-b], (a<-c] -> (a<-b].\n\
-    rake2: (a->b], (a<-c] -> (a->b].\nrake3: [a<-b), (a<-c] -> [a<-b). typically rake3==rake.\n\
-    compress: (a<-b], (b<-c] -> (a<-c].\ncompress2: [a<-b), [b<-c) -> [a<-c). typically\
-    \ compress2(L,R) == compress(R,L).\n*/\ntemplate <typename TREE, typename TREE_DP>\n\
-    struct Dynamic_Rerooting_Tree_Dp {\n  using X = typename TREE_DP::value_type;\n\
-    \  Static_TopTree<TREE> STT;\n  vc<pair<X, X>> dp;\n\n  template <typename F>\n\
-    \  Dynamic_Rerooting_Tree_Dp(TREE& tree, F f) : STT(tree) {\n    assert(tree.V[0]\
-    \ == 0); // \u3055\u307C\u308A\n    int N = tree.N;\n    dp.resize(2 * N - 1);\n\
-    \    dp[0].fi = dp[0].se = TREE_DP::unit();\n    FOR(i, 1, N) dp[i] = f(i);\n\
-    \    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  // v \u3068\u89AA\u3092\u7D50\u3076\
-    \u8FBA. \u89AA\u304C virtual / \u5B50\u304C virtual\n  void set(int v, pair<X,\
-    \ X> x) {\n    assert(v > 0);\n    dp[v] = x;\n    for (int i = STT.par[v]; i\
-    \ != -1; i = STT.par[i]) update(i);\n  }\n\n  X prod_all(int v) {\n    int i =\
-    \ v;\n    X a = dp[i].se, b = TREE_DP::unit(), c = TREE_DP::unit();\n    while\
-    \ (1) {\n      int p = STT.par[i];\n      if (p == -1) break;\n      int l = STT.lch[p],\
-    \ r = STT.rch[p];\n      if (STT.is_compress[p]) {\n        if (l == i) {\n  \
-    \        b = TREE_DP::compress(b, dp[r].fi);\n        } else {\n          a =\
-    \ TREE_DP::compress2(dp[l].se, a);\n        }\n      } else {\n        if (STT.lch[p]\
-    \ == i) {\n          a = TREE_DP::rake2(a, dp[r].fi);\n        } else {\n    \
-    \      a = TREE_DP::rake3(a, b);\n          c = TREE_DP::compress2(a, c);\n  \
-    \        a = TREE_DP::unit(), b = dp[l].fi;\n        }\n      }\n      i = p;\n\
-    \    }\n    a = TREE_DP::rake3(a, b);\n    return TREE_DP::compress2(a, c);\n\
-    \  }\n\nprivate:\n  inline void update(int i) {\n    auto& [L1, L2] = dp[STT.lch[i]];\n\
-    \    auto& [R1, R2] = dp[STT.rch[i]];\n    if (STT.is_compress[i]) {\n      dp[i]\
-    \ = {TREE_DP::compress(L1, R1), TREE_DP::compress2(L2, R2)};\n    } else {\n \
-    \     dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::rake2(L2, R1)};\n    }\n  }\n};\n"
+  code: "#include \"graph/ds/static_toptree.hpp\"\n\n/*\nhttps://github.com/maspypy/library/blob/main/graph/ds/stt_dp_memo.png\n\
+    rake: (a<-b], (a<-c] -> (a<-b].\nrake2: (a->b], (a<-c] -> (a->b].\nrake3: [a<-b),\
+    \ (a<-c] -> [a<-b). typically rake3==rake.\ncompress: (a<-b], (b<-c] -> (a<-c].\n\
+    compress2: [a<-b), [b<-c) -> [a<-c). typically compress2(L,R) == compress(R,L).\n\
+    */\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_Dp\
+    \ {\n  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n\
+    \  vc<pair<X, X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_Dp(TREE&\
+    \ tree, F f) : STT(tree) {\n    assert(tree.V[0] == 0); // \u3055\u307C\u308A\n\
+    \    int N = tree.N;\n    dp.resize(2 * N - 1);\n    dp[0].fi = dp[0].se = TREE_DP::unit();\n\
+    \    FOR(i, 1, N) dp[i] = f(i);\n    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n\
+    \  // v \u3068\u89AA\u3092\u7D50\u3076\u8FBA. \u89AA\u304C virtual / \u5B50\u304C\
+    \ virtual\n  void set(int v, pair<X, X> x) {\n    assert(v > 0);\n    dp[v] =\
+    \ x;\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) update(i);\n  }\n\n\
+    \  X prod_all(int v) {\n    int i = v;\n    X a = dp[i].se, b = TREE_DP::unit(),\
+    \ c = TREE_DP::unit();\n    while (1) {\n      int p = STT.par[i];\n      if (p\
+    \ == -1) break;\n      int l = STT.lch[p], r = STT.rch[p];\n      if (STT.is_compress[p])\
+    \ {\n        if (l == i) {\n          b = TREE_DP::compress(b, dp[r].fi);\n  \
+    \      } else {\n          a = TREE_DP::compress2(dp[l].se, a);\n        }\n \
+    \     } else {\n        if (STT.lch[p] == i) {\n          a = TREE_DP::rake2(a,\
+    \ dp[r].fi);\n        } else {\n          a = TREE_DP::rake3(a, b);\n        \
+    \  c = TREE_DP::compress2(a, c);\n          a = TREE_DP::unit(), b = dp[l].fi;\n\
+    \        }\n      }\n      i = p;\n    }\n    a = TREE_DP::rake3(a, b);\n    return\
+    \ TREE_DP::compress2(a, c);\n  }\n\nprivate:\n  inline void update(int i) {\n\
+    \    auto& [L1, L2] = dp[STT.lch[i]];\n    auto& [R1, R2] = dp[STT.rch[i]];\n\
+    \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(L2,\
+    \ R2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::rake2(L2,\
+    \ R1)};\n    }\n  }\n};\n"
   dependsOn:
   - graph/ds/static_toptree.hpp
   - graph/tree.hpp
@@ -287,7 +290,7 @@ data:
   isVerificationFile: false
   path: graph/ds/dynamic_rerooting_tree_dp.hpp
   requiredBy: []
-  timestamp: '2024-09-03 14:57:04+09:00'
+  timestamp: '2024-09-11 14:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -13,16 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -422,9 +422,10 @@ data:
     \        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two();\
     \ }\n        else break;\n      }\n    }\n    while (len(stack) >= 2) { merge_last_two();\
     \ }\n    return POP(stack);\n  }\n};\n#line 2 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
-    \n\n/*\nrake: (a<-b], (a<-c] -> (a<-b].\nrake2: (a->b], (a<-c] -> (a->b].\nrake3:\
-    \ [a<-b), (a<-c] -> [a<-b). typically rake3==rake.\ncompress: (a<-b], (b<-c] ->\
-    \ (a<-c].\ncompress2: [a<-b), [b<-c) -> [a<-c). typically compress2(L,R) == compress(R,L).\n\
+    \n\n/*\nhttps://github.com/maspypy/library/blob/main/graph/ds/stt_dp_memo.png\n\
+    rake: (a<-b], (a<-c] -> (a<-b].\nrake2: (a->b], (a<-c] -> (a->b].\nrake3: [a<-b),\
+    \ (a<-c] -> [a<-b). typically rake3==rake.\ncompress: (a<-b], (b<-c] -> (a<-c].\n\
+    compress2: [a<-b), [b<-c) -> [a<-c). typically compress2(L,R) == compress(R,L).\n\
     */\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Rerooting_Tree_Dp\
     \ {\n  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n\
     \  vc<pair<X, X>> dp;\n\n  template <typename F>\n  Dynamic_Rerooting_Tree_Dp(TREE&\
@@ -584,7 +585,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-09-04 01:38:06+09:00'
+  timestamp: '2024-09-11 14:08:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
