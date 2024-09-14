@@ -2,7 +2,8 @@
 #include "ds/splaytree/splaytree_basic.hpp"
 #include "graph/planar_graph.hpp"
 
-vc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<ll>> point) {
+template <typename T>
+vc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>> point) {
   int N = len(point);
   int rot = min_element(all(point)) - point.begin();
   rotate(point.begin(), point.begin() + rot, point.end());
@@ -47,8 +48,9 @@ vc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<ll>> point) {
 }
 
 // (i,j,k), ccw
-vc<tuple<int, int, int>> polygon_triangulation(vc<Point<ll>> point) {
-  using P = Point<ll>;
+template <typename T>
+vc<tuple<int, int, int>> polygon_triangulation(vc<Point<T>> point) {
+  using P = Point<T>;
   int N = len(point);
   enum vtype { MERGE, SPLIT, START, END, UPPER, LOWER };
   auto pre = [&](int i) -> int { return (i > 0 ? i - 1 : N - 1); };
@@ -74,7 +76,7 @@ vc<tuple<int, int, int>> polygon_triangulation(vc<Point<ll>> point) {
   vc<int> helper(N, -1);
   vc<bool> merged(N);
 
-  Planar_Graph<ll> G(N, point);
+  Planar_Graph<T> G(N, point);
   FOR(i, N) G.add(i, nxt(i));
 
   auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v, w); };
