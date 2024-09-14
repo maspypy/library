@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -159,30 +159,29 @@ data:
     \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
     \ constexpr X unit() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
     \ = 1;\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
-    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n              \
-    \       chrono::high_resolution_clock::now().time_since_epoch())\n           \
-    \          .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n \
-    \ return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kdtree_monoid.test.cpp\"\
-    \n\nvoid test() {\n  ll LIM = RNG(1, 100);\n  int N = RNG(1, 100);\n  using MX\
-    \ = Monoid_SumMax<int>;\n\n  vc<int> dat[100][100];\n\n  vc<int> X, Y;\n  vc<typename\
-    \ MX::value_type> val;\n  FOR(i, N) {\n    int x = RNG(0, LIM);\n    int y = RNG(0,\
-    \ LIM);\n    int v = RNG(0, 100);\n    dat[x][y].eb(v);\n    X.eb(x), Y.eb(y),\
-    \ val.eb(v, v);\n  }\n  KDTree_Monoid<MX, int> KDT(X, Y, val);\n\n  int Q = 100;\n\
-    \  FOR(Q) {\n    int t = RNG(0, 3);\n    int xl = RNG(0, LIM), xr = RNG(0, LIM),\
-    \ yl = RNG(0, LIM), yr = RNG(0, LIM);\n    if (xl > xr) swap(xl, xr);\n    if\
-    \ (yl > yr) swap(yl, yr);\n    if (t == 0) {\n      // multiply\n      int k =\
-    \ RNG(0, N);\n      int x = X[k], y = Y[k];\n      int v = RNG(0, 100);\n    \
-    \  dat[x][y].eb(v);\n      KDT.multiply(x, y, {v, v});\n    }\n    if (t == 1)\
-    \ {\n      // prod\n      int sm = 0, mx = MX::unit().se;\n      FOR(i, xl, xr)\
-    \ FOR(j, yl, yr) {\n        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n\
-    \      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm\
-    \ && res.se == mx);\n    }\n    if (t == 2) {\n      // prod all\n      int sm\
-    \ = 0, mx = MX::unit().se;\n      FOR(i, LIM) FOR(j, LIM) {\n        for (auto&&\
-    \ x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto res = KDT.prod_all();\n\
-    \      assert(res.fi == sm && res.se == mx);\n    }\n  }\n}\n\nvoid solve() {\n\
-    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
+    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kdtree_monoid.test.cpp\"\n\n\
+    void test() {\n  ll LIM = RNG(1, 100);\n  int N = RNG(1, 100);\n  using MX = Monoid_SumMax<int>;\n\
+    \n  vc<int> dat[100][100];\n\n  vc<int> X, Y;\n  vc<typename MX::value_type> val;\n\
+    \  FOR(i, N) {\n    int x = RNG(0, LIM);\n    int y = RNG(0, LIM);\n    int v\
+    \ = RNG(0, 100);\n    dat[x][y].eb(v);\n    X.eb(x), Y.eb(y), val.eb(v, v);\n\
+    \  }\n  KDTree_Monoid<MX, int> KDT(X, Y, val);\n\n  int Q = 100;\n  FOR(Q) {\n\
+    \    int t = RNG(0, 3);\n    int xl = RNG(0, LIM), xr = RNG(0, LIM), yl = RNG(0,\
+    \ LIM), yr = RNG(0, LIM);\n    if (xl > xr) swap(xl, xr);\n    if (yl > yr) swap(yl,\
+    \ yr);\n    if (t == 0) {\n      // multiply\n      int k = RNG(0, N);\n     \
+    \ int x = X[k], y = Y[k];\n      int v = RNG(0, 100);\n      dat[x][y].eb(v);\n\
+    \      KDT.multiply(x, y, {v, v});\n    }\n    if (t == 1) {\n      // prod\n\
+    \      int sm = 0, mx = MX::unit().se;\n      FOR(i, xl, xr) FOR(j, yl, yr) {\n\
+    \        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto\
+    \ res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm && res.se == mx);\n\
+    \    }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::unit().se;\n\
+    \      FOR(i, LIM) FOR(j, LIM) {\n        for (auto&& x: dat[i][j]) sm += x, chmax(mx,\
+    \ x);\n      }\n      auto res = KDT.prod_all();\n      assert(res.fi == sm &&\
+    \ res.se == mx);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n\
+    \  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"ds/kdtree/kdtree_monoid.hpp\"\n#include \"alg/monoid/summax.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  ll LIM = RNG(1, 100);\n  int\
@@ -212,8 +211,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_monoid.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_monoid.test.cpp
 layout: document

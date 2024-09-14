@@ -104,19 +104,18 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add_chmin.hpp\"\
-    \n\n// min(x+a,b) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate\
-    \ <typename E>\nstruct Monoid_Add_Chmin {\n  using value_type = pair<E, E>;\n\
-    \  using X = value_type;\n\n  static X op(X x, X y) {\n    auto [a, b] = x;\n\
-    \    auto [d, e] = y;\n    a = a + d;\n    b = (b == infty<E> ? b : b + d);\n\
-    \    b = min(b, e);\n    return {a, b};\n  }\n\n  static E eval(X f, E x) { return\
-    \ min(x + f.fi, f.se); }\n\n  static X add(E a) { return {a, infty<E>}; }\n  static\
-    \ X chmin(E b) { return {0, b}; }\n\n  static constexpr X unit() { return {0,\
-    \ infty<E>}; }\n  static constexpr bool commute = 0;\n};\n#line 5 \"test/1_mytest/add_chmin.test.cpp\"\
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 2 \"alg/monoid/add_chmin.hpp\"\n\n// min(x+a,b)\
+    \ \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate <typename E>\n\
+    struct Monoid_Add_Chmin {\n  using value_type = pair<E, E>;\n  using X = value_type;\n\
+    \n  static X op(X x, X y) {\n    auto [a, b] = x;\n    auto [d, e] = y;\n    a\
+    \ = a + d;\n    b = (b == infty<E> ? b : b + d);\n    b = min(b, e);\n    return\
+    \ {a, b};\n  }\n\n  static E eval(X f, E x) { return min(x + f.fi, f.se); }\n\n\
+    \  static X add(E a) { return {a, infty<E>}; }\n  static X chmin(E b) { return\
+    \ {0, b}; }\n\n  static constexpr X unit() { return {0, infty<E>}; }\n  static\
+    \ constexpr bool commute = 0;\n};\n#line 5 \"test/1_mytest/add_chmin.test.cpp\"\
     \n\nvoid test() {\n  int N = RNG(1, 100);\n  vc<int> X(N);\n  FOR(i, N) X[i] =\
     \ RNG(-100, 100);\n  vc<int> Y = X;\n  int Q = RNG(0, 10);\n  using Mono = Monoid_Add_Chmin<int>;\n\
     \  using F = typename Mono::value_type;\n  F f = Mono::unit();\n\n  FOR(Q) {\n\
@@ -144,7 +143,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/add_chmin.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/add_chmin.test.cpp

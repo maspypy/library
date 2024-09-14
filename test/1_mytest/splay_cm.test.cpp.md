@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_commutative_monoid.hpp
     title: ds/splaytree/splaytree_commutative_monoid.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -352,13 +352,12 @@ data:
     \ }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate <typename\
     \ Monoid>\nusing SplayTree_Commutative_Monoid = SplayTree<Node_CM<Monoid>>;\n\
     } // namespace SplayTreeNodes\n\nusing SplayTreeNodes::SplayTree_Commutative_Monoid;\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/splay_cm.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Add<int>;\n\
-    \n  FOR(1000) {\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    SplayTree_Commutative_Monoid<Mono>\
+    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/splay_cm.test.cpp\"\n\nusing\
+    \ mint = modint998;\n\nvoid test() {\n  using Mono = Monoid_Add<int>;\n\n  FOR(1000)\
+    \ {\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    SplayTree_Commutative_Monoid<Mono>\
     \ X(N);\n    using np = decltype(X)::np;\n    vc<int> A(N);\n    FOR(i, N) A[i]\
     \ = RNG(0, 100);\n    np root = X.new_node(A);\n\n    FOR(Q) {\n      vc<int>\
     \ cand = {0, 1, 2, 3, 4, 5};\n      int t = cand[RNG(0, len(cand))];\n      if\
@@ -409,8 +408,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/splay_cm.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:35:35+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/splay_cm.test.cpp
 layout: document

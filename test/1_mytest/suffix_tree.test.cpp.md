@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min_idx.hpp
     title: alg/monoid/min_idx.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -22,20 +22,20 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -128,48 +128,47 @@ data:
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/suffix_tree.test.cpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"string/suffix_tree.hpp\"\
-    \n\n#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\n\r\n\
-    template <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
-    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
-    \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
-    \ bool commute = true;\r\n};\r\n#line 2 \"ds/sparse_table/sparse_table.hpp\"\n\
-    \n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\u30C9\u3067\u3042\u308B\u3053\u3068\u3092\
-    \u4EEE\u5B9A\u3002disjoint sparse table \u3088\u308A x \u500D\u9AD8\u901F\ntemplate\
-    \ <class Monoid>\nstruct Sparse_Table {\n  using MX = Monoid;\n  using X = typename\
-    \ MX::value_type;\n  int n, log;\n  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int\
-    \ n) { build(n); }\n  template <typename F>\n  Sparse_Table(int n, F f) {\n  \
-    \  build(n, f);\n  }\n  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i,\
-    \ n) dat[0][i] = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i])\
-    \ - (1 << i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j]\
-    \ = MX::op(dat[i][j], dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int\
-    \ L, int R) {\n    if (L == R) return MX::unit();\n    if (R == L + 1) return\
-    \ dat[0][L];\n    int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R\
-    \ - (1 << k)]);\n  }\n\n  template <class F>\n  int max_right(const F check, int\
-    \ L) {\n    assert(0 <= L && L <= n && check(MX::unit()));\n    if (L == n) return\
-    \ n;\n    int ok = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok\
-    \ + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n    \
-    \  if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int\
-    \ min_left(const F check, int R) {\n    assert(0 <= R && R <= n && check(MX::unit()));\n\
-    \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
-    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
-    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line\
-    \ 5 \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E\
-    \ suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\u3068\
-    \u304D\u3001\n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\
-    \u3046\u3067\u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\
-    \u3066\u5229\u7528\u305B\u3088\uFF09\nstruct Suffix_Array {\n  vc<int> SA;\n \
-    \ vc<int> ISA;\n  vc<int> LCP;\n  Sparse_Table<Monoid_Min<int>> seg;\n  bool build_seg;\n\
-    \n  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n \
-    \   char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"string/suffix_tree.hpp\"\n\n#line 2 \"string/suffix_array.hpp\"\
+    \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
+    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
+    \ X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
+    \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
+    \ 2 \"ds/sparse_table/sparse_table.hpp\"\n\n// \u51AA\u7B49\u306A\u30E2\u30CE\u30A4\
+    \u30C9\u3067\u3042\u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3002disjoint sparse table\
+    \ \u3088\u308A x \u500D\u9AD8\u901F\ntemplate <class Monoid>\nstruct Sparse_Table\
+    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  int n, log;\n\
+    \  vvc<X> dat;\n\n  Sparse_Table() {}\n  Sparse_Table(int n) { build(n); }\n \
+    \ template <typename F>\n  Sparse_Table(int n, F f) {\n    build(n, f);\n  }\n\
+    \  Sparse_Table(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m,\
+    \ [](int i) -> X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n\
+    \    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1 << log) <\
+    \ n) ++log;\n    dat.resize(log);\n    dat[0].resize(n);\n    FOR(i, n) dat[0][i]\
+    \ = f(i);\n\n    FOR(i, log - 1) {\n      dat[i + 1].resize(len(dat[i]) - (1 <<\
+    \ i));\n      FOR(j, len(dat[i]) - (1 << i)) {\n        dat[i + 1][j] = MX::op(dat[i][j],\
+    \ dat[i][j + (1 << i)]);\n      }\n    }\n  }\n\n  X prod(int L, int R) {\n  \
+    \  if (L == R) return MX::unit();\n    if (R == L + 1) return dat[0][L];\n   \
+    \ int k = topbit(R - L - 1);\n    return MX::op(dat[k][L], dat[k][R - (1 << k)]);\n\
+    \  }\n\n  template <class F>\n  int max_right(const F check, int L) {\n    assert(0\
+    \ <= L && L <= n && check(MX::unit()));\n    if (L == n) return n;\n    int ok\
+    \ = L, ng = n + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n\
+    \      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng\
+    \ = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const\
+    \ F check, int R) {\n    assert(0 <= R && R <= n && check(MX::unit()));\n    if\
+    \ (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n  \
+    \    int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl)\
+    \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 5 \"\
+    string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E suffix\
+    \ \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\u3068\u304D\u3001\
+    \n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\u3046\u3067\
+    \u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\u3066\u5229\
+    \u7528\u305B\u3088\uFF09\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n\
+    \  vc<int> LCP;\n  Sparse_Table<Monoid_Min<int>> seg;\n  bool build_seg;\n\n \
+    \ Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n   \
+    \ char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
     \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
     \   calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n  \
     \  assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
@@ -509,8 +508,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/suffix_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/suffix_tree.test.cpp
 layout: document

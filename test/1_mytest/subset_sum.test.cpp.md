@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -306,13 +306,12 @@ data:
     \ mi) return subset_sum_solution_1(vals, target);\n  if (x2 == mi) return subset_sum_solution_2(vals,\
     \ target);\n  if (x3 == mi) return subset_sum_solution_3(vals, target);\n  return\
     \ subset_sum_solution_4(vals, target);\n}\n#line 2 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/subset_sum.test.cpp\"\
-    \n\nvoid test() {\n  FOR(10) {\n    FOR(N, 10) {\n      vc<int> A(N);\n      FOR(i,\
-    \ N) A[i] = RNG(0, 100);\n      FOR(s, 1, 500) {\n        vc<int> I1 = subset_sum_solution_1<int>(A,\
+    \ RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/subset_sum.test.cpp\"\n\nvoid\
+    \ test() {\n  FOR(10) {\n    FOR(N, 10) {\n      vc<int> A(N);\n      FOR(i, N)\
+    \ A[i] = RNG(0, 100);\n      FOR(s, 1, 500) {\n        vc<int> I1 = subset_sum_solution_1<int>(A,\
     \ s);\n        vc<int> I2 = subset_sum_solution_2<int>(A, s);\n        vc<int>\
     \ I3 = subset_sum_solution_3<int>(A, s);\n        vc<int> I4 = subset_sum_solution_4<int>(A,\
     \ s);\n        vc<int> I5 = subset_sum_solution_4<int>(A, s);\n        if (I1.empty())\
@@ -346,8 +345,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-09-10 11:20:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/subset_sum.test.cpp
 layout: document

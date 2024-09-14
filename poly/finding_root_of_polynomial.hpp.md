@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,34 +13,34 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
   - icon: ':question:'
@@ -48,12 +48,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -412,25 +412,24 @@ data:
     \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
     \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
     \n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      =\
-    \ uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"poly/finding_root_of_polynomial.hpp\"\
-    \n\n// F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\
-    \u9806\u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate\
-    \ <typename mint>\nvc<mint> finding_root_of_polynomial(vc<mint> F) {\n  while\
-    \ (len(F) && F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int\
-    \ p = mint::get_mod();\n  assert(p % 2 == 1);\n\n  vc<mint> g = {0, 1};\n  g =\
-    \ poly_mod_pow(g, p, F);\n  if (len(g) <= 2) g.resize(2);\n  g[1] -= 1;\n  F =\
-    \ poly_gcd(F, g);\n\n  // F \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\
-    \u7A4D\n  vc<mint> ANS;\n  auto dfs = [&](auto& dfs, vc<mint> F) -> void {\n \
-    \   if (len(F) == 1) return;\n    if (len(F) == 2) {\n      mint a = F[0], b =\
-    \ F[1];\n      // a+bx=0\n      ANS.eb((-a) / b);\n      return;\n    }\n    vc<mint>\
-    \ g(2);\n    g[0] = RNG(0, p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g, (p\
-    \ - 1) / 2, F);\n    if (h.empty()) { return dfs(dfs, F); }\n    h[0] -= 1;\n\
-    \    vc<mint> f1 = poly_gcd(F, h);\n    vc<mint> f2 = poly_divmod(F, f1).fi;\n\
-    \    dfs(dfs, f1), dfs(dfs, f2);\n  };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return\
-    \ ANS;\n}\n"
+    \ uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 4 \"poly/finding_root_of_polynomial.hpp\"\n\n//\
+    \ F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\u9806\
+    \u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate <typename\
+    \ mint>\nvc<mint> finding_root_of_polynomial(vc<mint> F) {\n  while (len(F) &&\
+    \ F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int p = mint::get_mod();\n\
+    \  assert(p % 2 == 1);\n\n  vc<mint> g = {0, 1};\n  g = poly_mod_pow(g, p, F);\n\
+    \  if (len(g) <= 2) g.resize(2);\n  g[1] -= 1;\n  F = poly_gcd(F, g);\n\n  //\
+    \ F \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\n  vc<mint> ANS;\n\
+    \  auto dfs = [&](auto& dfs, vc<mint> F) -> void {\n    if (len(F) == 1) return;\n\
+    \    if (len(F) == 2) {\n      mint a = F[0], b = F[1];\n      // a+bx=0\n   \
+    \   ANS.eb((-a) / b);\n      return;\n    }\n    vc<mint> g(2);\n    g[0] = RNG(0,\
+    \ p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g, (p - 1) / 2, F);\n    if (h.empty())\
+    \ { return dfs(dfs, F); }\n    h[0] -= 1;\n    vc<mint> f1 = poly_gcd(F, h);\n\
+    \    vc<mint> f2 = poly_divmod(F, f1).fi;\n    dfs(dfs, f1), dfs(dfs, f2);\n \
+    \ };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return ANS;\n}\n"
   code: "#include \"poly/poly_mod_pow.hpp\"\n#include \"poly/poly_gcd.hpp\"\n#include\
     \ \"random/base.hpp\"\n\n// F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\
     \u8FD4\u3059\n// \u6607\u9806\u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\
@@ -466,8 +465,8 @@ data:
   isVerificationFile: false
   path: poly/finding_root_of_polynomial.hpp
   requiredBy: []
-  timestamp: '2024-08-28 00:31:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/poly_root_finding.test.cpp
 documentation_of: poly/finding_root_of_polynomial.hpp

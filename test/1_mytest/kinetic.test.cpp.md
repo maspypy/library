@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/beats_kinetic.hpp
     title: ds/segtree/beats_kinetic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -306,36 +306,35 @@ data:
     \   return {e.x, e.y};\n  }\n  pair<T1, T2> prod_all() {\n    auto e = seg.prod_all();\n\
     \    return {e.x, e.y};\n  }\n  void apply(int l, int r, T1 a, T2 b) { seg.apply(l,\
     \ r, {a, b}); }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
-    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
-    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kinetic.test.cpp\"\
-    \n\nvoid test_mi() {\n  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n    FOR(i, N) X[i]\
-    \ = RNG(-100, 100);\n    FOR(i, N) Y[i] = RNG(-100, 100);\n    Beats_Kinetic_Min<ll,\
-    \ ll> seg(N, [&](int i) -> pair<int, int> { return {X[i], Y[i]}; });\n    ll Q\
-    \ = 100;\n    FOR(Q) {\n      ll t = RNG(0, 3);\n      ll i = RNG(0, N);\n   \
-    \   ll L = RNG(0, N);\n      ll R = RNG(L, N + 1);\n      ll a = RNG(-100, 100);\n\
-    \      ll b = RNG(-100, 100);\n      if (t == 0) {\n        // set\n        seg.set(i,\
-    \ a, b);\n        X[i] = a, Y[i] = b;\n      }\n      if (t == 1) {\n        //\
-    \ apply\n        a = abs(a);\n        seg.apply(L, R, a, b);\n        FOR(i, L,\
-    \ R) Y[i] += a * X[i] + b;\n      }\n      if (t == 2) {\n        // prod\n  \
-    \      ll mi = infty<ll>;\n        FOR(i, L, R) chmin(mi, Y[i]);\n        auto\
-    \ [x, y] = seg.prod(L, R);\n        assert(mi == y);\n      }\n    }\n  }\n}\n\
-    \nvoid test_ma() {\n  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n    FOR(i, N) X[i]\
-    \ = RNG(-100, 100);\n    FOR(i, N) Y[i] = RNG(-100, 100);\n    Beats_Kinetic_Max<ll,\
-    \ ll> seg(N, [&](int i) -> pair<int, int> { return {X[i], Y[i]}; });\n    ll Q\
-    \ = 100;\n    FOR(Q) {\n      ll t = RNG(0, 3);\n      ll i = RNG(0, N);\n   \
-    \   ll L = RNG(0, N);\n      ll R = RNG(L, N + 1);\n      ll a = RNG(-100, 100);\n\
-    \      ll b = RNG(-100, 100);\n      if (t == 0) {\n        // set\n        seg.set(i,\
-    \ a, b);\n        X[i] = a, Y[i] = b;\n      }\n      if (t == 1) {\n        //\
-    \ apply\n        a = abs(a);\n        seg.apply(L, R, a, b);\n        FOR(i, L,\
-    \ R) Y[i] += a * X[i] + b;\n      }\n      if (t == 2) {\n        // prod\n  \
-    \      ll ma = -infty<ll>;\n        FOR(i, L, R) chmax(ma, Y[i]);\n        auto\
-    \ [x, y] = seg.prod(L, R);\n        assert(ma == y);\n      }\n    }\n  }\n}\n\
-    \nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n\
-    }\n\nsigned main() {\n  FOR(100) {\n    test_mi();\n    test_ma();\n  }\n  solve();\n\
-    \  return 0;\n}\n"
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kinetic.test.cpp\"\n\nvoid test_mi()\
+    \ {\n  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n    FOR(i, N) X[i] = RNG(-100, 100);\n\
+    \    FOR(i, N) Y[i] = RNG(-100, 100);\n    Beats_Kinetic_Min<ll, ll> seg(N, [&](int\
+    \ i) -> pair<int, int> { return {X[i], Y[i]}; });\n    ll Q = 100;\n    FOR(Q)\
+    \ {\n      ll t = RNG(0, 3);\n      ll i = RNG(0, N);\n      ll L = RNG(0, N);\n\
+    \      ll R = RNG(L, N + 1);\n      ll a = RNG(-100, 100);\n      ll b = RNG(-100,\
+    \ 100);\n      if (t == 0) {\n        // set\n        seg.set(i, a, b);\n    \
+    \    X[i] = a, Y[i] = b;\n      }\n      if (t == 1) {\n        // apply\n   \
+    \     a = abs(a);\n        seg.apply(L, R, a, b);\n        FOR(i, L, R) Y[i] +=\
+    \ a * X[i] + b;\n      }\n      if (t == 2) {\n        // prod\n        ll mi\
+    \ = infty<ll>;\n        FOR(i, L, R) chmin(mi, Y[i]);\n        auto [x, y] = seg.prod(L,\
+    \ R);\n        assert(mi == y);\n      }\n    }\n  }\n}\n\nvoid test_ma() {\n\
+    \  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n    FOR(i, N) X[i] = RNG(-100, 100);\n\
+    \    FOR(i, N) Y[i] = RNG(-100, 100);\n    Beats_Kinetic_Max<ll, ll> seg(N, [&](int\
+    \ i) -> pair<int, int> { return {X[i], Y[i]}; });\n    ll Q = 100;\n    FOR(Q)\
+    \ {\n      ll t = RNG(0, 3);\n      ll i = RNG(0, N);\n      ll L = RNG(0, N);\n\
+    \      ll R = RNG(L, N + 1);\n      ll a = RNG(-100, 100);\n      ll b = RNG(-100,\
+    \ 100);\n      if (t == 0) {\n        // set\n        seg.set(i, a, b);\n    \
+    \    X[i] = a, Y[i] = b;\n      }\n      if (t == 1) {\n        // apply\n   \
+    \     a = abs(a);\n        seg.apply(L, R, a, b);\n        FOR(i, L, R) Y[i] +=\
+    \ a * X[i] + b;\n      }\n      if (t == 2) {\n        // prod\n        ll ma\
+    \ = -infty<ll>;\n        FOR(i, L, R) chmax(ma, Y[i]);\n        auto [x, y] =\
+    \ seg.prod(L, R);\n        assert(ma == y);\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  FOR(100) {\n    test_mi();\n    test_ma();\n  }\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"ds/segtree/beats_kinetic.hpp\"\n#include\
     \ \"random/base.hpp\"\n\nvoid test_mi() {\n  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n\
@@ -372,8 +371,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kinetic.test.cpp
   requiredBy: []
-  timestamp: '2024-09-10 18:12:56+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/kinetic.test.cpp
 layout: document

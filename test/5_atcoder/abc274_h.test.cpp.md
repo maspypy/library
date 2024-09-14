@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/GF2.hpp
     title: nt/GF2.hpp
   - icon: ':question:'
@@ -13,14 +13,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/rollinghash_field.hpp
     title: string/rollinghash_field.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc274/tasks/abc274_Ex
@@ -204,14 +204,13 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/5_atcoder/abc274_h.test.cpp\"\n\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"nt/GF2.hpp\"\
-    \n#include <emmintrin.h>\n#include <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"\
-    pclmul\"))) inline __m128i myclmul(const __m128i &a,\n                       \
-    \                                  const __m128i &b) {\n  return _mm_clmulepi64_si128(a,\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"nt/GF2.hpp\"\n#include <emmintrin.h>\n#include\
+    \ <smmintrin.h>\n#include <wmmintrin.h>\n\n__attribute__((target(\"pclmul\")))\
+    \ inline __m128i myclmul(const __m128i &a,\n                                 \
+    \                        const __m128i &b) {\n  return _mm_clmulepi64_si128(a,\
     \ b, 0);\n}\n\n// 2^n \u5143\u4F53\ntemplate <int K>\nstruct GF2 {\n  // https://oeis.org/A344141\n\
     \  // irreducible poly x^K + ...\n  static constexpr int POLY[65]\n      = {0,\
     \  0, 3,  3,   3,  5,   3,  3,  27,  3,  9,  5,   9, 27, 33, 3,   43,\n      \
@@ -303,8 +302,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc274_h.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc274_h.test.cpp
 layout: document

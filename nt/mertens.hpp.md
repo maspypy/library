@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat = {dp[1],\
@@ -68,21 +68,22 @@ data:
     \n  mu[1] = T(1);\r\n  divisor_mobius(mu);\r\n  return mu;\r\n}\n#line 1 \"enumerate/floor_range.hpp\"\
     \n// \u5546\u304C q \u306E\u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\
     \u6607\u9806\r\ntemplate <typename F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC\
-    \ = true) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq\
-    \ - 1);\r\n  if (Q_ASC) {\r\n    for (u32 q = 1; q <= n; ++q) { f(q, N / (q +\
+    \ = true, bool INCLUDE_Q_IS_0 = false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n =\
+    \ (sq * sq + sq <= N ? sq : sq - 1);\r\n  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0)\
+    \ f(0, N + 1, infty<ll>);\r\n    for (u32 q = 1; q <= n; ++q) { f(q, N / (q +\
     \ 1) + 1, N / q + 1); }\r\n    for (u32 l = sq; l >= 1; --l) { f(N / l, l, l +\
     \ 1); }\r\n  } else {\r\n    for (u32 l = 1; l <= sq; ++l) { f(N / l, l, l + 1);\
     \ }\r\n    for (u32 q = n; q >= 1; --q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\
-    \n  }\r\n}\r\n#line 4 \"nt/mertens.hpp\"\n\ntemplate <typename T>\nstruct Mertens\
-    \ {\n  Array_On_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) {\
-    \ build(N, K); }\n  void build(u64 N, u64 K = -1) {\n    sum = Array_On_Floor<T>(N);\n\
-    \    if (K == u64(-1)) { K = pow(N, 0.67); }\n    vc<T> A = mobius_table<T>(K);\n\
-    \    FOR(k, 1, K) A[k + 1] += A[k];\n    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n\
-    \      if (n <= K) {\n        sum.dat[i] = A[n];\n        continue;\n      }\n\
-    \      T ans = 1;\n      floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n \
-    \       if (q == n) return;\n        ans -= sum[q] * T(r - l);\n      });\n  \
-    \    sum.dat[i] = ans;\n    }\n  }\n  T operator[](u64 n) { return sum[n]; }\n\
-    };\n"
+    \n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n#line 4 \"nt/mertens.hpp\"\
+    \n\ntemplate <typename T>\nstruct Mertens {\n  Array_On_Floor<T> sum;\n  Mertens()\
+    \ {}\n  Mertens(u64 N, u64 K = -1) { build(N, K); }\n  void build(u64 N, u64 K\
+    \ = -1) {\n    sum = Array_On_Floor<T>(N);\n    if (K == u64(-1)) { K = pow(N,\
+    \ 0.67); }\n    vc<T> A = mobius_table<T>(K);\n    FOR(k, 1, K) A[k + 1] += A[k];\n\
+    \    FOR(i, len(sum)) {\n      u64 n = sum.get_floor(i);\n      if (n <= K) {\n\
+    \        sum.dat[i] = A[n];\n        continue;\n      }\n      T ans = 1;\n  \
+    \    floor_range(n, [&](u64 q, u64 l, u64 r) -> void {\n        if (q == n) return;\n\
+    \        ans -= sum[q] * T(r - l);\n      });\n      sum.dat[i] = ans;\n    }\n\
+    \  }\n  T operator[](u64 n) { return sum[n]; }\n};\n"
   code: "#include \"nt/array_on_floor.hpp\"\n#include \"nt/mobius_table.hpp\"\n#include\
     \ \"enumerate/floor_range.hpp\"\n\ntemplate <typename T>\nstruct Mertens {\n \
     \ Array_On_Floor<T> sum;\n  Mertens() {}\n  Mertens(u64 N, u64 K = -1) { build(N,\
@@ -104,8 +105,8 @@ data:
   path: nt/mertens.hpp
   requiredBy:
   - nt/range_rational_count.hpp
-  timestamp: '2024-08-20 10:42:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/mertens.hpp

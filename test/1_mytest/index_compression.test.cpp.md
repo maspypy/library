@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -137,18 +137,17 @@ data:
     \ \u3092\u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing\
     \ Index_Compression =\n    typename std::conditional<SAME, Index_Compression_SAME<T,\
     \ SMALL>,\n                              Index_Compression_DISTINCT<T, SMALL>>::type;\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/index_compression.test.cpp\"\
-    \n\ntemplate <bool SMALL>\nvoid test_distinct() {\n  vc<int> X = {3, 4, 7, 4,\
-    \ 3, 6, 6, 7, 3};\n  Index_Compression<int, false, SMALL> IDX;\n  vc<int> Y =\
-    \ IDX.build(X);\n  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1)\
-    \ == 0 && IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 &&\
-    \ IDX(6) == 5);\n  assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100)\
-    \ {\n    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100,\
-    \ 100);\n      Index_Compression<int, false, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
+    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/index_compression.test.cpp\"\n\
+    \ntemplate <bool SMALL>\nvoid test_distinct() {\n  vc<int> X = {3, 4, 7, 4, 3,\
+    \ 6, 6, 7, 3};\n  Index_Compression<int, false, SMALL> IDX;\n  vc<int> Y = IDX.build(X);\n\
+    \  assert(Y == vc<int>({0, 3, 7, 4, 1, 5, 6, 8, 2}));\n  assert(IDX(1) == 0 &&\
+    \ IDX(2) == 0 && IDX(3) == 0);\n  assert(IDX(4) == 3 && IDX(5) == 5 && IDX(6)\
+    \ == 5);\n  assert(IDX(7) == 7 && IDX(8) == 9 && IDX(9) == 9);\n\n  FOR(100) {\n\
+    \    FOR(N, 0, 300) {\n      vc<int> X(N);\n      FOR(i, N) X[i] = RNG(-100, 100);\n\
+    \      Index_Compression<int, false, SMALL> IDX;\n      vc<int> Y = IDX.build(X);\n\
     \      auto I = argsort(X);\n      FOR(i, N) assert(Y[I[i]] == i);\n      X =\
     \ rearrange(X, I);\n      FOR(x, -100, 100) assert(IDX(x) == LB(X, x));\n    }\n\
     \  }\n}\n\ntemplate <bool SMALL>\nvoid test_same() {\n  vc<int> X = {3, 4, 7,\
@@ -193,8 +192,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/index_compression.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/index_compression.test.cpp
 layout: document

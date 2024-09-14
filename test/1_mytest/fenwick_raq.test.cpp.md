@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':question:'
@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -258,30 +258,29 @@ data:
     \  }\n\n  E prod(int L, int R) {\n    E prod_R = G::op(G::power(bit1.prod(R),\
     \ R), bit0.prod(R));\n    E prod_L = G::op(G::power(bit1.prod(L), L), bit0.prod(L));\n\
     \    return G::op(G::inverse(prod_L), prod_R);\n  }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/fenwick_raq.test.cpp\"\
-    \n\nvc<int> solve_seg(ll N, ll Q, vc<int> A, vc<tuple<int, int, int>> query) {\n\
-    \  Lazy_SegTree<ActedMonoid_Sum_Add<int>> seg(A);\n  vc<int> ANS;\n  for (auto&\
-    \ [L, R, x]: query) {\n    if (x == 0)\n      ANS.eb(seg.prod(L, R));\n    else\n\
-    \      seg.apply(L, R, x);\n  }\n  return ANS;\n}\n\nvc<int> solve_bit(ll N, ll\
-    \ Q, vc<int> A, vc<tuple<int, int, int>> query) {\n  FenwickTree_Range_Add<Monoid_Add<int>>\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 8 \"test/1_mytest/fenwick_raq.test.cpp\"\n\nvc<int>\
+    \ solve_seg(ll N, ll Q, vc<int> A, vc<tuple<int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Sum_Add<int>>\
     \ seg(A);\n  vc<int> ANS;\n  for (auto& [L, R, x]: query) {\n    if (x == 0)\n\
-    \      ANS.eb(seg.prod(L, R));\n    else\n      seg.add(L, R, x);\n  }\n  return\
-    \ ANS;\n}\n\nvoid test() {\n  ll N = 1 << 18, Q = 1 << 18;\n  vc<int> A(N);\n\
-    \  FOR(i, N) A[i] = RNG(0, 100);\n  vc<tuple<int, int, int>> query;\n  FOR(Q)\
-    \ {\n    int L = RNG(0, N), R = RNG(0, N);\n    if (L > R) swap(L, R);\n    ++R;\n\
-    \    int t = RNG(0, 2);\n    int x = RNG(0, 100);\n    if (t == 1) x = 0;\n  \
-    \  query.eb(L, R, x);\n  }\n  vc<int> ANS_1 = solve_seg(N, Q, A, query);\n  vc<int>\
-    \ ANS_2 = solve_bit(N, Q, A, query);\n  assert(ANS_1 == ANS_2);\n\n  /*\n  int\
-    \ a = clock();\n  FOR(100) solve_seg(N, Q, A, query);\n  int b = clock();\n  FOR(100)\
-    \ solve_bit(N, Q, A, query);\n  int c = clock();\n  print(b - a, c - b);\n  print(double(b\
-    \ - a) / double(c - b));\n  4.4 \u500D\u304F\u3089\u3044\u9AD8\u901F\u3068\u3044\
-    \u3046\u3053\u3068\u306B\n  */\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
-    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \  return 0;\n}\n"
+    \      ANS.eb(seg.prod(L, R));\n    else\n      seg.apply(L, R, x);\n  }\n  return\
+    \ ANS;\n}\n\nvc<int> solve_bit(ll N, ll Q, vc<int> A, vc<tuple<int, int, int>>\
+    \ query) {\n  FenwickTree_Range_Add<Monoid_Add<int>> seg(A);\n  vc<int> ANS;\n\
+    \  for (auto& [L, R, x]: query) {\n    if (x == 0)\n      ANS.eb(seg.prod(L, R));\n\
+    \    else\n      seg.add(L, R, x);\n  }\n  return ANS;\n}\n\nvoid test() {\n \
+    \ ll N = 1 << 18, Q = 1 << 18;\n  vc<int> A(N);\n  FOR(i, N) A[i] = RNG(0, 100);\n\
+    \  vc<tuple<int, int, int>> query;\n  FOR(Q) {\n    int L = RNG(0, N), R = RNG(0,\
+    \ N);\n    if (L > R) swap(L, R);\n    ++R;\n    int t = RNG(0, 2);\n    int x\
+    \ = RNG(0, 100);\n    if (t == 1) x = 0;\n    query.eb(L, R, x);\n  }\n  vc<int>\
+    \ ANS_1 = solve_seg(N, Q, A, query);\n  vc<int> ANS_2 = solve_bit(N, Q, A, query);\n\
+    \  assert(ANS_1 == ANS_2);\n\n  /*\n  int a = clock();\n  FOR(100) solve_seg(N,\
+    \ Q, A, query);\n  int b = clock();\n  FOR(100) solve_bit(N, Q, A, query);\n \
+    \ int c = clock();\n  print(b - a, c - b);\n  print(double(b - a) / double(c -\
+    \ b));\n  4.4 \u500D\u304F\u3089\u3044\u9AD8\u901F\u3068\u3044\u3046\u3053\u3068\
+    \u306B\n  */\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a\
+    \ + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"ds/segtree/lazy_segtree.hpp\"\n#include \"alg/acted_monoid/sum_add.hpp\"\
     \n#include \"ds/fenwicktree/fenwicktree_range_add.hpp\"\n#include \"random/base.hpp\"\
@@ -315,8 +314,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_raq.test.cpp
 layout: document

@@ -11,7 +11,7 @@ data:
   - icon: ':warning:'
     path: graph/bitset/reachability_bitset.hpp
     title: graph/bitset/reachability_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -30,10 +30,10 @@ data:
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -72,9 +72,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc350g2.test.cpp
     title: test/5_atcoder/abc350g2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -338,7 +338,7 @@ data:
   - linalg/bitset/det.hpp
   - ds/counter.hpp
   timestamp: '2024-09-10 11:20:00+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2490.test.cpp
   - test/3_yukicoder/142.test.cpp

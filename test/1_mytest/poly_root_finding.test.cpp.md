@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -16,43 +16,43 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
   - icon: ':question:'
@@ -60,9 +60,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -509,45 +509,45 @@ data:
     \ g));\r\n  T c = T(1) / F.back();\r\n  for (auto& f: F) f *= c;\r\n  return F;\r\
     \n}\r\n} // namespace half_gcd\r\nusing half_gcd::poly_extgcd;\r\nusing half_gcd::poly_gcd;\r\
     \n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n      =\
-    \ uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 4 \"poly/finding_root_of_polynomial.hpp\"\
-    \n\n// F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\
-    \u9806\u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate\
-    \ <typename mint>\nvc<mint> finding_root_of_polynomial(vc<mint> F) {\n  while\
-    \ (len(F) && F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int\
-    \ p = mint::get_mod();\n  assert(p % 2 == 1);\n\n  vc<mint> g = {0, 1};\n  g =\
-    \ poly_mod_pow(g, p, F);\n  if (len(g) <= 2) g.resize(2);\n  g[1] -= 1;\n  F =\
-    \ poly_gcd(F, g);\n\n  // F \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\
-    \u7A4D\n  vc<mint> ANS;\n  auto dfs = [&](auto& dfs, vc<mint> F) -> void {\n \
-    \   if (len(F) == 1) return;\n    if (len(F) == 2) {\n      mint a = F[0], b =\
-    \ F[1];\n      // a+bx=0\n      ANS.eb((-a) / b);\n      return;\n    }\n    vc<mint>\
-    \ g(2);\n    g[0] = RNG(0, p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g, (p\
-    \ - 1) / 2, F);\n    if (h.empty()) { return dfs(dfs, F); }\n    h[0] -= 1;\n\
-    \    vc<mint> f1 = poly_gcd(F, h);\n    vc<mint> f2 = poly_divmod(F, f1).fi;\n\
-    \    dfs(dfs, f1), dfs(dfs, f2);\n  };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return\
-    \ ANS;\n}\n#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2 \"poly/ntt_doubling.hpp\"\
-    \n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\
-    \u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067 2^k+1 \u306B\
-    \u3059\u308B\ntemplate <typename mint, bool transposed = false>\nvoid ntt_doubling(vector<mint>&\
-    \ a) {\n  static array<mint, 30> root;\n  static bool prepared = 0;\n  if (!prepared)\
-    \ {\n    prepared = 1;\n    const int rank2 = mint::ntt_info().fi;\n    root[rank2]\
-    \ = mint::ntt_info().se;\n    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i\
-    \ + 1]; }\n  }\n\n  if constexpr (!transposed) {\n    const int M = (int)a.size();\n\
-    \    auto b = a;\n    ntt(b, 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n\
-    \    FOR(i, M) b[i] *= r, r *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b),\
-    \ back_inserter(a));\n  } else {\n    const int M = len(a) / 2;\n    vc<mint>\
-    \ tmp = {a.begin(), a.begin() + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a,\
-    \ 0);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r\
-    \ *= zeta;\n    transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n\
-    #line 5 \"poly/convolution_all.hpp\"\n\r\ntemplate <typename T>\r\nvc<T> convolution_all(vc<vc<T>>&\
-    \ polys) {\r\n  if (len(polys) == 0) return {T(1)};\r\n  while (1) {\r\n    int\
-    \ n = len(polys);\r\n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n   \
-    \ FOR(i, m) {\r\n      if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\
-    \n      } else {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i +\
-    \ 1]);\r\n      }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\
-    \n}\r\n\r\n// product of 1-A[i]x\r\ntemplate <typename mint>\r\nvc<mint> convolution_all_1(vc<mint>\
+    \ uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 4 \"poly/finding_root_of_polynomial.hpp\"\n\n//\
+    \ F(a)=0 \u3092\u6E80\u305F\u3059 a \u5168\u4F53\u3092\u8FD4\u3059\n// \u6607\u9806\
+    \u306B\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\u3053\u3068\u306B\ntemplate <typename\
+    \ mint>\nvc<mint> finding_root_of_polynomial(vc<mint> F) {\n  while (len(F) &&\
+    \ F.back() == mint(0)) POP(F);\n  assert(!F.empty());\n\n  const int p = mint::get_mod();\n\
+    \  assert(p % 2 == 1);\n\n  vc<mint> g = {0, 1};\n  g = poly_mod_pow(g, p, F);\n\
+    \  if (len(g) <= 2) g.resize(2);\n  g[1] -= 1;\n  F = poly_gcd(F, g);\n\n  //\
+    \ F \u306F\u76F8\u7570\u306A\u308B 1 \u6B21\u5F0F\u306E\u7A4D\n  vc<mint> ANS;\n\
+    \  auto dfs = [&](auto& dfs, vc<mint> F) -> void {\n    if (len(F) == 1) return;\n\
+    \    if (len(F) == 2) {\n      mint a = F[0], b = F[1];\n      // a+bx=0\n   \
+    \   ANS.eb((-a) / b);\n      return;\n    }\n    vc<mint> g(2);\n    g[0] = RNG(0,\
+    \ p), g[1] = 1;\n    vc<mint> h = poly_mod_pow(g, (p - 1) / 2, F);\n    if (h.empty())\
+    \ { return dfs(dfs, F); }\n    h[0] -= 1;\n    vc<mint> f1 = poly_gcd(F, h);\n\
+    \    vc<mint> f2 = poly_divmod(F, f1).fi;\n    dfs(dfs, f1), dfs(dfs, f2);\n \
+    \ };\n  dfs(dfs, F);\n  sort(all(ANS));\n  return ANS;\n}\n#line 2 \"poly/convolution_all.hpp\"\
+    \n\r\n#line 2 \"poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\n\
+    \n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\
+    \u308C\u308B\u306E\u3067 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint, bool\
+    \ transposed = false>\nvoid ntt_doubling(vector<mint>& a) {\n  static array<mint,\
+    \ 30> root;\n  static bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n\
+    \    const int rank2 = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n\
+    \    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr\
+    \ (!transposed) {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b,\
+    \ 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r\
+    \ *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  }\
+    \ else {\n    const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin()\
+    \ + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint\
+    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n  \
+    \  transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n#line 5 \"poly/convolution_all.hpp\"\
+    \n\r\ntemplate <typename T>\r\nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n \
+    \ if (len(polys) == 0) return {T(1)};\r\n  while (1) {\r\n    int n = len(polys);\r\
+    \n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n    FOR(i, m) {\r\n   \
+    \   if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\n      } else\
+    \ {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);\r\n   \
+    \   }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n\r\
+    \n// product of 1-A[i]x\r\ntemplate <typename mint>\r\nvc<mint> convolution_all_1(vc<mint>\
     \ A) {\r\n  if (!mint::can_ntt()) {\r\n    vvc<mint> polys;\r\n    for (auto&\
     \ a: A) polys.eb(vc<mint>({mint(1), -a}));\r\n    return convolution_all(polys);\r\
     \n  }\r\n  int D = 6;\r\n  using poly = vc<mint>;\r\n  int n = 1;\r\n  while (n\
@@ -634,8 +634,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/poly_root_finding.test.cpp
   requiredBy: []
-  timestamp: '2024-08-28 00:31:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/poly_root_finding.test.cpp
 layout: document

@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/palindrome_decomposition_dp.hpp
     title: string/palindrome_decomposition_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -206,14 +206,13 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 4 \"test/1_mytest/palindrome_decomposition_dp.test.cpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"string/palindromic_tree.hpp\"\
-    \n// palindromic tree \u3092\u4F5C\u308B\ntemplate <int sigma>\nstruct Palindromic_Tree\
-    \ {\n  struct Node {\n    array<int, sigma> TO;\n    int link;\n    int length;\n\
-    \    pair<int, int> pos; // position of first ocurrence\n    Node(int link, int\
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"string/palindromic_tree.hpp\"\n// palindromic\
+    \ tree \u3092\u4F5C\u308B\ntemplate <int sigma>\nstruct Palindromic_Tree {\n \
+    \ struct Node {\n    array<int, sigma> TO;\n    int link;\n    int length;\n \
+    \   pair<int, int> pos; // position of first ocurrence\n    Node(int link, int\
     \ length, int l, int r)\n        : link(link), length(length), pos({l, r}) {\n\
     \      fill(all(TO), -1);\n    }\n  };\n\n  vc<Node> nodes;\n  vc<int> path;\n\
     \n  template <typename STRING>\n  Palindromic_Tree(const STRING& S, char off)\
@@ -334,8 +333,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/palindrome_decomposition_dp.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/palindrome_decomposition_dp.test.cpp
 layout: document

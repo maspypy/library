@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/reduce_intervals.hpp
     title: other/reduce_intervals.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -106,25 +106,24 @@ data:
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/reduce_intervals.test.cpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"other/reduce_intervals.hpp\"\
-    \n\n// rm_included = true : I < J \u3068\u306A\u308B J \u304C\u5B58\u5728\u3059\
-    \u308C\u3070 I \u3092\u6D88\u3059\n// rm_included = false : I > J \u3068\u306A\
-    \u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I \u3092\u6D88\u3059\n// \u6B8B\u3059\
-    \u533A\u9593\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u533A\u9593\u306E\
-    \u9806\u5E8F\u306B\u3064\u3044\u3066\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\
-    \ntemplate <typename T>\nvc<int> reduce_intervals(vc<T> L, vc<T> R, bool rm_included)\
-    \ {\n  int N = len(L);\n  vc<int> ANS;\n  vc<int> I(N);\n  FOR(i, N) I[i] = i;\n\
-    \  if (rm_included) {\n    sort(all(I), [&](auto& a, auto& b) -> bool {\n    \
-    \  if (L[a] != L[b]) return L[a] < L[b];\n      return R[a] > R[b];\n    });\n\
-    \    for (auto& j: I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n\
-    \        if (R[j] <= R[i] && R[j] - L[j] < R[i] - L[i]) continue;\n      }\n \
-    \     ANS.eb(j);\n    }\n  } else {\n    sort(all(I), [&](auto& a, auto& b) ->\
-    \ bool {\n      if (R[a] != R[b]) return R[a] < R[b];\n      return L[a] > L[b];\n\
-    \    });\n    for (auto& j: I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n\
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"other/reduce_intervals.hpp\"\n\n// rm_included\
+    \ = true : I < J \u3068\u306A\u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I \u3092\
+    \u6D88\u3059\n// rm_included = false : I > J \u3068\u306A\u308B J \u304C\u5B58\
+    \u5728\u3059\u308C\u3070 I \u3092\u6D88\u3059\n// \u6B8B\u3059\u533A\u9593\u306E\
+    \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u533A\u9593\u306E\u9806\u5E8F\u306B\
+    \u3064\u3044\u3066\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\ntemplate <typename\
+    \ T>\nvc<int> reduce_intervals(vc<T> L, vc<T> R, bool rm_included) {\n  int N\
+    \ = len(L);\n  vc<int> ANS;\n  vc<int> I(N);\n  FOR(i, N) I[i] = i;\n  if (rm_included)\
+    \ {\n    sort(all(I), [&](auto& a, auto& b) -> bool {\n      if (L[a] != L[b])\
+    \ return L[a] < L[b];\n      return R[a] > R[b];\n    });\n    for (auto& j: I)\
+    \ {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n        if (R[j]\
+    \ <= R[i] && R[j] - L[j] < R[i] - L[i]) continue;\n      }\n      ANS.eb(j);\n\
+    \    }\n  } else {\n    sort(all(I), [&](auto& a, auto& b) -> bool {\n      if\
+    \ (R[a] != R[b]) return R[a] < R[b];\n      return L[a] > L[b];\n    });\n   \
+    \ for (auto& j: I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n\
     \        if (L[j] <= L[i] && R[j] - L[j] > R[i] - L[i]) continue;\n      }\n \
     \     ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n#line 6 \"test/1_mytest/reduce_intervals.test.cpp\"\
     \n\nvoid test(bool rm_included) {\n  FOR(mx, 100) {\n    FOR(N, 100) {\n     \
@@ -160,8 +159,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/reduce_intervals.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/reduce_intervals.test.cpp
 layout: document

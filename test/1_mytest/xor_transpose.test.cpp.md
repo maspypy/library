@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -105,35 +105,33 @@ data:
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
-    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"linalg/xor/transpose.hpp\"\
-    \n\n// n x m \u884C\u5217\u306E transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\
-    \n// https://github.com/dsnet/matrix-transpose\ntemplate <typename UINT>\nvc<UINT>\
-    \ transpose(int n, int m, vc<UINT>& A, bool keep_A = 1) {\n  assert(max(n, m)\
-    \ <= numeric_limits<UINT>::digits);\n  assert(len(A) == n);\n  vc<UINT> tmp;\n\
-    \  if (keep_A) tmp = A;\n  int LOG = 0;\n  while ((1 << LOG) < max(n, m)) ++LOG;\n\
-    \  A.resize(1 << LOG);\n  int width = 1 << LOG;\n  UINT mask = 1;\n  FOR(i, LOG)\
-    \ mask = mask | (mask << (1 << i));\n  FOR(t, LOG) {\n    width >>= 1;\n    mask\
-    \ = mask ^ (mask >> width);\n    FOR(i, 1 << t) {\n      FOR(j, width) {\n   \
-    \     UINT* x = &A[width * (2 * i + 0) + j];\n        UINT* y = &A[width * (2\
-    \ * i + 1) + j];\n        *x = ((*y << width) & mask) ^ *x;\n        *y = ((*x\
-    \ & mask) >> width) ^ *y;\n        *x = ((*y << width) & mask) ^ *x;\n      }\n\
-    \    }\n  }\n  A.resize(m);\n  if (!keep_A) return A;\n  swap(A, tmp);\n  return\
-    \ tmp;\n}\n#line 5 \"test/1_mytest/xor_transpose.test.cpp\"\n\ntemplate <typename\
-    \ UINT>\nvc<UINT> naive(int n, int m, vc<UINT> mat) {\n  vc<UINT> after(m);\n\
-    \  FOR(i, n) FOR(j, m) if (mat[i] >> j & 1) after[j] |= UINT(1) << i;\n  return\
-    \ after;\n}\n\nvoid test_32() {\n  FOR(100) {\n    FOR(n, 33) FOR(m, 33) {\n \
-    \     vc<u32> A(n);\n      FOR(i, n) FOR(j, m) {\n        u32 x = RNG(2);\n  \
-    \      A[i] |= x << j;\n      }\n      assert(transpose<u32>(n, m, A) == naive<u32>(n,\
-    \ m, A));\n    }\n  }\n}\n\nvoid test_64() {\n  FOR(100) {\n    FOR(n, 65) FOR(m,\
-    \ 65) {\n      vc<u64> A(n);\n      FOR(i, n) FOR(j, m) {\n        u64 x = RNG(2);\n\
-    \        A[i] |= x << j;\n      }\n      assert(transpose<u64>(n, m, A) == naive<u64>(n,\
-    \ m, A));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
-    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_32();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\
+    \u5217\u306E transpose\u3002O((n+m)log(n+m)) \u6642\u9593\u3002\n// https://github.com/dsnet/matrix-transpose\n\
+    template <typename UINT>\nvc<UINT> transpose(int n, int m, vc<UINT>& A, bool keep_A\
+    \ = 1) {\n  assert(max(n, m) <= numeric_limits<UINT>::digits);\n  assert(len(A)\
+    \ == n);\n  vc<UINT> tmp;\n  if (keep_A) tmp = A;\n  int LOG = 0;\n  while ((1\
+    \ << LOG) < max(n, m)) ++LOG;\n  A.resize(1 << LOG);\n  int width = 1 << LOG;\n\
+    \  UINT mask = 1;\n  FOR(i, LOG) mask = mask | (mask << (1 << i));\n  FOR(t, LOG)\
+    \ {\n    width >>= 1;\n    mask = mask ^ (mask >> width);\n    FOR(i, 1 << t)\
+    \ {\n      FOR(j, width) {\n        UINT* x = &A[width * (2 * i + 0) + j];\n \
+    \       UINT* y = &A[width * (2 * i + 1) + j];\n        *x = ((*y << width) &\
+    \ mask) ^ *x;\n        *y = ((*x & mask) >> width) ^ *y;\n        *x = ((*y <<\
+    \ width) & mask) ^ *x;\n      }\n    }\n  }\n  A.resize(m);\n  if (!keep_A) return\
+    \ A;\n  swap(A, tmp);\n  return tmp;\n}\n#line 5 \"test/1_mytest/xor_transpose.test.cpp\"\
+    \n\ntemplate <typename UINT>\nvc<UINT> naive(int n, int m, vc<UINT> mat) {\n \
+    \ vc<UINT> after(m);\n  FOR(i, n) FOR(j, m) if (mat[i] >> j & 1) after[j] |= UINT(1)\
+    \ << i;\n  return after;\n}\n\nvoid test_32() {\n  FOR(100) {\n    FOR(n, 33)\
+    \ FOR(m, 33) {\n      vc<u32> A(n);\n      FOR(i, n) FOR(j, m) {\n        u32\
+    \ x = RNG(2);\n        A[i] |= x << j;\n      }\n      assert(transpose<u32>(n,\
+    \ m, A) == naive<u32>(n, m, A));\n    }\n  }\n}\n\nvoid test_64() {\n  FOR(100)\
+    \ {\n    FOR(n, 65) FOR(m, 65) {\n      vc<u64> A(n);\n      FOR(i, n) FOR(j,\
+    \ m) {\n        u64 x = RNG(2);\n        A[i] |= x << j;\n      }\n      assert(transpose<u64>(n,\
+    \ m, A) == naive<u64>(n, m, A));\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
+    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_32();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"random/base.hpp\"\n#include \"linalg/xor/transpose.hpp\"\n\ntemplate\
     \ <typename UINT>\nvc<UINT> naive(int n, int m, vc<UINT> mat) {\n  vc<UINT> after(m);\n\
@@ -154,8 +152,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/xor_transpose.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/xor_transpose.test.cpp
 layout: document

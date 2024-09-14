@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/non_adjecent_selection.hpp
     title: convex/non_adjecent_selection.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -125,27 +125,25 @@ data:
     \ {\n      auto [a, b] = history[i];\n      F[a]++, F[b]--;\n    }\n    F = cumsum<int>(F,\
     \ 0);\n    vc<int> I;\n    FOR(i, N) if (F[i] & 1) I.eb(i);\n    return I;\n \
     \ }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
-    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n              \
-    \       chrono::high_resolution_clock::now().time_since_epoch())\n           \
-    \          .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n \
-    \ return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/non_adj.test.cpp\"\
-    \n\nvoid test() {\n  FOR(100) {\n    FOR(N, 10) {\n      vi A(N);\n      FOR(i,\
-    \ N) A[i] = RNG(0, 1000000000);\n\n      Non_Adjacent_Selection<ll, true> MI(A);\n\
-    \      Non_Adjacent_Selection<ll, false> MA(A);\n      FOR(cnt, ceil<int>(N, 2)\
-    \ + 1) {\n        ll mi = infty<ll>, ma = -infty<ll>;\n        FOR(s, 1 << N)\
-    \ {\n          if (s & (s >> 1)) continue;\n          if (popcnt(s) != cnt) continue;\n\
-    \          ll sm = 0;\n          FOR(i, N) if (s >> i & 1) sm += A[i];\n     \
-    \     chmin(mi, sm), chmax(ma, sm);\n        }\n        assert(MI.ANS[cnt] ==\
-    \ mi);\n        assert(MA.ANS[cnt] == ma);\n\n        {\n          vc<int> I =\
-    \ MI.restore(cnt);\n          FOR(k, len(I) - 1) assert(I[k + 1] >= I[k] + 2);\n\
-    \          ll sm = 0;\n          for (auto& i: I) sm += A[i];\n          assert(mi\
-    \ == sm);\n        }\n        {\n          vc<int> I = MA.restore(cnt);\n    \
-    \      FOR(k, len(I) - 1) assert(I[k + 1] >= I[k] + 2);\n          ll sm = 0;\n\
-    \          for (auto& i: I) sm += A[i];\n          assert(ma == sm);\n       \
-    \ }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
-    \ 0;\n}\n"
+    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/non_adj.test.cpp\"\n\nvoid test()\
+    \ {\n  FOR(100) {\n    FOR(N, 10) {\n      vi A(N);\n      FOR(i, N) A[i] = RNG(0,\
+    \ 1000000000);\n\n      Non_Adjacent_Selection<ll, true> MI(A);\n      Non_Adjacent_Selection<ll,\
+    \ false> MA(A);\n      FOR(cnt, ceil<int>(N, 2) + 1) {\n        ll mi = infty<ll>,\
+    \ ma = -infty<ll>;\n        FOR(s, 1 << N) {\n          if (s & (s >> 1)) continue;\n\
+    \          if (popcnt(s) != cnt) continue;\n          ll sm = 0;\n          FOR(i,\
+    \ N) if (s >> i & 1) sm += A[i];\n          chmin(mi, sm), chmax(ma, sm);\n  \
+    \      }\n        assert(MI.ANS[cnt] == mi);\n        assert(MA.ANS[cnt] == ma);\n\
+    \n        {\n          vc<int> I = MI.restore(cnt);\n          FOR(k, len(I) -\
+    \ 1) assert(I[k + 1] >= I[k] + 2);\n          ll sm = 0;\n          for (auto&\
+    \ i: I) sm += A[i];\n          assert(mi == sm);\n        }\n        {\n     \
+    \     vc<int> I = MA.restore(cnt);\n          FOR(k, len(I) - 1) assert(I[k +\
+    \ 1] >= I[k] + 2);\n          ll sm = 0;\n          for (auto& i: I) sm += A[i];\n\
+    \          assert(ma == sm);\n        }\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"convex/non_adjecent_selection.hpp\"\n#include\
     \ \"random/base.hpp\"\n\nvoid test() {\n  FOR(100) {\n    FOR(N, 10) {\n     \
@@ -171,8 +169,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/non_adj.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/non_adj.test.cpp
 layout: document

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
@@ -200,12 +200,14 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\n#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\
     \u533A\u9593 [l,r) \u3092 q \u306B\u3064\u3044\u3066\u6607\u9806\r\ntemplate <typename\
-    \ F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC = true) {\r\n  u64 sq = sqrtl(N);\r\
-    \n  u32 n = (sq * sq + sq <= N ? sq : sq - 1);\r\n  if (Q_ASC) {\r\n    for (u32\
-    \ q = 1; q <= n; ++q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    for (u32 l\
-    \ = sq; l >= 1; --l) { f(N / l, l, l + 1); }\r\n  } else {\r\n    for (u32 l =\
-    \ 1; l <= sq; ++l) { f(N / l, l, l + 1); }\r\n    for (u32 q = n; q >= 1; --q)\
-    \ { f(q, N / (q + 1) + 1, N / q + 1); }\r\n  }\r\n}\r\n#line 5 \"test/2_library_checker/number_theory/enumerate_quotients.test.cpp\"\
+    \ F>\r\nvoid floor_range(u64 N, F f, bool Q_ASC = true, bool INCLUDE_Q_IS_0 =\
+    \ false) {\r\n  u64 sq = sqrtl(N);\r\n  u32 n = (sq * sq + sq <= N ? sq : sq -\
+    \ 1);\r\n  if (Q_ASC) {\r\n    if (INCLUDE_Q_IS_0) f(0, N + 1, infty<ll>);\r\n\
+    \    for (u32 q = 1; q <= n; ++q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\n  \
+    \  for (u32 l = sq; l >= 1; --l) { f(N / l, l, l + 1); }\r\n  } else {\r\n   \
+    \ for (u32 l = 1; l <= sq; ++l) { f(N / l, l, l + 1); }\r\n    for (u32 q = n;\
+    \ q >= 1; --q) { f(q, N / (q + 1) + 1, N / q + 1); }\r\n    if (INCLUDE_Q_IS_0)\
+    \ f(0, N + 1, infty<ll>);\r\n  }\r\n}\r\n#line 5 \"test/2_library_checker/number_theory/enumerate_quotients.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  vi ANS;\n  2 * sqrt(N) + 10;\n  ANS.reserve(2\
     \ * sqrt(N) + 10);\n  floor_range(N, [&](ll q, ll l, ll r) -> void { ANS.eb(q);\
     \ });\n  print(len(ANS));\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n \
@@ -223,8 +225,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_quotients.test.cpp
 layout: document

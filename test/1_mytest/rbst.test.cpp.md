@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/randomized_bst/rbst.hpp
     title: ds/randomized_bst/rbst.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -186,27 +186,25 @@ data:
     \ check);\n      root->r = n1;\n      update(root);\n      return {root, n2};\n\
     \    }\n    auto [n1, n2] = split_max_right_rec(root->l, check);\n    root->l\
     \ = n2;\n    update(root);\n    return {n1, root};\n  }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/1_mytest/rbst.test.cpp\"\
-    \n\nvoid test() {\n  RBST<int, true> X(10000);\n  using np = decltype(X)::np;\n\
-    \n  FOR(1000) {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n\
-    \    vvc<int> AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots =\
-    \ {X.new_node(AA[0])};\n\n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3};\n \
-    \     int t = cand[RNG(0, len(cand))];\n      int frm = RNG(0, len(AA));\n   \
-    \   vc<int> A = AA[frm];\n      np root = roots[frm];\n      if (t == 0) {\n \
-    \       int i = RNG(0, N);\n        assert(A[i] == X.get(root, i));\n      }\n\
-    \      if (t == 1) {\n        int i = RNG(0, N);\n        int x = RNG(0, 100);\n\
-    \        root = X.set(root, i, x);\n        A[i] = x;\n      }\n      if (t ==\
-    \ 2) {\n        int L = RNG(0, N);\n        int R = RNG(0, N);\n        if (L\
-    \ > R) swap(L, R);\n        ++R;\n        root = X.reverse(root, L, R);\n    \
-    \    reverse(A.begin() + L, A.begin() + R);\n      }\n      if (t == 3) {\n  \
-    \      vc<int> B = X.get_all(root);\n        assert(A == B);\n      }\n      AA.eb(A);\n\
-    \      roots.eb(root);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
-    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
-    \n  return 0;\n}\n"
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 5 \"test/1_mytest/rbst.test.cpp\"\n\nvoid test()\
+    \ {\n  RBST<int, true> X(10000);\n  using np = decltype(X)::np;\n\n  FOR(1000)\
+    \ {\n    X.reset();\n    int N = RNG(1, 20);\n    int Q = RNG(1, 1000);\n    vvc<int>\
+    \ AA(1);\n    FOR(i, N) AA[0].eb(RNG(0, 100));\n    vc<np> roots = {X.new_node(AA[0])};\n\
+    \n    FOR(Q) {\n      vc<int> cand = {0, 1, 2, 3};\n      int t = cand[RNG(0,\
+    \ len(cand))];\n      int frm = RNG(0, len(AA));\n      vc<int> A = AA[frm];\n\
+    \      np root = roots[frm];\n      if (t == 0) {\n        int i = RNG(0, N);\n\
+    \        assert(A[i] == X.get(root, i));\n      }\n      if (t == 1) {\n     \
+    \   int i = RNG(0, N);\n        int x = RNG(0, 100);\n        root = X.set(root,\
+    \ i, x);\n        A[i] = x;\n      }\n      if (t == 2) {\n        int L = RNG(0,\
+    \ N);\n        int R = RNG(0, N);\n        if (L > R) swap(L, R);\n        ++R;\n\
+    \        root = X.reverse(root, L, R);\n        reverse(A.begin() + L, A.begin()\
+    \ + R);\n      }\n      if (t == 3) {\n        vc<int> B = X.get_all(root);\n\
+    \        assert(A == B);\n      }\n      AA.eb(A);\n      roots.eb(root);\n  \
+    \  }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"ds/randomized_bst/rbst.hpp\"\n#include \"random/base.hpp\"\n\nvoid\
     \ test() {\n  RBST<int, true> X(10000);\n  using np = decltype(X)::np;\n\n  FOR(1000)\
@@ -231,8 +229,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rbst.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 04:44:30+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rbst.test.cpp
 layout: document

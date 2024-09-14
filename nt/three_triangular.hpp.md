@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':question:'
@@ -27,12 +27,12 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/three_triangular.test.cpp
     title: test/1_mytest/three_triangular.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n// x \u306E\u4EE3\
@@ -69,28 +69,27 @@ data:
     \  } else {\r\n    for (u64 a: {2, 325, 9375, 28178, 450775, 9780504, 1795265022})\
     \ {\r\n      if (!ok(a)) return false;\r\n    }\r\n  }\r\n  return true;\r\n}\n\
     #line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n \
-    \ static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\
-    \n\ntemplate <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const\
-    \ mint cc(c);\n  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y\
-    \ = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for\
-    \ (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(r) y = f(y);\n    for (ll\
-    \ k = 0; k < r && g == 1; k += m) {\n      z = y;\n      FOR(min(m, r - k)) y\
-    \ = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do\
-    \ {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n\
-    \  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\
-    \ return n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1 << 30)) {\n      using\
-    \ mint = Mongomery_modint_32<20231025>;\n      mint::set_mod(n);\n      m = rho<mint>(n,\
-    \ RNG(0, n));\n    } else {\n      using mint = Mongomery_modint_64<20231025>;\n\
-    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    }\n    if (primetest(m))\
-    \ return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\
-    \u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n\
-    \ >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n\
-    \    if (n % p == 0) {\n      ll e = 0;\n      do { n /= p, e += 1; } while (n\
-    \ % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
+    \ static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\n\ntemplate <typename mint>\n\
+    ll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n  auto f = [&](mint\
+    \ x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n\
+    \  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g == 1; r <<= 1) {\n \
+    \   x = y;\n    FOR(r) y = f(y);\n    for (ll k = 0; k < r && g == 1; k += m)\
+    \ {\n      z = y;\n      FOR(min(m, r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(),\
+    \ n);\n    }\n  }\n  if (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(),\
+    \ n);\n    } while (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n\
+    \  assert(n > 1);\n  if (primetest(n)) return n;\n  FOR(100) {\n    ll m = 0;\n\
+    \    if (n < (1 << 30)) {\n      using mint = Mongomery_modint_32<20231025>;\n\
+    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    } else {\n \
+    \     using mint = Mongomery_modint_64<20231025>;\n      mint::set_mod(n);\n \
+    \     m = rho<mint>(n, RNG(0, n));\n    }\n    if (primetest(m)) return m;\n \
+    \   n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\
+    \u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll,\
+    \ int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n    if (n % p == 0)\
+    \ {\n      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n     \
+    \ pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
     \    ll e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n\
     \  }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll\
     \ n, vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p =\
@@ -163,25 +162,25 @@ data:
     \n  res.eb(G(1, 0));\r\n  for (auto &&[p, e]: pfs) {\r\n    if (p % 4 == 3) {\r\
     \n      T pp = 1;\r\n      FOR(e / 2) pp *= p;\r\n      for (auto &&g: res) {\r\
     \n        g.x *= pp;\r\n        g.y *= pp;\r\n      }\r\n      continue;\r\n \
-    \   }\r\n    G pi = solve_norm_equation_prime(p);\r\n    vc<G> pows(e + 1);\r\n\
-    \    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i + 1] = pows[i] * pi;\r\n    if\
-    \ (p == 2) {\r\n      for (auto &&g: res) g *= pows[e];\r\n      continue;\r\n\
-    \    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j, e + 1) { pis[j] = pows[j] * (pows[e\
-    \ - j].conjugate()); }\r\n    vc<G> new_res;\r\n    new_res.reserve(len(res) *\
-    \ (e + 1));\r\n    for (auto &&g: res) {\r\n      for (auto &&a: pis) { new_res.eb(g\
-    \ * a); }\r\n    }\r\n    swap(res, new_res);\r\n  }\r\n\r\n  for (auto &&g: res)\
-    \ {\r\n    while (g.x <= 0 || g.y < 0) { g = G(-g.y, g.x); }\r\n  }\r\n  return\
-    \ res;\r\n}\r\n\r\n// i128 \u3092\u4F7F\u3046\u3068 N <= 10^{18} \u3082\u3067\u304D\
-    \u308B\r\n// \u30CE\u30EB\u30E0\u304C\u3068\u308C\u308B\u3088\u3046\u306B\u3001\
-    2 \u4E57\u3057\u3066\u3082\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\
-    \u3044\u578B\u3092\u4F7F\u304A\u3046\r\n// 0 <= arg < 90 \u3068\u306A\u308B\u3082\
-    \u306E\u306E\u307F\u8FD4\u3059\u3002\r\n// \u5358\u6570\u500D\u306F\u4F5C\u3089\
-    \u306A\u3044\u306E\u3067\u3001\u4F7F\u3046\u3068\u304D\u306B\u6C17\u3092\u4ED8\
-    \u3051\u308B\u3002\r\ntemplate <typename T>\r\nvc<Gaussian_Integer<T>> solve_norm_equation(T\
-    \ N) {\r\n  using G = Gaussian_Integer<T>;\r\n  vc<G> res;\r\n  if (N < 0) return\
-    \ {};\r\n  if (N == 0) {\r\n    res.eb(G(0, 0));\r\n    return res;\r\n  }\r\n\
-    \  auto pfs = factor(N);\r\n  return solve_norm_equation_factor<T>(pfs);\r\n}\r\
-    \n#line 3 \"nt/three_square.hpp\"\n\n// https://math.stackexchange.com/questions/483101/rabin-and-shallit-algorithm\n\
+    \   }\r\n    auto [pix, piy] = solve_norm_equation_prime(p);\r\n    G pi(pix,\
+    \ piy);\r\n    vc<G> pows(e + 1);\r\n    pows[0] = G(1, 0);\r\n    FOR(i, e) pows[i\
+    \ + 1] = pows[i] * pi;\r\n    if (p == 2) {\r\n      for (auto &&g: res) g *=\
+    \ pows[e];\r\n      continue;\r\n    }\r\n    vc<G> pis(e + 1);\r\n    FOR(j,\
+    \ e + 1) { pis[j] = pows[j] * (pows[e - j].conjugate()); }\r\n    vc<G> new_res;\r\
+    \n    new_res.reserve(len(res) * (e + 1));\r\n    for (auto &&g: res) {\r\n  \
+    \    for (auto &&a: pis) { new_res.eb(g * a); }\r\n    }\r\n    swap(res, new_res);\r\
+    \n  }\r\n\r\n  for (auto &&g: res) {\r\n    while (g.x <= 0 || g.y < 0) { g =\
+    \ G(-g.y, g.x); }\r\n  }\r\n  return res;\r\n}\r\n\r\n// i128 \u3092\u4F7F\u3046\
+    \u3068 N <= 10^{18} \u3082\u3067\u304D\u308B\r\n// \u30CE\u30EB\u30E0\u304C\u3068\
+    \u308C\u308B\u3088\u3046\u306B\u30012 \u4E57\u3057\u3066\u3082\u30AA\u30FC\u30D0\
+    \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u578B\u3092\u4F7F\u304A\u3046\r\n//\
+    \ 0 <= arg < 90 \u3068\u306A\u308B\u3082\u306E\u306E\u307F\u8FD4\u3059\u3002\r\
+    \n// \u5358\u6570\u500D\u306F\u4F5C\u3089\u306A\u3044\u306E\u3067\u3001\u4F7F\u3046\
+    \u3068\u304D\u306B\u6C17\u3092\u4ED8\u3051\u308B\u3002\r\ntemplate <typename T>\r\
+    \nvc<Gaussian_Integer<T>> solve_norm_equation(T N) {\r\n  using G = Gaussian_Integer<T>;\r\
+    \n  vc<G> res;\r\n  if (N < 0) return {};\r\n  if (N == 0) {\r\n    res.eb(G(0,\
+    \ 0));\r\n    return res;\r\n  }\r\n  auto pfs = factor(N);\r\n  return solve_norm_equation_factor<T>(pfs);\r\
+    \n}\r\n#line 3 \"nt/three_square.hpp\"\n\n// https://math.stackexchange.com/questions/483101/rabin-and-shallit-algorithm\n\
     // ERH \u306E\u3082\u3068 O(log^2N) \uFF1F\ntuple<ll, ll, ll> three_square(ll\
     \ N) {\n  if (N == 0) return {0, 0, 0};\n  auto F = [&](ll n) -> tuple<ll, ll,\
     \ ll> {\n    if (N == 2) return {1, 1, 0};\n    if (N == 3) return {1, 1, 1};\n\
@@ -223,8 +222,8 @@ data:
   isVerificationFile: false
   path: nt/three_triangular.hpp
   requiredBy: []
-  timestamp: '2024-05-24 21:01:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/three_triangular.test.cpp
 documentation_of: nt/three_triangular.hpp

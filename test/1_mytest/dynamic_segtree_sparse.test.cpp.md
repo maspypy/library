@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
@@ -190,11 +190,10 @@ data:
     \ r, qr, x);\n    if (k != L0) return k;\n    if (c->idx < qr) {\n      x = MX::op(c->x,\
     \ x);\n      if (!check(x)) return c->idx + 1;\n    }\n    return min_left_rec(c->l,\
     \ check, l, m, qr, x);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/dynamic_segtree_sparse.test.cpp\"\
+    \  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/dynamic_segtree_sparse.test.cpp\"\
     \n\nvoid test() {\n  using Mono = Monoid_Min<int>;\n  int unit = Mono::unit();\n\
     \n  FOR(100) {\n    int N = RNG(1, 100);\n\n    vc<int> A(N, unit);\n    Dynamic_SegTree_Sparse<Mono,\
     \ false> X(2 * N, 0, N);\n    using np = typename decltype(X)::np;\n    np root\
@@ -242,7 +241,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_segtree_sparse.test.cpp
   requiredBy: []
-  timestamp: '2024-09-09 03:15:51+09:00'
+  timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_segtree_sparse.test.cpp

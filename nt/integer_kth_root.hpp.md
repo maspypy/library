@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/kth_root_integer.test.cpp
     title: test/2_library_checker/number_theory/kth_root_integer.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1260.test.cpp
     title: test/3_yukicoder/1260.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1666.test.cpp
     title: test/3_yukicoder/1666.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/integer_kth_root.hpp\"\nu64 integer_kth_root(u64 k, u64\
@@ -40,7 +40,7 @@ data:
   path: nt/integer_kth_root.hpp
   requiredBy: []
   timestamp: '2023-11-07 17:48:08+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1666.test.cpp
   - test/3_yukicoder/1260.test.cpp

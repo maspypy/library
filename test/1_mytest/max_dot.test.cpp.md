@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -281,13 +281,12 @@ data:
     \u5916\uFF1A-1\n  int side(Point<T> p) {\n    int a = LOWER.side(p);\n    int\
     \ b = UPPER.side(-p);\n    if (a == 0 || b == 0) return 0;\n    return min(a,\
     \ b);\n  }\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t\
-    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n         \
-    \            chrono::high_resolution_clock::now().time_since_epoch())\n      \
-    \               .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n\
-    \  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\n\
-    ll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 9 \"test/1_mytest/max_dot.test.cpp\"\
-    \n\nusing P = Point<ll>;\n\nvoid test() {\n  int N = RNG(3, 10);\n  vc<P> point(N);\n\
-    \  FOR(i, N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  auto I = ConvexHull(point);\n\
+    \ x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 9 \"test/1_mytest/max_dot.test.cpp\"\n\nusing P\
+    \ = Point<ll>;\n\nvoid test() {\n  int N = RNG(3, 10);\n  vc<P> point(N);\n  FOR(i,\
+    \ N) point[i] = P(RNG(-5, 5), RNG(-5, 5));\n\n  auto I = ConvexHull(point);\n\
     \  point = rearrange(point, I);\n  N = len(point);\n  if (N <= 2) return;\n\n\
     \  ConvexPolygon<ll> X(point);\n\n  FOR(x, -10, 11) FOR(y, -10, 11) {\n    P p(x,\
     \ y);\n    pair<int, int> ans = {infty<int>, -infty<int>};\n    FOR(i, N) { chmin(ans.fi,\
@@ -321,8 +320,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/max_dot.test.cpp
   requiredBy: []
-  timestamp: '2024-09-12 07:35:54+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/max_dot.test.cpp
 layout: document

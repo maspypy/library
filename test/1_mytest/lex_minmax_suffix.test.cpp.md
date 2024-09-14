@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -13,23 +13,23 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lex_min_suffix_for_all_prefix.hpp
     title: string/lex_min_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/lyndon.hpp
     title: string/lyndon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -121,24 +121,22 @@ data:
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/lex_minmax_suffix.test.cpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"string/lyndon.hpp\"\n\
-    \ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization {\n  vc<CHAR>\
-    \ S;\n  int i = 0, j = 0, k = 0;\n  vc<int> minimum_suffix_len = {0};\n\n  int\
-    \ add(CHAR c) {\n    S.eb(c);\n    // [j, j+(i-k)) simple\n    while (i < len(S))\
-    \ {\n      if (k == i) {\n        assert(j == k);\n        ++i;\n      }\n   \
-    \   elif (S[k] == S[i]) { ++k, ++i; }\n      elif (S[k] < S[i]) { k = j, ++i;\
-    \ }\n      else {\n        j += (i - j) / (i - k) * (i - k);\n        i = k =\
-    \ j;\n      }\n    }\n    if ((i - j) % (i - k) == 0) {\n      minimum_suffix_len.eb(i\
-    \ - k);\n    } else {\n      minimum_suffix_len.eb(minimum_suffix_len[k]);\n \
-    \   }\n    return minimum_suffix_len[i];\n  }\n\n  vc<int> factorize() {\n   \
-    \ int i = len(S);\n    vc<int> I;\n    while (i) {\n      I.eb(i);\n      i -=\
-    \ minimum_suffix_len[i];\n    }\n    I.eb(0);\n    reverse(all(I));\n    return\
-    \ I;\n  }\n};\n#line 2 \"string/lex_min_suffix_for_all_prefix.hpp\"\n\n// ANS[i]\
-    \ := length of lex-min suffix of S[0,i)\nvc<int> lex_min_suffix_for_all_prefix(string\
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\n\
+    struct Incremental_Lyndon_Factorization {\n  vc<CHAR> S;\n  int i = 0, j = 0,\
+    \ k = 0;\n  vc<int> minimum_suffix_len = {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n\
+    \    // [j, j+(i-k)) simple\n    while (i < len(S)) {\n      if (k == i) {\n \
+    \       assert(j == k);\n        ++i;\n      }\n      elif (S[k] == S[i]) { ++k,\
+    \ ++i; }\n      elif (S[k] < S[i]) { k = j, ++i; }\n      else {\n        j +=\
+    \ (i - j) / (i - k) * (i - k);\n        i = k = j;\n      }\n    }\n    if ((i\
+    \ - j) % (i - k) == 0) {\n      minimum_suffix_len.eb(i - k);\n    } else {\n\
+    \      minimum_suffix_len.eb(minimum_suffix_len[k]);\n    }\n    return minimum_suffix_len[i];\n\
+    \  }\n\n  vc<int> factorize() {\n    int i = len(S);\n    vc<int> I;\n    while\
+    \ (i) {\n      I.eb(i);\n      i -= minimum_suffix_len[i];\n    }\n    I.eb(0);\n\
+    \    reverse(all(I));\n    return I;\n  }\n};\n#line 2 \"string/lex_min_suffix_for_all_prefix.hpp\"\
+    \n\n// ANS[i] := length of lex-min suffix of S[0,i)\nvc<int> lex_min_suffix_for_all_prefix(string\
     \ S) {\n  int N = len(S);\n  Incremental_Lyndon_Factorization<char> LD;\n  FOR(i,\
     \ N) LD.add(S[i]);\n  return LD.minimum_suffix_len;\n}\n#line 2 \"string/suffix_array.hpp\"\
     \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
@@ -292,8 +290,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/lex_minmax_suffix.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/lex_minmax_suffix.test.cpp
 layout: document

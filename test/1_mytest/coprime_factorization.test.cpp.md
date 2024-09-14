@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/coprime_factorization.hpp
     title: nt/coprime_factorization.hpp
   - icon: ':question:'
@@ -106,18 +106,16 @@ data:
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/coprime_factorization.test.cpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 1 \"nt/coprime_factorization.hpp\"\
-    \n\n/*\n\u4E92\u3044\u306B\u7D20\u306A\u6574\u6570 p1, p2, ..., pk \u3092\u7528\
-    \u3044\u3066 n_i = prod p_i^e_i \u3068\u8868\u3059.\n[21,60,140,400]\n[3,7,20],\
-    \ [[(0,1),(1,1)],[(0,1),(2,1)],[(1,1),(2,1)],[(2,2)]]\n*/\ntemplate <typename\
-    \ T>\npair<vc<T>, vvc<pair<int, int>>> coprime_factorization(vc<T> nums) {\n \
-    \ vc<T> basis;\n  for (T val: nums) {\n    vc<T> new_basis;\n    for (T x: basis)\
-    \ {\n      if (val == 1) {\n        new_basis.eb(x);\n        continue;\n    \
-    \  }\n      vc<T> dat = {val, x};\n      FOR(p, 1, len(dat)) {\n        FOR(i,\
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 1 \"nt/coprime_factorization.hpp\"\n\n/*\n\u4E92\
+    \u3044\u306B\u7D20\u306A\u6574\u6570 p1, p2, ..., pk \u3092\u7528\u3044\u3066\
+    \ n_i = prod p_i^e_i \u3068\u8868\u3059.\n[21,60,140,400]\n[3,7,20], [[(0,1),(1,1)],[(0,1),(2,1)],[(1,1),(2,1)],[(2,2)]]\n\
+    */\ntemplate <typename T>\npair<vc<T>, vvc<pair<int, int>>> coprime_factorization(vc<T>\
+    \ nums) {\n  vc<T> basis;\n  for (T val: nums) {\n    vc<T> new_basis;\n    for\
+    \ (T x: basis) {\n      if (val == 1) {\n        new_basis.eb(x);\n        continue;\n\
+    \      }\n      vc<T> dat = {val, x};\n      FOR(p, 1, len(dat)) {\n        FOR(i,\
     \ p) {\n          while (1) {\n            if (dat[p] > 1 && dat[i] % dat[p] ==\
     \ 0) dat[i] /= dat[p];\n            elif (dat[i] > 1 && dat[p] % dat[i] == 0)\
     \ dat[p] /= dat[i];\n            else break;\n          }\n          T g = gcd(dat[i],\
@@ -160,7 +158,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/coprime_factorization.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/coprime_factorization.test.cpp

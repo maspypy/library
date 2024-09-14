@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
@@ -39,9 +39,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/kth_root_mod
@@ -260,28 +260,27 @@ data:
     \ 450775, 9780504, 1795265022}) {\r\n      if (!ok(a)) return false;\r\n    }\r\
     \n  }\r\n  return true;\r\n}\n#line 2 \"mod/primitive_root.hpp\"\n\r\n#line 2\
     \ \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static\
-    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\
-    \n\ntemplate <typename mint>\nll rho(ll n, ll c) {\n  assert(n > 1);\n  const\
-    \ mint cc(c);\n  auto f = [&](mint x) { return x * x + cc; };\n  mint x = 1, y\
-    \ = 2, z = 1, q = 1;\n  ll g = 1;\n  const ll m = 1LL << (__lg(n) / 5);\n  for\
-    \ (ll r = 1; g == 1; r <<= 1) {\n    x = y;\n    FOR(r) y = f(y);\n    for (ll\
-    \ k = 0; k < r && g == 1; k += m) {\n      z = y;\n      FOR(min(m, r - k)) y\
-    \ = f(y), q *= x - y;\n      g = gcd(q.val(), n);\n    }\n  }\n  if (g == n) do\
-    \ {\n      z = f(z);\n      g = gcd((x - z).val(), n);\n    } while (g == 1);\n\
-    \  return g;\n}\n\nll find_prime_factor(ll n) {\n  assert(n > 1);\n  if (primetest(n))\
-    \ return n;\n  FOR(100) {\n    ll m = 0;\n    if (n < (1 << 30)) {\n      using\
-    \ mint = Mongomery_modint_32<20231025>;\n      mint::set_mod(n);\n      m = rho<mint>(n,\
-    \ RNG(0, n));\n    } else {\n      using mint = Mongomery_modint_64<20231025>;\n\
-    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    }\n    if (primetest(m))\
-    \ return m;\n    n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\
-    \u30C8\u3057\u3066\u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n\
-    \ >= 1);\n  vc<pair<ll, int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n\
-    \    if (n % p == 0) {\n      ll e = 0;\n      do { n /= p, e += 1; } while (n\
-    \ % p == 0);\n      pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
+    \ uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 5 \"nt/factor.hpp\"\n\ntemplate <typename mint>\n\
+    ll rho(ll n, ll c) {\n  assert(n > 1);\n  const mint cc(c);\n  auto f = [&](mint\
+    \ x) { return x * x + cc; };\n  mint x = 1, y = 2, z = 1, q = 1;\n  ll g = 1;\n\
+    \  const ll m = 1LL << (__lg(n) / 5);\n  for (ll r = 1; g == 1; r <<= 1) {\n \
+    \   x = y;\n    FOR(r) y = f(y);\n    for (ll k = 0; k < r && g == 1; k += m)\
+    \ {\n      z = y;\n      FOR(min(m, r - k)) y = f(y), q *= x - y;\n      g = gcd(q.val(),\
+    \ n);\n    }\n  }\n  if (g == n) do {\n      z = f(z);\n      g = gcd((x - z).val(),\
+    \ n);\n    } while (g == 1);\n  return g;\n}\n\nll find_prime_factor(ll n) {\n\
+    \  assert(n > 1);\n  if (primetest(n)) return n;\n  FOR(100) {\n    ll m = 0;\n\
+    \    if (n < (1 << 30)) {\n      using mint = Mongomery_modint_32<20231025>;\n\
+    \      mint::set_mod(n);\n      m = rho<mint>(n, RNG(0, n));\n    } else {\n \
+    \     using mint = Mongomery_modint_64<20231025>;\n      mint::set_mod(n);\n \
+    \     m = rho<mint>(n, RNG(0, n));\n    }\n    if (primetest(m)) return m;\n \
+    \   n = m;\n  }\n  assert(0);\n  return -1;\n}\n\n// \u30BD\u30FC\u30C8\u3057\u3066\
+    \u304F\u308C\u308B\nvc<pair<ll, int>> factor(ll n) {\n  assert(n >= 1);\n  vc<pair<ll,\
+    \ int>> pf;\n  FOR(p, 2, 100) {\n    if (p * p > n) break;\n    if (n % p == 0)\
+    \ {\n      ll e = 0;\n      do { n /= p, e += 1; } while (n % p == 0);\n     \
+    \ pf.eb(p, e);\n    }\n  }\n  while (n > 1) {\n    ll p = find_prime_factor(n);\n\
     \    ll e = 0;\n    do { n /= p, e += 1; } while (n % p == 0);\n    pf.eb(p, e);\n\
     \  }\n  sort(all(pf));\n  return pf;\n}\n\nvc<pair<ll, int>> factor_by_lpf(ll\
     \ n, vc<int>& lpf) {\n  vc<pair<ll, int>> res;\n  while (n > 1) {\n    int p =\
@@ -451,8 +450,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/kth_root_mod.test.cpp
 layout: document

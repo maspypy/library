@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/stern_brocot.test.cpp
     title: test/1_mytest/stern_brocot.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/stern-brocot.test.cpp
     title: test/2_library_checker/number_theory/stern-brocot.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/stern_brocot_tree.hpp\"\n\nstruct Stern_Brocot_Tree {\n\
@@ -100,7 +100,7 @@ data:
   path: nt/stern_brocot_tree.hpp
   requiredBy: []
   timestamp: '2022-10-16 14:15:12+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/stern_brocot.test.cpp
   - test/2_library_checker/number_theory/stern-brocot.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -105,56 +105,55 @@ data:
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
     \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/mybitset.test.cpp\"\
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n    \
-    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n                  \
-    \   chrono::high_resolution_clock::now().time_since_epoch())\n               \
-    \      .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return\
-    \ x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll\
-    \ l, ll r) { return l + RNG_64() % (r - l); }\n#line 2 \"ds/my_bitset.hpp\"\n\n\
-    // https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
-    // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
-    \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
-    \u3057\u305F\u304F\u306A\u3044\u3068\u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\
-    \u8981\u306A\u3068\u304D\u306B\u4F7F\u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n\
-    \  int N;\n  vc<u64> dat;\n\n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int\
-    \ N = 0, int x = 0) : N(N) {\n    assert(x == 0 || x == 1);\n    u64 v = (x ==\
-    \ 0 ? 0 : -1);\n    dat.assign((N + 63) >> 6, v);\n    if (N) dat.back() >>= (64\
-    \ * len(dat) - N);\n  }\n\n  int size() { return N; }\n\n  void resize(int size)\
-    \ {\n    dat.resize((size + 63) >> 6);\n    int remainingBits = size & 63;\n \
-    \   if (remainingBits != 0) {\n      u64 mask = (u64(1) << remainingBits) - 1;\n\
-    \      dat.back() &= mask;\n    }\n    N = size;\n  }\n\n  static T from_string(string\
-    \ &S) {\n    int N = len(S);\n    T ANS(N);\n    FOR(i, N) ANS[i] = (S[i] == '1');\n\
-    \    return ANS;\n  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n\
-    \    Proxy(vc<u64> &d, int i) : dat(d), index(i) {}\n    operator bool() const\
-    \ { return (dat[index >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64\
-    \ value) {\n      dat[index >> 6] &= ~(u64(1) << (index & 63));\n      dat[index\
-    \ >> 6] |= (value & 1) << (index & 63);\n      return *this;\n    }\n    void\
-    \ flip() {\n      dat[index >> 6] ^= (u64(1) << (index & 63)); // XOR to flip\
-    \ the bit\n    }\n\n  private:\n    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy\
-    \ operator[](int i) { return Proxy(dat, i); }\n\n  bool operator==(const T &p)\
-    \ {\n    assert(N == p.N);\n    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return\
-    \ false;\n    return true;\n  }\n\n  T &operator&=(const T &p) {\n    assert(N\
-    \ == p.N);\n    FOR(i, len(dat)) dat[i] &= p.dat[i];\n    return *this;\n  }\n\
-    \  T &operator|=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat)) dat[i]\
-    \ |= p.dat[i];\n    return *this;\n  }\n  T &operator^=(const T &p) {\n    assert(N\
-    \ == p.N);\n    FOR(i, len(dat)) dat[i] ^= p.dat[i];\n    return *this;\n  }\n\
-    \  T operator&(const T &p) const { return T(*this) &= p; }\n  T operator|(const\
-    \ T &p) const { return T(*this) |= p; }\n  T operator^(const T &p) const { return\
-    \ T(*this) ^= p; }\n  T operator~() const {\n    T p = (*this);\n    p.flip_range(0,\
-    \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
-    \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N\
-    \ == p.N);\n    int ans = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n\
-    \    return ans;\n  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int\
-    \ ans = 0;\n    FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n   \
-    \ return ans;\n  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return\
-    \ N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n\
-    \      x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n\
-    \    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return\
-    \ (idx << 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int\
-    \ i) {\n    chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n\
-    \    if ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i &\
-    \ 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n\
-    \    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx\
-    \ << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
+    \  = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
+    // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
+    \u306E bitset \u3088\u308A\u9045\u3044\u3068\u304D\u3082\u3042\u308B\u3088\u3046\
+    \u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\u3057\u305F\u304F\u306A\u3044\u3068\
+    \u304D\u3084 slice \u64CD\u4F5C\u304C\u5FC5\u8981\u306A\u3068\u304D\u306B\u4F7F\
+    \u3046\nstruct My_Bitset {\n  using T = My_Bitset;\n  int N;\n  vc<u64> dat;\n\
+    \n  // x \u3067\u57CB\u3081\u308B\n  My_Bitset(int N = 0, int x = 0) : N(N) {\n\
+    \    assert(x == 0 || x == 1);\n    u64 v = (x == 0 ? 0 : -1);\n    dat.assign((N\
+    \ + 63) >> 6, v);\n    if (N) dat.back() >>= (64 * len(dat) - N);\n  }\n\n  int\
+    \ size() { return N; }\n\n  void resize(int size) {\n    dat.resize((size + 63)\
+    \ >> 6);\n    int remainingBits = size & 63;\n    if (remainingBits != 0) {\n\
+    \      u64 mask = (u64(1) << remainingBits) - 1;\n      dat.back() &= mask;\n\
+    \    }\n    N = size;\n  }\n\n  static T from_string(string &S) {\n    int N =\
+    \ len(S);\n    T ANS(N);\n    FOR(i, N) ANS[i] = (S[i] == '1');\n    return ANS;\n\
+    \  }\n\n  // thanks to chatgpt!\n  class Proxy {\n  public:\n    Proxy(vc<u64>\
+    \ &d, int i) : dat(d), index(i) {}\n    operator bool() const { return (dat[index\
+    \ >> 6] >> (index & 63)) & 1; }\n\n    Proxy &operator=(u64 value) {\n      dat[index\
+    \ >> 6] &= ~(u64(1) << (index & 63));\n      dat[index >> 6] |= (value & 1) <<\
+    \ (index & 63);\n      return *this;\n    }\n    void flip() {\n      dat[index\
+    \ >> 6] ^= (u64(1) << (index & 63)); // XOR to flip the bit\n    }\n\n  private:\n\
+    \    vc<u64> &dat;\n    int index;\n  };\n\n  Proxy operator[](int i) { return\
+    \ Proxy(dat, i); }\n\n  bool operator==(const T &p) {\n    assert(N == p.N);\n\
+    \    FOR(i, len(dat)) if (dat[i] != p.dat[i]) return false;\n    return true;\n\
+    \  }\n\n  T &operator&=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
+    \ dat[i] &= p.dat[i];\n    return *this;\n  }\n  T &operator|=(const T &p) {\n\
+    \    assert(N == p.N);\n    FOR(i, len(dat)) dat[i] |= p.dat[i];\n    return *this;\n\
+    \  }\n  T &operator^=(const T &p) {\n    assert(N == p.N);\n    FOR(i, len(dat))\
+    \ dat[i] ^= p.dat[i];\n    return *this;\n  }\n  T operator&(const T &p) const\
+    \ { return T(*this) &= p; }\n  T operator|(const T &p) const { return T(*this)\
+    \ |= p; }\n  T operator^(const T &p) const { return T(*this) ^= p; }\n  T operator~()\
+    \ const {\n    T p = (*this);\n    p.flip_range(0, N);\n    return p;\n  }\n\n\
+    \  int count() {\n    int ans = 0;\n    for (u64 val: dat) ans += popcnt(val);\n\
+    \    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans\
+    \ = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n\
+    \  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n   \
+    \ FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n    return ans;\n\
+    \  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n   \
+    \ int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n     \
+    \ x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx,\
+    \ k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return (idx <<\
+    \ 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int i) {\n \
+    \   chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n    if\
+    \ ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i & 63) +\
+    \ 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n   \
+    \ FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx <<\
+    \ 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
     \ L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n    int rm = (R -\
     \ L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n\
     \    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n\
@@ -260,8 +259,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/mybitset.test.cpp
   requiredBy: []
-  timestamp: '2024-09-10 11:20:00+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-14 09:20:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/mybitset.test.cpp
 layout: document

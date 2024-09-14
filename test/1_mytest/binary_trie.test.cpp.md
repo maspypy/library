@@ -166,19 +166,18 @@ data:
     \ {\n      np c = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w\
     \ = c->width;\n        res += prefix_count_rec(c, ht - w, LIM, xor_val, val <<\
     \ w | c->val);\n      }\n    }\n    return res;\n  }\n};\n#line 2 \"random/base.hpp\"\
-    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(\n\
-    \                     chrono::high_resolution_clock::now().time_since_epoch())\n\
-    \                     .count())\n        * 10150724397891781847ULL;\n  x_ ^= x_\
-    \ << 7;\n  return x_ ^= x_ >> 9;\n}\n\nu64 RNG(u64 lim) { return RNG_64() % lim;\
-    \ }\n\nll RNG(ll l, ll r) { return l + RNG_64() % (r - l); }\n#line 5 \"test/1_mytest/binary_trie.test.cpp\"\
-    \n\nvoid test() {\n  const int LOG = 5;\n  Binary_Trie<LOG, false, 100> X;\n\n\
-    \  FOR(100) {\n    vector<int> A;\n    X.reset();\n    auto root = X.new_root();\n\
-    \    FOR(1000) {\n      int t = RNG(0, 5);\n      if (t == 0) { // add\n     \
-    \   int x = RNG(0, 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n\
-    \      }\n      if (t == 1) { // get all\n        sort(all(A));\n        vc<int>\
-    \ B;\n        X.enumerate(root, [&](int k, int cnt) -> void { FOR(cnt) B.eb(k);\
-    \ });\n        assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n\
-    \        int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 5 \"test/1_mytest/binary_trie.test.cpp\"\n\nvoid\
+    \ test() {\n  const int LOG = 5;\n  Binary_Trie<LOG, false, 100> X;\n\n  FOR(100)\
+    \ {\n    vector<int> A;\n    X.reset();\n    auto root = X.new_root();\n    FOR(1000)\
+    \ {\n      int t = RNG(0, 5);\n      if (t == 0) { // add\n        int x = RNG(0,\
+    \ 1 << LOG);\n        A.eb(x);\n        root = X.add(root, x);\n      }\n    \
+    \  if (t == 1) { // get all\n        sort(all(A));\n        vc<int> B;\n     \
+    \   X.enumerate(root, [&](int k, int cnt) -> void { FOR(cnt) B.eb(k); });\n  \
+    \      assert(A == B);\n      }\n      if (t == 2 && len(A)) { // erase\n    \
+    \    int k = RNG(len(A));\n        int x = A[k];\n        swap(A[k], A.back());\n\
     \        A.pop_back();\n        X.add(root, x, -1);\n      }\n      if (t == 3\
     \ && len(A)) { // kth\n        int k = RNG(len(A));\n        int xor_val = RNG(0,\
     \ 1 << LOG);\n        vc<int> B;\n        for (auto&& x: A) B.eb(x ^ xor_val);\n\
@@ -220,7 +219,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/binary_trie.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
+  timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/binary_trie.test.cpp
