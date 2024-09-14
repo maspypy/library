@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
@@ -25,26 +25,26 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc202/tasks/abc202_f
@@ -530,7 +530,7 @@ data:
     \ != j) IJ.eb(i, j);\n  }\n  vc<mint> POW = powertable_1<mint>(2, N);\n\n  mint\
     \ ANS = 0;\n  FOR(s, N) {\n    vv(mint, dp, 2, N);\n    dp[0][s] = 1;\n    for\
     \ (auto&& [i, j]: IJ) {\n      ll area = (A[i] - A[s]).det(A[j] - A[s]);\n   \
-    \   FOR(sgn, 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.query(s,\
+    \   FOR(sgn, 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.count3(s,\
     \ i, j);\n        dp[t][j] += POW[cnt] * dp[sgn][i];\n      }\n    }\n    ANS\
     \ += dp[0][s];\n  }\n  // 1 \u89D2\u5F62\n  ANS -= mint(N);\n  // 2 \u89D2\u5F62\
     \n  ANS -= mint(N * (N - 1) / 2);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
@@ -545,11 +545,11 @@ data:
     \ if (i != j) IJ.eb(i, j);\n  }\n  vc<mint> POW = powertable_1<mint>(2, N);\n\n\
     \  mint ANS = 0;\n  FOR(s, N) {\n    vv(mint, dp, 2, N);\n    dp[0][s] = 1;\n\
     \    for (auto&& [i, j]: IJ) {\n      ll area = (A[i] - A[s]).det(A[j] - A[s]);\n\
-    \      FOR(sgn, 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.query(s,\
+    \      FOR(sgn, 2) {\n        ll t = (sgn + area) & 1;\n        int cnt = X.count3(s,\
     \ i, j);\n        dp[t][j] += POW[cnt] * dp[sgn][i];\n      }\n    }\n    ANS\
     \ += dp[0][s];\n  }\n  // 1 \u89D2\u5F62\n  ANS -= mint(N);\n  // 2 \u89D2\u5F62\
     \n  ANS -= mint(N * (N - 1) / 2);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    \n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -567,8 +567,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2024-09-14 19:18:25+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-09-15 03:50:48+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc202_f.test.cpp
 layout: document
