@@ -5,6 +5,7 @@
 /*
 ・連結平面グラフになっていないときにどう動作するかは何も考えていない
 ・N=1 も扱わない
+・0番目に外面が入る
 */
 template <typename XY>
 struct Planar_Graph {
@@ -20,9 +21,7 @@ struct Planar_Graph {
   // 面属性
   vc<int> first_edge;
 
-  Planar_Graph(int N, vc<P> point) : NV(N), G(N), point(point) {
-    assert(N > 1);
-  }
+  Planar_Graph(int N, vc<P> point) : NV(N), G(N), point(point) { assert(N > 1); }
 
   void add(int a, int b) { G.add(a, b), G.add(b, a); }
   void build() {
@@ -48,7 +47,7 @@ struct Planar_Graph {
         i = eid[i], j = eid[j];
         nxt_edge[j ^ 1] = i;
       }
-      if (v == v0) e0 = eid[I[0] ^ 1];
+      if (v == v0) e0 = eid[I[0]] ^ 1;
     }
     for (auto& x: nxt_edge) assert(x != -1);
 
