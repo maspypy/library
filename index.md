@@ -251,7 +251,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -278,7 +278,7 @@ data:
     - icon: ':warning:'
       path: ds/incremental_rectangle_union.hpp
       title: ds/incremental_rectangle_union.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/index_compression.hpp
       title: ds/index_compression.hpp
     - icon: ':heavy_check_mark:'
@@ -548,7 +548,7 @@ data:
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix/wavelet_matrix.hpp
       title: ds/wavelet_matrix/wavelet_matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -676,13 +676,13 @@ data:
     - icon: ':question:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':heavy_check_mark:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':heavy_check_mark:'
@@ -1304,7 +1304,7 @@ data:
     - icon: ':question:'
       path: mod/crt3.hpp
       title: mod/crt3.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/dynamic_modint.hpp
       title: mod/dynamic_modint.hpp
     - icon: ':warning:'
@@ -1552,7 +1552,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/golden_search.hpp
       title: other/golden_search.hpp
     - icon: ':warning:'
@@ -1767,7 +1767,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/sum_of_prefix_suffix_products.hpp
       title: poly/sum_of_prefix_suffix_products.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/sum_of_rationals.hpp
       title: poly/sum_of_rationals.hpp
     - icon: ':question:'
@@ -4775,7 +4775,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc281e_2.test.cpp
       title: test/5_atcoder/abc281e_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc281g.test.cpp
       title: test/5_atcoder/abc281g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4808,7 +4808,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc312f.test.cpp
       title: test/5_atcoder/abc312f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc314.test.cpp
       title: test/5_atcoder/abc314.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4838,7 +4838,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc321g.test.cpp
       title: test/5_atcoder/abc321g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc324g.test.cpp
       title: test/5_atcoder/abc324g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4859,7 +4859,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc334g.test.cpp
       title: test/5_atcoder/abc334g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc335g.test.cpp
       title: test/5_atcoder/abc335g.test.cpp
     - icon: ':x:'
