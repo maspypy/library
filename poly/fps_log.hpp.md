@@ -83,7 +83,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
@@ -195,7 +195,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -231,9 +231,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc160d.test.cpp
     title: test/5_atcoder/arc160d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/fps_log.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -602,7 +602,7 @@ data:
   - seq/famous/surjection.hpp
   - seq/famous/stirling_number_1.hpp
   timestamp: '2024-08-28 00:31:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1145.test.cpp

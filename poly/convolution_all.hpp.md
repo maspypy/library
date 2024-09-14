@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -93,9 +93,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc154f.test.cpp
     title: test/5_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -462,7 +462,7 @@ data:
   - graph/tree_walk_generating_function.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2024-08-28 00:31:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1145.test.cpp

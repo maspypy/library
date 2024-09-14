@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':question:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':x:'
@@ -44,10 +44,10 @@ data:
   - icon: ':question:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/multiplicative_sum.hpp
     title: nt/multiplicative_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
   - icon: ':heavy_check_mark:'
@@ -207,13 +207,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1276.test.cpp
     title: test/3_yukicoder/1276.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -225,10 +225,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'

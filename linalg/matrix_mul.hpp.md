@@ -8,25 +8,25 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
@@ -51,10 +51,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
