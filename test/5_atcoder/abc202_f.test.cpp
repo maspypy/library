@@ -33,7 +33,7 @@ void solve() {
       ll area = (A[i] - A[s]).det(A[j] - A[s]);
       FOR(sgn, 2) {
         ll t = (sgn + area) & 1;
-        int cnt = X.query(s, i, j);
+        int cnt = X.count3(s, i, j);
         dp[t][j] += POW[cnt] * dp[sgn][i];
       }
     }
