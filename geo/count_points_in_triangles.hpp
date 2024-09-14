@@ -37,7 +37,11 @@ struct Count_Points_In_Triangles {
   }
 
   // segment
-  int count2(int i, int j) { return seg[i][j]; }
+  int count2(int i, int j) {
+    i = new_idx[i], j = new_idx[j];
+    if (i > j) swap(i, j);
+    return seg[i][j];
+  }
 
 private:
   P take_origin() {
