@@ -7,9 +7,7 @@ template <typename, typename = std::void_t<>>
 struct has_inverse : std::false_type {};
 
 template <typename T>
-struct has_inverse<T, std::void_t<decltype(
-                          T::inverse(std::declval<typename T::value_type>()))>>
-    : std::true_type {};
+struct has_inverse<T, std::void_t<decltype(T::inverse(std::declval<typename T::value_type>()))>> : std::true_type {};
 
 struct Dummy_Data_Structure {
   using MX = Monoid_Add<bool>;
@@ -90,9 +88,7 @@ struct Wavelet_Matrix {
   }
 
   // [L,R) x [y1,y2)
-  int count(int L, int R, Y y1, Y y2) {
-    return prefix_count(L, R, y2) - prefix_count(L, R, y1);
-  }
+  int count(int L, int R, Y y1, Y y2) { return prefix_count(L, R, y2) - prefix_count(L, R, y1); }
 
   // [L,R) x [0,y)
   pair<int, T> prefix_count_and_prod(int L, int R, Y y) {
@@ -104,9 +100,7 @@ struct Wavelet_Matrix {
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
-      if (p >> d & 1) {
-        cnt += r0 - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1;
-      }
+      if (p >> d & 1) { cnt += r0 - l0, t = Mono::op(t, seg[d].prod(l0, r0)), L = l1, R = r1; }
       if (!(p >> d & 1)) L = l0, R = r0;
     }
     return {cnt, t};
@@ -217,8 +211,7 @@ struct Wavelet_Matrix {
       if (k < r0 - l0) {
         L = l0, R = r0;
       } else {
-        t = Mono::op(t, seg[d].prod(l0, r0)), k -= r0 - l0, L = l1, R = r1,
-        p |= 1 << d;
+        t = Mono::op(t, seg[d].prod(l0, r0)), k -= r0 - l0, L = l1, R = r1, p |= 1 << d;
       }
     }
     t = Mono::op(t, seg[0].prod(L, L + k));
@@ -238,9 +231,7 @@ struct Wavelet_Matrix {
     int cnt = 0;
     T t = Mono::unit();
     assert(check(0, Mono::unit()));
-    if (check(R - L, seg[log].prod(L, R))) {
-      return {R - L, seg[log].prod(L, R)};
-    }
+    if (check(R - L, seg[log].prod(L, R))) { return {R - L, seg[log].prod(L, R)}; }
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
@@ -279,4 +270,5 @@ struct Wavelet_Matrix {
       seg[d].multiply(L, t);
     }
   }
+  void add(int i, T t) { multiply(i, t); }
 };
