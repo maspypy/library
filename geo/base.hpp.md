@@ -47,19 +47,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: geo/polygon.hpp
     title: geo/polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -144,9 +144,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
-    path: test/4_aoj/CGL_3_B.test.cpp
-    title: test/4_aoj/CGL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
@@ -159,13 +156,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc139f.test.cpp
     title: test/5_atcoder/abc139f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc151f.test.cpp
     title: test/5_atcoder/abc151f.test.cpp
   - icon: ':x:'
     path: test/5_atcoder/abc202_f.test.cpp
     title: test/5_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc220g.test.cpp
     title: test/5_atcoder/abc220g.test.cpp
   - icon: ':x:'
@@ -333,7 +330,6 @@ data:
   - test/4_aoj/CGL_2_A.test.cpp
   - test/4_aoj/CGL_5_A.test.cpp
   - test/4_aoj/CGL_1_A.test.cpp
-  - test/4_aoj/CGL_3_B.test.cpp
   - test/4_aoj/CGL_1_B.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp

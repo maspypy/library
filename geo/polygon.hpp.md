@@ -8,13 +8,10 @@ data:
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/4_aoj/CGL_3_B.test.cpp
-    title: test/4_aoj/CGL_3_B.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://atcoder.jp/contests/JAG2014Spring/tasks/icpc2014spring_f
@@ -198,9 +195,8 @@ data:
   path: geo/polygon.hpp
   requiredBy: []
   timestamp: '2024-09-11 14:29:40+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/4_aoj/CGL_3_B.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: geo/polygon.hpp
 layout: document
 redirect_from:

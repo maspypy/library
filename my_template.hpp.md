@@ -2274,9 +2274,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
-    path: test/4_aoj/CGL_3_B.test.cpp
-    title: test/4_aoj/CGL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
@@ -2406,7 +2403,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc127f.test.cpp
     title: test/5_atcoder/abc127f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc127f_1.test.cpp
     title: test/5_atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2418,10 +2415,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc141f.test.cpp
     title: test/5_atcoder/abc141f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc151f.test.cpp
     title: test/5_atcoder/abc151f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc152e.test.cpp
     title: test/5_atcoder/abc152e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2457,7 +2454,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc209e.test.cpp
     title: test/5_atcoder/abc209e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc212g.test.cpp
     title: test/5_atcoder/abc212g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2484,7 +2481,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc220f.test.cpp
     title: test/5_atcoder/abc220f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc220g.test.cpp
     title: test/5_atcoder/abc220g.test.cpp
   - icon: ':x:'
@@ -3476,7 +3473,6 @@ data:
   - test/4_aoj/CGL_1_A.test.cpp
   - test/4_aoj/DPL_1_B.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp
-  - test/4_aoj/CGL_3_B.test.cpp
   - test/4_aoj/GRL_3_B.test.cpp
   - test/4_aoj/DPL_2_A.test.cpp
   - test/4_aoj/ITP1_D_D.test.cpp

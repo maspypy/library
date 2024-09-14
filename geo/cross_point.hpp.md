@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: geo/polygon.hpp
     title: geo/polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -27,9 +27,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':x:'
-    path: test/4_aoj/CGL_3_B.test.cpp
-    title: test/4_aoj/CGL_3_B.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_B.test.cpp
     title: test/4_aoj/CGL_7_B.test.cpp
@@ -192,7 +189,6 @@ data:
   - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_C.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
-  - test/4_aoj/CGL_3_B.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
