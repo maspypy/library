@@ -119,7 +119,8 @@ vc<Gaussian_Integer<T>> solve_norm_equation_factor(vc<pair<ll, int>> pfs) {
       }
       continue;
     }
-    G pi = solve_norm_equation_prime(p);
+    auto [pix, piy] = solve_norm_equation_prime(p);
+    G pi(pix, piy);
     vc<G> pows(e + 1);
     pows[0] = G(1, 0);
     FOR(i, e) pows[i + 1] = pows[i] * pi;
