@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
   - icon: ':question:'
@@ -16,17 +16,17 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -341,8 +341,8 @@ data:
     \ {\n      int e = nxt_edge[eid.back()];\n      if (e == first_edge[fid]) break;\n\
     \      eid.eb(e);\n    }\n    vc<int> vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n\
     \    vid.eb(vid[0]);\n    return {vid, eid};\n  }\n};\n#line 4 \"geo/polygon_triangulation.hpp\"\
-    \n\nvc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<ll>> point)\
-    \ {\n  int N = len(point);\n  int rot = min_element(all(point)) - point.begin();\n\
+    \n\ntemplate <typename T>\nvc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>>\
+    \ point) {\n  int N = len(point);\n  int rot = min_element(all(point)) - point.begin();\n\
     \  rotate(point.begin(), point.begin() + rot, point.end());\n  int n = max_element(all(point))\
     \ - point.begin();\n  FOR(i, n) assert(point[i] < point[i + 1]);\n  FOR(i, n,\
     \ N) assert(point[(i + 1) % N] < point[i]);\n  vc<tuple<int, int, int>> res;\n\
@@ -362,27 +362,27 @@ data:
     \ FOR(j, len(stack) - 1) res.eb(stack[j], stack[j + 1], n); }\n  elif (s == 1)\
     \ { FOR(j, len(stack) - 1) res.eb(stack[j], n, stack[j + 1]); }\n  for (auto&\
     \ [a, b, c]: res) a = (a + rot) % N, b = (b + rot) % N, c = (c + rot) % N;\n \
-    \ return res;\n}\n\n// (i,j,k), ccw\nvc<tuple<int, int, int>> polygon_triangulation(vc<Point<ll>>\
-    \ point) {\n  using P = Point<ll>;\n  int N = len(point);\n  enum vtype { MERGE,\
-    \ SPLIT, START, END, UPPER, LOWER };\n  auto pre = [&](int i) -> int { return\
-    \ (i > 0 ? i - 1 : N - 1); };\n  auto nxt = [&](int i) -> int { return (i < N\
-    \ - 1 ? i + 1 : 0); };\n  auto get_vtype = [&](int i) -> vtype {\n    int l =\
-    \ pre(i), r = nxt(i);\n    if (point[i] < point[l] && point[i] < point[r]) { return\
-    \ (ccw(point[l], point[i], point[r]) == 1 ? START : SPLIT); }\n    if (point[l]\
-    \ < point[i] && point[r] < point[i]) { return (ccw(point[l], point[i], point[r])\
-    \ == 1 ? END : MERGE); }\n    if (point[l] < point[i] && point[i] < point[r])\
-    \ return LOWER;\n    if (point[r] < point[i] && point[i] < point[l]) return UPPER;\n\
-    \    assert(0);\n  };\n  SplayTree_Basic<int> ST(N);\n  using np = decltype(ST)::np;\n\
-    \  vc<np> nodes(N);\n  FOR(i, N) nodes[i] = ST.new_node(i);\n  np S = ST.new_root();\n\
-    \  auto comp = [&](int i, P p) -> bool {\n    P A = point[i], B = point[nxt(i)];\n\
-    \    return ccw(A, B, p) == -1;\n  };\n\n  vc<int> helper(N, -1);\n  vc<bool>\
-    \ merged(N);\n\n  Planar_Graph<ll> G(N, point);\n  FOR(i, N) G.add(i, nxt(i));\n\
-    \n  auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v, w); };\n\
-    \n  auto fix_up = [&](int v, int e) -> void {\n    int w = helper[e];\n    if\
-    \ (get_vtype(w) == vtype::MERGE && !merged[w]) { add_edge(v, w); }\n  };\n  auto\
-    \ I = argsort(point);\n  for (auto& i: I) {\n    vtype t = get_vtype(i);\n   \
-    \ if (t == vtype::MERGE) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n     \
-    \ int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] = ST.split3(S,\
+    \ return res;\n}\n\n// (i,j,k), ccw\ntemplate <typename T>\nvc<tuple<int, int,\
+    \ int>> polygon_triangulation(vc<Point<T>> point) {\n  using P = Point<T>;\n \
+    \ int N = len(point);\n  enum vtype { MERGE, SPLIT, START, END, UPPER, LOWER };\n\
+    \  auto pre = [&](int i) -> int { return (i > 0 ? i - 1 : N - 1); };\n  auto nxt\
+    \ = [&](int i) -> int { return (i < N - 1 ? i + 1 : 0); };\n  auto get_vtype =\
+    \ [&](int i) -> vtype {\n    int l = pre(i), r = nxt(i);\n    if (point[i] < point[l]\
+    \ && point[i] < point[r]) { return (ccw(point[l], point[i], point[r]) == 1 ? START\
+    \ : SPLIT); }\n    if (point[l] < point[i] && point[r] < point[i]) { return (ccw(point[l],\
+    \ point[i], point[r]) == 1 ? END : MERGE); }\n    if (point[l] < point[i] && point[i]\
+    \ < point[r]) return LOWER;\n    if (point[r] < point[i] && point[i] < point[l])\
+    \ return UPPER;\n    assert(0);\n  };\n  SplayTree_Basic<int> ST(N);\n  using\
+    \ np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i] = ST.new_node(i);\n\
+    \  np S = ST.new_root();\n  auto comp = [&](int i, P p) -> bool {\n    P A = point[i],\
+    \ B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n  };\n\n  vc<int> helper(N,\
+    \ -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T> G(N, point);\n  FOR(i, N) G.add(i,\
+    \ nxt(i));\n\n  auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v,\
+    \ w); };\n\n  auto fix_up = [&](int v, int e) -> void {\n    int w = helper[e];\n\
+    \    if (get_vtype(w) == vtype::MERGE && !merged[w]) { add_edge(v, w); }\n  };\n\
+    \  auto I = argsort(point);\n  for (auto& i: I) {\n    vtype t = get_vtype(i);\n\
+    \    if (t == vtype::MERGE) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n  \
+    \    int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] = ST.split3(S,\
     \ n, n + 1);\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n      fix_up(i,\
     \ i), fix_up(i, j);\n      helper[j] = i;\n    }\n    if (t == vtype::SPLIT) {\n\
     \      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k,\
@@ -405,19 +405,20 @@ data:
     \ monotone_polygon_triangulation(sub)) ANS.eb(vs[a], vs[b], vs[c]);\n  }\n  return\
     \ ANS;\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"ds/splaytree/splaytree_basic.hpp\"\n\
-    #include \"graph/planar_graph.hpp\"\n\nvc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<ll>>\
-    \ point) {\n  int N = len(point);\n  int rot = min_element(all(point)) - point.begin();\n\
-    \  rotate(point.begin(), point.begin() + rot, point.end());\n  int n = max_element(all(point))\
-    \ - point.begin();\n  FOR(i, n) assert(point[i] < point[i + 1]);\n  FOR(i, n,\
-    \ N) assert(point[(i + 1) % N] < point[i]);\n  vc<tuple<int, int, int>> res;\n\
-    \  auto side = [&](int i) -> int {\n    assert(i != 0 && i != n);\n    return\
-    \ (i < n ? 0 : 1);\n  };\n  vc<int> I = argsort(point);\n  vc<int> stack = {I[0],\
-    \ I[1]};\n  int s = side(I[1]);\n  FOR(i, 2, N - 1) {\n    int v = I[i], t = side(v);\n\
-    \    if (s == 0 && t == 0) {\n      while (len(stack) >= 2 && ccw(point[stack[len(stack)\
-    \ - 2]], point[stack[len(stack) - 1]], point[v]) == 1) {\n        res.eb(stack[len(stack)\
-    \ - 2], stack[len(stack) - 1], v), POP(stack);\n      }\n      stack.eb(v);\n\
-    \    }\n    elif (s == 1 && t == 1) {\n      while (len(stack) >= 2 && ccw(point[stack[len(stack)\
-    \ - 2]], point[stack[len(stack) - 1]], point[v]) == -1) {\n        res.eb(stack[len(stack)\
+    #include \"graph/planar_graph.hpp\"\n\ntemplate <typename T>\nvc<tuple<int, int,\
+    \ int>> monotone_polygon_triangulation(vc<Point<T>> point) {\n  int N = len(point);\n\
+    \  int rot = min_element(all(point)) - point.begin();\n  rotate(point.begin(),\
+    \ point.begin() + rot, point.end());\n  int n = max_element(all(point)) - point.begin();\n\
+    \  FOR(i, n) assert(point[i] < point[i + 1]);\n  FOR(i, n, N) assert(point[(i\
+    \ + 1) % N] < point[i]);\n  vc<tuple<int, int, int>> res;\n  auto side = [&](int\
+    \ i) -> int {\n    assert(i != 0 && i != n);\n    return (i < n ? 0 : 1);\n  };\n\
+    \  vc<int> I = argsort(point);\n  vc<int> stack = {I[0], I[1]};\n  int s = side(I[1]);\n\
+    \  FOR(i, 2, N - 1) {\n    int v = I[i], t = side(v);\n    if (s == 0 && t ==\
+    \ 0) {\n      while (len(stack) >= 2 && ccw(point[stack[len(stack) - 2]], point[stack[len(stack)\
+    \ - 1]], point[v]) == 1) {\n        res.eb(stack[len(stack) - 2], stack[len(stack)\
+    \ - 1], v), POP(stack);\n      }\n      stack.eb(v);\n    }\n    elif (s == 1\
+    \ && t == 1) {\n      while (len(stack) >= 2 && ccw(point[stack[len(stack) - 2]],\
+    \ point[stack[len(stack) - 1]], point[v]) == -1) {\n        res.eb(stack[len(stack)\
     \ - 2], v, stack[len(stack) - 1]), POP(stack);\n      }\n      stack.eb(v);\n\
     \    }\n    elif (s == 0 && t == 1) {\n      FOR(j, len(stack) - 1) res.eb(stack[j],\
     \ stack[j + 1], v);\n      stack = {stack.back(), v}, s = t;\n    }\n    elif\
@@ -426,27 +427,27 @@ data:
     \ FOR(j, len(stack) - 1) res.eb(stack[j], stack[j + 1], n); }\n  elif (s == 1)\
     \ { FOR(j, len(stack) - 1) res.eb(stack[j], n, stack[j + 1]); }\n  for (auto&\
     \ [a, b, c]: res) a = (a + rot) % N, b = (b + rot) % N, c = (c + rot) % N;\n \
-    \ return res;\n}\n\n// (i,j,k), ccw\nvc<tuple<int, int, int>> polygon_triangulation(vc<Point<ll>>\
-    \ point) {\n  using P = Point<ll>;\n  int N = len(point);\n  enum vtype { MERGE,\
-    \ SPLIT, START, END, UPPER, LOWER };\n  auto pre = [&](int i) -> int { return\
-    \ (i > 0 ? i - 1 : N - 1); };\n  auto nxt = [&](int i) -> int { return (i < N\
-    \ - 1 ? i + 1 : 0); };\n  auto get_vtype = [&](int i) -> vtype {\n    int l =\
-    \ pre(i), r = nxt(i);\n    if (point[i] < point[l] && point[i] < point[r]) { return\
-    \ (ccw(point[l], point[i], point[r]) == 1 ? START : SPLIT); }\n    if (point[l]\
-    \ < point[i] && point[r] < point[i]) { return (ccw(point[l], point[i], point[r])\
-    \ == 1 ? END : MERGE); }\n    if (point[l] < point[i] && point[i] < point[r])\
-    \ return LOWER;\n    if (point[r] < point[i] && point[i] < point[l]) return UPPER;\n\
-    \    assert(0);\n  };\n  SplayTree_Basic<int> ST(N);\n  using np = decltype(ST)::np;\n\
-    \  vc<np> nodes(N);\n  FOR(i, N) nodes[i] = ST.new_node(i);\n  np S = ST.new_root();\n\
-    \  auto comp = [&](int i, P p) -> bool {\n    P A = point[i], B = point[nxt(i)];\n\
-    \    return ccw(A, B, p) == -1;\n  };\n\n  vc<int> helper(N, -1);\n  vc<bool>\
-    \ merged(N);\n\n  Planar_Graph<ll> G(N, point);\n  FOR(i, N) G.add(i, nxt(i));\n\
-    \n  auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v, w); };\n\
-    \n  auto fix_up = [&](int v, int e) -> void {\n    int w = helper[e];\n    if\
-    \ (get_vtype(w) == vtype::MERGE && !merged[w]) { add_edge(v, w); }\n  };\n  auto\
-    \ I = argsort(point);\n  for (auto& i: I) {\n    vtype t = get_vtype(i);\n   \
-    \ if (t == vtype::MERGE) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n     \
-    \ int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] = ST.split3(S,\
+    \ return res;\n}\n\n// (i,j,k), ccw\ntemplate <typename T>\nvc<tuple<int, int,\
+    \ int>> polygon_triangulation(vc<Point<T>> point) {\n  using P = Point<T>;\n \
+    \ int N = len(point);\n  enum vtype { MERGE, SPLIT, START, END, UPPER, LOWER };\n\
+    \  auto pre = [&](int i) -> int { return (i > 0 ? i - 1 : N - 1); };\n  auto nxt\
+    \ = [&](int i) -> int { return (i < N - 1 ? i + 1 : 0); };\n  auto get_vtype =\
+    \ [&](int i) -> vtype {\n    int l = pre(i), r = nxt(i);\n    if (point[i] < point[l]\
+    \ && point[i] < point[r]) { return (ccw(point[l], point[i], point[r]) == 1 ? START\
+    \ : SPLIT); }\n    if (point[l] < point[i] && point[r] < point[i]) { return (ccw(point[l],\
+    \ point[i], point[r]) == 1 ? END : MERGE); }\n    if (point[l] < point[i] && point[i]\
+    \ < point[r]) return LOWER;\n    if (point[r] < point[i] && point[i] < point[l])\
+    \ return UPPER;\n    assert(0);\n  };\n  SplayTree_Basic<int> ST(N);\n  using\
+    \ np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i] = ST.new_node(i);\n\
+    \  np S = ST.new_root();\n  auto comp = [&](int i, P p) -> bool {\n    P A = point[i],\
+    \ B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n  };\n\n  vc<int> helper(N,\
+    \ -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T> G(N, point);\n  FOR(i, N) G.add(i,\
+    \ nxt(i));\n\n  auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v,\
+    \ w); };\n\n  auto fix_up = [&](int v, int e) -> void {\n    int w = helper[e];\n\
+    \    if (get_vtype(w) == vtype::MERGE && !merged[w]) { add_edge(v, w); }\n  };\n\
+    \  auto I = argsort(point);\n  for (auto& i: I) {\n    vtype t = get_vtype(i);\n\
+    \    if (t == vtype::MERGE) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n  \
+    \    int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] = ST.split3(S,\
     \ n, n + 1);\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n      fix_up(i,\
     \ i), fix_up(i, j);\n      helper[j] = i;\n    }\n    if (t == vtype::SPLIT) {\n\
     \      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k,\
@@ -478,8 +479,8 @@ data:
   isVerificationFile: false
   path: geo/polygon_triangulation.hpp
   requiredBy: []
-  timestamp: '2024-09-14 19:18:25+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-09-14 20:33:18+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: geo/polygon_triangulation.hpp
