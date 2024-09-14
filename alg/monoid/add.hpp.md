@@ -8,16 +8,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d_dense.hpp
     title: ds/fenwicktree/fenwicktree_2d_dense.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
   - icon: ':heavy_check_mark:'
@@ -116,6 +116,9 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
+  - icon: ':x:'
+    path: random/random_polygon.hpp
+    title: random/random_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
@@ -147,21 +150,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_am.test.cpp
     title: test/1_mytest/kdtree_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/maxidx_add.test.cpp
     title: test/1_mytest/maxidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/minidx_add.test.cpp
     title: test/1_mytest/minidx_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/minmax_add.test.cpp
     title: test/1_mytest/minmax_add.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
@@ -559,6 +565,7 @@ data:
   path: alg/monoid/add.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
+  - random/random_polygon.hpp
   - geo/count_points_in_triangles.hpp
   - graph/count/count_connected_intervals.hpp
   - graph/ds/incremental_centroid.hpp
@@ -686,6 +693,7 @@ data:
   - test/1_mytest/ARC30D.test.cpp
   - test/1_mytest/rbst_commutative_persistent.test.cpp
   - test/1_mytest/dual_fenwick.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
   - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp

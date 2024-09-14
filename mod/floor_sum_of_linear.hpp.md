@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_sum_of_linear.hpp
     title: mod/mod_sum_of_linear.hpp
   - icon: ':question:'
@@ -12,7 +12,7 @@ data:
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_sum_of_linear.test.cpp
     title: test/1_mytest/mod_sum_of_linear.test.cpp
   - icon: ':x:'

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/min_of_linear.hpp
     title: mod/min_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   - icon: ':question:'

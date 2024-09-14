@@ -18,7 +18,7 @@ data:
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
   - icon: ':x:'
@@ -50,7 +50,7 @@ data:
     title: test/5_atcoder/abc336g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/find_linear_rec.hpp\"\n\r\ntemplate <typename mint>\r\
@@ -93,7 +93,7 @@ data:
   - graph/count/BEST.hpp
   - linalg/blackbox/det.hpp
   timestamp: '2024-09-14 09:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/310.test.cpp
   - test/5_atcoder/abc336g.test.cpp

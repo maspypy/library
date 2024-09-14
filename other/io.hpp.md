@@ -15,10 +15,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_tournament.test.cpp
     title: test/1_mytest/count_labeled_tournament.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kinetic.test.cpp
     title: test/1_mytest/kinetic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
   - icon: ':x:'
@@ -1194,7 +1194,7 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1776.test.cpp
     title: test/3_yukicoder/1776.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'

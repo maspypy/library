@@ -8,10 +8,10 @@ data:
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -21,10 +21,10 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':x:'

@@ -407,31 +407,31 @@ data:
     \ ll d = (A[j] - A[i]).det(A[k] - A[i]);\n    if (d == 0) return 0;\n    if (d\
     \ > 0) { return tri[i][j] + tri[j][k] - tri[i][k] - seg[i][k]; }\n    int x =\
     \ tri[i][k] - tri[i][j] - tri[j][k];\n    return x - seg[i][j] - seg[j][k] - point[j];\n\
-    \  }\n\n  // segment\n  int count2(int i, int j) { return seg[i][j]; }\n\nprivate:\n\
-    \  P take_origin() {\n    // OAiAj, OAiBj \u304C\u540C\u4E00\u76F4\u7DDA\u4E0A\
-    \u306B\u306A\u3089\u306A\u3044\u3088\u3046\u306B\u3059\u308B\n    // fail prob:\
-    \ at most N(N+M)/LIM\n    return P{-LIM, RNG(-LIM, LIM)};\n  }\n\n  void build()\
-    \ {\n    P O = take_origin();\n    for (auto&& p: A) p = p - O;\n    for (auto&&\
-    \ p: B) p = p - O;\n    int N = len(A), M = len(B);\n    vc<int> I = angle_sort(A);\n\
-    \    A = rearrange(A, I);\n    new_idx.resize(N);\n    FOR(i, N) new_idx[I[i]]\
-    \ = i;\n\n    I = angle_sort(B);\n    B = rearrange(B, I);\n\n    point.assign(N,\
-    \ 0);\n    seg.assign(N, vc<int>(N));\n    tri.assign(N, vc<int>(N));\n\n    //\
-    \ point\n    FOR(i, N) FOR(j, M) if (A[i] == B[j])++ point[i];\n\n    int m =\
-    \ 0;\n    FOR(j, N) {\n      // OA[i]A[j], B[k]\n      while (m < M && A[j].det(B[m])\
-    \ < 0) ++m;\n      vc<P> C(m);\n      FOR(k, m) C[k] = B[k] - A[j];\n      vc<int>\
-    \ I(m);\n      FOR(i, m) I[i] = i;\n      sort(all(I), [&](auto& a, auto& b) ->\
-    \ bool { return C[a].det(C[b]) > 0; });\n      C = rearrange(C, I);\n      vc<int>\
-    \ rk(m);\n      FOR(k, m) rk[I[k]] = k;\n      FenwickTree_01 bit(m);\n\n    \
-    \  int k = m;\n      FOR_R(i, j) {\n        while (k > 0 && A[i].det(B[k - 1])\
-    \ > 0) { bit.add(rk[--k], 1); }\n        P p = A[i] - A[j];\n        int lb =\
-    \ binary_search([&](int n) -> bool { return (n == 0 ? true : C[n - 1].det(p) >\
-    \ 0); }, 0, m + 1);\n        int ub = binary_search([&](int n) -> bool { return\
-    \ (n == 0 ? true : C[n - 1].det(p) >= 0); }, 0, m + 1);\n        seg[i][j] +=\
-    \ bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n      }\n    }\n  }\n};\n#line 2\
-    \ \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n \
-    \ static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
-    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
-    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \  }\n\n  // segment\n  int count2(int i, int j) {\n    i = new_idx[i], j = new_idx[j];\n\
+    \    if (i > j) swap(i, j);\n    return seg[i][j];\n  }\n\nprivate:\n  P take_origin()\
+    \ {\n    // OAiAj, OAiBj \u304C\u540C\u4E00\u76F4\u7DDA\u4E0A\u306B\u306A\u3089\
+    \u306A\u3044\u3088\u3046\u306B\u3059\u308B\n    // fail prob: at most N(N+M)/LIM\n\
+    \    return P{-LIM, RNG(-LIM, LIM)};\n  }\n\n  void build() {\n    P O = take_origin();\n\
+    \    for (auto&& p: A) p = p - O;\n    for (auto&& p: B) p = p - O;\n    int N\
+    \ = len(A), M = len(B);\n    vc<int> I = angle_sort(A);\n    A = rearrange(A,\
+    \ I);\n    new_idx.resize(N);\n    FOR(i, N) new_idx[I[i]] = i;\n\n    I = angle_sort(B);\n\
+    \    B = rearrange(B, I);\n\n    point.assign(N, 0);\n    seg.assign(N, vc<int>(N));\n\
+    \    tri.assign(N, vc<int>(N));\n\n    // point\n    FOR(i, N) FOR(j, M) if (A[i]\
+    \ == B[j])++ point[i];\n\n    int m = 0;\n    FOR(j, N) {\n      // OA[i]A[j],\
+    \ B[k]\n      while (m < M && A[j].det(B[m]) < 0) ++m;\n      vc<P> C(m);\n  \
+    \    FOR(k, m) C[k] = B[k] - A[j];\n      vc<int> I(m);\n      FOR(i, m) I[i]\
+    \ = i;\n      sort(all(I), [&](auto& a, auto& b) -> bool { return C[a].det(C[b])\
+    \ > 0; });\n      C = rearrange(C, I);\n      vc<int> rk(m);\n      FOR(k, m)\
+    \ rk[I[k]] = k;\n      FenwickTree_01 bit(m);\n\n      int k = m;\n      FOR_R(i,\
+    \ j) {\n        while (k > 0 && A[i].det(B[k - 1]) > 0) { bit.add(rk[--k], 1);\
+    \ }\n        P p = A[i] - A[j];\n        int lb = binary_search([&](int n) ->\
+    \ bool { return (n == 0 ? true : C[n - 1].det(p) > 0); }, 0, m + 1);\n       \
+    \ int ub = binary_search([&](int n) -> bool { return (n == 0 ? true : C[n - 1].det(p)\
+    \ >= 0); }, 0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
+    \      }\n    }\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -567,7 +567,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc202_f.test.cpp
   requiredBy: []
-  timestamp: '2024-09-14 09:20:23+09:00'
+  timestamp: '2024-09-14 19:18:25+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc202_f.test.cpp

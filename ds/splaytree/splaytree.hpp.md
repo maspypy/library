@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_set.hpp
     title: ds/splaytree/splaytree_acted_set.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
   - icon: ':question:'
@@ -17,6 +17,9 @@ data:
   - icon: ':question:'
     path: ds/splaytree/splaytree_monoid.hpp
     title: ds/splaytree/splaytree_monoid.hpp
+  - icon: ':x:'
+    path: geo/polygon_triangulation.hpp
+    title: geo/polygon_triangulation.hpp
   - icon: ':warning:'
     path: seq/cycle_decomposition.hpp
     title: seq/cycle_decomposition.hpp
@@ -24,6 +27,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf702_F_splay.test.cpp
     title: test/1_mytest/cf702_F_splay.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
@@ -332,6 +338,7 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree.hpp
   requiredBy:
+  - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
   - ds/splaytree/splaytree_acted_monoid.hpp
   - ds/splaytree/splaytree_basic.hpp
@@ -349,6 +356,7 @@ data:
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp

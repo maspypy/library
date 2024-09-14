@@ -9,15 +9,15 @@ data:
     title: graph/strongly_connected_component.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_scc.test.cpp
     title: test/1_mytest/incremental_scc.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/incremental_scc.test.cpp
     title: test/2_library_checker/graph/incremental_scc.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/91608
@@ -167,7 +167,7 @@ data:
   path: graph/incremental_scc.hpp
   requiredBy: []
   timestamp: '2024-06-28 09:49:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/incremental_scc.test.cpp
   - test/2_library_checker/graph/incremental_scc.test.cpp

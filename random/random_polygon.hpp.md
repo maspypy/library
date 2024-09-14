@@ -17,114 +17,36 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
+    path: geo/convex_hull.hpp
+    title: geo/convex_hull.hpp
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':question:'
-    path: my_template.hpp
-    title: my_template.hpp
+    path: geo/cross_point.hpp
+    title: geo/cross_point.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
+  _isVerificationFailed: true
+  _pathExtension: hpp
+  _verificationStatusIcon: ':x:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
-    links:
-    - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/count_points_in_triangles.test.cpp\"\n#define\
-    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
-    #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
-    \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
-    \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
-    \nusing ll = long long;\nusing u32 = unsigned int;\nusing u64 = unsigned long\
-    \ long;\nusing i128 = __int128;\nusing u128 = unsigned __int128;\nusing f128 =\
-    \ __float128;\n\ntemplate <class T>\nconstexpr T infty = 0;\ntemplate <>\nconstexpr\
-    \ int infty<int> = 1'010'000'000;\ntemplate <>\nconstexpr ll infty<ll> = 2'020'000'000'000'000'000;\n\
-    template <>\nconstexpr u32 infty<u32> = infty<int>;\ntemplate <>\nconstexpr u64\
-    \ infty<u64> = infty<ll>;\ntemplate <>\nconstexpr i128 infty<i128> = i128(infty<ll>)\
-    \ * 2'000'000'000'000'000'000;\ntemplate <>\nconstexpr double infty<double> =\
-    \ infty<ll>;\ntemplate <>\nconstexpr long double infty<long double> = infty<ll>;\n\
-    \nusing pi = pair<ll, ll>;\nusing vi = vector<ll>;\ntemplate <class T>\nusing\
-    \ vc = vector<T>;\ntemplate <class T>\nusing vvc = vector<vc<T>>;\ntemplate <class\
-    \ T>\nusing vvvc = vector<vvc<T>>;\ntemplate <class T>\nusing vvvvc = vector<vvvc<T>>;\n\
-    template <class T>\nusing vvvvvc = vector<vvvvc<T>>;\ntemplate <class T>\nusing\
-    \ pq = priority_queue<T>;\ntemplate <class T>\nusing pqg = priority_queue<T, vector<T>,\
-    \ greater<T>>;\n\n#define vv(type, name, h, ...) vector<vector<type>> name(h,\
-    \ vector<type>(__VA_ARGS__))\n#define vvv(type, name, h, w, ...) vector<vector<vector<type>>>\
-    \ name(h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))\n#define vvvv(type,\
-    \ name, a, b, c, ...) \\\n  vector<vector<vector<vector<type>>>> name(a, vector<vector<vector<type>>>(b,\
-    \ vector<vector<type>>(c, vector<type>(__VA_ARGS__))))\n\n// https://trap.jp/post/1224/\n\
-    #define FOR1(a) for (ll _ = 0; _ < ll(a); ++_)\n#define FOR2(i, a) for (ll i =\
-    \ 0; i < ll(a); ++i)\n#define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)\n#define\
-    \ FOR4(i, a, b, c) for (ll i = a; i < ll(b); i += (c))\n#define FOR1_R(a) for\
-    \ (ll i = (a)-1; i >= ll(0); --i)\n#define FOR2_R(i, a) for (ll i = (a)-1; i >=\
-    \ ll(0); --i)\n#define FOR3_R(i, a, b) for (ll i = (b)-1; i >= ll(a); --i)\n#define\
-    \ overload4(a, b, c, d, e, ...) e\n#define overload3(a, b, c, d, ...) d\n#define\
-    \ FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)\n#define\
-    \ FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)\n\n#define\
-    \ FOR_subset(t, s) for (ll t = (s); t >= 0; t = (t == 0 ? -1 : (t - 1) & (s)))\n\
-    #define all(x) x.begin(), x.end()\n#define len(x) ll(x.size())\n#define elif else\
-    \ if\n\n#define eb emplace_back\n#define mp make_pair\n#define mt make_tuple\n\
-    #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
-    \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
-    \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_mod_2(int x) { return __builtin_parity(x);\
-    \ }\nint popcnt_mod_2(u32 x) { return __builtin_parity(x); }\nint popcnt_mod_2(ll\
-    \ x) { return __builtin_parityll(x); }\nint popcnt_mod_2(u64 x) { return __builtin_parityll(x);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
-    \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
-    \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
-    \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
-    \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T floor(T a, T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename\
-    \ T>\nT ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename\
-    \ T>\nT bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename\
-    \ T>\npair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q\
-    \ * y};\n}\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n\
-    \  T sm = 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v)\
-    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n#define LB(c, x)\
-    \ distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c, x) distance((c).begin(),\
-    \ upper_bound(all(c), (x)))\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
-    \ x.end()), x.shrink_to_fit()\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n\
-    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\ntemplate <typename\
-    \ T>\nT POP(pq<T> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\n\
-    template <typename T>\nT POP(pqg<T> &que) {\n  T a = que.top();\n  que.pop();\n\
-    \  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n\
-    \  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\nll binary_search(F\
-    \ check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n\
-    \  while (abs(ok - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok\
-    \ : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
-    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
-    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  return\
-    \ (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T\
-    \ &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int>\
-    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
-    \ S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n\
-    }\n\ntemplate <typename T, typename U>\nvector<T> cumsum(vector<U> &A, int off\
-    \ = 1) {\n  int N = A.size();\n  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
-    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
-    \ sort\ntemplate <typename T>\nvector<int> argsort(const vector<T> &A) {\n  vector<int>\
-    \ ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids), [&](int i, int j) { return\
-    \ (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
-    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
-    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
-    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
-    \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 1 \"geo/count_points_in_triangles.hpp\"\
-    \n\n#line 2 \"geo/angle_sort.hpp\"\n\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
-    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
-    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
-    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const\
-    \ Point p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
+    links: []
+  bundledCode: "#line 1 \"random/random_polygon.hpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct\
+    \ Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename\
+    \ B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n\
+    \  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const Point\
+    \ p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
     \ Point p) {\n    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point\
     \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
@@ -169,8 +91,71 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
-    \u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
+    \ 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true\
+    \ \u3067\u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\
+    \u308B\n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\n\
+    template <typename T, bool allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>&\
+    \ XY, string mode = \"full\", bool sorted = false) {\n  assert(mode == \"full\"\
+    \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
+    \ 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n   \
+    \ if (XY[1] < XY[0]) return {1, 0};\n    return {0};\n  }\n  vc<int> I(N);\n \
+    \ if (sorted) {\n    FOR(i, N) I[i] = i;\n  } else {\n    I = argsort(XY);\n \
+    \ }\n  if constexpr (allow_180) { FOR(i, N - 1) assert(XY[i] != XY[i + 1]); }\n\
+    \n  auto check = [&](ll i, ll j, ll k) -> bool {\n    ll det = (XY[j] - XY[i]).det(XY[k]\
+    \ - XY[i]);\n    if constexpr (allow_180) return det >= 0;\n    return det > 0;\n\
+    \  };\n\n  auto calc = [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n\
+    \      while (P.size() > 1) {\n        auto i = P[P.size() - 2];\n        auto\
+    \ j = P[P.size() - 1];\n        if (check(i, j, k)) break;\n        P.pop_back();\n\
+    \      }\n      P.eb(k);\n    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode\
+    \ == \"full\" || mode == \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty())\
+    \ P.pop_back();\n    reverse(all(I));\n    vc<int> Q = calc();\n    P.insert(P.end(),\
+    \ all(Q));\n  }\n  if (mode == \"upper\") reverse(all(P));\n  while (len(P) >=\
+    \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 2 \"geo/cross_point.hpp\"\
+    \n\n#line 4 \"geo/cross_point.hpp\"\n\n// \u5E73\u884C\u3067\u306A\u3044\u3053\
+    \u3068\u3092\u4EEE\u5B9A\ntemplate <typename REAL, typename T>\nPoint<REAL> cross_point(const\
+    \ Line<T> L1, const Line<T> L2) {\n  T det = L1.a * L2.b - L1.b * L2.a;\n  assert(det\
+    \ != 0);\n  REAL x = -REAL(L1.c) * L2.b + REAL(L1.b) * L2.c;\n  REAL y = -REAL(L1.a)\
+    \ * L2.c + REAL(L1.c) * L2.a;\n  return Point<REAL>(x / det, y / det);\n}\n\n\
+    // \u6D6E\u52D5\u5C0F\u6570\u70B9\u6570\u306F\u30A8\u30E9\u30FC\n// 0: \u4EA4\u70B9\
+    \u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\
+    \u306E\u4EA4\u70B9\uFF08\u6574\u6570\u578B\u3092\u5229\u7528\u3057\u3066\u53B3\
+    \u5BC6\u306B\u3084\u308B\uFF09\ntemplate <typename T>\nint count_cross(Segment<T>\
+    \ S1, Segment<T> S2, bool include_ends) {\n  static_assert(!std::is_floating_point<T>::value);\n\
+    \  Line<T> L1 = S1.to_Line();\n  Line<T> L2 = S2.to_Line();\n  if (L1.is_parallel(L2))\
+    \ {\n    if (L1.eval(S2.A) != 0) return 0;\n    // 4 \u70B9\u3068\u3082\u540C\u4E00\
+    \u76F4\u7DDA\u4E0A\u306B\u3042\u308B\n    T a1 = S1.A.x, b1 = S1.B.x;\n    T a2\
+    \ = S2.A.x, b2 = S2.B.x;\n    if (a1 == b1) {\n      a1 = S1.A.y, b1 = S1.B.y;\n\
+    \      a2 = S2.A.y, b2 = S2.B.y;\n    }\n    if (a1 > b1) swap(a1, b1);\n    if\
+    \ (a2 > b2) swap(a2, b2);\n    T a = max(a1, a2);\n    T b = min(b1, b2);\n  \
+    \  if (a < b) return 2;\n    if (a > b) return 0;\n    return (include_ends ?\
+    \ 1 : 0);\n  }\n  // \u5E73\u884C\u3067\u306A\u3044\u5834\u5408\n  T a1 = L2.eval(S1.A),\
+    \ b1 = L2.eval(S1.B);\n  T a2 = L1.eval(S2.A), b2 = L1.eval(S2.B);\n  if (a1 >\
+    \ b1) swap(a1, b1);\n  if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n\n\
+    \  if (include_ends) {\n    ok1 = (a1 <= T(0)) && (T(0) <= b1);\n    ok2 = (a2\
+    \ <= T(0)) && (T(0) <= b2);\n  } else {\n    ok1 = (a1 < T(0)) && (T(0) < b1);\n\
+    \    ok2 = (a2 < T(0)) && (T(0) < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n\
+    }\n\n// https://codeforces.com/contest/607/problem/E\ntemplate <typename REAL,\
+    \ typename T>\nvc<Point<REAL>> cross_point(const Circle<T> C, const Line<T> L)\
+    \ {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y) + L.c;\n  T r = C.r;\n\
+    \  bool SW = 0;\n  if (abs(a) < abs(b)) {\n    swap(a, b);\n    SW = 1;\n  }\n\
+    \  // ax+by+c=0, x^2+y^2=r^2\n  T D = 4 * c * c * b * b - 4 * (a * a + b * b)\
+    \ * (c * c - a * a * r * r);\n  if (D < 0) return {};\n  REAL sqD = sqrtl(D);\n\
+    \  REAL y1 = (-2 * b * c + sqD) / (2 * (a * a + b * b));\n  REAL y2 = (-2 * b\
+    \ * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1 - c) / a;\n  REAL\
+    \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
+    \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
+    \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
+    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
+    \ C1, Circle<T> C2) {\n  using P = Point<T>;\n  P O{0, 0};\n  P A = C1.O, B =\
+    \ C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
+    \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
+    \ < -1 || 1 < cos_val) return {false, O, O};\n  REAL t = acos(cos_val);\n  REAL\
+    \ u = (B - A).angle();\n  P X = A + P{C1.r * cos(u + t), C1.r * sin(u + t)};\n\
+    \  P Y = A + P{C1.r * cos(u - t), C1.r * sin(u - t)};\n  return {true, X, Y};\n\
+    }\n#line 1 \"geo/count_points_in_triangles.hpp\"\n\n#line 2 \"geo/angle_sort.hpp\"\
+    \n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\
+    \u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
     \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
     \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
     \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
@@ -180,18 +165,14 @@ data:
     \u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename\
     \ T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\
     \n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\n\
-    }\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n   \
-    \   = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line\
-    \ 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
+    }\r\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 3 \"ds/fenwicktree/fenwicktree.hpp\"\n\n\
+    template <typename Monoid>\nstruct FenwickTree {\n  using G = Monoid;\n  using\
     \ MX = Monoid;\n  using E = typename G::value_type;\n  int n;\n  vector<E> dat;\n\
     \  E total;\n\n  FenwickTree() {}\n  FenwickTree(int n) { build(n); }\n  template\
     \ <typename F>\n  FenwickTree(int n, F f) {\n    build(n, f);\n  }\n  FenwickTree(const\
@@ -320,56 +301,74 @@ data:
     \ bool { return (n == 0 ? true : C[n - 1].det(p) > 0); }, 0, m + 1);\n       \
     \ int ub = binary_search([&](int n) -> bool { return (n == 0 ? true : C[n - 1].det(p)\
     \ >= 0); }, 0, m + 1);\n        seg[i][j] += bit.sum(lb, ub), tri[i][j] += bit.sum(lb);\n\
-    \      }\n    }\n  }\n};\n#line 5 \"test/1_mytest/count_points_in_triangles.test.cpp\"\
-    \n\nvoid test() {\n  using P = Point<ll>;\n  vc<P> A, B;\n  int K = 1'000'000'000;\n\
-    \  int N = 100, M = 100;\n  FOR(N) {\n    bool small = RNG(0, 2);\n    if (small)\
-    \ {\n      A.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      A.eb(RNG(-K, K),\
-    \ RNG(-K, K));\n    }\n  }\n  FOR(M) {\n    bool small = RNG(0, 2);\n    if (small)\
-    \ {\n      B.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      B.eb(RNG(-K, K),\
-    \ RNG(-K, K));\n    }\n  }\n  Count_Points_In_Triangles X(A, B);\n  FOR(100) {\n\
-    \    int i = RNG(0, N), j = RNG(0, N), k = RNG(0, N);\n    int me = X.count3(i,\
-    \ j, k);\n    int naive = 0;\n    for (auto&& p: B) {\n      ll s1 = (A[j] - A[i]).det(p\
-    \ - A[i]);\n      ll s2 = (A[k] - A[j]).det(p - A[j]);\n      ll s3 = (A[i] -\
-    \ A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n      if\
-    \ (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1) + abs(s2)\
-    \ + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"geo/count_points_in_triangles.hpp\"\n#include \"random/base.hpp\"\
-    \n\nvoid test() {\n  using P = Point<ll>;\n  vc<P> A, B;\n  int K = 1'000'000'000;\n\
-    \  int N = 100, M = 100;\n  FOR(N) {\n    bool small = RNG(0, 2);\n    if (small)\
-    \ {\n      A.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      A.eb(RNG(-K, K),\
-    \ RNG(-K, K));\n    }\n  }\n  FOR(M) {\n    bool small = RNG(0, 2);\n    if (small)\
-    \ {\n      B.eb(RNG(-4, 5), RNG(-4, 5));\n    } else {\n      B.eb(RNG(-K, K),\
-    \ RNG(-K, K));\n    }\n  }\n  Count_Points_In_Triangles X(A, B);\n  FOR(100) {\n\
-    \    int i = RNG(0, N), j = RNG(0, N), k = RNG(0, N);\n    int me = X.count3(i,\
-    \ j, k);\n    int naive = 0;\n    for (auto&& p: B) {\n      ll s1 = (A[j] - A[i]).det(p\
-    \ - A[i]);\n      ll s2 = (A[k] - A[j]).det(p - A[j]);\n      ll s3 = (A[i] -\
-    \ A[k]).det(p - A[k]);\n      ll s = (A[k] - A[i]).det(A[j] - A[i]);\n      if\
-    \ (s1 == 0 || s2 == 0 || s3 == 0 || s == 0) continue;\n      if (abs(s1) + abs(s2)\
-    \ + abs(s3) == abs(s)) ++naive;\n    }\n    assert(me == naive);\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(100) test();\n  solve();\n\n  return 0;\n}"
+    \      }\n    }\n  }\n};\n#line 7 \"random/random_polygon.hpp\"\n\nvc<Point<ll>>\
+    \ random_polygon(int N, int XY_ABS_MAX = 10) {\n  assert(N >= 3);\n  using P =\
+    \ Point<ll>;\n  auto trial = [&]() -> vc<P> {\n    set<Point<ll>> S;\n    while\
+    \ (len(S) < N) {\n      int x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      int y\
+    \ = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      S.insert(Point<ll>(x, y));\n    }\n\
+    \    vc<P> point(all(S));\n    auto I = ConvexHull<ll, true>(point);\n    Count_Points_In_Triangles\
+    \ CT(point, point);\n    vc<int> other;\n    vc<int> done(N);\n    for (auto&\
+    \ i: I) done[i]++;\n    if (MAX(done) >= 2) return {};\n    FOR(i, N) if (!done[i])\
+    \ other.eb(i);\n    int fail = 0;\n    while (len(other)) {\n      if (fail >\
+    \ 1000) return {};\n      ++fail;\n      int i = RNG(0, len(I)), j = RNG(0, len(other));\n\
+    \      swap(other[j], other.back());\n      int a = I[i], b = I[(i + 1) % len(I)],\
+    \ c = other.back();\n      if ((point[b] - point[a]).det(point[c] - point[a])\
+    \ < 0) continue;\n      if (CT.count3(a, b, c)) continue;\n      if (CT.count2(a,\
+    \ c) + CT.count2(b, c)) continue;\n      bool ok = 1;\n      for (auto& v: {a,\
+    \ b}) {\n        FOR(i, len(I)) {\n          Segment<ll> S1(point[v], point[c]);\n\
+    \          Segment<ll> S2(point[I[i]], point[I[(i + 1) % len(I)]]);\n        \
+    \  if (count_cross(S1, S2, false)) ok = 0;\n        }\n      }\n      if (!ok)\
+    \ continue;\n      fail = 0;\n      I.insert(I.begin() + i + 1, POP(other));\n\
+    \    }\n    point = rearrange(point, I);\n    FOR(i, N) {\n      if ((point[(i\
+    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) == 0) return {};\n\
+    \    }\n    return point;\n  };\n  while (1) {\n    vc<P> ANS = trial();\n   \
+    \ if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n    rotate(ANS.begin(),\
+    \ ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n}\n"
+  code: "\n#include \"random/base.hpp\"\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\
+    \n#include \"geo/cross_point.hpp\"\n#include \"geo/count_points_in_triangles.hpp\"\
+    \n\nvc<Point<ll>> random_polygon(int N, int XY_ABS_MAX = 10) {\n  assert(N >=\
+    \ 3);\n  using P = Point<ll>;\n  auto trial = [&]() -> vc<P> {\n    set<Point<ll>>\
+    \ S;\n    while (len(S) < N) {\n      int x = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n\
+    \      int y = RNG(-XY_ABS_MAX, XY_ABS_MAX + 1);\n      S.insert(Point<ll>(x,\
+    \ y));\n    }\n    vc<P> point(all(S));\n    auto I = ConvexHull<ll, true>(point);\n\
+    \    Count_Points_In_Triangles CT(point, point);\n    vc<int> other;\n    vc<int>\
+    \ done(N);\n    for (auto& i: I) done[i]++;\n    if (MAX(done) >= 2) return {};\n\
+    \    FOR(i, N) if (!done[i]) other.eb(i);\n    int fail = 0;\n    while (len(other))\
+    \ {\n      if (fail > 1000) return {};\n      ++fail;\n      int i = RNG(0, len(I)),\
+    \ j = RNG(0, len(other));\n      swap(other[j], other.back());\n      int a =\
+    \ I[i], b = I[(i + 1) % len(I)], c = other.back();\n      if ((point[b] - point[a]).det(point[c]\
+    \ - point[a]) < 0) continue;\n      if (CT.count3(a, b, c)) continue;\n      if\
+    \ (CT.count2(a, c) + CT.count2(b, c)) continue;\n      bool ok = 1;\n      for\
+    \ (auto& v: {a, b}) {\n        FOR(i, len(I)) {\n          Segment<ll> S1(point[v],\
+    \ point[c]);\n          Segment<ll> S2(point[I[i]], point[I[(i + 1) % len(I)]]);\n\
+    \          if (count_cross(S1, S2, false)) ok = 0;\n        }\n      }\n     \
+    \ if (!ok) continue;\n      fail = 0;\n      I.insert(I.begin() + i + 1, POP(other));\n\
+    \    }\n    point = rearrange(point, I);\n    FOR(i, N) {\n      if ((point[(i\
+    \ + 2) % N] - point[i]).det(point[(i + 1) % N] - point[i]) == 0) return {};\n\
+    \    }\n    return point;\n  };\n  while (1) {\n    vc<P> ANS = trial();\n   \
+    \ if (ANS.empty()) continue;\n    int k = RNG(0, len(ANS));\n    rotate(ANS.begin(),\
+    \ ANS.begin() + k, ANS.end());\n    return ANS;\n  }\n}"
   dependsOn:
-  - my_template.hpp
+  - random/base.hpp
+  - geo/base.hpp
+  - geo/convex_hull.hpp
+  - geo/cross_point.hpp
   - geo/count_points_in_triangles.hpp
   - geo/angle_sort.hpp
-  - geo/base.hpp
-  - random/base.hpp
   - ds/fenwicktree/fenwicktree_01.hpp
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
-  isVerificationFile: true
-  path: test/1_mytest/count_points_in_triangles.test.cpp
+  isVerificationFile: false
+  path: random/random_polygon.hpp
   requiredBy: []
   timestamp: '2024-09-14 19:18:25+09:00'
-  verificationStatus: TEST_ACCEPTED
-  verifiedWith: []
-documentation_of: test/1_mytest/count_points_in_triangles.test.cpp
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/1_mytest/polygon_triangulation.test.cpp
+documentation_of: random/random_polygon.hpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/count_points_in_triangles.test.cpp
-- /verify/test/1_mytest/count_points_in_triangles.test.cpp.html
-title: test/1_mytest/count_points_in_triangles.test.cpp
+- /library/random/random_polygon.hpp
+- /library/random/random_polygon.hpp.html
+title: random/random_polygon.hpp
 ---

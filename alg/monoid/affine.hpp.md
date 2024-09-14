@@ -12,7 +12,7 @@ data:
     path: alg/acted_set/affine.hpp
     title: alg/acted_set/affine.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':x:'

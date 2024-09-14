@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':question:'

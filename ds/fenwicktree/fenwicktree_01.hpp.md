@@ -17,6 +17,9 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
+  - icon: ':x:'
+    path: random/random_polygon.hpp
+    title: random/random_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
@@ -27,6 +30,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
@@ -198,6 +204,7 @@ data:
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
+  - random/random_polygon.hpp
   - geo/count_points_in_triangles.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - seq/inversion.hpp
@@ -211,6 +218,7 @@ data:
   - test/4_aoj/ALDS1_5.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/fenwick01.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp

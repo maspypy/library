@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -62,15 +62,21 @@ data:
   - icon: ':x:'
     path: geo/polygon.hpp
     title: geo/polygon.hpp
+  - icon: ':x:'
+    path: geo/polygon_triangulation.hpp
+    title: geo/polygon_triangulation.hpp
   - icon: ':heavy_check_mark:'
     path: geo/projection.hpp
     title: geo/projection.hpp
   - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
+  - icon: ':x:'
+    path: random/random_polygon.hpp
+    title: random/random_polygon.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_side.test.cpp
@@ -84,9 +90,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
@@ -111,7 +120,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'
@@ -278,7 +287,9 @@ data:
   isVerificationFile: false
   path: geo/base.hpp
   requiredBy:
+  - random/random_polygon.hpp
   - geo/furthest_pair.hpp
+  - geo/polygon_triangulation.hpp
   - geo/convex_polygon.hpp
   - geo/projection.hpp
   - geo/minkowski_sum.hpp
@@ -328,6 +339,7 @@ data:
   - test/1_mytest/count_points_in_triangles.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/incremental_ch.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/convex_layers.test.cpp

@@ -11,7 +11,13 @@ data:
   - icon: ':x:'
     path: geo/polygon.hpp
     title: geo/polygon.hpp
+  - icon: ':x:'
+    path: random/random_polygon.hpp
+    title: random/random_polygon.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_B.test.cpp
     title: test/4_aoj/CGL_2_B.test.cpp
@@ -175,6 +181,7 @@ data:
   isVerificationFile: false
   path: geo/cross_point.hpp
   requiredBy:
+  - random/random_polygon.hpp
   - geo/distance.hpp
   - geo/polygon.hpp
   timestamp: '2024-09-11 14:08:39+09:00'
@@ -186,6 +193,7 @@ data:
   - test/4_aoj/CGL_2_C.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
   - test/4_aoj/CGL_3_B.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
 redirect_from:

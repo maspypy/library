@@ -14,13 +14,22 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: geo/polygon_triangulation.hpp
+    title: geo/polygon_triangulation.hpp
+  - icon: ':x:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
+  - icon: ':x:'
+    path: random/random_polygon.hpp
+    title: random/random_polygon.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
@@ -30,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
   - icon: ':heavy_check_mark:'
@@ -122,6 +131,8 @@ data:
   isVerificationFile: false
   path: geo/angle_sort.hpp
   requiredBy:
+  - random/random_polygon.hpp
+  - geo/polygon_triangulation.hpp
   - geo/minkowski_sum.hpp
   - geo/max_norm_sum.hpp
   - geo/count_points_in_triangles.hpp
@@ -133,6 +144,7 @@ data:
   - test/5_atcoder/abc139f.test.cpp
   - test/5_atcoder/abc202_f.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp

@@ -182,28 +182,28 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   - icon: ':warning:'
     path: poly/online/online_convolution_garner.hpp
     title: poly/online/online_convolution_garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_division.hpp
     title: poly/online/online_division.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_exp.hpp
     title: poly/online/online_exp.hpp
   - icon: ':warning:'
     path: poly/online/online_exp_garner.hpp
     title: poly/online/online_exp_garner.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_inv.hpp
     title: poly/online/online_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_log.hpp
     title: poly/online/online_log.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
   - icon: ':question:'
@@ -414,19 +414,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_exp.test.cpp
     title: test/1_mytest/online_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_inv.test.cpp
     title: test/1_mytest/online_inv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_log.test.cpp
     title: test/1_mytest/online_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_pow.test.cpp
     title: test/1_mytest/online_pow.test.cpp
   - icon: ':x:'

@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -17,6 +17,9 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
+  - icon: ':x:'
+    path: random/random_polygon.hpp
+    title: random/random_polygon.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_side.test.cpp
@@ -24,9 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
@@ -137,6 +143,7 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
+  - random/random_polygon.hpp
   - geo/furthest_pair.hpp
   - geo/convex_polygon.hpp
   - geo/minkowski_sum.hpp
@@ -148,6 +155,7 @@ data:
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
 documentation_of: geo/convex_hull.hpp

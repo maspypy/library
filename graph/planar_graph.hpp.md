@@ -10,14 +10,20 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: geo/polygon_triangulation.hpp
+    title: geo/polygon_triangulation.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
+  - icon: ':x:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -152,24 +158,25 @@ data:
     /*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\
     \u306A\u3044\u3068\u304D\u306B\u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\
     \u4F55\u3082\u8003\u3048\u3066\u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\
-    \u306A\u3044\n*/\ntemplate <typename XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n\
-    \  int NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\
-    \u30D5. \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int,\
-    \ 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\
-    \u5C5E\u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\
-    \u308B\u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\
-    \u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\
-    \n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P>\
-    \ point) : NV(N), G(N), point(point) {\n    assert(N > 1);\n  }\n\n  void add(int\
-    \ a, int b) { G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n\
-    \    NE = G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n\
-    \    int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
+    \u306A\u3044\n\u30FB0\u756A\u76EE\u306B\u5916\u9762\u304C\u5165\u308B\n*/\ntemplate\
+    \ <typename XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n  int NV, NE,\
+    \ NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5. \u6709\
+    \u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int, 1> G;\n\
+    \  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\u5C5E\
+    \u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\u308B\
+    \u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\u8A08\
+    \u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\n  //\
+    \ \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P> point)\
+    \ : NV(N), G(N), point(point) { assert(N > 1); }\n\n  void add(int a, int b) {\
+    \ G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n    NE = G.M\
+    \ / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n    int\
+    \ v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
     \ v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto& e: G[v]) {\n\
     \        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n      }\n\
     \      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k, len(I))\
     \ {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j = I[k];\n\
     \        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n      }\n    \
-    \  if (v == v0) e0 = eid[I[0] ^ 1];\n    }\n    for (auto& x: nxt_edge) assert(x\
+    \  if (v == v0) e0 = eid[I[0]] ^ 1;\n    }\n    for (auto& x: nxt_edge) assert(x\
     \ != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p = len(first_edge);\n\
     \      first_edge.eb(e);\n      while (left_face[e] == -1) {\n        left_face[e]\
     \ = p;\n        e = nxt_edge[e];\n      }\n    };\n\n    make_face(e0);\n    FOR(e,\
@@ -184,45 +191,48 @@ data:
     \n\n/*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\
     \u3044\u306A\u3044\u3068\u304D\u306B\u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\
     \u306F\u4F55\u3082\u8003\u3048\u3066\u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\
-    \u308F\u306A\u3044\n*/\ntemplate <typename XY>\nstruct Planar_Graph {\n  using\
-    \ P = Point<XY>;\n  int NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\
-    \u308B\u30B0\u30E9\u30D5. \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\
-    \u304F\n  Graph<int, 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\
-    \u6A19\n  // \u8FBA\u5C5E\u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\
-    \u5DE6\u306B\u3042\u308B\u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\
-    \u3092\u53CD\u6642\u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\
-    \u6B21\u306E\u8FBA\n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int\
-    \ N, vc<P> point) : NV(N), G(N), point(point) {\n    assert(N > 1);\n  }\n\n \
-    \ void add(int a, int b) { G.add(a, b), G.add(b, a); }\n  void build() {\n   \
-    \ G.build();\n    NE = G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M,\
-    \ -1);\n    int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v]\
-    \ < point[v0]) v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto&\
-    \ e: G[v]) {\n        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n\
-    \      }\n      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k,\
-    \ len(I)) {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j =\
-    \ I[k];\n        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n     \
-    \ }\n      if (v == v0) e0 = eid[I[0] ^ 1];\n    }\n    for (auto& x: nxt_edge)\
-    \ assert(x != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p =\
-    \ len(first_edge);\n      first_edge.eb(e);\n      while (left_face[e] == -1)\
-    \ {\n        left_face[e] = p;\n        e = nxt_edge[e];\n      }\n    };\n\n\
-    \    make_face(e0);\n    FOR(e, 2 * NE) {\n      if (left_face[e] == -1) make_face(e);\n\
-    \    }\n    NF = len(first_edge);\n    assert(NV - NE + NF == 2);\n  }\n\n  //\
-    \ return {vs, es}\n  // vs = [v0,v1,v2,v0], es = [e0,e1,e2]\n  pair<vc<int>, vc<int>>\
-    \ get_face_data(int fid) {\n    vc<int> eid = {first_edge[fid]};\n    while (1)\
-    \ {\n      int e = nxt_edge[eid.back()];\n      if (e == first_edge[fid]) break;\n\
-    \      eid.eb(e);\n    }\n    vc<int> vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n\
-    \    vid.eb(vid[0]);\n    return {vid, eid};\n  }\n};\n"
+    \u308F\u306A\u3044\n\u30FB0\u756A\u76EE\u306B\u5916\u9762\u304C\u5165\u308B\n\
+    */\ntemplate <typename XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n  int\
+    \ NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\
+    . \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int,\
+    \ 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\
+    \u5C5E\u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\
+    \u308B\u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\
+    \u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\
+    \n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P>\
+    \ point) : NV(N), G(N), point(point) { assert(N > 1); }\n\n  void add(int a, int\
+    \ b) { G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n    NE =\
+    \ G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n  \
+    \  int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
+    \ v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto& e: G[v]) {\n\
+    \        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n      }\n\
+    \      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k, len(I))\
+    \ {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j = I[k];\n\
+    \        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n      }\n    \
+    \  if (v == v0) e0 = eid[I[0]] ^ 1;\n    }\n    for (auto& x: nxt_edge) assert(x\
+    \ != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p = len(first_edge);\n\
+    \      first_edge.eb(e);\n      while (left_face[e] == -1) {\n        left_face[e]\
+    \ = p;\n        e = nxt_edge[e];\n      }\n    };\n\n    make_face(e0);\n    FOR(e,\
+    \ 2 * NE) {\n      if (left_face[e] == -1) make_face(e);\n    }\n    NF = len(first_edge);\n\
+    \    assert(NV - NE + NF == 2);\n  }\n\n  // return {vs, es}\n  // vs = [v0,v1,v2,v0],\
+    \ es = [e0,e1,e2]\n  pair<vc<int>, vc<int>> get_face_data(int fid) {\n    vc<int>\
+    \ eid = {first_edge[fid]};\n    while (1) {\n      int e = nxt_edge[eid.back()];\n\
+    \      if (e == first_edge[fid]) break;\n      eid.eb(e);\n    }\n    vc<int>\
+    \ vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n    vid.eb(vid[0]);\n\
+    \    return {vid, eid};\n  }\n};\n"
   dependsOn:
   - graph/base.hpp
   - geo/base.hpp
   - geo/angle_sort.hpp
   isVerificationFile: false
   path: graph/planar_graph.hpp
-  requiredBy: []
-  timestamp: '2024-09-11 14:08:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - geo/polygon_triangulation.hpp
+  timestamp: '2024-09-14 19:18:25+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1777.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: graph/planar_graph.hpp
 layout: document
 redirect_from:

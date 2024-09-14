@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minidx_add.hpp
     title: alg/acted_monoid/minidx_add.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_nns.hpp
     title: geo/manhattan_nns.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/minidx_add.test.cpp
     title: test/1_mytest/minidx_add.test.cpp
   - icon: ':x:'

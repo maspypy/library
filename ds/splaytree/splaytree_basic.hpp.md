@@ -5,19 +5,25 @@ data:
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: geo/polygon_triangulation.hpp
+    title: geo/polygon_triangulation.hpp
   - icon: ':warning:'
     path: seq/cycle_decomposition.hpp
     title: seq/cycle_decomposition.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc350f.test.cpp
     title: test/5_atcoder/abc350f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153b.test.cpp
     title: test/5_atcoder/arc153b.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n// Node \u578B\u3092\u5225\
@@ -192,12 +198,14 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_basic.hpp
   requiredBy:
+  - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
   timestamp: '2024-09-09 03:35:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/arc153b.test.cpp
   - test/5_atcoder/abc350f.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: ds/splaytree/splaytree_basic.hpp
 layout: document
 redirect_from:

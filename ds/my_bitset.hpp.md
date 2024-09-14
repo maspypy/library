@@ -30,7 +30,7 @@ data:
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':x:'

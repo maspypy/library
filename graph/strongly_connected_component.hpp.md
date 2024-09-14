@@ -11,10 +11,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
   - icon: ':heavy_check_mark:'
@@ -27,13 +27,13 @@ data:
     path: graph/twosat.hpp
     title: graph/twosat.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_scc.test.cpp
     title: test/1_mytest/incremental_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
   - icon: ':x:'

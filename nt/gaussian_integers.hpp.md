@@ -20,10 +20,10 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
   - icon: ':x:'
@@ -33,7 +33,7 @@ data:
     path: nt/two_square.hpp
     title: nt/two_square.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/four_square.test.cpp
     title: test/1_mytest/four_square.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/3_yukicoder/1593.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -275,7 +275,7 @@ data:
   - nt/two_square.hpp
   - nt/four_square.hpp
   timestamp: '2024-09-14 09:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1593.test.cpp
   - test/1_mytest/four_square.test.cpp

@@ -2,17 +2,17 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':x:'
     path: linalg/matrix_lowrank_update.hpp
     title: linalg/matrix_lowrank_update.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching.test.cpp
     title: test/1_mytest/matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_line_graph.test.cpp
     title: test/1_mytest/matching_line_graph.test.cpp
   - icon: ':x:'

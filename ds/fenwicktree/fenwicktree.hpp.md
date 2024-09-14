@@ -8,7 +8,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
   - icon: ':heavy_check_mark:'
@@ -41,6 +41,9 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
+  - icon: ':x:'
+    path: random/random_polygon.hpp
+    title: random/random_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
@@ -57,9 +60,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick01.test.cpp
     title: test/1_mytest/fenwick01.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/fenwick_raq.test.cpp
     title: test/1_mytest/fenwick_raq.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/polygon_triangulation.test.cpp
+    title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
     path: test/1_mytest/rect_add_pt_sum.test.cpp
     title: test/1_mytest/rect_add_pt_sum.test.cpp
@@ -306,6 +312,7 @@ data:
   path: ds/fenwicktree/fenwicktree.hpp
   requiredBy:
   - other/sliding_puzzle_solver.hpp
+  - random/random_polygon.hpp
   - geo/count_points_in_triangles.hpp
   - graph/ds/incremental_centroid.hpp
   - graph/ds/tree_abelgroup.hpp
@@ -344,6 +351,7 @@ data:
   - test/4_aoj/DSL_2_G.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/rect_add_pt_sum.test.cpp
   - test/1_mytest/factorial_digit.test.cpp
   - test/1_mytest/fenwick01.test.cpp
