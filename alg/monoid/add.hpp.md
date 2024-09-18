@@ -131,9 +131,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/trie.hpp
-    title: string/trie.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/ARC30D.test.cpp
@@ -349,9 +346,6 @@ data:
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1269.test.cpp
-    title: test/3_yukicoder/1269.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
   - icon: ':heavy_check_mark:'
@@ -526,9 +520,6 @@ data:
     path: test/5_atcoder/abc266h_2.test.cpp
     title: test/5_atcoder/abc266h_2.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/5_atcoder/abc268_ex.test.cpp
-    title: test/5_atcoder/abc268_ex.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc280f.test.cpp
     title: test/5_atcoder/abc280f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -540,12 +531,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc324g2.test.cpp
     title: test/5_atcoder/abc324g2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc362g.test.cpp
     title: test/5_atcoder/abc362g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -607,9 +598,8 @@ data:
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - ds/range_add_range_sum.hpp
   - string/prefix_substring_LCS.hpp
-  - string/trie.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/789.test.cpp
   - test/3_yukicoder/1720.test.cpp
@@ -644,7 +634,6 @@ data:
   - test/3_yukicoder/1311.test.cpp
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/2242.test.cpp
-  - test/3_yukicoder/1269.test.cpp
   - test/3_yukicoder/1441.test.cpp
   - test/3_yukicoder/1097.test.cpp
   - test/3_yukicoder/694.test.cpp
@@ -660,7 +649,6 @@ data:
   - test/5_atcoder/abc256ex.test.cpp
   - test/5_atcoder/abc237g.test.cpp
   - test/5_atcoder/abc324g2.test.cpp
-  - test/5_atcoder/abc268_ex.test.cpp
   - test/5_atcoder/abc362g.test.cpp
   - test/5_atcoder/abc202_f.test.cpp
   - test/5_atcoder/abc174f.test.cpp

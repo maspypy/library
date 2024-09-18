@@ -1,88 +1,80 @@
 ---
 data:
-  _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
+  _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1269.test.cpp
     title: test/3_yukicoder/1269.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc268_ex.test.cpp
     title: test/5_atcoder/abc268_ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc362g.test.cpp
     title: test/5_atcoder/abc362g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
-    links: []
-  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
-    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"string/trie.hpp\"\
-    \n\r\ntemplate <int sigma>\r\nstruct Trie {\r\n  using ARR = array<int, sigma>;\r\
-    \n  int n_node;\r\n  vc<ARR> TO;\r\n  vc<int> parent;\r\n  vc<int> suffix_link;\r\
-    \n  vc<int> words;\r\n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node\
-    \ = 0;\r\n    new_node();\r\n  }\r\n\r\n  template <typename STRING>\r\n  int\
-    \ add(STRING S, int off) {\r\n    int v = 0;\r\n    for (auto&& ss: S) {\r\n \
-    \     int s = ss - off;\r\n      assert(0 <= s && s < sigma);\r\n      if (TO[v][s]\
-    \ == -1) {\r\n        TO[v][s] = new_node();\r\n        parent.back() = v;\r\n\
-    \      }\r\n      v = TO[v][s];\r\n    }\r\n    words.eb(v);\r\n    return v;\r\
-    \n  }\r\n\r\n  int add_char(int v, int c, int off) {\r\n    c -= off;\r\n    if\
-    \ (TO[v][c] != -1) return TO[v][c];\r\n    TO[v][c] = new_node();\r\n    parent.back()\
-    \ = v;\r\n    return TO[v][c];\r\n  }\r\n\r\n  void calc_suffix_link(bool upd_TO)\
-    \ {\r\n    suffix_link.assign(n_node, -1);\r\n    BFS.resize(n_node);\r\n    int\
-    \ p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n    while (p < q) {\r\n      int v = BFS[p++];\r\
-    \n      FOR(s, sigma) {\r\n        int w = TO[v][s];\r\n        if (w == -1) continue;\r\
-    \n        BFS[q++] = w;\r\n        int f = suffix_link[v];\r\n        while (f\
-    \ != -1 && TO[f][s] == -1) f = suffix_link[f];\r\n        suffix_link[w] = (f\
-    \ == -1 ? 0 : TO[f][s]);\r\n      }\r\n    }\r\n    if (!upd_TO) return;\r\n \
-    \   for (auto&& v: BFS) {\r\n      FOR(s, sigma) if (TO[v][s] == -1) {\r\n   \
-    \     int f = suffix_link[v];\r\n        TO[v][s] = (f == -1 ? 0 : TO[f][s]);\r\
-    \n      }\r\n    }\r\n  }\r\n\r\n  vc<int> calc_count() {\r\n    assert(!suffix_link.empty());\r\
-    \n    vc<int> count(n_node);\r\n    for (auto&& x: words) count[x]++;\r\n    for\
-    \ (auto&& v: BFS)\r\n      if (v) { count[v] += count[suffix_link[v]]; }\r\n \
-    \   return count;\r\n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    parent.eb(-1);\r\
-    \n    TO.eb(ARR{});\r\n    fill(all(TO.back()), -1);\r\n    return n_node++;\r\
-    \n  }\r\n};\r\n"
-  code: "#include \"alg/monoid/add.hpp\"\r\n\r\ntemplate <int sigma>\r\nstruct Trie\
-    \ {\r\n  using ARR = array<int, sigma>;\r\n  int n_node;\r\n  vc<ARR> TO;\r\n\
-    \  vc<int> parent;\r\n  vc<int> suffix_link;\r\n  vc<int> words;\r\n  vc<int>\
-    \ BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node = 0;\r\n    new_node();\r\
-    \n  }\r\n\r\n  template <typename STRING>\r\n  int add(STRING S, int off) {\r\n\
-    \    int v = 0;\r\n    for (auto&& ss: S) {\r\n      int s = ss - off;\r\n   \
-    \   assert(0 <= s && s < sigma);\r\n      if (TO[v][s] == -1) {\r\n        TO[v][s]\
-    \ = new_node();\r\n        parent.back() = v;\r\n      }\r\n      v = TO[v][s];\r\
-    \n    }\r\n    words.eb(v);\r\n    return v;\r\n  }\r\n\r\n  int add_char(int\
-    \ v, int c, int off) {\r\n    c -= off;\r\n    if (TO[v][c] != -1) return TO[v][c];\r\
-    \n    TO[v][c] = new_node();\r\n    parent.back() = v;\r\n    return TO[v][c];\r\
-    \n  }\r\n\r\n  void calc_suffix_link(bool upd_TO) {\r\n    suffix_link.assign(n_node,\
-    \ -1);\r\n    BFS.resize(n_node);\r\n    int p = 0, q = 0;\r\n    BFS[q++] = 0;\r\
-    \n    while (p < q) {\r\n      int v = BFS[p++];\r\n      FOR(s, sigma) {\r\n\
-    \        int w = TO[v][s];\r\n        if (w == -1) continue;\r\n        BFS[q++]\
-    \ = w;\r\n        int f = suffix_link[v];\r\n        while (f != -1 && TO[f][s]\
-    \ == -1) f = suffix_link[f];\r\n        suffix_link[w] = (f == -1 ? 0 : TO[f][s]);\r\
-    \n      }\r\n    }\r\n    if (!upd_TO) return;\r\n    for (auto&& v: BFS) {\r\n\
-    \      FOR(s, sigma) if (TO[v][s] == -1) {\r\n        int f = suffix_link[v];\r\
-    \n        TO[v][s] = (f == -1 ? 0 : TO[f][s]);\r\n      }\r\n    }\r\n  }\r\n\r\
-    \n  vc<int> calc_count() {\r\n    assert(!suffix_link.empty());\r\n    vc<int>\
-    \ count(n_node);\r\n    for (auto&& x: words) count[x]++;\r\n    for (auto&& v:\
-    \ BFS)\r\n      if (v) { count[v] += count[suffix_link[v]]; }\r\n    return count;\r\
-    \n  }\r\n\r\nprivate:\r\n  int new_node() {\r\n    parent.eb(-1);\r\n    TO.eb(ARR{});\r\
-    \n    fill(all(TO.back()), -1);\r\n    return n_node++;\r\n  }\r\n};\r\n"
-  dependsOn:
-  - alg/monoid/add.hpp
+    links:
+    - https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d
+  bundledCode: "#line 1 \"string/trie.hpp\"\n\r\n// sigma \u304C\u5C0F\u3055\u3044\
+    \r\n// \u4E00\u822C\u306E n \u9802\u70B9\u306E\u6728\u69CB\u9020\u3067 O(n) \u6642\
+    \u9593\u3067\u52D5\u304F\r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d\r\
+    \ntemplate <int sigma>\r\nstruct Trie {\r\n  struct Node {\r\n    array<int, sigma>\
+    \ ch;\r\n    array<int, sigma> nxt; // suffix link -> add c\r\n    int parent;\r\
+    \n    int suffix_link;\r\n  };\r\n  int n_node;\r\n  vc<Node> nodes;\r\n  vc<int>\
+    \ words;\r\n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node = 0;\r\
+    \n    new_node();\r\n  }\r\n\r\n  template <typename STRING>\r\n  int add(STRING\
+    \ S, int off) {\r\n    int v = 0;\r\n    for (auto&& ss: S) {\r\n      int s =\
+    \ ss - off;\r\n      v = add_single(v, s, off);\r\n    }\r\n    words.eb(v);\r\
+    \n    return v;\r\n  }\r\n\r\n  int add_single(int v, int c, int off) {\r\n  \
+    \  c -= off;\r\n    assert(0 <= c && c < sigma);\r\n    SHOW(\"ADD\", v, c);\r\
+    \n    if (nodes[v].ch[c] != -1) return nodes[v].ch[c];\r\n    nodes[v].ch[c] =\
+    \ new_node();\r\n    nodes.back().parent = v;\r\n    return nodes[v].ch[c];\r\n\
+    \  }\r\n\r\n  void calc_suffix_link() {\r\n    BFS.resize(n_node);\r\n    int\
+    \ p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n    fill(all(nodes[0].nxt), 0);\r\n  \
+    \  while (p < q) {\r\n      int v = BFS[p++];\r\n      if (v) nodes[v].nxt = nodes[nodes[v].suffix_link].nxt;\r\
+    \n      FOR(s, sigma) {\r\n        int w = nodes[v].ch[s];\r\n        if (w ==\
+    \ -1) continue;\r\n        nodes[w].suffix_link = nodes[v].nxt[s];\r\n       \
+    \ nodes[v].nxt[s] = w;\r\n        BFS[q++] = w;\r\n      }\r\n    }\r\n  }\r\n\
+    \r\n  vc<int> calc_count() {\r\n    vc<int> count(n_node);\r\n    for (auto&&\
+    \ x: words) count[x]++;\r\n    for (auto&& v: BFS)\r\n      if (v) { count[v]\
+    \ += count[nodes[v].suffix_link]; }\r\n    return count;\r\n  }\r\n\r\nprivate:\r\
+    \n  int new_node() {\r\n    Node c;\r\n    fill(all(c.ch), -1);\r\n    fill(all(c.nxt),\
+    \ -1);\r\n    c.parent = -1;\r\n    c.suffix_link = -1;\r\n    nodes.eb(c);\r\n\
+    \    return n_node++;\r\n  }\r\n};\r\n"
+  code: "\r\n// sigma \u304C\u5C0F\u3055\u3044\r\n// \u4E00\u822C\u306E n \u9802\u70B9\
+    \u306E\u6728\u69CB\u9020\u3067 O(n) \u6642\u9593\u3067\u52D5\u304F\r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d\r\
+    \ntemplate <int sigma>\r\nstruct Trie {\r\n  struct Node {\r\n    array<int, sigma>\
+    \ ch;\r\n    array<int, sigma> nxt; // suffix link -> add c\r\n    int parent;\r\
+    \n    int suffix_link;\r\n  };\r\n  int n_node;\r\n  vc<Node> nodes;\r\n  vc<int>\
+    \ words;\r\n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node = 0;\r\
+    \n    new_node();\r\n  }\r\n\r\n  template <typename STRING>\r\n  int add(STRING\
+    \ S, int off) {\r\n    int v = 0;\r\n    for (auto&& ss: S) {\r\n      int s =\
+    \ ss - off;\r\n      v = add_single(v, s, off);\r\n    }\r\n    words.eb(v);\r\
+    \n    return v;\r\n  }\r\n\r\n  int add_single(int v, int c, int off) {\r\n  \
+    \  c -= off;\r\n    assert(0 <= c && c < sigma);\r\n    SHOW(\"ADD\", v, c);\r\
+    \n    if (nodes[v].ch[c] != -1) return nodes[v].ch[c];\r\n    nodes[v].ch[c] =\
+    \ new_node();\r\n    nodes.back().parent = v;\r\n    return nodes[v].ch[c];\r\n\
+    \  }\r\n\r\n  void calc_suffix_link() {\r\n    BFS.resize(n_node);\r\n    int\
+    \ p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n    fill(all(nodes[0].nxt), 0);\r\n  \
+    \  while (p < q) {\r\n      int v = BFS[p++];\r\n      if (v) nodes[v].nxt = nodes[nodes[v].suffix_link].nxt;\r\
+    \n      FOR(s, sigma) {\r\n        int w = nodes[v].ch[s];\r\n        if (w ==\
+    \ -1) continue;\r\n        nodes[w].suffix_link = nodes[v].nxt[s];\r\n       \
+    \ nodes[v].nxt[s] = w;\r\n        BFS[q++] = w;\r\n      }\r\n    }\r\n  }\r\n\
+    \r\n  vc<int> calc_count() {\r\n    vc<int> count(n_node);\r\n    for (auto&&\
+    \ x: words) count[x]++;\r\n    for (auto&& v: BFS)\r\n      if (v) { count[v]\
+    \ += count[nodes[v].suffix_link]; }\r\n    return count;\r\n  }\r\n\r\nprivate:\r\
+    \n  int new_node() {\r\n    Node c;\r\n    fill(all(c.ch), -1);\r\n    fill(all(c.nxt),\
+    \ -1);\r\n    c.parent = -1;\r\n    c.suffix_link = -1;\r\n    nodes.eb(c);\r\n\
+    \    return n_node++;\r\n  }\r\n};\r\n"
+  dependsOn: []
   isVerificationFile: false
   path: string/trie.hpp
   requiredBy: []
-  timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-18 19:14:30+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1269.test.cpp
   - test/5_atcoder/abc268_ex.test.cpp

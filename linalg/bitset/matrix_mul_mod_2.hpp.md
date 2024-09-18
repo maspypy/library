@@ -1,10 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: linalg/bitset/matrix_pow.hpp
+    title: linalg/bitset/matrix_pow.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
@@ -161,7 +164,8 @@ data:
   - ds/my_bitset.hpp
   isVerificationFile: false
   path: linalg/bitset/matrix_mul_mod_2.hpp
-  requiredBy: []
+  requiredBy:
+  - linalg/bitset/matrix_pow.hpp
   timestamp: '2024-09-10 17:33:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
