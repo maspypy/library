@@ -2,8 +2,8 @@
 
 // 行ベクトルを bitset にする
 // (2000, 8000) で 300ms 程度（ABC276H）
-template <typename BS, typename T>
-vc<BS> solve_linear(int n, int m, vc<BS> A, vc<T> b) {
+vc<My_Bitset> solve_linear(int n, int m, vc<My_Bitset> A, My_Bitset b) {
+  using BS = My_Bitset;
   assert(len(b) == n);
   int rk = 0;
   FOR(j, m) {
@@ -20,19 +20,16 @@ vc<BS> solve_linear(int n, int m, vc<BS> A, vc<T> b) {
     ++rk;
   }
   FOR(i, rk, n) if (b[i]) return {};
-  vc<BS> res(1);
-  if constexpr (is_same_v<BS, My_Bitset>) { res[0].resize(m); }
+  vc<BS> res(1, BS(m));
 
   vc<int> pivot(m, -1);
   int p = 0;
   FOR(i, rk) {
     while (!A[i][p]) ++p;
-    res[0][p] = b[i], pivot[p] = i;
+    res[0][p] = bool(b[i]), pivot[p] = i;
   }
   FOR(j, m) if (pivot[j] == -1) {
-    BS x;
-    if constexpr (is_same_v<BS, My_Bitset>) { x.resize(m); }
-
+    BS x(m);
     x[j] = 1;
     FOR(k, j) if (pivot[k] != -1 && A[pivot[k]][j]) x[k] = 1;
     res.eb(x);
