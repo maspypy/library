@@ -1,7 +1,6 @@
 // 偶数頂点の無向完全グラフをハミルトンパスに分解
-vvc<int> to_paths(ll N) {
-  assert(N >= 0 && N % 2 == 0);
-  ll K = N / 2;
+vvc<int> to_paths(ll N, ll K) {
+  assert(N >= 0 && N % 2 == 0 && 0 <= K && K <= N / 2);
   vv(int, paths, K, N);
   FOR(k, K) FOR(n, N) {
     auto &x = paths[k][n];
@@ -13,9 +12,9 @@ vvc<int> to_paths(ll N) {
 }
 
 // 奇数頂点の無向完全グラフをハミルトトンサイクルに分解
-vvc<int> to_cycles(ll N) {
-  assert(N >= 0 && N % 2 == 1);
-  auto paths = to_paths(N - 1);
+vvc<int> to_cycles(ll N, ll K) {
+  assert(N >= 0 && N % 2 == 1 && 0 <= K && K <= (N - 1) / 2);
+  auto paths = to_paths(N - 1, K);
   for (auto &&P: paths) P.eb(N - 1);
   return paths;
 }

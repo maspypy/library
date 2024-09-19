@@ -3,13 +3,13 @@
 #include "other/io.hpp"
 #include "linalg/bitset/solve_linear.hpp"
 
-using BS = bitset<50>;
+using BS = My_Bitset;
 const int K = 30;
 
 void solve() {
   LL(N, M);
-  vc<BS> A(M);
-  vv(bool, rhs, K, M);
+  vc<BS> A(M, BS(N));
+  vc<BS> rhs(K, BS(M));
   FOR(i, M) {
     INT(n);
     FOR(n) {
@@ -24,7 +24,7 @@ void solve() {
   vc<int> ANS(N);
   FOR(k, K) {
     auto b = rhs[k];
-    auto x = solve_linear<BS, bool>(M, N, A, b);
+    auto x = solve_linear(M, N, A, b);
     if (x.empty()) return print(-1);
     FOR(i, N) if (x[0][i]) ANS[i] |= 1 << k;
   }

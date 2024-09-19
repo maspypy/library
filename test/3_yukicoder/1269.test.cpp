@@ -21,14 +21,14 @@ void solve() {
     string s = to_string(f);
     X.add(s, '0');
   }
-  X.calc_suffix_link(1);
+  X.calc_suffix_link();
 
   ll n = X.n_node;
   vc<bool> ng(n);
   for (auto&& v: X.words) ng[v] = 1;
   for (auto&& v: X.BFS)
     if (v) {
-      int p = X.suffix_link[v];
+      int p = X.nodes[v].suffix_link;
       if (ng[p]) ng[v] = 1;
     }
 
@@ -38,7 +38,7 @@ void solve() {
     vc<mint> newdp(n);
     FOR(v, n) {
       FOR(d, 10) {
-        int to = X.TO[v][d];
+        int to = X.nodes[v].nxt[d];
         if (ng[to]) continue;
         assert(0 <= to && to < n);
         newdp[to] += dp[v];
