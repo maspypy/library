@@ -15,21 +15,21 @@ void solve() {
     trie.add(t, 'a');
   }
 
-  trie.calc_suffix_link(1);
+  trie.calc_suffix_link();
 
   ll n = trie.n_node;
   vc<int> dp(n);
   int v = 0;
 
   for (auto &ch: S) {
-    v = trie.TO[v][ch - 'a'];
+    v = trie[v].nxt[ch - 'a'];
     dp[v]++;
   }
 
   vc<int> V = trie.BFS;
   reverse(all(V));
   for (auto &v: V) {
-    int p = trie.suffix_link[v];
+    int p = trie[v].suffix_link;
     if (p != -1) dp[p] += dp[v];
   }
 
