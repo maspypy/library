@@ -65,16 +65,16 @@ data:
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/cf702_F.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
+  - test/3_yukicoder/2491.test.cpp
+  - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/1919.test.cpp
+  - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/749.test.cpp
-  - test/3_yukicoder/255.test.cpp
-  - test/3_yukicoder/2627.test.cpp
-  - test/3_yukicoder/2491.test.cpp
-  - test/1_mytest/cf702_F_splay.test.cpp
-  - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/cf702_F.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

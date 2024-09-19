@@ -80,8 +80,8 @@ data:
   timestamp: '2024-05-15 14:09:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc348g.test.cpp
   - test/1_mytest/maxplus_concave.test.cpp
+  - test/5_atcoder/abc348g.test.cpp
 documentation_of: convex/maxplus_convolution.hpp
 layout: document
 redirect_from:

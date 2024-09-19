@@ -96,10 +96,10 @@ data:
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc213g.test.cpp
+  - test/2_library_checker/set_power_series/composition_sps.test.cpp
   - test/5_atcoder/arc105.test.cpp
   - test/5_atcoder/abc321g.test.cpp
-  - test/2_library_checker/set_power_series/composition_sps.test.cpp
+  - test/5_atcoder/abc213g.test.cpp
 documentation_of: setfunc/sps_composition.hpp
 layout: document
 redirect_from:

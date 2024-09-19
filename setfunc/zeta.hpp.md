@@ -58,9 +58,9 @@ data:
   timestamp: '2022-04-16 04:26:49+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/arc105.test.cpp
-  - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
+  - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
+  - test/5_atcoder/arc105.test.cpp
 documentation_of: setfunc/zeta.hpp
 layout: document
 redirect_from:

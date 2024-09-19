@@ -270,8 +270,8 @@ data:
   timestamp: '2024-09-03 14:57:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc351g.test.cpp
   - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
+  - test/5_atcoder/abc351g.test.cpp
 documentation_of: graph/ds/dynamic_tree_dp.hpp
 layout: document
 redirect_from:

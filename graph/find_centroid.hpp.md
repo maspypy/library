@@ -123,8 +123,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1769.test.cpp
   - test/3_yukicoder/1796.test.cpp
+  - test/3_yukicoder/1769.test.cpp
 documentation_of: graph/find_centroid.hpp
 layout: document
 redirect_from:

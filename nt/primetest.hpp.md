@@ -326,97 +326,97 @@ data:
   isVerificationFile: false
   path: nt/primetest.hpp
   requiredBy:
-  - nt/three_square.hpp
-  - nt/three_triangular.hpp
-  - nt/euler_phi.hpp
-  - nt/all_lcm.hpp
-  - nt/array_on_divisors.hpp
-  - nt/factor.hpp
-  - nt/gaussian_integers.hpp
-  - nt/crt.hpp
-  - nt/divisors.hpp
-  - nt/two_square.hpp
-  - nt/four_square.hpp
   - poly/multivar_convolution_cyclic.hpp
-  - mod/mod_kth_root.hpp
-  - mod/binomial.hpp
+  - nt/gaussian_integers.hpp
+  - nt/four_square.hpp
+  - nt/three_square.hpp
+  - nt/crt.hpp
+  - nt/two_square.hpp
+  - nt/array_on_divisors.hpp
+  - nt/euler_phi.hpp
+  - nt/factor.hpp
+  - nt/all_lcm.hpp
+  - nt/divisors.hpp
+  - nt/three_triangular.hpp
+  - graph/chromatic.hpp
   - mod/primitive_root.hpp
   - mod/dynamic_modint.hpp
-  - mod/mod_log.hpp
-  - mod/tetration.hpp
   - mod/multiplicative_convolution_mod_p.hpp
-  - graph/chromatic.hpp
+  - mod/tetration.hpp
+  - mod/mod_kth_root.hpp
+  - mod/mod_log.hpp
+  - mod/binomial.hpp
   - seq/famous/stirling_number_query.hpp
   timestamp: '2023-11-02 05:00:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1339.test.cpp
-  - test/3_yukicoder/2578.test.cpp
-  - test/3_yukicoder/2120.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/2119.test.cpp
-  - test/3_yukicoder/187.test.cpp
-  - test/3_yukicoder/1411.test.cpp
-  - test/3_yukicoder/1025.test.cpp
-  - test/3_yukicoder/1881.test.cpp
-  - test/3_yukicoder/590.test.cpp
-  - test/3_yukicoder/2613.test.cpp
-  - test/3_yukicoder/1262.test.cpp
-  - test/3_yukicoder/2264.test.cpp
-  - test/3_yukicoder/1667.test.cpp
-  - test/3_yukicoder/2181.test.cpp
-  - test/3_yukicoder/1956.test.cpp
-  - test/3_yukicoder/1783.test.cpp
-  - test/3_yukicoder/1728.test.cpp
-  - test/3_yukicoder/1593.test.cpp
-  - test/5_atcoder/abc270_g.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
-  - test/5_atcoder/abc335g.test.cpp
-  - test/5_atcoder/abc222g.test.cpp
-  - test/5_atcoder/abc152e.test.cpp
-  - test/5_atcoder/abc212g.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/abc349g.test.cpp
-  - test/5_atcoder/abc349f.test.cpp
-  - test/4_aoj/NTL_1_D.test.cpp
-  - test/4_aoj/ITP1_D_D.test.cpp
-  - test/4_aoj/ALDS1_1_C.test.cpp
-  - test/1_mytest/31bit_modint.test.cpp
-  - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/O1_inv.test.cpp
+  - test/1_mytest/count_by_factor_type.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/three_square.test.cpp
+  - test/1_mytest/31bit_modint.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
-  - test/1_mytest/three_triangular.test.cpp
-  - test/2_library_checker/number_theory/primitive_root.test.cpp
-  - test/2_library_checker/number_theory/primality_test.test.cpp
-  - test/2_library_checker/number_theory/factorize.test.cpp
-  - test/2_library_checker/number_theory/two_square.test.cpp
-  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
-  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
-  - test/2_library_checker/number_theory/tetration.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
-  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - test/2_library_checker/number_theory/primitive_root.test.cpp
+  - test/2_library_checker/number_theory/primality_test.test.cpp
+  - test/2_library_checker/number_theory/kth_root_mod.test.cpp
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/2_library_checker/number_theory/tetration.test.cpp
+  - test/2_library_checker/number_theory/two_square.test.cpp
+  - test/2_library_checker/number_theory/factorize.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_mod_p_1.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
+  - test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/4_aoj/ITP1_D_D.test.cpp
+  - test/4_aoj/ALDS1_1_C.test.cpp
+  - test/4_aoj/NTL_1_D.test.cpp
+  - test/3_yukicoder/590.test.cpp
+  - test/3_yukicoder/2119.test.cpp
+  - test/3_yukicoder/2578.test.cpp
+  - test/3_yukicoder/1881.test.cpp
+  - test/3_yukicoder/1339.test.cpp
+  - test/3_yukicoder/1025.test.cpp
+  - test/3_yukicoder/1593.test.cpp
+  - test/3_yukicoder/1783.test.cpp
+  - test/3_yukicoder/2181.test.cpp
+  - test/3_yukicoder/1262.test.cpp
+  - test/3_yukicoder/187.test.cpp
+  - test/3_yukicoder/2120.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/1956.test.cpp
+  - test/3_yukicoder/1728.test.cpp
+  - test/3_yukicoder/1667.test.cpp
+  - test/3_yukicoder/1411.test.cpp
+  - test/3_yukicoder/2613.test.cpp
+  - test/3_yukicoder/2264.test.cpp
+  - test/5_atcoder/abc222g.test.cpp
+  - test/5_atcoder/abc335g.test.cpp
+  - test/5_atcoder/abc212g.test.cpp
+  - test/5_atcoder/agc058d2.test.cpp
+  - test/5_atcoder/abc152e.test.cpp
+  - test/5_atcoder/abc349f.test.cpp
+  - test/5_atcoder/abc281g.test.cpp
+  - test/5_atcoder/abc349g.test.cpp
+  - test/5_atcoder/abc270_g.test.cpp
 documentation_of: nt/primetest.hpp
 layout: document
 redirect_from:

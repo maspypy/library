@@ -122,10 +122,10 @@ data:
   timestamp: '2024-06-12 17:41:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2012.test.cpp
-  - test/3_yukicoder/1297.test.cpp
-  - test/5_atcoder/abc244h.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min.test.cpp
+  - test/3_yukicoder/1297.test.cpp
+  - test/3_yukicoder/2012.test.cpp
+  - test/5_atcoder/abc244h.test.cpp
 documentation_of: convex/cht.hpp
 layout: document
 redirect_from:

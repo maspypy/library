@@ -108,38 +108,38 @@ data:
   isVerificationFile: false
   path: alg/monoid/max.hpp
   requiredBy:
-  - graph/minimum_spanning_tree.hpp
-  - alg/acted_monoid/max_max.hpp
-  - alg/acted_monoid/min_max.hpp
-  - alg/acted_monoid/max_assign.hpp
-  - alg/acted_monoid/max_min.hpp
   - alg/acted_monoid/max_add.hpp
+  - alg/acted_monoid/max_assign.hpp
+  - alg/acted_monoid/max_max.hpp
+  - alg/acted_monoid/max_min.hpp
+  - alg/acted_monoid/min_max.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1625.test.cpp
-  - test/3_yukicoder/2295.test.cpp
-  - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/2026.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1790.test.cpp
-  - test/3_yukicoder/1826_2.test.cpp
-  - test/3_yukicoder/2242.test.cpp
-  - test/3_yukicoder/1117.test.cpp
-  - test/3_yukicoder/686.test.cpp
-  - test/3_yukicoder/1826.test.cpp
-  - test/5_atcoder/abc240ex.test.cpp
-  - test/5_atcoder/abc301h.test.cpp
-  - test/5_atcoder/abc266h.test.cpp
-  - test/5_atcoder/abc228f.test.cpp
-  - test/5_atcoder/abc266h_2.test.cpp
-  - test/5_atcoder/abc270_f.test.cpp
-  - test/4_aoj/GRL_2_A.test.cpp
-  - test/1_mytest/max_assign.test.cpp
+  - test/1_mytest/max_min.test.cpp
   - test/1_mytest/min_max.test.cpp
   - test/1_mytest/max_max.test.cpp
-  - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/max_assign.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
+  - test/3_yukicoder/1117.test.cpp
+  - test/3_yukicoder/2295.test.cpp
+  - test/3_yukicoder/686.test.cpp
+  - test/3_yukicoder/1826.test.cpp
+  - test/3_yukicoder/1790.test.cpp
+  - test/3_yukicoder/1826_2.test.cpp
+  - test/3_yukicoder/2026.test.cpp
+  - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/1625.test.cpp
+  - test/5_atcoder/abc301h.test.cpp
+  - test/5_atcoder/abc270_f.test.cpp
+  - test/5_atcoder/abc266h.test.cpp
+  - test/5_atcoder/abc266h_2.test.cpp
+  - test/5_atcoder/abc228f.test.cpp
+  - test/5_atcoder/abc240ex.test.cpp
 documentation_of: alg/monoid/max.hpp
 layout: document
 redirect_from:

@@ -124,9 +124,9 @@ data:
   timestamp: '2024-09-11 14:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/4_aoj/CGL_7_C.test.cpp
   - test/3_yukicoder/2602.test.cpp
   - test/5_atcoder/abc151f.test.cpp
-  - test/4_aoj/CGL_7_C.test.cpp
 documentation_of: geo/outcircle.hpp
 layout: document
 redirect_from:

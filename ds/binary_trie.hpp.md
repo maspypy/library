@@ -147,9 +147,9 @@ data:
   timestamp: '2023-04-15 19:50:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc218g.test.cpp
   - test/1_mytest/binary_trie.test.cpp
   - test/2_library_checker/data_structure/set_xor_min.test.cpp
+  - test/5_atcoder/abc218g.test.cpp
 documentation_of: ds/binary_trie.hpp
 layout: document
 redirect_from:

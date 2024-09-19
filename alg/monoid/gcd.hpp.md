@@ -36,8 +36,8 @@ data:
   verifiedWith:
   - test/3_yukicoder/1036_4.test.cpp
   - test/3_yukicoder/1036.test.cpp
-  - test/3_yukicoder/1036_2.test.cpp
   - test/3_yukicoder/1036_3.test.cpp
+  - test/3_yukicoder/1036_2.test.cpp
 documentation_of: alg/monoid/gcd.hpp
 layout: document
 redirect_from:

@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -421,8 +421,8 @@ data:
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/graph_count.test.cpp
   - test/1_mytest/count_labeled_forest.test.cpp
+  - test/1_mytest/graph_count.test.cpp
 documentation_of: graph/count/count_labeled_forest.hpp
 layout: document
 redirect_from:

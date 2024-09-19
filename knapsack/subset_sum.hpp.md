@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   - icon: ':heavy_check_mark:'
@@ -291,8 +291,8 @@ data:
   timestamp: '2024-09-10 11:20:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/4_2.test.cpp
   - test/1_mytest/subset_sum.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:

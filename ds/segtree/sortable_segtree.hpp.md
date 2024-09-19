@@ -238,9 +238,9 @@ data:
   timestamp: '2024-09-09 09:33:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc237g.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
   - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/5_atcoder/abc237g.test.cpp
 documentation_of: ds/segtree/sortable_segtree.hpp
 layout: document
 redirect_from:

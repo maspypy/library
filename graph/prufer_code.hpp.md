@@ -128,8 +128,8 @@ data:
   isVerificationFile: false
   path: graph/prufer_code.hpp
   requiredBy:
-  - enumerate/labeled_tree.hpp
   - test/1_mytest/enumerate_labeled_tree.hpp
+  - enumerate/labeled_tree.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

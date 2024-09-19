@@ -229,8 +229,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc237ex.test.cpp
   - test/4_aoj/2251_2.test.cpp
+  - test/5_atcoder/abc237ex.test.cpp
 documentation_of: graph/maximum_antichain.hpp
 layout: document
 redirect_from:

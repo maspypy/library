@@ -151,8 +151,8 @@ data:
   timestamp: '2024-07-19 20:55:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1490.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
+  - test/3_yukicoder/1490.test.cpp
 documentation_of: ds/offline_query/rectangle_add_rectangle_sum.hpp
 layout: document
 redirect_from:

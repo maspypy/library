@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedRequiredBy: []
@@ -214,11 +214,10 @@ data:
     \n    int suffix_link;\r\n  };\r\n  int n_node;\r\n  vc<Node> nodes;\r\n  vc<int>\
     \ words;\r\n  vc<int> BFS; // BFS \u9806\r\n\r\n  Trie() {\r\n    n_node = 0;\r\
     \n    new_node();\r\n  }\r\n\r\n  template <typename STRING>\r\n  int add(STRING\
-    \ S, int off) {\r\n    int v = 0;\r\n    for (auto&& ss: S) {\r\n      int s =\
-    \ ss - off;\r\n      v = add_single(v, s, off);\r\n    }\r\n    words.eb(v);\r\
-    \n    return v;\r\n  }\r\n\r\n  int add_single(int v, int c, int off) {\r\n  \
-    \  c -= off;\r\n    assert(0 <= c && c < sigma);\r\n    SHOW(\"ADD\", v, c);\r\
-    \n    if (nodes[v].ch[c] != -1) return nodes[v].ch[c];\r\n    nodes[v].ch[c] =\
+    \ S, int off) {\r\n    int v = 0;\r\n    for (auto&& s: S) { v = add_single(v,\
+    \ s, off); }\r\n    words.eb(v);\r\n    return v;\r\n  }\r\n\r\n  int add_single(int\
+    \ v, int c, int off) {\r\n    c -= off;\r\n    assert(0 <= c && c < sigma);\r\n\
+    \    if (nodes[v].ch[c] != -1) return nodes[v].ch[c];\r\n    nodes[v].ch[c] =\
     \ new_node();\r\n    nodes.back().parent = v;\r\n    return nodes[v].ch[c];\r\n\
     \  }\r\n\r\n  void calc_suffix_link() {\r\n    BFS.resize(n_node);\r\n    int\
     \ p = 0, q = 0;\r\n    BFS[q++] = 0;\r\n    fill(all(nodes[0].nxt), 0);\r\n  \
@@ -256,7 +255,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc362g.test.cpp
   requiredBy: []
-  timestamp: '2024-09-18 19:14:30+09:00'
+  timestamp: '2024-09-19 11:38:57+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc362g.test.cpp

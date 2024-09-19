@@ -237,8 +237,8 @@ data:
   timestamp: '2024-04-19 22:50:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1541.test.cpp
   - test/3_yukicoder/2320.test.cpp
+  - test/3_yukicoder/1541.test.cpp
   - test/5_atcoder/abc193f.test.cpp
   - test/5_atcoder/abc259g.test.cpp
 documentation_of: flow/binary_optimization.hpp

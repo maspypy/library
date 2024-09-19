@@ -42,8 +42,8 @@ data:
   timestamp: '2024-08-27 20:48:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc333g.test.cpp
   - test/2_library_checker/number_theory/rational_approximation.test.cpp
+  - test/5_atcoder/abc333g.test.cpp
 documentation_of: nt/rational_binary_search.hpp
 layout: document
 redirect_from:

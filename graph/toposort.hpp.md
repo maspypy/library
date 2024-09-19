@@ -148,8 +148,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc223d.test.cpp
   - test/4_aoj/2251_1.test.cpp
+  - test/5_atcoder/abc223d.test.cpp
 documentation_of: graph/toposort.hpp
 layout: document
 redirect_from:

@@ -203,9 +203,9 @@ data:
   timestamp: '2024-09-09 03:35:35+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/5_atcoder/arc153b.test.cpp
   - test/5_atcoder/abc350f.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: ds/splaytree/splaytree_basic.hpp
 layout: document
 redirect_from:

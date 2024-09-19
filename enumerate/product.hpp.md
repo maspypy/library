@@ -43,16 +43,16 @@ data:
   isVerificationFile: false
   path: enumerate/product.hpp
   requiredBy:
-  - enumerate/labeled_tree.hpp
   - test/1_mytest/enumerate_labeled_tree.hpp
+  - enumerate/labeled_tree.hpp
   timestamp: '2023-01-23 21:04:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/arc153f.test.cpp
-  - test/5_atcoder/abc233c.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp
   - test/1_mytest/prufer.test.cpp
   - test/1_mytest/enumerate_products.test.cpp
+  - test/5_atcoder/arc153f.test.cpp
+  - test/5_atcoder/abc233c.test.cpp
 documentation_of: enumerate/product.hpp
 layout: document
 redirect_from:

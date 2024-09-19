@@ -89,22 +89,22 @@ data:
   isVerificationFile: false
   path: linalg/blackbox/min_poly.hpp
   requiredBy:
-  - graph/count/count_spanning_tree.hpp
   - graph/count/BEST.hpp
+  - graph/count/count_spanning_tree.hpp
   - linalg/blackbox/det.hpp
   timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/310.test.cpp
-  - test/5_atcoder/abc336g.test.cpp
   - test/1_mytest/min_poly.test.cpp
-  - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
+  - test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
+  - test/2_library_checker/linear_algebra/sparse_matrix_det.test.cpp
+  - test/3_yukicoder/310.test.cpp
+  - test/5_atcoder/abc336g.test.cpp
 documentation_of: linalg/blackbox/min_poly.hpp
 layout: document
 redirect_from:

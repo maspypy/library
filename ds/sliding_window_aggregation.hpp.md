@@ -152,34 +152,34 @@ data:
   path: ds/sliding_window_aggregation.hpp
   requiredBy:
   - poly/prefix_product_of_poly.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/sum_of_C_negative.hpp
-  - poly/from_log_differentiation.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/lagrange_interpolate_iota.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/sum_of_C_negative.hpp
   - seq/kth_term_of_p_recursive.hpp
   - seq/interpolate_poly_exp_sum.hpp
   timestamp: '2024-08-16 19:16:03+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/502_2.test.cpp
-  - test/3_yukicoder/2026.test.cpp
-  - test/3_yukicoder/1435_2.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
+  - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+  - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/3_yukicoder/1117.test.cpp
-  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/2026.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1036_3.test.cpp
-  - test/5_atcoder/arc144d.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/1435_2.test.cpp
   - test/5_atcoder/arc160d.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
   - test/5_atcoder/abc222h_2.test.cpp
+  - test/5_atcoder/arc144d.test.cpp
   - test/5_atcoder/abc276_g.test.cpp
-  - test/1_mytest/factorial_998.test.cpp
-  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-  - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+  - test/5_atcoder/abc276_g_2.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document
 redirect_from:

@@ -58,8 +58,8 @@ data:
   timestamp: '2024-09-05 12:30:58+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2858.test.cpp
   - test/2_library_checker/string/enumerate_palindromes.test.cpp
+  - test/3_yukicoder/2858.test.cpp
 documentation_of: string/manacher.hpp
 layout: document
 redirect_from:

@@ -164,8 +164,8 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc334g.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
+  - test/5_atcoder/abc334g.test.cpp
 documentation_of: graph/ds/remove_one_vertex_connectivity.hpp
 layout: document
 redirect_from:

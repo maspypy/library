@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -415,8 +415,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_labeled_bridgeless.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/count_labeled_connected.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
 documentation_of: graph/count/count_labeled_connected.hpp
 layout: document
 redirect_from:

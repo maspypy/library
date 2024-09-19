@@ -281,14 +281,14 @@ data:
   timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
 layout: document
 redirect_from:
