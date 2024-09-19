@@ -23,10 +23,7 @@ struct Trie {
   template <typename STRING>
   int add(STRING S, int off) {
     int v = 0;
-    for (auto&& ss: S) {
-      int s = ss - off;
-      v = add_single(v, s, off);
-    }
+    for (auto&& s: S) { v = add_single(v, s, off); }
     words.eb(v);
     return v;
   }
@@ -34,7 +31,6 @@ struct Trie {
   int add_single(int v, int c, int off) {
     c -= off;
     assert(0 <= c && c < sigma);
-    SHOW("ADD", v, c);
     if (nodes[v].ch[c] != -1) return nodes[v].ch[c];
     nodes[v].ch[c] = new_node();
     nodes.back().parent = v;
