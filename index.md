@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -1399,7 +1399,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1561,7 +1561,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2076,7 +2076,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_tree.hpp
       title: string/suffix_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/trie.hpp
       title: string/trie.hpp
     - icon: ':warning:'
@@ -4733,7 +4733,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc267h.test.cpp
       title: test/5_atcoder/abc267h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc268_ex.test.cpp
       title: test/5_atcoder/abc268_ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4898,7 +4898,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc354g.test.cpp
       title: test/5_atcoder/abc354g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc362g.test.cpp
       title: test/5_atcoder/abc362g.test.cpp
     - icon: ':heavy_check_mark:'
