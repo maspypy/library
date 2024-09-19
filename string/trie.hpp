@@ -20,6 +20,8 @@ struct Trie {
     new_node();
   }
 
+  Node& operator[](int i) { return nodes[i]; }
+
   template <typename STRING>
   int add(STRING S, int off) {
     int v = 0;

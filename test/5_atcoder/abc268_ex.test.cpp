@@ -11,13 +11,13 @@ void solve() {
     STR(T);
     X.add(T, 'a');
   }
-  X.calc_suffix_link(1);
+  X.calc_suffix_link();
   auto CNT = X.calc_count();
 
   ll ANS = 0;
   int v = 0;
   for (auto&& x: S) {
-    v = X.TO[v][x - 'a'];
+    v = X.nodes[v].nxt[x - 'a'];
     if (CNT[v]) {
       ++ANS;
       v = 0;
