@@ -112,6 +112,9 @@ data:
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc241h.test.cpp
     title: test/5_atcoder/abc241h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -283,6 +286,7 @@ data:
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2243.test.cpp
   - test/5_atcoder/abc260h.test.cpp
   - test/5_atcoder/abc272_h.test.cpp

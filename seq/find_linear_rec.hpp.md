@@ -67,6 +67,9 @@ data:
     path: test/3_yukicoder/2305.test.cpp
     title: test/3_yukicoder/2305.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2877.test.cpp
+    title: test/3_yukicoder/2877.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
   - icon: ':heavy_check_mark:'
@@ -136,6 +139,7 @@ data:
   - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/1755.test.cpp
+  - test/3_yukicoder/2877.test.cpp
   - test/5_atcoder/abc336g.test.cpp
 documentation_of: seq/find_linear_rec.hpp
 layout: document
