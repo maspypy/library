@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.hpp
-    title: test/1_mytest/enumerate_labeled_tree.hpp
+    path: test/1_mytest/enumerate_labeled_tree.cpp
+    title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
@@ -2086,6 +2086,9 @@ data:
     path: test/3_yukicoder/2809.test.cpp
     title: test/3_yukicoder/2809.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2810.test.cpp
+    title: test/3_yukicoder/2810.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2181,6 +2184,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_3.test.cpp
     title: test/3_yukicoder/789_3.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/866.test.cpp
+    title: test/3_yukicoder/866.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
@@ -2610,7 +2616,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc269ex2.test.cpp
     title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc270_f.test.cpp
     title: test/5_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2670,7 +2676,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc301g.test.cpp
     title: test/5_atcoder/abc301g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc301h.test.cpp
     title: test/5_atcoder/abc301h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2835,9 +2841,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc162f.test.cpp
     title: test/5_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/96344
@@ -3012,9 +3018,9 @@ data:
   isVerificationFile: false
   path: my_template.hpp
   requiredBy:
-  - test/1_mytest/enumerate_labeled_tree.hpp
+  - test/1_mytest/enumerate_labeled_tree.cpp
   timestamp: '2024-08-13 20:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/dual_fenwick.test.cpp
@@ -3615,6 +3621,7 @@ data:
   - test/3_yukicoder/1939.test.cpp
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1641.test.cpp
+  - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/4954.test.cpp
   - test/3_yukicoder/694.test.cpp
@@ -3683,6 +3690,7 @@ data:
   - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1601.test.cpp
+  - test/3_yukicoder/866.test.cpp
   - test/3_yukicoder/1685.test.cpp
   - test/3_yukicoder/114.test.cpp
   - test/3_yukicoder/1254.test.cpp

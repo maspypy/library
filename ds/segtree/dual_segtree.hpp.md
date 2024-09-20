@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -36,15 +36,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc270_f.test.cpp
     title: test/5_atcoder/abc270_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc301h.test.cpp
     title: test/5_atcoder/abc301h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
@@ -55,16 +55,17 @@ data:
     \ << 1, MA::unit());\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n\
     \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
     \ laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin()\
-    \ + size, laz.begin() + size + n};\n  }\n\n  void apply(int l, int r, const A&\
-    \ a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n   \
-    \ l += size, r += size;\n    if (!MA::commute) {\n      for (int i = log; i >=\
-    \ 1; i--) {\n        if (((l >> i) << i) != l) push(l >> i);\n        if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n\
-    \      if (l & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n  \
-    \    l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k]\
-    \ == MA::unit()) return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n\
-    \    laz[k] = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k],\
-    \ a); }\n};\n"
+    \ + size, laz.begin() + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n\
+    \    laz[p + size] = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n   \
+    \ assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
+    \ r += size;\n    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n\
+    \        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i)\
+    \ != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l\
+    \ & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1,\
+    \ r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k] == MA::unit())\
+    \ return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a);\
+    \ }\n};\n"
   code: "#pragma once\n\ntemplate <typename Monoid>\nstruct Dual_SegTree {\n  using\
     \ MA = Monoid;\n  using A = typename MA::value_type;\n  int n, log, size;\n  vc<A>\
     \ laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n  Dual_SegTree(int n) { build(n);\
@@ -73,9 +74,10 @@ data:
     \  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for\
     \ (int i = log; i >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A>\
     \ get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin()\
-    \ + size + n};\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0\
-    \ <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n\
-    \    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
+    \ + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size]\
+    \ = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l &&\
+    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
+    \ if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
     \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
     \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
     \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
@@ -89,8 +91,8 @@ data:
   - graph/minimum_spanning_tree.hpp
   - graph/ds/dual_tree_monoid.hpp
   - geo/range_closest_pair_query.hpp
-  timestamp: '2022-12-04 02:25:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-20 17:23:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/range_closest_pair.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp

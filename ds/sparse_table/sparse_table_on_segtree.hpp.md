@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/866.test.cpp
+    title: test/3_yukicoder/866.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/713/D
@@ -47,8 +50,9 @@ data:
   path: ds/sparse_table/sparse_table_on_segtree.hpp
   requiredBy: []
   timestamp: '2023-09-18 22:09:51+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/3_yukicoder/866.test.cpp
 documentation_of: ds/sparse_table/sparse_table_on_segtree.hpp
 layout: document
 redirect_from:

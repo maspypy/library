@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/866.test.cpp
+    title: test/3_yukicoder/866.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/or.hpp\"\n\r\ntemplate <typename X>\r\nstruct\
@@ -20,8 +23,9 @@ data:
   path: alg/monoid/or.hpp
   requiredBy: []
   timestamp: '2022-12-15 05:38:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/3_yukicoder/866.test.cpp
 documentation_of: alg/monoid/or.hpp
 layout: document
 redirect_from:

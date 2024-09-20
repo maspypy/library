@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -91,7 +91,7 @@ data:
     \  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\u3092\u5165\u308C\
     \u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automaton() {\n    nodes.eb(Node(-1,\
     \ 0));\n    last = 0;\n  }\n\n  void add(char c0, char off) {\n    int c = c0\
-    \ - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1, nodes[last].size\
+    \ - off;\n    int new_node = len(nodes);\n    nodes.eb(Node(-1, nodes[last].size\
     \ + 1));\n    int p = last;\n    while (p != -1 && nodes[p].next[c] == -1) {\n\
     \      nodes[p].next[c] = new_node;\n      p = nodes[p].link;\n    }\n    int\
     \ q = (p == -1 ? 0 : nodes[p].next[c]);\n    if (p == -1 || nodes[p].size + 1\
@@ -122,7 +122,7 @@ data:
     \ -1); }\n  };\n\n  vc<Node> nodes;\n  int last; // \u6587\u5B57\u5217\u5168\u4F53\
     \u3092\u5165\u308C\u305F\u3068\u304D\u306E\u884C\u304D\u5148\n\n  Suffix_Automaton()\
     \ {\n    nodes.eb(Node(-1, 0));\n    last = 0;\n  }\n\n  void add(char c0, char\
-    \ off) {\n    int c = c0 - 'a';\n    int new_node = len(nodes);\n    nodes.eb(Node(-1,\
+    \ off) {\n    int c = c0 - off;\n    int new_node = len(nodes);\n    nodes.eb(Node(-1,\
     \ nodes[last].size + 1));\n    int p = last;\n    while (p != -1 && nodes[p].next[c]\
     \ == -1) {\n      nodes[p].next[c] = new_node;\n      p = nodes[p].link;\n   \
     \ }\n    int q = (p == -1 ? 0 : nodes[p].next[c]);\n    if (p == -1 || nodes[p].size\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: string/suffix_automaton.hpp
   requiredBy: []
-  timestamp: '2024-05-29 22:32:29+09:00'
+  timestamp: '2024-09-20 17:23:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/number_of_substrings2.test.cpp

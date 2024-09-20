@@ -6,8 +6,8 @@ data:
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.hpp
-    title: test/1_mytest/enumerate_labeled_tree.hpp
+    path: test/1_mytest/enumerate_labeled_tree.cpp
+    title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_products.test.cpp
@@ -43,7 +43,7 @@ data:
   isVerificationFile: false
   path: enumerate/product.hpp
   requiredBy:
-  - test/1_mytest/enumerate_labeled_tree.hpp
+  - test/1_mytest/enumerate_labeled_tree.cpp
   - enumerate/labeled_tree.hpp
   timestamp: '2023-01-23 21:04:48+09:00'
   verificationStatus: LIBRARY_ALL_AC

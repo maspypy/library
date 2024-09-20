@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -151,23 +151,23 @@ data:
     \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
     \ >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n \
     \   FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() + size\
-    \ + n};\n  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l &&\
-    \ l <= r && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n   \
-    \ if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n        if (((l\
-    \ >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i) != r) push((r -\
-    \ 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++,\
-    \ a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n \
-    \ }\n\nprivate:\n  void push(int k) {\n    if (laz[k] == MA::unit()) return;\n\
-    \    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n\
-    \  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }\n};\n#line\
-    \ 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\
-    \n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X\
-    \ &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit()\
-    \ { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 4 \"geo/range_closest_pair_query.hpp\"\n\n// \u70B9\u7FA4 {p_i | i in [l, r)}\
-    \ \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\u5BFE\u306E\u8A08\u7B97\u3092\u884C\
-    \u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n// https://qoj.ac/problem/5463\n\
-    // https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
+    \ + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n\
+    \  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r\
+    \ && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute)\
+    \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
+    \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
+    \ }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++, a);\n      if\
+    \ (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n\
+    \  void push(int k) {\n    if (laz[k] == MA::unit()) return;\n    all_apply(2\
+    \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n\
+    \  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }\n};\n#line 2 \"\
+    alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using\
+    \ X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const X &x, const\
+    \ X &y) noexcept { return min(x, y); }\r\n  static constexpr X unit() { return\
+    \ infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"geo/range_closest_pair_query.hpp\"\
+    \n\n// \u70B9\u7FA4 {p_i | i in [l, r)} \u306B\u5BFE\u3059\u308B\u6700\u8FD1\u70B9\
+    \u5BFE\u306E\u8A08\u7B97\u3092\u884C\u3046\u30AF\u30A8\u30EA\n// O(KNlogKN + QlogN)\n\
+    // https://qoj.ac/problem/5463\n// https://codeforces.com/gym/104172/attachments/download/18933/Hong_Kong_Tutorial.pdf\n\
     // \u70B9\u7FA4\u304C 1 \u6B21\u5143\uFF1Ahttps://codeforces.com/problemset/problem/765/F\n\
     struct Range_Closest_Pair_Query {\n  /*\n  \u30FBR \u3092\u5897\u3084\u3057\u306A\
     \u304C\u3089\u3001L \u3054\u3068\u306E\u7B54\u3092\u7BA1\u7406\u3059\u308B\n \
@@ -269,7 +269,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_closest_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-09-14 09:20:23+09:00'
+  timestamp: '2024-09-20 17:23:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_closest_pair.test.cpp

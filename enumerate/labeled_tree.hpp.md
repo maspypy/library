@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -12,8 +12,8 @@ data:
     title: graph/prufer_code.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.hpp
-    title: test/1_mytest/enumerate_labeled_tree.hpp
+    path: test/1_mytest/enumerate_labeled_tree.cpp
+    title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -131,7 +131,7 @@ data:
   isVerificationFile: false
   path: enumerate/labeled_tree.hpp
   requiredBy:
-  - test/1_mytest/enumerate_labeled_tree.hpp
+  - test/1_mytest/enumerate_labeled_tree.cpp
   timestamp: '2024-09-10 18:12:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

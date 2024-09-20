@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
@@ -39,12 +39,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc270_f.test.cpp
     title: test/5_atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -335,33 +335,34 @@ data:
     \ << 1, MA::unit());\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n\
     \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
     \ laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin()\
-    \ + size, laz.begin() + size + n};\n  }\n\n  void apply(int l, int r, const A&\
-    \ a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n   \
-    \ l += size, r += size;\n    if (!MA::commute) {\n      for (int i = log; i >=\
-    \ 1; i--) {\n        if (((l >> i) << i) != l) push(l >> i);\n        if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n\
-    \      if (l & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n  \
-    \    l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k]\
-    \ == MA::unit()) return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n\
-    \    laz[k] = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k],\
-    \ a); }\n};\n#line 3 \"graph/ds/dual_tree_monoid.hpp\"\n\r\ntemplate <typename\
-    \ TREE, typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using MX\
-    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int\
-    \ N;\r\n  Dual_SegTree<MX> seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree),\
-    \ N(tree.N), seg(tree.N) {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if\
-    \ (edge) {\r\n      auto &&e = tree.G.edges[i];\r\n      v = (tree.parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n    }\r\n    return seg.get(tree.LID[v]);\r\n  }\r\
-    \n\r\n  vc<X> get_all() {\r\n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\
-    \n    FOR(i, N) {\r\n      if (edge && i == N - 1) break;\r\n      int v = i;\r\
-    \n      if (edge) {\r\n        auto &&e = tree.G.edges[i];\r\n        v = (tree.parent[e.frm]\
-    \ == e.to ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[tree.LID[v]]);\r\n \
-    \   }\r\n    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\
-    \n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a,\
-    \ b]: pd) {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\
-    \n    }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n  \
-    \  int l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r,\
-    \ x);\r\n  }\r\n\r\n  void apply_outtree(int u, X a) {\r\n    int l = tree.LID[u],\
-    \ r = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n    seg.apply(r,\
+    \ + size, laz.begin() + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n\
+    \    laz[p + size] = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n   \
+    \ assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
+    \ r += size;\n    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n\
+    \        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i)\
+    \ != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l\
+    \ & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1,\
+    \ r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k] == MA::unit())\
+    \ return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a);\
+    \ }\n};\n#line 3 \"graph/ds/dual_tree_monoid.hpp\"\n\r\ntemplate <typename TREE,\
+    \ typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using MX = Monoid;\r\
+    \n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Dual_SegTree<MX>\
+    \ seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
+    \ {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if (edge) {\r\n      auto\
+    \ &&e = tree.G.edges[i];\r\n      v = (tree.parent[e.frm] == e.to ? e.frm : e.to);\r\
+    \n    }\r\n    return seg.get(tree.LID[v]);\r\n  }\r\n\r\n  vc<X> get_all() {\r\
+    \n    vc<X> tmp = seg.get_all();\r\n    vc<X> res;\r\n    FOR(i, N) {\r\n    \
+    \  if (edge && i == N - 1) break;\r\n      int v = i;\r\n      if (edge) {\r\n\
+    \        auto &&e = tree.G.edges[i];\r\n        v = (tree.parent[e.frm] == e.to\
+    \ ? e.frm : e.to);\r\n      }\r\n      res.eb(tmp[tree.LID[v]]);\r\n    }\r\n\
+    \    return res;\r\n  }\r\n\r\n  void apply_path(int u, int v, X x) {\r\n    auto\
+    \ pd = tree.get_path_decomposition(u, v, edge);\r\n    for (auto &&[a, b]: pd)\
+    \ {\r\n      (a <= b ? seg.apply(a, b + 1, x) : seg.apply(b, a + 1, x));\r\n \
+    \   }\r\n    return;\r\n  }\r\n\r\n  void apply_subtree(int u, X x) {\r\n    int\
+    \ l = tree.LID[u], r = tree.RID[u];\r\n    return seg.apply(l + edge, r, x);\r\
+    \n  }\r\n\r\n  void apply_outtree(int u, X a) {\r\n    int l = tree.LID[u], r\
+    \ = tree.RID[u];\r\n    seg.apply(0 + edge, l + edge, a);\r\n    seg.apply(r,\
     \ N, a);\r\n  }\r\n};\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename\
     \ E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n \
     \ static constexpr X op(const X &x, const X &y) noexcept { return min(x, y); }\r\
@@ -434,8 +435,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-09-20 17:23:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/tree/mst.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp

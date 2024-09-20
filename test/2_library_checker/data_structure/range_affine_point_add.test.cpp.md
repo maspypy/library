@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -216,16 +216,17 @@ data:
     \ << 1, MA::unit());\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n\
     \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
     \ laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin()\
-    \ + size, laz.begin() + size + n};\n  }\n\n  void apply(int l, int r, const A&\
-    \ a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n   \
-    \ l += size, r += size;\n    if (!MA::commute) {\n      for (int i = log; i >=\
-    \ 1; i--) {\n        if (((l >> i) << i) != l) push(l >> i);\n        if (((r\
-    \ >> i) << i) != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n\
-    \      if (l & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n  \
-    \    l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k]\
-    \ == MA::unit()) return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n\
-    \    laz[k] = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k],\
-    \ a); }\n};\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
+    \ + size, laz.begin() + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n\
+    \    laz[p + size] = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n   \
+    \ assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
+    \ r += size;\n    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n\
+    \        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i)\
+    \ != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l\
+    \ & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1,\
+    \ r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k] == MA::unit())\
+    \ return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
+    \ = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a);\
+    \ }\n};\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
     \u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F\
     \ = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n  static constexpr\
     \ F op(const F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second\
@@ -335,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   requiredBy: []
-  timestamp: '2024-08-27 05:16:49+09:00'
+  timestamp: '2024-09-20 17:23:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_affine_point_add.test.cpp

@@ -70,6 +70,9 @@ data:
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2810.test.cpp
+    title: test/3_yukicoder/2810.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,6 +252,7 @@ data:
   - test/2_library_checker/linear_algebra/matrix_product.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1750.test.cpp

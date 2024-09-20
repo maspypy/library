@@ -21,6 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1810.test.cpp
     title: test/3_yukicoder/1810.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2810.test.cpp
+    title: test/3_yukicoder/2810.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -159,6 +162,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
+  - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/1750.test.cpp
   - test/3_yukicoder/1810.test.cpp
 documentation_of: linalg/matrix_pow.hpp

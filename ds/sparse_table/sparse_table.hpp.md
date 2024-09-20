@@ -70,6 +70,9 @@ data:
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/866.test.cpp
+    title: test/3_yukicoder/866.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -158,6 +161,7 @@ data:
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/1036_4.test.cpp
+  - test/3_yukicoder/866.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
   - test/5_atcoder/abc240ex.test.cpp
   - test/5_atcoder/arc151_e.test.cpp
