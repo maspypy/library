@@ -18,7 +18,7 @@ struct Suffix_Automaton {
   }
 
   void add(char c0, char off) {
-    int c = c0 - 'a';
+    int c = c0 - off;
     int new_node = len(nodes);
     nodes.eb(Node(-1, nodes[last].size + 1));
     int p = last;
