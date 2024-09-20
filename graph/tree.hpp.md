@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -234,6 +234,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2595.test.cpp
+    title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
@@ -285,9 +288,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc023f.test.cpp
     title: test/5_atcoder/agc023f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -582,7 +585,7 @@ data:
   - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/compress_tree.hpp
   timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
@@ -624,6 +627,7 @@ data:
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/2342.test.cpp
   - test/3_yukicoder/2258.test.cpp
+  - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/1295.test.cpp
   - test/3_yukicoder/1326.test.cpp
   - test/3_yukicoder/1790.test.cpp

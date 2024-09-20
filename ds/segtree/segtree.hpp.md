@@ -96,12 +96,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2595.test.cpp
+    title: test/3_yukicoder/2595.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2890.test.cpp
     title: test/3_yukicoder/2890.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2897.test.cpp
+    title: test/3_yukicoder/2897.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
@@ -132,9 +138,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc365f.test.cpp
     title: test/5_atcoder/abc365f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -229,7 +235,7 @@ data:
   - ds/offline_query/range_mex_query.hpp
   - geo/manhattan_nns.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/suffix_tree.test.cpp
@@ -252,9 +258,11 @@ data:
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/3_yukicoder/1212.test.cpp
+  - test/3_yukicoder/2897.test.cpp
   - test/3_yukicoder/2361.test.cpp
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1435.test.cpp
+  - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/2859.test.cpp
