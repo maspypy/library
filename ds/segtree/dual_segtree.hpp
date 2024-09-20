@@ -30,6 +30,11 @@ struct Dual_SegTree {
     return {laz.begin() + size, laz.begin() + size + n};
   }
 
+  void set(int p, A x) {
+    get(p);
+    laz[p + size] = x;
+  }
+
   void apply(int l, int r, const A& a) {
     assert(0 <= l && l <= r && r <= n);
     if (l == r) return;
