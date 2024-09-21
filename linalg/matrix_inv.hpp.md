@@ -6,12 +6,18 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/frobenius.hpp
+    title: linalg/frobenius.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_lowrank_update.hpp
     title: linalg/matrix_lowrank_update.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+    title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
@@ -52,9 +58,11 @@ data:
   requiredBy:
   - linalg/det_A_plus_xB.hpp
   - linalg/matrix_lowrank_update.hpp
+  - linalg/frobenius.hpp
   timestamp: '2023-10-24 14:07:00+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1303.test.cpp

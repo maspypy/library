@@ -75,6 +75,9 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/frobenius.hpp
+    title: linalg/frobenius.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -738,6 +741,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+    title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/solve_linear.test.cpp
     title: test/2_library_checker/linear_algebra/solve_linear.test.cpp
@@ -1631,6 +1637,7 @@ data:
   - linalg/matrix_mul.hpp
   - linalg/blackbox/vandermonde.hpp
   - linalg/blackbox/pascal.hpp
+  - linalg/frobenius.hpp
   - setfunc/power_projection_of_sps.hpp
   - setfunc/sps_log.hpp
   - seq/domino_standard_tableaux.hpp
@@ -1797,6 +1804,7 @@ data:
   - test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/convolution/online_convolution.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
   - test/2_library_checker/linear_algebra/solve_linear.test.cpp

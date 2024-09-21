@@ -487,6 +487,9 @@ data:
     path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+    title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/solve_linear.test.cpp
     title: test/2_library_checker/linear_algebra/solve_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1557,6 +1560,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2892.test.cpp
     title: test/3_yukicoder/2892.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2895.test.cpp
+    title: test/3_yukicoder/2895.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2897.test.cpp
     title: test/3_yukicoder/2897.test.cpp
@@ -2722,6 +2728,7 @@ data:
   - test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - test/2_library_checker/convolution/online_convolution.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
   - test/2_library_checker/linear_algebra/solve_linear.test.cpp
@@ -3039,6 +3046,7 @@ data:
   - test/3_yukicoder/1216_2.test.cpp
   - test/3_yukicoder/1036_3.test.cpp
   - test/3_yukicoder/1170.test.cpp
+  - test/3_yukicoder/2895.test.cpp
   - test/3_yukicoder/655.test.cpp
   - test/3_yukicoder/1976.test.cpp
   - test/3_yukicoder/1077.test.cpp

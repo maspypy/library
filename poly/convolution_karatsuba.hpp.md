@@ -75,6 +75,9 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/frobenius.hpp
+    title: linalg/frobenius.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
   - icon: ':heavy_check_mark:'
@@ -492,6 +495,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+    title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/bernoulli.test.cpp
     title: test/2_library_checker/number_theory/bernoulli.test.cpp
@@ -1010,6 +1016,7 @@ data:
   - linalg/det_A_plus_xB.hpp
   - linalg/blackbox/vandermonde.hpp
   - linalg/blackbox/pascal.hpp
+  - linalg/frobenius.hpp
   - setfunc/power_projection_of_sps.hpp
   - seq/sum_of_powers.hpp
   - seq/famous/stirling_number_2.hpp
@@ -1105,6 +1112,7 @@ data:
   - test/2_library_checker/convolution/multivariate_convolution.test.cpp
   - test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/sample/aplusb128.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp

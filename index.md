@@ -1195,6 +1195,56 @@ data:
     - icon: ':heavy_check_mark:'
       path: knapsack/subset_sum_count.hpp
       title: knapsack/subset_sum_count.hpp
+  - name: linalg
+    pages:
+    - icon: ':heavy_check_mark:'
+      path: linalg/basis.hpp
+      title: linalg/basis.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/characteristic_poly.hpp
+      title: linalg/characteristic_poly.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/det.hpp
+      title: linalg/det.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/det_A_plus_xB.hpp
+      title: linalg/det_A_plus_xB.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/frobenius.hpp
+      title: linalg/frobenius.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/hafnian.hpp
+      title: linalg/hafnian.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/matrix_inv.hpp
+      title: linalg/matrix_inv.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/matrix_lowrank_update.hpp
+      title: linalg/matrix_lowrank_update.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/matrix_mul.hpp
+      title: linalg/matrix_mul.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/matrix_pow.hpp
+      title: linalg/matrix_pow.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/matrix_rank.hpp
+      title: linalg/matrix_rank.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/rot90.hpp
+      title: linalg/rot90.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/solve_linear.hpp
+      title: linalg/solve_linear.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/solve_linear_lower.hpp
+      title: linalg/solve_linear_lower.hpp
+    - icon: ':warning:'
+      path: linalg/solve_linear_real.hpp
+      title: linalg/solve_linear_real.hpp
+    - icon: ':heavy_check_mark:'
+      path: linalg/transpose.hpp
+      title: linalg/transpose.hpp
   - name: linalg/bitset
     pages:
     - icon: ':warning:'
@@ -1232,52 +1282,11 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/blackbox/vandermonde.hpp
       title: linalg/blackbox/vandermonde.hpp
-  - name: linalg
-    pages:
-    - icon: ':heavy_check_mark:'
-      path: linalg/characteristic_poly.hpp
-      title: linalg/characteristic_poly.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/det.hpp
-      title: linalg/det.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/det_A_plus_xB.hpp
-      title: linalg/det_A_plus_xB.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/hafnian.hpp
-      title: linalg/hafnian.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/matrix_inv.hpp
-      title: linalg/matrix_inv.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/matrix_lowrank_update.hpp
-      title: linalg/matrix_lowrank_update.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/matrix_mul.hpp
-      title: linalg/matrix_mul.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/matrix_pow.hpp
-      title: linalg/matrix_pow.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/matrix_rank.hpp
-      title: linalg/matrix_rank.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/rot90.hpp
-      title: linalg/rot90.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/solve_linear.hpp
-      title: linalg/solve_linear.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/solve_linear_lower.hpp
-      title: linalg/solve_linear_lower.hpp
-    - icon: ':warning:'
-      path: linalg/solve_linear_real.hpp
-      title: linalg/solve_linear_real.hpp
-    - icon: ':heavy_check_mark:'
-      path: linalg/transpose.hpp
-      title: linalg/transpose.hpp
   - name: linalg/xor
     pages:
+    - icon: ':heavy_check_mark:'
+      path: linalg/xor/basis.hpp
+      title: linalg/xor/basis.hpp
     - icon: ':heavy_check_mark:'
       path: linalg/xor/mat_inv.hpp
       title: linalg/xor/mat_inv.hpp
@@ -3146,6 +3155,9 @@ data:
       path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
       title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+      title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/linear_algebra/solve_linear.test.cpp
       title: test/2_library_checker/linear_algebra/solve_linear.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4234,6 +4246,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2892.test.cpp
       title: test/3_yukicoder/2892.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/3_yukicoder/2895.test.cpp
+      title: test/3_yukicoder/2895.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2897.test.cpp
       title: test/3_yukicoder/2897.test.cpp

@@ -12,6 +12,9 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: linalg/frobenius.hpp
+    title: linalg/frobenius.hpp
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -51,6 +54,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
+    title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
@@ -239,6 +245,7 @@ data:
   - random/random_matrix.hpp
   - linalg/matrix_pow.hpp
   - linalg/det_A_plus_xB.hpp
+  - linalg/frobenius.hpp
   - seq/kth_term_of_p_recursive.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -248,6 +255,7 @@ data:
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product.test.cpp
   - test/3_yukicoder/502_2.test.cpp
