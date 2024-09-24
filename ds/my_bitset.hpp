@@ -162,6 +162,8 @@ struct My_Bitset {
     return p;
   }
 
+  My_Bitset slice(int L, int R) { return range(L, R); }
+
   int count_range(int L, int R) {
     assert(L <= R);
     int cnt = 0;

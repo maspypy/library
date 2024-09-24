@@ -21,7 +21,7 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SUFFIX& X) {
     Graph<int, 1> G(2);
     G.add(0, 1);
     G.build();
-    dat.eb(0, 1, 0, 0), dat.eb(0, 1, 0, 1);
+    dat.eb(0, 1, 1, 1), dat.eb(0, 1, 1, 2);
     return {G, dat};
   }
 
@@ -62,6 +62,7 @@ pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> suffix_tree(SUFFIX& X) {
   } else {
     dfs(dfs, 0, r, 0);
   }
+  for (auto& [a, b, c, d]: dat) ++c, ++d;
 
   Graph<int, 1> G(len(dat));
   for (auto&& [a, b]: edges) G.add(a, b);

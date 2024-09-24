@@ -19,31 +19,52 @@ struct Rational {
   }
 
   void reduce() {
-    if (!REDUCE) return;
-    T g = gcd(num, den);
-    num /= g, den /= g;
+    if constexpr (!REDUCE) {
+      return;
+    } else {
+      T g = gcd(num, den);
+      num /= g, den /= g;
+    }
   }
 
   Rational &operator+=(const Rational &p) {
-    T g = (REDUCE ? gcd(den, p.den) : 1);
-    num = num * (p.den / g) + p.num * (den / g);
-    den *= p.den / g;
-    reduce();
-    return *this;
+    if constexpr (!REDUCE) {
+      num = num * p.den + p.num * den;
+      den *= p.den;
+      return *this;
+    } else {
+      T g = (REDUCE ? gcd(den, p.den) : 1);
+      num = num * (p.den / g) + p.num * (den / g);
+      den *= p.den / g;
+      reduce();
+      return *this;
+    }
   }
   Rational &operator-=(const Rational &p) {
-    T g = (REDUCE ? gcd(den, p.den) : 1);
-    num = num * (p.den / g) - p.num * (den / g);
-    den *= p.den / g;
-    reduce();
-    return *this;
+    if constexpr (!REDUCE) {
+      num = num * p.den - p.num * den;
+      den *= p.den;
+      return *this;
+    } else {
+      T g = (REDUCE ? gcd(den, p.den) : 1);
+      num = num * (p.den / g) - p.num * (den / g);
+      den *= p.den / g;
+      reduce();
+      return *this;
+    }
   }
   Rational &operator*=(const Rational &p) {
-    T g1 = (REDUCE ? gcd(num, p.den) : 1);
-    T g2 = (REDUCE ? gcd(den, p.num) : 1);
-    num = (num / g1) * (p.num / g2);
-    den = (den / g2) * (p.den / g1);
-    return *this;
+    if constexpr (!REDUCE) {
+      num = num * p.num;
+      den = den * p.den;
+      return *this;
+    } else {
+      T g1 = gcd(num, p.den);
+      T g2 = gcd(den, p.num);
+      num = (num / g1) * (p.num / g2);
+      den = (den / g2) * (p.den / g1);
+      return *this;
+    }
   }
   Rational &operator/=(const Rational &p) {
     T g1 = (REDUCE ? gcd(num, p.num) : 1);
@@ -59,20 +80,12 @@ struct Rational {
   Rational operator-(const Rational &p) const { return Rational(*this) -= p; }
   Rational operator*(const Rational &p) const { return Rational(*this) *= p; }
   Rational operator/(const Rational &p) const { return Rational(*this) /= p; }
-  bool operator==(const Rational &p) const {
-    return num * p.den == p.num * den;
-  }
-  bool operator!=(const Rational &p) const {
-    return num * p.den != p.num * den;
-  }
+  bool operator==(const Rational &p) const { return num * p.den == p.num * den; }
+  bool operator!=(const Rational &p) const { return num * p.den != p.num * den; }
   bool operator<(const Rational &p) const { return num * p.den < p.num * den; }
   bool operator>(const Rational &p) const { return num * p.den > p.num * den; }
-  bool operator<=(const Rational &p) const {
-    return num * p.den <= p.num * den;
-  }
-  bool operator>=(const Rational &p) const {
-    return num * p.den >= p.num * den;
-  }
+  bool operator<=(const Rational &p) const { return num * p.den <= p.num * den; }
+  bool operator>=(const Rational &p) const { return num * p.den >= p.num * den; }
 
   string to_string() { return std::to_string(num) + "/" + std::to_string(den); }
   double to_double() { return double(num) / double(den); }
