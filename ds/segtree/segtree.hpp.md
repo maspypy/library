@@ -39,9 +39,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/suffix_tree.test.cpp
-    title: test/1_mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
@@ -93,7 +90,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':x:'
@@ -238,7 +235,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/manhattan_nns.test.cpp
-  - test/1_mytest/suffix_tree.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/range_mex.test.cpp

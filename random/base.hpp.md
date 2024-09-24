@@ -522,9 +522,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/suffix_tree.test.cpp
-    title: test/1_mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summax_add.test.cpp
     title: test/1_mytest/summax_add.test.cpp
@@ -876,9 +873,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc058d2.test.cpp
     title: test/5_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
@@ -945,7 +942,7 @@ data:
   - geo/minimum_enclosing_circle.hpp
   - geo/count_points_in_triangles.hpp
   timestamp: '2024-09-14 09:20:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/dual_fenwick.test.cpp
@@ -995,7 +992,6 @@ data:
   - test/1_mytest/mod_sum_of_linear.test.cpp
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/non_adj.test.cpp
-  - test/1_mytest/suffix_tree.test.cpp
   - test/1_mytest/st_numbering.test.cpp
   - test/1_mytest/matching.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp

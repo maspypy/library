@@ -317,7 +317,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   - icon: ':warning:'
@@ -390,9 +390,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/suffix_tree.test.cpp
-    title: test/1_mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
@@ -714,7 +711,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1155,7 +1152,6 @@ data:
   - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/count_K4.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp
-  - test/1_mytest/suffix_tree.test.cpp
   - test/1_mytest/st_numbering.test.cpp
   - test/1_mytest/matching.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp

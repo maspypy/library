@@ -534,9 +534,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/substring_abundant.test.cpp
     title: test/1_mytest/substring_abundant.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/suffix_tree.test.cpp
-    title: test/1_mytest/suffix_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/summax_add.test.cpp
     title: test/1_mytest/summax_add.test.cpp
@@ -1992,7 +1989,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3100,7 +3097,6 @@ data:
   - test/1_mytest/mod_sum_of_linear.test.cpp
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/non_adj.test.cpp
-  - test/1_mytest/suffix_tree.test.cpp
   - test/1_mytest/pytagorean_triples.test.cpp
   - test/1_mytest/count_labeled_dag.test.cpp
   - test/1_mytest/sparse_pow_2d.test.cpp
