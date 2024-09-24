@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':question:'
@@ -261,11 +261,11 @@ data:
     \ 0};\n    return {0};\n  }\n  vc<int> I(N);\n  if (sorted) {\n    FOR(i, N) I[i]\
     \ = i;\n  } else {\n    I = argsort(XY);\n  }\n  if constexpr (allow_180) { FOR(i,\
     \ N - 1) assert(XY[i] != XY[i + 1]); }\n\n  auto check = [&](ll i, ll j, ll k)\
-    \ -> bool {\n    ll det = (XY[j] - XY[i]).det(XY[k] - XY[i]);\n    if constexpr\
-    \ (allow_180) return det >= 0;\n    return det > 0;\n  };\n\n  auto calc = [&]()\
-    \ {\n    vector<int> P;\n    for (auto&& k: I) {\n      while (P.size() > 1) {\n\
-    \        auto i = P[P.size() - 2];\n        auto j = P[P.size() - 1];\n      \
-    \  if (check(i, j, k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n\
+    \ -> bool {\n    T det = (XY[j] - XY[i]).det(XY[k] - XY[i]);\n    if constexpr\
+    \ (allow_180) return det >= 0;\n    return det > T(0);\n  };\n\n  auto calc =\
+    \ [&]() {\n    vector<int> P;\n    for (auto&& k: I) {\n      while (P.size()\
+    \ > 1) {\n        auto i = P[P.size() - 2];\n        auto j = P[P.size() - 1];\n\
+    \        if (check(i, j, k)) break;\n        P.pop_back();\n      }\n      P.eb(k);\n\
     \    }\n    return P;\n  };\n\n  vc<int> P;\n  if (mode == \"full\" || mode ==\
     \ \"lower\") {\n    vc<int> Q = calc();\n    P.insert(P.end(), all(Q));\n  }\n\
     \  if (mode == \"full\" || mode == \"upper\") {\n    if (!P.empty()) P.pop_back();\n\
@@ -289,7 +289,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/static_convex_hull.test.cpp
   requiredBy: []
-  timestamp: '2024-09-11 14:08:39+09:00'
+  timestamp: '2024-09-24 18:06:42+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/static_convex_hull.test.cpp

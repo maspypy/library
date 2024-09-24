@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/factor_interval.hpp
     title: nt/factor_interval.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':question:'

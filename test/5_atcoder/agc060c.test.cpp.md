@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/O1_inverse.hpp
     title: mod/O1_inverse.hpp
   - icon: ':question:'
@@ -10,16 +10,16 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/rational.hpp
     title: nt/rational.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc060/tasks/agc060_c
@@ -313,47 +313,53 @@ data:
     \ den(b) {\n    if (den < 0) num = -num, den = -den;\n    if (!coprime && REDUCE)\
     \ reduce();\n  }\n\n  static T gcd(T a, T b) {\n    a = max(a, -a), b = max(b,\
     \ -b);\n    while (b) {\n      a %= b;\n      swap(a, b);\n    }\n    return a;\n\
-    \  }\n\n  void reduce() {\n    if (!REDUCE) return;\n    T g = gcd(num, den);\n\
-    \    num /= g, den /= g;\n  }\n\n  Rational &operator+=(const Rational &p) {\n\
-    \    T g = (REDUCE ? gcd(den, p.den) : 1);\n    num = num * (p.den / g) + p.num\
-    \ * (den / g);\n    den *= p.den / g;\n    reduce();\n    return *this;\n  }\n\
-    \  Rational &operator-=(const Rational &p) {\n    T g = (REDUCE ? gcd(den, p.den)\
-    \ : 1);\n    num = num * (p.den / g) - p.num * (den / g);\n    den *= p.den /\
-    \ g;\n    reduce();\n    return *this;\n  }\n  Rational &operator*=(const Rational\
-    \ &p) {\n    T g1 = (REDUCE ? gcd(num, p.den) : 1);\n    T g2 = (REDUCE ? gcd(den,\
-    \ p.num) : 1);\n    num = (num / g1) * (p.num / g2);\n    den = (den / g2) * (p.den\
-    \ / g1);\n    return *this;\n  }\n  Rational &operator/=(const Rational &p) {\n\
-    \    T g1 = (REDUCE ? gcd(num, p.num) : 1);\n    T g2 = (REDUCE ? gcd(den, p.den)\
-    \ : 1);\n    num = (num / g1) * (p.den / g2);\n    den = (den / g2) * (p.num /\
-    \ g1);\n    if (den < 0) num = -num, den = -den;\n    return *this;\n  }\n\n \
-    \ Rational operator-() const { return Rational(-num, den); }\n  Rational operator+(const\
+    \  }\n\n  void reduce() {\n    if constexpr (!REDUCE) {\n      return;\n    }\
+    \ else {\n      T g = gcd(num, den);\n      num /= g, den /= g;\n    }\n  }\n\n\
+    \  Rational &operator+=(const Rational &p) {\n    if constexpr (!REDUCE) {\n \
+    \     num = num * p.den + p.num * den;\n      den *= p.den;\n      return *this;\n\
+    \    } else {\n      T g = (REDUCE ? gcd(den, p.den) : 1);\n      num = num *\
+    \ (p.den / g) + p.num * (den / g);\n      den *= p.den / g;\n      reduce();\n\
+    \      return *this;\n    }\n  }\n  Rational &operator-=(const Rational &p) {\n\
+    \    if constexpr (!REDUCE) {\n      num = num * p.den - p.num * den;\n      den\
+    \ *= p.den;\n      return *this;\n    } else {\n      T g = (REDUCE ? gcd(den,\
+    \ p.den) : 1);\n      num = num * (p.den / g) - p.num * (den / g);\n      den\
+    \ *= p.den / g;\n      reduce();\n      return *this;\n    }\n  }\n  Rational\
+    \ &operator*=(const Rational &p) {\n    if constexpr (!REDUCE) {\n      num =\
+    \ num * p.num;\n      den = den * p.den;\n      return *this;\n    } else {\n\
+    \      T g1 = gcd(num, p.den);\n      T g2 = gcd(den, p.num);\n      num = (num\
+    \ / g1) * (p.num / g2);\n      den = (den / g2) * (p.den / g1);\n      return\
+    \ *this;\n    }\n  }\n  Rational &operator/=(const Rational &p) {\n    T g1 =\
+    \ (REDUCE ? gcd(num, p.num) : 1);\n    T g2 = (REDUCE ? gcd(den, p.den) : 1);\n\
+    \    num = (num / g1) * (p.den / g2);\n    den = (den / g2) * (p.num / g1);\n\
+    \    if (den < 0) num = -num, den = -den;\n    return *this;\n  }\n\n  Rational\
+    \ operator-() const { return Rational(-num, den); }\n  Rational operator+(const\
     \ Rational &p) const { return Rational(*this) += p; }\n  Rational operator-(const\
     \ Rational &p) const { return Rational(*this) -= p; }\n  Rational operator*(const\
     \ Rational &p) const { return Rational(*this) *= p; }\n  Rational operator/(const\
     \ Rational &p) const { return Rational(*this) /= p; }\n  bool operator==(const\
-    \ Rational &p) const {\n    return num * p.den == p.num * den;\n  }\n  bool operator!=(const\
-    \ Rational &p) const {\n    return num * p.den != p.num * den;\n  }\n  bool operator<(const\
+    \ Rational &p) const { return num * p.den == p.num * den; }\n  bool operator!=(const\
+    \ Rational &p) const { return num * p.den != p.num * den; }\n  bool operator<(const\
     \ Rational &p) const { return num * p.den < p.num * den; }\n  bool operator>(const\
     \ Rational &p) const { return num * p.den > p.num * den; }\n  bool operator<=(const\
-    \ Rational &p) const {\n    return num * p.den <= p.num * den;\n  }\n  bool operator>=(const\
-    \ Rational &p) const {\n    return num * p.den >= p.num * den;\n  }\n\n  string\
-    \ to_string() { return std::to_string(num) + \"/\" + std::to_string(den); }\n\
-    \  double to_double() { return double(num) / double(den); }\n};\n#line 1 \"mod/O1_inverse.hpp\"\
-    \n\n// https://qoj.ac/problem/5\n// precompute O(p^{2/3}), query O(1)\n// 10^8\
-    \ query: 3sec\ntemplate <typename mint>\nmint O1_inverse(int a) {\n  /*\n  n^3>=p\
-    \ \u3068\u306A\u308B\u3088\u3046\u306B n \u3092\u3068\u308A, n^2\u307E\u3067\u306F\
-    \u524D\u8A08\u7B97.\n  a/p \u3092\u6709\u7406\u6570\u8FD1\u4F3C\u3059\u308B x/y.\
-    \ |a/p-x/y|<=|1/ny \u3068\u306A\u308B\u3068\n  |ay-px|<=p/n<=n^2 \u3088\u308A\
-    (ay)^{-1}\u304C\u524D\u8A08\u7B97\u3055\u308C\u3066\u3044\u308B\u306E\u3067\u3067\
-    \u304D\u308B.\n\n  x/y \u306F\u5206\u6BCD n \u672A\u6E80\u306E Farey \u6570\u5217\
-    \u306E\u524D\u5F8C\u3069\u3061\u3089\u304B\u304C\u6E80\u305F\u3059.\n  n^2 bucket\
-    \ \u306B\u5206\u5272\u3057\u3066\u304A\u304F\u3068 bucket \u3054\u3068\u306E\u6709\
-    \u7406\u6570\u306F distinct.\n  \u524D\u5F8C\u306E\u3046\u3061\u826F\u3044\u65B9\
-    \u3092\u9078\u3079\u3070\u3088\u3044.\n  */\n  static int p = 0;\n  static double\
-    \ cp = 0.0;\n  static vc<int> FRAC;\n  static vc<mint> invs;\n  if (p != mint::get_mod())\
-    \ {\n    p = mint::get_mod();\n    int k = min(2 << 20, p);\n    invs.resize(k);\n\
-    \    invs[1] = 1;\n    FOR(i, 2, k) {\n      int q = (p + i - 1) / i;\n      invs[i]\
-    \ = invs[i * q - p] * mint::raw(q);\n    }\n    assert(p <= (1 << 30));\n    FRAC.assign(1\
+    \ Rational &p) const { return num * p.den <= p.num * den; }\n  bool operator>=(const\
+    \ Rational &p) const { return num * p.den >= p.num * den; }\n\n  string to_string()\
+    \ { return std::to_string(num) + \"/\" + std::to_string(den); }\n  double to_double()\
+    \ { return double(num) / double(den); }\n};\n#line 1 \"mod/O1_inverse.hpp\"\n\n\
+    // https://qoj.ac/problem/5\n// precompute O(p^{2/3}), query O(1)\n// 10^8 query:\
+    \ 3sec\ntemplate <typename mint>\nmint O1_inverse(int a) {\n  /*\n  n^3>=p \u3068\
+    \u306A\u308B\u3088\u3046\u306B n \u3092\u3068\u308A, n^2\u307E\u3067\u306F\u524D\
+    \u8A08\u7B97.\n  a/p \u3092\u6709\u7406\u6570\u8FD1\u4F3C\u3059\u308B x/y. |a/p-x/y|<=|1/ny\
+    \ \u3068\u306A\u308B\u3068\n  |ay-px|<=p/n<=n^2 \u3088\u308A(ay)^{-1}\u304C\u524D\
+    \u8A08\u7B97\u3055\u308C\u3066\u3044\u308B\u306E\u3067\u3067\u304D\u308B.\n\n\
+    \  x/y \u306F\u5206\u6BCD n \u672A\u6E80\u306E Farey \u6570\u5217\u306E\u524D\u5F8C\
+    \u3069\u3061\u3089\u304B\u304C\u6E80\u305F\u3059.\n  n^2 bucket \u306B\u5206\u5272\
+    \u3057\u3066\u304A\u304F\u3068 bucket \u3054\u3068\u306E\u6709\u7406\u6570\u306F\
+    \ distinct.\n  \u524D\u5F8C\u306E\u3046\u3061\u826F\u3044\u65B9\u3092\u9078\u3079\
+    \u3070\u3088\u3044.\n  */\n  static int p = 0;\n  static double cp = 0.0;\n  static\
+    \ vc<int> FRAC;\n  static vc<mint> invs;\n  if (p != mint::get_mod()) {\n    p\
+    \ = mint::get_mod();\n    int k = min(2 << 20, p);\n    invs.resize(k);\n    invs[1]\
+    \ = 1;\n    FOR(i, 2, k) {\n      int q = (p + i - 1) / i;\n      invs[i] = invs[i\
+    \ * q - p] * mint::raw(q);\n    }\n    assert(p <= (1 << 30));\n    FRAC.assign(1\
     \ << 20, -1);\n    cp = 1.0 * (1 << 20) / p;\n    for (int y = 1023; y >= 1; --y)\
     \ {\n      for (int x = 0; x < y; ++x) { FRAC[(x << 20) / y] = {x << 10 | y};\
     \ }\n    }\n    FOR(i, 1, len(FRAC)) if (FRAC[i] == -1) FRAC[i] = FRAC[i - 1];\n\
@@ -406,8 +412,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/agc060c.test.cpp
   requiredBy: []
-  timestamp: '2024-08-17 12:13:26+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-24 18:06:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/agc060c.test.cpp
 layout: document

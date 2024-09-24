@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo3d/base.hpp
     title: geo3d/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo3d/cross_point.hpp
     title: geo3d/cross_point.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/rational.hpp
     title: nt/rational.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc301/tasks/abc301_g
@@ -210,84 +210,90 @@ data:
     \ < 0) num = -num, den = -den;\n    if (!coprime && REDUCE) reduce();\n  }\n\n\
     \  static T gcd(T a, T b) {\n    a = max(a, -a), b = max(b, -b);\n    while (b)\
     \ {\n      a %= b;\n      swap(a, b);\n    }\n    return a;\n  }\n\n  void reduce()\
-    \ {\n    if (!REDUCE) return;\n    T g = gcd(num, den);\n    num /= g, den /=\
-    \ g;\n  }\n\n  Rational &operator+=(const Rational &p) {\n    T g = (REDUCE ?\
-    \ gcd(den, p.den) : 1);\n    num = num * (p.den / g) + p.num * (den / g);\n  \
-    \  den *= p.den / g;\n    reduce();\n    return *this;\n  }\n  Rational &operator-=(const\
-    \ Rational &p) {\n    T g = (REDUCE ? gcd(den, p.den) : 1);\n    num = num * (p.den\
-    \ / g) - p.num * (den / g);\n    den *= p.den / g;\n    reduce();\n    return\
-    \ *this;\n  }\n  Rational &operator*=(const Rational &p) {\n    T g1 = (REDUCE\
-    \ ? gcd(num, p.den) : 1);\n    T g2 = (REDUCE ? gcd(den, p.num) : 1);\n    num\
-    \ = (num / g1) * (p.num / g2);\n    den = (den / g2) * (p.den / g1);\n    return\
-    \ *this;\n  }\n  Rational &operator/=(const Rational &p) {\n    T g1 = (REDUCE\
-    \ ? gcd(num, p.num) : 1);\n    T g2 = (REDUCE ? gcd(den, p.den) : 1);\n    num\
-    \ = (num / g1) * (p.den / g2);\n    den = (den / g2) * (p.num / g1);\n    if (den\
-    \ < 0) num = -num, den = -den;\n    return *this;\n  }\n\n  Rational operator-()\
-    \ const { return Rational(-num, den); }\n  Rational operator+(const Rational &p)\
-    \ const { return Rational(*this) += p; }\n  Rational operator-(const Rational\
-    \ &p) const { return Rational(*this) -= p; }\n  Rational operator*(const Rational\
-    \ &p) const { return Rational(*this) *= p; }\n  Rational operator/(const Rational\
-    \ &p) const { return Rational(*this) /= p; }\n  bool operator==(const Rational\
-    \ &p) const {\n    return num * p.den == p.num * den;\n  }\n  bool operator!=(const\
-    \ Rational &p) const {\n    return num * p.den != p.num * den;\n  }\n  bool operator<(const\
-    \ Rational &p) const { return num * p.den < p.num * den; }\n  bool operator>(const\
-    \ Rational &p) const { return num * p.den > p.num * den; }\n  bool operator<=(const\
-    \ Rational &p) const {\n    return num * p.den <= p.num * den;\n  }\n  bool operator>=(const\
-    \ Rational &p) const {\n    return num * p.den >= p.num * den;\n  }\n\n  string\
-    \ to_string() { return std::to_string(num) + \"/\" + std::to_string(den); }\n\
-    \  double to_double() { return double(num) / double(den); }\n};\n#line 2 \"geo3d/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Point_3d {\n  T x, y, z;\n\n  Point_3d() = default;\n\
-    \n  template <typename A, typename B, typename C>\n  Point_3d(A x, B y, C z) :\
-    \ x(x), y(y), z(z) {}\n\n  Point_3d operator+(Point_3d p) const { return {x +\
-    \ p.x, y + p.y, z + p.z}; }\n  Point_3d operator-(Point_3d p) const { return {x\
-    \ - p.x, y - p.y, z - p.z}; }\n  Point_3d operator*(T t) const { return {x * t,\
-    \ y * t, z * t}; }\n  bool operator==(Point_3d p) const { return x == p.x && y\
-    \ == p.y && z == p.z; }\n  bool operator!=(Point_3d p) const { return x != p.x\
-    \ || y != p.y || z == p.z; }\n  Point_3d operator-() const { return {-x, -y, -z};\
-    \ }\n\n  bool is_parallel(Point_3d p) const {\n    return x * p.y == y * p.x &&\
-    \ y * p.z == z * p.y && z * p.x == x * p.z;\n  }\n\n  T dot(Point_3d other) {\
-    \ return x * other.x + y * other.y + z * other.z; }\n  double norm() { return\
-    \ sqrt(x * x + y * y + z * z); }\n  Point_3d cross(Point_3d other) {\n    return\
-    \ Point_3d(y * other.z - z * other.y, z * other.x - x * other.z,\n           \
-    \         x * other.y - y * other.x);\n  }\n};\n\ntemplate <typename T>\nstruct\
-    \ Line_3d {\n  // a + td\n  Point_3d<T> a, d;\n\n  Line_3d(Point_3d<T> A, Point_3d<T>\
-    \ B) : a(A), d(B - A) {\n    assert(d.dot(d) != 0);\n  }\n  bool is_parallel(Line_3d<T>\
-    \ other) {\n    Point_3d<T> n = d.cross(other.d);\n    return (n.x == T(0) &&\
-    \ n.y == T(0) && n.z == T(0));\n  }\n  bool contain(Point_3d<T> p) {\n    p =\
-    \ p - a;\n    p = p.cross(d);\n    return (p.x == T(0) && p.y == T(0) && p.z ==\
-    \ T(0));\n  }\n};\n#line 2 \"geo3d/cross_point.hpp\"\n\n// 0: \u4EA4\u70B9\u306A\
-    \u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\u306E\
-    \u4EA4\u70B9\ntemplate <typename T>\nint count_cross(Line_3d<T> L1, Line_3d<T>\
-    \ L2) {\n  static_assert(!std::is_floating_point<T>::value);\n  if (L1.is_parallel(L2))\
-    \ {\n    if (L1.contain(L2.a)) return 2;\n    return 0;\n  }\n  Point_3d<T> norm\
-    \ = L1.d.cross(L2.d);\n  return ((L1.a - L2.a).dot(norm) == 0 ? 1 : 0);\n}\n\n\
-    // count_cross == 1 \u306E\u3068\u304D\u306B\u3060\u3051\u547C\u3076\u3053\u3068\
-    \ntemplate <typename REAL, typename T>\nPoint_3d<REAL> cross_point(Line_3d<T>\
-    \ L1, Line_3d<T> L2) {\n  Point_3d<T> d1 = L1.d;\n  Point_3d<T> d2 = L2.d;\n \
-    \ Point_3d<T> a = L2.a - L1.a;\n  REAL t1 = [&]() -> REAL {\n    FOR(3) {\n  \
-    \    d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n      a = {a.y,\
-    \ a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if (det != 0) {\
-    \ return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }\n    }\n    assert(0);\n\
-    \  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n  REAL y = REAL(L1.a.y)\
-    \ + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 * REAL(L1.d.z);\n  return\
-    \ {x, y, z};\n}\n#line 8 \"test/5_atcoder/abc301g.test.cpp\"\n\nusing Q = Rational<ll,\
-    \ false>;\n\nusing P = Point_3d<ll>;\nusing PQ = Point_3d<Q>;\n\nvoid solve()\
-    \ {\n  LL(N);\n  vc<P> point(N);\n  FOR(i, N) {\n    LL(a, b, c);\n    point[i]\
-    \ = {a, b, c};\n  }\n\n  sort(all(point), [&](auto& a, auto& b) -> bool { return\
-    \ a.x < b.x; });\n\n  ll ANS = N;\n\n  vv(ll, CNT, N, N);\n\n  // \u76F4\u7DDA\
-    \u3072\u3068\u3064\u3060\u3051\n  FOR(i, N) FOR(j, i + 1, N) {\n    if (point[i].x\
-    \ == point[j].x) continue;\n    Line_3d<ll> L(point[i], point[j]);\n    ll cnt\
-    \ = 0;\n    FOR(k, N) cnt += L.contain(point[k]);\n    CNT[i][j] = cnt;\n    chmin(ANS,\
-    \ N - (cnt - 1));\n  }\n\n  vc<PQ> point_PQ(N);\n  FOR(i, N) point_PQ[i] = {point[i].x,\
-    \ point[i].y, point[i].z};\n\n  // \u4EA4\u70B9\u3092\u5229\u7528\u3059\u308B\n\
-    \  FOR(b, N) FOR(a, b) FOR(d, b) FOR(c, d) {\n    Line_3d<ll> L1(point[a], point[b]);\n\
-    \    Line_3d<ll> L2(point[c], point[d]);\n    ll n = count_cross(L1, L2);\n  \
-    \  if (n != 1) continue;\n    PQ p = cross_point<Q>(L1, L2);\n    if (p.x >= Q(0))\
-    \ continue;\n    vc<int> OK(N, 1);\n    FOR(i, N) {\n      PQ a = point_PQ[i]\
-    \ - p;\n      FOR(j, i) {\n        PQ b = point_PQ[j] - p;\n        b = b.cross(a);\n\
-    \        if (b.x == Q(0) && b.y == Q(0) && b.z == Q(0)) OK[i] = 0;\n      }\n\
-    \    }\n    chmin(ANS, SUM<int>(OK));\n  }\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
+    \ {\n    if constexpr (!REDUCE) {\n      return;\n    } else {\n      T g = gcd(num,\
+    \ den);\n      num /= g, den /= g;\n    }\n  }\n\n  Rational &operator+=(const\
+    \ Rational &p) {\n    if constexpr (!REDUCE) {\n      num = num * p.den + p.num\
+    \ * den;\n      den *= p.den;\n      return *this;\n    } else {\n      T g =\
+    \ (REDUCE ? gcd(den, p.den) : 1);\n      num = num * (p.den / g) + p.num * (den\
+    \ / g);\n      den *= p.den / g;\n      reduce();\n      return *this;\n    }\n\
+    \  }\n  Rational &operator-=(const Rational &p) {\n    if constexpr (!REDUCE)\
+    \ {\n      num = num * p.den - p.num * den;\n      den *= p.den;\n      return\
+    \ *this;\n    } else {\n      T g = (REDUCE ? gcd(den, p.den) : 1);\n      num\
+    \ = num * (p.den / g) - p.num * (den / g);\n      den *= p.den / g;\n      reduce();\n\
+    \      return *this;\n    }\n  }\n  Rational &operator*=(const Rational &p) {\n\
+    \    if constexpr (!REDUCE) {\n      num = num * p.num;\n      den = den * p.den;\n\
+    \      return *this;\n    } else {\n      T g1 = gcd(num, p.den);\n      T g2\
+    \ = gcd(den, p.num);\n      num = (num / g1) * (p.num / g2);\n      den = (den\
+    \ / g2) * (p.den / g1);\n      return *this;\n    }\n  }\n  Rational &operator/=(const\
+    \ Rational &p) {\n    T g1 = (REDUCE ? gcd(num, p.num) : 1);\n    T g2 = (REDUCE\
+    \ ? gcd(den, p.den) : 1);\n    num = (num / g1) * (p.den / g2);\n    den = (den\
+    \ / g2) * (p.num / g1);\n    if (den < 0) num = -num, den = -den;\n    return\
+    \ *this;\n  }\n\n  Rational operator-() const { return Rational(-num, den); }\n\
+    \  Rational operator+(const Rational &p) const { return Rational(*this) += p;\
+    \ }\n  Rational operator-(const Rational &p) const { return Rational(*this) -=\
+    \ p; }\n  Rational operator*(const Rational &p) const { return Rational(*this)\
+    \ *= p; }\n  Rational operator/(const Rational &p) const { return Rational(*this)\
+    \ /= p; }\n  bool operator==(const Rational &p) const { return num * p.den ==\
+    \ p.num * den; }\n  bool operator!=(const Rational &p) const { return num * p.den\
+    \ != p.num * den; }\n  bool operator<(const Rational &p) const { return num *\
+    \ p.den < p.num * den; }\n  bool operator>(const Rational &p) const { return num\
+    \ * p.den > p.num * den; }\n  bool operator<=(const Rational &p) const { return\
+    \ num * p.den <= p.num * den; }\n  bool operator>=(const Rational &p) const {\
+    \ return num * p.den >= p.num * den; }\n\n  string to_string() { return std::to_string(num)\
+    \ + \"/\" + std::to_string(den); }\n  double to_double() { return double(num)\
+    \ / double(den); }\n};\n#line 2 \"geo3d/base.hpp\"\n\ntemplate <typename T>\n\
+    struct Point_3d {\n  T x, y, z;\n\n  Point_3d() = default;\n\n  template <typename\
+    \ A, typename B, typename C>\n  Point_3d(A x, B y, C z) : x(x), y(y), z(z) {}\n\
+    \n  Point_3d operator+(Point_3d p) const { return {x + p.x, y + p.y, z + p.z};\
+    \ }\n  Point_3d operator-(Point_3d p) const { return {x - p.x, y - p.y, z - p.z};\
+    \ }\n  Point_3d operator*(T t) const { return {x * t, y * t, z * t}; }\n  bool\
+    \ operator==(Point_3d p) const { return x == p.x && y == p.y && z == p.z; }\n\
+    \  bool operator!=(Point_3d p) const { return x != p.x || y != p.y || z == p.z;\
+    \ }\n  Point_3d operator-() const { return {-x, -y, -z}; }\n\n  bool is_parallel(Point_3d\
+    \ p) const {\n    return x * p.y == y * p.x && y * p.z == z * p.y && z * p.x ==\
+    \ x * p.z;\n  }\n\n  T dot(Point_3d other) { return x * other.x + y * other.y\
+    \ + z * other.z; }\n  double norm() { return sqrt(x * x + y * y + z * z); }\n\
+    \  Point_3d cross(Point_3d other) {\n    return Point_3d(y * other.z - z * other.y,\
+    \ z * other.x - x * other.z,\n                    x * other.y - y * other.x);\n\
+    \  }\n};\n\ntemplate <typename T>\nstruct Line_3d {\n  // a + td\n  Point_3d<T>\
+    \ a, d;\n\n  Line_3d(Point_3d<T> A, Point_3d<T> B) : a(A), d(B - A) {\n    assert(d.dot(d)\
+    \ != 0);\n  }\n  bool is_parallel(Line_3d<T> other) {\n    Point_3d<T> n = d.cross(other.d);\n\
+    \    return (n.x == T(0) && n.y == T(0) && n.z == T(0));\n  }\n  bool contain(Point_3d<T>\
+    \ p) {\n    p = p - a;\n    p = p.cross(d);\n    return (p.x == T(0) && p.y ==\
+    \ T(0) && p.z == T(0));\n  }\n};\n#line 2 \"geo3d/cross_point.hpp\"\n\n// 0: \u4EA4\
+    \u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\
+    \u4E0A\u306E\u4EA4\u70B9\ntemplate <typename T>\nint count_cross(Line_3d<T> L1,\
+    \ Line_3d<T> L2) {\n  static_assert(!std::is_floating_point<T>::value);\n  if\
+    \ (L1.is_parallel(L2)) {\n    if (L1.contain(L2.a)) return 2;\n    return 0;\n\
+    \  }\n  Point_3d<T> norm = L1.d.cross(L2.d);\n  return ((L1.a - L2.a).dot(norm)\
+    \ == 0 ? 1 : 0);\n}\n\n// count_cross == 1 \u306E\u3068\u304D\u306B\u3060\u3051\
+    \u547C\u3076\u3053\u3068\ntemplate <typename REAL, typename T>\nPoint_3d<REAL>\
+    \ cross_point(Line_3d<T> L1, Line_3d<T> L2) {\n  Point_3d<T> d1 = L1.d;\n  Point_3d<T>\
+    \ d2 = L2.d;\n  Point_3d<T> a = L2.a - L1.a;\n  REAL t1 = [&]() -> REAL {\n  \
+    \  FOR(3) {\n      d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n\
+    \      a = {a.y, a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if\
+    \ (det != 0) { return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }\n    }\n  \
+    \  assert(0);\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n  REAL y\
+    \ = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 * REAL(L1.d.z);\n\
+    \  return {x, y, z};\n}\n#line 8 \"test/5_atcoder/abc301g.test.cpp\"\n\nusing\
+    \ Q = Rational<ll, false>;\n\nusing P = Point_3d<ll>;\nusing PQ = Point_3d<Q>;\n\
+    \nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  FOR(i, N) {\n    LL(a, b, c);\n\
+    \    point[i] = {a, b, c};\n  }\n\n  sort(all(point), [&](auto& a, auto& b) ->\
+    \ bool { return a.x < b.x; });\n\n  ll ANS = N;\n\n  vv(ll, CNT, N, N);\n\n  //\
+    \ \u76F4\u7DDA\u3072\u3068\u3064\u3060\u3051\n  FOR(i, N) FOR(j, i + 1, N) {\n\
+    \    if (point[i].x == point[j].x) continue;\n    Line_3d<ll> L(point[i], point[j]);\n\
+    \    ll cnt = 0;\n    FOR(k, N) cnt += L.contain(point[k]);\n    CNT[i][j] = cnt;\n\
+    \    chmin(ANS, N - (cnt - 1));\n  }\n\n  vc<PQ> point_PQ(N);\n  FOR(i, N) point_PQ[i]\
+    \ = {point[i].x, point[i].y, point[i].z};\n\n  // \u4EA4\u70B9\u3092\u5229\u7528\
+    \u3059\u308B\n  FOR(b, N) FOR(a, b) FOR(d, b) FOR(c, d) {\n    Line_3d<ll> L1(point[a],\
+    \ point[b]);\n    Line_3d<ll> L2(point[c], point[d]);\n    ll n = count_cross(L1,\
+    \ L2);\n    if (n != 1) continue;\n    PQ p = cross_point<Q>(L1, L2);\n    if\
+    \ (p.x >= Q(0)) continue;\n    vc<int> OK(N, 1);\n    FOR(i, N) {\n      PQ a\
+    \ = point_PQ[i] - p;\n      FOR(j, i) {\n        PQ b = point_PQ[j] - p;\n   \
+    \     b = b.cross(a);\n        if (b.x == Q(0) && b.y == Q(0) && b.z == Q(0))\
+    \ OK[i] = 0;\n      }\n    }\n    chmin(ANS, SUM<int>(OK));\n  }\n  print(ANS);\n\
+    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc301/tasks/abc301_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"nt/rational.hpp\"\
     \n#include \"geo3d/base.hpp\"\n#include \"geo3d/cross_point.hpp\"\n\nusing Q =\
@@ -318,8 +324,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc301g.test.cpp
   requiredBy: []
-  timestamp: '2024-08-13 23:38:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-09-24 18:06:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc301g.test.cpp
 layout: document
