@@ -46,7 +46,6 @@ void solve() {
   ll vis = 0;
   auto dfs = [&](auto& dfs, int v) -> void {
     auto [L, R, a, b] = rect[v];
-    ++a, ++b; // 文字列長
     while (1) {
       auto [mi, idx] = seg.prod(L, R);
       if (mi >= b) break;
