@@ -23,9 +23,9 @@ vector<int> ConvexHull(vector<Point<T>>& XY, string mode = "full", bool sorted =
   if constexpr (allow_180) { FOR(i, N - 1) assert(XY[i] != XY[i + 1]); }
 
   auto check = [&](ll i, ll j, ll k) -> bool {
-    ll det = (XY[j] - XY[i]).det(XY[k] - XY[i]);
+    T det = (XY[j] - XY[i]).det(XY[k] - XY[i]);
     if constexpr (allow_180) return det >= 0;
-    return det > 0;
+    return det > T(0);
   };
 
   auto calc = [&]() {
