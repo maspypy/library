@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
     title: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - icon: ':x:'

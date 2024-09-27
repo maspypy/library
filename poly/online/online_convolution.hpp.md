@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/online_convolution.test.cpp
     title: test/2_library_checker/convolution/online_convolution.test.cpp
   - icon: ':x:'

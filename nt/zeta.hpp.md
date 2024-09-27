@@ -11,10 +11,10 @@ data:
   - icon: ':x:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
   - icon: ':x:'
@@ -27,10 +27,10 @@ data:
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/gcd_convolution.test.cpp
     title: test/2_library_checker/convolution/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/lcm_convolution.test.cpp
     title: test/2_library_checker/convolution/lcm_convolution.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/4_aoj/NTL_1_D.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -104,7 +104,7 @@ data:
   - nt/mobius_table.hpp
   - mod/tetration.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/number_theory/tetration.test.cpp
   - test/2_library_checker/convolution/lcm_convolution.test.cpp

@@ -92,10 +92,10 @@ data:
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':heavy_check_mark:'
@@ -161,7 +161,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/convolution_leq.hpp
     title: poly/convolution_leq.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_u64.hpp
     title: poly/convolution_u64.hpp
   - icon: ':heavy_check_mark:'
@@ -200,10 +200,10 @@ data:
   - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
@@ -603,43 +603,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod.test.cpp
     title: test/2_library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/gcd_convolution.test.cpp
     title: test/2_library_checker/convolution/gcd_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/lcm_convolution.test.cpp
     title: test/2_library_checker/convolution/lcm_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/online_convolution.test.cpp
     title: test/2_library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
     title: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - icon: ':x:'
