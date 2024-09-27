@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
     title: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
   - icon: ':x:'

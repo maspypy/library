@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/3_yukicoder/705_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/lichao.hpp\"\n/*\nstruct F {\n  using value_type\
@@ -102,7 +102,7 @@ data:
   path: convex/lichao.hpp
   requiredBy: []
   timestamp: '2024-01-14 14:14:47+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
