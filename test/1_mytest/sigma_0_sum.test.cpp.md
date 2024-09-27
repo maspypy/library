@@ -4,17 +4,17 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/convex_floor_sum.hpp
     title: nt/convex_floor_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/sigma_0_sum.hpp
     title: nt/sigma_0_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -163,7 +163,7 @@ data:
   path: test/1_mytest/sigma_0_sum.test.cpp
   requiredBy: []
   timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/sigma_0_sum.test.cpp
 layout: document

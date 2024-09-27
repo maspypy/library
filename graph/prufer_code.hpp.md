@@ -12,12 +12,12 @@ data:
     path: test/1_mytest/enumerate_labeled_tree.cpp
     title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -131,7 +131,7 @@ data:
   - test/1_mytest/enumerate_labeled_tree.cpp
   - enumerate/labeled_tree.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/prufer.test.cpp
 documentation_of: graph/prufer_code.hpp
