@@ -32,7 +32,7 @@ data:
   - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -147,7 +147,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':x:'

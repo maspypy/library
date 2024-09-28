@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_lowrank_update.hpp
     title: linalg/matrix_lowrank_update.hpp
   _extendedVerifiedWith:
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1774.test.cpp
     title: test/3_yukicoder/1774.test.cpp
   - icon: ':x:'

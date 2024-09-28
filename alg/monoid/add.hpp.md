@@ -119,7 +119,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -372,7 +372,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':x:'
