@@ -13,10 +13,10 @@ struct Dynamic_Tree_Dp {
   vc<X> dp;
 
   template <typename F>
-  Dynamic_Tree_Dp(TREE& tree, F f) : STT(tree) {
+  Dynamic_Tree_Dp(TREE& tree, F single) : STT(tree) {
     int N = tree.N;
     dp.resize(2 * N - 1);
-    FOR(i, N) dp[i] = f(i);
+    FOR(i, N) dp[i] = single(i);
     FOR(i, N, 2 * N - 1) update(i);
   }
 
