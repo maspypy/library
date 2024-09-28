@@ -198,22 +198,30 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/nim_product.hpp\"\nu64 naive_nim_product(u64 x, u64\
-    \ y, int k = 6) {\r\n  if (x == 0 || y == 0) return 0;\r\n  if (x == 1) return\
-    \ y;\r\n  if (y == 1) return x;\r\n  int B = 1 << (k - 1);\r\n  u64 mask = (1ULL\
-    \ << B) - 1;\r\n  u64 a = x >> B, b = x & mask;\r\n  u64 c = y >> B, d = y & mask;\r\
-    \n  tie(a, b, c) = mt(naive_nim_product(a, c, k - 1),\r\n                    naive_nim_product(a\
-    \ ^ b, c ^ d, k - 1),\r\n                    naive_nim_product(b, d, k - 1));\r\
-    \n  b = a ^ b ^ c;\r\n  return (a << B) ^ naive_nim_product(1ULL << (B - 1), a,\
-    \ k - 1) ^ (b << B) ^ c;\r\n}\r\n\r\nu64 nim_product(u64 x, u64 y) {\r\n  static\
-    \ bool prepared = false;\r\n  // x * y, 256\u4EE5\u4E0B\r\n  // 2^a * 2^b * x,\
-    \ 8, 8, 256\r\n  static u64 memo1[256][256];\r\n  static u64 memo2[8][8][256];\r\
-    \n  if (!prepared) {\r\n    prepared = true;\r\n    FOR(x, 256) FOR(y, 256) memo1[x][y]\
-    \ = naive_nim_product(x, y, 4);\r\n    FOR(a, 8) FOR(b, 8) {\r\n      u64 v =\
-    \ naive_nim_product(1ULL << (8 * a), 1ULL << (8 * b));\r\n      FOR(x, 256) memo2[a][b][x]\
-    \ = naive_nim_product(v, x);\r\n    }\r\n  } // end prepare\r\n\r\n  u64 v = 0;\r\
-    \n  FOR(a, 8) FOR(b, 8) {\r\n    v ^= memo2[a][b][memo1[(x >> (8 * a)) & 255][(y\
-    \ >> (8 * b)) & 255]];\r\n  }\r\n  return v;\r\n}\n#line 5 \"test/2_library_checker/number_theory/nim_product.test.cpp\"\
+    \ yes(!t); }\r\n#line 1 \"nt/nim_product.hpp\"\n\r\nnamespace NIM_PRODUCT {\r\n\
+    u16 E[65535 * 2 + 7];\r\nu16 L[65536];\r\n\r\nvoid __attribute__((constructor))\
+    \ init_nim_table() {\r\n  // 2^16 \u672A\u6E80\u306E\u3068\u3053\u308D\u306B\u3064\
+    \u3044\u3066\u539F\u59CB\u6839 10279 \u3067\u306E\u6307\u6570\u5BFE\u6570\u8868\
+    \u3092\u4F5C\u308B\r\n  // 2^k \u3068\u306E\u7A4D\r\n  u16 tmp[] = {10279, 15417,\
+    \ 35722, 52687, 44124, 62628, 15661, 5686, 3862, 1323, 334, 647, 61560, 20636,\
+    \ 4267, 8445};\r\n  u16 nxt[65536];\r\n  FOR(i, 16) {\r\n    FOR(s, 1 << i) {\
+    \ nxt[s | 1 << i] = nxt[s] ^ tmp[i]; }\r\n  }\r\n  E[0] = 1;\r\n  FOR(i, 65534)\
+    \ E[i + 1] = nxt[E[i]];\r\n  memcpy(E + 65535, E, 131070);\r\n  memcpy(E + 131070,\
+    \ E, 14);\r\n  FOR(i, 65535) L[E[i]] = i;\r\n}\r\n\r\nu16 p16(u16 a, u16 b) {\
+    \ return (a && b ? E[u32(L[a]) + L[b]] : 0); }\r\nu16 p16_15(u16 a, u16 b) { return\
+    \ (a && b ? E[u32(L[a]) + L[b] + 3] : 0); }\r\nu16 p16_15_15(u16 a, u16 b) { return\
+    \ (a && b ? E[u32(L[a]) + L[b] + 6] : 0); }\r\nu16 mul_15(u16 a) { return (a ?\
+    \ E[3 + L[a]] : 0); }\r\nu32 p32(u32 a, u32 b) {\r\n  u16 al = a & 65535, ah =\
+    \ a >> 16, bl = b & 65535, bh = b >> 16;\r\n  u16 c = p16(al, bl);\r\n  return\
+    \ u32(p16(al ^ ah, bl ^ bh) ^ c) << 16 | (p16_15(ah, bh) ^ c);\r\n}\r\n\r\nu32\
+    \ p32_mul_31(u32 a, u32 b) {\r\n  u16 al = a & 65535, ah = a >> 16, bl = b & 65535,\
+    \ bh = b >> 16;\r\n  u16 x = p16_15(al, bl);\r\n  u16 y = p16_15_15(ah, bh);\r\
+    \n  u16 z = p16_15(al ^ ah, bl ^ bh);\r\n  return u32(y ^ z) << 16 | mul_15(z\
+    \ ^ x);\r\n}\r\n\r\nu64 p64(u64 a, u64 b) {\r\n  u32 al = a & 0xffffffff, ah =\
+    \ a >> 32, bl = b & 0xffffffff, bh = b >> 32;\r\n  u32 c = p32(al, bl);\r\n  return\
+    \ u64(p32(al ^ ah, bl ^ bh) ^ c) << 32 ^ (p32_mul_31(ah, bh) ^ c);\r\n}\r\n} //\
+    \ namespace NIM_PRODUCT\r\n\r\nu64 nim_product(u64 a, u64 b) { return NIM_PRODUCT::p64(a,\
+    \ b); }\r\n#line 5 \"test/2_library_checker/number_theory/nim_product.test.cpp\"\
     \n\r\nvoid solve() {\r\n  u64 a, b;\r\n  read(a, b);\r\n  print(nim_product(a,\
     \ b));\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n  FOR(T) solve();\r\n\r\n  return\
     \ 0;\r\n}\r\n"
@@ -229,7 +237,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/nim_product.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-09-28 12:24:27+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/nim_product.test.cpp
