@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: nt/digit_sum.hpp
     title: nt/digit_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/rational_binary_search.hpp
     title: nt/rational_binary_search.hpp
   - icon: ':question:'
