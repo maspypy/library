@@ -50,7 +50,7 @@ data:
   - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
   - icon: ':x:'

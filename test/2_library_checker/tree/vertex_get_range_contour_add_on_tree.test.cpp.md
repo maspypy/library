@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_get_range_contour_add_on_tree
@@ -507,7 +507,7 @@ data:
   path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   requiredBy: []
   timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
 layout: document
