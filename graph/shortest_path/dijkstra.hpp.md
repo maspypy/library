@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
     title: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   _extendedVerifiedWith:
@@ -18,10 +18,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/shortest_path.test.cpp
     title: test/2_library_checker/graph/shortest_path.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1601.test.cpp
     title: test/3_yukicoder/1601.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1602.test.cpp
     title: test/3_yukicoder/1602.test.cpp
   - icon: ':x:'
