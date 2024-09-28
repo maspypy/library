@@ -1,36 +1,46 @@
-u64 naive_nim_product(u64 x, u64 y, int k = 6) {
-  if (x == 0 || y == 0) return 0;
-  if (x == 1) return y;
-  if (y == 1) return x;
-  int B = 1 << (k - 1);
-  u64 mask = (1ULL << B) - 1;
-  u64 a = x >> B, b = x & mask;
-  u64 c = y >> B, d = y & mask;
-  tie(a, b, c) = mt(naive_nim_product(a, c, k - 1),
-                    naive_nim_product(a ^ b, c ^ d, k - 1),
-                    naive_nim_product(b, d, k - 1));
-  b = a ^ b ^ c;
-  return (a << B) ^ naive_nim_product(1ULL << (B - 1), a, k - 1) ^ (b << B) ^ c;
-}
 
-u64 nim_product(u64 x, u64 y) {
-  static bool prepared = false;
-  // x * y, 256以下
-  // 2^a * 2^b * x, 8, 8, 256
-  static u64 memo1[256][256];
-  static u64 memo2[8][8][256];
-  if (!prepared) {
-    prepared = true;
-    FOR(x, 256) FOR(y, 256) memo1[x][y] = naive_nim_product(x, y, 4);
-    FOR(a, 8) FOR(b, 8) {
-      u64 v = naive_nim_product(1ULL << (8 * a), 1ULL << (8 * b));
-      FOR(x, 256) memo2[a][b][x] = naive_nim_product(v, x);
-    }
-  } // end prepare
+namespace NIM_PRODUCT {
+u16 E[65535 * 2 + 7];
+u16 L[65536];
 
-  u64 v = 0;
-  FOR(a, 8) FOR(b, 8) {
-    v ^= memo2[a][b][memo1[(x >> (8 * a)) & 255][(y >> (8 * b)) & 255]];
+void __attribute__((constructor)) init_nim_table() {
+  // 2^16 未満のところについて原始根 10279 での指数対数表を作る
+  // 2^k との積
+  u16 tmp[] = {10279, 15417, 35722, 52687, 44124, 62628, 15661, 5686, 3862, 1323, 334, 647, 61560, 20636, 4267, 8445};
+  u16 nxt[65536];
+  FOR(i, 16) {
+    FOR(s, 1 << i) { nxt[s | 1 << i] = nxt[s] ^ tmp[i]; }
   }
-  return v;
+  E[0] = 1;
+  FOR(i, 65534) E[i + 1] = nxt[E[i]];
+  memcpy(E + 65535, E, 131070);
+  memcpy(E + 131070, E, 14);
+  FOR(i, 65535) L[E[i]] = i;
 }
+
+u16 p16(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b]] : 0); }
+u16 p16_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 3] : 0); }
+u16 p16_15_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 6] : 0); }
+u16 mul_15(u16 a) { return (a ? E[3 + L[a]] : 0); }
+u32 p32(u32 a, u32 b) {
+  u16 al = a & 65535, ah = a >> 16, bl = b & 65535, bh = b >> 16;
+  u16 c = p16(al, bl);
+  return u32(p16(al ^ ah, bl ^ bh) ^ c) << 16 | (p16_15(ah, bh) ^ c);
+}
+
+u32 p32_mul_31(u32 a, u32 b) {
+  u16 al = a & 65535, ah = a >> 16, bl = b & 65535, bh = b >> 16;
+  u16 x = p16_15(al, bl);
+  u16 y = p16_15_15(ah, bh);
+  u16 z = p16_15(al ^ ah, bl ^ bh);
+  return u32(y ^ z) << 16 | mul_15(z ^ x);
+}
+
+u64 p64(u64 a, u64 b) {
+  u32 al = a & 0xffffffff, ah = a >> 32, bl = b & 0xffffffff, bh = b >> 32;
+  u32 c = p32(al, bl);
+  return u64(p32(al ^ ah, bl ^ bh) ^ c) << 32 ^ (p32_mul_31(ah, bh) ^ c);
+}
+} // namespace NIM_PRODUCT
+
+u64 nim_product(u64 a, u64 b) { return NIM_PRODUCT::p64(a, b); }
