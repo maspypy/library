@@ -427,8 +427,8 @@ data:
     \ : L \u306E boundary \u3092\u7DAD\u6301\n// compress(L,R)  (top-down) \u9806\u306B\
     \ L,R\ntemplate <typename TREE, typename TREE_DP>\nstruct Dynamic_Tree_Dp {\n\
     \  using X = typename TREE_DP::value_type;\n  Static_TopTree<TREE> STT;\n  vc<X>\
-    \ dp;\n\n  template <typename F>\n  Dynamic_Tree_Dp(TREE& tree, F f) : STT(tree)\
-    \ {\n    int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(i, N) dp[i] = f(i);\n\
+    \ dp;\n\n  template <typename F>\n  Dynamic_Tree_Dp(TREE& tree, F single) : STT(tree)\
+    \ {\n    int N = tree.N;\n    dp.resize(2 * N - 1);\n    FOR(i, N) dp[i] = single(i);\n\
     \    FOR(i, N, 2 * N - 1) update(i);\n  }\n\n  void set(int v, X x) {\n    dp[v]\
     \ = x;\n    for (int i = STT.par[v]; i != -1; i = STT.par[i]) update(i);\n  }\n\
     \n  X prod_all() { return dp.back(); }\n\nprivate:\n  inline void update(int i)\
@@ -545,7 +545,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc351g.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-09-28 22:07:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc351g.test.cpp
