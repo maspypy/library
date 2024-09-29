@@ -27,7 +27,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2604.test.cpp
     title: test/3_yukicoder/2604.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_B.test.cpp
     title: test/4_aoj/GRL_6_B.test.cpp
   - icon: ':x:'

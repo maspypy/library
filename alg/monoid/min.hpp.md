@@ -5,10 +5,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_assign.hpp
     title: alg/acted_monoid/min_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -162,13 +162,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508_2.test.cpp
     title: test/4_aoj/1508_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_F.test.cpp
     title: test/4_aoj/DSL_2_F.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_H.test.cpp
     title: test/4_aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':x:'
