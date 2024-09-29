@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree_2d_dense.hpp
     title: ds/segtree/segtree_2d_dense.hpp
   - icon: ':question:'
