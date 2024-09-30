@@ -1,4 +1,5 @@
-#include "nt/nimber_impl.hpp"
+#pragma once
+#include "nt/nimber/nimber_impl.hpp"
 
 template <typename UINT>
 struct Nimber {

@@ -1,3 +1,4 @@
+#pragma once
 namespace NIM_PRODUCT {
 u16 E[65535 * 2 + 7];
 u16 L[65536];
