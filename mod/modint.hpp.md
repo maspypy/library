@@ -269,7 +269,7 @@ data:
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
   - icon: ':question:'
@@ -1216,12 +1216,6 @@ data:
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907.test.cpp
-    title: test/3_yukicoder/2907.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907_2.test.cpp
-    title: test/3_yukicoder/2907_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/303.test.cpp
     title: test/3_yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1317,13 +1311,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc267h.test.cpp
     title: test/5_atcoder/abc267h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc269ex.test.cpp
     title: test/5_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc269ex2.test.cpp
     title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc272_h.test.cpp
     title: test/5_atcoder/abc272_h.test.cpp
   - icon: ':x:'
@@ -1893,7 +1887,6 @@ data:
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/1451.test.cpp
-  - test/3_yukicoder/2907_2.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1493.test.cpp
   - test/3_yukicoder/2360.test.cpp
@@ -1937,7 +1930,6 @@ data:
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1397.test.cpp
-  - test/3_yukicoder/2907.test.cpp
   - test/3_yukicoder/1263.test.cpp
   - test/3_yukicoder/2293.test.cpp
   - test/3_yukicoder/2613.test.cpp

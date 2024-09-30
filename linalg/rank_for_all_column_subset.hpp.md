@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907_2.test.cpp
-    title: test/3_yukicoder/2907_2.test.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/rank_for_all_column_subset.hpp\"\n\n// return: 2^M\
@@ -74,9 +71,8 @@ data:
   path: linalg/rank_for_all_column_subset.hpp
   requiredBy: []
   timestamp: '2024-09-30 22:44:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/3_yukicoder/2907_2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: linalg/rank_for_all_column_subset.hpp
 layout: document
 redirect_from:

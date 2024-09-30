@@ -12,9 +12,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907.test.cpp
-    title: test/3_yukicoder/2907.test.cpp
   - icon: ':x:'
     path: test/5_atcoder/agc058d.test.cpp
     title: test/5_atcoder/agc058d.test.cpp
@@ -40,7 +37,6 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2108.test.cpp
-  - test/3_yukicoder/2907.test.cpp
   - test/5_atcoder/agc058d.test.cpp
 documentation_of: linalg/transpose.hpp
 layout: document

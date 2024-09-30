@@ -2113,12 +2113,6 @@ data:
     path: test/3_yukicoder/2897.test.cpp
     title: test/3_yukicoder/2897.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907.test.cpp
-    title: test/3_yukicoder/2907.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907_2.test.cpp
-    title: test/3_yukicoder/2907_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/303.test.cpp
     title: test/3_yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2628,22 +2622,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc268_ex.test.cpp
     title: test/5_atcoder/abc268_ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc269ex.test.cpp
     title: test/5_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc269ex2.test.cpp
     title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc270_f.test.cpp
     title: test/5_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc270_g.test.cpp
     title: test/5_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc272_h.test.cpp
     title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc273_e.test.cpp
     title: test/5_atcoder/abc273_e.test.cpp
   - icon: ':x:'
@@ -3644,7 +3638,6 @@ data:
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/4954.test.cpp
   - test/3_yukicoder/694.test.cpp
-  - test/3_yukicoder/2907_2.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1493.test.cpp
   - test/3_yukicoder/2360.test.cpp
@@ -3766,7 +3759,6 @@ data:
   - test/3_yukicoder/2895.test.cpp
   - test/3_yukicoder/655.test.cpp
   - test/3_yukicoder/1976.test.cpp
-  - test/3_yukicoder/2907.test.cpp
   - test/3_yukicoder/1077.test.cpp
   - test/3_yukicoder/2338.test.cpp
   - test/3_yukicoder/1263.test.cpp

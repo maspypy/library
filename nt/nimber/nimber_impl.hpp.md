@@ -3,47 +3,44 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
-    path: nt/nimber.hpp
-    title: nt/nimber.hpp
+    path: nt/nimber/base.hpp
+    title: nt/nimber/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/nimber/solve_quadratic.hpp
+    title: nt/nimber/solve_quadratic.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907.test.cpp
-    title: test/3_yukicoder/2907.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2907_2.test.cpp
-    title: test/3_yukicoder/2907_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"nt/nimber_impl.hpp\"\nnamespace NIM_PRODUCT {\r\nu16 E[65535\
-    \ * 2 + 7];\r\nu16 L[65536];\r\nu64 S[4][65536];\r\nu64 SR[4][65536];\r\n\r\n\
-    u16 p16_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 3] : 0); }\r\n\
-    u16 p16_15_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 6] : 0); }\r\
-    \nu16 mul_15(u16 a) { return (a ? E[3 + L[a]] : 0); }\r\nu16 mul_15_15(u16 a)\
-    \ { return (a ? E[6 + L[a]] : 0); }\r\nu32 p32_mul_31(u32 a, u32 b) {\r\n  u16\
-    \ al = a & 65535, ah = a >> 16, bl = b & 65535, bh = b >> 16;\r\n  u16 x = p16_15(al,\
-    \ bl);\r\n  u16 y = p16_15_15(ah, bh);\r\n  u16 z = p16_15(al ^ ah, bl ^ bh);\r\
-    \n  return u32(y ^ z) << 16 | mul_15(z ^ x);\r\n}\r\nu32 mul_31(u32 a) {\r\n \
-    \ u16 al = a & 65535, ah = a >> 16;\r\n  return u32(mul_15(al ^ ah)) << 16 | mul_15_15(ah);\r\
-    \n}\r\n\r\nu16 prod(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b]] : 0);\
-    \ }\r\nu32 prod(u32 a, u32 b) {\r\n  u16 al = a & 65535, ah = a >> 16, bl = b\
-    \ & 65535, bh = b >> 16;\r\n  u16 c = prod(al, bl);\r\n  return u32(prod(u16(al\
-    \ ^ ah), u16(bl ^ bh)) ^ c) << 16 | (p16_15(ah, bh) ^ c);\r\n}\r\nu64 prod(u64\
-    \ a, u64 b) {\r\n  u32 al = a & 0xffffffff, ah = a >> 32, bl = b & 0xffffffff,\
-    \ bh = b >> 32;\r\n  u32 c = prod(al, bl);\r\n  return u64(prod(al ^ ah, bl ^\
-    \ bh) ^ c) << 32 ^ (p32_mul_31(ah, bh) ^ c);\r\n}\r\n\r\nu16 square(u16 a) { return\
-    \ S[0][a]; }\r\nu32 square(u32 a) { return S[0][a & 65535] ^ S[1][a >> 16]; }\r\
-    \nu64 square(u64 a) { return S[0][a & 65535] ^ S[1][a >> 16 & 65535] ^ S[2][a\
-    \ >> 32 & 65535] ^ S[3][a >> 48 & 65535]; }\r\nu16 sqrt(u16 a) { return SR[0][a];\
-    \ }\r\nu32 sqrt(u32 a) { return SR[0][a & 65535] ^ SR[1][a >> 16]; }\r\nu64 sqrt(u64\
-    \ a) { return SR[0][a & 65535] ^ SR[1][a >> 16 & 65535] ^ SR[2][a >> 32 & 65535]\
-    \ ^ SR[3][a >> 48 & 65535]; }\r\n\r\n// inv: 2^16 \u306E\u5171\u5F79\u304C 2^16+1\
-    \ \u3067\u3042\u308B\u3053\u3068\u306A\u3069\u3092\u4F7F\u3046. x^{-1}=y(xy)^{-1}\
+  bundledCode: "#line 2 \"nt/nimber/nimber_impl.hpp\"\nnamespace NIM_PRODUCT {\r\n\
+    u16 E[65535 * 2 + 7];\r\nu16 L[65536];\r\nu64 S[4][65536];\r\nu64 SR[4][65536];\r\
+    \n\r\nu16 p16_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 3] : 0);\
+    \ }\r\nu16 p16_15_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 6]\
+    \ : 0); }\r\nu16 mul_15(u16 a) { return (a ? E[3 + L[a]] : 0); }\r\nu16 mul_15_15(u16\
+    \ a) { return (a ? E[6 + L[a]] : 0); }\r\nu32 p32_mul_31(u32 a, u32 b) {\r\n \
+    \ u16 al = a & 65535, ah = a >> 16, bl = b & 65535, bh = b >> 16;\r\n  u16 x =\
+    \ p16_15(al, bl);\r\n  u16 y = p16_15_15(ah, bh);\r\n  u16 z = p16_15(al ^ ah,\
+    \ bl ^ bh);\r\n  return u32(y ^ z) << 16 | mul_15(z ^ x);\r\n}\r\nu32 mul_31(u32\
+    \ a) {\r\n  u16 al = a & 65535, ah = a >> 16;\r\n  return u32(mul_15(al ^ ah))\
+    \ << 16 | mul_15_15(ah);\r\n}\r\n\r\nu16 prod(u16 a, u16 b) { return (a && b ?\
+    \ E[u32(L[a]) + L[b]] : 0); }\r\nu32 prod(u32 a, u32 b) {\r\n  u16 al = a & 65535,\
+    \ ah = a >> 16, bl = b & 65535, bh = b >> 16;\r\n  u16 c = prod(al, bl);\r\n \
+    \ return u32(prod(u16(al ^ ah), u16(bl ^ bh)) ^ c) << 16 | (p16_15(ah, bh) ^ c);\r\
+    \n}\r\nu64 prod(u64 a, u64 b) {\r\n  u32 al = a & 0xffffffff, ah = a >> 32, bl\
+    \ = b & 0xffffffff, bh = b >> 32;\r\n  u32 c = prod(al, bl);\r\n  return u64(prod(al\
+    \ ^ ah, bl ^ bh) ^ c) << 32 ^ (p32_mul_31(ah, bh) ^ c);\r\n}\r\n\r\nu16 square(u16\
+    \ a) { return S[0][a]; }\r\nu32 square(u32 a) { return S[0][a & 65535] ^ S[1][a\
+    \ >> 16]; }\r\nu64 square(u64 a) { return S[0][a & 65535] ^ S[1][a >> 16 & 65535]\
+    \ ^ S[2][a >> 32 & 65535] ^ S[3][a >> 48 & 65535]; }\r\nu16 sqrt(u16 a) { return\
+    \ SR[0][a]; }\r\nu32 sqrt(u32 a) { return SR[0][a & 65535] ^ SR[1][a >> 16]; }\r\
+    \nu64 sqrt(u64 a) { return SR[0][a & 65535] ^ SR[1][a >> 16 & 65535] ^ SR[2][a\
+    \ >> 32 & 65535] ^ SR[3][a >> 48 & 65535]; }\r\n\r\n// inv: 2^16 \u306E\u5171\u5F79\
+    \u304C 2^16+1 \u3067\u3042\u308B\u3053\u3068\u306A\u3069\u3092\u4F7F\u3046. x^{-1}=y(xy)^{-1}\
     \ \u3068\u3044\u3046\u8981\u9818.\r\nu16 inverse(u16 a) { return E[65535 - L[a]];\
     \ }\r\nu32 inverse(u32 a) {\r\n  if (a < 65536) return inverse(u16(a));\r\n  u16\
     \ al = a & 65535, ah = a >> 16;\r\n  u16 norm = prod(al, al ^ ah) ^ E[L[ah] *\
@@ -66,9 +63,9 @@ data:
     \n      int k = 16 * t + i;\r\n      u64 X = u64(1) << k;\r\n      FOR(63) X =\
     \ square(X);\r\n      FOR(s, 1 << i) SR[t][s | 1 << i] = SR[t][s] ^ X;\r\n   \
     \ }\r\n  }\r\n}\r\n} // namespace NIM_PRODUCT\r\n"
-  code: "namespace NIM_PRODUCT {\r\nu16 E[65535 * 2 + 7];\r\nu16 L[65536];\r\nu64\
-    \ S[4][65536];\r\nu64 SR[4][65536];\r\n\r\nu16 p16_15(u16 a, u16 b) { return (a\
-    \ && b ? E[u32(L[a]) + L[b] + 3] : 0); }\r\nu16 p16_15_15(u16 a, u16 b) { return\
+  code: "#pragma once\r\nnamespace NIM_PRODUCT {\r\nu16 E[65535 * 2 + 7];\r\nu16 L[65536];\r\
+    \nu64 S[4][65536];\r\nu64 SR[4][65536];\r\n\r\nu16 p16_15(u16 a, u16 b) { return\
+    \ (a && b ? E[u32(L[a]) + L[b] + 3] : 0); }\r\nu16 p16_15_15(u16 a, u16 b) { return\
     \ (a && b ? E[u32(L[a]) + L[b] + 6] : 0); }\r\nu16 mul_15(u16 a) { return (a ?\
     \ E[3 + L[a]] : 0); }\r\nu16 mul_15_15(u16 a) { return (a ? E[6 + L[a]] : 0);\
     \ }\r\nu32 p32_mul_31(u32 a, u32 b) {\r\n  u16 al = a & 65535, ah = a >> 16, bl\
@@ -113,19 +110,18 @@ data:
     \ i] = SR[t][s] ^ X;\r\n    }\r\n  }\r\n}\r\n} // namespace NIM_PRODUCT\r\n"
   dependsOn: []
   isVerificationFile: false
-  path: nt/nimber_impl.hpp
+  path: nt/nimber/nimber_impl.hpp
   requiredBy:
-  - nt/nimber.hpp
-  timestamp: '2024-09-30 22:44:02+09:00'
+  - nt/nimber/base.hpp
+  - nt/nimber/solve_quadratic.hpp
+  timestamp: '2024-10-01 00:24:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/nimber.test.cpp
-  - test/3_yukicoder/2907_2.test.cpp
-  - test/3_yukicoder/2907.test.cpp
-documentation_of: nt/nimber_impl.hpp
+documentation_of: nt/nimber/nimber_impl.hpp
 layout: document
 redirect_from:
-- /library/nt/nimber_impl.hpp
-- /library/nt/nimber_impl.hpp.html
-title: nt/nimber_impl.hpp
+- /library/nt/nimber/nimber_impl.hpp
+- /library/nt/nimber/nimber_impl.hpp.html
+title: nt/nimber/nimber_impl.hpp
 ---

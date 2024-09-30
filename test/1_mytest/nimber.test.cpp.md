@@ -1,15 +1,21 @@
 ---
 data:
   _extendedDependsOn:
+  - icon: ':heavy_check_mark:'
+    path: linalg/xor/basis.hpp
+    title: linalg/xor/basis.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/nimber.hpp
-    title: nt/nimber.hpp
+    path: nt/nimber/base.hpp
+    title: nt/nimber/base.hpp
   - icon: ':heavy_check_mark:'
-    path: nt/nimber_impl.hpp
-    title: nt/nimber_impl.hpp
+    path: nt/nimber/nimber_impl.hpp
+    title: nt/nimber/nimber_impl.hpp
+  - icon: ':heavy_check_mark:'
+    path: nt/nimber/solve_quadratic.hpp
+    title: nt/nimber/solve_quadratic.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
@@ -111,7 +117,7 @@ data:
     \ uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"nt/nimber_impl.hpp\"\nnamespace NIM_PRODUCT\
+    \ RNG_64() % (r - l); }\n#line 2 \"nt/nimber/nimber_impl.hpp\"\nnamespace NIM_PRODUCT\
     \ {\r\nu16 E[65535 * 2 + 7];\r\nu16 L[65536];\r\nu64 S[4][65536];\r\nu64 SR[4][65536];\r\
     \n\r\nu16 p16_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 3] : 0);\
     \ }\r\nu16 p16_15_15(u16 a, u16 b) { return (a && b ? E[u32(L[a]) + L[b] + 6]\
@@ -156,11 +162,11 @@ data:
     \ 1 << i] = S[t][s] ^ X;\r\n    }\r\n  }\r\n  FOR(t, 4) {\r\n    FOR(i, 16) {\r\
     \n      int k = 16 * t + i;\r\n      u64 X = u64(1) << k;\r\n      FOR(63) X =\
     \ square(X);\r\n      FOR(s, 1 << i) SR[t][s | 1 << i] = SR[t][s] ^ X;\r\n   \
-    \ }\r\n  }\r\n}\r\n} // namespace NIM_PRODUCT\r\n#line 2 \"nt/nimber.hpp\"\n\n\
-    template <typename UINT>\nstruct Nimber {\n  using F = Nimber;\n  UINT val;\n\n\
-    \  constexpr Nimber(UINT x = 0) : val(x) {}\n  F &operator+=(const F &p) {\n \
-    \   val ^= p.val;\n    return *this;\n  }\n  F &operator-=(const F &p) {\n   \
-    \ val ^= p.val;\n    return *this;\n  }\n  F &operator*=(const F &p) {\n    val\
+    \ }\r\n  }\r\n}\r\n} // namespace NIM_PRODUCT\r\n#line 3 \"nt/nimber/base.hpp\"\
+    \n\ntemplate <typename UINT>\nstruct Nimber {\n  using F = Nimber;\n  UINT val;\n\
+    \n  constexpr Nimber(UINT x = 0) : val(x) {}\n  F &operator+=(const F &p) {\n\
+    \    val ^= p.val;\n    return *this;\n  }\n  F &operator-=(const F &p) {\n  \
+    \  val ^= p.val;\n    return *this;\n  }\n  F &operator*=(const F &p) {\n    val\
     \ = NIM_PRODUCT::prod(val, p.val);\n    return *this;\n  }\n  F &operator/=(const\
     \ F &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  F operator-()\
     \ const { return *this; }\n  F operator+(const F &p) const { return F(*this) +=\
@@ -174,30 +180,81 @@ data:
     \      n >>= 1;\n    }\n    return F(ret);\n  }\n  F square() { return F(NIM_PRODUCT::square(val));\
     \ }\n  F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }\n};\n\nusing Nimber16 =\
     \ Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n\
-    #line 6 \"test/1_mytest/nimber.test.cpp\"\n\ntemplate <typename U>\nvoid test()\
-    \ {\n  using F = Nimber<U>;\n  auto test = [&](F x) -> void {\n    assert(x *\
-    \ x == x.square());\n    assert(x.sqrt().square() == x);\n    if (x != F(0)) assert(x\
-    \ * x.inverse() == F(1));\n  };\n  FOR(i, 1 << 20) { test(i); }\n  FOR(10000)\
-    \ { test(F(RNG_64())); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<u16>();\n  test<u32>();\n\
+    #line 1 \"linalg/xor/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
+    \u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\
+    \u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\n// array<UINT, MAX_DIM>\
+    \ rbasis: \u4E0A\u4E09\u89D2\u5316\u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n\
+    // way<UINT,UINT> rbasis[i] \u3092 basis[j] \u3067\u4F5C\u308B\u65B9\u6CD5\ntemplate\
+    \ <int MAX_DIM>\nstruct Basis {\n  static_assert(MAX_DIM <= 128);\n  using UINT\
+    \ = conditional_t<(MAX_DIM <= 32), u32, conditional_t<(MAX_DIM <= 64), u64, u128>>;\n\
+    \  int rank;\n  array<UINT, MAX_DIM> basis;\n  array<UINT, MAX_DIM> rbasis;\n\
+    \  array<UINT, MAX_DIM> way;\n  Basis() : rank(0), basis{}, rbasis{}, way{} {}\n\
+    \n  // return : (sum==x \u306B\u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5\
+    )\n  pair<bool, UINT> solve(UINT x) {\n    UINT c = 0;\n    FOR(i, MAX_DIM) {\n\
+    \      if ((x >> i & 1) && (rbasis[i] != 0)) { c ^= way[i], x ^= rbasis[i]; }\n\
+    \    }\n    if (x == 0) return {true, c};\n    return {false, 0};\n  }\n\n  //\
+    \ return : (sum==x \u306B\u3067\u304D\u308B\u304B, \u305D\u306E\u65B9\u6CD5).\
+    \ false \u306E\u5834\u5408\u306B\u306F\u8FFD\u52A0\u3059\u308B\n  pair<bool, UINT>\
+    \ solve_or_add(UINT x) {\n    UINT y = x, c = 0;\n    FOR(i, MAX_DIM) {\n    \
+    \  if ((x >> i & 1) && (rbasis[i] != 0)) { c ^= way[i], x ^= rbasis[i]; }\n  \
+    \  }\n    if (x == 0) return {true, c};\n    int k = lowbit(x);\n    basis[rank]\
+    \ = y, rbasis[k] = x, way[k] = c | UINT(1) << rank, ++rank;\n    return {false,\
+    \ 0};\n  }\n};\n#line 3 \"nt/nimber/solve_quadratic.hpp\"\n\nnamespace NIMBER_QUADRATIC\
+    \ {\n// x^2+x==a \u3092\u89E3\u304F. Trace(a)==0 \u304C\u5FC5\u8981.\n// Nimber\
+    \ \u3067\u306F Trace \u306F topbit.\n// topbit==0 \u3067\u3042\u308B\u7A7A\u9593\
+    \u304B\u3089\u5076\u6570\u5168\u4F53\u3078\u306E\u5168\u5358\u5C04\u304C\u3042\
+    \u308B.\n// \u3053\u308C\u3092\u524D\u8A08\u7B97\u3057\u305F\u3044. \u7DDA\u5F62\
+    \u5199\u50CF\u306A\u306E\u3067\u9023\u7ACB\u65B9\u7A0B\u5F0F\u3092\u89E3\u3044\
+    \u3066\u57CB\u3081\u8FBC\u3080\u3060\u3051\u3067\u3088\u3044.\n\nu64 Q[4][65536];\n\
+    \nvoid __attribute__((constructor)) precalc() {\n  Basis<63> B;\n  FOR(i, 63)\
+    \ {\n    Nimber64 x(u64(1) << (i + 1));\n    x = x.square() + x;\n    assert(!B.solve_or_add(x.val).fi);\n\
+    \  }\n  FOR(k, 63) {\n    int t = k / 16, i = k % 16;\n    u64 X = B.way[k] *\
+    \ 2;\n    FOR(s, 1 << i) Q[t][s | 1 << i] = Q[t][s] ^ X;\n  }\n}\n\nu16 f(u16\
+    \ a) { return Q[0][a]; }\nu32 f(u32 a) { return Q[0][a & 65535] ^ Q[1][a >> 16];\
+    \ }\nu64 f(u64 a) { return Q[0][a & 65535] ^ Q[1][a >> 16 & 65535] ^ Q[2][a >>\
+    \ 32 & 65535] ^ Q[3][a >> 48 & 65535]; }\n\ntemplate <typename U>\nvc<U> solve_quadratic_1(U\
+    \ a) {\n  constexpr int k = numeric_limits<U>::digits - 1;\n  if (a >> k & 1)\
+    \ return {};\n  return {f(a), U(f(a) | 1)};\n}\n} // namespace NIMBER_QUADRATIC\n\
+    \ntemplate <typename F>\nvc<F> solve_quadratic(F a, F b) {\n  if (a == F(0)) return\
+    \ {b.sqrt()};\n  b /= a.square();\n  vc<F> ANS;\n  for (auto& x: NIMBER_QUADRATIC::solve_quadratic_1(b.val))\
+    \ { ANS.eb(a * F(x)); }\n  return ANS;\n}\n#line 7 \"test/1_mytest/nimber.test.cpp\"\
+    \n\ntemplate <typename U>\nvoid test() {\n  using F = Nimber<U>;\n  auto test\
+    \ = [&](F x) -> void {\n    assert(x * x == x.square());\n    assert(x.sqrt().square()\
+    \ == x);\n    if (x != F(0)) assert(x * x.inverse() == F(1));\n  };\n  FOR(i,\
+    \ 1 << 20) { test(i); }\n  FOR(10000) { test(F(RNG_64())); }\n\n  auto test_q\
+    \ = [&](F a, F x) -> void {\n    F b = x * x + a * x;\n    vc<F> ANS = solve_quadratic(a,\
+    \ b);\n    for (auto& z: ANS) { assert(z * z + a * z == b); }\n    FOR(j, len(ANS))\
+    \ FOR(i, j) { assert(ANS[i] != ANS[j]); }\n    int exist = 0;\n    FOR(i, len(ANS))\
+    \ exist += (ANS[i] == x);\n    assert(exist == 1);\n  };\n  // quadratic\n  FOR(a,\
+    \ 100) {\n    FOR(x, 100) { test_q(a, x); }\n  }\n  FOR(10000) { test_q(F(RNG_64()),\
+    \ F(RNG_64())); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<u16>();\n  test<u32>();\n\
     \  test<u64>();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"random/base.hpp\"\n#include \"nt/nimber.hpp\"\n\ntemplate <typename\
-    \ U>\nvoid test() {\n  using F = Nimber<U>;\n  auto test = [&](F x) -> void {\n\
-    \    assert(x * x == x.square());\n    assert(x.sqrt().square() == x);\n    if\
-    \ (x != F(0)) assert(x * x.inverse() == F(1));\n  };\n  FOR(i, 1 << 20) { test(i);\
-    \ }\n  FOR(10000) { test(F(RNG_64())); }\n}\n\nvoid solve() {\n  int a, b;\n \
-    \ cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<u16>();\n\
-    \  test<u32>();\n  test<u64>();\n  solve();\n}"
+    \n\n#include \"random/base.hpp\"\n#include \"nt/nimber/base.hpp\"\n#include \"\
+    nt/nimber/solve_quadratic.hpp\"\n\ntemplate <typename U>\nvoid test() {\n  using\
+    \ F = Nimber<U>;\n  auto test = [&](F x) -> void {\n    assert(x * x == x.square());\n\
+    \    assert(x.sqrt().square() == x);\n    if (x != F(0)) assert(x * x.inverse()\
+    \ == F(1));\n  };\n  FOR(i, 1 << 20) { test(i); }\n  FOR(10000) { test(F(RNG_64()));\
+    \ }\n\n  auto test_q = [&](F a, F x) -> void {\n    F b = x * x + a * x;\n   \
+    \ vc<F> ANS = solve_quadratic(a, b);\n    for (auto& z: ANS) { assert(z * z +\
+    \ a * z == b); }\n    FOR(j, len(ANS)) FOR(i, j) { assert(ANS[i] != ANS[j]); }\n\
+    \    int exist = 0;\n    FOR(i, len(ANS)) exist += (ANS[i] == x);\n    assert(exist\
+    \ == 1);\n  };\n  // quadratic\n  FOR(a, 100) {\n    FOR(x, 100) { test_q(a, x);\
+    \ }\n  }\n  FOR(10000) { test_q(F(RNG_64()), F(RNG_64())); }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test<u16>();\n  test<u32>();\n  test<u64>();\n  solve();\n}"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
-  - nt/nimber.hpp
-  - nt/nimber_impl.hpp
+  - nt/nimber/base.hpp
+  - nt/nimber/nimber_impl.hpp
+  - nt/nimber/solve_quadratic.hpp
+  - linalg/xor/basis.hpp
   isVerificationFile: true
   path: test/1_mytest/nimber.test.cpp
   requiredBy: []
-  timestamp: '2024-09-30 22:44:02+09:00'
+  timestamp: '2024-10-01 00:24:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/nimber.test.cpp
