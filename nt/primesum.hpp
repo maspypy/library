@@ -1,3 +1,4 @@
+#pragma once
 #include "nt/primetable.hpp"
 
 /*
@@ -36,8 +37,7 @@ struct PrimeSum {
       T x = sum_lo[p - 1];
       T fp = sum_lo[p] - sum_lo[p - 1];
       for (int i = 1; i <= M; ++i) sum_hi[i] -= fp * (sum_hi[i * p] - x);
-      for (int i = M + 1; i <= R; ++i)
-        sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);
+      for (int i = M + 1; i <= R; ++i) sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);
       for (int n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);
     }
     calculated = 1;
