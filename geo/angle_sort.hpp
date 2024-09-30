@@ -2,20 +2,32 @@
 
 #include "geo/base.hpp"
 
+// lower: -1, origin: 0, upper: 1
+template <typename T>
+int lower_or_upper(Point<T>& p) {
+  if (p.y != 0) return (p.y > 0 ? 1 : -1);
+  if (p.x > 0) return -1;
+  if (p.x < 0) return 1;
+  return 0;
+}
+
+// -1, 0, 1
+template <typename T>
+int angle_comp_3(Point<T>& L, Point<T>& R) {
+  int a = lower_or_upper(L), b = lower_or_upper(R);
+  if (a != b) return (a < b ? -1 : +1);
+  T det = L.det(R);
+  if (det > 0) return -1;
+  if (det < 0) return 1;
+  return 0;
+}
 // 偏角ソートに対する argsort
 template <typename T>
 vector<int> angle_sort(vector<Point<T>>& P) {
-  vector<int> lower, origin, upper;
-  const Point<T> O = {0, 0};
-  FOR(i, len(P)) {
-    if (P[i] == O) origin.eb(i);
-    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);
-    else upper.eb(i);
-  }
-  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });
-  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0; });
-  concat(lower, origin, upper);
-  return lower;
+  vc<int> I(len(P));
+  FOR(i, len(P)) I[i] = i;
+  sort(all(I), [&](auto& L, auto& R) -> bool { return angle_comp_3(P[L], P[R]) == -1; });
+  return I;
 }
 
 // 偏角ソートに対する argsort
