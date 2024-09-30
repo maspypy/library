@@ -8,7 +8,7 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_depth_sum.hpp
     title: graph/tree_dp/subtree_depth_sum.hpp
   - icon: ':warning:'
@@ -54,12 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc220f.test.cpp
     title: test/5_atcoder/abc220f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc298ex.test.cpp
     title: test/5_atcoder/abc298ex.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -297,7 +297,7 @@ data:
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
   timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/QOJ5445.test.cpp

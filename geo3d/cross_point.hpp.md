@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo3d/base.hpp
     title: geo3d/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc301g.test.cpp
     title: test/5_atcoder/abc301g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo3d/base.hpp\"\n\ntemplate <typename T>\nstruct Point_3d\
@@ -70,7 +70,7 @@ data:
   path: geo3d/cross_point.hpp
   requiredBy: []
   timestamp: '2024-05-27 19:13:45+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc301g.test.cpp
 documentation_of: geo3d/cross_point.hpp

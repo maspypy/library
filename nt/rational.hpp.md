@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/0350.test.cpp
     title: test/4_aoj/0350.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc301g.test.cpp
     title: test/5_atcoder/abc301g.test.cpp
   - icon: ':x:'
