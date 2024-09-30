@@ -385,6 +385,9 @@ data:
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/nimber.test.cpp
+    title: test/1_mytest/nimber.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/non_adj.test.cpp
     title: test/1_mytest/non_adj.test.cpp
   - icon: ':heavy_check_mark:'
@@ -974,6 +977,7 @@ data:
   - test/1_mytest/find_even_cycle.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/nimber.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
   - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp

@@ -352,6 +352,9 @@ data:
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/nimber.test.cpp
+    title: test/1_mytest/nimber.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/non_adj.test.cpp
     title: test/1_mytest/non_adj.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1080,9 +1083,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/number_theory/nim_product.test.cpp
-    title: test/2_library_checker/number_theory/nim_product.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/primality_test.test.cpp
     title: test/2_library_checker/number_theory/primality_test.test.cpp
@@ -2113,6 +2113,12 @@ data:
     path: test/3_yukicoder/2897.test.cpp
     title: test/3_yukicoder/2897.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2907.test.cpp
+    title: test/3_yukicoder/2907.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2907_2.test.cpp
+    title: test/3_yukicoder/2907_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/303.test.cpp
     title: test/3_yukicoder/303.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2601,13 +2607,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc260h.test.cpp
     title: test/5_atcoder/abc260h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc266c.test.cpp
     title: test/5_atcoder/abc266c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc266f.test.cpp
     title: test/5_atcoder/abc266f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc266h.test.cpp
     title: test/5_atcoder/abc266h.test.cpp
   - icon: ':x:'
@@ -3074,6 +3080,7 @@ data:
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/count_labeled_eulerian.test.cpp
   - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/nimber.test.cpp
   - test/1_mytest/coprime_factorization.test.cpp
   - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/gray_code.test.cpp
@@ -3357,7 +3364,6 @@ data:
   - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   - test/2_library_checker/number_theory/kth_root_integer.test.cpp
   - test/2_library_checker/number_theory/gaussian_integers.test.cpp
-  - test/2_library_checker/number_theory/nim_product.test.cpp
   - test/2_library_checker/number_theory/primitive_root.test.cpp
   - test/2_library_checker/number_theory/stern-brocot.test.cpp
   - test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
@@ -3638,6 +3644,7 @@ data:
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/4954.test.cpp
   - test/3_yukicoder/694.test.cpp
+  - test/3_yukicoder/2907_2.test.cpp
   - test/3_yukicoder/1392.test.cpp
   - test/3_yukicoder/1493.test.cpp
   - test/3_yukicoder/2360.test.cpp
@@ -3759,6 +3766,7 @@ data:
   - test/3_yukicoder/2895.test.cpp
   - test/3_yukicoder/655.test.cpp
   - test/3_yukicoder/1976.test.cpp
+  - test/3_yukicoder/2907.test.cpp
   - test/3_yukicoder/1077.test.cpp
   - test/3_yukicoder/2338.test.cpp
   - test/3_yukicoder/1263.test.cpp

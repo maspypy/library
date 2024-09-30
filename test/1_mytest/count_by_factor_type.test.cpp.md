@@ -131,7 +131,7 @@ data:
     \ idx]: cp)\n        for (int i = idx; i < S + L; idx = (i += p)) block[i - L]\
     \ = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n\
     \    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(), primes.begin()\
-    \ + k};\n}\n#line 2 \"nt/primesum.hpp\"\n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\
+    \ + k};\n}\n#line 3 \"nt/primesum.hpp\"\n\r\n/*\r\nN \u3068\u5B8C\u5168\u4E57\u6CD5\
     \u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\u4E0E\u3048\u308B\
     \u3002\r\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\u308B sum_{p\
     \ <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\r\n\u7279\u306B\u3001\u7D20\u6570\
@@ -150,14 +150,14 @@ data:
     \ R = min(sqN, N / pp);\r\n      int M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\
     \n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n      for (int i = 1; i <= M; ++i)\
     \ sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n      for (int i = M + 1; i <= R;\
-    \ ++i)\r\n        sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);\r\n   \
-    \   for (int n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);\r\n\
-    \    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll\
-    \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
-    \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
-    \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\n\
-    #line 3 \"nt/count_by_factor_type.hpp\"\n\n// factor type: \u964D\u9806 270 ->\
-    \ (3,1,1)\n// N=10^9: 1324 \u7A2E\u985E, 0.4sec\n// https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d\n\
+    \ ++i) sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);\r\n      for (int\
+    \ n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);\r\n    }\r\n \
+    \   calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll x) ->\
+    \ T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll x) ->\
+    \ T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n      if\
+    \ (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\n#line\
+    \ 3 \"nt/count_by_factor_type.hpp\"\n\n// factor type: \u964D\u9806 270 -> (3,1,1)\n\
+    // N=10^9: 1324 \u7A2E\u985E, 0.4sec\n// https://atcoder.jp/contests/xmascon20/tasks/xmascon20_d\n\
     map<vc<int>, ll> count_by_factor_type(ll N) {\n  ll sqN = sqrtl(N);\n  auto P\
     \ = primetable<int>(sqN);\n  PrimeSum<ll> X(N);\n  X.calc_count();\n\n  // 1 and\
     \ prime\n  map<vc<int>, ll> ANS;\n  ANS[vc<int>()] = 1;\n  if (X[N] > 0) ANS[vc<int>({1})]\
@@ -257,7 +257,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_by_factor_type.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-09-30 22:44:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_by_factor_type.test.cpp

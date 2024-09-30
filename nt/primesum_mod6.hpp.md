@@ -28,7 +28,7 @@ data:
     \      for (auto& [p, idx]: cp)\n        for (int i = idx; i < S + L; idx = (i\
     \ += p)) block[i - L] = 1;\n      FOR(i, min(S, R - L)) if (!block[i]) primes.eb((L\
     \ + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes, LIM + 1);\n  return {primes.begin(),\
-    \ primes.begin() + k};\n}\n#line 2 \"nt/primesum.hpp\"\n\r\n/*\r\nN \u3068\u5B8C\
+    \ primes.begin() + k};\n}\n#line 3 \"nt/primesum.hpp\"\n\r\n/*\r\nN \u3068\u5B8C\
     \u5168\u4E57\u6CD5\u7684\u95A2\u6570 f \u306E prefix sum \u95A2\u6570 F \u3092\
     \u4E0E\u3048\u308B\u3002\r\nn = floor(N/d) \u3068\u306A\u308B n \u306B\u5BFE\u3059\
     \u308B sum_{p <= n} f(p) \u3092\u8A08\u7B97\u3059\u308B\u3002\r\n\u7279\u306B\u3001\
@@ -47,24 +47,24 @@ data:
     \ R = min(sqN, N / pp);\r\n      int M = sqN / p;\r\n      T x = sum_lo[p - 1];\r\
     \n      T fp = sum_lo[p] - sum_lo[p - 1];\r\n      for (int i = 1; i <= M; ++i)\
     \ sum_hi[i] -= fp * (sum_hi[i * p] - x);\r\n      for (int i = M + 1; i <= R;\
-    \ ++i)\r\n        sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);\r\n   \
-    \   for (int n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);\r\n\
-    \    }\r\n    calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll\
-    \ x) -> T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll\
-    \ x) -> T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n \
-    \     if (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\n\
-    #line 3 \"nt/primesum_mod6.hpp\"\n\ntemplate <typename T>\nstruct PrimeSum_Mod_6\
-    \ {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_6(ll N) : N(N),\
-    \ sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n    T a = A[x],\
-    \ b = B[x];\n    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\n  void calc_count()\
-    \ {\n    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x % 6 == 4)); });\n   \
-    \ B.calc([](ll x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0); });\n  }\n\n  void\
-    \ calc_sum() {\n    A.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6\
-    \ == 4);\n      ll k = n / 2;\n      if (n % 2 == 0) { return T(6 * k) * T(k);\
-    \ }\n      return T(6 * k) * T(k) + T(6 * k + 1);\n    });\n    B.calc([](ll x)\
-    \ -> T {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n    \
-    \  if (n % 2 == 0) { return T(-4 * k); }\n      return T(-4 * k + 6 * k + 1);\n\
-    \    });\n  }\n};\n"
+    \ ++i) sum_hi[i] -= fp * (sum_lo[N / (double(i) * p)] - x);\r\n      for (int\
+    \ n = sqN; n >= pp; --n) sum_lo[n] -= fp * (sum_lo[n / p] - x);\r\n    }\r\n \
+    \   calculated = 1;\r\n  }\r\n\r\n  void calc_count() {\r\n    calc([](ll x) ->\
+    \ T { return x; });\r\n  }\r\n\r\n  void calc_sum() {\r\n    calc([](ll x) ->\
+    \ T {\r\n      ll a = x, b = x + 1;\r\n      if (!(x & 1)) a /= 2;\r\n      if\
+    \ (x & 1) b /= 2;\r\n      return T(a) * T(b);\r\n    });\r\n  }\r\n};\n#line\
+    \ 3 \"nt/primesum_mod6.hpp\"\n\ntemplate <typename T>\nstruct PrimeSum_Mod_6 {\n\
+    \  ll N;\n  ll sqN;\n\n  PrimeSum<T> A, B;\n  PrimeSum_Mod_6(ll N) : N(N), sqN(sqrtl(N)),\
+    \ A(N), B(N) {}\n\n  pair<T, T> operator[](ll x) {\n    T a = A[x], b = B[x];\n\
+    \    return {(a + b) / T(2), (a - b) / T(2)};\n  }\n\n  void calc_count() {\n\
+    \    A.calc([](ll x) -> T { return ((x + 2) / 3 - (x % 6 == 4)); });\n    B.calc([](ll\
+    \ x) -> T { return ((x + 5) % 6 <= 3 ? 1 : 0); });\n  }\n\n  void calc_sum() {\n\
+    \    A.calc([](ll x) -> T {\n      ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll\
+    \ k = n / 2;\n      if (n % 2 == 0) { return T(6 * k) * T(k); }\n      return\
+    \ T(6 * k) * T(k) + T(6 * k + 1);\n    });\n    B.calc([](ll x) -> T {\n     \
+    \ ll n = (x + 2) / 3 - (x % 6 == 4);\n      ll k = n / 2;\n      if (n % 2 ==\
+    \ 0) { return T(-4 * k); }\n      return T(-4 * k + 6 * k + 1);\n    });\n  }\n\
+    };\n"
   code: "#include \"nt/primesum.hpp\"\n#include \"nt/primetable.hpp\"\n\ntemplate\
     \ <typename T>\nstruct PrimeSum_Mod_6 {\n  ll N;\n  ll sqN;\n\n  PrimeSum<T> A,\
     \ B;\n  PrimeSum_Mod_6(ll N) : N(N), sqN(sqrtl(N)), A(N), B(N) {}\n\n  pair<T,\
@@ -83,7 +83,7 @@ data:
   isVerificationFile: false
   path: nt/primesum_mod6.hpp
   requiredBy: []
-  timestamp: '2023-08-06 13:04:29+09:00'
+  timestamp: '2024-09-30 22:44:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/primesum_mod6.test.cpp

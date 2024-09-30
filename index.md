@@ -694,7 +694,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
     - icon: ':warning:'
@@ -947,7 +947,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
     - icon: ':question:'
@@ -1231,6 +1231,9 @@ data:
       path: linalg/matrix_rank.hpp
       title: linalg/matrix_rank.hpp
     - icon: ':heavy_check_mark:'
+      path: linalg/rank_for_all_column_subset.hpp
+      title: linalg/rank_for_all_column_subset.hpp
+    - icon: ':heavy_check_mark:'
       path: linalg/rot90.hpp
       title: linalg/rot90.hpp
     - icon: ':heavy_check_mark:'
@@ -1494,8 +1497,11 @@ data:
       path: nt/multiplicative_sum.hpp
       title: nt/multiplicative_sum.hpp
     - icon: ':heavy_check_mark:'
-      path: nt/nim_product.hpp
-      title: nt/nim_product.hpp
+      path: nt/nimber.hpp
+      title: nt/nimber.hpp
+    - icon: ':heavy_check_mark:'
+      path: nt/nimber_impl.hpp
+      title: nt/nimber_impl.hpp
     - icon: ':warning:'
       path: nt/pell_equation.hpp
       title: nt/pell_equation.hpp
@@ -1919,6 +1925,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/catalan_convolution.hpp
       title: seq/famous/catalan_convolution.hpp
+    - icon: ':warning:'
+      path: seq/famous/de_bruijn.hpp
+      title: seq/famous/de_bruijn.hpp
     - icon: ':heavy_check_mark:'
       path: seq/famous/eulerian_number.hpp
       title: seq/famous/eulerian_number.hpp
@@ -2450,6 +2459,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/mybitset.test.cpp
       title: test/1_mytest/mybitset.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/nimber.test.cpp
+      title: test/1_mytest/nimber.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/non_adj.test.cpp
       title: test/1_mytest/non_adj.test.cpp
@@ -3201,7 +3213,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
       title: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/number_theory/nim_product.test.cpp
       title: test/2_library_checker/number_theory/nim_product.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4250,6 +4262,12 @@ data:
       path: test/3_yukicoder/2897.test.cpp
       title: test/3_yukicoder/2897.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/3_yukicoder/2907.test.cpp
+      title: test/3_yukicoder/2907.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/3_yukicoder/2907_2.test.cpp
+      title: test/3_yukicoder/2907_2.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/303.test.cpp
       title: test/3_yukicoder/303.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4742,13 +4760,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc260h.test.cpp
       title: test/5_atcoder/abc260h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc266c.test.cpp
       title: test/5_atcoder/abc266c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc266f.test.cpp
       title: test/5_atcoder/abc266f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc266h.test.cpp
       title: test/5_atcoder/abc266h.test.cpp
     - icon: ':x:'
