@@ -102,30 +102,35 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
-    \u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>&\
-    \ P) {\r\n  vector<int> lower, origin, upper;\r\n  const Point<T> O = {0, 0};\r\
-    \n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\n    elif ((P[i].y\
-    \ < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else upper.eb(i);\r\
-    \n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j]) > 0;\
-    \ });\r\n  concat(lower, origin, upper);\r\n  return lower;\r\n}\r\n\r\n// \u504F\
-    \u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename\
-    \ T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\
-    \n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\n\
-    }\r\n"
-  code: "#pragma once\r\n\r\n#include \"geo/base.hpp\"\r\n\r\n// \u504F\u89D2\u30BD\
-    \u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int>\
-    \ angle_sort(vector<Point<T>>& P) {\r\n  vector<int> lower, origin, upper;\r\n\
-    \  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n    if (P[i] == O) origin.eb(i);\r\
-    \n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x > 0)) lower.eb(i);\r\n    else\
-    \ upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto& i, auto& j) { return P[i].det(P[j])\
-    \ > 0; });\r\n  sort(all(upper), [&](auto& i, auto& j) { return P[i].det(P[j])\
-    \ > 0; });\r\n  concat(lower, origin, upper);\r\n  return lower;\r\n}\r\n\r\n\
-    // \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate\
-    \ <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n  vc<Point<T>>\
-    \ tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n  return angle_sort<T>(tmp);\r\
-    \n}\r\n"
+    \ 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1\r\ntemplate\
+    \ <typename T>\r\nint lower_or_upper(Point<T>& p) {\r\n  if (p.y != 0) return\
+    \ (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0) return -1;\r\n  if (p.x < 0) return 1;\r\
+    \n  return 0;\r\n}\r\n\r\n// -1, 0, 1\r\ntemplate <typename T>\r\nint angle_comp_3(Point<T>&\
+    \ L, Point<T>& R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\n\
+    \  if (a != b) return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if (det >\
+    \ 0) return -1;\r\n  if (det < 0) return 1;\r\n  return 0;\r\n}\r\n// \u504F\u89D2\
+    \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\n\
+    vector<int> angle_sort(vector<Point<T>>& P) {\r\n  vc<int> I(len(P));\r\n  FOR(i,\
+    \ len(P)) I[i] = i;\r\n  sort(all(I), [&](auto& L, auto& R) -> bool { return angle_comp_3(P[L],\
+    \ P[R]) == -1; });\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\
+    \u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
+    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \n  return angle_sort<T>(tmp);\r\n}\r\n"
+  code: "#pragma once\r\n\r\n#include \"geo/base.hpp\"\r\n\r\n// lower: -1, origin:\
+    \ 0, upper: 1\r\ntemplate <typename T>\r\nint lower_or_upper(Point<T>& p) {\r\n\
+    \  if (p.y != 0) return (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0) return -1;\r\n \
+    \ if (p.x < 0) return 1;\r\n  return 0;\r\n}\r\n\r\n// -1, 0, 1\r\ntemplate <typename\
+    \ T>\r\nint angle_comp_3(Point<T>& L, Point<T>& R) {\r\n  int a = lower_or_upper(L),\
+    \ b = lower_or_upper(R);\r\n  if (a != b) return (a < b ? -1 : +1);\r\n  T det\
+    \ = L.det(R);\r\n  if (det > 0) return -1;\r\n  if (det < 0) return 1;\r\n  return\
+    \ 0;\r\n}\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
+    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n \
+    \ vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto&\
+    \ L, auto& R) -> bool { return angle_comp_3(P[L], P[R]) == -1; });\r\n  return\
+    \ I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
+    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n\
+    \  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n\
+    \  return angle_sort<T>(tmp);\r\n}\r\n"
   dependsOn:
   - geo/base.hpp
   isVerificationFile: false
@@ -137,7 +142,7 @@ data:
   - geo/max_norm_sum.hpp
   - geo/minkowski_sum.hpp
   - geo/count_points_in_triangles.hpp
-  timestamp: '2024-09-11 14:08:39+09:00'
+  timestamp: '2024-10-01 03:45:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp

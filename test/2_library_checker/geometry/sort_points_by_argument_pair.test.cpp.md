@@ -250,18 +250,21 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// \u504F\u89D2\
-    \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\n\
-    vector<int> angle_sort(vector<Point<T>>& P) {\r\n  vector<int> lower, origin,\
-    \ upper;\r\n  const Point<T> O = {0, 0};\r\n  FOR(i, len(P)) {\r\n    if (P[i]\
-    \ == O) origin.eb(i);\r\n    elif ((P[i].y < 0) || (P[i].y == 0 && P[i].x > 0))\
-    \ lower.eb(i);\r\n    else upper.eb(i);\r\n  }\r\n  sort(all(lower), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  sort(all(upper), [&](auto&\
-    \ i, auto& j) { return P[i].det(P[j]) > 0; });\r\n  concat(lower, origin, upper);\r\
-    \n  return lower;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\
-    \u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
-    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 6 \"test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
+    \ 2 \"geo/angle_sort.hpp\"\n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// lower:\
+    \ -1, origin: 0, upper: 1\r\ntemplate <typename T>\r\nint lower_or_upper(Point<T>&\
+    \ p) {\r\n  if (p.y != 0) return (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0) return\
+    \ -1;\r\n  if (p.x < 0) return 1;\r\n  return 0;\r\n}\r\n\r\n// -1, 0, 1\r\ntemplate\
+    \ <typename T>\r\nint angle_comp_3(Point<T>& L, Point<T>& R) {\r\n  int a = lower_or_upper(L),\
+    \ b = lower_or_upper(R);\r\n  if (a != b) return (a < b ? -1 : +1);\r\n  T det\
+    \ = L.det(R);\r\n  if (det > 0) return -1;\r\n  if (det < 0) return 1;\r\n  return\
+    \ 0;\r\n}\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
+    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n \
+    \ vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto&\
+    \ L, auto& R) -> bool { return angle_comp_3(P[L], P[R]) == -1; });\r\n  return\
+    \ I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
+    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n\
+    \  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n\
+    \  return angle_sort<T>(tmp);\r\n}\r\n#line 6 \"test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(pi, P, N);\n  auto I = angle_sort(P);\n  P\
     \ = rearrange(P, I);\n  FOR(i, N) print(P[i]);\n}\n\nsigned main() {\n  solve();\n\
     \n  return 0;\n}\n"
@@ -278,7 +281,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-10-01 03:45:22+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
