@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -195,7 +195,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc241h.test.cpp
     title: test/5_atcoder/abc241h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc260h.test.cpp
     title: test/5_atcoder/abc260h.test.cpp
   - icon: ':x:'
