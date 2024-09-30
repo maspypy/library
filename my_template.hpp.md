@@ -1084,6 +1084,9 @@ data:
     path: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/nim_product.test.cpp
+    title: test/2_library_checker/number_theory/nim_product.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/primality_test.test.cpp
     title: test/2_library_checker/number_theory/primality_test.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2649,34 +2652,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc276_g.test.cpp
     title: test/5_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc276_g_2.test.cpp
     title: test/5_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc279b.test.cpp
     title: test/5_atcoder/abc279b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc280f.test.cpp
     title: test/5_atcoder/abc280f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281e.test.cpp
     title: test/5_atcoder/abc281e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281e_2.test.cpp
     title: test/5_atcoder/abc281e_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281g.test.cpp
     title: test/5_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc283f.test.cpp
     title: test/5_atcoder/abc283f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc285g.test.cpp
     title: test/5_atcoder/abc285g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc285h.test.cpp
     title: test/5_atcoder/abc285h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc288ex.test.cpp
     title: test/5_atcoder/abc288ex.test.cpp
   - icon: ':x:'
@@ -3358,6 +3361,7 @@ data:
   - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   - test/2_library_checker/number_theory/kth_root_integer.test.cpp
   - test/2_library_checker/number_theory/gaussian_integers.test.cpp
+  - test/2_library_checker/number_theory/nim_product.test.cpp
   - test/2_library_checker/number_theory/primitive_root.test.cpp
   - test/2_library_checker/number_theory/stern-brocot.test.cpp
   - test/2_library_checker/number_theory/enumerate_quotients2.test.cpp

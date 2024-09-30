@@ -12,6 +12,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/number_theory/nim_product.test.cpp
+    title: test/2_library_checker/number_theory/nim_product.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -118,6 +121,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/nimber.test.cpp
+  - test/2_library_checker/number_theory/nim_product.test.cpp
 documentation_of: nt/nimber/nimber_impl.hpp
 layout: document
 redirect_from:
