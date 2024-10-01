@@ -3,7 +3,7 @@
 #include "other/io.hpp"
 
 #include "mod/modint.hpp"
-#include "nt/nimber.hpp"
+#include "nt/nimber/base.hpp"
 #include "linalg/rank_for_all_column_subset.hpp"
 
 using F = Nimber64;
