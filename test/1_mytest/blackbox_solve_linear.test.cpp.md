@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/solve_linear.hpp
     title: linalg/blackbox/solve_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':heavy_check_mark:'
