@@ -4,7 +4,7 @@
 
 #include "linalg/transpose.hpp"
 #include "mod/modint.hpp"
-#include "nt/nimber.hpp"
+#include "nt/nimber/base.hpp"
 
 using F = Nimber64;
 using V = array<F, 18>;
