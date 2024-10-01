@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/779.test.cpp
     title: test/3_yukicoder/779.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc365a.test.cpp
     title: test/5_atcoder/abc365a.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"datetime/datetime.hpp\"\nstruct DateTime {\n  static constexpr\
@@ -96,7 +96,7 @@ data:
   path: datetime/datetime.hpp
   requiredBy: []
   timestamp: '2023-10-14 01:43:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/datetime.test.cpp
   - test/3_yukicoder/779.test.cpp
