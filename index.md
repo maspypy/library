@@ -251,7 +251,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -278,7 +278,7 @@ data:
     - icon: ':warning:'
       path: ds/incremental_rectangle_union.hpp
       title: ds/incremental_rectangle_union.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/index_compression.hpp
       title: ds/index_compression.hpp
     - icon: ':heavy_check_mark:'
@@ -477,7 +477,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_2d.hpp
       title: ds/segtree/segtree_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -548,7 +548,7 @@ data:
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix/wavelet_matrix.hpp
       title: ds/wavelet_matrix/wavelet_matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -1763,7 +1763,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
     - icon: ':heavy_check_mark:'
@@ -4888,19 +4888,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc319g.test.cpp
       title: test/5_atcoder/abc319g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc321g.test.cpp
       title: test/5_atcoder/abc321g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc324g.test.cpp
       title: test/5_atcoder/abc324g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc324g2.test.cpp
       title: test/5_atcoder/abc324g2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc326g.test.cpp
       title: test/5_atcoder/abc326g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc331g.test.cpp
       title: test/5_atcoder/abc331g.test.cpp
     - icon: ':x:'
