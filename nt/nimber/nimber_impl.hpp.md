@@ -15,6 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/nim_product.test.cpp
     title: test/2_library_checker/number_theory/nim_product.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2907.test.cpp
+    title: test/3_yukicoder/2907.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2907_2.test.cpp
+    title: test/3_yukicoder/2907_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -122,6 +128,8 @@ data:
   verifiedWith:
   - test/1_mytest/nimber.test.cpp
   - test/2_library_checker/number_theory/nim_product.test.cpp
+  - test/3_yukicoder/2907_2.test.cpp
+  - test/3_yukicoder/2907.test.cpp
 documentation_of: nt/nimber/nimber_impl.hpp
 layout: document
 redirect_from:

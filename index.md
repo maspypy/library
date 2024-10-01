@@ -969,7 +969,7 @@ data:
     - icon: ':warning:'
       path: graph/blackbox/bfs.hpp
       title: graph/blackbox/bfs.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/blackbox/complement_graph_bfs.hpp
       title: graph/blackbox/complement_graph_bfs.hpp
     - icon: ':warning:'
@@ -1230,7 +1230,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: linalg/matrix_rank.hpp
       title: linalg/matrix_rank.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: linalg/rank_for_all_column_subset.hpp
       title: linalg/rank_for_all_column_subset.hpp
     - icon: ':heavy_check_mark:'
@@ -4266,10 +4266,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2897.test.cpp
       title: test/3_yukicoder/2897.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2907.test.cpp
       title: test/3_yukicoder/2907.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2907_2.test.cpp
       title: test/3_yukicoder/2907_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4879,13 +4879,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc318b.test.cpp
       title: test/5_atcoder/abc318b.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc318g.test.cpp
       title: test/5_atcoder/abc318g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc318h.test.cpp
       title: test/5_atcoder/abc318h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc319g.test.cpp
       title: test/5_atcoder/abc319g.test.cpp
     - icon: ':x:'
