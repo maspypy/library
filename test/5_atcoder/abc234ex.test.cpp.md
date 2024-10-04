@@ -216,49 +216,48 @@ data:
     \u3089 O(logN)\n  // N = Q = 10^5 \u3067\u3001\u7D04 1 \u79D2\n  // T \u306F\u5EA7\
     \u6A19\u306E 2 \u4E57\u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\
     \u3044\u3082\u306E\u3092\u4F7F\u3046\u3002XY=int, T=long \u306A\u3069\u3002\n\
-    \  template <typename T>\n  int nearest_neighbor_search(XY x, XY y) {\n    if\
-    \ (n == 0) return -1;\n    pair<int, T> res = {-1, -1};\n    nns_rec(1, x, y,\
-    \ res);\n    return res.fi;\n  }\n\nprivate:\n  void build(int idx, vc<XY> xs,\
-    \ vc<XY> ys, vc<int> vs, bool divx = true) {\n    int n = len(xs);\n    auto&\
-    \ [xmin, xmax, ymin, ymax] = closed_range[idx];\n    xmin = ymin = infty<XY>;\n\
+    \  // return \u3059\u308B\u306E\u306F index\n  template <typename T>\n  int nearest_neighbor_search(XY\
+    \ x, XY y) {\n    if (n == 0) return -1;\n    pair<int, T> res = {-1, -1};\n \
+    \   nns_rec(1, x, y, res);\n    return res.fi;\n  }\n\nprivate:\n  void build(int\
+    \ idx, vc<XY> xs, vc<XY> ys, vc<int> vs, bool divx = true) {\n    int n = len(xs);\n\
+    \    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\n    xmin = ymin = infty<XY>;\n\
     \    xmax = ymax = -infty<XY>;\n\n    FOR(i, n) {\n      auto x = xs[i], y = ys[i];\n\
     \      chmin(xmin, x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\n    }\n\
     \    if (n == 1) {\n      dat[idx] = vs[0];\n      return;\n    }\n\n    int m\
     \ = n / 2;\n    vc<int> I(n);\n    iota(all(I), 0);\n    if (divx) {\n      nth_element(I.begin(),\
-    \ I.begin() + m, I.end(),\n                  [xs](int i, int j) { return xs[i]\
-    \ < xs[j]; });\n    } else {\n      nth_element(I.begin(), I.begin() + m, I.end(),\n\
-    \                  [ys](int i, int j) { return ys[i] < ys[j]; });\n    }\n   \
-    \ xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs, I);\n    build(2\
-    \ * idx + 0, {xs.begin(), xs.begin() + m},\n          {ys.begin(), ys.begin()\
-    \ + m}, {vs.begin(), vs.begin() + m}, !divx);\n    build(2 * idx + 1, {xs.begin()\
-    \ + m, xs.end()}, {ys.begin() + m, ys.end()},\n          {vs.begin() + m, vs.end()},\
-    \ !divx);\n  }\n\n  void rect_rec(int i, XY x1, XY x2, XY y1, XY y2, vc<int>&\
-    \ res, int ms) {\n    if (len(res) == ms) return;\n    auto& [xmin, xmax, ymin,\
-    \ ymax] = closed_range[i];\n    if (x2 <= xmin || xmax < x1) return;\n    if (y2\
-    \ <= ymin || ymax < y1) return;\n    if (dat[i] != -1) {\n      res.eb(dat[i]);\n\
-    \      return;\n    }\n    rect_rec(2 * i + 0, x1, x2, y1, y2, res, ms);\n   \
-    \ rect_rec(2 * i + 1, x1, x2, y1, y2, res, ms);\n  }\n\n  template <typename T>\n\
-    \  T best_dist_squared(int i, XY x, XY y) {\n    auto& [xmin, xmax, ymin, ymax]\
-    \ = closed_range[i];\n    T dx = x - clamp(x, xmin, xmax);\n    T dy = y - clamp(y,\
-    \ ymin, ymax);\n    return dx * dx + dy * dy;\n  }\n\n  template <typename T>\n\
-    \  void nns_rec(int i, XY x, XY y, pair<int, T>& res) {\n    T d = best_dist_squared<T>(i,\
-    \ x, y);\n    if (res.fi != -1 && d >= res.se) return;\n    if (dat[i] != -1)\
-    \ {\n      res = {dat[i], d};\n      return;\n    }\n    T d0 = best_dist_squared<T>(2\
-    \ * i + 0, x, y);\n    T d1 = best_dist_squared<T>(2 * i + 1, x, y);\n    if (d0\
-    \ < d1) {\n      nns_rec(2 * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);\n\
-    \    } else {\n      nns_rec(2 * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);\n\
-    \    }\n  }\n};\n#line 6 \"test/5_atcoder/abc234ex.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N, K);\n  vc<int> X(N), Y(N);\n  FOR(i, N) {\n    INT(a, b);\n    X[i]\
-    \ = a, Y[i] = b;\n  }\n  KDTree<int> KDT(X, Y);\n\n  int x_min = MIN(X);\n  int\
-    \ x_max = MAX(X);\n  int y_min = MIN(Y);\n  int y_max = MAX(Y);\n\n  vc<pair<int,\
-    \ int>> ANS;\n  FOR(i, N) {\n    ll a = X[i] - K, b = X[i] + K + 1, c = Y[i] -\
-    \ K, d = Y[i] + K + 1;\n    chmax(a, x_min), chmin(b, x_max + 1);\n    chmax(c,\
-    \ y_min), chmin(d, y_max + 1);\n    vc<int> I = KDT.collect_rect(a, b, c, d);\n\
-    \    sort(all(I));\n    for (auto&& j: I) {\n      if (i >= j) continue;\n   \
-    \   ll dx = X[i] - X[j], dy = Y[i] - Y[j];\n      if (dx * dx + dy * dy <= K *\
-    \ K) { ANS.eb(i, j); }\n    }\n  }\n  print(len(ANS));\n  for (auto&& [i, j]:\
-    \ ANS) print(1 + i, 1 + j);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
-    }\n"
+    \ I.begin() + m, I.end(), [xs](int i, int j) { return xs[i] < xs[j]; });\n   \
+    \ } else {\n      nth_element(I.begin(), I.begin() + m, I.end(), [ys](int i, int\
+    \ j) { return ys[i] < ys[j]; });\n    }\n    xs = rearrange(xs, I), ys = rearrange(ys,\
+    \ I), vs = rearrange(vs, I);\n    build(2 * idx + 0, {xs.begin(), xs.begin() +\
+    \ m}, {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);\n  \
+    \  build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},\
+    \ {vs.begin() + m, vs.end()}, !divx);\n  }\n\n  void rect_rec(int i, XY x1, XY\
+    \ x2, XY y1, XY y2, vc<int>& res, int ms) {\n    if (len(res) == ms) return;\n\
+    \    auto& [xmin, xmax, ymin, ymax] = closed_range[i];\n    if (x2 <= xmin ||\
+    \ xmax < x1) return;\n    if (y2 <= ymin || ymax < y1) return;\n    if (dat[i]\
+    \ != -1) {\n      res.eb(dat[i]);\n      return;\n    }\n    rect_rec(2 * i +\
+    \ 0, x1, x2, y1, y2, res, ms);\n    rect_rec(2 * i + 1, x1, x2, y1, y2, res, ms);\n\
+    \  }\n\n  template <typename T>\n  T best_dist_squared(int i, XY x, XY y) {\n\
+    \    auto& [xmin, xmax, ymin, ymax] = closed_range[i];\n    T dx = x - clamp(x,\
+    \ xmin, xmax);\n    T dy = y - clamp(y, ymin, ymax);\n    return dx * dx + dy\
+    \ * dy;\n  }\n\n  template <typename T>\n  void nns_rec(int i, XY x, XY y, pair<int,\
+    \ T>& res) {\n    T d = best_dist_squared<T>(i, x, y);\n    if (res.fi != -1 &&\
+    \ d >= res.se) return;\n    if (dat[i] != -1) {\n      res = {dat[i], d};\n  \
+    \    return;\n    }\n    T d0 = best_dist_squared<T>(2 * i + 0, x, y);\n    T\
+    \ d1 = best_dist_squared<T>(2 * i + 1, x, y);\n    if (d0 < d1) {\n      nns_rec(2\
+    \ * i + 0, x, y, res), nns_rec(2 * i + 1, x, y, res);\n    } else {\n      nns_rec(2\
+    \ * i + 1, x, y, res), nns_rec(2 * i + 0, x, y, res);\n    }\n  }\n};\n#line 6\
+    \ \"test/5_atcoder/abc234ex.test.cpp\"\n\nvoid solve() {\n  LL(N, K);\n  vc<int>\
+    \ X(N), Y(N);\n  FOR(i, N) {\n    INT(a, b);\n    X[i] = a, Y[i] = b;\n  }\n \
+    \ KDTree<int> KDT(X, Y);\n\n  int x_min = MIN(X);\n  int x_max = MAX(X);\n  int\
+    \ y_min = MIN(Y);\n  int y_max = MAX(Y);\n\n  vc<pair<int, int>> ANS;\n  FOR(i,\
+    \ N) {\n    ll a = X[i] - K, b = X[i] + K + 1, c = Y[i] - K, d = Y[i] + K + 1;\n\
+    \    chmax(a, x_min), chmin(b, x_max + 1);\n    chmax(c, y_min), chmin(d, y_max\
+    \ + 1);\n    vc<int> I = KDT.collect_rect(a, b, c, d);\n    sort(all(I));\n  \
+    \  for (auto&& j: I) {\n      if (i >= j) continue;\n      ll dx = X[i] - X[j],\
+    \ dy = Y[i] - Y[j];\n      if (dx * dx + dy * dy <= K * K) { ANS.eb(i, j); }\n\
+    \    }\n  }\n  print(len(ANS));\n  for (auto&& [i, j]: ANS) print(1 + i, 1 + j);\n\
+    }\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc234/tasks/abc234_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/kdtree/kdtree.hpp\"\
     \n\nvoid solve() {\n  LL(N, K);\n  vc<int> X(N), Y(N);\n  FOR(i, N) {\n    INT(a,\
@@ -279,7 +278,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc234ex.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-10-04 16:36:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc234ex.test.cpp
