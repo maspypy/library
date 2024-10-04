@@ -28,6 +28,7 @@ struct KDTree {
   // 計算量保証なし、点群がランダムなら O(logN)
   // N = Q = 10^5 で、約 1 秒
   // T は座標の 2 乗がオーバーフローしないものを使う。XY=int, T=long など。
+  // return するのは index
   template <typename T>
   int nearest_neighbor_search(XY x, XY y) {
     if (n == 0) return -1;
@@ -56,17 +57,13 @@ private:
     vc<int> I(n);
     iota(all(I), 0);
     if (divx) {
-      nth_element(I.begin(), I.begin() + m, I.end(),
-                  [xs](int i, int j) { return xs[i] < xs[j]; });
+      nth_element(I.begin(), I.begin() + m, I.end(), [xs](int i, int j) { return xs[i] < xs[j]; });
     } else {
-      nth_element(I.begin(), I.begin() + m, I.end(),
-                  [ys](int i, int j) { return ys[i] < ys[j]; });
+      nth_element(I.begin(), I.begin() + m, I.end(), [ys](int i, int j) { return ys[i] < ys[j]; });
     }
     xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs, I);
-    build(2 * idx + 0, {xs.begin(), xs.begin() + m},
-          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);
-    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},
-          {vs.begin() + m, vs.end()}, !divx);
+    build(2 * idx + 0, {xs.begin(), xs.begin() + m}, {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);
+    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()}, {vs.begin() + m, vs.end()}, !divx);
   }
 
   void rect_rec(int i, XY x1, XY x2, XY y1, XY y2, vc<int>& res, int ms) {
