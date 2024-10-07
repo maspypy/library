@@ -183,6 +183,9 @@ data:
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/multipoint_evaluation_for_prefix_product.hpp
+    title: poly/multipoint_evaluation_for_prefix_product.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -272,7 +275,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -387,6 +390,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
@@ -903,7 +909,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc133f.test.cpp
     title: test/5_atcoder/arc133f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
   - icon: ':x:'
@@ -984,6 +990,7 @@ data:
   - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/coef_of_rational_fps_2d.hpp
+  - poly/multipoint_evaluation_for_prefix_product.hpp
   - poly/poly_mod_pow.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/slice_rational_fps.hpp
@@ -1086,6 +1093,7 @@ data:
   - test/1_mytest/count_labeled_strong.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/conv2d.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp

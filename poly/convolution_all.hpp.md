@@ -36,12 +36,18 @@ data:
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/multipoint_evaluation_for_prefix_product.hpp
+    title: poly/multipoint_evaluation_for_prefix_product.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convolution_all_1.test.cpp
     title: test/1_mytest/convolution_all_1.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
@@ -459,6 +465,7 @@ data:
   isVerificationFile: false
   path: poly/convolution_all.hpp
   requiredBy:
+  - poly/multipoint_evaluation_for_prefix_product.hpp
   - graph/tree_walk_generating_function.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2024-08-28 00:31:16+09:00'
@@ -467,6 +474,7 @@ data:
   - test/1_mytest/convolution_all_1.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/1392.test.cpp

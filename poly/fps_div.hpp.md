@@ -69,6 +69,9 @@ data:
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/multipoint_evaluation_for_prefix_product.hpp
+    title: poly/multipoint_evaluation_for_prefix_product.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':heavy_check_mark:'
@@ -126,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/faulhaber.test.cpp
     title: test/1_mytest/faulhaber.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
@@ -638,6 +644,7 @@ data:
   - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/coef_of_rational_fps_2d.hpp
+  - poly/multipoint_evaluation_for_prefix_product.hpp
   - poly/slice_rational_fps.hpp
   - graph/chromatic.hpp
   - graph/count/count_labeled_biconnected.hpp
@@ -664,6 +671,7 @@ data:
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/number_theory/bernoulli.test.cpp

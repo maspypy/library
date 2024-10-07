@@ -382,6 +382,9 @@ data:
     path: test/1_mytest/mod_sum_of_linear.test.cpp
     title: test/1_mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1085,6 +1088,7 @@ data:
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/max_assign.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/digit_sum.test.cpp
   - test/1_mytest/enum_partitions.test.cpp

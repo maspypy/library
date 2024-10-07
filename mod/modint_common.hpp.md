@@ -201,6 +201,9 @@ data:
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
+    path: poly/multipoint_evaluation_for_prefix_product.hpp
+    title: poly/multipoint_evaluation_for_prefix_product.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution.hpp
     title: poly/multivar_convolution.hpp
   - icon: ':heavy_check_mark:'
@@ -323,7 +326,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -490,6 +493,9 @@ data:
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
   - icon: ':heavy_check_mark:'
@@ -513,6 +519,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
+    title: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
@@ -1443,7 +1452,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc144d.test.cpp
     title: test/5_atcoder/arc144d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
   - icon: ':x:'
@@ -1590,6 +1599,7 @@ data:
   - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
   - poly/coef_of_rational_fps_2d.hpp
+  - poly/multipoint_evaluation_for_prefix_product.hpp
   - poly/poly_mod_pow.hpp
   - poly/product_of_f_rk_x.hpp
   - poly/slice_rational_fps.hpp
@@ -1688,6 +1698,7 @@ data:
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/power_projection.test.cpp
   - test/1_mytest/bigint.test.cpp
@@ -1730,6 +1741,7 @@ data:
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/conv2d.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/2_library_checker/unionfind_with_potential.test.cpp

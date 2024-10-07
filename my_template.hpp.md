@@ -349,6 +349,9 @@ data:
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
@@ -393,6 +396,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
+    title: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
@@ -2841,16 +2847,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc144d.test.cpp
     title: test/5_atcoder/arc144d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153b.test.cpp
     title: test/5_atcoder/arc153b.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153b2.test.cpp
     title: test/5_atcoder/arc153b2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
   - icon: ':x:'
@@ -3134,6 +3140,7 @@ data:
   - test/1_mytest/is_substring.test.cpp
   - test/1_mytest/nth_element_from_sorted_lists.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
+  - test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   - test/1_mytest/add_chmin_chmax.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/floor_ceil_ranges.test.cpp
@@ -3233,6 +3240,7 @@ data:
   - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/conv2d.test.cpp
   - test/1_mytest/max_assign.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/digit_sum.test.cpp

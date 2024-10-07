@@ -31,8 +31,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: poly/multipoint_evaluation_for_prefix_product.hpp
+    title: poly/multipoint_evaluation_for_prefix_product.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
@@ -415,11 +421,13 @@ data:
   - poly/middle_product.hpp
   isVerificationFile: false
   path: poly/typical_divide_conquer.hpp
-  requiredBy: []
+  requiredBy:
+  - poly/multipoint_evaluation_for_prefix_product.hpp
   timestamp: '2024-08-28 00:31:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/typical_dc.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/5_atcoder/abc333f.test.cpp
 documentation_of: poly/typical_divide_conquer.hpp
 layout: document

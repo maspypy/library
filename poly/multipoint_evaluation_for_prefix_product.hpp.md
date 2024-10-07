@@ -1,15 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: linalg/characteristic_poly.hpp
-    title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/matrix_inv.hpp
-    title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
-    path: linalg/matrix_mul.hpp
-    title: linalg/matrix_mul.hpp
   - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
@@ -22,15 +13,12 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/powertable.hpp
-    title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
-    path: nt/primetable.hpp
-    title: nt/primetable.hpp
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
+  - icon: ':question:'
+    path: poly/convolution_all.hpp
+    title: poly/convolution_all.hpp
   - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
@@ -38,38 +26,43 @@ data:
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':question:'
+    path: poly/count_terms.hpp
+    title: poly/count_terms.hpp
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
   - icon: ':question:'
+    path: poly/fps_div.hpp
+    title: poly/fps_div.hpp
+  - icon: ':question:'
+    path: poly/fps_inv.hpp
+    title: poly/fps_inv.hpp
+  - icon: ':heavy_check_mark:'
+    path: poly/middle_product.hpp
+    title: poly/middle_product.hpp
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
+  - icon: ':question:'
+    path: poly/ntt_doubling.hpp
+    title: poly/ntt_doubling.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/poly_taylor_shift.hpp
-    title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
-    path: random/base.hpp
-    title: random/base.hpp
+    path: poly/typical_divide_conquer.hpp
+    title: poly/typical_divide_conquer.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1303.test.cpp
-    title: test/3_yukicoder/1303.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1907.test.cpp
-    title: test/3_yukicoder/1907.test.cpp
+    path: test/1_mytest/multipoint_prefix.test.cpp
+    title: test/1_mytest/multipoint_prefix.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
-    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
-    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
-    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+  bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
+    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -140,112 +133,27 @@ data:
     \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
     \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 3 \"linalg/matrix_mul.hpp\"\n\r\n\
-    template <class T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\n\
-    vc<vc<T>> matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n\
-    \                     int N2 = -1, int N3 = -1) {\r\n  if (N1 == -1) { N1 = len(A),\
-    \ N2 = len(B), N3 = len(B[0]); }\r\n  vv(u32, b, N3, N2);\r\n  FOR(i, N2) FOR(j,\
-    \ N3) b[j][i] = B[i][j].val;\r\n  vv(T, C, N1, N3);\r\n\r\n  if ((T::get_mod()\
-    \ < (1 << 30)) && N2 <= 16) {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u64 sm =\
-    \ 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] =\
-    \ sm;\r\n    }\r\n  } else {\r\n    FOR(i, N1) FOR(j, N3) {\r\n      u128 sm =\
-    \ 0;\r\n      FOR(m, N2) sm += u64(A[i][m].val) * b[j][m];\r\n      C[i][j] =\
-    \ T::raw(sm % (T::get_mod()));\r\n    }\r\n  }\r\n  return C;\r\n}\r\n\r\ntemplate\
-    \ <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\nvc<vc<T>>\
-    \ matrix_mul(const vc<vc<T>>& A, const vc<vc<T>>& B, int N1 = -1,\r\n        \
-    \             int N2 = -1, int N3 = -1) {\r\n  if (N1 == -1) { N1 = len(A), N2\
-    \ = len(B), N3 = len(B[0]); }\r\n  vv(T, b, N2, N3);\r\n  FOR(i, N2) FOR(j, N3)\
-    \ b[j][i] = B[i][j];\r\n  vv(T, C, N1, N3);\r\n  FOR(n, N1) FOR(m, N2) FOR(k,\
-    \ N3) C[n][k] += A[n][m] * b[k][m];\r\n  return C;\r\n}\r\n\r\n// square-matrix\
-    \ defined as array\r\ntemplate <class T, int N,\r\n          typename enable_if<has_mod<T>::value>::type*\
-    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
-    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
-    \  array<array<T, N>, N> C{};\r\n\r\n  if ((T::get_mod() < (1 << 30)) && N <=\
-    \ 16) {\r\n    FOR(i, N) FOR(k, N) {\r\n      u64 sm = 0;\r\n      FOR(j, N) sm\
-    \ += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\n    }\r\n  }\
-    \ else {\r\n    FOR(i, N) FOR(k, N) {\r\n      u128 sm = 0;\r\n      FOR(j, N)\
-    \ sm += u64(A[i][j].val) * (B[j][k].val);\r\n      C[i][k] = sm;\r\n    }\r\n\
-    \  }\r\n  return C;\r\n}\r\n\r\n// square-matrix defined as array\r\ntemplate\
-    \ <class T, int N,\r\n          typename enable_if<!has_mod<T>::value>::type*\
-    \ = nullptr>\r\narray<array<T, N>, N> matrix_mul(const array<array<T, N>, N>&\
-    \ A,\r\n                                 const array<array<T, N>, N>& B) {\r\n\
-    \  array<array<T, N>, N> C{};\r\n  FOR(i, N) FOR(j, N) FOR(k, N) C[i][k] += A[i][j]\
-    \ * B[j][k];\r\n  return C;\r\n}\r\n#line 1 \"linalg/matrix_inv.hpp\"\n// (det,\
-    \ invA) \u3092\u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T, vc<vc<T>>>\
-    \ matrix_inv(vc<vc<T>> A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n  vv(T, B,\
-    \ N, N);\r\n  FOR(n, N) B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i]\
-    \ != 0) {\r\n      if (k != i) {\r\n        swap(A[i], A[k]), swap(B[i], B[k]);\r\
-    \n        det = -det;\r\n      }\r\n      break;\r\n    }\r\n    if (A[i][i] ==\
-    \ 0) return {T(0), {}};\r\n    T c = T(1) / A[i][i];\r\n    det *= A[i][i];\r\n\
-    \    FOR(j, i, N) A[i][j] *= c;\r\n    FOR(j, N) B[i][j] *= c;\r\n    FOR(k, N)\
-    \ if (i != k) {\r\n      T c = A[k][i];\r\n      FOR(j, i, N) A[k][j] -= A[i][j]\
-    \ * c;\r\n      FOR(j, N) B[k][j] -= B[i][j] * c;\r\n    }\r\n  }\r\n  return\
-    \ {det, B};\r\n}\r\n#line 1 \"linalg/characteristic_poly.hpp\"\ntemplate <typename\
-    \ T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\n  P^{-1}AP \u306E\
-    \u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\u306B\u5909\u5F62\u3059\
-    \u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\u8A08\u7B97\u306B\u7528\
-    \u3044\u308B\u3053\u3068\u304C\u3067\u304D\u308B\u3002\r\n  */\r\n  int n = len(A);\r\
-    \n  FOR(k, n - 2) {\r\n    FOR3(i, k + 1, n) if (A[i][k] != 0) {\r\n      if (i\
-    \ != k + 1) {\r\n        swap(A[i], A[k + 1]);\r\n        FOR(j, n) swap(A[j][i],\
-    \ A[j][k + 1]);\r\n      }\r\n      break;\r\n    }\r\n    if (A[k + 1][k] ==\
-    \ 0) continue;\r\n    FOR3(i, k + 2, n) {\r\n      T c = A[i][k] / A[k + 1][k];\r\
-    \n      // i \u884C\u76EE -= k+1 \u884C\u76EE * c\r\n      FOR(j, n) A[i][j] -=\
-    \ A[k + 1][j] * c;\r\n      // k+1 \u5217\u76EE += i \u5217\u76EE * c\r\n    \
-    \  FOR(j, n) A[j][k + 1] += A[j][i] * c;\r\n    }\r\n  }\r\n}\r\n\r\n// det(xI-A)\r\
-    \ntemplate <typename T>\r\nvc<T> characteristic_poly(vc<vc<T>> A) {\r\n  /*\r\n\
-    \  \u30FBHessenberg \u884C\u5217\u306B\u5909\u5F62\r\n  \u30FBHessenberg \u884C\
-    \u5217\u306E\u884C\u5217\u5F0F\u306F\u3001\u6700\u5F8C\u306E\u5217\u3067\u5834\
-    \u5408\u5206\u3051\u3059\u308C\u3070 dp \u3067\u304D\u308B\r\n  */\r\n  int n\
-    \ = len(A);\r\n  to_Hessenberg_matrix(A);\r\n  vc<vc<T>> DP(n + 1);\r\n  DP[0]\
-    \ = {1};\r\n  FOR(k, n) {\r\n    DP[k + 1].resize(k + 2);\r\n    auto& dp = DP[k\
-    \ + 1];\r\n    // (k, k) \u6210\u5206\u3092\u4F7F\u3046\u5834\u5408\r\n    FOR(i,\
-    \ len(DP[k])) dp[i + 1] += DP[k][i];\r\n    FOR(i, len(DP[k])) dp[i] -= DP[k][i]\
-    \ * A[k][k];\r\n    // \u4E0B\u5074\u5BFE\u89D2\u306E\u7DCF\u7A4D\u3092\u7BA1\u7406\
-    \r\n    T prod = 1;\r\n    FOR_R(i, k) {\r\n      // (i, k) \u6210\u5206\u3092\
-    \u4F7F\u3046\u5834\u5408\r\n      prod *= A[i + 1][i];\r\n      T c = prod * A[i][k];\r\
-    \n      // DP[i] \u306E c \u500D\u3092\u52A0\u7B97\r\n      FOR(j, len(DP[i]))\
-    \ dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\n}\r\n#line 2 \"\
-    poly/poly_taylor_shift.hpp\"\n\r\n#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename\
-    \ T = int>\nvc<T> primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static\
-    \ int done = 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM)\
-    \ {\n    done = LIM;\n\n    primes = {2}, sieve.assign(S + 1, 0);\n    const int\
-    \ R = LIM / 2;\n    primes.reserve(int(LIM / log(LIM) * 1.1));\n    vc<pair<int,\
-    \ int>> cp;\n    for (int i = 3; i <= S; i += 2) {\n      if (!sieve[i]) {\n \
-    \       cp.eb(i, i * i / 2);\n        for (int j = i * i; j <= S; j += 2 * i)\
-    \ sieve[j] = 1;\n      }\n    }\n    for (int L = 1; L <= R; L += S) {\n     \
-    \ array<bool, S> block{};\n      for (auto& [p, idx]: cp)\n        for (int i\
-    \ = idx; i < S + L; idx = (i += p)) block[i - L] = 1;\n      FOR(i, min(S, R -\
-    \ L)) if (!block[i]) primes.eb((L + i) * 2 + 1);\n    }\n  }\n  int k = LB(primes,\
-    \ LIM + 1);\n  return {primes.begin(), primes.begin() + k};\n}\n#line 3 \"mod/powertable.hpp\"\
-    \n\r\n// a^0, ..., a^N\r\ntemplate <typename mint>\r\nvc<mint> powertable_1(mint\
-    \ a, ll N) {\r\n  // table of a^i\r\n  vc<mint> f(N + 1, 1);\r\n  FOR(i, N) f[i\
-    \ + 1] = a * f[i];\r\n  return f;\r\n}\r\n\r\n// 0^e, ..., N^e\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> powertable_2(ll e, ll N) {\r\n  auto primes = primetable(N);\r\
-    \n  vc<mint> f(N + 1, 1);\r\n  f[0] = mint(0).pow(e);\r\n  for (auto&& p: primes)\
-    \ {\r\n    if (p > N) break;\r\n    mint xp = mint(p).pow(e);\r\n    ll pp = p;\r\
-    \n    while (pp <= N) {\r\n      ll i = pp;\r\n      while (i <= N) {\r\n    \
-    \    f[i] *= xp;\r\n        i += pp;\r\n      }\r\n      pp *= p;\r\n    }\r\n\
-    \  }\r\n  return f;\r\n}\r\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\
-    \u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\
-    \u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0\
-    \ \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0)\
-    \ return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val += mod;\r\
-    \n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n    t = a /\
-    \ b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u\
-    \ += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/crt3.hpp\"\n\nconstexpr u32 mod_pow_constexpr(u64\
-    \ a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n  FOR(32) {\n    if (n &\
-    \ 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n  }\n  return res;\n\
-    }\n\ntemplate <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0, u64 a1) {\n  static_assert(p0\
-    \ < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0, p1 - 2, p1);\n \
-    \ u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n}\n\ntemplate <typename\
-    \ T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64 a2) {\n  static_assert(p0\
-    \ < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2,\
-    \ p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 -\
-    \ 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0 + p1)\
-    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
-    \ p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32 p0,\
-    \ u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3, u64\
-    \ a4) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static\
+    using modint998 = modint<998244353>;\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long\
+    \ \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\
+    \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\
+    \u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod\
+    \ == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val\
+    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
+    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
+    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/crt3.hpp\"\n\nconstexpr\
+    \ u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n\
+    \  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n\
+    \  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0,\
+    \ u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n\
+    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64\
+    \ a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0\
+    \ + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) *\
+    \ x2 % p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32\
+    \ p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3,\
+    \ u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static\
     \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
     \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
     \ x3\n      = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static\
@@ -426,62 +334,194 @@ data:
     \ || !m) return {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return\
     \ convolution_karatsuba<mint>(a, b);\r\n    return convolution_ntt(a, b);\r\n\
     \  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\r\n\
-    \  return convolution_garner(a, b);\r\n}\r\n#line 5 \"poly/poly_taylor_shift.hpp\"\
-    \n\r\n// f(x) -> f(x+c)\r\ntemplate <typename mint>\r\nvc<mint> poly_taylor_shift(vc<mint>\
-    \ f, mint c) {\r\n  if (c == mint(0)) return f;\r\n  ll N = len(f);\r\n  FOR(i,\
-    \ N) f[i] *= fact<mint>(i);\r\n  auto b = powertable_1<mint>(c, N);\r\n  FOR(i,\
-    \ N) b[i] *= fact_inv<mint>(i);\r\n  reverse(all(f));\r\n  f = convolution(f,\
-    \ b);\r\n  f.resize(N);\r\n  reverse(all(f));\r\n  FOR(i, N) f[i] *= fact_inv<mint>(i);\r\
-    \n  return f;\r\n}\r\n#line 6 \"linalg/det_A_plus_xB.hpp\"\n\n// O(N^3) time\n\
-    // det(A + xB) = f(x) \u3068\u306A\u308B N \u6B21\u591A\u9805\u5F0F f \u3092\u8FD4\
-    \u3059\n// \u78BA\u7387 N / mod \u3067\u6B63\u3057\u304F\u89E3\u3051\u308B\ntemplate\
-    \ <typename mint>\nvc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint> B) {\n  int N\
-    \ = len(A);\n  vc<mint> f(N + 1);\n  mint a = RNG(mint::get_mod());\n  FOR(i,\
-    \ N) FOR(j, N) A[i][j] += a * B[i][j];\n  auto [det_A, inv_A] = matrix_inv(A);\n\
-    \  if (det_A == 0) { return f; }\n  B = matrix_mul(B, inv_A);\n  FOR(i, N) FOR(j,\
-    \ N) B[i][j] = -B[i][j];\n  f = characteristic_poly(B);\n  reverse(all(f));\n\
-    \  for (auto&& x: f) x *= det_A;\n  f = poly_taylor_shift(f, -a);\n  return f;\n\
-    }\n"
-  code: "#include \"random/base.hpp\"\n#include \"linalg/matrix_mul.hpp\"\n#include\
-    \ \"linalg/matrix_inv.hpp\"\n#include \"linalg/characteristic_poly.hpp\"\n#include\
-    \ \"poly/poly_taylor_shift.hpp\"\n\n// O(N^3) time\n// det(A + xB) = f(x) \u3068\
-    \u306A\u308B N \u6B21\u591A\u9805\u5F0F f \u3092\u8FD4\u3059\n// \u78BA\u7387\
-    \ N / mod \u3067\u6B63\u3057\u304F\u89E3\u3051\u308B\ntemplate <typename mint>\n\
-    vc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint> B) {\n  int N = len(A);\n  vc<mint>\
-    \ f(N + 1);\n  mint a = RNG(mint::get_mod());\n  FOR(i, N) FOR(j, N) A[i][j] +=\
-    \ a * B[i][j];\n  auto [det_A, inv_A] = matrix_inv(A);\n  if (det_A == 0) { return\
-    \ f; }\n  B = matrix_mul(B, inv_A);\n  FOR(i, N) FOR(j, N) B[i][j] = -B[i][j];\n\
-    \  f = characteristic_poly(B);\n  reverse(all(f));\n  for (auto&& x: f) x *= det_A;\n\
-    \  f = poly_taylor_shift(f, -a);\n  return f;\n}"
+    \  return convolution_garner(a, b);\r\n}\r\n#line 2 \"poly/middle_product.hpp\"\
+    \n\n#line 6 \"poly/middle_product.hpp\"\n\n// n, m \u6B21\u591A\u9805\u5F0F (n>=m)\
+    \ a, b \u2192 n-m \u6B21\u591A\u9805\u5F0F c\n// c[i] = sum_j b[j]a[i+j]\ntemplate\
+    \ <typename mint>\nvc<mint> middle_product(vc<mint>& a, vc<mint>& b) {\n  assert(len(a)\
+    \ >= len(b));\n  if (b.empty()) return vc<mint>(len(a) - len(b) + 1);\n  if (min(len(b),\
+    \ len(a) - len(b) + 1) <= 60) {\n    return middle_product_naive(a, b);\n  }\n\
+    \  if (!(mint::can_ntt())) {\n    return middle_product_garner(a, b);\n  } else\
+    \ {\n    int n = 1 << __lg(2 * len(a) - 1);\n    vc<mint> fa(n), fb(n);\n    copy(a.begin(),\
+    \ a.end(), fa.begin());\n    copy(b.rbegin(), b.rend(), fb.begin());\n    ntt(fa,\
+    \ 0), ntt(fb, 0);\n    FOR(i, n) fa[i] *= fb[i];\n    ntt(fa, 1);\n    fa.resize(len(a));\n\
+    \    fa.erase(fa.begin(), fa.begin() + len(b) - 1);\n    return fa;\n  }\n}\n\n\
+    template <typename mint>\nvc<mint> middle_product_garner(vc<mint>& a, vc<mint>\
+    \ b) {\n  int n = len(a), m = len(b);\n  if (!n || !m) return {};\n  static constexpr\
+    \ int p0 = 167772161;\n  static constexpr int p1 = 469762049;\n  static constexpr\
+    \ int p2 = 754974721;\n  using mint0 = modint<p0>;\n  using mint1 = modint<p1>;\n\
+    \  using mint2 = modint<p2>;\n  vc<mint0> a0(n), b0(m);\n  vc<mint1> a1(n), b1(m);\n\
+    \  vc<mint2> a2(n), b2(m);\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i]\
+    \ = a[i].val;\n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\n\
+    \  auto c0 = middle_product<mint0>(a0, b0);\n  auto c1 = middle_product<mint1>(a1,\
+    \ b1);\n  auto c2 = middle_product<mint2>(a2, b2);\n  vc<mint> c(len(c0));\n \
+    \ FOR(i, n - m + 1) {\n    c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val,\
+    \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
+    \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
+    \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 3 \"poly/typical_divide_conquer.hpp\"\
+    \n\n// given polynomial L_i, R_i, f.\n// For each i, calculate [x^n]f(x)L(x)R(x)\n\
+    // L(x) = prod_{j<i}L_j(x)\n// R(x) = prod_{i<j}R_j(x)\n// set \u3057\u306A\u304B\
+    \u3063\u305F L_i, R_i \u306B\u306F 1 \u304C\u5165\u308B\ntemplate <typename mint>\n\
+    struct Typical_Divide_Conquer {\n  int N;\n  using poly = vc<mint>;\n  vc<poly>\
+    \ A;\n  vc<poly> B;\n\n  Typical_Divide_Conquer(int N) : N(N), A(N), B(N) {}\n\
+    \n  void set_L(int i, poly f) {\n    assert(0 <= i && i < N - 1);\n    A[i] =\
+    \ f;\n  }\n  void set_R(int i, poly f) {\n    assert(1 <= i && i < N);\n    B[i]\
+    \ = f;\n  }\n\n  // [x^K]  prod_{i<=j}R_j(x) f(x) prod_{j<i}L_j(x)\n  vc<mint>\
+    \ calc(int K, poly f) {\n    if (N == 0) return {};\n    f.resize(K + 1);\n  \
+    \  // \u6E96\u5099\n    vc<int> lch(N, -1), rch(N, -1);\n    vc<int> deg(N);\n\
+    \    FOR(i, N) {\n      if (A[i].empty()) A[i] = {1};\n      if (B[i].empty())\
+    \ B[i] = {1};\n      deg[i] = max(len(A[i]) - 1, len(B[i]) - 1);\n      A[i].resize(deg[i]\
+    \ + 1);\n      B[i].resize(deg[i] + 1);\n    }\n    {\n      auto dfs = [&](auto&\
+    \ dfs, int L, int R) -> int {\n        if (R == L + 1) return L;\n        int\
+    \ M = (L + R) / 2;\n        int a = dfs(dfs, L, M), b = dfs(dfs, M, R);\n    \
+    \    int v = len(lch);\n        lch.eb(a), rch.eb(b);\n        A.eb(convolution(A[a],\
+    \ A[b]));\n        B.eb(convolution(B[a], B[b]));\n        deg.eb(len(A.back())\
+    \ - 1);\n        return v;\n      };\n      dfs(dfs, 0, N);\n    }\n    int root\
+    \ = len(lch) - 1;\n    int d = deg[root];\n    if (K < d) {\n      int add = d\
+    \ - K;\n      vc<mint> g(len(f) + add);\n      FOR(i, len(f)) g[add + i] = f[i];\n\
+    \      swap(f, g);\n      K = d;\n    }\n    assert(len(f) == K + 1);\n    if\
+    \ (K > d) {\n      int rm = K - d;\n      f = {f.begin() + rm, f.end()};\n   \
+    \   K = d;\n    }\n    reverse(all(f));\n    assert(len(f) == d + 1);\n    vc<mint>\
+    \ ANS(N);\n    {\n      auto dfs = [&](auto& dfs, int k, poly& g) -> void {\n\
+    \        assert(len(g) - 1 == deg[k]);\n        if (k < N) {\n          ANS[k]\
+    \ = g[0];\n          return;\n        }\n        poly g1 = middle_product(g, B[rch[k]]);\n\
+    \        poly g2 = middle_product(g, A[lch[k]]);\n        dfs(dfs, lch[k], g1),\
+    \ dfs(dfs, rch[k], g2);\n      };\n      dfs(dfs, root, f);\n    }\n    return\
+    \ ANS;\n  }\n};\n#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2 \"poly/ntt_doubling.hpp\"\
+    \n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\u591A\u9805\u5F0F\u306E\
+    \u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067 2^k+1 \u306B\
+    \u3059\u308B\ntemplate <typename mint, bool transposed = false>\nvoid ntt_doubling(vector<mint>&\
+    \ a) {\n  static array<mint, 30> root;\n  static bool prepared = 0;\n  if (!prepared)\
+    \ {\n    prepared = 1;\n    const int rank2 = mint::ntt_info().fi;\n    root[rank2]\
+    \ = mint::ntt_info().se;\n    FOR_R(i, rank2) { root[i] = root[i + 1] * root[i\
+    \ + 1]; }\n  }\n\n  if constexpr (!transposed) {\n    const int M = (int)a.size();\n\
+    \    auto b = a;\n    ntt(b, 1);\n    mint r = 1, zeta = root[topbit(2 * M)];\n\
+    \    FOR(i, M) b[i] *= r, r *= zeta;\n    ntt(b, 0);\n    copy(begin(b), end(b),\
+    \ back_inserter(a));\n  } else {\n    const int M = len(a) / 2;\n    vc<mint>\
+    \ tmp = {a.begin(), a.begin() + M};\n    a = {a.begin() + M, a.end()};\n    transposed_ntt(a,\
+    \ 0);\n    mint r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r\
+    \ *= zeta;\n    transposed_ntt(a, 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n\
+    #line 5 \"poly/convolution_all.hpp\"\n\r\ntemplate <typename T>\r\nvc<T> convolution_all(vc<vc<T>>&\
+    \ polys) {\r\n  if (len(polys) == 0) return {T(1)};\r\n  while (1) {\r\n    int\
+    \ n = len(polys);\r\n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n   \
+    \ FOR(i, m) {\r\n      if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\
+    \n      } else {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i +\
+    \ 1]);\r\n      }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\
+    \n}\r\n\r\n// product of 1-A[i]x\r\ntemplate <typename mint>\r\nvc<mint> convolution_all_1(vc<mint>\
+    \ A) {\r\n  if (!mint::can_ntt()) {\r\n    vvc<mint> polys;\r\n    for (auto&\
+    \ a: A) polys.eb(vc<mint>({mint(1), -a}));\r\n    return convolution_all(polys);\r\
+    \n  }\r\n  int D = 6;\r\n  using poly = vc<mint>;\r\n  int n = 1;\r\n  while (n\
+    \ < len(A)) n *= 2;\r\n  int k = topbit(n);\r\n  vc<mint> F(n), nxt_F(n);\r\n\
+    \  FOR(i, len(A)) F[i] = -A[i];\r\n  FOR(d, k) {\r\n    int b = 1 << d;\r\n  \
+    \  if (d < D) {\r\n      fill(all(nxt_F), mint(0));\r\n      for (int L = 0; L\
+    \ < n; L += 2 * b) {\r\n        FOR(i, b) FOR(j, b) { nxt_F[L + i + j] += F[L\
+    \ + i] * F[L + b + j]; }\r\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L\
+    \ + b + i];\r\n      }\r\n    }\r\n    elif (d == D) {\r\n      for (int L = 0;\
+    \ L < n; L += 2 * b) {\r\n        poly f1 = {F.begin() + L, F.begin() + L + b};\r\
+    \n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\r\n        f1.resize(2\
+    \ * b), f2.resize(2 * b), ntt(f1, 0), ntt(f2, 0);\r\n        FOR(i, b) nxt_F[L\
+    \ + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b) nxt_F[L +\
+    \ i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    else {\r\n  \
+    \    for (int L = 0; L < n; L += 2 * b) {\r\n        poly f1 = {F.begin() + L,\
+    \ F.begin() + L + b};\r\n        poly f2 = {F.begin() + L + b, F.begin() + L +\
+    \ 2 * b};\r\n        ntt_doubling(f1), ntt_doubling(f2);\r\n        FOR(i, b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b) nxt_F[L\
+    \ + i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    swap(F, nxt_F);\r\
+    \n  }\r\n  if (k - 1 >= D) ntt(F, 1);\r\n  F.eb(1), reverse(all(F));\r\n  F.resize(len(A)\
+    \ + 1);\r\n  return F;\r\n}\n#line 2 \"poly/fps_div.hpp\"\n\n#line 2 \"poly/count_terms.hpp\"\
+    \ntemplate<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t =\
+    \ 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 4\
+    \ \"poly/fps_inv.hpp\"\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const\
+    \ vc<mint>& f) {\r\n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i,\
+    \ 1, N) if (f[i] != mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0\
+    \ = mint(1) / f[0];\r\n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\
+    \n    for (auto&& [k, fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk\
+    \ * g[n - k];\r\n    }\r\n    g[n] = rhs * g0;\r\n  }\r\n  return g;\r\n}\r\n\r\
+    \ntemplate <typename mint>\r\nvc<mint> fps_inv_dense_ntt(const vc<mint>& F) {\r\
+    \n  vc<mint> G = {mint(1) / F[0]};\r\n  ll N = len(F), n = 1;\r\n  G.reserve(N);\r\
+    \n  while (n < N) {\r\n    vc<mint> f(2 * n), g(2 * n);\r\n    FOR(i, min(N, 2\
+    \ * n)) f[i] = F[i];\r\n    FOR(i, n) g[i] = G[i];\r\n    ntt(f, false), ntt(g,\
+    \ false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n    ntt(f, true);\r\n    FOR(i,\
+    \ n) f[i] = 0;\r\n    ntt(f, false);\r\n    FOR(i, 2 * n) f[i] *= g[i];\r\n  \
+    \  ntt(f, true);\r\n    FOR(i, n, min(N, 2 * n)) G.eb(-f[i]);\r\n    n *= 2;\r\
+    \n  }\r\n  return G;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_dense(const\
+    \ vc<mint>& F) {\r\n  if (mint::can_ntt()) return fps_inv_dense_ntt(F);\r\n  const\
+    \ int N = len(F);\r\n  vc<mint> R = {mint(1) / F[0]};\r\n  vc<mint> p;\r\n  int\
+    \ m = 1;\r\n  while (m < N) {\r\n    p = convolution(R, R);\r\n    p.resize(m\
+    \ + m);\r\n    vc<mint> f = {F.begin(), F.begin() + min(m + m, N)};\r\n    p =\
+    \ convolution(p, f);\r\n    R.resize(m + m);\r\n    FOR(i, m + m) R[i] = R[i]\
+    \ + R[i] - p[i];\r\n    m += m;\r\n  }\r\n  R.resize(N);\r\n  return R;\r\n}\r\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv(const vc<mint>& f) {\r\n  assert(f[0]\
+    \ != mint(0));\r\n  int n = count_terms(f);\r\n  int t = (mint::can_ntt() ? 160\
+    \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
+    \n}\r\n#line 5 \"poly/fps_div.hpp\"\n\n// f/g. f \u306E\u9577\u3055\u3067\u51FA\
+    \u529B\u3055\u308C\u308B.\ntemplate <typename mint, bool SPARSE = false>\nvc<mint>\
+    \ fps_div(vc<mint> f, vc<mint> g) {\n  if (SPARSE || count_terms(g) < 200) return\
+    \ fps_div_sparse(f, g);\n  int n = len(f);\n  g.resize(n);\n  g = fps_inv<mint>(g);\n\
+    \  f = convolution(f, g);\n  f.resize(n);\n  return f;\n}\n\n// f/g \u305F\u3060\
+    \u3057 g \u306F sparse\ntemplate <typename mint>\nvc<mint> fps_div_sparse(vc<mint>\
+    \ f, vc<mint>& g) {\n  if (g[0] != mint(1)) {\n    mint cf = g[0].inverse();\n\
+    \    for (auto&& x: f) x *= cf;\n    for (auto&& x: g) x *= cf;\n  }\n\n  vc<pair<int,\
+    \ mint>> dat;\n  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i,\
+    \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
+    \ - j];\n    }\n  }\n  return f;\n}\n#line 4 \"poly/multipoint_evaluation_for_prefix_product.hpp\"\
+    \n\n// F[0](point[i]) ... F[CNT[i]-1](point[i])\ntemplate <typename mint>\nvc<mint>\
+    \ multipoint_evaluation_for_prefix_product(vvc<mint> F, vc<mint> point, vc<int>\
+    \ CNT) {\n  int N = len(point);\n  if (N == 0) return {};\n  auto I = argsort(CNT);\n\
+    \  point = rearrange(point, I), CNT = rearrange(CNT, I);\n  vvc<mint> G1, G2;\n\
+    \  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint> f{mint(1), -point[i]};\n\
+    \    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K = 0;\n  for (auto& f: F)\
+    \ reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K += len(F[i]) - 1; }\n  FOR(j,\
+    \ N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n      vc<mint> g(len(F[k]));\n \
+    \     g.back() = 1;\n      L[j].eb(F[k]), R[j + 1].eb(g), K += len(g) - 1;\n \
+    \   }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n  FOR(i, N - 1) TDC.set_L(i,\
+    \ convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i, convolution_all<mint>(R[i]));\n\
+    \  vc<mint> g1 = convolution_all<mint>(G1);\n  vc<mint> g2 = convolution_all<mint>(G2);\n\
+    \  g1.resize(K + 1), g2.resize(K + 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1,\
+    \ g2));\n  I = argsort(I);\n  ANS = rearrange(ANS, I);\n  return ANS;\n}\n"
+  code: "#include \"poly/typical_divide_conquer.hpp\"\n#include \"poly/convolution_all.hpp\"\
+    \n#include \"poly/fps_div.hpp\"\n\n// F[0](point[i]) ... F[CNT[i]-1](point[i])\n\
+    template <typename mint>\nvc<mint> multipoint_evaluation_for_prefix_product(vvc<mint>\
+    \ F, vc<mint> point, vc<int> CNT) {\n  int N = len(point);\n  if (N == 0) return\
+    \ {};\n  auto I = argsort(CNT);\n  point = rearrange(point, I), CNT = rearrange(CNT,\
+    \ I);\n  vvc<mint> G1, G2;\n  vvvc<mint> L(N), R(N);\n  FOR(i, N) {\n    vc<mint>\
+    \ f{mint(1), -point[i]};\n    L[i].eb(f), R[i].eb(f), G2.eb(f);\n  }\n  int K\
+    \ = 0;\n  for (auto& f: F) reverse(all(f));\n  FOR(i, CNT[0]) { G1.eb(F[i]), K\
+    \ += len(F[i]) - 1; }\n  FOR(j, N - 1) {\n    FOR(k, CNT[j], CNT[j + 1]) {\n \
+    \     vc<mint> g(len(F[k]));\n      g.back() = 1;\n      L[j].eb(F[k]), R[j +\
+    \ 1].eb(g), K += len(g) - 1;\n    }\n  }\n  Typical_Divide_Conquer<mint> TDC(N);\n\
+    \  FOR(i, N - 1) TDC.set_L(i, convolution_all<mint>(L[i]));\n  FOR(i, 1, N) TDC.set_R(i,\
+    \ convolution_all<mint>(R[i]));\n  vc<mint> g1 = convolution_all<mint>(G1);\n\
+    \  vc<mint> g2 = convolution_all<mint>(G2);\n  g1.resize(K + 1), g2.resize(K +\
+    \ 1);\n  vc<mint> ANS = TDC.calc(K, fps_div<mint>(g1, g2));\n  I = argsort(I);\n\
+    \  ANS = rearrange(ANS, I);\n  return ANS;\n}\n"
   dependsOn:
-  - random/base.hpp
-  - linalg/matrix_mul.hpp
+  - poly/typical_divide_conquer.hpp
+  - poly/convolution.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - linalg/matrix_inv.hpp
-  - linalg/characteristic_poly.hpp
-  - poly/poly_taylor_shift.hpp
-  - mod/powertable.hpp
-  - nt/primetable.hpp
-  - poly/convolution.hpp
   - mod/mod_inv.hpp
   - mod/crt3.hpp
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - poly/fft.hpp
+  - poly/middle_product.hpp
+  - poly/convolution_all.hpp
+  - poly/ntt_doubling.hpp
+  - poly/fps_div.hpp
+  - poly/count_terms.hpp
+  - poly/fps_inv.hpp
   isVerificationFile: false
-  path: linalg/det_A_plus_xB.hpp
+  path: poly/multipoint_evaluation_for_prefix_product.hpp
   requiredBy: []
-  timestamp: '2024-09-14 09:20:23+09:00'
+  timestamp: '2024-10-07 20:17:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/1303.test.cpp
-documentation_of: linalg/det_A_plus_xB.hpp
+  - test/1_mytest/multipoint_prefix.test.cpp
+documentation_of: poly/multipoint_evaluation_for_prefix_product.hpp
 layout: document
 redirect_from:
-- /library/linalg/det_A_plus_xB.hpp
-- /library/linalg/det_A_plus_xB.hpp.html
-title: linalg/det_A_plus_xB.hpp
+- /library/poly/multipoint_evaluation_for_prefix_product.hpp
+- /library/poly/multipoint_evaluation_for_prefix_product.hpp.html
+title: poly/multipoint_evaluation_for_prefix_product.hpp
 ---

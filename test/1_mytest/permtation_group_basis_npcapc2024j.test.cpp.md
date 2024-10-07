@@ -1,9 +1,6 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: enumerate/product.hpp
-    title: enumerate/product.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -13,6 +10,12 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/permutation_group_basis.hpp
+    title: seq/permutation_group_basis.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/split.hpp
+    title: string/split.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -23,9 +26,9 @@ data:
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/enumerate_products.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -107,21 +110,57 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/enumerate_products.test.cpp\"\
-    \n\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate <typename\
-    \ F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n  auto\
-    \ dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n ==\
-    \ N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n\
-    \      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line 2 \"\
-    mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n  static\
-    \ auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template <class\
-    \ T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class T>\n\
-    class has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\
-    \ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %=\
-    \ mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k\
-    \ - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n\
-    }\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\
+    \n\n#line 1 \"seq/permutation_group_basis.hpp\"\n\n// https://codeforces.com/blog/entry/111290\n\
+    // https://codeforces.com/gym/421334/problem/A\n// https://atcoder.jp/contests/npcapc_2024/tasks/npcapc_2024_j\n\
+    template <int NMAX>\nstruct Permutation_Group_Basis {\n  using A = array<u8, NMAX>;\n\
+    \  int n;\n  // Basis[i]: i \u672A\u6E80\u306F\u56FA\u5B9A\u3057\u3066 i \u3092\
+    \u52D5\u304B\u3059\u90E8\u5206\n  // \u4F5C\u308C\u308B\u7FA4\uFF1Ag=g[0]g[1]...g[n-1]\n\
+    \  // g[i]: i \u672A\u6E80\u3092\u56FA\u5B9A\u3057\u3066 i \u3092\u52D5\u304B\u3059\
+    \u5199\u50CF\n  // g \u304B\u3089 g[i] \u3092\u5FA9\u5143\u3059\u308B\u306B\u306F\
+    \uFF0C\u5C0F\u3055\u3044 i \u304B\u3089\u9806\u306B\u6C7A\u3081\u308B\n  vvc<A>\
+    \ Basis;\n\n  // q := p\n  void cp(int lv, const A& p, A& q) { FOR(i, lv, n) q[i]\
+    \ = p[i]; }\n  // r := pq\n  void op(int lv, const A& p, A& q, A& r) { FOR(i,\
+    \ lv, n) r[i] = p[q[i]]; }\n  // q := inv(p)\n  void inv(int lv, const A& p, A&\
+    \ q) { FOR(i, lv, n) q[p[i]] = i; }\n\n  // N^2 \u500B\u4EE5\u4E0B\u751F\u6210\
+    \u5143\u3092 sims filter \u3067\u7BA1\u7406\n  struct S {\n    int n, lv;\n  \
+    \  A dat[NMAX][NMAX];\n    A idat[NMAX][NMAX];\n    bool exist[NMAX][NMAX];\n\
+    \    S(int n, int lv) : n(n), lv(lv) { FOR(i, NMAX) FOR(j, NMAX) exist[i][j] =\
+    \ 0; }\n    void cp(int lv, const A& p, A& q) { FOR(i, lv, n) q[i] = p[i]; }\n\
+    \    void op(int lv, const A& p, A& q, A& r) { FOR(i, lv, n) r[i] = p[q[i]]; }\n\
+    \    void inv(int lv, const A& p, A& q) { FOR(i, lv, n) q[p[i]] = i; }\n    void\
+    \ add(A& p) {\n      static A tmp;\n      FOR(i, lv, n) {\n        if (p[i] ==\
+    \ i) continue;\n        if (!exist[i][p[i]]) {\n          cp(i, p, dat[i][p[i]]);\n\
+    \          inv(i, p, idat[i][p[i]]);\n          exist[i][p[i]] = 1;\n        \
+    \  break;\n        }\n        op(i, idat[i][p[i]], p, tmp);\n        cp(i, tmp,\
+    \ p);\n      }\n    }\n    vc<A> get_all() {\n      vc<A> ANS;\n      FOR(i, lv,\
+    \ n) {\n        FOR(j, i, n) {\n          if (!exist[i][j]) continue;\n      \
+    \    A a = dat[i][j];\n          FOR(k, i) a[k] = k;\n          ANS.eb(a);\n \
+    \       }\n      }\n      return ANS;\n    }\n  };\n\n  Permutation_Group_Basis(int\
+    \ n, vvc<int> generator) : n(n), Basis(n) {\n    S gen(n, 0);\n    for (auto&\
+    \ pp: generator) {\n      assert(len(pp) == n);\n      A a;\n      FOR(i, n) a[i]\
+    \ = pp[i];\n      gen.add(a);\n    }\n    FOR(lv, n) gen = step(gen);\n  }\n\n\
+    private:\n  S step(S gen) {\n    auto X = gen.get_all();\n    int lv = gen.lv;\n\
+    \    vc<A> basis(n);\n    vc<A> ibasis(n);\n    vc<bool> vis(n);\n    auto dfs\
+    \ = [&](auto& dfs, int v) -> void {\n      auto& p = basis[v];\n      for (auto&\
+    \ q: X) {\n        int w = q[v];\n        if (vis[w]) continue;\n        vis[w]\
+    \ = 1;\n        op(lv, q, p, basis[w]);\n        inv(lv, basis[w], ibasis[w]);\n\
+    \        dfs(dfs, w);\n      }\n    };\n    vis[lv] = 1;\n    FOR(i, n) basis[lv][i]\
+    \ = ibasis[lv][i] = i;\n    dfs(dfs, lv);\n\n    S nxtgen(n, lv + 1);\n    static\
+    \ A tmp, tmp2;\n    FOR(u, lv, n) {\n      if (!vis[u]) continue;\n      FOR(i,\
+    \ lv) basis[u][i] = i;\n      Basis[lv].eb(basis[u]);\n      for (auto& s: X)\
+    \ {\n        assert(vis[s[u]]);\n        op(lv, ibasis[s[u]], s, tmp);\n     \
+    \   op(lv, tmp, basis[u], tmp2);\n        assert(tmp2[lv] == lv);\n        nxtgen.add(tmp2);\n\
+    \      }\n    }\n    return nxtgen;\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
     \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
     \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
     \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
@@ -187,46 +226,100 @@ data:
     \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
     \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
     }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 6 \"test/1_mytest/enumerate_products.test.cpp\"\n\nusing mint = modint998;\n\
-    \nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void {\
-    \ res.eb(A); };\n    enumerate_product(vc<int>(2, 3), f);\n    assert(len(res)\
-    \ == 9);\n    assert(res[0] == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0,\
-    \ 1}));\n    assert(res[2] == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1,\
-    \ 0}));\n    assert(res[4] == vc<int>({1, 1}));\n    assert(res[5] == vc<int>({1,\
-    \ 2}));\n    assert(res[6] == vc<int>({2, 0}));\n    assert(res[7] == vc<int>({2,\
-    \ 1}));\n    assert(res[8] == vc<int>({2, 2}));\n  }\n  {\n    int cnt = 0;\n\
-    \    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_product(vc<int>(4,\
-    \ 3), f);\n    assert(cnt == 81);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
-    \ solve();\n\n  return 0;\n}\n"
+    #line 1 \"string/split.hpp\"\nvc<string> split(string S, char sep = ',') {\r\n\
+    \  vc<string> res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (s == sep)\r\n\
+    \      res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return\
+    \ res;\r\n}\r\n\r\nvc<string> split(string S, string seps = \" ,\") {\r\n  vc<string>\
+    \ res = {\"\"};\r\n  for (auto&& s: S) {\r\n    if (count(all(seps), s))\r\n \
+    \     res.eb(\"\");\r\n    else\r\n      res.back() += s;\r\n  }\r\n  return res;\r\
+    \n}\r\n#line 7 \"test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp\"\n\
+    \nusing mint = modint998;\n\nmint mysolve(vvc<int> A) {\n  int N = len(A[0]),\
+    \ M = len(A);\n  FOR(i, M) FOR(j, N)-- A[i][j];\n  Permutation_Group_Basis<30>\
+    \ P(N, A);\n\n  mint ANS = 0;\n  // FOR(i, N) {\n  //   for (auto& X: P.Basis[i])\
+    \ { SHOW(i, X); }\n  // }\n\n  FOR(a, N) {\n    // (a, a \u3088\u308A\u5927\u304D\
+    \u3044\u8981\u7D20) \u306E\u5834\u6240\u3092\u8FFD\u8DE1\n    vv(mint, dp, N,\
+    \ N);\n    FOR(b, a + 1, N) dp[a][b] = 1;\n    FOR_R(i, N) {\n      vv(mint, newdp,\
+    \ N, N);\n      for (auto& X: P.Basis[i]) {\n        FOR(a, N) FOR(b, N) { newdp[X[a]][X[b]]\
+    \ += dp[a][b]; }\n      }\n      swap(dp, newdp);\n    }\n    FOR(i, N) FOR(j,\
+    \ i) ANS += dp[i][j];\n  }\n  return ANS;\n}\n\nvoid test_sample_1() {\n  vv(int,\
+    \ A, 2, 3);\n  A[0] = {1, 2, 3};\n  A[1] = {2, 3, 1};\n  assert(mysolve(A) ==\
+    \ mint(4));\n}\n\nvoid test_sample_2() {\n  vv(int, A, 2, 5);\n  A[0] = {3, 4,\
+    \ 5, 1, 2};\n  A[1] = {1, 5, 4, 3, 2};\n  assert(mysolve(A) == mint(50));\n}\n\
+    \nvoid test_sample_3() {\n  vv(int, A, 12, 30);\n  auto from_text = [&](string\
+    \ txt) -> vc<int> {\n    vc<int> row;\n    for (auto& x: split(txt, \" \")) row.eb(stoi(x));\n\
+    \    return row;\n  };\n  A[0] = from_text(\"1 2 9 4 5 6 7 8 3 10 11 12 19 14\
+    \ 15 25 17 18 20 26 21 22 23 24 16 29 27 28 13 30\");\n  A[1] = from_text(\"9\
+    \ 2 27 4 5 10 7 8 1 25 11 12 24 14 15 16 17 18 19 20 21 22 23 28 6 26 3 13 29\
+    \ 30\");\n  A[2] = from_text(\"1 5 3 29 2 6 7 8 9 10 11 12 13 16 15 18 17 14 19\
+    \ 20 21 22 28 27 25 26 24 23 4 30\");\n  A[3] = from_text(\"7 2 3 25 5 6 1 28\
+    \ 21 15 11 12 13 14 10 17 16 18 19 20 9 22 23 24 4 26 27 8 29 30\");\n  A[4] =\
+    \ from_text(\"1 2 5 4 16 6 7 8 9 11 10 3 13 14 15 12 17 23 19 20 21 29 18 24 25\
+    \ 26 27 28 22 30\");\n  A[5] = from_text(\"19 24 3 4 1 6 7 8 9 10 11 12 13 21\
+    \ 15 16 17 18 5 22 20 14 23 2 25 26 27 28 29 30\");\n  A[6] = from_text(\"1 2\
+    \ 3 4 5 6 27 8 9 10 29 12 24 14 15 16 17 18 30 20 7 22 13 23 25 26 21 28 11 19\"\
+    );\n  A[7] = from_text(\"1 2 25 4 5 6 7 8 9 20 23 12 13 14 15 16 17 18 19 10 29\
+    \ 22 3 24 11 26 27 28 30 21\");\n  A[8] = from_text(\"1 2 16 4 5 6 3 8 9 10 11\
+    \ 12 22 29 13 7 17 18 19 20 21 15 23 24 14 26 27 28 25 30\");\n  A[9] = from_text(\"\
+    1 13 3 4 5 6 21 8 24 10 7 12 20 14 15 16 17 2 19 18 11 22 23 9 25 26 27 28 29\
+    \ 30\");\n  A[10] = from_text(\"1 2 3 4 5 6 25 8 9 19 11 12 13 7 10 16 21 18 15\
+    \ 20 17 22 23 24 28 26 27 14 29 30\");\n  A[11] = from_text(\"1 2 27 21 5 6 7\
+    \ 8 9 10 18 24 13 14 15 16 17 12 19 11 4 22 23 20 25 26 3 28 29 30\");\n  assert(mysolve(A)\
+    \ == mint(701414999));\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n \
+    \ cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test_sample_1();\n  test_sample_2();\n\
+    \  test_sample_3();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"enumerate/product.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
-    \ = modint998;\n\nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int>\
-    \ A) -> void { res.eb(A); };\n    enumerate_product(vc<int>(2, 3), f);\n    assert(len(res)\
-    \ == 9);\n    assert(res[0] == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0,\
-    \ 1}));\n    assert(res[2] == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1,\
-    \ 0}));\n    assert(res[4] == vc<int>({1, 1}));\n    assert(res[5] == vc<int>({1,\
-    \ 2}));\n    assert(res[6] == vc<int>({2, 0}));\n    assert(res[7] == vc<int>({2,\
-    \ 1}));\n    assert(res[8] == vc<int>({2, 2}));\n  }\n  {\n    int cnt = 0;\n\
-    \    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_product(vc<int>(4,\
-    \ 3), f);\n    assert(cnt == 81);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
-    \ solve();\n\n  return 0;\n}\n"
+    \n\n#include \"seq/permutation_group_basis.hpp\"\n#include \"mod/modint.hpp\"\n\
+    #include \"string/split.hpp\"\n\nusing mint = modint998;\n\nmint mysolve(vvc<int>\
+    \ A) {\n  int N = len(A[0]), M = len(A);\n  FOR(i, M) FOR(j, N)-- A[i][j];\n \
+    \ Permutation_Group_Basis<30> P(N, A);\n\n  mint ANS = 0;\n  // FOR(i, N) {\n\
+    \  //   for (auto& X: P.Basis[i]) { SHOW(i, X); }\n  // }\n\n  FOR(a, N) {\n \
+    \   // (a, a \u3088\u308A\u5927\u304D\u3044\u8981\u7D20) \u306E\u5834\u6240\u3092\
+    \u8FFD\u8DE1\n    vv(mint, dp, N, N);\n    FOR(b, a + 1, N) dp[a][b] = 1;\n  \
+    \  FOR_R(i, N) {\n      vv(mint, newdp, N, N);\n      for (auto& X: P.Basis[i])\
+    \ {\n        FOR(a, N) FOR(b, N) { newdp[X[a]][X[b]] += dp[a][b]; }\n      }\n\
+    \      swap(dp, newdp);\n    }\n    FOR(i, N) FOR(j, i) ANS += dp[i][j];\n  }\n\
+    \  return ANS;\n}\n\nvoid test_sample_1() {\n  vv(int, A, 2, 3);\n  A[0] = {1,\
+    \ 2, 3};\n  A[1] = {2, 3, 1};\n  assert(mysolve(A) == mint(4));\n}\n\nvoid test_sample_2()\
+    \ {\n  vv(int, A, 2, 5);\n  A[0] = {3, 4, 5, 1, 2};\n  A[1] = {1, 5, 4, 3, 2};\n\
+    \  assert(mysolve(A) == mint(50));\n}\n\nvoid test_sample_3() {\n  vv(int, A,\
+    \ 12, 30);\n  auto from_text = [&](string txt) -> vc<int> {\n    vc<int> row;\n\
+    \    for (auto& x: split(txt, \" \")) row.eb(stoi(x));\n    return row;\n  };\n\
+    \  A[0] = from_text(\"1 2 9 4 5 6 7 8 3 10 11 12 19 14 15 25 17 18 20 26 21 22\
+    \ 23 24 16 29 27 28 13 30\");\n  A[1] = from_text(\"9 2 27 4 5 10 7 8 1 25 11\
+    \ 12 24 14 15 16 17 18 19 20 21 22 23 28 6 26 3 13 29 30\");\n  A[2] = from_text(\"\
+    1 5 3 29 2 6 7 8 9 10 11 12 13 16 15 18 17 14 19 20 21 22 28 27 25 26 24 23 4\
+    \ 30\");\n  A[3] = from_text(\"7 2 3 25 5 6 1 28 21 15 11 12 13 14 10 17 16 18\
+    \ 19 20 9 22 23 24 4 26 27 8 29 30\");\n  A[4] = from_text(\"1 2 5 4 16 6 7 8\
+    \ 9 11 10 3 13 14 15 12 17 23 19 20 21 29 18 24 25 26 27 28 22 30\");\n  A[5]\
+    \ = from_text(\"19 24 3 4 1 6 7 8 9 10 11 12 13 21 15 16 17 18 5 22 20 14 23 2\
+    \ 25 26 27 28 29 30\");\n  A[6] = from_text(\"1 2 3 4 5 6 27 8 9 10 29 12 24 14\
+    \ 15 16 17 18 30 20 7 22 13 23 25 26 21 28 11 19\");\n  A[7] = from_text(\"1 2\
+    \ 25 4 5 6 7 8 9 20 23 12 13 14 15 16 17 18 19 10 29 22 3 24 11 26 27 28 30 21\"\
+    );\n  A[8] = from_text(\"1 2 16 4 5 6 3 8 9 10 11 12 22 29 13 7 17 18 19 20 21\
+    \ 15 23 24 14 26 27 28 25 30\");\n  A[9] = from_text(\"1 13 3 4 5 6 21 8 24 10\
+    \ 7 12 20 14 15 16 17 2 19 18 11 22 23 9 25 26 27 28 29 30\");\n  A[10] = from_text(\"\
+    1 2 3 4 5 6 25 8 9 19 11 12 13 7 10 16 21 18 15 20 17 22 23 24 28 26 27 14 29\
+    \ 30\");\n  A[11] = from_text(\"1 2 27 21 5 6 7 8 9 10 18 24 13 14 15 16 17 12\
+    \ 19 11 4 22 23 20 25 26 3 28 29 30\");\n  assert(mysolve(A) == mint(701414999));\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  test_sample_1();\n  test_sample_2();\n  test_sample_3();\n\
+    \  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - enumerate/product.hpp
+  - seq/permutation_group_basis.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
+  - string/split.hpp
   isVerificationFile: true
-  path: test/1_mytest/enumerate_products.test.cpp
+  path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-10-07 20:17:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/enumerate_products.test.cpp
+documentation_of: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/enumerate_products.test.cpp
-- /verify/test/1_mytest/enumerate_products.test.cpp.html
-title: test/1_mytest/enumerate_products.test.cpp
+- /verify/test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
+- /verify/test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp.html
+title: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
 ---
