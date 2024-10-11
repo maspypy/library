@@ -7,6 +7,7 @@
 // O(N^3) time
 // det(A + xB) = f(x) となる N 次多項式 f を返す
 // 確率 N / mod で正しく解ける
+// QOJ59. 自分の実装が遅いかも.
 template <typename mint>
 vc<mint> det_A_plus_xB(vvc<mint> A, vvc<mint> B) {
   int N = len(A);

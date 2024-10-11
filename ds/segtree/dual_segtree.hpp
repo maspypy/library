@@ -8,14 +8,22 @@ struct Dual_SegTree {
   vc<A> laz;
 
   Dual_SegTree() : Dual_SegTree(0) {}
-  Dual_SegTree(int n) { build(n); }
+  Dual_SegTree(int n) {
+    build(n, [&](int i) -> A { return MA::unit(); });
+  }
+  template <typename F>
+  Dual_SegTree(int n, F f) {
+    build(n, f);
+  }
 
-  void build(int m) {
+  template <typename F>
+  void build(int m, F f) {
     n = m;
     log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     laz.assign(size << 1, MA::unit());
+    FOR(i, n) laz[size + i] = f(i);
   }
 
   A get(int p) {
