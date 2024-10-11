@@ -62,16 +62,20 @@ void centroid_decomposition_0_dfs(vc<int>& par, vc<int>& vs, F f) {
 
 /*
 https://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d
-centroid_decomposition_1：長さ 2 以上のパス全体
-f(par, V, n1, n2)
-[1,1+n1]: color 1
-[1+n1,1+n1+n2]: color 2
+centroid_decomposition_1：長さ 1 以上のパス全体
+f(par, V, L1, R1, L2, R2)
+[L1, R1): color 1 / [L2, R2): color 2
 */
 template <typename F>
 void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
   const int N = len(par);
   assert(N > 1);
-  if (N == 2) { return; }
+  if (N == 2) {
+    vc<int> p = {-1, 0};
+    vc<int> v = {vs[0], vs[1]};
+    f(p, vs, 0, 1, 1, 2);
+    return;
+  }
   int c = -1;
   vc<int> sz(N, 1);
   FOR_R(i, N) {
@@ -114,7 +118,7 @@ void centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F f) {
     if (color[v] != 1 && color[par[v]] != 1) par0[b] = a;
     if (color[v] != 0 && color[par[v]] != 0) par1[max(b - n0, 0)] = max(a - n0, 0);
   }
-  f(par2, V2, n0, n1);
+  f(par2, V2, 1, 1 + n0, 1 + n0, 1 + n0 + n1);
   centroid_decomposition_1_dfs(par0, V0, f);
   centroid_decomposition_1_dfs(par1, V1, f);
 }
@@ -187,7 +191,7 @@ void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real, F f)
 }
 
 // 0: f(par, V, indptr)
-// 1: f(par, V, n1, n2)
+// 1: f(par, V, L1, R1, L2, R2)
 // 2: f(par, V, color)
 template <int MODE, typename GT, typename F>
 void centroid_decomposition(GT& G, F f) {
