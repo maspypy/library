@@ -606,19 +606,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod.test.cpp
     title: test/2_library_checker/convolution/convolution_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - icon: ':heavy_check_mark:'
@@ -633,16 +633,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
     title: test/2_library_checker/convolution/minplus_convolution_conv_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
     title: test/2_library_checker/convolution/mul_mod2n_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/mul_modp_conv.test.cpp
     title: test/2_library_checker/convolution/mul_modp_conv.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -735,7 +735,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
     title: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
     title: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   - icon: ':heavy_check_mark:'
@@ -855,16 +855,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial_mongomery.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -873,13 +873,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_mod_p_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
   - icon: ':heavy_check_mark:'
@@ -927,10 +927,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartitematching.test.cpp
     title: test/2_library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':heavy_check_mark:'

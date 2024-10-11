@@ -32,7 +32,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -119,7 +119,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multipoint_evaluation_for_prefix_product.hpp
     title: poly/multipoint_evaluation_for_prefix_product.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
   - icon: ':question:'
@@ -161,13 +161,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':question:'
@@ -279,25 +279,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
     title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - icon: ':x:'

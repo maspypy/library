@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
     title: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
     title: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   - icon: ':heavy_check_mark:'
