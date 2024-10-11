@@ -126,13 +126,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_square.test.cpp
     title: test/1_mytest/online_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':x:'

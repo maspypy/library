@@ -27,13 +27,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod4.test.cpp
     title: test/1_mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
     title: test/2_library_checker/big_integer/addition_of_bigintegers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
     title: test/2_library_checker/big_integer/multiplication_of_bigintegers.test.cpp
   - icon: ':heavy_check_mark:'
@@ -45,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_huge.test.cpp
     title: test/2_library_checker/convolution/convolution_huge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod.test.cpp
     title: test/2_library_checker/convolution/convolution_mod.test.cpp
   - icon: ':x:'

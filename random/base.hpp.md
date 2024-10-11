@@ -119,7 +119,7 @@ data:
   - icon: ':warning:'
     path: poly/egf_convolution.hpp
     title: poly/egf_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
   - icon: ':question:'
@@ -134,7 +134,7 @@ data:
   - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -143,7 +143,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   - icon: ':question:'
@@ -426,28 +426,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/powerquery.test.cpp
     title: test/1_mytest/powerquery.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -555,16 +555,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tournament.test.cpp
     title: test/1_mytest/tournament.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tutte.test.cpp
     title: test/1_mytest/tutte.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':heavy_check_mark:'

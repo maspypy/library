@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/typical_dc.test.cpp
     title: test/1_mytest/typical_dc.test.cpp
   - icon: ':x:'

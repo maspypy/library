@@ -37,20 +37,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -526,7 +526,7 @@ data:
   path: test/1_mytest/simple_perm.test.cpp
   requiredBy: []
   timestamp: '2024-10-11 20:53:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/simple_perm.test.cpp
 layout: document

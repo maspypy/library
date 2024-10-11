@@ -153,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod6.test.cpp
     title: test/1_mytest/primesum_mod6.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':heavy_check_mark:'
