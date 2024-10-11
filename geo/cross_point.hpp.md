@@ -179,17 +179,17 @@ data:
   path: geo/cross_point.hpp
   requiredBy:
   - random/random_polygon.hpp
-  - geo/distance.hpp
   - geo/polygon.hpp
+  - geo/distance.hpp
   timestamp: '2024-09-11 14:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_C.test.cpp
   - test/4_aoj/CGL_2_B.test.cpp
-  - test/4_aoj/CGL_7_B.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
   - test/5_atcoder/abc314.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: geo/cross_point.hpp
 layout: document
 redirect_from:

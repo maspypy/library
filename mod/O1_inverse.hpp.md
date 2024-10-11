@@ -75,8 +75,8 @@ data:
   timestamp: '2024-04-04 04:49:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/O1_inv.test.cpp
   - test/5_atcoder/agc060c.test.cpp
+  - test/1_mytest/O1_inv.test.cpp
 documentation_of: mod/O1_inverse.hpp
 layout: document
 redirect_from:

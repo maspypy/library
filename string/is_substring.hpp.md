@@ -51,10 +51,10 @@ data:
   timestamp: '2024-09-03 08:13:21+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/is_substring.test.cpp
   - test/5_atcoder/abc354g.test.cpp
-  - test/5_atcoder/abc279b.test.cpp
   - test/5_atcoder/abc237ex.test.cpp
+  - test/5_atcoder/abc279b.test.cpp
+  - test/1_mytest/is_substring.test.cpp
 documentation_of: string/is_substring.hpp
 layout: document
 redirect_from:

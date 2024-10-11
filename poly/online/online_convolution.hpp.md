@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   _extendedVerifiedWith:
@@ -57,7 +57,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_pow.test.cpp
     title: test/1_mytest/online_pow.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
   - icon: ':heavy_check_mark:'
@@ -69,9 +69,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc315h.test.cpp
     title: test/5_atcoder/abc315h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -245,28 +245,28 @@ data:
   isVerificationFile: false
   path: poly/online/online_convolution.hpp
   requiredBy:
-  - poly/online/online_pow.hpp
-  - poly/online/online_exp_garner.hpp
-  - poly/online/online_log.hpp
-  - poly/online/online_exp.hpp
-  - poly/online/online_inv.hpp
-  - poly/online/online_convolution_garner.hpp
   - poly/online/online_division.hpp
-  - graph/count/count_unlabeled_tree.hpp
+  - poly/online/online_inv.hpp
+  - poly/online/online_pow.hpp
+  - poly/online/online_exp.hpp
+  - poly/online/online_exp_garner.hpp
+  - poly/online/online_convolution_garner.hpp
+  - poly/online/online_log.hpp
   - seq/famous/simple_permutations.hpp
+  - graph/count/count_unlabeled_tree.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/online_exp.test.cpp
-  - test/1_mytest/simple_perm.test.cpp
-  - test/1_mytest/online_pow.test.cpp
-  - test/1_mytest/online_inv.test.cpp
-  - test/1_mytest/online_division.test.cpp
-  - test/1_mytest/count_unlabeled_tree.test.cpp
-  - test/1_mytest/online_log.test.cpp
-  - test/2_library_checker/convolution/online_convolution.test.cpp
-  - test/5_atcoder/abc230h.test.cpp
   - test/5_atcoder/abc315h.test.cpp
+  - test/5_atcoder/abc230h.test.cpp
+  - test/1_mytest/online_pow.test.cpp
+  - test/1_mytest/count_unlabeled_tree.test.cpp
+  - test/1_mytest/online_exp.test.cpp
+  - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/online_division.test.cpp
+  - test/1_mytest/online_inv.test.cpp
+  - test/1_mytest/simple_perm.test.cpp
+  - test/2_library_checker/convolution/online_convolution.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document
 redirect_from:

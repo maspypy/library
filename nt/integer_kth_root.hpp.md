@@ -42,9 +42,9 @@ data:
   timestamp: '2023-11-07 17:48:08+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/number_theory/kth_root_integer.test.cpp
-  - test/3_yukicoder/1666.test.cpp
   - test/3_yukicoder/1260.test.cpp
+  - test/3_yukicoder/1666.test.cpp
+  - test/2_library_checker/number_theory/kth_root_integer.test.cpp
 documentation_of: nt/integer_kth_root.hpp
 layout: document
 redirect_from:

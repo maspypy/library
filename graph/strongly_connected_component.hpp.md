@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -204,38 +204,38 @@ data:
   isVerificationFile: false
   path: graph/strongly_connected_component.hpp
   requiredBy:
-  - flow/bipartite.hpp
-  - graph/find_odd_cycle.hpp
-  - graph/bipartite_edge_coloring.hpp
   - graph/incremental_scc.hpp
-  - graph/twosat.hpp
+  - graph/find_odd_cycle.hpp
   - graph/reachability.hpp
+  - graph/bipartite_edge_coloring.hpp
+  - graph/twosat.hpp
   - graph/maximum_antichain.hpp
+  - flow/bipartite.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/scc_tournament.test.cpp
-  - test/1_mytest/find_odd_cycle.test.cpp
-  - test/1_mytest/tutte.test.cpp
-  - test/1_mytest/incremental_scc.test.cpp
-  - test/2_library_checker/graph/scc.test.cpp
-  - test/2_library_checker/graph/incremental_scc.test.cpp
-  - test/2_library_checker/graph/bipartitematching.test.cpp
-  - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - test/2_library_checker/other/twosat.test.cpp
-  - test/4_aoj/1566.test.cpp
-  - test/4_aoj/0275.test.cpp
-  - test/4_aoj/2251_2.test.cpp
-  - test/3_yukicoder/1745.test.cpp
-  - test/3_yukicoder/1479.test.cpp
-  - test/3_yukicoder/1813.test.cpp
-  - test/3_yukicoder/1293.test.cpp
-  - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1170.test.cpp
+  - test/3_yukicoder/1293.test.cpp
+  - test/3_yukicoder/1479.test.cpp
+  - test/3_yukicoder/1745.test.cpp
+  - test/3_yukicoder/1744.test.cpp
+  - test/3_yukicoder/1813.test.cpp
+  - test/4_aoj/2251_2.test.cpp
+  - test/4_aoj/0275.test.cpp
+  - test/4_aoj/1566.test.cpp
   - test/5_atcoder/abc237ex.test.cpp
   - test/5_atcoder/abc274g.test.cpp
   - test/5_atcoder/abc214h.test.cpp
+  - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/scc_tournament.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
+  - test/1_mytest/incremental_scc.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
+  - test/2_library_checker/other/twosat.test.cpp
+  - test/2_library_checker/graph/incremental_scc.test.cpp
+  - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
+  - test/2_library_checker/graph/scc.test.cpp
+  - test/2_library_checker/graph/bipartitematching.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:

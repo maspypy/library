@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':heavy_check_mark:'
@@ -131,8 +131,8 @@ data:
   timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
+  - test/2_library_checker/data_structure/staticrmq.test.cpp
 documentation_of: ds/static_range_product.hpp
 layout: document
 redirect_from:

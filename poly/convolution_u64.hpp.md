@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fft.hpp
     title: poly/fft.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -131,24 +131,33 @@ data:
     \ p2 - 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0\
     \ + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) *\
     \ x2 % p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32\
-    \ p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64 a0, u64 a1, u64 a2, u64 a3,\
-    \ u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 && p2 < p3 && p3 < p4);\n  static\
-    \ constexpr u64 x1 = mod_pow_constexpr(p0, p1 - 2, p1);\n  static constexpr u64\
-    \ x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2 - 2, p2);\n  static constexpr u64\
-    \ x3\n      = mod_pow_constexpr(u64(p0) * p1 % p3 * p2 % p3, p3 - 2, p3);\n  static\
-    \ constexpr u64 x4\n      = mod_pow_constexpr(u64(p0) * p1 % p4 * p2 % p4 * p3\
-    \ % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0) * p1;\n  static constexpr\
-    \ u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 =\
-    \ a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1\
-    \ + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3 - ans_2 % p3 + p3)\
-    \ * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c * p2) * p01;\n  c = static_cast<u64>(a4\
-    \ - ans_3 % p4 + p4) * x4 % p4;\n  return T(ans_3) + T(c) * T(p01) * T(p23);\n\
-    }\n#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type*\
-    \ = nullptr>\r\nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n\
-    \  int n = int(a.size()), m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b,\
-    \ a);\r\n  if (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n)\
-    \ FOR(j, m) ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class\
-    \ T, typename enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
+    \ p0, u32 p1, u32 p2, u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0\
+    \ < p1 && p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
+    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
+    \ p2 - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3\
+    \ * p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c\
+    \ = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 %\
+    \ p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c\
+    \ = (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
+    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64\
+    \ a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 &&\
+    \ p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
+    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
+    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
+    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 x4 = mod_pow_constexpr(u64(p0)\
+    \ * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0)\
+    \ * p1;\n  static constexpr u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1)\
+    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
+    \ p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3\
+    \ - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c *\
+    \ p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 + p4) * x4 % p4;\n  return\
+    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 2 \"poly/convolution_naive.hpp\"\
+    \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
+    \nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()),\
+    \ m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b, a);\r\n  if\
+    \ (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m)\
+    \ ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class T, typename\
+    \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
     \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
     \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
     \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
@@ -314,39 +323,40 @@ data:
     \ convolution_karatsuba<mint>(a, b);\r\n    return convolution_ntt(a, b);\r\n\
     \  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\r\n\
     \  return convolution_garner(a, b);\r\n}\r\n#line 3 \"poly/convolution_u64.hpp\"\
-    \n\r\nvector<u64> convolution_u64(const vector<u64>& a, const vector<u64>& b)\
-    \ {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n,\
+    \n\r\ntemplate <typename T = u64>\r\nvector<T> convolution_u64(const vector<u64>&\
+    \ a, const vector<u64>& b) {\r\n  static_assert(is_same_v<T, u64> || is_same_v<T,\
+    \ u128>);\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n \
+    \ if (min(n, m) <= 12500) return convolution_karatsuba(a, b);\r\n  constexpr int\
+    \ p0 = 167772161;\r\n  constexpr int p1 = 469762049;\r\n  constexpr int p2 = 754974721;\r\
+    \n  constexpr int p3 = 880803841;\r\n  constexpr int p4 = 998244353;\r\n  using\
+    \ M0 = modint<p0>;\r\n  using M1 = modint<p1>;\r\n  using M2 = modint<p2>;\r\n\
+    \  using M3 = modint<p3>;\r\n  using M4 = modint<p4>;\r\n  vc<M0> a0(n), b0(m);\r\
+    \n  vc<M1> a1(n), b1(m);\r\n  vc<M2> a2(n), b2(m);\r\n  vc<M3> a3(n), b3(m);\r\
+    \n  vc<M4> a4(n), b4(m);\r\n  FOR(i, n) { a0[i] = a[i], a1[i] = a[i], a2[i] =\
+    \ a[i], a3[i] = a[i], a4[i] = a[i]; }\r\n  FOR(i, m) { b0[i] = b[i], b1[i] = b[i],\
+    \ b2[i] = b[i], b3[i] = b[i], b4[i] = b[i]; }\r\n  a0 = convolution_ntt<M0>(a0,\
+    \ b0);\r\n  a1 = convolution_ntt<M1>(a1, b1);\r\n  a2 = convolution_ntt<M2>(a2,\
+    \ b2);\r\n  a3 = convolution_ntt<M3>(a3, b3);\r\n  a4 = convolution_ntt<M4>(a4,\
+    \ b4);\r\n  vc<T> c(n + m - 1);\r\n  FOR(i, n + m - 1)\r\n  c[i] = CRT5<T, p0,\
+    \ p1, p2, p3, p4>(a0[i].val, a1[i].val, a2[i].val, a3[i].val, a4[i].val);\r\n\
+    \  return c;\r\n}\r\n"
+  code: "#include \"poly/convolution.hpp\"\r\n#include \"mod/crt3.hpp\"\r\n\r\ntemplate\
+    \ <typename T = u64>\r\nvector<T> convolution_u64(const vector<u64>& a, const\
+    \ vector<u64>& b) {\r\n  static_assert(is_same_v<T, u64> || is_same_v<T, u128>);\r\
+    \n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n,\
     \ m) <= 12500) return convolution_karatsuba(a, b);\r\n  constexpr int p0 = 167772161;\r\
     \n  constexpr int p1 = 469762049;\r\n  constexpr int p2 = 754974721;\r\n  constexpr\
     \ int p3 = 880803841;\r\n  constexpr int p4 = 998244353;\r\n  using M0 = modint<p0>;\r\
     \n  using M1 = modint<p1>;\r\n  using M2 = modint<p2>;\r\n  using M3 = modint<p3>;\r\
     \n  using M4 = modint<p4>;\r\n  vc<M0> a0(n), b0(m);\r\n  vc<M1> a1(n), b1(m);\r\
     \n  vc<M2> a2(n), b2(m);\r\n  vc<M3> a3(n), b3(m);\r\n  vc<M4> a4(n), b4(m);\r\
-    \n  FOR(i, n) {\r\n    a0[i] = a[i], a1[i] = a[i], a2[i] = a[i], a3[i] = a[i],\
-    \ a4[i] = a[i];\r\n  }\r\n  FOR(i, m) {\r\n    b0[i] = b[i], b1[i] = b[i], b2[i]\
-    \ = b[i], b3[i] = b[i], b4[i] = b[i];\r\n  }\r\n  a0 = convolution_ntt<M0>(a0,\
-    \ b0);\r\n  a1 = convolution_ntt<M1>(a1, b1);\r\n  a2 = convolution_ntt<M2>(a2,\
-    \ b2);\r\n  a3 = convolution_ntt<M3>(a3, b3);\r\n  a4 = convolution_ntt<M4>(a4,\
-    \ b4);\r\n  vc<u64> c(n + m - 1);\r\n  FOR(i, n + m - 1)\r\n  c[i] = CRT5<u64,\
-    \ p0, p1, p2, p3, p4>(a0[i].val, a1[i].val, a2[i].val,\r\n                   \
-    \                    a3[i].val, a4[i].val);\r\n  return c;\r\n}\r\n"
-  code: "#include \"poly/convolution.hpp\"\r\n#include \"mod/crt3.hpp\"\r\n\r\nvector<u64>\
-    \ convolution_u64(const vector<u64>& a, const vector<u64>& b) {\r\n  int n = len(a),\
-    \ m = len(b);\r\n  if (!n || !m) return {};\r\n  if (min(n, m) <= 12500) return\
-    \ convolution_karatsuba(a, b);\r\n  constexpr int p0 = 167772161;\r\n  constexpr\
-    \ int p1 = 469762049;\r\n  constexpr int p2 = 754974721;\r\n  constexpr int p3\
-    \ = 880803841;\r\n  constexpr int p4 = 998244353;\r\n  using M0 = modint<p0>;\r\
-    \n  using M1 = modint<p1>;\r\n  using M2 = modint<p2>;\r\n  using M3 = modint<p3>;\r\
-    \n  using M4 = modint<p4>;\r\n  vc<M0> a0(n), b0(m);\r\n  vc<M1> a1(n), b1(m);\r\
-    \n  vc<M2> a2(n), b2(m);\r\n  vc<M3> a3(n), b3(m);\r\n  vc<M4> a4(n), b4(m);\r\
-    \n  FOR(i, n) {\r\n    a0[i] = a[i], a1[i] = a[i], a2[i] = a[i], a3[i] = a[i],\
-    \ a4[i] = a[i];\r\n  }\r\n  FOR(i, m) {\r\n    b0[i] = b[i], b1[i] = b[i], b2[i]\
-    \ = b[i], b3[i] = b[i], b4[i] = b[i];\r\n  }\r\n  a0 = convolution_ntt<M0>(a0,\
-    \ b0);\r\n  a1 = convolution_ntt<M1>(a1, b1);\r\n  a2 = convolution_ntt<M2>(a2,\
-    \ b2);\r\n  a3 = convolution_ntt<M3>(a3, b3);\r\n  a4 = convolution_ntt<M4>(a4,\
-    \ b4);\r\n  vc<u64> c(n + m - 1);\r\n  FOR(i, n + m - 1)\r\n  c[i] = CRT5<u64,\
-    \ p0, p1, p2, p3, p4>(a0[i].val, a1[i].val, a2[i].val,\r\n                   \
-    \                    a3[i].val, a4[i].val);\r\n  return c;\r\n}\r\n"
+    \n  FOR(i, n) { a0[i] = a[i], a1[i] = a[i], a2[i] = a[i], a3[i] = a[i], a4[i]\
+    \ = a[i]; }\r\n  FOR(i, m) { b0[i] = b[i], b1[i] = b[i], b2[i] = b[i], b3[i] =\
+    \ b[i], b4[i] = b[i]; }\r\n  a0 = convolution_ntt<M0>(a0, b0);\r\n  a1 = convolution_ntt<M1>(a1,\
+    \ b1);\r\n  a2 = convolution_ntt<M2>(a2, b2);\r\n  a3 = convolution_ntt<M3>(a3,\
+    \ b3);\r\n  a4 = convolution_ntt<M4>(a4, b4);\r\n  vc<T> c(n + m - 1);\r\n  FOR(i,\
+    \ n + m - 1)\r\n  c[i] = CRT5<T, p0, p1, p2, p3, p4>(a0[i].val, a1[i].val, a2[i].val,\
+    \ a3[i].val, a4[i].val);\r\n  return c;\r\n}\r\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -360,8 +370,8 @@ data:
   isVerificationFile: false
   path: poly/convolution_u64.hpp
   requiredBy: []
-  timestamp: '2024-08-28 00:31:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-11 20:53:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
 documentation_of: poly/convolution_u64.hpp

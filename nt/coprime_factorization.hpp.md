@@ -70,11 +70,11 @@ data:
   timestamp: '2023-08-20 12:39:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/coprime_factorization.test.cpp
-  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2119.test.cpp
+  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/1956.test.cpp
+  - test/1_mytest/coprime_factorization.test.cpp
 documentation_of: nt/coprime_factorization.hpp
 layout: document
 redirect_from:

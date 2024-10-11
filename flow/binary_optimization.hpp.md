@@ -239,8 +239,8 @@ data:
   verifiedWith:
   - test/3_yukicoder/2320.test.cpp
   - test/3_yukicoder/1541.test.cpp
-  - test/5_atcoder/abc193f.test.cpp
   - test/5_atcoder/abc259g.test.cpp
+  - test/5_atcoder/abc193f.test.cpp
 documentation_of: flow/binary_optimization.hpp
 layout: document
 redirect_from:

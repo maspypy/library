@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -134,27 +134,29 @@ data:
     \ name1(R - L, -1);\n    name1[0] = name[0];\n    FOR(i, L, R) name1[i - L] =\
     \ name[i];\n    FOR(i, L, R) { par1[i - L] = max(par[i] - L, -1); }\n    centroid_decomposition_0_dfs(par1,\
     \ name1, f);\n  }\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
-    centroid_decomposition_1\uFF1A\u9577\u3055 2 \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\
-    \u4F53\nf(par, V, n1, n2)\n[1,1+n1]: color 1\n[1+n1,1+n1+n2]: color 2\n*/\ntemplate\
-    \ <typename F>\nvoid centroid_decomposition_1_dfs(vc<int>& par, vc<int> vs, F\
-    \ f) {\n  const int N = len(par);\n  assert(N > 1);\n  if (N == 2) { return; }\n\
-    \  int c = -1;\n  vc<int> sz(N, 1);\n  FOR_R(i, N) {\n    if (sz[i] >= ceil<int>(N,\
-    \ 2)) {\n      c = i;\n      break;\n    }\n    sz[par[i]] += sz[i];\n  }\n  vc<int>\
-    \ color(N, -1);\n  int take = 0;\n  vc<int> ord(N, -1);\n  ord[c] = 0;\n  int\
-    \ p = 1;\n  FOR(v, 1, N) {\n    if (par[v] == c && take + sz[v] <= floor<int>(N\
-    \ - 1, 2)) { color[v] = 0, ord[v] = p++, take += sz[v]; }\n  }\n  FOR(i, 1, N)\
-    \ {\n    if (color[par[i]] == 0) color[i] = 0, ord[i] = p++;\n  }\n  int n0 =\
-    \ p - 1;\n  for (int a = par[c]; a != -1; a = par[a]) { color[a] = 1, ord[a] =\
-    \ p++; }\n  FOR(i, N) {\n    if (i != c && color[i] == -1) color[i] = 1, ord[i]\
-    \ = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1 - n0;\n  vc<int> par0(n0 +\
-    \ 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int> V0(n0 + 1), V1(n1 + 1), V2(N);\n\
-    \  FOR(v, N) {\n    int i = ord[v];\n    V2[i] = vs[v];\n    if (color[v] != 1)\
-    \ { V0[i] = vs[v]; }\n    if (color[v] != 0) { V1[max(i - n0, 0)] = vs[v]; }\n\
-    \  }\n  FOR(v, 1, N) {\n    int a = ord[v], b = ord[par[v]];\n    if (a > b) swap(a,\
-    \ b);\n    par2[b] = a;\n    if (color[v] != 1 && color[par[v]] != 1) par0[b]\
-    \ = a;\n    if (color[v] != 0 && color[par[v]] != 0) par1[max(b - n0, 0)] = max(a\
-    \ - n0, 0);\n  }\n  f(par2, V2, n0, n1);\n  centroid_decomposition_1_dfs(par0,\
-    \ V0, f);\n  centroid_decomposition_1_dfs(par1, V1, f);\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
+    centroid_decomposition_1\uFF1A\u9577\u3055 1 \u4EE5\u4E0A\u306E\u30D1\u30B9\u5168\
+    \u4F53\nf(par, V, L1, R1, L2, R2)\n[L1, R1): color 1 / [L2, R2): color 2\n*/\n\
+    template <typename F>\nvoid centroid_decomposition_1_dfs(vc<int>& par, vc<int>\
+    \ vs, F f) {\n  const int N = len(par);\n  assert(N > 1);\n  if (N == 2) {\n \
+    \   vc<int> p = {-1, 0};\n    vc<int> v = {vs[0], vs[1]};\n    f(p, vs, 0, 1,\
+    \ 1, 2);\n    return;\n  }\n  int c = -1;\n  vc<int> sz(N, 1);\n  FOR_R(i, N)\
+    \ {\n    if (sz[i] >= ceil<int>(N, 2)) {\n      c = i;\n      break;\n    }\n\
+    \    sz[par[i]] += sz[i];\n  }\n  vc<int> color(N, -1);\n  int take = 0;\n  vc<int>\
+    \ ord(N, -1);\n  ord[c] = 0;\n  int p = 1;\n  FOR(v, 1, N) {\n    if (par[v] ==\
+    \ c && take + sz[v] <= floor<int>(N - 1, 2)) { color[v] = 0, ord[v] = p++, take\
+    \ += sz[v]; }\n  }\n  FOR(i, 1, N) {\n    if (color[par[i]] == 0) color[i] = 0,\
+    \ ord[i] = p++;\n  }\n  int n0 = p - 1;\n  for (int a = par[c]; a != -1; a = par[a])\
+    \ { color[a] = 1, ord[a] = p++; }\n  FOR(i, N) {\n    if (i != c && color[i] ==\
+    \ -1) color[i] = 1, ord[i] = p++;\n  }\n  assert(p == N);\n  int n1 = N - 1 -\
+    \ n0;\n  vc<int> par0(n0 + 1, -1), par1(n1 + 1, -1), par2(N, -1);\n  vc<int> V0(n0\
+    \ + 1), V1(n1 + 1), V2(N);\n  FOR(v, N) {\n    int i = ord[v];\n    V2[i] = vs[v];\n\
+    \    if (color[v] != 1) { V0[i] = vs[v]; }\n    if (color[v] != 0) { V1[max(i\
+    \ - n0, 0)] = vs[v]; }\n  }\n  FOR(v, 1, N) {\n    int a = ord[v], b = ord[par[v]];\n\
+    \    if (a > b) swap(a, b);\n    par2[b] = a;\n    if (color[v] != 1 && color[par[v]]\
+    \ != 1) par0[b] = a;\n    if (color[v] != 0 && color[par[v]] != 0) par1[max(b\
+    \ - n0, 0)] = max(a - n0, 0);\n  }\n  f(par2, V2, 1, 1 + n0, 1 + n0, 1 + n0 +\
+    \ n1);\n  centroid_decomposition_1_dfs(par0, V0, f);\n  centroid_decomposition_1_dfs(par1,\
+    \ V1, f);\n}\n\n/*\nhttps://maspypy.com/%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%83%bb1-3%e9%87%8d%e5%bf%83%e5%88%86%e8%a7%a3%e3%81%ae%e3%81%8a%e7%b5%b5%e6%8f%8f%e3%81%8d\n\
     f(par, V, color)\ncolor in [-1,0,1], -1 is virtual.\n*/\ntemplate <typename F>\n\
     void centroid_decomposition_2_dfs(vc<int>& par, vc<int>& vs, vc<int>& real, F\
     \ f) {\n  const int N = len(par);\n  assert(N > 1);\n  if (N == 2) {\n    if (real[0]\
@@ -180,47 +182,47 @@ data:
     \ = (i <= n0 ? 0 : 1);\n  if (real[c]) color[0] = 2, rea0[0] = rea1[0] = rea2[0]\
     \ = 0;\n  f(par2, V2, color);\n  centroid_decomposition_2_dfs(par0, V0, rea0,\
     \ f);\n  centroid_decomposition_2_dfs(par1, V1, rea1, f);\n}\n\n// 0: f(par, V,\
-    \ indptr)\n// 1: f(par, V, n1, n2)\n// 2: f(par, V, color)\ntemplate <int MODE,\
-    \ typename GT, typename F>\nvoid centroid_decomposition(GT& G, F f) {\n  static_assert(!GT::is_directed);\n\
-    \  const int N = G.N;\n  if (MODE != 0 && N == 1) return;\n  vc<int> V(N), par(N,\
-    \ -1);\n  int l = 0, r = 0;\n  V[r++] = 0;\n  while (l < r) {\n    int v = V[l++];\n\
-    \    for (auto& e: G[v]) {\n      if (e.to != par[v]) V[r++] = e.to, par[e.to]\
-    \ = v;\n    }\n  }\n  assert(r == N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]]\
-    \ = i;\n  vc<int> tmp(N, -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]]\
-    \ = new_idx[j];\n  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE ==\
-    \ 1 || MODE == 2);\n  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par,\
-    \ V, f); }\n  elif constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V,\
-    \ f); }\n  else {\n    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par,\
-    \ V, real, f);\n  }\n}\n#line 2 \"graph/ds/contour_query_range.hpp\"\n\n// \u8DDD\
-    \u96E2 0 \u306F\u542B\u3081\u3066\u3044\u306A\u3044\u3053\u3068\u306B\u6CE8\u610F\
-    \uFF01\ntemplate <typename GT, bool WEIGHTED>\nstruct Contour_Query_Range {\n\
-    \  using WT = std::conditional_t<WEIGHTED, typename GT::cost_type, int>;\n  int\
-    \ N;\n  vc<int> V;\n  vc<int> comp;\n  vc<WT> dep;\n  vc<int> info_idx, info_indptr;\n\
-    \  vc<int> comp_range;\n\n  Contour_Query_Range(GT& G0) : N(G0.N) {\n    int p\
-    \ = 0;\n    comp_range = {0};\n    auto f = [&](vc<int>& par, vc<int>& vs, vc<int>&\
-    \ color) -> void {\n      const int n = len(par);\n      vc<WT> dist(n);\n   \
-    \   FOR(v, 1, n) {\n        static_assert(!WEIGHTED);\n        dist[v] = dist[par[v]]\
-    \ + 1;\n      }\n      FOR(c1, 2) {\n        vc<int> A, B;\n        FOR(v, n)\
-    \ {\n          if (color[v] == c1) A.eb(v);\n          if (color[v] > c1) B.eb(v);\n\
-    \        }\n        if (A.empty() || B.empty()) continue;\n        int mx_A =\
-    \ 0, mx_B = 0;\n        for (auto& v: A) {\n          V.eb(vs[v]), comp.eb(p),\
-    \ dep.eb(dist[v]), chmax(mx_A, dist[v]);\n        }\n        comp_range.eb(comp_range.back()\
-    \ + mx_A + 1), ++p;\n        for (auto& v: B) {\n          V.eb(vs[v]), comp.eb(p),\
-    \ dep.eb(dist[v]), chmax(mx_B, dist[v]);\n        }\n        comp_range.eb(comp_range.back()\
-    \ + mx_B + 1), ++p;\n      }\n    };\n    centroid_decomposition<2>(G0, f);\n\
-    \    info_indptr.assign(N + 1, 0);\n    for (auto& v: V) info_indptr[1 + v]++;\n\
-    \    FOR(v, N) { info_indptr[v + 1] += info_indptr[v]; }\n    auto counter = info_indptr;\n\
-    \    info_idx.resize(info_indptr.back());\n    FOR(i, len(V)) { info_idx[counter[V[i]]++]\
-    \ = i; }\n  }\n\n  int size() { return comp_range.back(); }\n\n  vc<pair<int,\
-    \ int>> get_contour_range(int v, WT l, WT r) {\n    vc<pair<int, int>> res;\n\
-    \    FOR(k, info_indptr[v], info_indptr[v + 1]) {\n      int idx = info_idx[k];\n\
-    \      int p = comp[idx] ^ 1;\n      int lo = l - dep[idx], hi = r - dep[idx];\n\
-    \      int L = comp_range[p], R = comp_range[p + 1];\n      int n = R - L;\n \
-    \     chmax(lo, 0), chmin(hi, n);\n      if (lo < hi) { res.eb(comp_range[p] +\
-    \ lo, comp_range[p] + hi); }\n    }\n    return res;\n  }\n\n  vc<int> get_indices(int\
-    \ v) {\n    vc<int> res;\n    FOR(k, info_indptr[v], info_indptr[v + 1]) {\n \
-    \     int idx = info_idx[k];\n      int p = comp[idx];\n      res.eb(comp_range[p]\
-    \ + dep[idx]);\n    }\n    return res;\n  }\n};\n"
+    \ indptr)\n// 1: f(par, V, L1, R1, L2, R2)\n// 2: f(par, V, color)\ntemplate <int\
+    \ MODE, typename GT, typename F>\nvoid centroid_decomposition(GT& G, F f) {\n\
+    \  static_assert(!GT::is_directed);\n  const int N = G.N;\n  if (MODE != 0 &&\
+    \ N == 1) return;\n  vc<int> V(N), par(N, -1);\n  int l = 0, r = 0;\n  V[r++]\
+    \ = 0;\n  while (l < r) {\n    int v = V[l++];\n    for (auto& e: G[v]) {\n  \
+    \    if (e.to != par[v]) V[r++] = e.to, par[e.to] = v;\n    }\n  }\n  assert(r\
+    \ == N);\n  vc<int> new_idx(N);\n  FOR(i, N) new_idx[V[i]] = i;\n  vc<int> tmp(N,\
+    \ -1);\n  FOR(i, 1, N) {\n    int j = par[i];\n    tmp[new_idx[i]] = new_idx[j];\n\
+    \  }\n  swap(par, tmp);\n  static_assert(MODE == 0 || MODE == 1 || MODE == 2);\n\
+    \  if constexpr (MODE == 0) { centroid_decomposition_0_dfs(par, V, f); }\n  elif\
+    \ constexpr(MODE == 1) { centroid_decomposition_1_dfs(par, V, f); }\n  else {\n\
+    \    vc<int> real(N, 1);\n    centroid_decomposition_2_dfs(par, V, real, f);\n\
+    \  }\n}\n#line 2 \"graph/ds/contour_query_range.hpp\"\n\n// \u8DDD\u96E2 0 \u306F\
+    \u542B\u3081\u3066\u3044\u306A\u3044\u3053\u3068\u306B\u6CE8\u610F\uFF01\ntemplate\
+    \ <typename GT, bool WEIGHTED>\nstruct Contour_Query_Range {\n  using WT = std::conditional_t<WEIGHTED,\
+    \ typename GT::cost_type, int>;\n  int N;\n  vc<int> V;\n  vc<int> comp;\n  vc<WT>\
+    \ dep;\n  vc<int> info_idx, info_indptr;\n  vc<int> comp_range;\n\n  Contour_Query_Range(GT&\
+    \ G0) : N(G0.N) {\n    int p = 0;\n    comp_range = {0};\n    auto f = [&](vc<int>&\
+    \ par, vc<int>& vs, vc<int>& color) -> void {\n      const int n = len(par);\n\
+    \      vc<WT> dist(n);\n      FOR(v, 1, n) {\n        static_assert(!WEIGHTED);\n\
+    \        dist[v] = dist[par[v]] + 1;\n      }\n      FOR(c1, 2) {\n        vc<int>\
+    \ A, B;\n        FOR(v, n) {\n          if (color[v] == c1) A.eb(v);\n       \
+    \   if (color[v] > c1) B.eb(v);\n        }\n        if (A.empty() || B.empty())\
+    \ continue;\n        int mx_A = 0, mx_B = 0;\n        for (auto& v: A) {\n   \
+    \       V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_A, dist[v]);\n    \
+    \    }\n        comp_range.eb(comp_range.back() + mx_A + 1), ++p;\n        for\
+    \ (auto& v: B) {\n          V.eb(vs[v]), comp.eb(p), dep.eb(dist[v]), chmax(mx_B,\
+    \ dist[v]);\n        }\n        comp_range.eb(comp_range.back() + mx_B + 1), ++p;\n\
+    \      }\n    };\n    centroid_decomposition<2>(G0, f);\n    info_indptr.assign(N\
+    \ + 1, 0);\n    for (auto& v: V) info_indptr[1 + v]++;\n    FOR(v, N) { info_indptr[v\
+    \ + 1] += info_indptr[v]; }\n    auto counter = info_indptr;\n    info_idx.resize(info_indptr.back());\n\
+    \    FOR(i, len(V)) { info_idx[counter[V[i]]++] = i; }\n  }\n\n  int size() {\
+    \ return comp_range.back(); }\n\n  vc<pair<int, int>> get_contour_range(int v,\
+    \ WT l, WT r) {\n    vc<pair<int, int>> res;\n    FOR(k, info_indptr[v], info_indptr[v\
+    \ + 1]) {\n      int idx = info_idx[k];\n      int p = comp[idx] ^ 1;\n      int\
+    \ lo = l - dep[idx], hi = r - dep[idx];\n      int L = comp_range[p], R = comp_range[p\
+    \ + 1];\n      int n = R - L;\n      chmax(lo, 0), chmin(hi, n);\n      if (lo\
+    \ < hi) { res.eb(comp_range[p] + lo, comp_range[p] + hi); }\n    }\n    return\
+    \ res;\n  }\n\n  vc<int> get_indices(int v) {\n    vc<int> res;\n    FOR(k, info_indptr[v],\
+    \ info_indptr[v + 1]) {\n      int idx = info_idx[k];\n      int p = comp[idx];\n\
+    \      res.eb(comp_range[p] + dep[idx]);\n    }\n    return res;\n  }\n};\n"
   code: "#include \"graph/centroid_decomposition.hpp\"\n\n// \u8DDD\u96E2 0 \u306F\
     \u542B\u3081\u3066\u3044\u306A\u3044\u3053\u3068\u306B\u6CE8\u610F\uFF01\ntemplate\
     \ <typename GT, bool WEIGHTED>\nstruct Contour_Query_Range {\n  using WT = std::conditional_t<WEIGHTED,\
@@ -257,12 +259,12 @@ data:
   isVerificationFile: false
   path: graph/ds/contour_query_range.hpp
   requiredBy: []
-  timestamp: '2024-09-05 10:28:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-11 20:53:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/3_yukicoder/1038.test.cpp
   - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - test/3_yukicoder/1038.test.cpp
 documentation_of: graph/ds/contour_query_range.hpp
 layout: document
 redirect_from:

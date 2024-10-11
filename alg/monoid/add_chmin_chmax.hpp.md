@@ -44,8 +44,8 @@ data:
   timestamp: '2023-02-01 23:31:55+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/add_chmin_chmax.test.cpp
   - test/5_atcoder/abc196_E.test.cpp
+  - test/1_mytest/add_chmin_chmax.test.cpp
 documentation_of: alg/monoid/add_chmin_chmax.hpp
 layout: document
 redirect_from:

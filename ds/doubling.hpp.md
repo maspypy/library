@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -93,8 +93,8 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1977.test.cpp
   - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/1977.test.cpp
   - test/3_yukicoder/1097.test.cpp
   - test/5_atcoder/abc241e.test.cpp
 documentation_of: ds/doubling.hpp

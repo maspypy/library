@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_D.test.cpp
     title: test/4_aoj/DSL_2_D.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,9 +75,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256ex2.test.cpp
     title: test/5_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
@@ -92,33 +92,33 @@ data:
   isVerificationFile: false
   path: alg/monoid/assign.hpp
   requiredBy:
-  - alg/acted_monoid/sum_assign.hpp
-  - alg/acted_monoid/min_assign.hpp
-  - alg/acted_monoid/summax_assign.hpp
   - alg/acted_monoid/max_assign.hpp
-  - alg/acted_monoid/powersums_assign.hpp
   - alg/acted_monoid/summin_assign.hpp
+  - alg/acted_monoid/powersums_assign.hpp
+  - alg/acted_monoid/min_assign.hpp
+  - alg/acted_monoid/sum_assign.hpp
+  - alg/acted_monoid/summax_assign.hpp
   timestamp: '2023-10-14 20:28:40+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/summax_assign.test.cpp
-  - test/1_mytest/rbst_am.test.cpp
-  - test/1_mytest/rbst_am_persistent.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree.test.cpp
-  - test/1_mytest/rbst_monoid_persistent.test.cpp
-  - test/1_mytest/range_assign.test.cpp
-  - test/1_mytest/summin_assign.test.cpp
-  - test/1_mytest/splay_monoid.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
-  - test/1_mytest/rbst_monoid.test.cpp
-  - test/1_mytest/max_assign.test.cpp
-  - test/4_aoj/DSL_2_F.test.cpp
-  - test/4_aoj/DSL_2_D.test.cpp
-  - test/4_aoj/DSL_2_I.test.cpp
   - test/3_yukicoder/1548.test.cpp
   - test/3_yukicoder/2292.test.cpp
-  - test/5_atcoder/abc256ex.test.cpp
+  - test/4_aoj/DSL_2_I.test.cpp
+  - test/4_aoj/DSL_2_F.test.cpp
+  - test/4_aoj/DSL_2_D.test.cpp
   - test/5_atcoder/abc256ex2.test.cpp
+  - test/5_atcoder/abc256ex.test.cpp
+  - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/range_assign.test.cpp
+  - test/1_mytest/max_assign.test.cpp
+  - test/1_mytest/summin_assign.test.cpp
+  - test/1_mytest/rbst_monoid_persistent.test.cpp
+  - test/1_mytest/rbst_monoid.test.cpp
+  - test/1_mytest/summax_assign.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
 documentation_of: alg/monoid/assign.hpp
 layout: document
 redirect_from:

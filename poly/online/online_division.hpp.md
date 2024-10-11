@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/online/online_convolution.hpp
     title: poly/online/online_convolution.hpp
   _extendedRequiredBy:
@@ -211,16 +211,16 @@ data:
   isVerificationFile: false
   path: poly/online/online_division.hpp
   requiredBy:
+  - poly/online/online_inv.hpp
   - poly/online/online_pow.hpp
   - poly/online/online_log.hpp
-  - poly/online/online_inv.hpp
   timestamp: '2024-07-18 10:59:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/online_pow.test.cpp
-  - test/1_mytest/online_inv.test.cpp
-  - test/1_mytest/online_division.test.cpp
   - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/online_division.test.cpp
+  - test/1_mytest/online_inv.test.cpp
 documentation_of: poly/online/online_division.hpp
 layout: document
 redirect_from:

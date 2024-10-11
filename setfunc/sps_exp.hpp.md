@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/tutte_polynomial.hpp
+    title: graph/tutte_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
@@ -24,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc236h.test.cpp
     title: test/5_atcoder/abc236h.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc253h.test.cpp
     title: test/5_atcoder/abc253h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
@@ -79,14 +82,15 @@ data:
   path: setfunc/sps_exp.hpp
   requiredBy:
   - linalg/hafnian.hpp
+  - graph/tutte_polynomial.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - test/2_library_checker/set_power_series/sps_exp.test.cpp
   - test/3_yukicoder/2507.test.cpp
-  - test/5_atcoder/abc253h.test.cpp
   - test/5_atcoder/abc236h.test.cpp
+  - test/5_atcoder/abc253h.test.cpp
+  - test/2_library_checker/set_power_series/sps_exp.test.cpp
+  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 documentation_of: setfunc/sps_exp.hpp
 layout: document
 redirect_from:

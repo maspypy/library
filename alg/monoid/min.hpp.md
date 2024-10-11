@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':heavy_check_mark:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/range_mex_query.hpp
     title: ds/offline_query/range_mex_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':warning:'
@@ -29,10 +29,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -69,7 +69,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -129,7 +129,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -147,13 +147,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/913.test.cpp
     title: test/3_yukicoder/913.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,21 +168,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_H.test.cpp
     title: test/4_aoj/DSL_2_H.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc270_f.test.cpp
     title: test/5_atcoder/abc270_f.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -198,68 +198,68 @@ data:
   isVerificationFile: false
   path: alg/monoid/min.hpp
   requiredBy:
-  - alg/acted_monoid/min_min.hpp
-  - alg/acted_monoid/min_assign.hpp
-  - alg/acted_monoid/max_min.hpp
-  - alg/acted_monoid/min_add.hpp
-  - alg/acted_monoid/min_max.hpp
-  - string/longest_common_substring.hpp
-  - string/sort_substrings.hpp
-  - string/suffix_array.hpp
-  - string/suffix_tree.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
-  - graph/minimum_spanning_tree.hpp
-  - graph/ds/range_edge_connected_component_query.hpp
-  - graph/fast_lca.hpp
   - ds/offline_query/range_mex_query.hpp
+  - string/suffix_tree.hpp
+  - string/longest_common_substring.hpp
+  - string/suffix_array.hpp
+  - string/sort_substrings.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
   - geo/range_closest_pair_query.hpp
   - seq/common_interval_decomposition.hpp
+  - alg/acted_monoid/min_add.hpp
+  - alg/acted_monoid/min_min.hpp
+  - alg/acted_monoid/max_min.hpp
+  - alg/acted_monoid/min_assign.hpp
+  - alg/acted_monoid/min_max.hpp
+  - graph/fast_lca.hpp
+  - graph/ds/range_edge_connected_component_query.hpp
+  - graph/minimum_spanning_tree.hpp
   timestamp: '2023-02-02 02:12:17+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/1_mytest/max_min.test.cpp
-  - test/1_mytest/range_closest_pair.test.cpp
-  - test/1_mytest/rbst_test.test.cpp
+  - test/3_yukicoder/1234.test.cpp
+  - test/3_yukicoder/1600.test.cpp
+  - test/3_yukicoder/913.test.cpp
+  - test/3_yukicoder/2361.test.cpp
+  - test/3_yukicoder/1270.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/1720.test.cpp
+  - test/3_yukicoder/1212.test.cpp
+  - test/4_aoj/DSL_2_F.test.cpp
+  - test/4_aoj/1508_2.test.cpp
+  - test/4_aoj/DSL_2_H.test.cpp
+  - test/4_aoj/GRL_2_A.test.cpp
+  - test/4_aoj/1508.test.cpp
+  - test/5_atcoder/abc270_f.test.cpp
+  - test/5_atcoder/arc151_e.test.cpp
+  - test/5_atcoder/abc240ex.test.cpp
   - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/max_min.test.cpp
   - test/1_mytest/seg2d.test.cpp
-  - test/1_mytest/min_min.test.cpp
-  - test/1_mytest/wavelet_matrix.test.cpp
-  - test/1_mytest/rbst_am_persistent.test.cpp
-  - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/min_max.test.cpp
-  - test/1_mytest/longest_common_substr.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/dynamic_segtree_sparse.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_dc.test.cpp
+  - test/1_mytest/range_mex.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
+  - test/1_mytest/rbst_test.test.cpp
+  - test/1_mytest/wavelet_matrix.test.cpp
+  - test/1_mytest/range_closest_pair.test.cpp
+  - test/1_mytest/rbst_am_persistent.test.cpp
+  - test/1_mytest/min_min.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/2_library_checker/data_structure/staticrmq_x.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_sparse.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_seg.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_sqrt_tree.test.cpp
-  - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
+  - test/2_library_checker/data_structure/staticrmq_dc.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/number_of_substrings.test.cpp
   - test/2_library_checker/string/longest_common_substring.test.cpp
   - test/2_library_checker/string/suffix_array.test.cpp
-  - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
-  - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
-  - test/4_aoj/DSL_2_H.test.cpp
-  - test/4_aoj/DSL_2_F.test.cpp
-  - test/4_aoj/1508.test.cpp
-  - test/4_aoj/1508_2.test.cpp
-  - test/4_aoj/GRL_2_A.test.cpp
-  - test/3_yukicoder/1212.test.cpp
-  - test/3_yukicoder/1270.test.cpp
-  - test/3_yukicoder/2361.test.cpp
-  - test/3_yukicoder/1600.test.cpp
-  - test/3_yukicoder/1720.test.cpp
-  - test/3_yukicoder/1234.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/913.test.cpp
-  - test/5_atcoder/abc270_f.test.cpp
-  - test/5_atcoder/abc240ex.test.cpp
-  - test/5_atcoder/arc151_e.test.cpp
+  - test/2_library_checker/tree/lca_fast.test.cpp
 documentation_of: alg/monoid/min.hpp
 layout: document
 redirect_from:

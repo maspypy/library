@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -234,8 +234,8 @@ data:
   timestamp: '2024-10-01 03:45:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/polygon_triangulation.test.cpp
   - test/3_yukicoder/1777.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: graph/planar_graph.hpp
 layout: document
 redirect_from:

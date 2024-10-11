@@ -77,8 +77,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1269.test.cpp
-  - test/5_atcoder/abc362g.test.cpp
   - test/5_atcoder/abc268_ex.test.cpp
+  - test/5_atcoder/abc362g.test.cpp
 documentation_of: string/trie.hpp
 layout: document
 redirect_from:

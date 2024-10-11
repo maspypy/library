@@ -101,8 +101,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/0350.test.cpp
-  - test/5_atcoder/agc060c.test.cpp
   - test/5_atcoder/abc301g.test.cpp
+  - test/5_atcoder/agc060c.test.cpp
 documentation_of: nt/rational.hpp
 layout: document
 redirect_from:

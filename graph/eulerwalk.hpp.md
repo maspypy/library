@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -232,9 +232,9 @@ data:
   timestamp: '2024-08-26 01:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/5_atcoder/arc157a.test.cpp
   - test/2_library_checker/graph/eulerwalk_d.test.cpp
   - test/2_library_checker/graph/eulerwalk_ud.test.cpp
-  - test/5_atcoder/arc157a.test.cpp
 documentation_of: graph/eulerwalk.hpp
 layout: document
 redirect_from:

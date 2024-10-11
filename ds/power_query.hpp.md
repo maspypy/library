@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
   _extendedRequiredBy:
@@ -54,8 +54,8 @@ data:
   timestamp: '2022-12-05 18:15:30+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/powerquery.test.cpp
+  - test/1_mytest/count_bipartite.test.cpp
 documentation_of: ds/power_query.hpp
 layout: document
 redirect_from:

@@ -74,8 +74,8 @@ data:
   timestamp: '2024-08-28 14:07:46+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/sigma_0_sum.test.cpp
   - test/5_atcoder/abc230e.test.cpp
+  - test/1_mytest/sigma_0_sum.test.cpp
 documentation_of: nt/convex_floor_sum.hpp
 layout: document
 redirect_from:

@@ -8,6 +8,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_add_make_decreasing.hpp
+    title: ds/segtree/range_add_make_decreasing.hpp
+  - icon: ':warning:'
+    path: ds/segtree/range_add_make_increasing.hpp
+    title: ds/segtree/range_add_make_increasing.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
@@ -154,33 +160,35 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
-  - graph/toposort.hpp
-  - graph/ds/incremental_centroid.hpp
-  - ds/segtree/sortable_segtree.hpp
-  - ds/segtree/range_assignment_segtree.hpp
+  - ds/incremental_rectangle_union.hpp
   - ds/intervals.hpp
   - ds/sortable_array.hpp
-  - ds/incremental_rectangle_union.hpp
+  - ds/segtree/range_add_make_decreasing.hpp
+  - ds/segtree/sortable_segtree.hpp
+  - ds/segtree/range_assignment_segtree.hpp
+  - ds/segtree/range_add_make_increasing.hpp
   - other/cuboid_union_volume.hpp
+  - graph/ds/incremental_centroid.hpp
+  - graph/toposort.hpp
   timestamp: '2024-04-27 11:55:26+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/sortable_array.test.cpp
-  - test/1_mytest/range_assign.test.cpp
-  - test/2_library_checker/data_structure/predecessor_problem.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/3_yukicoder/2809.test.cpp
   - test/4_aoj/2636.test.cpp
   - test/4_aoj/2251_1.test.cpp
-  - test/3_yukicoder/2809.test.cpp
   - test/5_atcoder/abc237g.test.cpp
-  - test/5_atcoder/abc217e.test.cpp
-  - test/5_atcoder/abc256ex.test.cpp
-  - test/5_atcoder/abc256d.test.cpp
-  - test/5_atcoder/abc223d.test.cpp
-  - test/5_atcoder/abc237g1.test.cpp
   - test/5_atcoder/abc256ex2.test.cpp
+  - test/5_atcoder/abc256ex.test.cpp
+  - test/5_atcoder/abc237g1.test.cpp
+  - test/5_atcoder/abc223d.test.cpp
+  - test/5_atcoder/abc256d.test.cpp
+  - test/5_atcoder/abc217e.test.cpp
+  - test/1_mytest/range_assign.test.cpp
+  - test/1_mytest/sortable_array.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/predecessor_problem.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
 documentation_of: ds/fastset.hpp
 layout: document
 redirect_from:

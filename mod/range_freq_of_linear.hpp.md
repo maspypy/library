@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
   _extendedRequiredBy: []
@@ -54,9 +54,9 @@ data:
   timestamp: '2024-01-26 14:07:48+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2280.test.cpp
   - test/1_mytest/range_freq_of_linear.test.cpp
   - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
-  - test/3_yukicoder/2280.test.cpp
 documentation_of: mod/range_freq_of_linear.hpp
 layout: document
 redirect_from:

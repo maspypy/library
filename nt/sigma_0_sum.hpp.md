@@ -71,8 +71,8 @@ data:
   timestamp: '2024-08-29 05:12:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/sigma_0_sum.test.cpp
   - test/5_atcoder/abc230e.test.cpp
+  - test/1_mytest/sigma_0_sum.test.cpp
 documentation_of: nt/sigma_0_sum.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
@@ -160,10 +160,10 @@ data:
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/ITP1_11_B.test.cpp
-  - test/4_aoj/ITP1_11_D.test.cpp
-  - test/4_aoj/ITP1_11_C.test.cpp
   - test/4_aoj/ITP1_11_A.test.cpp
+  - test/4_aoj/ITP1_11_B.test.cpp
+  - test/4_aoj/ITP1_11_C.test.cpp
+  - test/4_aoj/ITP1_11_D.test.cpp
 documentation_of: other/dice.hpp
 layout: document
 redirect_from:

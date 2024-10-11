@@ -126,10 +126,10 @@ data:
   timestamp: '2024-10-04 16:36:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/kdtree_nns.test.cpp
-  - test/4_aoj/DSL_2_C.test.cpp
   - test/3_yukicoder/2909.test.cpp
+  - test/4_aoj/DSL_2_C.test.cpp
   - test/5_atcoder/abc234ex.test.cpp
+  - test/1_mytest/kdtree_nns.test.cpp
 documentation_of: ds/kdtree/kdtree.hpp
 layout: document
 redirect_from:

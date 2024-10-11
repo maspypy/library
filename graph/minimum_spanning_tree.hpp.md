@@ -1,50 +1,50 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc270_f.test.cpp
     title: test/5_atcoder/abc270_f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -330,24 +330,27 @@ data:
     \n  }\r\n};\r\n#line 2 \"ds/segtree/dual_segtree.hpp\"\n\ntemplate <typename Monoid>\n\
     struct Dual_SegTree {\n  using MA = Monoid;\n  using A = typename MA::value_type;\n\
     \  int n, log, size;\n  vc<A> laz;\n\n  Dual_SegTree() : Dual_SegTree(0) {}\n\
-    \  Dual_SegTree(int n) { build(n); }\n\n  void build(int m) {\n    n = m;\n  \
-    \  log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, MA::unit());\n  }\n\n  A get(int p) {\n    assert(0 <= p && p < n);\n\
-    \    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n    return\
-    \ laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n    return {laz.begin()\
-    \ + size, laz.begin() + size + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n\
-    \    laz[p + size] = x;\n  }\n\n  void apply(int l, int r, const A& a) {\n   \
-    \ assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n    l += size,\
-    \ r += size;\n    if (!MA::commute) {\n      for (int i = log; i >= 1; i--) {\n\
-    \        if (((l >> i) << i) != l) push(l >> i);\n        if (((r >> i) << i)\
-    \ != r) push((r - 1) >> i);\n      }\n    }\n    while (l < r) {\n      if (l\
-    \ & 1) all_apply(l++, a);\n      if (r & 1) all_apply(--r, a);\n      l >>= 1,\
-    \ r >>= 1;\n    }\n  }\n\nprivate:\n  void push(int k) {\n    if (laz[k] == MA::unit())\
-    \ return;\n    all_apply(2 * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k]\
-    \ = MA::unit();\n  }\n  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a);\
-    \ }\n};\n#line 3 \"graph/ds/dual_tree_monoid.hpp\"\n\r\ntemplate <typename TREE,\
-    \ typename Monoid, bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using MX = Monoid;\r\
-    \n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Dual_SegTree<MX>\
+    \  Dual_SegTree(int n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n\
+    \  }\n  template <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n\
+    \  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n    log\
+    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
+    \ << 1, MA::unit());\n    FOR(i, n) laz[size + i] = f(i);\n  }\n\n  A get(int\
+    \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
+    \ >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n \
+    \   FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() + size\
+    \ + n};\n  }\n\n  void set(int p, A x) {\n    get(p);\n    laz[p + size] = x;\n\
+    \  }\n\n  void apply(int l, int r, const A& a) {\n    assert(0 <= l && l <= r\
+    \ && r <= n);\n    if (l == r) return;\n    l += size, r += size;\n    if (!MA::commute)\
+    \ {\n      for (int i = log; i >= 1; i--) {\n        if (((l >> i) << i) != l)\
+    \ push(l >> i);\n        if (((r >> i) << i) != r) push((r - 1) >> i);\n     \
+    \ }\n    }\n    while (l < r) {\n      if (l & 1) all_apply(l++, a);\n      if\
+    \ (r & 1) all_apply(--r, a);\n      l >>= 1, r >>= 1;\n    }\n  }\n\nprivate:\n\
+    \  void push(int k) {\n    if (laz[k] == MA::unit()) return;\n    all_apply(2\
+    \ * k, laz[k]), all_apply(2 * k + 1, laz[k]);\n    laz[k] = MA::unit();\n  }\n\
+    \  void all_apply(int k, A a) { laz[k] = MA::op(laz[k], a); }\n};\n#line 3 \"\
+    graph/ds/dual_tree_monoid.hpp\"\n\r\ntemplate <typename TREE, typename Monoid,\
+    \ bool edge>\r\nstruct Dual_Tree_Monoid {\r\n  using MX = Monoid;\r\n  using X\
+    \ = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  Dual_SegTree<MX>\
     \ seg;\r\n\r\n  Dual_Tree_Monoid(TREE &tree) : tree(tree), N(tree.N), seg(tree.N)\
     \ {}\r\n\r\n  X get(int i) {\r\n    int v = i;\r\n    if (edge) {\r\n      auto\
     \ &&e = tree.G.edges[i];\r\n      v = (tree.parent[e.frm] == e.to ? e.frm : e.to);\r\
@@ -435,12 +438,12 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2024-09-20 17:23:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-11 20:53:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/2_library_checker/tree/mst.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/5_atcoder/abc270_f.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
 documentation_of: graph/minimum_spanning_tree.hpp
 layout: document
 redirect_from:

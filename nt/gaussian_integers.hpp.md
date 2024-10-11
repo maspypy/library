@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -270,19 +270,19 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy:
-  - nt/four_square.hpp
   - nt/three_square.hpp
-  - nt/two_square.hpp
   - nt/three_triangular.hpp
+  - nt/four_square.hpp
+  - nt/two_square.hpp
   timestamp: '2024-09-14 09:20:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/three_triangular.test.cpp
-  - test/1_mytest/four_square.test.cpp
-  - test/1_mytest/three_square.test.cpp
-  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
-  - test/2_library_checker/number_theory/two_square.test.cpp
   - test/3_yukicoder/1593.test.cpp
+  - test/1_mytest/three_square.test.cpp
+  - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
+  - test/2_library_checker/number_theory/two_square.test.cpp
+  - test/2_library_checker/number_theory/gaussian_integers.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:
