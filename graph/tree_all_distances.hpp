@@ -8,14 +8,14 @@ vi tree_all_distances(GT& G) {
   assert(G.is_prepared());
   int N = G.N;
   vi ANS(N);
-  auto f = [&](vc<int>& par, vc<int>& V, int n1, int n2) -> void {
+  auto f = [&](vc<int>& par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {
     int N = len(par);
     vc<int> dist(N);
     FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }
     int mx = MAX(dist);
     vi f(1 + mx), g(1 + mx);
-    FOR(i, 1, 1 + n1) f[dist[i]]++;
-    FOR(i, 1 + n1, 1 + n1 + n2) g[dist[i]]++;
+    FOR(i, L1, R1) f[dist[i]]++;
+    FOR(i, L2, R2) g[dist[i]]++;
     while (len(f) && f.back() == 0) POP(f);
     while (len(g) && g.back() == 0) POP(g);
     f = convolution(f, g);
