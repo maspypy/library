@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':question:'
@@ -48,9 +48,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/frequency_table_of_tree_distance
@@ -691,10 +691,10 @@ data:
     \n\r\n// frequency table of distance of all directed pairs.\r\n// sum of result\
     \ array = N^2\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\n\
     \  assert(G.is_prepared());\r\n  int N = G.N;\r\n  vi ANS(N);\r\n  auto f = [&](vc<int>&\
-    \ par, vc<int>& V, int n1, int n2) -> void {\r\n    int N = len(par);\r\n    vc<int>\
-    \ dist(N);\r\n    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\r\n    int mx =\
-    \ MAX(dist);\r\n    vi f(1 + mx), g(1 + mx);\r\n    FOR(i, 1, 1 + n1) f[dist[i]]++;\r\
-    \n    FOR(i, 1 + n1, 1 + n1 + n2) g[dist[i]]++;\r\n    while (len(f) && f.back()\
+    \ par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {\r\n    int N = len(par);\r\
+    \n    vc<int> dist(N);\r\n    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\r\n\
+    \    int mx = MAX(dist);\r\n    vi f(1 + mx), g(1 + mx);\r\n    FOR(i, L1, R1)\
+    \ f[dist[i]]++;\r\n    FOR(i, L2, R2) g[dist[i]]++;\r\n    while (len(f) && f.back()\
     \ == 0) POP(f);\r\n    while (len(g) && g.back() == 0) POP(g);\r\n    f = convolution(f,\
     \ g);\r\n    FOR(i, len(f)) ANS[i] += f[i] * 2;\r\n  };\r\n  centroid_decomposition<1>(G,\
     \ f);\r\n  ANS[0] = N, ANS[1] = 2 * (N - 1);\r\n  return ANS;\r\n}\r\n#line 7\
@@ -728,8 +728,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 20:53:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-12 22:46:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
 layout: document

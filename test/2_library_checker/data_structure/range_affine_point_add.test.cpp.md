@@ -215,7 +215,8 @@ data:
     \  }\n  template <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n\
     \  }\n\n  template <typename F>\n  void build(int m, F f) {\n    n = m;\n    log\
     \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size\
-    \ << 1, MA::unit());\n    FOR(i, n) laz[size + i] = f(i);\n  }\n\n  A get(int\
+    \ << 1, MA::unit());\n    FOR(i, n) laz[size + i] = f(i);\n  }\n  void build(int\
+    \ n) {\n    build(n, [&](int i) -> A { return MA::unit(); });\n  }\n\n  A get(int\
     \ p) {\n    assert(0 <= p && p < n);\n    p += size;\n    for (int i = log; i\
     \ >= 1; i--) push(p >> i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n \
     \   FOR(i, size) push(i);\n    return {laz.begin() + size, laz.begin() + size\
@@ -339,7 +340,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 20:53:53+09:00'
+  timestamp: '2024-10-12 22:46:11+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_affine_point_add.test.cpp

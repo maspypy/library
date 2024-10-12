@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -27,10 +27,11 @@ data:
     \ <typename F>\n  Dual_SegTree(int n, F f) {\n    build(n, f);\n  }\n\n  template\
     \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    log = 1;\n    while\
     \ ((1 << log) < n) ++log;\n    size = 1 << log;\n    laz.assign(size << 1, MA::unit());\n\
-    \    FOR(i, n) laz[size + i] = f(i);\n  }\n\n  A get(int p) {\n    assert(0 <=\
-    \ p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >> i);\n\
-    \    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n \
-    \   return {laz.begin() + size, laz.begin() + size + n};\n  }\n\n  void set(int\
+    \    FOR(i, n) laz[size + i] = f(i);\n  }\n  void build(int n) {\n    build(n,\
+    \ [&](int i) -> A { return MA::unit(); });\n  }\n\n  A get(int p) {\n    assert(0\
+    \ <= p && p < n);\n    p += size;\n    for (int i = log; i >= 1; i--) push(p >>\
+    \ i);\n    return laz[p];\n  }\n\n  vc<A> get_all() {\n    FOR(i, size) push(i);\n\
+    \    return {laz.begin() + size, laz.begin() + size + n};\n  }\n\n  void set(int\
     \ p, A x) {\n    get(p);\n    laz[p + size] = x;\n  }\n\n  void apply(int l, int\
     \ r, const A& a) {\n    assert(0 <= l && l <= r && r <= n);\n    if (l == r) return;\n\
     \    l += size, r += size;\n    if (!MA::commute) {\n      for (int i = log; i\
@@ -154,7 +155,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_add_make_decreasing.hpp
   requiredBy: []
-  timestamp: '2024-10-11 20:53:53+09:00'
+  timestamp: '2024-10-12 22:46:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/range_add_make_decreasing.hpp

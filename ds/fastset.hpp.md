@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: bigint/redundant_binary_number.hpp
+    title: bigint/redundant_binary_number.hpp
+  - icon: ':warning:'
     path: ds/incremental_rectangle_union.hpp
     title: ds/incremental_rectangle_union.hpp
   - icon: ':heavy_check_mark:'
@@ -160,6 +163,7 @@ data:
   isVerificationFile: false
   path: ds/fastset.hpp
   requiredBy:
+  - bigint/redundant_binary_number.hpp
   - ds/incremental_rectangle_union.hpp
   - ds/intervals.hpp
   - ds/sortable_array.hpp
