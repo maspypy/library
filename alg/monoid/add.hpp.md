@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':heavy_check_mark:'
@@ -74,7 +74,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -423,6 +423,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/235.test.cpp
     title: test/3_yukicoder/235.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2491.test.cpp
+    title: test/3_yukicoder/2491.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
@@ -537,9 +540,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc362g.test.cpp
     title: test/5_atcoder/abc362g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -604,7 +607,7 @@ data:
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/2003.test.cpp
@@ -621,6 +624,7 @@ data:
   - test/3_yukicoder/655.test.cpp
   - test/3_yukicoder/919.test.cpp
   - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/2491.test.cpp
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/2338.test.cpp
