@@ -1,42 +1,71 @@
-#define PROBLEM "https://yukicoder.me/problems/no/2892"
+#define PROBLEM "https://yukicoder.me/problems/no/2491"
 #include "my_template.hpp"
 #include "other/io.hpp"
 
+#include "graph/tree.hpp"
 #include "graph/centroid_decomposition.hpp"
+#include "ds/offline_query/rectangle_add_point_sum.hpp"
+#include "alg/monoid/add_pair.hpp"
 
 void solve() {
-  LL(N);
+  INT(N);
   Graph<int, 0> G(N);
   G.read_tree();
-  STR(S);
+  Tree<decltype(G)> tree(G);
 
-  ll ANS = 0;
+  vc<int> D(N);
+  FOR(i, 1, N) D[i] = tree.dist(i - 1, i);
 
-  auto f = [&](vc<int> par, vc<int> V, int L1, int R1, int L2, int R2) -> void {
-    ll n = len(V);
-    vc<int> A(n);
-    FOR(i, n) { A[i] = (S[V[i]] == '1' ? 1 : -1); }
-    // 根を含まない場合の値
-    vc<int> dp(n);
-    FOR(i, 1, n) {
-      int p = par[i];
-      dp[i] = dp[p] + A[i];
+  ll base = SUM<ll>(D);
+  vi ANS(N, base);
+
+  /*
+  i -> i+1, 距離 d[i+1]
+  やること
+  i+1 からの距離が e かつ番号が i 以下の点に対して
+  max(0, d - 1 - e) を引くことができる
+
+  rectangle add rectangle sum
+  */
+
+  FOR(i, 1, N) {
+    for (auto& e: G[i]) {
+      if (e.to < i) { ANS[e.to] -= max(0, D[i] - 1 - 1); }
     }
+  }
 
-    vc<int> L, R;
-    FOR(i, L1, R1) L.eb(dp[i] + A[0] + n);
-    vc<int> F(2 * n + 3);
-    FOR(j, L2, R2) F[n - dp[j]]++;
-    F = cumsum<int>(F);
-    FOR(i, L1, R1) ANS += F[dp[i] + A[0] + n];
+  auto f = [&](vc<int>& par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {
+    int n = len(V);
+    vc<int> dep(n);
+    FOR(i, 1, n) dep[i] += dep[par[i]] + 1;
+
+    auto F = [&](int L1, int R1, int L2, int R2) -> void {
+      // dep range, index range
+      Rectangle_Add_Point_Sum<Monoid_Add_Pair<ll>, int, true> X;
+      FOR(i, L1, R1) {
+        int v = V[i];
+        if (v == 0) continue;
+        int d = D[v];
+        if (d <= 2) continue;
+        // 距離が d-2 以下
+        int d1 = 1, d2 = d - 2 - dep[i];
+        if (d1 > d2) continue;
+        // 足すもの：(d - 1 - dep[i]) - x
+        X.add_query(d1, d2 + 1, 0, v, {d - 1 - dep[i], -1});
+      }
+      FOR(i, L2, R2) { X.sum_query(dep[i], V[i]); }
+      auto res = X.calc();
+      FOR(i, L2, R2) {
+        auto [a, b] = res[i - L2];
+        ANS[V[i]] -= a + b * dep[i];
+      }
+    };
+    F(L1, R1, L2, R2);
+    F(L2, R2, L1, R1);
   };
 
   centroid_decomposition<1, decltype(G)>(G, f);
-  FOR(v, N) if (S[v] == '1')++ ANS;
-  for (auto& e: G.edges) {
-    if (S[e.frm] == '1' && S[e.to] == '1') ++ANS;
-  }
-  print(ANS);
+  for (auto& x: ANS) print(x);
 }
 
 signed main() {
