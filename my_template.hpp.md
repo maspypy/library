@@ -1218,28 +1218,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
     title: test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
     title: test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/sample/aplusb128.test.cpp
     title: test/2_library_checker/sample/aplusb128.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1248,10 +1248,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/composition_sps.test.cpp
     title: test/2_library_checker/set_power_series/composition_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
     title: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
     title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1260,7 +1260,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution_multivar.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1332,10 +1332,10 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1347,7 +1347,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1368,7 +1368,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1377,7 +1377,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'

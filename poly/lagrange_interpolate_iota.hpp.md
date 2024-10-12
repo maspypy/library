@@ -60,7 +60,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
     title: test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - icon: ':x:'

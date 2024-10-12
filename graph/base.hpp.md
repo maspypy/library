@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':question:'
@@ -92,10 +92,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -200,7 +200,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -498,10 +498,10 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -513,7 +513,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -534,7 +534,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
@@ -543,7 +543,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
