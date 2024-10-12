@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':question:'
