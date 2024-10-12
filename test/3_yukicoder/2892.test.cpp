@@ -12,7 +12,7 @@ void solve() {
 
   ll ANS = 0;
 
-  auto f = [&](vc<int> par, vc<int> V, int n1, int n2) -> void {
+  auto f = [&](vc<int> par, vc<int> V, int L1, int R1, int L2, int R2) -> void {
     ll n = len(V);
     vc<int> A(n);
     FOR(i, n) { A[i] = (S[V[i]] == '1' ? 1 : -1); }
@@ -24,18 +24,15 @@ void solve() {
     }
 
     vc<int> L, R;
-    FOR(i, 1, 1 + n1) L.eb(dp[i] + A[0] + n);
+    FOR(i, L1, R1) L.eb(dp[i] + A[0] + n);
     vc<int> F(2 * n + 3);
-    FOR(j, 1 + n1, 1 + n1 + n2) F[n - dp[j]]++;
+    FOR(j, L2, R2) F[n - dp[j]]++;
     F = cumsum<int>(F);
-    FOR(i, 1, 1 + n1) ANS += F[dp[i] + A[0] + n];
+    FOR(i, L1, R1) ANS += F[dp[i] + A[0] + n];
   };
 
   centroid_decomposition<1, decltype(G)>(G, f);
   FOR(v, N) if (S[v] == '1')++ ANS;
-  for (auto& e: G.edges) {
-    if (S[e.frm] == '1' && S[e.to] == '1') ++ANS;
-  }
   print(ANS);
 }
 
