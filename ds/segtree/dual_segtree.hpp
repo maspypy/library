@@ -25,6 +25,9 @@ struct Dual_SegTree {
     laz.assign(size << 1, MA::unit());
     FOR(i, n) laz[size + i] = f(i);
   }
+  void build(int n) {
+    build(n, [&](int i) -> A { return MA::unit(); });
+  }
 
   A get(int p) {
     assert(0 <= p && p < n);

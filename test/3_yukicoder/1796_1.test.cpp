@@ -18,14 +18,9 @@ void solve() {
   vc<mint> ANS(N);
   // 距離 0
   FOR(v, N) ANS[v] += A[v];
-  // 距離 1
-  for (auto& e: G.edges) {
-    ANS[e.frm] += A[e.to] * inv<mint>(4);
-    ANS[e.to] += A[e.frm] * inv<mint>(4);
-  }
 
-  auto F = [&](vc<int>& par, vc<int> vs, int n1, int n2) -> void {
-    int n = 1 + n1 + n2;
+  auto F = [&](vc<int>& par, vc<int> vs, int L1, int R1, int L2, int R2) -> void {
+    int n = len(par);
     vc<int> dist(n);
     FOR(i, 1, n) dist[i] = dist[par[i]] + 1;
     auto f = [&](int L1, int R1, int L2, int R2) -> void {
@@ -38,8 +33,8 @@ void solve() {
       assert(len(c) == n1 + 1);
       FOR(i, L1, R1) ANS[vs[i]] += c[dist[i]];
     };
-    f(1, 1 + n1, 1 + n1, n);
-    f(1 + n1, n, 1, 1 + n1);
+    f(L1, R1, L2, R2);
+    f(L2, R2, L1, R1);
   };
   centroid_decomposition<1>(G, F);
 
