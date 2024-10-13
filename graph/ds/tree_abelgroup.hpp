@@ -1,8 +1,7 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 #include "graph/tree.hpp"
 
-template <typename TREE, typename AbelGroup, bool edge, bool path_query,
-          bool subtree_query>
+template <typename TREE, typename AbelGroup, bool edge, bool path_query, bool subtree_query>
 struct Tree_AbelGroup {
   using MX = AbelGroup;
   using X = typename MX::value_type;
@@ -47,7 +46,7 @@ struct Tree_AbelGroup {
     }
     if constexpr (subtree_query) bit_subtree.add(tree.LID[v], x);
   }
-
+  void multiply(int i, X x) { add(i, x); }
   X prod_path(int frm, int to) {
     static_assert(path_query);
     int lca = tree.LCA(frm, to);
