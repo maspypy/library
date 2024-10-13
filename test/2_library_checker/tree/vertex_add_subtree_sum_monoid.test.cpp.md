@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_reverse.hpp
     title: alg/monoid/monoid_reverse.hpp
   - icon: ':question:'
@@ -13,10 +13,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':question:'
@@ -432,52 +432,52 @@ data:
     \ F>\r\n  void build(F f) {\r\n    if (!edge) {\r\n      auto f_v = [&](int i)\
     \ -> X { return f(tree.V[i]); };\r\n      seg.build(N, f_v);\r\n      if constexpr\
     \ (!MX::commute) { seg_r.build(N, f_v); }\r\n    } else {\r\n      auto f_e =\
-    \ [&](int i) -> X {\r\n        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\r\
-    \n      };\r\n      seg.build(N, f_e);\r\n      if constexpr (!MX::commute) {\
-    \ seg_r.build(N, f_e); }\r\n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n \
-    \   if constexpr (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i,\
-    \ x);\r\n    if constexpr (!MX::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  void\
-    \ multiply(int i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\n  \
-    \  i = tree.LID[i];\r\n    seg.multiply(i, x);\r\n    if constexpr (!MX::commute)\
-    \ seg_r.multiply(i, x);\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto\
-    \ pd = tree.get_path_decomposition(u, v, edge);\r\n    X val = MX::unit();\r\n\
-    \    for (auto &&[a, b]: pd) { val = MX::op(val, get_prod(a, b)); }\r\n    return\
-    \ val;\r\n  }\r\n\r\n  // uv path \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\
-    \u6E80\u305F\u3059\u6700\u5F8C\u306E x\r\n  // \u306A\u3051\u308C\u3070 \uFF08\
-    \u3064\u307E\u308A path(u,u) \u304C ng \uFF09-1\r\n  template <class F>\r\n  int\
-    \ max_path(F check, int u, int v) {\r\n    if constexpr (edge) return max_path_edge(check,\
-    \ u, v);\r\n    if (!check(prod_path(u, u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u,\
-    \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n  \
-    \    X x = get_prod(a, b);\r\n      if (check(MX::op(val, x))) {\r\n        val\
-    \ = MX::op(val, x);\r\n        u = (tree.V[b]);\r\n        continue;\r\n     \
-    \ }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val, x));\
-    \ };\r\n      if (a <= b) {\r\n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp,\
-    \ a);\r\n        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n  \
-    \      // \u4E0A\u308A\r\n        int i = 0;\r\n        if constexpr (MX::commute)\
-    \ i = seg.min_left(check_tmp, a + 1);\r\n        if constexpr (!MX::commute) i\
-    \ = seg_r.min_left(check_tmp, a + 1);\r\n        if (i == a + 1) return u;\r\n\
-    \        return tree.V[i];\r\n      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n\
-    \  X prod_subtree(int u, int root = -1) {\r\n    if (root == u) return prod_all();\r\
-    \n    if (root == -1 || tree.in_subtree(u, root)) {\r\n      int l = tree.LID[u],\
-    \ r = tree.RID[u];\r\n      return seg.prod(l + edge, r);\r\n    }\r\n    assert(!edge);\
-    \ // \u3055\u307C\u308A\r\n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u],\
-    \ R = tree.RID[u];\r\n    return MX::op(seg.prod(0, L), seg.prod(R, N));\r\n \
-    \ }\r\n\r\n  X prod_all() { return prod_subtree(tree.V[0]); }\r\n\r\n  inline\
-    \ X get_prod(int a, int b) {\r\n    if constexpr (MX::commute) {\r\n      return\
-    \ (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);\r\n    }\r\n    return (a\
-    \ <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\r\n  }\r\n\r\nprivate:\r\n\
-    \  template <class F>\r\n  int max_path_edge(F check, int u, int v) {\r\n    static_assert(edge);\r\
-    \n    if (!check(MX::unit())) return -1;\r\n    int lca = tree.lca(u, v);\r\n\
-    \    auto pd = tree.get_path_decomposition(u, lca, edge);\r\n    X val = MX::unit();\r\
-    \n\r\n    // climb\r\n    for (auto &&[a, b]: pd) {\r\n      assert(a >= b);\r\
-    \n      X x = get_prod(a, b);\r\n      if (check(MX::op(val, x))) {\r\n      \
-    \  val = MX::op(val, x);\r\n        u = (tree.parent[tree.V[b]]);\r\n        continue;\r\
-    \n      }\r\n      auto check_tmp = [&](X x) -> bool { return check(MX::op(val,\
-    \ x)); };\r\n      int i = 0;\r\n      if constexpr (MX::commute) i = seg.min_left(check_tmp,\
-    \ a + 1);\r\n      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a\
-    \ + 1);\r\n      if (i == a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\
-    \n    }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\
-    \n    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = get_prod(a,\
+    \ [&](int i) -> X { return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));\
+    \ };\r\n      seg.build(N, f_e);\r\n      if constexpr (!MX::commute) { seg_r.build(N,\
+    \ f_e); }\r\n    }\r\n  }\r\n\r\n  void set(int i, X x) {\r\n    if constexpr\
+    \ (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\n    seg.set(i, x);\r\n\
+    \    if constexpr (!MX::commute) seg_r.set(i, x);\r\n  }\r\n\r\n  void multiply(int\
+    \ i, X x) {\r\n    if constexpr (edge) i = tree.e_to_v(i);\r\n    i = tree.LID[i];\r\
+    \n    seg.multiply(i, x);\r\n    if constexpr (!MX::commute) seg_r.multiply(i,\
+    \ x);\r\n  }\r\n\r\n  X prod_path(int u, int v) {\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ v, edge);\r\n    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) { val =\
+    \ MX::op(val, get_prod(a, b)); }\r\n    return val;\r\n  }\r\n\r\n  // uv path\
+    \ \u4E0A\u3067 prod_path(u, x) \u304C check \u3092\u6E80\u305F\u3059\u6700\u5F8C\
+    \u306E x\r\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A path(u,u) \u304C\
+    \ ng \uFF09-1\r\n  template <class F>\r\n  int max_path(F check, int u, int v)\
+    \ {\r\n    if constexpr (edge) return max_path_edge(check, u, v);\r\n    if (!check(prod_path(u,\
+    \ u))) return -1;\r\n    auto pd = tree.get_path_decomposition(u, v, edge);\r\n\
+    \    X val = MX::unit();\r\n    for (auto &&[a, b]: pd) {\r\n      X x = get_prod(a,\
+    \ b);\r\n      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\
+    \n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
+    \ = [&](X x) -> bool { return check(MX::op(val, x)); };\r\n      if (a <= b) {\r\
+    \n        // \u4E0B\u308A\r\n        auto i = seg.max_right(check_tmp, a);\r\n\
+    \        return (i == a ? u : tree.V[i - 1]);\r\n      } else {\r\n        //\
+    \ \u4E0A\u308A\r\n        int i = 0;\r\n        if constexpr (MX::commute) i =\
+    \ seg.min_left(check_tmp, a + 1);\r\n        if constexpr (!MX::commute) i = seg_r.min_left(check_tmp,\
+    \ a + 1);\r\n        if (i == a + 1) return u;\r\n        return tree.V[i];\r\n\
+    \      }\r\n    }\r\n    return v;\r\n  }\r\n\r\n  X prod_subtree(int u, int root\
+    \ = -1) {\r\n    if (root == u) return prod_all();\r\n    if (root == -1 || tree.in_subtree(u,\
+    \ root)) {\r\n      int l = tree.LID[u], r = tree.RID[u];\r\n      return seg.prod(l\
+    \ + edge, r);\r\n    }\r\n    assert(!edge); // \u3055\u307C\u308A\r\n    u =\
+    \ tree.jump(u, root, 1);\r\n    int L = tree.LID[u], R = tree.RID[u];\r\n    return\
+    \ MX::op(seg.prod(0, L), seg.prod(R, N));\r\n  }\r\n\r\n  X prod_all() { return\
+    \ prod_subtree(tree.V[0]); }\r\n\r\n  inline X get_prod(int a, int b) {\r\n  \
+    \  if constexpr (MX::commute) { return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b,\
+    \ a + 1); }\r\n    return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);\r\
+    \n  }\r\n\r\nprivate:\r\n  template <class F>\r\n  int max_path_edge(F check,\
+    \ int u, int v) {\r\n    static_assert(edge);\r\n    if (!check(MX::unit())) return\
+    \ -1;\r\n    int lca = tree.lca(u, v);\r\n    auto pd = tree.get_path_decomposition(u,\
+    \ lca, edge);\r\n    X val = MX::unit();\r\n\r\n    // climb\r\n    for (auto\
+    \ &&[a, b]: pd) {\r\n      assert(a >= b);\r\n      X x = get_prod(a, b);\r\n\
+    \      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\n     \
+    \   u = (tree.parent[tree.V[b]]);\r\n        continue;\r\n      }\r\n      auto\
+    \ check_tmp = [&](X x) -> bool { return check(MX::op(val, x)); };\r\n      int\
+    \ i = 0;\r\n      if constexpr (MX::commute) i = seg.min_left(check_tmp, a + 1);\r\
+    \n      if constexpr (!MX::commute) i = seg_r.min_left(check_tmp, a + 1);\r\n\
+    \      if (i == a + 1) return u;\r\n      return tree.parent[tree.V[i]];\r\n \
+    \   }\r\n    // down\r\n    pd = tree.get_path_decomposition(lca, v, edge);\r\n\
+    \    for (auto &&[a, b]: pd) {\r\n      assert(a <= b);\r\n      X x = get_prod(a,\
     \ b);\r\n      if (check(MX::op(val, x))) {\r\n        val = MX::op(val, x);\r\
     \n        u = (tree.V[b]);\r\n        continue;\r\n      }\r\n      auto check_tmp\
     \ = [&](X x) -> bool { return check(MX::op(val, x)); };\r\n      auto i = seg.max_right(check_tmp,\
@@ -519,7 +519,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-10-14 04:14:06+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp

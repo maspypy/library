@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   _extendedRequiredBy: []
@@ -9,18 +9,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2654.test.cpp
     title: test/3_yukicoder/2654.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc281e.test.cpp
     title: test/5_atcoder/abc281e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc312f.test.cpp
     title: test/5_atcoder/abc312f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc314g.test.cpp
     title: test/5_atcoder/abc314g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
@@ -44,14 +44,15 @@ data:
     \ <= k && k <= size());\n    while (len(ql) < k) { push_l(pop_r()); }\n    while\
     \ (len(ql) > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  // \u4E0B\u4F4D\
     \ k \u500B\n  SUM_T query_l(int k) { return query(k).fi; }\n  // \u4E0A\u4F4D\
-    \ k \u500B\n  SUM_T query_r(int k) { return query(size() - k).se; }\n\nprivate:\n\
-    \  inline T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T\
-    \ rmin() { return (qr.empty() ? infty<T> : qr.top()); }\n  inline T pop_l() {\n\
-    \    T x = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline T pop_r() {\n\
-    \    T x = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline void push_l(T\
-    \ x) { ql.push(x), sl += x; }\n  inline void push_r(T x) { qr.push(x), sr += x;\
-    \ }\n  inline void erase_l(T x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T\
-    \ x) { qr.remove(x), sr -= x; }\n};\n"
+    \ k \u500B\n  SUM_T query_r(int k) { return query(size() - k).se; }\n  T kth(int\
+    \ k) { return query_l(k + 1) - query_l(k); }\n\nprivate:\n  inline T lmax() {\
+    \ return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T rmin() { return (qr.empty()\
+    \ ? infty<T> : qr.top()); }\n  inline T pop_l() {\n    T x = ql.pop();\n    sl\
+    \ -= x;\n    return x;\n  }\n  inline T pop_r() {\n    T x = qr.pop();\n    sr\
+    \ -= x;\n    return x;\n  }\n  inline void push_l(T x) { ql.push(x), sl += x;\
+    \ }\n  inline void push_r(T x) { qr.push(x), sr += x; }\n  inline void erase_l(T\
+    \ x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T x) { qr.remove(x), sr\
+    \ -= x; }\n};\n"
   code: "#include \"ds/removable_queue.hpp\"\n\n/*\n\u30FB\u591A\u91CD\u96C6\u5408\
     \u3092\u6271\u3046\n\u30FB[0,k) \u756A\u76EE\u3068 [k,N) \u756A\u76EE\u306E sum\
     \ \u304C\u3068\u308C\u308B\n\u30FBO(k \u306E\u5909\u5316\u91CF\u306E\u7DCF\u548C\
@@ -65,21 +66,21 @@ data:
     \ k <= size());\n    while (len(ql) < k) { push_l(pop_r()); }\n    while (len(ql)\
     \ > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  // \u4E0B\u4F4D k \u500B\
     \n  SUM_T query_l(int k) { return query(k).fi; }\n  // \u4E0A\u4F4D k \u500B\n\
-    \  SUM_T query_r(int k) { return query(size() - k).se; }\n\nprivate:\n  inline\
-    \ T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T rmin()\
-    \ { return (qr.empty() ? infty<T> : qr.top()); }\n  inline T pop_l() {\n    T\
-    \ x = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline T pop_r() {\n    T\
-    \ x = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline void push_l(T x) {\
-    \ ql.push(x), sl += x; }\n  inline void push_r(T x) { qr.push(x), sr += x; }\n\
-    \  inline void erase_l(T x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T\
-    \ x) { qr.remove(x), sr -= x; }\n};\n"
+    \  SUM_T query_r(int k) { return query(size() - k).se; }\n  T kth(int k) { return\
+    \ query_l(k + 1) - query_l(k); }\n\nprivate:\n  inline T lmax() { return (ql.empty()\
+    \ ? -infty<T> : ql.top()); }\n  inline T rmin() { return (qr.empty() ? infty<T>\
+    \ : qr.top()); }\n  inline T pop_l() {\n    T x = ql.pop();\n    sl -= x;\n  \
+    \  return x;\n  }\n  inline T pop_r() {\n    T x = qr.pop();\n    sr -= x;\n \
+    \   return x;\n  }\n  inline void push_l(T x) { ql.push(x), sl += x; }\n  inline\
+    \ void push_r(T x) { qr.push(x), sr += x; }\n  inline void erase_l(T x) { ql.remove(x),\
+    \ sl -= x; }\n  inline void erase_r(T x) { qr.remove(x), sr -= x; }\n};\n"
   dependsOn:
   - ds/removable_queue.hpp
   isVerificationFile: false
   path: ds/slide_split_sum.hpp
   requiredBy: []
-  timestamp: '2024-07-03 07:03:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-14 04:14:06+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2654.test.cpp
   - test/5_atcoder/abc314g.test.cpp

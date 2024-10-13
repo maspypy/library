@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/slide_split_sum.hpp
     title: ds/slide_split_sum.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc314/tasks/abc314_g
@@ -221,21 +221,22 @@ data:
     \ <= k && k <= size());\n    while (len(ql) < k) { push_l(pop_r()); }\n    while\
     \ (len(ql) > k) { push_r(pop_l()); }\n    return {sl, sr};\n  }\n  // \u4E0B\u4F4D\
     \ k \u500B\n  SUM_T query_l(int k) { return query(k).fi; }\n  // \u4E0A\u4F4D\
-    \ k \u500B\n  SUM_T query_r(int k) { return query(size() - k).se; }\n\nprivate:\n\
-    \  inline T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T\
-    \ rmin() { return (qr.empty() ? infty<T> : qr.top()); }\n  inline T pop_l() {\n\
-    \    T x = ql.pop();\n    sl -= x;\n    return x;\n  }\n  inline T pop_r() {\n\
-    \    T x = qr.pop();\n    sr -= x;\n    return x;\n  }\n  inline void push_l(T\
-    \ x) { ql.push(x), sl += x; }\n  inline void push_r(T x) { qr.push(x), sr += x;\
-    \ }\n  inline void erase_l(T x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T\
-    \ x) { qr.remove(x), sr -= x; }\n};\n#line 5 \"test/5_atcoder/abc314g.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  LL(H);\n  vi A(N), B(N);\n  FOR(i, N) read(A[i],\
-    \ B[i]);\n  for (auto&& x: B) --x;\n  Slide_Split_Sum<ll> S;\n  FOR(M) S.insert(0);\n\
-    \  vi F(M);\n  vi ANS(M + 1);\n\n  // \u304F\u3089\u3063\u3066\u3082\u5927\u4E08\
-    \u592B\n  ll can = M;\n  FOR(i, N) {\n    ll b = B[i];\n    S.erase(F[b]);\n \
-    \   F[b] += A[i];\n    S.insert(F[b]);\n    while (S.query(can).fi >= H) { --can;\
-    \ }\n    ANS[can] = 1 + i;\n  }\n  reverse(all(ANS));\n  FOR(i, M) chmax(ANS[i\
-    \ + 1], ANS[i]);\n\n  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
+    \ k \u500B\n  SUM_T query_r(int k) { return query(size() - k).se; }\n  T kth(int\
+    \ k) { return query_l(k + 1) - query_l(k); }\n\nprivate:\n  inline T lmax() {\
+    \ return (ql.empty() ? -infty<T> : ql.top()); }\n  inline T rmin() { return (qr.empty()\
+    \ ? infty<T> : qr.top()); }\n  inline T pop_l() {\n    T x = ql.pop();\n    sl\
+    \ -= x;\n    return x;\n  }\n  inline T pop_r() {\n    T x = qr.pop();\n    sr\
+    \ -= x;\n    return x;\n  }\n  inline void push_l(T x) { ql.push(x), sl += x;\
+    \ }\n  inline void push_r(T x) { qr.push(x), sr += x; }\n  inline void erase_l(T\
+    \ x) { ql.remove(x), sl -= x; }\n  inline void erase_r(T x) { qr.remove(x), sr\
+    \ -= x; }\n};\n#line 5 \"test/5_atcoder/abc314g.test.cpp\"\n\nvoid solve() {\n\
+    \  LL(N, M);\n  LL(H);\n  vi A(N), B(N);\n  FOR(i, N) read(A[i], B[i]);\n  for\
+    \ (auto&& x: B) --x;\n  Slide_Split_Sum<ll> S;\n  FOR(M) S.insert(0);\n  vi F(M);\n\
+    \  vi ANS(M + 1);\n\n  // \u304F\u3089\u3063\u3066\u3082\u5927\u4E08\u592B\n \
+    \ ll can = M;\n  FOR(i, N) {\n    ll b = B[i];\n    S.erase(F[b]);\n    F[b] +=\
+    \ A[i];\n    S.insert(F[b]);\n    while (S.query(can).fi >= H) { --can; }\n  \
+    \  ANS[can] = 1 + i;\n  }\n  reverse(all(ANS));\n  FOR(i, M) chmax(ANS[i + 1],\
+    \ ANS[i]);\n\n  print(ANS);\n}\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n\
     \  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc314/tasks/abc314_g\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/slide_split_sum.hpp\"\
@@ -255,8 +256,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc314g.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-14 04:14:06+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc314g.test.cpp
 layout: document

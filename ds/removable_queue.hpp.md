@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/slide_split_sum.hpp
     title: ds/slide_split_sum.hpp
   _extendedVerifiedWith:
@@ -18,18 +18,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/902.test.cpp
     title: test/3_yukicoder/902.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc281e.test.cpp
     title: test/5_atcoder/abc281e.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc312f.test.cpp
     title: test/5_atcoder/abc312f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc314g.test.cpp
     title: test/5_atcoder/abc314g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
@@ -56,7 +56,7 @@ data:
   requiredBy:
   - ds/slide_split_sum.hpp
   timestamp: '2024-02-24 23:26:31+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/772.test.cpp
   - test/3_yukicoder/902.test.cpp
