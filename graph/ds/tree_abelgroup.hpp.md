@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
@@ -260,9 +260,9 @@ data:
     \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
     \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
     \n#line 3 \"graph/ds/tree_abelgroup.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ AbelGroup, bool edge, bool path_query,\r\n          bool subtree_query>\r\n\
-    struct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\n  using X = typename MX::value_type;\r\
-    \n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE\
+    \ AbelGroup, bool edge, bool path_query, bool subtree_query>\r\nstruct Tree_AbelGroup\
+    \ {\r\n  using MX = AbelGroup;\r\n  using X = typename MX::value_type;\r\n  TREE\
+    \ &tree;\r\n  int N;\r\n  FenwickTree<MX> bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE\
     \ &tree) : tree(tree), N(tree.N) {\r\n    build([](int i) -> X { return MX::unit();\
     \ });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE &tree, vc<X> &dat) : tree(tree), N(tree.N)\
     \ {\r\n    build([&](int i) -> X { return dat[i]; });\r\n  }\r\n\r\n  template\
@@ -277,20 +277,21 @@ data:
     \ add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) : i);\r\n    if constexpr\
     \ (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n      bit.add(tree.ERID(v),\
     \ MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query) bit_subtree.add(tree.LID[v],\
-    \ x);\r\n  }\r\n\r\n  X prod_path(int frm, int to) {\r\n    static_assert(path_query);\r\
-    \n    int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca)\
-    \ + 1, tree.ELID(frm) + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex\
-    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
-    \ + 1);\r\n    return MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int\
-    \ root = -1) {\r\n    static_assert(subtree_query);\r\n    int l = tree.LID[u],\
-    \ r = tree.RID[u];\r\n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\
-    \n    if (root == u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u,\
-    \ root)) return bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0,\
-    \ l + 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
+    \ x);\r\n  }\r\n  void multiply(int i, X x) { add(i, x); }\r\n  X prod_path(int\
+    \ frm, int to) {\r\n    static_assert(path_query);\r\n    int lca = tree.LCA(frm,\
+    \ to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm)\
+    \ + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
+    \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
+    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int root = -1) {\r\n \
+    \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
+    \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
+    \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
+    \ bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0, l +\
+    \ 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\r\n#include \"graph/tree.hpp\"\
-    \r\n\r\ntemplate <typename TREE, typename AbelGroup, bool edge, bool path_query,\r\
-    \n          bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\
-    \n  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX>\
+    \r\n\r\ntemplate <typename TREE, typename AbelGroup, bool edge, bool path_query,\
+    \ bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\n\
+    \  using X = typename MX::value_type;\r\n  TREE &tree;\r\n  int N;\r\n  FenwickTree<MX>\
     \ bit, bit_subtree;\r\n\r\n  Tree_AbelGroup(TREE &tree) : tree(tree), N(tree.N)\
     \ {\r\n    build([](int i) -> X { return MX::unit(); });\r\n  }\r\n\r\n  Tree_AbelGroup(TREE\
     \ &tree, vc<X> &dat) : tree(tree), N(tree.N) {\r\n    build([&](int i) -> X {\
@@ -305,17 +306,17 @@ data:
     \n  }\r\n\r\n  void add(int i, X x) {\r\n    int v = (edge ? tree.e_to_v(i) :\
     \ i);\r\n    if constexpr (path_query) {\r\n      bit.add(tree.ELID(v), x);\r\n\
     \      bit.add(tree.ERID(v), MX::inverse(x));\r\n    }\r\n    if constexpr (subtree_query)\
-    \ bit_subtree.add(tree.LID[v], x);\r\n  }\r\n\r\n  X prod_path(int frm, int to)\
-    \ {\r\n    static_assert(path_query);\r\n    int lca = tree.LCA(frm, to);\r\n\
-    \    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca) + 1, tree.ELID(frm) +\
-    \ 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex \u306A\u3089 [lca, to]\r\
-    \n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to) + 1);\r\n    return\
-    \ MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int root = -1) {\r\n \
-    \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
-    \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
-    \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
-    \ bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0, l +\
-    \ 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
+    \ bit_subtree.add(tree.LID[v], x);\r\n  }\r\n  void multiply(int i, X x) { add(i,\
+    \ x); }\r\n  X prod_path(int frm, int to) {\r\n    static_assert(path_query);\r\
+    \n    int lca = tree.LCA(frm, to);\r\n    // [frm, lca)\r\n    X x1 = bit.prod(tree.ELID(lca)\
+    \ + 1, tree.ELID(frm) + 1);\r\n    // edge \u306A\u3089 (lca, to]\u3001vertex\
+    \ \u306A\u3089 [lca, to]\r\n    X x2 = bit.prod(tree.ELID(lca) + edge, tree.ELID(to)\
+    \ + 1);\r\n    return MX::op(x1, x2);\r\n  }\r\n\r\n  X prod_subtree(int u, int\
+    \ root = -1) {\r\n    static_assert(subtree_query);\r\n    int l = tree.LID[u],\
+    \ r = tree.RID[u];\r\n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\
+    \n    if (root == u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u,\
+    \ root)) return bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0,\
+    \ l + 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
@@ -325,7 +326,7 @@ data:
   path: graph/ds/tree_abelgroup.hpp
   requiredBy:
   - graph/ds/incremental_centroid.hpp
-  timestamp: '2024-08-14 03:27:27+09:00'
+  timestamp: '2024-10-13 19:40:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1641.test.cpp

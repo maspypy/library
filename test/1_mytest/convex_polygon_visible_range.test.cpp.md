@@ -227,7 +227,13 @@ data:
     \  bool check_cross(P A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a,\
     \ b] = visible_range(A);\n      if ((point[a] - A).det(B - A) >= 0) return 0;\n\
     \      if ((point[b] - A).det(B - A) <= 0) return 0;\n    }\n    return 1;\n \
-    \ }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\
+    \ }\n\n  vc<T> AREA;\n\n  // point[i,...,j] (inclusive) \u306E\u9762\u7A4D\n \
+    \ T area_between(int i, int j) {\n    assert(0 <= i && i < n);\n    assert((0\
+    \ <= j && j < n) || (i <= j && j < i + n));\n    if (i > j) j += n;\n    if (AREA.empty())\
+    \ build_AREA();\n    return AREA[j] - AREA[i] + (point[j % n].det(point[i]));\n\
+    \  }\n\n  void build_AREA() {\n    AREA.resize(2 * n);\n    FOR(i, n) AREA[n +\
+    \ i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n    AREA = cumsum<T>(AREA);\n\
+    \  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\
     \ntemplate <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower\
     \ {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\
     \n  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
@@ -325,7 +331,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/convex_polygon_visible_range.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-10-13 19:40:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/convex_polygon_visible_range.test.cpp

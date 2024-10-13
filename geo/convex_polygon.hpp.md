@@ -139,7 +139,13 @@ data:
     \u308B\u304B\n  // https://codeforces.com/contest/1906/problem/D\n  bool check_cross(P\
     \ A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a, b] = visible_range(A);\n\
     \      if ((point[a] - A).det(B - A) >= 0) return 0;\n      if ((point[b] - A).det(B\
-    \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n};\n"
+    \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n\n  vc<T> AREA;\n\n  // point[i,...,j]\
+    \ (inclusive) \u306E\u9762\u7A4D\n  T area_between(int i, int j) {\n    assert(0\
+    \ <= i && i < n);\n    assert((0 <= j && j < n) || (i <= j && j < i + n));\n \
+    \   if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
+    \ - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA() {\n  \
+    \  AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n};\n"
   code: "#pragma once\n\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\
     \n\n// n=2 \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\
     \ntemplate <typename T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int\
@@ -183,7 +189,13 @@ data:
     \u308B\u304B\n  // https://codeforces.com/contest/1906/problem/D\n  bool check_cross(P\
     \ A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a, b] = visible_range(A);\n\
     \      if ((point[a] - A).det(B - A) >= 0) return 0;\n      if ((point[b] - A).det(B\
-    \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n};"
+    \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n\n  vc<T> AREA;\n\n  // point[i,...,j]\
+    \ (inclusive) \u306E\u9762\u7A4D\n  T area_between(int i, int j) {\n    assert(0\
+    \ <= i && i < n);\n    assert((0 <= j && j < n) || (i <= j && j < i + n));\n \
+    \   if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
+    \ - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA() {\n  \
+    \  AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n};"
   dependsOn:
   - geo/base.hpp
   - geo/convex_hull.hpp
@@ -191,7 +203,7 @@ data:
   path: geo/convex_polygon.hpp
   requiredBy:
   - geo/minkowski_sum.hpp
-  timestamp: '2024-09-24 18:06:42+09:00'
+  timestamp: '2024-10-13 19:40:04+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/max_dot.test.cpp

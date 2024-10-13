@@ -133,11 +133,17 @@ data:
     \u308B\u304B\n  // https://codeforces.com/contest/1906/problem/D\n  bool check_cross(P\
     \ A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a, b] = visible_range(A);\n\
     \      if ((point[a] - A).det(B - A) >= 0) return 0;\n      if ((point[b] - A).det(B\
-    \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\
-    \n\r\n#line 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1\r\n\
-    template <typename T>\r\nint lower_or_upper(Point<T>& p) {\r\n  if (p.y != 0)\
-    \ return (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0) return -1;\r\n  if (p.x < 0) return\
-    \ 1;\r\n  return 0;\r\n}\r\n\r\n// -1, 0, 1\r\ntemplate <typename T>\r\nint angle_comp_3(Point<T>&\
+    \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n\n  vc<T> AREA;\n\n  // point[i,...,j]\
+    \ (inclusive) \u306E\u9762\u7A4D\n  T area_between(int i, int j) {\n    assert(0\
+    \ <= i && i < n);\n    assert((0 <= j && j < n) || (i <= j && j < i + n));\n \
+    \   if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
+    \ - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA() {\n  \
+    \  AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n};\n#line 2 \"geo/angle_sort.hpp\"\n\r\n#line\
+    \ 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1\r\ntemplate\
+    \ <typename T>\r\nint lower_or_upper(Point<T>& p) {\r\n  if (p.y != 0) return\
+    \ (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0) return -1;\r\n  if (p.x < 0) return 1;\r\
+    \n  return 0;\r\n}\r\n\r\n// -1, 0, 1\r\ntemplate <typename T>\r\nint angle_comp_3(Point<T>&\
     \ L, Point<T>& R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\n\
     \  if (a != b) return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if (det >\
     \ 0) return -1;\r\n  if (det < 0) return 1;\r\n  return 0;\r\n}\r\n// \u504F\u89D2\
@@ -175,7 +181,7 @@ data:
   isVerificationFile: false
   path: geo/minkowski_sum.hpp
   requiredBy: []
-  timestamp: '2024-10-01 03:45:22+09:00'
+  timestamp: '2024-10-13 19:40:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/minkowski_sum.hpp

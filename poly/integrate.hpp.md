@@ -195,10 +195,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc267h.test.cpp
     title: test/5_atcoder/abc267h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc285h.test.cpp
     title: test/5_atcoder/abc285h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc288ex.test.cpp
     title: test/5_atcoder/abc288ex.test.cpp
   - icon: ':x:'

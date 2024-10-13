@@ -14,7 +14,7 @@ data:
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
@@ -225,9 +225,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2491.test.cpp
-    title: test/3_yukicoder/2491.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
@@ -279,7 +276,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc298ex.test.cpp
     title: test/5_atcoder/abc298ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc301h.test.cpp
     title: test/5_atcoder/abc301h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -288,9 +285,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc023f.test.cpp
     title: test/5_atcoder/agc023f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -585,7 +582,7 @@ data:
   - graph/compress_tree.hpp
   - graph/count_matching_on_tree.hpp
   timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1242.test.cpp
@@ -597,7 +594,6 @@ data:
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/2342_2.test.cpp
-  - test/3_yukicoder/2491.test.cpp
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2122.test.cpp

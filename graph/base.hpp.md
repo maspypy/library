@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -134,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
@@ -233,7 +233,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':heavy_check_mark:'
@@ -266,7 +266,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -317,7 +317,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   - icon: ':warning:'
@@ -711,12 +711,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2491.test.cpp
-    title: test/3_yukicoder/2491.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
@@ -849,7 +846,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc298ex.test.cpp
     title: test/5_atcoder/abc298ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc301h.test.cpp
     title: test/5_atcoder/abc301h.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1166,7 +1163,6 @@ data:
   - test/3_yukicoder/1451.test.cpp
   - test/3_yukicoder/2342_2.test.cpp
   - test/3_yukicoder/1796_1.test.cpp
-  - test/3_yukicoder/2491.test.cpp
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2122.test.cpp
