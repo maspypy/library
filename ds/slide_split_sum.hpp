@@ -30,6 +30,7 @@ struct Slide_Split_Sum {
   SUM_T query_l(int k) { return query(k).fi; }
   // 上位 k 個
   SUM_T query_r(int k) { return query(size() - k).se; }
+  T kth(int k) { return query_l(k + 1) - query_l(k); }
 
 private:
   inline T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }

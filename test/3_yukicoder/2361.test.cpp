@@ -40,9 +40,10 @@ void solve() {
   FOR(i, N) upd(i);
 
   vi ANS(Q);
-  Graph<int, 1> G;
+  Suffix_Tree<string> ST(S, X);
   vc<tuple<int, int, int, int>> rect;
-  tie(G, rect) = suffix_tree(X);
+  Graph<int, 1> G;
+  tie(G, rect) = ST.build();
   ll vis = 0;
   auto dfs = [&](auto& dfs, int v) -> void {
     auto [L, R, a, b] = rect[v];
@@ -61,7 +62,7 @@ void solve() {
   };
   dfs(dfs, 0);
 
-  for (auto&& x: ANS) print(x);
+  for (auto&& x: ANS) print(x - N);
 }
 
 signed main() {

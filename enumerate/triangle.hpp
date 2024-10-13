@@ -4,12 +4,19 @@ template <typename Gr, typename F>
 void enumerate_triangle(Gr& G, F query) {
   int N = G.N;
   Graph<int, 1> H(N);
+  set<pair<int, int>> done;
+  auto add = [&](int a, int b) -> void {
+    pair<int, int> p = {a, b};
+    if (done.count(p)) return;
+    done.insert(p);
+    H.add(a, b);
+  };
   for (auto&& e: G.edges) {
     // 注意：次数比較だけだと DAG にならず、サイクルができてしまう
     if (mp(G.deg(e.frm), e.frm) < mp(G.deg(e.to), e.to))
-      H.add(e.frm, e.to);
+      add(e.frm, e.to);
     else
-      H.add(e.to, e.frm);
+      add(e.to, e.frm);
   }
   H.build();
 

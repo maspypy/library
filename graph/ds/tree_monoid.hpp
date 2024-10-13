@@ -33,9 +33,7 @@ struct Tree_Monoid {
       seg.build(N, f_v);
       if constexpr (!MX::commute) { seg_r.build(N, f_v); }
     } else {
-      auto f_e = [&](int i) -> X {
-        return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i])));
-      };
+      auto f_e = [&](int i) -> X { return (i == 0 ? MX::unit() : f(tree.v_to_e(tree.V[i]))); };
       seg.build(N, f_e);
       if constexpr (!MX::commute) { seg_r.build(N, f_e); }
     }
@@ -109,9 +107,7 @@ struct Tree_Monoid {
   X prod_all() { return prod_subtree(tree.V[0]); }
 
   inline X get_prod(int a, int b) {
-    if constexpr (MX::commute) {
-      return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1);
-    }
+    if constexpr (MX::commute) { return (a <= b) ? seg.prod(a, b + 1) : seg.prod(b, a + 1); }
     return (a <= b) ? seg.prod(a, b + 1) : seg_r.prod(b, a + 1);
   }
 
