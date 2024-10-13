@@ -63,9 +63,9 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc272/tasks/abc272_Ex
@@ -827,7 +827,7 @@ data:
   path: test/5_atcoder/abc272_h.test.cpp
   requiredBy: []
   timestamp: '2024-10-11 20:53:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc272_h.test.cpp
 layout: document
