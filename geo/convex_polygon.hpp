@@ -96,4 +96,21 @@ struct ConvexPolygon {
     }
     return 1;
   }
+
+  vc<T> AREA;
+
+  // point[i,...,j] (inclusive) の面積
+  T area_between(int i, int j) {
+    assert(0 <= i && i < n);
+    assert((0 <= j && j < n) || (i <= j && j < i + n));
+    if (i > j) j += n;
+    if (AREA.empty()) build_AREA();
+    return AREA[j] - AREA[i] + (point[j % n].det(point[i]));
+  }
+
+  void build_AREA() {
+    AREA.resize(2 * n);
+    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);
+    AREA = cumsum<T>(AREA);
+  }
 };
