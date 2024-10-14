@@ -43,6 +43,9 @@ data:
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/sum_over_bit_positions.test.cpp
+    title: test/1_mytest/sum_over_bit_positions.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -361,6 +364,7 @@ data:
   - test/3_yukicoder/1400.test.cpp
   - test/5_atcoder/abc350g2.test.cpp
   - test/1_mytest/mybitset.test.cpp
+  - test/1_mytest/sum_over_bit_positions.test.cpp
   - test/1_mytest/subset_sum.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp

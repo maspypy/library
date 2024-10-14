@@ -342,6 +342,9 @@ data:
       path: ds/static_rmq.hpp
       title: ds/static_rmq.hpp
     - icon: ':heavy_check_mark:'
+      path: ds/sum_over_bit_positions.hpp
+      title: ds/sum_over_bit_positions.hpp
+    - icon: ':heavy_check_mark:'
       path: ds/to_small_key.hpp
       title: ds/to_small_key.hpp
   - name: ds/fenwicktree
@@ -2695,6 +2698,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/substring_abundant.test.cpp
       title: test/1_mytest/substring_abundant.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/sum_over_bit_positions.test.cpp
+      title: test/1_mytest/sum_over_bit_positions.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/summax_add.test.cpp
       title: test/1_mytest/summax_add.test.cpp
