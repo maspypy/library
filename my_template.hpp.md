@@ -358,6 +358,9 @@ data:
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/nimber_log.test.cpp
+    title: test/1_mytest/nimber_log.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/non_adj.test.cpp
     title: test/1_mytest/non_adj.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2001,7 +2004,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2360.test.cpp
     title: test/3_yukicoder/2360.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2577,7 +2580,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237g1.test.cpp
     title: test/5_atcoder/abc237g1.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2847,7 +2850,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc144d.test.cpp
     title: test/5_atcoder/arc144d.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2871,9 +2874,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc162f.test.cpp
     title: test/5_atcoder/arc162f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/96344
@@ -3050,7 +3053,7 @@ data:
   requiredBy:
   - test/1_mytest/enumerate_labeled_tree.cpp
   timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/1263.test.cpp
@@ -3557,6 +3560,7 @@ data:
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/convolution_all_1.test.cpp
+  - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp

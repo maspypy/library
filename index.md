@@ -127,7 +127,7 @@ data:
     - icon: ':warning:'
       path: alg/monoid/lcm.hpp
       title: alg/monoid/lcm.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/max.hpp
       title: alg/monoid/max.hpp
     - icon: ':heavy_check_mark:'
@@ -139,13 +139,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/merge_vector_space.hpp
       title: alg/monoid/merge_vector_space.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min.hpp
       title: alg/monoid/min.hpp
     - icon: ':heavy_check_mark:'
       path: alg/monoid/min2.hpp
       title: alg/monoid/min2.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: alg/monoid/min_idx.hpp
       title: alg/monoid/min_idx.hpp
     - icon: ':heavy_check_mark:'
@@ -486,7 +486,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -509,7 +509,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/sparse_table/disjoint_sparse_table.hpp
       title: ds/sparse_table/disjoint_sparse_table.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: ds/sparse_table/sparse_table.hpp
       title: ds/sparse_table/sparse_table.hpp
     - icon: ':heavy_check_mark:'
@@ -764,7 +764,7 @@ data:
       title: geo3d/cross_point.hpp
   - name: graph
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1161,7 +1161,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/shortest_path/dial.hpp
       title: graph/shortest_path/dial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
     - icon: ':heavy_check_mark:'
@@ -1429,7 +1429,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1571,6 +1571,9 @@ data:
       path: nt/nimber/nimber_impl.hpp
       title: nt/nimber/nimber_impl.hpp
     - icon: ':heavy_check_mark:'
+      path: nt/nimber/nimber_log.hpp
+      title: nt/nimber/nimber_log.hpp
+    - icon: ':heavy_check_mark:'
       path: nt/nimber/solve_quadratic.hpp
       title: nt/nimber/solve_quadratic.hpp
   - name: other
@@ -1599,7 +1602,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -1877,7 +1880,7 @@ data:
       title: random/shuffle.hpp
   - name: seq
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: seq/cartesian_tree.hpp
       title: seq/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2081,7 +2084,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/longest_common_subsequence.hpp
       title: string/longest_common_subsequence.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/longest_common_substring.hpp
       title: string/longest_common_substring.hpp
     - icon: ':heavy_check_mark:'
@@ -2117,7 +2120,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/run_length.hpp
       title: string/run_length.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/sort_substrings.hpp
       title: string/sort_substrings.hpp
     - icon: ':heavy_check_mark:'
@@ -2126,13 +2129,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/substring_abundant_string.hpp
       title: string/substring_abundant_string.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
     - icon: ':heavy_check_mark:'
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: string/suffix_tree.hpp
       title: string/suffix_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2506,6 +2509,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/nimber.test.cpp
       title: test/1_mytest/nimber.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/nimber_log.test.cpp
+      title: test/1_mytest/nimber_log.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/non_adj.test.cpp
       title: test/1_mytest/non_adj.test.cpp
@@ -4188,7 +4194,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2360.test.cpp
       title: test/3_yukicoder/2360.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/2361.test.cpp
       title: test/3_yukicoder/2361.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4768,7 +4774,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc237g1.test.cpp
       title: test/5_atcoder/abc237g1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc240ex.test.cpp
       title: test/5_atcoder/abc240ex.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5038,7 +5044,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/arc144d.test.cpp
       title: test/5_atcoder/arc144d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/arc151_e.test.cpp
       title: test/5_atcoder/arc151_e.test.cpp
     - icon: ':heavy_check_mark:'

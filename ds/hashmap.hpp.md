@@ -33,9 +33,15 @@ data:
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/nimber/nimber_log.hpp
+    title: nt/nimber/nimber_log.hpp
+  - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/nimber_log.test.cpp
+    title: test/1_mytest/nimber_log.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
@@ -232,6 +238,7 @@ data:
   - geo/range_closest_pair_query.hpp
   - graph/vs_to_es.hpp
   - graph/eulerwalk.hpp
+  - nt/nimber/nimber_log.hpp
   - nt/discrete_log.hpp
   - nt/array_on_divisors.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
@@ -265,6 +272,7 @@ data:
   - test/5_atcoder/abc273_e.test.cpp
   - test/5_atcoder/abc212g.test.cpp
   - test/5_atcoder/abc222g.test.cpp
+  - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/2_library_checker/number_theory/kth_root_mod.test.cpp

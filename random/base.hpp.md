@@ -394,6 +394,9 @@ data:
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/nimber_log.test.cpp
+    title: test/1_mytest/nimber_log.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/non_adj.test.cpp
     title: test/1_mytest/non_adj.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1024,6 +1027,7 @@ data:
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/convolution_all_1.test.cpp
+  - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/minplus_convex.test.cpp

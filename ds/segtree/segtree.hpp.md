@@ -23,7 +23,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
+  - icon: ':heavy_check_mark:'
+    path: string/lex_max_suffix_for_all_prefix.hpp
+    title: string/lex_max_suffix_for_all_prefix.hpp
+  - icon: ':question:'
+    path: string/longest_common_substring.hpp
+    title: string/longest_common_substring.hpp
+  - icon: ':x:'
+    path: string/sort_substrings.hpp
+    title: string/sort_substrings.hpp
+  - icon: ':question:'
+    path: string/suffix_array.hpp
+    title: string/suffix_array.hpp
+  - icon: ':x:'
+    path: string/suffix_tree.hpp
+    title: string/suffix_tree.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/lex_minmax_suffix.test.cpp
+    title: test/1_mytest/lex_minmax_suffix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/longest_common_substr.test.cpp
+    title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/manhattan_nns.test.cpp
     title: test/1_mytest/manhattan_nns.test.cpp
@@ -64,6 +85,18 @@ data:
     path: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_seg.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/longest_common_substring.test.cpp
+    title: test/2_library_checker/string/longest_common_substring.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/number_of_substrings.test.cpp
+    title: test/2_library_checker/string/number_of_substrings.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/suffix_array.test.cpp
+    title: test/2_library_checker/string/suffix_array.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/string/suffix_array_vec.test.cpp
+    title: test/2_library_checker/string/suffix_array_vec.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
   - icon: ':heavy_check_mark:'
@@ -90,7 +123,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':heavy_check_mark:'
@@ -123,7 +156,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237g.test.cpp
     title: test/5_atcoder/abc237g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
   - icon: ':heavy_check_mark:'
@@ -135,9 +168,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc365f.test.cpp
     title: test/5_atcoder/abc365f.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/5_atcoder/arc151_e.test.cpp
+    title: test/5_atcoder/arc151_e.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -228,11 +264,16 @@ data:
   - ds/offline_query/range_mex_query.hpp
   - ds/segtree/sortable_segtree.hpp
   - ds/segtree/range_assignment_segtree.hpp
+  - string/suffix_tree.hpp
+  - string/longest_common_substring.hpp
+  - string/suffix_array.hpp
+  - string/sort_substrings.hpp
+  - string/lex_max_suffix_for_all_prefix.hpp
   - geo/manhattan_nns.hpp
   - graph/ds/tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/2361.test.cpp
@@ -253,11 +294,14 @@ data:
   - test/5_atcoder/abc365f.test.cpp
   - test/5_atcoder/abc174f.test.cpp
   - test/5_atcoder/abc301h.test.cpp
+  - test/5_atcoder/arc151_e.test.cpp
   - test/5_atcoder/abc240ex.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/manhattan_nns.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/1_mytest/range_mex.test.cpp
+  - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
   - test/2_library_checker/data_structure/sort_segtree.test.cpp
@@ -267,6 +311,10 @@ data:
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/string/suffix_array_vec.test.cpp
+  - test/2_library_checker/string/number_of_substrings.test.cpp
+  - test/2_library_checker/string/longest_common_substring.test.cpp
+  - test/2_library_checker/string/suffix_array.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp

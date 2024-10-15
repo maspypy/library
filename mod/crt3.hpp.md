@@ -84,6 +84,9 @@ data:
     path: new_poly/base.hpp
     title: new_poly/base.hpp
   - icon: ':heavy_check_mark:'
+    path: nt/nimber/nimber_log.hpp
+    title: nt/nimber/nimber_log.hpp
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -399,6 +402,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/nimber_log.test.cpp
+    title: test/1_mytest/nimber_log.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
@@ -1087,6 +1093,7 @@ data:
   - graph/count_matching_on_tree.hpp
   - graph/chromatic.hpp
   - setfunc/power_projection_of_sps.hpp
+  - nt/nimber/nimber_log.hpp
   timestamp: '2024-10-11 20:53:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
@@ -1183,6 +1190,7 @@ data:
   - test/1_mytest/poly_root_finding.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/convolution_all_1.test.cpp
+  - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/typical_dc.test.cpp

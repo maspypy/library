@@ -81,8 +81,10 @@ data:
     \ >= 0);\n    UINT ret = 1, mul = val;\n    while (n > 0) {\n      if (n & 1)\
     \ ret = NIM_PRODUCT::prod(ret, mul);\n      mul = NIM_PRODUCT::square(mul);\n\
     \      n >>= 1;\n    }\n    return F(ret);\n  }\n  F square() { return F(NIM_PRODUCT::square(val));\
-    \ }\n  F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }\n};\n\nusing Nimber16 =\
-    \ Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n\
+    \ }\n  F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <typename T>\nvoid rd(Nimber<T> &x) {\n  fastio::rd(x.val);\n}\ntemplate <typename\
+    \ T>\nvoid wt(Nimber<T> &x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing Nimber16\
+    \ = Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n\
     #line 1 \"linalg/xor/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
     \u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\
     \u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\n// array<UINT, MAX_DIM>\
@@ -148,7 +150,7 @@ data:
   isVerificationFile: false
   path: nt/nimber/solve_quadratic.hpp
   requiredBy: []
-  timestamp: '2024-10-01 00:24:30+09:00'
+  timestamp: '2024-10-16 04:41:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/nimber.test.cpp

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -262,8 +262,10 @@ data:
     \ >= 0);\n    UINT ret = 1, mul = val;\n    while (n > 0) {\n      if (n & 1)\
     \ ret = NIM_PRODUCT::prod(ret, mul);\n      mul = NIM_PRODUCT::square(mul);\n\
     \      n >>= 1;\n    }\n    return F(ret);\n  }\n  F square() { return F(NIM_PRODUCT::square(val));\
-    \ }\n  F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }\n};\n\nusing Nimber16 =\
-    \ Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n\
+    \ }\n  F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <typename T>\nvoid rd(Nimber<T> &x) {\n  fastio::rd(x.val);\n}\ntemplate <typename\
+    \ T>\nvoid wt(Nimber<T> &x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing Nimber16\
+    \ = Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n\
     #line 5 \"test/2_library_checker/number_theory/nim_product.test.cpp\"\n\r\nusing\
     \ F = Nimber64;\r\nvoid solve() {\r\n  u64 a, b;\r\n  read(a, b);\r\n  F ANS =\
     \ F(a) * F(b);\r\n  print(ANS.val);\r\n}\r\n\r\nsigned main() {\r\n  LL(T);\r\n\
@@ -281,7 +283,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/nim_product.test.cpp
   requiredBy: []
-  timestamp: '2024-10-01 01:05:09+09:00'
+  timestamp: '2024-10-16 04:41:29+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/nim_product.test.cpp

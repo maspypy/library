@@ -6,12 +6,18 @@ data:
     title: nt/nimber/nimber_impl.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
+    path: nt/nimber/nimber_log.hpp
+    title: nt/nimber/nimber_log.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/nimber/solve_quadratic.hpp
     title: nt/nimber/solve_quadratic.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/nimber_log.test.cpp
+    title: test/1_mytest/nimber_log.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/nim_product.test.cpp
     title: test/2_library_checker/number_theory/nim_product.test.cpp
@@ -87,8 +93,10 @@ data:
     \ >= 0);\n    UINT ret = 1, mul = val;\n    while (n > 0) {\n      if (n & 1)\
     \ ret = NIM_PRODUCT::prod(ret, mul);\n      mul = NIM_PRODUCT::square(mul);\n\
     \      n >>= 1;\n    }\n    return F(ret);\n  }\n  F square() { return F(NIM_PRODUCT::square(val));\
-    \ }\n  F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }\n};\n\nusing Nimber16 =\
-    \ Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n"
+    \ }\n  F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }\n};\n\n#ifdef FASTIO\ntemplate\
+    \ <typename T>\nvoid rd(Nimber<T> &x) {\n  fastio::rd(x.val);\n}\ntemplate <typename\
+    \ T>\nvoid wt(Nimber<T> &x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing Nimber16\
+    \ = Nimber<u16>;\nusing Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n"
   code: "#pragma once\n#include \"nt/nimber/nimber_impl.hpp\"\n\ntemplate <typename\
     \ UINT>\nstruct Nimber {\n  using F = Nimber;\n  UINT val;\n\n  constexpr Nimber(UINT\
     \ x = 0) : val(x) {}\n  F &operator+=(const F &p) {\n    val ^= p.val;\n    return\
@@ -105,19 +113,23 @@ data:
     \    while (n > 0) {\n      if (n & 1) ret = NIM_PRODUCT::prod(ret, mul);\n  \
     \    mul = NIM_PRODUCT::square(mul);\n      n >>= 1;\n    }\n    return F(ret);\n\
     \  }\n  F square() { return F(NIM_PRODUCT::square(val)); }\n  F sqrt() { return\
-    \ F(NIM_PRODUCT::sqrt(val)); }\n};\n\nusing Nimber16 = Nimber<u16>;\nusing Nimber32\
-    \ = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n"
+    \ F(NIM_PRODUCT::sqrt(val)); }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid\
+    \ rd(Nimber<T> &x) {\n  fastio::rd(x.val);\n}\ntemplate <typename T>\nvoid wt(Nimber<T>\
+    \ &x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing Nimber16 = Nimber<u16>;\nusing\
+    \ Nimber32 = Nimber<u32>;\nusing Nimber64 = Nimber<u64>;\n"
   dependsOn:
   - nt/nimber/nimber_impl.hpp
   isVerificationFile: false
   path: nt/nimber/base.hpp
   requiredBy:
+  - nt/nimber/nimber_log.hpp
   - nt/nimber/solve_quadratic.hpp
-  timestamp: '2024-10-01 00:24:30+09:00'
+  timestamp: '2024-10-16 04:41:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2907_2.test.cpp
   - test/3_yukicoder/2907.test.cpp
+  - test/1_mytest/nimber_log.test.cpp
   - test/1_mytest/nimber.test.cpp
   - test/2_library_checker/number_theory/nim_product.test.cpp
 documentation_of: nt/nimber/base.hpp
