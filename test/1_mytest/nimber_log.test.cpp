@@ -40,7 +40,6 @@ void test_64() {
     u64 n = RNG_64();
     Nimber64 y = x.pow(n);
     u64 m = nimber_log(x, y);
-    SHOW(n, m);
     assert(m != u64(-1) && x.pow(m) == y);
   }
 }
