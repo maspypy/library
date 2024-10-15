@@ -45,6 +45,17 @@ struct Nimber {
   F sqrt() { return F(NIM_PRODUCT::sqrt(val)); }
 };
 
+#ifdef FASTIO
+template <typename T>
+void rd(Nimber<T> &x) {
+  fastio::rd(x.val);
+}
+template <typename T>
+void wt(Nimber<T> &x) {
+  fastio::wt(x.val);
+}
+#endif
+
 using Nimber16 = Nimber<u16>;
 using Nimber32 = Nimber<u32>;
 using Nimber64 = Nimber<u64>;
