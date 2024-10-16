@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo3d/base.hpp
     title: geo3d/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo3d/cross_point.hpp
     title: geo3d/cross_point.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/rational.hpp
     title: nt/rational.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc301/tasks/abc301_g
@@ -273,10 +273,10 @@ data:
     \  FOR(3) {\n      d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n\
     \      a = {a.y, a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if\
     \ (det != 0) { return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }\n    }\n  \
-    \  assert(0);\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n  REAL y\
-    \ = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 * REAL(L1.d.z);\n\
-    \  return {x, y, z};\n}\n#line 8 \"test/5_atcoder/abc301g.test.cpp\"\n\nusing\
-    \ Q = Rational<ll, false>;\n\nusing P = Point_3d<ll>;\nusing PQ = Point_3d<Q>;\n\
+    \  assert(0);\n    return 0;\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n\
+    \  REAL y = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 *\
+    \ REAL(L1.d.z);\n  return {x, y, z};\n}\n#line 8 \"test/5_atcoder/abc301g.test.cpp\"\
+    \n\nusing Q = Rational<ll, false>;\n\nusing P = Point_3d<ll>;\nusing PQ = Point_3d<Q>;\n\
     \nvoid solve() {\n  LL(N);\n  vc<P> point(N);\n  FOR(i, N) {\n    LL(a, b, c);\n\
     \    point[i] = {a, b, c};\n  }\n\n  sort(all(point), [&](auto& a, auto& b) ->\
     \ bool { return a.x < b.x; });\n\n  ll ANS = N;\n\n  vv(ll, CNT, N, N);\n\n  //\
@@ -324,8 +324,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc301g.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-16 22:34:39+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc301g.test.cpp
 layout: document

@@ -6,15 +6,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/0350.test.cpp
     title: test/4_aoj/0350.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc301g.test.cpp
     title: test/5_atcoder/abc301g.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc060c.test.cpp
     title: test/5_atcoder/agc060c.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/rational.hpp\"\ntemplate <typename T = long long, bool\
@@ -98,7 +98,7 @@ data:
   path: nt/rational.hpp
   requiredBy: []
   timestamp: '2024-09-24 18:06:42+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/0350.test.cpp
   - test/5_atcoder/abc301g.test.cpp

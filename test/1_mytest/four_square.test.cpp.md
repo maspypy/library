@@ -28,7 +28,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_square.hpp
     title: nt/three_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -290,7 +290,7 @@ data:
     \ abs(b);\n        return {a, b, x};\n      }\n      if (k % 2 == 0 && primetest(k\
     \ / 2)) {\n        auto [a, b] = solve_norm_equation_prime(k / 2);\n        tie(a,\
     \ b) = mp(a + b, a - b);\n        a = abs(a), b = abs(b);\n        return {a,\
-    \ b, x};\n      }\n    }\n    return {-1, -1, -1};\n    assert(0);\n  };\n  ll\
+    \ b, x};\n      }\n    }\n    assert(0);\n    return {-1, -1, -1};\n  };\n  ll\
     \ e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n  if (N % 8 == 7) return {-1, -1,\
     \ -1};\n  auto [a, b, c] = F(N);\n  return {a << e, b << e, c << e};\n}\n#line\
     \ 2 \"nt/four_square.hpp\"\n\ntuple<ll, ll, ll, ll> four_square(ll N) {\n  if\
@@ -328,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/four_square.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-10-16 22:34:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/four_square.test.cpp

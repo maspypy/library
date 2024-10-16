@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_basic.hpp
     title: ds/splaytree/splaytree_basic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   - icon: ':question:'
@@ -375,38 +375,38 @@ data:
     \ : SPLIT); }\n    if (point[l] < point[i] && point[r] < point[i]) { return (ccw(point[l],\
     \ point[i], point[r]) == 1 ? END : MERGE); }\n    if (point[l] < point[i] && point[i]\
     \ < point[r]) return LOWER;\n    if (point[r] < point[i] && point[i] < point[l])\
-    \ return UPPER;\n    assert(0);\n  };\n  SplayTree_Basic<int> ST(N);\n  using\
-    \ np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i] = ST.new_node(i);\n\
-    \  np S = ST.new_root();\n  auto comp = [&](int i, P p) -> bool {\n    P A = point[i],\
-    \ B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n  };\n\n  vc<int> helper(N,\
-    \ -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T> G(N, point);\n  FOR(i, N) G.add(i,\
-    \ nxt(i));\n\n  auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v,\
-    \ w); };\n\n  auto fix_up = [&](int v, int e) -> void {\n    int w = helper[e];\n\
-    \    if (get_vtype(w) == vtype::MERGE && !merged[w]) { add_edge(v, w); }\n  };\n\
-    \  auto I = argsort(point);\n  for (auto& i: I) {\n    vtype t = get_vtype(i);\n\
-    \    if (t == vtype::MERGE) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n  \
-    \    int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] = ST.split3(S,\
-    \ n, n + 1);\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n      fix_up(i,\
-    \ i), fix_up(i, j);\n      helper[j] = i;\n    }\n    if (t == vtype::SPLIT) {\n\
-    \      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k,\
-    \ point[i]); });\n      int j = ST.get(R, 0);\n      add_edge(i, helper[j]);\n\
-    \      helper[j] = i, helper[pre(i)] = i;\n      S = ST.merge3(L, nodes[pre(i)],\
-    \ R);\n    }\n    if (t == vtype::START) {\n      auto [L, R] = ST.split_max_right(S,\
-    \ [&](int k) -> bool { return comp(k, point[i]); });\n      S = ST.merge3(L, nodes[pre(i)],\
-    \ R), helper[pre(i)] = i;\n    }\n    if (t == vtype::END) {\n      ST.splay(nodes[i],\
-    \ 1), S = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n  \
-    \    auto [L, M, R] = ST.split3(S, n, n + 1);\n      S = ST.merge(L, R);\n   \
-    \   fix_up(i, i);\n    }\n    if (t == vtype::UPPER) {\n      ST.splay(nodes[i],\
-    \ 1), S = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n  \
-    \    auto [L, M, R] = ST.split3(S, n, n + 1);\n      S = ST.merge3(L, nodes[pre(i)],\
-    \ R);\n      fix_up(i, i);\n      helper[pre(i)] = i;\n    }\n    if (t == vtype::LOWER)\
+    \ return UPPER;\n    assert(0);\n    return END;\n  };\n  SplayTree_Basic<int>\
+    \ ST(N);\n  using np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i]\
+    \ = ST.new_node(i);\n  np S = ST.new_root();\n  auto comp = [&](int i, P p) ->\
+    \ bool {\n    P A = point[i], B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n\
+    \  };\n\n  vc<int> helper(N, -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T>\
+    \ G(N, point);\n  FOR(i, N) G.add(i, nxt(i));\n\n  auto add_edge = [&](int v,\
+    \ int w) -> void { merged[w] = 1, G.add(v, w); };\n\n  auto fix_up = [&](int v,\
+    \ int e) -> void {\n    int w = helper[e];\n    if (get_vtype(w) == vtype::MERGE\
+    \ && !merged[w]) { add_edge(v, w); }\n  };\n  auto I = argsort(point);\n  for\
+    \ (auto& i: I) {\n    vtype t = get_vtype(i);\n    if (t == vtype::MERGE) {\n\
+    \      ST.splay(nodes[i], 1), S = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size\
+    \ : 0);\n      auto [L, M, R] = ST.split3(S, n, n + 1);\n      int j = ST.get(R,\
+    \ 0);\n      S = ST.merge(L, R);\n      fix_up(i, i), fix_up(i, j);\n      helper[j]\
+    \ = i;\n    }\n    if (t == vtype::SPLIT) {\n      auto [L, R] = ST.split_max_right(S,\
+    \ [&](int k) -> bool { return comp(k, point[i]); });\n      int j = ST.get(R,\
+    \ 0);\n      add_edge(i, helper[j]);\n      helper[j] = i, helper[pre(i)] = i;\n\
+    \      S = ST.merge3(L, nodes[pre(i)], R);\n    }\n    if (t == vtype::START)\
     \ {\n      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k,\
-    \ point[i]); });\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n   \
-    \   fix_up(i, j);\n      helper[j] = i;\n    }\n  }\n  G.build();\n  vc<tuple<int,\
-    \ int, int>> ANS;\n  FOR(f, 1, G.NF) {\n    auto [vs, es] = G.get_face_data(f);\n\
-    \    POP(vs);\n    vc<P> sub = rearrange(point, vs);\n    for (auto& [a, b, c]:\
-    \ monotone_polygon_triangulation(sub)) ANS.eb(vs[a], vs[b], vs[c]);\n  }\n  return\
-    \ ANS;\n}\n"
+    \ point[i]); });\n      S = ST.merge3(L, nodes[pre(i)], R), helper[pre(i)] = i;\n\
+    \    }\n    if (t == vtype::END) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n\
+    \      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] =\
+    \ ST.split3(S, n, n + 1);\n      S = ST.merge(L, R);\n      fix_up(i, i);\n  \
+    \  }\n    if (t == vtype::UPPER) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n\
+    \      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] =\
+    \ ST.split3(S, n, n + 1);\n      S = ST.merge3(L, nodes[pre(i)], R);\n      fix_up(i,\
+    \ i);\n      helper[pre(i)] = i;\n    }\n    if (t == vtype::LOWER) {\n      auto\
+    \ [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k, point[i]);\
+    \ });\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n      fix_up(i,\
+    \ j);\n      helper[j] = i;\n    }\n  }\n  G.build();\n  vc<tuple<int, int, int>>\
+    \ ANS;\n  FOR(f, 1, G.NF) {\n    auto [vs, es] = G.get_face_data(f);\n    POP(vs);\n\
+    \    vc<P> sub = rearrange(point, vs);\n    for (auto& [a, b, c]: monotone_polygon_triangulation(sub))\
+    \ ANS.eb(vs[a], vs[b], vs[c]);\n  }\n  return ANS;\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"ds/splaytree/splaytree_basic.hpp\"\n\
     #include \"graph/planar_graph.hpp\"\n\ntemplate <typename T>\nvc<tuple<int, int,\
     \ int>> monotone_polygon_triangulation(vc<Point<T>> point) {\n  int N = len(point);\n\
@@ -440,38 +440,38 @@ data:
     \ : SPLIT); }\n    if (point[l] < point[i] && point[r] < point[i]) { return (ccw(point[l],\
     \ point[i], point[r]) == 1 ? END : MERGE); }\n    if (point[l] < point[i] && point[i]\
     \ < point[r]) return LOWER;\n    if (point[r] < point[i] && point[i] < point[l])\
-    \ return UPPER;\n    assert(0);\n  };\n  SplayTree_Basic<int> ST(N);\n  using\
-    \ np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i] = ST.new_node(i);\n\
-    \  np S = ST.new_root();\n  auto comp = [&](int i, P p) -> bool {\n    P A = point[i],\
-    \ B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n  };\n\n  vc<int> helper(N,\
-    \ -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T> G(N, point);\n  FOR(i, N) G.add(i,\
-    \ nxt(i));\n\n  auto add_edge = [&](int v, int w) -> void { merged[w] = 1, G.add(v,\
-    \ w); };\n\n  auto fix_up = [&](int v, int e) -> void {\n    int w = helper[e];\n\
-    \    if (get_vtype(w) == vtype::MERGE && !merged[w]) { add_edge(v, w); }\n  };\n\
-    \  auto I = argsort(point);\n  for (auto& i: I) {\n    vtype t = get_vtype(i);\n\
-    \    if (t == vtype::MERGE) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n  \
-    \    int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] = ST.split3(S,\
-    \ n, n + 1);\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n      fix_up(i,\
-    \ i), fix_up(i, j);\n      helper[j] = i;\n    }\n    if (t == vtype::SPLIT) {\n\
-    \      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k,\
-    \ point[i]); });\n      int j = ST.get(R, 0);\n      add_edge(i, helper[j]);\n\
-    \      helper[j] = i, helper[pre(i)] = i;\n      S = ST.merge3(L, nodes[pre(i)],\
-    \ R);\n    }\n    if (t == vtype::START) {\n      auto [L, R] = ST.split_max_right(S,\
-    \ [&](int k) -> bool { return comp(k, point[i]); });\n      S = ST.merge3(L, nodes[pre(i)],\
-    \ R), helper[pre(i)] = i;\n    }\n    if (t == vtype::END) {\n      ST.splay(nodes[i],\
-    \ 1), S = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n  \
-    \    auto [L, M, R] = ST.split3(S, n, n + 1);\n      S = ST.merge(L, R);\n   \
-    \   fix_up(i, i);\n    }\n    if (t == vtype::UPPER) {\n      ST.splay(nodes[i],\
-    \ 1), S = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n  \
-    \    auto [L, M, R] = ST.split3(S, n, n + 1);\n      S = ST.merge3(L, nodes[pre(i)],\
-    \ R);\n      fix_up(i, i);\n      helper[pre(i)] = i;\n    }\n    if (t == vtype::LOWER)\
+    \ return UPPER;\n    assert(0);\n    return END;\n  };\n  SplayTree_Basic<int>\
+    \ ST(N);\n  using np = decltype(ST)::np;\n  vc<np> nodes(N);\n  FOR(i, N) nodes[i]\
+    \ = ST.new_node(i);\n  np S = ST.new_root();\n  auto comp = [&](int i, P p) ->\
+    \ bool {\n    P A = point[i], B = point[nxt(i)];\n    return ccw(A, B, p) == -1;\n\
+    \  };\n\n  vc<int> helper(N, -1);\n  vc<bool> merged(N);\n\n  Planar_Graph<T>\
+    \ G(N, point);\n  FOR(i, N) G.add(i, nxt(i));\n\n  auto add_edge = [&](int v,\
+    \ int w) -> void { merged[w] = 1, G.add(v, w); };\n\n  auto fix_up = [&](int v,\
+    \ int e) -> void {\n    int w = helper[e];\n    if (get_vtype(w) == vtype::MERGE\
+    \ && !merged[w]) { add_edge(v, w); }\n  };\n  auto I = argsort(point);\n  for\
+    \ (auto& i: I) {\n    vtype t = get_vtype(i);\n    if (t == vtype::MERGE) {\n\
+    \      ST.splay(nodes[i], 1), S = nodes[i];\n      int n = (nodes[i]->l ? nodes[i]->l->size\
+    \ : 0);\n      auto [L, M, R] = ST.split3(S, n, n + 1);\n      int j = ST.get(R,\
+    \ 0);\n      S = ST.merge(L, R);\n      fix_up(i, i), fix_up(i, j);\n      helper[j]\
+    \ = i;\n    }\n    if (t == vtype::SPLIT) {\n      auto [L, R] = ST.split_max_right(S,\
+    \ [&](int k) -> bool { return comp(k, point[i]); });\n      int j = ST.get(R,\
+    \ 0);\n      add_edge(i, helper[j]);\n      helper[j] = i, helper[pre(i)] = i;\n\
+    \      S = ST.merge3(L, nodes[pre(i)], R);\n    }\n    if (t == vtype::START)\
     \ {\n      auto [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k,\
-    \ point[i]); });\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n   \
-    \   fix_up(i, j);\n      helper[j] = i;\n    }\n  }\n  G.build();\n  vc<tuple<int,\
-    \ int, int>> ANS;\n  FOR(f, 1, G.NF) {\n    auto [vs, es] = G.get_face_data(f);\n\
-    \    POP(vs);\n    vc<P> sub = rearrange(point, vs);\n    for (auto& [a, b, c]:\
-    \ monotone_polygon_triangulation(sub)) ANS.eb(vs[a], vs[b], vs[c]);\n  }\n  return\
-    \ ANS;\n}"
+    \ point[i]); });\n      S = ST.merge3(L, nodes[pre(i)], R), helper[pre(i)] = i;\n\
+    \    }\n    if (t == vtype::END) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n\
+    \      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] =\
+    \ ST.split3(S, n, n + 1);\n      S = ST.merge(L, R);\n      fix_up(i, i);\n  \
+    \  }\n    if (t == vtype::UPPER) {\n      ST.splay(nodes[i], 1), S = nodes[i];\n\
+    \      int n = (nodes[i]->l ? nodes[i]->l->size : 0);\n      auto [L, M, R] =\
+    \ ST.split3(S, n, n + 1);\n      S = ST.merge3(L, nodes[pre(i)], R);\n      fix_up(i,\
+    \ i);\n      helper[pre(i)] = i;\n    }\n    if (t == vtype::LOWER) {\n      auto\
+    \ [L, R] = ST.split_max_right(S, [&](int k) -> bool { return comp(k, point[i]);\
+    \ });\n      int j = ST.get(R, 0);\n      S = ST.merge(L, R);\n      fix_up(i,\
+    \ j);\n      helper[j] = i;\n    }\n  }\n  G.build();\n  vc<tuple<int, int, int>>\
+    \ ANS;\n  FOR(f, 1, G.NF) {\n    auto [vs, es] = G.get_face_data(f);\n    POP(vs);\n\
+    \    vc<P> sub = rearrange(point, vs);\n    for (auto& [a, b, c]: monotone_polygon_triangulation(sub))\
+    \ ANS.eb(vs[a], vs[b], vs[c]);\n  }\n  return ANS;\n}"
   dependsOn:
   - geo/base.hpp
   - ds/splaytree/splaytree_basic.hpp
@@ -482,7 +482,7 @@ data:
   isVerificationFile: false
   path: geo/polygon_triangulation.hpp
   requiredBy: []
-  timestamp: '2024-10-01 03:45:22+09:00'
+  timestamp: '2024-10-16 22:34:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/polygon_triangulation.test.cpp

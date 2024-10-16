@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo3d/base.hpp
     title: geo3d/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc301g.test.cpp
     title: test/5_atcoder/abc301g.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo3d/base.hpp\"\n\ntemplate <typename T>\nstruct Point_3d\
@@ -46,9 +46,9 @@ data:
     \  FOR(3) {\n      d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n\
     \      a = {a.y, a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if\
     \ (det != 0) { return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }\n    }\n  \
-    \  assert(0);\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n  REAL y\
-    \ = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 * REAL(L1.d.z);\n\
-    \  return {x, y, z};\n}\n"
+    \  assert(0);\n    return 0;\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n\
+    \  REAL y = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 *\
+    \ REAL(L1.d.z);\n  return {x, y, z};\n}\n"
   code: "#include \"geo3d/base.hpp\"\n\n// 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\
     \u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\ntemplate\
     \ <typename T>\nint count_cross(Line_3d<T> L1, Line_3d<T> L2) {\n  static_assert(!std::is_floating_point<T>::value);\n\
@@ -61,16 +61,16 @@ data:
     \  FOR(3) {\n      d1 = {d1.y, d1.z, d1.x};\n      d2 = {d2.y, d2.z, d2.x};\n\
     \      a = {a.y, a.z, a.x};\n      T det = d1.x * d2.y - d1.y * d2.x;\n      if\
     \ (det != 0) { return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }\n    }\n  \
-    \  assert(0);\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n  REAL y\
-    \ = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 * REAL(L1.d.z);\n\
-    \  return {x, y, z};\n}\n"
+    \  assert(0);\n    return 0;\n  }();\n  REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);\n\
+    \  REAL y = REAL(L1.a.y) + t1 * REAL(L1.d.y);\n  REAL z = REAL(L1.a.z) + t1 *\
+    \ REAL(L1.d.z);\n  return {x, y, z};\n}\n"
   dependsOn:
   - geo3d/base.hpp
   isVerificationFile: false
   path: geo3d/cross_point.hpp
   requiredBy: []
-  timestamp: '2024-05-27 19:13:45+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-16 22:34:39+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/abc301g.test.cpp
 documentation_of: geo3d/cross_point.hpp

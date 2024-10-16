@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/nimber/nimber_log.hpp
     title: nt/nimber/nimber_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -253,19 +253,19 @@ data:
     \   F gg = g.pow(200);\n    F pow = 1;\n    FOR(i, 330) MP[pow.val] = i, pow *=\
     \ gg;\n  }\n  u64 a = [&]() -> u32 {\n    F x1 = x.pow(65535);\n    FOR(i, 200)\
     \ {\n      u32 k = MP.get(x1.val, -1);\n      if (k != u32(-1)) { return (65537\
-    \ + 200 * k - i) % 65537; }\n      x1 *= g;\n    }\n    assert(0);\n  }();\n \
-    \ u64 b = nimber_log(Nimber16(x.pow(65537).val));\n  return CRT2<u64, 65535, 65537>(b,\
-    \ a);\n}\n\nu64 nimber_log(Nimber64 x) {\n  using F = Nimber64;\n  assert(x !=\
-    \ 0);\n  const u64 mod1 = u32(-1);\n  const u64 mod2 = mod1 + 2;\n  const u32\
-    \ p1 = 641;\n  const u32 p2 = 6700417;\n  static HashMap<u32> MP1(3400);\n  static\
-    \ HashMap<u32> MP2(641);\n  static F g1, g2;\n  if (len(MP1) == 0) {\n    g1 =\
-    \ root_64.pow(mod1 * p1); // p2 \u4E57\u6839\n    g2 = root_64.pow(mod1 * p2);\
-    \ // p1 \u4E57\u6839\n    F gg = g1.pow(2000);\n    F pow = 1;\n    FOR(i, 3400)\
-    \ MP1[pow.val] = i, pow *= gg;\n    pow = 1;\n    FOR(i, 641) MP2[pow.val] = i,\
-    \ pow *= g2;\n  }\n  u64 a1 = [&]() -> u64 {\n    F x1 = x.pow(mod1 * p1);\n \
-    \   FOR(i, 2000) {\n      u32 k = MP1.get(x1.val, -1);\n      if (k != u32(-1))\
+    \ + 200 * k - i) % 65537; }\n      x1 *= g;\n    }\n    assert(0);\n    return\
+    \ 0;\n  }();\n  u64 b = nimber_log(Nimber16(x.pow(65537).val));\n  return CRT2<u64,\
+    \ 65535, 65537>(b, a);\n}\n\nu64 nimber_log(Nimber64 x) {\n  using F = Nimber64;\n\
+    \  assert(x != 0);\n  const u64 mod1 = u32(-1);\n  const u64 mod2 = mod1 + 2;\n\
+    \  const u32 p1 = 641;\n  const u32 p2 = 6700417;\n  static HashMap<u32> MP1(3400);\n\
+    \  static HashMap<u32> MP2(641);\n  static F g1, g2;\n  if (len(MP1) == 0) {\n\
+    \    g1 = root_64.pow(mod1 * p1); // p2 \u4E57\u6839\n    g2 = root_64.pow(mod1\
+    \ * p2); // p1 \u4E57\u6839\n    F gg = g1.pow(2000);\n    F pow = 1;\n    FOR(i,\
+    \ 3400) MP1[pow.val] = i, pow *= gg;\n    pow = 1;\n    FOR(i, 641) MP2[pow.val]\
+    \ = i, pow *= g2;\n  }\n  u64 a1 = [&]() -> u64 {\n    F x1 = x.pow(mod1 * p1);\n\
+    \    FOR(i, 2000) {\n      u32 k = MP1.get(x1.val, -1);\n      if (k != u32(-1))\
     \ { return (p2 + 2000 * k - i) % p2; }\n      x1 *= g1;\n    }\n    assert(0);\n\
-    \  }();\n  u64 a2 = MP2[x.pow(mod1 * p2).val];\n  u64 b = nimber_log(Nimber32(x.pow(mod2).val));\n\
+    \    return 0;\n  }();\n  u64 a2 = MP2[x.pow(mod1 * p2).val];\n  u64 b = nimber_log(Nimber32(x.pow(mod2).val));\n\
     \  u64 a = CRT2<u64, p1, p2>(a2, a1);\n  u128 ans = u128(a) * (u64(-1) - mod1)\
     \ + u128(b) * mod2;\n  if (ans & 1) ans += u64(-1);\n  return (ans / 2) % u64(-1);\n\
     }\n\n// \u6700\u5C0F\u89E3. \u3061\u3087\u3046\u3069 -1 \u3092 false \u306E\u610F\
@@ -313,7 +313,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nimber_log.test.cpp
   requiredBy: []
-  timestamp: '2024-10-16 04:44:47+09:00'
+  timestamp: '2024-10-16 22:34:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/nimber_log.test.cpp

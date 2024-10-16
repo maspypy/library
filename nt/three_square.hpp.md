@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -209,7 +209,7 @@ data:
     \ abs(b);\n        return {a, b, x};\n      }\n      if (k % 2 == 0 && primetest(k\
     \ / 2)) {\n        auto [a, b] = solve_norm_equation_prime(k / 2);\n        tie(a,\
     \ b) = mp(a + b, a - b);\n        a = abs(a), b = abs(b);\n        return {a,\
-    \ b, x};\n      }\n    }\n    return {-1, -1, -1};\n    assert(0);\n  };\n  ll\
+    \ b, x};\n      }\n    }\n    assert(0);\n    return {-1, -1, -1};\n  };\n  ll\
     \ e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n  if (N % 8 == 7) return {-1, -1,\
     \ -1};\n  auto [a, b, c] = F(N);\n  return {a << e, b << e, c << e};\n}\n"
   code: "#include \"nt/primetest.hpp\"\n#include \"nt/gaussian_integers.hpp\"\n\n\
@@ -232,7 +232,7 @@ data:
     \ abs(b);\n        return {a, b, x};\n      }\n      if (k % 2 == 0 && primetest(k\
     \ / 2)) {\n        auto [a, b] = solve_norm_equation_prime(k / 2);\n        tie(a,\
     \ b) = mp(a + b, a - b);\n        a = abs(a), b = abs(b);\n        return {a,\
-    \ b, x};\n      }\n    }\n    return {-1, -1, -1};\n    assert(0);\n  };\n  ll\
+    \ b, x};\n      }\n    }\n    assert(0);\n    return {-1, -1, -1};\n  };\n  ll\
     \ e = 0;\n  while (N % 4 == 0) N /= 4, ++e;\n  if (N % 8 == 7) return {-1, -1,\
     \ -1};\n  auto [a, b, c] = F(N);\n  return {a << e, b << e, c << e};\n}\n"
   dependsOn:
@@ -248,7 +248,7 @@ data:
   requiredBy:
   - nt/three_triangular.hpp
   - nt/four_square.hpp
-  timestamp: '2024-09-14 09:20:23+09:00'
+  timestamp: '2024-10-16 22:34:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/three_square.test.cpp

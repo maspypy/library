@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -57,7 +57,8 @@ data:
     \ {\n    vc<E> res(n);\n    FOR(i, n) res[i] = prod(i, i + 1);\n    return res;\n\
     \  }\n\n  void add(int k, E x) { multiply(k, x); }\n  void multiply(int k, E x)\
     \ {\n    static_assert(G::commute);\n    total = G::op(total, x);\n    for (++k;\
-    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n\n  template <class\
+    \ k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);\n  }\n  void set(int\
+    \ k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }\n\n  template <class\
     \ F>\n  int max_right(const F check, int L = 0) {\n    assert(check(G::unit()));\n\
     \    E s = G::unit();\n    int i = L;\n    // 2^k \u9032\u3080\u3068\u30C0\u30E1\
     \n    int k = [&]() {\n      while (1) {\n        if (i % 2 == 1) { s = G::op(s,\
@@ -149,27 +150,27 @@ data:
     \n*/\nstruct Slinding_Puzzle_Solver {\n  using P = pair<int, int>;\n  vc<P> solve(vvc<int>\
     \ A, vvc<int> B) {\n    int H = len(A), W = len(A[0]);\n    auto find = [&](vvc<int>&\
     \ A, int k) -> P {\n      FOR(x, H) FOR(y, W) if (A[x][y] == k) return {x, y};\n\
-    \      assert(0);\n    };\n    auto [ax, ay] = find(A, -1);\n    auto [bx, by]\
-    \ = find(B, -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0) { ANS_1.eb(ax, ay),\
-    \ swap(A[ax][ay], A[ax - 1][ay]), --ax; }\n    while (ay > 0) { ANS_1.eb(ax, ay),\
-    \ swap(A[ax][ay], A[ax][ay - 1]), --ay; }\n    while (bx > 0) { ANS_2.eb(bx, by),\
-    \ swap(B[bx][by], B[bx - 1][by]), --bx; }\n    while (by > 0) { ANS_2.eb(bx, by),\
-    \ swap(B[bx][by], B[bx][by - 1]), --by; }\n    vc<P> ANS = solve_00(A, B);\n \
-    \   if (ANS.empty()) return {};\n    reverse(all(ANS_2));\n    return concat(ANS_1,\
-    \ ANS, ANS_2);\n  }\n\nprivate:\n  vc<P> solve_00(vvc<int> A, vvc<int> B) {\n\
-    \    assert(A[0][0] == -1 && B[0][0] == -1);\n    int H = len(A), W = len(A[0]);\n\
-    \    if (H == 1 || W == 1) {\n      if (A != B) return {};\n      vc<P> ANS;\n\
-    \      ANS.eb(0, 0);\n      return ANS;\n    }\n    vc<P> XYA, XYB;\n    FOR(x,\
-    \ H) FOR(y, W) XYA.eb(x, y), XYB.eb(x, y);\n    sort(all(XYA), [&](auto& a, auto&\
-    \ b) -> bool {\n      return A[a.fi][a.se] < A[b.fi][b.se];\n    });\n    sort(all(XYB),\
-    \ [&](auto& a, auto& b) -> bool {\n      return B[a.fi][a.se] < B[b.fi][b.se];\n\
-    \    });\n    auto check = [&]() -> bool {\n      vc<int> S, T;\n      FOR(i,\
-    \ H * W) {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYB[i];\n\
-    \        if (A[x1][y1] != B[x2][y2]) return 0;\n        S.eb(W * x1 + y1);\n \
-    \       T.eb(W * x2 + y2);\n      }\n      ll x = inversion_between(S, T);\n \
-    \     return x % 2 == 0;\n    };\n    if (!check()) {\n      FOR(i, H * W - 1)\
-    \ {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYA[i + 1];\n  \
-    \      if (A[x1][y1] != A[x2][y2]) continue;\n        swap(XYA[i], XYA[i + 1]);\n\
+    \      assert(0);\n      return {0, 0};\n    };\n    auto [ax, ay] = find(A, -1);\n\
+    \    auto [bx, by] = find(B, -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0)\
+    \ { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax - 1][ay]), --ax; }\n    while (ay >\
+    \ 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay - 1]), --ay; }\n    while (bx\
+    \ > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]), --bx; }\n    while\
+    \ (by > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by; }\n    vc<P>\
+    \ ANS = solve_00(A, B);\n    if (ANS.empty()) return {};\n    reverse(all(ANS_2));\n\
+    \    return concat(ANS_1, ANS, ANS_2);\n  }\n\nprivate:\n  vc<P> solve_00(vvc<int>\
+    \ A, vvc<int> B) {\n    assert(A[0][0] == -1 && B[0][0] == -1);\n    int H = len(A),\
+    \ W = len(A[0]);\n    if (H == 1 || W == 1) {\n      if (A != B) return {};\n\
+    \      vc<P> ANS;\n      ANS.eb(0, 0);\n      return ANS;\n    }\n    vc<P> XYA,\
+    \ XYB;\n    FOR(x, H) FOR(y, W) XYA.eb(x, y), XYB.eb(x, y);\n    sort(all(XYA),\
+    \ [&](auto& a, auto& b) -> bool { return A[a.fi][a.se] < A[b.fi][b.se]; });\n\
+    \    sort(all(XYB), [&](auto& a, auto& b) -> bool { return B[a.fi][a.se] < B[b.fi][b.se];\
+    \ });\n    auto check = [&]() -> bool {\n      vc<int> S, T;\n      FOR(i, H *\
+    \ W) {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYB[i];\n   \
+    \     if (A[x1][y1] != B[x2][y2]) return 0;\n        S.eb(W * x1 + y1);\n    \
+    \    T.eb(W * x2 + y2);\n      }\n      ll x = inversion_between(S, T);\n    \
+    \  return x % 2 == 0;\n    };\n    if (!check()) {\n      FOR(i, H * W - 1) {\n\
+    \        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYA[i + 1];\n      \
+    \  if (A[x1][y1] != A[x2][y2]) continue;\n        swap(XYA[i], XYA[i + 1]);\n\
     \        break;\n      }\n      if (!check()) return {};\n    }\n    vv(P, X,\
     \ H, W);\n    FOR(i, H * W) {\n      auto [x1, y1] = XYA[i];\n      auto [x2,\
     \ y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n    }\n    vc<P> ANS;\n    ANS.eb(0,\
@@ -198,30 +199,28 @@ data:
     \          ope(px - 1, py);\n      }\n      assert(abs(px - tx) == 1);\n     \
     \ while (py < ty) ope(px, py + 1);\n      while (py > ty) ope(px, py - 1);\n \
     \     if (px == tx + 1) ope(px - 1, py), tie(tx, ty) = pos[H - 1][y];\n      assert(px\
-    \ == tx - 1 && py == ty);\n      while (ty < y) {\n        ope(px, py + 1), ope(px\
-    \ + 1, py), ope(px, py - 1), ope(px - 1, py),\n            ope(px, py + 1);\n\
-    \      }\n      while (ty > y) {\n        ope(px, py - 1), ope(px + 1, py), ope(px,\
-    \ py + 1), ope(px - 1, py),\n            ope(px, py - 1);\n      }\n      tie(tx,\
-    \ ty) = pos[H - 1][y];\n      while (tx < H - 1) {\n        ope(px, py - 1), ope(px\
-    \ + 1, py), ope(px + 1, py), ope(px, py + 1),\n            ope(px - 1, py);\n\
-    \        tie(tx, ty) = pos[H - 1][y];\n      }\n      assert(A[H - 1][y] == (pair<int,\
-    \ int>{H - 1, y}));\n    }\n    auto& [tx, ty] = pos[H - 1][0];\n    if (px ==\
-    \ H - 1) ope(px - 1, py);\n    while (px - 1 > tx) ope(px - 1, py), tie(tx, ty)\
-    \ = pos[H - 1][0];\n    while (px + 1 < tx) ope(px + 1, py), tie(tx, ty) = pos[H\
-    \ - 1][0];\n    if (px == tx) {\n      if (px == 0)\n        ope(px + 1, py);\n\
-    \      else\n        ope(px - 1, py);\n    }\n    tie(tx, ty) = pos[H - 1][0];\n\
-    \    assert(abs(px - tx) == 1);\n    while (py < ty) ope(px, py + 1);\n    while\
-    \ (py > ty) ope(px, py - 1);\n    if (px == tx + 1) ope(px - 1, py);\n    tie(tx,\
-    \ ty) = pos[H - 1][0];\n    if (tx < H - 1) {\n      assert(px == tx - 1 && py\
-    \ == ty);\n      while (ty > 0) {\n        ope(px, py - 1), ope(px + 1, py), ope(px,\
-    \ py + 1), ope(px - 1, py),\n            ope(px, py - 1);\n      }\n      tie(tx,\
-    \ ty) = pos[H - 1][0];\n      while (tx < H - 2) {\n        ope(px, py + 1), ope(px\
-    \ + 1, py), ope(px + 1, py), ope(px, py - 1),\n            ope(px - 1, py);\n\
-    \      }\n      ope(px + 1, py), ope(px + 1, py), ope(px, py + 1);\n      ope(px\
-    \ - 1, py), ope(px, py - 1), ope(px - 1, py);\n      ope(px, py + 1), ope(px +\
-    \ 1, py), ope(px + 1, py);\n      ope(px, py - 1), ope(px - 1, py);\n    }\n \
-    \   FOR(y, W) assert(A[H - 1][y] == (pair<int, int>{H - 1, y}));\n    POP(A);\n\
-    \    solve_sort(A, ANS, tr);\n  }\n};\n"
+    \ == tx - 1 && py == ty);\n      while (ty < y) { ope(px, py + 1), ope(px + 1,\
+    \ py), ope(px, py - 1), ope(px - 1, py), ope(px, py + 1); }\n      while (ty >\
+    \ y) { ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py), ope(px,\
+    \ py - 1); }\n      tie(tx, ty) = pos[H - 1][y];\n      while (tx < H - 1) {\n\
+    \        ope(px, py - 1), ope(px + 1, py), ope(px + 1, py), ope(px, py + 1), ope(px\
+    \ - 1, py);\n        tie(tx, ty) = pos[H - 1][y];\n      }\n      assert(A[H -\
+    \ 1][y] == (pair<int, int>{H - 1, y}));\n    }\n    auto& [tx, ty] = pos[H - 1][0];\n\
+    \    if (px == H - 1) ope(px - 1, py);\n    while (px - 1 > tx) ope(px - 1, py),\
+    \ tie(tx, ty) = pos[H - 1][0];\n    while (px + 1 < tx) ope(px + 1, py), tie(tx,\
+    \ ty) = pos[H - 1][0];\n    if (px == tx) {\n      if (px == 0)\n        ope(px\
+    \ + 1, py);\n      else\n        ope(px - 1, py);\n    }\n    tie(tx, ty) = pos[H\
+    \ - 1][0];\n    assert(abs(px - tx) == 1);\n    while (py < ty) ope(px, py + 1);\n\
+    \    while (py > ty) ope(px, py - 1);\n    if (px == tx + 1) ope(px - 1, py);\n\
+    \    tie(tx, ty) = pos[H - 1][0];\n    if (tx < H - 1) {\n      assert(px == tx\
+    \ - 1 && py == ty);\n      while (ty > 0) { ope(px, py - 1), ope(px + 1, py),\
+    \ ope(px, py + 1), ope(px - 1, py), ope(px, py - 1); }\n      tie(tx, ty) = pos[H\
+    \ - 1][0];\n      while (tx < H - 2) { ope(px, py + 1), ope(px + 1, py), ope(px\
+    \ + 1, py), ope(px, py - 1), ope(px - 1, py); }\n      ope(px + 1, py), ope(px\
+    \ + 1, py), ope(px, py + 1);\n      ope(px - 1, py), ope(px, py - 1), ope(px -\
+    \ 1, py);\n      ope(px, py + 1), ope(px + 1, py), ope(px + 1, py);\n      ope(px,\
+    \ py - 1), ope(px - 1, py);\n    }\n    FOR(y, W) assert(A[H - 1][y] == (pair<int,\
+    \ int>{H - 1, y}));\n    POP(A);\n    solve_sort(A, ANS, tr);\n  }\n};\n"
   code: "#include \"linalg/transpose.hpp\"\n#include \"seq/inversion.hpp\"\n\n/*\n\
     O(HW(H+W))\n\u7A7A\u30DE\u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\u8907\
     \u6570\u3042\u3063\u3066\u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092 K \u3068\
@@ -229,40 +228,41 @@ data:
     \u3092\u304B\u3048\u3059\n*/\nstruct Slinding_Puzzle_Solver {\n  using P = pair<int,\
     \ int>;\n  vc<P> solve(vvc<int> A, vvc<int> B) {\n    int H = len(A), W = len(A[0]);\n\
     \    auto find = [&](vvc<int>& A, int k) -> P {\n      FOR(x, H) FOR(y, W) if\
-    \ (A[x][y] == k) return {x, y};\n      assert(0);\n    };\n    auto [ax, ay] =\
-    \ find(A, -1);\n    auto [bx, by] = find(B, -1);\n    vc<P> ANS_1, ANS_2;\n  \
-    \  while (ax > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax - 1][ay]), --ax; }\n\
-    \    while (ay > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay - 1]), --ay;\
-    \ }\n    while (bx > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]), --bx;\
-    \ }\n    while (by > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by;\
-    \ }\n    vc<P> ANS = solve_00(A, B);\n    if (ANS.empty()) return {};\n    reverse(all(ANS_2));\n\
-    \    return concat(ANS_1, ANS, ANS_2);\n  }\n\nprivate:\n  vc<P> solve_00(vvc<int>\
-    \ A, vvc<int> B) {\n    assert(A[0][0] == -1 && B[0][0] == -1);\n    int H = len(A),\
-    \ W = len(A[0]);\n    if (H == 1 || W == 1) {\n      if (A != B) return {};\n\
-    \      vc<P> ANS;\n      ANS.eb(0, 0);\n      return ANS;\n    }\n    vc<P> XYA,\
-    \ XYB;\n    FOR(x, H) FOR(y, W) XYA.eb(x, y), XYB.eb(x, y);\n    sort(all(XYA),\
-    \ [&](auto& a, auto& b) -> bool {\n      return A[a.fi][a.se] < A[b.fi][b.se];\n\
-    \    });\n    sort(all(XYB), [&](auto& a, auto& b) -> bool {\n      return B[a.fi][a.se]\
-    \ < B[b.fi][b.se];\n    });\n    auto check = [&]() -> bool {\n      vc<int> S,\
-    \ T;\n      FOR(i, H * W) {\n        auto [x1, y1] = XYA[i];\n        auto [x2,\
-    \ y2] = XYB[i];\n        if (A[x1][y1] != B[x2][y2]) return 0;\n        S.eb(W\
-    \ * x1 + y1);\n        T.eb(W * x2 + y2);\n      }\n      ll x = inversion_between(S,\
-    \ T);\n      return x % 2 == 0;\n    };\n    if (!check()) {\n      FOR(i, H *\
-    \ W - 1) {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYA[i + 1];\n\
-    \        if (A[x1][y1] != A[x2][y2]) continue;\n        swap(XYA[i], XYA[i + 1]);\n\
-    \        break;\n      }\n      if (!check()) return {};\n    }\n    vv(P, X,\
-    \ H, W);\n    FOR(i, H * W) {\n      auto [x1, y1] = XYA[i];\n      auto [x2,\
-    \ y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n    }\n    vc<P> ANS;\n    ANS.eb(0,\
-    \ 0);\n    solve_sort(X, ANS, false);\n    return ANS;\n  }\n\n  // \u79FB\u52D5\
-    \u5148\u306E\u5EA7\u6A19\u306E\u5217\u3092\u4E26\u3079\u305F\u30B0\u30EA\u30C3\
-    \u30C9\u3092\u4E0E\u3048\u308B.\n  // (0,0) \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int,\
-    \ int>>& A, vc<P>& ANS, bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P,\
-    \ pos, H, W);\n    FOR(x, H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se]\
-    \ = {x, y};\n    }\n\n    auto [px, py] = pos[0][0];\n\n    auto ope = [&](int\
-    \ x, int y) -> void {\n      assert(abs(px - x) + abs(py - y) == 1);\n      swap(A[px][py],\
-    \ A[x][y]);\n      if (!tr) ANS.eb(x, y);\n      if (tr) ANS.eb(y, x);\n     \
-    \ pos[A[px][py].fi][A[px][py].se] = {px, py};\n      px = x, py = y;\n      pos[A[px][py].fi][A[px][py].se]\
-    \ = {px, py};\n    };\n    if (H == 2 && W == 2) {\n      auto check = [&]() ->\
+    \ (A[x][y] == k) return {x, y};\n      assert(0);\n      return {0, 0};\n    };\n\
+    \    auto [ax, ay] = find(A, -1);\n    auto [bx, by] = find(B, -1);\n    vc<P>\
+    \ ANS_1, ANS_2;\n    while (ax > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax -\
+    \ 1][ay]), --ax; }\n    while (ay > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay\
+    \ - 1]), --ay; }\n    while (bx > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx\
+    \ - 1][by]), --bx; }\n    while (by > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by\
+    \ - 1]), --by; }\n    vc<P> ANS = solve_00(A, B);\n    if (ANS.empty()) return\
+    \ {};\n    reverse(all(ANS_2));\n    return concat(ANS_1, ANS, ANS_2);\n  }\n\n\
+    private:\n  vc<P> solve_00(vvc<int> A, vvc<int> B) {\n    assert(A[0][0] == -1\
+    \ && B[0][0] == -1);\n    int H = len(A), W = len(A[0]);\n    if (H == 1 || W\
+    \ == 1) {\n      if (A != B) return {};\n      vc<P> ANS;\n      ANS.eb(0, 0);\n\
+    \      return ANS;\n    }\n    vc<P> XYA, XYB;\n    FOR(x, H) FOR(y, W) XYA.eb(x,\
+    \ y), XYB.eb(x, y);\n    sort(all(XYA), [&](auto& a, auto& b) -> bool { return\
+    \ A[a.fi][a.se] < A[b.fi][b.se]; });\n    sort(all(XYB), [&](auto& a, auto& b)\
+    \ -> bool { return B[a.fi][a.se] < B[b.fi][b.se]; });\n    auto check = [&]()\
+    \ -> bool {\n      vc<int> S, T;\n      FOR(i, H * W) {\n        auto [x1, y1]\
+    \ = XYA[i];\n        auto [x2, y2] = XYB[i];\n        if (A[x1][y1] != B[x2][y2])\
+    \ return 0;\n        S.eb(W * x1 + y1);\n        T.eb(W * x2 + y2);\n      }\n\
+    \      ll x = inversion_between(S, T);\n      return x % 2 == 0;\n    };\n   \
+    \ if (!check()) {\n      FOR(i, H * W - 1) {\n        auto [x1, y1] = XYA[i];\n\
+    \        auto [x2, y2] = XYA[i + 1];\n        if (A[x1][y1] != A[x2][y2]) continue;\n\
+    \        swap(XYA[i], XYA[i + 1]);\n        break;\n      }\n      if (!check())\
+    \ return {};\n    }\n    vv(P, X, H, W);\n    FOR(i, H * W) {\n      auto [x1,\
+    \ y1] = XYA[i];\n      auto [x2, y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n\
+    \    }\n    vc<P> ANS;\n    ANS.eb(0, 0);\n    solve_sort(X, ANS, false);\n  \
+    \  return ANS;\n  }\n\n  // \u79FB\u52D5\u5148\u306E\u5EA7\u6A19\u306E\u5217\u3092\
+    \u4E26\u3079\u305F\u30B0\u30EA\u30C3\u30C9\u3092\u4E0E\u3048\u308B.\n  // (0,0)\
+    \ \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int, int>>& A, vc<P>& ANS,\
+    \ bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P, pos, H, W);\n    FOR(x,\
+    \ H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se] = {x, y};\n    }\n\
+    \n    auto [px, py] = pos[0][0];\n\n    auto ope = [&](int x, int y) -> void {\n\
+    \      assert(abs(px - x) + abs(py - y) == 1);\n      swap(A[px][py], A[x][y]);\n\
+    \      if (!tr) ANS.eb(x, y);\n      if (tr) ANS.eb(y, x);\n      pos[A[px][py].fi][A[px][py].se]\
+    \ = {px, py};\n      px = x, py = y;\n      pos[A[px][py].fi][A[px][py].se] =\
+    \ {px, py};\n    };\n    if (H == 2 && W == 2) {\n      auto check = [&]() ->\
     \ bool {\n        FOR(x, H) FOR(y, W) if (A[x][y].fi != x || A[x][y].se != y)\
     \ return 0;\n        return 1;\n      };\n      while (!check()) {\n        if\
     \ (px == 0 && py == 0) ope(1, 0);\n        if (px == 1 && py == 0) ope(1, 1);\n\
@@ -278,30 +278,28 @@ data:
     \          ope(px - 1, py);\n      }\n      assert(abs(px - tx) == 1);\n     \
     \ while (py < ty) ope(px, py + 1);\n      while (py > ty) ope(px, py - 1);\n \
     \     if (px == tx + 1) ope(px - 1, py), tie(tx, ty) = pos[H - 1][y];\n      assert(px\
-    \ == tx - 1 && py == ty);\n      while (ty < y) {\n        ope(px, py + 1), ope(px\
-    \ + 1, py), ope(px, py - 1), ope(px - 1, py),\n            ope(px, py + 1);\n\
-    \      }\n      while (ty > y) {\n        ope(px, py - 1), ope(px + 1, py), ope(px,\
-    \ py + 1), ope(px - 1, py),\n            ope(px, py - 1);\n      }\n      tie(tx,\
-    \ ty) = pos[H - 1][y];\n      while (tx < H - 1) {\n        ope(px, py - 1), ope(px\
-    \ + 1, py), ope(px + 1, py), ope(px, py + 1),\n            ope(px - 1, py);\n\
-    \        tie(tx, ty) = pos[H - 1][y];\n      }\n      assert(A[H - 1][y] == (pair<int,\
-    \ int>{H - 1, y}));\n    }\n    auto& [tx, ty] = pos[H - 1][0];\n    if (px ==\
-    \ H - 1) ope(px - 1, py);\n    while (px - 1 > tx) ope(px - 1, py), tie(tx, ty)\
-    \ = pos[H - 1][0];\n    while (px + 1 < tx) ope(px + 1, py), tie(tx, ty) = pos[H\
-    \ - 1][0];\n    if (px == tx) {\n      if (px == 0)\n        ope(px + 1, py);\n\
-    \      else\n        ope(px - 1, py);\n    }\n    tie(tx, ty) = pos[H - 1][0];\n\
-    \    assert(abs(px - tx) == 1);\n    while (py < ty) ope(px, py + 1);\n    while\
-    \ (py > ty) ope(px, py - 1);\n    if (px == tx + 1) ope(px - 1, py);\n    tie(tx,\
-    \ ty) = pos[H - 1][0];\n    if (tx < H - 1) {\n      assert(px == tx - 1 && py\
-    \ == ty);\n      while (ty > 0) {\n        ope(px, py - 1), ope(px + 1, py), ope(px,\
-    \ py + 1), ope(px - 1, py),\n            ope(px, py - 1);\n      }\n      tie(tx,\
-    \ ty) = pos[H - 1][0];\n      while (tx < H - 2) {\n        ope(px, py + 1), ope(px\
-    \ + 1, py), ope(px + 1, py), ope(px, py - 1),\n            ope(px - 1, py);\n\
-    \      }\n      ope(px + 1, py), ope(px + 1, py), ope(px, py + 1);\n      ope(px\
-    \ - 1, py), ope(px, py - 1), ope(px - 1, py);\n      ope(px, py + 1), ope(px +\
-    \ 1, py), ope(px + 1, py);\n      ope(px, py - 1), ope(px - 1, py);\n    }\n \
-    \   FOR(y, W) assert(A[H - 1][y] == (pair<int, int>{H - 1, y}));\n    POP(A);\n\
-    \    solve_sort(A, ANS, tr);\n  }\n};\n"
+    \ == tx - 1 && py == ty);\n      while (ty < y) { ope(px, py + 1), ope(px + 1,\
+    \ py), ope(px, py - 1), ope(px - 1, py), ope(px, py + 1); }\n      while (ty >\
+    \ y) { ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py), ope(px,\
+    \ py - 1); }\n      tie(tx, ty) = pos[H - 1][y];\n      while (tx < H - 1) {\n\
+    \        ope(px, py - 1), ope(px + 1, py), ope(px + 1, py), ope(px, py + 1), ope(px\
+    \ - 1, py);\n        tie(tx, ty) = pos[H - 1][y];\n      }\n      assert(A[H -\
+    \ 1][y] == (pair<int, int>{H - 1, y}));\n    }\n    auto& [tx, ty] = pos[H - 1][0];\n\
+    \    if (px == H - 1) ope(px - 1, py);\n    while (px - 1 > tx) ope(px - 1, py),\
+    \ tie(tx, ty) = pos[H - 1][0];\n    while (px + 1 < tx) ope(px + 1, py), tie(tx,\
+    \ ty) = pos[H - 1][0];\n    if (px == tx) {\n      if (px == 0)\n        ope(px\
+    \ + 1, py);\n      else\n        ope(px - 1, py);\n    }\n    tie(tx, ty) = pos[H\
+    \ - 1][0];\n    assert(abs(px - tx) == 1);\n    while (py < ty) ope(px, py + 1);\n\
+    \    while (py > ty) ope(px, py - 1);\n    if (px == tx + 1) ope(px - 1, py);\n\
+    \    tie(tx, ty) = pos[H - 1][0];\n    if (tx < H - 1) {\n      assert(px == tx\
+    \ - 1 && py == ty);\n      while (ty > 0) { ope(px, py - 1), ope(px + 1, py),\
+    \ ope(px, py + 1), ope(px - 1, py), ope(px, py - 1); }\n      tie(tx, ty) = pos[H\
+    \ - 1][0];\n      while (tx < H - 2) { ope(px, py + 1), ope(px + 1, py), ope(px\
+    \ + 1, py), ope(px, py - 1), ope(px - 1, py); }\n      ope(px + 1, py), ope(px\
+    \ + 1, py), ope(px, py + 1);\n      ope(px - 1, py), ope(px, py - 1), ope(px -\
+    \ 1, py);\n      ope(px, py + 1), ope(px + 1, py), ope(px + 1, py);\n      ope(px,\
+    \ py - 1), ope(px - 1, py);\n    }\n    FOR(y, W) assert(A[H - 1][y] == (pair<int,\
+    \ int>{H - 1, y}));\n    POP(A);\n    solve_sort(A, ANS, tr);\n  }\n};\n"
   dependsOn:
   - linalg/transpose.hpp
   - seq/inversion.hpp
@@ -311,7 +309,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2024-07-23 21:27:24+09:00'
+  timestamp: '2024-10-16 22:34:39+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp
