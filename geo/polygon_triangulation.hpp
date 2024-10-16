@@ -62,6 +62,7 @@ vc<tuple<int, int, int>> polygon_triangulation(vc<Point<T>> point) {
     if (point[l] < point[i] && point[i] < point[r]) return LOWER;
     if (point[r] < point[i] && point[i] < point[l]) return UPPER;
     assert(0);
+    return END;
   };
   SplayTree_Basic<int> ST(N);
   using np = decltype(ST)::np;

@@ -29,6 +29,7 @@ Point_3d<REAL> cross_point(Line_3d<T> L1, Line_3d<T> L2) {
       if (det != 0) { return REAL(a.x * d2.y - a.y * d2.x) / REAL(det); }
     }
     assert(0);
+    return 0;
   }();
   REAL x = REAL(L1.a.x) + t1 * REAL(L1.d.x);
   REAL y = REAL(L1.a.y) + t1 * REAL(L1.d.y);
