@@ -17,7 +17,6 @@ struct Arithmetic_Expression {
     elif (ch == '*') { type = 2, a = 0, b = 1, c = 0, ten = 1; }
     elif ('0' <= ch && ch <= '9') { type = 1, a = (ch - '0'), ten = 10; }
     else {
-      SHOW(ch);
       assert(0);
     }
   }
@@ -27,6 +26,7 @@ struct Arithmetic_Expression {
     if (type == 2) return a * b * c;
     if (type == 3) return a * b + c + d * e;
     assert(0);
+    return 0;
   }
 };
 
@@ -49,8 +49,7 @@ struct Monoid_Arithmetic_Expression {
       ANS.ten = L.ten * R.ten;
     }
     if (L.type == 1 && R.type == 3) {
-      ANS.type = 3, ANS.a = L.a * R.ten + R.a, ANS.b = R.b, ANS.c = R.c,
-      ANS.d = R.d, ANS.e = R.e;
+      ANS.type = 3, ANS.a = L.a * R.ten + R.a, ANS.b = R.b, ANS.c = R.c, ANS.d = R.d, ANS.e = R.e;
       ANS.ten = L.ten * R.ten;
     }
     if (L.type == 2 && R.type == 1) {
@@ -64,27 +63,22 @@ struct Monoid_Arithmetic_Expression {
     }
     if (L.type == 2 && R.type == 3) {
       ANS.type = 3;
-      ANS.a = L.a, ANS.b = L.b * (L.c * R.ten + R.a) * R.b, ANS.c = R.c,
-      ANS.d = R.d, ANS.e = R.e;
+      ANS.a = L.a, ANS.b = L.b * (L.c * R.ten + R.a) * R.b, ANS.c = R.c, ANS.d = R.d, ANS.e = R.e;
       ANS.ten = L.ten;
     }
     if (L.type == 3 && R.type == 1) {
       ANS.type = 3;
-      ANS.a = L.a, ANS.b = L.b, ANS.c = L.c, ANS.d = L.d,
-      ANS.e = (L.e * R.ten + R.a);
+      ANS.a = L.a, ANS.b = L.b, ANS.c = L.c, ANS.d = L.d, ANS.e = (L.e * R.ten + R.a);
       ANS.ten = L.ten;
     }
     if (L.type == 3 && R.type == 2) {
       ANS.type = 3;
-      ANS.a = L.a, ANS.b = L.b, ANS.c = L.c,
-      ANS.d = L.d * (L.e * R.ten + R.a) * R.b, ANS.e = R.c;
+      ANS.a = L.a, ANS.b = L.b, ANS.c = L.c, ANS.d = L.d * (L.e * R.ten + R.a) * R.b, ANS.e = R.c;
       ANS.ten = L.ten;
     }
     if (L.type == 3 && R.type == 3) {
       ANS.type = 3;
-      ANS.a = L.a, ANS.b = L.b,
-      ANS.c = L.c + L.d * (L.e * R.ten + R.a) * R.b + R.c, ANS.d = R.d,
-      ANS.e = R.e;
+      ANS.a = L.a, ANS.b = L.b, ANS.c = L.c + L.d * (L.e * R.ten + R.a) * R.b + R.c, ANS.d = R.d, ANS.e = R.e;
       ANS.ten = L.ten;
     }
     return ANS;

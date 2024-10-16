@@ -74,6 +74,7 @@ struct FenwickTree {
     total = G::op(total, x);
     for (++k; k <= n; k += k & -k) dat[k - 1] = G::op(dat[k - 1], x);
   }
+  void set(int k, E x) { add(k, G::op(G::inverse(prod(k, k + 1)), x)); }
 
   template <class F>
   int max_right(const F check, int L = 0) {

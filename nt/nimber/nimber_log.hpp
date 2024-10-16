@@ -33,6 +33,7 @@ u64 nimber_log(Nimber32 x) {
       x1 *= g;
     }
     assert(0);
+    return 0;
   }();
   u64 b = nimber_log(Nimber16(x.pow(65537).val));
   return CRT2<u64, 65535, 65537>(b, a);
@@ -65,6 +66,7 @@ u64 nimber_log(Nimber64 x) {
       x1 *= g1;
     }
     assert(0);
+    return 0;
   }();
   u64 a2 = MP2[x.pow(mod1 * p2).val];
   u64 b = nimber_log(Nimber32(x.pow(mod2).val));

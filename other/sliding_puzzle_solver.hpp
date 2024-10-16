@@ -14,6 +14,7 @@ struct Slinding_Puzzle_Solver {
     auto find = [&](vvc<int>& A, int k) -> P {
       FOR(x, H) FOR(y, W) if (A[x][y] == k) return {x, y};
       assert(0);
+      return {0, 0};
     };
     auto [ax, ay] = find(A, -1);
     auto [bx, by] = find(B, -1);
@@ -40,12 +41,8 @@ private:
     }
     vc<P> XYA, XYB;
     FOR(x, H) FOR(y, W) XYA.eb(x, y), XYB.eb(x, y);
-    sort(all(XYA), [&](auto& a, auto& b) -> bool {
-      return A[a.fi][a.se] < A[b.fi][b.se];
-    });
-    sort(all(XYB), [&](auto& a, auto& b) -> bool {
-      return B[a.fi][a.se] < B[b.fi][b.se];
-    });
+    sort(all(XYA), [&](auto& a, auto& b) -> bool { return A[a.fi][a.se] < A[b.fi][b.se]; });
+    sort(all(XYB), [&](auto& a, auto& b) -> bool { return B[a.fi][a.se] < B[b.fi][b.se]; });
     auto check = [&]() -> bool {
       vc<int> S, T;
       FOR(i, H * W) {
@@ -138,18 +135,11 @@ private:
       while (py > ty) ope(px, py - 1);
       if (px == tx + 1) ope(px - 1, py), tie(tx, ty) = pos[H - 1][y];
       assert(px == tx - 1 && py == ty);
-      while (ty < y) {
-        ope(px, py + 1), ope(px + 1, py), ope(px, py - 1), ope(px - 1, py),
-            ope(px, py + 1);
-      }
-      while (ty > y) {
-        ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py),
-            ope(px, py - 1);
-      }
+      while (ty < y) { ope(px, py + 1), ope(px + 1, py), ope(px, py - 1), ope(px - 1, py), ope(px, py + 1); }
+      while (ty > y) { ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py), ope(px, py - 1); }
       tie(tx, ty) = pos[H - 1][y];
       while (tx < H - 1) {
-        ope(px, py - 1), ope(px + 1, py), ope(px + 1, py), ope(px, py + 1),
-            ope(px - 1, py);
+        ope(px, py - 1), ope(px + 1, py), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py);
         tie(tx, ty) = pos[H - 1][y];
       }
       assert(A[H - 1][y] == (pair<int, int>{H - 1, y}));
@@ -172,15 +162,9 @@ private:
     tie(tx, ty) = pos[H - 1][0];
     if (tx < H - 1) {
       assert(px == tx - 1 && py == ty);
-      while (ty > 0) {
-        ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py),
-            ope(px, py - 1);
-      }
+      while (ty > 0) { ope(px, py - 1), ope(px + 1, py), ope(px, py + 1), ope(px - 1, py), ope(px, py - 1); }
       tie(tx, ty) = pos[H - 1][0];
-      while (tx < H - 2) {
-        ope(px, py + 1), ope(px + 1, py), ope(px + 1, py), ope(px, py - 1),
-            ope(px - 1, py);
-      }
+      while (tx < H - 2) { ope(px, py + 1), ope(px + 1, py), ope(px + 1, py), ope(px, py - 1), ope(px - 1, py); }
       ope(px + 1, py), ope(px + 1, py), ope(px, py + 1);
       ope(px - 1, py), ope(px, py - 1), ope(px - 1, py);
       ope(px, py + 1), ope(px + 1, py), ope(px + 1, py);

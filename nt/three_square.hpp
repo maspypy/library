@@ -44,8 +44,8 @@ tuple<ll, ll, ll> three_square(ll N) {
         return {a, b, x};
       }
     }
-    return {-1, -1, -1};
     assert(0);
+    return {-1, -1, -1};
   };
   ll e = 0;
   while (N % 4 == 0) N /= 4, ++e;
