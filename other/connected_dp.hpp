@@ -1,7 +1,9 @@
 #include "ds/hashmap.hpp"
 #include "random/hash_vector.hpp"
 
-// dot case: https://atcoder.jp/contests/ttpc2023/submissions/57905985
+// dot case:
+// https://atcoder.jp/contests/ttpc2023/submissions/57905985
+// https://qoj.ac/problem/9
 
 namespace connected_dp_squares {
 // pair<新しい状態、今の成分 → 新しい成分>

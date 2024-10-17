@@ -1,4 +1,9 @@
 #pragma once
+
+/*
+update でちゃんと prod が計算されてくれれば prod は op(lprod,x,rprod) でなくてもよい.
+*/
+
 // Node 型を別に定義して使う
 template <typename Node>
 struct SplayTree {
@@ -14,6 +19,7 @@ struct SplayTree {
   ~SplayTree() { delete[] pool; }
 
   void free_subtree(np c) {
+    if (!c) return;
     auto dfs = [&](auto &dfs, np c) -> void {
       if (c->l) dfs(dfs, c->l);
       if (c->r) dfs(dfs, c->r);
@@ -363,9 +369,12 @@ struct SplayTree {
     while (root) {
       last = root;
       root->prop();
-      X lprod = prod;
-      if (root->l) lprod = Mono::op(lprod, root->l->prod);
-      lprod = Mono::op(lprod, root->x);
+      np tmp = root->r;
+      root->r = nullptr;
+      root->update();
+      X lprod = Mono::op(prod, root->prod);
+      root->r = tmp;
+      root->update();
       if (check(lprod)) {
         prod = lprod;
         last_ok = root;
