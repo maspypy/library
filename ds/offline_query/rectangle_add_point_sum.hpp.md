@@ -9,7 +9,7 @@ data:
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/rect_add_pt_sum.test.cpp
     title: test/1_mytest/rect_add_pt_sum.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/3_yukicoder/2338.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -139,7 +139,7 @@ data:
   path: ds/offline_query/rectangle_add_point_sum.hpp
   requiredBy: []
   timestamp: '2024-10-16 22:34:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2338.test.cpp
   - test/1_mytest/rect_add_pt_sum.test.cpp

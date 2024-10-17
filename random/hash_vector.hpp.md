@@ -1,48 +1,48 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1881.test.cpp
     title: test/3_yukicoder/1881.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"random/hash_vector.hpp\"\n\n#line 2 \"random/base.hpp\"\n\
-    \nu64 RNG_64() {\n  static uint64_t x_\n      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\
@@ -78,12 +78,20 @@ data:
     \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
     \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
-    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n"
+    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n\ntemplate <typename\
+    \ T, int K>\nu64 hash_array(array<T, K> X) {\n  using mint = modint61;\n  static\
+    \ array<mint, K> hash_base{};\n  if (hash_base[0] == mint(0)) FOR(i, K) hash_base[i]\
+    \ = RNG_64();\n  mint H = 0;\n  FOR(i, K) H += hash_base[i] * mint(X[i]);\n  return\
+    \ H.val;\n}\n"
   code: "#pragma once\n\n#include \"random/base.hpp\"\n#include \"mod/modint61.hpp\"\
     \n\ntemplate <typename T>\nu64 hash_vector(vc<T> X) {\n  using mint = modint61;\n\
     \  static vc<mint> hash_base;\n  int n = len(X);\n  while (len(hash_base) <= n)\
     \ { hash_base.eb(RNG(mint::get_mod())); }\n  mint H = 0;\n  FOR(i, n) H += hash_base[i]\
-    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n"
+    \ * mint(X[i]);\n  H += hash_base[n];\n  return H.val;\n}\n\ntemplate <typename\
+    \ T, int K>\nu64 hash_array(array<T, K> X) {\n  using mint = modint61;\n  static\
+    \ array<mint, K> hash_base{};\n  if (hash_base[0] == mint(0)) FOR(i, K) hash_base[i]\
+    \ = RNG_64();\n  mint H = 0;\n  FOR(i, K) H += hash_base[i] * mint(X[i]);\n  return\
+    \ H.val;\n}\n"
   dependsOn:
   - random/base.hpp
   - mod/modint61.hpp
@@ -91,8 +99,8 @@ data:
   path: random/hash_vector.hpp
   requiredBy:
   - other/connected_dp.hpp
-  timestamp: '2024-09-14 09:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-18 02:58:53+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1397.test.cpp
   - test/3_yukicoder/1881.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/kdtree/kdtree_monoid.hpp
     title: ds/kdtree/kdtree_monoid.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -158,8 +158,7 @@ data:
     \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
     \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
     \ constexpr X unit() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
-    \ = 1;\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static uint64_t x_\n\
-    \      = uint64_t(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ = 1;\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kdtree_monoid.test.cpp\"\n\n\
@@ -211,8 +210,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_monoid.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-18 02:58:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_monoid.test.cpp
 layout: document

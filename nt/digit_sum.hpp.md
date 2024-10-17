@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   _extendedVerifiedWith:
@@ -54,12 +54,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc333g.test.cpp
     title: test/5_atcoder/abc333g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/digit_sum.hpp\"\n\nint digit_sum(u64 x) {\n  const int\
@@ -76,7 +76,7 @@ data:
   requiredBy:
   - bigint/base.hpp
   timestamp: '2024-06-06 03:38:35+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2440.test.cpp
   - test/3_yukicoder/2525.test.cpp

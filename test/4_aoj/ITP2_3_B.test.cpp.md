@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/minmax.hpp
     title: alg/monoid/minmax.hpp
   - icon: ':question:'

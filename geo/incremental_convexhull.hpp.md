@@ -15,15 +15,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc266c.test.cpp
     title: test/5_atcoder/abc266c.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -189,7 +189,7 @@ data:
   path: geo/incremental_convexhull.hpp
   requiredBy: []
   timestamp: '2024-09-11 14:08:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc266c.test.cpp
   - test/1_mytest/max_dot.test.cpp

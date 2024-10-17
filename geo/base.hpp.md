@@ -11,22 +11,22 @@ data:
   - icon: ':warning:'
     path: geo/apollonian_circle.hpp
     title: geo/apollonian_circle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':heavy_check_mark:'
@@ -41,28 +41,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
   - icon: ':warning:'
     path: geo/polygon.hpp
     title: geo/polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
   - icon: ':heavy_check_mark:'
@@ -71,10 +71,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/reflection.hpp
     title: geo/reflection.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   _extendedVerifiedWith:
@@ -90,16 +90,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair.test.cpp
     title: test/2_library_checker/geometry/closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
   - icon: ':heavy_check_mark:'
@@ -144,7 +144,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_2_D.test.cpp
     title: test/4_aoj/CGL_2_D.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -156,13 +156,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc139f.test.cpp
     title: test/5_atcoder/abc139f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc151f.test.cpp
     title: test/5_atcoder/abc151f.test.cpp
   - icon: ':x:'
     path: test/5_atcoder/abc202_f.test.cpp
     title: test/5_atcoder/abc202_f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc220g.test.cpp
     title: test/5_atcoder/abc220g.test.cpp
   - icon: ':heavy_check_mark:'
