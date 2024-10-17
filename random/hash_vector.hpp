@@ -14,3 +14,13 @@ u64 hash_vector(vc<T> X) {
   H += hash_base[n];
   return H.val;
 }
+
+template <typename T, int K>
+u64 hash_array(array<T, K> X) {
+  using mint = modint61;
+  static array<mint, K> hash_base{};
+  if (hash_base[0] == mint(0)) FOR(i, K) hash_base[i] = RNG_64();
+  mint H = 0;
+  FOR(i, K) H += hash_base[i] * mint(X[i]);
+  return H.val;
+}
