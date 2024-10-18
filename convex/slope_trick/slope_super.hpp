@@ -82,8 +82,8 @@ struct Slope_Trick_Super {
 
   // (L,R,a,b) : [L,R] で y=ax+b
   FUNC segment_func(T L, T R, T a, T b) { return {nullptr, L, R, a, a * L + b}; }
-  FUNC from_points(vc<pair<T, T>> point) {
-    return from_point(len(point), [&](int i) -> pair<T, T> { return point[i]; });
+  FUNC from_points(vc<pair<T, T>> &point) {
+    return from_points(len(point), [&](int i) -> pair<T, T> { return point[i]; });
   }
   template <typename F>
   FUNC from_points(int N, F f) {
@@ -98,10 +98,10 @@ struct Slope_Trick_Super {
       T a1 = (Y[i + 1] - Y[i]) / (X[i + 1] - X[i]);
       dat.eb(X[i], a1 - a), a = a1;
     }
-    return {ST.new_node(dat), x0, x1, a0, y0};
+    return FUNC{ST.new_node(dat), x0, x1, a0, Y[0]};
   }
 
-  pair<T, T> domain(FUNC f) { return {f.x0, f.x1}; }
+  pair<T, T> domain(FUNC &f) { return {f.x0, f.x1}; }
   T eval(FUNC &f, T x) {
     auto [x0, x1] = domain(f);
     if (!(x0 <= x && x <= x1)) return infty<T>;
@@ -110,14 +110,14 @@ struct Slope_Trick_Super {
     f.root = ST.merge(l, r);
     return f.y0 + f.a0 * (x - x0) + a_sum * x - xa_sum;
   }
-  void restrict_domain(FUNC &f, T L, T R) {
+  FUNC restrict_domain(FUNC &f, T L, T R) {
     auto [x0, x1] = domain(f);
     chmax(L, x0), chmin(R, x1);
     if (L > R) {
       ST.free_subtree(f.root), f.root = nullptr;
       f.root = nullptr;
       f.x0 = infty<T>, f.x1 = -infty<T>;
-      return;
+      return f;
     }
     // まずは右側をちぢめる. R 以上の傾き変化を消してしまえばよい
     auto [l, r] = ST.split_max_right(f.root, [&](auto dat) -> bool { return dat.fi < R; });
@@ -129,6 +129,7 @@ struct Slope_Trick_Super {
     T new_y0 = f.y0 + f.a0 * (L - x0) + a_sum * L - xa_sum;
     ST.free_subtree(l);
     f.root = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;
+    return f;
   }
   FUNC add(FUNC &f, FUNC &g) {
     T x0 = max(f.x0, g.x0);
@@ -140,16 +141,97 @@ struct Slope_Trick_Super {
     if (len(f) < len(g)) swap(f, g);
     auto tmp = ST.get_all(g.root);
     ST.free_subtree(g.root);
-    for (auto &[x, a]: tmp) {
-      auto [l, r] = ST.split_max_right(f.root, [&](auto dat) -> bool { return dat.fi < x; });
-      f.root = ST.merge3(l, ST.new_node({x, a}), r);
+    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;
+    if (!f.root) {
+      f.root = ST.new_node(tmp);
+      return f;
     }
-    return FUNC{f.root, x0, x1, a0, y0};
+    // あとは単に tmp を挿入していけばいい
+    auto dfs = [&](auto &dfs, np root, int l, int r) -> void {
+      if (l == r) return;
+      root->prop();
+      T x = root->x.fi;
+      // [l,m),[m,r)
+      int m = binary_search([&](int i) -> bool { return tmp[i].fi >= x; }, r, l - 1, 0);
+      if (l < m) {
+        if (!root->l) {
+          root->l = ST.new_node({tmp.begin() + l, tmp.begin() + m});
+        } else {
+          dfs(dfs, root->l, l, m);
+        }
+        root->l->p = root;
+      }
+      if (m < r) {
+        if (!root->r) {
+          root->r = ST.new_node({tmp.begin() + m, tmp.begin() + r});
+        } else {
+          dfs(dfs, root->r, m, r);
+        }
+        root->r->p = root;
+      }
+      root->update();
+    };
+    dfs(dfs, f.root, 0, len(tmp));
+    return f;
+  }
+  FUNC sum_all(vc<FUNC> &funcs) {
+    assert(len(funcs) >= 1);
+    T x0 = funcs[0].x0, x1 = funcs[0].x1;
+    for (auto &g: funcs) chmax(x0, g.x0), chmin(x1, g.x1);
+    if (x0 > x1) {
+      for (auto &f: funcs) { ST.free_subtree(f.root); }
+      return {nullptr, infty<T>, -infty<T>, 0, 0};
+    }
+    for (auto &f: funcs) f = restrict_domain(f, x0, x1);
+    int idx = 0;
+    FOR(i, 1, len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;
+    swap(funcs[idx], funcs.back());
+    FUNC f = POP(funcs);
+    vc<pair<T, T>> dat;
+    for (auto &g: funcs) {
+      f.y0 += g.y0, f.a0 += g.a0;
+      auto tmp = ST.get_all(g.root);
+      concat(dat, tmp);
+      ST.free_subtree(g.root);
+    }
+    sort(all(dat));
+    // あとは単に dat を挿入していけばいい
+    if (!f.root) {
+      f.root = ST.new_node(dat);
+      return f;
+    }
+    auto dfs = [&](auto &dfs, np root, int l, int r) -> void {
+      if (l == r) return;
+      root->prop();
+      T x = root->x.fi;
+      // [l,m),[m,r)
+      int m = binary_search([&](int i) -> bool { return dat[i].fi >= x; }, r, l - 1, 0);
+      if (l < m) {
+        if (!root->l) {
+          root->l = ST.new_node({dat.begin() + l, dat.begin() + m});
+        } else {
+          dfs(dfs, root->l, l, m);
+        }
+        root->l->p = root;
+      }
+      if (m < r) {
+        if (!root->r) {
+          root->r = ST.new_node({dat.begin() + m, dat.begin() + r});
+        } else {
+          dfs(dfs, root->r, m, r);
+        }
+        root->r->p = root;
+      }
+      root->update();
+    };
+    dfs(dfs, f.root, 0, len(dat));
+    return f;
   }
 
-  void shift(FUNC &f, T add_x, T add_y) {
+  FUNC shift(FUNC &f, T add_x, T add_y) {
     ST.apply(f.root, add_x);
     f.x0 += add_x, f.x1 += add_x, f.y0 += add_y;
+    return f;
   }
 
   // h[z]=min(x+y==z)f(x)+g(y)
@@ -178,7 +260,7 @@ struct Slope_Trick_Super {
   FUNC convolve_segment(FUNC &f, T x0, T x1, T a, T b) {
     assert(x0 <= x1);
     if (f.x0 > f.x1) { return {nullptr, infty<T>, -infty<T>, 0, 0}; }
-    shift(f, x0, a * x0 + b);
+    f = shift(f, x0, a * x0 + b);
     T d = x1 - x0;
     if (d == 0) return f;
     // (0,0) から (x1,ax1) への線分をどこかに挿入する
@@ -210,39 +292,47 @@ struct Slope_Trick_Super {
     return f;
   }
 
-  void add_const(FUNC &f, T a) { f.y0 += a; }
+  FUNC add_const(FUNC &f, T a) {
+    f.y0 += a;
+    return f;
+  }
 
-  void add_linear(FUNC &f, T a, T b) {
+  FUNC add_linear(FUNC &f, T a, T b) {
     f.y0 += a * f.x0 + b;
     f.a0 += a;
+    return f;
   }
 
   // (a-x)+
-  void add_a_minus_x(FUNC &f, T a) {
+  FUNC add_a_minus_x(FUNC &f, T a) {
     auto [x0, x1] = domain(f);
-    if (x0 > x1) return;
-    if (a <= x0) return;
+    if (x0 > x1) return f;
+    if (a <= x0) return f;
     if (x1 <= a) return add_linear(f, -1, a);
     vc<pair<T, T>> point;
     point.eb(x0, a - x0), point.eb(a, 0), point.eb(x1, 0);
     FUNC g = from_points(point);
-    f = add(f, g);
+    return add(f, g);
   }
 
   // (x-a)+
-  void add_x_minus_a(FUNC &f, T a) {
+  FUNC add_x_minus_a(FUNC &f, T a) {
     auto [x0, x1] = domain(f);
-    if (x0 > x1) return;
+    if (x0 > x1) return f;
     if (a <= x0) return add_linear(f, 1, -a);
-    if (x1 <= a) return;
+    if (x1 <= a) return f;
     vc<pair<T, T>> point;
     point.eb(x0, 0), point.eb(a, 0), point.eb(x1, x1 - a);
     FUNC g = from_points(point);
-    f = add(f, g);
+    return add(f, g);
   }
 
   // |x-a|
-  void add_abs(FUNC &f, T a) { add_a_minus_x(f, a), add_x_minus_a(f, a); }
+  FUNC add_abs(FUNC &f, T a) {
+    f = add_a_minus_x(f, a);
+    f = add_x_minus_a(f, a);
+    return f;
+  }
 
   // fx,x
   pair<T, T> get_min(FUNC &f) {
@@ -256,21 +346,21 @@ struct Slope_Trick_Super {
     return {y, x};
   }
 
-  void clear_right(FUNC &f) {
+  FUNC clear_right(FUNC &f) {
     if (f.a0 >= 0) {
       ST.free_subtree(f.root), f.root = nullptr, f.a0 = 0;
-      return;
+      return f;
     }
     auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
     f.root = l;
-    if (!r) { return; }
+    if (!r) { return f; }
     T x = ST.get(r, 0).fi;
     ST.free_subtree(r);
     f.root = ST.merge(f.root, ST.new_node({x, -(f.a0 + ST.prod(l).fi)}));
-    return;
+    return f;
   }
-  void clear_left(FUNC &f) {
-    if (f.a0 >= 0) { return; }
+  FUNC clear_left(FUNC &f) {
+    if (f.a0 >= 0) { return f; }
     auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });
     auto [asum, xasum] = ST.prod(l);
     if (!r) {
@@ -280,7 +370,7 @@ struct Slope_Trick_Super {
       ST.free_subtree(l);
       f.root = nullptr;
       f.y0 = y, f.a0 = 0;
-      return;
+      return f;
     }
     T x = ST.get(f.root, 0).fi;
     T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;
@@ -290,8 +380,15 @@ struct Slope_Trick_Super {
     ST.set(r, 0, {x, a});
     f.y0 = y;
     f.a0 = 0;
-    return;
+    return f;
   }
+#ifdef FASTIO
+  void debug(FUNC &f) {
+    auto dat = ST.get_all(f.root);
+    SHOW(f.x0, f.x1, f.a0, f.y0);
+    SHOW(dat);
+  }
+#endif
 };
 } // namespace SLOPE_TRICK_SUPER
 using SLOPE_TRICK_SUPER::Slope_Trick_Super;
