@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':question:'
@@ -51,9 +51,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
@@ -664,7 +664,7 @@ data:
   path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   requiredBy: []
   timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
 layout: document
