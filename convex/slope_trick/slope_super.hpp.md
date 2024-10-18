@@ -8,13 +8,10 @@ data:
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n\n/*\nupdate \u3067\u3061\u3083\
@@ -160,7 +157,7 @@ data:
     \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\
     \n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
     \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"convex/slope_super.hpp\"\
+    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 3 \"convex/slope_trick/slope_super.hpp\"\
     \n\nnamespace SLOPE_TRICK_SUPER {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\
     \u90E8 T.\n(x0,y0,a0) / \u50BE\u304D\u5909\u5316\u3092 splay tree \u3067\u6301\
     \u3064.\n\u672B\u5C3E\u306B\u306F\u5FC5\u305A infty \u304C\u5165\u3063\u3066\u3044\
@@ -194,22 +191,22 @@ data:
     \ x1, a0, y0;\n    int size() { return (root ? root->size : 0); }\n  };\n\n  Slope_Trick_Super(int\
     \ NODES) : ST(NODES) {}\n\n  // (L,R,a,b) : [L,R] \u3067 y=ax+b\n  FUNC segment_func(T\
     \ L, T R, T a, T b) { return {nullptr, L, R, a, a * L + b}; }\n  FUNC from_points(vc<pair<T,\
-    \ T>> point) {\n    return from_point(len(point), [&](int i) -> pair<T, T> { return\
-    \ point[i]; });\n  }\n  template <typename F>\n  FUNC from_points(int N, F f)\
-    \ {\n    vc<T> X(N), Y(N);\n    FOR(i, N) tie(X[i], Y[i]) = f(i);\n    if (N ==\
-    \ 1) return segment_func(X[0], X[0], 0, Y[0]);\n    T a0 = (Y[1] - Y[0]) / (X[1]\
-    \ - X[0]);\n    T x0 = X[0], x1 = X.back();\n    vc<pair<T, T>> dat;\n    T a\
-    \ = a0;\n    FOR(i, 1, N - 1) {\n      T a1 = (Y[i + 1] - Y[i]) / (X[i + 1] -\
-    \ X[i]);\n      dat.eb(X[i], a1 - a), a = a1;\n    }\n    return {ST.new_node(dat),\
-    \ x0, x1, a0, y0};\n  }\n\n  pair<T, T> domain(FUNC f) { return {f.x0, f.x1};\
+    \ T>> &point) {\n    return from_points(len(point), [&](int i) -> pair<T, T> {\
+    \ return point[i]; });\n  }\n  template <typename F>\n  FUNC from_points(int N,\
+    \ F f) {\n    vc<T> X(N), Y(N);\n    FOR(i, N) tie(X[i], Y[i]) = f(i);\n    if\
+    \ (N == 1) return segment_func(X[0], X[0], 0, Y[0]);\n    T a0 = (Y[1] - Y[0])\
+    \ / (X[1] - X[0]);\n    T x0 = X[0], x1 = X.back();\n    vc<pair<T, T>> dat;\n\
+    \    T a = a0;\n    FOR(i, 1, N - 1) {\n      T a1 = (Y[i + 1] - Y[i]) / (X[i\
+    \ + 1] - X[i]);\n      dat.eb(X[i], a1 - a), a = a1;\n    }\n    return FUNC{ST.new_node(dat),\
+    \ x0, x1, a0, Y[0]};\n  }\n\n  pair<T, T> domain(FUNC &f) { return {f.x0, f.x1};\
     \ }\n  T eval(FUNC &f, T x) {\n    auto [x0, x1] = domain(f);\n    if (!(x0 <=\
     \ x && x <= x1)) return infty<T>;\n    auto [l, r] = ST.split_max_right(f.root,\
     \ [&](auto dat) -> bool { return dat.fi <= x; });\n    auto [a_sum, xa_sum] =\
     \ ST.prod(l);\n    f.root = ST.merge(l, r);\n    return f.y0 + f.a0 * (x - x0)\
-    \ + a_sum * x - xa_sum;\n  }\n  void restrict_domain(FUNC &f, T L, T R) {\n  \
+    \ + a_sum * x - xa_sum;\n  }\n  FUNC restrict_domain(FUNC &f, T L, T R) {\n  \
     \  auto [x0, x1] = domain(f);\n    chmax(L, x0), chmin(R, x1);\n    if (L > R)\
     \ {\n      ST.free_subtree(f.root), f.root = nullptr;\n      f.root = nullptr;\n\
-    \      f.x0 = infty<T>, f.x1 = -infty<T>;\n      return;\n    }\n    // \u307E\
+    \      f.x0 = infty<T>, f.x1 = -infty<T>;\n      return f;\n    }\n    // \u307E\
     \u305A\u306F\u53F3\u5074\u3092\u3061\u3062\u3081\u308B. R \u4EE5\u4E0A\u306E\u50BE\
     \u304D\u5909\u5316\u3092\u6D88\u3057\u3066\u3057\u307E\u3048\u3070\u3088\u3044\
     \n    auto [l, r] = ST.split_max_right(f.root, [&](auto dat) -> bool { return\
@@ -217,74 +214,108 @@ data:
     \u3081\u308B.\n    tie(l, r) = ST.split_max_right(l, [&](auto dat) -> bool { return\
     \ dat.fi <= L; });\n    auto [a_sum, xa_sum] = ST.prod(l);\n    T new_a0 = f.a0\
     \ + a_sum;\n    T new_y0 = f.y0 + f.a0 * (L - x0) + a_sum * L - xa_sum;\n    ST.free_subtree(l);\n\
-    \    f.root = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n  }\n  FUNC\
-    \ add(FUNC &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T x1 = min(f.x1, g.x1);\n\
-    \    restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);\n    if (x0 > x1)\
-    \ return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n    if (len(f) < len(g))\
-    \ swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
-    \    for (auto &[x, a]: tmp) {\n      auto [l, r] = ST.split_max_right(f.root,\
-    \ [&](auto dat) -> bool { return dat.fi < x; });\n      f.root = ST.merge3(l,\
-    \ ST.new_node({x, a}), r);\n    }\n    return FUNC{f.root, x0, x1, a0, y0};\n\
-    \  }\n\n  void shift(FUNC &f, T add_x, T add_y) {\n    ST.apply(f.root, add_x);\n\
-    \    f.x0 += add_x, f.x1 += add_x, f.y0 += add_y;\n  }\n\n  // h[z]=min(x+y==z)f(x)+g(y)\n\
-    \  FUNC convolve(FUNC &f, FUNC &g) {\n    if (f.x0 > f.x1 || g.x0 > g.x1) { return\
-    \ {nullptr, infty<T>, -infty<T>, 0, 0}; }\n    if (len(f) < len(g)) swap(f, g);\n\
-    \    shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);\n    if (len(g) == 0) { return\
-    \ convolve_segment(f, 0, g.x1, g.a0, 0); }\n    auto tmp = ST.get_all(g.root);\n\
-    \    ST.free_subtree(g.root);\n    f = convolve_segment(f, 0, tmp[0].fi, g.a0,\
-    \ 0);\n    T a = g.a0;\n    FOR(i, len(tmp)) {\n      T nx = (i + 1 < len(tmp)\
-    \ ? tmp[i + 1].fi : g.x1);\n      a += tmp[i].se;\n      f = convolve_segment(f,\
-    \ 0, nx - tmp[i].fi, a, 0);\n      for (auto &[x, a]: ST.get_all(f.root)) {\n\
-    \        assert(f.x0 <= x && x <= f.x1);\n        if (f.root) assert(!f.root->p);\n\
-    \      }\n    }\n    return f;\n  }\n\n  // [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC\
-    \ &f, T x0, T x1, T a, T b) {\n    assert(x0 <= x1);\n    if (f.x0 > f.x1) { return\
-    \ {nullptr, infty<T>, -infty<T>, 0, 0}; }\n    shift(f, x0, a * x0 + b);\n   \
-    \ T d = x1 - x0;\n    if (d == 0) return f;\n    // (0,0) \u304B\u3089 (x1,ax1)\
-    \ \u3078\u306E\u7DDA\u5206\u3092\u3069\u3053\u304B\u306B\u633F\u5165\u3059\u308B\
-    \n    // \u7279\u306B x0, y0 \u306F\u3053\u306E\u307E\u307E\u3067\u3088\u3044\n\
-    \    if (f.x0 == f.x1) { return {nullptr, f.x0, f.x0 + d, a, f.y0}; }\n    //\
-    \ \u5148\u982D\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n    if (a <= f.a0)\
-    \ {\n      ST.apply(f.root, d);\n      f.root = ST.merge(ST.new_node({f.x0 + d,\
-    \ f.a0 - a}), f.root);\n      f.x1 += d, f.a0 = a;\n      return f;\n    }\n \
-    \   // \u672B\u5C3E\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n    T a_last\
-    \ = f.a0 + ST.prod(f.root).fi;\n    if (a_last <= a) {\n      f.root = ST.merge(f.root,\
-    \ ST.new_node({f.x1, a - a_last}));\n      f.x1 += d;\n      return f;\n    }\n\
-    \    // \u9593\u306E\u3069\u3053\u304B\u306B\u633F\u5165\n    auto [l, r] = ST.split_max_right_prod(f.root,\
-    \ [&](auto prod) -> bool { return f.a0 + prod.fi < a; });\n    T asum = ST.prod(l).fi;\n\
+    \    f.root = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return\
+    \ f;\n  }\n  FUNC add(FUNC &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T\
+    \ x1 = min(f.x1, g.x1);\n    restrict_domain(f, x0, x1), restrict_domain(g, x0,\
+    \ x1);\n    if (x0 > x1) return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\
+    \n    if (len(f) < len(g)) swap(f, g);\n    auto tmp = ST.get_all(g.root);\n \
+    \   ST.free_subtree(g.root);\n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n\
+    \    if (!f.root) {\n      f.root = ST.new_node(tmp);\n      return f;\n    }\n\
+    \    // \u3042\u3068\u306F\u5358\u306B tmp \u3092\u633F\u5165\u3057\u3066\u3044\
+    \u3051\u3070\u3044\u3044\n    auto dfs = [&](auto &dfs, np root, int l, int r)\
+    \ -> void {\n      if (l == r) return;\n      root->prop();\n      T x = root->x.fi;\n\
+    \      // [l,m),[m,r)\n      int m = binary_search([&](int i) -> bool { return\
+    \ tmp[i].fi >= x; }, r, l - 1, 0);\n      if (l < m) {\n        if (!root->l)\
+    \ {\n          root->l = ST.new_node({tmp.begin() + l, tmp.begin() + m});\n  \
+    \      } else {\n          dfs(dfs, root->l, l, m);\n        }\n        root->l->p\
+    \ = root;\n      }\n      if (m < r) {\n        if (!root->r) {\n          root->r\
+    \ = ST.new_node({tmp.begin() + m, tmp.begin() + r});\n        } else {\n     \
+    \     dfs(dfs, root->r, m, r);\n        }\n        root->r->p = root;\n      }\n\
+    \      root->update();\n    };\n    dfs(dfs, f.root, 0, len(tmp));\n    return\
+    \ f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs) >= 1);\n \
+    \   T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g: funcs) chmax(x0,\
+    \ g.x0), chmin(x1, g.x1);\n    if (x0 > x1) {\n      for (auto &f: funcs) { ST.free_subtree(f.root);\
+    \ }\n      return {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    for (auto\
+    \ &f: funcs) f = restrict_domain(f, x0, x1);\n    int idx = 0;\n    FOR(i, 1,\
+    \ len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;\n    swap(funcs[idx],\
+    \ funcs.back());\n    FUNC f = POP(funcs);\n    vc<pair<T, T>> dat;\n    for (auto\
+    \ &g: funcs) {\n      f.y0 += g.y0, f.a0 += g.a0;\n      auto tmp = ST.get_all(g.root);\n\
+    \      concat(dat, tmp);\n      ST.free_subtree(g.root);\n    }\n    sort(all(dat));\n\
+    \    // \u3042\u3068\u306F\u5358\u306B dat \u3092\u633F\u5165\u3057\u3066\u3044\
+    \u3051\u3070\u3044\u3044\n    if (!f.root) {\n      f.root = ST.new_node(dat);\n\
+    \      return f;\n    }\n    auto dfs = [&](auto &dfs, np root, int l, int r)\
+    \ -> void {\n      if (l == r) return;\n      root->prop();\n      T x = root->x.fi;\n\
+    \      // [l,m),[m,r)\n      int m = binary_search([&](int i) -> bool { return\
+    \ dat[i].fi >= x; }, r, l - 1, 0);\n      if (l < m) {\n        if (!root->l)\
+    \ {\n          root->l = ST.new_node({dat.begin() + l, dat.begin() + m});\n  \
+    \      } else {\n          dfs(dfs, root->l, l, m);\n        }\n        root->l->p\
+    \ = root;\n      }\n      if (m < r) {\n        if (!root->r) {\n          root->r\
+    \ = ST.new_node({dat.begin() + m, dat.begin() + r});\n        } else {\n     \
+    \     dfs(dfs, root->r, m, r);\n        }\n        root->r->p = root;\n      }\n\
+    \      root->update();\n    };\n    dfs(dfs, f.root, 0, len(dat));\n    return\
+    \ f;\n  }\n\n  FUNC shift(FUNC &f, T add_x, T add_y) {\n    ST.apply(f.root, add_x);\n\
+    \    f.x0 += add_x, f.x1 += add_x, f.y0 += add_y;\n    return f;\n  }\n\n  //\
+    \ h[z]=min(x+y==z)f(x)+g(y)\n  FUNC convolve(FUNC &f, FUNC &g) {\n    if (f.x0\
+    \ > f.x1 || g.x0 > g.x1) { return {nullptr, infty<T>, -infty<T>, 0, 0}; }\n  \
+    \  if (len(f) < len(g)) swap(f, g);\n    shift(f, g.x0, g.y0), shift(g, -g.x0,\
+    \ -g.y0);\n    if (len(g) == 0) { return convolve_segment(f, 0, g.x1, g.a0, 0);\
+    \ }\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n    f =\
+    \ convolve_segment(f, 0, tmp[0].fi, g.a0, 0);\n    T a = g.a0;\n    FOR(i, len(tmp))\
+    \ {\n      T nx = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);\n      a += tmp[i].se;\n\
+    \      f = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);\n      for (auto &[x,\
+    \ a]: ST.get_all(f.root)) {\n        assert(f.x0 <= x && x <= f.x1);\n       \
+    \ if (f.root) assert(!f.root->p);\n      }\n    }\n    return f;\n  }\n\n  //\
+    \ [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC &f, T x0, T x1, T a, T b) {\n\
+    \    assert(x0 <= x1);\n    if (f.x0 > f.x1) { return {nullptr, infty<T>, -infty<T>,\
+    \ 0, 0}; }\n    f = shift(f, x0, a * x0 + b);\n    T d = x1 - x0;\n    if (d ==\
+    \ 0) return f;\n    // (0,0) \u304B\u3089 (x1,ax1) \u3078\u306E\u7DDA\u5206\u3092\
+    \u3069\u3053\u304B\u306B\u633F\u5165\u3059\u308B\n    // \u7279\u306B x0, y0 \u306F\
+    \u3053\u306E\u307E\u307E\u3067\u3088\u3044\n    if (f.x0 == f.x1) { return {nullptr,\
+    \ f.x0, f.x0 + d, a, f.y0}; }\n    // \u5148\u982D\u306B\u633F\u5165\u3067\u304D\
+    \u308B\u5834\u5408\n    if (a <= f.a0) {\n      ST.apply(f.root, d);\n      f.root\
+    \ = ST.merge(ST.new_node({f.x0 + d, f.a0 - a}), f.root);\n      f.x1 += d, f.a0\
+    \ = a;\n      return f;\n    }\n    // \u672B\u5C3E\u306B\u633F\u5165\u3067\u304D\
+    \u308B\u5834\u5408\n    T a_last = f.a0 + ST.prod(f.root).fi;\n    if (a_last\
+    \ <= a) {\n      f.root = ST.merge(f.root, ST.new_node({f.x1, a - a_last}));\n\
+    \      f.x1 += d;\n      return f;\n    }\n    // \u9593\u306E\u3069\u3053\u304B\
+    \u306B\u633F\u5165\n    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto\
+    \ prod) -> bool { return f.a0 + prod.fi < a; });\n    T asum = ST.prod(l).fi;\n\
     \    T a1 = a - (asum + f.a0);\n    auto [xx, aa] = ST.get(r, 0);\n    ST.apply(r,\
     \ d);\n    ST.set(r, 0, {xx + d, aa - a1});\n    f.root = ST.merge3(l, ST.new_node({xx,\
-    \ a1}), r);\n    f.x1 += d;\n    return f;\n  }\n\n  void add_const(FUNC &f, T\
-    \ a) { f.y0 += a; }\n\n  void add_linear(FUNC &f, T a, T b) {\n    f.y0 += a *\
-    \ f.x0 + b;\n    f.a0 += a;\n  }\n\n  // (a-x)+\n  void add_a_minus_x(FUNC &f,\
-    \ T a) {\n    auto [x0, x1] = domain(f);\n    if (x0 > x1) return;\n    if (a\
-    \ <= x0) return;\n    if (x1 <= a) return add_linear(f, -1, a);\n    vc<pair<T,\
-    \ T>> point;\n    point.eb(x0, a - x0), point.eb(a, 0), point.eb(x1, 0);\n   \
-    \ FUNC g = from_points(point);\n    f = add(f, g);\n  }\n\n  // (x-a)+\n  void\
-    \ add_x_minus_a(FUNC &f, T a) {\n    auto [x0, x1] = domain(f);\n    if (x0 >\
-    \ x1) return;\n    if (a <= x0) return add_linear(f, 1, -a);\n    if (x1 <= a)\
-    \ return;\n    vc<pair<T, T>> point;\n    point.eb(x0, 0), point.eb(a, 0), point.eb(x1,\
-    \ x1 - a);\n    FUNC g = from_points(point);\n    f = add(f, g);\n  }\n\n  //\
-    \ |x-a|\n  void add_abs(FUNC &f, T a) { add_a_minus_x(f, a), add_x_minus_a(f,\
-    \ a); }\n\n  // fx,x\n  pair<T, T> get_min(FUNC &f) {\n    if (f.x0 > f.x1) return\
-    \ {infty<T>, 0};\n    if (f.a0 >= 0) { return {f.y0, f.x0}; }\n    auto [l, r]\
-    \ = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi\
-    \ < 0; });\n    auto [asum, xasum] = ST.prod(l);\n    T x = (r ? ST.get(r, 0).fi\
-    \ : f.x1);\n    f.root = ST.merge(l, r);\n    T y = f.y0 + f.a0 * (x - f.x0) +\
-    \ x * asum - xasum;\n    return {y, x};\n  }\n\n  void clear_right(FUNC &f) {\n\
-    \    if (f.a0 >= 0) {\n      ST.free_subtree(f.root), f.root = nullptr, f.a0 =\
-    \ 0;\n      return;\n    }\n    auto [l, r] = ST.split_max_right_prod(f.root,\
+    \ a1}), r);\n    f.x1 += d;\n    return f;\n  }\n\n  FUNC add_const(FUNC &f, T\
+    \ a) {\n    f.y0 += a;\n    return f;\n  }\n\n  FUNC add_linear(FUNC &f, T a,\
+    \ T b) {\n    f.y0 += a * f.x0 + b;\n    f.a0 += a;\n    return f;\n  }\n\n  //\
+    \ (a-x)+\n  FUNC add_a_minus_x(FUNC &f, T a) {\n    auto [x0, x1] = domain(f);\n\
+    \    if (x0 > x1) return f;\n    if (a <= x0) return f;\n    if (x1 <= a) return\
+    \ add_linear(f, -1, a);\n    vc<pair<T, T>> point;\n    point.eb(x0, a - x0),\
+    \ point.eb(a, 0), point.eb(x1, 0);\n    FUNC g = from_points(point);\n    return\
+    \ add(f, g);\n  }\n\n  // (x-a)+\n  FUNC add_x_minus_a(FUNC &f, T a) {\n    auto\
+    \ [x0, x1] = domain(f);\n    if (x0 > x1) return f;\n    if (a <= x0) return add_linear(f,\
+    \ 1, -a);\n    if (x1 <= a) return f;\n    vc<pair<T, T>> point;\n    point.eb(x0,\
+    \ 0), point.eb(a, 0), point.eb(x1, x1 - a);\n    FUNC g = from_points(point);\n\
+    \    return add(f, g);\n  }\n\n  // |x-a|\n  FUNC add_abs(FUNC &f, T a) {\n  \
+    \  f = add_a_minus_x(f, a);\n    f = add_x_minus_a(f, a);\n    return f;\n  }\n\
+    \n  // fx,x\n  pair<T, T> get_min(FUNC &f) {\n    if (f.x0 > f.x1) return {infty<T>,\
+    \ 0};\n    if (f.a0 >= 0) { return {f.y0, f.x0}; }\n    auto [l, r] = ST.split_max_right_prod(f.root,\
+    \ [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });\n    auto [asum, xasum]\
+    \ = ST.prod(l);\n    T x = (r ? ST.get(r, 0).fi : f.x1);\n    f.root = ST.merge(l,\
+    \ r);\n    T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;\n    return {y,\
+    \ x};\n  }\n\n  FUNC clear_right(FUNC &f) {\n    if (f.a0 >= 0) {\n      ST.free_subtree(f.root),\
+    \ f.root = nullptr, f.a0 = 0;\n      return f;\n    }\n    auto [l, r] = ST.split_max_right_prod(f.root,\
     \ [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });\n    f.root = l;\n \
-    \   if (!r) { return; }\n    T x = ST.get(r, 0).fi;\n    ST.free_subtree(r);\n\
+    \   if (!r) { return f; }\n    T x = ST.get(r, 0).fi;\n    ST.free_subtree(r);\n\
     \    f.root = ST.merge(f.root, ST.new_node({x, -(f.a0 + ST.prod(l).fi)}));\n \
-    \   return;\n  }\n  void clear_left(FUNC &f) {\n    if (f.a0 >= 0) { return; }\n\
-    \    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return\
-    \ f.a0 + prod.fi < 0; });\n    auto [asum, xasum] = ST.prod(l);\n    if (!r) {\n\
-    \      // \u5B9A\u6570\u306B\u3059\u308B\n      T x = f.x1;\n      T y = f.y0\
-    \ + f.a0 * (x - f.x0) + x * asum - xasum;\n      ST.free_subtree(l);\n      f.root\
-    \ = nullptr;\n      f.y0 = y, f.a0 = 0;\n      return;\n    }\n    T x = ST.get(f.root,\
-    \ 0).fi;\n    T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;\n    T a = f.a0\
-    \ + asum + ST.get(r, 0).se;\n    ST.free_subtree(l);\n    f.root = r;\n    ST.set(r,\
-    \ 0, {x, a});\n    f.y0 = y;\n    f.a0 = 0;\n    return;\n  }\n};\n} // namespace\
+    \   return f;\n  }\n  FUNC clear_left(FUNC &f) {\n    if (f.a0 >= 0) { return\
+    \ f; }\n    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool\
+    \ { return f.a0 + prod.fi < 0; });\n    auto [asum, xasum] = ST.prod(l);\n   \
+    \ if (!r) {\n      // \u5B9A\u6570\u306B\u3059\u308B\n      T x = f.x1;\n    \
+    \  T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;\n      ST.free_subtree(l);\n\
+    \      f.root = nullptr;\n      f.y0 = y, f.a0 = 0;\n      return f;\n    }\n\
+    \    T x = ST.get(f.root, 0).fi;\n    T y = f.y0 + f.a0 * (x - f.x0) + x * asum\
+    \ - xasum;\n    T a = f.a0 + asum + ST.get(r, 0).se;\n    ST.free_subtree(l);\n\
+    \    f.root = r;\n    ST.set(r, 0, {x, a});\n    f.y0 = y;\n    f.a0 = 0;\n  \
+    \  return f;\n  }\n#ifdef FASTIO\n  void debug(FUNC &f) {\n    auto dat = ST.get_all(f.root);\n\
+    \    SHOW(f.x0, f.x1, f.a0, f.y0);\n    SHOW(dat);\n  }\n#endif\n};\n} // namespace\
     \ SLOPE_TRICK_SUPER\nusing SLOPE_TRICK_SUPER::Slope_Trick_Super;\n"
   code: "#include \"ds/splaytree/splaytree.hpp\"\n#include \"alg/monoid/add_pair.hpp\"\
     \n\nnamespace SLOPE_TRICK_SUPER {\n/*\n\u50BE\u304D\u3068\u5EA7\u6A19\u304C\u5168\
@@ -320,22 +351,22 @@ data:
     \ x1, a0, y0;\n    int size() { return (root ? root->size : 0); }\n  };\n\n  Slope_Trick_Super(int\
     \ NODES) : ST(NODES) {}\n\n  // (L,R,a,b) : [L,R] \u3067 y=ax+b\n  FUNC segment_func(T\
     \ L, T R, T a, T b) { return {nullptr, L, R, a, a * L + b}; }\n  FUNC from_points(vc<pair<T,\
-    \ T>> point) {\n    return from_point(len(point), [&](int i) -> pair<T, T> { return\
-    \ point[i]; });\n  }\n  template <typename F>\n  FUNC from_points(int N, F f)\
-    \ {\n    vc<T> X(N), Y(N);\n    FOR(i, N) tie(X[i], Y[i]) = f(i);\n    if (N ==\
-    \ 1) return segment_func(X[0], X[0], 0, Y[0]);\n    T a0 = (Y[1] - Y[0]) / (X[1]\
-    \ - X[0]);\n    T x0 = X[0], x1 = X.back();\n    vc<pair<T, T>> dat;\n    T a\
-    \ = a0;\n    FOR(i, 1, N - 1) {\n      T a1 = (Y[i + 1] - Y[i]) / (X[i + 1] -\
-    \ X[i]);\n      dat.eb(X[i], a1 - a), a = a1;\n    }\n    return {ST.new_node(dat),\
-    \ x0, x1, a0, y0};\n  }\n\n  pair<T, T> domain(FUNC f) { return {f.x0, f.x1};\
+    \ T>> &point) {\n    return from_points(len(point), [&](int i) -> pair<T, T> {\
+    \ return point[i]; });\n  }\n  template <typename F>\n  FUNC from_points(int N,\
+    \ F f) {\n    vc<T> X(N), Y(N);\n    FOR(i, N) tie(X[i], Y[i]) = f(i);\n    if\
+    \ (N == 1) return segment_func(X[0], X[0], 0, Y[0]);\n    T a0 = (Y[1] - Y[0])\
+    \ / (X[1] - X[0]);\n    T x0 = X[0], x1 = X.back();\n    vc<pair<T, T>> dat;\n\
+    \    T a = a0;\n    FOR(i, 1, N - 1) {\n      T a1 = (Y[i + 1] - Y[i]) / (X[i\
+    \ + 1] - X[i]);\n      dat.eb(X[i], a1 - a), a = a1;\n    }\n    return FUNC{ST.new_node(dat),\
+    \ x0, x1, a0, Y[0]};\n  }\n\n  pair<T, T> domain(FUNC &f) { return {f.x0, f.x1};\
     \ }\n  T eval(FUNC &f, T x) {\n    auto [x0, x1] = domain(f);\n    if (!(x0 <=\
     \ x && x <= x1)) return infty<T>;\n    auto [l, r] = ST.split_max_right(f.root,\
     \ [&](auto dat) -> bool { return dat.fi <= x; });\n    auto [a_sum, xa_sum] =\
     \ ST.prod(l);\n    f.root = ST.merge(l, r);\n    return f.y0 + f.a0 * (x - x0)\
-    \ + a_sum * x - xa_sum;\n  }\n  void restrict_domain(FUNC &f, T L, T R) {\n  \
+    \ + a_sum * x - xa_sum;\n  }\n  FUNC restrict_domain(FUNC &f, T L, T R) {\n  \
     \  auto [x0, x1] = domain(f);\n    chmax(L, x0), chmin(R, x1);\n    if (L > R)\
     \ {\n      ST.free_subtree(f.root), f.root = nullptr;\n      f.root = nullptr;\n\
-    \      f.x0 = infty<T>, f.x1 = -infty<T>;\n      return;\n    }\n    // \u307E\
+    \      f.x0 = infty<T>, f.x1 = -infty<T>;\n      return f;\n    }\n    // \u307E\
     \u305A\u306F\u53F3\u5074\u3092\u3061\u3062\u3081\u308B. R \u4EE5\u4E0A\u306E\u50BE\
     \u304D\u5909\u5316\u3092\u6D88\u3057\u3066\u3057\u307E\u3048\u3070\u3088\u3044\
     \n    auto [l, r] = ST.split_max_right(f.root, [&](auto dat) -> bool { return\
@@ -343,89 +374,122 @@ data:
     \u3081\u308B.\n    tie(l, r) = ST.split_max_right(l, [&](auto dat) -> bool { return\
     \ dat.fi <= L; });\n    auto [a_sum, xa_sum] = ST.prod(l);\n    T new_a0 = f.a0\
     \ + a_sum;\n    T new_y0 = f.y0 + f.a0 * (L - x0) + a_sum * L - xa_sum;\n    ST.free_subtree(l);\n\
-    \    f.root = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n  }\n  FUNC\
-    \ add(FUNC &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T x1 = min(f.x1, g.x1);\n\
-    \    restrict_domain(f, x0, x1), restrict_domain(g, x0, x1);\n    if (x0 > x1)\
-    \ return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\n    if (len(f) < len(g))\
-    \ swap(f, g);\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n\
-    \    for (auto &[x, a]: tmp) {\n      auto [l, r] = ST.split_max_right(f.root,\
-    \ [&](auto dat) -> bool { return dat.fi < x; });\n      f.root = ST.merge3(l,\
-    \ ST.new_node({x, a}), r);\n    }\n    return FUNC{f.root, x0, x1, a0, y0};\n\
-    \  }\n\n  void shift(FUNC &f, T add_x, T add_y) {\n    ST.apply(f.root, add_x);\n\
-    \    f.x0 += add_x, f.x1 += add_x, f.y0 += add_y;\n  }\n\n  // h[z]=min(x+y==z)f(x)+g(y)\n\
-    \  FUNC convolve(FUNC &f, FUNC &g) {\n    if (f.x0 > f.x1 || g.x0 > g.x1) { return\
-    \ {nullptr, infty<T>, -infty<T>, 0, 0}; }\n    if (len(f) < len(g)) swap(f, g);\n\
-    \    shift(f, g.x0, g.y0), shift(g, -g.x0, -g.y0);\n    if (len(g) == 0) { return\
-    \ convolve_segment(f, 0, g.x1, g.a0, 0); }\n    auto tmp = ST.get_all(g.root);\n\
-    \    ST.free_subtree(g.root);\n    f = convolve_segment(f, 0, tmp[0].fi, g.a0,\
-    \ 0);\n    T a = g.a0;\n    FOR(i, len(tmp)) {\n      T nx = (i + 1 < len(tmp)\
-    \ ? tmp[i + 1].fi : g.x1);\n      a += tmp[i].se;\n      f = convolve_segment(f,\
-    \ 0, nx - tmp[i].fi, a, 0);\n      for (auto &[x, a]: ST.get_all(f.root)) {\n\
-    \        assert(f.x0 <= x && x <= f.x1);\n        if (f.root) assert(!f.root->p);\n\
-    \      }\n    }\n    return f;\n  }\n\n  // [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC\
-    \ &f, T x0, T x1, T a, T b) {\n    assert(x0 <= x1);\n    if (f.x0 > f.x1) { return\
-    \ {nullptr, infty<T>, -infty<T>, 0, 0}; }\n    shift(f, x0, a * x0 + b);\n   \
-    \ T d = x1 - x0;\n    if (d == 0) return f;\n    // (0,0) \u304B\u3089 (x1,ax1)\
-    \ \u3078\u306E\u7DDA\u5206\u3092\u3069\u3053\u304B\u306B\u633F\u5165\u3059\u308B\
-    \n    // \u7279\u306B x0, y0 \u306F\u3053\u306E\u307E\u307E\u3067\u3088\u3044\n\
-    \    if (f.x0 == f.x1) { return {nullptr, f.x0, f.x0 + d, a, f.y0}; }\n    //\
-    \ \u5148\u982D\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n    if (a <= f.a0)\
-    \ {\n      ST.apply(f.root, d);\n      f.root = ST.merge(ST.new_node({f.x0 + d,\
-    \ f.a0 - a}), f.root);\n      f.x1 += d, f.a0 = a;\n      return f;\n    }\n \
-    \   // \u672B\u5C3E\u306B\u633F\u5165\u3067\u304D\u308B\u5834\u5408\n    T a_last\
-    \ = f.a0 + ST.prod(f.root).fi;\n    if (a_last <= a) {\n      f.root = ST.merge(f.root,\
-    \ ST.new_node({f.x1, a - a_last}));\n      f.x1 += d;\n      return f;\n    }\n\
-    \    // \u9593\u306E\u3069\u3053\u304B\u306B\u633F\u5165\n    auto [l, r] = ST.split_max_right_prod(f.root,\
-    \ [&](auto prod) -> bool { return f.a0 + prod.fi < a; });\n    T asum = ST.prod(l).fi;\n\
+    \    f.root = r, f.x0 = L, f.x1 = R, f.a0 = new_a0, f.y0 = new_y0;\n    return\
+    \ f;\n  }\n  FUNC add(FUNC &f, FUNC &g) {\n    T x0 = max(f.x0, g.x0);\n    T\
+    \ x1 = min(f.x1, g.x1);\n    restrict_domain(f, x0, x1), restrict_domain(g, x0,\
+    \ x1);\n    if (x0 > x1) return f;\n    T y0 = f.y0 + g.y0, a0 = f.a0 + g.a0;\n\
+    \n    if (len(f) < len(g)) swap(f, g);\n    auto tmp = ST.get_all(g.root);\n \
+    \   ST.free_subtree(g.root);\n    f.x0 = x0, f.x1 = x1, f.a0 = a0, f.y0 = y0;\n\
+    \    if (!f.root) {\n      f.root = ST.new_node(tmp);\n      return f;\n    }\n\
+    \    // \u3042\u3068\u306F\u5358\u306B tmp \u3092\u633F\u5165\u3057\u3066\u3044\
+    \u3051\u3070\u3044\u3044\n    auto dfs = [&](auto &dfs, np root, int l, int r)\
+    \ -> void {\n      if (l == r) return;\n      root->prop();\n      T x = root->x.fi;\n\
+    \      // [l,m),[m,r)\n      int m = binary_search([&](int i) -> bool { return\
+    \ tmp[i].fi >= x; }, r, l - 1, 0);\n      if (l < m) {\n        if (!root->l)\
+    \ {\n          root->l = ST.new_node({tmp.begin() + l, tmp.begin() + m});\n  \
+    \      } else {\n          dfs(dfs, root->l, l, m);\n        }\n        root->l->p\
+    \ = root;\n      }\n      if (m < r) {\n        if (!root->r) {\n          root->r\
+    \ = ST.new_node({tmp.begin() + m, tmp.begin() + r});\n        } else {\n     \
+    \     dfs(dfs, root->r, m, r);\n        }\n        root->r->p = root;\n      }\n\
+    \      root->update();\n    };\n    dfs(dfs, f.root, 0, len(tmp));\n    return\
+    \ f;\n  }\n  FUNC sum_all(vc<FUNC> &funcs) {\n    assert(len(funcs) >= 1);\n \
+    \   T x0 = funcs[0].x0, x1 = funcs[0].x1;\n    for (auto &g: funcs) chmax(x0,\
+    \ g.x0), chmin(x1, g.x1);\n    if (x0 > x1) {\n      for (auto &f: funcs) { ST.free_subtree(f.root);\
+    \ }\n      return {nullptr, infty<T>, -infty<T>, 0, 0};\n    }\n    for (auto\
+    \ &f: funcs) f = restrict_domain(f, x0, x1);\n    int idx = 0;\n    FOR(i, 1,\
+    \ len(funcs)) if (len(funcs[idx]) < len(funcs[i])) idx = i;\n    swap(funcs[idx],\
+    \ funcs.back());\n    FUNC f = POP(funcs);\n    vc<pair<T, T>> dat;\n    for (auto\
+    \ &g: funcs) {\n      f.y0 += g.y0, f.a0 += g.a0;\n      auto tmp = ST.get_all(g.root);\n\
+    \      concat(dat, tmp);\n      ST.free_subtree(g.root);\n    }\n    sort(all(dat));\n\
+    \    // \u3042\u3068\u306F\u5358\u306B dat \u3092\u633F\u5165\u3057\u3066\u3044\
+    \u3051\u3070\u3044\u3044\n    if (!f.root) {\n      f.root = ST.new_node(dat);\n\
+    \      return f;\n    }\n    auto dfs = [&](auto &dfs, np root, int l, int r)\
+    \ -> void {\n      if (l == r) return;\n      root->prop();\n      T x = root->x.fi;\n\
+    \      // [l,m),[m,r)\n      int m = binary_search([&](int i) -> bool { return\
+    \ dat[i].fi >= x; }, r, l - 1, 0);\n      if (l < m) {\n        if (!root->l)\
+    \ {\n          root->l = ST.new_node({dat.begin() + l, dat.begin() + m});\n  \
+    \      } else {\n          dfs(dfs, root->l, l, m);\n        }\n        root->l->p\
+    \ = root;\n      }\n      if (m < r) {\n        if (!root->r) {\n          root->r\
+    \ = ST.new_node({dat.begin() + m, dat.begin() + r});\n        } else {\n     \
+    \     dfs(dfs, root->r, m, r);\n        }\n        root->r->p = root;\n      }\n\
+    \      root->update();\n    };\n    dfs(dfs, f.root, 0, len(dat));\n    return\
+    \ f;\n  }\n\n  FUNC shift(FUNC &f, T add_x, T add_y) {\n    ST.apply(f.root, add_x);\n\
+    \    f.x0 += add_x, f.x1 += add_x, f.y0 += add_y;\n    return f;\n  }\n\n  //\
+    \ h[z]=min(x+y==z)f(x)+g(y)\n  FUNC convolve(FUNC &f, FUNC &g) {\n    if (f.x0\
+    \ > f.x1 || g.x0 > g.x1) { return {nullptr, infty<T>, -infty<T>, 0, 0}; }\n  \
+    \  if (len(f) < len(g)) swap(f, g);\n    shift(f, g.x0, g.y0), shift(g, -g.x0,\
+    \ -g.y0);\n    if (len(g) == 0) { return convolve_segment(f, 0, g.x1, g.a0, 0);\
+    \ }\n    auto tmp = ST.get_all(g.root);\n    ST.free_subtree(g.root);\n    f =\
+    \ convolve_segment(f, 0, tmp[0].fi, g.a0, 0);\n    T a = g.a0;\n    FOR(i, len(tmp))\
+    \ {\n      T nx = (i + 1 < len(tmp) ? tmp[i + 1].fi : g.x1);\n      a += tmp[i].se;\n\
+    \      f = convolve_segment(f, 0, nx - tmp[i].fi, a, 0);\n      for (auto &[x,\
+    \ a]: ST.get_all(f.root)) {\n        assert(f.x0 <= x && x <= f.x1);\n       \
+    \ if (f.root) assert(!f.root->p);\n      }\n    }\n    return f;\n  }\n\n  //\
+    \ [x0,x1], y=ax+b\n  FUNC convolve_segment(FUNC &f, T x0, T x1, T a, T b) {\n\
+    \    assert(x0 <= x1);\n    if (f.x0 > f.x1) { return {nullptr, infty<T>, -infty<T>,\
+    \ 0, 0}; }\n    f = shift(f, x0, a * x0 + b);\n    T d = x1 - x0;\n    if (d ==\
+    \ 0) return f;\n    // (0,0) \u304B\u3089 (x1,ax1) \u3078\u306E\u7DDA\u5206\u3092\
+    \u3069\u3053\u304B\u306B\u633F\u5165\u3059\u308B\n    // \u7279\u306B x0, y0 \u306F\
+    \u3053\u306E\u307E\u307E\u3067\u3088\u3044\n    if (f.x0 == f.x1) { return {nullptr,\
+    \ f.x0, f.x0 + d, a, f.y0}; }\n    // \u5148\u982D\u306B\u633F\u5165\u3067\u304D\
+    \u308B\u5834\u5408\n    if (a <= f.a0) {\n      ST.apply(f.root, d);\n      f.root\
+    \ = ST.merge(ST.new_node({f.x0 + d, f.a0 - a}), f.root);\n      f.x1 += d, f.a0\
+    \ = a;\n      return f;\n    }\n    // \u672B\u5C3E\u306B\u633F\u5165\u3067\u304D\
+    \u308B\u5834\u5408\n    T a_last = f.a0 + ST.prod(f.root).fi;\n    if (a_last\
+    \ <= a) {\n      f.root = ST.merge(f.root, ST.new_node({f.x1, a - a_last}));\n\
+    \      f.x1 += d;\n      return f;\n    }\n    // \u9593\u306E\u3069\u3053\u304B\
+    \u306B\u633F\u5165\n    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto\
+    \ prod) -> bool { return f.a0 + prod.fi < a; });\n    T asum = ST.prod(l).fi;\n\
     \    T a1 = a - (asum + f.a0);\n    auto [xx, aa] = ST.get(r, 0);\n    ST.apply(r,\
     \ d);\n    ST.set(r, 0, {xx + d, aa - a1});\n    f.root = ST.merge3(l, ST.new_node({xx,\
-    \ a1}), r);\n    f.x1 += d;\n    return f;\n  }\n\n  void add_const(FUNC &f, T\
-    \ a) { f.y0 += a; }\n\n  void add_linear(FUNC &f, T a, T b) {\n    f.y0 += a *\
-    \ f.x0 + b;\n    f.a0 += a;\n  }\n\n  // (a-x)+\n  void add_a_minus_x(FUNC &f,\
-    \ T a) {\n    auto [x0, x1] = domain(f);\n    if (x0 > x1) return;\n    if (a\
-    \ <= x0) return;\n    if (x1 <= a) return add_linear(f, -1, a);\n    vc<pair<T,\
-    \ T>> point;\n    point.eb(x0, a - x0), point.eb(a, 0), point.eb(x1, 0);\n   \
-    \ FUNC g = from_points(point);\n    f = add(f, g);\n  }\n\n  // (x-a)+\n  void\
-    \ add_x_minus_a(FUNC &f, T a) {\n    auto [x0, x1] = domain(f);\n    if (x0 >\
-    \ x1) return;\n    if (a <= x0) return add_linear(f, 1, -a);\n    if (x1 <= a)\
-    \ return;\n    vc<pair<T, T>> point;\n    point.eb(x0, 0), point.eb(a, 0), point.eb(x1,\
-    \ x1 - a);\n    FUNC g = from_points(point);\n    f = add(f, g);\n  }\n\n  //\
-    \ |x-a|\n  void add_abs(FUNC &f, T a) { add_a_minus_x(f, a), add_x_minus_a(f,\
-    \ a); }\n\n  // fx,x\n  pair<T, T> get_min(FUNC &f) {\n    if (f.x0 > f.x1) return\
-    \ {infty<T>, 0};\n    if (f.a0 >= 0) { return {f.y0, f.x0}; }\n    auto [l, r]\
-    \ = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return f.a0 + prod.fi\
-    \ < 0; });\n    auto [asum, xasum] = ST.prod(l);\n    T x = (r ? ST.get(r, 0).fi\
-    \ : f.x1);\n    f.root = ST.merge(l, r);\n    T y = f.y0 + f.a0 * (x - f.x0) +\
-    \ x * asum - xasum;\n    return {y, x};\n  }\n\n  void clear_right(FUNC &f) {\n\
-    \    if (f.a0 >= 0) {\n      ST.free_subtree(f.root), f.root = nullptr, f.a0 =\
-    \ 0;\n      return;\n    }\n    auto [l, r] = ST.split_max_right_prod(f.root,\
+    \ a1}), r);\n    f.x1 += d;\n    return f;\n  }\n\n  FUNC add_const(FUNC &f, T\
+    \ a) {\n    f.y0 += a;\n    return f;\n  }\n\n  FUNC add_linear(FUNC &f, T a,\
+    \ T b) {\n    f.y0 += a * f.x0 + b;\n    f.a0 += a;\n    return f;\n  }\n\n  //\
+    \ (a-x)+\n  FUNC add_a_minus_x(FUNC &f, T a) {\n    auto [x0, x1] = domain(f);\n\
+    \    if (x0 > x1) return f;\n    if (a <= x0) return f;\n    if (x1 <= a) return\
+    \ add_linear(f, -1, a);\n    vc<pair<T, T>> point;\n    point.eb(x0, a - x0),\
+    \ point.eb(a, 0), point.eb(x1, 0);\n    FUNC g = from_points(point);\n    return\
+    \ add(f, g);\n  }\n\n  // (x-a)+\n  FUNC add_x_minus_a(FUNC &f, T a) {\n    auto\
+    \ [x0, x1] = domain(f);\n    if (x0 > x1) return f;\n    if (a <= x0) return add_linear(f,\
+    \ 1, -a);\n    if (x1 <= a) return f;\n    vc<pair<T, T>> point;\n    point.eb(x0,\
+    \ 0), point.eb(a, 0), point.eb(x1, x1 - a);\n    FUNC g = from_points(point);\n\
+    \    return add(f, g);\n  }\n\n  // |x-a|\n  FUNC add_abs(FUNC &f, T a) {\n  \
+    \  f = add_a_minus_x(f, a);\n    f = add_x_minus_a(f, a);\n    return f;\n  }\n\
+    \n  // fx,x\n  pair<T, T> get_min(FUNC &f) {\n    if (f.x0 > f.x1) return {infty<T>,\
+    \ 0};\n    if (f.a0 >= 0) { return {f.y0, f.x0}; }\n    auto [l, r] = ST.split_max_right_prod(f.root,\
+    \ [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });\n    auto [asum, xasum]\
+    \ = ST.prod(l);\n    T x = (r ? ST.get(r, 0).fi : f.x1);\n    f.root = ST.merge(l,\
+    \ r);\n    T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;\n    return {y,\
+    \ x};\n  }\n\n  FUNC clear_right(FUNC &f) {\n    if (f.a0 >= 0) {\n      ST.free_subtree(f.root),\
+    \ f.root = nullptr, f.a0 = 0;\n      return f;\n    }\n    auto [l, r] = ST.split_max_right_prod(f.root,\
     \ [&](auto prod) -> bool { return f.a0 + prod.fi < 0; });\n    f.root = l;\n \
-    \   if (!r) { return; }\n    T x = ST.get(r, 0).fi;\n    ST.free_subtree(r);\n\
+    \   if (!r) { return f; }\n    T x = ST.get(r, 0).fi;\n    ST.free_subtree(r);\n\
     \    f.root = ST.merge(f.root, ST.new_node({x, -(f.a0 + ST.prod(l).fi)}));\n \
-    \   return;\n  }\n  void clear_left(FUNC &f) {\n    if (f.a0 >= 0) { return; }\n\
-    \    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool { return\
-    \ f.a0 + prod.fi < 0; });\n    auto [asum, xasum] = ST.prod(l);\n    if (!r) {\n\
-    \      // \u5B9A\u6570\u306B\u3059\u308B\n      T x = f.x1;\n      T y = f.y0\
-    \ + f.a0 * (x - f.x0) + x * asum - xasum;\n      ST.free_subtree(l);\n      f.root\
-    \ = nullptr;\n      f.y0 = y, f.a0 = 0;\n      return;\n    }\n    T x = ST.get(f.root,\
-    \ 0).fi;\n    T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;\n    T a = f.a0\
-    \ + asum + ST.get(r, 0).se;\n    ST.free_subtree(l);\n    f.root = r;\n    ST.set(r,\
-    \ 0, {x, a});\n    f.y0 = y;\n    f.a0 = 0;\n    return;\n  }\n};\n} // namespace\
+    \   return f;\n  }\n  FUNC clear_left(FUNC &f) {\n    if (f.a0 >= 0) { return\
+    \ f; }\n    auto [l, r] = ST.split_max_right_prod(f.root, [&](auto prod) -> bool\
+    \ { return f.a0 + prod.fi < 0; });\n    auto [asum, xasum] = ST.prod(l);\n   \
+    \ if (!r) {\n      // \u5B9A\u6570\u306B\u3059\u308B\n      T x = f.x1;\n    \
+    \  T y = f.y0 + f.a0 * (x - f.x0) + x * asum - xasum;\n      ST.free_subtree(l);\n\
+    \      f.root = nullptr;\n      f.y0 = y, f.a0 = 0;\n      return f;\n    }\n\
+    \    T x = ST.get(f.root, 0).fi;\n    T y = f.y0 + f.a0 * (x - f.x0) + x * asum\
+    \ - xasum;\n    T a = f.a0 + asum + ST.get(r, 0).se;\n    ST.free_subtree(l);\n\
+    \    f.root = r;\n    ST.set(r, 0, {x, a});\n    f.y0 = y;\n    f.a0 = 0;\n  \
+    \  return f;\n  }\n#ifdef FASTIO\n  void debug(FUNC &f) {\n    auto dat = ST.get_all(f.root);\n\
+    \    SHOW(f.x0, f.x1, f.a0, f.y0);\n    SHOW(dat);\n  }\n#endif\n};\n} // namespace\
     \ SLOPE_TRICK_SUPER\nusing SLOPE_TRICK_SUPER::Slope_Trick_Super;\n"
   dependsOn:
   - ds/splaytree/splaytree.hpp
   - alg/monoid/add_pair.hpp
   isVerificationFile: false
-  path: convex/slope_super.hpp
+  path: convex/slope_trick/slope_super.hpp
   requiredBy: []
-  timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/1_mytest/slope_super.test.cpp
-documentation_of: convex/slope_super.hpp
+  timestamp: '2024-10-19 00:13:45+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
+documentation_of: convex/slope_trick/slope_super.hpp
 layout: document
 redirect_from:
-- /library/convex/slope_super.hpp
-- /library/convex/slope_super.hpp.html
-title: convex/slope_super.hpp
+- /library/convex/slope_trick/slope_super.hpp
+- /library/convex/slope_trick/slope_super.hpp.html
+title: convex/slope_trick/slope_super.hpp
 ---

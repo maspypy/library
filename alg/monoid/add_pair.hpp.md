@@ -8,9 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':x:'
-    path: convex/slope_super.hpp
-    title: convex/slope_super.hpp
+  - icon: ':warning:'
+    path: convex/slope_trick/slope_super.hpp
+    title: convex/slope_trick/slope_super.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/cf702_F.test.cpp
@@ -21,9 +21,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
@@ -63,7 +60,7 @@ data:
   isVerificationFile: false
   path: alg/monoid/add_pair.hpp
   requiredBy:
-  - convex/slope_super.hpp
+  - convex/slope_trick/slope_super.hpp
   - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
@@ -76,7 +73,6 @@ data:
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/749.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/cf702_F.test.cpp
 documentation_of: alg/monoid/add_pair.hpp

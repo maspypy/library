@@ -63,9 +63,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  - icon: ':x:'
-    path: test/1_mytest/slope_super.test.cpp
-    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
@@ -123,7 +120,6 @@ data:
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/remove_one_vertex.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
-  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/nth_element_from_sorted_lists.test.cpp
   - test/1_mytest/nth_element_from_sorted_matrix.test.cpp
   - test/1_mytest/count_K4.test.cpp

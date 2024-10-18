@@ -42,9 +42,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/3_yukicoder/2944.test.cpp
+    title: test/3_yukicoder/2944.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -393,8 +396,9 @@ data:
   path: seq/famous/partition_number.hpp
   requiredBy: []
   timestamp: '2024-10-11 20:53:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/2944.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
 documentation_of: seq/famous/partition_number.hpp
