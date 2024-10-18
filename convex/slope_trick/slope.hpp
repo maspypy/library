@@ -8,8 +8,6 @@ struct Slope_Trick {
   i128 min_f; // infty を足し引きしても壊れないように i128 にする
 
   Slope_Trick() : add_l(0), add_r(0), min_f(0) {}
-  Slope_Trick(vc<ll> left, vc<ll> right)
-      : que_l(all(left)), que_r(all(right)), add_l(0), add_r(0), min_f(0) {}
 
   int size() { return len(que_l) + len(que_r); }
   tuple<ll, ll, i128> get_min() { return {top_L(), top_R(), min_f}; }
@@ -43,10 +41,7 @@ struct Slope_Trick {
   }
 
   // |x-a|
-  void add_abs(ll a) {
-    add_a_minus_x(a);
-    add_x_minus_a(a);
-  }
+  void add_abs(ll a) { add_a_minus_x(a), add_x_minus_a(a); }
 
   // 増加側を消して、減少側のみにする
   void clear_right() { que_r = pqg<ll>(); }
@@ -55,9 +50,7 @@ struct Slope_Trick {
   void shift(const ll &a) { add_l += a, add_r += a; }
 
   // g(x) = min_{x-b <= y <= x-a} f(y)
-  void sliding_window_minimum(const ll &a, const ll &b) {
-    add_l += a, add_r += b;
-  }
+  void sliding_window_minimum(const ll &a, const ll &b) { add_l += a, add_r += b; }
 
   // O(size log(size))
   i128 eval(ll x) {
