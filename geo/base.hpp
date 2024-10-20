@@ -31,8 +31,8 @@ struct Point {
     if (x != p.x) return x < p.x;
     return y < p.y;
   }
-  T dot(Point other) { return x * other.x + y * other.y; }
-  T det(Point other) { return x * other.y - y * other.x; }
+  T dot(const Point& other) const { return x * other.x + y * other.y; }
+  T det(const Point& other) const { return x * other.y - y * other.x; }
 
   double norm() { return sqrtl(x * x + y * y); }
   double angle() { return atan2(y, x); }
@@ -42,15 +42,16 @@ struct Point {
     double c = cos(theta), s = sin(theta);
     return Point{c * x - s * y, s * x + c * y};
   }
+  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x}); }
 };
 
 #ifdef FASTIO
 template <typename T>
-void rd(Point<T> &p) {
+void rd(Point<T>& p) {
   fastio::rd(p.x), fastio::rd(p.y);
 }
 template <typename T>
-void wt(Point<T> &p) {
+void wt(Point<T>& p) {
   fastio::wt(p.x);
   fastio::wt(' ');
   fastio::wt(p.y);

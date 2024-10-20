@@ -4,16 +4,16 @@
 
 // lower: -1, origin: 0, upper: 1
 template <typename T>
-int lower_or_upper(Point<T>& p) {
+int lower_or_upper(const Point<T>& p) {
   if (p.y != 0) return (p.y > 0 ? 1 : -1);
   if (p.x > 0) return -1;
   if (p.x < 0) return 1;
   return 0;
 }
 
-// -1, 0, 1
+// L<R:-1, L==R:0, L>R:1
 template <typename T>
-int angle_comp_3(Point<T>& L, Point<T>& R) {
+int angle_comp_3(const Point<T>& L, const Point<T>& R) {
   int a = lower_or_upper(L), b = lower_or_upper(R);
   if (a != b) return (a < b ? -1 : +1);
   T det = L.det(R);
