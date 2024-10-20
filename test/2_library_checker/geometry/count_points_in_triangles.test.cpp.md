@@ -230,14 +230,15 @@ data:
     \  Point operator-() const { return {-x, -y}; }\n  Point operator*(T t) const\
     \ { return {x * t, y * t}; }\n  Point operator/(T t) const { return {x / t, y\
     \ / t}; }\n\n  bool operator<(Point p) const {\n    if (x != p.x) return x < p.x;\n\
-    \    return y < p.y;\n  }\n  T dot(Point other) { return x * other.x + y * other.y;\
-    \ }\n  T det(Point other) { return x * other.y - y * other.x; }\n\n  double norm()\
-    \ { return sqrtl(x * x + y * y); }\n  double angle() { return atan2(y, x); }\n\
-    \n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
+    \    return y < p.y;\n  }\n  T dot(const Point& other) const { return x * other.x\
+    \ + y * other.y; }\n  T det(const Point& other) const { return x * other.y - y\
+    \ * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y); }\n  double angle()\
+    \ { return atan2(y, x); }\n\n  Point rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n\
     \    double c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s\
-    \ * x + c * y};\n  }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>\
-    \ &p) {\n  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>\
-    \ &p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
+    \ * x + c * y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y,\
+    \ -x}); }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n\
+    \  fastio::rd(p.x), fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>&\
+    \ p) {\n  fastio::wt(p.x);\n  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\
     \n// A -> B -> C \u3068\u9032\u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\
     \u308B\u306A\u3089\u3070 +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ -1\ntemplate <typename T>\nint ccw(Point<T> A, Point<T> B, Point<T> C) {\n \
@@ -268,19 +269,20 @@ data:
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
     \ 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1\r\ntemplate\
-    \ <typename T>\r\nint lower_or_upper(Point<T>& p) {\r\n  if (p.y != 0) return\
+    \ <typename T>\r\nint lower_or_upper(const Point<T>& p) {\r\n  if (p.y != 0) return\
     \ (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0) return -1;\r\n  if (p.x < 0) return 1;\r\
-    \n  return 0;\r\n}\r\n\r\n// -1, 0, 1\r\ntemplate <typename T>\r\nint angle_comp_3(Point<T>&\
-    \ L, Point<T>& R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\n\
-    \  if (a != b) return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if (det >\
-    \ 0) return -1;\r\n  if (det < 0) return 1;\r\n  return 0;\r\n}\r\n// \u504F\u89D2\
-    \u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\n\
-    vector<int> angle_sort(vector<Point<T>>& P) {\r\n  vc<int> I(len(P));\r\n  FOR(i,\
-    \ len(P)) I[i] = i;\r\n  sort(all(I), [&](auto& L, auto& R) -> bool { return angle_comp_3(P[L],\
-    \ P[R]) == -1; });\r\n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\
-    \u306B\u5BFE\u3059\u308B argsort\r\ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T,\
-    \ T>>& P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
-    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
+    \n  return 0;\r\n}\r\n\r\n// L<R:-1, L==R:0, L>R:1\r\ntemplate <typename T>\r\n\
+    int angle_comp_3(const Point<T>& L, const Point<T>& R) {\r\n  int a = lower_or_upper(L),\
+    \ b = lower_or_upper(R);\r\n  if (a != b) return (a < b ? -1 : +1);\r\n  T det\
+    \ = L.det(R);\r\n  if (det > 0) return -1;\r\n  if (det < 0) return 1;\r\n  return\
+    \ 0;\r\n}\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
+    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n \
+    \ vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto&\
+    \ L, auto& R) -> bool { return angle_comp_3(P[L], P[R]) == -1; });\r\n  return\
+    \ I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
+    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n\
+    \  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n\
+    \  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
     \ {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
@@ -445,7 +447,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   requiredBy: []
-  timestamp: '2024-10-18 02:58:53+09:00'
+  timestamp: '2024-10-20 23:29:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/geometry/count_points_in_triangles.test.cpp

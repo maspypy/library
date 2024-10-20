@@ -1419,7 +1419,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc105.test.cpp
     title: test/5_atcoder/arc105.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/arc130f.test.cpp
     title: test/5_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'

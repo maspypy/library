@@ -33,7 +33,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2251_2.test.cpp
     title: test/4_aoj/2251_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/arc064c.test.cpp
     title: test/5_atcoder/arc064c.test.cpp
   - icon: ':x:'

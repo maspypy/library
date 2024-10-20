@@ -199,13 +199,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/cht.hpp
       title: convex/cht.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
     - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/fenchel.hpp
       title: convex/fenchel.hpp
     - icon: ':heavy_check_mark:'
@@ -681,7 +681,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/closest_pair.hpp
       title: geo/closest_pair.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
     - icon: ':heavy_check_mark:'
@@ -693,13 +693,13 @@ data:
     - icon: ':question:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':heavy_check_mark:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':heavy_check_mark:'
@@ -711,7 +711,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/incircle.hpp
       title: geo/incircle.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: geo/incremental_convexhull.hpp
       title: geo/incremental_convexhull.hpp
     - icon: ':warning:'
@@ -726,7 +726,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/manhattan_nns.hpp
       title: geo/manhattan_nns.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: geo/max_norm_sum.hpp
       title: geo/max_norm_sum.hpp
     - icon: ':x:'
@@ -756,6 +756,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/reflection.hpp
       title: geo/reflection.hpp
+    - icon: ':warning:'
+      path: geo/rotating_swaps.hpp
+      title: geo/rotating_swaps.hpp
     - icon: ':question:'
       path: geo/triangle_area.hpp
       title: geo/triangle_area.hpp
@@ -1601,7 +1604,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: other/golden_search.hpp
       title: other/golden_search.hpp
     - icon: ':warning:'
@@ -4650,7 +4653,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc127f_1.test.cpp
       title: test/5_atcoder/abc127f_1.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc139f.test.cpp
       title: test/5_atcoder/abc139f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4827,7 +4830,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc260h.test.cpp
       title: test/5_atcoder/abc260h.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc266c.test.cpp
       title: test/5_atcoder/abc266c.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4923,7 +4926,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc312f.test.cpp
       title: test/5_atcoder/abc312f.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/abc314.test.cpp
       title: test/5_atcoder/abc314.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5034,7 +5037,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/agc060c.test.cpp
       title: test/5_atcoder/agc060c.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/arc064c.test.cpp
       title: test/5_atcoder/arc064c.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5046,7 +5049,7 @@ data:
     - icon: ':x:'
       path: test/5_atcoder/arc123d.test.cpp
       title: test/5_atcoder/arc123d.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/5_atcoder/arc130f.test.cpp
       title: test/5_atcoder/arc130f.test.cpp
     - icon: ':heavy_check_mark:'

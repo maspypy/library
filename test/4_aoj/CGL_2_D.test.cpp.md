@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':question:'
@@ -217,14 +217,15 @@ data:
     \ p) const { return x != p.x || y != p.y; }\n  Point operator-() const { return\
     \ {-x, -y}; }\n  Point operator*(T t) const { return {x * t, y * t}; }\n  Point\
     \ operator/(T t) const { return {x / t, y / t}; }\n\n  bool operator<(Point p)\
-    \ const {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(Point\
-    \ other) { return x * other.x + y * other.y; }\n  T det(Point other) { return\
-    \ x * other.y - y * other.x; }\n\n  double norm() { return sqrtl(x * x + y * y);\
-    \ }\n  double angle() { return atan2(y, x); }\n\n  Point rotate(double theta)\
-    \ {\n    static_assert(!is_integral<T>::value);\n    double c = cos(theta), s\
-    \ = sin(theta);\n    return Point{c * x - s * y, s * x + c * y};\n  }\n};\n\n\
-    #ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T> &p) {\n  fastio::rd(p.x),\
-    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T> &p) {\n  fastio::wt(p.x);\n\
+    \ const {\n    if (x != p.x) return x < p.x;\n    return y < p.y;\n  }\n  T dot(const\
+    \ Point& other) const { return x * other.x + y * other.y; }\n  T det(const Point&\
+    \ other) const { return x * other.y - y * other.x; }\n\n  double norm() { return\
+    \ sqrtl(x * x + y * y); }\n  double angle() { return atan2(y, x); }\n\n  Point\
+    \ rotate(double theta) {\n    static_assert(!is_integral<T>::value);\n    double\
+    \ c = cos(theta), s = sin(theta);\n    return Point{c * x - s * y, s * x + c *\
+    \ y};\n  }\n  Point rot90(bool ccw) { return (ccw ? Point{-y, x} : Point{y, -x});\
+    \ }\n};\n\n#ifdef FASTIO\ntemplate <typename T>\nvoid rd(Point<T>& p) {\n  fastio::rd(p.x),\
+    \ fastio::rd(p.y);\n}\ntemplate <typename T>\nvoid wt(Point<T>& p) {\n  fastio::wt(p.x);\n\
     \  fastio::wt(' ');\n  fastio::wt(p.y);\n}\n#endif\n\n// A -> B -> C \u3068\u9032\
     \u3080\u3068\u304D\u306B\u3001\u5DE6\u306B\u66F2\u304C\u308B\u306A\u3089\u3070\
     \ +1\u3001\u53F3\u306B\u66F2\u304C\u308B\u306A\u3089\u3070 -1\ntemplate <typename\
@@ -332,7 +333,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
+  timestamp: '2024-10-20 23:29:28+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_D.test.cpp
