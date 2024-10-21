@@ -5,6 +5,9 @@ data:
   - icon: ':warning:'
     path: test/1_mytest/enumerate_labeled_tree.cpp
     title: test/1_mytest/enumerate_labeled_tree.cpp
+  - icon: ':warning:'
+    path: test/1_mytest/equal_4square_sum_grid.hpp
+    title: test/1_mytest/equal_4square_sum_grid.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/31bit_modint.test.cpp
@@ -2811,7 +2814,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc023f.test.cpp
     title: test/5_atcoder/agc023f.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/agc058d.test.cpp
     title: test/5_atcoder/agc058d.test.cpp
   - icon: ':x:'
@@ -2847,7 +2850,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc153b2.test.cpp
     title: test/5_atcoder/arc153b2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3039,6 +3042,7 @@ data:
   isVerificationFile: false
   path: my_template.hpp
   requiredBy:
+  - test/1_mytest/equal_4square_sum_grid.hpp
   - test/1_mytest/enumerate_labeled_tree.cpp
   timestamp: '2024-09-28 04:06:11+09:00'
   verificationStatus: LIBRARY_SOME_WA

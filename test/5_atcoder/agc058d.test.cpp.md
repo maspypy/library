@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   - icon: ':question:'
@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
   - icon: ':question:'
@@ -51,9 +51,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/agc058/tasks/agc058_d
@@ -559,10 +559,11 @@ data:
     \ len(f)) {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i\
     \ - j];\n    }\n  }\n  return f;\n}\n#line 1 \"linalg/transpose.hpp\"\ntemplate\
     \ <typename VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W = -1) {\n\
-    \  if (H == -1) { H = len(A), W = len(A[0]); }\n  vc<VC> B(W, VC(H, A[0][0]));\n\
-    \  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n}\n#line 4 \"poly/coef_of_rational_fps_2d.hpp\"\
-    \n\n// P, Q \u304C x \u306B\u3064\u3044\u3066 O(1) \u6B21\u3067\u3042\u308B\u3068\
-    \u3059\u308B\n// ANS(x) = [y^N]P/Q \u3092 M \u6B21\u307E\u3067\n// https://atcoder.jp/contests/nadafes2022_day2/tasks/nadafes2022_day2_p\n\
+    \  if (H == -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n  if (H ==\
+    \ 0) return {};\n  vc<VC> B(W, VC(H, A[0][0]));\n  FOR(x, H) FOR(y, W) B[y][x]\
+    \ = A[x][y];\n  return B;\n}\n#line 4 \"poly/coef_of_rational_fps_2d.hpp\"\n\n\
+    // P, Q \u304C x \u306B\u3064\u3044\u3066 O(1) \u6B21\u3067\u3042\u308B\u3068\u3059\
+    \u308B\n// ANS(x) = [y^N]P/Q \u3092 M \u6B21\u307E\u3067\n// https://atcoder.jp/contests/nadafes2022_day2/tasks/nadafes2022_day2_p\n\
     // (2^n,2^m) \u6B21\u304C\u305F\u304F\u3055\u3093\u51FA\u3066\u304D\u3066\u3044\
     \u308B\u3068\u5B9A\u6570\u500D\u304C\u3072\u3069\u304F\u306A\u3063\u3066\u3057\
     \u307E\u3046\ntemplate <typename mint>\nvc<mint> coef_of_rational_fps_2d(vvc<mint>\
@@ -661,8 +662,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/agc058d.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 20:53:53+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-22 00:27:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/agc058d.test.cpp
 layout: document

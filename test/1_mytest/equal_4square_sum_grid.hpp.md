@@ -2,25 +2,23 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: enumerate/product.hpp
-    title: enumerate/product.hpp
+    path: linalg/transpose.hpp
+    title: linalg/transpose.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
-    path: other/fibonacci_search.hpp
-    title: other/fibonacci_search.hpp
+  - icon: ':warning:'
+    path: other/equal_4square_sum_grid.hpp
+    title: other/equal_4square_sum_grid.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _pathExtension: hpp
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/fibonacci_search.test.cpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/1_mytest/equal_4square_sum_grid.hpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
     \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
@@ -104,74 +102,78 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 1 \"other/fibonacci_search.hpp\"\n//\
-    \ returns: {fx, x}\n// [L, R) \u3067\u306E\u6975\u5C0F\u5024\u3092\u3072\u3068\
-    \u3064\u6C42\u3081\u308B\u3001\u5358\u5CF0\u306F\u4E0D\u8981\ntemplate <typename\
-    \ T, bool MINIMIZE, typename F>\npair<T, ll> fibonacci_search(F f, ll L, ll R)\
-    \ {\n  assert(L < R);\n  --R;\n  ll a = L, b = L + 1, c = L + 2, d = L + 3;\n\
-    \  int n = 0;\n  while (d < R) { b = c, c = d, d = b + c - a, ++n; }\n  auto get\
-    \ = [&](ll x) -> T {\n    if (R < x) return infty<T>;\n    return (MINIMIZE ?\
-    \ f(x) : -f(x));\n  };\n  T ya = get(a), yb = get(b), yc = get(c), yd = get(d);\n\
-    \  // \u3053\u306E\u4E2D\u3067\u6975\u5C0F\u306A\u3089\u3070\u5168\u4F53\u3067\
-    \u3082\u6975\u5C0F\u3001\u3092\u7DAD\u6301\u3059\u308B\n  FOR(n) {\n    if (yb\
-    \ <= yc) {\n      d = c, c = b, b = a + d - c;\n      yd = yc, yc = yb, yb = get(b);\n\
-    \    } else {\n      a = b, b = c, c = a + d - b;\n      ya = yb, yb = yc, yc\
-    \ = get(c);\n    }\n  }\n  ll x = a;\n  T y = ya;\n  if (chmin(y, yb)) x = b;\n\
-    \  if (chmin(y, yc)) x = c;\n  if (chmin(y, yd)) x = d;\n  if (MINIMIZE) return\
-    \ {y, x};\n  return {-y, x};\n}\n#line 1 \"enumerate/product.hpp\"\n// [0, A0)\
-    \ x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int> A, F\
-    \ query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void\
-    \ {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n\
-    \      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
-    \ p;\n  dfs(dfs, p);\n}\n#line 5 \"test/1_mytest/fibonacci_search.test.cpp\"\n\
-    \nvoid test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A),\
-    \ 0);\n    do {\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
-    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
-    \      if (0 < i) assert(A[i] < A[i - 1]);\n      if (i + 1 < N) assert(A[i] <\
-    \ A[i + 1]);\n    } while (next_permutation(all(A)));\n  }\n  // [0,1]\n  FOR(N,\
-    \ 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n      FOR(i, N) A[i] =\
-    \ s >> i & 1;\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
-    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
-    \      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1 < N) assert(A[i]\
-    \ <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n    enumerate_product(vc<int>(N,\
-    \ 3), [&](vc<int> A) -> void {\n      auto f = [&](int i) -> int { return A[i];\
-    \ };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
-    \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
-    \ < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/equal_4square_sum_grid.hpp\"\
+    \n\n#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
+    \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
+    \ == 0 ? 0 : len(A[0])); }\n  if (H == 0) return {};\n  vc<VC> B(W, VC(H, A[0][0]));\n\
+    \  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n}\n#line 1 \"other/equal_4square_sum_grid.hpp\"\
+    \n\n// https://atcoder.jp/contests/tupc2023/tasks/tupc2023_k\n// [0,HW-1]\u306E\
+    \u9806\u5217\u3067\u3059\u3079\u3066\u306E(2,2)\u6B63\u65B9\u5F62\u306E\u548C\u304C\
+    S, \u89E3\u3044\u305F\u5834\u5408.\n// \u4E00\u822C\u306B\u89E3\u3044\u305F\u308F\
+    \u3051\u3067\u306F\u306A\u3044. mod HW \u3067\u306F\u89E3\u3051\u3066\u3044\u308B\
+    .\n// (even,even) \u306F S \u304C\u78BA\u5B9A. \u4ED6\u306F\u5FAE\u8ABF\u6574\u306F\
+    \u3067\u304D\u308B\u3068\u3044\u3046\u611F\u3058.\nvvc<int> equal_4square_sum_grid(int\
+    \ H, int W, int S) {\n  assert(H >= 2 && W >= 2);\n  int S0 = (H * W - 1) * 2;\n\
+    \  if (H % 2 == 1 && W % 2 == 0) {\n    vvc<int> A = equal_4square_sum_grid(W,\
+    \ H, S);\n    A = transpose(A);\n    return A;\n  }\n  // \u89E3\u3044\u3066\u3044\
+    \u306A\u3044\u5834\u5408\n  if (H % 2 == 0 && W % 2 == 0) assert(S0 - 3 <= S &&\
+    \ S <= S0 + 3);\n  if (W % 2 == 1 && H % 4 == 2) { assert(S0 - 1 <= S && S <=\
+    \ S0 + 1); }\n  if (W % 2 == 1 && H % 4 == 0) { assert(S0 - 2 <= S && S <= S0\
+    \ + 2); }\n\n  if (S == S0 + 1 || S == S0 - 2) {\n    vvc<int> A = equal_4square_sum_grid(H,\
+    \ W, 2 * S0 - S);\n    FOR(x, H) FOR(y, W) A[x][y] = H * W - 1 - A[x][y];\n  \
+    \  return A;\n  }\n\n  if (S == S0) {\n    vv(int, A, H, W);\n    FOR(j, W) A[j\
+    \ % 2][j] = j, A[(j + 1) % 2][j] = H * W - 1 - j;\n    FOR(i, 2, H) FOR(j, W)\
+    \ {\n      if ((i + j) % 2 == 0) A[i][j] = A[i - 2][j] + W;\n      if ((i + j)\
+    \ % 2 == 1) A[i][j] = A[i - 2][j] - W;\n    }\n    return A;\n  }\n  if (H % 2\
+    \ == 0 && W % 2 == 0) return {}; // \u89E3\u306A\u3057\n  if (S == S0 - 1) {\n\
+    \    vv(int, A, H, W);\n    auto nxt = [&](int p) -> int { return (p >= H * W\
+    \ / 2 ? H * W - 1 - p : H * W - 2 - p); };\n    int p = H * W - 1;\n    FOR(x,\
+    \ H) FOR(y, W) { A[x][y] = p, p = nxt(p); }\n    return A;\n  }\n  assert(W %\
+    \ 2 == 1 && H % 4 == 0 && S == S0 + 2);\n  int n = H / 4;\n  vc<int> tmp;\n  FOR(i,\
+    \ 2 * n * W) {\n    if (i % 2 == 0) tmp.eb(2 * i);\n    if (i % 2 == 1) tmp.eb(H\
+    \ * W - 2 * i);\n  }\n  FOR(i, n * W) {\n    if (i % 2 == 0) tmp.eb(2 * i + 1);\n\
+    \    if (i % 2 == 1) tmp.eb(H * W - 2 * i - 1);\n  }\n  FOR(i, 3 * n * W, 4 *\
+    \ n * W) { tmp.eb(H * W - tmp[i - n * W]); }\n  int p = 0;\n  vv(int, A, H, W);\n\
+    \  FOR(x, H) FOR(y, W) A[x][y] = tmp[p++];\n  if (n % 2 == 0) { FOR(x, 3 * n,\
+    \ 4 * n) reverse(all(A[x])); }\n  return A;\n}\n#line 6 \"test/1_mytest/equal_4square_sum_grid.hpp\"\
+    \n\nvoid test() {\n  FOR(H, 2, 20) {\n    FOR(W, 2, 20) {\n      if (H % 2 ==\
+    \ 1 && W % 2 == 0) continue;\n      int S0 = 2 * (H * W - 1);\n      int L = S0,\
+    \ R = S0;\n      if (H % 2 == 0 && W % 2 == 0) { L = S0, R = S0; }\n      if (H\
+    \ % 4 == 2 && W % 2 == 1) { L = S0 - 1, R = S0 + 1; }\n      if (H % 4 == 0 &&\
+    \ W % 2 == 1) { L = S0 - 2, R = S0 + 2; }\n      FOR(S, L, R + 1) {\n        vvc<int>\
+    \ A = equal_4square_sum_grid(H, W, S);\n        assert(len(A) == H && len(A[0])\
+    \ == W);\n        vc<int> used(H * W);\n        FOR(x, H) FOR(y, W) used[A[x][y]]++;\n\
+    \        assert(MIN(used) == 1 && MAX(used) == 1);\n        FOR(x, H - 1) FOR(y,\
+    \ W - 1) { assert(A[x][y] + A[x][y + 1] + A[x + 1][y] + A[x + 1][y + 1] == S);\
+    \ }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n\
+    \  cout << x + y << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n#include \"other/fibonacci_search.hpp\"\n#include \"enumerate/product.hpp\"\n\
-    \nvoid test() {\n  // permutation\n  FOR(N, 1, 10) {\n    vc<int> A(N);\n    iota(all(A),\
-    \ 0);\n    do {\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
-    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
-    \      if (0 < i) assert(A[i] < A[i - 1]);\n      if (i + 1 < N) assert(A[i] <\
-    \ A[i + 1]);\n    } while (next_permutation(all(A)));\n  }\n  // [0,1]\n  FOR(N,\
-    \ 1, 18) {\n    FOR(s, 1 << N) {\n      vc<int> A(N);\n      FOR(i, N) A[i] =\
-    \ s >> i & 1;\n      auto f = [&](int i) -> int { return A[i]; };\n      auto\
-    \ [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0 <= i && i < N);\n\
-    \      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1 < N) assert(A[i]\
-    \ <= A[i + 1]);\n    }\n  }\n  // [0,1,2]\n  FOR(N, 1, 13) {\n    enumerate_product(vc<int>(N,\
-    \ 3), [&](vc<int> A) -> void {\n      auto f = [&](int i) -> int { return A[i];\
-    \ };\n      auto [y, i] = fibonacci_search<int, true>(f, 0, N);\n      assert(0\
-    \ <= i && i < N);\n      if (0 < i) assert(A[i] <= A[i - 1]);\n      if (i + 1\
-    \ < N) assert(A[i] <= A[i + 1]);\n    });\n  }\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    \n\n#include \"linalg/transpose.hpp\"\n#include \"other/equal_4square_sum_grid.hpp\"\
+    \n\nvoid test() {\n  FOR(H, 2, 20) {\n    FOR(W, 2, 20) {\n      if (H % 2 ==\
+    \ 1 && W % 2 == 0) continue;\n      int S0 = 2 * (H * W - 1);\n      int L = S0,\
+    \ R = S0;\n      if (H % 2 == 0 && W % 2 == 0) { L = S0, R = S0; }\n      if (H\
+    \ % 4 == 2 && W % 2 == 1) { L = S0 - 1, R = S0 + 1; }\n      if (H % 4 == 0 &&\
+    \ W % 2 == 1) { L = S0 - 2, R = S0 + 2; }\n      FOR(S, L, R + 1) {\n        vvc<int>\
+    \ A = equal_4square_sum_grid(H, W, S);\n        assert(len(A) == H && len(A[0])\
+    \ == W);\n        vc<int> used(H * W);\n        FOR(x, H) FOR(y, W) used[A[x][y]]++;\n\
+    \        assert(MIN(used) == 1 && MAX(used) == 1);\n        FOR(x, H - 1) FOR(y,\
+    \ W - 1) { assert(A[x][y] + A[x][y + 1] + A[x + 1][y] + A[x + 1][y + 1] == S);\
+    \ }\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int x, y;\n  cin >> x >> y;\n\
+    \  cout << x + y << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
   dependsOn:
   - my_template.hpp
-  - other/fibonacci_search.hpp
-  - enumerate/product.hpp
-  isVerificationFile: true
-  path: test/1_mytest/fibonacci_search.test.cpp
+  - linalg/transpose.hpp
+  - other/equal_4square_sum_grid.hpp
+  isVerificationFile: false
+  path: test/1_mytest/equal_4square_sum_grid.hpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-22 00:27:53+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/1_mytest/fibonacci_search.test.cpp
+documentation_of: test/1_mytest/equal_4square_sum_grid.hpp
 layout: document
 redirect_from:
-- /verify/test/1_mytest/fibonacci_search.test.cpp
-- /verify/test/1_mytest/fibonacci_search.test.cpp.html
-title: test/1_mytest/fibonacci_search.test.cpp
+- /library/test/1_mytest/equal_4square_sum_grid.hpp
+- /library/test/1_mytest/equal_4square_sum_grid.hpp.html
+title: test/1_mytest/equal_4square_sum_grid.hpp
 ---
