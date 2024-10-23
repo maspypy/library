@@ -2,9 +2,9 @@ struct Bit_Vector {
   int n;
   bool prepared = 0;
   vc<pair<u64, u32>> dat;
-  Bit_Vector(int n) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }
+  Bit_Vector(int n = 0) : n(n) { dat.assign((n + 127) >> 6, {0, 0}); }
   void set(int i) {
-    assert(!prepared);
+    assert(!prepared && (0 <= i && i < n));
     dat[i >> 6].fi |= u64(1) << (i & 63);
   }
   void reset() {

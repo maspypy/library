@@ -1,11 +1,11 @@
 #define PROBLEM "https://yukicoder.me/problems/no/1077"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "convex/slope.hpp"
+#include "convex/slope_trick/slope_trick_0.hpp"
 
 void solve() {
   LL(N);
-  Slope_Trick X;
+  Slope_Trick_0 X;
   FOR(N) {
     LL(x);
     X.add_abs(x);
