@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D
@@ -201,13 +201,19 @@ data:
     \ yes(!t); }\r\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] :=\
     \ \u7B2C i \u9805\u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\uFF08\
     [1, LIS]\uFF09\ntemplate <typename T, bool strong = true>\npair<int, vc<int>>\
-    \ longest_increasing_subsequence(vector<T> A) {\n  const int N = A.size();\n \
-    \ vc<T> dp(N, infty<T>);\n  int lis = 0;\n  vc<int> lis_rank(N);\n  FOR(i, N)\
+    \ longest_increasing_subsequence_dp(vector<T> A) {\n  const int N = A.size();\n\
+    \  vc<T> dp(N, infty<T>);\n  int lis = 0;\n  vc<int> lis_rank(N);\n  FOR(i, N)\
     \ {\n    int j = (strong ? LB(dp, A[i]) : UB(dp, A[i]));\n    dp[j] = A[i];\n\
     \    lis_rank[i] = j + 1;\n    chmax(lis, j + 1);\n  }\n  return {lis, lis_rank};\n\
-    }\n#line 6 \"test/4_aoj/DPL_1_D.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  VEC(ll,\
-    \ A, N);\n  print(longest_increasing_subsequence(A).fi);\n}\n\nsigned main() {\n\
-    \  solve();\n  return 0;\n}\n"
+    }\n\ntemplate <typename T, bool strong = true>\nvc<int> longest_increasing_subsequence(vector<T>\
+    \ A) {\n  const int N = A.size();\n  auto [lis, dp] = longest_increasing_subsequence_dp<T,\
+    \ strong>(A);\n  vc<int> I;\n  FOR(i, N) if (dp[i] == lis) {\n    I.eb(i);\n \
+    \   break;\n  }\n  FOR(lis - 1) {\n    int i = I.back();\n    FOR_R(j, i) {\n\
+    \      bool ok = (dp[j] == dp[i] - 1) && (strong ? (A[j] < A[i]) : (A[j] <= A[i]));\n\
+    \      if (ok) {\n        I.eb(j);\n        break;\n      }\n    }\n  }\n  assert(len(I)\
+    \ == lis);\n  reverse(all(I));\n  return I;\n}\n#line 6 \"test/4_aoj/DPL_1_D.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  print(longest_increasing_subsequence(A).fi);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/longest_increasing_subsequence.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  print(longest_increasing_subsequence(A).fi);\n\
@@ -219,8 +225,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DPL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-23 21:57:13+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DPL_1_D.test.cpp
 layout: document

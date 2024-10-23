@@ -42,6 +42,9 @@ data:
     path: alg/acted_monoid/summin_add.hpp
     title: alg/acted_monoid/summin_add.hpp
   - icon: ':heavy_check_mark:'
+    path: convex/slope_trick/slope_trick_1.hpp
+    title: convex/slope_trick/slope_trick_1.hpp
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -92,10 +95,10 @@ data:
   - icon: ':warning:'
     path: ds/segtree/range_add_make_increasing.hpp
     title: ds/segtree/range_add_make_increasing.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -334,6 +337,9 @@ data:
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1077_2.test.cpp
+    title: test/3_yukicoder/1077_2.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1097.test.cpp
     title: test/3_yukicoder/1097.test.cpp
   - icon: ':heavy_check_mark:'
@@ -489,7 +495,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc127f_1.test.cpp
     title: test/5_atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -528,7 +534,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc318b.test.cpp
     title: test/5_atcoder/abc318b.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc324g.test.cpp
     title: test/5_atcoder/abc324g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -559,6 +565,7 @@ data:
   path: alg/monoid/add.hpp
   requiredBy:
   - random/random_polygon.hpp
+  - convex/slope_trick/slope_trick_1.hpp
   - ds/wavelet_matrix/wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - ds/cumsum_2d.hpp
@@ -612,6 +619,7 @@ data:
   - test/3_yukicoder/1038.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/899.test.cpp
+  - test/3_yukicoder/1077_2.test.cpp
   - test/3_yukicoder/1197.test.cpp
   - test/3_yukicoder/789.test.cpp
   - test/3_yukicoder/1216.test.cpp

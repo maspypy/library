@@ -573,7 +573,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
     title: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -852,6 +852,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1069.test.cpp
     title: test/3_yukicoder/1069.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1077.test.cpp
+    title: test/3_yukicoder/1077.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1077_2.test.cpp
+    title: test/3_yukicoder/1077_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
@@ -1368,7 +1374,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2230.test.cpp
     title: test/3_yukicoder/2230.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1764,7 +1770,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_B.test.cpp
     title: test/4_aoj/DPL_1_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DPL_1_D.test.cpp
     title: test/4_aoj/DPL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1875,7 +1881,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc127f_1.test.cpp
     title: test/5_atcoder/abc127f_1.test.cpp
   - icon: ':x:'
@@ -2178,7 +2184,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc321g.test.cpp
     title: test/5_atcoder/abc321g.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc324g.test.cpp
     title: test/5_atcoder/abc324g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2520,6 +2526,7 @@ data:
   - test/3_yukicoder/1383.test.cpp
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1678.test.cpp
+  - test/3_yukicoder/1077_2.test.cpp
   - test/3_yukicoder/1962.test.cpp
   - test/3_yukicoder/1397.test.cpp
   - test/3_yukicoder/2062.test.cpp
@@ -2680,6 +2687,7 @@ data:
   - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/1685.test.cpp
   - test/3_yukicoder/1776.test.cpp
+  - test/3_yukicoder/1077.test.cpp
   - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/1479.test.cpp
   - test/3_yukicoder/1418.test.cpp
