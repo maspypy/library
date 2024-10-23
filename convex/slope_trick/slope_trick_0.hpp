@@ -1,4 +1,5 @@
-struct Slope_Trick {
+// 最初に作った最もシンプルなやつを一応残しておく
+struct Slope_Trick_0 {
   static constexpr ll LMIN = -infty<ll>;
   static constexpr ll RMAX = infty<ll>;
   pq<ll> que_l;
@@ -7,7 +8,7 @@ struct Slope_Trick {
   ll add_l, add_r;
   i128 min_f; // infty を足し引きしても壊れないように i128 にする
 
-  Slope_Trick() : add_l(0), add_r(0), min_f(0) {}
+  Slope_Trick_0() : add_l(0), add_r(0), min_f(0) {}
 
   int size() { return len(que_l) + len(que_r); }
   tuple<ll, ll, i128> get_min() { return {top_L(), top_R(), min_f}; }
