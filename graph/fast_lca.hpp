@@ -27,6 +27,12 @@ struct Fast_Lca {
     return tree.depth[a] + tree.depth[b] - 2 * tree.depth[c];
   }
 
+  using WT = typename TREE::WT;
+  WT dist_weighted(int a, int b) {
+    int c = lca(a, b);
+    return tree.depth_weighted[a] + tree.depth_weighted[b] - 2 * tree.depth_weighted[c];
+  }
+
   int lca(int a, int b) {
     int p = pos[a], q = pos[b];
     if (p > q) swap(p, q);
