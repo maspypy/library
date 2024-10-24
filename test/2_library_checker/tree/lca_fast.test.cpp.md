@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/lca
@@ -410,13 +410,15 @@ data:
     \      pos[v] = a;\n      dat[a] = tree.LID[v];\n      dat[b] = (v == tree.V[0]\
     \ ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n  }\n\n  int\
     \ dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a] + tree.depth[b]\
-    \ - 2 * tree.depth[c];\n  }\n\n  int lca(int a, int b) {\n    int p = pos[a],\
-    \ q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p, q + 1)];\n\
-    \  }\n};\n#line 7 \"test/2_library_checker/tree/lca_fast.test.cpp\"\n\nvoid solve()\
-    \ {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(p,\
-    \ v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n  Fast_Lca<decltype(tree)>\
-    \ LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a, b));\n  }\n}\n\
-    \nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n  WT dist_weighted(int\
+    \ a, int b) {\n    int c = lca(a, b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b]\
+    \ - 2 * tree.depth_weighted[c];\n  }\n\n  int lca(int a, int b) {\n    int p =\
+    \ pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
+    \ q + 1)];\n  }\n};\n#line 7 \"test/2_library_checker/tree/lca_fast.test.cpp\"\
+    \n\nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n  \
+    \  INT(p);\n    G.add(p, v);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n\
+    \  Fast_Lca<decltype(tree)> LCA(tree);\n\n  FOR(Q) {\n    INT(a, b);\n    print(LCA.lca(a,\
+    \ b));\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/lca\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"graph/base.hpp\"\n#include \"graph/fast_lca.hpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  Graph<int, 1> G(N);\n  FOR(v, 1, N) {\n  \
@@ -434,8 +436,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/lca_fast.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-25 01:34:15+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/lca_fast.test.cpp
 layout: document

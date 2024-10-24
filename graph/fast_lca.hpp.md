@@ -15,12 +15,12 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/lca_fast.test.cpp
     title: test/2_library_checker/tree/lca_fast.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -221,9 +221,11 @@ data:
     \      pos[v] = a;\n      dat[a] = tree.LID[v];\n      dat[b] = (v == tree.V[0]\
     \ ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n  }\n\n  int\
     \ dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a] + tree.depth[b]\
-    \ - 2 * tree.depth[c];\n  }\n\n  int lca(int a, int b) {\n    int p = pos[a],\
-    \ q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p, q + 1)];\n\
-    \  }\n};\n"
+    \ - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n  WT dist_weighted(int\
+    \ a, int b) {\n    int c = lca(a, b);\n    return tree.depth_weighted[a] + tree.depth_weighted[b]\
+    \ - 2 * tree.depth_weighted[c];\n  }\n\n  int lca(int a, int b) {\n    int p =\
+    \ pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
+    \ q + 1)];\n  }\n};\n"
   code: "#include \"graph/tree.hpp\"\n#include \"alg/monoid/min.hpp\"\n#include \"\
     ds/sparse_table/sparse_table.hpp\"\n\ntemplate <typename TREE>\nstruct Fast_Lca\
     \ {\n  TREE& tree;\n  Sparse_Table<Monoid_Min<int>> seg;\n  vc<int> pos;\n\n \
@@ -232,9 +234,11 @@ data:
     \ int b = tree.ERID(v);\n      pos[v] = a;\n      dat[a] = tree.LID[v];\n    \
     \  dat[b] = (v == tree.V[0] ? -1 : tree.LID[tree.parent[v]]);\n    }\n    seg.build(dat);\n\
     \  }\n\n  int dist(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth[a]\
-    \ + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  int lca(int a, int b) {\n   \
-    \ int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n    return tree.V[seg.prod(p,\
-    \ q + 1)];\n  }\n};\n"
+    \ + tree.depth[b] - 2 * tree.depth[c];\n  }\n\n  using WT = typename TREE::WT;\n\
+    \  WT dist_weighted(int a, int b) {\n    int c = lca(a, b);\n    return tree.depth_weighted[a]\
+    \ + tree.depth_weighted[b] - 2 * tree.depth_weighted[c];\n  }\n\n  int lca(int\
+    \ a, int b) {\n    int p = pos[a], q = pos[b];\n    if (p > q) swap(p, q);\n \
+    \   return tree.V[seg.prod(p, q + 1)];\n  }\n};\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -243,8 +247,8 @@ data:
   isVerificationFile: false
   path: graph/fast_lca.hpp
   requiredBy: []
-  timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-10-25 01:34:15+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/lca_fast.test.cpp
 documentation_of: graph/fast_lca.hpp
