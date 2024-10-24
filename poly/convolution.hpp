@@ -5,7 +5,6 @@
 #include "poly/convolution_naive.hpp"
 #include "poly/convolution_karatsuba.hpp"
 #include "poly/ntt.hpp"
-#include "poly/fft.hpp"
 
 template <class mint>
 vector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {
@@ -63,78 +62,40 @@ vector<mint> convolution_garner(const vector<mint>& a, const vector<mint>& b) {
   return c;
 }
 
-template <typename R>
-vc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {
-  using C = CFFT::C;
-  int need = (int)a.size() + (int)b.size() - 1;
-  int nbase = 1;
-  while ((1 << nbase) < need) nbase++;
-  CFFT::ensure_base(nbase);
-  int sz = 1 << nbase;
-  vector<C> fa(sz);
-  for (int i = 0; i < sz; i++) {
-    double x = (i < (int)a.size() ? a[i] : 0);
-    double y = (i < (int)b.size() ? b[i] : 0);
-    fa[i] = C(x, y);
-  }
-  CFFT::fft(fa, sz);
-  C r(0, -0.25 / (sz >> 1)), s(0, 1), t(0.5, 0);
-  for (int i = 0; i <= (sz >> 1); i++) {
-    int j = (sz - i) & (sz - 1);
-    C z = (fa[j] * fa[j] - (fa[i] * fa[i]).conj()) * r;
-    fa[j] = (fa[i] * fa[i] - (fa[j] * fa[j]).conj()) * r;
-    fa[i] = z;
-  }
-  for (int i = 0; i < (sz >> 1); i++) {
-    C A0 = (fa[i] + fa[i + (sz >> 1)]) * t;
-    C A1 = (fa[i] - fa[i + (sz >> 1)]) * t * CFFT::rts[(sz >> 1) + i];
-    fa[i] = A0 + A1 * s;
-  }
-  CFFT::fft(fa, sz >> 1);
-  vector<double> ret(need);
-  for (int i = 0; i < need; i++) { ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x); }
-  return ret;
-}
-
-vector<ll> convolution(const vector<ll>& a, const vector<ll>& b) {
+vector<ll> convolution(vector<ll> a, vector<ll> b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
   if (min(n, m) <= 2500) return convolution_naive(a, b);
-  ll abs_sum_a = 0, abs_sum_b = 0;
-  ll LIM = 1e15;
-  FOR(i, n) abs_sum_a = min(LIM, abs_sum_a + abs(a[i]));
-  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));
-  if (i128(abs_sum_a) * abs_sum_b < 1e15) {
-    vc<double> c = convolution_fft<ll>(a, b);
-    vc<ll> res(len(c));
-    FOR(i, len(c)) res[i] = ll(floor(c[i] + .5));
-    return res;
+
+  ll mi_a = MIN(a), mi_b = MIN(b);
+  for (auto& x: a) x -= mi_a;
+  for (auto& x: b) x -= mi_b;
+  assert(MAX(a) * MAX(b) <= 1e18);
+
+  auto Ac = cumsum<ll>(a), Bc = cumsum<ll>(b);
+  vi res(n + m - 1);
+  for (int k = 0; k < n + m - 1; ++k) {
+    int s = max(0, k - m + 1);
+    int t = min(n, k + 1);
+    res[k] += (t - s) * mi_a * mi_b;
+    res[k] += mi_a * (Bc[k - s + 1] - Bc[k - t + 1]);
+    res[k] += mi_b * (Ac[t] - Ac[s]);
   }
 
-  static constexpr u32 MOD1 = 167772161; // 2^25
-  static constexpr u32 MOD2 = 469762049; // 2^26
-  static constexpr u32 MOD3 = 754974721; // 2^24
-
+  static constexpr u32 MOD1 = 1004535809;
+  static constexpr u32 MOD2 = 1012924417;
   using mint1 = modint<MOD1>;
   using mint2 = modint<MOD2>;
-  using mint3 = modint<MOD3>;
 
   vc<mint1> a1(n), b1(m);
   vc<mint2> a2(n), b2(m);
-  vc<mint3> a3(n), b3(m);
-  FOR(i, n) a1[i] = a[i], a2[i] = a[i], a3[i] = a[i];
-  FOR(i, m) b1[i] = b[i], b2[i] = b[i], b3[i] = b[i];
+  FOR(i, n) a1[i] = a[i], a2[i] = a[i];
+  FOR(i, m) b1[i] = b[i], b2[i] = b[i];
 
   auto c1 = convolution_ntt<mint1>(a1, b1);
   auto c2 = convolution_ntt<mint2>(a2, b2);
-  auto c3 = convolution_ntt<mint3>(a3, b3);
 
-  u128 prod = u128(MOD1) * MOD2 * MOD3;
-  vc<ll> res(n + m - 1);
-  FOR(i, n + m - 1) {
-    u128 x = CRT3<u128, MOD1, MOD2, MOD3>(c1[i].val, c2[i].val, c3[i].val);
-    res[i] = (x < prod / 2 ? ll(x) : -ll(prod - x));
-  }
+  FOR(i, n + m - 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }
   return res;
 }
 
