@@ -9,12 +9,15 @@ struct ConvexPolygon {
   using P = Point<T>;
   int n;
   vc<P> point;
+  T area2;
 
   ConvexPolygon(vc<P> point_) : n(len(point_)), point(point_) {
     assert(n >= 3);
+    area2 = 0;
     FOR(i, n) {
       int j = nxt_idx(i), k = nxt_idx(j);
       assert((point[j] - point[i]).det(point[k] - point[i]) >= 0);
+      area2 += point[i].det(point[j]);
     }
   }
 
@@ -101,8 +104,9 @@ struct ConvexPolygon {
 
   // point[i,...,j] (inclusive) の面積
   T area_between(int i, int j) {
-    assert(0 <= i && i < n);
-    assert((0 <= j && j < n) || (i <= j && j < i + n));
+    assert(i <= j && j <= i + n);
+    if (j == i + n) return area2;
+    i %= n, j %= n;
     if (i > j) j += n;
     if (AREA.empty()) build_AREA();
     return AREA[j] - AREA[i] + (point[j % n].det(point[i]));

@@ -7,16 +7,15 @@
 // 各ノードは、suffix array での長方形領域と見なして、
 // グラフおよび、領域データを作る。
 // sample: test/my_test/suffix_tree.test.cpp
-template <typename STRING>
+template <typename STRING, typename SUFFIX>
 struct Suffix_Tree {
   STRING& S;
-  Suffix_Array& X;
-  Suffix_Tree(STRING& S, Suffix_Array& X) : S(S), X(X) {}
+  SUFFIX& X;
+  Suffix_Tree(STRING& S, SUFFIX& X) : S(S), X(X) {}
 
   pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> build() {
-    auto SA = X.SA;
-    auto ISA = X.ISA;
-    auto LCP = X.LCP;
+    auto& SA = X.SA;
+    auto& LCP = X.LCP;
 
     vc<tuple<int, int, int, int>> dat;
     vc<pair<int, int>> edges;

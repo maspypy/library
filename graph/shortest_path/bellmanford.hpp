@@ -1,10 +1,11 @@
 #pragma once
 #include "graph/base.hpp"
 
-// 単一始点最短路。負閉路ありでもよい。O(NM) 時間。
+// END=true: 負閉路があれば終了して空配列を返す.
+// そうでない場合負閉路があっても全点への距離を計算する.
 // 到達不可能：infty<T>
 // 負閉路を経由していくらでも小さくできる：-infty<T>
-template <typename T, typename GT>
+template <typename T, bool END = true, typename GT>
 pair<vc<T>, vc<int>> BellmanFord(GT& G, int s) {
   int N = G.N;
   vc<T> dist(N, infty<T>);
@@ -19,14 +20,15 @@ pair<vc<T>, vc<int>> BellmanFord(GT& G, int s) {
       for (auto&& e: G[v]) {
         T before = dist[e.to];
         T after = dist[v] + e.cost;
-        if (dist[v] == -infty<T>) {
-          after = -infty<T>;
-        }
+        if (dist[v] == -infty<T>) { after = -infty<T>; }
         chmax(after, -infty<T>);
         if (before > after) {
           par[e.to] = v;
           upd = 1;
-          if (loop >= N) after = -infty<T>;
+          if (loop >= N) {
+            if constexpr (END) { return {{}, {}}; }
+            after = -infty<T>;
+          }
           dist[e.to] = after;
         }
       }

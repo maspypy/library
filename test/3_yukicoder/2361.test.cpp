@@ -40,7 +40,7 @@ void solve() {
   FOR(i, N) upd(i);
 
   vi ANS(Q);
-  Suffix_Tree<string> ST(S, X);
+  Suffix_Tree<string, decltype(X)> ST(S, X);
   vc<tuple<int, int, int, int>> rect;
   Graph<int, 1> G;
   tie(G, rect) = ST.build();
