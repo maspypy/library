@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_3_C.test.cpp
     title: test/4_aoj/DPL_3_C.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc234g.test.cpp
     title: test/5_atcoder/abc234g.test.cpp
   _isVerificationFailed: true

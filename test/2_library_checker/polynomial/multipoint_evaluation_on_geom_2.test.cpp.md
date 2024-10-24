@@ -35,9 +35,6 @@ data:
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':question:'
-    path: poly/fft.hpp
-    title: poly/fft.hpp
-  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
   - icon: ':question:'
@@ -60,9 +57,9 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/multipoint_evaluation_on_geometric_sequence
@@ -314,12 +311,11 @@ data:
     \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
     \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
     \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1004535809) return {21, 836905998};\n    if (mod == 1045430273)\
-    \ return {20, 363};\n    if (mod == 1051721729) return {20, 330};\n    if (mod\
-    \ == 1053818881) return {20, 2789};\n    return {-1, -1};\n  }\n  static constexpr\
-    \ bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate\
-    \ <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n\
-    \  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if (mod == 1012924417)\
+    \ return {21, 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool\
+    \ can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int\
+    \ mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  //\
+    \ assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
     using modint998 = modint<998244353>;\n#line 2 \"poly/multipoint.hpp\"\n\r\n#line\
     \ 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class\
@@ -476,30 +472,8 @@ data:
     \ c = convolution_karatsuba(f1, g1);\n  vc<T> F(len(f) + len(g) - 1);\n  assert(2\
     \ * m + len(b) <= len(F));\n  FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];\n  FOR(i,\
     \ len(b)) F[2 * m + i] += b[i], c[i] -= b[i];\n  if (c.back() == T(0)) c.pop_back();\n\
-    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 1\
-    \ \"poly/fft.hpp\"\nnamespace CFFT {\r\nusing real = double;\r\n\r\nstruct C {\r\
-    \n  real x, y;\r\n\r\n  C() : x(0), y(0) {}\r\n\r\n  C(real x, real y) : x(x),\
-    \ y(y) {}\r\n  inline C operator+(const C& c) const { return C(x + c.x, y + c.y);\
-    \ }\r\n  inline C operator-(const C& c) const { return C(x - c.x, y - c.y); }\r\
-    \n  inline C operator*(const C& c) const {\r\n    return C(x * c.x - y * c.y,\
-    \ x * c.y + y * c.x);\r\n  }\r\n\r\n  inline C conj() const { return C(x, -y);\
-    \ }\r\n};\r\n\r\nconst real PI = acosl(-1);\r\nint base = 1;\r\nvector<C> rts\
-    \ = {{0, 0}, {1, 0}};\r\nvector<int> rev = {0, 1};\r\n\r\nvoid ensure_base(int\
-    \ nbase) {\r\n  if (nbase <= base) return;\r\n  rev.resize(1 << nbase);\r\n  rts.resize(1\
-    \ << nbase);\r\n  for (int i = 0; i < (1 << nbase); i++) {\r\n    rev[i] = (rev[i\
-    \ >> 1] >> 1) + ((i & 1) << (nbase - 1));\r\n  }\r\n  while (base < nbase) {\r\
-    \n    real angle = PI * 2.0 / (1 << (base + 1));\r\n    for (int i = 1 << (base\
-    \ - 1); i < (1 << base); i++) {\r\n      rts[i << 1] = rts[i];\r\n      real angle_i\
-    \ = angle * (2 * i + 1 - (1 << base));\r\n      rts[(i << 1) + 1] = C(cos(angle_i),\
-    \ sin(angle_i));\r\n    }\r\n    ++base;\r\n  }\r\n}\r\n\r\nvoid fft(vector<C>&\
-    \ a, int n) {\r\n  assert((n & (n - 1)) == 0);\r\n  int zeros = __builtin_ctz(n);\r\
-    \n  ensure_base(zeros);\r\n  int shift = base - zeros;\r\n  for (int i = 0; i\
-    \ < n; i++) {\r\n    if (i < (rev[i] >> shift)) { swap(a[i], a[rev[i] >> shift]);\
-    \ }\r\n  }\r\n  for (int k = 1; k < n; k <<= 1) {\r\n    for (int i = 0; i < n;\
-    \ i += 2 * k) {\r\n      for (int j = 0; j < k; j++) {\r\n        C z = a[i +\
-    \ j + k] * rts[j + k];\r\n        a[i + j + k] = a[i + j] - z;\r\n        a[i\
-    \ + j] = a[i + j] + z;\r\n      }\r\n    }\r\n  }\r\n}\r\n} // namespace CFFT\n\
-    #line 9 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint>\
+    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 8\
+    \ \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\nvector<mint> convolution_ntt(vector<mint>\
     \ a, vector<mint> b) {\r\n  if (a.empty() || b.empty()) return {};\r\n  int n\
     \ = int(a.size()), m = int(b.size());\r\n  int sz = 1;\r\n  while (sz < n + m\
     \ - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\u3068\u304D\u306E\u9AD8\u901F\u5316\
@@ -522,47 +496,29 @@ data:
     \ b1[i] = b[i].val, b2[i] = b[i].val;\r\n  auto c0 = convolution_ntt<mint0>(a0,\
     \ b0);\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
     \ b2);\r\n  vc<mint> c(len(c0));\r\n  FOR(i, n + m - 1) { c[i] = CRT3<mint, p0,\
-    \ p1, p2>(c0[i].val, c1[i].val, c2[i].val); }\r\n  return c;\r\n}\r\n\r\ntemplate\
-    \ <typename R>\r\nvc<double> convolution_fft(const vc<R>& a, const vc<R>& b) {\r\
-    \n  using C = CFFT::C;\r\n  int need = (int)a.size() + (int)b.size() - 1;\r\n\
-    \  int nbase = 1;\r\n  while ((1 << nbase) < need) nbase++;\r\n  CFFT::ensure_base(nbase);\r\
-    \n  int sz = 1 << nbase;\r\n  vector<C> fa(sz);\r\n  for (int i = 0; i < sz; i++)\
-    \ {\r\n    double x = (i < (int)a.size() ? a[i] : 0);\r\n    double y = (i < (int)b.size()\
-    \ ? b[i] : 0);\r\n    fa[i] = C(x, y);\r\n  }\r\n  CFFT::fft(fa, sz);\r\n  C r(0,\
-    \ -0.25 / (sz >> 1)), s(0, 1), t(0.5, 0);\r\n  for (int i = 0; i <= (sz >> 1);\
-    \ i++) {\r\n    int j = (sz - i) & (sz - 1);\r\n    C z = (fa[j] * fa[j] - (fa[i]\
-    \ * fa[i]).conj()) * r;\r\n    fa[j] = (fa[i] * fa[i] - (fa[j] * fa[j]).conj())\
-    \ * r;\r\n    fa[i] = z;\r\n  }\r\n  for (int i = 0; i < (sz >> 1); i++) {\r\n\
-    \    C A0 = (fa[i] + fa[i + (sz >> 1)]) * t;\r\n    C A1 = (fa[i] - fa[i + (sz\
-    \ >> 1)]) * t * CFFT::rts[(sz >> 1) + i];\r\n    fa[i] = A0 + A1 * s;\r\n  }\r\
-    \n  CFFT::fft(fa, sz >> 1);\r\n  vector<double> ret(need);\r\n  for (int i = 0;\
-    \ i < need; i++) { ret[i] = (i & 1 ? fa[i >> 1].y : fa[i >> 1].x); }\r\n  return\
-    \ ret;\r\n}\r\n\r\nvector<ll> convolution(const vector<ll>& a, const vector<ll>&\
-    \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
-    \ (min(n, m) <= 2500) return convolution_naive(a, b);\r\n  ll abs_sum_a = 0, abs_sum_b\
-    \ = 0;\r\n  ll LIM = 1e15;\r\n  FOR(i, n) abs_sum_a = min(LIM, abs_sum_a + abs(a[i]));\r\
-    \n  FOR(i, m) abs_sum_b = min(LIM, abs_sum_b + abs(b[i]));\r\n  if (i128(abs_sum_a)\
-    \ * abs_sum_b < 1e15) {\r\n    vc<double> c = convolution_fft<ll>(a, b);\r\n \
-    \   vc<ll> res(len(c));\r\n    FOR(i, len(c)) res[i] = ll(floor(c[i] + .5));\r\
-    \n    return res;\r\n  }\r\n\r\n  static constexpr u32 MOD1 = 167772161; // 2^25\r\
-    \n  static constexpr u32 MOD2 = 469762049; // 2^26\r\n  static constexpr u32 MOD3\
-    \ = 754974721; // 2^24\r\n\r\n  using mint1 = modint<MOD1>;\r\n  using mint2 =\
-    \ modint<MOD2>;\r\n  using mint3 = modint<MOD3>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\
-    \n  vc<mint2> a2(n), b2(m);\r\n  vc<mint3> a3(n), b3(m);\r\n  FOR(i, n) a1[i]\
-    \ = a[i], a2[i] = a[i], a3[i] = a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i],\
-    \ b3[i] = b[i];\r\n\r\n  auto c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2\
-    \ = convolution_ntt<mint2>(a2, b2);\r\n  auto c3 = convolution_ntt<mint3>(a3,\
-    \ b3);\r\n\r\n  u128 prod = u128(MOD1) * MOD2 * MOD3;\r\n  vc<ll> res(n + m -\
-    \ 1);\r\n  FOR(i, n + m - 1) {\r\n    u128 x = CRT3<u128, MOD1, MOD2, MOD3>(c1[i].val,\
-    \ c2[i].val, c3[i].val);\r\n    res[i] = (x < prod / 2 ? ll(x) : -ll(prod - x));\r\
-    \n  }\r\n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const\
-    \ vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n\
-    \ || !m) return {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n    return convolution_ntt(a, b);\r\n\
-    \  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a, b);\r\n\
-    \  return convolution_garner(a, b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\n\r\n\
-    template <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\n \
-    \ int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] !=\
+    \ p1, p2>(c0[i].val, c1[i].val, c2[i].val); }\r\n  return c;\r\n}\r\n\r\nvector<ll>\
+    \ convolution(vector<ll> a, vector<ll> b) {\r\n  int n = len(a), m = len(b);\r\
+    \n  if (!n || !m) return {};\r\n  if (min(n, m) <= 2500) return convolution_naive(a,\
+    \ b);\r\n\r\n  ll mi_a = MIN(a), mi_b = MIN(b);\r\n  for (auto& x: a) x -= mi_a;\r\
+    \n  for (auto& x: b) x -= mi_b;\r\n  assert(MAX(a) * MAX(b) <= 1e18);\r\n\r\n\
+    \  auto Ac = cumsum<ll>(a), Bc = cumsum<ll>(b);\r\n  vi res(n + m - 1);\r\n  for\
+    \ (int k = 0; k < n + m - 1; ++k) {\r\n    int s = max(0, k - m + 1);\r\n    int\
+    \ t = min(n, k + 1);\r\n    res[k] += (t - s) * mi_a * mi_b;\r\n    res[k] +=\
+    \ mi_a * (Bc[k - s + 1] - Bc[k - t + 1]);\r\n    res[k] += mi_b * (Ac[t] - Ac[s]);\r\
+    \n  }\r\n\r\n  static constexpr u32 MOD1 = 1004535809;\r\n  static constexpr u32\
+    \ MOD2 = 1012924417;\r\n  using mint1 = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\
+    \n\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a1[i]\
+    \ = a[i], a2[i] = a[i];\r\n  FOR(i, m) b1[i] = b[i], b2[i] = b[i];\r\n\r\n  auto\
+    \ c1 = convolution_ntt<mint1>(a1, b1);\r\n  auto c2 = convolution_ntt<mint2>(a2,\
+    \ b2);\r\n\r\n  FOR(i, n + m - 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val,\
+    \ c2[i].val); }\r\n  return res;\r\n}\r\n\r\ntemplate <typename mint>\r\nvc<mint>\
+    \ convolution(const vc<mint>& a, const vc<mint>& b) {\r\n  int n = len(a), m =\
+    \ len(b);\r\n  if (!n || !m) return {};\r\n  if (mint::can_ntt()) {\r\n    if\
+    \ (min(n, m) <= 50) return convolution_karatsuba<mint>(a, b);\r\n    return convolution_ntt(a,\
+    \ b);\r\n  }\r\n  if (min(n, m) <= 200) return convolution_karatsuba<mint>(a,\
+    \ b);\r\n  return convolution_garner(a, b);\r\n}\r\n#line 4 \"poly/fps_inv.hpp\"\
+    \n\r\ntemplate <typename mint>\r\nvc<mint> fps_inv_sparse(const vc<mint>& f) {\r\
+    \n  int N = len(f);\r\n  vc<pair<int, mint>> dat;\r\n  FOR(i, 1, N) if (f[i] !=\
     \ mint(0)) dat.eb(i, f[i]);\r\n  vc<mint> g(N);\r\n  mint g0 = mint(1) / f[0];\r\
     \n  g[0] = g0;\r\n  FOR(n, 1, N) {\r\n    mint rhs = 0;\r\n    for (auto&& [k,\
     \ fk]: dat) {\r\n      if (k > n) break;\r\n      rhs -= fk * g[n - k];\r\n  \
@@ -765,14 +721,13 @@ data:
   - mod/mod_inv.hpp
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
-  - poly/fft.hpp
   - poly/ntt_doubling.hpp
   - poly/transposed_ntt.hpp
   isVerificationFile: true
   path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   requiredBy: []
-  timestamp: '2024-10-11 20:53:53+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-25 01:17:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
 layout: document

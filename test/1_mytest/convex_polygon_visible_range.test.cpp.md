@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -187,63 +187,63 @@ data:
     \ 2 && XY[P[0]] == XY[P.back()]) P.pop_back();\n  return P;\n}\n#line 2 \"geo/convex_polygon.hpp\"\
     \n\n#line 5 \"geo/convex_polygon.hpp\"\n\n// n=2 \u306F\u73FE\u72B6\u30B5\u30DD\
     \u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\ntemplate <typename T>\nstruct ConvexPolygon\
-    \ {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n\n  ConvexPolygon(vc<P>\
-    \ point_) : n(len(point_)), point(point_) {\n    assert(n >= 3);\n    FOR(i, n)\
-    \ {\n      int j = nxt_idx(i), k = nxt_idx(j);\n      assert((point[j] - point[i]).det(point[k]\
-    \ - point[i]) >= 0);\n    }\n  }\n\n  // \u6BD4\u8F03\u95A2\u6570 comp(i,j)\n\
-    \  template <typename F>\n  int periodic_min_comp(F comp) {\n    int L = 0, M\
-    \ = n, R = n + n;\n    while (1) {\n      if (R - L == 2) break;\n      int L1\
-    \ = (L + M) / 2, R1 = (M + R + 1) / 2;\n      if (comp(L1 % n, M % n)) { R = M,\
-    \ M = L1; }\n      elif (comp(R1 % n, M % n)) { L = M, M = R1; }\n      else {\n\
-    \        L = L1, R = R1;\n      }\n    }\n    return M % n;\n  }\n\n  int nxt_idx(int\
-    \ i) { return (i + 1 == n ? 0 : i + 1); }\n  int prev_idx(int i) { return (i ==\
-    \ 0 ? n - 1 : i - 1); }\n\n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A\
-    -1. test \u3057\u305F.\n  int side(P p) {\n    int L = 1, R = n - 1;\n    T a\
-    \ = (point[L] - point[0]).det(p - point[0]);\n    T b = (point[R] - point[0]).det(p\
-    \ - point[0]);\n    if (a < 0 || b > 0) return -1;\n    // p \u306F 0 \u304B\u3089\
-    \u898B\u3066 [L,R] \u65B9\u5411\n    while (R - L >= 2) {\n      int M = (L +\
-    \ R) / 2;\n      T c = (point[M] - point[0]).det(p - point[0]);\n      if (c <\
-    \ 0)\n        R = M, b = c;\n      else\n        L = M, a = c;\n    }\n    T c\
-    \ = (point[R] - point[L]).det(p - point[L]);\n    T x = min({a, -b, c});\n   \
-    \ if (x < 0) return -1;\n    if (x > 0) return 1;\n    // on triangle p[0]p[L]p[R]\n\
-    \    if (p == point[0]) return 0;\n    if (c != 0 && a == 0 && L != 1) return\
-    \ 1;\n    if (c != 0 && b == 0 && R != n - 1) return 1;\n    return 0;\n  }\n\n\
-    \  // return {min, idx}. test \u3057\u305F.\n  pair<T, int> min_dot(P p) {\n \
-    \   int idx = periodic_min_comp([&](int i, int j) -> bool { return point[i].dot(p)\
-    \ < point[j].dot(p); });\n    return {point[idx].dot(p), idx};\n  }\n\n  // return\
-    \ {max, idx}. test \u3057\u305F.\n  pair<T, int> max_dot(P p) {\n    int idx =\
-    \ periodic_min_comp([&](int i, int j) -> bool { return point[i].dot(p) > point[j].dot(p);\
-    \ });\n    return {point[idx].dot(p), idx};\n  }\n\n  // p \u304B\u3089\u898B\u3048\
-    \u308B\u7BC4\u56F2. p \u8FBA\u306B\u6CBF\u3063\u3066\u898B\u3048\u308B\u3068\u3053\
-    \u308D\u3082\u898B\u3048\u308B\u3068\u3059\u308B. test \u3057\u305F.\n  // \u591A\
-    \u89D2\u5F62\u304B\u3089\u306E\u53CD\u6642\u8A08\u9806\u306F [l,r] \u3060\u304C\
-    \ p \u304B\u3089\u898B\u305F\u504F\u89D2\u9806\u306F [r,l] \u306A\u306E\u3067\u6CE8\
-    \u610F\n  pair<int, int> visible_range(P p) {\n    int a = periodic_min_comp([&](int\
-    \ i, int j) -> bool { return ((point[i] - p).det(point[j] - p) < 0); });\n   \
-    \ int b = periodic_min_comp([&](int i, int j) -> bool { return ((point[i] - p).det(point[j]\
-    \ - p) > 0); });\n    if ((p - point[a]).det(p - point[prev_idx(a)]) == T(0))\
-    \ a = prev_idx(a);\n    if ((p - point[b]).det(p - point[nxt_idx(b)]) == T(0))\
-    \ b = nxt_idx(b);\n    return {a, b};\n  }\n\n  // \u7DDA\u5206\u304C\u300C\u5185\
-    \u90E8\u3068\u300D\u4EA4\u308F\u308B\u304B\n  // https://codeforces.com/contest/1906/problem/D\n\
-    \  bool check_cross(P A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a,\
-    \ b] = visible_range(A);\n      if ((point[a] - A).det(B - A) >= 0) return 0;\n\
-    \      if ((point[b] - A).det(B - A) <= 0) return 0;\n    }\n    return 1;\n \
-    \ }\n\n  vc<T> AREA;\n\n  // point[i,...,j] (inclusive) \u306E\u9762\u7A4D\n \
-    \ T area_between(int i, int j) {\n    assert(0 <= i && i < n);\n    assert((0\
-    \ <= j && j < n) || (i <= j && j < i + n));\n    if (i > j) j += n;\n    if (AREA.empty())\
-    \ build_AREA();\n    return AREA[j] - AREA[i] + (point[j % n].det(point[i]));\n\
-    \  }\n\n  void build_AREA() {\n    AREA.resize(2 * n);\n    FOR(i, n) AREA[n +\
-    \ i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n    AREA = cumsum<T>(AREA);\n\
-    \  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\u51F8\u5305\
-    \ntemplate <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower\
-    \ {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\
-    \n  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
-    \ typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v,\
-    \ ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n\
-    \    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n\
-    \    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n    \
-    \  while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n   \
-    \       left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
+    \ {\n  using P = Point<T>;\n  int n;\n  vc<P> point;\n  T area2;\n\n  ConvexPolygon(vc<P>\
+    \ point_) : n(len(point_)), point(point_) {\n    assert(n >= 3);\n    area2 =\
+    \ 0;\n    FOR(i, n) {\n      int j = nxt_idx(i), k = nxt_idx(j);\n      assert((point[j]\
+    \ - point[i]).det(point[k] - point[i]) >= 0);\n      area2 += point[i].det(point[j]);\n\
+    \    }\n  }\n\n  // \u6BD4\u8F03\u95A2\u6570 comp(i,j)\n  template <typename F>\n\
+    \  int periodic_min_comp(F comp) {\n    int L = 0, M = n, R = n + n;\n    while\
+    \ (1) {\n      if (R - L == 2) break;\n      int L1 = (L + M) / 2, R1 = (M + R\
+    \ + 1) / 2;\n      if (comp(L1 % n, M % n)) { R = M, M = L1; }\n      elif (comp(R1\
+    \ % n, M % n)) { L = M, M = R1; }\n      else {\n        L = L1, R = R1;\n   \
+    \   }\n    }\n    return M % n;\n  }\n\n  int nxt_idx(int i) { return (i + 1 ==\
+    \ n ? 0 : i + 1); }\n  int prev_idx(int i) { return (i == 0 ? n - 1 : i - 1);\
+    \ }\n\n  // \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A-1. test \u3057\u305F\
+    .\n  int side(P p) {\n    int L = 1, R = n - 1;\n    T a = (point[L] - point[0]).det(p\
+    \ - point[0]);\n    T b = (point[R] - point[0]).det(p - point[0]);\n    if (a\
+    \ < 0 || b > 0) return -1;\n    // p \u306F 0 \u304B\u3089\u898B\u3066 [L,R] \u65B9\
+    \u5411\n    while (R - L >= 2) {\n      int M = (L + R) / 2;\n      T c = (point[M]\
+    \ - point[0]).det(p - point[0]);\n      if (c < 0)\n        R = M, b = c;\n  \
+    \    else\n        L = M, a = c;\n    }\n    T c = (point[R] - point[L]).det(p\
+    \ - point[L]);\n    T x = min({a, -b, c});\n    if (x < 0) return -1;\n    if\
+    \ (x > 0) return 1;\n    // on triangle p[0]p[L]p[R]\n    if (p == point[0]) return\
+    \ 0;\n    if (c != 0 && a == 0 && L != 1) return 1;\n    if (c != 0 && b == 0\
+    \ && R != n - 1) return 1;\n    return 0;\n  }\n\n  // return {min, idx}. test\
+    \ \u3057\u305F.\n  pair<T, int> min_dot(P p) {\n    int idx = periodic_min_comp([&](int\
+    \ i, int j) -> bool { return point[i].dot(p) < point[j].dot(p); });\n    return\
+    \ {point[idx].dot(p), idx};\n  }\n\n  // return {max, idx}. test \u3057\u305F\
+    .\n  pair<T, int> max_dot(P p) {\n    int idx = periodic_min_comp([&](int i, int\
+    \ j) -> bool { return point[i].dot(p) > point[j].dot(p); });\n    return {point[idx].dot(p),\
+    \ idx};\n  }\n\n  // p \u304B\u3089\u898B\u3048\u308B\u7BC4\u56F2. p \u8FBA\u306B\
+    \u6CBF\u3063\u3066\u898B\u3048\u308B\u3068\u3053\u308D\u3082\u898B\u3048\u308B\
+    \u3068\u3059\u308B. test \u3057\u305F.\n  // \u591A\u89D2\u5F62\u304B\u3089\u306E\
+    \u53CD\u6642\u8A08\u9806\u306F [l,r] \u3060\u304C p \u304B\u3089\u898B\u305F\u504F\
+    \u89D2\u9806\u306F [r,l] \u306A\u306E\u3067\u6CE8\u610F\n  pair<int, int> visible_range(P\
+    \ p) {\n    int a = periodic_min_comp([&](int i, int j) -> bool { return ((point[i]\
+    \ - p).det(point[j] - p) < 0); });\n    int b = periodic_min_comp([&](int i, int\
+    \ j) -> bool { return ((point[i] - p).det(point[j] - p) > 0); });\n    if ((p\
+    \ - point[a]).det(p - point[prev_idx(a)]) == T(0)) a = prev_idx(a);\n    if ((p\
+    \ - point[b]).det(p - point[nxt_idx(b)]) == T(0)) b = nxt_idx(b);\n    return\
+    \ {a, b};\n  }\n\n  // \u7DDA\u5206\u304C\u300C\u5185\u90E8\u3068\u300D\u4EA4\u308F\
+    \u308B\u304B\n  // https://codeforces.com/contest/1906/problem/D\n  bool check_cross(P\
+    \ A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a, b] = visible_range(A);\n\
+    \      if ((point[a] - A).det(B - A) >= 0) return 0;\n      if ((point[b] - A).det(B\
+    \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n\n  vc<T> AREA;\n\n  // point[i,...,j]\
+    \ (inclusive) \u306E\u9762\u7A4D\n  T area_between(int i, int j) {\n    assert(i\
+    \ <= j && j <= i + n);\n    if (j == i + n) return area2;\n    i %= n, j %= n;\n\
+    \    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
+    \ - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA() {\n  \
+    \  AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\
+    \n\n// \u4E0B\u5074\u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct\
+    \ IncrementalConvexHull_Lower {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower()\
+    \ {}\n\n  int size() { return len(S); }\n\n  template <typename ADD_V, typename\
+    \ RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V\
+    \ rm_v, ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >=\
+    \ 0) return;\n    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n\
+    \    add_v(p);\n    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n\
+    \      while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n\
+    \          left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
     \        auto b = left.back();\n        T det = (b - a).det(p - a);\n        if\
     \ (strict && det > 0) break;\n        if (!strict && det >= 0) break;\n      \
     \  left.eb(a);\n      }\n    }\n\n    vc<P> right;\n    {\n      auto it = S.find(p);\n\
@@ -332,7 +332,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/convex_polygon_visible_range.test.cpp
   requiredBy: []
-  timestamp: '2024-10-20 23:29:28+09:00'
+  timestamp: '2024-10-25 01:17:46+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/convex_polygon_visible_range.test.cpp

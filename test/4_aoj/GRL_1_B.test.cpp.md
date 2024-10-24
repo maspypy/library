@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
@@ -270,26 +270,29 @@ data:
     \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
     \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
     \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 3 \"graph/shortest_path/bellmanford.hpp\"\
-    \n\n// \u5358\u4E00\u59CB\u70B9\u6700\u77ED\u8DEF\u3002\u8CA0\u9589\u8DEF\u3042\
-    \u308A\u3067\u3082\u3088\u3044\u3002O(NM) \u6642\u9593\u3002\n// \u5230\u9054\u4E0D\
-    \u53EF\u80FD\uFF1Ainfty<T>\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\
-    \u3044\u304F\u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-infty<T>\n\
-    template <typename T, typename GT>\npair<vc<T>, vc<int>> BellmanFord(GT& G, int\
-    \ s) {\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  dist[s]\
-    \ = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v,\
-    \ N) {\n      if (dist[v] == infty<T>) continue;\n      for (auto&& e: G[v]) {\n\
-    \        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n       \
-    \ if (dist[v] == -infty<T>) {\n          after = -infty<T>;\n        }\n     \
-    \   chmax(after, -infty<T>);\n        if (before > after) {\n          par[e.to]\
-    \ = v;\n          upd = 1;\n          if (loop >= N) after = -infty<T>;\n    \
-    \      dist[e.to] = after;\n        }\n      }\n    }\n    if (!upd) break;\n\
-    \  }\n  return {dist, par};\n}\n#line 6 \"test/4_aoj/GRL_1_B.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n\
-    \n  auto [dist, par] = BellmanFord<int>(G, s);\n  if (MIN(dist) == -infty<int>)\
-    \ { return print(\"NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x ==\
-    \ infty<int>)\n      print(\"INF\");\n    else\n      print(x);\n  }\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \n\n// END=true: \u8CA0\u9589\u8DEF\u304C\u3042\u308C\u3070\u7D42\u4E86\u3057\u3066\
+    \u7A7A\u914D\u5217\u3092\u8FD4\u3059.\n// \u305D\u3046\u3067\u306A\u3044\u5834\
+    \u5408\u8CA0\u9589\u8DEF\u304C\u3042\u3063\u3066\u3082\u5168\u70B9\u3078\u306E\
+    \u8DDD\u96E2\u3092\u8A08\u7B97\u3059\u308B.\n// \u5230\u9054\u4E0D\u53EF\u80FD\
+    \uFF1Ainfty<T>\n// \u8CA0\u9589\u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\u304F\
+    \u3089\u3067\u3082\u5C0F\u3055\u304F\u3067\u304D\u308B\uFF1A-infty<T>\ntemplate\
+    \ <typename T, bool END = true, typename GT>\npair<vc<T>, vc<int>> BellmanFord(GT&\
+    \ G, int s) {\n  int N = G.N;\n  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n\
+    \  dist[s] = 0;\n  int loop = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n\
+    \    FOR(v, N) {\n      if (dist[v] == infty<T>) continue;\n      for (auto&&\
+    \ e: G[v]) {\n        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n\
+    \        if (dist[v] == -infty<T>) { after = -infty<T>; }\n        chmax(after,\
+    \ -infty<T>);\n        if (before > after) {\n          par[e.to] = v;\n     \
+    \     upd = 1;\n          if (loop >= N) {\n            if constexpr (END) { return\
+    \ {{}, {}}; }\n            after = -infty<T>;\n          }\n          dist[e.to]\
+    \ = after;\n        }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist,\
+    \ par};\n}\n#line 6 \"test/4_aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N,\
+    \ M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist, par]\
+    \ = BellmanFord<int>(G, s);\n  if (MIN(dist) == -infty<int>) { return print(\"\
+    NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x == infty<int>)\n   \
+    \   print(\"INF\");\n    else\n      print(x);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
+    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
+    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/bellmanford.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1,\
@@ -306,8 +309,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-10-25 01:17:46+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_1_B.test.cpp
 layout: document
