@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
   - icon: ':question:'
@@ -21,22 +21,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
   - icon: ':x:'

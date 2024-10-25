@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -160,7 +160,7 @@ data:
   path: ds/segtree/range_assignment_segtree.hpp
   requiredBy: []
   timestamp: '2024-08-08 00:31:55+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_assign.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp

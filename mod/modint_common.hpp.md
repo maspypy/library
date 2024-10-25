@@ -11,7 +11,7 @@ data:
   - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':heavy_check_mark:'
@@ -326,7 +326,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
   - icon: ':question:'
@@ -353,7 +353,7 @@ data:
   - icon: ':x:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':x:'
@@ -678,73 +678,73 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
     title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
     title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factori998.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/enumerate_cliques.test.cpp
     title: test/2_library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/incremental_scc.test.cpp
     title: test/2_library_checker/graph/incremental_scc.test.cpp
   - icon: ':x:'
