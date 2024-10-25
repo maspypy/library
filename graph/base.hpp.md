@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -293,7 +293,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':question:'
@@ -320,9 +320,6 @@ data:
   - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.cpp
-    title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/QOJ5445.test.cpp
@@ -339,6 +336,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/enumerate_labeled_tree.test.cpp
+    title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
@@ -603,7 +603,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1418.test.cpp
     title: test/3_yukicoder/1418.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1451.test.cpp
     title: test/3_yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
@@ -615,10 +615,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1524.test.cpp
     title: test/3_yukicoder/1524.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1034,7 +1034,6 @@ data:
   requiredBy:
   - random/random_graph.hpp
   - game/graph_game.hpp
-  - test/1_mytest/enumerate_labeled_tree.cpp
   - enumerate/labeled_tree.hpp
   - enumerate/triangle.hpp
   - string/suffix_tree.hpp
@@ -1256,6 +1255,7 @@ data:
   - test/5_atcoder/abc160f.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
+  - test/1_mytest/enumerate_labeled_tree.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/find_C4.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp

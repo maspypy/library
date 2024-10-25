@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':question:'
@@ -27,6 +27,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/problemset/problem/119/E
+    - https://qoj.ac/contest/1452/problem/7934
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
     \  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n\
     \  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n  Point(pair<A,\
@@ -84,7 +85,7 @@ data:
     \ T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n\
     \    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 1 \"geo/triangle_area.hpp\"\n\
     template <typename REAL, typename T>\nREAL triangle_area(Point<T> A, Point<T>\
-    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 3 \"geo/outcircle.hpp\"\
+    \ B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line 4 \"geo/outcircle.hpp\"\
     \n\ntemplate <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
     \ B, Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x -\
     \ A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1\
@@ -104,40 +105,52 @@ data:
     \ += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);\n  if (det ==\
     \ 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n#line 4 \"geo/minimum_enclosing_circle.hpp\"\
     \n\n// randomize \u3092\u5229\u7528\u3057\u305F expected O(N) \u30A2\u30EB\u30B4\
-    \u30EA\u30BA\u30E0\n// https://codeforces.com/problemset/problem/119/E\n// \u4F7F\
-    \u3046\u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u304B\u3048\
-    \u3059 {0} or {i,j,-1} or {i,j,k}\n// Computational Geometry, Section 4.7\ntemplate\
-    \ <typename T>\ntuple<int, int, int> minimum_enclosing_circle(vc<Point<T>> points)\
-    \ {\n  const int n = len(points);\n  assert(n >= 1);\n  if (n == 1) return {0,\
-    \ -1, -1};\n  vc<int> I(n);\n  FOR(i, n) I[i] = i;\n  shuffle(I);\n\n  points\
-    \ = rearrange(points, I);\n\n  tuple<int, int, int> c = {0, -1, -1};\n  auto contain\
-    \ = [&](Point<T> p) -> bool {\n    auto [i, j, k] = c;\n    if (j == -1) { return\
-    \ p == points[i]; }\n    if (k == -1) { return (points[i] - p).dot(points[j] -\
-    \ p) <= 0; }\n    return outcircle_side(points[i], points[j], points[k], p) >=\
-    \ 0;\n  };\n\n  FOR(i, 1, n) {\n    if (contain(points[i])) continue;\n    c =\
-    \ {0, i, -1};\n    FOR(j, 1, i) {\n      if (contain(points[j])) continue;\n \
-    \     c = {i, j, -1};\n      FOR(k, j) {\n        if (contain(points[k])) continue;\n\
-    \        c = {i, j, k};\n      }\n    }\n  }\n  auto [i, j, k] = c;\n  if (i !=\
-    \ -1) i = I[i];\n  if (j != -1) j = I[j];\n  if (k != -1) k = I[k];\n  return\
-    \ {i, j, k};\n}\n"
+    \u30EA\u30BA\u30E0\n// \u5EA7\u6A19\u306E 4 \u4E57\u304C\u767B\u5834\uFF01\u30AA\
+    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u6CE8\u610F\uFF01\n// return: {C,0,-1,-1}\
+    \ or {C,i,j,-1} or {C,i,j,k}\n// https://codeforces.com/problemset/problem/119/E\n\
+    // https://qoj.ac/contest/1452/problem/7934\ntemplate <typename REAL, typename\
+    \ T>\ntuple<Circle<REAL>, int, int, int> minimum_enclosing_circle(vc<Point<T>>\
+    \ points) {\n  const int n = len(points);\n  assert(n >= 1);\n  if (n == 1) {\n\
+    \    Circle<REAL> C(points[0].x, points[0].y, 0);\n    return {C, 0, -1, -1};\n\
+    \  }\n  vc<int> I(n);\n  FOR(i, n) I[i] = i;\n  shuffle(I);\n\n  points = rearrange(points,\
+    \ I);\n\n  tuple<int, int, int> c = {0, -1, -1};\n  auto contain = [&](Point<T>\
+    \ p) -> bool {\n    auto [i, j, k] = c;\n    if (j == -1) { return p == points[i];\
+    \ }\n    if (k == -1) { return (points[i] - p).dot(points[j] - p) <= 0; }\n  \
+    \  return outcircle_side(points[i], points[j], points[k], p) >= 0;\n  };\n\n \
+    \ FOR(i, 1, n) {\n    if (contain(points[i])) continue;\n    c = {0, i, -1};\n\
+    \    FOR(j, 1, i) {\n      if (contain(points[j])) continue;\n      c = {i, j,\
+    \ -1};\n      FOR(k, j) {\n        if (contain(points[k])) continue;\n       \
+    \ c = {i, j, k};\n      }\n    }\n  }\n  auto [i, j, k] = c;\n  if (k == -1) {\n\
+    \    REAL x1 = points[i].x;\n    REAL y1 = points[i].y;\n    REAL x2 = points[j].x;\n\
+    \    REAL y2 = points[j].y;\n    Point<REAL> O = {0.5 * (x1 + x2), 0.5 * (y1 +\
+    \ y2)};\n    REAL r = sqrtl((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) / 2;\n\
+    \    Circle<REAL> C(O, r);\n    return {C, I[i], I[j], -1};\n  }\n  Circle<REAL>\
+    \ C = outcircle<REAL>(points[i], points[j], points[k]);\n  return {C, I[i], I[j],\
+    \ I[k]};\n}\n"
   code: "#include \"geo/base.hpp\"\n#include \"random/shuffle.hpp\"\n#include \"geo/outcircle.hpp\"\
     \n\n// randomize \u3092\u5229\u7528\u3057\u305F expected O(N) \u30A2\u30EB\u30B4\
-    \u30EA\u30BA\u30E0\n// https://codeforces.com/problemset/problem/119/E\n// \u4F7F\
-    \u3046\u9802\u70B9\u306E\u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u304B\u3048\
-    \u3059 {0} or {i,j,-1} or {i,j,k}\n// Computational Geometry, Section 4.7\ntemplate\
-    \ <typename T>\ntuple<int, int, int> minimum_enclosing_circle(vc<Point<T>> points)\
-    \ {\n  const int n = len(points);\n  assert(n >= 1);\n  if (n == 1) return {0,\
-    \ -1, -1};\n  vc<int> I(n);\n  FOR(i, n) I[i] = i;\n  shuffle(I);\n\n  points\
-    \ = rearrange(points, I);\n\n  tuple<int, int, int> c = {0, -1, -1};\n  auto contain\
-    \ = [&](Point<T> p) -> bool {\n    auto [i, j, k] = c;\n    if (j == -1) { return\
-    \ p == points[i]; }\n    if (k == -1) { return (points[i] - p).dot(points[j] -\
-    \ p) <= 0; }\n    return outcircle_side(points[i], points[j], points[k], p) >=\
-    \ 0;\n  };\n\n  FOR(i, 1, n) {\n    if (contain(points[i])) continue;\n    c =\
-    \ {0, i, -1};\n    FOR(j, 1, i) {\n      if (contain(points[j])) continue;\n \
-    \     c = {i, j, -1};\n      FOR(k, j) {\n        if (contain(points[k])) continue;\n\
-    \        c = {i, j, k};\n      }\n    }\n  }\n  auto [i, j, k] = c;\n  if (i !=\
-    \ -1) i = I[i];\n  if (j != -1) j = I[j];\n  if (k != -1) k = I[k];\n  return\
-    \ {i, j, k};\n}"
+    \u30EA\u30BA\u30E0\n// \u5EA7\u6A19\u306E 4 \u4E57\u304C\u767B\u5834\uFF01\u30AA\
+    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u6CE8\u610F\uFF01\n// return: {C,0,-1,-1}\
+    \ or {C,i,j,-1} or {C,i,j,k}\n// https://codeforces.com/problemset/problem/119/E\n\
+    // https://qoj.ac/contest/1452/problem/7934\ntemplate <typename REAL, typename\
+    \ T>\ntuple<Circle<REAL>, int, int, int> minimum_enclosing_circle(vc<Point<T>>\
+    \ points) {\n  const int n = len(points);\n  assert(n >= 1);\n  if (n == 1) {\n\
+    \    Circle<REAL> C(points[0].x, points[0].y, 0);\n    return {C, 0, -1, -1};\n\
+    \  }\n  vc<int> I(n);\n  FOR(i, n) I[i] = i;\n  shuffle(I);\n\n  points = rearrange(points,\
+    \ I);\n\n  tuple<int, int, int> c = {0, -1, -1};\n  auto contain = [&](Point<T>\
+    \ p) -> bool {\n    auto [i, j, k] = c;\n    if (j == -1) { return p == points[i];\
+    \ }\n    if (k == -1) { return (points[i] - p).dot(points[j] - p) <= 0; }\n  \
+    \  return outcircle_side(points[i], points[j], points[k], p) >= 0;\n  };\n\n \
+    \ FOR(i, 1, n) {\n    if (contain(points[i])) continue;\n    c = {0, i, -1};\n\
+    \    FOR(j, 1, i) {\n      if (contain(points[j])) continue;\n      c = {i, j,\
+    \ -1};\n      FOR(k, j) {\n        if (contain(points[k])) continue;\n       \
+    \ c = {i, j, k};\n      }\n    }\n  }\n  auto [i, j, k] = c;\n  if (k == -1) {\n\
+    \    REAL x1 = points[i].x;\n    REAL y1 = points[i].y;\n    REAL x2 = points[j].x;\n\
+    \    REAL y2 = points[j].y;\n    Point<REAL> O = {0.5 * (x1 + x2), 0.5 * (y1 +\
+    \ y2)};\n    REAL r = sqrtl((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2)) / 2;\n\
+    \    Circle<REAL> C(O, r);\n    return {C, I[i], I[j], -1};\n  }\n  Circle<REAL>\
+    \ C = outcircle<REAL>(points[i], points[j], points[k]);\n  return {C, I[i], I[j],\
+    \ I[k]};\n}"
   dependsOn:
   - geo/base.hpp
   - random/shuffle.hpp
@@ -147,7 +160,7 @@ data:
   isVerificationFile: false
   path: geo/minimum_enclosing_circle.hpp
   requiredBy: []
-  timestamp: '2024-10-20 23:29:28+09:00'
+  timestamp: '2024-10-25 19:29:47+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/abc151f.test.cpp

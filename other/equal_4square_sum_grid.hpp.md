@@ -3,8 +3,8 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
-    path: test/1_mytest/equal_4square_sum_grid.hpp
-    title: test/1_mytest/equal_4square_sum_grid.hpp
+    path: test/1_mytest/equal_4square_sum_grid.cpp
+    title: test/1_mytest/equal_4square_sum_grid.cpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: other/equal_4square_sum_grid.hpp
   requiredBy:
-  - test/1_mytest/equal_4square_sum_grid.hpp
+  - test/1_mytest/equal_4square_sum_grid.cpp
   timestamp: '2024-10-22 00:27:53+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

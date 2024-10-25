@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/maxidx_add.hpp
     title: alg/acted_monoid/maxidx_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_1.hpp
     title: convex/slope_trick/slope_trick_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -128,7 +128,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -342,7 +342,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1097.test.cpp
     title: test/3_yukicoder/1097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1141.test.cpp
     title: test/3_yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
@@ -375,7 +375,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -384,7 +384,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
   - icon: ':heavy_check_mark:'

@@ -5,13 +5,13 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.cpp
-    title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/enumerate_labeled_tree.test.cpp
+    title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
@@ -128,11 +128,11 @@ data:
   isVerificationFile: false
   path: graph/prufer_code.hpp
   requiredBy:
-  - test/1_mytest/enumerate_labeled_tree.cpp
   - enumerate/labeled_tree.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/enumerate_labeled_tree.test.cpp
   - test/1_mytest/prufer.test.cpp
 documentation_of: graph/prufer_code.hpp
 layout: document

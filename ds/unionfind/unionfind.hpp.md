@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':question:'
@@ -77,9 +77,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/inverse_manacher.hpp
     title: string/inverse_manacher.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.cpp
-    title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_K4.test.cpp
@@ -93,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/enumerate_labeled_tree.test.cpp
+    title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
@@ -189,22 +189,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1254.test.cpp
     title: test/3_yukicoder/1254.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1451.test.cpp
     title: test/3_yukicoder/1451.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1479.test.cpp
     title: test/3_yukicoder/1479.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -316,7 +316,6 @@ data:
   path: ds/unionfind/unionfind.hpp
   requiredBy:
   - random/random_graph.hpp
-  - test/1_mytest/enumerate_labeled_tree.cpp
   - ds/unionfind/parallel_unionfind.hpp
   - string/inverse_manacher.hpp
   - geo/manhattan_mst.hpp
@@ -382,6 +381,7 @@ data:
   - test/5_atcoder/abc301h.test.cpp
   - test/5_atcoder/abc314f.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
+  - test/1_mytest/enumerate_labeled_tree.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/find_C4.test.cpp
   - test/1_mytest/remove_one_edge.test.cpp

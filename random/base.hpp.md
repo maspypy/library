@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/blackbox/solve_linear.hpp
     title: linalg/blackbox/solve_linear.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
@@ -83,13 +83,13 @@ data:
   - icon: ':x:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':question:'
     path: nt/crt.hpp
     title: nt/crt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/divisors.hpp
     title: nt/divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -714,31 +714,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1262.test.cpp
     title: test/3_yukicoder/1262.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1411.test.cpp
     title: test/3_yukicoder/1411.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':heavy_check_mark:'
@@ -747,10 +747,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1667.test.cpp
     title: test/3_yukicoder/1667.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1774.test.cpp
     title: test/3_yukicoder/1774.test.cpp
   - icon: ':heavy_check_mark:'

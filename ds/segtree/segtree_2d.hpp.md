@@ -9,7 +9,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600.test.cpp
     title: test/3_yukicoder/1600.test.cpp
   - icon: ':heavy_check_mark:'
@@ -18,9 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc324g2.test.cpp
     title: test/5_atcoder/abc324g2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/segtree/segtree_2d.hpp\"\n// \u70B9\u306E\u91CD\u8907\
@@ -189,7 +189,7 @@ data:
   path: ds/segtree/segtree_2d.hpp
   requiredBy: []
   timestamp: '2024-01-26 19:43:43+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1600.test.cpp
   - test/5_atcoder/abc324g2.test.cpp

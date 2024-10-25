@@ -13,12 +13,12 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
-  _pathExtension: hpp
+  _pathExtension: cpp
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/equal_4square_sum_grid.hpp\"\n#define PROBLEM\
+  bundledCode: "#line 1 \"test/1_mytest/equal_4square_sum_grid.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
     \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
@@ -102,7 +102,7 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/equal_4square_sum_grid.hpp\"\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/equal_4square_sum_grid.cpp\"\
     \n\n#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
     \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
     \ == 0 ? 0 : len(A[0])); }\n  if (H == 0) return {};\n  vc<VC> B(W, VC(H, A[0][0]));\n\
@@ -135,7 +135,7 @@ data:
     \    if (i % 2 == 1) tmp.eb(H * W - 2 * i - 1);\n  }\n  FOR(i, 3 * n * W, 4 *\
     \ n * W) { tmp.eb(H * W - tmp[i - n * W]); }\n  int p = 0;\n  vv(int, A, H, W);\n\
     \  FOR(x, H) FOR(y, W) A[x][y] = tmp[p++];\n  if (n % 2 == 0) { FOR(x, 3 * n,\
-    \ 4 * n) reverse(all(A[x])); }\n  return A;\n}\n#line 6 \"test/1_mytest/equal_4square_sum_grid.hpp\"\
+    \ 4 * n) reverse(all(A[x])); }\n  return A;\n}\n#line 6 \"test/1_mytest/equal_4square_sum_grid.cpp\"\
     \n\nvoid test() {\n  FOR(H, 2, 20) {\n    FOR(W, 2, 20) {\n      if (H % 2 ==\
     \ 1 && W % 2 == 0) continue;\n      int S0 = 2 * (H * W - 1);\n      int L = S0,\
     \ R = S0;\n      if (H % 2 == 0 && W % 2 == 0) { L = S0, R = S0; }\n      if (H\
@@ -165,15 +165,15 @@ data:
   - linalg/transpose.hpp
   - other/equal_4square_sum_grid.hpp
   isVerificationFile: false
-  path: test/1_mytest/equal_4square_sum_grid.hpp
+  path: test/1_mytest/equal_4square_sum_grid.cpp
   requiredBy: []
-  timestamp: '2024-10-22 00:27:53+09:00'
+  timestamp: '2024-10-25 20:40:45+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/1_mytest/equal_4square_sum_grid.hpp
+documentation_of: test/1_mytest/equal_4square_sum_grid.cpp
 layout: document
 redirect_from:
-- /library/test/1_mytest/equal_4square_sum_grid.hpp
-- /library/test/1_mytest/equal_4square_sum_grid.hpp.html
-title: test/1_mytest/equal_4square_sum_grid.hpp
+- /library/test/1_mytest/equal_4square_sum_grid.cpp
+- /library/test/1_mytest/equal_4square_sum_grid.cpp.html
+title: test/1_mytest/equal_4square_sum_grid.cpp
 ---

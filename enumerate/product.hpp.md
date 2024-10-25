@@ -2,13 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
-  - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.cpp
-    title: test/1_mytest/enumerate_labeled_tree.cpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/enumerate_labeled_tree.test.cpp
+    title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_products.test.cpp
     title: test/1_mytest/enumerate_products.test.cpp
@@ -43,13 +43,13 @@ data:
   isVerificationFile: false
   path: enumerate/product.hpp
   requiredBy:
-  - test/1_mytest/enumerate_labeled_tree.cpp
   - enumerate/labeled_tree.hpp
   timestamp: '2023-01-23 21:04:48+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc233c.test.cpp
   - test/5_atcoder/arc153f.test.cpp
+  - test/1_mytest/enumerate_labeled_tree.test.cpp
   - test/1_mytest/prufer.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp
   - test/1_mytest/enumerate_products.test.cpp

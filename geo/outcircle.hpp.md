@@ -12,10 +12,10 @@ data:
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2602.test.cpp
     title: test/3_yukicoder/2602.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
   - icon: ':x:'
@@ -23,7 +23,7 @@ data:
     title: test/5_atcoder/abc151f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -78,7 +78,7 @@ data:
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
     \ 1 \"geo/triangle_area.hpp\"\ntemplate <typename REAL, typename T>\nREAL triangle_area(Point<T>\
     \ A, Point<T> B, Point<T> C) {\n  return abs((B - A).det(C - A)) * 0.5;\n}\n#line\
-    \ 3 \"geo/outcircle.hpp\"\n\ntemplate <typename REAL, typename T>\nCircle<REAL>\
+    \ 4 \"geo/outcircle.hpp\"\n\ntemplate <typename REAL, typename T>\nCircle<REAL>\
     \ outcircle(Point<T> A, Point<T> B, Point<T> C) {\n  REAL b1 = B.x - A.x, b2 =\
     \ B.y - A.y;\n  REAL c1 = C.x - A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2\
     \ * b2) / 2;\n  REAL cc = (c1 * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2\
@@ -96,15 +96,15 @@ data:
     \ - mat[1][2] * mat[2][1]);\n  det += mat[0][1] * (mat[1][2] * mat[2][0] - mat[1][0]\
     \ * mat[2][2]);\n  det += mat[0][2] * (mat[1][0] * mat[2][1] - mat[1][1] * mat[2][0]);\n\
     \  if (det == 0) return 0;\n  return (det > 0 ? 1 : -1);\n}\n"
-  code: "#include \"geo/base.hpp\"\n#include \"geo/triangle_area.hpp\"\n\ntemplate\
-    \ <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T> B,\
-    \ Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x - A.x,\
-    \ c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1 * c1\
-    \ + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2 - b2\
-    \ * cc) / det;\n  REAL y = (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x * x +\
-    \ y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}\n\n// ABC\
-    \ \u306E\u5916\u63A5\u5186\u306B\u5BFE\u3057\u3066\u5185\u5916\u3069\u3061\u3089\
-    \u306B\u3042\u308B\u304B\n// \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A\
+  code: "#pragma once\n#include \"geo/base.hpp\"\n#include \"geo/triangle_area.hpp\"\
+    \n\ntemplate <typename REAL, typename T>\nCircle<REAL> outcircle(Point<T> A, Point<T>\
+    \ B, Point<T> C) {\n  REAL b1 = B.x - A.x, b2 = B.y - A.y;\n  REAL c1 = C.x -\
+    \ A.x, c2 = C.y - A.y;\n  REAL bb = (b1 * b1 + b2 * b2) / 2;\n  REAL cc = (c1\
+    \ * c1 + c2 * c2) / 2;\n\n  REAL det = b1 * c2 - b2 * c1;\n  REAL x = (bb * c2\
+    \ - b2 * cc) / det;\n  REAL y = (b1 * cc - bb * c1) / det;\n  REAL r = sqrt(x\
+    \ * x + y * y);\n  x += A.x, y += A.y;\n  return Circle<REAL>(x, y, r);\n}\n\n\
+    // ABC \u306E\u5916\u63A5\u5186\u306B\u5BFE\u3057\u3066\u5185\u5916\u3069\u3061\
+    \u3089\u306B\u3042\u308B\u304B\n// \u4E2D\uFF1A1, \u5883\u754C\uFF1A0, \u5916\uFF1A\
     -1\n// \u5EA7\u6A19\u306E 4 \u4E57\u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
     \u3057\u306A\u3044\u3088\u3046\u306B\u3059\u308B\ntemplate <typename T>\nint outcircle_side(Point<T>\
     \ A, Point<T> B, Point<T> C, Point<T> p) {\n  T d = (B - A).det(C - A);\n  assert(d\
@@ -122,8 +122,8 @@ data:
   path: geo/outcircle.hpp
   requiredBy:
   - geo/minimum_enclosing_circle.hpp
-  timestamp: '2024-10-20 23:29:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-10-25 19:29:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp
   - test/4_aoj/CGL_7_C.test.cpp

@@ -9,8 +9,8 @@ data:
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
   - icon: ':warning:'
-    path: test/1_mytest/equal_4square_sum_grid.hpp
-    title: test/1_mytest/equal_4square_sum_grid.hpp
+    path: test/1_mytest/equal_4square_sum_grid.cpp
+    title: test/1_mytest/equal_4square_sum_grid.cpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/3_yukicoder/2108.test.cpp
@@ -38,7 +38,7 @@ data:
   isVerificationFile: false
   path: linalg/transpose.hpp
   requiredBy:
-  - test/1_mytest/equal_4square_sum_grid.hpp
+  - test/1_mytest/equal_4square_sum_grid.cpp
   - poly/coef_of_rational_fps_2d.hpp
   - other/sliding_puzzle_solver.hpp
   timestamp: '2024-10-22 00:27:53+09:00'

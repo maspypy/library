@@ -10,14 +10,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: test/1_mytest/enumerate_labeled_tree.cpp
-    title: test/1_mytest/enumerate_labeled_tree.cpp
-  _extendedVerifiedWith: []
+  _extendedRequiredBy: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/enumerate_labeled_tree.test.cpp
+    title: test/1_mytest/enumerate_labeled_tree.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/611/problem/H
@@ -130,11 +130,11 @@ data:
   - graph/base.hpp
   isVerificationFile: false
   path: enumerate/labeled_tree.hpp
-  requiredBy:
-  - test/1_mytest/enumerate_labeled_tree.cpp
+  requiredBy: []
   timestamp: '2024-09-10 18:12:56+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/enumerate_labeled_tree.test.cpp
 documentation_of: enumerate/labeled_tree.hpp
 layout: document
 redirect_from:

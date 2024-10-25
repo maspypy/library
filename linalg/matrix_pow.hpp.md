@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1750.test.cpp
     title: test/3_yukicoder/1750.test.cpp
   - icon: ':x:'

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   - icon: ':question:'
@@ -23,13 +23,15 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
+    '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
     - https://judge.yosupo.jp/problem/aplusb
-  bundledCode: "#line 1 \"test/1_mytest/enumerate_labeled_tree.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
-    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+  bundledCode: "#line 1 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\n#define\
+    \ PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\
+    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -111,7 +113,7 @@ data:
     \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
     template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
     \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/enumerate_labeled_tree.cpp\"\
+    \ others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\
     \n\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate <typename\
     \ F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n  auto\
     \ dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n ==\
@@ -218,15 +220,15 @@ data:
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
     \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 6 \"test/1_mytest/enumerate_labeled_tree.cpp\"\n\
-    \nvoid test(ll N) {\n  vvc<pair<int, int>> dat;\n  enumerate_labeled_tree(N, [&](vc<pair<int,\
-    \ int>> G) -> void {\n    assert(len(G) == N - 1);\n    UnionFind uf(N);\n   \
-    \ for (auto& [a, b]: G) { uf.merge(a, b); }\n    assert(uf.n_comp == 1);\n   \
-    \ for (auto& [a, b]: G) {\n      if (a > b) swap(a, b);\n    }\n    sort(all(G));\n\
-    \    dat.eb(G);\n  });\n  ll K = 1;\n  FOR(N - 2) K *= N;\n  assert(len(dat) ==\
-    \ K);\n  UNIQUE(dat);\n  assert(len(dat) == K);\n}\n\nvoid solve() {\n  int x,\
-    \ y;\n  cin >> x >> y;\n  cout << x + y << \"\\n\";\n}\n\nsigned main() {\n  FOR(N,\
-    \ 1, 8) test(N);\n  solve();\n  return 0;\n}\n"
+    \    return A;\n  }\n};\n#line 6 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\
+    \n\nvoid test(ll N) {\n  vvc<pair<int, int>> dat;\n  enumerate_labeled_tree(N,\
+    \ [&](vc<pair<int, int>> G) -> void {\n    assert(len(G) == N - 1);\n    UnionFind\
+    \ uf(N);\n    for (auto& [a, b]: G) { uf.merge(a, b); }\n    assert(uf.n_comp\
+    \ == 1);\n    for (auto& [a, b]: G) {\n      if (a > b) swap(a, b);\n    }\n \
+    \   sort(all(G));\n    dat.eb(G);\n  });\n  ll K = 1;\n  FOR(N - 2) K *= N;\n\
+    \  assert(len(dat) == K);\n  UNIQUE(dat);\n  assert(len(dat) == K);\n}\n\nvoid\
+    \ solve() {\n  int x, y;\n  cin >> x >> y;\n  cout << x + y << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(N, 1, 8) test(N);\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"enumerate/labeled_tree.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
     \n\nvoid test(ll N) {\n  vvc<pair<int, int>> dat;\n  enumerate_labeled_tree(N,\
@@ -244,16 +246,16 @@ data:
   - graph/prufer_code.hpp
   - graph/base.hpp
   - ds/unionfind/unionfind.hpp
-  isVerificationFile: false
-  path: test/1_mytest/enumerate_labeled_tree.cpp
+  isVerificationFile: true
+  path: test/1_mytest/enumerate_labeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
+  timestamp: '2024-10-25 20:40:45+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/1_mytest/enumerate_labeled_tree.cpp
+documentation_of: test/1_mytest/enumerate_labeled_tree.test.cpp
 layout: document
 redirect_from:
-- /library/test/1_mytest/enumerate_labeled_tree.cpp
-- /library/test/1_mytest/enumerate_labeled_tree.cpp.html
-title: test/1_mytest/enumerate_labeled_tree.cpp
+- /verify/test/1_mytest/enumerate_labeled_tree.test.cpp
+- /verify/test/1_mytest/enumerate_labeled_tree.test.cpp.html
+title: test/1_mytest/enumerate_labeled_tree.test.cpp
 ---
