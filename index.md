@@ -74,7 +74,7 @@ data:
       title: alg/acted_monoid/summin_assign.hpp
   - name: alg/acted_set
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_set/affine.hpp
       title: alg/acted_set/affine.hpp
     - icon: ':question:'
@@ -603,7 +603,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: enumerate/multiset.hpp
       title: enumerate/multiset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/partition.hpp
       title: enumerate/partition.hpp
     - icon: ':question:'
@@ -1498,7 +1498,7 @@ data:
     - icon: ':question:'
       path: nt/factor.hpp
       title: nt/factor.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: nt/factor_interval.hpp
       title: nt/factor_interval.hpp
     - icon: ':heavy_check_mark:'
@@ -4749,13 +4749,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc220g.test.cpp
       title: test/5_atcoder/abc220g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc222g.test.cpp
       title: test/5_atcoder/abc222g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc222h.test.cpp
       title: test/5_atcoder/abc222h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc222h_2.test.cpp
       title: test/5_atcoder/abc222h_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4767,10 +4767,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc224h.test.cpp
       title: test/5_atcoder/abc224h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc226f.test.cpp
       title: test/5_atcoder/abc226f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc227g.test.cpp
       title: test/5_atcoder/abc227g.test.cpp
     - icon: ':heavy_check_mark:'
