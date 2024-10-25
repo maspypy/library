@@ -1,3 +1,4 @@
+#pragma once
 #include "geo/base.hpp"
 #include "geo/triangle_area.hpp"
 
