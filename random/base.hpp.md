@@ -511,6 +511,9 @@ data:
     path: test/1_mytest/segtree_xor_prod.test.cpp
     title: test/1_mytest/segtree_xor_prod.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/slope_super.test.cpp
+    title: test/1_mytest/slope_super.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1111,6 +1114,7 @@ data:
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/summax_add.test.cpp
+  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/minmax_add.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/fenwick01.test.cpp

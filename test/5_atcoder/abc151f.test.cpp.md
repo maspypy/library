@@ -314,18 +314,14 @@ data:
     \ C = outcircle<REAL>(points[i], points[j], points[k]);\n  return {C, I[i], I[j],\
     \ I[k]};\n}\n#line 7 \"test/5_atcoder/abc151f.test.cpp\"\n\nvoid solve() {\n \
     \ LL(N);\n  using Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n\
-    \  auto [i, j, k] = minimum_enclosing_circle(points);\n  if (k == -1) {\n    Re\
-    \ r = dist<Re>(points[i], points[j]);\n    print(r / 2);\n  } else {\n    auto\
-    \ c = outcircle<Re>(points[i], points[j], points[k]);\n    print(c.r);\n  }\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  auto [C, i, j, k] = minimum_enclosing_circle(points);\n  print(C.r);\n}\n\n\
+    signed main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc151/tasks/abc151_f\"\n#define\
     \ ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\
     #include \"geo/minimum_enclosing_circle.hpp\"\n\nvoid solve() {\n  LL(N);\n  using\
-    \ Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [i, j, k]\
-    \ = minimum_enclosing_circle(points);\n  if (k == -1) {\n    Re r = dist<Re>(points[i],\
-    \ points[j]);\n    print(r / 2);\n  } else {\n    auto c = outcircle<Re>(points[i],\
-    \ points[j], points[k]);\n    print(c.r);\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}"
+    \ Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [C, i, j,\
+    \ k] = minimum_enclosing_circle(points);\n  print(C.r);\n}\n\nsigned main() {\n\
+    \  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -338,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc151f.test.cpp
   requiredBy: []
-  timestamp: '2024-10-25 19:29:47+09:00'
+  timestamp: '2024-10-26 12:13:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc151f.test.cpp

@@ -23,10 +23,9 @@ data:
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
-  bundledCode: "#line 1 \"test/4_aoj/GRL_1_B.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/4_aoj/GRL_1_B.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
@@ -286,21 +285,19 @@ data:
     \     upd = 1;\n          if (loop >= N) {\n            if constexpr (END) { return\
     \ {{}, {}}; }\n            after = -infty<T>;\n          }\n          dist[e.to]\
     \ = after;\n        }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist,\
-    \ par};\n}\n#line 6 \"test/4_aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N,\
+    \ par};\n}\n#line 5 \"test/4_aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N,\
     \ M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist, par]\
-    \ = BellmanFord<int>(G, s);\n  if (MIN(dist) == -infty<int>) { return print(\"\
+    \ = BellmanFord<int, true>(G, s);\n  if (MIN(dist) == -infty<int>) { return print(\"\
     NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x == infty<int>)\n   \
-    \   print(\"INF\");\n    else\n      print(x);\n  }\n}\n\nsigned main() {\n  cin.tie(nullptr);\n\
-    \  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\n  ll T = 1;\n\
-    \  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
+    \   print(\"INF\");\n    else\n      print(x);\n  }\n}\n\nsigned main() {\n  solve();\n\
+    \n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/bellmanford.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1,\
-    \ 0);\n\n  auto [dist, par] = BellmanFord<int>(G, s);\n  if (MIN(dist) == -infty<int>)\
-    \ { return print(\"NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x ==\
-    \ infty<int>)\n      print(\"INF\");\n    else\n      print(x);\n  }\n}\n\nsigned\
-    \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
+    \ 0);\n\n  auto [dist, par] = BellmanFord<int, true>(G, s);\n  if (MIN(dist) ==\
+    \ -infty<int>) { return print(\"NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n\
+    \    if (x == infty<int>)\n      print(\"INF\");\n    else\n      print(x);\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -309,7 +306,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-10-25 01:17:46+09:00'
+  timestamp: '2024-10-26 12:13:04+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_1_B.test.cpp

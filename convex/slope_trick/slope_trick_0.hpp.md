@@ -1,11 +1,23 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':heavy_check_mark:'
+    path: flow/min_cost_matching_on_line.hpp
+    title: flow/min_cost_matching_on_line.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/min_cost_matching_on_line.test.cpp
+    title: test/1_mytest/min_cost_matching_on_line.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1077.test.cpp
     title: test/3_yukicoder/1077.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_atcoder/abc127f.test.cpp
+    title: test/5_atcoder/abc127f.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_atcoder/abc217h.test.cpp
+    title: test/5_atcoder/abc217h.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -93,11 +105,15 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: convex/slope_trick/slope_trick_0.hpp
-  requiredBy: []
+  requiredBy:
+  - flow/min_cost_matching_on_line.hpp
   timestamp: '2024-10-23 21:57:13+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1077.test.cpp
+  - test/5_atcoder/abc217h.test.cpp
+  - test/5_atcoder/abc127f.test.cpp
+  - test/1_mytest/min_cost_matching_on_line.test.cpp
 documentation_of: convex/slope_trick/slope_trick_0.hpp
 layout: document
 redirect_from:

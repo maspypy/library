@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
@@ -213,16 +213,12 @@ data:
     \ dp[i] - 1) && (strong ? (A[j] < A[i]) : (A[j] <= A[i]));\n      if (ok) {\n\
     \        I.eb(j);\n        break;\n      }\n    }\n  }\n  assert(len(I) == lis);\n\
     \  reverse(all(I));\n  return I;\n}\n#line 6 \"test/2_library_checker/other/longest_increasing_subsequence.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  auto [n, dp] = longest_increasing_subsequence(A);\n\
-    \  ll x = MAX(A) + 1;\n  vc<int> I;\n  FOR_R(i, N) {\n    if (dp[i] == n && A[i]\
-    \ < x) {\n      I.eb(i);\n      --n;\n      x = A[i];\n    }\n  }\n  reverse(all(I));\n\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vc<int> I = longest_increasing_subsequence(A);\n\
     \  print(len(I));\n  print(I);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
     }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/longest_increasing_subsequence\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"seq/longest_increasing_subsequence.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  auto [n, dp] = longest_increasing_subsequence(A);\n\
-    \  ll x = MAX(A) + 1;\n  vc<int> I;\n  FOR_R(i, N) {\n    if (dp[i] == n && A[i]\
-    \ < x) {\n      I.eb(i);\n      --n;\n      x = A[i];\n    }\n  }\n  reverse(all(I));\n\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(int, A, N);\n  vc<int> I = longest_increasing_subsequence(A);\n\
     \  print(len(I));\n  print(I);\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n\
     }\n"
   dependsOn:
@@ -232,8 +228,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2024-10-23 21:57:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-26 12:13:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
 layout: document

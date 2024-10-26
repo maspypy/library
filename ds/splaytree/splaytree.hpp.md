@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_super.hpp
     title: convex/slope_trick/slope_super.hpp
   - icon: ':heavy_check_mark:'
@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/slope_super.test.cpp
+    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
@@ -366,6 +369,7 @@ data:
   - test/5_atcoder/abc350f.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/splay.test.cpp
+  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/splay_am.test.cpp
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/splay_monoid.test.cpp

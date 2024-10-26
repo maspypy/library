@@ -6,6 +6,9 @@ data:
     path: ds/counter.hpp
     title: ds/counter.hpp
   - icon: ':heavy_check_mark:'
+    path: ds/sum_over_bit_positions.hpp
+    title: ds/sum_over_bit_positions.hpp
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite_dense.hpp
     title: flow/bipartite_dense.hpp
   - icon: ':heavy_check_mark:'
@@ -339,6 +342,7 @@ data:
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
+  - ds/sum_over_bit_positions.hpp
   - ds/counter.hpp
   - knapsack/subset_sum.hpp
   - linalg/bitset/solve_linear.hpp

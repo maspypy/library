@@ -7,23 +7,22 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D
-  bundledCode: "#line 1 \"test/4_aoj/DPL_1_D.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\n#line 1 \"\
-    my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\
-    \n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
+  bundledCode: "#line 1 \"test/4_aoj/DPL_1_D.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
     \nusing namespace std;\n\nusing ll = long long;\nusing u8 = uint8_t;\nusing u16\
@@ -211,13 +210,13 @@ data:
     \   break;\n  }\n  FOR(lis - 1) {\n    int i = I.back();\n    FOR_R(j, i) {\n\
     \      bool ok = (dp[j] == dp[i] - 1) && (strong ? (A[j] < A[i]) : (A[j] <= A[i]));\n\
     \      if (ok) {\n        I.eb(j);\n        break;\n      }\n    }\n  }\n  assert(len(I)\
-    \ == lis);\n  reverse(all(I));\n  return I;\n}\n#line 6 \"test/4_aoj/DPL_1_D.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  print(longest_increasing_subsequence(A).fi);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\
+    \ == lis);\n  reverse(all(I));\n  return I;\n}\n#line 5 \"test/4_aoj/DPL_1_D.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  auto I = longest_increasing_subsequence(A);\n\
+    \  print(len(I));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_D\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"seq/longest_increasing_subsequence.hpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  print(longest_increasing_subsequence(A).fi);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(N);\n  VEC(ll, A, N);\n  auto I = longest_increasing_subsequence(A);\n\
+    \  print(len(I));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -225,8 +224,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DPL_1_D.test.cpp
   requiredBy: []
-  timestamp: '2024-10-23 21:57:13+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-26 12:13:04+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/DPL_1_D.test.cpp
 layout: document

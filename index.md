@@ -243,7 +243,7 @@ data:
       title: convex/smawk.hpp
   - name: convex/slope_trick
     pages:
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: convex/slope_trick/slope_super.hpp
       title: convex/slope_trick/slope_super.hpp
     - icon: ':heavy_check_mark:'
@@ -650,7 +650,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: flow/maxflow_with_lowerbound.hpp
       title: flow/maxflow_with_lowerbound.hpp
-    - icon: ':warning:'
+    - icon: ':heavy_check_mark:'
       path: flow/min_cost_matching_on_line.hpp
       title: flow/min_cost_matching_on_line.hpp
     - icon: ':heavy_check_mark:'
@@ -1954,7 +1954,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/limit_poly_exp_sum.hpp
       title: seq/limit_poly_exp_sum.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: seq/longest_increasing_subsequence.hpp
       title: seq/longest_increasing_subsequence.hpp
     - icon: ':heavy_check_mark:'
@@ -2487,7 +2487,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/maxplus_concave.test.cpp
       title: test/1_mytest/maxplus_concave.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/min_cost_matching_on_line.test.cpp
       title: test/1_mytest/min_cost_matching_on_line.test.cpp
     - icon: ':heavy_check_mark:'
@@ -2691,7 +2691,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/slice_rational_fps.test.cpp
       title: test/1_mytest/slice_rational_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/slope_super.test.cpp
       title: test/1_mytest/slope_super.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3336,7 +3336,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
       title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
       title: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4151,7 +4151,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2206.test.cpp
       title: test/3_yukicoder/2206.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/2230.test.cpp
       title: test/3_yukicoder/2230.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4549,7 +4549,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/4_aoj/DPL_1_B.test.cpp
       title: test/4_aoj/DPL_1_B.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/4_aoj/DPL_1_D.test.cpp
       title: test/4_aoj/DPL_1_D.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4665,7 +4665,7 @@ data:
       title: test/4_aoj/NTL_2_C.test.cpp
   - name: test/5_atcoder
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc127f.test.cpp
       title: test/5_atcoder/abc127f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4734,7 +4734,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc217e.test.cpp
       title: test/5_atcoder/abc217e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc217h.test.cpp
       title: test/5_atcoder/abc217h.test.cpp
     - icon: ':heavy_check_mark:'

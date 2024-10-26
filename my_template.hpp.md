@@ -316,6 +316,9 @@ data:
     path: test/1_mytest/maxplus_concave.test.cpp
     title: test/1_mytest/maxplus_concave.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/min_cost_matching_on_line.test.cpp
+    title: test/1_mytest/min_cost_matching_on_line.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_max.test.cpp
     title: test/1_mytest/min_max.test.cpp
   - icon: ':heavy_check_mark:'
@@ -510,6 +513,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/slope_super.test.cpp
+    title: test/1_mytest/slope_super.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/smawk.test.cpp
     title: test/1_mytest/smawk.test.cpp
@@ -1134,7 +1140,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
     title: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1935,7 +1941,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2206.test.cpp
     title: test/3_yukicoder/2206.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2230.test.cpp
     title: test/3_yukicoder/2230.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2331,7 +2337,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_B.test.cpp
     title: test/4_aoj/DPL_1_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/DPL_1_D.test.cpp
     title: test/4_aoj/DPL_1_D.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2446,6 +2452,9 @@ data:
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/5_atcoder/abc127f.test.cpp
+    title: test/5_atcoder/abc127f.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc127f_1.test.cpp
     title: test/5_atcoder/abc127f_1.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2511,6 +2520,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc217e.test.cpp
     title: test/5_atcoder/abc217e.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_atcoder/abc217h.test.cpp
+    title: test/5_atcoder/abc217h.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc218c.test.cpp
     title: test/5_atcoder/abc218c.test.cpp
@@ -3495,6 +3507,7 @@ data:
   - test/5_atcoder/abc314g.test.cpp
   - test/5_atcoder/abc318g.test.cpp
   - test/5_atcoder/abc209e.test.cpp
+  - test/5_atcoder/abc217h.test.cpp
   - test/5_atcoder/abc222h.test.cpp
   - test/5_atcoder/abc256d.test.cpp
   - test/5_atcoder/abc212h.test.cpp
@@ -3518,6 +3531,7 @@ data:
   - test/5_atcoder/abc298ex.test.cpp
   - test/5_atcoder/abc212g.test.cpp
   - test/5_atcoder/abc141e.test.cpp
+  - test/5_atcoder/abc127f.test.cpp
   - test/5_atcoder/abc223h.test.cpp
   - test/5_atcoder/abc228f.test.cpp
   - test/5_atcoder/abc319g.test.cpp
@@ -3586,6 +3600,7 @@ data:
   - test/1_mytest/tdpc_grid_dp.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/max_min.test.cpp
+  - test/1_mytest/min_cost_matching_on_line.test.cpp
   - test/1_mytest/count_unlabeled_tree.test.cpp
   - test/1_mytest/enum_partitions.test.cpp
   - test/1_mytest/online_exp.test.cpp
@@ -3681,6 +3696,7 @@ data:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/floor_ceil_ranges.test.cpp
   - test/1_mytest/summax_add.test.cpp
+  - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/minmax_add.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/fenwick01.test.cpp
