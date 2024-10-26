@@ -2,7 +2,7 @@
 #include "my_template.hpp"
 
 #include "random/shuffle.hpp"
-#include "convex/slope_super.hpp"
+#include "convex/slope_trick/slope_super.hpp"
 
 void test(int N, bool from_zero, int add_prob) {
   Slope_Trick_Super<ll> ST(N);
