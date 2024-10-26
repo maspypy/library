@@ -1,11 +1,11 @@
 #define PROBLEM "https://atcoder.jp/contests/abc127/tasks/abc127_f"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "convex/slope.hpp"
+#include "convex/slope_trick/slope_trick_0.hpp"
 
 void solve() {
   LL(Q);
-  Slope_Trick f;
+  Slope_Trick_0 f;
   FOR(Q) {
     LL(t);
     if (t == 1) {

@@ -10,14 +10,8 @@ void solve() {
   using Re = double;
   using P = Point<Re>;
   VEC(P, points, N);
-  auto [i, j, k] = minimum_enclosing_circle(points);
-  if (k == -1) {
-    Re r = dist<Re>(points[i], points[j]);
-    print(r / 2);
-  } else {
-    auto c = outcircle<Re>(points[i], points[j], points[k]);
-    print(c.r);
-  }
+  auto [C, i, j, k] = minimum_enclosing_circle(points);
+  print(C.r);
 }
 
 signed main() {

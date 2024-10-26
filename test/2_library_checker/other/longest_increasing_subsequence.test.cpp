@@ -7,17 +7,7 @@
 void solve() {
   LL(N);
   VEC(int, A, N);
-  auto [n, dp] = longest_increasing_subsequence(A);
-  ll x = MAX(A) + 1;
-  vc<int> I;
-  FOR_R(i, N) {
-    if (dp[i] == n && A[i] < x) {
-      I.eb(i);
-      --n;
-      x = A[i];
-    }
-  }
-  reverse(all(I));
+  vc<int> I = longest_increasing_subsequence(A);
   print(len(I));
   print(I);
 }
