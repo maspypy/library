@@ -42,7 +42,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc267h.test.cpp
     title: test/5_atcoder/abc267h.test.cpp
   - icon: ':x:'
