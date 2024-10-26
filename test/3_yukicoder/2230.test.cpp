@@ -12,7 +12,8 @@ void solve() {
   sort(all(XY));
   vi Y;
   for (auto&& [a, b]: XY) Y.eb(b);
-  ll a = longest_increasing_subsequence<ll, 0>(Y).fi;
+  auto I = longest_increasing_subsequence<ll, 0>(Y);
+  ll a = len(I);
   ll b = H + W - 3 - a;
   mint p = mint(1) / mint(P);
   mint ANS = mint(1) - (mint(1) - p - p).pow(a) * (mint(1) - p).pow(b);

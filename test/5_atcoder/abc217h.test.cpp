@@ -1,11 +1,12 @@
 #define PROBLEM "https://atcoder.jp/contests/abc217/tasks/abc217_h"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "convex/slope.hpp"
+#include "convex/slope_trick/slope_trick_0.hpp"
 
 void solve() {
   LL(N);
-  Slope_Trick f(vi(N, 0), vi(N, 0));
+  Slope_Trick_0 f;
+  FOR(N) f.add_abs(0);
 
   ll pt = 0;
   FOR(N) {
@@ -21,13 +22,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
