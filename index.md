@@ -566,7 +566,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
@@ -961,7 +961,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tree_diameter.hpp
       title: graph/tree_diameter.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_of_unionfind.hpp
       title: graph/tree_of_unionfind.hpp
     - icon: ':heavy_check_mark:'
@@ -998,7 +998,7 @@ data:
     - icon: ':warning:'
       path: graph/blackbox/bfs.hpp
       title: graph/blackbox/bfs.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/blackbox/complement_graph_bfs.hpp
       title: graph/blackbox/complement_graph_bfs.hpp
     - icon: ':warning:'
@@ -1848,7 +1848,7 @@ data:
       title: poly/typical_divide_conquer.hpp
   - name: poly/online
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_convolution.hpp
       title: poly/online/online_convolution.hpp
     - icon: ':warning:'
@@ -1872,7 +1872,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/online/online_pow.hpp
       title: poly/online/online_pow.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/online/online_square.hpp
       title: poly/online/online_square.hpp
   - name: random
@@ -4947,16 +4947,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc314.test.cpp
       title: test/5_atcoder/abc314.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc314f.test.cpp
       title: test/5_atcoder/abc314f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc314g.test.cpp
       title: test/5_atcoder/abc314g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc315h.test.cpp
       title: test/5_atcoder/abc315h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc315h2.test.cpp
       title: test/5_atcoder/abc315h2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4965,10 +4965,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc318g.test.cpp
       title: test/5_atcoder/abc318g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc318h.test.cpp
       title: test/5_atcoder/abc318h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc319g.test.cpp
       title: test/5_atcoder/abc319g.test.cpp
     - icon: ':x:'
