@@ -699,13 +699,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/count_points_in_triangles.hpp
       title: geo/count_points_in_triangles.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/cross_point.hpp
       title: geo/cross_point.hpp
     - icon: ':heavy_check_mark:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/distance.hpp
       title: geo/distance.hpp
     - icon: ':heavy_check_mark:'
@@ -770,10 +770,10 @@ data:
       title: geo/triangle_area.hpp
   - name: geo3d
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo3d/base.hpp
       title: geo3d/base.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo3d/cross_point.hpp
       title: geo3d/cross_point.hpp
   - name: graph
@@ -1613,7 +1613,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/fibonacci_search.hpp
       title: other/fibonacci_search.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/golden_search.hpp
       title: other/golden_search.hpp
     - icon: ':warning:'
@@ -2048,7 +2048,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/sps_exp.hpp
       title: setfunc/sps_exp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: setfunc/sps_inv.hpp
       title: setfunc/sps_inv.hpp
     - icon: ':question:'
@@ -4932,19 +4932,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc301e.test.cpp
       title: test/5_atcoder/abc301e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc301g.test.cpp
       title: test/5_atcoder/abc301g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc301h.test.cpp
       title: test/5_atcoder/abc301h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc306h.test.cpp
       title: test/5_atcoder/abc306h.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc312f.test.cpp
       title: test/5_atcoder/abc312f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc314.test.cpp
       title: test/5_atcoder/abc314.test.cpp
     - icon: ':x:'
