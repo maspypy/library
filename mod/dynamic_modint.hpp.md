@@ -99,12 +99,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc270_g.test.cpp
     title: test/5_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281g.test.cpp
     title: test/5_atcoder/abc281g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/dynamic_modint.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -332,7 +332,7 @@ data:
   requiredBy:
   - mod/mod_log.hpp
   timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1339.test.cpp
   - test/3_yukicoder/1667.test.cpp
