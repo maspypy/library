@@ -254,7 +254,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -281,7 +281,7 @@ data:
   - icon: ':question:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':heavy_check_mark:'
@@ -1374,16 +1374,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc319g.test.cpp
     title: test/5_atcoder/abc319g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc321g.test.cpp
     title: test/5_atcoder/abc321g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc331g.test.cpp
     title: test/5_atcoder/abc331g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc333f.test.cpp
     title: test/5_atcoder/abc333f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc333g.test.cpp
     title: test/5_atcoder/abc333g.test.cpp
   - icon: ':x:'

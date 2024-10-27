@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -262,7 +262,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/binary_trie.hpp
       title: ds/binary_trie.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/bit_vector.hpp
       title: ds/bit_vector.hpp
     - icon: ':warning:'
@@ -292,7 +292,7 @@ data:
     - icon: ':warning:'
       path: ds/incremental_rectangle_union.hpp
       title: ds/incremental_rectangle_union.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/index_compression.hpp
       title: ds/index_compression.hpp
     - icon: ':heavy_check_mark:'
@@ -571,7 +571,7 @@ data:
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/wavelet_matrix/wavelet_matrix.hpp
       title: ds/wavelet_matrix/wavelet_matrix.hpp
     - icon: ':heavy_check_mark:'
@@ -1555,7 +1555,7 @@ data:
     - icon: ':question:'
       path: nt/rational.hpp
       title: nt/rational.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/rational_binary_search.hpp
       title: nt/rational_binary_search.hpp
     - icon: ':heavy_check_mark:'
@@ -1810,7 +1810,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_f_rk_x.hpp
       title: poly/product_of_f_rk_x.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
     - icon: ':heavy_check_mark:'
@@ -1843,7 +1843,7 @@ data:
     - icon: ':question:'
       path: poly/transposed_ntt.hpp
       title: poly/transposed_ntt.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/typical_divide_conquer.hpp
       title: poly/typical_divide_conquer.hpp
   - name: poly/online
@@ -4971,10 +4971,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc319g.test.cpp
       title: test/5_atcoder/abc319g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc321g.test.cpp
       title: test/5_atcoder/abc321g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc324g.test.cpp
       title: test/5_atcoder/abc324g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4983,13 +4983,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc326g.test.cpp
       title: test/5_atcoder/abc326g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc331g.test.cpp
       title: test/5_atcoder/abc331g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc333f.test.cpp
       title: test/5_atcoder/abc333f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc333g.test.cpp
       title: test/5_atcoder/abc333g.test.cpp
     - icon: ':x:'
