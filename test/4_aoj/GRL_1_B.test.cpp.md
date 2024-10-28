@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B
@@ -287,17 +287,17 @@ data:
     \ = after;\n        }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist,\
     \ par};\n}\n#line 5 \"test/4_aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N,\
     \ M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist, par]\
-    \ = BellmanFord<int, true>(G, s);\n  if (MIN(dist) == -infty<int>) { return print(\"\
-    NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x == infty<int>)\n   \
-    \   print(\"INF\");\n    else\n      print(x);\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ = BellmanFord<int, true>(G, s);\n  if (dist.empty()) { return print(\"NEGATIVE\
+    \ CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x == infty<int>)\n      print(\"\
+    INF\");\n    else\n      print(x);\n  }\n}\n\nsigned main() {\n  solve();\n\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_1_B\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/shortest_path/bellmanford.hpp\"\
     \n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 1,\
-    \ 0);\n\n  auto [dist, par] = BellmanFord<int, true>(G, s);\n  if (MIN(dist) ==\
-    \ -infty<int>) { return print(\"NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n\
-    \    if (x == infty<int>)\n      print(\"INF\");\n    else\n      print(x);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
+    \ 0);\n\n  auto [dist, par] = BellmanFord<int, true>(G, s);\n  if (dist.empty())\
+    \ { return print(\"NEGATIVE CYCLE\"); }\n  for (auto&& x: dist) {\n    if (x ==\
+    \ infty<int>)\n      print(\"INF\");\n    else\n      print(x);\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -306,8 +306,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2024-10-26 12:13:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-28 15:40:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_1_B.test.cpp
 layout: document

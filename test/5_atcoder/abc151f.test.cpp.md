@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -314,14 +314,14 @@ data:
     \ C = outcircle<REAL>(points[i], points[j], points[k]);\n  return {C, I[i], I[j],\
     \ I[k]};\n}\n#line 7 \"test/5_atcoder/abc151f.test.cpp\"\n\nvoid solve() {\n \
     \ LL(N);\n  using Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n\
-    \  auto [C, i, j, k] = minimum_enclosing_circle(points);\n  print(C.r);\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \  auto [C, i, j, k] = minimum_enclosing_circle<Re>(points);\n  print(C.r);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc151/tasks/abc151_f\"\n#define\
     \ ERROR 0.000001\n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\
     #include \"geo/minimum_enclosing_circle.hpp\"\n\nvoid solve() {\n  LL(N);\n  using\
     \ Re = double;\n  using P = Point<Re>;\n  VEC(P, points, N);\n  auto [C, i, j,\
-    \ k] = minimum_enclosing_circle(points);\n  print(C.r);\n}\n\nsigned main() {\n\
-    \  solve();\n  return 0;\n}"
+    \ k] = minimum_enclosing_circle<Re>(points);\n  print(C.r);\n}\n\nsigned main()\
+    \ {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -334,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc151f.test.cpp
   requiredBy: []
-  timestamp: '2024-10-26 12:13:04+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-28 15:40:32+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc151f.test.cpp
 layout: document
