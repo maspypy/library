@@ -286,7 +286,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -949,7 +949,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1107,7 +1107,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/dynamic_rerooting_tree_dp.hpp
       title: graph/ds/dynamic_rerooting_tree_dp.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/dynamic_tree_dp.hpp
       title: graph/ds/dynamic_tree_dp.hpp
     - icon: ':heavy_check_mark:'
@@ -1143,7 +1143,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/rolling_hash_on_tree.hpp
       title: graph/ds/rolling_hash_on_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/static_toptree.hpp
       title: graph/ds/static_toptree.hpp
     - icon: ':heavy_check_mark:'
@@ -1462,7 +1462,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/array_on_divisors.hpp
       title: nt/array_on_divisors.hpp
     - icon: ':heavy_check_mark:'
@@ -1798,7 +1798,7 @@ data:
     - icon: ':question:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/power_projection.hpp
       title: poly/power_projection.hpp
     - icon: ':heavy_check_mark:'
@@ -1819,7 +1819,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/slice_rational_fps.hpp
       title: poly/slice_rational_fps.hpp
     - icon: ':heavy_check_mark:'
@@ -5004,13 +5004,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc339f.test.cpp
       title: test/5_atcoder/abc339f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc345g.test.cpp
       title: test/5_atcoder/abc345g.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc348g.test.cpp
       title: test/5_atcoder/abc348g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc349f.test.cpp
       title: test/5_atcoder/abc349f.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5019,13 +5019,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350_g.test.cpp
       title: test/5_atcoder/abc350_g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350f.test.cpp
       title: test/5_atcoder/abc350f.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350g2.test.cpp
       title: test/5_atcoder/abc350g2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc351g.test.cpp
       title: test/5_atcoder/abc351g.test.cpp
     - icon: ':heavy_check_mark:'
@@ -5040,7 +5040,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc365f.test.cpp
       title: test/5_atcoder/abc365f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/agc013e.test.cpp
       title: test/5_atcoder/agc013e.test.cpp
     - icon: ':heavy_check_mark:'

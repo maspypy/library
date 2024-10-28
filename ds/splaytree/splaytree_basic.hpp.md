@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc350f.test.cpp
     title: test/5_atcoder/abc350f.test.cpp
   - icon: ':x:'

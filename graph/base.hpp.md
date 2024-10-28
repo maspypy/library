@@ -101,7 +101,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -125,7 +125,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -266,7 +266,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -861,7 +861,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc336g.test.cpp
     title: test/5_atcoder/abc336g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc351g.test.cpp
     title: test/5_atcoder/abc351g.test.cpp
   - icon: ':heavy_check_mark:'
