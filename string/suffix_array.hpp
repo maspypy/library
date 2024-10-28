@@ -13,7 +13,7 @@ struct Suffix_Array {
   vc<int> ISA;
   vc<int> LCP;
   using Mono = Monoid_Min<int>;
-  using SegType = conditional_t<USE_SPARSE_TABLE, SegTree<Mono>, Sparse_Table<Mono>>;
+  using SegType = conditional_t<USE_SPARSE_TABLE, Sparse_Table<Mono>, SegTree<Mono> >;
   SegType seg;
   bool build_seg;
 
