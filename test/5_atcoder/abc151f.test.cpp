@@ -10,7 +10,7 @@ void solve() {
   using Re = double;
   using P = Point<Re>;
   VEC(P, points, N);
-  auto [C, i, j, k] = minimum_enclosing_circle(points);
+  auto [C, i, j, k] = minimum_enclosing_circle<Re>(points);
   print(C.r);
 }
 

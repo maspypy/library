@@ -9,7 +9,7 @@ void solve() {
   G.read_graph(M, 1, 0);
 
   auto [dist, par] = BellmanFord<int, true>(G, s);
-  if (MIN(dist) == -infty<int>) { return print("NEGATIVE CYCLE"); }
+  if (dist.empty()) { return print("NEGATIVE CYCLE"); }
   for (auto&& x: dist) {
     if (x == infty<int>)
       print("INF");
