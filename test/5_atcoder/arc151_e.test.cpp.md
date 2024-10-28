@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':question:'
@@ -22,17 +22,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/arc151/tasks/arc151_e
@@ -290,9 +290,9 @@ data:
     \u3057\u3066\u5229\u7528\u305B\u3088\uFF09\ntemplate <bool USE_SPARSE_TABLE =\
     \ true>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n\
     \  using Mono = Monoid_Min<int>;\n  using SegType = conditional_t<USE_SPARSE_TABLE,\
-    \ SegTree<Mono>, Sparse_Table<Mono>>;\n  SegType seg;\n  bool build_seg;\n\n \
-    \ Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n   \
-    \ char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
+    \ Sparse_Table<Mono>, SegTree<Mono> >;\n  SegType seg;\n  bool build_seg;\n\n\
+    \  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n  \
+    \  char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
     \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
     \   calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n  \
     \  assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
@@ -497,8 +497,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/arc151_e.test.cpp
   requiredBy: []
-  timestamp: '2024-10-16 04:41:29+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-10-28 17:15:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/arc151_e.test.cpp
 layout: document

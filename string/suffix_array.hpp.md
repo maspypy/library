@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -48,12 +48,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
@@ -131,9 +131,9 @@ data:
     \u3057\u3066\u5229\u7528\u305B\u3088\uFF09\ntemplate <bool USE_SPARSE_TABLE =\
     \ true>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n\
     \  using Mono = Monoid_Min<int>;\n  using SegType = conditional_t<USE_SPARSE_TABLE,\
-    \ SegTree<Mono>, Sparse_Table<Mono>>;\n  SegType seg;\n  bool build_seg;\n\n \
-    \ Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n   \
-    \ char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
+    \ Sparse_Table<Mono>, SegTree<Mono> >;\n  SegType seg;\n  bool build_seg;\n\n\
+    \  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n  \
+    \  char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
     \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
     \   calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n  \
     \  assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
@@ -203,8 +203,8 @@ data:
     \u3046\u3067\u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\
     \u3066\u5229\u7528\u305B\u3088\uFF09\ntemplate <bool USE_SPARSE_TABLE = true>\n\
     struct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n  using\
-    \ Mono = Monoid_Min<int>;\n  using SegType = conditional_t<USE_SPARSE_TABLE, SegTree<Mono>,\
-    \ Sparse_Table<Mono>>;\n  SegType seg;\n  bool build_seg;\n\n  Suffix_Array(string&\
+    \ Mono = Monoid_Min<int>;\n  using SegType = conditional_t<USE_SPARSE_TABLE, Sparse_Table<Mono>,\
+    \ SegTree<Mono> >;\n  SegType seg;\n  bool build_seg;\n\n  Suffix_Array(string&\
     \ s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n    char first = 127, last\
     \ = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n      chmax(last, c);\n\
     \    }\n    SA = calc_suffix_array(s, first, last);\n    calc_LCP(s);\n  }\n\n\
@@ -279,8 +279,8 @@ data:
   - string/longest_common_substring.hpp
   - string/sort_substrings.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
-  timestamp: '2024-10-16 04:41:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-10-28 17:15:14+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp
   - test/5_atcoder/arc151_e.test.cpp
