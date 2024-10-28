@@ -8,7 +8,7 @@ data:
   - icon: ':warning:'
     path: ds/incremental_rectangle_union.hpp
     title: ds/incremental_rectangle_union.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/intervals.hpp
     title: ds/intervals.hpp
   - icon: ':warning:'
@@ -20,10 +20,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':heavy_check_mark:'
@@ -69,24 +69,24 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc223d.test.cpp
     title: test/5_atcoder/abc223d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237g.test.cpp
     title: test/5_atcoder/abc237g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237g1.test.cpp
     title: test/5_atcoder/abc237g1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256d.test.cpp
     title: test/5_atcoder/abc256d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256ex.test.cpp
     title: test/5_atcoder/abc256ex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256ex2.test.cpp
     title: test/5_atcoder/abc256ex2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63)\
@@ -175,7 +175,7 @@ data:
   - graph/ds/incremental_centroid.hpp
   - graph/toposort.hpp
   timestamp: '2024-10-28 19:23:56+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2809.test.cpp
   - test/4_aoj/2636.test.cpp

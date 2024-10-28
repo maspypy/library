@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -153,7 +153,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc174f.test.cpp
     title: test/5_atcoder/abc174f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237g.test.cpp
     title: test/5_atcoder/abc237g.test.cpp
   - icon: ':heavy_check_mark:'
@@ -171,9 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -273,7 +273,7 @@ data:
   - graph/ds/tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/2361.test.cpp
