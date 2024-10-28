@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
@@ -56,36 +56,36 @@ data:
     \n    } while (m > 1);\r\n    log = len(seg);\r\n  }\r\n  template <typename F>\r\
     \n  void build(int n, F f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B]\
     \ |= u64(f(i)) << (i % B); }\r\n    FOR(h, log - 1) {\r\n      FOR(i, len(seg[h]))\
-    \ {\r\n        seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\r\n     \
-    \ }\r\n    }\r\n  }\r\n\r\n  bool operator[](int i) const { return seg[0][i /\
-    \ B] >> (i % B) & 1; }\r\n  void insert(int i) {\r\n    for (int h = 0; h < log;\
-    \ h++) {\r\n      seg[h][i / B] |= u64(1) << (i % B), i /= B;\r\n    }\r\n  }\r\
-    \n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n    u64 x = 0;\r\
-    \n    for (int h = 0; h < log; h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i\
-    \ % B));\r\n      seg[h][i / B] |= x << (i % B);\r\n      x = bool(seg[h][i /\
-    \ B]);\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int i) { erase(i); }\r\
-    \n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i <= n);\r\n   \
-    \ chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if (i / B == seg[h].size())\
-    \ break;\r\n      u64 d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n   \
-    \     i = i / B + 1;\r\n        continue;\r\n      }\r\n      i += lowbit(d);\r\
-    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
-    \ lowbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
-    \ n;\r\n  }\r\n\r\n  // max [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i\
-    \ >= -1);\r\n    if (i >= n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\
-    \n      if (i == -1) break;\r\n      u64 d = seg[h][i / B] << (63 - i % B);\r\n\
-    \      if (!d) {\r\n        i = i / B - 1;\r\n        continue;\r\n      }\r\n\
-    \      i -= __builtin_clzll(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n\
-    \        i *= B;\r\n        i += topbit(seg[g][i / B]);\r\n      }\r\n      return\
-    \ i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return\
-    \ next(l) < r; }\r\n\r\n  // [l, r)\r\n  template <typename F>\r\n  void enumerate(int\
-    \ l, int r, F f) {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\
-    \n  }\r\n\r\n  string to_string() {\r\n    string s(n, '?');\r\n    for (int i\
-    \ = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n\
-    };\n#line 5 \"ds/segtree/range_add_make_decreasing.hpp\"\n\n// \u533A\u9593\u52A0\
-    \u7B97 / \u3042\u308B\u7BC4\u56F2\u3092 prefix \u5074\u304B\u3089\u5358\u8ABF\
-    (\u5897\u52A0/\u6E1B\u5C11)\u306B\u306A\u308B\u3088\u3046\u306B\u4FEE\u6B63\n\
-    // \u6307\u5B9A\u3057\u306A\u304B\u3063\u305F\u5834\u5408 0 \u57CB\u3081\u3067\
-    \u521D\u671F\u5316\u3055\u308C\u308B\n// https://atcoder.jp/contests/joisc2019/tasks/joisc2019_e\n\
+    \ { seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B); }\r\n    }\r\n  }\r\n\
+    \r\n  bool operator[](int i) const { return seg[0][i / B] >> (i % B) & 1; }\r\n\
+    \  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\n    for (int h = 0;\
+    \ h < log; h++) { seg[h][i / B] |= u64(1) << (i % B), i /= B; }\r\n  }\r\n  void\
+    \ add(int i) { insert(i); }\r\n  void erase(int i) {\r\n    assert(0 <= i && i\
+    \ < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log; h++) {\r\n      seg[h][i\
+    \ / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B] |= x << (i % B);\r\n  \
+    \    x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\n  }\r\n  void remove(int\
+    \ i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int next(int i) {\r\n    assert(i\
+    \ <= n);\r\n    chmax(i, 0);\r\n    for (int h = 0; h < log; h++) {\r\n      if\
+    \ (i / B == seg[h].size()) break;\r\n      u64 d = seg[h][i / B] >> (i % B);\r\
+    \n      if (!d) {\r\n        i = i / B + 1;\r\n        continue;\r\n      }\r\n\
+    \      i += lowbit(d);\r\n      for (int g = h - 1; g >= 0; g--) {\r\n       \
+    \ i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\
+    \n    }\r\n    return n;\r\n  }\r\n\r\n  // max [0,x], or -1\r\n  int prev(int\
+    \ i) {\r\n    assert(i >= -1);\r\n    if (i >= n) i = n - 1;\r\n    for (int h\
+    \ = 0; h < log; h++) {\r\n      if (i == -1) break;\r\n      u64 d = seg[h][i\
+    \ / B] << (63 - i % B);\r\n      if (!d) {\r\n        i = i / B - 1;\r\n     \
+    \   continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\n      for (int g\
+    \ = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += topbit(seg[g][i /\
+    \ B]);\r\n      }\r\n      return i;\r\n    }\r\n    return -1;\r\n  }\r\n\r\n\
+    \  bool any(int l, int r) { return next(l) < r; }\r\n\r\n  // [l, r)\r\n  template\
+    \ <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    for (int x = next(l);\
+    \ x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n  string to_string() {\r\n    string\
+    \ s(n, '?');\r\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\
+    \n    return s;\r\n  }\r\n};\n#line 5 \"ds/segtree/range_add_make_decreasing.hpp\"\
+    \n\n// \u533A\u9593\u52A0\u7B97 / \u3042\u308B\u7BC4\u56F2\u3092 prefix \u5074\
+    \u304B\u3089\u5358\u8ABF(\u5897\u52A0/\u6E1B\u5C11)\u306B\u306A\u308B\u3088\u3046\
+    \u306B\u4FEE\u6B63\n// \u6307\u5B9A\u3057\u306A\u304B\u3063\u305F\u5834\u5408\
+    \ 0 \u57CB\u3081\u3067\u521D\u671F\u5316\u3055\u308C\u308B\n// https://atcoder.jp/contests/joisc2019/tasks/joisc2019_e\n\
     // https://atcoder.jp/contests/joisp2024/tasks/joisp2024_i\nstruct Range_Add_Make_Monotonic_Decreasing\
     \ {\n  // \u4EE3\u8868\u70B9\u306E\u96C6\u5408\u3092\u6301\u3064. \u4EE3\u8868\
     \u70B9\u306B\u5BFE\u3059\u308B\u5024\u3092\u53CC\u5BFE\u30BB\u30B0\u6728\u3067\
@@ -155,7 +155,7 @@ data:
   isVerificationFile: false
   path: ds/segtree/range_add_make_decreasing.hpp
   requiredBy: []
-  timestamp: '2024-10-12 22:46:11+09:00'
+  timestamp: '2024-10-28 19:23:56+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: ds/segtree/range_add_make_decreasing.hpp
