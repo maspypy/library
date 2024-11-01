@@ -20,6 +20,7 @@ vvc<mint> stirling_number_2_2d(int nmax, int kmax) {
 
 // n 個のもの (labeled) を k グループ (no label) に分ける方法
 // label をつけることで、全射の数え上げに利用できる
+// O(klogk)
 template <typename mint>
 vc<mint> stirling_number_2_n(int n, int k_max) {
   vc<mint> a = powertable_2<mint>(n, k_max + 1);
@@ -35,6 +36,7 @@ vc<mint> stirling_number_2_n(int n, int k_max) {
 // n 個のもの (labeled) を k グループ (no label) に分ける方法
 // label をつけることで、全射の数え上げに利用できる
 // 1/k! (e^x-1)^k
+// O(nlogn)
 template <typename mint>
 vc<mint> stirling_number_2_k(int k, int n_max) {
   if (k > n_max) { return vc<mint>(n_max + 1); }

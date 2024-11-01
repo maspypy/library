@@ -88,6 +88,11 @@ struct SWAG_deque {
 
   void pop() { pop_front(); }
 
+  X front() {
+    if (len(dat_l)) return dat_l.back();
+    return dat_r[0];
+  }
+
   X lprod() { return cum_l.back(); }
   X rprod() { return cum_r.back(); }
   X prod() { return Monoid::op(cum_l.back(), cum_r.back()); }

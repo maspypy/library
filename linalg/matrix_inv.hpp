@@ -1,3 +1,5 @@
+#pragma once
+
 // (det, invA) をかえす
 template <typename T>
 pair<T, vc<vc<T>>> matrix_inv(vc<vc<T>> A) {
