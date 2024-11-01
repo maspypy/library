@@ -1,8 +1,10 @@
+#pragma once
 #include "random/base.hpp"
 #include "linalg/matrix_inv.hpp"
 #include "linalg/matrix_mul.hpp"
 #include "poly/convolution.hpp"
 #include "linalg/basis.hpp"
+#include "poly/convolution_all.hpp"
 
 // https://codeforces.com/blog/entry/124815
 // P^{-1}AP = diag(companion(f0),companion(f1),...)
@@ -38,6 +40,39 @@ struct Frobenius_Form {
     X = matrix_mul(P, X);
     X = matrix_mul(X, IP);
     return X;
+  }
+
+  // p(A)
+  vvc<mint> poly_eval(vc<mint>& p) {
+    vv(mint, X, n, n);
+    int s = 0;
+    FOR(k, len(F)) {
+      int d = len(F[k]);
+      vc<mint> f = p;
+      divmod_inplace(f, F[k]);
+      FOR(j, d) {
+        FOR(i, len(f)) { X[s + i][s + j] = f[i]; }
+        if (j == d - 1) break;
+        f.insert(f.begin(), 0);
+        divmod_inplace(f, F[k]);
+      }
+      s += d;
+    }
+    X = matrix_mul(P, X);
+    X = matrix_mul(X, IP);
+    return X;
+  }
+
+  vc<mint> characteristic_poly() {
+    vvc<mint> polys;
+    for (auto& f: F) {
+      vc<mint> g = f;
+      for (auto& x: g) x = -x;
+      g.eb(1);
+      polys.eb(g);
+    }
+    vc<mint> f = convolution_all(polys);
+    return f;
   }
 
 private:

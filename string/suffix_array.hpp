@@ -17,6 +17,7 @@ struct Suffix_Array {
   SegType seg;
   bool build_seg;
 
+  Suffix_Array() {}
   Suffix_Array(string& s) {
     build_seg = 0;
     assert(len(s) > 0);
