@@ -1,59 +1,59 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
   _extendedVerifiedWith:
@@ -63,18 +63,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1321.test.cpp
     title: test/3_yukicoder/1321.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/arc153f.test.cpp
     title: test/5_atcoder/arc153f.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -479,21 +479,21 @@ data:
     \    }\r\n  }\r\n  return A;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E (labeled)\
     \ \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\
     \r\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\
-    \u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> stirling_number_2_n(int n, int k_max) {\r\n  vc<mint> a =\
-    \ powertable_2<mint>(n, k_max + 1);\r\n  FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);\r\
-    \n  vc<mint> b(k_max + 1);\r\n  FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);\r\n\
-    \  FOR(i, 1, k_max + 1, 2) b[i] = -b[i];\r\n  auto f = convolution(a, b);\r\n\
-    \  f.resize(k_max + 1);\r\n  return f;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E\
-    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
-    \u65B9\u6CD5\r\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\
-    \u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\n//\
-    \ 1/k! (e^x-1)^k\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_k(int\
-    \ k, int n_max) {\r\n  if (k > n_max) { return vc<mint>(n_max + 1); }\r\n  int\
-    \ LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i\
-    \ + 1);\r\n  f = fps_pow(f, k);\r\n  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint>\
-    \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] *\
-    \ cf;\r\n  return res;\r\n}\r\n"
+    \u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\n// O(klogk)\r\n\
+    template <typename mint>\r\nvc<mint> stirling_number_2_n(int n, int k_max) {\r\
+    \n  vc<mint> a = powertable_2<mint>(n, k_max + 1);\r\n  FOR(i, k_max + 1) a[i]\
+    \ *= fact_inv<mint>(i);\r\n  vc<mint> b(k_max + 1);\r\n  FOR(i, k_max + 1) b[i]\
+    \ = fact_inv<mint>(i);\r\n  FOR(i, 1, k_max + 1, 2) b[i] = -b[i];\r\n  auto f\
+    \ = convolution(a, b);\r\n  f.resize(k_max + 1);\r\n  return f;\r\n}\r\n\r\n//\
+    \ n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label)\
+    \ \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\n// label \u3092\u3064\u3051\u308B\u3053\
+    \u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\
+    \u3067\u304D\u308B\r\n// 1/k! (e^x-1)^k\r\n// O(nlogn)\r\ntemplate <typename mint>\r\
+    \nvc<mint> stirling_number_2_k(int k, int n_max) {\r\n  if (k > n_max) { return\
+    \ vc<mint>(n_max + 1); }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\
+    \n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n\
+    \  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint> res(n_max + 1);\r\n  FOR(i,\
+    \ len(f)) res[k + i] = fact<mint>(k + i) * f[i] * cf;\r\n  return res;\r\n}\r\n"
   code: "#include \"poly/convolution.hpp\"\r\n#include \"poly/fps_pow.hpp\"\r\n#include\
     \ \"mod/powertable.hpp\"\r\n\r\n// n \u500B\u306E\u3082\u306E (labeled) \u3092\
     \ k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\
@@ -506,21 +506,21 @@ data:
     \ A;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E (labeled) \u3092 k \u30B0\u30EB\
     \u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\n// label \u3092\
     \u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\u3048\u4E0A\
-    \u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ stirling_number_2_n(int n, int k_max) {\r\n  vc<mint> a = powertable_2<mint>(n,\
-    \ k_max + 1);\r\n  FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);\r\n  vc<mint>\
-    \ b(k_max + 1);\r\n  FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);\r\n  FOR(i, 1,\
-    \ k_max + 1, 2) b[i] = -b[i];\r\n  auto f = convolution(a, b);\r\n  f.resize(k_max\
-    \ + 1);\r\n  return f;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E (labeled) \u3092\
-    \ k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\u65B9\u6CD5\r\
-    \n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\u5C04\u306E\u6570\
-    \u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\n// 1/k! (e^x-1)^k\r\n\
-    template <typename mint>\r\nvc<mint> stirling_number_2_k(int k, int n_max) {\r\
-    \n  if (k > n_max) { return vc<mint>(n_max + 1); }\r\n  int LIM = n_max - k;\r\
-    \n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i + 1);\r\n\
-    \  f = fps_pow(f, k);\r\n  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint> res(n_max\
-    \ + 1);\r\n  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] * cf;\r\n  return\
-    \ res;\r\n}\r\n"
+    \u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\n// O(klogk)\r\ntemplate <typename\
+    \ mint>\r\nvc<mint> stirling_number_2_n(int n, int k_max) {\r\n  vc<mint> a =\
+    \ powertable_2<mint>(n, k_max + 1);\r\n  FOR(i, k_max + 1) a[i] *= fact_inv<mint>(i);\r\
+    \n  vc<mint> b(k_max + 1);\r\n  FOR(i, k_max + 1) b[i] = fact_inv<mint>(i);\r\n\
+    \  FOR(i, 1, k_max + 1, 2) b[i] = -b[i];\r\n  auto f = convolution(a, b);\r\n\
+    \  f.resize(k_max + 1);\r\n  return f;\r\n}\r\n\r\n// n \u500B\u306E\u3082\u306E\
+    \ (labeled) \u3092 k \u30B0\u30EB\u30FC\u30D7 (no label) \u306B\u5206\u3051\u308B\
+    \u65B9\u6CD5\r\n// label \u3092\u3064\u3051\u308B\u3053\u3068\u3067\u3001\u5168\
+    \u5C04\u306E\u6570\u3048\u4E0A\u3052\u306B\u5229\u7528\u3067\u304D\u308B\r\n//\
+    \ 1/k! (e^x-1)^k\r\n// O(nlogn)\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_2_k(int\
+    \ k, int n_max) {\r\n  if (k > n_max) { return vc<mint>(n_max + 1); }\r\n  int\
+    \ LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] = fact_inv<mint>(i\
+    \ + 1);\r\n  f = fps_pow(f, k);\r\n  mint cf = fact_inv<mint>(k);\r\n\r\n  vc<mint>\
+    \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = fact<mint>(k + i) * f[i] *\
+    \ cf;\r\n  return res;\r\n}\r\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -543,8 +543,8 @@ data:
   path: seq/famous/stirling_number_2.hpp
   requiredBy:
   - seq/famous/surjection.hpp
-  timestamp: '2024-10-25 01:17:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-11-01 21:56:32+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1321.test.cpp
   - test/3_yukicoder/1392.test.cpp

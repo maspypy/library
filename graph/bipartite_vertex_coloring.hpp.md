@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -14,6 +14,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
+  - icon: ':warning:'
+    path: game/graph_path_game.hpp
+    title: game/graph_path_game.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
@@ -172,6 +175,7 @@ data:
   isVerificationFile: false
   path: graph/bipartite_vertex_coloring.hpp
   requiredBy:
+  - game/graph_path_game.hpp
   - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
   - flow/bipartite.hpp

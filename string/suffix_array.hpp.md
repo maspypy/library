@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
+    path: string/many_string_compare.hpp
+    title: string/many_string_compare.hpp
+  - icon: ':x:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -42,18 +45,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/suffix_array_vec.test.cpp
     title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
@@ -132,11 +135,11 @@ data:
     \ true>\nstruct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n\
     \  using Mono = Monoid_Min<int>;\n  using SegType = conditional_t<USE_SPARSE_TABLE,\
     \ Sparse_Table<Mono>, SegTree<Mono> >;\n  SegType seg;\n  bool build_seg;\n\n\
-    \  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n  \
-    \  char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
-    \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
-    \   calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n  \
-    \  assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
+    \  Suffix_Array() {}\n  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s)\
+    \ > 0);\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
+    \ c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n\
+    \    calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n \
+    \   assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
     \n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n    if (!build_seg) {\n \
     \     build_seg = true;\n      seg.build(LCP);\n    }\n    int n = len(SA);\n\
     \    if (i == n || j == n) return 0;\n    if (i == j) return n - i;\n    i = ISA[i],\
@@ -204,31 +207,32 @@ data:
     \u3066\u5229\u7528\u305B\u3088\uFF09\ntemplate <bool USE_SPARSE_TABLE = true>\n\
     struct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n  using\
     \ Mono = Monoid_Min<int>;\n  using SegType = conditional_t<USE_SPARSE_TABLE, Sparse_Table<Mono>,\
-    \ SegTree<Mono> >;\n  SegType seg;\n  bool build_seg;\n\n  Suffix_Array(string&\
-    \ s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n    char first = 127, last\
-    \ = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n      chmax(last, c);\n\
-    \    }\n    SA = calc_suffix_array(s, first, last);\n    calc_LCP(s);\n  }\n\n\
-    \  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n \
-    \   SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\n  // lcp(S[i:], S[j:])\n\
-    \  int lcp(int i, int j) {\n    if (!build_seg) {\n      build_seg = true;\n \
-    \     seg.build(LCP);\n    }\n    int n = len(SA);\n    if (i == n || j == n)\
-    \ return 0;\n    if (i == j) return n - i;\n    i = ISA[i], j = ISA[j];\n    if\
-    \ (i > j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\n  // S[i:] \u3068\u306E\
-    \ lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\u3088\u3046\u306A\u534A\u958B\u533A\
-    \u9593\n  pair<int, int> lcp_range(int i, int n) {\n    if (!build_seg) {\n  \
-    \    build_seg = true;\n      seg.build(LCP);\n    }\n    i = ISA[i];\n    int\
-    \ a = seg.min_left([&](auto e) -> bool { return e >= n; }, i);\n    int b = seg.max_right([&](auto\
-    \ e) -> bool { return e >= n; }, i);\n    return {a, b + 1};\n  }\n\n  // -1:\
-    \ S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1) = S[L2, R2)\n  // +1: S[L1:R1) > S[L2,\
-    \ R2)\n  int compare(int L1, int R1, int L2, int R2) {\n    int n1 = R1 - L1,\
-    \ n2 = R2 - L2;\n    int n = lcp(L1, L2);\n    if (n == n1 && n == n2) return\
-    \ 0;\n    if (n == n1) return -1;\n    if (n == n2) return 1;\n    return (ISA[L1\
-    \ + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\nprivate:\n  void induced_sort(const vc<int>&\
-    \ vect, int val_range, vc<int>& SA, const vc<bool>& sl, const vc<int>& lms_idx)\
-    \ {\n    vc<int> l(val_range, 0), r(val_range, 0);\n    for (int c: vect) {\n\
-    \      if (c + 1 < val_range) ++l[c + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(),\
-    \ l.end(), l.begin());\n    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(),\
-    \ SA.end(), -1);\n    for (int i = (int)lms_idx.size() - 1; i >= 0; --i) SA[--r[vect[lms_idx[i]]]]\
+    \ SegTree<Mono> >;\n  SegType seg;\n  bool build_seg;\n\n  Suffix_Array() {}\n\
+    \  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n  \
+    \  char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
+    \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
+    \   calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n  \
+    \  assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
+    \n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n    if (!build_seg) {\n \
+    \     build_seg = true;\n      seg.build(LCP);\n    }\n    int n = len(SA);\n\
+    \    if (i == n || j == n) return 0;\n    if (i == j) return n - i;\n    i = ISA[i],\
+    \ j = ISA[j];\n    if (i > j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\n\
+    \  // S[i:] \u3068\u306E lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\u3088\u3046\
+    \u306A\u534A\u958B\u533A\u9593\n  pair<int, int> lcp_range(int i, int n) {\n \
+    \   if (!build_seg) {\n      build_seg = true;\n      seg.build(LCP);\n    }\n\
+    \    i = ISA[i];\n    int a = seg.min_left([&](auto e) -> bool { return e >= n;\
+    \ }, i);\n    int b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);\n\
+    \    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1)\
+    \ = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n  int compare(int L1, int R1, int\
+    \ L2, int R2) {\n    int n1 = R1 - L1, n2 = R2 - L2;\n    int n = lcp(L1, L2);\n\
+    \    if (n == n1 && n == n2) return 0;\n    if (n == n1) return -1;\n    if (n\
+    \ == n2) return 1;\n    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\n\
+    private:\n  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,\
+    \ const vc<bool>& sl, const vc<int>& lms_idx) {\n    vc<int> l(val_range, 0),\
+    \ r(val_range, 0);\n    for (int c: vect) {\n      if (c + 1 < val_range) ++l[c\
+    \ + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(), l.end(), l.begin());\n\
+    \    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(), SA.end(),\
+    \ -1);\n    for (int i = (int)lms_idx.size() - 1; i >= 0; --i) SA[--r[vect[lms_idx[i]]]]\
     \ = lms_idx[i];\n    for (int i: SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i\
     \ - 1]]++] = i - 1;\n    fill(r.begin(), r.end(), 0);\n    for (int c: vect) ++r[c];\n\
     \    partial_sum(r.begin(), r.end(), r.begin());\n    for (int k = (int)SA.size()\
@@ -279,8 +283,9 @@ data:
   - string/longest_common_substring.hpp
   - string/sort_substrings.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
-  timestamp: '2024-10-28 17:15:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - string/many_string_compare.hpp
+  timestamp: '2024-11-01 21:56:32+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp
   - test/5_atcoder/arc151_e.test.cpp

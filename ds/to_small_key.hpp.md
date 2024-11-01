@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
+  - icon: ':warning:'
+    path: string/aho_corasick_for_general_trie.hpp
+    title: string/aho_corasick_for_general_trie.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_freq.test.cpp
     title: test/2_library_checker/data_structure/static_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
     title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -50,24 +53,25 @@ data:
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\
     \n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
-    \  HashMap<int> MP;\n\n  To_Small_Key(u32 n = 0) : MP(n) {}\n\n  void reserve(u32\
-    \ n) { MP.build(n); }\n\n  int size() { return MP.size(); }\n\n  int set_key(u64\
-    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
-    \ query(u64 x) { return MP.get(x, -1); }\n};\n"
+    \  HashMap<int> MP;\n  To_Small_Key(u32 n = 0) : MP(n) {}\n  void reserve(u32\
+    \ n) { MP.build(n); }\n  int size() { return MP.size(); }\n  int query(u64 x,\
+    \ bool set_if_not_exist) {\n    int ans = MP.get(x, -1);\n    if (ans == -1 &&\
+    \ set_if_not_exist) MP[x] = ans = kind++;\n    return ans;\n  }\n};\n"
   code: "#include \"ds/hashmap.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct\
-    \ To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n\n  To_Small_Key(u32 n\
-    \ = 0) : MP(n) {}\n\n  void reserve(u32 n) { MP.build(n); }\n\n  int size() {\
-    \ return MP.size(); }\n\n  int set_key(u64 x) {\n    if (!MP.count(x)) MP[x] =\
-    \ kind++;\n    return MP[x];\n  }\n\n  int query(u64 x) { return MP.get(x, -1);\
-    \ }\n};"
+    \ To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n  To_Small_Key(u32 n =\
+    \ 0) : MP(n) {}\n  void reserve(u32 n) { MP.build(n); }\n  int size() { return\
+    \ MP.size(); }\n  int query(u64 x, bool set_if_not_exist) {\n    int ans = MP.get(x,\
+    \ -1);\n    if (ans == -1 && set_if_not_exist) MP[x] = ans = kind++;\n    return\
+    \ ans;\n  }\n};"
   dependsOn:
   - ds/hashmap.hpp
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
   - ds/static_range_frequency.hpp
-  timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - string/aho_corasick_for_general_trie.hpp
+  timestamp: '2024-11-01 21:56:32+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
   - test/2_library_checker/data_structure/static_range_frequency.test.cpp

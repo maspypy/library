@@ -5,6 +5,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
+  - icon: ':warning:'
+    path: convex/line_min_function.hpp
+    title: convex/line_min_function.hpp
   - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
@@ -291,6 +294,7 @@ data:
   requiredBy:
   - random/random_polygon.hpp
   - convex/fenchel.hpp
+  - convex/line_min_function.hpp
   - geo/reflection.hpp
   - geo/count_points_in_triangles.hpp
   - geo/minkowski_sum.hpp

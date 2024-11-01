@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
+  - icon: ':warning:'
+    path: game/graph_path_game.hpp
+    title: game/graph_path_game.hpp
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
@@ -224,6 +227,7 @@ data:
   isVerificationFile: false
   path: flow/maxflow.hpp
   requiredBy:
+  - game/graph_path_game.hpp
   - graph/maximum_weighted_antichain.hpp
   - graph/dag_path_cover.hpp
   - flow/k_ary_optimization.hpp

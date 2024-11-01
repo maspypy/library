@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -229,13 +229,14 @@ data:
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\
     \n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
-    \  HashMap<int> MP;\n\n  To_Small_Key(u32 n = 0) : MP(n) {}\n\n  void reserve(u32\
-    \ n) { MP.build(n); }\n\n  int size() { return MP.size(); }\n\n  int set_key(u64\
-    \ x) {\n    if (!MP.count(x)) MP[x] = kind++;\n    return MP[x];\n  }\n\n  int\
-    \ query(u64 x) { return MP.get(x, -1); }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_freq.test.cpp\"\
-    \n\nvoid solve() {\n  U32(N, Q);\n  VEC(u32, A, N);\n  To_Small_Key X;\n  for\
-    \ (auto& x: A) x = X.set_key(x);\n\n  vvc<int> IDS(X.kind);\n  FOR(i, N) IDS[A[i]].eb(i);\n\
-    \  FOR(Q) {\n    U32(L, R, x);\n    x = X.query(x);\n    if (x == u32(-1)) {\n\
+    \  HashMap<int> MP;\n  To_Small_Key(u32 n = 0) : MP(n) {}\n  void reserve(u32\
+    \ n) { MP.build(n); }\n  int size() { return MP.size(); }\n  int query(u64 x,\
+    \ bool set_if_not_exist) {\n    int ans = MP.get(x, -1);\n    if (ans == -1 &&\
+    \ set_if_not_exist) MP[x] = ans = kind++;\n    return ans;\n  }\n};\n#line 7 \"\
+    test/2_library_checker/data_structure/static_range_freq.test.cpp\"\n\nvoid solve()\
+    \ {\n  U32(N, Q);\n  VEC(u32, A, N);\n  To_Small_Key X;\n  for (auto& x: A) x\
+    \ = X.set_key(x);\n\n  vvc<int> IDS(X.kind);\n  FOR(i, N) IDS[A[i]].eb(i);\n \
+    \ FOR(Q) {\n    U32(L, R, x);\n    x = X.query(x);\n    if (x == u32(-1)) {\n\
     \      print(0);\n    } else {\n      auto& I = IDS[x];\n      u32 ans = LB(I,\
     \ R) - LB(I, L);\n      print(ans);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \n  return 0;\n}\n"
@@ -255,8 +256,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_freq.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-01 21:56:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_freq.test.cpp
 layout: document

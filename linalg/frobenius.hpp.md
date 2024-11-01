@@ -1,58 +1,70 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: poly/convolution_all.hpp
+    title: poly/convolution_all.hpp
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
+    path: poly/ntt_doubling.hpp
+    title: poly/ntt_doubling.hpp
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: linalg/adjugate_matrix.hpp
+    title: linalg/adjugate_matrix.hpp
   _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
+    title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/124815
   bundledCode: "#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"linalg/matrix_inv.hpp\"\n// (det, invA) \u3092\
-    \u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>>\
+    \ RNG_64() % (r - l); }\n#line 2 \"linalg/matrix_inv.hpp\"\n\r\n// (det, invA)\
+    \ \u3092\u304B\u3048\u3059\r\ntemplate <typename T>\r\npair<T, vc<vc<T>>> matrix_inv(vc<vc<T>>\
     \ A) {\r\n  T det = 1;\r\n  int N = len(A);\r\n  vv(T, B, N, N);\r\n  FOR(n, N)\
     \ B[n][n] = 1;\r\n  FOR(i, N) {\r\n    FOR(k, i, N) if (A[k][i] != 0) {\r\n  \
     \    if (k != i) {\r\n        swap(A[i], A[k]), swap(B[i], B[k]);\r\n        det\
@@ -334,7 +346,7 @@ data:
     \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
     \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 1 \"linalg/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
+    }\r\n#line 2 \"linalg/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\u8FFD\u52A0\
     \u6210\u529F\u3057\u305F\u3082\u306E. \u5225\u306E\u30E9\u30D9\u30EB\u304C\u3042\
     \u308B\u306A\u3089\u5916\u3067\u7BA1\u7406\u3059\u308B.\n// rbasis: \u4E0A\u4E09\
     \u89D2\u5316\u3055\u308C\u305F\u57FA\u5E95. [i][i]==1.\n// way[i][j]: rbasis[i]\
@@ -362,7 +374,49 @@ data:
     \u3059. Frobenius Form \u7528.\n  void rollback(int r) {\n    while (rank > r)\
     \ {\n      --rank;\n      POP(basis);\n      FOR(i, n) if (way[i][rank] != mint(0))\
     \ {\n        fill(all(rbasis[i]), mint(0));\n        fill(all(way[i]), mint(0));\n\
-    \      }\n    }\n  }\n};\n#line 6 \"linalg/frobenius.hpp\"\n\n// https://codeforces.com/blog/entry/124815\n\
+    \      }\n    }\n  }\n};\n#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2 \"\
+    poly/ntt_doubling.hpp\"\n\n#line 4 \"poly/ntt_doubling.hpp\"\n\n// 2^k \u6B21\u591A\
+    \u9805\u5F0F\u306E\u9577\u3055 2^k \u304C\u4E0E\u3048\u3089\u308C\u308B\u306E\u3067\
+    \ 2^k+1 \u306B\u3059\u308B\ntemplate <typename mint, bool transposed = false>\n\
+    void ntt_doubling(vector<mint>& a) {\n  static array<mint, 30> root;\n  static\
+    \ bool prepared = 0;\n  if (!prepared) {\n    prepared = 1;\n    const int rank2\
+    \ = mint::ntt_info().fi;\n    root[rank2] = mint::ntt_info().se;\n    FOR_R(i,\
+    \ rank2) { root[i] = root[i + 1] * root[i + 1]; }\n  }\n\n  if constexpr (!transposed)\
+    \ {\n    const int M = (int)a.size();\n    auto b = a;\n    ntt(b, 1);\n    mint\
+    \ r = 1, zeta = root[topbit(2 * M)];\n    FOR(i, M) b[i] *= r, r *= zeta;\n  \
+    \  ntt(b, 0);\n    copy(begin(b), end(b), back_inserter(a));\n  } else {\n   \
+    \ const int M = len(a) / 2;\n    vc<mint> tmp = {a.begin(), a.begin() + M};\n\
+    \    a = {a.begin() + M, a.end()};\n    transposed_ntt(a, 0);\n    mint r = 1,\
+    \ zeta = root[topbit(2 * M)];\n    FOR(i, M) a[i] *= r, r *= zeta;\n    transposed_ntt(a,\
+    \ 1);\n    FOR(i, M) a[i] += tmp[i];\n  }\n}\n#line 5 \"poly/convolution_all.hpp\"\
+    \n\r\ntemplate <typename T>\r\nvc<T> convolution_all(vc<vc<T>>& polys) {\r\n \
+    \ if (len(polys) == 0) return {T(1)};\r\n  while (1) {\r\n    int n = len(polys);\r\
+    \n    if (n == 1) break;\r\n    int m = ceil(n, 2);\r\n    FOR(i, m) {\r\n   \
+    \   if (2 * i + 1 == n) {\r\n        polys[i] = polys[2 * i];\r\n      } else\
+    \ {\r\n        polys[i] = convolution(polys[2 * i], polys[2 * i + 1]);\r\n   \
+    \   }\r\n    }\r\n    polys.resize(m);\r\n  }\r\n  return polys[0];\r\n}\r\n\r\
+    \n// product of 1-A[i]x\r\ntemplate <typename mint>\r\nvc<mint> convolution_all_1(vc<mint>\
+    \ A) {\r\n  if (!mint::can_ntt()) {\r\n    vvc<mint> polys;\r\n    for (auto&\
+    \ a: A) polys.eb(vc<mint>({mint(1), -a}));\r\n    return convolution_all(polys);\r\
+    \n  }\r\n  int D = 6;\r\n  using poly = vc<mint>;\r\n  int n = 1;\r\n  while (n\
+    \ < len(A)) n *= 2;\r\n  int k = topbit(n);\r\n  vc<mint> F(n), nxt_F(n);\r\n\
+    \  FOR(i, len(A)) F[i] = -A[i];\r\n  FOR(d, k) {\r\n    int b = 1 << d;\r\n  \
+    \  if (d < D) {\r\n      fill(all(nxt_F), mint(0));\r\n      for (int L = 0; L\
+    \ < n; L += 2 * b) {\r\n        FOR(i, b) FOR(j, b) { nxt_F[L + i + j] += F[L\
+    \ + i] * F[L + b + j]; }\r\n        FOR(i, b) nxt_F[L + b + i] += F[L + i] + F[L\
+    \ + b + i];\r\n      }\r\n    }\r\n    elif (d == D) {\r\n      for (int L = 0;\
+    \ L < n; L += 2 * b) {\r\n        poly f1 = {F.begin() + L, F.begin() + L + b};\r\
+    \n        poly f2 = {F.begin() + L + b, F.begin() + L + 2 * b};\r\n        f1.resize(2\
+    \ * b), f2.resize(2 * b), ntt(f1, 0), ntt(f2, 0);\r\n        FOR(i, b) nxt_F[L\
+    \ + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b) nxt_F[L +\
+    \ i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    else {\r\n  \
+    \    for (int L = 0; L < n; L += 2 * b) {\r\n        poly f1 = {F.begin() + L,\
+    \ F.begin() + L + b};\r\n        poly f2 = {F.begin() + L + b, F.begin() + L +\
+    \ 2 * b};\r\n        ntt_doubling(f1), ntt_doubling(f2);\r\n        FOR(i, b)\
+    \ nxt_F[L + i] = f1[i] * f2[i] + f1[i] + f2[i];\r\n        FOR(i, b, 2 * b) nxt_F[L\
+    \ + i] = f1[i] * f2[i] - f1[i] - f2[i];\r\n      }\r\n    }\r\n    swap(F, nxt_F);\r\
+    \n  }\r\n  if (k - 1 >= D) ntt(F, 1);\r\n  F.eb(1), reverse(all(F));\r\n  F.resize(len(A)\
+    \ + 1);\r\n  return F;\r\n}\n#line 8 \"linalg/frobenius.hpp\"\n\n// https://codeforces.com/blog/entry/124815\n\
     // P^{-1}AP = diag(companion(f0),companion(f1),...)\n// without checking: ...|f2|f1|f0.\n\
     // time complexity O(N^3). failure prob O(N/mod).\ntemplate <typename mint>\n\
     struct Frobenius_Form {\n  int n; // b : num of blocks\n  const vvc<mint> A;\n\
@@ -374,7 +428,16 @@ data:
     \      FOR(j, d) {\n        FOR(i, len(f)) { X[s + i][s + j] = f[i]; }\n     \
     \   if (j == d - 1) break;\n        f.insert(f.begin(), 0);\n        divmod_inplace(f,\
     \ F[k]);\n      }\n      s += d;\n    }\n    X = matrix_mul(P, X);\n    X = matrix_mul(X,\
-    \ IP);\n    return X;\n  }\n\nprivate:\n  bool trial() {\n    V.clear(), F.clear();\n\
+    \ IP);\n    return X;\n  }\n\n  // p(A)\n  vvc<mint> poly_eval(vc<mint>& p) {\n\
+    \    vv(mint, X, n, n);\n    int s = 0;\n    FOR(k, len(F)) {\n      int d = len(F[k]);\n\
+    \      vc<mint> f = p;\n      divmod_inplace(f, F[k]);\n      FOR(j, d) {\n  \
+    \      FOR(i, len(f)) { X[s + i][s + j] = f[i]; }\n        if (j == d - 1) break;\n\
+    \        f.insert(f.begin(), 0);\n        divmod_inplace(f, F[k]);\n      }\n\
+    \      s += d;\n    }\n    X = matrix_mul(P, X);\n    X = matrix_mul(X, IP);\n\
+    \    return X;\n  }\n\n  vc<mint> characteristic_poly() {\n    vvc<mint> polys;\n\
+    \    for (auto& f: F) {\n      vc<mint> g = f;\n      for (auto& x: g) x = -x;\n\
+    \      g.eb(1);\n      polys.eb(g);\n    }\n    vc<mint> f = convolution_all(polys);\n\
+    \    return f;\n  }\n\nprivate:\n  bool trial() {\n    V.clear(), F.clear();\n\
     \    Basis<mint> S(n);\n    while (1) {\n      if (S.rank == n) break;\n     \
     \ int r = S.rank;\n      vc<mint> v = random_vector();\n      V.eb(v);\n     \
     \ while (1) {\n        auto [solved, cf] = S.solve_or_add(v);\n        if (!solved)\
@@ -402,48 +465,57 @@ data:
     \      f[n] = 1;\n      return f;\n    }\n    vc<mint> f = powmod(g, n / 2);\n\
     \    f = convolution_naive(f, f);\n    if (n & 1) f.insert(f.begin(), 0);\n  \
     \  divmod_inplace(f, g);\n    return f;\n  }\n};\n"
-  code: "#include \"random/base.hpp\"\n#include \"linalg/matrix_inv.hpp\"\n#include\
-    \ \"linalg/matrix_mul.hpp\"\n#include \"poly/convolution.hpp\"\n#include \"linalg/basis.hpp\"\
-    \n\n// https://codeforces.com/blog/entry/124815\n// P^{-1}AP = diag(companion(f0),companion(f1),...)\n\
-    // without checking: ...|f2|f1|f0.\n// time complexity O(N^3). failure prob O(N/mod).\n\
-    template <typename mint>\nstruct Frobenius_Form {\n  int n; // b : num of blocks\n\
-    \  const vvc<mint> A;\n  vvc<mint> P, IP;\n  vvc<mint> V;\n  vvc<mint> F; // [-a0,-a1,...,-a[k-1]]\
-    \ \u306E\u5F62\u3067\u7BA1\u7406 (x^k \u3068\u5408\u540C\u306A\u3082\u306E)\n\n\
-    \  Frobenius_Form(vvc<mint>& A) : n(len(A)), A(A) {\n    while (!trial()) {}\n\
-    \  }\n\n  // N^3 + N^2log(exp)\n  vvc<mint> pow(ll exp) {\n    vv(mint, X, n,\
-    \ n);\n    int s = 0;\n    FOR(k, len(F)) {\n      int d = len(F[k]);\n      vc<mint>\
-    \ f = powmod(F[k], exp);\n      FOR(j, d) {\n        FOR(i, len(f)) { X[s + i][s\
-    \ + j] = f[i]; }\n        if (j == d - 1) break;\n        f.insert(f.begin(),\
-    \ 0);\n        divmod_inplace(f, F[k]);\n      }\n      s += d;\n    }\n    X\
-    \ = matrix_mul(P, X);\n    X = matrix_mul(X, IP);\n    return X;\n  }\n\nprivate:\n\
-    \  bool trial() {\n    V.clear(), F.clear();\n    Basis<mint> S(n);\n    while\
-    \ (1) {\n      if (S.rank == n) break;\n      int r = S.rank;\n      vc<mint>\
-    \ v = random_vector();\n      V.eb(v);\n      while (1) {\n        auto [solved,\
-    \ cf] = S.solve_or_add(v);\n        if (!solved) {\n          v = apply(v);\n\
-    \          continue;\n        }\n        vc<mint> f = {cf.begin() + r, cf.end()};\n\
-    \        F.eb(f);\n        if (len(V) == 1) break;\n        v = V.back();\n  \
-    \      int s = 0;\n        FOR(k, len(V) - 1) {\n          int d = len(F[k]);\n\
-    \          vc<mint> R = {cf.begin() + s, cf.begin() + s + d};\n          vc<mint>\
-    \ q = divmod_inplace(R, f);\n          if (!R.empty()) {\n            return false;\
-    \ // failure\n          }\n          FOR(i, len(q)) { FOR(j, n) v[j] -= q[i] *\
-    \ S.basis[s + i][j]; }\n          s += d;\n        }\n        S.rollback(r);\n\
-    \        V.back() = v;\n        FOR(i, len(f)) {\n          S.solve_or_add(v);\n\
-    \          if (i + 1 < len(f)) v = apply(v);\n        }\n        break;\n    \
-    \  }\n    }\n    P.assign(n, vc<mint>(n));\n    FOR(i, n) FOR(j, n) P[i][j] =\
-    \ S.basis[j][i];\n    IP = matrix_inv<mint>(P).se;\n    return true;\n  }\n\n\
-    \  vc<mint> random_vector() {\n    vc<mint> v(n);\n    FOR(i, n) v[i] = RNG(0,\
-    \ mint::get_mod());\n    return v;\n  }\n\n  vc<mint> apply(vc<mint> v) {\n  \
-    \  vc<mint> w(n);\n    FOR(i, n) FOR(j, n) w[i] += A[i][j] * v[j];\n    return\
-    \ w;\n  }\n\n  // f mod= (x^d-g(x)) (inplace), return : q\n  vc<mint> divmod_inplace(vc<mint>&\
-    \ f, vc<mint>& g) {\n    while (len(f) && f.back() == mint(0)) POP(f);\n    int\
-    \ d = len(g);\n    vc<mint> q;\n    FOR_R(i, d, len(f)) {\n      q.eb(f[i]);\n\
-    \      FOR(j, len(g)) f[i - d + j] += f[i] * g[j];\n      f[i] = 0;\n    }\n \
-    \   while (len(f) && f.back() == mint(0)) POP(f);\n    reverse(all(q));\n    return\
-    \ q;\n  }\n\n  // x^n mod (x^d-g(x))\n  vc<mint> powmod(vc<mint>& g, ll n) {\n\
-    \    if (n < len(g)) {\n      vc<mint> f(n + 1);\n      f[n] = 1;\n      return\
-    \ f;\n    }\n    vc<mint> f = powmod(g, n / 2);\n    f = convolution_naive(f,\
-    \ f);\n    if (n & 1) f.insert(f.begin(), 0);\n    divmod_inplace(f, g);\n   \
-    \ return f;\n  }\n};"
+  code: "#pragma once\n#include \"random/base.hpp\"\n#include \"linalg/matrix_inv.hpp\"\
+    \n#include \"linalg/matrix_mul.hpp\"\n#include \"poly/convolution.hpp\"\n#include\
+    \ \"linalg/basis.hpp\"\n#include \"poly/convolution_all.hpp\"\n\n// https://codeforces.com/blog/entry/124815\n\
+    // P^{-1}AP = diag(companion(f0),companion(f1),...)\n// without checking: ...|f2|f1|f0.\n\
+    // time complexity O(N^3). failure prob O(N/mod).\ntemplate <typename mint>\n\
+    struct Frobenius_Form {\n  int n; // b : num of blocks\n  const vvc<mint> A;\n\
+    \  vvc<mint> P, IP;\n  vvc<mint> V;\n  vvc<mint> F; // [-a0,-a1,...,-a[k-1]] \u306E\
+    \u5F62\u3067\u7BA1\u7406 (x^k \u3068\u5408\u540C\u306A\u3082\u306E)\n\n  Frobenius_Form(vvc<mint>&\
+    \ A) : n(len(A)), A(A) {\n    while (!trial()) {}\n  }\n\n  // N^3 + N^2log(exp)\n\
+    \  vvc<mint> pow(ll exp) {\n    vv(mint, X, n, n);\n    int s = 0;\n    FOR(k,\
+    \ len(F)) {\n      int d = len(F[k]);\n      vc<mint> f = powmod(F[k], exp);\n\
+    \      FOR(j, d) {\n        FOR(i, len(f)) { X[s + i][s + j] = f[i]; }\n     \
+    \   if (j == d - 1) break;\n        f.insert(f.begin(), 0);\n        divmod_inplace(f,\
+    \ F[k]);\n      }\n      s += d;\n    }\n    X = matrix_mul(P, X);\n    X = matrix_mul(X,\
+    \ IP);\n    return X;\n  }\n\n  // p(A)\n  vvc<mint> poly_eval(vc<mint>& p) {\n\
+    \    vv(mint, X, n, n);\n    int s = 0;\n    FOR(k, len(F)) {\n      int d = len(F[k]);\n\
+    \      vc<mint> f = p;\n      divmod_inplace(f, F[k]);\n      FOR(j, d) {\n  \
+    \      FOR(i, len(f)) { X[s + i][s + j] = f[i]; }\n        if (j == d - 1) break;\n\
+    \        f.insert(f.begin(), 0);\n        divmod_inplace(f, F[k]);\n      }\n\
+    \      s += d;\n    }\n    X = matrix_mul(P, X);\n    X = matrix_mul(X, IP);\n\
+    \    return X;\n  }\n\n  vc<mint> characteristic_poly() {\n    vvc<mint> polys;\n\
+    \    for (auto& f: F) {\n      vc<mint> g = f;\n      for (auto& x: g) x = -x;\n\
+    \      g.eb(1);\n      polys.eb(g);\n    }\n    vc<mint> f = convolution_all(polys);\n\
+    \    return f;\n  }\n\nprivate:\n  bool trial() {\n    V.clear(), F.clear();\n\
+    \    Basis<mint> S(n);\n    while (1) {\n      if (S.rank == n) break;\n     \
+    \ int r = S.rank;\n      vc<mint> v = random_vector();\n      V.eb(v);\n     \
+    \ while (1) {\n        auto [solved, cf] = S.solve_or_add(v);\n        if (!solved)\
+    \ {\n          v = apply(v);\n          continue;\n        }\n        vc<mint>\
+    \ f = {cf.begin() + r, cf.end()};\n        F.eb(f);\n        if (len(V) == 1)\
+    \ break;\n        v = V.back();\n        int s = 0;\n        FOR(k, len(V) - 1)\
+    \ {\n          int d = len(F[k]);\n          vc<mint> R = {cf.begin() + s, cf.begin()\
+    \ + s + d};\n          vc<mint> q = divmod_inplace(R, f);\n          if (!R.empty())\
+    \ {\n            return false; // failure\n          }\n          FOR(i, len(q))\
+    \ { FOR(j, n) v[j] -= q[i] * S.basis[s + i][j]; }\n          s += d;\n       \
+    \ }\n        S.rollback(r);\n        V.back() = v;\n        FOR(i, len(f)) {\n\
+    \          S.solve_or_add(v);\n          if (i + 1 < len(f)) v = apply(v);\n \
+    \       }\n        break;\n      }\n    }\n    P.assign(n, vc<mint>(n));\n   \
+    \ FOR(i, n) FOR(j, n) P[i][j] = S.basis[j][i];\n    IP = matrix_inv<mint>(P).se;\n\
+    \    return true;\n  }\n\n  vc<mint> random_vector() {\n    vc<mint> v(n);\n \
+    \   FOR(i, n) v[i] = RNG(0, mint::get_mod());\n    return v;\n  }\n\n  vc<mint>\
+    \ apply(vc<mint> v) {\n    vc<mint> w(n);\n    FOR(i, n) FOR(j, n) w[i] += A[i][j]\
+    \ * v[j];\n    return w;\n  }\n\n  // f mod= (x^d-g(x)) (inplace), return : q\n\
+    \  vc<mint> divmod_inplace(vc<mint>& f, vc<mint>& g) {\n    while (len(f) && f.back()\
+    \ == mint(0)) POP(f);\n    int d = len(g);\n    vc<mint> q;\n    FOR_R(i, d, len(f))\
+    \ {\n      q.eb(f[i]);\n      FOR(j, len(g)) f[i - d + j] += f[i] * g[j];\n  \
+    \    f[i] = 0;\n    }\n    while (len(f) && f.back() == mint(0)) POP(f);\n   \
+    \ reverse(all(q));\n    return q;\n  }\n\n  // x^n mod (x^d-g(x))\n  vc<mint>\
+    \ powmod(vc<mint>& g, ll n) {\n    if (n < len(g)) {\n      vc<mint> f(n + 1);\n\
+    \      f[n] = 1;\n      return f;\n    }\n    vc<mint> f = powmod(g, n / 2);\n\
+    \    f = convolution_naive(f, f);\n    if (n & 1) f.insert(f.begin(), 0);\n  \
+    \  divmod_inplace(f, g);\n    return f;\n  }\n};"
   dependsOn:
   - random/base.hpp
   - linalg/matrix_inv.hpp
@@ -457,12 +529,16 @@ data:
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
   - linalg/basis.hpp
+  - poly/convolution_all.hpp
+  - poly/ntt_doubling.hpp
   isVerificationFile: false
   path: linalg/frobenius.hpp
-  requiredBy: []
-  timestamp: '2024-10-25 01:17:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - linalg/adjugate_matrix.hpp
+  timestamp: '2024-11-01 21:56:32+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
 documentation_of: linalg/frobenius.hpp
 layout: document

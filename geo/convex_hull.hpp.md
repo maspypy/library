@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
+  - icon: ':warning:'
+    path: convex/line_min_function.hpp
+    title: convex/line_min_function.hpp
   - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
@@ -146,6 +149,7 @@ data:
   requiredBy:
   - random/random_polygon.hpp
   - convex/fenchel.hpp
+  - convex/line_min_function.hpp
   - geo/minkowski_sum.hpp
   - geo/convex_polygon.hpp
   - geo/furthest_pair.hpp
