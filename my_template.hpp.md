@@ -424,6 +424,9 @@ data:
     path: test/1_mytest/powerquery.test.cpp
     title: test/1_mytest/powerquery.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/prefix_max_segtree.test.cpp
+    title: test/1_mytest/prefix_max_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prefix_sum_of_binom.test.cpp
     title: test/1_mytest/prefix_sum_of_binom.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3764,6 +3767,7 @@ data:
   - test/1_mytest/count_by_factor_type.test.cpp
   - test/1_mytest/kdtree_nns.test.cpp
   - test/1_mytest/multinomial.test.cpp
+  - test/1_mytest/prefix_max_segtree.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/index_compression.test.cpp
   - test/1_mytest/31bit_modint.test.cpp

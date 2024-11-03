@@ -488,6 +488,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/lazy_segtree.hpp
       title: ds/segtree/lazy_segtree.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/segtree/prefix_max_segtree.hpp
+      title: ds/segtree/prefix_max_segtree.hpp
     - icon: ':warning:'
       path: ds/segtree/range_add_make_decreasing.hpp
       title: ds/segtree/range_add_make_decreasing.hpp
@@ -2615,6 +2618,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/powerquery.test.cpp
       title: test/1_mytest/powerquery.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/prefix_max_segtree.test.cpp
+      title: test/1_mytest/prefix_max_segtree.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/prefix_sum_of_binom.test.cpp
       title: test/1_mytest/prefix_sum_of_binom.test.cpp

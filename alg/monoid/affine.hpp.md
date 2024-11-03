@@ -16,6 +16,9 @@ data:
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/prefix_max_segtree.test.cpp
+    title: test/1_mytest/prefix_max_segtree.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_2.test.cpp
     title: test/1_mytest/rbst_monoid_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -128,6 +131,7 @@ data:
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp
+  - test/1_mytest/prefix_max_segtree.test.cpp
   - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
   - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
