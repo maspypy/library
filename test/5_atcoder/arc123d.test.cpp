@@ -1,12 +1,12 @@
 #define PROBLEM "https://atcoder.jp/contests/arc123/tasks/arc123_d"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "convex/slope.hpp"
+#include "convex/slope_trick/slope_trick_0.hpp"
 
 void solve() {
   LL(N);
   VEC(ll, A, N);
-  Slope_Trick X;
+  Slope_Trick_0 X;
   FOR(i, N) {
     if (i > 0) {
       ll c = max<ll>(0, A[i] - A[i - 1]);
@@ -21,13 +21,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
