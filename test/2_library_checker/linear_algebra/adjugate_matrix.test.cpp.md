@@ -1,22 +1,22 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -40,7 +40,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':question:'
@@ -52,17 +52,17 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/adjugate_matrix
@@ -678,12 +678,11 @@ data:
     \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
     \n}\r\n#line 6 \"linalg/adjugate_matrix.hpp\"\n\ntemplate <typename mint>\nvvc<mint>\
     \ adjugate_matrix(vvc<mint> A) {\n  int N = len(A);\n  Frobenius_Form<mint> X(A);\n\
-    \  return {};\n  auto F = X.characteristic_poly();\n  if (N % 2 == 0) {\n    for\
-    \ (auto& x: F) x = -x;\n  }\n  F.erase(F.begin());\n  return X.poly_eval(F);\n\
-    }\n#line 5 \"test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp\"\n\
-    \nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VV(mint, A, N, N);\n\
-    \  A = adjugate_matrix(A);\n  FOR(i, N) print(A[i]);\n}\n\nsigned main() { solve();\
-    \ }\n"
+    \  auto F = X.characteristic_poly();\n  if (N % 2 == 0) {\n    for (auto& x: F)\
+    \ x = -x;\n  }\n  F.erase(F.begin());\n  return X.poly_eval(F);\n}\n#line 5 \"\
+    test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp\"\n\nusing mint\
+    \ = modint998;\n\nvoid solve() {\n  LL(N);\n  VV(mint, A, N, N);\n  A = adjugate_matrix(A);\n\
+    \  FOR(i, N) print(A[i]);\n}\n\nsigned main() { solve(); }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/adjugate_matrix\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"linalg/adjugate_matrix.hpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N);\n  VV(mint, A, N, N);\n\
@@ -712,8 +711,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-03 20:59:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
 layout: document

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -322,12 +322,13 @@ data:
     \ <typename F>\n  Static_Range_Frequency(int N, F f) {\n    build(N, f);\n  }\n\
     \n  template <typename F>\n  void build(int N, F f) {\n    S.reserve(N);\n   \
     \ pos.resize(N);\n    vc<int> cnt(N + 1), dat(N);\n    FOR(i, N) {\n      u64\
-    \ x = f(i);\n      int k = S.set_key(x);\n      cnt[1 + k]++, dat[i] = k;\n  \
-    \  }\n    FOR(k, N) cnt[1 + k] += cnt[k];\n    indptr = cnt;\n    FOR(i, N) pos[cnt[dat[i]]++]\
-    \ = i;\n  }\n\n  int query(int L, int R, u64 x) {\n    int k = S.query(x);\n \
-    \   if (k == -1) return 0;\n    int a = indptr[k], b = indptr[k + 1];\n    auto\
-    \ nl = lower_bound(pos.begin() + a, pos.begin() + b, L);\n    auto nr = lower_bound(pos.begin()\
-    \ + a, pos.begin() + b, R);\n    return nr - nl;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_frequency.test.cpp\"\
+    \ x = f(i);\n      int k = S.query(x, true);\n      cnt[1 + k]++, dat[i] = k;\n\
+    \    }\n    FOR(k, N) cnt[1 + k] += cnt[k];\n    indptr = cnt;\n    FOR(i, N)\
+    \ pos[cnt[dat[i]]++] = i;\n  }\n\n  int query(int L, int R, u64 x) {\n    int\
+    \ k = S.query(x, false);\n    if (k == -1) return 0;\n    int a = indptr[k], b\
+    \ = indptr[k + 1];\n    auto nl = lower_bound(pos.begin() + a, pos.begin() + b,\
+    \ L);\n    auto nr = lower_bound(pos.begin() + a, pos.begin() + b, R);\n    return\
+    \ nr - nl;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_frequency.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Static_Range_Frequency X(A);\n\
     \  FOR(Q) {\n    INT(l, r, x);\n    print(X.query(l, r, x));\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -348,8 +349,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-03 20:59:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_frequency.test.cpp
 layout: document

@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
@@ -84,10 +84,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc260h.test.cpp
     title: test/5_atcoder/abc260h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc276_g.test.cpp
     title: test/5_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc276_g_2.test.cpp
     title: test/5_atcoder/abc276_g_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -96,9 +96,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc154f.test.cpp
     title: test/5_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -473,7 +473,7 @@ data:
   - linalg/blackbox/vandermonde.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2024-10-25 01:17:46+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1962.test.cpp
   - test/3_yukicoder/1145.test.cpp

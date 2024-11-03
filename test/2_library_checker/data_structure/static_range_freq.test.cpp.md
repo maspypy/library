@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/static_range_frequency
@@ -235,17 +235,17 @@ data:
     \ set_if_not_exist) MP[x] = ans = kind++;\n    return ans;\n  }\n};\n#line 7 \"\
     test/2_library_checker/data_structure/static_range_freq.test.cpp\"\n\nvoid solve()\
     \ {\n  U32(N, Q);\n  VEC(u32, A, N);\n  To_Small_Key X;\n  for (auto& x: A) x\
-    \ = X.set_key(x);\n\n  vvc<int> IDS(X.kind);\n  FOR(i, N) IDS[A[i]].eb(i);\n \
-    \ FOR(Q) {\n    U32(L, R, x);\n    x = X.query(x);\n    if (x == u32(-1)) {\n\
-    \      print(0);\n    } else {\n      auto& I = IDS[x];\n      u32 ans = LB(I,\
+    \ = X.query(x, true);\n\n  vvc<int> IDS(X.kind);\n  FOR(i, N) IDS[A[i]].eb(i);\n\
+    \  FOR(Q) {\n    U32(L, R, x);\n    x = X.query(x, false);\n    if (x == u32(-1))\
+    \ {\n      print(0);\n    } else {\n      auto& I = IDS[x];\n      u32 ans = LB(I,\
     \ R) - LB(I, L);\n      print(ans);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/static_range_frequency\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/to_small_key.hpp\"\
     \n\nvoid solve() {\n  U32(N, Q);\n  VEC(u32, A, N);\n  To_Small_Key X;\n  for\
-    \ (auto& x: A) x = X.set_key(x);\n\n  vvc<int> IDS(X.kind);\n  FOR(i, N) IDS[A[i]].eb(i);\n\
-    \  FOR(Q) {\n    U32(L, R, x);\n    x = X.query(x);\n    if (x == u32(-1)) {\n\
-    \      print(0);\n    } else {\n      auto& I = IDS[x];\n      u32 ans = LB(I,\
+    \ (auto& x: A) x = X.query(x, true);\n\n  vvc<int> IDS(X.kind);\n  FOR(i, N) IDS[A[i]].eb(i);\n\
+    \  FOR(Q) {\n    U32(L, R, x);\n    x = X.query(x, false);\n    if (x == u32(-1))\
+    \ {\n      print(0);\n    } else {\n      auto& I = IDS[x];\n      u32 ans = LB(I,\
     \ R) - LB(I, L);\n      print(ans);\n    }\n  }\n}\n\nsigned main() {\n  solve();\n\
     \n  return 0;\n}\n"
   dependsOn:
@@ -256,8 +256,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_freq.test.cpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-03 20:59:40+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_freq.test.cpp
 layout: document

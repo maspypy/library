@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
   - icon: ':question:'
@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':question:'
@@ -43,20 +43,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/adjugate_matrix.hpp\"\n\n#line 2 \"random/base.hpp\"\
@@ -491,15 +491,14 @@ data:
     \      FOR(j, len(DP[i])) dp[j] -= DP[i][j] * c;\r\n    }\r\n  }\r\n  return DP[n];\r\
     \n}\r\n#line 6 \"linalg/adjugate_matrix.hpp\"\n\ntemplate <typename mint>\nvvc<mint>\
     \ adjugate_matrix(vvc<mint> A) {\n  int N = len(A);\n  Frobenius_Form<mint> X(A);\n\
-    \  return {};\n  auto F = X.characteristic_poly();\n  if (N % 2 == 0) {\n    for\
-    \ (auto& x: F) x = -x;\n  }\n  F.erase(F.begin());\n  return X.poly_eval(F);\n\
-    }\n"
+    \  auto F = X.characteristic_poly();\n  if (N % 2 == 0) {\n    for (auto& x: F)\
+    \ x = -x;\n  }\n  F.erase(F.begin());\n  return X.poly_eval(F);\n}\n"
   code: "\n#include \"linalg/frobenius.hpp\"\n#include \"mod/modint.hpp\"\n#include\
     \ \"linalg/characteristic_poly.hpp\"\n#include \"linalg/frobenius.hpp\"\n\ntemplate\
     \ <typename mint>\nvvc<mint> adjugate_matrix(vvc<mint> A) {\n  int N = len(A);\n\
-    \  Frobenius_Form<mint> X(A);\n  return {};\n  auto F = X.characteristic_poly();\n\
-    \  if (N % 2 == 0) {\n    for (auto& x: F) x = -x;\n  }\n  F.erase(F.begin());\n\
-    \  return X.poly_eval(F);\n}"
+    \  Frobenius_Form<mint> X(A);\n  auto F = X.characteristic_poly();\n  if (N %\
+    \ 2 == 0) {\n    for (auto& x: F) x = -x;\n  }\n  F.erase(F.begin());\n  return\
+    \ X.poly_eval(F);\n}"
   dependsOn:
   - linalg/frobenius.hpp
   - random/base.hpp
@@ -520,8 +519,8 @@ data:
   isVerificationFile: false
   path: linalg/adjugate_matrix.hpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-11-03 20:59:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
 documentation_of: linalg/adjugate_matrix.hpp
