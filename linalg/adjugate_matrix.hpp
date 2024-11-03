@@ -8,7 +8,6 @@ template <typename mint>
 vvc<mint> adjugate_matrix(vvc<mint> A) {
   int N = len(A);
   Frobenius_Form<mint> X(A);
-  return {};
   auto F = X.characteristic_poly();
   if (N % 2 == 0) {
     for (auto& x: F) x = -x;

@@ -9,13 +9,13 @@ void solve() {
   U32(N, Q);
   VEC(u32, A, N);
   To_Small_Key X;
-  for (auto& x: A) x = X.set_key(x);
+  for (auto& x: A) x = X.query(x, true);
 
   vvc<int> IDS(X.kind);
   FOR(i, N) IDS[A[i]].eb(i);
   FOR(Q) {
     U32(L, R, x);
-    x = X.query(x);
+    x = X.query(x, false);
     if (x == u32(-1)) {
       print(0);
     } else {

@@ -22,7 +22,7 @@ struct Static_Range_Frequency {
     vc<int> cnt(N + 1), dat(N);
     FOR(i, N) {
       u64 x = f(i);
-      int k = S.set_key(x);
+      int k = S.query(x, true);
       cnt[1 + k]++, dat[i] = k;
     }
     FOR(k, N) cnt[1 + k] += cnt[k];
@@ -31,7 +31,7 @@ struct Static_Range_Frequency {
   }
 
   int query(int L, int R, u64 x) {
-    int k = S.query(x);
+    int k = S.query(x, false);
     if (k == -1) return 0;
     int a = indptr[k], b = indptr[k + 1];
     auto nl = lower_bound(pos.begin() + a, pos.begin() + b, L);
