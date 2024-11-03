@@ -1658,6 +1658,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
+  - name: other/mhc_template_directory
+    pages:
+    - icon: ':warning:'
+      path: other/mhc_template_directory/generate.py
+      title: other/mhc_template_directory/generate.py
+    - icon: ':warning:'
+      path: other/mhc_template_directory/main.cpp
+      title: other/mhc_template_directory/main.cpp
+    - icon: ':warning:'
+      path: other/mhc_template_directory/para.cpp
+      title: other/mhc_template_directory/para.cpp
   - name: poly
     pages:
     - icon: ':heavy_check_mark:'

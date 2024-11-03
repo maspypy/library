@@ -3,6 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: other/mhc_template_directory/main.cpp
+    title: other/mhc_template_directory/main.cpp
+  - icon: ':warning:'
+    path: other/mhc_template_directory/para.cpp
+    title: other/mhc_template_directory/para.cpp
+  - icon: ':warning:'
     path: test/1_mytest/equal_4square_sum_grid.cpp
     title: test/1_mytest/equal_4square_sum_grid.cpp
   _extendedVerifiedWith:
@@ -3064,6 +3070,8 @@ data:
   path: my_template.hpp
   requiredBy:
   - test/1_mytest/equal_4square_sum_grid.cpp
+  - other/mhc_template_directory/para.cpp
+  - other/mhc_template_directory/main.cpp
   timestamp: '2024-09-28 04:06:11+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

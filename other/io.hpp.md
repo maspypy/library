@@ -1,7 +1,13 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: other/mhc_template_directory/main.cpp
+    title: other/mhc_template_directory/main.cpp
+  - icon: ':warning:'
+    path: other/mhc_template_directory/para.cpp
+    title: other/mhc_template_directory/para.cpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/bell_number.test.cpp
@@ -2514,7 +2520,9 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: other/io.hpp
-  requiredBy: []
+  requiredBy:
+  - other/mhc_template_directory/para.cpp
+  - other/mhc_template_directory/main.cpp
   timestamp: '2024-08-07 19:12:47+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
