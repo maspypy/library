@@ -2290,6 +2290,9 @@ data:
     path: test/5_atcoder/arc107.test.cpp
     title: test/5_atcoder/arc107.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/5_atcoder/arc123d.test.cpp
+    title: test/5_atcoder/arc123d.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc130f.test.cpp
     title: test/5_atcoder/arc130f.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2995,6 +2998,7 @@ data:
   - test/5_atcoder/abc127f.test.cpp
   - test/5_atcoder/abc223h.test.cpp
   - test/5_atcoder/abc228f.test.cpp
+  - test/5_atcoder/arc123d.test.cpp
   - test/5_atcoder/abc319g.test.cpp
   - test/5_atcoder/abc314f.test.cpp
   - test/5_atcoder/abc269ex.test.cpp

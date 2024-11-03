@@ -5099,7 +5099,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/arc107.test.cpp
       title: test/5_atcoder/arc107.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/arc123d.test.cpp
       title: test/5_atcoder/arc123d.test.cpp
     - icon: ':heavy_check_mark:'

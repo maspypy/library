@@ -18,6 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc217h.test.cpp
     title: test/5_atcoder/abc217h.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/5_atcoder/arc123d.test.cpp
+    title: test/5_atcoder/arc123d.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -113,6 +116,7 @@ data:
   - test/3_yukicoder/1077.test.cpp
   - test/5_atcoder/abc217h.test.cpp
   - test/5_atcoder/abc127f.test.cpp
+  - test/5_atcoder/arc123d.test.cpp
   - test/1_mytest/min_cost_matching_on_line.test.cpp
 documentation_of: convex/slope_trick/slope_trick_0.hpp
 layout: document
