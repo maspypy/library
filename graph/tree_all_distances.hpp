@@ -1,8 +1,7 @@
 #include "graph/centroid_decomposition.hpp"
 #include "poly/convolution.hpp"
 
-// frequency table of distance of all directed pairs.
-// sum of result array = N^2
+// sum of result array = binom(N,2)
 template <typename GT>
 vi tree_all_distances(GT& G) {
   assert(G.is_prepared());
@@ -19,9 +18,9 @@ vi tree_all_distances(GT& G) {
     while (len(f) && f.back() == 0) POP(f);
     while (len(g) && g.back() == 0) POP(g);
     f = convolution(f, g);
-    FOR(i, len(f)) ANS[i] += f[i] * 2;
+    FOR(i, len(f)) ANS[i] += f[i];
   };
   centroid_decomposition<1>(G, f);
-  ANS[0] = N, ANS[1] = 2 * (N - 1);
+  ANS[1] = N - 1;
   return ANS;
 }
