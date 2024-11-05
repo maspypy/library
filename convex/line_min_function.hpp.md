@@ -103,7 +103,49 @@ data:
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_max_function_real(vc<pair<T,\
     \ T>> LINE) {\n  assert(!LINE.empty());\n  for (auto& [a, b]: LINE) a = -a, b\
     \ = -b;\n  auto ANS = line_min_function_real<Re, T>(LINE);\n  for (auto& [l, r,\
-    \ a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n"
+    \ a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c,\
+    \ \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092\
+    \ [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\
+    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename\
+    \ T>\nvc<tuple<T, T, T, T, T>> line_min_function_rational(vc<tuple<T, T, T>> LINE,\
+    \ T L, T R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto& L, auto&\
+    \ R) -> bool {\n    auto& [a1, b1, c1] = L;\n    auto& [a2, b2, c2] = R;\n   \
+    \ return a1 * c2 > a2 * c1;\n  });\n  vc<tuple<T, T, T, T, T>> ANS;\n  for (auto&\
+    \ [a2, b2, c2]: LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L,\
+    \ R, a2, b2, c2);\n        break;\n      }\n      auto& [L1, R1, a1, b1, c1] =\
+    \ ANS.back();\n      if ((a1 * L1 + b1) * c2 > (a2 * L1 + b2) * c1) {\n      \
+    \  ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n\
+    \      }\n      T s = c2 * a1 - a2 * c1;\n      if (s == 0) break;\n      assert(s\
+    \ > 0);\n      T t = b2 * c1 - b1 * c2;\n      T x = t / s;\n      assert(L1 <=\
+    \ x);\n      if (x >= R1 - 1) break;\n      R1 = x + 1;\n      ANS.eb(x + 1, R,\
+    \ a2, b2, c2);\n    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\
+    \u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b,c]\
+    \ \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\
+    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename T>\nvc<tuple<T,\
+    \ T, T, T, T>> line_max_function_rational(vc<tuple<T, T, T>> LINE, T L, T R) {\n\
+    \  for (auto& [a, b, c]: LINE) a = -a, b = -b;\n  auto ANS = line_min_function_rational<T>(LINE,\
+    \ L, R);\n  for (auto& [L, R, a, b, c]: ANS) a = -a, b = -b;\n  return ANS;\n\
+    }\n\n// LINE(a,b): y=ax+b, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\
+    \u6570\u306E min \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n\
+    // ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\n\
+    template <typename T>\nvc<tuple<T, T, T, T>> line_min_function_integer(vc<pair<T,\
+    \ T>> LINE, T L, T R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto&\
+    \ L, auto& R) -> bool {\n    auto& [a1, b1] = L;\n    auto& [a2, b2] = R;\n  \
+    \  return a1 > a2;\n  });\n  vc<tuple<T, T, T, T>> ANS;\n  for (auto& [a2, b2]:\
+    \ LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L, R, a2,\
+    \ b2);\n        break;\n      }\n      auto& [L1, R1, a1, b1] = ANS.back();\n\
+    \      if ((a1 * L1 + b1) > (a2 * L1 + b2)) {\n        ANS.pop_back();\n     \
+    \   if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n      T\
+    \ s = a1 - a2;\n      if (s == 0) break;\n      assert(s > 0);\n      T t = b2\
+    \ - b1;\n      T x = t / s;\n      assert(L1 <= x);\n      if (x >= R1 - 1) break;\n\
+    \      R1 = x + 1;\n      ANS.eb(x + 1, R, a2, b2);\n    }\n  }\n  return ANS;\n\
+    }\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\
+    \u95A2\u6570\u306E min \u3092 [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\
+    \u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\
+    \u306A\u3044,\ntemplate <typename T>\nvc<tuple<T, T, T, T>> line_max_function_integer(vc<pair<T,\
+    \ T>> LINE, T L, T R) {\n  for (auto& [a, b]: LINE) a = -a, b = -b;\n  auto ANS\
+    \ = line_min_function_integer<T>(LINE, L, R);\n  for (auto& [L, R, a, b]: ANS)\
+    \ a = -a, b = -b;\n  return ANS;\n}\n"
   code: "#include \"geo/convex_hull.hpp\"\n\n// 1 \u6B21\u95A2\u6570\u306E max \u3092\
     \ [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\n\
     template <typename Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
@@ -121,14 +163,56 @@ data:
     \ Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_max_function_real(vc<pair<T,\
     \ T>> LINE) {\n  assert(!LINE.empty());\n  for (auto& [a, b]: LINE) a = -a, b\
     \ = -b;\n  auto ANS = line_min_function_real<Re, T>(LINE);\n  for (auto& [l, r,\
-    \ a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n"
+    \ a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c,\
+    \ \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092\
+    \ [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\
+    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename\
+    \ T>\nvc<tuple<T, T, T, T, T>> line_min_function_rational(vc<tuple<T, T, T>> LINE,\
+    \ T L, T R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto& L, auto&\
+    \ R) -> bool {\n    auto& [a1, b1, c1] = L;\n    auto& [a2, b2, c2] = R;\n   \
+    \ return a1 * c2 > a2 * c1;\n  });\n  vc<tuple<T, T, T, T, T>> ANS;\n  for (auto&\
+    \ [a2, b2, c2]: LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L,\
+    \ R, a2, b2, c2);\n        break;\n      }\n      auto& [L1, R1, a1, b1, c1] =\
+    \ ANS.back();\n      if ((a1 * L1 + b1) * c2 > (a2 * L1 + b2) * c1) {\n      \
+    \  ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n\
+    \      }\n      T s = c2 * a1 - a2 * c1;\n      if (s == 0) break;\n      assert(s\
+    \ > 0);\n      T t = b2 * c1 - b1 * c2;\n      T x = t / s;\n      assert(L1 <=\
+    \ x);\n      if (x >= R1 - 1) break;\n      R1 = x + 1;\n      ANS.eb(x + 1, R,\
+    \ a2, b2, c2);\n    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\
+    \u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b,c]\
+    \ \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\
+    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename T>\nvc<tuple<T,\
+    \ T, T, T, T>> line_max_function_rational(vc<tuple<T, T, T>> LINE, T L, T R) {\n\
+    \  for (auto& [a, b, c]: LINE) a = -a, b = -b;\n  auto ANS = line_min_function_rational<T>(LINE,\
+    \ L, R);\n  for (auto& [L, R, a, b, c]: ANS) a = -a, b = -b;\n  return ANS;\n\
+    }\n\n// LINE(a,b): y=ax+b, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\
+    \u6570\u306E min \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n\
+    // ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\n\
+    template <typename T>\nvc<tuple<T, T, T, T>> line_min_function_integer(vc<pair<T,\
+    \ T>> LINE, T L, T R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto&\
+    \ L, auto& R) -> bool {\n    auto& [a1, b1] = L;\n    auto& [a2, b2] = R;\n  \
+    \  return a1 > a2;\n  });\n  vc<tuple<T, T, T, T>> ANS;\n  for (auto& [a2, b2]:\
+    \ LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L, R, a2,\
+    \ b2);\n        break;\n      }\n      auto& [L1, R1, a1, b1] = ANS.back();\n\
+    \      if ((a1 * L1 + b1) > (a2 * L1 + b2)) {\n        ANS.pop_back();\n     \
+    \   if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n      T\
+    \ s = a1 - a2;\n      if (s == 0) break;\n      assert(s > 0);\n      T t = b2\
+    \ - b1;\n      T x = t / s;\n      assert(L1 <= x);\n      if (x >= R1 - 1) break;\n\
+    \      R1 = x + 1;\n      ANS.eb(x + 1, R, a2, b2);\n    }\n  }\n  return ANS;\n\
+    }\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\
+    \u95A2\u6570\u306E min \u3092 [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\
+    \u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\
+    \u306A\u3044,\ntemplate <typename T>\nvc<tuple<T, T, T, T>> line_max_function_integer(vc<pair<T,\
+    \ T>> LINE, T L, T R) {\n  for (auto& [a, b]: LINE) a = -a, b = -b;\n  auto ANS\
+    \ = line_min_function_integer<T>(LINE, L, R);\n  for (auto& [L, R, a, b]: ANS)\
+    \ a = -a, b = -b;\n  return ANS;\n}\n"
   dependsOn:
   - geo/convex_hull.hpp
   - geo/base.hpp
   isVerificationFile: false
   path: convex/line_min_function.hpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
+  timestamp: '2024-11-05 21:50:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: convex/line_min_function.hpp

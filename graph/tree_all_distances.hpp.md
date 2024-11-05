@@ -1,47 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -455,28 +455,27 @@ data:
     \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
     \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\r\n// frequency table of distance\
-    \ of all directed pairs.\r\n// sum of result array = N^2\r\ntemplate <typename\
-    \ GT>\r\nvi tree_all_distances(GT& G) {\r\n  assert(G.is_prepared());\r\n  int\
-    \ N = G.N;\r\n  vi ANS(N);\r\n  auto f = [&](vc<int>& par, vc<int>& V, int L1,\
-    \ int R1, int L2, int R2) -> void {\r\n    int N = len(par);\r\n    vc<int> dist(N);\r\
-    \n    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\r\n    int mx = MAX(dist);\r\
-    \n    vi f(1 + mx), g(1 + mx);\r\n    FOR(i, L1, R1) f[dist[i]]++;\r\n    FOR(i,\
-    \ L2, R2) g[dist[i]]++;\r\n    while (len(f) && f.back() == 0) POP(f);\r\n   \
-    \ while (len(g) && g.back() == 0) POP(g);\r\n    f = convolution(f, g);\r\n  \
-    \  FOR(i, len(f)) ANS[i] += f[i] * 2;\r\n  };\r\n  centroid_decomposition<1>(G,\
-    \ f);\r\n  ANS[0] = N, ANS[1] = 2 * (N - 1);\r\n  return ANS;\r\n}\r\n"
+    }\r\n#line 3 \"graph/tree_all_distances.hpp\"\n\r\n// sum of result array = binom(N,2)\r\
+    \ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\n  assert(G.is_prepared());\r\
+    \n  int N = G.N;\r\n  vi ANS(N);\r\n  auto f = [&](vc<int>& par, vc<int>& V, int\
+    \ L1, int R1, int L2, int R2) -> void {\r\n    int N = len(par);\r\n    vc<int>\
+    \ dist(N);\r\n    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\r\n    int mx =\
+    \ MAX(dist);\r\n    vi f(1 + mx), g(1 + mx);\r\n    FOR(i, L1, R1) f[dist[i]]++;\r\
+    \n    FOR(i, L2, R2) g[dist[i]]++;\r\n    while (len(f) && f.back() == 0) POP(f);\r\
+    \n    while (len(g) && g.back() == 0) POP(g);\r\n    f = convolution(f, g);\r\n\
+    \    FOR(i, len(f)) ANS[i] += f[i];\r\n  };\r\n  centroid_decomposition<1>(G,\
+    \ f);\r\n  ANS[1] = N - 1;\r\n  return ANS;\r\n}\r\n"
   code: "#include \"graph/centroid_decomposition.hpp\"\r\n#include \"poly/convolution.hpp\"\
-    \r\n\r\n// frequency table of distance of all directed pairs.\r\n// sum of result\
-    \ array = N^2\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT& G) {\r\n\
-    \  assert(G.is_prepared());\r\n  int N = G.N;\r\n  vi ANS(N);\r\n  auto f = [&](vc<int>&\
-    \ par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {\r\n    int N = len(par);\r\
-    \n    vc<int> dist(N);\r\n    FOR(i, 1, N) { dist[i] = 1 + dist[par[i]]; }\r\n\
-    \    int mx = MAX(dist);\r\n    vi f(1 + mx), g(1 + mx);\r\n    FOR(i, L1, R1)\
-    \ f[dist[i]]++;\r\n    FOR(i, L2, R2) g[dist[i]]++;\r\n    while (len(f) && f.back()\
-    \ == 0) POP(f);\r\n    while (len(g) && g.back() == 0) POP(g);\r\n    f = convolution(f,\
-    \ g);\r\n    FOR(i, len(f)) ANS[i] += f[i] * 2;\r\n  };\r\n  centroid_decomposition<1>(G,\
-    \ f);\r\n  ANS[0] = N, ANS[1] = 2 * (N - 1);\r\n  return ANS;\r\n}\r\n"
+    \r\n\r\n// sum of result array = binom(N,2)\r\ntemplate <typename GT>\r\nvi tree_all_distances(GT&\
+    \ G) {\r\n  assert(G.is_prepared());\r\n  int N = G.N;\r\n  vi ANS(N);\r\n  auto\
+    \ f = [&](vc<int>& par, vc<int>& V, int L1, int R1, int L2, int R2) -> void {\r\
+    \n    int N = len(par);\r\n    vc<int> dist(N);\r\n    FOR(i, 1, N) { dist[i]\
+    \ = 1 + dist[par[i]]; }\r\n    int mx = MAX(dist);\r\n    vi f(1 + mx), g(1 +\
+    \ mx);\r\n    FOR(i, L1, R1) f[dist[i]]++;\r\n    FOR(i, L2, R2) g[dist[i]]++;\r\
+    \n    while (len(f) && f.back() == 0) POP(f);\r\n    while (len(g) && g.back()\
+    \ == 0) POP(g);\r\n    f = convolution(f, g);\r\n    FOR(i, len(f)) ANS[i] +=\
+    \ f[i];\r\n  };\r\n  centroid_decomposition<1>(G, f);\r\n  ANS[1] = N - 1;\r\n\
+    \  return ANS;\r\n}\r\n"
   dependsOn:
   - graph/centroid_decomposition.hpp
   - graph/base.hpp
@@ -492,8 +491,8 @@ data:
   isVerificationFile: false
   path: graph/tree_all_distances.hpp
   requiredBy: []
-  timestamp: '2024-10-25 01:17:46+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-11-05 21:50:26+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/tree_all_distances.hpp
