@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/mincostflow.hpp
     title: flow/mincostflow.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc214/tasks/abc214_h
@@ -63,12 +63,13 @@ data:
     #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
     \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_mod_2(int x) { return __builtin_parity(x);\
-    \ }\nint popcnt_mod_2(u32 x) { return __builtin_parity(x); }\nint popcnt_mod_2(ll\
-    \ x) { return __builtin_parityll(x); }\nint popcnt_mod_2(u64 x) { return __builtin_parityll(x);\
-    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
-    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(x)\
+    \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parity(x) & 1 ? -1 : 1);\
+    \ }\nint popcnt_sgn(u64 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n//\
+    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 -\
+    \ __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
     \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
     \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
@@ -290,8 +291,8 @@ data:
     \ DAG;\n}\n#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
     \u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct csr\
     \ {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const vector<pair<int,\
-    \ E>>& edges)\n      : start(n + 1), elist(edges.size()) {\n    for (auto e: edges)\
-    \ { start[e.first + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i\
+    \ E>>& edges) : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) {\
+    \ start[e.first + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i\
     \ - 1]; }\n    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
     \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  vector<T>\
     \ payload;\n  int pos = 0;\n  void reserve(int n) { payload.reserve(n); }\n  int\
@@ -306,17 +307,17 @@ data:
     \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
     \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct Min_Cost_Flow {\n\
     public:\n  Min_Cost_Flow() {}\n  explicit Min_Cost_Flow(int n, int source, int\
-    \ sink)\n      : n(n), source(source), sink(sink) {\n    assert(0 <= source &&\
-    \ source < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n\
-    \  }\n\n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost)\
-    \ {\n    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
+    \ sink) : n(n), source(source), sink(sink) {\n    assert(0 <= source && source\
+    \ < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n  }\n\
+    \n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost) {\n\
+    \    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
     \ <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(frm < to);\n  \
     \  int m = int(_edges.size());\n    _edges.push_back({frm, to, cap, 0, cost});\n\
     \    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\");\n    print(\"\
-    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n\
-    \      print(frm, to, cap, cost);\n    }\n  }\n\n  struct edge {\n    int frm,\
-    \ to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n\
-    \    int m = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
+    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\
+    \ print(frm, to, cap, cost); }\n  }\n\n  struct edge {\n    int frm, to;\n   \
+    \ Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m\
+    \ = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
     \  }\n  vector<edge> edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528\
     )\n  pair<Cap, Cost> flow() { return flow(infty<Cap>); }\n  // (\u6D41\u91CF,\
     \ \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit) { return slope(flow_limit).back();\
@@ -341,8 +342,9 @@ data:
     \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
     \ { vis[POP(path)] = 0; }\n        path.eb(to), vis[to] = 1;\n      }\n      for\
     \ (auto&& v: path) vis[v] = 0;\n      res.eb(path);\n    }\n    return res;\n\
-    \  }\n\nprivate:\n  int n, source, sink;\n  vector<edge> _edges;\n\n  // inside\
-    \ edge\n  struct _edge {\n    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\
+    \  }\n\n  vc<Cost> get_potentials() { return potential; }\n\nprivate:\n  int n,\
+    \ source, sink;\n  vector<edge> _edges;\n\n  // inside edge\n  struct _edge {\n\
+    \    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\n  vc<Cost> potential;\n\
     \n  vector<pair<Cap, Cost>> slope(internal::csr<_edge>& g, Cap flow_limit) {\n\
     \    if (DAG) assert(source == 0 && sink == n - 1);\n    vector<pair<Cost, Cost>>\
     \ dual_dist(n);\n    vector<int> prev_e(n);\n    vector<bool> vis(n);\n    struct\
@@ -386,24 +388,24 @@ data:
     \    while (flow < flow_limit) {\n      if (DAG && flow == 0) {\n        if (!dual_ref_dag())\
     \ break;\n      } else {\n        if (!dual_ref()) break;\n      }\n      Cap\
     \ c = flow_limit - flow;\n      for (int v = sink; v != source; v = g.elist[prev_e[v]].to)\
-    \ {\n        c = min(c, g.elist[g.elist[prev_e[v]].rev].cap);\n      }\n     \
-    \ for (int v = sink; v != source; v = g.elist[prev_e[v]].to) {\n        auto&\
-    \ e = g.elist[prev_e[v]];\n        e.cap += c;\n        g.elist[e.rev].cap -=\
-    \ c;\n      }\n      Cost d = -dual_dist[source].first;\n      flow += c;\n  \
-    \    cost += c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n\
-    \      result.push_back({flow, cost});\n      prev_cost_per_flow = d;\n    }\n\
-    \    return result;\n  }\n};\n#line 6 \"test/5_atcoder/abc214h.test.cpp\"\n\n\
-    void solve() {\n  LL(N, M, K);\n  Graph<int, 1> G0(N);\n  G0.read_graph(M);\n\n\
-    \  auto [nc, comp] = strongly_connected_component(G0);\n  auto DAG = scc_dag(G0,\
-    \ nc, comp);\n  vi X(nc);\n  FOR(v, N) {\n    INT(x);\n    X[comp[v]] += x;\n\
-    \  }\n\n  auto idx1 = [&](int i) -> int { return 1 + 2 * i + 0; };\n  auto idx2\
-    \ = [&](int i) -> int { return 1 + 2 * i + 1; };\n  int source = 0, sink = 1 +\
-    \ nc + nc;\n\n  Min_Cost_Flow<int, ll, true> G(2 * nc + 2, source, sink);\n  G.add(source,\
-    \ idx1(comp[0]), K, 0);\n  FOR(v, nc) {\n    G.add(idx1(v), idx2(v), 1, -X[v]);\n\
-    \    G.add(idx1(v), idx2(v), K, 0);\n    G.add(idx2(v), sink, K, 0);\n  }\n  for\
-    \ (auto&& e: DAG.edges) { G.add(idx2(e.frm), idx1(e.to), K, 0); }\n\n  auto [a,\
-    \ b] = G.flow();\n  assert(a == K);\n  print(-b);\n}\n\nsigned main() {\n  solve();\n\
-    \  return 0;\n}\n"
+    \ { c = min(c, g.elist[g.elist[prev_e[v]].rev].cap); }\n      for (int v = sink;\
+    \ v != source; v = g.elist[prev_e[v]].to) {\n        auto& e = g.elist[prev_e[v]];\n\
+    \        e.cap += c;\n        g.elist[e.rev].cap -= c;\n      }\n      Cost d\
+    \ = -dual_dist[source].first;\n      flow += c;\n      cost += c * d;\n      if\
+    \ (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
+    \ cost});\n      prev_cost_per_flow = d;\n    }\n    dual_ref();\n    potential.resize(n);\n\
+    \    FOR(v, n) potential[v] = dual_dist[v].fi;\n    return result;\n  }\n};\n\
+    #line 6 \"test/5_atcoder/abc214h.test.cpp\"\n\nvoid solve() {\n  LL(N, M, K);\n\
+    \  Graph<int, 1> G0(N);\n  G0.read_graph(M);\n\n  auto [nc, comp] = strongly_connected_component(G0);\n\
+    \  auto DAG = scc_dag(G0, nc, comp);\n  vi X(nc);\n  FOR(v, N) {\n    INT(x);\n\
+    \    X[comp[v]] += x;\n  }\n\n  auto idx1 = [&](int i) -> int { return 1 + 2 *\
+    \ i + 0; };\n  auto idx2 = [&](int i) -> int { return 1 + 2 * i + 1; };\n  int\
+    \ source = 0, sink = 1 + nc + nc;\n\n  Min_Cost_Flow<int, ll, true> G(2 * nc +\
+    \ 2, source, sink);\n  G.add(source, idx1(comp[0]), K, 0);\n  FOR(v, nc) {\n \
+    \   G.add(idx1(v), idx2(v), 1, -X[v]);\n    G.add(idx1(v), idx2(v), K, 0);\n \
+    \   G.add(idx2(v), sink, K, 0);\n  }\n  for (auto&& e: DAG.edges) { G.add(idx2(e.frm),\
+    \ idx1(e.to), K, 0); }\n\n  auto [a, b] = G.flow();\n  assert(a == K);\n  print(-b);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc214/tasks/abc214_h\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/strongly_connected_component.hpp\"\
     \n#include \"flow/mincostflow.hpp\"\n\nvoid solve() {\n  LL(N, M, K);\n  Graph<int,\
@@ -426,8 +428,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc214h.test.cpp
   requiredBy: []
-  timestamp: '2024-09-28 04:06:11+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-07 04:20:47+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc214h.test.cpp
 layout: document

@@ -1,48 +1,51 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: flow/longest_shortest_path.hpp
+    title: flow/longest_shortest_path.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/assignment_mcf.test.cpp
     title: test/2_library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1288.test.cpp
     title: test/3_yukicoder/1288.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1301.test.cpp
     title: test/3_yukicoder/1301.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1324.test.cpp
     title: test/3_yukicoder/1324.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1341.test.cpp
     title: test/3_yukicoder/1341.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1676.test.cpp
     title: test/3_yukicoder/1676.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1678.test.cpp
     title: test/3_yukicoder/1678.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2604.test.cpp
     title: test/3_yukicoder/2604.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_6_B.test.cpp
     title: test/4_aoj/GRL_6_B.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc214h.test.cpp
     title: test/5_atcoder/abc214h.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
     \u306E\u3092\u6539\u5909\nnamespace internal {\ntemplate <class E>\nstruct csr\
     \ {\n  vector<int> start;\n  vector<E> elist;\n  explicit csr(int n, const vector<pair<int,\
-    \ E>>& edges)\n      : start(n + 1), elist(edges.size()) {\n    for (auto e: edges)\
-    \ { start[e.first + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i\
+    \ E>>& edges) : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) {\
+    \ start[e.first + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i\
     \ - 1]; }\n    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
     \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  vector<T>\
     \ payload;\n  int pos = 0;\n  void reserve(int n) { payload.reserve(n); }\n  int\
@@ -57,17 +60,17 @@ data:
     \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
     \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct Min_Cost_Flow {\n\
     public:\n  Min_Cost_Flow() {}\n  explicit Min_Cost_Flow(int n, int source, int\
-    \ sink)\n      : n(n), source(source), sink(sink) {\n    assert(0 <= source &&\
-    \ source < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n\
-    \  }\n\n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost)\
-    \ {\n    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
+    \ sink) : n(n), source(source), sink(sink) {\n    assert(0 <= source && source\
+    \ < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n  }\n\
+    \n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost) {\n\
+    \    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
     \ <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(frm < to);\n  \
     \  int m = int(_edges.size());\n    _edges.push_back({frm, to, cap, 0, cost});\n\
     \    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\");\n    print(\"\
-    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n\
-    \      print(frm, to, cap, cost);\n    }\n  }\n\n  struct edge {\n    int frm,\
-    \ to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n\
-    \    int m = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
+    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\
+    \ print(frm, to, cap, cost); }\n  }\n\n  struct edge {\n    int frm, to;\n   \
+    \ Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m\
+    \ = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
     \  }\n  vector<edge> edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528\
     )\n  pair<Cap, Cost> flow() { return flow(infty<Cap>); }\n  // (\u6D41\u91CF,\
     \ \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit) { return slope(flow_limit).back();\
@@ -92,8 +95,9 @@ data:
     \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
     \ { vis[POP(path)] = 0; }\n        path.eb(to), vis[to] = 1;\n      }\n      for\
     \ (auto&& v: path) vis[v] = 0;\n      res.eb(path);\n    }\n    return res;\n\
-    \  }\n\nprivate:\n  int n, source, sink;\n  vector<edge> _edges;\n\n  // inside\
-    \ edge\n  struct _edge {\n    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\
+    \  }\n\n  vc<Cost> get_potentials() { return potential; }\n\nprivate:\n  int n,\
+    \ source, sink;\n  vector<edge> _edges;\n\n  // inside edge\n  struct _edge {\n\
+    \    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\n  vc<Cost> potential;\n\
     \n  vector<pair<Cap, Cost>> slope(internal::csr<_edge>& g, Cap flow_limit) {\n\
     \    if (DAG) assert(source == 0 && sink == n - 1);\n    vector<pair<Cost, Cost>>\
     \ dual_dist(n);\n    vector<int> prev_e(n);\n    vector<bool> vis(n);\n    struct\
@@ -137,17 +141,17 @@ data:
     \    while (flow < flow_limit) {\n      if (DAG && flow == 0) {\n        if (!dual_ref_dag())\
     \ break;\n      } else {\n        if (!dual_ref()) break;\n      }\n      Cap\
     \ c = flow_limit - flow;\n      for (int v = sink; v != source; v = g.elist[prev_e[v]].to)\
-    \ {\n        c = min(c, g.elist[g.elist[prev_e[v]].rev].cap);\n      }\n     \
-    \ for (int v = sink; v != source; v = g.elist[prev_e[v]].to) {\n        auto&\
-    \ e = g.elist[prev_e[v]];\n        e.cap += c;\n        g.elist[e.rev].cap -=\
-    \ c;\n      }\n      Cost d = -dual_dist[source].first;\n      flow += c;\n  \
-    \    cost += c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n\
-    \      result.push_back({flow, cost});\n      prev_cost_per_flow = d;\n    }\n\
-    \    return result;\n  }\n};\n"
+    \ { c = min(c, g.elist[g.elist[prev_e[v]].rev].cap); }\n      for (int v = sink;\
+    \ v != source; v = g.elist[prev_e[v]].to) {\n        auto& e = g.elist[prev_e[v]];\n\
+    \        e.cap += c;\n        g.elist[e.rev].cap -= c;\n      }\n      Cost d\
+    \ = -dual_dist[source].first;\n      flow += c;\n      cost += c * d;\n      if\
+    \ (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
+    \ cost});\n      prev_cost_per_flow = d;\n    }\n    dual_ref();\n    potential.resize(n);\n\
+    \    FOR(v, n) potential[v] = dual_dist[v].fi;\n    return result;\n  }\n};\n"
   code: "#pragma once\n\n// atcoder library \u306E\u3082\u306E\u3092\u6539\u5909\n\
     namespace internal {\ntemplate <class E>\nstruct csr {\n  vector<int> start;\n\
-    \  vector<E> elist;\n  explicit csr(int n, const vector<pair<int, E>>& edges)\n\
-    \      : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) { start[e.first\
+    \  vector<E> elist;\n  explicit csr(int n, const vector<pair<int, E>>& edges)\
+    \ : start(n + 1), elist(edges.size()) {\n    for (auto e: edges) { start[e.first\
     \ + 1]++; }\n    for (int i = 1; i <= n; i++) { start[i] += start[i - 1]; }\n\
     \    auto counter = start;\n    for (auto e: edges) { elist[counter[e.first]++]\
     \ = e.second; }\n  }\n};\n\ntemplate <class T>\nstruct simple_queue {\n  vector<T>\
@@ -163,17 +167,17 @@ data:
     \u308B\u3053\u3068\u3092\u4EEE\u5B9A\u3057\u3066\u3044\u308B\u3002\n*/\ntemplate\
     \ <class Cap = int, class Cost = ll, bool DAG = false>\nstruct Min_Cost_Flow {\n\
     public:\n  Min_Cost_Flow() {}\n  explicit Min_Cost_Flow(int n, int source, int\
-    \ sink)\n      : n(n), source(source), sink(sink) {\n    assert(0 <= source &&\
-    \ source < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n\
-    \  }\n\n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost)\
-    \ {\n    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
+    \ sink) : n(n), source(source), sink(sink) {\n    assert(0 <= source && source\
+    \ < n);\n    assert(0 <= sink && sink < n);\n    assert(source != sink);\n  }\n\
+    \n  // frm, to, cap, cost\n  int add(int frm, int to, Cap cap, Cost cost) {\n\
+    \    assert(0 <= frm && frm < n);\n    assert(0 <= to && to < n);\n    assert(0\
     \ <= cap);\n    assert(DAG || 0 <= cost);\n    if (DAG) assert(frm < to);\n  \
     \  int m = int(_edges.size());\n    _edges.push_back({frm, to, cap, 0, cost});\n\
     \    return m;\n  }\n\n  void debug() {\n    print(\"flow graph\");\n    print(\"\
-    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\n\
-    \      print(frm, to, cap, cost);\n    }\n  }\n\n  struct edge {\n    int frm,\
-    \ to;\n    Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n\
-    \    int m = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
+    frm, to, cap, cost\");\n    for (auto&& [frm, to, cap, flow, cost]: _edges) {\
+    \ print(frm, to, cap, cost); }\n  }\n\n  struct edge {\n    int frm, to;\n   \
+    \ Cap cap, flow;\n    Cost cost;\n  };\n\n  edge get_edge(int i) {\n    int m\
+    \ = int(_edges.size());\n    assert(0 <= i && i < m);\n    return _edges[i];\n\
     \  }\n  vector<edge> edges() { return _edges; }\n\n  // (\u6D41\u91CF, \u8CBB\u7528\
     )\n  pair<Cap, Cost> flow() { return flow(infty<Cap>); }\n  // (\u6D41\u91CF,\
     \ \u8CBB\u7528)\n  pair<Cap, Cost> flow(Cap flow_limit) { return slope(flow_limit).back();\
@@ -198,8 +202,9 @@ data:
     \ != sink) {\n        int to = POP(TO[path.back()]);\n        while (vis[to])\
     \ { vis[POP(path)] = 0; }\n        path.eb(to), vis[to] = 1;\n      }\n      for\
     \ (auto&& v: path) vis[v] = 0;\n      res.eb(path);\n    }\n    return res;\n\
-    \  }\n\nprivate:\n  int n, source, sink;\n  vector<edge> _edges;\n\n  // inside\
-    \ edge\n  struct _edge {\n    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\
+    \  }\n\n  vc<Cost> get_potentials() { return potential; }\n\nprivate:\n  int n,\
+    \ source, sink;\n  vector<edge> _edges;\n\n  // inside edge\n  struct _edge {\n\
+    \    int to, rev;\n    Cap cap;\n    Cost cost;\n  };\n\n  vc<Cost> potential;\n\
     \n  vector<pair<Cap, Cost>> slope(internal::csr<_edge>& g, Cap flow_limit) {\n\
     \    if (DAG) assert(source == 0 && sink == n - 1);\n    vector<pair<Cost, Cost>>\
     \ dual_dist(n);\n    vector<int> prev_e(n);\n    vector<bool> vis(n);\n    struct\
@@ -243,19 +248,20 @@ data:
     \    while (flow < flow_limit) {\n      if (DAG && flow == 0) {\n        if (!dual_ref_dag())\
     \ break;\n      } else {\n        if (!dual_ref()) break;\n      }\n      Cap\
     \ c = flow_limit - flow;\n      for (int v = sink; v != source; v = g.elist[prev_e[v]].to)\
-    \ {\n        c = min(c, g.elist[g.elist[prev_e[v]].rev].cap);\n      }\n     \
-    \ for (int v = sink; v != source; v = g.elist[prev_e[v]].to) {\n        auto&\
-    \ e = g.elist[prev_e[v]];\n        e.cap += c;\n        g.elist[e.rev].cap -=\
-    \ c;\n      }\n      Cost d = -dual_dist[source].first;\n      flow += c;\n  \
-    \    cost += c * d;\n      if (prev_cost_per_flow == d) { result.pop_back(); }\n\
-    \      result.push_back({flow, cost});\n      prev_cost_per_flow = d;\n    }\n\
-    \    return result;\n  }\n};\n"
+    \ { c = min(c, g.elist[g.elist[prev_e[v]].rev].cap); }\n      for (int v = sink;\
+    \ v != source; v = g.elist[prev_e[v]].to) {\n        auto& e = g.elist[prev_e[v]];\n\
+    \        e.cap += c;\n        g.elist[e.rev].cap -= c;\n      }\n      Cost d\
+    \ = -dual_dist[source].first;\n      flow += c;\n      cost += c * d;\n      if\
+    \ (prev_cost_per_flow == d) { result.pop_back(); }\n      result.push_back({flow,\
+    \ cost});\n      prev_cost_per_flow = d;\n    }\n    dual_ref();\n    potential.resize(n);\n\
+    \    FOR(v, n) potential[v] = dual_dist[v].fi;\n    return result;\n  }\n};\n"
   dependsOn: []
   isVerificationFile: false
   path: flow/mincostflow.hpp
-  requiredBy: []
-  timestamp: '2023-10-14 01:47:11+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - flow/longest_shortest_path.hpp
+  timestamp: '2024-11-07 04:20:47+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1678.test.cpp
   - test/3_yukicoder/1288.test.cpp
