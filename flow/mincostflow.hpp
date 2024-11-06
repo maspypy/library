@@ -6,8 +6,7 @@ template <class E>
 struct csr {
   vector<int> start;
   vector<E> elist;
-  explicit csr(int n, const vector<pair<int, E>>& edges)
-      : start(n + 1), elist(edges.size()) {
+  explicit csr(int n, const vector<pair<int, E>>& edges) : start(n + 1), elist(edges.size()) {
     for (auto e: edges) { start[e.first + 1]++; }
     for (int i = 1; i <= n; i++) { start[i] += start[i - 1]; }
     auto counter = start;
@@ -42,8 +41,7 @@ template <class Cap = int, class Cost = ll, bool DAG = false>
 struct Min_Cost_Flow {
 public:
   Min_Cost_Flow() {}
-  explicit Min_Cost_Flow(int n, int source, int sink)
-      : n(n), source(source), sink(sink) {
+  explicit Min_Cost_Flow(int n, int source, int sink) : n(n), source(source), sink(sink) {
     assert(0 <= source && source < n);
     assert(0 <= sink && sink < n);
     assert(source != sink);
@@ -64,9 +62,7 @@ public:
   void debug() {
     print("flow graph");
     print("frm, to, cap, cost");
-    for (auto&& [frm, to, cap, flow, cost]: _edges) {
-      print(frm, to, cap, cost);
-    }
+    for (auto&& [frm, to, cap, flow, cost]: _edges) { print(frm, to, cap, cost); }
   }
 
   struct edge {
@@ -144,6 +140,8 @@ public:
     return res;
   }
 
+  vc<Cost> get_potentials() { return potential; }
+
 private:
   int n, source, sink;
   vector<edge> _edges;
@@ -154,6 +152,8 @@ private:
     Cap cap;
     Cost cost;
   };
+
+  vc<Cost> potential;
 
   vector<pair<Cap, Cost>> slope(internal::csr<_edge>& g, Cap flow_limit) {
     if (DAG) assert(source == 0 && sink == n - 1);
@@ -262,9 +262,7 @@ private:
         if (!dual_ref()) break;
       }
       Cap c = flow_limit - flow;
-      for (int v = sink; v != source; v = g.elist[prev_e[v]].to) {
-        c = min(c, g.elist[g.elist[prev_e[v]].rev].cap);
-      }
+      for (int v = sink; v != source; v = g.elist[prev_e[v]].to) { c = min(c, g.elist[g.elist[prev_e[v]].rev].cap); }
       for (int v = sink; v != source; v = g.elist[prev_e[v]].to) {
         auto& e = g.elist[prev_e[v]];
         e.cap += c;
@@ -277,6 +275,9 @@ private:
       result.push_back({flow, cost});
       prev_cost_per_flow = d;
     }
+    dual_ref();
+    potential.resize(n);
+    FOR(v, n) potential[v] = dual_dist[v].fi;
     return result;
   }
 };
