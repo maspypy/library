@@ -27,6 +27,7 @@ struct LiChao_Tree {
   template <typename XY>
   LiChao_Tree(const vc<XY>& pts, FUNC default_fn) {
     static_assert(COMPRESS);
+    if (pts.empty()) pts.eb(0);
     for (auto&& x: pts) X.eb(x);
     UNIQUE(X);
     n = len(X), log = 1;
@@ -101,7 +102,5 @@ struct LiChao_Tree {
   }
 
 private:
-  inline T evaluate_inner(FUNC& f, ll x) {
-    return f((COMPRESS ? X[min<int>(x, n - 1)] : min<int>(x + lo, hi - 1)));
-  }
+  inline T evaluate_inner(FUNC& f, ll x) { return f((COMPRESS ? X[min<int>(x, n - 1)] : min<int>(x + lo, hi - 1))); }
 };
