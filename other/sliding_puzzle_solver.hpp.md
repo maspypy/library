@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
