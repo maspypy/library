@@ -6,12 +6,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/enumerate_triangles.test.cpp
     title: test/2_library_checker/graph/enumerate_triangles.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -116,7 +116,7 @@ data:
   path: enumerate/triangle.hpp
   requiredBy: []
   timestamp: '2024-10-14 04:14:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/enumerate_triangles.test.cpp
 documentation_of: enumerate/triangle.hpp

@@ -14,10 +14,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':x:'
@@ -75,10 +75,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/closest_pair_dc.test.cpp
     title: test/2_library_checker/geometry/closest_pair_dc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/eulerwalk_d.test.cpp
     title: test/2_library_checker/graph/eulerwalk_d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/eulerwalk_ud.test.cpp
     title: test/2_library_checker/graph/eulerwalk_ud.test.cpp
   - icon: ':x:'
