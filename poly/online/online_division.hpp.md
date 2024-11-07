@@ -24,7 +24,7 @@ data:
     path: poly/online/online_pow.hpp
     title: poly/online/online_pow.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_division.test.cpp
     title: test/1_mytest/online_division.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/1_mytest/online_pow.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -214,7 +214,7 @@ data:
   - poly/online/online_pow.hpp
   - poly/online/online_log.hpp
   timestamp: '2024-10-25 01:17:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/online_log.test.cpp
