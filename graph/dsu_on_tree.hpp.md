@@ -9,7 +9,7 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/4_aoj/2995.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -213,7 +213,7 @@ data:
   path: graph/dsu_on_tree.hpp
   requiredBy: []
   timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/4_aoj/2995.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp

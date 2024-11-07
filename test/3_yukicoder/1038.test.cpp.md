@@ -10,10 +10,10 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
   - icon: ':question:'

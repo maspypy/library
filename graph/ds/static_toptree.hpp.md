@@ -14,10 +14,10 @@ data:
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':question:'
@@ -27,10 +27,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - icon: ':x:'
