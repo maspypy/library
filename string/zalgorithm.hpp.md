@@ -8,20 +8,20 @@ data:
   - icon: ':question:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/run_enumerate.test.cpp
     title: test/2_library_checker/string/run_enumerate.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/run_enumerate_vec.test.cpp
     title: test/2_library_checker/string/run_enumerate_vec.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/zalgorithm.test.cpp
     title: test/2_library_checker/string/zalgorithm.test.cpp
   - icon: ':x:'
