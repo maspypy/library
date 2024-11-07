@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -48,8 +48,6 @@ data:
     \  int count() {\n    int ans = 0;\n    for (u64 val: dat) ans += popcnt(val);\n\
     \    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans\
     \ = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n\
-    \  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n   \
-    \ FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n    return ans;\n\
     \  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n   \
     \ int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n     \
     \ x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx,\
@@ -168,7 +166,7 @@ data:
   isVerificationFile: false
   path: graph/bitset/bfs_bitset.hpp
   requiredBy: []
-  timestamp: '2024-09-24 18:06:42+09:00'
+  timestamp: '2024-11-07 23:01:00+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1400.test.cpp

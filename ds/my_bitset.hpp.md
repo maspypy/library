@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: ds/counter.hpp
     title: ds/counter.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
   - icon: ':x:'
@@ -17,19 +17,19 @@ data:
   - icon: ':warning:'
     path: graph/bitset/reachability_bitset.hpp
     title: graph/bitset/reachability_bitset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
     path: linalg/bitset/det.hpp
     title: linalg/bitset/det.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
   - icon: ':x:'
     path: linalg/bitset/matrix_mul_and_or.hpp
     title: linalg/bitset/matrix_mul_and_or.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   - icon: ':warning:'
@@ -39,19 +39,19 @@ data:
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
   - icon: ':x:'
@@ -86,7 +86,7 @@ data:
     title: test/5_atcoder/abc350g2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -125,8 +125,6 @@ data:
     \  int count() {\n    int ans = 0;\n    for (u64 val: dat) ans += popcnt(val);\n\
     \    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans\
     \ = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n\
-    \  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n   \
-    \ FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n    return ans;\n\
     \  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n   \
     \ int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n     \
     \ x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx,\
@@ -248,18 +246,16 @@ data:
     \ N);\n    return p;\n  }\n\n  int count() {\n    int ans = 0;\n    for (u64 val:\
     \ dat) ans += popcnt(val);\n    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N\
     \ == p.N);\n    int ans = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n\
-    \    return ans;\n  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int\
-    \ ans = 0;\n    FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n   \
-    \ return ans;\n  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return\
-    \ N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n\
-    \      x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n\
-    \    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n      return\
-    \ (idx << 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int prev(int\
-    \ i) {\n    chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k = i >> 6;\n\
-    \    if ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1) << ((i &\
-    \ 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n    }\n\
-    \    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return (idx\
-    \ << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
+    \    return ans;\n  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N)\
+    \ return N;\n    int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s =\
+    \ i & 63;\n      x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n\
+    \    }\n    FOR(idx, k + 1, len(dat)) {\n      if (dat[idx] == 0) continue;\n\
+    \      return (idx << 6) | lowbit(dat[idx]);\n    }\n    return N;\n  }\n\n  int\
+    \ prev(int i) {\n    chmin(i, N - 1);\n    if (i <= -1) return -1;\n    int k\
+    \ = i >> 6;\n    if ((i & 63) < 63) {\n      u64 x = dat[k];\n      x &= (u64(1)\
+    \ << ((i & 63) + 1)) - 1;\n      if (x) return (k << 6) | topbit(x);\n      --k;\n\
+    \    }\n    FOR_R(idx, k + 1) {\n      if (dat[idx] == 0) continue;\n      return\
+    \ (idx << 6) | topbit(dat[idx]);\n    }\n    return -1;\n  }\n\n  My_Bitset range(int\
     \ L, int R) {\n    assert(L <= R);\n    My_Bitset p(R - L);\n    int rm = (R -\
     \ L) & 63;\n    FOR(rm) {\n      p[R - L - 1] = bool((*this)[R - 1]);\n      --R;\n\
     \    }\n    int n = (R - L) >> 6;\n    int hi = L & 63;\n    int lo = 64 - hi;\n\
@@ -354,8 +350,8 @@ data:
   - graph/bitset/reachability_bitset.hpp
   - graph/bitset/bfs_bitset.hpp
   - flow/bipartite_dense.hpp
-  timestamp: '2024-09-24 18:06:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-11-07 23:01:00+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/1340.test.cpp

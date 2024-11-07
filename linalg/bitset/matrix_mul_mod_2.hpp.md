@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy:
@@ -9,12 +9,12 @@ data:
     path: linalg/bitset/matrix_pow.hpp
     title: linalg/bitset/matrix_pow.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
@@ -51,8 +51,6 @@ data:
     \  int count() {\n    int ans = 0;\n    for (u64 val: dat) ans += popcnt(val);\n\
     \    return ans;\n  }\n\n  int dot(T &p) {\n    assert(N == p.N);\n    int ans\
     \ = 0;\n    FOR(i, len(dat)) ans += popcnt(dat[i] & p.dat[i]);\n    return ans;\n\
-    \  }\n\n  int dot_mod_2(T &p) {\n    assert(N == p.N);\n    int ans = 0;\n   \
-    \ FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);\n    return ans;\n\
     \  }\n\n  int next(int i) {\n    chmax(i, 0);\n    if (i >= N) return N;\n   \
     \ int k = i >> 6;\n    {\n      u64 x = dat[k];\n      int s = i & 63;\n     \
     \ x = (x >> s) << s;\n      if (x) return (k << 6) | lowbit(x);\n    }\n    FOR(idx,\
@@ -167,8 +165,8 @@ data:
   path: linalg/bitset/matrix_mul_mod_2.hpp
   requiredBy:
   - linalg/bitset/matrix_pow.hpp
-  timestamp: '2024-09-24 18:06:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-11-07 23:01:00+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
 documentation_of: linalg/bitset/matrix_mul_mod_2.hpp
