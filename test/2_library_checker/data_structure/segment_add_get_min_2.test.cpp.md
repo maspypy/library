@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -209,15 +209,15 @@ data:
     \  int n, log, size;\n\n  inline int get_idx(ll x) {\n    if constexpr (COMPRESS)\
     \ { return LB(X, x); }\n    assert(lo <= x && x <= hi);\n    return x - lo;\n\
     \  }\n\n  template <typename XY>\n  LiChao_Tree(const vc<XY>& pts, FUNC default_fn)\
-    \ {\n    static_assert(COMPRESS);\n    for (auto&& x: pts) X.eb(x);\n    UNIQUE(X);\n\
-    \    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
-    \ log;\n    dat.assign(size << 1, default_fn);\n  }\n\n  LiChao_Tree(ll lo, ll\
-    \ hi, FUNC default_fn) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n   \
-    \ n = hi - lo, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n\
-    \    dat.assign(size << 1, default_fn);\n  }\n\n  void add_line(FUNC f) { return\
-    \ add_line_at(1, f); }\n\n  void add_segment(ll xl, ll xr, FUNC f) {\n    xl =\
-    \ get_idx(xl), xr = get_idx(xr);\n    xl += size, xr += size;\n    while (xl <\
-    \ xr) {\n      if (xl & 1) add_line_at(xl++, f);\n      if (xr & 1) add_line_at(--xr,\
+    \ {\n    static_assert(COMPRESS);\n    if (pts.empty()) pts.eb(0);\n    for (auto&&\
+    \ x: pts) X.eb(x);\n    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 <<\
+    \ log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, default_fn);\n\
+    \  }\n\n  LiChao_Tree(ll lo, ll hi, FUNC default_fn) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n\
+    \    n = hi - lo, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
+    \ log;\n    dat.assign(size << 1, default_fn);\n  }\n\n  void add_line(FUNC f)\
+    \ { return add_line_at(1, f); }\n\n  void add_segment(ll xl, ll xr, FUNC f) {\n\
+    \    xl = get_idx(xl), xr = get_idx(xr);\n    xl += size, xr += size;\n    while\
+    \ (xl < xr) {\n      if (xl & 1) add_line_at(xl++, f);\n      if (xr & 1) add_line_at(--xr,\
     \ f);\n      xl >>= 1, xr >>= 1;\n    }\n  }\n\n  // \u6700\u9069\u306A\u5024\u3068\
     \ FUNC \u306E pair\n  pair<T, FUNC> query(ll x) {\n    FUNC f = dat[0]; // default_fn\n\
     \    T fx = f(x);\n    int i = get_idx(x) + size;\n    while (i) {\n      FUNC\
@@ -236,8 +236,8 @@ data:
     \        if (bl) { i = 2 * i + 1, l = m; }\n      }\n      if (!bm) {\n      \
     \  if (bl) { i = 2 * i + 0, r = m; }\n        if (!bl) { i = 2 * i + 1, l = m;\
     \ }\n      }\n    }\n  }\n\nprivate:\n  inline T evaluate_inner(FUNC& f, ll x)\
-    \ {\n    return f((COMPRESS ? X[min<int>(x, n - 1)] : min<int>(x + lo, hi - 1)));\n\
-    \  }\n};\n#line 5 \"test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp\"\
+    \ { return f((COMPRESS ? X[min<int>(x, n - 1)] : min<int>(x + lo, hi - 1))); }\n\
+    };\n#line 5 \"test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp\"\
     \n\nstruct F {\n  using value_type = ll; // operator() \u306E\u623B\u308A\u5024\
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, ll>;\n  vc<T> query;\n\
@@ -271,8 +271,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2024-11-07 04:20:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-07 21:39:36+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
 layout: document
