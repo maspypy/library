@@ -101,13 +101,6 @@ struct My_Bitset {
     return ans;
   }
 
-  int dot_mod_2(T &p) {
-    assert(N == p.N);
-    int ans = 0;
-    FOR(i, len(dat)) ans ^= popcnt_mod_2(dat[i] & p.dat[i]);
-    return ans;
-  }
-
   int next(int i) {
     chmax(i, 0);
     if (i >= N) return N;
