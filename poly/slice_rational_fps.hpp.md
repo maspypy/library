@@ -45,7 +45,7 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
   - icon: ':x:'
@@ -53,7 +53,7 @@ data:
     title: test/5_atcoder/agc013e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -554,7 +554,7 @@ data:
   path: poly/slice_rational_fps.hpp
   requiredBy: []
   timestamp: '2024-10-25 01:17:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/agc013e.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
