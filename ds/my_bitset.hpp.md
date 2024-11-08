@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite_dense.hpp
     title: flow/bipartite_dense.hpp
   - icon: ':heavy_check_mark:'
@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: graph/bitset/reachability_bitset.hpp
     title: graph/bitset/reachability_bitset.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
@@ -72,13 +72,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/421.test.cpp
     title: test/3_yukicoder/421.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/421_2.test.cpp
     title: test/3_yukicoder/421_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
   - icon: ':x:'

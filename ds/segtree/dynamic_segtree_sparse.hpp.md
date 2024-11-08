@@ -24,10 +24,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2242.test.cpp
     title: test/3_yukicoder/2242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_3.test.cpp
     title: test/3_yukicoder/789_3.test.cpp
   - icon: ':x:'

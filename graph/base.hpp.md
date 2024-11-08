@@ -95,7 +95,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/bfs_numbering.hpp
     title: graph/ds/bfs_numbering.hpp
   - icon: ':heavy_check_mark:'
@@ -176,7 +176,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':heavy_check_mark:'
@@ -224,7 +224,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/range_to_range_graph.hpp
     title: graph/range_to_range_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':question:'
@@ -735,22 +735,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2654.test.cpp
     title: test/3_yukicoder/2654.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2892.test.cpp
     title: test/3_yukicoder/2892.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/529.test.cpp
     title: test/3_yukicoder/529.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
   - icon: ':x:'

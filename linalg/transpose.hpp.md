@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2108.test.cpp
     title: test/3_yukicoder/2108.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2907.test.cpp
     title: test/3_yukicoder/2907.test.cpp
   - icon: ':x:'
