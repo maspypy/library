@@ -12,7 +12,6 @@ void solve() {
 
   vi ANS = tree_all_distances(G);
   ANS.erase(ANS.begin());
-  for (auto&& x: ANS) x /= 2;
   print(ANS);
 }
 
