@@ -27,9 +27,9 @@ struct LiChao_Tree {
   template <typename XY>
   LiChao_Tree(const vc<XY>& pts, FUNC default_fn) {
     static_assert(COMPRESS);
-    if (pts.empty()) pts.eb(0);
     for (auto&& x: pts) X.eb(x);
     UNIQUE(X);
+    if (X.empty()) X.eb(0);
     n = len(X), log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
