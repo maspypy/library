@@ -1,3 +1,5 @@
+#include "graph/base.hpp"
+
 // 各点に対してその点を含む C3, C4 を数える
 // simple graph を仮定
 template <typename GT>
