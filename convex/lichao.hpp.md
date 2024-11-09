@@ -3,10 +3,10 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -15,9 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/705_2.test.cpp
     title: test/3_yukicoder/705_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/lichao.hpp\"\n/*\nstruct F {\n  using value_type\
@@ -30,9 +30,9 @@ data:
     \  int n, log, size;\n\n  inline int get_idx(ll x) {\n    if constexpr (COMPRESS)\
     \ { return LB(X, x); }\n    assert(lo <= x && x <= hi);\n    return x - lo;\n\
     \  }\n\n  template <typename XY>\n  LiChao_Tree(const vc<XY>& pts, FUNC default_fn)\
-    \ {\n    static_assert(COMPRESS);\n    if (pts.empty()) pts.eb(0);\n    for (auto&&\
-    \ x: pts) X.eb(x);\n    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 <<\
-    \ log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, default_fn);\n\
+    \ {\n    static_assert(COMPRESS);\n    for (auto&& x: pts) X.eb(x);\n    UNIQUE(X);\n\
+    \    if (X.empty()) X.eb(0);\n    n = len(X), log = 1;\n    while ((1 << log)\
+    \ < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, default_fn);\n\
     \  }\n\n  LiChao_Tree(ll lo, ll hi, FUNC default_fn) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n\
     \    n = hi - lo, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
     \ log;\n    dat.assign(size << 1, default_fn);\n  }\n\n  void add_line(FUNC f)\
@@ -68,8 +68,8 @@ data:
     \ lo, hi;\n  vc<FUNC> dat;\n  int n, log, size;\n\n  inline int get_idx(ll x)\
     \ {\n    if constexpr (COMPRESS) { return LB(X, x); }\n    assert(lo <= x && x\
     \ <= hi);\n    return x - lo;\n  }\n\n  template <typename XY>\n  LiChao_Tree(const\
-    \ vc<XY>& pts, FUNC default_fn) {\n    static_assert(COMPRESS);\n    if (pts.empty())\
-    \ pts.eb(0);\n    for (auto&& x: pts) X.eb(x);\n    UNIQUE(X);\n    n = len(X),\
+    \ vc<XY>& pts, FUNC default_fn) {\n    static_assert(COMPRESS);\n    for (auto&&\
+    \ x: pts) X.eb(x);\n    UNIQUE(X);\n    if (X.empty()) X.eb(0);\n    n = len(X),\
     \ log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
     \ << 1, default_fn);\n  }\n\n  LiChao_Tree(ll lo, ll hi, FUNC default_fn) : lo(lo),\
     \ hi(hi) {\n    static_assert(!COMPRESS);\n    n = hi - lo, log = 1;\n    while\
@@ -101,8 +101,8 @@ data:
   isVerificationFile: false
   path: convex/lichao.hpp
   requiredBy: []
-  timestamp: '2024-11-07 21:39:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-11-09 13:38:14+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/705_2.test.cpp
   - test/3_yukicoder/1867.test.cpp

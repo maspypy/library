@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -68,6 +68,12 @@ data:
   - icon: ':question:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_C3_C4.hpp
+    title: graph/count/count_C3_C4.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/count/count_P3_P4_P5.hpp
+    title: graph/count/count_P3_P4_P5.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
@@ -239,7 +245,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':heavy_check_mark:'
@@ -275,7 +281,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':warning:'
@@ -504,7 +510,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/string/number_of_substrings2.test.cpp
     title: test/2_library_checker/string/number_of_substrings2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1074,7 +1080,9 @@ data:
   - graph/range_to_range_graph.hpp
   - graph/count/BEST.hpp
   - graph/count/count_connected_intervals.hpp
+  - graph/count/count_C3_C4.hpp
   - graph/count/count_independent_set.hpp
+  - graph/count/count_P3_P4_P5.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_cycle.hpp
   - graph/count/count_spanning_tree.hpp

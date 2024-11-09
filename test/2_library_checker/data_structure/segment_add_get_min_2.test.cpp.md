@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -209,9 +209,9 @@ data:
     \  int n, log, size;\n\n  inline int get_idx(ll x) {\n    if constexpr (COMPRESS)\
     \ { return LB(X, x); }\n    assert(lo <= x && x <= hi);\n    return x - lo;\n\
     \  }\n\n  template <typename XY>\n  LiChao_Tree(const vc<XY>& pts, FUNC default_fn)\
-    \ {\n    static_assert(COMPRESS);\n    if (pts.empty()) pts.eb(0);\n    for (auto&&\
-    \ x: pts) X.eb(x);\n    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 <<\
-    \ log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, default_fn);\n\
+    \ {\n    static_assert(COMPRESS);\n    for (auto&& x: pts) X.eb(x);\n    UNIQUE(X);\n\
+    \    if (X.empty()) X.eb(0);\n    n = len(X), log = 1;\n    while ((1 << log)\
+    \ < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, default_fn);\n\
     \  }\n\n  LiChao_Tree(ll lo, ll hi, FUNC default_fn) : lo(lo), hi(hi) {\n    static_assert(!COMPRESS);\n\
     \    n = hi - lo, log = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 <<\
     \ log;\n    dat.assign(size << 1, default_fn);\n  }\n\n  void add_line(FUNC f)\
@@ -271,8 +271,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2024-11-07 21:39:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-09 13:38:14+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
 layout: document
