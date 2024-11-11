@@ -27,18 +27,10 @@ struct Dyadic_Rational {
   // 比較
   bool operator==(X const& rhs) const { return (a == rhs.a && b == rhs.b); }
   bool operator!=(X const& rhs) const { return !(*this == rhs); }
-  bool operator<(X const& rhs) const {
-    return (a < rhs.a) || (a == rhs.a && b < rhs.b);
-  }
-  bool operator<=(X const& rhs) const {
-    return (a < rhs.a) || (a == rhs.a && b <= rhs.b);
-  }
-  bool operator>(X const& rhs) const {
-    return (a > rhs.a) || (a == rhs.a && b > rhs.b);
-  }
-  bool operator>=(X const& rhs) const {
-    return (a > rhs.a) || (a == rhs.a && b >= rhs.b);
-  }
+  bool operator<(X const& rhs) const { return (a < rhs.a) || (a == rhs.a && b < rhs.b); }
+  bool operator<=(X const& rhs) const { return (a < rhs.a) || (a == rhs.a && b <= rhs.b); }
+  bool operator>(X const& rhs) const { return (a > rhs.a) || (a == rhs.a && b > rhs.b); }
+  bool operator>=(X const& rhs) const { return (a > rhs.a) || (a == rhs.a && b >= rhs.b); }
 
   // 加法
   friend X operator+(const X& x, const X& y) {
@@ -68,7 +60,15 @@ struct Dyadic_Rational {
   X& operator+=(const X& x) { return (*this) = (*this) + x; }
   X& operator-=(const X& x) { return (*this) = (*this) - x; }
 
-  static X simplest(const X& x, const X& y) {
+  static X simplest(X x, X y, bool include_x = false, bool include_y = false) {
+    if (include_x && x != -infinity()) {
+      // eps を引く, あとでもっと小さい eps を使っている !
+      x = x - from_ab(0, 2);
+    }
+    if (include_y && y != infinity()) {
+      // eps を足す
+      y = y + from_ab(0, 2);
+    }
     assert(x < y);
     if (y.a < 0) return -simplest(-y, -x);
     {

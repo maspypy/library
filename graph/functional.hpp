@@ -117,4 +117,23 @@ struct FunctionalGraph {
     while (cyc.back() != r) cyc.eb(TO[cyc.back()]);
     return cyc;
   }
+
+  // F^k(i)==F^k(j) となる最小の k OR -1
+  template <typename TREE>
+  int meet_time(TREE& tree, int i, int j) {
+    if (i == j) return 0;
+    if (root[i] != root[j]) return -1;
+    int r = root[i];
+    int b = TO[r];
+    int n = tree.depth[b] - tree.depth[r] + 1; // cyc len
+    if ((tree.depth[i] - tree.depth[j]) % n != 0) return -1;
+
+    if (tree.depth[i] == tree.depth[j]) {
+      int lca = tree.lca(i, j);
+      return tree.depth[i] - tree.depth[lca];
+    }
+    int ti = tree.depth[i] - tree.depth[tree.lca(b, i)];
+    int tj = tree.depth[j] - tree.depth[tree.lca(b, j)];
+    return max(ti, tj);
+  }
 };
