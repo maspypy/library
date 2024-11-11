@@ -243,7 +243,16 @@ data:
     \ in_cycle(TREE& tree, int v) {\r\n    int r = root[v];\r\n    int bottom = TO[r];\r\
     \n    return tree.in_subtree(bottom, v);\r\n  }\r\n\r\n  vc<int> collect_cycle(int\
     \ r) {\r\n    assert(r == root[r]);\r\n    vc<int> cyc = {TO[r]};\r\n    while\
-    \ (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\n    return cyc;\r\n  }\r\n};\r\n"
+    \ (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\n    return cyc;\r\n  }\r\n\r\n\
+    \  // F^k(i)==F^k(j) \u3068\u306A\u308B\u6700\u5C0F\u306E k OR -1\r\n  template\
+    \ <typename TREE>\r\n  int meet_time(TREE& tree, int i, int j) {\r\n    if (i\
+    \ == j) return 0;\r\n    if (root[i] != root[j]) return -1;\r\n    int r = root[i];\r\
+    \n    int b = TO[r];\r\n    int n = tree.depth[b] - tree.depth[r] + 1; // cyc\
+    \ len\r\n    if ((tree.depth[i] - tree.depth[j]) % n != 0) return -1;\r\n\r\n\
+    \    if (tree.depth[i] == tree.depth[j]) {\r\n      int lca = tree.lca(i, j);\r\
+    \n      return tree.depth[i] - tree.depth[lca];\r\n    }\r\n    int ti = tree.depth[i]\
+    \ - tree.depth[tree.lca(b, i)];\r\n    int tj = tree.depth[j] - tree.depth[tree.lca(b,\
+    \ j)];\r\n    return max(ti, tj);\r\n  }\r\n};\r\n"
   code: "#include \"graph/tree.hpp\"\r\n#include \"ds/unionfind/unionfind.hpp\"\r\n\
     \r\n// N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\
     \r\ntemplate <typename T = int>\r\nstruct FunctionalGraph {\r\n  int N, M;\r\n\
@@ -287,7 +296,16 @@ data:
     \n    int r = root[v];\r\n    int bottom = TO[r];\r\n    return tree.in_subtree(bottom,\
     \ v);\r\n  }\r\n\r\n  vc<int> collect_cycle(int r) {\r\n    assert(r == root[r]);\r\
     \n    vc<int> cyc = {TO[r]};\r\n    while (cyc.back() != r) cyc.eb(TO[cyc.back()]);\r\
-    \n    return cyc;\r\n  }\r\n};\r\n"
+    \n    return cyc;\r\n  }\r\n\r\n  // F^k(i)==F^k(j) \u3068\u306A\u308B\u6700\u5C0F\
+    \u306E k OR -1\r\n  template <typename TREE>\r\n  int meet_time(TREE& tree, int\
+    \ i, int j) {\r\n    if (i == j) return 0;\r\n    if (root[i] != root[j]) return\
+    \ -1;\r\n    int r = root[i];\r\n    int b = TO[r];\r\n    int n = tree.depth[b]\
+    \ - tree.depth[r] + 1; // cyc len\r\n    if ((tree.depth[i] - tree.depth[j]) %\
+    \ n != 0) return -1;\r\n\r\n    if (tree.depth[i] == tree.depth[j]) {\r\n    \
+    \  int lca = tree.lca(i, j);\r\n      return tree.depth[i] - tree.depth[lca];\r\
+    \n    }\r\n    int ti = tree.depth[i] - tree.depth[tree.lca(b, i)];\r\n    int\
+    \ tj = tree.depth[j] - tree.depth[tree.lca(b, j)];\r\n    return max(ti, tj);\r\
+    \n  }\r\n};\r\n"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -295,7 +313,7 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2024-08-14 03:27:27+09:00'
+  timestamp: '2024-11-11 22:49:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1242.test.cpp

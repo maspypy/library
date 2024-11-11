@@ -682,7 +682,10 @@ data:
     - icon: ':warning:'
       path: game/graph_path_game.hpp
       title: game/graph_path_game.hpp
-    - icon: ':question:'
+    - icon: ':x:'
+      path: game/number_and_star.hpp
+      title: game/number_and_star.hpp
+    - icon: ':x:'
       path: game/solve_partizan_game.hpp
       title: game/solve_partizan_game.hpp
   - name: geo
@@ -2600,7 +2603,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/partial_frac.test.cpp
       title: test/1_mytest/partial_frac.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/partizan.test.cpp
       title: test/1_mytest/partizan.test.cpp
     - icon: ':heavy_check_mark:'
