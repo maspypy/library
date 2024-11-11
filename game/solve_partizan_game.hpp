@@ -1,14 +1,15 @@
-#include "game/dyadic_rational.hpp"
 
-// 全部 dyadic rational number になるときだけ解ける
+#include "game/number_and_star.hpp"
+
+// number, star でいい感じに計算できたときだけ成功
 // 失敗したときは、empty map が返る
 // ・states：興味のある state 全体
 // ・get_options：pair<vc<STATE>, vc<STATE>>(STATE), left ops / right ops
-template <typename STATE, typename INTEGER, typename F>
-unordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(
-    const vector<STATE>& states, F get_options) {
-  using X = Dyadic_Rational<INTEGER>;
-  unordered_map<STATE, X> MP;
+// https://qoj.ac/contest/1828/problem/9567
+template <typename STATE, typename F>
+map<STATE, Number_And_Star> solve_partizan_game(const vector<STATE>& states, F get_options) {
+  using X = Number_And_Star;
+  map<STATE, X> MP;
 
   bool success = 1;
 
@@ -16,20 +17,32 @@ unordered_map<STATE, Dyadic_Rational<INTEGER>> solve_partizan_game(
     if (!success) return X();
     if (MP.count(s)) return MP[s];
     vc<X> left, right;
-    X xl = -X::infinity(), xr = X::infinity();
-    auto [left_ops, right_ops] = get_options(s);
-    for (auto&& t: left_ops) chmax(xl, dfs(dfs, t));
-    for (auto&& t: right_ops) chmin(xr, dfs(dfs, t));
-
-    if (xl >= xr) {
-      // switch
+    auto [lop, rop] = get_options(s);
+    for (auto&& t: lop) left.eb(dfs(dfs, t));
+    for (auto&& t: rop) right.eb(dfs(dfs, t));
+    auto [ok, t] = X::from_options(left, right);
+    if (!success) return X{};
+    if (!ok) {
+      // print("FAILED");
+      // print(s);
+      // print("LEFT");
+      // for (auto& t: lop) {
+      //   X x = dfs(dfs, t);
+      //   print(t, x.to_string());
+      // }
+      // print("RIGHT");
+      // for (auto& t: rop) {
+      //   X x = dfs(dfs, t);
+      //   print(t, x.to_string());
+      // }
       success = 0;
-      MP.clear();
       return X();
     }
-    return (MP[s] = X::simplest(xl, xr));
+    MP[s] = t;
+    return MP[s] = t;
   };
 
   for (auto&& s: states) dfs(dfs, s);
+  if (!success) MP.clear();
   return MP;
 }
