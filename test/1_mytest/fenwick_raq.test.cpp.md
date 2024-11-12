@@ -241,8 +241,8 @@ data:
     \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
     \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
-    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
-    \ bool { return x <= k; }, L);\n  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    assert(k < sum_all());\n    return\
+    \ max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line 3 \"ds/fenwicktree/fenwicktree_range_add.hpp\"\
     \n\n// \u9045\u5EF6\u30BB\u30B0\u6728\u3088\u308A 4 \uFF5E 5 \u500D\u9AD8\u901F\
     \uFF1F\n// https://maspypy.github.io/library/test/mytest/fenwick_raq.test.cpp\n\
     // https://codeforces.com/contest/860/submission/228355081\ntemplate <typename\
@@ -316,7 +316,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/fenwick_raq.test.cpp
   requiredBy: []
-  timestamp: '2024-11-07 04:20:47+09:00'
+  timestamp: '2024-11-12 23:21:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/fenwick_raq.test.cpp

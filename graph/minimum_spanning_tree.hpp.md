@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':question:'
@@ -33,10 +33,10 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/5_atcoder/abc270_f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/contest/828/problem/F
@@ -220,11 +220,19 @@ data:
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
     \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
-    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
-    \n#line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\
-    \n\ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X\
-    \ = typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n,\
-    \ log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n\r\n\
+    \  // uv path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E\
+    \ v\r\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A check(v) \u304C\
+    \ ng \uFF09-1\r\n  template <class F>\r\n  int max_path(F check, int u, int v)\
+    \ {\r\n    if (!check(u)) return -1;\r\n    auto pd = get_path_decomposition(u,\
+    \ v, false);\r\n    for (auto [a, b]: pd) {\r\n      if (!check(V[a])) return\
+    \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
+    \      }\r\n      int c = binary_search([&](int c) -> bool { return check(V[c]);\
+    \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
+    #line 2 \"graph/ds/tree_monoid.hpp\"\n\r\n#line 2 \"ds/segtree/segtree.hpp\"\n\
+    \ntemplate <class Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X =\
+    \ typename MX::value_type;\n  using value_type = X;\n  vc<X> dat;\n  int n, log,\
+    \ size;\n\n  SegTree() {}\n  SegTree(int n) { build(n); }\n  template <typename\
     \ F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v)\
     \ { build(v); }\n\n  void build(int m) {\n    build(m, [](int i) -> X { return\
     \ MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n    build(len(v), [&](int\
@@ -439,8 +447,8 @@ data:
   isVerificationFile: false
   path: graph/minimum_spanning_tree.hpp
   requiredBy: []
-  timestamp: '2024-10-14 04:14:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-11-12 23:21:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/5_atcoder/abc270_f.test.cpp

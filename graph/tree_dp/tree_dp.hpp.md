@@ -176,12 +176,20 @@ data:
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
     \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
-    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
-    \n#line 4 \"graph/tree_dp/tree_dp.hpp\"\n\r\ntemplate <typename TREE, typename\
-    \ Data, typename F1, typename F2, typename F3>\r\nvc<Data> tree_dp(TREE& tree,\
-    \ F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\
-    \n\r\n  int N = tree.G.N;\r\n  vc<Data> dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n\
-    \    int v = tree.V[i];\r\n    dp[v] = f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n\r\n\
+    \  // uv path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E\
+    \ v\r\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A check(v) \u304C\
+    \ ng \uFF09-1\r\n  template <class F>\r\n  int max_path(F check, int u, int v)\
+    \ {\r\n    if (!check(u)) return -1;\r\n    auto pd = get_path_decomposition(u,\
+    \ v, false);\r\n    for (auto [a, b]: pd) {\r\n      if (!check(V[a])) return\
+    \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
+    \      }\r\n      int c = binary_search([&](int c) -> bool { return check(V[c]);\
+    \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
+    #line 4 \"graph/tree_dp/tree_dp.hpp\"\n\r\ntemplate <typename TREE, typename Data,\
+    \ typename F1, typename F2, typename F3>\r\nvc<Data> tree_dp(TREE& tree, F1 f_ee,\
+    \ F2 f_ev, F3 f_ve, const Data unit) {\r\n  assert(!tree.G.is_directed());\r\n\
+    \r\n  int N = tree.G.N;\r\n  vc<Data> dp(N, unit);\r\n  FOR_R(i, 1, N) {\r\n \
+    \   int v = tree.V[i];\r\n    dp[v] = f_ev(dp[v], v);\r\n    for (auto&& e: tree.G[v])\r\
     \n      if (e.to == tree.parent[v]) { dp[e.to] = f_ee(dp[e.to], f_ve(dp[v], e));\
     \ }\r\n  }\r\n  return dp;\r\n};\n"
   code: "\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\r\n\r\ntemplate\
@@ -197,7 +205,7 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/tree_dp.hpp
   requiredBy: []
-  timestamp: '2024-08-14 03:27:27+09:00'
+  timestamp: '2024-11-12 23:21:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/tree_dp/tree_dp.hpp

@@ -9,15 +9,15 @@ data:
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_E.test.cpp
     title: test/4_aoj/DSL_2_E.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_2_G.test.cpp
     title: test/4_aoj/DSL_2_G.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -81,8 +81,8 @@ data:
     \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
     \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
-    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
-    \ bool { return x <= k; }, L);\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    assert(k < sum_all());\n    return\
+    \ max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line 2 \"ds/range_add_range_sum.hpp\"\
     \n\ntemplate <typename Monoid>\nstruct Range_Add_Range_Sum {\n  using MX = Monoid;\n\
     \  using E = typename MX::value_type;\n\n  struct Mono {\n    using value_type\
     \ = pair<E, E>;\n    using X = value_type;\n    static X op(X x, X y) { return\
@@ -123,8 +123,8 @@ data:
   isVerificationFile: false
   path: ds/range_add_range_sum.hpp
   requiredBy: []
-  timestamp: '2024-10-16 22:34:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-11-12 23:21:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/DSL_2_G.test.cpp
   - test/4_aoj/DSL_2_E.test.cpp

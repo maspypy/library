@@ -175,8 +175,16 @@ data:
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
     \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
-    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
-    \n#line 2 \"graph/compress_tree.hpp\"\n\n// (\u5727\u7E2E\u3055\u308C\u305F\u6728\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n\r\n\
+    \  // uv path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E\
+    \ v\r\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A check(v) \u304C\
+    \ ng \uFF09-1\r\n  template <class F>\r\n  int max_path(F check, int u, int v)\
+    \ {\r\n    if (!check(u)) return -1;\r\n    auto pd = get_path_decomposition(u,\
+    \ v, false);\r\n    for (auto [a, b]: pd) {\r\n      if (!check(V[a])) return\
+    \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
+    \      }\r\n      int c = binary_search([&](int c) -> bool { return check(V[c]);\
+    \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
+    #line 2 \"graph/compress_tree.hpp\"\n\n// (\u5727\u7E2E\u3055\u308C\u305F\u6728\
     \u306E\u9802\u70B9\u30E9\u30D9\u30EB\u305F\u3061\u3001\u30B0\u30E9\u30D5)\n//\
     \ \u65B0\u3057\u3044\u30B0\u30E9\u30D5\uFF1A\u8FBA\u91CD\u307F\u3042\u308A\ntemplate\
     \ <typename TREE>\npair<vc<int>, typename TREE::Graph_type> compress_tree(TREE&\
@@ -215,7 +223,7 @@ data:
   isVerificationFile: false
   path: graph/compress_tree.hpp
   requiredBy: []
-  timestamp: '2024-08-14 03:27:27+09:00'
+  timestamp: '2024-11-12 23:21:04+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/compress_tree.hpp

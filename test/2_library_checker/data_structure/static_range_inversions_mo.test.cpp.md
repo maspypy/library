@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/mo.hpp
     title: ds/offline_query/mo.hpp
   - icon: ':question:'
@@ -267,10 +267,10 @@ data:
     \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
     \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
-    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
-    \ bool { return x <= k; }, L);\n  }\n};\n#line 1 \"ds/offline_query/mo.hpp\"\n\
-    // Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L, int\
-    \ R) { LR.emplace_back(L, R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int,\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    assert(k < sum_all());\n    return\
+    \ max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line 1 \"ds/offline_query/mo.hpp\"\
+    \n// Nsqrt(Q)\r\nstruct Mo {\r\n  vc<pair<int, int>> LR;\r\n  void add(int L,\
+    \ int R) { LR.emplace_back(L, R); }\r\n\r\n  static vc<int> get_mo_order(vc<pair<int,\
     \ int>> LR) {\r\n    int N = 1;\r\n    for (auto &&[l, r]: LR) chmax(N, l), chmax(N,\
     \ r);\r\n    int Q = len(LR);\r\n    if (Q == 0) return {};\r\n    int bs = sqrt(3)\
     \ * N / sqrt(2 * Q);\r\n    chmax(bs, 1);\r\n    vc<int> I(Q);\r\n    iota(all(I),\
@@ -331,7 +331,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
   requiredBy: []
-  timestamp: '2024-11-07 04:20:47+09:00'
+  timestamp: '2024-11-12 23:21:04+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp

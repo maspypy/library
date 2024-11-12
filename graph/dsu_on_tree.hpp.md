@@ -9,15 +9,15 @@ data:
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2995.test.cpp
     title: test/4_aoj/2995.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\n\ntemplate\
@@ -181,15 +181,23 @@ data:
     \ ab = lca(a, b), ac = lca(a, c), ad = lca(a, d);\r\n    int bc = lca(b, c), bd\
     \ = lca(b, d), cd = lca(c, d);\r\n    int x = ab ^ ac ^ bc, y = ab ^ ad ^ bd;\
     \ // meet(a,b,c), meet(a,b,d)\r\n    if (x != y) return {x, y};\r\n    int z =\
-    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n};\r\
-    \n#line 2 \"graph/dsu_on_tree.hpp\"\n\n// add(v) : \u9802\u70B9 v \u306E\u30C7\
-    \u30FC\u30BF\u3092\u8FFD\u52A0\u3059\u308B\n// query(v) : \u9802\u70B9 v \u306B\
-    \u304A\u3051\u308B\u30AF\u30A8\u30EA\u306B\u7B54\u3048\u308B\n// reset() : \u30C7\
-    \u30FC\u30BF\u304C\u7A7A\u306E\u72B6\u614B\u306B\u623B\u3059\u3002\n// \u30C7\u30FC\
-    \u30BF\u69CB\u9020\u306B\u3088\u3063\u3066\u306F\u3001\u5C65\u6B74\u3092\u4F7F\
-    \u3063\u3066\u9AD8\u901F\u306B reset \u3059\u308B\u3002\ntemplate <typename TREE,\
-    \ typename F1, typename F2, typename F3>\nvoid DSU_on_Tree(TREE& tree, F1& add,\
-    \ F2& query, F3& reset) {\n  int N = tree.N;\n  FOR_R(vid, N) {\n    int v = tree.V[vid];\n\
+    \ ac ^ ad ^ cd;\r\n    if (x != z) x = -1;\r\n    return {x, x};\r\n  }\r\n\r\n\
+    \  // uv path \u4E0A\u3067 check(v) \u3092\u6E80\u305F\u3059\u6700\u5F8C\u306E\
+    \ v\r\n  // \u306A\u3051\u308C\u3070 \uFF08\u3064\u307E\u308A check(v) \u304C\
+    \ ng \uFF09-1\r\n  template <class F>\r\n  int max_path(F check, int u, int v)\
+    \ {\r\n    if (!check(u)) return -1;\r\n    auto pd = get_path_decomposition(u,\
+    \ v, false);\r\n    for (auto [a, b]: pd) {\r\n      if (!check(V[a])) return\
+    \ u;\r\n      if (check(V[b])) {\r\n        u = V[b];\r\n        continue;\r\n\
+    \      }\r\n      int c = binary_search([&](int c) -> bool { return check(V[c]);\
+    \ }, a, b, 0);\r\n      return V[c];\r\n    }\r\n    return u;\r\n  }\r\n};\r\n\
+    #line 2 \"graph/dsu_on_tree.hpp\"\n\n// add(v) : \u9802\u70B9 v \u306E\u30C7\u30FC\
+    \u30BF\u3092\u8FFD\u52A0\u3059\u308B\n// query(v) : \u9802\u70B9 v \u306B\u304A\
+    \u3051\u308B\u30AF\u30A8\u30EA\u306B\u7B54\u3048\u308B\n// reset() : \u30C7\u30FC\
+    \u30BF\u304C\u7A7A\u306E\u72B6\u614B\u306B\u623B\u3059\u3002\n// \u30C7\u30FC\u30BF\
+    \u69CB\u9020\u306B\u3088\u3063\u3066\u306F\u3001\u5C65\u6B74\u3092\u4F7F\u3063\
+    \u3066\u9AD8\u901F\u306B reset \u3059\u308B\u3002\ntemplate <typename TREE, typename\
+    \ F1, typename F2, typename F3>\nvoid DSU_on_Tree(TREE& tree, F1& add, F2& query,\
+    \ F3& reset) {\n  int N = tree.N;\n  FOR_R(vid, N) {\n    int v = tree.V[vid];\n\
     \    add(v);\n    // collect data in light subtree\n    for (auto&& e: tree.G[v])\
     \ {\n      if (e.to == tree.parent[v]) continue;\n      if (tree.head[e.to] !=\
     \ e.to) continue;\n      FOR(idx, tree.LID[e.to], tree.RID[e.to]) { add(tree.V[idx]);\
@@ -212,8 +220,8 @@ data:
   isVerificationFile: false
   path: graph/dsu_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-08-14 03:27:27+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-11-12 23:21:04+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/2995.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
