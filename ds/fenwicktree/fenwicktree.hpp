@@ -158,6 +158,7 @@ struct FenwickTree {
   }
 
   int kth(E k, int L = 0) {
+    assert(k < sum_all());
     return max_right([&k](E x) -> bool { return x <= k; }, L);
   }
 };
