@@ -237,4 +237,22 @@ struct Tree {
     if (x != z) x = -1;
     return {x, x};
   }
+
+  // uv path 上で check(v) を満たす最後の v
+  // なければ （つまり check(v) が ng ）-1
+  template <class F>
+  int max_path(F check, int u, int v) {
+    if (!check(u)) return -1;
+    auto pd = get_path_decomposition(u, v, false);
+    for (auto [a, b]: pd) {
+      if (!check(V[a])) return u;
+      if (check(V[b])) {
+        u = V[b];
+        continue;
+      }
+      int c = binary_search([&](int c) -> bool { return check(V[c]); }, a, b, 0);
+      return V[c];
+    }
+    return u;
+  }
 };
