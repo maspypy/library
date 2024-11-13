@@ -1213,6 +1213,9 @@ data:
     - icon: ':question:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
+    - icon: ':warning:'
+      path: graph/tree_dp/rerooting_dp_2.hpp
+      title: graph/tree_dp/rerooting_dp_2.hpp
     - icon: ':x:'
       path: graph/tree_dp/subtree_depth_sum.hpp
       title: graph/tree_dp/subtree_depth_sum.hpp
