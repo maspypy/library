@@ -53,6 +53,8 @@ mint multinomial(Head &&head, Tail &&... tail) {
 
 template <typename mint>
 mint C_dense(int n, int k) {
+  assert(n >= 0);
+  if (k < 0 || n < k) return 0;
   static vvc<mint> C;
   static int H = 0, W = 0;
   auto calc = [&](int i, int j) -> mint {

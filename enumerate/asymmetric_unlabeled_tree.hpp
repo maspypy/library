@@ -1,11 +1,9 @@
 
-// unlabeled unrooted trees を同型を除いて列挙. vc<pair<int, int>>.
-// https://oeis.org/A000055
-// N=15: 7741, 0.005sec
-// N=20: 823065, 0.401sec
-// N=25: 104636890, 52.368sec
+// 非自明な自己同型が存在しない unlabeled unrooted trees を同型を除いて列挙. vc<pair<int, int>>.
+// https://oeis.org/A000220
+// https://qoj.ac/contest/1511/problem/8215
 template <typename F>
-void enumerate_unlabeled_tree(int n, F f) {
+void enumerate_asymmetric_unlabeled_tree(int n, F f) {
   assert(0 <= n && n <= 32);
   if (n == 0) return;
   /*
@@ -30,7 +28,7 @@ void enumerate_unlabeled_tree(int n, F f) {
       FOR(i, k, len(dat[m])) {
         u32 x = dat[m][i];
         x = (x << 1) | 1;
-        dfs(dfs, m, i, now | x << (2 * now_e), now_e + m);
+        dfs(dfs, m, i + 1, now | x << (2 * now_e), now_e + m);
       }
       dfs(dfs, m - 1, 0, now, now_e);
     };
@@ -67,7 +65,7 @@ void enumerate_unlabeled_tree(int n, F f) {
     FOR(i, k, len(dat[m])) {
       u64 x = dat[m][i];
       x = (x << 1) | 1;
-      dfs(dfs, m, i, now | x << (2 * now_e), now_e + m);
+      dfs(dfs, m, i + 1, now | x << (2 * now_e), now_e + m);
     }
     dfs(dfs, m - 1, 0, now, now_e);
   };
@@ -76,7 +74,7 @@ void enumerate_unlabeled_tree(int n, F f) {
   // 重心が 2 つの場合
   if (2 * m == n) {
     FOR(i, len(dat[m])) {
-      FOR(j, i + 1) {
+      FOR(j, i) {
         u64 x = dat[m][i], y = dat[m][j];
         y = (y << 1) | 1;
         f(decode(x | (y << (2 * (m - 1)))));
