@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedRequiredBy: []

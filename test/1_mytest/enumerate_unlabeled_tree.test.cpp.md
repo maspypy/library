@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: enumerate/unlabeled_tree.hpp
     title: enumerate/unlabeled_tree.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -388,7 +388,7 @@ data:
     \    return dat[k];\n  }\n};\n#line 1 \"enumerate/unlabeled_tree.hpp\"\n\n// unlabeled\
     \ unrooted trees \u3092\u540C\u578B\u3092\u9664\u3044\u3066\u5217\u6319. vc<pair<int,\
     \ int>>.\n// https://oeis.org/A000055\n// N=15: 7741, 0.005sec\n// N=20: 823065,\
-    \ 0.401sec\n// N=25: 104636890, 52.368sec\ntemplate <typename F>\nvoid enumerate_unlabeled_rooted_tree(int\
+    \ 0.401sec\n// N=25: 104636890, 52.368sec\ntemplate <typename F>\nvoid enumerate_unlabeled_tree(int\
     \ n, F f) {\n  assert(0 <= n && n <= 32);\n  if (n == 0) return;\n  /*\n  n/2\
     \ \u4EE5\u4E0B\u306E rooted tree \u3092\u5217\u6319\u3059\u308B\n  rooted tree\
     \ -> bracket sequence -> 1,0 \u306E\u5217 -> 32bit \u6574\u6570\n  */\n  int m\
@@ -454,8 +454,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 23:21:04+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-14 21:00:22+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_unlabeled_tree.test.cpp
 layout: document

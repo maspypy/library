@@ -27,21 +27,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool\
@@ -279,7 +279,7 @@ data:
   path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   requiredBy: []
   timestamp: '2024-10-23 21:57:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/2859.test.cpp

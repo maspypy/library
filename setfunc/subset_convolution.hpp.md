@@ -5,41 +5,41 @@ data:
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
     title: test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
     title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/subset_convolution.test.cpp
     title: test/2_library_checker/set_power_series/subset_convolution.test.cpp
   - icon: ':heavy_check_mark:'

@@ -3,19 +3,19 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_unlabeled_tree.test.cpp
     title: test/1_mytest/enumerate_unlabeled_tree.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://oeis.org/A000055
   bundledCode: "#line 1 \"enumerate/unlabeled_tree.hpp\"\n\n// unlabeled unrooted\
     \ trees \u3092\u540C\u578B\u3092\u9664\u3044\u3066\u5217\u6319. vc<pair<int, int>>.\n\
     // https://oeis.org/A000055\n// N=15: 7741, 0.005sec\n// N=20: 823065, 0.401sec\n\
-    // N=25: 104636890, 52.368sec\ntemplate <typename F>\nvoid enumerate_unlabeled_rooted_tree(int\
+    // N=25: 104636890, 52.368sec\ntemplate <typename F>\nvoid enumerate_unlabeled_tree(int\
     \ n, F f) {\n  assert(0 <= n && n <= 32);\n  if (n == 0) return;\n  /*\n  n/2\
     \ \u4EE5\u4E0B\u306E rooted tree \u3092\u5217\u6319\u3059\u308B\n  rooted tree\
     \ -> bracket sequence -> 1,0 \u306E\u5217 -> 32bit \u6574\u6570\n  */\n  int m\
@@ -46,14 +46,14 @@ data:
   code: "\n// unlabeled unrooted trees \u3092\u540C\u578B\u3092\u9664\u3044\u3066\u5217\
     \u6319. vc<pair<int, int>>.\n// https://oeis.org/A000055\n// N=15: 7741, 0.005sec\n\
     // N=20: 823065, 0.401sec\n// N=25: 104636890, 52.368sec\ntemplate <typename F>\n\
-    void enumerate_unlabeled_rooted_tree(int n, F f) {\n  assert(0 <= n && n <= 32);\n\
-    \  if (n == 0) return;\n  /*\n  n/2 \u4EE5\u4E0B\u306E rooted tree \u3092\u5217\
-    \u6319\u3059\u308B\n  rooted tree -> bracket sequence -> 1,0 \u306E\u5217 -> 32bit\
-    \ \u6574\u6570\n  */\n  int m = floor<int>(n, 2);\n  vvc<u32> dat(m + 1);\n  if\
-    \ (1 <= m) dat[1].eb(0);\n\n  FOR(n, 2, m + 1) {\n    auto dfs = [&](auto& dfs,\
-    \ int m, int k, u32 now, int now_e) -> void {\n      if (now_e == n - 1) {\n \
-    \       dat[n].eb(now);\n        return;\n      }\n      if (now_e + m >= n) {\n\
-    \        m = n - 1 - now_e;\n        k = 0;\n      }\n      if (m == 0) return;\n\
+    void enumerate_unlabeled_tree(int n, F f) {\n  assert(0 <= n && n <= 32);\n  if\
+    \ (n == 0) return;\n  /*\n  n/2 \u4EE5\u4E0B\u306E rooted tree \u3092\u5217\u6319\
+    \u3059\u308B\n  rooted tree -> bracket sequence -> 1,0 \u306E\u5217 -> 32bit \u6574\
+    \u6570\n  */\n  int m = floor<int>(n, 2);\n  vvc<u32> dat(m + 1);\n  if (1 <=\
+    \ m) dat[1].eb(0);\n\n  FOR(n, 2, m + 1) {\n    auto dfs = [&](auto& dfs, int\
+    \ m, int k, u32 now, int now_e) -> void {\n      if (now_e == n - 1) {\n     \
+    \   dat[n].eb(now);\n        return;\n      }\n      if (now_e + m >= n) {\n \
+    \       m = n - 1 - now_e;\n        k = 0;\n      }\n      if (m == 0) return;\n\
     \      FOR(i, k, len(dat[m])) {\n        u32 x = dat[m][i];\n        x = (x <<\
     \ 1) | 1;\n        dfs(dfs, m, i, now | x << (2 * now_e), now_e + m);\n      }\n\
     \      dfs(dfs, m - 1, 0, now, now_e);\n    };\n    dfs(dfs, n - 1, 0, 0, 0);\n\
@@ -78,8 +78,8 @@ data:
   isVerificationFile: false
   path: enumerate/unlabeled_tree.hpp
   requiredBy: []
-  timestamp: '2024-01-07 14:20:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-11-14 21:00:22+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
 documentation_of: enumerate/unlabeled_tree.hpp

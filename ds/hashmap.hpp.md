@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':heavy_check_mark:'
@@ -23,19 +23,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_kth_root.hpp
     title: mod/mod_kth_root.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
     path: nt/nimber/nimber_log.hpp
     title: nt/nimber/nimber_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
   - icon: ':warning:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/tdpc_grid_dp.test.cpp
     title: test/1_mytest/tdpc_grid_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -63,7 +63,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_freq.test.cpp
     title: test/2_library_checker/data_structure/static_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
   - icon: ':heavy_check_mark:'
@@ -81,22 +81,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/eulerwalk_ud.test.cpp
     title: test/2_library_checker/graph/eulerwalk_ud.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/kth_root_mod.test.cpp
     title: test/2_library_checker/number_theory/kth_root_mod.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1339.test.cpp
     title: test/3_yukicoder/1339.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1383.test.cpp
     title: test/3_yukicoder/1383.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1397.test.cpp
     title: test/3_yukicoder/1397.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
   - icon: ':heavy_check_mark:'
@@ -105,7 +105,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1726.test.cpp
     title: test/3_yukicoder/1726.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
   - icon: ':heavy_check_mark:'
@@ -120,22 +120,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2167.test.cpp
     title: test/3_yukicoder/2167.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
   - icon: ':heavy_check_mark:'

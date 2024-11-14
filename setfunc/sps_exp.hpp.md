@@ -11,14 +11,14 @@ data:
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
   - icon: ':heavy_check_mark:'

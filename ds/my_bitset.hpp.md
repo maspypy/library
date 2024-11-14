@@ -2,9 +2,6 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: ds/counter.hpp
-    title: ds/counter.hpp
   - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
@@ -69,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2490.test.cpp
     title: test/3_yukicoder/2490.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -339,7 +336,6 @@ data:
   path: ds/my_bitset.hpp
   requiredBy:
   - ds/sum_over_bit_positions.hpp
-  - ds/counter.hpp
   - knapsack/subset_sum.hpp
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/mat_inv.hpp

@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
   - icon: ':question:'
