@@ -17,10 +17,10 @@ data:
   - icon: ':question:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -117,13 +117,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
   - icon: ':heavy_check_mark:'
@@ -138,7 +138,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - icon: ':heavy_check_mark:'

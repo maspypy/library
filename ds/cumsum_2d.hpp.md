@@ -6,7 +6,7 @@ data:
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1141.test.cpp
     title: test/3_yukicoder/1141.test.cpp
   - icon: ':heavy_check_mark:'
