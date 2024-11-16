@@ -18,6 +18,7 @@ struct Number_And_Star {
     return *this;
   }
   T operator-() const { return T(-a, b); }
+  bool operator==(const T& p) const { return (a == p.a && b == p.b); }
 
   // {計算できたか, 値}
   static pair<bool, T> from_options(vc<T> left_ops, vc<T> right_ops) {

@@ -23,9 +23,12 @@ void solve() {
       print(ans);
     }
     if (t == 3) {
-      int ans = bit.kth(0, k);
-      if (ans == N) ans = -1;
-      print(ans);
+      if (k < bit.sum_all()) {
+        print(-1);
+      } else {
+        int ans = bit.kth(0, k);
+        print(ans);
+      }
     }
     if (t == 4) {
       int ans = bit.min_left([&](int x) -> bool { return x <= 0; }, k + 1) - 1;
