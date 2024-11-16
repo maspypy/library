@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   - icon: ':question:'
