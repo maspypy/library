@@ -15,7 +15,7 @@ data:
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/index_compression.test.cpp
     title: test/1_mytest/index_compression.test.cpp
   - icon: ':x:'
@@ -71,7 +71,7 @@ data:
     title: test/5_atcoder/abc324g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/index_compression.hpp\"\ntemplate <typename T>\nstruct\
@@ -148,7 +148,7 @@ data:
   - string/prefix_substring_LCS.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   timestamp: '2024-07-19 14:53:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1919_2.test.cpp
   - test/3_yukicoder/2859.test.cpp

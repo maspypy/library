@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/max2.hpp
     title: alg/monoid/max2.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
