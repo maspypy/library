@@ -1,6 +1,7 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 
 #include "my_template.hpp"
+
 #include "game/solve_partizan_game.hpp"
 
 void test_push() {
@@ -23,12 +24,11 @@ void test_push() {
     return {left_ops, right_ops};
   };
 
-  auto MP = solve_partizan_game<string, ll>(states, get_options);
-  // for (auto&& [s, x]: MP) { print(s, x.to_string()); }
-  assert(MP["LR"].to_string() == "-3/2");
-  assert(MP[".RL"].to_string() == "7/4");
-  assert(MP[".R"].to_string() == "-2/1");
-  assert(MP["RRL"].to_string() == "13/8");
+  auto MP = solve_partizan_game<string>(states, get_options);
+  assert(MP["LR"].to_string() == "-3/2 + *0");
+  assert(MP[".RL"].to_string() == "7/4 + *0");
+  assert(MP[".R"].to_string() == "-2/1 + *0");
+  assert(MP["RRL"].to_string() == "13/8 + *0");
 }
 
 void test_problem_5_2() {
@@ -48,7 +48,7 @@ void test_problem_5_2() {
     return {left_ops, right_ops};
   };
 
-  auto MP = solve_partizan_game<int, ll>(states, get_options);
+  auto MP = solve_partizan_game<int>(states, get_options);
   assert(MP.empty());
 }
 
@@ -66,13 +66,13 @@ void test_problem_5_3() {
     return {left_ops, right_ops};
   };
 
-  auto MP = solve_partizan_game<int, ll>(states, get_options);
-  assert(MP[0].to_string() == "0/1");
-  assert(MP[1].to_string() == "1/1");
-  assert(MP[2].to_string() == "1/2");
-  assert(MP[3].to_string() == "3/4");
-  assert(MP[4].to_string() == "5/8");
-  assert(MP[5].to_string() == "11/16");
+  auto MP = solve_partizan_game<int>(states, get_options);
+  assert(MP[0].to_string() == "0/1 + *0");
+  assert(MP[1].to_string() == "1/1 + *0");
+  assert(MP[2].to_string() == "1/2 + *0");
+  assert(MP[3].to_string() == "3/4 + *0");
+  assert(MP[4].to_string() == "5/8 + *0");
+  assert(MP[5].to_string() == "11/16 + *0");
 }
 
 int solve_cherries(string s) {
@@ -128,11 +128,11 @@ void test_cherries() {
     return {left, right};
   };
 
-  auto MP = solve_partizan_game<string, ll>(states, get_options);
+  auto MP = solve_partizan_game<string>(states, get_options);
 
   for (auto&& [s, x]: MP) {
     int my_ans = solve_cherries(s);
-    assert(x == Dyadic_Rational<ll>(my_ans, 1));
+    assert(x.a == Dyadic_Rational<ll>(my_ans, 1));
   }
 }
 

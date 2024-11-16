@@ -12,7 +12,7 @@ void test(int n) {
   ・あとは目視でいいか
   */
   int cnt = 0;
-  enumerate_unlabeled_rooted_tree(n, [&](vc<pair<int, int>> edges) -> void {
+  enumerate_unlabeled_tree(n, [&](vc<pair<int, int>> edges) -> void {
     ++cnt;
     assert(len(edges) == n - 1);
     // if (n <= 6) { print(n, ",", edges); }
