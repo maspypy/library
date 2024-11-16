@@ -105,6 +105,15 @@ int lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 int lowbit(u64 x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }
 
 template <typename T>
+T kth_bit(int k) {
+  return T(1) << k;
+}
+template <typename T>
+bool has_kth_bit(T x, int k) {
+  return x >> k & 1;
+}
+
+template <typename T>
 T floor(T a, T b) {
   return a / b - (a % b && (a ^ b) < 0);
 }
