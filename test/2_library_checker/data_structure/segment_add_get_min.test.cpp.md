@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -258,7 +258,7 @@ data:
     \ res1) : max(res, res1));\n    }\n    return res;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/segment_add_get_min.test.cpp\"\
     \n\nstruct F {\n  using value_type = ll; // operator() \u306E\u623B\u308A\u5024\
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<F, 0, 15'000'000, 1> X(-infty<int>, infty<int>);\n\
+    \ {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<F, 0, 20'000'000, 1> X(-infty<int>, infty<int>);\n\
     \  using np = decltype(X)::np;\n  np root = X.new_root();\n  FOR(N) {\n    LL(l,\
     \ r, a, b);\n    root = X.add_segment(root, l, r, {int(a), b});\n  }\n  vc<int>\
     \ points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l, r, a, b);\n\
@@ -270,7 +270,7 @@ data:
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"convex/dynamic_lichao.hpp\"\
     \n\nstruct F {\n  using value_type = ll; // operator() \u306E\u623B\u308A\u5024\
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
-    \ {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<F, 0, 15'000'000, 1> X(-infty<int>, infty<int>);\n\
+    \ {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<F, 0, 20'000'000, 1> X(-infty<int>, infty<int>);\n\
     \  using np = decltype(X)::np;\n  np root = X.new_root();\n  FOR(N) {\n    LL(l,\
     \ r, a, b);\n    root = X.add_segment(root, l, r, {int(a), b});\n  }\n  vc<int>\
     \ points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l, r, a, b);\n\
@@ -285,8 +285,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2024-11-07 04:20:47+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-16 13:34:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
 layout: document

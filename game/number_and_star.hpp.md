@@ -4,15 +4,15 @@ data:
   - icon: ':question:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/mex.hpp
     title: other/mex.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/5_atcoder/abc229h.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\
@@ -70,33 +70,35 @@ data:
     \ T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0) : a(a), b(b) {}\n\
     \  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n    return *this;\n \
     \ }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n    return *this;\n\
-    \  }\n  T operator-() const { return T(-a, b); }\n\n  // {\u8A08\u7B97\u3067\u304D\
+    \  }\n  T operator-() const { return T(-a, b); }\n  bool operator==(const T& p)\
+    \ const { return (a == p.a && b == p.b); }\n\n  // {\u8A08\u7B97\u3067\u304D\u305F\
+    \u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T> right_ops)\
+    \ {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb, Rb;\n   \
+    \ for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n      if\
+    \ (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n      if (chmin(xr,\
+    \ t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n    int Lm = mex(Lb),\
+    \ Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl, xr, Lm == 0,\
+    \ Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl == xr) {\n     \
+    \ if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false, T(0, 0)};\n\
+    \  }\n\n  string to_string() {\n    string x = a.to_string();\n    x += \" + *\"\
+    ;\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\u305D\u308C\
+    \u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\u3066\u308B\
+    \u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return {1, 0};\n\
+    \    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n    return {1,\
+    \ 1};\n  }\n};\n"
+  code: "#include \"game/dyadic_rational.hpp\"\n#include \"other/mex.hpp\"\n\nstruct\
+    \ Number_And_Star {\n  using A = Dyadic_Rational<ll>;\n  // a + *b\n  A a;\n \
+    \ int b;\n  using T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0)\
+    \ : a(a), b(b) {}\n  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n  \
+    \  return *this;\n  }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n\
+    \    return *this;\n  }\n  T operator-() const { return T(-a, b); }\n  bool operator==(const\
+    \ T& p) const { return (a == p.a && b == p.b); }\n\n  // {\u8A08\u7B97\u3067\u304D\
     \u305F\u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T>\
     \ right_ops) {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb,\
     \ Rb;\n    for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n\
     \      if (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n  \
     \    if (chmin(xr, t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n\
     \    int Lm = mex(Lb), Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl,\
-    \ xr, Lm == 0, Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl ==\
-    \ xr) {\n      if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false,\
-    \ T(0, 0)};\n  }\n\n  string to_string() {\n    string x = a.to_string();\n  \
-    \  x += \" + *\";\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\
-    \u305D\u308C\u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\
-    \u3066\u308B\u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return\
-    \ {1, 0};\n    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n   \
-    \ return {1, 1};\n  }\n};\n"
-  code: "#include \"game/dyadic_rational.hpp\"\n#include \"other/mex.hpp\"\n\nstruct\
-    \ Number_And_Star {\n  using A = Dyadic_Rational<ll>;\n  // a + *b\n  A a;\n \
-    \ int b;\n  using T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0)\
-    \ : a(a), b(b) {}\n  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n  \
-    \  return *this;\n  }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n\
-    \    return *this;\n  }\n  T operator-() const { return T(-a, b); }\n\n  // {\u8A08\
-    \u7B97\u3067\u304D\u305F\u304B, \u5024}\n  static pair<bool, T> from_options(vc<T>\
-    \ left_ops, vc<T> right_ops) {\n    A xl = -A::infinity(), xr = A::infinity();\n\
-    \    vc<int> Lb, Rb;\n    for (auto&& t: left_ops) {\n      if (chmax(xl, t.a))\
-    \ Lb.clear();\n      if (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops)\
-    \ {\n      if (chmin(xr, t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n\
-    \    }\n    int Lm = mex(Lb), Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl,\
     \ xr, Lm == 0, Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl ==\
     \ xr) {\n      if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false,\
     \ T(0, 0)};\n  }\n\n  string to_string() {\n    string x = a.to_string();\n  \
@@ -112,8 +114,8 @@ data:
   path: game/number_and_star.hpp
   requiredBy:
   - game/solve_partizan_game.hpp
-  timestamp: '2024-11-11 22:49:57+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-11-16 13:34:11+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc229h.test.cpp
   - test/1_mytest/partizan.test.cpp

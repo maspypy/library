@@ -271,11 +271,11 @@ data:
     \    if (t == 0) {\n      if (bit.sum(k, k + 1) == 0) bit.add(k, 1);\n    }\n\
     \    if (t == 1) {\n      if (bit.sum(k, k + 1)) bit.add(k, -1);\n    }\n    if\
     \ (t == 2) {\n      int ans = bit.sum(k, k + 1);\n      print(ans);\n    }\n \
-    \   if (t == 3) {\n      int ans = bit.kth(0, k);\n      if (ans == N) ans = -1;\n\
-    \      print(ans);\n    }\n    if (t == 4) {\n      int ans = bit.min_left([&](int\
-    \ x) -> bool { return x <= 0; }, k + 1) - 1;\n      print(ans);\n    }\n  }\n\
-    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}\n"
+    \   if (t == 3) {\n      if (k < bit.sum_all()) {\n        print(-1);\n      }\
+    \ else {\n        int ans = bit.kth(0, k);\n        print(ans);\n      }\n   \
+    \ }\n    if (t == 4) {\n      int ans = bit.min_left([&](int x) -> bool { return\
+    \ x <= 0; }, k + 1) - 1;\n      print(ans);\n    }\n  }\n}\n\nsigned main() {\n\
+    \  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/predecessor_problem\"\n\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  STR(T);\n\n  FenwickTree<Monoid_Add<int>>\
@@ -283,11 +283,11 @@ data:
     \    if (t == 0) {\n      if (bit.sum(k, k + 1) == 0) bit.add(k, 1);\n    }\n\
     \    if (t == 1) {\n      if (bit.sum(k, k + 1)) bit.add(k, -1);\n    }\n    if\
     \ (t == 2) {\n      int ans = bit.sum(k, k + 1);\n      print(ans);\n    }\n \
-    \   if (t == 3) {\n      int ans = bit.kth(0, k);\n      if (ans == N) ans = -1;\n\
-    \      print(ans);\n    }\n    if (t == 4) {\n      int ans = bit.min_left([&](int\
-    \ x) -> bool { return x <= 0; }, k + 1) - 1;\n      print(ans);\n    }\n  }\n\
-    }\n\nsigned main() {\n  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return\
-    \ 0;\n}"
+    \   if (t == 3) {\n      if (k < bit.sum_all()) {\n        print(-1);\n      }\
+    \ else {\n        int ans = bit.kth(0, k);\n        print(ans);\n      }\n   \
+    \ }\n    if (t == 4) {\n      int ans = bit.min_left([&](int x) -> bool { return\
+    \ x <= 0; }, k + 1) - 1;\n      print(ans);\n    }\n  }\n}\n\nsigned main() {\n\
+    \  int T = 1;\n  // INT(T);\n  FOR(T) solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -296,7 +296,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
   requiredBy: []
-  timestamp: '2024-11-12 23:21:04+09:00'
+  timestamp: '2024-11-16 13:34:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp

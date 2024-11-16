@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   - icon: ':question:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: other/mex.hpp
     title: other/mex.hpp
   _extendedRequiredBy: []
@@ -255,34 +255,35 @@ data:
     \ T = Number_And_Star;\n\n  Number_And_Star(A a = 0, ll b = 0) : a(a), b(b) {}\n\
     \  T& operator+=(const T& p) {\n    a += p.a, b ^= p.b;\n    return *this;\n \
     \ }\n  T& operator-=(const T& p) {\n    a -= p.a, b ^= p.b;\n    return *this;\n\
-    \  }\n  T operator-() const { return T(-a, b); }\n\n  // {\u8A08\u7B97\u3067\u304D\
-    \u305F\u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T>\
-    \ right_ops) {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb,\
-    \ Rb;\n    for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n\
-    \      if (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n  \
-    \    if (chmin(xr, t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n\
-    \    int Lm = mex(Lb), Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl,\
-    \ xr, Lm == 0, Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl ==\
-    \ xr) {\n      if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false,\
-    \ T(0, 0)};\n  }\n\n  string to_string() {\n    string x = a.to_string();\n  \
-    \  x += \" + *\";\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\
-    \u305D\u308C\u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\
-    \u3066\u308B\u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return\
-    \ {1, 0};\n    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n   \
-    \ return {1, 1};\n  }\n};\n#line 3 \"game/solve_partizan_game.hpp\"\n\n// number,\
-    \ star \u3067\u3044\u3044\u611F\u3058\u306B\u8A08\u7B97\u3067\u304D\u305F\u3068\
-    \u304D\u3060\u3051\u6210\u529F\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001\
-    empty map \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B\
-    \ state \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE),\
-    \ left ops / right ops\n// https://qoj.ac/contest/1828/problem/9567\ntemplate\
-    \ <typename STATE, typename F>\nmap<STATE, Number_And_Star> solve_partizan_game(const\
-    \ vector<STATE>& states, F get_options) {\n  using X = Number_And_Star;\n  map<STATE,\
-    \ X> MP;\n\n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s)\
-    \ -> X {\n    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n\
-    \    vc<X> left, right;\n    auto [lop, rop] = get_options(s);\n    for (auto&&\
-    \ t: lop) left.eb(dfs(dfs, t));\n    for (auto&& t: rop) right.eb(dfs(dfs, t));\n\
-    \    auto [ok, t] = X::from_options(left, right);\n    if (!success) return X{};\n\
-    \    if (!ok) {\n      // print(\"FAILED\");\n      // print(s);\n      // print(\"\
+    \  }\n  T operator-() const { return T(-a, b); }\n  bool operator==(const T& p)\
+    \ const { return (a == p.a && b == p.b); }\n\n  // {\u8A08\u7B97\u3067\u304D\u305F\
+    \u304B, \u5024}\n  static pair<bool, T> from_options(vc<T> left_ops, vc<T> right_ops)\
+    \ {\n    A xl = -A::infinity(), xr = A::infinity();\n    vc<int> Lb, Rb;\n   \
+    \ for (auto&& t: left_ops) {\n      if (chmax(xl, t.a)) Lb.clear();\n      if\
+    \ (xl == t.a) Lb.eb(t.b);\n    }\n    for (auto&& t: right_ops) {\n      if (chmin(xr,\
+    \ t.a)) Rb.clear();\n      if (xr == t.a) Rb.eb(t.b);\n    }\n    int Lm = mex(Lb),\
+    \ Rm = mex(Rb);\n    if (xl < xr) {\n      A a = A::simplest(xl, xr, Lm == 0,\
+    \ Rm == 0);\n      return {true, T(a, 0)};\n    }\n    if (xl == xr) {\n     \
+    \ if (Lm == Rm) return {true, T(xl, Lm)};\n    }\n    return {false, T(0, 0)};\n\
+    \  }\n\n  string to_string() {\n    string x = a.to_string();\n    x += \" + *\"\
+    ;\n    x += ::to_string(b);\n    return x;\n  }\n\n  // L, R \u306F\u305D\u308C\
+    \u305E\u308C\u81EA\u5206\u624B\u756A\u306E\u3068\u304D\u306B\u52DD\u3066\u308B\
+    \u304B\uFF1F\n  pair<bool, bool> outcome() {\n    if (a > 0) return {1, 0};\n\
+    \    if (a < 0) return {0, 1};\n    if (b == 0) return {0, 0};\n    return {1,\
+    \ 1};\n  }\n};\n#line 3 \"game/solve_partizan_game.hpp\"\n\n// number, star \u3067\
+    \u3044\u3044\u611F\u3058\u306B\u8A08\u7B97\u3067\u304D\u305F\u3068\u304D\u3060\
+    \u3051\u6210\u529F\n// \u5931\u6557\u3057\u305F\u3068\u304D\u306F\u3001empty map\
+    \ \u304C\u8FD4\u308B\n// \u30FBstates\uFF1A\u8208\u5473\u306E\u3042\u308B state\
+    \ \u5168\u4F53\n// \u30FBget_options\uFF1Apair<vc<STATE>, vc<STATE>>(STATE), left\
+    \ ops / right ops\n// https://qoj.ac/contest/1828/problem/9567\ntemplate <typename\
+    \ STATE, typename F>\nmap<STATE, Number_And_Star> solve_partizan_game(const vector<STATE>&\
+    \ states, F get_options) {\n  using X = Number_And_Star;\n  map<STATE, X> MP;\n\
+    \n  bool success = 1;\n\n  auto dfs = [&](auto& dfs, const STATE& s) -> X {\n\
+    \    if (!success) return X();\n    if (MP.count(s)) return MP[s];\n    vc<X>\
+    \ left, right;\n    auto [lop, rop] = get_options(s);\n    for (auto&& t: lop)\
+    \ left.eb(dfs(dfs, t));\n    for (auto&& t: rop) right.eb(dfs(dfs, t));\n    auto\
+    \ [ok, t] = X::from_options(left, right);\n    if (!success) return X{};\n   \
+    \ if (!ok) {\n      // print(\"FAILED\");\n      // print(s);\n      // print(\"\
     LEFT\");\n      // for (auto& t: lop) {\n      //   X x = dfs(dfs, t);\n     \
     \ //   print(t, x.to_string());\n      // }\n      // print(\"RIGHT\");\n    \
     \  // for (auto& t: rop) {\n      //   X x = dfs(dfs, t);\n      //   print(t,\
@@ -335,7 +336,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc229h.test.cpp
   requiredBy: []
-  timestamp: '2024-11-11 22:49:57+09:00'
+  timestamp: '2024-11-16 13:34:11+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc229h.test.cpp
