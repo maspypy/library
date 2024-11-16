@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2842_2.test.cpp
     title: test/4_aoj/2842_2.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/5_atcoder/abc228f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree_2d_dense.hpp\"\n\ntemplate <class Monoid>\n\
@@ -69,7 +69,7 @@ data:
   path: ds/segtree/segtree_2d_dense.hpp
   requiredBy: []
   timestamp: '2023-01-31 19:51:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/2842_2.test.cpp
   - test/5_atcoder/abc228f.test.cpp

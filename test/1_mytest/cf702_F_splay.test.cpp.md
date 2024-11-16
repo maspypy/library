@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_pair.hpp
     title: alg/monoid/add_pair.hpp
   - icon: ':question:'
@@ -73,67 +73,69 @@ data:
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
     \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T floor(T a, T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename\
-    \ T>\nT ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename\
-    \ T>\nT bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename\
-    \ T>\npair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q\
-    \ * y};\n}\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n\
-    \  T sm = 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v)\
-    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n#define LB(c, x)\
-    \ distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c, x) distance((c).begin(),\
-    \ upper_bound(all(c), (x)))\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
-    \ x.end()), x.shrink_to_fit()\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n\
-    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\ntemplate <typename\
-    \ T>\nT POP(pq<T> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\n\
-    template <typename T>\nT POP(pqg<T> &que) {\n  T a = que.top();\n  que.pop();\n\
-    \  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n\
-    \  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\nll binary_search(F\
-    \ check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n\
-    \  while (abs(ok - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok\
-    \ : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
-    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
-    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  return\
-    \ (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T\
-    \ &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int>\
-    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
-    \ S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n\
-    }\n\ntemplate <typename T, typename U>\nvector<T> cumsum(vector<U> &A, int off\
-    \ = 1) {\n  int N = A.size();\n  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
-    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
-    \ sort\ntemplate <typename T>\nvector<int> argsort(const vector<T> &A) {\n  vector<int>\
-    \ ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids), [&](int i, int j) { return\
-    \ (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
-    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
-    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
-    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
-    \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 2 \"alg/monoid/add_pair.hpp\"\n\r\ntemplate\
-    \ <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type = pair<E, E>;\r\
-    \n  using X = value_type;\r\n  static constexpr X op(const X &x, const X &y) {\r\
-    \n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static constexpr X inverse(const\
-    \ X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr X unit() { return {0,\
-    \ 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/splaytree/splaytree.hpp\"\
-    \n\n/*\nupdate \u3067\u3061\u3083\u3093\u3068 prod \u304C\u8A08\u7B97\u3055\u308C\
-    \u3066\u304F\u308C\u308C\u3070 prod \u306F op(lprod,x,rprod) \u3067\u306A\u304F\
-    \u3066\u3082\u3088\u3044.\n*/\n\n// Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\
-    \u3066\u4F7F\u3046\ntemplate <typename Node>\nstruct SplayTree {\n  Node *pool;\n\
-    \  const int NODES;\n  int pid;\n  using np = Node *;\n  using X = typename Node::value_type;\n\
-    \  using A = typename Node::operator_type;\n  vc<np> FREE;\n\n  SplayTree(int\
-    \ NODES) : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~SplayTree() {\
-    \ delete[] pool; }\n\n  void free_subtree(np c) {\n    if (!c) return;\n    auto\
-    \ dfs = [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs, c->l);\n    \
-    \  if (c->r) dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs, c);\n  }\n\
-    \n  void reset() {\n    pid = 0;\n    FREE.clear();\n  }\n\n  np new_root() {\
-    \ return nullptr; }\n\n  np new_node(const X &x) {\n    assert(!FREE.empty() ||\
-    \ pid < NODES);\n    np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));\n   \
-    \ Node::new_node(n, x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat)\
-    \ {\n    auto dfs = [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return\
-    \ nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n      int m = (l +\
-    \ r) / 2;\n      np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1,\
-    \ r);\n      np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n\
-    \      if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n  \
-    \    root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename T>\nT floor(T a,\
+    \ T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename T>\n\
+    T ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename T>\n\
+    T bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename T>\n\
+    pair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n\
+    }\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n  T sm =\
+    \ 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v) *min_element(all(v))\n\
+    #define MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
+    \ (x)))\n#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))\n#define\
+    \ UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\
+    \ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
+    \  return a;\n}\ntemplate <typename T>\nT POP(pq<T> &que) {\n  T a = que.top();\n\
+    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(pqg<T> &que) {\n \
+    \ T a = que.top();\n  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T>\
+    \ &que) {\n  T a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate\
+    \ <typename F>\nll binary_search(F check, ll ok, ll ng, bool check_ok = true)\
+    \ {\n  if (check_ok) assert(check(ok));\n  while (abs(ok - ng) > 1) {\n    auto\
+    \ x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate\
+    \ <typename F>\ndouble binary_search_real(F check, double ok, double ng, int iter\
+    \ = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok :\
+    \ ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline\
+    \ bool chmax(T &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate\
+    \ <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ?\
+    \ a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char)\
+    \ {\n  vc<int> A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] -\
+    \ first_char : -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvector<T>\
+    \ cumsum(vector<U> &A, int off = 1) {\n  int N = A.size();\n  vector<T> B(N +\
+    \ 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n\
+    \  return B;\n}\n\n// stable sort\ntemplate <typename T>\nvector<int> argsort(const\
+    \ vector<T> &A) {\n  vector<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\
+    \ [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return\
+    \ ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
+    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n}\n#endif\n#line 2 \"alg/monoid/add_pair.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type\
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
+    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 2 \"ds/splaytree/splaytree.hpp\"\n\n/*\nupdate \u3067\u3061\u3083\u3093\
+    \u3068 prod \u304C\u8A08\u7B97\u3055\u308C\u3066\u304F\u308C\u308C\u3070 prod\
+    \ \u306F op(lprod,x,rprod) \u3067\u306A\u304F\u3066\u3082\u3088\u3044.\n*/\n\n\
+    // Node \u578B\u3092\u5225\u306B\u5B9A\u7FA9\u3057\u3066\u4F7F\u3046\ntemplate\
+    \ <typename Node>\nstruct SplayTree {\n  Node *pool;\n  const int NODES;\n  int\
+    \ pid;\n  using np = Node *;\n  using X = typename Node::value_type;\n  using\
+    \ A = typename Node::operator_type;\n  vc<np> FREE;\n\n  SplayTree(int NODES)\
+    \ : NODES(NODES), pid(0) { pool = new Node[NODES]; }\n  ~SplayTree() { delete[]\
+    \ pool; }\n\n  void free_subtree(np c) {\n    if (!c) return;\n    auto dfs =\
+    \ [&](auto &dfs, np c) -> void {\n      if (c->l) dfs(dfs, c->l);\n      if (c->r)\
+    \ dfs(dfs, c->r);\n      FREE.eb(c);\n    };\n    dfs(dfs, c);\n  }\n\n  void\
+    \ reset() {\n    pid = 0;\n    FREE.clear();\n  }\n\n  np new_root() { return\
+    \ nullptr; }\n\n  np new_node(const X &x) {\n    assert(!FREE.empty() || pid <\
+    \ NODES);\n    np n = (FREE.empty() ? &(pool[pid++]) : POP(FREE));\n    Node::new_node(n,\
+    \ x);\n    return n;\n  }\n\n  np new_node(const vc<X> &dat) {\n    auto dfs =\
+    \ [&](auto &dfs, int l, int r) -> np {\n      if (l == r) return nullptr;\n  \
+    \    if (r == l + 1) return new_node(dat[l]);\n      int m = (l + r) / 2;\n  \
+    \    np l_root = dfs(dfs, l, m);\n      np r_root = dfs(dfs, m + 1, r);\n    \
+    \  np root = new_node(dat[m]);\n      root->l = l_root, root->r = r_root;\n  \
+    \    if (l_root) l_root->p = root;\n      if (r_root) r_root->p = root;\n    \
+    \  root->update();\n      return root;\n    };\n    return dfs(dfs, 0, len(dat));\n\
     \  }\n\n  u32 get_size(np root) { return (root ? root->size : 0); }\n\n  np merge(np\
     \ l_root, np r_root) {\n    if (!l_root) return r_root;\n    if (!r_root) return\
     \ l_root;\n    assert((!l_root->p) && (!r_root->p));\n    splay_kth(r_root, 0);\
@@ -340,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/cf702_F_splay.test.cpp
   requiredBy: []
-  timestamp: '2024-11-07 04:20:47+09:00'
+  timestamp: '2024-11-16 23:01:41+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/cf702_F_splay.test.cpp

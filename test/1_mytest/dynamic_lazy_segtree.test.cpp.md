@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/summax_assign.hpp
     title: alg/acted_monoid/summax_assign.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: alg/monoid/assign.hpp
     title: alg/monoid/assign.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -79,74 +79,75 @@ data:
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
     \ }\nint lowbit(ll x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\nint lowbit(u64\
     \ x) { return (x == 0 ? -1 : __builtin_ctzll(x)); }\n\ntemplate <typename T>\n\
-    T floor(T a, T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename\
-    \ T>\nT ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename\
-    \ T>\nT bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename\
-    \ T>\npair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q\
-    \ * y};\n}\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n\
-    \  T sm = 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v)\
-    \ *min_element(all(v))\n#define MAX(v) *max_element(all(v))\n#define LB(c, x)\
-    \ distance((c).begin(), lower_bound(all(c), (x)))\n#define UB(c, x) distance((c).begin(),\
-    \ upper_bound(all(c), (x)))\n#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)),\
-    \ x.end()), x.shrink_to_fit()\n\ntemplate <typename T>\nT POP(deque<T> &que) {\n\
-    \  T a = que.front();\n  que.pop_front();\n  return a;\n}\ntemplate <typename\
-    \ T>\nT POP(pq<T> &que) {\n  T a = que.top();\n  que.pop();\n  return a;\n}\n\
-    template <typename T>\nT POP(pqg<T> &que) {\n  T a = que.top();\n  que.pop();\n\
-    \  return a;\n}\ntemplate <typename T>\nT POP(vc<T> &que) {\n  T a = que.back();\n\
-    \  que.pop_back();\n  return a;\n}\n\ntemplate <typename F>\nll binary_search(F\
-    \ check, ll ok, ll ng, bool check_ok = true) {\n  if (check_ok) assert(check(ok));\n\
-    \  while (abs(ok - ng) > 1) {\n    auto x = (ng + ok) / 2;\n    (check(x) ? ok\
-    \ : ng) = x;\n  }\n  return ok;\n}\ntemplate <typename F>\ndouble binary_search_real(F\
-    \ check, double ok, double ng, int iter = 100) {\n  FOR(iter) {\n    double x\
-    \ = (ok + ng) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return (ok + ng) / 2;\n\
-    }\n\ntemplate <class T, class S>\ninline bool chmax(T &a, const S &b) {\n  return\
-    \ (a < b ? a = b, 1 : 0);\n}\ntemplate <class T, class S>\ninline bool chmin(T\
-    \ &a, const S &b) {\n  return (a > b ? a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int>\
-    \ s_to_vi(const string &S, char first_char) {\n  vc<int> A(S.size());\n  FOR(i,\
-    \ S.size()) { A[i] = (S[i] != '?' ? S[i] - first_char : -1); }\n  return A;\n\
-    }\n\ntemplate <typename T, typename U>\nvector<T> cumsum(vector<U> &A, int off\
-    \ = 1) {\n  int N = A.size();\n  vector<T> B(N + 1);\n  FOR(i, N) { B[i + 1] =\
-    \ B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n  return B;\n}\n\n// stable\
-    \ sort\ntemplate <typename T>\nvector<int> argsort(const vector<T> &A) {\n  vector<int>\
-    \ ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids), [&](int i, int j) { return\
-    \ (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return ids;\n}\n\n// A[I[0]], A[I[1]],\
-    \ ...\ntemplate <typename T>\nvc<T> rearrange(const vc<T> &A, const vc<int> &I)\
-    \ {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n  return B;\n}\n\n\
-    template <typename T, typename... Vectors>\nvoid concat(vc<T> &first, const Vectors\
-    \ &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(), others.begin(),\
-    \ others.end()), ...);\n}\n#endif\n#line 2 \"alg/monoid/summax.hpp\"\n\ntemplate\
-    \ <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E, E>;\n  using\
-    \ X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi, max(x.se, y.se)};\
-    \ }\n  static X from_element(E e) { return {e, e}; }\n  static constexpr X unit()\
-    \ { return {E(0), -infty<E>}; }\n  static constexpr bool commute = 1;\n};\n#line\
-    \ 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\nstruct\
-    \ Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y) { return\
-    \ (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return X(none_val);\
-    \ }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3 \"alg/acted_monoid/summax_assign.hpp\"\
-    \n\r\ntemplate <typename E, E none_val>\r\nstruct ActedMonoid_SumMax_Assign {\r\
-    \n  using Monoid_X = Monoid_SumMax<E>;\r\n  using Monoid_A = Monoid_Assign<E,\
-    \ none_val>;\r\n  using X = typename Monoid_X::value_type;\r\n  using A = typename\
-    \ Monoid_A::value_type;\r\n  static constexpr X act(const X& x, const A& a, const\
-    \ ll& size) {\r\n    if (a == Monoid_A::unit()) return x;\r\n    return {E(size)\
-    \ * a, a};\r\n  }\r\n};\r\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\n\
-    // Q*2logN \u7A0B\u5EA6\u5FC5\u8981\ntemplate <typename ActedMonoid, bool PERSISTENT>\n\
-    struct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n  using MX = typename\
-    \ AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X = typename AM::X;\n\
-    \  using A = typename AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\
-    \n  struct Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  const int\
-    \ NODES;\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\
-    \n  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0, F default_prod = [](ll\
-    \ l, ll r) -> X { return MX::unit(); })\n      : default_prod(default_prod), NODES(NODES),\
-    \ L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n  ~Dynamic_Lazy_SegTree()\
-    \ { delete[] pool; }\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const\
-    \ X x) {\n    assert(pid < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n\
-    \    pool[pid].x = x;\n    pool[pid].lazy = MA::unit();\n    return &(pool[pid++]);\n\
-    \  }\n\n  np new_node(ll l, ll r) { return new_node(default_prod(l, r)); }\n \
-    \ np new_node() { return new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat)\
-    \ {\n    assert(L0 == 0 && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll\
-    \ l, ll r) -> Node * {\n      if (l == r) return nullptr;\n      if (r == l +\
-    \ 1) return new_node(dat[l]);\n      ll m = (l + r) / 2;\n      np l_root = dfs(dfs,\
-    \ l, m), r_root = dfs(dfs, m, r);\n      X x = MX::op(l_root->x, r_root->x);\n\
+    T kth_bit(int k) {\n  return T(1) << k;\n}\ntemplate <typename T>\nbool has_kth_bit(T\
+    \ x, int k) {\n  return x >> k & 1;\n}\n\ntemplate <typename T>\nT floor(T a,\
+    \ T b) {\n  return a / b - (a % b && (a ^ b) < 0);\n}\ntemplate <typename T>\n\
+    T ceil(T x, T y) {\n  return floor(x + y - 1, y);\n}\ntemplate <typename T>\n\
+    T bmod(T x, T y) {\n  return x - y * floor(x, y);\n}\ntemplate <typename T>\n\
+    pair<T, T> divmod(T x, T y) {\n  T q = floor(x, y);\n  return {q, x - q * y};\n\
+    }\n\ntemplate <typename T, typename U>\nT SUM(const vector<U> &A) {\n  T sm =\
+    \ 0;\n  for (auto &&a: A) sm += a;\n  return sm;\n}\n\n#define MIN(v) *min_element(all(v))\n\
+    #define MAX(v) *max_element(all(v))\n#define LB(c, x) distance((c).begin(), lower_bound(all(c),\
+    \ (x)))\n#define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))\n#define\
+    \ UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()\n\
+    \ntemplate <typename T>\nT POP(deque<T> &que) {\n  T a = que.front();\n  que.pop_front();\n\
+    \  return a;\n}\ntemplate <typename T>\nT POP(pq<T> &que) {\n  T a = que.top();\n\
+    \  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(pqg<T> &que) {\n \
+    \ T a = que.top();\n  que.pop();\n  return a;\n}\ntemplate <typename T>\nT POP(vc<T>\
+    \ &que) {\n  T a = que.back();\n  que.pop_back();\n  return a;\n}\n\ntemplate\
+    \ <typename F>\nll binary_search(F check, ll ok, ll ng, bool check_ok = true)\
+    \ {\n  if (check_ok) assert(check(ok));\n  while (abs(ok - ng) > 1) {\n    auto\
+    \ x = (ng + ok) / 2;\n    (check(x) ? ok : ng) = x;\n  }\n  return ok;\n}\ntemplate\
+    \ <typename F>\ndouble binary_search_real(F check, double ok, double ng, int iter\
+    \ = 100) {\n  FOR(iter) {\n    double x = (ok + ng) / 2;\n    (check(x) ? ok :\
+    \ ng) = x;\n  }\n  return (ok + ng) / 2;\n}\n\ntemplate <class T, class S>\ninline\
+    \ bool chmax(T &a, const S &b) {\n  return (a < b ? a = b, 1 : 0);\n}\ntemplate\
+    \ <class T, class S>\ninline bool chmin(T &a, const S &b) {\n  return (a > b ?\
+    \ a = b, 1 : 0);\n}\n\n// ? \u306F -1\nvc<int> s_to_vi(const string &S, char first_char)\
+    \ {\n  vc<int> A(S.size());\n  FOR(i, S.size()) { A[i] = (S[i] != '?' ? S[i] -\
+    \ first_char : -1); }\n  return A;\n}\n\ntemplate <typename T, typename U>\nvector<T>\
+    \ cumsum(vector<U> &A, int off = 1) {\n  int N = A.size();\n  vector<T> B(N +\
+    \ 1);\n  FOR(i, N) { B[i + 1] = B[i] + A[i]; }\n  if (off == 0) B.erase(B.begin());\n\
+    \  return B;\n}\n\n// stable sort\ntemplate <typename T>\nvector<int> argsort(const\
+    \ vector<T> &A) {\n  vector<int> ids(len(A));\n  iota(all(ids), 0);\n  sort(all(ids),\
+    \ [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });\n  return\
+    \ ids;\n}\n\n// A[I[0]], A[I[1]], ...\ntemplate <typename T>\nvc<T> rearrange(const\
+    \ vc<T> &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
+    \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
+    \ &first, const Vectors &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
+    \ others.begin(), others.end()), ...);\n}\n#endif\n#line 2 \"alg/monoid/summax.hpp\"\
+    \n\ntemplate <typename E>\nstruct Monoid_SumMax {\n  using value_type = pair<E,\
+    \ E>;\n  using X = value_type;\n  static X op(X x, X y) { return {x.fi + y.fi,\
+    \ max(x.se, y.se)}; }\n  static X from_element(E e) { return {e, e}; }\n  static\
+    \ constexpr X unit() { return {E(0), -infty<E>}; }\n  static constexpr bool commute\
+    \ = 1;\n};\n#line 2 \"alg/monoid/assign.hpp\"\n\r\ntemplate <typename X, int none_val>\r\
+    \nstruct Monoid_Assign {\r\n  using value_type = X;\r\n  static X op(X x, X y)\
+    \ { return (y == X(none_val) ? x : y); }\r\n  static constexpr X unit() { return\
+    \ X(none_val); }\r\n  static constexpr bool commute = false;\r\n};\r\n#line 3\
+    \ \"alg/acted_monoid/summax_assign.hpp\"\n\r\ntemplate <typename E, E none_val>\r\
+    \nstruct ActedMonoid_SumMax_Assign {\r\n  using Monoid_X = Monoid_SumMax<E>;\r\
+    \n  using Monoid_A = Monoid_Assign<E, none_val>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X& x, const A& a, const ll& size) {\r\n    if (a == Monoid_A::unit()) return\
+    \ x;\r\n    return {E(size) * a, a};\r\n  }\r\n};\r\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\
+    \n\n// Q*2logN \u7A0B\u5EA6\u5FC5\u8981\ntemplate <typename ActedMonoid, bool\
+    \ PERSISTENT>\nstruct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n  using\
+    \ MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X\
+    \ = typename AM::X;\n  using A = typename AM::A;\n  using F = function<X(ll, ll)>;\n\
+    \  F default_prod;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n\
+    \  };\n\n  const int NODES;\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n \
+    \ using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0,\
+    \ F default_prod = [](ll l, ll r) -> X { return MX::unit(); })\n      : default_prod(default_prod),\
+    \ NODES(NODES), L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n \
+    \ ~Dynamic_Lazy_SegTree() { delete[] pool; }\n\n  np new_root() { return new_node(L0,\
+    \ R0); }\n\n  np new_node(const X x) {\n    assert(pid < NODES);\n    pool[pid].l\
+    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].lazy = MA::unit();\n\
+    \    return &(pool[pid++]);\n  }\n\n  np new_node(ll l, ll r) { return new_node(default_prod(l,\
+    \ r)); }\n  np new_node() { return new_node(L0, R0); }\n\n  np new_node(const\
+    \ vc<X> &dat) {\n    assert(L0 == 0 && R0 == len(dat));\n    auto dfs = [&](auto\
+    \ &dfs, ll l, ll r) -> Node * {\n      if (l == r) return nullptr;\n      if (r\
+    \ == l + 1) return new_node(dat[l]);\n      ll m = (l + r) / 2;\n      np l_root\
+    \ = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\n      X x = MX::op(l_root->x, r_root->x);\n\
     \      np root = new_node(x);\n      root->l = l_root, root->r = r_root;\n   \
     \   return root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np\
     \ root, ll l, ll r) {\n    if (l == r || !root) return MX::unit();\n    assert(pid\
@@ -272,8 +273,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/dynamic_lazy_segtree.test.cpp
   requiredBy: []
-  timestamp: '2024-11-07 04:20:47+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-16 23:01:41+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/dynamic_lazy_segtree.test.cpp
 layout: document
