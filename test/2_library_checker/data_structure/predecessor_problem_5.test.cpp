@@ -23,7 +23,7 @@ void solve() {
       print(ans);
     }
     if (t == 3) {
-      if (k < bit.sum_all()) {
+      if (k >= bit.sum_all()) {
         print(-1);
       } else {
         int ans = bit.kth(0, k);
