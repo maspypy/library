@@ -12,20 +12,35 @@ struct KDTree_ActedMonoid {
   vc<X> dat;
   vc<A> lazy;
   vc<int> size;
-  int n;
+  vc<int> pos; // raw data -> index
+  int n, log;
 
   KDTree_ActedMonoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {
     assert(n > 0);
-    int log = 0;
+    log = 0;
     while ((1 << log) < n) ++log;
     dat.resize(1 << (log + 1));
     lazy.assign(1 << log, MA::unit());
     closed_range.resize(1 << (log + 1));
     size.resize(1 << (log + 1));
-    build(1, xs, ys, vs);
+    vc<int> ids(n);
+    pos.resize(n);
+    FOR(i, n) ids[i] = i;
+    build(1, xs, ys, vs, ids);
   }
 
-  void multiply(XY x, XY y, const X& v) { multiply_rec(1, x, y, v); }
+  void set(int i, const X& v) {
+    i = pos[i];
+    for (int k = log; k >= 1; k--) { push(i >> k); }
+    dat[i] = v;
+    while (i > 1) i /= 2, dat[i] = MX::op(dat[2 * i], dat[2 * i + 1]);
+  }
+  void multiply(int i, const X& v) {
+    i = pos[i];
+    for (int k = log; k >= 1; k--) { push(i >> k); }
+    dat[i] = MX::op(dat[i], v);
+    while (i > 1) i / 2, dat[i] = MX::op(dat[2 * i], dat[2 * i + 1]);
+  }
 
   // [xl, xr) x [yl, yr)
   X prod(XY xl, XY xr, XY yl, XY yr) {
@@ -42,7 +57,7 @@ struct KDTree_ActedMonoid {
   }
 
 private:
-  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, bool divx = true) {
+  void build(int idx, vc<XY> xs, vc<XY> ys, vc<X> vs, vc<int> ids, bool divx = true) {
     int n = len(xs);
     size[idx] = n;
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
@@ -53,10 +68,9 @@ private:
       auto x = xs[i], y = ys[i];
       chmin(xmin, x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);
     }
-    if (xmin == xmax && ymin == ymax) {
-      X x = MX::unit();
-      for (auto&& v: vs) x = MX::op(x, v);
-      dat[idx] = x;
+    if (n == 1) {
+      dat[idx] = vs[0];
+      pos[ids[0]] = idx;
       return;
     }
 
@@ -64,17 +78,13 @@ private:
     vc<int> I(n);
     iota(all(I), 0);
     if (divx) {
-      nth_element(I.begin(), I.begin() + m, I.end(),
-                  [xs](int i, int j) { return xs[i] < xs[j]; });
+      nth_element(I.begin(), I.begin() + m, I.end(), [xs](int i, int j) { return xs[i] < xs[j]; });
     } else {
-      nth_element(I.begin(), I.begin() + m, I.end(),
-                  [ys](int i, int j) { return ys[i] < ys[j]; });
+      nth_element(I.begin(), I.begin() + m, I.end(), [ys](int i, int j) { return ys[i] < ys[j]; });
     }
-    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs, I);
-    build(2 * idx + 0, {xs.begin(), xs.begin() + m},
-          {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, !divx);
-    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()},
-          {vs.begin() + m, vs.end()}, !divx);
+    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs, I), ids = rearrange(ids, I);
+    build(2 * idx + 0, {xs.begin(), xs.begin() + m}, {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, {ids.begin(), ids.begin() + m}, !divx);
+    build(2 * idx + 1, {xs.begin() + m, xs.end()}, {ys.begin() + m, ys.end()}, {vs.begin() + m, vs.end()}, {ids.begin() + m, ids.end()}, !divx);
     dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);
   }
 
@@ -99,41 +109,20 @@ private:
     lazy[idx] = MA::unit();
   }
 
-  bool multiply_rec(int idx, XY x, XY y, X v) {
-    if (!isin(x, y, idx)) return false;
-    if (is_leaf(idx)) {
-      dat[idx] = MX::op(dat[idx], v);
-      size[idx] += 1;
-      return true;
-    }
-    push(idx);
-    bool done = 0;
-    if (multiply_rec(2 * idx + 0, x, y, v)) done = 1;
-    if (!done && multiply_rec(2 * idx + 1, x, y, v)) done = 1;
-    if (done) {
-      dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);
-      size[idx] = size[2 * idx + 0] + size[2 * idx + 1];
-    }
-    return done;
-  }
-
   X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
     if (x2 <= xmin || xmax < x1) return MX::unit();
     if (y2 <= ymin || ymax < y1) return MX::unit();
     if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx]; }
     push(idx);
-    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2),
-                  prod_rec(2 * idx + 1, x1, x2, y1, y2));
+    return MX::op(prod_rec(2 * idx + 0, x1, x2, y1, y2), prod_rec(2 * idx + 1, x1, x2, y1, y2));
   }
 
   void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
     if (x2 <= xmin || xmax < x1) return;
     if (y2 <= ymin || ymax < y1) return;
-    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) {
-      return apply_at(idx, a);
-    }
+    if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return apply_at(idx, a); }
     push(idx);
     apply_rec(2 * idx + 0, x1, x2, y1, y2, a);
     apply_rec(2 * idx + 1, x1, x2, y1, y2, a);
