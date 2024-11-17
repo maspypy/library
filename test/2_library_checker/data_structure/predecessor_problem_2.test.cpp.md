@@ -265,8 +265,8 @@ data:
     \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
     \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
-    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    assert(k < sum_all());\n    return\
-    \ max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line 6 \"test/2_library_checker/data_structure/predecessor_problem_2.test.cpp\"\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
+    \ bool { return x <= k; }, L);\n  }\n};\n#line 6 \"test/2_library_checker/data_structure/predecessor_problem_2.test.cpp\"\
     \n\nvoid solve() {\n  INT(N, Q);\n  STR(T);\n\n  FenwickTree<Monoid_Add<int>>\
     \ bit(N, [&](int i) -> int { return T[i] - '0'; });\n  FOR(Q) {\n    INT(t, k);\n\
     \    if (t == 0) {\n      if (bit.sum(k, k + 1) == 0) bit.add(k, 1);\n    }\n\
@@ -297,7 +297,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-18 00:58:39+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp

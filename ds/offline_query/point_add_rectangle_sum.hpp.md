@@ -81,8 +81,8 @@ data:
     \ ok \u306B\u306A\u308B\n    // false \u3092\u7DAD\u6301\u3057\u3066\u9032\u3080\
     \n    while (k) {\n      --k;\n      E t = G::op(s, G::inverse(dat[i + (1 << k)\
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
-    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    assert(k < sum_all());\n    return\
-    \ max_right([&k](E x) -> bool { return x <= k; }, L);\n  }\n};\n#line 2 \"ds/offline_query/point_add_rectangle_sum.hpp\"\
+    \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
+    \ bool { return x <= k; }, L);\n  }\n};\n#line 2 \"ds/offline_query/point_add_rectangle_sum.hpp\"\
     \n\r\ntemplate <typename AbelGroup, typename XY, bool SMALL_X = false>\r\nstruct\
     \ Point_Add_Rectangle_Sum {\r\n  using G = typename AbelGroup::value_type;\r\n\
     \  using Point = tuple<XY, XY, G>;\r\n  vector<Point> point;\r\n  vector<tuple<XY,\
@@ -150,7 +150,7 @@ data:
   isVerificationFile: false
   path: ds/offline_query/point_add_rectangle_sum.hpp
   requiredBy: []
-  timestamp: '2024-11-12 23:21:04+09:00'
+  timestamp: '2024-11-18 00:58:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2161.test.cpp
