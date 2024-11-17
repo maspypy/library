@@ -123,6 +123,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/double_ended_q.test.cpp
     title: test/2_library_checker/data_structure/double_ended_q.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+    title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
@@ -348,43 +351,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/manhattan_mst.test.cpp
     title: test/2_library_checker/geometry/manhattan_mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
     title: test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/K_shortest_walk.test.cpp
     title: test/2_library_checker/graph/K_shortest_walk.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/assignment.test.cpp
     title: test/2_library_checker/graph/assignment.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/assignment_mcf.test.cpp
     title: test/2_library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/biconnected_component.test.cpp
     title: test/2_library_checker/graph/biconnected_component.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartitematching.test.cpp
     title: test/2_library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_number.test.cpp
     title: test/2_library_checker/graph/chromatic_number.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/classify_tree.test.cpp
     title: test/2_library_checker/graph/classify_tree.test.cpp
   - icon: ':x:'
@@ -3125,6 +3128,7 @@ data:
   - test/2_library_checker/data_structure/associative_array.test.cpp
   - test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
   - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
+  - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
   - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp

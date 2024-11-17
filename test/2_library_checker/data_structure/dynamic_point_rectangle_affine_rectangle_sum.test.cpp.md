@@ -2,11 +2,14 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: mod/crt3.hpp
-    title: mod/crt3.hpp
+    path: alg/monoid/add_pair.hpp
+    title: alg/monoid/add_pair.hpp
   - icon: ':question:'
-    path: mod/mod_inv.hpp
-    title: mod/mod_inv.hpp
+    path: alg/monoid/affine.hpp
+    title: alg/monoid/affine.hpp
+  - icon: ':x:'
+    path: ds/kdtree/kdtree_acted_monoid.hpp
+    title: ds/kdtree/kdtree_acted_monoid.hpp
   - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
@@ -19,27 +22,6 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
-    path: poly/convolution.hpp
-    title: poly/convolution.hpp
-  - icon: ':question:'
-    path: poly/convolution_karatsuba.hpp
-    title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
-    path: poly/convolution_naive.hpp
-    title: poly/convolution_naive.hpp
-  - icon: ':question:'
-    path: poly/ntt.hpp
-    title: poly/ntt.hpp
-  - icon: ':question:'
-    path: setfunc/power_projection_of_sps.hpp
-    title: setfunc/power_projection_of_sps.hpp
-  - icon: ':question:'
-    path: setfunc/ranked_zeta.hpp
-    title: setfunc/ranked_zeta.hpp
-  - icon: ':question:'
-    path: setfunc/subset_convolution.hpp
-    title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: true
@@ -47,12 +29,12 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/power_projection_of_set_power_series
+    PROBLEM: https://judge.yosupo.jp/problem/dynamic_point_set_rectangle_affine_rectangle_sum
     links:
-    - https://judge.yosupo.jp/problem/power_projection_of_set_power_series
-  bundledCode: "#line 1 \"test/2_library_checker/set_power_series/powproj_sps.test.cpp\"\
-    \n#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/power_projection_of_set_power_series\"\
-    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/dynamic_point_set_rectangle_affine_rectangle_sum
+  bundledCode: "#line 1 \"test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_point_set_rectangle_affine_rectangle_sum\"\
+    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -230,37 +212,72 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 6 \"test/2_library_checker/set_power_series/powproj_sps.test.cpp\"\
-    \n\n#line 2 \"setfunc/subset_convolution.hpp\"\n\r\n#line 2 \"setfunc/ranked_zeta.hpp\"\
-    \n\r\ntemplate <typename T, int LIM>\r\nvc<array<T, LIM + 1>> ranked_zeta(const\
-    \ vc<T>& f) {\r\n  int n = topbit(len(f));\r\n  assert(n <= LIM);\r\n  assert(len(f)\
-    \ == 1 << n);\r\n  vc<array<T, LIM + 1>> Rf(1 << n);\r\n  for (int s = 0; s <\
-    \ (1 << n); ++s) Rf[s][popcnt(s)] = f[s];\r\n  for (int i = 0; i < n; ++i) {\r\
-    \n    int w = 1 << i;\r\n    for (int p = 0; p < (1 << n); p += 2 * w) {\r\n \
-    \     for (int s = p; s < p + w; ++s) {\r\n        int t = s | 1 << i;\r\n   \
-    \     for (int d = 0; d <= n; ++d) Rf[t][d] += Rf[s][d];\r\n      }\r\n    }\r\
-    \n  }\r\n  return Rf;\r\n}\r\n\r\ntemplate <typename T, int LIM>\r\nvc<T> ranked_mobius(vc<array<T,\
-    \ LIM + 1>>& Rf) {\r\n  int n = topbit(len(Rf));\r\n  assert(len(Rf) == 1 << n);\r\
-    \n  for (int i = 0; i < n; ++i) {\r\n    int w = 1 << i;\r\n    for (int p = 0;\
-    \ p < (1 << n); p += 2 * w) {\r\n      for (int s = p; s < p + w; ++s) {\r\n \
-    \       int t = s | 1 << i;\r\n        for (int d = 0; d <= n; ++d) Rf[t][d] -=\
-    \ Rf[s][d];\r\n      }\r\n    }\r\n  }\r\n  vc<T> f(1 << n);\r\n  for (int s =\
-    \ 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\n  return f;\r\n}\n#line 4\
-    \ \"setfunc/subset_convolution.hpp\"\n\r\ntemplate <typename T, int LIM = 20>\r\
-    \nvc<T> subset_convolution_square(const vc<T>& A) {\r\n  auto RA = ranked_zeta<T,\
-    \ LIM>(A);\r\n  int n = topbit(len(RA));\r\n  FOR(s, len(RA)) {\r\n    auto& f\
-    \ = RA[s];\r\n    FOR_R(d, n + 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x\
-    \ += f[i] * f[d - i];\r\n      f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T,\
-    \ LIM>(RA);\r\n}\r\n\r\ntemplate <typename T, int LIM = 20>\r\nvc<T> subset_convolution(const\
-    \ vc<T>& A, const vc<T>& B) {\r\n  if (A == B) return subset_convolution_square(A);\r\
-    \n  auto RA = ranked_zeta<T, LIM>(A);\r\n  auto RB = ranked_zeta<T, LIM>(B);\r\
-    \n  int n = topbit(len(RA));\r\n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g\
-    \ = RB[s];\r\n    FOR_R(d, n + 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x\
-    \ += f[i] * g[d - i];\r\n      f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T,\
-    \ LIM>(RA);\r\n}\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
-    \  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
-    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
-    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp\"\
+    \n\n#line 1 \"ds/kdtree/kdtree_acted_monoid.hpp\"\ntemplate <class ActedMonoid,\
+    \ typename XY>\r\nstruct KDTree_ActedMonoid {\r\n  using AM = ActedMonoid;\r\n\
+    \  using MX = typename AM::Monoid_X;\r\n  using MA = typename AM::Monoid_A;\r\n\
+    \  using X = typename AM::X;\r\n  using A = typename AM::A;\r\n  static_assert(MX::commute);\r\
+    \n\r\n  // \u5C0F\u6570\u3082\u8003\u616E\u3059\u308B\u3068\u3001\u9589\u3067\u6301\
+    \u3064\u8A2D\u8A08\u65B9\u91DD\u306B\u306A\u308B\u3002\u305F\u3060\u3057\u3001\
+    \u30AF\u30A8\u30EA\u306F\u3044\u3064\u3082\u306E\u534A\u958B\u3092\u4F7F\u3046\
+    \r\n  vc<tuple<XY, XY, XY, XY>> closed_range;\r\n  vc<X> dat;\r\n  vc<A> lazy;\r\
+    \n  vc<int> size;\r\n  vc<int> pos; // raw data -> index\r\n  int n, log;\r\n\r\
+    \n  KDTree_ActedMonoid(vc<XY> xs, vc<XY> ys, vc<X> vs) : n(len(xs)) {\r\n    assert(n\
+    \ > 0);\r\n    log = 0;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(1\
+    \ << (log + 1));\r\n    lazy.assign(1 << log, MA::unit());\r\n    closed_range.resize(1\
+    \ << (log + 1));\r\n    size.resize(1 << (log + 1));\r\n    vc<int> ids(n);\r\n\
+    \    pos.resize(n);\r\n    FOR(i, n) ids[i] = i;\r\n    build(1, xs, ys, vs, ids);\r\
+    \n  }\r\n\r\n  void set(int i, const X& v) {\r\n    i = pos[i];\r\n    for (int\
+    \ k = log; k >= 1; k--) { push(i >> k); }\r\n    dat[i] = v;\r\n    while (i >\
+    \ 1) i /= 2, dat[i] = MX::op(dat[2 * i], dat[2 * i + 1]);\r\n  }\r\n  void multiply(int\
+    \ i, const X& v) {\r\n    i = pos[i];\r\n    for (int k = log; k >= 1; k--) {\
+    \ push(i >> k); }\r\n    dat[i] = MX::op(dat[i], v);\r\n    while (i > 1) i /\
+    \ 2, dat[i] = MX::op(dat[2 * i], dat[2 * i + 1]);\r\n  }\r\n\r\n  // [xl, xr)\
+    \ x [yl, yr)\r\n  X prod(XY xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <= xr\
+    \ && yl <= yr);\r\n    return prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  X prod_all()\
+    \ { return dat[1]; }\r\n\r\n  // [xl, xr) x [yl, yr)\r\n  void apply(XY xl, XY\
+    \ xr, XY yl, XY yr, A a) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return\
+    \ apply_rec(1, xl, xr, yl, yr, a);\r\n  }\r\n\r\nprivate:\r\n  void build(int\
+    \ idx, vc<XY> xs, vc<XY> ys, vc<X> vs, vc<int> ids, bool divx = true) {\r\n  \
+    \  int n = len(xs);\r\n    size[idx] = n;\r\n    auto& [xmin, xmax, ymin, ymax]\
+    \ = closed_range[idx];\r\n    xmin = ymin = infty<XY>;\r\n    xmax = ymax = -infty<XY>;\r\
+    \n\r\n    FOR(i, n) {\r\n      auto x = xs[i], y = ys[i];\r\n      chmin(xmin,\
+    \ x), chmax(xmax, x), chmin(ymin, y), chmax(ymax, y);\r\n    }\r\n    if (n ==\
+    \ 1) {\r\n      dat[idx] = vs[0];\r\n      pos[ids[0]] = idx;\r\n      return;\r\
+    \n    }\r\n\r\n    int m = n / 2;\r\n    vc<int> I(n);\r\n    iota(all(I), 0);\r\
+    \n    if (divx) {\r\n      nth_element(I.begin(), I.begin() + m, I.end(), [xs](int\
+    \ i, int j) { return xs[i] < xs[j]; });\r\n    } else {\r\n      nth_element(I.begin(),\
+    \ I.begin() + m, I.end(), [ys](int i, int j) { return ys[i] < ys[j]; });\r\n \
+    \   }\r\n    xs = rearrange(xs, I), ys = rearrange(ys, I), vs = rearrange(vs,\
+    \ I), ids = rearrange(ids, I);\r\n    build(2 * idx + 0, {xs.begin(), xs.begin()\
+    \ + m}, {ys.begin(), ys.begin() + m}, {vs.begin(), vs.begin() + m}, {ids.begin(),\
+    \ ids.begin() + m}, !divx);\r\n    build(2 * idx + 1, {xs.begin() + m, xs.end()},\
+    \ {ys.begin() + m, ys.end()}, {vs.begin() + m, vs.end()}, {ids.begin() + m, ids.end()},\
+    \ !divx);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);\r\n  }\r\
+    \n\r\n  inline bool is_leaf(int idx) {\r\n    auto& [xmin, xmax, ymin, ymax] =\
+    \ closed_range[idx];\r\n    return xmin == xmax && ymin == ymax;\r\n  }\r\n\r\n\
+    \  inline bool isin(XY x, XY y, int idx) {\r\n    auto& [xmin, xmax, ymin, ymax]\
+    \ = closed_range[idx];\r\n    return (xmin <= x && x <= xmax && ymin <= y && y\
+    \ <= ymax);\r\n  }\r\n\r\n  void apply_at(int idx, A a) {\r\n    dat[idx] = AM::act(dat[idx],\
+    \ a, size[idx]);\r\n    if (!is_leaf(idx)) lazy[idx] = MA::op(lazy[idx], a);\r\
+    \n  }\r\n\r\n  void push(int idx) {\r\n    if (lazy[idx] == MA::unit()) return;\r\
+    \n    apply_at(2 * idx + 0, lazy[idx]), apply_at(2 * idx + 1, lazy[idx]);\r\n\
+    \    lazy[idx] = MA::unit();\r\n  }\r\n\r\n  X prod_rec(int idx, XY x1, XY x2,\
+    \ XY y1, XY y2) {\r\n    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];\r\
+    \n    if (x2 <= xmin || xmax < x1) return MX::unit();\r\n    if (y2 <= ymin ||\
+    \ ymax < y1) return MX::unit();\r\n    if (x1 <= xmin && xmax < x2 && y1 <= ymin\
+    \ && ymax < y2) { return dat[idx]; }\r\n    push(idx);\r\n    return MX::op(prod_rec(2\
+    \ * idx + 0, x1, x2, y1, y2), prod_rec(2 * idx + 1, x1, x2, y1, y2));\r\n  }\r\
+    \n\r\n  void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {\r\n    auto&\
+    \ [xmin, xmax, ymin, ymax] = closed_range[idx];\r\n    if (x2 <= xmin || xmax\
+    \ < x1) return;\r\n    if (y2 <= ymin || ymax < y1) return;\r\n    if (x1 <= xmin\
+    \ && xmax < x2 && y1 <= ymin && ymax < y2) { return apply_at(idx, a); }\r\n  \
+    \  push(idx);\r\n    apply_rec(2 * idx + 0, x1, x2, y1, y2, a);\r\n    apply_rec(2\
+    \ * idx + 1, x1, x2, y1, y2, a);\r\n    dat[idx] = MX::op(dat[2 * idx + 0], dat[2\
+    \ * idx + 1]);\r\n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
+    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
+    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
+    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -331,232 +348,78 @@ data:
     \ mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  //\
     \ assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 2 \"mod/mod_inv.hpp\"\n\r\n// long\
-    \ \u3067\u3082\u5927\u4E08\u592B\r\n// (val * x - 1) \u304C mod \u306E\u500D\u6570\
-    \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\
-    \u3089 x=0 \u304C\u6E80\u305F\u3059\r\nll mod_inv(ll val, ll mod) {\r\n  if (mod\
-    \ == 0) return 0;\r\n  mod = abs(mod);\r\n  val %= mod;\r\n  if (val < 0) val\
-    \ += mod;\r\n  ll a = val, b = mod, u = 1, v = 0, t;\r\n  while (b > 0) {\r\n\
-    \    t = a / b;\r\n    swap(a -= t * b, b), swap(u -= t * v, v);\r\n  }\r\n  if\
-    \ (u < 0) u += mod;\r\n  return u;\r\n}\r\n#line 2 \"mod/crt3.hpp\"\n\nconstexpr\
-    \ u32 mod_pow_constexpr(u64 a, u64 n, u32 mod) {\n  a %= mod;\n  u64 res = 1;\n\
-    \  FOR(32) {\n    if (n & 1) res = res * a % mod;\n    a = a * a % mod, n /= 2;\n\
-    \  }\n  return res;\n}\n\ntemplate <typename T, u32 p0, u32 p1>\nT CRT2(u64 a0,\
-    \ u64 a1) {\n  static_assert(p0 < p1);\n  static constexpr u64 x0_1 = mod_pow_constexpr(p0,\
-    \ p1 - 2, p1);\n  u64 c = (a1 - a0 + p1) * x0_1 % p1;\n  return a0 + c * p0;\n\
-    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2>\nT CRT3(u64 a0, u64 a1, u64\
-    \ a2) {\n  static_assert(p0 < p1 && p1 < p2);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
-    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
-    \ p2 - 2, p2);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c = (a1 - a0\
-    \ + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) *\
-    \ x2 % p2;\n  return T(ans_1) + T(c) * T(p01);\n}\n\ntemplate <typename T, u32\
-    \ p0, u32 p1, u32 p2, u32 p3>\nT CRT4(u64 a0, u64 a1, u64 a2, u64 a3) {\n  static_assert(p0\
-    \ < p1 && p1 < p2 && p2 < p3);\n  static constexpr u64 x1 = mod_pow_constexpr(p0,\
-    \ p1 - 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2,\
-    \ p2 - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3\
-    \ * p2 % p3, p3 - 2, p3);\n  static constexpr u64 p01 = u64(p0) * p1;\n  u64 c\
-    \ = (a1 - a0 + p1) * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 %\
-    \ p2 + p2) * x2 % p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c\
-    \ = (a3 - ans_2 % p3 + p3) * x3 % p3;\n  return T(ans_2) + T(c) * T(p01) * T(p2);\n\
-    }\n\ntemplate <typename T, u32 p0, u32 p1, u32 p2, u32 p3, u32 p4>\nT CRT5(u64\
-    \ a0, u64 a1, u64 a2, u64 a3, u64 a4) {\n  static_assert(p0 < p1 && p1 < p2 &&\
-    \ p2 < p3 && p3 < p4);\n  static constexpr u64 x1 = mod_pow_constexpr(p0, p1 -\
-    \ 2, p1);\n  static constexpr u64 x2 = mod_pow_constexpr(u64(p0) * p1 % p2, p2\
-    \ - 2, p2);\n  static constexpr u64 x3 = mod_pow_constexpr(u64(p0) * p1 % p3 *\
-    \ p2 % p3, p3 - 2, p3);\n  static constexpr u64 x4 = mod_pow_constexpr(u64(p0)\
-    \ * p1 % p4 * p2 % p4 * p3 % p4, p4 - 2, p4);\n  static constexpr u64 p01 = u64(p0)\
-    \ * p1;\n  static constexpr u64 p23 = u64(p2) * p3;\n  u64 c = (a1 - a0 + p1)\
-    \ * x1 % p1;\n  u64 ans_1 = a0 + c * p0;\n  c = (a2 - ans_1 % p2 + p2) * x2 %\
-    \ p2;\n  u128 ans_2 = ans_1 + c * static_cast<u128>(p01);\n  c = static_cast<u64>(a3\
-    \ - ans_2 % p3 + p3) * x3 % p3;\n  u128 ans_3 = ans_2 + static_cast<u128>(c *\
-    \ p2) * p01;\n  c = static_cast<u64>(a4 - ans_3 % p4 + p4) * x4 % p4;\n  return\
-    \ T(ans_3) + T(c) * T(p01) * T(p23);\n}\n#line 2 \"poly/convolution_naive.hpp\"\
-    \n\r\ntemplate <class T, typename enable_if<!has_mod<T>::value>::type* = nullptr>\r\
-    \nvc<T> convolution_naive(const vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()),\
-    \ m = int(b.size());\r\n  if (n > m) return convolution_naive<T>(b, a);\r\n  if\
-    \ (n == 0) return {};\r\n  vector<T> ans(n + m - 1);\r\n  FOR(i, n) FOR(j, m)\
-    \ ans[i + j] += a[i] * b[j];\r\n  return ans;\r\n}\r\n\r\ntemplate <class T, typename\
-    \ enable_if<has_mod<T>::value>::type* = nullptr>\r\nvc<T> convolution_naive(const\
-    \ vc<T>& a, const vc<T>& b) {\r\n  int n = int(a.size()), m = int(b.size());\r\
-    \n  if (n > m) return convolution_naive<T>(b, a);\r\n  if (n == 0) return {};\r\
-    \n  vc<T> ans(n + m - 1);\r\n  if (n <= 16 && (T::get_mod() < (1 << 30))) {\r\n\
-    \    for (int k = 0; k < n + m - 1; ++k) {\r\n      int s = max(0, k - m + 1);\r\
-    \n      int t = min(n, k + 1);\r\n      u64 sm = 0;\r\n      for (int i = s; i\
-    \ < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\n      ans[k] = sm;\r\n\
-    \    }\r\n  } else {\r\n    for (int k = 0; k < n + m - 1; ++k) {\r\n      int\
-    \ s = max(0, k - m + 1);\r\n      int t = min(n, k + 1);\r\n      u128 sm = 0;\r\
-    \n      for (int i = s; i < t; ++i) { sm += u64(a[i].val) * (b[k - i].val); }\r\
-    \n      ans[k] = T::raw(sm % T::get_mod());\r\n    }\r\n  }\r\n  return ans;\r\
-    \n}\r\n#line 2 \"poly/convolution_karatsuba.hpp\"\n\n// \u4EFB\u610F\u306E\u74B0\
-    \u3067\u3067\u304D\u308B\ntemplate <typename T>\nvc<T> convolution_karatsuba(const\
-    \ vc<T>& f, const vc<T>& g) {\n  const int thresh = 30;\n  if (min(len(f), len(g))\
-    \ <= thresh) return convolution_naive(f, g);\n  int n = max(len(f), len(g));\n\
-    \  int m = ceil(n, 2);\n  vc<T> f1, f2, g1, g2;\n  if (len(f) < m) f1 = f;\n \
-    \ if (len(f) >= m) f1 = {f.begin(), f.begin() + m};\n  if (len(f) >= m) f2 = {f.begin()\
-    \ + m, f.end()};\n  if (len(g) < m) g1 = g;\n  if (len(g) >= m) g1 = {g.begin(),\
-    \ g.begin() + m};\n  if (len(g) >= m) g2 = {g.begin() + m, g.end()};\n  vc<T>\
-    \ a = convolution_karatsuba(f1, g1);\n  vc<T> b = convolution_karatsuba(f2, g2);\n\
-    \  FOR(i, len(f2)) f1[i] += f2[i];\n  FOR(i, len(g2)) g1[i] += g2[i];\n  vc<T>\
-    \ c = convolution_karatsuba(f1, g1);\n  vc<T> F(len(f) + len(g) - 1);\n  assert(2\
-    \ * m + len(b) <= len(F));\n  FOR(i, len(a)) F[i] += a[i], c[i] -= a[i];\n  FOR(i,\
-    \ len(b)) F[2 * m + i] += b[i], c[i] -= b[i];\n  if (c.back() == T(0)) c.pop_back();\n\
-    \  FOR(i, len(c)) if (c[i] != T(0)) F[m + i] += c[i];\n  return F;\n}\n#line 2\
-    \ \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>& a, bool\
-    \ inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
-    \n  const int mod = mint::get_mod();\r\n  static array<mint, 30> root, iroot;\r\
-    \n  static array<mint, 30> rate2, irate2;\r\n  static array<mint, 30> rate3, irate3;\r\
-    \n\r\n  assert(rank2 != -1 && len(a) <= (1 << max(0, rank2)));\r\n\r\n  static\
-    \ bool prepared = 0;\r\n  if (!prepared) {\r\n    prepared = 1;\r\n    root[rank2]\
-    \ = mint::ntt_info().se;\r\n    iroot[rank2] = mint(1) / root[rank2];\r\n    FOR_R(i,\
-    \ rank2) {\r\n      root[i] = root[i + 1] * root[i + 1];\r\n      iroot[i] = iroot[i\
-    \ + 1] * iroot[i + 1];\r\n    }\r\n    mint prod = 1, iprod = 1;\r\n    for (int\
-    \ i = 0; i <= rank2 - 2; i++) {\r\n      rate2[i] = root[i + 2] * prod;\r\n  \
-    \    irate2[i] = iroot[i + 2] * iprod;\r\n      prod *= iroot[i + 2];\r\n    \
-    \  iprod *= root[i + 2];\r\n    }\r\n    prod = 1, iprod = 1;\r\n    for (int\
-    \ i = 0; i <= rank2 - 3; i++) {\r\n      rate3[i] = root[i + 3] * prod;\r\n  \
-    \    irate3[i] = iroot[i + 3] * iprod;\r\n      prod *= iroot[i + 3];\r\n    \
-    \  iprod *= root[i + 3];\r\n    }\r\n  }\r\n\r\n  int n = int(a.size());\r\n \
-    \ int h = topbit(n);\r\n  assert(n == 1 << h);\r\n  if (!inverse) {\r\n    int\
-    \ len = 0;\r\n    while (len < h) {\r\n      if (h - len == 1) {\r\n        int\
-    \ p = 1 << (h - len - 1);\r\n        mint rot = 1;\r\n        FOR(s, 1 << len)\
-    \ {\r\n          int offset = s << (h - len);\r\n          FOR(i, p) {\r\n   \
-    \         auto l = a[i + offset];\r\n            auto r = a[i + offset + p] *\
-    \ rot;\r\n            a[i + offset] = l + r;\r\n            a[i + offset + p]\
-    \ = l - r;\r\n          }\r\n          rot *= rate2[topbit(~s & -~s)];\r\n   \
-    \     }\r\n        len++;\r\n      } else {\r\n        int p = 1 << (h - len -\
-    \ 2);\r\n        mint rot = 1, imag = root[2];\r\n        for (int s = 0; s <\
-    \ (1 << len); s++) {\r\n          mint rot2 = rot * rot;\r\n          mint rot3\
-    \ = rot2 * rot;\r\n          int offset = s << (h - len);\r\n          for (int\
-    \ i = 0; i < p; i++) {\r\n            u64 mod2 = u64(mod) * mod;\r\n         \
-    \   u64 a0 = a[i + offset].val;\r\n            u64 a1 = u64(a[i + offset + p].val)\
-    \ * rot.val;\r\n            u64 a2 = u64(a[i + offset + 2 * p].val) * rot2.val;\r\
-    \n            u64 a3 = u64(a[i + offset + 3 * p].val) * rot3.val;\r\n        \
-    \    u64 a1na3imag = (a1 + mod2 - a3) % mod * imag.val;\r\n            u64 na2\
-    \ = mod2 - a2;\r\n            a[i + offset] = a0 + a2 + a1 + a3;\r\n         \
-    \   a[i + offset + 1 * p] = a0 + a2 + (2 * mod2 - (a1 + a3));\r\n            a[i\
-    \ + offset + 2 * p] = a0 + na2 + a1na3imag;\r\n            a[i + offset + 3 *\
-    \ p] = a0 + na2 + (mod2 - a1na3imag);\r\n          }\r\n          rot *= rate3[topbit(~s\
-    \ & -~s)];\r\n        }\r\n        len += 2;\r\n      }\r\n    }\r\n  } else {\r\
-    \n    mint coef = mint(1) / mint(len(a));\r\n    FOR(i, len(a)) a[i] *= coef;\r\
-    \n    int len = h;\r\n    while (len) {\r\n      if (len == 1) {\r\n        int\
-    \ p = 1 << (h - len);\r\n        mint irot = 1;\r\n        FOR(s, 1 << (len -\
-    \ 1)) {\r\n          int offset = s << (h - len + 1);\r\n          FOR(i, p) {\r\
-    \n            u64 l = a[i + offset].val;\r\n            u64 r = a[i + offset +\
-    \ p].val;\r\n            a[i + offset] = l + r;\r\n            a[i + offset +\
-    \ p] = (mod + l - r) * irot.val;\r\n          }\r\n          irot *= irate2[topbit(~s\
-    \ & -~s)];\r\n        }\r\n        len--;\r\n      } else {\r\n        int p =\
-    \ 1 << (h - len);\r\n        mint irot = 1, iimag = iroot[2];\r\n        FOR(s,\
-    \ (1 << (len - 2))) {\r\n          mint irot2 = irot * irot;\r\n          mint\
-    \ irot3 = irot2 * irot;\r\n          int offset = s << (h - len + 2);\r\n    \
-    \      for (int i = 0; i < p; i++) {\r\n            u64 a0 = a[i + offset + 0\
-    \ * p].val;\r\n            u64 a1 = a[i + offset + 1 * p].val;\r\n           \
-    \ u64 a2 = a[i + offset + 2 * p].val;\r\n            u64 a3 = a[i + offset + 3\
-    \ * p].val;\r\n            u64 x = (mod + a2 - a3) * iimag.val % mod;\r\n    \
-    \        a[i + offset] = a0 + a1 + a2 + a3;\r\n            a[i + offset + 1 *\
-    \ p] = (a0 + mod - a1 + x) * irot.val;\r\n            a[i + offset + 2 * p] =\
-    \ (a0 + a1 + 2 * mod - a2 - a3) * irot2.val;\r\n            a[i + offset + 3 *\
-    \ p] = (a0 + 2 * mod - a1 - x) * irot3.val;\r\n          }\r\n          irot *=\
-    \ irate3[topbit(~s & -~s)];\r\n        }\r\n        len -= 2;\r\n      }\r\n \
-    \   }\r\n  }\r\n}\r\n#line 8 \"poly/convolution.hpp\"\n\r\ntemplate <class mint>\r\
-    \nvector<mint> convolution_ntt(vector<mint> a, vector<mint> b) {\r\n  if (a.empty()\
-    \ || b.empty()) return {};\r\n  int n = int(a.size()), m = int(b.size());\r\n\
-    \  int sz = 1;\r\n  while (sz < n + m - 1) sz *= 2;\r\n\r\n  // sz = 2^k \u306E\
-    \u3068\u304D\u306E\u9AD8\u901F\u5316\u3002\u5206\u5272\u7D71\u6CBB\u7684\u306A\
-    \u3084\u3064\u3067\u640D\u3057\u307E\u304F\u308B\u306E\u3067\u3002\r\n  if ((n\
-    \ + m - 3) <= sz / 2) {\r\n    auto a_last = a.back(), b_last = b.back();\r\n\
-    \    a.pop_back(), b.pop_back();\r\n    auto c = convolution(a, b);\r\n    c.resize(n\
-    \ + m - 1);\r\n    c[n + m - 2] = a_last * b_last;\r\n    FOR(i, len(a)) c[i +\
-    \ len(b)] += a[i] * b_last;\r\n    FOR(i, len(b)) c[i + len(a)] += b[i] * a_last;\r\
-    \n    return c;\r\n  }\r\n\r\n  a.resize(sz), b.resize(sz);\r\n  bool same = a\
-    \ == b;\r\n  ntt(a, 0);\r\n  if (same) {\r\n    b = a;\r\n  } else {\r\n    ntt(b,\
-    \ 0);\r\n  }\r\n  FOR(i, sz) a[i] *= b[i];\r\n  ntt(a, 1);\r\n  a.resize(n + m\
-    \ - 1);\r\n  return a;\r\n}\r\n\r\ntemplate <typename mint>\r\nvector<mint> convolution_garner(const\
-    \ vector<mint>& a, const vector<mint>& b) {\r\n  int n = len(a), m = len(b);\r\
-    \n  if (!n || !m) return {};\r\n  static constexpr int p0 = 167772161;\r\n  static\
-    \ constexpr int p1 = 469762049;\r\n  static constexpr int p2 = 754974721;\r\n\
-    \  using mint0 = modint<p0>;\r\n  using mint1 = modint<p1>;\r\n  using mint2 =\
-    \ modint<p2>;\r\n  vc<mint0> a0(n), b0(m);\r\n  vc<mint1> a1(n), b1(m);\r\n  vc<mint2>\
-    \ a2(n), b2(m);\r\n  FOR(i, n) a0[i] = a[i].val, a1[i] = a[i].val, a2[i] = a[i].val;\r\
-    \n  FOR(i, m) b0[i] = b[i].val, b1[i] = b[i].val, b2[i] = b[i].val;\r\n  auto\
-    \ c0 = convolution_ntt<mint0>(a0, b0);\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n  vc<mint> c(len(c0));\r\
-    \n  FOR(i, n + m - 1) { c[i] = CRT3<mint, p0, p1, p2>(c0[i].val, c1[i].val, c2[i].val);\
-    \ }\r\n  return c;\r\n}\r\n\r\nvector<ll> convolution(vector<ll> a, vector<ll>\
-    \ b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return {};\r\n  if\
-    \ (min(n, m) <= 2500) return convolution_naive(a, b);\r\n\r\n  ll mi_a = MIN(a),\
-    \ mi_b = MIN(b);\r\n  for (auto& x: a) x -= mi_a;\r\n  for (auto& x: b) x -= mi_b;\r\
-    \n  assert(MAX(a) * MAX(b) <= 1e18);\r\n\r\n  auto Ac = cumsum<ll>(a), Bc = cumsum<ll>(b);\r\
-    \n  vi res(n + m - 1);\r\n  for (int k = 0; k < n + m - 1; ++k) {\r\n    int s\
-    \ = max(0, k - m + 1);\r\n    int t = min(n, k + 1);\r\n    res[k] += (t - s)\
-    \ * mi_a * mi_b;\r\n    res[k] += mi_a * (Bc[k - s + 1] - Bc[k - t + 1]);\r\n\
-    \    res[k] += mi_b * (Ac[t] - Ac[s]);\r\n  }\r\n\r\n  static constexpr u32 MOD1\
-    \ = 1004535809;\r\n  static constexpr u32 MOD2 = 1012924417;\r\n  using mint1\
-    \ = modint<MOD1>;\r\n  using mint2 = modint<MOD2>;\r\n\r\n  vc<mint1> a1(n), b1(m);\r\
-    \n  vc<mint2> a2(n), b2(m);\r\n  FOR(i, n) a1[i] = a[i], a2[i] = a[i];\r\n  FOR(i,\
-    \ m) b1[i] = b[i], b2[i] = b[i];\r\n\r\n  auto c1 = convolution_ntt<mint1>(a1,\
-    \ b1);\r\n  auto c2 = convolution_ntt<mint2>(a2, b2);\r\n\r\n  FOR(i, n + m -\
-    \ 1) { res[i] += CRT2<u64, MOD1, MOD2>(c1[i].val, c2[i].val); }\r\n  return res;\r\
-    \n}\r\n\r\ntemplate <typename mint>\r\nvc<mint> convolution(const vc<mint>& a,\
-    \ const vc<mint>& b) {\r\n  int n = len(a), m = len(b);\r\n  if (!n || !m) return\
-    \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
-    \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
-    \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"setfunc/power_projection_of_sps.hpp\"\n\n// for fixed sps s, consider\
-    \ linear map F:a->b = subset-conv(a,s)\n// given x, calculate transpose(F)(x)\n\
-    template <typename mint, int LIM>\nvc<mint> transposed_subset_convolution(vc<mint>\
-    \ s, vc<mint> x) {\n  /*\n  sum_{j}x_jb_j = sum_{i subset j}x_ja_is_{j-i} = sum_{i}y_ia_i.\n\
-    \  y_i = sum_{j supset i}x_js_{j-i}\n  (rev y)_i = sum_{j subset i}(rev x)_js_{i-j}\n\
-    \  y = rev(conv(rev x), s)\n  */\n  reverse(all(x));\n  x = subset_convolution<mint,\
-    \ LIM>(x, s);\n  reverse(all(x));\n  return x;\n}\n\n// assume s[0]==0\n// calculate\
-    \ sum_i wt_i(s^k/k!)_i for k=0,1,...,N\ntemplate <typename mint, int LIM>\nvc<mint>\
-    \ power_projection_of_sps_egf(vc<mint> wt, vc<mint>& s) {\n  const int N = topbit(len(s));\n\
-    \  assert(len(s) == (1 << N) && len(wt) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
-    \ y(N + 1);\n  y[0] = wt[0];\n  auto& dp = wt;\n  FOR(i, N) {\n    vc<mint> newdp(1\
-    \ << (N - 1 - i));\n    FOR(j, N - i) {\n      vc<mint> a = {s.begin() + (1 <<\
-    \ j), s.begin() + (2 << j)};\n      vc<mint> b = {dp.begin() + (1 << j), dp.begin()\
-    \ + (2 << j)};\n      b = transposed_subset_convolution<mint, LIM>(a, b);\n  \
-    \    FOR(k, len(b)) newdp[k] += b[k];\n    }\n    swap(dp, newdp);\n    y[1 +\
-    \ i] = dp[0];\n  }\n  return y;\n}\n\n// calculate sum_i x_i(s^k)_i for k=0,1,...,M-1\n\
-    template <typename mint, int LIM>\nvc<mint> power_projection_of_sps(vc<mint> wt,\
-    \ vc<mint> s, int M) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1\
-    \ << N) && len(wt) == (1 << N));\n  mint c = s[0];\n  s[0] -= c;\n  vc<mint> x\
-    \ = power_projection_of_sps_egf<mint, LIM>(wt, s);\n  vc<mint> g(M);\n  mint pow\
-    \ = 1;\n  FOR(i, M) { g[i] = pow * fact_inv<mint>(i), pow *= c; }\n  x = convolution<mint>(x,\
-    \ g);\n  x.resize(M);\n  FOR(i, M) x[i] *= fact<mint>(i);\n  return x;\n}\n#line\
-    \ 9 \"test/2_library_checker/set_power_series/powproj_sps.test.cpp\"\n\nusing\
-    \ mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  VEC(mint, s, 1 << N);\n\
-    \  VEC(mint, wt, 1 << N);\n  vc<mint> ANS = power_projection_of_sps<mint, 20>(wt,\
-    \ s, M);\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.yosupo.jp/problem/power_projection_of_set_power_series\"\
-    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"setfunc/power_projection_of_sps.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nvoid solve() {\n \
-    \ LL(N, M);\n  VEC(mint, s, 1 << N);\n  VEC(mint, wt, 1 << N);\n  vc<mint> ANS\
-    \ = power_projection_of_sps<mint, 20>(wt, s, M);\n  print(ANS);\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}"
+    using modint998 = modint<998244353>;\n#line 2 \"alg/monoid/affine.hpp\"\n\n//\
+    \ op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\n\
+    struct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n  using\
+    \ X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept {\n\
+    \    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n  static\
+    \ constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n\
+    \    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f, K x) noexcept\
+    \ {\n    return f.first * x + f.second;\n  }\n  static constexpr F unit() { return\
+    \ {K(1), K(0)}; }\n  static constexpr bool commute = false;\n};\n#line 2 \"alg/monoid/add_pair.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add_Pair {\r\n  using value_type\
+    \ = pair<E, E>;\r\n  using X = value_type;\r\n  static constexpr X op(const X\
+    \ &x, const X &y) {\r\n    return {x.fi + y.fi, x.se + y.se};\r\n  }\r\n  static\
+    \ constexpr X inverse(const X &x) { return {-x.fi, -x.se}; }\r\n  static constexpr\
+    \ X unit() { return {0, 0}; }\r\n  static constexpr bool commute = true;\r\n};\r\
+    \n#line 9 \"test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp\"\
+    \n\nusing mint = modint998;\nstruct ActedMonoid {\n  using Monoid_X = Monoid_Add_Pair<mint>;\n\
+    \  using Monoid_A = Monoid_Affine<mint>;\n  using X = typename Monoid_X::value_type;\n\
+    \  using A = typename Monoid_A::value_type;\n  static X act(const X &x, const\
+    \ A &a, const ll &size) { return {x.fi, a.fi * x.se + a.se * x.fi}; }\n};\n\n\
+    void solve() {\n  LL(N, Q);\n  vc<int> X(N), Y(N);\n  vc<pair<mint, mint>> W(N);\n\
+    \  FOR(i, N) {\n    INT(x, y, w);\n    X[i] = x, Y[i] = y, W[i] = {1, w};\n  }\n\
+    \n  vc<tuple<int, int, int, int, int, int, int>> query;\n  FOR(Q) {\n    INT(t);\n\
+    \    if (t == 0) {\n      INT(x, y, w);\n      int k = len(X);\n      X.eb(x),\
+    \ Y.eb(y), W.eb(0, 0);\n      query.eb(0, k, w, 0, 0, 0, 0);\n    }\n    if (t\
+    \ == 1) {\n      INT(k, w);\n      query.eb(1, k, w, 0, 0, 0, 0);\n    }\n   \
+    \ if (t == 2) {\n      INT(a, b, c, d);\n      query.eb(2, a, c, b, d, 0, 0);\n\
+    \    }\n    if (t == 3) {\n      INT(a, b, c, d, p, q);\n      query.eb(3, a,\
+    \ c, b, d, p, q);\n    }\n  }\n  assert(len(X) == len(Y) && len(X) == len(W));\n\
+    \  KDTree_ActedMonoid<ActedMonoid, int> KDT(X, Y, W);\n\n  for (auto &[t, a, b,\
+    \ c, d, A, B]: query) {\n    if (t == 0) { KDT.set(a, {1, b}); }\n    if (t ==\
+    \ 1) { KDT.set(a, {1, b}); }\n    if (t == 2) {\n      mint ANS = KDT.prod(a,\
+    \ b, c, d).se;\n      print(ANS);\n    }\n    if (t == 3) { KDT.apply(a, b, c,\
+    \ d, {A, B}); }\n  }\n}\n\nsigned main() { solve(); }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/dynamic_point_set_rectangle_affine_rectangle_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/kdtree/kdtree_acted_monoid.hpp\"\
+    \n#include \"mod/modint.hpp\"\n#include \"alg/monoid/affine.hpp\"\n#include \"\
+    alg/monoid/add_pair.hpp\"\n\nusing mint = modint998;\nstruct ActedMonoid {\n \
+    \ using Monoid_X = Monoid_Add_Pair<mint>;\n  using Monoid_A = Monoid_Affine<mint>;\n\
+    \  using X = typename Monoid_X::value_type;\n  using A = typename Monoid_A::value_type;\n\
+    \  static X act(const X &x, const A &a, const ll &size) { return {x.fi, a.fi *\
+    \ x.se + a.se * x.fi}; }\n};\n\nvoid solve() {\n  LL(N, Q);\n  vc<int> X(N), Y(N);\n\
+    \  vc<pair<mint, mint>> W(N);\n  FOR(i, N) {\n    INT(x, y, w);\n    X[i] = x,\
+    \ Y[i] = y, W[i] = {1, w};\n  }\n\n  vc<tuple<int, int, int, int, int, int, int>>\
+    \ query;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(x, y, w);\n  \
+    \    int k = len(X);\n      X.eb(x), Y.eb(y), W.eb(0, 0);\n      query.eb(0, k,\
+    \ w, 0, 0, 0, 0);\n    }\n    if (t == 1) {\n      INT(k, w);\n      query.eb(1,\
+    \ k, w, 0, 0, 0, 0);\n    }\n    if (t == 2) {\n      INT(a, b, c, d);\n     \
+    \ query.eb(2, a, c, b, d, 0, 0);\n    }\n    if (t == 3) {\n      INT(a, b, c,\
+    \ d, p, q);\n      query.eb(3, a, c, b, d, p, q);\n    }\n  }\n  assert(len(X)\
+    \ == len(Y) && len(X) == len(W));\n  KDTree_ActedMonoid<ActedMonoid, int> KDT(X,\
+    \ Y, W);\n\n  for (auto &[t, a, b, c, d, A, B]: query) {\n    if (t == 0) { KDT.set(a,\
+    \ {1, b}); }\n    if (t == 1) { KDT.set(a, {1, b}); }\n    if (t == 2) {\n   \
+    \   mint ANS = KDT.prod(a, b, c, d).se;\n      print(ANS);\n    }\n    if (t ==\
+    \ 3) { KDT.apply(a, b, c, d, {A, B}); }\n  }\n}\n\nsigned main() { solve(); }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
-  - setfunc/power_projection_of_sps.hpp
-  - setfunc/subset_convolution.hpp
-  - setfunc/ranked_zeta.hpp
-  - poly/convolution.hpp
+  - ds/kdtree/kdtree_acted_monoid.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
-  - mod/mod_inv.hpp
-  - mod/crt3.hpp
-  - poly/convolution_naive.hpp
-  - poly/convolution_karatsuba.hpp
-  - poly/ntt.hpp
+  - alg/monoid/affine.hpp
+  - alg/monoid/add_pair.hpp
   isVerificationFile: true
-  path: test/2_library_checker/set_power_series/powproj_sps.test.cpp
+  path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-17 10:11:33+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
-documentation_of: test/2_library_checker/set_power_series/powproj_sps.test.cpp
+documentation_of: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/2_library_checker/set_power_series/powproj_sps.test.cpp
-- /verify/test/2_library_checker/set_power_series/powproj_sps.test.cpp.html
-title: test/2_library_checker/set_power_series/powproj_sps.test.cpp
+- /verify/test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+- /verify/test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp.html
+title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
 ---

@@ -25,6 +25,9 @@ data:
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
   - icon: ':x:'
+    path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+    title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+  - icon: ':x:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
   - icon: ':x:'
@@ -79,6 +82,7 @@ data:
   - test/1_mytest/slope_super.test.cpp
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/cf702_F.test.cpp
+  - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:
