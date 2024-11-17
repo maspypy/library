@@ -39,7 +39,7 @@ struct KDTree_ActedMonoid {
     i = pos[i];
     for (int k = log; k >= 1; k--) { push(i >> k); }
     dat[i] = MX::op(dat[i], v);
-    while (i > 1) i / 2, dat[i] = MX::op(dat[2 * i], dat[2 * i + 1]);
+    while (i > 1) i /= 2, dat[i] = MX::op(dat[2 * i], dat[2 * i + 1]);
   }
 
   // [xl, xr) x [yl, yr)

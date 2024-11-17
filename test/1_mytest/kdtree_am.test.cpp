@@ -11,15 +11,12 @@ void test() {
   using AM = ActedMonoid_SumMax_Add<int>;
   using MX = AM::Monoid_X;
 
-  vc<int> dat[100][100];
-
-  vc<int> X, Y;
+  vc<int> X, Y, W;
   vc<typename MX::value_type> val;
   FOR(i, N) {
     int x = RNG(0, LIM);
     int y = RNG(0, LIM);
     int v = RNG(0, 100);
-    dat[x][y].eb(v);
     X.eb(x), Y.eb(y), val.eb(v, v);
   }
   KDTree_ActedMonoid<AM, int> KDT(X, Y, val);
@@ -33,16 +30,17 @@ void test() {
     if (t == 0) {
       // multiply
       int k = RNG(0, N);
-      int x = X[k], y = Y[k];
-      int v = RNG(0, 100);
-      dat[x][y].eb(v);
-      KDT.multiply(x, y, {v, v});
+      int a = RNG(0, 100);
+      int b = RNG(0, 100);
+      KDT.multiply(k, {a, b});
+      val[k].fi += a;
+      chmax(val[k].se, b);
     }
     if (t == 1) {
       // prod
       int sm = 0, mx = MX::unit().se;
-      FOR(i, xl, xr) FOR(j, yl, yr) {
-        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);
+      FOR(k, N) {
+        if (xl <= X[k] && X[k] < xr && yl <= Y[k] && Y[k] < yr) { sm += val[k].fi, chmax(mx, val[k].se); }
       }
       auto res = KDT.prod(xl, xr, yl, yr);
       assert(res.fi == sm && res.se == mx);
@@ -50,17 +48,15 @@ void test() {
     if (t == 2) {
       // prod all
       int sm = 0, mx = MX::unit().se;
-      FOR(i, LIM) FOR(j, LIM) {
-        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);
-      }
+      FOR(k, N) { sm += val[k].fi, chmax(mx, val[k].se); }
       auto res = KDT.prod_all();
       assert(res.fi == sm && res.se == mx);
     }
     if (t == 3) {
       // apply
       int a = RNG(0, 10);
-      FOR(i, xl, xr) FOR(j, yl, yr) {
-        for (auto&& x: dat[i][j]) x += a;
+      FOR(k, N) {
+        if (xl <= X[k] && X[k] < xr && yl <= Y[k] && Y[k] < yr) { val[k].fi += a, val[k].se += a; }
       }
       KDT.apply(xl, xr, yl, yr, a);
     }
