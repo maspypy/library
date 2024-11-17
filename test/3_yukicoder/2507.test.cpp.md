@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
   - icon: ':question:'

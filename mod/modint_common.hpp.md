@@ -62,7 +62,7 @@ data:
   - icon: ':question:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':question:'
@@ -74,7 +74,7 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':question:'
@@ -660,7 +660,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
     title: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -732,40 +732,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_directed_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
     title: test/2_library_checker/graph/count_spanning_tree_undirected_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_dense.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/enumerate_cliques.test.cpp
     title: test/2_library_checker/graph/enumerate_cliques.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/incremental_scc.test.cpp
     title: test/2_library_checker/graph/incremental_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
     title: test/2_library_checker/linear_algebra/charactereistic_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
   - icon: ':x:'
