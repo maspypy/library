@@ -306,7 +306,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/is_substring.test.cpp
     title: test/1_mytest/is_substring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_am.test.cpp
     title: test/1_mytest/kdtree_am.test.cpp
   - icon: ':heavy_check_mark:'

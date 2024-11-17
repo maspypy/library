@@ -232,7 +232,7 @@ data:
     \ >> k); }\r\n    dat[i] = v;\r\n    while (i > 1) i /= 2, dat[i] = MX::op(dat[2\
     \ * i], dat[2 * i + 1]);\r\n  }\r\n  void multiply(int i, const X& v) {\r\n  \
     \  i = pos[i];\r\n    for (int k = log; k >= 1; k--) { push(i >> k); }\r\n   \
-    \ dat[i] = MX::op(dat[i], v);\r\n    while (i > 1) i / 2, dat[i] = MX::op(dat[2\
+    \ dat[i] = MX::op(dat[i], v);\r\n    while (i > 1) i /= 2, dat[i] = MX::op(dat[2\
     \ * i], dat[2 * i + 1]);\r\n  }\r\n\r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY\
     \ xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return\
     \ prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\
@@ -414,7 +414,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   requiredBy: []
-  timestamp: '2024-11-17 10:25:17+09:00'
+  timestamp: '2024-11-17 19:49:31+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp

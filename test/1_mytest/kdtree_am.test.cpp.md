@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/summax_add.hpp
     title: alg/acted_monoid/summax_add.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/summax.hpp
     title: alg/monoid/summax.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -134,7 +134,7 @@ data:
     \ >> k); }\r\n    dat[i] = v;\r\n    while (i > 1) i /= 2, dat[i] = MX::op(dat[2\
     \ * i], dat[2 * i + 1]);\r\n  }\r\n  void multiply(int i, const X& v) {\r\n  \
     \  i = pos[i];\r\n    for (int k = log; k >= 1; k--) { push(i >> k); }\r\n   \
-    \ dat[i] = MX::op(dat[i], v);\r\n    while (i > 1) i / 2, dat[i] = MX::op(dat[2\
+    \ dat[i] = MX::op(dat[i], v);\r\n    while (i > 1) i /= 2, dat[i] = MX::op(dat[2\
     \ * i], dat[2 * i + 1]);\r\n  }\r\n\r\n  // [xl, xr) x [yl, yr)\r\n  X prod(XY\
     \ xl, XY xr, XY yl, XY yr) {\r\n    assert(xl <= xr && yl <= yr);\r\n    return\
     \ prod_rec(1, xl, xr, yl, yr);\r\n  }\r\n\r\n  X prod_all() { return dat[1]; }\r\
@@ -198,51 +198,51 @@ data:
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/kdtree_am.test.cpp\"\n\nvoid\
     \ test() {\n  ll LIM = RNG(1, 100);\n  int N = RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Add<int>;\n\
-    \  using MX = AM::Monoid_X;\n\n  vc<int> dat[100][100];\n\n  vc<int> X, Y;\n \
-    \ vc<typename MX::value_type> val;\n  FOR(i, N) {\n    int x = RNG(0, LIM);\n\
-    \    int y = RNG(0, LIM);\n    int v = RNG(0, 100);\n    dat[x][y].eb(v);\n  \
-    \  X.eb(x), Y.eb(y), val.eb(v, v);\n  }\n  KDTree_ActedMonoid<AM, int> KDT(X,\
-    \ Y, val);\n\n  int Q = 100;\n  FOR(Q) {\n    int t = RNG(0, 4);\n    int xl =\
-    \ RNG(0, LIM), xr = RNG(0, LIM), yl = RNG(0, LIM), yr = RNG(0, LIM);\n    if (xl\
-    \ > xr) swap(xl, xr);\n    if (yl > yr) swap(yl, yr);\n    if (t == 0) {\n   \
-    \   // multiply\n      int k = RNG(0, N);\n      int x = X[k], y = Y[k];\n   \
-    \   int v = RNG(0, 100);\n      dat[x][y].eb(v);\n      KDT.multiply(x, y, {v,\
-    \ v});\n    }\n    if (t == 1) {\n      // prod\n      int sm = 0, mx = MX::unit().se;\n\
-    \      FOR(i, xl, xr) FOR(j, yl, yr) {\n        for (auto&& x: dat[i][j]) sm +=\
-    \ x, chmax(mx, x);\n      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n    \
-    \  assert(res.fi == sm && res.se == mx);\n    }\n    if (t == 2) {\n      // prod\
-    \ all\n      int sm = 0, mx = MX::unit().se;\n      FOR(i, LIM) FOR(j, LIM) {\n\
-    \        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto\
-    \ res = KDT.prod_all();\n      assert(res.fi == sm && res.se == mx);\n    }\n\
-    \    if (t == 3) {\n      // apply\n      int a = RNG(0, 10);\n      FOR(i, xl,\
-    \ xr) FOR(j, yl, yr) {\n        for (auto&& x: dat[i][j]) x += a;\n      }\n \
-    \     KDT.apply(xl, xr, yl, yr, a);\n    }\n  }\n}\n\nvoid solve() {\n  int a,\
-    \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100)\
-    \ test();\n  solve();\n  return 0;\n}\n"
+    \  using MX = AM::Monoid_X;\n\n  vc<int> X, Y, W;\n  vc<typename MX::value_type>\
+    \ val;\n  FOR(i, N) {\n    int x = RNG(0, LIM);\n    int y = RNG(0, LIM);\n  \
+    \  int v = RNG(0, 100);\n    X.eb(x), Y.eb(y), val.eb(v, v);\n  }\n  KDTree_ActedMonoid<AM,\
+    \ int> KDT(X, Y, val);\n\n  int Q = 100;\n  FOR(Q) {\n    int t = RNG(0, 4);\n\
+    \    int xl = RNG(0, LIM), xr = RNG(0, LIM), yl = RNG(0, LIM), yr = RNG(0, LIM);\n\
+    \    if (xl > xr) swap(xl, xr);\n    if (yl > yr) swap(yl, yr);\n    if (t ==\
+    \ 0) {\n      // multiply\n      int k = RNG(0, N);\n      int a = RNG(0, 100);\n\
+    \      int b = RNG(0, 100);\n      KDT.multiply(k, {a, b});\n      val[k].fi +=\
+    \ a;\n      chmax(val[k].se, b);\n    }\n    if (t == 1) {\n      // prod\n  \
+    \    int sm = 0, mx = MX::unit().se;\n      FOR(k, N) {\n        if (xl <= X[k]\
+    \ && X[k] < xr && yl <= Y[k] && Y[k] < yr) { sm += val[k].fi, chmax(mx, val[k].se);\
+    \ }\n      }\n      auto res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi\
+    \ == sm && res.se == mx);\n    }\n    if (t == 2) {\n      // prod all\n     \
+    \ int sm = 0, mx = MX::unit().se;\n      FOR(k, N) { sm += val[k].fi, chmax(mx,\
+    \ val[k].se); }\n      auto res = KDT.prod_all();\n      assert(res.fi == sm &&\
+    \ res.se == mx);\n    }\n    if (t == 3) {\n      // apply\n      int a = RNG(0,\
+    \ 10);\n      FOR(k, N) {\n        if (xl <= X[k] && X[k] < xr && yl <= Y[k] &&\
+    \ Y[k] < yr) { val[k].fi += a, val[k].se += a; }\n      }\n      KDT.apply(xl,\
+    \ xr, yl, yr, a);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"ds/kdtree/kdtree_acted_monoid.hpp\"\n#include \"alg/acted_monoid/summax_add.hpp\"\
     \n#include \"random/base.hpp\"\n\nvoid test() {\n  ll LIM = RNG(1, 100);\n  int\
     \ N = RNG(1, 100);\n  using AM = ActedMonoid_SumMax_Add<int>;\n  using MX = AM::Monoid_X;\n\
-    \n  vc<int> dat[100][100];\n\n  vc<int> X, Y;\n  vc<typename MX::value_type> val;\n\
-    \  FOR(i, N) {\n    int x = RNG(0, LIM);\n    int y = RNG(0, LIM);\n    int v\
-    \ = RNG(0, 100);\n    dat[x][y].eb(v);\n    X.eb(x), Y.eb(y), val.eb(v, v);\n\
-    \  }\n  KDTree_ActedMonoid<AM, int> KDT(X, Y, val);\n\n  int Q = 100;\n  FOR(Q)\
-    \ {\n    int t = RNG(0, 4);\n    int xl = RNG(0, LIM), xr = RNG(0, LIM), yl =\
-    \ RNG(0, LIM), yr = RNG(0, LIM);\n    if (xl > xr) swap(xl, xr);\n    if (yl >\
-    \ yr) swap(yl, yr);\n    if (t == 0) {\n      // multiply\n      int k = RNG(0,\
-    \ N);\n      int x = X[k], y = Y[k];\n      int v = RNG(0, 100);\n      dat[x][y].eb(v);\n\
-    \      KDT.multiply(x, y, {v, v});\n    }\n    if (t == 1) {\n      // prod\n\
-    \      int sm = 0, mx = MX::unit().se;\n      FOR(i, xl, xr) FOR(j, yl, yr) {\n\
-    \        for (auto&& x: dat[i][j]) sm += x, chmax(mx, x);\n      }\n      auto\
-    \ res = KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm && res.se == mx);\n\
-    \    }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::unit().se;\n\
-    \      FOR(i, LIM) FOR(j, LIM) {\n        for (auto&& x: dat[i][j]) sm += x, chmax(mx,\
-    \ x);\n      }\n      auto res = KDT.prod_all();\n      assert(res.fi == sm &&\
-    \ res.se == mx);\n    }\n    if (t == 3) {\n      // apply\n      int a = RNG(0,\
-    \ 10);\n      FOR(i, xl, xr) FOR(j, yl, yr) {\n        for (auto&& x: dat[i][j])\
-    \ x += a;\n      }\n      KDT.apply(xl, xr, yl, yr, a);\n    }\n  }\n}\n\nvoid\
-    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
-    signed main() {\n  FOR(100) test();\n  solve();\n  return 0;\n}\n"
+    \n  vc<int> X, Y, W;\n  vc<typename MX::value_type> val;\n  FOR(i, N) {\n    int\
+    \ x = RNG(0, LIM);\n    int y = RNG(0, LIM);\n    int v = RNG(0, 100);\n    X.eb(x),\
+    \ Y.eb(y), val.eb(v, v);\n  }\n  KDTree_ActedMonoid<AM, int> KDT(X, Y, val);\n\
+    \n  int Q = 100;\n  FOR(Q) {\n    int t = RNG(0, 4);\n    int xl = RNG(0, LIM),\
+    \ xr = RNG(0, LIM), yl = RNG(0, LIM), yr = RNG(0, LIM);\n    if (xl > xr) swap(xl,\
+    \ xr);\n    if (yl > yr) swap(yl, yr);\n    if (t == 0) {\n      // multiply\n\
+    \      int k = RNG(0, N);\n      int a = RNG(0, 100);\n      int b = RNG(0, 100);\n\
+    \      KDT.multiply(k, {a, b});\n      val[k].fi += a;\n      chmax(val[k].se,\
+    \ b);\n    }\n    if (t == 1) {\n      // prod\n      int sm = 0, mx = MX::unit().se;\n\
+    \      FOR(k, N) {\n        if (xl <= X[k] && X[k] < xr && yl <= Y[k] && Y[k]\
+    \ < yr) { sm += val[k].fi, chmax(mx, val[k].se); }\n      }\n      auto res =\
+    \ KDT.prod(xl, xr, yl, yr);\n      assert(res.fi == sm && res.se == mx);\n   \
+    \ }\n    if (t == 2) {\n      // prod all\n      int sm = 0, mx = MX::unit().se;\n\
+    \      FOR(k, N) { sm += val[k].fi, chmax(mx, val[k].se); }\n      auto res =\
+    \ KDT.prod_all();\n      assert(res.fi == sm && res.se == mx);\n    }\n    if\
+    \ (t == 3) {\n      // apply\n      int a = RNG(0, 10);\n      FOR(k, N) {\n \
+    \       if (xl <= X[k] && X[k] < xr && yl <= Y[k] && Y[k] < yr) { val[k].fi +=\
+    \ a, val[k].se += a; }\n      }\n      KDT.apply(xl, xr, yl, yr, a);\n    }\n\
+    \  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\
+    \\n\";\n}\n\nsigned main() {\n  FOR(100) test();\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - ds/kdtree/kdtree_acted_monoid.hpp
@@ -253,8 +253,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kdtree_am.test.cpp
   requiredBy: []
-  timestamp: '2024-11-17 10:25:17+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-17 19:49:31+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kdtree_am.test.cpp
 layout: document
