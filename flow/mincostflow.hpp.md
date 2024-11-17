@@ -9,13 +9,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/assignment_mcf.test.cpp
     title: test/2_library_checker/graph/assignment_mcf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1288.test.cpp
     title: test/3_yukicoder/1288.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1301.test.cpp
     title: test/3_yukicoder/1301.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1324.test.cpp
     title: test/3_yukicoder/1324.test.cpp
   - icon: ':x:'

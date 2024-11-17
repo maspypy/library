@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_1.hpp
     title: convex/slope_trick/slope_trick_1.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
   - icon: ':question:'
@@ -342,25 +342,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1097.test.cpp
     title: test/3_yukicoder/1097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1141.test.cpp
     title: test/3_yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216_2.test.cpp
     title: test/3_yukicoder/1216_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1311.test.cpp
     title: test/3_yukicoder/1311.test.cpp
   - icon: ':x:'

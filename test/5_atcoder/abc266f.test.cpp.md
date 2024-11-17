@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   - icon: ':question:'
