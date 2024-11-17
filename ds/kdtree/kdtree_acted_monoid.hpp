@@ -21,7 +21,7 @@ struct KDTree_ActedMonoid {
     while ((1 << log) < n) ++log;
     dat.resize(1 << (log + 1));
     lazy.assign(1 << log, MA::unit());
-    closed_range.resize(1 << (log + 1));
+    closed_range.assign(1 << (log + 1), {infty<XY>, -infty<XY>, infty<XY>, -infty<XY>});
     size.resize(1 << (log + 1));
     vc<int> ids(n);
     pos.resize(n);
@@ -88,11 +88,6 @@ private:
     dat[idx] = MX::op(dat[2 * idx + 0], dat[2 * idx + 1]);
   }
 
-  inline bool is_leaf(int idx) {
-    auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
-    return xmin == xmax && ymin == ymax;
-  }
-
   inline bool isin(XY x, XY y, int idx) {
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
     return (xmin <= x && x <= xmax && ymin <= y && y <= ymax);
@@ -100,7 +95,7 @@ private:
 
   void apply_at(int idx, A a) {
     dat[idx] = AM::act(dat[idx], a, size[idx]);
-    if (!is_leaf(idx)) lazy[idx] = MA::op(lazy[idx], a);
+    if (idx < (1 << log)) lazy[idx] = MA::op(lazy[idx], a);
   }
 
   void push(int idx) {
@@ -110,7 +105,9 @@ private:
   }
 
   X prod_rec(int idx, XY x1, XY x2, XY y1, XY y2) {
+    if (idx >= len(closed_range)) return MX::unit();
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
+    if (xmin > xmax) return MX::unit();
     if (x2 <= xmin || xmax < x1) return MX::unit();
     if (y2 <= ymin || ymax < y1) return MX::unit();
     if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return dat[idx]; }
@@ -119,7 +116,9 @@ private:
   }
 
   void apply_rec(int idx, XY x1, XY x2, XY y1, XY y2, A a) {
+    if (idx >= len(closed_range)) return;
     auto& [xmin, xmax, ymin, ymax] = closed_range[idx];
+    if (xmin > xmax) return;
     if (x2 <= xmin || xmax < x1) return;
     if (y2 <= ymin || ymax < y1) return;
     if (x1 <= xmin && xmax < x2 && y1 <= ymin && ymax < y2) { return apply_at(idx, a); }
