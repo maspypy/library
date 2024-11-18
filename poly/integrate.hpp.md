@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
   - icon: ':question:'
@@ -180,10 +180,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1939.test.cpp
     title: test/3_yukicoder/1939.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2062.test.cpp
     title: test/3_yukicoder/2062.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2097.test.cpp
     title: test/3_yukicoder/2097.test.cpp
   - icon: ':x:'
