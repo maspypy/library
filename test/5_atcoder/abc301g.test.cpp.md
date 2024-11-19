@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/rational.hpp
     title: nt/rational.hpp
   - icon: ':question:'
