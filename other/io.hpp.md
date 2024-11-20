@@ -1938,16 +1938,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc200f.test.cpp
     title: test/5_atcoder/abc200f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc202_f.test.cpp
     title: test/5_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc209e.test.cpp
     title: test/5_atcoder/abc209e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc212g.test.cpp
     title: test/5_atcoder/abc212g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc212h.test.cpp
     title: test/5_atcoder/abc212h.test.cpp
   - icon: ':x:'
