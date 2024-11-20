@@ -593,7 +593,7 @@ data:
     - icon: ':warning:'
       path: enumerate/asymmetric_unlabeled_tree.hpp
       title: enumerate/asymmetric_unlabeled_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: enumerate/bits.hpp
       title: enumerate/bits.hpp
     - icon: ':heavy_check_mark:'
@@ -918,7 +918,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_cost_cycle.hpp
       title: graph/minimum_cost_cycle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/minimum_hamiltonian_cycle.hpp
       title: graph/minimum_hamiltonian_cycle.hpp
     - icon: ':question:'
@@ -1976,7 +1976,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/interpolate_poly_exp_sum.hpp
       title: seq/interpolate_poly_exp_sum.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/inversion.hpp
       title: seq/inversion.hpp
     - icon: ':heavy_check_mark:'
@@ -2105,7 +2105,7 @@ data:
     - icon: ':warning:'
       path: string/aho_corasick_for_general_trie.hpp
       title: string/aho_corasick_for_general_trie.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/all_pair_lcp.hpp
       title: string/all_pair_lcp.hpp
     - icon: ':heavy_check_mark:'
@@ -4723,7 +4723,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc139f.test.cpp
       title: test/5_atcoder/abc139f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc141e.test.cpp
       title: test/5_atcoder/abc141e.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4741,13 +4741,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc174f.test.cpp
       title: test/5_atcoder/abc174f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc180e.test.cpp
       title: test/5_atcoder/abc180e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc190f.test.cpp
       title: test/5_atcoder/abc190f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc193f.test.cpp
       title: test/5_atcoder/abc193f.test.cpp
     - icon: ':x:'

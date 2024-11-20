@@ -36,7 +36,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc193f.test.cpp
     title: test/5_atcoder/abc193f.test.cpp
   - icon: ':x:'
