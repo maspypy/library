@@ -813,7 +813,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc160f.test.cpp
     title: test/5_atcoder/abc160f.test.cpp
   - icon: ':x:'
