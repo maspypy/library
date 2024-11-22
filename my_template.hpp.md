@@ -2577,10 +2577,10 @@ data:
   - icon: ':x:'
     path: test/5_atcoder/abc229h.test.cpp
     title: test/5_atcoder/abc229h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc230e.test.cpp
     title: test/5_atcoder/abc230e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc230h.test.cpp
     title: test/5_atcoder/abc230h.test.cpp
   - icon: ':x:'
