@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/beats_kinetic.hpp
     title: ds/segtree/beats_kinetic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree_beats.hpp
     title: ds/segtree/segtree_beats.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -323,22 +323,22 @@ data:
     \    X[i] = a, Y[i] = b;\n      }\n      if (t == 1) {\n        // apply\n   \
     \     a = abs(a);\n        seg.apply(L, R, a, b);\n        FOR(i, L, R) Y[i] +=\
     \ a * X[i] + b;\n      }\n      if (t == 2) {\n        // prod\n        ll mi\
-    \ = infty<ll>;\n        FOR(i, L, R) chmin(mi, Y[i]);\n        auto [x, y] = seg.prod(L,\
-    \ R);\n        assert(mi == y);\n      }\n    }\n  }\n}\n\nvoid test_ma() {\n\
-    \  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n    FOR(i, N) X[i] = RNG(-100, 100);\n\
-    \    FOR(i, N) Y[i] = RNG(-100, 100);\n    Beats_Kinetic_Max<ll, ll> seg(N, [&](int\
-    \ i) -> pair<int, int> { return {X[i], Y[i]}; });\n    ll Q = 100;\n    FOR(Q)\
-    \ {\n      ll t = RNG(0, 3);\n      ll i = RNG(0, N);\n      ll L = RNG(0, N);\n\
-    \      ll R = RNG(L, N + 1);\n      ll a = RNG(-100, 100);\n      ll b = RNG(-100,\
-    \ 100);\n      if (t == 0) {\n        // set\n        seg.set(i, a, b);\n    \
-    \    X[i] = a, Y[i] = b;\n      }\n      if (t == 1) {\n        // apply\n   \
-    \     a = abs(a);\n        seg.apply(L, R, a, b);\n        FOR(i, L, R) Y[i] +=\
-    \ a * X[i] + b;\n      }\n      if (t == 2) {\n        // prod\n        ll ma\
-    \ = -infty<ll>;\n        FOR(i, L, R) chmax(ma, Y[i]);\n        auto [x, y] =\
-    \ seg.prod(L, R);\n        assert(ma == y);\n      }\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(100) {\n    test_mi();\n    test_ma();\n  }\n  solve();\n  return 0;\n\
-    }\n"
+    \ = infty<ll>;\n        FOR(i, L, R) chmin(mi, Y[i]);\n        auto [idx, x, y]\
+    \ = seg.prod(L, R);\n        assert(mi == y);\n      }\n    }\n  }\n}\n\nvoid\
+    \ test_ma() {\n  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n    FOR(i, N) X[i] = RNG(-100,\
+    \ 100);\n    FOR(i, N) Y[i] = RNG(-100, 100);\n    Beats_Kinetic_Max<ll, ll> seg(N,\
+    \ [&](int i) -> pair<int, int> { return {X[i], Y[i]}; });\n    ll Q = 100;\n \
+    \   FOR(Q) {\n      ll t = RNG(0, 3);\n      ll i = RNG(0, N);\n      ll L = RNG(0,\
+    \ N);\n      ll R = RNG(L, N + 1);\n      ll a = RNG(-100, 100);\n      ll b =\
+    \ RNG(-100, 100);\n      if (t == 0) {\n        // set\n        seg.set(i, a,\
+    \ b);\n        X[i] = a, Y[i] = b;\n      }\n      if (t == 1) {\n        // apply\n\
+    \        a = abs(a);\n        seg.apply(L, R, a, b);\n        FOR(i, L, R) Y[i]\
+    \ += a * X[i] + b;\n      }\n      if (t == 2) {\n        // prod\n        ll\
+    \ ma = -infty<ll>;\n        FOR(i, L, R) chmax(ma, Y[i]);\n        auto [idx,\
+    \ x, y] = seg.prod(L, R);\n        assert(ma == y);\n      }\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  FOR(100) {\n    test_mi();\n    test_ma();\n  }\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n#include \"other/io.hpp\"\n\n#include \"ds/segtree/beats_kinetic.hpp\"\n#include\
     \ \"random/base.hpp\"\n\nvoid test_mi() {\n  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n\
@@ -351,21 +351,21 @@ data:
     \  }\n      if (t == 1) {\n        // apply\n        a = abs(a);\n        seg.apply(L,\
     \ R, a, b);\n        FOR(i, L, R) Y[i] += a * X[i] + b;\n      }\n      if (t\
     \ == 2) {\n        // prod\n        ll mi = infty<ll>;\n        FOR(i, L, R) chmin(mi,\
-    \ Y[i]);\n        auto [x, y] = seg.prod(L, R);\n        assert(mi == y);\n  \
-    \    }\n    }\n  }\n}\n\nvoid test_ma() {\n  FOR(N, 1, 100) {\n    vi X(N), Y(N);\n\
-    \    FOR(i, N) X[i] = RNG(-100, 100);\n    FOR(i, N) Y[i] = RNG(-100, 100);\n\
-    \    Beats_Kinetic_Max<ll, ll> seg(N, [&](int i) -> pair<int, int> { return {X[i],\
-    \ Y[i]}; });\n    ll Q = 100;\n    FOR(Q) {\n      ll t = RNG(0, 3);\n      ll\
-    \ i = RNG(0, N);\n      ll L = RNG(0, N);\n      ll R = RNG(L, N + 1);\n     \
-    \ ll a = RNG(-100, 100);\n      ll b = RNG(-100, 100);\n      if (t == 0) {\n\
-    \        // set\n        seg.set(i, a, b);\n        X[i] = a, Y[i] = b;\n    \
-    \  }\n      if (t == 1) {\n        // apply\n        a = abs(a);\n        seg.apply(L,\
-    \ R, a, b);\n        FOR(i, L, R) Y[i] += a * X[i] + b;\n      }\n      if (t\
-    \ == 2) {\n        // prod\n        ll ma = -infty<ll>;\n        FOR(i, L, R)\
-    \ chmax(ma, Y[i]);\n        auto [x, y] = seg.prod(L, R);\n        assert(ma ==\
-    \ y);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
-    \  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) {\n    test_mi();\n\
-    \    test_ma();\n  }\n  solve();\n  return 0;\n}"
+    \ Y[i]);\n        auto [idx, x, y] = seg.prod(L, R);\n        assert(mi == y);\n\
+    \      }\n    }\n  }\n}\n\nvoid test_ma() {\n  FOR(N, 1, 100) {\n    vi X(N),\
+    \ Y(N);\n    FOR(i, N) X[i] = RNG(-100, 100);\n    FOR(i, N) Y[i] = RNG(-100,\
+    \ 100);\n    Beats_Kinetic_Max<ll, ll> seg(N, [&](int i) -> pair<int, int> { return\
+    \ {X[i], Y[i]}; });\n    ll Q = 100;\n    FOR(Q) {\n      ll t = RNG(0, 3);\n\
+    \      ll i = RNG(0, N);\n      ll L = RNG(0, N);\n      ll R = RNG(L, N + 1);\n\
+    \      ll a = RNG(-100, 100);\n      ll b = RNG(-100, 100);\n      if (t == 0)\
+    \ {\n        // set\n        seg.set(i, a, b);\n        X[i] = a, Y[i] = b;\n\
+    \      }\n      if (t == 1) {\n        // apply\n        a = abs(a);\n       \
+    \ seg.apply(L, R, a, b);\n        FOR(i, L, R) Y[i] += a * X[i] + b;\n      }\n\
+    \      if (t == 2) {\n        // prod\n        ll ma = -infty<ll>;\n        FOR(i,\
+    \ L, R) chmax(ma, Y[i]);\n        auto [idx, x, y] = seg.prod(L, R);\n       \
+    \ assert(ma == y);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) {\n\
+    \    test_mi();\n    test_ma();\n  }\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -375,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/kinetic.test.cpp
   requiredBy: []
-  timestamp: '2024-11-18 03:41:33+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-22 13:09:23+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/kinetic.test.cpp
 layout: document
