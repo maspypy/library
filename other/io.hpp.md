@@ -2013,7 +2013,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc233c.test.cpp
     title: test/5_atcoder/abc233c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc234ex.test.cpp
     title: test/5_atcoder/abc234ex.test.cpp
   - icon: ':heavy_check_mark:'
