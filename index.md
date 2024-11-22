@@ -48,7 +48,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/powersums_assign.hpp
       title: alg/acted_monoid/powersums_assign.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
     - icon: ':heavy_check_mark:'
@@ -1937,7 +1937,7 @@ data:
       title: random/shuffle.hpp
   - name: seq
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: seq/cartesian_tree.hpp
       title: seq/cartesian_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -4834,13 +4834,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc230h.test.cpp
       title: test/5_atcoder/abc230h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc233c.test.cpp
       title: test/5_atcoder/abc233c.test.cpp
     - icon: ':x:'
       path: test/5_atcoder/abc234ex.test.cpp
       title: test/5_atcoder/abc234ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc234g.test.cpp
       title: test/5_atcoder/abc234g.test.cpp
     - icon: ':x:'
