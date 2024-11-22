@@ -34,7 +34,7 @@ void test_mi() {
         // prod
         ll mi = infty<ll>;
         FOR(i, L, R) chmin(mi, Y[i]);
-        auto [x, y] = seg.prod(L, R);
+        auto [idx, x, y] = seg.prod(L, R);
         assert(mi == y);
       }
     }
@@ -70,7 +70,7 @@ void test_ma() {
         // prod
         ll ma = -infty<ll>;
         FOR(i, L, R) chmax(ma, Y[i]);
-        auto [x, y] = seg.prod(L, R);
+        auto [idx, x, y] = seg.prod(L, R);
         assert(ma == y);
       }
     }
