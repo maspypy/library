@@ -360,7 +360,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree.hpp
       title: ds/fenwicktree/dual_fenwicktree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/dual_fenwicktree_2d.hpp
       title: ds/fenwicktree/dual_fenwicktree_2d.hpp
     - icon: ':question:'
@@ -411,7 +411,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/offline_query/mo_3d.hpp
       title: ds/offline_query/mo_3d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/offline_query/parallel_binary_search.hpp
       title: ds/offline_query/parallel_binary_search.hpp
     - icon: ':x:'
@@ -466,7 +466,7 @@ data:
     - icon: ':x:'
       path: ds/segtree/beats_summin_chmax.hpp
       title: ds/segtree/beats_summin_chmax.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summinmax_chminchmax.hpp
       title: ds/segtree/beats_summinmax_chminchmax.hpp
     - icon: ':question:'
@@ -481,7 +481,7 @@ data:
     - icon: ':question:'
       path: ds/segtree/dynamic_lazy_segtree.hpp
       title: ds/segtree/dynamic_lazy_segtree.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/segtree/dynamic_segtree.hpp
       title: ds/segtree/dynamic_segtree.hpp
     - icon: ':question:'
@@ -499,7 +499,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/range_add_make_increasing.hpp
       title: ds/segtree/range_add_make_increasing.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/range_assignment_segtree.hpp
       title: ds/segtree/range_assignment_segtree.hpp
     - icon: ':warning:'
@@ -551,7 +551,7 @@ data:
     - icon: ':question:'
       path: ds/splaytree/splaytree_basic.hpp
       title: ds/splaytree/splaytree_basic.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_commutative_monoid.hpp
       title: ds/splaytree/splaytree_commutative_monoid.hpp
     - icon: ':question:'
@@ -562,7 +562,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/dynamic_unionfind.hpp
       title: ds/unionfind/dynamic_unionfind.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/parallel_unionfind.hpp
       title: ds/unionfind/parallel_unionfind.hpp
     - icon: ':x:'
@@ -2955,67 +2955,67 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
       title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
     - icon: ':x:'
       path: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
       title: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
       title: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
       title: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_chmin_chmax_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
       title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
       title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
       title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
       title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
       title: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
     - icon: ':x:'
