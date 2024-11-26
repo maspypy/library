@@ -278,3 +278,5 @@ void Yes(bool t = 1) { print(t ? "Yes" : "No"); }
 void No(bool t = 1) { Yes(!t); }
 void yes(bool t = 1) { print(t ? "yes" : "no"); }
 void no(bool t = 1) { yes(!t); }
+void YA(bool t = 1) { print(t ? "YA" : "TIDAK"); }
+void TIDAK(bool t = 1) { YES(!t); }
