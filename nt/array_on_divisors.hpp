@@ -154,7 +154,13 @@ struct Array_On_Divisors {
     }
   }
 
+  template <typename F>
+  void set(F f) {
+    FOR(i, len(divs)) { dat[i] = f(divs[i]); }
+  }
+
   // (d, fd)
+  // &fd で受け取れば代入とかもできます
   template <typename F>
   void enumerate(F f) {
     FOR(i, len(divs)) { f(divs[i], dat[i]); }
