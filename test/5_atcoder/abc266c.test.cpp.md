@@ -202,11 +202,12 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point\
-    \ {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename\
-    \ B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A, typename B>\n\
-    \  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const Point\
-    \ p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
+    \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
+    \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
+    \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const\
+    \ Point p) {\n    x += p.x, y += p.y;\n    return *this;\n  }\n  Point operator-=(const\
     \ Point p) {\n    x -= p.x, y -= p.y;\n    return *this;\n  }\n  Point operator+(Point\
     \ p) const { return {x + p.x, y + p.y}; }\n  Point operator-(Point p) const {\
     \ return {x - p.x, y - p.y}; }\n  bool operator==(Point p) const { return x ==\
@@ -324,7 +325,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc266c.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc266c.test.cpp

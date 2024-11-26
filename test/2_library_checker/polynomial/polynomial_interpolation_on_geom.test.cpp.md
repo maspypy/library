@@ -57,9 +57,9 @@ data:
     title: poly/transposed_ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/polynomial_interpolation_on_geometric_sequence
@@ -245,7 +245,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp\"\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 5 \"test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp\"\
     \n\n#line 2 \"poly/multipoint.hpp\"\n\r\n#line 2 \"poly/middle_product.hpp\"\n\
     \n#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
     \ a, bool inverse) {\r\n  assert(mint::can_ntt());\r\n  const int rank2 = mint::ntt_info().fi;\r\
@@ -728,8 +729,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
 layout: document

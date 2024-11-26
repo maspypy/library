@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/double_ended_priority_queue
@@ -200,15 +200,17 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
-    struct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using T = typename QUE::value_type;\n\
-    \n  QUE que, rm_que;\n\n  Removable_Queue() {}\n  Removable_Queue(vc<T>& dat)\
-    \ : que(all(dat)) {}\n\n  void push(T x) { que.push(x); }\n  int size() { return\
-    \ len(que) - len(rm_que); }\n  bool empty() { return size() == 0; }\n\n  T pop()\
-    \ {\n    refresh();\n    return POP(que);\n  }\n  T top() {\n    refresh();\n\
-    \    return que.top();\n  }\n\n  void remove(T x) { rm_que.push(x); }\n\nprivate:\n\
-    \  void refresh() {\n    while (len(rm_que) && rm_que.top() == que.top()) {\n\
-    \      rm_que.pop(), que.pop();\n    }\n  }\n};\n#line 5 \"test/2_library_checker/data_structure/double_ended_pq.test.cpp\"\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"ds/removable_queue.hpp\"\n\ntemplate\
+    \ <typename QUE_TYPE>\nstruct Removable_Queue {\n  using QUE = QUE_TYPE;\n  using\
+    \ T = typename QUE::value_type;\n\n  QUE que, rm_que;\n\n  Removable_Queue() {}\n\
+    \  Removable_Queue(vc<T>& dat) : que(all(dat)) {}\n\n  void push(T x) { que.push(x);\
+    \ }\n  int size() { return len(que) - len(rm_que); }\n  bool empty() { return\
+    \ size() == 0; }\n\n  T pop() {\n    refresh();\n    return POP(que);\n  }\n \
+    \ T top() {\n    refresh();\n    return que.top();\n  }\n\n  void remove(T x)\
+    \ { rm_que.push(x); }\n\nprivate:\n  void refresh() {\n    while (len(rm_que)\
+    \ && rm_que.top() == que.top()) {\n      rm_que.pop(), que.pop();\n    }\n  }\n\
+    };\n#line 5 \"test/2_library_checker/data_structure/double_ended_pq.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
     \ que1(A);\n  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n  \
     \  if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n   \
@@ -230,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/double_ended_pq.test.cpp
 layout: document

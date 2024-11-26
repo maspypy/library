@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_quotients
@@ -200,22 +200,24 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/array_on_floor.hpp\"\n// N=10 \u3060\u3068 dat =\
-    \ {dp[1], dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\u306B\u306A\u308B\n\
-    // hashmap \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename T>\nstruct\
-    \ Array_On_Floor {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n  Array_On_Floor() {}\n\
-    \  Array_On_Floor(u64 N, T default_value = T{}) : N(N) {\n    assert(N <= u64(1)\
-    \ << 50);\n    sq = sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq - 1);\n\
-    \    dat.resize(t + sq, default_value);\n  }\n\n  u32 size() { return dat.size();\
-    \ }\n\n  T& operator[](u64 d) {\n    int i = get_index(d);\n    return dat[i];\n\
-    \  }\n\n  inline u32 get_index(u64 d) {\n    assert(d > 0);\n    if (d <= t) return\
-    \ d - 1;\n    return dat.size() - u32(double(N) / d);\n  }\n\n  // dat[i] \u306B\
-    \u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32 i) { return (i < t ? 1 + i\
-    \ : double(N) / (t + sq - i)); }\n\n  template <typename F>\n  void enumerate_all(F\
-    \ f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]); }\n  }\n};\n#line 5 \"\
-    test/2_library_checker/number_theory/enumerate_quotients2.test.cpp\"\n\nvoid solve()\
-    \ {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n  FOR(i, len(A))\
-    \ print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"nt/array_on_floor.hpp\"\n// N=10\
+    \ \u3060\u3068 dat = {dp[1], dp[2], dp[3], dp[5], dp[10]} \u307F\u305F\u3044\u306B\
+    \u306A\u308B\n// hashmap \u3088\u308A\u6570\u500D\u9AD8\u901F\ntemplate <typename\
+    \ T>\nstruct Array_On_Floor {\n  u64 N;\n  u32 t, sq;\n  vc<T> dat;\n  Array_On_Floor()\
+    \ {}\n  Array_On_Floor(u64 N, T default_value = T{}) : N(N) {\n    assert(N <=\
+    \ u64(1) << 50);\n    sq = sqrtl(N);\n    t = (u64(sq) * sq + sq <= N ? sq : sq\
+    \ - 1);\n    dat.resize(t + sq, default_value);\n  }\n\n  u32 size() { return\
+    \ dat.size(); }\n\n  T& operator[](u64 d) {\n    int i = get_index(d);\n    return\
+    \ dat[i];\n  }\n\n  inline u32 get_index(u64 d) {\n    assert(d > 0);\n    if\
+    \ (d <= t) return d - 1;\n    return dat.size() - u32(double(N) / d);\n  }\n\n\
+    \  // dat[i] \u306B\u5BFE\u5FDC\u3059\u308B floor\n  u64 get_floor(u32 i) { return\
+    \ (i < t ? 1 + i : double(N) / (t + sq - i)); }\n\n  template <typename F>\n \
+    \ void enumerate_all(F f) {\n    FOR(i, len(dat)) { f(get_floor(i), dat[i]); }\n\
+    \  }\n};\n#line 5 \"test/2_library_checker/number_theory/enumerate_quotients2.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
+    \  FOR(i, len(A)) print(A.get_floor(i));\n}\n\nsigned main() {\n  solve();\n \
+    \ return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/enumerate_quotients\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/array_on_floor.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  Array_On_Floor<int> A(N);\n  print(len(A));\n\
@@ -228,8 +230,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/enumerate_quotients2.test.cpp
 layout: document

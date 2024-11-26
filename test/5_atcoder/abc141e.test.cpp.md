@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/all_pair_lcp.hpp
     title: string/all_pair_lcp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc141/tasks/abc141_e
@@ -199,14 +199,16 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/all_pair_lcp.hpp\"\n// dp[i][j] = lcp(S[i:],\
-    \ T[j:])\ntemplate <typename STRING>\nvvc<int> all_pair_lcp(STRING& S, STRING&\
-    \ T) {\n  int N = len(S), M = len(T);\n  vv(int, dp, N, M);\n  FOR_R(i, N) FOR_R(j,\
-    \ M) {\n    if (S[i] != T[j]) continue;\n    dp[i][j] = 1 + (i + 1 < N && j +\
-    \ 1 < M ? dp[i + 1][j + 1] : 0);\n  }\n  return dp;\n}\n#line 5 \"test/5_atcoder/abc141e.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N);\n  STR(S);\n  auto dp = all_pair_lcp(S, S);\n  ll\
-    \ ANS = 0;\n  FOR(j, N) FOR(i, j) { chmax(ANS, min<int>(dp[i][j], j - i)); }\n\
-    \  print(ANS);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"string/all_pair_lcp.hpp\"\n// dp[i][j]\
+    \ = lcp(S[i:], T[j:])\ntemplate <typename STRING>\nvvc<int> all_pair_lcp(STRING&\
+    \ S, STRING& T) {\n  int N = len(S), M = len(T);\n  vv(int, dp, N, M);\n  FOR_R(i,\
+    \ N) FOR_R(j, M) {\n    if (S[i] != T[j]) continue;\n    dp[i][j] = 1 + (i + 1\
+    \ < N && j + 1 < M ? dp[i + 1][j + 1] : 0);\n  }\n  return dp;\n}\n#line 5 \"\
+    test/5_atcoder/abc141e.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  STR(S);\n  auto\
+    \ dp = all_pair_lcp(S, S);\n  ll ANS = 0;\n  FOR(j, N) FOR(i, j) { chmax(ANS,\
+    \ min<int>(dp[i][j], j - i)); }\n  print(ANS);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc141/tasks/abc141_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/all_pair_lcp.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  STR(S);\n  auto dp = all_pair_lcp(S, S);\n  ll\
@@ -219,8 +221,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc141e.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc141e.test.cpp
 layout: document

@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/longest_common_subsequence.hpp
     title: string/longest_common_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ALDS1_10_C&lang=ja
@@ -200,10 +200,11 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/longest_common_subsequence.hpp\"\n\ntemplate\
-    \ <typename STRING>\nll longest_common_subsequence(STRING& A, STRING& B) {\n \
-    \ int N = len(B);\n  vc<int> dp(N + 1);\n  for (auto&& a: A) {\n    FOR_R(i, N)\
-    \ if (a == B[i]) chmax(dp[i + 1], dp[i] + 1);\n    FOR(i, N) chmax(dp[i + 1],\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"string/longest_common_subsequence.hpp\"\
+    \n\ntemplate <typename STRING>\nll longest_common_subsequence(STRING& A, STRING&\
+    \ B) {\n  int N = len(B);\n  vc<int> dp(N + 1);\n  for (auto&& a: A) {\n    FOR_R(i,\
+    \ N) if (a == B[i]) chmax(dp[i + 1], dp[i] + 1);\n    FOR(i, N) chmax(dp[i + 1],\
     \ dp[i]);\n  }\n  return dp[N];\n}\n\n/*\n\u5FA9\u5143\u3082\u3059\u308B LCS dp\u3002\
     \n(A[i], B[j]) \u3092\u4F7F\u3046\u3088\u3046\u306A (i, j) \u306E\u30DA\u30A2\u306E\
     \ vector \u3092\u8FD4\u3059\u3002\n*/\ntemplate <typename STRING>\nvc<pair<int,\
@@ -238,8 +239,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ALDS1_10_C.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ALDS1_10_C.test.cpp
 layout: document

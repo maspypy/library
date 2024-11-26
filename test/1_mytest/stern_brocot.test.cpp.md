@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/stern_brocot_tree.hpp
     title: nt/stern_brocot_tree.hpp
   - icon: ':question:'

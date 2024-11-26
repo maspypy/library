@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/rational.hpp
     title: nt/rational.hpp
   - icon: ':question:'
@@ -205,69 +205,71 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/5_atcoder/abc301g.test.cpp\"\n\n#line 1 \"nt/rational.hpp\"\
-    \ntemplate <typename T = long long, bool REDUCE = true>\nstruct Rational {\n \
-    \ T num, den;\n\n  Rational() : num(0), den(1) {}\n  Rational(T x) : num(x), den(1)\
-    \ {}\n  Rational(T a, T b, bool coprime = false) : num(a), den(b) {\n    if (den\
-    \ < 0) num = -num, den = -den;\n    if (!coprime && REDUCE) reduce();\n  }\n\n\
-    \  static T gcd(T a, T b) {\n    a = max(a, -a), b = max(b, -b);\n    while (b)\
-    \ {\n      a %= b;\n      swap(a, b);\n    }\n    return a;\n  }\n\n  void reduce()\
-    \ {\n    if constexpr (!REDUCE) {\n      return;\n    } else {\n      T g = gcd(num,\
-    \ den);\n      num /= g, den /= g;\n    }\n  }\n\n  Rational &operator+=(const\
-    \ Rational &p) {\n    if constexpr (!REDUCE) {\n      num = num * p.den + p.num\
-    \ * den;\n      den *= p.den;\n      return *this;\n    } else {\n      T g =\
-    \ (REDUCE ? gcd(den, p.den) : 1);\n      num = num * (p.den / g) + p.num * (den\
-    \ / g);\n      den *= p.den / g;\n      reduce();\n      return *this;\n    }\n\
-    \  }\n  Rational &operator-=(const Rational &p) {\n    if constexpr (!REDUCE)\
-    \ {\n      num = num * p.den - p.num * den;\n      den *= p.den;\n      return\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/5_atcoder/abc301g.test.cpp\"\
+    \n\n#line 1 \"nt/rational.hpp\"\ntemplate <typename T = long long, bool REDUCE\
+    \ = true>\nstruct Rational {\n  T num, den;\n\n  Rational() : num(0), den(1) {}\n\
+    \  Rational(T x) : num(x), den(1) {}\n  Rational(T a, T b, bool coprime = false)\
+    \ : num(a), den(b) {\n    if (den < 0) num = -num, den = -den;\n    if (!coprime\
+    \ && REDUCE) reduce();\n  }\n\n  static T gcd(T a, T b) {\n    a = max(a, -a),\
+    \ b = max(b, -b);\n    while (b) {\n      a %= b;\n      swap(a, b);\n    }\n\
+    \    return a;\n  }\n\n  void reduce() {\n    if constexpr (!REDUCE) {\n     \
+    \ return;\n    } else {\n      T g = gcd(num, den);\n      num /= g, den /= g;\n\
+    \    }\n  }\n\n  Rational &operator+=(const Rational &p) {\n    if constexpr (!REDUCE)\
+    \ {\n      num = num * p.den + p.num * den;\n      den *= p.den;\n      return\
     \ *this;\n    } else {\n      T g = (REDUCE ? gcd(den, p.den) : 1);\n      num\
-    \ = num * (p.den / g) - p.num * (den / g);\n      den *= p.den / g;\n      reduce();\n\
-    \      return *this;\n    }\n  }\n  Rational &operator*=(const Rational &p) {\n\
-    \    if constexpr (!REDUCE) {\n      num = num * p.num;\n      den = den * p.den;\n\
-    \      return *this;\n    } else {\n      T g1 = gcd(num, p.den);\n      T g2\
-    \ = gcd(den, p.num);\n      num = (num / g1) * (p.num / g2);\n      den = (den\
-    \ / g2) * (p.den / g1);\n      return *this;\n    }\n  }\n  Rational &operator/=(const\
-    \ Rational &p) {\n    T g1 = (REDUCE ? gcd(num, p.num) : 1);\n    T g2 = (REDUCE\
-    \ ? gcd(den, p.den) : 1);\n    num = (num / g1) * (p.den / g2);\n    den = (den\
-    \ / g2) * (p.num / g1);\n    if (den < 0) num = -num, den = -den;\n    return\
-    \ *this;\n  }\n\n  Rational operator-() const { return Rational(-num, den); }\n\
-    \  Rational operator+(const Rational &p) const { return Rational(*this) += p;\
-    \ }\n  Rational operator-(const Rational &p) const { return Rational(*this) -=\
-    \ p; }\n  Rational operator*(const Rational &p) const { return Rational(*this)\
-    \ *= p; }\n  Rational operator/(const Rational &p) const { return Rational(*this)\
-    \ /= p; }\n  bool operator==(const Rational &p) const { return num * p.den ==\
-    \ p.num * den; }\n  bool operator!=(const Rational &p) const { return num * p.den\
-    \ != p.num * den; }\n  bool operator<(const Rational &p) const { return num *\
-    \ p.den < p.num * den; }\n  bool operator>(const Rational &p) const { return num\
-    \ * p.den > p.num * den; }\n  bool operator<=(const Rational &p) const { return\
-    \ num * p.den <= p.num * den; }\n  bool operator>=(const Rational &p) const {\
-    \ return num * p.den >= p.num * den; }\n\n  string to_string() { return std::to_string(num)\
-    \ + \"/\" + std::to_string(den); }\n  double to_double() { return double(num)\
-    \ / double(den); }\n};\n#line 2 \"geo3d/base.hpp\"\n\ntemplate <typename T>\n\
-    struct Point_3d {\n  T x, y, z;\n\n  Point_3d() = default;\n\n  template <typename\
-    \ A, typename B, typename C>\n  Point_3d(A x, B y, C z) : x(x), y(y), z(z) {}\n\
-    \n  Point_3d operator+(Point_3d p) const { return {x + p.x, y + p.y, z + p.z};\
-    \ }\n  Point_3d operator-(Point_3d p) const { return {x - p.x, y - p.y, z - p.z};\
-    \ }\n  Point_3d operator*(T t) const { return {x * t, y * t, z * t}; }\n  Point_3d\
-    \ operator/(T t) const { return {x / t, y / t, z / t}; }\n  bool operator==(Point_3d\
-    \ p) const { return x == p.x && y == p.y && z == p.z; }\n  bool operator!=(Point_3d\
-    \ p) const { return x != p.x || y != p.y || z == p.z; }\n  Point_3d operator-()\
-    \ const { return {-x, -y, -z}; }\n\n  bool is_parallel(Point_3d p) const { return\
-    \ x * p.y == y * p.x && y * p.z == z * p.y && z * p.x == x * p.z; }\n\n  T dot(Point_3d\
-    \ other) { return x * other.x + y * other.y + z * other.z; }\n  double norm()\
-    \ { return sqrt(x * x + y * y + z * z); }\n  Point_3d cross(Point_3d other) {\
-    \ return Point_3d(y * other.z - z * other.y, z * other.x - x * other.z, x * other.y\
-    \ - y * other.x); }\n};\n\ntemplate <typename T>\nstruct Line_3d {\n  // a + td\n\
-    \  Point_3d<T> a, d;\n\n  Line_3d(Point_3d<T> A, Point_3d<T> B) : a(A), d(B -\
-    \ A) { assert(d.dot(d) != 0); }\n  bool is_parallel(Line_3d<T> other) {\n    Point_3d<T>\
-    \ n = d.cross(other.d);\n    return (n.x == T(0) && n.y == T(0) && n.z == T(0));\n\
-    \  }\n  bool contain(Point_3d<T> p) {\n    p = p - a;\n    p = p.cross(d);\n \
-    \   return (p.x == T(0) && p.y == T(0) && p.z == T(0));\n  }\n};\n#line 2 \"geo3d/cross_point.hpp\"\
-    \n\n// 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
-    2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\ntemplate <typename T>\nint count_cross(Line_3d<T>\
-    \ L1, Line_3d<T> L2) {\n  static_assert(!std::is_floating_point<T>::value);\n\
-    \  if (L1.is_parallel(L2)) {\n    if (L1.contain(L2.a)) return 2;\n    return\
-    \ 0;\n  }\n  Point_3d<T> norm = L1.d.cross(L2.d);\n  return ((L1.a - L2.a).dot(norm)\
+    \ = num * (p.den / g) + p.num * (den / g);\n      den *= p.den / g;\n      reduce();\n\
+    \      return *this;\n    }\n  }\n  Rational &operator-=(const Rational &p) {\n\
+    \    if constexpr (!REDUCE) {\n      num = num * p.den - p.num * den;\n      den\
+    \ *= p.den;\n      return *this;\n    } else {\n      T g = (REDUCE ? gcd(den,\
+    \ p.den) : 1);\n      num = num * (p.den / g) - p.num * (den / g);\n      den\
+    \ *= p.den / g;\n      reduce();\n      return *this;\n    }\n  }\n  Rational\
+    \ &operator*=(const Rational &p) {\n    if constexpr (!REDUCE) {\n      num =\
+    \ num * p.num;\n      den = den * p.den;\n      return *this;\n    } else {\n\
+    \      T g1 = gcd(num, p.den);\n      T g2 = gcd(den, p.num);\n      num = (num\
+    \ / g1) * (p.num / g2);\n      den = (den / g2) * (p.den / g1);\n      return\
+    \ *this;\n    }\n  }\n  Rational &operator/=(const Rational &p) {\n    T g1 =\
+    \ (REDUCE ? gcd(num, p.num) : 1);\n    T g2 = (REDUCE ? gcd(den, p.den) : 1);\n\
+    \    num = (num / g1) * (p.den / g2);\n    den = (den / g2) * (p.num / g1);\n\
+    \    if (den < 0) num = -num, den = -den;\n    return *this;\n  }\n\n  Rational\
+    \ operator-() const { return Rational(-num, den); }\n  Rational operator+(const\
+    \ Rational &p) const { return Rational(*this) += p; }\n  Rational operator-(const\
+    \ Rational &p) const { return Rational(*this) -= p; }\n  Rational operator*(const\
+    \ Rational &p) const { return Rational(*this) *= p; }\n  Rational operator/(const\
+    \ Rational &p) const { return Rational(*this) /= p; }\n  bool operator==(const\
+    \ Rational &p) const { return num * p.den == p.num * den; }\n  bool operator!=(const\
+    \ Rational &p) const { return num * p.den != p.num * den; }\n  bool operator<(const\
+    \ Rational &p) const { return num * p.den < p.num * den; }\n  bool operator>(const\
+    \ Rational &p) const { return num * p.den > p.num * den; }\n  bool operator<=(const\
+    \ Rational &p) const { return num * p.den <= p.num * den; }\n  bool operator>=(const\
+    \ Rational &p) const { return num * p.den >= p.num * den; }\n\n  string to_string()\
+    \ { return std::to_string(num) + \"/\" + std::to_string(den); }\n  double to_double()\
+    \ { return double(num) / double(den); }\n};\n#line 2 \"geo3d/base.hpp\"\n\ntemplate\
+    \ <typename T>\nstruct Point_3d {\n  T x, y, z;\n\n  Point_3d() = default;\n\n\
+    \  template <typename A, typename B, typename C>\n  Point_3d(A x, B y, C z) :\
+    \ x(x), y(y), z(z) {}\n\n  Point_3d operator+(Point_3d p) const { return {x +\
+    \ p.x, y + p.y, z + p.z}; }\n  Point_3d operator-(Point_3d p) const { return {x\
+    \ - p.x, y - p.y, z - p.z}; }\n  Point_3d operator*(T t) const { return {x * t,\
+    \ y * t, z * t}; }\n  Point_3d operator/(T t) const { return {x / t, y / t, z\
+    \ / t}; }\n  bool operator==(Point_3d p) const { return x == p.x && y == p.y &&\
+    \ z == p.z; }\n  bool operator!=(Point_3d p) const { return x != p.x || y != p.y\
+    \ || z == p.z; }\n  Point_3d operator-() const { return {-x, -y, -z}; }\n\n  bool\
+    \ is_parallel(Point_3d p) const { return x * p.y == y * p.x && y * p.z == z *\
+    \ p.y && z * p.x == x * p.z; }\n\n  T dot(Point_3d other) { return x * other.x\
+    \ + y * other.y + z * other.z; }\n  double norm() { return sqrt(x * x + y * y\
+    \ + z * z); }\n  Point_3d cross(Point_3d other) { return Point_3d(y * other.z\
+    \ - z * other.y, z * other.x - x * other.z, x * other.y - y * other.x); }\n};\n\
+    \ntemplate <typename T>\nstruct Line_3d {\n  // a + td\n  Point_3d<T> a, d;\n\n\
+    \  Line_3d(Point_3d<T> A, Point_3d<T> B) : a(A), d(B - A) { assert(d.dot(d) !=\
+    \ 0); }\n  bool is_parallel(Line_3d<T> other) {\n    Point_3d<T> n = d.cross(other.d);\n\
+    \    return (n.x == T(0) && n.y == T(0) && n.z == T(0));\n  }\n  bool contain(Point_3d<T>\
+    \ p) {\n    p = p - a;\n    p = p.cross(d);\n    return (p.x == T(0) && p.y ==\
+    \ T(0) && p.z == T(0));\n  }\n};\n#line 2 \"geo3d/cross_point.hpp\"\n\n// 0: \u4EA4\
+    \u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A2 \u3064\u4EE5\
+    \u4E0A\u306E\u4EA4\u70B9\ntemplate <typename T>\nint count_cross(Line_3d<T> L1,\
+    \ Line_3d<T> L2) {\n  static_assert(!std::is_floating_point<T>::value);\n  if\
+    \ (L1.is_parallel(L2)) {\n    if (L1.contain(L2.a)) return 2;\n    return 0;\n\
+    \  }\n  Point_3d<T> norm = L1.d.cross(L2.d);\n  return ((L1.a - L2.a).dot(norm)\
     \ == 0 ? 1 : 0);\n}\n\n// count_cross == 1 \u306E\u3068\u304D\u306B\u3060\u3051\
     \u547C\u3076\u3053\u3068\ntemplate <typename REAL, typename T>\nPoint_3d<REAL>\
     \ cross_point(Line_3d<T> L1, Line_3d<T> L2) {\n  Point_3d<T> d1 = L1.d;\n  Point_3d<T>\
@@ -326,7 +328,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc301g.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc301g.test.cpp

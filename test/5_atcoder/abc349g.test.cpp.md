@@ -205,21 +205,23 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/5_atcoder/abc349g.test.cpp\"\n\n#line 2 \"ds/unionfind/unionfind.hpp\"\
-    \n\nstruct UnionFind {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n \
-    \ UnionFind(int n = 0) { build(n); }\n\n  void build(int m) {\n    n = m, n_comp\
-    \ = m;\n    dat.assign(n, -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int\
-    \ x) {\n    while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp <\
-    \ 0) { return dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n\
-    \  ll size(int x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int\
-    \ x, int y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n\
-    \    if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
-    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
-    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 1 \"other/mex.hpp\"\nint\
-    \ mex(const vc<int>& A) {\n  int n = len(A);\n  vc<bool> aru(n + 1);\n  for (auto&\
-    \ x: A)\n    if (x < n) aru[x] = 1;\n  int mex = 0;\n  while (aru[mex]) ++mex;\n\
-    \  return mex;\n}\n#line 3 \"string/inverse_manacher.hpp\"\n\n// \u5404\u70B9\u3092\
-    \u4E2D\u5FC3\u3068\u3059\u308B\u6975\u5927\u56DE\u6587\u306E\u9577\u3055 (in [1,3,5,...])\n\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/5_atcoder/abc349g.test.cpp\"\
+    \n\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
+    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
+    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
+    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
+    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
+    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
+    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
+    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
+    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
+    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
+    \    return A;\n  }\n};\n#line 1 \"other/mex.hpp\"\nint mex(const vc<int>& A)\
+    \ {\n  int n = len(A);\n  vc<bool> aru(n + 1);\n  for (auto& x: A)\n    if (x\
+    \ < n) aru[x] = 1;\n  int mex = 0;\n  while (aru[mex]) ++mex;\n  return mex;\n\
+    }\n#line 3 \"string/inverse_manacher.hpp\"\n\n// \u5404\u70B9\u3092\u4E2D\u5FC3\
+    \u3068\u3059\u308B\u6975\u5927\u56DE\u6587\u306E\u9577\u3055 (in [1,3,5,...])\n\
     // \u8F9E\u66F8\u6700\u5C0F OR empty\nvc<int> inverse_manacher(vc<int> R) {\n\
     \  for (auto& x: R) assert(x & 1), x = (x + 1) / 2;\n  ll N = len(R);\n  UnionFind\
     \ uf(N);\n  vvc<int> DIFF(N);\n  int i = 0;\n  int j = 0;\n  while (i < N) {\n\
@@ -253,7 +255,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc349g.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc349g.test.cpp

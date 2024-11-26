@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: other/solve_hukumenzan.hpp
     title: other/solve_hukumenzan.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc198/tasks/abc198_d
@@ -199,22 +199,23 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"other/solve_hukumenzan.hpp\"\n// a + b = c \u3092\u89E3\
-    \u304F\r\nvc<tuple<ll, ll, ll>> solve_hukumenzan(string A, string B, string C)\
-    \ {\r\n  using T = tuple<ll, ll, ll>;\r\n  vc<T> res;\r\n  vc<char> v;\r\n  for\
-    \ (auto&& x: A + B + C) v.eb(x);\r\n  UNIQUE(v);\r\n  if (len(v) > 10) return\
-    \ res;\r\n  vc<int> I(10);\r\n  iota(all(I), 0);\r\n  do {\r\n    map<char, int>\
-    \ MP;\r\n    FOR(i, len(v)) MP[v[i]] = I[i];\r\n    if (MP[A[0]] == 0) continue;\r\
-    \n    if (MP[B[0]] == 0) continue;\r\n    if (MP[C[0]] == 0) continue;\r\n   \
-    \ ll a = 0, b = 0, c = 0;\r\n    for (auto&& x: A) a = 10 * a + MP[x];\r\n   \
-    \ for (auto&& x: B) b = 10 * b + MP[x];\r\n    for (auto&& x: C) c = 10 * c +\
-    \ MP[x];\r\n    if (a + b == c) res.eb(a, b, c);\r\n  } while (next_permutation(all(I)));\r\
-    \n  return res;\r\n}\n#line 5 \"test/5_atcoder/abc198d.test.cpp\"\n\r\nvoid solve()\
-    \ {\r\n  STR(A, B, C);\r\n  auto res = solve_hukumenzan(A, B, C);\r\n  if (len(res)\
-    \ == 0) return print(\"UNSOLVABLE\");\r\n  auto [a, b, c] = res[0];\r\n  print(a);\r\
-    \n  print(b);\r\n  print(c);\r\n}\r\n\r\nsigned main() {\r\n  cout << fixed <<\
-    \ setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\n  FOR(T) solve();\r\n\
-    \r\n  return 0;\r\n}\r\n"
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"other/solve_hukumenzan.hpp\"\n//\
+    \ a + b = c \u3092\u89E3\u304F\r\nvc<tuple<ll, ll, ll>> solve_hukumenzan(string\
+    \ A, string B, string C) {\r\n  using T = tuple<ll, ll, ll>;\r\n  vc<T> res;\r\
+    \n  vc<char> v;\r\n  for (auto&& x: A + B + C) v.eb(x);\r\n  UNIQUE(v);\r\n  if\
+    \ (len(v) > 10) return res;\r\n  vc<int> I(10);\r\n  iota(all(I), 0);\r\n  do\
+    \ {\r\n    map<char, int> MP;\r\n    FOR(i, len(v)) MP[v[i]] = I[i];\r\n    if\
+    \ (MP[A[0]] == 0) continue;\r\n    if (MP[B[0]] == 0) continue;\r\n    if (MP[C[0]]\
+    \ == 0) continue;\r\n    ll a = 0, b = 0, c = 0;\r\n    for (auto&& x: A) a =\
+    \ 10 * a + MP[x];\r\n    for (auto&& x: B) b = 10 * b + MP[x];\r\n    for (auto&&\
+    \ x: C) c = 10 * c + MP[x];\r\n    if (a + b == c) res.eb(a, b, c);\r\n  } while\
+    \ (next_permutation(all(I)));\r\n  return res;\r\n}\n#line 5 \"test/5_atcoder/abc198d.test.cpp\"\
+    \n\r\nvoid solve() {\r\n  STR(A, B, C);\r\n  auto res = solve_hukumenzan(A, B,\
+    \ C);\r\n  if (len(res) == 0) return print(\"UNSOLVABLE\");\r\n  auto [a, b, c]\
+    \ = res[0];\r\n  print(a);\r\n  print(b);\r\n  print(c);\r\n}\r\n\r\nsigned main()\
+    \ {\r\n  cout << fixed << setprecision(15);\r\n\r\n  ll T = 1;\r\n  // LL(T);\r\
+    \n  FOR(T) solve();\r\n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc198/tasks/abc198_d\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"other/solve_hukumenzan.hpp\"\
     \r\n\r\nvoid solve() {\r\n  STR(A, B, C);\r\n  auto res = solve_hukumenzan(A,\
@@ -229,8 +230,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc198d.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc198d.test.cpp
 layout: document

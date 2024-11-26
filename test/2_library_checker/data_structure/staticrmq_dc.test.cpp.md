@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/static_monoid_products.hpp
     title: ds/offline_query/static_monoid_products.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -203,13 +203,14 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
-    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
-    };\r\n#line 1 \"ds/offline_query/static_monoid_products.hpp\"\n// f(q, Lprod,\
-    \ Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\u306E\u306F\u3059\
-    \u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate\
+    \ <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
+    \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 1 \"ds/offline_query/static_monoid_products.hpp\"\
+    \n// f(q, Lprod, Rprod)\n// f \u4EE5\u5916\u3067\u547C\u3070\u308C\u308B\u3082\
+    \u306E\u306F\u3059\u3079\u3066\u5358\u9805\u8FFD\u52A0\n// https://qoj.ac/contest/1784/problem/9245\n\
     template <typename Mono, typename T, typename F>\nvoid static_monoid_products(vc<T>&\
     \ A, vc<pair<int, int>>& query, F f) {\n  int N = len(A), Q = len(query);\n  vvc<int>\
     \ IDS(N);\n  FOR(q, Q) {\n    auto [L, R] = query[q];\n    if (L == R) { f(q,\
@@ -244,8 +245,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
 layout: document

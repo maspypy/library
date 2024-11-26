@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc233/tasks/abc233_c
@@ -199,18 +199,19 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\n\
-    template <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N =\
-    \ len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n\
-    \    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
-    \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
-    \ 5 \"test/5_atcoder/abc233c.test.cpp\"\n\nvoid solve() {\n  LL(N, X);\n  vc<int>\
-    \ S(N);\n  vvc<int> dat(N);\n  FOR(i, N) {\n    read(S[i]);\n    FOR(S[i]) {\n\
-    \      INT(x);\n      dat[i].eb(x);\n    }\n  }\n  ll ANS = 0;\n  using I = i128;\n\
-    \  auto query = [&](vc<int>& p) -> void {\n    I prod = 1;\n    FOR(i, N) {\n\
-    \      prod *= dat[i][p[i]];\n      if (prod > X) return;\n    }\n    if (prod\
-    \ == X) ++ANS;\n  };\n\n  enumerate_product(S, query);\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}\n"
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"enumerate/product.hpp\"\n// [0,\
+    \ A0) x [0, A1) x ...\ntemplate <typename F>\nvoid enumerate_product(vc<int> A,\
+    \ F query) {\n  int N = len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void\
+    \ {\n    int n = len(p);\n    if (n == N) return query(p);\n    FOR(x, A[n]) {\n\
+    \      p.eb(x);\n      dfs(dfs, p);\n      p.pop_back();\n    }\n  };\n  vc<int>\
+    \ p;\n  dfs(dfs, p);\n}\n#line 5 \"test/5_atcoder/abc233c.test.cpp\"\n\nvoid solve()\
+    \ {\n  LL(N, X);\n  vc<int> S(N);\n  vvc<int> dat(N);\n  FOR(i, N) {\n    read(S[i]);\n\
+    \    FOR(S[i]) {\n      INT(x);\n      dat[i].eb(x);\n    }\n  }\n  ll ANS = 0;\n\
+    \  using I = i128;\n  auto query = [&](vc<int>& p) -> void {\n    I prod = 1;\n\
+    \    FOR(i, N) {\n      prod *= dat[i][p[i]];\n      if (prod > X) return;\n \
+    \   }\n    if (prod == X) ++ANS;\n  };\n\n  enumerate_product(S, query);\n  print(ANS);\n\
+    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc233/tasks/abc233_c\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"enumerate/product.hpp\"\
     \n\nvoid solve() {\n  LL(N, X);\n  vc<int> S(N);\n  vvc<int> dat(N);\n  FOR(i,\
@@ -226,8 +227,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc233c.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc233c.test.cpp
 layout: document

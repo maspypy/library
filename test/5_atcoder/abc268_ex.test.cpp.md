@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: string/trie.hpp
     title: string/trie.hpp
   _extendedRequiredBy: []
@@ -200,9 +200,10 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/trie.hpp\"\n\r\n// sigma \u304C\u5C0F\u3055\u3044\
-    \r\n// \u4E00\u822C\u306E n \u9802\u70B9\u306E\u6728\u69CB\u9020\u3067 O(n) \u6642\
-    \u9593\u3067\u52D5\u304F\r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d\r\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"string/trie.hpp\"\n\r\n// sigma\
+    \ \u304C\u5C0F\u3055\u3044\r\n// \u4E00\u822C\u306E n \u9802\u70B9\u306E\u6728\
+    \u69CB\u9020\u3067 O(n) \u6642\u9593\u3067\u52D5\u304F\r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d\r\
     \ntemplate <int sigma>\r\nstruct Trie {\r\n  struct Node {\r\n    array<int, sigma>\
     \ ch;\r\n    array<int, sigma> nxt; // suffix link -> add c\r\n    int parent;\r\
     \n    int suffix_link;\r\n  };\r\n  int n_node;\r\n  vc<Node> nodes;\r\n  vc<int>\
@@ -245,7 +246,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc268_ex.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc268_ex.test.cpp

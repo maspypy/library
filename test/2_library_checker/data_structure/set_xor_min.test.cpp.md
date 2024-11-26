@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/binary_trie.hpp
     title: ds/binary_trie.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/set_xor_min
@@ -203,93 +203,95 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"ds/binary_trie.hpp\"\n// \u975E\u6C38\u7D9A\u306A\u3089\
-    \u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\ntemplate <int\
-    \ LOG, bool PERSISTENT, int NODES, typename UINT = u64,\n          typename SIZE_TYPE\
-    \ = int>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n  struct Node {\n    int\
-    \ width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n  };\n\n  Node *pool;\n\
-    \  int pid;\n  using np = Node *;\n\n  Binary_Trie() : pid(0) { pool = new Node[NODES];\
-    \ }\n\n  void reset() { pid = 0; }\n\n  np new_root() { return nullptr; }\n\n\
-    \  np add(np root, UINT val, T cnt = 1) {\n    if (!root) root = new_node(0, 0);\n\
-    \    assert(0 <= val && val < (1LL << LOG));\n    return add_rec(root, LOG, val,\
-    \ cnt);\n  }\n\n  // f(val, cnt)\n  template <typename F>\n  void enumerate(np\
-    \ root, F f) {\n    auto dfs = [&](auto &dfs, np root, UINT val, int ht) -> void\
-    \ {\n      if (ht == 0) {\n        f(val, root->cnt);\n        return;\n     \
-    \ }\n      np c = root->l;\n      if (c) { dfs(dfs, c, val << (c->width) | (c->val),\
-    \ ht - (c->width)); }\n      c = root->r;\n      if (c) { dfs(dfs, c, val << (c->width)\
-    \ | (c->val), ht - (c->width)); }\n    };\n    if (root) dfs(dfs, root, 0, LOG);\n\
-    \  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067\u6607\u9806 k\
-    \ \u756A\u76EE\n  UINT kth(np root, T k, UINT xor_val) {\n    assert(root && 0\
-    \ <= k && k < root->cnt);\n    return kth_rec(root, 0, k, LOG, xor_val) ^ xor_val;\n\
-    \  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067\u6700\u5C0F\u5024\
-    \n  UINT min(np root, UINT xor_val) {\n    assert(root && root->cnt);\n    return\
-    \ kth(root, 0, xor_val);\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\
-    \u3067\u6700\u5927\u5024\n  UINT max(np root, UINT xor_val) {\n    assert(root\
-    \ && root->cnt);\n    return kth(root, (root->cnt) - 1, xor_val);\n  }\n\n  //\
-    \ xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067 [0, upper) \u5185\u306B\u5165\
-    \u308B\u3082\u306E\u306E\u500B\u6570\n  T prefix_count(np root, UINT upper, UINT\
-    \ xor_val) {\n    if (!root) return 0;\n    return prefix_count_rec(root, LOG,\
-    \ upper, xor_val, 0);\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\u5024\
-    \u3067 [lo, hi) \u5185\u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\n  T count(np\
-    \ root, UINT lo, UINT hi, UINT xor_val) {\n    return prefix_count(root, hi, xor_val)\
-    \ - prefix_count(root, lo, xor_val);\n  }\n\nprivate:\n  inline UINT mask(int\
-    \ k) { return (UINT(1) << k) - 1; }\n\n  np new_node(int width, UINT val) {\n\
-    \    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].width = width;\n    pool[pid].val\
-    \ = val;\n    pool[pid].cnt = 0;\n    return &(pool[pid++]);\n  }\n\n  np copy_node(np\
-    \ c) {\n    if (!c || !PERSISTENT) return c;\n    np res = &(pool[pid++]);\n \
-    \   res->width = c->width, res->val = c->val;\n    res->cnt = c->cnt, res->l =\
-    \ c->l, res->r = c->r;\n    return res;\n  }\n\n  np add_rec(np root, int ht,\
-    \ UINT val, T cnt) {\n    root = copy_node(root);\n    root->cnt += cnt;\n   \
-    \ if (ht == 0) return root;\n\n    bool go_r = (val >> (ht - 1)) & 1;\n    np\
-    \ c = (go_r ? root->r : root->l);\n    if (!c) {\n      c = new_node(ht, val);\n\
-    \      c->cnt = cnt;\n      if (!go_r) root->l = c;\n      if (go_r) root->r =\
-    \ c;\n      return root;\n    }\n    int w = c->width;\n    if ((val >> (ht -\
-    \ w)) == c->val) {\n      c = add_rec(c, ht - w, val & mask(ht - w), cnt);\n \
-    \     if (!go_r) root->l = c;\n      if (go_r) root->r = c;\n      return root;\n\
-    \    }\n    int same = w - 1 - topbit((val >> (ht - w)) ^ (c->val));\n    np n\
-    \ = new_node(same, (c->val) >> (w - same));\n    n->cnt = c->cnt + cnt;\n    c\
-    \ = copy_node(c);\n    c->width = w - same;\n    c->val = c->val & mask(w - same);\n\
-    \    if ((val >> (ht - same - 1)) & 1) {\n      n->l = c;\n      n->r = new_node(ht\
-    \ - same, val & mask(ht - same));\n      n->r->cnt = cnt;\n    } else {\n    \
-    \  n->r = c;\n      n->l = new_node(ht - same, val & mask(ht - same));\n     \
-    \ n->l->cnt = cnt;\n    }\n    if (!go_r) root->l = n;\n    if (go_r) root->r\
-    \ = n;\n    return root;\n  }\n\n  UINT kth_rec(np root, UINT val, T k, int ht,\
-    \ UINT xor_val) {\n    if (ht == 0) return val;\n    np left = root->l, right\
-    \ = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left, right);\n    T sl\
-    \ = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c = left; }\n    if\
-    \ (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n    return kth_rec(c,\
-    \ val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T prefix_count_rec(np root,\
-    \ int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht) ^ (xor_val);\n\
-    \    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht == 0 || (LIM\
-    \ >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2) {\n      np c\
-    \ = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w = c->width;\n\
-    \        res += prefix_count_rec(c, ht - w, LIM, xor_val, val << w | c->val);\n\
-    \      }\n    }\n    return res;\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\n\r\n//\
-    \ u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\
-    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n =\
-    \ 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k\
-    \ < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
-    \ used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E\
-    . size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\
-    \n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) /\
-    \ 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if\
-    \ (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return\
-    \ val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int\
-    \ i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\
-    \n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return used[i]\
-    \ && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n\
-    \  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\
-    \n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\
-    \n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x += FIXED_RANDOM;\r\
-    \n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n    return (x ^ (x >> 31)) & mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64,\
-    \ Val>> dat;\r\n    dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used))\
-    \ {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\
-    \n    for (auto& [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 6 \"test/2_library_checker/data_structure/set_xor_min.test.cpp\"\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"ds/binary_trie.hpp\"\n// \u975E\u6C38\
+    \u7D9A\u306A\u3089\u3070\u30012 * \u8981\u7D20\u6570 \u306E\u30CE\u30FC\u30C9\u6570\
+    \ntemplate <int LOG, bool PERSISTENT, int NODES, typename UINT = u64,\n      \
+    \    typename SIZE_TYPE = int>\nstruct Binary_Trie {\n  using T = SIZE_TYPE;\n\
+    \  struct Node {\n    int width;\n    UINT val;\n    T cnt;\n    Node *l, *r;\n\
+    \  };\n\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Binary_Trie() :\
+    \ pid(0) { pool = new Node[NODES]; }\n\n  void reset() { pid = 0; }\n\n  np new_root()\
+    \ { return nullptr; }\n\n  np add(np root, UINT val, T cnt = 1) {\n    if (!root)\
+    \ root = new_node(0, 0);\n    assert(0 <= val && val < (1LL << LOG));\n    return\
+    \ add_rec(root, LOG, val, cnt);\n  }\n\n  // f(val, cnt)\n  template <typename\
+    \ F>\n  void enumerate(np root, F f) {\n    auto dfs = [&](auto &dfs, np root,\
+    \ UINT val, int ht) -> void {\n      if (ht == 0) {\n        f(val, root->cnt);\n\
+    \        return;\n      }\n      np c = root->l;\n      if (c) { dfs(dfs, c, val\
+    \ << (c->width) | (c->val), ht - (c->width)); }\n      c = root->r;\n      if\
+    \ (c) { dfs(dfs, c, val << (c->width) | (c->val), ht - (c->width)); }\n    };\n\
+    \    if (root) dfs(dfs, root, 0, LOG);\n  }\n\n  // xor_val \u3057\u305F\u3042\
+    \u3068\u306E\u5024\u3067\u6607\u9806 k \u756A\u76EE\n  UINT kth(np root, T k,\
+    \ UINT xor_val) {\n    assert(root && 0 <= k && k < root->cnt);\n    return kth_rec(root,\
+    \ 0, k, LOG, xor_val) ^ xor_val;\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\
+    \u306E\u5024\u3067\u6700\u5C0F\u5024\n  UINT min(np root, UINT xor_val) {\n  \
+    \  assert(root && root->cnt);\n    return kth(root, 0, xor_val);\n  }\n\n  //\
+    \ xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067\u6700\u5927\u5024\n  UINT\
+    \ max(np root, UINT xor_val) {\n    assert(root && root->cnt);\n    return kth(root,\
+    \ (root->cnt) - 1, xor_val);\n  }\n\n  // xor_val \u3057\u305F\u3042\u3068\u306E\
+    \u5024\u3067 [0, upper) \u5185\u306B\u5165\u308B\u3082\u306E\u306E\u500B\u6570\
+    \n  T prefix_count(np root, UINT upper, UINT xor_val) {\n    if (!root) return\
+    \ 0;\n    return prefix_count_rec(root, LOG, upper, xor_val, 0);\n  }\n\n  //\
+    \ xor_val \u3057\u305F\u3042\u3068\u306E\u5024\u3067 [lo, hi) \u5185\u306B\u5165\
+    \u308B\u3082\u306E\u306E\u500B\u6570\n  T count(np root, UINT lo, UINT hi, UINT\
+    \ xor_val) {\n    return prefix_count(root, hi, xor_val) - prefix_count(root,\
+    \ lo, xor_val);\n  }\n\nprivate:\n  inline UINT mask(int k) { return (UINT(1)\
+    \ << k) - 1; }\n\n  np new_node(int width, UINT val) {\n    pool[pid].l = pool[pid].r\
+    \ = nullptr;\n    pool[pid].width = width;\n    pool[pid].val = val;\n    pool[pid].cnt\
+    \ = 0;\n    return &(pool[pid++]);\n  }\n\n  np copy_node(np c) {\n    if (!c\
+    \ || !PERSISTENT) return c;\n    np res = &(pool[pid++]);\n    res->width = c->width,\
+    \ res->val = c->val;\n    res->cnt = c->cnt, res->l = c->l, res->r = c->r;\n \
+    \   return res;\n  }\n\n  np add_rec(np root, int ht, UINT val, T cnt) {\n   \
+    \ root = copy_node(root);\n    root->cnt += cnt;\n    if (ht == 0) return root;\n\
+    \n    bool go_r = (val >> (ht - 1)) & 1;\n    np c = (go_r ? root->r : root->l);\n\
+    \    if (!c) {\n      c = new_node(ht, val);\n      c->cnt = cnt;\n      if (!go_r)\
+    \ root->l = c;\n      if (go_r) root->r = c;\n      return root;\n    }\n    int\
+    \ w = c->width;\n    if ((val >> (ht - w)) == c->val) {\n      c = add_rec(c,\
+    \ ht - w, val & mask(ht - w), cnt);\n      if (!go_r) root->l = c;\n      if (go_r)\
+    \ root->r = c;\n      return root;\n    }\n    int same = w - 1 - topbit((val\
+    \ >> (ht - w)) ^ (c->val));\n    np n = new_node(same, (c->val) >> (w - same));\n\
+    \    n->cnt = c->cnt + cnt;\n    c = copy_node(c);\n    c->width = w - same;\n\
+    \    c->val = c->val & mask(w - same);\n    if ((val >> (ht - same - 1)) & 1)\
+    \ {\n      n->l = c;\n      n->r = new_node(ht - same, val & mask(ht - same));\n\
+    \      n->r->cnt = cnt;\n    } else {\n      n->r = c;\n      n->l = new_node(ht\
+    \ - same, val & mask(ht - same));\n      n->l->cnt = cnt;\n    }\n    if (!go_r)\
+    \ root->l = n;\n    if (go_r) root->r = n;\n    return root;\n  }\n\n  UINT kth_rec(np\
+    \ root, UINT val, T k, int ht, UINT xor_val) {\n    if (ht == 0) return val;\n\
+    \    np left = root->l, right = root->r;\n    if ((xor_val >> (ht - 1)) & 1) swap(left,\
+    \ right);\n    T sl = (left ? left->cnt : 0);\n    np c;\n    if (k < sl) { c\
+    \ = left; }\n    if (k >= sl) { c = right, k -= sl; }\n    int w = c->width;\n\
+    \    return kth_rec(c, val << w | (c->val), k, ht - w, xor_val);\n  }\n\n  T prefix_count_rec(np\
+    \ root, int ht, UINT LIM, UINT xor_val, UINT val) {\n    UINT now = (val << ht)\
+    \ ^ (xor_val);\n    if ((LIM >> ht) > (now >> ht)) return root->cnt;\n    if (ht\
+    \ == 0 || (LIM >> ht) < (now >> ht)) return 0;\n    T res = 0;\n    FOR(k, 2)\
+    \ {\n      np c = (k == 0 ? root->l : root->r);\n      if (c) {\n        int w\
+    \ = c->width;\n        res += prefix_count_rec(c, ht - w, LIM, xor_val, val <<\
+    \ w | c->val);\n      }\n    }\n    return res;\n  }\n};\n#line 2 \"ds/hashmap.hpp\"\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
+    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
+    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap\
+    \ = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\
+    \r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i]\
+    \ && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val&\
+    \ operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\
+    \n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\
+    \n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n\
+    \  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
+    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i],\
+    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val>\
+    \ val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64\
+    \ FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 6 \"test/2_library_checker/data_structure/set_xor_min.test.cpp\"\
     \n\nvoid solve() {\n  INT(Q);\n  HashMap<char> MP(Q);\n  Binary_Trie<30, false,\
     \ 1'000'000, int, int> X;\n  using np = decltype(X)::np;\n  np root = nullptr;\n\
     \  FOR(Q) {\n    INT(t, x);\n    if (t == 0) {\n      if (MP[x] == 0) {\n    \
@@ -314,8 +316,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/set_xor_min.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/set_xor_min.test.cpp
 layout: document

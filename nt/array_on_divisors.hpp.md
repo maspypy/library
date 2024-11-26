@@ -18,16 +18,16 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1728.test.cpp
     title: test/3_yukicoder/1728.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2264.test.cpp
     title: test/3_yukicoder/2264.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc212g.test.cpp
     title: test/5_atcoder/abc212g.test.cpp
   - icon: ':x:'
@@ -38,7 +38,7 @@ data:
     title: test/5_atcoder/abc349f.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -174,8 +174,11 @@ data:
     \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
     \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod *\
     \ i + j + k] = ADD(dat[mod * i + j + k], dat[mod * i + j]); }\n      }\n     \
-    \ k *= (e + 1);\n    }\n  }\n\n  // (d, fd)\n  template <typename F>\n  void enumerate(F\
-    \ f) {\n    FOR(i, len(divs)) { f(divs[i], dat[i]); }\n  }\n};\n"
+    \ k *= (e + 1);\n    }\n  }\n\n  template <typename F>\n  void set(F f) {\n  \
+    \  FOR(i, len(divs)) { dat[i] = f(divs[i]); }\n  }\n\n  // (d, fd)\n  // &fd \u3067\
+    \u53D7\u3051\u53D6\u308C\u3070\u4EE3\u5165\u3068\u304B\u3082\u3067\u304D\u307E\
+    \u3059\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
+    \ { f(divs[i], dat[i]); }\n  }\n};\n"
   code: "#include \"nt/factor.hpp\"\n#include \"ds/hashmap.hpp\"\n\ntemplate <typename\
     \ T>\nstruct Array_On_Divisors {\n  vc<pair<ll, int>> pf;\n  vc<ll> divs;\n  vc<T>\
     \ dat;\n  HashMap<int> MP;\n\n  Array_On_Divisors(ll N = 1) { build(N); }\n  Array_On_Divisors(vc<pair<ll,\
@@ -224,8 +227,10 @@ data:
     \    for (auto&& [p, e]: pf) {\n      ll mod = k * (e + 1);\n      FOR(i, len(divs)\
     \ / mod) {\n        FOR(j, mod - k) { dat[mod * i + j + k] = ADD(dat[mod * i +\
     \ j + k], dat[mod * i + j]); }\n      }\n      k *= (e + 1);\n    }\n  }\n\n \
-    \ // (d, fd)\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
-    \ { f(divs[i], dat[i]); }\n  }\n};\n"
+    \ template <typename F>\n  void set(F f) {\n    FOR(i, len(divs)) { dat[i] = f(divs[i]);\
+    \ }\n  }\n\n  // (d, fd)\n  // &fd \u3067\u53D7\u3051\u53D6\u308C\u3070\u4EE3\u5165\
+    \u3068\u304B\u3082\u3067\u304D\u307E\u3059\n  template <typename F>\n  void enumerate(F\
+    \ f) {\n    FOR(i, len(divs)) { f(divs[i], dat[i]); }\n  }\n};\n"
   dependsOn:
   - nt/factor.hpp
   - random/base.hpp
@@ -235,8 +240,8 @@ data:
   isVerificationFile: false
   path: nt/array_on_divisors.hpp
   requiredBy: []
-  timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2264.test.cpp
   - test/3_yukicoder/1728.test.cpp

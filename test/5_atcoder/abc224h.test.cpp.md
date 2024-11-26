@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/dual_mcf.hpp
     title: flow/dual_mcf.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc224/tasks/abc224_h
@@ -202,48 +202,49 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/5_atcoder/abc224h.test.cpp\"\n\n#line 2 \"flow/bflow.hpp\"\
-    \n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\
-    \ntemplate <class Flow = ll, class Cost = ll>\nstruct MinCostFlow {\nprivate:\n\
-    \  static constexpr int SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using\
-    \ E_id = uint32_t;\n\n  struct Edge {\n    friend struct MinCostFlow;\n\n  private:\n\
-    \    V_id frm, to;\n    Flow flow, cap;\n    Cost cost;\n    E_id rev;\n\n  public:\n\
-    \    Edge() = default;\n\n    Edge(const V_id frm, const V_id to, const Flow cap,\
-    \ const Cost cost, const E_id rev) : frm(frm), to(to), flow(0), cap(cap), cost(cost),\
-    \ rev(rev) {}\n\n    [[nodiscard]] Flow residual_cap() const { return cap - flow;\
-    \ }\n  };\n\npublic:\n  struct EdgePtr {\n    friend struct MinCostFlow;\n\n \
-    \ private:\n    const MinCostFlow *instance;\n    const V_id v;\n    const E_id\
-    \ e;\n\n    EdgePtr(const MinCostFlow *instance, const V_id v, const E_id e) :\
-    \ instance(instance), v(v), e(e) {}\n\n    [[nodiscard]] const Edge &edge() const\
-    \ { return instance->g[v][e]; }\n    [[nodiscard]] const Edge &rev() const {\n\
-    \      const Edge &e = edge();\n      return instance->g[e.to][e.rev];\n    }\n\
-    \n  public:\n    [[nodiscard]] V_id frm() const { return rev().to; }\n    [[nodiscard]]\
-    \ V_id to() const { return edge().to; }\n    [[nodiscard]] Flow flow() const {\
-    \ return edge().flow; }\n    [[nodiscard]] Flow lower() const { return -rev().cap;\
-    \ }\n    [[nodiscard]] Flow upper() const { return edge().cap; }\n    [[nodiscard]]\
-    \ Cost cost() const { return edge().cost; }\n    [[nodiscard]] Cost gain() const\
-    \ { return -edge().cost; }\n  };\n\nprivate:\n  V_id n;\n  std::vector<std::vector<Edge>>\
-    \ g;\n  std::vector<Flow> b;\n\npublic:\n  MinCostFlow(int n) : n(n) {\n    g.resize(n);\n\
-    \    b.resize(n);\n  }\n\n  V_id add_vertex() {\n    ++n;\n    g.resize(n);\n\
-    \    b.resize(n);\n    return n - 1;\n  }\n\n  std::vector<V_id> add_vertices(const\
-    \ size_t size) {\n    std::vector<V_id> ret;\n    for (V_id i = 0; i < size; ++i)\
-    \ ret.emplace_back(n + i);\n    n += size;\n    g.resize(n);\n    b.resize(n);\n\
-    \    return ret;\n  }\n\n  void add(const V_id frm, const V_id to, const Flow\
-    \ lo, const Flow hi, const Cost cost) {\n    const E_id e = g[frm].size(), re\
-    \ = frm == to ? e + 1 : g[to].size();\n    assert(lo <= hi);\n    g[frm].emplace_back(Edge{frm,\
-    \ to, hi, cost, re});\n    g[to].emplace_back(Edge{to, frm, -lo, -cost, e});\n\
-    \    edges.eb(EdgePtr{this, frm, e});\n  }\n\n  void add_source(const V_id v,\
-    \ const Flow amount) { b[v] += amount; }\n  void add_sink(const V_id v, const\
-    \ Flow amount) { b[v] -= amount; }\n\nprivate:\n  static Cost constexpr unreachable\
-    \ = std::numeric_limits<Cost>::max();\n  Cost farthest;\n  vc<Cost> potential,\
-    \ dist;\n  vc<Edge *> parent;\n  pqg<pair<Cost, int>> pq;\n  vc<V_id> excess_vs,\
-    \ deficit_vs;\n  vc<EdgePtr> edges;\n  Edge &rev(const Edge &e) { return g[e.to][e.rev];\
-    \ }\n\n  void push(Edge &e, const Flow amount) {\n    e.flow += amount;\n    g[e.to][e.rev].flow\
-    \ -= amount;\n  }\n\n  Cost residual_cost(const V_id frm, const V_id to, const\
-    \ Edge &e) { return e.cost + potential[frm] - potential[to]; }\n\n  bool dual(const\
-    \ Flow delta) {\n    dist.assign(n, unreachable);\n    parent.assign(n, nullptr);\n\
-    \    excess_vs.erase(remove_if(all(excess_vs), [&](const V_id v) { return b[v]\
-    \ < delta; }), end(excess_vs));\n    deficit_vs.erase(remove_if(all(deficit_vs),\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/5_atcoder/abc224h.test.cpp\"\
+    \n\n#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\u3082\
+    \u52D5\u4F5C\u3059\u308B\u3088\ntemplate <class Flow = ll, class Cost = ll>\n\
+    struct MinCostFlow {\nprivate:\n  static constexpr int SCALING_FACTOR = 2;\n \
+    \ using V_id = uint32_t;\n  using E_id = uint32_t;\n\n  struct Edge {\n    friend\
+    \ struct MinCostFlow;\n\n  private:\n    V_id frm, to;\n    Flow flow, cap;\n\
+    \    Cost cost;\n    E_id rev;\n\n  public:\n    Edge() = default;\n\n    Edge(const\
+    \ V_id frm, const V_id to, const Flow cap, const Cost cost, const E_id rev) :\
+    \ frm(frm), to(to), flow(0), cap(cap), cost(cost), rev(rev) {}\n\n    [[nodiscard]]\
+    \ Flow residual_cap() const { return cap - flow; }\n  };\n\npublic:\n  struct\
+    \ EdgePtr {\n    friend struct MinCostFlow;\n\n  private:\n    const MinCostFlow\
+    \ *instance;\n    const V_id v;\n    const E_id e;\n\n    EdgePtr(const MinCostFlow\
+    \ *instance, const V_id v, const E_id e) : instance(instance), v(v), e(e) {}\n\
+    \n    [[nodiscard]] const Edge &edge() const { return instance->g[v][e]; }\n \
+    \   [[nodiscard]] const Edge &rev() const {\n      const Edge &e = edge();\n \
+    \     return instance->g[e.to][e.rev];\n    }\n\n  public:\n    [[nodiscard]]\
+    \ V_id frm() const { return rev().to; }\n    [[nodiscard]] V_id to() const { return\
+    \ edge().to; }\n    [[nodiscard]] Flow flow() const { return edge().flow; }\n\
+    \    [[nodiscard]] Flow lower() const { return -rev().cap; }\n    [[nodiscard]]\
+    \ Flow upper() const { return edge().cap; }\n    [[nodiscard]] Cost cost() const\
+    \ { return edge().cost; }\n    [[nodiscard]] Cost gain() const { return -edge().cost;\
+    \ }\n  };\n\nprivate:\n  V_id n;\n  std::vector<std::vector<Edge>> g;\n  std::vector<Flow>\
+    \ b;\n\npublic:\n  MinCostFlow(int n) : n(n) {\n    g.resize(n);\n    b.resize(n);\n\
+    \  }\n\n  V_id add_vertex() {\n    ++n;\n    g.resize(n);\n    b.resize(n);\n\
+    \    return n - 1;\n  }\n\n  std::vector<V_id> add_vertices(const size_t size)\
+    \ {\n    std::vector<V_id> ret;\n    for (V_id i = 0; i < size; ++i) ret.emplace_back(n\
+    \ + i);\n    n += size;\n    g.resize(n);\n    b.resize(n);\n    return ret;\n\
+    \  }\n\n  void add(const V_id frm, const V_id to, const Flow lo, const Flow hi,\
+    \ const Cost cost) {\n    const E_id e = g[frm].size(), re = frm == to ? e + 1\
+    \ : g[to].size();\n    assert(lo <= hi);\n    g[frm].emplace_back(Edge{frm, to,\
+    \ hi, cost, re});\n    g[to].emplace_back(Edge{to, frm, -lo, -cost, e});\n   \
+    \ edges.eb(EdgePtr{this, frm, e});\n  }\n\n  void add_source(const V_id v, const\
+    \ Flow amount) { b[v] += amount; }\n  void add_sink(const V_id v, const Flow amount)\
+    \ { b[v] -= amount; }\n\nprivate:\n  static Cost constexpr unreachable = std::numeric_limits<Cost>::max();\n\
+    \  Cost farthest;\n  vc<Cost> potential, dist;\n  vc<Edge *> parent;\n  pqg<pair<Cost,\
+    \ int>> pq;\n  vc<V_id> excess_vs, deficit_vs;\n  vc<EdgePtr> edges;\n  Edge &rev(const\
+    \ Edge &e) { return g[e.to][e.rev]; }\n\n  void push(Edge &e, const Flow amount)\
+    \ {\n    e.flow += amount;\n    g[e.to][e.rev].flow -= amount;\n  }\n\n  Cost\
+    \ residual_cost(const V_id frm, const V_id to, const Edge &e) { return e.cost\
+    \ + potential[frm] - potential[to]; }\n\n  bool dual(const Flow delta) {\n   \
+    \ dist.assign(n, unreachable);\n    parent.assign(n, nullptr);\n    excess_vs.erase(remove_if(all(excess_vs),\
+    \ [&](const V_id v) { return b[v] < delta; }), end(excess_vs));\n    deficit_vs.erase(remove_if(all(deficit_vs),\
     \ [&](const V_id v) { return b[v] > -delta; }), end(deficit_vs));\n    for (const\
     \ auto v: excess_vs) pq.emplace(dist[v] = 0, v);\n    farthest = 0;\n    size_t\
     \ deficit_count = 0;\n    while (!pq.empty()) {\n      const auto [d, u] = pq.top();\n\
@@ -324,8 +325,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc224h.test.cpp
   requiredBy: []
-  timestamp: '2024-11-20 19:40:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc224h.test.cpp
 layout: document

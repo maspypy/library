@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/for_nck.hpp
     title: setfunc/for_nck.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D
@@ -200,12 +200,13 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"setfunc/for_nck.hpp\"\n#define FOR_nCk(s, n, k) \\\r\
-    \n  for (ll s = (1LL << (k)) - 1, tmp_var = 0; s < (1LL << (n)); \\\r\n      \
-    \ tmp_var = s | (s - 1), s = (tmp_var + 1) | (((~tmp_var & -~tmp_var) - 1) >>\
-    \ (__builtin_ctzll(s) + 1)))\r\n#line 6 \"test/4_aoj/ITP2_11_D.test.cpp\"\n\n\
-    void solve() {\n  LL(N, K);\n  FOR_nCk(s, N, K) {\n    vi I;\n    FOR(i, N) if\
-    \ (s & 1 << i) I.eb(i);\n    print(to_string(s) + \":\", I);\n  }\n}\n\nsigned\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"setfunc/for_nck.hpp\"\n#define FOR_nCk(s,\
+    \ n, k) \\\r\n  for (ll s = (1LL << (k)) - 1, tmp_var = 0; s < (1LL << (n)); \\\
+    \r\n       tmp_var = s | (s - 1), s = (tmp_var + 1) | (((~tmp_var & -~tmp_var)\
+    \ - 1) >> (__builtin_ctzll(s) + 1)))\r\n#line 6 \"test/4_aoj/ITP2_11_D.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, K);\n  FOR_nCk(s, N, K) {\n    vi I;\n    FOR(i, N)\
+    \ if (s & 1 << i) I.eb(i);\n    print(to_string(s) + \":\", I);\n  }\n}\n\nsigned\
     \ main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
     \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D\"\
@@ -221,8 +222,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp
 layout: document

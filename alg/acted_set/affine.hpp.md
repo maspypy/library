@@ -6,7 +6,7 @@ data:
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc222g.test.cpp
     title: test/5_atcoder/abc222g.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/5_atcoder/abc270_g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
@@ -42,7 +42,7 @@ data:
   path: alg/acted_set/affine.hpp
   requiredBy: []
   timestamp: '2023-07-25 22:13:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/abc270_g.test.cpp
   - test/5_atcoder/abc222g.test.cpp

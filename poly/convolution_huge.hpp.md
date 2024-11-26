@@ -25,14 +25,14 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/convolution/convolution_huge.test.cpp
-    title: test/2_library_checker/convolution/convolution_huge.test.cpp
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: test/2_library_checker/convolution/convolution_huge.test___.cpp
+    title: test/2_library_checker/convolution/convolution_huge.test___.cpp
+  _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -312,11 +312,11 @@ data:
   - poly/ntt.hpp
   isVerificationFile: false
   path: poly/convolution_huge.hpp
-  requiredBy: []
+  requiredBy:
+  - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
-  verifiedWith:
-  - test/2_library_checker/convolution/convolution_huge.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/convolution_huge.hpp
 layout: document
 redirect_from:

@@ -208,37 +208,38 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 5 \"test/5_atcoder/abc229h.test.cpp\"\n\n#line 1 \"game/solve_partizan_game.hpp\"\
-    \n\n#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\u6301\u3064\
-    \ntemplate <typename INTEGER>\nstruct Dyadic_Rational {\n  using X = Dyadic_Rational;\n\
-    \  INTEGER a, b;\n  static constexpr int M = std::numeric_limits<INTEGER>::digits\
-    \ - 2;\n\n  Dyadic_Rational(INTEGER a = 0) : a(a), b(0) {}\n\n  // x + y / z\n\
-    \  Dyadic_Rational(INTEGER x, INTEGER y, INTEGER z) : a(x), b(y) {\n    auto [q,\
-    \ r] = divmod(b, z);\n    a += q;\n    b = r;\n    b *= (INTEGER(1) << M) / z;\n\
-    \  }\n\n  // x/y\n  Dyadic_Rational(INTEGER x, INTEGER y) : Dyadic_Rational(0,\
-    \ x, y) {}\n\n  static X from_ab(INTEGER a, INTEGER b) {\n    X x(a);\n    x.b\
-    \ = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\n  bool operator==(X const& rhs)\
-    \ const { return (a == rhs.a && b == rhs.b); }\n  bool operator!=(X const& rhs)\
-    \ const { return !(*this == rhs); }\n  bool operator<(X const& rhs) const { return\
-    \ (a < rhs.a) || (a == rhs.a && b < rhs.b); }\n  bool operator<=(X const& rhs)\
-    \ const { return (a < rhs.a) || (a == rhs.a && b <= rhs.b); }\n  bool operator>(X\
-    \ const& rhs) const { return (a > rhs.a) || (a == rhs.a && b > rhs.b); }\n  bool\
-    \ operator>=(X const& rhs) const { return (a > rhs.a) || (a == rhs.a && b >= rhs.b);\
-    \ }\n\n  // \u52A0\u6CD5\n  friend X operator+(const X& x, const X& y) {\n   \
-    \ INTEGER a = x.a + y.a, b = x.b + y.b;\n    while (b >= INTEGER(1) << M) {\n\
-    \      ++a;\n      b -= INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n \
-    \ }\n  friend X operator-(const X& x, const X& y) {\n    INTEGER a = x.a - y.a,\
-    \ b = x.b - y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1) << M;\n\
-    \    }\n    return from_ab(a, b);\n  }\n  friend X operator-(const X& x) {\n \
-    \   INTEGER a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
-    \ << M;\n    }\n    return from_ab(a, b);\n  }\n  X& operator+=(const X& x) {\
-    \ return (*this) = (*this) + x; }\n  X& operator-=(const X& x) { return (*this)\
-    \ = (*this) - x; }\n\n  static X simplest(X x, X y, bool include_x = false, bool\
-    \ include_y = false) {\n    if (include_x && x != -infinity()) {\n      // eps\
-    \ \u3092\u5F15\u304F, \u3042\u3068\u3067\u3082\u3063\u3068\u5C0F\u3055\u3044 eps\
-    \ \u3092\u4F7F\u3063\u3066\u3044\u308B !\n      x = x - from_ab(0, 2);\n    }\n\
-    \    if (include_y && y != infinity()) {\n      // eps \u3092\u8DB3\u3059\n  \
-    \    y = y + from_ab(0, 2);\n    }\n    assert(x < y);\n    if (y.a < 0) return\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 5 \"test/5_atcoder/abc229h.test.cpp\"\
+    \n\n#line 1 \"game/solve_partizan_game.hpp\"\n\n#line 1 \"game/dyadic_rational.hpp\"\
+    \n// a+b/2^M \u306E\u5F62\u3067\u6301\u3064\ntemplate <typename INTEGER>\nstruct\
+    \ Dyadic_Rational {\n  using X = Dyadic_Rational;\n  INTEGER a, b;\n  static constexpr\
+    \ int M = std::numeric_limits<INTEGER>::digits - 2;\n\n  Dyadic_Rational(INTEGER\
+    \ a = 0) : a(a), b(0) {}\n\n  // x + y / z\n  Dyadic_Rational(INTEGER x, INTEGER\
+    \ y, INTEGER z) : a(x), b(y) {\n    auto [q, r] = divmod(b, z);\n    a += q;\n\
+    \    b = r;\n    b *= (INTEGER(1) << M) / z;\n  }\n\n  // x/y\n  Dyadic_Rational(INTEGER\
+    \ x, INTEGER y) : Dyadic_Rational(0, x, y) {}\n\n  static X from_ab(INTEGER a,\
+    \ INTEGER b) {\n    X x(a);\n    x.b = b;\n    return x;\n  }\n\n  // \u6BD4\u8F03\
+    \n  bool operator==(X const& rhs) const { return (a == rhs.a && b == rhs.b); }\n\
+    \  bool operator!=(X const& rhs) const { return !(*this == rhs); }\n  bool operator<(X\
+    \ const& rhs) const { return (a < rhs.a) || (a == rhs.a && b < rhs.b); }\n  bool\
+    \ operator<=(X const& rhs) const { return (a < rhs.a) || (a == rhs.a && b <= rhs.b);\
+    \ }\n  bool operator>(X const& rhs) const { return (a > rhs.a) || (a == rhs.a\
+    \ && b > rhs.b); }\n  bool operator>=(X const& rhs) const { return (a > rhs.a)\
+    \ || (a == rhs.a && b >= rhs.b); }\n\n  // \u52A0\u6CD5\n  friend X operator+(const\
+    \ X& x, const X& y) {\n    INTEGER a = x.a + y.a, b = x.b + y.b;\n    while (b\
+    \ >= INTEGER(1) << M) {\n      ++a;\n      b -= INTEGER(1) << M;\n    }\n    return\
+    \ from_ab(a, b);\n  }\n  friend X operator-(const X& x, const X& y) {\n    INTEGER\
+    \ a = x.a - y.a, b = x.b - y.b;\n    while (b < 0) {\n      --a;\n      b += INTEGER(1)\
+    \ << M;\n    }\n    return from_ab(a, b);\n  }\n  friend X operator-(const X&\
+    \ x) {\n    INTEGER a = -x.a, b = -x.b;\n    while (b < 0) {\n      --a;\n   \
+    \   b += INTEGER(1) << M;\n    }\n    return from_ab(a, b);\n  }\n  X& operator+=(const\
+    \ X& x) { return (*this) = (*this) + x; }\n  X& operator-=(const X& x) { return\
+    \ (*this) = (*this) - x; }\n\n  static X simplest(X x, X y, bool include_x = false,\
+    \ bool include_y = false) {\n    if (include_x && x != -infinity()) {\n      //\
+    \ eps \u3092\u5F15\u304F, \u3042\u3068\u3067\u3082\u3063\u3068\u5C0F\u3055\u3044\
+    \ eps \u3092\u4F7F\u3063\u3066\u3044\u308B !\n      x = x - from_ab(0, 2);\n \
+    \   }\n    if (include_y && y != infinity()) {\n      // eps \u3092\u8DB3\u3059\
+    \n      y = y + from_ab(0, 2);\n    }\n    assert(x < y);\n    if (y.a < 0) return\
     \ -simplest(-y, -x);\n    {\n      INTEGER l = x.a + 1;\n      INTEGER r = (y.b\
     \ == 0 ? y.a - 1 : y.a);\n      if (l <= 0 && 0 <= r) return X(0);\n      if (l\
     \ <= r && 0 <= l) return X(l);\n      if (l <= r && r <= 0) return X(r);\n   \
@@ -337,7 +338,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc229h.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc229h.test.cpp

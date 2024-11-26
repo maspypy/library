@@ -202,19 +202,20 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"ds/segtree/segtree_2d.hpp\"\n// \u70B9\u306E\u91CD\u8907\
-    \u304C\u3042\u3063\u3066\u3082\u5225\u306E\u70B9\u3068\u3057\u3066 set \u306A\u3069\
-    \u304C\u3055\u308C\u308B\r\ntemplate <typename Monoid, typename XY, bool SMALL_X\
-    \ = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\n  using S = typename\
-    \ MX::value_type;\r\n  static_assert(MX::commute);\r\n  int N;\r\n  // X to idx\r\
-    \n  vc<XY> keyX;\r\n  int minX;\r\n  // top node \u306E\u70B9\u5217\r\n  vc<XY>\
-    \ all_Y;\r\n  vc<int> pos;\r\n  // segtree data\r\n  int NX, log, size;\r\n  vc<int>\
-    \ indptr;\r\n  vc<S> dat;\r\n  // fractional cascading\r\n  vc<int> to_left;\r\
-    \n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y)\r\n      : SegTree_2D(len(X), [&](int\
-    \ i) -> tuple<XY, XY, S> {\r\n          return {X[i], Y[i], MX::unit()};\r\n \
-    \       }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)\r\n     \
-    \ : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\r\n          return {X[i],\
-    \ Y[i], vals[i]};\r\n        }) {}\r\n\r\n  // f(i) = (x,y,val)\r\n  template\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"ds/segtree/segtree_2d.hpp\"\n//\
+    \ \u70B9\u306E\u91CD\u8907\u304C\u3042\u3063\u3066\u3082\u5225\u306E\u70B9\u3068\
+    \u3057\u3066 set \u306A\u3069\u304C\u3055\u308C\u308B\r\ntemplate <typename Monoid,\
+    \ typename XY, bool SMALL_X = false>\r\nstruct SegTree_2D {\r\n  using MX = Monoid;\r\
+    \n  using S = typename MX::value_type;\r\n  static_assert(MX::commute);\r\n  int\
+    \ N;\r\n  // X to idx\r\n  vc<XY> keyX;\r\n  int minX;\r\n  // top node \u306E\
+    \u70B9\u5217\r\n  vc<XY> all_Y;\r\n  vc<int> pos;\r\n  // segtree data\r\n  int\
+    \ NX, log, size;\r\n  vc<int> indptr;\r\n  vc<S> dat;\r\n  // fractional cascading\r\
+    \n  vc<int> to_left;\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y)\r\n      : SegTree_2D(len(X),\
+    \ [&](int i) -> tuple<XY, XY, S> {\r\n          return {X[i], Y[i], MX::unit()};\r\
+    \n        }) {}\r\n\r\n  SegTree_2D(vc<XY>& X, vc<XY>& Y, vc<S>& vals)\r\n   \
+    \   : SegTree_2D(len(X), [&](int i) -> tuple<XY, XY, S> {\r\n          return\
+    \ {X[i], Y[i], vals[i]};\r\n        }) {}\r\n\r\n  // f(i) = (x,y,val)\r\n  template\
     \ <typename F>\r\n  SegTree_2D(int N, F f) {\r\n    vc<XY> X(N), Y(N);\r\n   \
     \ vc<S> wt(N);\r\n    FOR(i, N) {\r\n      auto [a, b, c] = f(i);\r\n      X[i]\
     \ = a, Y[i] = b, wt[i] = c;\r\n    }\r\n    if (!SMALL_X) {\r\n      keyX = X;\r\
@@ -329,7 +330,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc266h.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc266h.test.cpp

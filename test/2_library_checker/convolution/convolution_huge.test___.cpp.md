@@ -22,7 +22,7 @@ data:
   - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':warning:'
     path: poly/convolution_huge.hpp
     title: poly/convolution_huge.hpp
   - icon: ':question:'
@@ -38,13 +38,11 @@ data:
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':warning:'
   attributes:
-    '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/convolution_mod_large
     links:
     - https://judge.yosupo.jp/problem/convolution_mod_large
-  bundledCode: "#line 1 \"test/2_library_checker/convolution/convolution_huge.test.cpp\"\
+  bundledCode: "#line 1 \"test/2_library_checker/convolution/convolution_huge.test___.cpp\"\
     \n#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_large\"\r\n\
     #line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
@@ -224,7 +222,8 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/convolution/convolution_huge.test.cpp\"\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/2_library_checker/convolution/convolution_huge.test___.cpp\"\
     \n\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
     \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
@@ -479,18 +478,16 @@ data:
     \    vc<mint> E(2 << L);\r\n    FOR(c, 4) FOR(d, 4) if (c + d == i) {\r\n    \
     \  FOR(k, 2 << L) E[k] += C[c][k] * D[d][k];\r\n    }\r\n    ntt(E, true);\r\n\
     \    FOR(k, 2 << L) ANS[(i << L) + k] += E[k];\r\n  }\r\n  ANS.resize(N + M -\
-    \ 1);\r\n  return ANS;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/convolution_huge.test.cpp\"\
+    \ 1);\r\n  return ANS;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/convolution_huge.test___.cpp\"\
     \nusing mint = modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint,\
     \ A, N);\r\n  VEC(mint, B, M);\r\n  print(convolution_huge(A, B));\r\n}\r\n\r\n\
-    signed main() {\r\n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n \
-    \ cout << setprecision(15);\r\n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    signed main() {\r\n  solve();\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/convolution_mod_large\"\
     \r\n#include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n\r\n#include\
     \ \"mod/modint.hpp\"\r\n#include \"poly/convolution_huge.hpp\"\r\nusing mint =\
     \ modint998;\r\n\r\nvoid solve() {\r\n  LL(N, M);\r\n  VEC(mint, A, N);\r\n  VEC(mint,\
     \ B, M);\r\n  print(convolution_huge(A, B));\r\n}\r\n\r\nsigned main() {\r\n \
-    \ cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \ solve();\r\n  return 0;\r\n}\r\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -503,16 +500,16 @@ data:
   - poly/convolution_naive.hpp
   - poly/convolution_karatsuba.hpp
   - poly/ntt.hpp
-  isVerificationFile: true
-  path: test/2_library_checker/convolution/convolution_huge.test.cpp
+  isVerificationFile: false
+  path: test/2_library_checker/convolution/convolution_huge.test___.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 18:49:50+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: test/2_library_checker/convolution/convolution_huge.test.cpp
+documentation_of: test/2_library_checker/convolution/convolution_huge.test___.cpp
 layout: document
 redirect_from:
-- /verify/test/2_library_checker/convolution/convolution_huge.test.cpp
-- /verify/test/2_library_checker/convolution/convolution_huge.test.cpp.html
-title: test/2_library_checker/convolution/convolution_huge.test.cpp
+- /library/test/2_library_checker/convolution/convolution_huge.test___.cpp
+- /library/test/2_library_checker/convolution/convolution_huge.test___.cpp.html
+title: test/2_library_checker/convolution/convolution_huge.test___.cpp
 ---

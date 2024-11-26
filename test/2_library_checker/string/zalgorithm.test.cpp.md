@@ -12,9 +12,9 @@ data:
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/zalgorithm
@@ -200,8 +200,9 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 4 \"test/2_library_checker/string/zalgorithm.test.cpp\"\n\
-    \r\n#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> // string,\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/2_library_checker/string/zalgorithm.test.cpp\"\
+    \n\r\n#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> // string,\
     \ vector \u3069\u3061\u3089\u3067\u3082\nvector<int> zalgorithm(const STRING&\
     \ s) {\n  int n = int(s.size());\n  if (n == 0) return {};\n  vector<int> z(n);\n\
     \  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++) {\n    int& k = z[i];\n   \
@@ -223,8 +224,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/zalgorithm.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/zalgorithm.test.cpp
 layout: document

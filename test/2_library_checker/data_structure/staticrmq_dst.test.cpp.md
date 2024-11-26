@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -203,37 +203,39 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\n\r\ntemplate\
-    \ <class Monoid>\r\nstruct Disjoint_Sparse_Table {\r\n  using MX = Monoid;\r\n\
-    \  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X> dat;\r\n\r\n\
-    \  Disjoint_Sparse_Table() {}\r\n  Disjoint_Sparse_Table(int n) { build(n); }\r\
-    \n  template <typename F>\r\n  Disjoint_Sparse_Table(int n, F f) {\r\n    build(n,\
-    \ f);\r\n  }\r\n  Disjoint_Sparse_Table(const vc<X>& v) { build(v); }\r\n\r\n\
-    \  void build(int m) {\r\n    build(m, [](int i) -> X { return MX::unit(); });\r\
-    \n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v), [&](int i) -> X {\
-    \ return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void build(int m, F\
-    \ f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\n    dat.resize(log);\r\
-    \n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\n    FOR(i, 1, log)\
-    \ {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n      int b = 1 << i;\r\
-    \n      for (int m = b; m <= n; m += 2 * b) {\r\n        int L = m - b, R = min(n,\
-    \ m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j - 1], v[j]);\r\n\
-    \        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\n      }\r\n  \
-    \  }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return MX::unit();\r\
-    \n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k = topbit(L ^ R);\r\
-    \n    return MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template <class F>\r\
-    \n  int max_right(const F check, int L) {\r\n    assert(0 <= L && L <= n && check(MX::unit()));\r\
-    \n    if (L == n) return n;\r\n    int ok = L, ng = n + 1;\r\n    while (ok +\
-    \ 1 < ng) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(L, k));\r\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"ds/sparse_table/disjoint_sparse_table.hpp\"\
+    \n\r\ntemplate <class Monoid>\r\nstruct Disjoint_Sparse_Table {\r\n  using MX\
+    \ = Monoid;\r\n  using X = typename MX::value_type;\r\n  int n, log;\r\n  vvc<X>\
+    \ dat;\r\n\r\n  Disjoint_Sparse_Table() {}\r\n  Disjoint_Sparse_Table(int n) {\
+    \ build(n); }\r\n  template <typename F>\r\n  Disjoint_Sparse_Table(int n, F f)\
+    \ {\r\n    build(n, f);\r\n  }\r\n  Disjoint_Sparse_Table(const vc<X>& v) { build(v);\
+    \ }\r\n\r\n  void build(int m) {\r\n    build(m, [](int i) -> X { return MX::unit();\
+    \ });\r\n  }\r\n  void build(const vc<X>& v) {\r\n    build(len(v), [&](int i)\
+    \ -> X { return v[i]; });\r\n  }\r\n  template <typename F>\r\n  void build(int\
+    \ m, F f) {\r\n    n = m, log = 1;\r\n    while ((1 << log) < n) ++log;\r\n  \
+    \  dat.resize(log);\r\n    dat[0].reserve(n);\r\n    FOR(i, n) dat[0].eb(f(i));\r\
+    \n    FOR(i, 1, log) {\r\n      auto& v = dat[i];\r\n      v = dat[0];\r\n   \
+    \   int b = 1 << i;\r\n      for (int m = b; m <= n; m += 2 * b) {\r\n       \
+    \ int L = m - b, R = min(n, m + b);\r\n        FOR_R(j, L + 1, m) v[j - 1] = MX::op(v[j\
+    \ - 1], v[j]);\r\n        FOR(j, m, R - 1) v[j + 1] = MX::op(v[j], v[j + 1]);\r\
+    \n      }\r\n    }\r\n  }\r\n\r\n  X prod(int L, int R) {\r\n    if (L == R) return\
+    \ MX::unit();\r\n    --R;\r\n    if (L == R) return dat[0][L];\r\n    int k =\
+    \ topbit(L ^ R);\r\n    return MX::op(dat[k][L], dat[k][R]);\r\n  }\r\n\r\n  template\
+    \ <class F>\r\n  int max_right(const F check, int L) {\r\n    assert(0 <= L &&\
+    \ L <= n && check(MX::unit()));\r\n    if (L == n) return n;\r\n    int ok = L,\
+    \ ng = n + 1;\r\n    while (ok + 1 < ng) {\r\n      int k = (ok + ng) / 2;\r\n\
+    \      bool bl = check(prod(L, k));\r\n      if (bl) ok = k;\r\n      if (!bl)\
+    \ ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n\r\n  template <class F>\r\n  int\
+    \ min_left(const F check, int R) {\r\n    assert(0 <= R && R <= n && check(MX::unit()));\r\
+    \n    if (R == 0) return 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 <\
+    \ ok) {\r\n      int k = (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\
     \n      if (bl) ok = k;\r\n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\
-    \n  }\r\n\r\n  template <class F>\r\n  int min_left(const F check, int R) {\r\n\
-    \    assert(0 <= R && R <= n && check(MX::unit()));\r\n    if (R == 0) return\
-    \ 0;\r\n    int ok = R, ng = -1;\r\n    while (ng + 1 < ok) {\r\n      int k =\
-    \ (ok + ng) / 2;\r\n      bool bl = check(prod(k, R));\r\n      if (bl) ok = k;\r\
-    \n      if (!bl) ng = k;\r\n    }\r\n    return ok;\r\n  }\r\n};\n#line 2 \"alg/monoid/min.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using\
-    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
-    \ { return min(x, y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n\
-    \  static constexpr bool commute = true;\r\n};\r\n#line 6 \"test/2_library_checker/data_structure/staticrmq_dst.test.cpp\"\
+    \n  }\r\n};\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Min {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return min(x, y); }\r\n  static constexpr\
+    \ X unit() { return infty<E>; }\r\n  static constexpr bool commute = true;\r\n\
+    };\r\n#line 6 \"test/2_library_checker/data_structure/staticrmq_dst.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n\n  Disjoint_Sparse_Table<Monoid_Min<int>>\
     \ seg(A);\n\n  FOR(Q) {\n    LL(a, b);\n    print(seg.prod(a, b));\n  }\n}\n\n\
     signed main() {\n  solve();\n  return 0;\n}\n"
@@ -251,8 +253,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dst.test.cpp
 layout: document

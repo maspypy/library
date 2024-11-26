@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -203,18 +203,20 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\n\
-    struct Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
-    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
-    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
-    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\
-    \n\r\n// sparse \u3082\u3042\u308B\u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\
-    \u306F\u305D\u3063\u3061\u3067\r\ntemplate <typename Monoid, bool PERSISTENT>\r\
-    \nstruct Dynamic_SegTree {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
-    \n  using F = function<X(ll, ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\
-    \n    Node *l, *r;\r\n    X x;\r\n  };\r\n\r\n  const int NODES;\r\n  const ll\
-    \ L0, R0;\r\n  Node *pool;\r\n  int pid;\r\n  using np = Node *;\r\n\r\n  Dynamic_SegTree(\r\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate\
+    \ <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return x\
+    \ + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return -x; }\r\
+    \n  static constexpr X power(const X &x, ll n) noexcept { return X(n) * x; }\r\
+    \n  static constexpr X unit() { return X(0); }\r\n  static constexpr bool commute\
+    \ = true;\r\n};\r\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\
+    \u3042\u308B\u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\u306F\u305D\u3063\
+    \u3061\u3067\r\ntemplate <typename Monoid, bool PERSISTENT>\r\nstruct Dynamic_SegTree\
+    \ {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  using\
+    \ F = function<X(ll, ll)>;\r\n  F default_prod;\r\n\r\n  struct Node {\r\n   \
+    \ Node *l, *r;\r\n    X x;\r\n  };\r\n\r\n  const int NODES;\r\n  const ll L0,\
+    \ R0;\r\n  Node *pool;\r\n  int pid;\r\n  using np = Node *;\r\n\r\n  Dynamic_SegTree(\r\
     \n      int NODES, ll L0, ll R0, F default_prod = [](ll l, ll r) -> X { return\
     \ MX::unit(); })\r\n      : default_prod(default_prod), NODES(NODES), L0(L0),\
     \ R0(R0), pid(0) {\r\n    pool = new Node[NODES];\r\n  }\r\n  ~Dynamic_SegTree()\
@@ -313,8 +315,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
 layout: document

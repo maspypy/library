@@ -12,7 +12,7 @@ data:
     title: graph/tree_dp/rerooting_dp.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc220f.test.cpp
     title: test/5_atcoder/abc220f.test.cpp
   - icon: ':x:'
@@ -20,7 +20,7 @@ data:
     title: test/5_atcoder/abc298ex.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree_dp/subtree_depth_sum.hpp\"\n\n#line 2 \"graph/base.hpp\"\
@@ -262,7 +262,7 @@ data:
   path: graph/tree_dp/subtree_depth_sum.hpp
   requiredBy: []
   timestamp: '2024-11-12 23:21:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/abc220f.test.cpp
   - test/5_atcoder/abc298ex.test.cpp

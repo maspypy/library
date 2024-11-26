@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: graph/shortest_path/grid_bfs.hpp
     title: graph/shortest_path/grid_bfs.hpp
   - icon: ':question:'
@@ -199,10 +199,11 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"graph/shortest_path/grid_bfs.hpp\"\n\n// walls = \"\
-    #\" \u3084\u3001walls = {-1} \u306A\u3069\u3002\ntemplate <typename STRING>\n\
-    vc<vc<int>> grid_bfs(vc<STRING>& G, int sx, int sy, STRING walls, int dmax) {\n\
-    \  assert(dmax == 4 || dmax == 8);\n  int H = len(G);\n  int W = len(G[0]);\n\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"graph/shortest_path/grid_bfs.hpp\"\
+    \n\n// walls = \"#\" \u3084\u3001walls = {-1} \u306A\u3069\u3002\ntemplate <typename\
+    \ STRING>\nvc<vc<int>> grid_bfs(vc<STRING>& G, int sx, int sy, STRING walls, int\
+    \ dmax) {\n  assert(dmax == 4 || dmax == 8);\n  int H = len(G);\n  int W = len(G[0]);\n\
     \  auto isin = [&](int x, int y) -> bool {\n    if (x < 0 || H <= x) return false;\n\
     \    if (y < 0 || W <= y) return false;\n    return count(all(walls), G[x][y])\
     \ == 0;\n  };\n  int dx[] = {1, 0, -1, 0, 1, -1, -1, 1};\n  int dy[] = {0, 1,\
@@ -247,7 +248,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc301e.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc301e.test.cpp

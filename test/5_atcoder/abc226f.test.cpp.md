@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc226/tasks/abc226_f
@@ -205,12 +205,13 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"enumerate/partition.hpp\"\n/*\npartition \u306F\u3001\
-    \u300C\u6E1B\u5C11\u5217\u300D\u3068\u3057\u3066\u8F9E\u66F8\u5F0F\u306E\u964D\
-    \u9806\u306B\u5217\u6319\u3059\u308B\u3002\nN = 50\uFF08204226\uFF09\uFF1A12 ms\n\
-    N = 60\uFF08966467\uFF09\uFF1A60 ms\nN = 70\uFF084087968\uFF09\uFF1A270 ms\nN\
-    \ = 80\uFF0815796476\uFF09\uFF1A1100 ms\nN = 90\uFF0856634173\uFF09\uFF1A4800\
-    \ ms\nN = 100 (190569292) : 15600 ms\n*/\ntemplate <typename F>\nvoid enumerate_partition(int\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"enumerate/partition.hpp\"\n/*\n\
+    partition \u306F\u3001\u300C\u6E1B\u5C11\u5217\u300D\u3068\u3057\u3066\u8F9E\u66F8\
+    \u5F0F\u306E\u964D\u9806\u306B\u5217\u6319\u3059\u308B\u3002\nN = 50\uFF08204226\uFF09\
+    \uFF1A12 ms\nN = 60\uFF08966467\uFF09\uFF1A60 ms\nN = 70\uFF084087968\uFF09\uFF1A\
+    270 ms\nN = 80\uFF0815796476\uFF09\uFF1A1100 ms\nN = 90\uFF0856634173\uFF09\uFF1A\
+    4800 ms\nN = 100 (190569292) : 15600 ms\n*/\ntemplate <typename F>\nvoid enumerate_partition(int\
     \ N, F query, int LIM_len = -1, int LIM_val = -1) {\n  assert(N >= 0);\n  auto\
     \ dfs = [&](auto self, vc<int>& p, int sum) -> void {\n    if (sum == N) {\n \
     \     query(p);\n      return;\n    }\n    if (LIM_len != -1 && len(p) == LIM_len)\
@@ -317,8 +318,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc226f.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc226f.test.cpp
 layout: document

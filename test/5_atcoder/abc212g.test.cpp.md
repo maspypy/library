@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc212/tasks/abc212_g
@@ -214,8 +214,9 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64\
-    \ RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 2 \"mod/mongomery_modint.hpp\"\n\n// odd mod.\n\
@@ -347,8 +348,11 @@ data:
     \ ADD) {\n    ll k = 1;\n    for (auto&& [p, e]: pf) {\n      ll mod = k * (e\
     \ + 1);\n      FOR(i, len(divs) / mod) {\n        FOR(j, mod - k) { dat[mod *\
     \ i + j + k] = ADD(dat[mod * i + j + k], dat[mod * i + j]); }\n      }\n     \
-    \ k *= (e + 1);\n    }\n  }\n\n  // (d, fd)\n  template <typename F>\n  void enumerate(F\
-    \ f) {\n    FOR(i, len(divs)) { f(divs[i], dat[i]); }\n  }\n};\n#line 5 \"test/5_atcoder/abc212g.test.cpp\"\
+    \ k *= (e + 1);\n    }\n  }\n\n  template <typename F>\n  void set(F f) {\n  \
+    \  FOR(i, len(divs)) { dat[i] = f(divs[i]); }\n  }\n\n  // (d, fd)\n  // &fd \u3067\
+    \u53D7\u3051\u53D6\u308C\u3070\u4EE3\u5165\u3068\u304B\u3082\u3067\u304D\u307E\
+    \u3059\n  template <typename F>\n  void enumerate(F f) {\n    FOR(i, len(divs))\
+    \ { f(divs[i], dat[i]); }\n  }\n};\n#line 5 \"test/5_atcoder/abc212g.test.cpp\"\
     \n\nvoid solve() {\n  LL(P);\n  Array_On_Divisors<ll> X(P - 1);\n  X.set_euler_phi();\n\
     \  i128 ANS = 1;\n  X.enumerate([&](ll a, ll b) -> void { ANS += i128(a) * b;\
     \ });\n  print(ANS % 998244353);\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -371,8 +375,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc212g.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc212g.test.cpp
 layout: document

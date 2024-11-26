@@ -200,11 +200,12 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"nt/extgcd.hpp\"\n// {g,x,y}, ax+by=g\r\ntemplate <typename\
-    \ T>\r\ntuple<T, T, T> extgcd(T a, T b) {\r\n  static_assert(is_same_v<T, int>\
-    \ || is_same_v<T, ll>);\r\n  T x = 1, y = 0, x1 = 0, y1 = 1;\r\n  while (b !=\
-    \ 0) {\r\n    T q = a / b;\r\n    swap(a %= b, b);\r\n    T X = x - q * x1, Y\
-    \ = y - q * y1;\r\n    x = x1, y = y1, x1 = X, y1 = Y;\r\n  }\r\n  return {a,\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"nt/extgcd.hpp\"\n// {g,x,y}, ax+by=g\r\
+    \ntemplate <typename T>\r\ntuple<T, T, T> extgcd(T a, T b) {\r\n  static_assert(is_same_v<T,\
+    \ int> || is_same_v<T, ll>);\r\n  T x = 1, y = 0, x1 = 0, y1 = 1;\r\n  while (b\
+    \ != 0) {\r\n    T q = a / b;\r\n    swap(a %= b, b);\r\n    T X = x - q * x1,\
+    \ Y = y - q * y1;\r\n    x = x1, y = y1, x1 = X, y1 = Y;\r\n  }\r\n  return {a,\
     \ x, y};\r\n}\r\n#line 7 \"test/4_aoj/NTL_1_E.test.cpp\"\n\nvoid solve() {\n \
     \ LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x, y);\n}\n\nsigned main()\
     \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
@@ -222,7 +223,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
+  timestamp: '2024-11-26 12:06:01+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/NTL_1_E.test.cpp

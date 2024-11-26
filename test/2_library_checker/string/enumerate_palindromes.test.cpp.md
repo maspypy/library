@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/manacher.hpp
     title: string/manacher.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/enumerate_palindromes
@@ -200,9 +200,11 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 1 \"string/manacher.hpp\"\n\r\n// i<=j \u306B\u5BFE\u3057\
-    \u3066 match(i,j) \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\u308B\u3068\u304D\
-    \u6975\u5927\u56DE\u6587 [L,R) \u3092\u5217\u6319\u3059\u308B\r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c\r\
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"string/manacher.hpp\"\n\r\n// i<=j\
+    \ \u306B\u5BFE\u3057\u3066 match(i,j) \u304C\u5B9A\u7FA9\u3055\u308C\u3066\u3044\
+    \u308B\u3068\u304D\u6975\u5927\u56DE\u6587 [L,R) \u3092\u5217\u6319\u3059\u308B\
+    \r\n// https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c\r\
     \ntemplate <typename F>\r\nvc<pair<int, int>> manacher(int n, F match) {\r\n \
     \ assert(n > 0);\r\n  auto f = [&](int i, int j) -> bool {\r\n    if (i > j) return\
     \ 0;\r\n    assert((i + j) % 2 == 0);\r\n    if (i & 1) return 1;\r\n    return\
@@ -233,8 +235,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/enumerate_palindromes.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/enumerate_palindromes.test.cpp
 layout: document

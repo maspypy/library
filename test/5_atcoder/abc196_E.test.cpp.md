@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add_chmin_chmax.hpp
     title: alg/monoid/add_chmin_chmax.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc196/tasks/abc196_e
@@ -199,24 +199,25 @@ data:
     \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\n#line 2 \"alg/monoid/add_chmin_chmax.hpp\"\n\n// max(min(x+a,b),c)\
-    \ \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\ntemplate <typename E>\n\
-    struct Monoid_Add_Chmin_Chmax {\n  using value_type = tuple<E, E, E>;\n  using\
-    \ X = value_type;\n\n  static X op(X x, X y) {\n    auto [a, b, c] = x;\n    auto\
-    \ [d, e, f] = y;\n    a = a + d;\n    b = (b == infty<E> ? b : b + d);\n    c\
-    \ = (c == -infty<E> ? c : c + d);\n    b = min(b, e);\n    c = max(min(c, e),\
-    \ f);\n    return {a, b, c};\n  }\n\n  static E eval(X f, E x) {\n    auto [a,\
-    \ b, c] = f;\n    return max(min(x + a, b), c);\n  }\n\n  static X add(E a) {\
-    \ return {a, infty<E>, -infty<E>}; }\n  static X chmin(E b) { return {0, b, -infty<E>};\
-    \ }\n  static X chmax(E c) { return {0, infty<E>, c}; }\n\n  static constexpr\
-    \ X unit() { return {0, infty<E>, -infty<E>}; }\n  static constexpr bool commute\
-    \ = 0;\n};\n#line 5 \"test/5_atcoder/abc196_E.test.cpp\"\n\nvoid solve() {\n \
-    \ using Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename Mono::value_type;\n\
-    \  F f = Mono::unit();\n\n  LL(N);\n  FOR(N) {\n    LL(a, t);\n    if (t == 1)\
-    \ f = Mono::op(f, Mono::add(a));\n    if (t == 2) f = Mono::op(f, Mono::chmax(a));\n\
-    \    if (t == 3) f = Mono::op(f, Mono::chmin(a));\n  }\n\n  LL(Q);\n  FOR(Q) {\n\
-    \    LL(x);\n    print(Mono::eval(f, x));\n  }\n}\n\nsigned main() {\n  solve();\n\
-    \n  return 0;\n}\n"
+    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"alg/monoid/add_chmin_chmax.hpp\"\
+    \n\n// max(min(x+a,b),c) \u3068\u8868\u305B\u308B\u95A2\u6570\u306E\u5408\u6210\
+    \ntemplate <typename E>\nstruct Monoid_Add_Chmin_Chmax {\n  using value_type =\
+    \ tuple<E, E, E>;\n  using X = value_type;\n\n  static X op(X x, X y) {\n    auto\
+    \ [a, b, c] = x;\n    auto [d, e, f] = y;\n    a = a + d;\n    b = (b == infty<E>\
+    \ ? b : b + d);\n    c = (c == -infty<E> ? c : c + d);\n    b = min(b, e);\n \
+    \   c = max(min(c, e), f);\n    return {a, b, c};\n  }\n\n  static E eval(X f,\
+    \ E x) {\n    auto [a, b, c] = f;\n    return max(min(x + a, b), c);\n  }\n\n\
+    \  static X add(E a) { return {a, infty<E>, -infty<E>}; }\n  static X chmin(E\
+    \ b) { return {0, b, -infty<E>}; }\n  static X chmax(E c) { return {0, infty<E>,\
+    \ c}; }\n\n  static constexpr X unit() { return {0, infty<E>, -infty<E>}; }\n\
+    \  static constexpr bool commute = 0;\n};\n#line 5 \"test/5_atcoder/abc196_E.test.cpp\"\
+    \n\nvoid solve() {\n  using Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename\
+    \ Mono::value_type;\n  F f = Mono::unit();\n\n  LL(N);\n  FOR(N) {\n    LL(a,\
+    \ t);\n    if (t == 1) f = Mono::op(f, Mono::add(a));\n    if (t == 2) f = Mono::op(f,\
+    \ Mono::chmax(a));\n    if (t == 3) f = Mono::op(f, Mono::chmin(a));\n  }\n\n\
+    \  LL(Q);\n  FOR(Q) {\n    LL(x);\n    print(Mono::eval(f, x));\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc196/tasks/abc196_e\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"alg/monoid/add_chmin_chmax.hpp\"\
     \n\nvoid solve() {\n  using Mono = Monoid_Add_Chmin_Chmax<ll>;\n  using F = typename\
@@ -232,8 +233,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc196_E.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-11-26 12:06:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc196_E.test.cpp
 layout: document
