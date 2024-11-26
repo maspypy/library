@@ -42,7 +42,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/acted_monoid/minmax_add.hpp
       title: alg/acted_monoid/minmax_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/minmincnt_add.hpp
       title: alg/acted_monoid/minmincnt_add.hpp
     - icon: ':x:'
@@ -51,7 +51,7 @@ data:
     - icon: ':question:'
       path: alg/acted_monoid/sum_add.hpp
       title: alg/acted_monoid/sum_add.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/sum_affine.hpp
       title: alg/acted_monoid/sum_affine.hpp
     - icon: ':question:'
@@ -151,7 +151,7 @@ data:
     - icon: ':question:'
       path: alg/monoid/minmax.hpp
       title: alg/monoid/minmax.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/monoid/minmincnt.hpp
       title: alg/monoid/minmincnt.hpp
     - icon: ':question:'
@@ -196,13 +196,13 @@ data:
       title: bigint/redundant_binary_number.hpp
   - name: convex
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/cht.hpp
       title: convex/cht.hpp
     - icon: ':x:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
     - icon: ':x:'
@@ -211,7 +211,7 @@ data:
     - icon: ':x:'
       path: convex/larsch.hpp
       title: convex/larsch.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
     - icon: ':warning:'
@@ -271,7 +271,7 @@ data:
     - icon: ':x:'
       path: ds/cumsum_2d.hpp
       title: ds/cumsum_2d.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/double_end_queue.hpp
       title: ds/double_end_queue.hpp
     - icon: ':x:'
@@ -280,7 +280,7 @@ data:
     - icon: ':x:'
       path: ds/doubling.hpp
       title: ds/doubling.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/dynamic_array.hpp
       title: ds/dynamic_array.hpp
     - icon: ':question:'
@@ -316,13 +316,13 @@ data:
     - icon: ':x:'
       path: ds/range_add_range_sum.hpp
       title: ds/range_add_range_sum.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/rectangle_union.hpp
       title: ds/rectangle_union.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/removable_queue.hpp
       title: ds/removable_queue.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/rollback_array.hpp
       title: ds/rollback_array.hpp
     - icon: ':x:'
@@ -369,7 +369,7 @@ data:
     - icon: ':question:'
       path: ds/fenwicktree/fenwicktree_01.hpp
       title: ds/fenwicktree/fenwicktree_01.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/fenwicktree/fenwicktree_2d.hpp
       title: ds/fenwicktree/fenwicktree_2d.hpp
     - icon: ':x:'
@@ -399,7 +399,7 @@ data:
       title: ds/monotone/prefix_add_append_get_max.hpp
   - name: ds/offline_query
     pages:
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/offline_query/add_remove_query.hpp
       title: ds/offline_query/add_remove_query.hpp
     - icon: ':x:'
@@ -542,7 +542,7 @@ data:
     - icon: ':question:'
       path: ds/splaytree/splaytree.hpp
       title: ds/splaytree/splaytree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/splaytree/splaytree_acted_monoid.hpp
       title: ds/splaytree/splaytree_acted_monoid.hpp
     - icon: ':heavy_check_mark:'
@@ -559,7 +559,7 @@ data:
       title: ds/splaytree/splaytree_monoid.hpp
   - name: ds/unionfind
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/dynamic_unionfind.hpp
       title: ds/unionfind/dynamic_unionfind.hpp
     - icon: ':x:'
@@ -571,7 +571,7 @@ data:
     - icon: ':x:'
       path: ds/unionfind/rollback_potentialized_unionfind.hpp
       title: ds/unionfind/rollback_potentialized_unionfind.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
     - icon: ':question:'
@@ -582,7 +582,7 @@ data:
     - icon: ':question:'
       path: ds/wavelet_matrix/wavelet_matrix.hpp
       title: ds/wavelet_matrix/wavelet_matrix.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
       title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     - icon: ':warning:'
@@ -1811,7 +1811,7 @@ data:
     - icon: ':question:'
       path: poly/multivar_convolution.hpp
       title: poly/multivar_convolution.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: poly/multivar_convolution_cyclic.hpp
       title: poly/multivar_convolution_cyclic.hpp
     - icon: ':question:'
@@ -2884,75 +2884,75 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/convolution/multivariate_convolution.test.cpp
       title: test/2_library_checker/convolution/multivariate_convolution.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
       title: test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/convolution/online_convolution.test.cpp
       title: test/2_library_checker/convolution/online_convolution.test.cpp
   - name: test/2_library_checker/data_structure
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/add_remove_query.test.cpp
       title: test/2_library_checker/data_structure/add_remove_query.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
       title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/associative_array.test.cpp
       title: test/2_library_checker/data_structure/associative_array.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
       title: test/2_library_checker/data_structure/associative_array_hashmap.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
       title: test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/double_ended_pq.test.cpp
       title: test/2_library_checker/data_structure/double_ended_pq.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
       title: test/2_library_checker/data_structure/double_ended_pq_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/double_ended_q.test.cpp
       title: test/2_library_checker/data_structure/double_ended_q.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
       title: test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
       title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
       title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/persistent_queue.test.cpp
       title: test/2_library_checker/data_structure/persistent_queue.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
       title: test/2_library_checker/data_structure/persistent_unionfind.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_add_range_sum.test.cpp
       title: test/2_library_checker/data_structure/point_add_range_sum.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
       title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     - icon: ':x:'
