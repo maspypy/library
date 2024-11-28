@@ -409,5 +409,16 @@
 "test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp": "2024-11-26 12:06:01 +0900",
 "test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp": "2024-11-26 12:06:01 +0900",
 "test/2_library_checker/polynomial/pow_of_fps.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/slice_rational.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/sqrt_of_fps.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/sample/aplusb128.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/sample/many_aplusb.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/2_library_checker/set_power_series/composition_sps.test.cpp": "2024-11-26 12:06:01 +0900",
 "test/4_aoj/ITP1_9_A.test.cpp": "2024-11-16 23:01:41 +0900"
 }
