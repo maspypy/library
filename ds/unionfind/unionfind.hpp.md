@@ -35,7 +35,7 @@ data:
   - icon: ':warning:'
     path: graph/blackbox/mst.hpp
     title: graph/blackbox/mst.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/blackbox/unionfind.hpp
     title: graph/blackbox/unionfind.hpp
   - icon: ':question:'
@@ -50,13 +50,13 @@ data:
   - icon: ':question:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/functional.hpp
     title: graph/functional.hpp
   - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':x:'
@@ -177,16 +177,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1170_2.test.cpp
     title: test/3_yukicoder/1170_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
   - icon: ':x:'

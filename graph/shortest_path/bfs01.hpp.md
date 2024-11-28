@@ -5,25 +5,25 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/centroid_decomposition.hpp
     title: graph/centroid_decomposition.hpp
   - icon: ':question:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_all_distances.hpp
     title: graph/tree_all_distances.hpp
   - icon: ':warning:'
     path: graph/tree_center.hpp
     title: graph/tree_center.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
   - icon: ':question:'
@@ -39,25 +39,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/st_numbering.test.cpp
     title: test/2_library_checker/graph/st_numbering.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/tree_diameter.test.cpp
     title: test/2_library_checker/tree/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
   - icon: ':x:'
