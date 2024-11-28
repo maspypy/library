@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1269.test.cpp
     title: test/3_yukicoder/1269.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/5_atcoder/abc362g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d
@@ -74,7 +74,7 @@ data:
   path: string/trie.hpp
   requiredBy: []
   timestamp: '2024-09-19 11:54:06+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1269.test.cpp
   - test/5_atcoder/abc268_ex.test.cpp
