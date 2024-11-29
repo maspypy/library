@@ -451,26 +451,30 @@ data:
     \u3067\u30BB\u30B0\u6728\u3067\n  auto upd = [&](int i) -> void {\n    int a =\
     \ seg[2 * i + 0], b = seg[2 * i + 1];\n    if (a == -1) seg[i] = b;\n    elif\
     \ (b == -1) seg[i] = a;\n    else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n\
-    \  auto set = [&](int i, int x) -> void {\n    i += size;\n    seg[i] = x;\n \
-    \   while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if (i != root) seg[size\
-    \ + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1) {\n    int v = seg[1];\n\
-    \    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
-    \    int c = head[p], d = tail[p];\n    set(v, -1), set(p, -1);\n    X pv = Monoid::op(A[p],\
-    \ A[v]);\n    uf.merge(p, v);\n    v = uf[v];\n    A[v] = pv, head[v] = c, tail[v]\
-    \ = b, nxt[d] = a;\n    if (uf[v] != uf[root]) set(v, v);\n  }\n  vc<int> I =\
-    \ {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n\
-    }\n#line 6 \"test/5_atcoder/agc023f.test.cpp\"\n\nstruct Data {\n  ll ans, x0,\
-    \ x1;\n};\n\nstruct Mono {\n  using value_type = Data;\n  using X = value_type;\n\
-    \  static X op(X x, X y) {\n    X z;\n    z.ans = x.ans + y.ans + x.x1 * y.x0;\n\
-    \    z.x0 = x.x0 + y.x0, z.x1 = x.x1 + y.x1;\n    return z;\n  }\n  static constexpr\
-    \ X unit() { return Data{0, 0, 0}; }\n  static constexpr bool commute = 0;\n};\n\
-    \nvoid solve() {\n  LL(N);\n  Graph<bool, 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n\
-    \    G.add(--p, v);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n  vc<Data>\
-    \ A(N);\n  FOR(v, N) {\n    INT(x);\n    if (x == 0) { A[v] = Data{0, 1, 0}; }\n\
-    \    if (x == 1) { A[v] = Data{0, 0, 1}; }\n  }\n  auto comp = [&](Data x, Data\
-    \ y) -> bool { return x.x0 * y.x1 > x.x1 * y.x0; };\n  auto [ord, x]\n      =\
-    \ optimal_product_on_tree<decltype(tree), Mono, true>(tree, A, comp);\n  print(x.ans);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \  // if seg[i]==x: return \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\
+    \u30FC\u30BF\u304C\u5909\u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\
+    \u307E\u305A\u3044\n  auto set = [&](int i, int x) -> void {\n    i += size;\n\
+    \    seg[i] = x;\n    while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if\
+    \ (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1)\
+    \ {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p\
+    \ = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
+    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[v] = c,\
+    \ tail[v] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
+    \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
+    \ av), set(p, ap);\n  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1)\
+    \ I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n}\n#line 6 \"test/5_atcoder/agc023f.test.cpp\"\
+    \n\nstruct Data {\n  ll ans, x0, x1;\n};\n\nstruct Mono {\n  using value_type\
+    \ = Data;\n  using X = value_type;\n  static X op(X x, X y) {\n    X z;\n    z.ans\
+    \ = x.ans + y.ans + x.x1 * y.x0;\n    z.x0 = x.x0 + y.x0, z.x1 = x.x1 + y.x1;\n\
+    \    return z;\n  }\n  static constexpr X unit() { return Data{0, 0, 0}; }\n \
+    \ static constexpr bool commute = 0;\n};\n\nvoid solve() {\n  LL(N);\n  Graph<bool,\
+    \ 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(--p, v);\n  }\n  G.build();\n\
+    \  Tree<decltype(G)> tree(G);\n  vc<Data> A(N);\n  FOR(v, N) {\n    INT(x);\n\
+    \    if (x == 0) { A[v] = Data{0, 1, 0}; }\n    if (x == 1) { A[v] = Data{0, 0,\
+    \ 1}; }\n  }\n  auto comp = [&](Data x, Data y) -> bool { return x.x0 * y.x1 >\
+    \ x.x1 * y.x0; };\n  auto [ord, x]\n      = optimal_product_on_tree<decltype(tree),\
+    \ Mono, true>(tree, A, comp);\n  print(x.ans);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/agc023/tasks/agc023_f\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/optimal_product_on_tree.hpp\"\
     \n\nstruct Data {\n  ll ans, x0, x1;\n};\n\nstruct Mono {\n  using value_type\
@@ -496,7 +500,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/agc023f.test.cpp
   requiredBy: []
-  timestamp: '2024-11-29 20:31:18+09:00'
+  timestamp: '2024-11-29 20:53:58+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/agc023f.test.cpp

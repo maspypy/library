@@ -263,15 +263,18 @@ data:
     \u3067\u30BB\u30B0\u6728\u3067\n  auto upd = [&](int i) -> void {\n    int a =\
     \ seg[2 * i + 0], b = seg[2 * i + 1];\n    if (a == -1) seg[i] = b;\n    elif\
     \ (b == -1) seg[i] = a;\n    else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n\
-    \  auto set = [&](int i, int x) -> void {\n    i += size;\n    seg[i] = x;\n \
-    \   while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if (i != root) seg[size\
-    \ + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1) {\n    int v = seg[1];\n\
-    \    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
-    \    int c = head[p], d = tail[p];\n    set(v, -1), set(p, -1);\n    X pv = Monoid::op(A[p],\
-    \ A[v]);\n    uf.merge(p, v);\n    v = uf[v];\n    A[v] = pv, head[v] = c, tail[v]\
-    \ = b, nxt[d] = a;\n    if (uf[v] != uf[root]) set(v, v);\n  }\n  vc<int> I =\
-    \ {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n\
-    }\n"
+    \  // if seg[i]==x: return \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\
+    \u30FC\u30BF\u304C\u5909\u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\
+    \u307E\u305A\u3044\n  auto set = [&](int i, int x) -> void {\n    i += size;\n\
+    \    seg[i] = x;\n    while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if\
+    \ (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1)\
+    \ {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p\
+    \ = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
+    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[v] = c,\
+    \ tail[v] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
+    \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
+    \ av), set(p, ap);\n  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1)\
+    \ I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n}\n"
   code: "#include \"graph/tree.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
     \ \"ds/segtree/segtree.hpp\"\n\n// \u6728\u306E\u5404\u9802\u70B9\u306B\u5168\u9806\
     \u5E8F\u30E2\u30CE\u30A4\u30C9\u306E\u5143\u304C\u7F6E\u304B\u308C\u3066\u3044\
@@ -290,15 +293,18 @@ data:
     \u3067\u30BB\u30B0\u6728\u3067\n  auto upd = [&](int i) -> void {\n    int a =\
     \ seg[2 * i + 0], b = seg[2 * i + 1];\n    if (a == -1) seg[i] = b;\n    elif\
     \ (b == -1) seg[i] = a;\n    else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n\
-    \  auto set = [&](int i, int x) -> void {\n    i += size;\n    seg[i] = x;\n \
-    \   while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if (i != root) seg[size\
-    \ + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1) {\n    int v = seg[1];\n\
-    \    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
-    \    int c = head[p], d = tail[p];\n    set(v, -1), set(p, -1);\n    X pv = Monoid::op(A[p],\
-    \ A[v]);\n    uf.merge(p, v);\n    v = uf[v];\n    A[v] = pv, head[v] = c, tail[v]\
-    \ = b, nxt[d] = a;\n    if (uf[v] != uf[root]) set(v, v);\n  }\n  vc<int> I =\
-    \ {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n\
-    }"
+    \  // if seg[i]==x: return \u3057\u3088\u3046\u3068\u601D\u3063\u305F\u304C\u30C7\
+    \u30FC\u30BF\u304C\u5909\u308F\u308B\u3068\u3044\u3046\u8A71\u306A\u306E\u3067\
+    \u307E\u305A\u3044\n  auto set = [&](int i, int x) -> void {\n    i += size;\n\
+    \    seg[i] = x;\n    while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if\
+    \ (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1)\
+    \ {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p\
+    \ = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
+    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[v] = c,\
+    \ tail[v] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
+    \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
+    \ av), set(p, ap);\n  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1)\
+    \ I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n}"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
@@ -307,7 +313,7 @@ data:
   isVerificationFile: false
   path: graph/optimal_product_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-11-29 20:31:18+09:00'
+  timestamp: '2024-11-29 20:53:58+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/agc023f.test.cpp
