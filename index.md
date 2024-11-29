@@ -517,7 +517,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree_beats.hpp
       title: ds/segtree/segtree_beats.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/sortable_segtree.hpp
       title: ds/segtree/sortable_segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -891,7 +891,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/incremental_scc.hpp
       title: graph/incremental_scc.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/maximum_antichain.hpp
       title: graph/maximum_antichain.hpp
     - icon: ':heavy_check_mark:'
@@ -4848,10 +4848,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc236h.test.cpp
       title: test/5_atcoder/abc236h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc237ex.test.cpp
       title: test/5_atcoder/abc237ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc237g.test.cpp
       title: test/5_atcoder/abc237g.test.cpp
     - icon: ':x:'
