@@ -903,5 +903,8 @@
 "test/5_atcoder/abc283f.test.cpp": "2024-11-26 12:06:01 +0900",
 "test/5_atcoder/abc285g.test.cpp": "2024-11-26 12:06:01 +0900",
 "test/5_atcoder/abc285h.test.cpp": "2024-11-26 12:06:01 +0900",
-"test/5_atcoder/abc288ex.test.cpp": "2024-11-26 12:06:01 +0900"
+"test/5_atcoder/abc288ex.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/5_atcoder/abc298ex.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/5_atcoder/abc301e.test.cpp": "2024-11-26 12:06:01 +0900",
+"test/5_atcoder/abc301g.test.cpp": "2024-11-26 12:06:01 +0900"
 }
