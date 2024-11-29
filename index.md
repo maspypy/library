@@ -2114,6 +2114,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/count_unborderd_string.hpp
       title: string/count_unborderd_string.hpp
+    - icon: ':warning:'
+      path: string/deque_rolling_hash.hpp
+      title: string/deque_rolling_hash.hpp
     - icon: ':heavy_check_mark:'
       path: string/double_ended_palindromic_tree.hpp
       title: string/double_ended_palindromic_tree.hpp

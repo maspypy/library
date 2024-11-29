@@ -23,6 +23,9 @@ data:
   - icon: ':question:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
+  - icon: ':warning:'
+    path: string/deque_rolling_hash.hpp
+    title: string/deque_rolling_hash.hpp
   - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
@@ -172,6 +175,7 @@ data:
   - mod/modular_subset_sum.hpp
   - string/rollinghash.hpp
   - string/rollinghash_2d.hpp
+  - string/deque_rolling_hash.hpp
   - other/connected_dp.hpp
   - alg/monoid/rollinghash.hpp
   - graph/tree_dp/subtree_hash.hpp

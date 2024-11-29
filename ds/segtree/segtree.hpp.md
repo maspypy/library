@@ -23,6 +23,9 @@ data:
   - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
+  - icon: ':x:'
+    path: graph/optimal_product_on_tree.hpp
+    title: graph/optimal_product_on_tree.hpp
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
@@ -172,6 +175,9 @@ data:
     path: test/5_atcoder/abc365f.test.cpp
     title: test/5_atcoder/abc365f.test.cpp
   - icon: ':x:'
+    path: test/5_atcoder/agc023f.test.cpp
+    title: test/5_atcoder/agc023f.test.cpp
+  - icon: ':x:'
     path: test/5_atcoder/arc151_e.test.cpp
     title: test/5_atcoder/arc151_e.test.cpp
   _isVerificationFailed: true
@@ -274,6 +280,7 @@ data:
   - string/lex_max_suffix_for_all_prefix.hpp
   - string/many_string_compare.hpp
   - geo/manhattan_nns.hpp
+  - graph/optimal_product_on_tree.hpp
   - graph/ds/tree_monoid.hpp
   - graph/minimum_spanning_tree.hpp
   timestamp: '2023-04-14 22:06:29+09:00'
@@ -294,6 +301,7 @@ data:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/ITP2_3_B.test.cpp
   - test/5_atcoder/abc237g.test.cpp
+  - test/5_atcoder/agc023f.test.cpp
   - test/5_atcoder/abc270_f.test.cpp
   - test/5_atcoder/abc365f.test.cpp
   - test/5_atcoder/abc174f.test.cpp

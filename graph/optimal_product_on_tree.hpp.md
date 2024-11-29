@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
+    path: ds/segtree/segtree.hpp
+    title: ds/segtree/segtree.hpp
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':question:'
@@ -202,62 +205,109 @@ data:
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
     \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 3 \"graph/optimal_product_on_tree.hpp\"\n\n// \u6728\
-    \u306E\u5404\u9802\u70B9\u306B\u5168\u9806\u5E8F\u30E2\u30CE\u30A4\u30C9\u306E\
-    \u5143\u304C\u7F6E\u304B\u308C\u3066\u3044\u308B\uFF08x<=y -> axb<=ayb\uFF09\n\
-    // topological \u9806\u5E8F\u3067\u304B\u3051\u308B\u3068\u304D\uFF0C\u7D50\u679C\
-    \u3092\u6700\u5927\u5316\u3059\u308B\n// https://atcoder.jp/contests/agc023/tasks/agc023_f\n\
+    \    return A;\n  }\n};\n#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class\
+    \ Monoid>\nstruct SegTree {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  using value_type = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n\
+    \  SegTree(int n) { build(n); }\n  template <typename F>\n  SegTree(int n, F f)\
+    \ {\n    build(n, f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void\
+    \ build(int m) {\n    build(m, [](int i) -> X { return MX::unit(); });\n  }\n\
+    \  void build(const vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i];\
+    \ });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n = m, log\
+    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
+    \ << 1, MX::unit());\n    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size)\
+    \ update(i);\n  }\n\n  X get(int i) { return dat[size + i]; }\n  vc<X> get_all()\
+    \ { return {dat.begin() + size, dat.begin() + size + n}; }\n\n  void update(int\
+    \ i) { dat[i] = Monoid::op(dat[2 * i], dat[2 * i + 1]); }\n  void set(int i, const\
+    \ X& x) {\n    assert(i < n);\n    dat[i += size] = x;\n    while (i >>= 1) update(i);\n\
+    \  }\n\n  void multiply(int i, const X& x) {\n    assert(i < n);\n    i += size;\n\
+    \    dat[i] = Monoid::op(dat[i], x);\n    while (i >>= 1) update(i);\n  }\n\n\
+    \  X prod(int L, int R) {\n    assert(0 <= L && L <= R && R <= n);\n    X vl =\
+    \ Monoid::unit(), vr = Monoid::unit();\n    L += size, R += size;\n    while (L\
+    \ < R) {\n      if (L & 1) vl = Monoid::op(vl, dat[L++]);\n      if (R & 1) vr\
+    \ = Monoid::op(dat[--R], vr);\n      L >>= 1, R >>= 1;\n    }\n    return Monoid::op(vl,\
+    \ vr);\n  }\n\n  X prod_all() { return dat[1]; }\n\n  template <class F>\n  int\
+    \ max_right(F check, int L) {\n    assert(0 <= L && L <= n && check(Monoid::unit()));\n\
+    \    if (L == n) return n;\n    L += size;\n    X sm = Monoid::unit();\n    do\
+    \ {\n      while (L % 2 == 0) L >>= 1;\n      if (!check(Monoid::op(sm, dat[L])))\
+    \ {\n        while (L < size) {\n          L = 2 * L;\n          if (check(Monoid::op(sm,\
+    \ dat[L]))) { sm = Monoid::op(sm, dat[L++]); }\n        }\n        return L -\
+    \ size;\n      }\n      sm = Monoid::op(sm, dat[L++]);\n    } while ((L & -L)\
+    \ != L);\n    return n;\n  }\n\n  template <class F>\n  int min_left(F check,\
+    \ int R) {\n    assert(0 <= R && R <= n && check(Monoid::unit()));\n    if (R\
+    \ == 0) return 0;\n    R += size;\n    X sm = Monoid::unit();\n    do {\n    \
+    \  --R;\n      while (R > 1 && (R % 2)) R >>= 1;\n      if (!check(Monoid::op(dat[R],\
+    \ sm))) {\n        while (R < size) {\n          R = 2 * R + 1;\n          if\
+    \ (check(Monoid::op(dat[R], sm))) { sm = Monoid::op(dat[R--], sm); }\n       \
+    \ }\n        return R + 1 - size;\n      }\n      sm = Monoid::op(dat[R], sm);\n\
+    \    } while ((R & -R) != R);\n    return 0;\n  }\n\n  // prod_{l<=i<r} A[i xor\
+    \ x]\n  X xor_prod(int l, int r, int xor_val) {\n    static_assert(Monoid::commute);\n\
+    \    X x = Monoid::unit();\n    for (int k = 0; k < log + 1; ++k) {\n      if\
+    \ (l >= r) break;\n      if (l & 1) { x = Monoid::op(x, dat[(size >> k) + ((l++)\
+    \ ^ xor_val)]); }\n      if (r & 1) { x = Monoid::op(x, dat[(size >> k) + ((--r)\
+    \ ^ xor_val)]); }\n      l /= 2, r /= 2, xor_val /= 2;\n    }\n    return x;\n\
+    \  }\n};\n#line 4 \"graph/optimal_product_on_tree.hpp\"\n\n// \u6728\u306E\u5404\
+    \u9802\u70B9\u306B\u5168\u9806\u5E8F\u30E2\u30CE\u30A4\u30C9\u306E\u5143\u304C\
+    \u7F6E\u304B\u308C\u3066\u3044\u308B\uFF08x<=y -> axb<=ayb\uFF09\n// topological\
+    \ \u9806\u5E8F\u3067\u304B\u3051\u308B\u3068\u304D\uFF0C\u7D50\u679C\u3092\u6700\
+    \u5927\u5316\u3059\u308B\n// https://atcoder.jp/contests/agc023/tasks/agc023_f\n\
     // https://qoj.ac/problem/6561\n// \u3044\u3084\u62BD\u8C61\u5316\u304C\u8DB3\u308A\
     \u3066\u3044\u306A\u3044\u306A\u3001x<=y iff xy<=yx \u304C\u3044\u308B\u304B\uFF1F\
     \ntemplate <typename TREE, typename Monoid, bool MINIMIZE, typename F>\npair<vc<int>,\
-    \ typename Monoid::value_type> optimal_product_on_tree(\n    TREE& tree, vc<typename\
+    \ typename Monoid::value_type> optimal_product_on_tree(TREE& tree, vc<typename\
     \ Monoid::value_type> A, F compare) {\n  const int N = tree.N;\n  const int root\
     \ = tree.V[0];\n  using X = typename Monoid::value_type;\n\n  vc<int> head(N),\
     \ tail(N), nxt(N);\n  FOR(v, N) head[v] = v, tail[v] = v, nxt[v] = -1;\n\n  UnionFind\
-    \ uf(N);\n  // (x, v, size v)\n  using T = tuple<X, int, int>;\n  auto my_compare\
-    \ = [&](T& t1, T& t2) -> bool {\n    X& x1 = get<0>(t1);\n    X& x2 = get<0>(t2);\n\
-    \    if constexpr (MINIMIZE) return compare(x2, x1);\n    if constexpr (!MINIMIZE)\
-    \ return compare(x1, x2);\n  };\n\n  priority_queue<T, vc<T>, decltype(my_compare)>\
-    \ que(my_compare);\n  FOR(v, N) if (v != root) que.emplace(A[v], v, 1);\n\n  while\
-    \ (len(que)) {\n    auto [_, v, sv] = que.top();\n    que.pop();\n    if (uf.size(v)\
-    \ != sv) continue;\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
-    \    int c = head[p], d = tail[p];\n    X x = Monoid::op(A[p], A[v]);\n    uf.merge(p,\
-    \ v);\n    v = uf[v];\n    A[v] = x, head[v] = c, tail[v] = b, nxt[d] = a;\n \
-    \   if (uf[v] == uf[root]) continue;\n    que.emplace(A[v], v, uf.size(v));\n\
-    \  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n\
-    \  return {I, A[uf[root]]};\n}\n"
-  code: "#include \"graph/tree.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n\n\
-    // \u6728\u306E\u5404\u9802\u70B9\u306B\u5168\u9806\u5E8F\u30E2\u30CE\u30A4\u30C9\
-    \u306E\u5143\u304C\u7F6E\u304B\u308C\u3066\u3044\u308B\uFF08x<=y -> axb<=ayb\uFF09\
-    \n// topological \u9806\u5E8F\u3067\u304B\u3051\u308B\u3068\u304D\uFF0C\u7D50\u679C\
-    \u3092\u6700\u5927\u5316\u3059\u308B\n// https://atcoder.jp/contests/agc023/tasks/agc023_f\n\
+    \ uf(N);\n\n  int size = 1;\n  while (size < N) size *= 2;\n  vc<int> seg(2 *\
+    \ size, -1);\n\n  // prique \u3060\u3068\u52D5\u7684\u30C7\u30FC\u30BF\u69CB\u9020\
+    \u3092\u6301\u305F\u305B\u308B\u3068\u304D\u306B\u6DF7\u4E71\u3057\u305F\u306E\
+    \u3067\u30BB\u30B0\u6728\u3067\n  auto upd = [&](int i) -> void {\n    int a =\
+    \ seg[2 * i + 0], b = seg[2 * i + 1];\n    if (a == -1) seg[i] = b;\n    elif\
+    \ (b == -1) seg[i] = a;\n    else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n\
+    \  auto set = [&](int i, int x) -> void {\n    i += size;\n    seg[i] = x;\n \
+    \   while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if (i != root) seg[size\
+    \ + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1) {\n    int v = seg[1];\n\
+    \    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
+    \    int c = head[p], d = tail[p];\n    set(v, -1), set(p, -1);\n    X pv = Monoid::op(A[p],\
+    \ A[v]);\n    uf.merge(p, v);\n    v = uf[v];\n    A[v] = pv, head[v] = c, tail[v]\
+    \ = b, nxt[d] = a;\n    if (uf[v] != uf[root]) set(v, v);\n  }\n  vc<int> I =\
+    \ {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n\
+    }\n"
+  code: "#include \"graph/tree.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\n#include\
+    \ \"ds/segtree/segtree.hpp\"\n\n// \u6728\u306E\u5404\u9802\u70B9\u306B\u5168\u9806\
+    \u5E8F\u30E2\u30CE\u30A4\u30C9\u306E\u5143\u304C\u7F6E\u304B\u308C\u3066\u3044\
+    \u308B\uFF08x<=y -> axb<=ayb\uFF09\n// topological \u9806\u5E8F\u3067\u304B\u3051\
+    \u308B\u3068\u304D\uFF0C\u7D50\u679C\u3092\u6700\u5927\u5316\u3059\u308B\n// https://atcoder.jp/contests/agc023/tasks/agc023_f\n\
     // https://qoj.ac/problem/6561\n// \u3044\u3084\u62BD\u8C61\u5316\u304C\u8DB3\u308A\
     \u3066\u3044\u306A\u3044\u306A\u3001x<=y iff xy<=yx \u304C\u3044\u308B\u304B\uFF1F\
     \ntemplate <typename TREE, typename Monoid, bool MINIMIZE, typename F>\npair<vc<int>,\
-    \ typename Monoid::value_type> optimal_product_on_tree(\n    TREE& tree, vc<typename\
+    \ typename Monoid::value_type> optimal_product_on_tree(TREE& tree, vc<typename\
     \ Monoid::value_type> A, F compare) {\n  const int N = tree.N;\n  const int root\
     \ = tree.V[0];\n  using X = typename Monoid::value_type;\n\n  vc<int> head(N),\
     \ tail(N), nxt(N);\n  FOR(v, N) head[v] = v, tail[v] = v, nxt[v] = -1;\n\n  UnionFind\
-    \ uf(N);\n  // (x, v, size v)\n  using T = tuple<X, int, int>;\n  auto my_compare\
-    \ = [&](T& t1, T& t2) -> bool {\n    X& x1 = get<0>(t1);\n    X& x2 = get<0>(t2);\n\
-    \    if constexpr (MINIMIZE) return compare(x2, x1);\n    if constexpr (!MINIMIZE)\
-    \ return compare(x1, x2);\n  };\n\n  priority_queue<T, vc<T>, decltype(my_compare)>\
-    \ que(my_compare);\n  FOR(v, N) if (v != root) que.emplace(A[v], v, 1);\n\n  while\
-    \ (len(que)) {\n    auto [_, v, sv] = que.top();\n    que.pop();\n    if (uf.size(v)\
-    \ != sv) continue;\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
-    \    int c = head[p], d = tail[p];\n    X x = Monoid::op(A[p], A[v]);\n    uf.merge(p,\
-    \ v);\n    v = uf[v];\n    A[v] = x, head[v] = c, tail[v] = b, nxt[d] = a;\n \
-    \   if (uf[v] == uf[root]) continue;\n    que.emplace(A[v], v, uf.size(v));\n\
-    \  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n\
-    \  return {I, A[uf[root]]};\n}"
+    \ uf(N);\n\n  int size = 1;\n  while (size < N) size *= 2;\n  vc<int> seg(2 *\
+    \ size, -1);\n\n  // prique \u3060\u3068\u52D5\u7684\u30C7\u30FC\u30BF\u69CB\u9020\
+    \u3092\u6301\u305F\u305B\u308B\u3068\u304D\u306B\u6DF7\u4E71\u3057\u305F\u306E\
+    \u3067\u30BB\u30B0\u6728\u3067\n  auto upd = [&](int i) -> void {\n    int a =\
+    \ seg[2 * i + 0], b = seg[2 * i + 1];\n    if (a == -1) seg[i] = b;\n    elif\
+    \ (b == -1) seg[i] = a;\n    else seg[i] = (compare(A[a], A[b]) ? a : b);\n  };\n\
+    \  auto set = [&](int i, int x) -> void {\n    i += size;\n    seg[i] = x;\n \
+    \   while (i > 1) { i /= 2, upd(i); }\n  };\n  FOR(i, N) if (i != root) seg[size\
+    \ + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1) {\n    int v = seg[1];\n\
+    \    int a = head[uf[v]], b = tail[uf[v]];\n    int p = uf[tree.parent[a]];\n\
+    \    int c = head[p], d = tail[p];\n    set(v, -1), set(p, -1);\n    X pv = Monoid::op(A[p],\
+    \ A[v]);\n    uf.merge(p, v);\n    v = uf[v];\n    A[v] = pv, head[v] = c, tail[v]\
+    \ = b, nxt[d] = a;\n    if (uf[v] != uf[root]) set(v, v);\n  }\n  vc<int> I =\
+    \ {root};\n  while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n\
+    }"
   dependsOn:
   - graph/tree.hpp
   - graph/base.hpp
   - ds/unionfind/unionfind.hpp
+  - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: graph/optimal_product_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-11-12 23:21:04+09:00'
+  timestamp: '2024-11-29 20:31:18+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/agc023f.test.cpp
