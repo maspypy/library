@@ -32,7 +32,7 @@ data:
   - icon: ':warning:'
     path: string/many_string_compare.hpp
     title: string/many_string_compare.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
   - icon: ':question:'
@@ -159,7 +159,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc237g.test.cpp
     title: test/5_atcoder/abc237g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
   - icon: ':x:'

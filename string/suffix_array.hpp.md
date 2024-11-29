@@ -20,7 +20,7 @@ data:
   - icon: ':warning:'
     path: string/many_string_compare.hpp
     title: string/many_string_compare.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
   - icon: ':heavy_check_mark:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
   - icon: ':x:'
