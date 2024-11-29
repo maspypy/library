@@ -2499,16 +2499,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc193f.test.cpp
     title: test/5_atcoder/abc193f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc196_E.test.cpp
     title: test/5_atcoder/abc196_E.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc198d.test.cpp
     title: test/5_atcoder/abc198d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc200a.test.cpp
     title: test/5_atcoder/abc200a.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc200f.test.cpp
     title: test/5_atcoder/abc200f.test.cpp
   - icon: ':x:'

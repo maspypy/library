@@ -94,7 +94,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin.hpp
       title: alg/monoid/add_chmin.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
     - icon: ':question:'
@@ -180,7 +180,7 @@ data:
       title: alg/monoid/xor.hpp
   - name: alg
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid_pow.hpp
       title: alg/monoid_pow.hpp
   - name: bigint
@@ -1672,7 +1672,7 @@ data:
     - icon: ':warning:'
       path: other/sliding_puzzle_solver.hpp
       title: other/sliding_puzzle_solver.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
   - name: other/mhc_template_directory
@@ -4752,16 +4752,16 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc193f.test.cpp
       title: test/5_atcoder/abc193f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc196_E.test.cpp
       title: test/5_atcoder/abc196_E.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc198d.test.cpp
       title: test/5_atcoder/abc198d.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc200a.test.cpp
       title: test/5_atcoder/abc200a.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc200f.test.cpp
       title: test/5_atcoder/abc200f.test.cpp
     - icon: ':x:'
