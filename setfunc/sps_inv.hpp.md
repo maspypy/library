@@ -6,12 +6,12 @@ data:
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc306h.test.cpp
     title: test/5_atcoder/abc306h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/ranked_zeta.hpp\"\n\r\ntemplate <typename T, int\
@@ -48,7 +48,7 @@ data:
   path: setfunc/sps_inv.hpp
   requiredBy: []
   timestamp: '2024-04-04 19:08:10+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc306h.test.cpp
 documentation_of: setfunc/sps_inv.hpp

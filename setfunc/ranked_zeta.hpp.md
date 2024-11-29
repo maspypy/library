@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/sps_exp.hpp
     title: setfunc/sps_exp.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/sps_inv.hpp
     title: setfunc/sps_inv.hpp
   - icon: ':question:'
@@ -66,7 +66,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc253h.test.cpp
     title: test/5_atcoder/abc253h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc306h.test.cpp
     title: test/5_atcoder/abc306h.test.cpp
   - icon: ':x:'
