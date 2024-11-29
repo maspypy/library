@@ -753,7 +753,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1869,7 +1869,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1936.test.cpp
     title: test/3_yukicoder/1936.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2451,7 +2451,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_E.test.cpp
     title: test/4_aoj/NTL_1_E.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2565,25 +2565,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc224h.test.cpp
     title: test/5_atcoder/abc224h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc226f.test.cpp
     title: test/5_atcoder/abc226f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc227g.test.cpp
     title: test/5_atcoder/abc227g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc228f.test.cpp
     title: test/5_atcoder/abc228f.test.cpp
   - icon: ':x:'
     path: test/5_atcoder/abc229h.test.cpp
     title: test/5_atcoder/abc229h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc230e.test.cpp
     title: test/5_atcoder/abc230e.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc230h.test.cpp
     title: test/5_atcoder/abc230h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc233c.test.cpp
     title: test/5_atcoder/abc233c.test.cpp
   - icon: ':x:'

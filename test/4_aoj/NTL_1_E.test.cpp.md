@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/extgcd.hpp
     title: nt/extgcd.hpp
   - icon: ':question:'
@@ -12,17 +12,16 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
     links:
     - https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
-  bundledCode: "#line 1 \"test/4_aoj/NTL_1_E.test.cpp\"\n#define PROBLEM \\\n  \"\
-    https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\n\n#line 1\
-    \ \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+  bundledCode: "#line 1 \"test/4_aoj/NTL_1_E.test.cpp\"\n#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -206,16 +205,26 @@ data:
     \ int> || is_same_v<T, ll>);\r\n  T x = 1, y = 0, x1 = 0, y1 = 1;\r\n  while (b\
     \ != 0) {\r\n    T q = a / b;\r\n    swap(a %= b, b);\r\n    T X = x - q * x1,\
     \ Y = y - q * y1;\r\n    x = x1, y = y1, x1 = X, y1 = Y;\r\n  }\r\n  return {a,\
-    \ x, y};\r\n}\r\n#line 7 \"test/4_aoj/NTL_1_E.test.cpp\"\n\nvoid solve() {\n \
-    \ LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x, y);\n}\n\nsigned main()\
-    \ {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n  cout << setprecision(15);\n\
-    \n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\n  return 0;\n}\n"
-  code: "#define PROBLEM \\\n  \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
+    \ x, y};\r\n}\r\n\r\ntuple<ll, ll, ll, ll> Farey_lr(ll a, ll b) {\r\n  assert(a\
+    \ > 0 && b > 0);\r\n  /*\r\n  Farey \u6570\u5217\u3067\u3001a/b \u304C\u6700\u521D\
+    \u306B\u73FE\u308C\u308B\u3068\u304D\u306E\u3001\u5DE6\u53F3\u3092\u6C42\u3081\
+    \u308B\u3002\r\n  a/b = 19/12 \u2192 (x1/y1, x2/y2) = (11/7, 8/5) \u2192 (11,7,8,5)\
+    \ \u3092\u8FD4\u3059\u3002\r\n  */\r\n  if (a == b) return {0, 1, 1, 0};\r\n \
+    \ ll q = (a - 1) / b;\r\n  auto [x1, y1, x2, y2] = Farey_lr(b, a - q * b);\r\n\
+    \  return {q * x2 + y2, x2, q * x1 + y1, x1};\r\n}\r\n\r\ntuple<ll, ll, ll> extgcd2(ll\
+    \ a, ll b) {\r\n  // ax + by = d \u306E\u6700\u5C0F\u89E3 (x, y, d) \u3092\u8FD4\
+    \u3059\u3002\r\n  // (|x|+|y|, x) \u306B\u95A2\u3059\u308B\u8F9E\u66F8\u9806\u6700\
+    \u5C0F\u3068\u3059\u308B\u3002\r\n  auto [x1, y1, x2, y2] = Farey_lr(a, b);\r\n\
+    \  tie(x1, y1) = mp(y1, -x1);\r\n  tie(x2, y2) = mp(-y2, x2);\r\n  ll g = a *\
+    \ x1 + b * y1;\r\n  pi key1 = mp(abs(x1) + abs(y1), x1);\r\n  pi key2 = mp(abs(x2)\
+    \ + abs(y2), x2);\r\n  return (key1 < key2 ? mt(x1, y1, g) : mt(x2, y2, g));\r\
+    \n}\r\n#line 6 \"test/4_aoj/NTL_1_E.test.cpp\"\n\nvoid solve() {\n  LL(a, b);\n\
+    \  auto [x, y, d] = extgcd2(a, b);\n  print(x, y);\n}\n\nsigned main() {\n  solve();\n\
+    \  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"nt/extgcd.hpp\"\
-    \n\nvoid solve() {\n  LL(a, b);\n  auto [x, y, d] = extgcd(a, b);\n  print(x,\
-    \ y);\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(_, T) solve();\n\
-    \n  return 0;\n}\n"
+    \n\nvoid solve() {\n  LL(a, b);\n  auto [x, y, d] = extgcd2(a, b);\n  print(x,\
+    \ y);\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -223,8 +232,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-29 17:01:27+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/NTL_1_E.test.cpp
 layout: document
