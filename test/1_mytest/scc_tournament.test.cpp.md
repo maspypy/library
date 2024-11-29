@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/scc_tounament_by_indegrees.hpp
     title: graph/scc_tounament_by_indegrees.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
