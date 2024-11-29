@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   _extendedVerifiedWith:
@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_3.test.cpp
     title: test/3_yukicoder/789_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc241d.test.cpp
     title: test/5_atcoder/abc241d.test.cpp
   - icon: ':x:'

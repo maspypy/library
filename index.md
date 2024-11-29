@@ -304,7 +304,7 @@ data:
     - icon: ':question:'
       path: ds/my_bitset.hpp
       title: ds/my_bitset.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: ds/my_multiset.hpp
       title: ds/my_multiset.hpp
     - icon: ':heavy_check_mark:'
@@ -4860,7 +4860,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc240ex.test.cpp
       title: test/5_atcoder/abc240ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc241d.test.cpp
       title: test/5_atcoder/abc241d.test.cpp
     - icon: ':x:'
