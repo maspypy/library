@@ -43,22 +43,14 @@ void solve() {
     return {left, right};
   };
 
-  using X = Dyadic_Rational<int>;
-  auto MP = solve_partizan_game<string, int>(states, get_options);
-  X x(0);
+  auto MP = solve_partizan_game<string>(states, get_options);
+  Number_And_Star x;
   // for (auto&& [k, x]: MP) { print(k, ",", x.to_string()); }
   for (auto&& s: states) { x += MP[s]; }
-  print(x > X(0) ? "Takahashi" : "Snuke");
+  print(x.outcome().fi ? "Takahashi" : "Snuke");
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
