@@ -528,7 +528,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc266h_2.test.cpp
     title: test/5_atcoder/abc266h_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc280f.test.cpp
     title: test/5_atcoder/abc280f.test.cpp
   - icon: ':x:'
