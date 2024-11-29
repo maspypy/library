@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -525,7 +525,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc256ex2.test.cpp
     title: test/5_atcoder/abc256ex2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc266h_2.test.cpp
     title: test/5_atcoder/abc266h_2.test.cpp
   - icon: ':x:'

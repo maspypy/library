@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   - icon: ':x:'
@@ -15,7 +15,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc229h.test.cpp
     title: test/5_atcoder/abc229h.test.cpp
   - icon: ':x:'

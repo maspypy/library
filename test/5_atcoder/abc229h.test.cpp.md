@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/mex.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc229/tasks/abc229_h
@@ -302,13 +302,11 @@ data:
     \ - 1], s[i]);\n      }\n    }\n    FOR(i, n) {\n      // \u98DF\u3079\u308B\n\
     \      if (s[i] == 'B') {\n        s[i] = '.';\n        left.eb(s);\n        s[i]\
     \ = 'B';\n      }\n      if (s[i] == 'W') {\n        s[i] = '.';\n        right.eb(s);\n\
-    \        s[i] = 'W';\n      }\n    }\n    return {left, right};\n  };\n\n  using\
-    \ X = Dyadic_Rational<int>;\n  auto MP = solve_partizan_game<string, int>(states,\
-    \ get_options);\n  X x(0);\n  // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string());\
-    \ }\n  for (auto&& s: states) { x += MP[s]; }\n  print(x > X(0) ? \"Takahashi\"\
-    \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \        s[i] = 'W';\n      }\n    }\n    return {left, right};\n  };\n\n  auto\
+    \ MP = solve_partizan_game<string>(states, get_options);\n  Number_And_Star x;\n\
+    \  // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string()); }\n  for (auto&&\
+    \ s: states) { x += MP[s]; }\n  print(x.outcome().fi ? \"Takahashi\" : \"Snuke\"\
+    );\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc229/tasks/abc229_h\"\n\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"game/solve_partizan_game.hpp\"\
     \n\nvoid solve() {\n  LL(N);\n  VEC(string, G, N);\n  vc<string> states(N);\n\
@@ -321,13 +319,11 @@ data:
     \ - 1], s[i]);\n      }\n    }\n    FOR(i, n) {\n      // \u98DF\u3079\u308B\n\
     \      if (s[i] == 'B') {\n        s[i] = '.';\n        left.eb(s);\n        s[i]\
     \ = 'B';\n      }\n      if (s[i] == 'W') {\n        s[i] = '.';\n        right.eb(s);\n\
-    \        s[i] = 'W';\n      }\n    }\n    return {left, right};\n  };\n\n  using\
-    \ X = Dyadic_Rational<int>;\n  auto MP = solve_partizan_game<string, int>(states,\
-    \ get_options);\n  X x(0);\n  // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string());\
-    \ }\n  for (auto&& s: states) { x += MP[s]; }\n  print(x > X(0) ? \"Takahashi\"\
-    \ : \"Snuke\");\n}\n\nsigned main() {\n  cin.tie(nullptr);\n  ios::sync_with_stdio(false);\n\
-    \  cout << setprecision(15);\n\n  ll T = 1;\n  // LL(T);\n  FOR(T) solve();\n\n\
-    \  return 0;\n}\n"
+    \        s[i] = 'W';\n      }\n    }\n    return {left, right};\n  };\n\n  auto\
+    \ MP = solve_partizan_game<string>(states, get_options);\n  Number_And_Star x;\n\
+    \  // for (auto&& [k, x]: MP) { print(k, \",\", x.to_string()); }\n  for (auto&&\
+    \ s: states) { x += MP[s]; }\n  print(x.outcome().fi ? \"Takahashi\" : \"Snuke\"\
+    );\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -338,8 +334,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc229h.test.cpp
   requiredBy: []
-  timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-11-29 21:55:20+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc229h.test.cpp
 layout: document

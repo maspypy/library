@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc229h.test.cpp
     title: test/5_atcoder/abc229h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\
@@ -109,7 +109,7 @@ data:
   - game/number_and_star.hpp
   - game/solve_partizan_game.hpp
   timestamp: '2024-11-11 22:49:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/abc229h.test.cpp
   - test/1_mytest/partizan.test.cpp

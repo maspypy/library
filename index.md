@@ -369,7 +369,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_01.hpp
       title: ds/fenwicktree/fenwicktree_01.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/fenwicktree/fenwicktree_2d.hpp
       title: ds/fenwicktree/fenwicktree_2d.hpp
     - icon: ':heavy_check_mark:'
@@ -678,7 +678,7 @@ data:
       title: flow/unbalanced_transportation.hpp
   - name: game
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: game/dyadic_rational.hpp
       title: game/dyadic_rational.hpp
     - icon: ':heavy_check_mark:'
@@ -687,10 +687,10 @@ data:
     - icon: ':warning:'
       path: game/graph_path_game.hpp
       title: game/graph_path_game.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: game/number_and_star.hpp
       title: game/number_and_star.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: game/solve_partizan_game.hpp
       title: game/solve_partizan_game.hpp
   - name: geo
@@ -996,7 +996,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/twosat.hpp
       title: graph/twosat.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/unicyclic.hpp
       title: graph/unicyclic.hpp
     - icon: ':question:'
@@ -1850,7 +1850,7 @@ data:
     - icon: ':question:'
       path: poly/product_of_one_minus_xn.hpp
       title: poly/product_of_one_minus_xn.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/product_of_one_plus_xn.hpp
       title: poly/product_of_one_plus_xn.hpp
     - icon: ':heavy_check_mark:'
@@ -4830,7 +4830,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc228f.test.cpp
       title: test/5_atcoder/abc228f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc229h.test.cpp
       title: test/5_atcoder/abc229h.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4905,19 +4905,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc266c.test.cpp
       title: test/5_atcoder/abc266c.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc266f.test.cpp
       title: test/5_atcoder/abc266f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc266h.test.cpp
       title: test/5_atcoder/abc266h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc266h_2.test.cpp
       title: test/5_atcoder/abc266h_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc267g.test.cpp
       title: test/5_atcoder/abc267g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc267h.test.cpp
       title: test/5_atcoder/abc267h.test.cpp
     - icon: ':x:'
