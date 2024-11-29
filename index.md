@@ -82,7 +82,7 @@ data:
       title: alg/acted_set/from_monoid.hpp
   - name: alg/monoid
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add.hpp
       title: alg/monoid/add.hpp
     - icon: ':heavy_check_mark:'
@@ -97,7 +97,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax.hpp
       title: alg/monoid/add_chmin_chmax.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: alg/monoid/add_chmin_chmax_with_cost.hpp
       title: alg/monoid/add_chmin_chmax_with_cost.hpp
     - icon: ':heavy_check_mark:'
@@ -257,7 +257,7 @@ data:
       title: convex/slope_trick/slope_trick_1.hpp
   - name: datetime
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: datetime/datetime.hpp
       title: datetime/datetime.hpp
   - name: ds
@@ -924,7 +924,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/optimal_product_on_tree.hpp
       title: graph/optimal_product_on_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -969,7 +969,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1856,7 +1856,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: poly/product_of_pow_of_linear.hpp
       title: poly/product_of_pow_of_linear.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/slice_rational_fps.hpp
       title: poly/slice_rational_fps.hpp
     - icon: ':heavy_check_mark:'
@@ -2204,7 +2204,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/suffix_tree.hpp
       title: string/suffix_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: string/trie.hpp
       title: string/trie.hpp
     - icon: ':warning:'
@@ -5085,19 +5085,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc354g.test.cpp
       title: test/5_atcoder/abc354g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc362g.test.cpp
       title: test/5_atcoder/abc362g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc365a.test.cpp
       title: test/5_atcoder/abc365a.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc365f.test.cpp
       title: test/5_atcoder/abc365f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/agc013e.test.cpp
       title: test/5_atcoder/agc013e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/agc023f.test.cpp
       title: test/5_atcoder/agc023f.test.cpp
     - icon: ':x:'

@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc023f.test.cpp
     title: test/5_atcoder/agc023f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/agc023/tasks/agc023_f
@@ -314,7 +314,7 @@ data:
   path: graph/optimal_product_on_tree.hpp
   requiredBy: []
   timestamp: '2024-11-29 20:53:58+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/5_atcoder/agc023f.test.cpp
 documentation_of: graph/optimal_product_on_tree.hpp
