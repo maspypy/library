@@ -29,6 +29,7 @@ pair<vc<int>, typename Monoid::value_type> optimal_product_on_tree(TREE& tree, v
     elif (b == -1) seg[i] = a;
     else seg[i] = (compare(A[a], A[b]) ? a : b);
   };
+  // if seg[i]==x: return しようと思ったがデータが変わるという話なのでまずい
   auto set = [&](int i, int x) -> void {
     i += size;
     seg[i] = x;
@@ -42,12 +43,14 @@ pair<vc<int>, typename Monoid::value_type> optimal_product_on_tree(TREE& tree, v
     int a = head[uf[v]], b = tail[uf[v]];
     int p = uf[tree.parent[a]];
     int c = head[p], d = tail[p];
-    set(v, -1), set(p, -1);
     X pv = Monoid::op(A[p], A[v]);
     uf.merge(p, v);
-    v = uf[v];
-    A[v] = pv, head[v] = c, tail[v] = b, nxt[d] = a;
-    if (uf[v] != uf[root]) set(v, v);
+    int w = uf[v];
+    A[w] = pv, head[v] = c, tail[v] = b, nxt[d] = a;
+    int av = -1, ap = -1;
+    if (v == w && uf[v] != uf[root]) av = v;
+    if (p == w && uf[p] != uf[root]) ap = p;
+    set(v, av), set(p, ap);
   }
   vc<int> I = {root};
   while (nxt[I.back()] != -1) I.eb(nxt[I.back()]);
