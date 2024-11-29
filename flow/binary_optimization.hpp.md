@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc193f.test.cpp
     title: test/5_atcoder/abc193f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc259g.test.cpp
     title: test/5_atcoder/abc259g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -235,7 +235,7 @@ data:
   path: flow/binary_optimization.hpp
   requiredBy: []
   timestamp: '2024-04-19 22:50:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2320.test.cpp
   - test/3_yukicoder/1541.test.cpp
