@@ -80,7 +80,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/inverse_manacher.hpp
     title: string/inverse_manacher.hpp
   _extendedVerifiedWith:
@@ -282,7 +282,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc314f.test.cpp
     title: test/5_atcoder/abc314f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc349g.test.cpp
     title: test/5_atcoder/abc349g.test.cpp
   - icon: ':x:'

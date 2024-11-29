@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/mex.hpp
     title: other/mex.hpp
   _extendedRequiredBy:

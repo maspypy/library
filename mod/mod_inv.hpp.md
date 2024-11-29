@@ -212,7 +212,7 @@ data:
   - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
   - icon: ':heavy_check_mark:'
@@ -906,7 +906,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc339f.test.cpp
     title: test/5_atcoder/abc339f.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc345g.test.cpp
     title: test/5_atcoder/abc345g.test.cpp
   - icon: ':x:'

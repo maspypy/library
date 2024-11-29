@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/mex.hpp
     title: other/mex.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/inverse_manacher.hpp
     title: string/inverse_manacher.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc349/tasks/abc349_g
@@ -256,7 +256,7 @@ data:
   path: test/5_atcoder/abc349g.test.cpp
   requiredBy: []
   timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/5_atcoder/abc349g.test.cpp
 layout: document

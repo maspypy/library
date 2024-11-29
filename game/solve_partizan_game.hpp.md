@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/mex.hpp
     title: other/mex.hpp
   _extendedRequiredBy: []

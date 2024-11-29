@@ -217,7 +217,7 @@ data:
     - icon: ':warning:'
       path: convex/line_min_function.hpp
       title: convex/line_min_function.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/maxplus_convolution.hpp
       title: convex/maxplus_convolution.hpp
     - icon: ':heavy_check_mark:'
@@ -229,7 +229,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/monge.hpp
       title: convex/monge.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: convex/monotone_minima.hpp
       title: convex/monotone_minima.hpp
     - icon: ':heavy_check_mark:'
@@ -1136,7 +1136,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/lazy_tree_monoid.hpp
       title: graph/ds/lazy_tree_monoid.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/lct_node_base.hpp
       title: graph/ds/lct_node_base.hpp
     - icon: ':heavy_check_mark:'
@@ -1145,7 +1145,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/ds/lct_node_monoid.hpp
       title: graph/ds/lct_node_monoid.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/ds/link_cut_tree.hpp
       title: graph/ds/link_cut_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1488,7 +1488,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: nt/all_lcm.hpp
       title: nt/all_lcm.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: nt/array_on_divisors.hpp
       title: nt/array_on_divisors.hpp
     - icon: ':heavy_check_mark:'
@@ -1663,7 +1663,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/magic_square.hpp
       title: other/magic_square.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/mex.hpp
       title: other/mex.hpp
     - icon: ':heavy_check_mark:'
@@ -1835,7 +1835,7 @@ data:
     - icon: ':question:'
       path: poly/poly_taylor_shift.hpp
       title: poly/poly_taylor_shift.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/power_projection.hpp
       title: poly/power_projection.hpp
     - icon: ':heavy_check_mark:'
@@ -2123,7 +2123,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/edit_distance.hpp
       title: string/edit_distance.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: string/inverse_manacher.hpp
       title: string/inverse_manacher.hpp
     - icon: ':warning:'
@@ -5058,19 +5058,19 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc339f.test.cpp
       title: test/5_atcoder/abc339f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc345g.test.cpp
       title: test/5_atcoder/abc345g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc348g.test.cpp
       title: test/5_atcoder/abc348g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc349f.test.cpp
       title: test/5_atcoder/abc349f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc349g.test.cpp
       title: test/5_atcoder/abc349g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc350_g.test.cpp
       title: test/5_atcoder/abc350_g.test.cpp
     - icon: ':x:'
