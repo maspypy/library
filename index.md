@@ -661,7 +661,7 @@ data:
     - icon: ':question:'
       path: flow/maxflow.hpp
       title: flow/maxflow.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: flow/maxflow_with_lowerbound.hpp
       title: flow/maxflow_with_lowerbound.hpp
     - icon: ':heavy_check_mark:'
@@ -746,7 +746,7 @@ data:
     - icon: ':warning:'
       path: geo/lower_convexhull_segtree.hpp
       title: geo/lower_convexhull_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/manhattan_mst.hpp
       title: geo/manhattan_mst.hpp
     - icon: ':heavy_check_mark:'
@@ -790,10 +790,10 @@ data:
       title: geo/triangle_area.hpp
   - name: geo3d
     pages:
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo3d/base.hpp
       title: geo3d/base.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: geo3d/cross_point.hpp
       title: geo3d/cross_point.hpp
   - name: graph
@@ -1198,7 +1198,7 @@ data:
     - icon: ':question:'
       path: graph/shortest_path/dijkstra.hpp
       title: graph/shortest_path/dijkstra.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/shortest_path/grid_bfs.hpp
       title: graph/shortest_path/grid_bfs.hpp
     - icon: ':heavy_check_mark:'
@@ -1215,13 +1215,13 @@ data:
       title: graph/shortest_path/warshall_floyd.hpp
   - name: graph/tree_dp
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/rerooting_dp.hpp
       title: graph/tree_dp/rerooting_dp.hpp
     - icon: ':warning:'
       path: graph/tree_dp/rerooting_dp_2.hpp
       title: graph/tree_dp/rerooting_dp_2.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree_dp/subtree_depth_sum.hpp
       title: graph/tree_dp/subtree_depth_sum.hpp
     - icon: ':warning:'
@@ -1331,7 +1331,7 @@ data:
     - icon: ':question:'
       path: linalg/blackbox/min_poly.hpp
       title: linalg/blackbox/min_poly.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: linalg/blackbox/pascal.hpp
       title: linalg/blackbox/pascal.hpp
     - icon: ':heavy_check_mark:'
@@ -1624,7 +1624,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/connected_dp.hpp
       title: other/connected_dp.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: other/count_seq_with_fixed_xor_value.hpp
       title: other/count_seq_with_fixed_xor_value.hpp
     - icon: ':warning:'
@@ -4968,25 +4968,25 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc281g.test.cpp
       title: test/5_atcoder/abc281g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc283f.test.cpp
       title: test/5_atcoder/abc283f.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc285g.test.cpp
       title: test/5_atcoder/abc285g.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc285h.test.cpp
       title: test/5_atcoder/abc285h.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc288ex.test.cpp
       title: test/5_atcoder/abc288ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc298ex.test.cpp
       title: test/5_atcoder/abc298ex.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc301e.test.cpp
       title: test/5_atcoder/abc301e.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/5_atcoder/abc301g.test.cpp
       title: test/5_atcoder/abc301g.test.cpp
     - icon: ':x:'

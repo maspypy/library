@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
   - icon: ':heavy_check_mark:'
@@ -107,7 +107,7 @@ data:
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/count_seq_with_fixed_xor_value.hpp
     title: other/count_seq_with_fixed_xor_value.hpp
   - icon: ':question:'
@@ -1389,10 +1389,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc281g.test.cpp
     title: test/5_atcoder/abc281g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc285h.test.cpp
     title: test/5_atcoder/abc285h.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc288ex.test.cpp
     title: test/5_atcoder/abc288ex.test.cpp
   - icon: ':x:'
