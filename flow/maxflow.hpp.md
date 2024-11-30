@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
   - icon: ':warning:'
@@ -51,12 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/abc354g.test.cpp
     title: test/5_atcoder/abc354g.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc107.test.cpp
     title: test/5_atcoder/arc107.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -233,7 +233,7 @@ data:
   - flow/k_ary_optimization.hpp
   - flow/binary_optimization.hpp
   timestamp: '2024-04-19 22:50:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/177.test.cpp
   - test/3_yukicoder/2320.test.cpp

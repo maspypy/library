@@ -5,7 +5,7 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
   - icon: ':warning:'
@@ -18,12 +18,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2907.test.cpp
     title: test/3_yukicoder/2907.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/agc058d.test.cpp
     title: test/5_atcoder/agc058d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
@@ -42,7 +42,7 @@ data:
   - poly/coef_of_rational_fps_2d.hpp
   - other/sliding_puzzle_solver.hpp
   timestamp: '2024-10-22 00:27:53+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2907.test.cpp
   - test/3_yukicoder/2108.test.cpp
