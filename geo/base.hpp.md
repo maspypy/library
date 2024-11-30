@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
   - icon: ':warning:'
@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
@@ -180,12 +180,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc064c.test.cpp
     title: test/5_atcoder/arc064c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/5_atcoder/arc130f.test.cpp
     title: test/5_atcoder/arc130f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -320,7 +320,7 @@ data:
   - geo/angle_sort.hpp
   - graph/planar_graph.hpp
   timestamp: '2024-10-20 23:29:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp
   - test/3_yukicoder/1777.test.cpp
