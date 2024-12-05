@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -65,22 +65,23 @@ data:
     \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
     \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
     \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1\r\ntemplate\
-    \ <typename T>\r\nint lower_or_upper(const Point<T>& p) {\r\n  if (p.y != 0) return\
-    \ (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0) return -1;\r\n  if (p.x < 0) return 1;\r\
-    \n  return 0;\r\n}\r\n\r\n// L<R:-1, L==R:0, L>R:1\r\ntemplate <typename T>\r\n\
-    int angle_comp_3(const Point<T>& L, const Point<T>& R) {\r\n  int a = lower_or_upper(L),\
-    \ b = lower_or_upper(R);\r\n  if (a != b) return (a < b ? -1 : +1);\r\n  T det\
-    \ = L.det(R);\r\n  if (det > 0) return -1;\r\n  if (det < 0) return 1;\r\n  return\
-    \ 0;\r\n}\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
-    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<Point<T>>& P) {\r\n \
-    \ vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto&\
-    \ L, auto& R) -> bool { return angle_comp_3(P[L], P[R]) == -1; });\r\n  return\
-    \ I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort\r\
-    \ntemplate <typename T>\r\nvector<int> angle_sort(vector<pair<T, T>>& P) {\r\n\
-    \  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\n\
-    \  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"geo/rotating_swaps.hpp\"\n\n/*\n\
-    return : {init, events}\ninit: \u65B9\u5411\u30D9\u30AF\u30C8\u30EB (-1,-eps)\
+    \ 4 \"geo/angle_sort.hpp\"\n\r\n// lower: -1, origin: 0, upper: 1, (-pi,pi]\r\n\
+    template <typename T> int lower_or_upper(const Point<T> &p) {\r\n  if (p.y !=\
+    \ 0)\r\n    return (p.y > 0 ? 1 : -1);\r\n  if (p.x > 0)\r\n    return -1;\r\n\
+    \  if (p.x < 0)\r\n    return 1;\r\n  return 0;\r\n}\r\n\r\n// L<R:-1, L==R:0,\
+    \ L>R:1, (-pi,pi]\r\ntemplate <typename T> int angle_comp_3(const Point<T> &L,\
+    \ const Point<T> &R) {\r\n  int a = lower_or_upper(L), b = lower_or_upper(R);\r\
+    \n  if (a != b)\r\n    return (a < b ? -1 : +1);\r\n  T det = L.det(R);\r\n  if\
+    \ (det > 0)\r\n    return -1;\r\n  if (det < 0)\r\n    return 1;\r\n  return 0;\r\
+    \n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B argsort,\
+    \ (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<Point<T>> &P)\
+    \ {\r\n  vc<int> I(len(P));\r\n  FOR(i, len(P)) I[i] = i;\r\n  sort(all(I), [&](auto\
+    \ &L, auto &R) -> bool {\r\n    return angle_comp_3(P[L], P[R]) == -1;\r\n  });\r\
+    \n  return I;\r\n}\r\n\r\n// \u504F\u89D2\u30BD\u30FC\u30C8\u306B\u5BFE\u3059\u308B\
+    \ argsort, (-pi,pi]\r\ntemplate <typename T> vector<int> angle_sort(vector<pair<T,\
+    \ T>> &P) {\r\n  vc<Point<T>> tmp(len(P));\r\n  FOR(i, len(P)) tmp[i] = Point<T>(P[i]);\r\
+    \n  return angle_sort<T>(tmp);\r\n}\r\n#line 2 \"geo/rotating_swaps.hpp\"\n\n\
+    /*\nreturn : {init, events}\ninit: \u65B9\u5411\u30D9\u30AF\u30C8\u30EB (-1,-eps)\
     \ \u65B9\u5411\u306B\u3064\u3044\u3066\u30BD\u30FC\u30C8\u3057\u305F\u3068\u304D\
     \u306E\u9806\u5E8F\nevents: i,j \u306E\u9806\u4F4D\u304C\u5165\u308C\u66FF\u308F\
     \u308B (i<j \u304B\u3089 j<i)\u3068\u3044\u3046\u30A4\u30D9\u30F3\u30C8\u306E\u5217\
@@ -156,7 +157,7 @@ data:
   isVerificationFile: false
   path: geo/rotating_swaps.hpp
   requiredBy: []
-  timestamp: '2024-10-20 23:29:28+09:00'
+  timestamp: '2024-12-05 21:21:15+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/rotating_swaps.hpp
