@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
   - icon: ':x:'
@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: ds/segtree/dual_segtree.hpp
     title: ds/segtree/dual_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'

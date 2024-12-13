@@ -47,10 +47,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_eulerian.hpp
     title: graph/count/count_labeled_eulerian.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_strong_digraph.hpp
     title: graph/count/count_labeled_strong_digraph.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
   - icon: ':x:'
@@ -108,10 +108,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_eulerian.test.cpp
     title: test/1_mytest/count_labeled_eulerian.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_labeled_strong.test.cpp
     title: test/1_mytest/count_labeled_strong.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
   - icon: ':x:'

@@ -24,7 +24,7 @@ data:
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_odd_cycle.test.cpp
     title: test/1_mytest/find_odd_cycle.test.cpp
   - icon: ':x:'
@@ -68,7 +68,7 @@ data:
     title: test/5_atcoder/abc274g.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/bipartite_vertex_coloring.hpp\"\n\r\n#line 2 \"graph/base.hpp\"\
@@ -181,7 +181,7 @@ data:
   - flow/bipartite.hpp
   - flow/rank_maximal_bipartite_matching.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1615.test.cpp
   - test/3_yukicoder/1911.test.cpp

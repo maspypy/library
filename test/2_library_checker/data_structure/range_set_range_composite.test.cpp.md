@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':x:'
@@ -13,7 +13,7 @@ data:
   - icon: ':x:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':question:'

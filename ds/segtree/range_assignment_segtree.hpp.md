@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []

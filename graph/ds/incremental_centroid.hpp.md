@@ -7,7 +7,7 @@ data:
   - icon: ':x:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'

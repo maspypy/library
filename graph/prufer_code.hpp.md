@@ -5,11 +5,11 @@ data:
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/labeled_tree.hpp
     title: enumerate/labeled_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/enumerate_labeled_tree.test.cpp
     title: test/1_mytest/enumerate_labeled_tree.test.cpp
   - icon: ':x:'
@@ -17,7 +17,7 @@ data:
     title: test/1_mytest/prufer.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n\
@@ -130,7 +130,7 @@ data:
   requiredBy:
   - enumerate/labeled_tree.hpp
   timestamp: '2024-05-29 22:32:29+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/enumerate_labeled_tree.test.cpp
   - test/1_mytest/prufer.test.cpp
