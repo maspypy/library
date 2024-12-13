@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':question:'

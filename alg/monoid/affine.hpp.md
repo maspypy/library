@@ -42,22 +42,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
     title: test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
     title: test/2_library_checker/data_structure/range_affine_point_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
   - icon: ':x:'

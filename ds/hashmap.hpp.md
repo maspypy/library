@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: ds/static_range_frequency.hpp
     title: ds/static_range_frequency.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
   - icon: ':x:'
@@ -57,10 +57,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_freq.test.cpp
     title: test/2_library_checker/data_structure/static_range_freq.test.cpp
   - icon: ':x:'

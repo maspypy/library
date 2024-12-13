@@ -53,7 +53,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree.hpp
     title: ds/fenwicktree/dual_fenwicktree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
   - icon: ':question:'
@@ -71,10 +71,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_range_add.hpp
     title: ds/fenwicktree/fenwicktree_range_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/coeffient_query_2d.hpp
     title: ds/offline_query/coeffient_query_2d.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/offline_query/point_add_rectangle_sum.hpp
     title: ds/offline_query/point_add_rectangle_sum.hpp
   - icon: ':question:'
@@ -240,46 +240,46 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_5.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pbs.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
     title: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - icon: ':x:'
