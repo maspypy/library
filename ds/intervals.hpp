@@ -97,6 +97,7 @@ struct Intervals_Fast {
 // https://codeforces.com/contest/1638/problem/E
 // 持つ値のタイプ T、座標タイプ X
 // コンストラクタでは T none_val を指定する
+// 先読み可能なら座圧して fastset の方が速い
 template <typename T, typename X = ll>
 struct Intervals {
   static constexpr X LLIM = -infty<X>;

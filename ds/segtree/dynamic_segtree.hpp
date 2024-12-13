@@ -63,12 +63,16 @@ struct Dynamic_SegTree {
 
   np set(np root, ll i, const X &x) {
     assert(root && L0 <= i && i < R0);
-    return set_rec(root, L0, R0, i, x);
+    root = (root ? copy_node(root) : new_node());
+    set_rec(root, L0, R0, i, x);
+    return root;
   }
 
   np multiply(np root, ll i, const X &x) {
     assert(root && L0 <= i && i < R0);
-    return multiply_rec(root, L0, R0, i, x);
+    root = (root ? copy_node(root) : new_node());
+    multiply_rec(root, L0, R0, i, x);
+    return root;
   }
 
   template <typename F>
@@ -113,50 +117,48 @@ private:
     return &(pool[pid++]);
   }
 
-  np set_rec(np c, ll l, ll r, ll i, const X &x) {
+  void set_rec(np c, ll l, ll r, ll i, const X &x) {
+    assert(c);
+    // もう c は新しくしてある
     if (r == l + 1) {
-      c = copy_node(c);
       c->x = x;
-      return c;
+      return;
     }
     ll m = (l + r) / 2;
-
-    c = copy_node(c);
-    if (i < m) {
-      if (!c->l) c->l = new_node(l, m);
-      c->l = set_rec(c->l, l, m, i, x);
-    } else {
-      if (!c->r) c->r = new_node(m, r);
-      c->r = set_rec(c->r, m, r, i, x);
+    if (l <= i && i < m) {
+      c->l = (c->l ? copy_node(c->l) : new_node());
+      set_rec(c->l, l, m, i, x);
+    }
+    if (m <= i && i < r) {
+      c->r = (c->r ? copy_node(c->r) : new_node());
+      set_rec(c->r, m, r, i, x);
     }
     X xl = (c->l ? c->l->x : default_prod(l, m));
     X xr = (c->r ? c->r->x : default_prod(m, r));
     c->x = MX::op(xl, xr);
-    return c;
+    return;
   }
 
-  np multiply_rec(np c, ll l, ll r, ll i, const X &x, bool make_copy = true) {
+  void multiply_rec(np c, ll l, ll r, ll i, const X &x) {
+    assert(c);
+    // もう c は新しくしてある
     if (r == l + 1) {
-      if (make_copy) c = copy_node(c);
       c->x = MX::op(c->x, x);
-      return c;
+      return;
     }
     ll m = (l + r) / 2;
-    if (make_copy) c = copy_node(c);
-
-    if (i < m) {
-      bool make = true;
-      if (!c->l) c->l = new_node(l, m), make = false;
-      c->l = multiply_rec(c->l, l, m, i, x, make);
-    } else {
-      bool make = true;
-      if (!c->r) c->r = new_node(m, r), make = false;
-      c->r = multiply_rec(c->r, m, r, i, x, make);
+    if (l <= i && i < m) {
+      c->l = (c->l ? copy_node(c->l) : new_node());
+      multiply_rec(c->l, l, m, i, x);
+    }
+    if (m <= i && i < r) {
+      c->r = (c->r ? copy_node(c->r) : new_node());
+      multiply_rec(c->r, m, r, i, x);
     }
     X xl = (c->l ? c->l->x : default_prod(l, m));
     X xr = (c->r ? c->r->x : default_prod(m, r));
     c->x = MX::op(xl, xr);
-    return c;
+    return;
   }
 
   void prod_rec(np c, ll l, ll r, ll ql, ll qr, X &x) {
