@@ -1,6 +1,7 @@
 #include "string/suffix_array.hpp"
 
 // dp[i][j]：S[i:i+j) の rank
+// 結果のテーブルが使いにくいなら suffix tree を dfs してもらう方がよいかも
 template <typename STRING>
 vvc<int> sort_substrings(STRING& S, int max_len = -1) {
   int n = len(S);

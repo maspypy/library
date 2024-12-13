@@ -3,6 +3,8 @@
 // O(N(logN+logK)) time
 // query num: O(NlogK), あまり最適じゃないと思う
 // 通ったがあやしいっぽい: https://codeforces.com/contest/1275/problem/F
+// 列方向もソートされているなら matrix を使おう!!
+// https://codeforces.com/problemset/problem/1034/D
 template <typename T, typename F>
 vi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0) {
   ll N = len(S);

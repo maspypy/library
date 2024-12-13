@@ -6,6 +6,7 @@ struct Trie {
   vector<int> PAR;
   vector<int> BFS;
   vector<int> FAIL;
+  vc<int> words;
 
   Trie() : n_node(1), TO({MP()}), PAR({-1}) {}
 
@@ -19,6 +20,7 @@ struct Trie {
       }
       v = TO[v][s];
     }
+    words.eb(v);
     return v;
   }
 

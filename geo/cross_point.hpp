@@ -55,13 +55,16 @@ int count_cross(Segment<T> S1, Segment<T> S2, bool include_ends) {
   return (ok1 && ok2 ? 1 : 0);
 }
 
+// 4 次式まで登場している、オーバーフロー注意！
 // https://codeforces.com/contest/607/problem/E
 template <typename REAL, typename T>
 vc<Point<REAL>> cross_point(const Circle<T> C, const Line<T> L) {
   T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y) + L.c;
   T r = C.r;
   bool SW = 0;
-  if (abs(a) < abs(b)) {
+  T abs_a = (a < 0 ? -a : a);
+  T abs_b = (b < 0 ? -b : b);
+  if (abs_a < abs_b) {
     swap(a, b);
     SW = 1;
   }

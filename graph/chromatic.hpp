@@ -5,6 +5,8 @@
 #include "setfunc/power_projection_of_sps.hpp"
 
 // O(N2^N)
+// N=23: https://codeforces.com/contest/908/problem/H
+// 上の問題では乱択がめちゃ高速
 template <typename Graph, int TRIAL = 0>
 int chromatic_number(Graph& G) {
   assert(G.is_prepared());
