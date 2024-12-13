@@ -4,10 +4,10 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.00000001'
@@ -65,13 +65,13 @@ data:
     #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
     \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(x)\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parity(x) & 1 ? -1 : 1);\
-    \ }\nint popcnt_sgn(u64 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 -\
-    \ __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
     \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
     \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
@@ -282,12 +282,14 @@ data:
     \  if (include_ends) {\n    ok1 = (a1 <= T(0)) && (T(0) <= b1);\n    ok2 = (a2\
     \ <= T(0)) && (T(0) <= b2);\n  } else {\n    ok1 = (a1 < T(0)) && (T(0) < b1);\n\
     \    ok2 = (a2 < T(0)) && (T(0) < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n\
-    }\n\n// https://codeforces.com/contest/607/problem/E\ntemplate <typename REAL,\
-    \ typename T>\nvc<Point<REAL>> cross_point(const Circle<T> C, const Line<T> L)\
-    \ {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y) + L.c;\n  T r = C.r;\n\
-    \  bool SW = 0;\n  if (abs(a) < abs(b)) {\n    swap(a, b);\n    SW = 1;\n  }\n\
-    \  // ax+by+c=0, x^2+y^2=r^2\n  T D = 4 * c * c * b * b - 4 * (a * a + b * b)\
-    \ * (c * c - a * a * r * r);\n  if (D < 0) return {};\n  REAL sqD = sqrtl(D);\n\
+    }\n\n// 4 \u6B21\u5F0F\u307E\u3067\u767B\u5834\u3057\u3066\u3044\u308B\u3001\u30AA\
+    \u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u6CE8\u610F\uFF01\n// https://codeforces.com/contest/607/problem/E\n\
+    template <typename REAL, typename T>\nvc<Point<REAL>> cross_point(const Circle<T>\
+    \ C, const Line<T> L) {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y)\
+    \ + L.c;\n  T r = C.r;\n  bool SW = 0;\n  T abs_a = (a < 0 ? -a : a);\n  T abs_b\
+    \ = (b < 0 ? -b : b);\n  if (abs_a < abs_b) {\n    swap(a, b);\n    SW = 1;\n\
+    \  }\n  // ax+by+c=0, x^2+y^2=r^2\n  T D = 4 * c * c * b * b - 4 * (a * a + b\
+    \ * b) * (c * c - a * a * r * r);\n  if (D < 0) return {};\n  REAL sqD = sqrtl(D);\n\
     \  REAL y1 = (-2 * b * c + sqD) / (2 * (a * a + b * b));\n  REAL y2 = (-2 * b\
     \ * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1 - c) / a;\n  REAL\
     \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
@@ -336,8 +338,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_2_D.test.cpp
   requiredBy: []
-  timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-13 13:55:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_2_D.test.cpp
 layout: document

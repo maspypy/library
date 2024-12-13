@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   _extendedRequiredBy: []
@@ -90,19 +90,21 @@ data:
     \ if (a2 > b2) swap(a2, b2);\n  bool ok1 = 0, ok2 = 0;\n\n  if (include_ends)\
     \ {\n    ok1 = (a1 <= T(0)) && (T(0) <= b1);\n    ok2 = (a2 <= T(0)) && (T(0)\
     \ <= b2);\n  } else {\n    ok1 = (a1 < T(0)) && (T(0) < b1);\n    ok2 = (a2 <\
-    \ T(0)) && (T(0) < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\n// https://codeforces.com/contest/607/problem/E\n\
+    \ T(0)) && (T(0) < b2);\n  }\n  return (ok1 && ok2 ? 1 : 0);\n}\n\n// 4 \u6B21\
+    \u5F0F\u307E\u3067\u767B\u5834\u3057\u3066\u3044\u308B\u3001\u30AA\u30FC\u30D0\
+    \u30FC\u30D5\u30ED\u30FC\u6CE8\u610F\uFF01\n// https://codeforces.com/contest/607/problem/E\n\
     template <typename REAL, typename T>\nvc<Point<REAL>> cross_point(const Circle<T>\
     \ C, const Line<T> L) {\n  T a = L.a, b = L.b, c = L.a * (C.O.x) + L.b * (C.O.y)\
-    \ + L.c;\n  T r = C.r;\n  bool SW = 0;\n  if (abs(a) < abs(b)) {\n    swap(a,\
-    \ b);\n    SW = 1;\n  }\n  // ax+by+c=0, x^2+y^2=r^2\n  T D = 4 * c * c * b *\
-    \ b - 4 * (a * a + b * b) * (c * c - a * a * r * r);\n  if (D < 0) return {};\n\
-    \  REAL sqD = sqrtl(D);\n  REAL y1 = (-2 * b * c + sqD) / (2 * (a * a + b * b));\n\
-    \  REAL y2 = (-2 * b * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1\
-    \ - c) / a;\n  REAL x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2,\
-    \ y2);\n  x1 += C.O.x, x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0)\
-    \ return {Point<REAL>(x1, y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2,\
-    \ y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\ntemplate <typename\
-    \ REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
+    \ + L.c;\n  T r = C.r;\n  bool SW = 0;\n  T abs_a = (a < 0 ? -a : a);\n  T abs_b\
+    \ = (b < 0 ? -b : b);\n  if (abs_a < abs_b) {\n    swap(a, b);\n    SW = 1;\n\
+    \  }\n  // ax+by+c=0, x^2+y^2=r^2\n  T D = 4 * c * c * b * b - 4 * (a * a + b\
+    \ * b) * (c * c - a * a * r * r);\n  if (D < 0) return {};\n  REAL sqD = sqrtl(D);\n\
+    \  REAL y1 = (-2 * b * c + sqD) / (2 * (a * a + b * b));\n  REAL y2 = (-2 * b\
+    \ * c - sqD) / (2 * (a * a + b * b));\n  REAL x1 = (-b * y1 - c) / a;\n  REAL\
+    \ x2 = (-b * y2 - c) / a;\n  if (SW) swap(x1, y1), swap(x2, y2);\n  x1 += C.O.x,\
+    \ x2 += C.O.x;\n  y1 += C.O.y, y2 += C.O.y;\n  if (D == 0) return {Point<REAL>(x1,\
+    \ y1)};\n  return {Point<REAL>(x1, y1), Point<REAL>(x2, y2)};\n}\n\n// https://codeforces.com/contest/2/problem/C\n\
+    template <typename REAL, typename T>\ntuple<bool, Point<T>, Point<T>> cross_point_circle(Circle<T>\
     \ C1, Circle<T> C2) {\n  using P = Point<T>;\n  P O{0, 0};\n  P A = C1.O, B =\
     \ C2.O;\n  if (A == B) return {false, O, O};\n  T d = (B - A).norm();\n  REAL\
     \ cos_val = (C1.r * C1.r + d * d - C2.r * C2.r) / (2 * C1.r * d);\n  if (cos_val\
@@ -195,7 +197,7 @@ data:
   isVerificationFile: false
   path: geo/polygon.hpp
   requiredBy: []
-  timestamp: '2024-10-20 23:29:28+09:00'
+  timestamp: '2024-12-13 13:55:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/polygon.hpp

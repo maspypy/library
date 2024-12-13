@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -22,68 +22,68 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/ranked_zeta.hpp
     title: setfunc/ranked_zeta.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/subset_convolution.hpp
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/chromatic_polynomial
@@ -127,13 +127,13 @@ data:
     #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
     \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(x)\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parity(x) & 1 ? -1 : 1);\
-    \ }\nint popcnt_sgn(u64 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 -\
-    \ __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
     \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
     \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
@@ -876,29 +876,30 @@ data:
     \ = power_projection_of_sps_egf<mint, LIM>(wt, s);\n  vc<mint> g(M);\n  mint pow\
     \ = 1;\n  FOR(i, M) { g[i] = pow * fact_inv<mint>(i), pow *= c; }\n  x = convolution<mint>(x,\
     \ g);\n  x.resize(M);\n  FOR(i, M) x[i] *= fact<mint>(i);\n  return x;\n}\n#line\
-    \ 6 \"graph/chromatic.hpp\"\n\r\n// O(N2^N)\r\ntemplate <typename Graph, int TRIAL\
-    \ = 0>\r\nint chromatic_number(Graph& G) {\r\n  assert(G.is_prepared());\r\n\r\
-    \n  int N = G.N;\r\n  vc<int> nbd(N);\r\n  FOR(v, N) for (auto&& e: G[v]) nbd[v]\
-    \ |= 1 << e.to;\r\n\r\n  // s \u306E subset \u3067\u3042\u308B\u3088\u3046\u306A\
-    \u72EC\u7ACB\u96C6\u5408\u306E\u6570\u3048\u4E0A\u3052\r\n  vc<int> dp(1 << N);\r\
-    \n  dp[0] = 1;\r\n  FOR(v, N) FOR(s, 1 << v) { dp[s | 1 << v] = dp[s] + dp[s &\
-    \ (~nbd[v])]; }\r\n\r\n  vi pow(1 << N);\r\n  auto solve_p = [&](int p) -> int\
-    \ {\r\n    FOR(s, 1 << N) pow[s] = ((N - popcnt(s)) & 1 ? 1 : -1);\r\n    FOR(k,\
-    \ 1, N) {\r\n      ll sum = 0;\r\n      FOR(s, 1 << N) {\r\n        pow[s] = pow[s]\
-    \ * dp[s];\r\n        if (p) pow[s] %= p;\r\n        sum += pow[s];\r\n      }\r\
-    \n      if (p) sum %= p;\r\n      if (sum != 0) { return k; }\r\n    }\r\n   \
-    \ return N;\r\n  };\r\n\r\n  int ANS = 0;\r\n  chmax(ANS, solve_p(0));\r\n\r\n\
-    \  FOR(TRIAL) {\r\n    int p;\r\n    while (1) {\r\n      p = RNG(1LL << 30, 1LL\
-    \ << 31);\r\n      if (primetest(p)) break;\r\n    }\r\n    chmax(ANS, solve_p(p));\r\
-    \n  }\r\n  return ANS;\r\n}\r\n\r\n// O(N^22^N)\r\ntemplate <typename mint, int\
-    \ MAX_N>\r\nvc<mint> chromatic_polynomial(Graph<int, 0> G) {\r\n  int N = G.N;\r\
-    \n  assert(N <= MAX_N);\r\n  vc<int> ng(1 << N);\r\n  for (auto& e: G.edges) {\r\
-    \n    int i = e.frm, j = e.to;\r\n    ng[(1 << i) | (1 << j)] = 1;\r\n  }\r\n\
-    \  FOR(s, 1 << N) {\r\n    if (ng[s]) {\r\n      FOR(i, N) { ng[s | 1 << i] =\
-    \ 1; }\r\n    }\r\n  }\r\n  vc<mint> f(1 << N);\r\n  FOR(s, 1 << N) {\r\n    if\
-    \ (!ng[s]) f[s] = 1;\r\n  }\r\n  vc<mint> wt(1 << N);\r\n  wt.back() = 1;\r\n\
-    \  vc<mint> Y = power_projection_of_sps<mint, MAX_N>(wt, f, N + 1);\r\n  vc<mint>\
-    \ X(N + 1);\r\n  FOR(i, N + 1) X[i] = i;\r\n  return multipoint_interpolate<mint>(X,\
+    \ 6 \"graph/chromatic.hpp\"\n\r\n// O(N2^N)\r\n// N=23: https://codeforces.com/contest/908/problem/H\r\
+    \n// \u4E0A\u306E\u554F\u984C\u3067\u306F\u4E71\u629E\u304C\u3081\u3061\u3083\u9AD8\
+    \u901F\r\ntemplate <typename Graph, int TRIAL = 0>\r\nint chromatic_number(Graph&\
+    \ G) {\r\n  assert(G.is_prepared());\r\n\r\n  int N = G.N;\r\n  vc<int> nbd(N);\r\
+    \n  FOR(v, N) for (auto&& e: G[v]) nbd[v] |= 1 << e.to;\r\n\r\n  // s \u306E subset\
+    \ \u3067\u3042\u308B\u3088\u3046\u306A\u72EC\u7ACB\u96C6\u5408\u306E\u6570\u3048\
+    \u4E0A\u3052\r\n  vc<int> dp(1 << N);\r\n  dp[0] = 1;\r\n  FOR(v, N) FOR(s, 1\
+    \ << v) { dp[s | 1 << v] = dp[s] + dp[s & (~nbd[v])]; }\r\n\r\n  vi pow(1 << N);\r\
+    \n  auto solve_p = [&](int p) -> int {\r\n    FOR(s, 1 << N) pow[s] = ((N - popcnt(s))\
+    \ & 1 ? 1 : -1);\r\n    FOR(k, 1, N) {\r\n      ll sum = 0;\r\n      FOR(s, 1\
+    \ << N) {\r\n        pow[s] = pow[s] * dp[s];\r\n        if (p) pow[s] %= p;\r\
+    \n        sum += pow[s];\r\n      }\r\n      if (p) sum %= p;\r\n      if (sum\
+    \ != 0) { return k; }\r\n    }\r\n    return N;\r\n  };\r\n\r\n  int ANS = 0;\r\
+    \n  chmax(ANS, solve_p(0));\r\n\r\n  FOR(TRIAL) {\r\n    int p;\r\n    while (1)\
+    \ {\r\n      p = RNG(1LL << 30, 1LL << 31);\r\n      if (primetest(p)) break;\r\
+    \n    }\r\n    chmax(ANS, solve_p(p));\r\n  }\r\n  return ANS;\r\n}\r\n\r\n//\
+    \ O(N^22^N)\r\ntemplate <typename mint, int MAX_N>\r\nvc<mint> chromatic_polynomial(Graph<int,\
+    \ 0> G) {\r\n  int N = G.N;\r\n  assert(N <= MAX_N);\r\n  vc<int> ng(1 << N);\r\
+    \n  for (auto& e: G.edges) {\r\n    int i = e.frm, j = e.to;\r\n    ng[(1 << i)\
+    \ | (1 << j)] = 1;\r\n  }\r\n  FOR(s, 1 << N) {\r\n    if (ng[s]) {\r\n      FOR(i,\
+    \ N) { ng[s | 1 << i] = 1; }\r\n    }\r\n  }\r\n  vc<mint> f(1 << N);\r\n  FOR(s,\
+    \ 1 << N) {\r\n    if (!ng[s]) f[s] = 1;\r\n  }\r\n  vc<mint> wt(1 << N);\r\n\
+    \  wt.back() = 1;\r\n  vc<mint> Y = power_projection_of_sps<mint, MAX_N>(wt, f,\
+    \ N + 1);\r\n  vc<mint> X(N + 1);\r\n  FOR(i, N + 1) X[i] = i;\r\n  return multipoint_interpolate<mint>(X,\
     \ Y);\r\n}\r\n#line 8 \"test/2_library_checker/graph/chromatic_polynomial.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 0> G(N);\n\
     \  G.read_graph(M, 0, 0);\n  auto f = chromatic_polynomial<mint, 20>(G);\n  print(f);\n\
@@ -938,8 +939,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
   requiredBy: []
-  timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-13 13:55:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/chromatic_polynomial.test.cpp
 layout: document

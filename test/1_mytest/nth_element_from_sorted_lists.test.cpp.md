@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/nth_element_from_sorted_lists.hpp
     title: convex/nth_element_from_sorted_lists.hpp
   - icon: ':question:'
@@ -10,14 +10,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -61,13 +61,13 @@ data:
     #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
     \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(x)\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parity(x) & 1 ? -1 : 1);\
-    \ }\nint popcnt_sgn(u64 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 -\
-    \ __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
     \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
     \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
@@ -120,11 +120,13 @@ data:
     \u7D20\u6570\u304C S[0], S[1], ..., S[N-1]\n// O(N(logN+logK)) time\n// query\
     \ num: O(NlogK), \u3042\u307E\u308A\u6700\u9069\u3058\u3083\u306A\u3044\u3068\u601D\
     \u3046\n// \u901A\u3063\u305F\u304C\u3042\u3084\u3057\u3044\u3063\u307D\u3044\
-    : https://codeforces.com/contest/1275/problem/F\ntemplate <typename T, typename\
-    \ F>\nvi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0) {\n  ll N =\
-    \ len(S);\n  ll sm = 0;\n  for (auto& x: S) sm += x >> k;\n  assert(0 <= K &&\
-    \ K <= sm);\n  if (K == 0) return vi(N, 0);\n  if (K == sm) return S;\n\n  ll\
-    \ row = 0;\n  for (auto& x: S) row += (x >= (1LL << k));\n\n  auto g = [&](int\
+    : https://codeforces.com/contest/1275/problem/F\n// \u5217\u65B9\u5411\u3082\u30BD\
+    \u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u306A\u3089 matrix \u3092\u4F7F\u304A\
+    \u3046!!\n// https://codeforces.com/problemset/problem/1034/D\ntemplate <typename\
+    \ T, typename F>\nvi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0)\
+    \ {\n  ll N = len(S);\n  ll sm = 0;\n  for (auto& x: S) sm += x >> k;\n  assert(0\
+    \ <= K && K <= sm);\n  if (K == 0) return vi(N, 0);\n  if (K == sm) return S;\n\
+    \n  ll row = 0;\n  for (auto& x: S) row += (x >= (1LL << k));\n\n  auto g = [&](int\
     \ i, ll j) -> T {\n    j = ((j + 1) << k) - 1;\n    return (j >= S[i] ? infty<T>\
     \ : f(i, j));\n  };\n  vi A(N);\n  if (K > row) {\n    A = nth_element_from_sorted_lists<T>(S,\
     \ (K - row) / 2, f, k + 1);\n    for (auto& a: A) a *= 2;\n    K = K - (K - row)\
@@ -159,8 +161,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
   requiredBy: []
-  timestamp: '2024-11-16 23:01:41+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-13 13:55:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_lists.test.cpp
 layout: document

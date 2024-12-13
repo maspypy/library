@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/range_kth_smallest
@@ -61,13 +61,13 @@ data:
     #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
     \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(x)\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parity(x) & 1 ? -1 : 1);\
-    \ }\nint popcnt_sgn(u64 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 -\
-    \ __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
     \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
     \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
@@ -234,12 +234,14 @@ data:
     \n  }\r\n\r\n  X prod(np root, ll l, ll r) {\r\n    assert(L0 <= l && l <= r &&\
     \ r <= R0);\r\n    if (!root || l == r) return MX::unit();\r\n    X x = MX::unit();\r\
     \n    prod_rec(root, L0, R0, l, r, x);\r\n    return x;\r\n  }\r\n\r\n  np set(np\
-    \ root, ll i, const X &x) {\r\n    assert(root && L0 <= i && i < R0);\r\n    return\
-    \ set_rec(root, L0, R0, i, x);\r\n  }\r\n\r\n  np multiply(np root, ll i, const\
-    \ X &x) {\r\n    assert(root && L0 <= i && i < R0);\r\n    return multiply_rec(root,\
-    \ L0, R0, i, x);\r\n  }\r\n\r\n  template <typename F>\r\n  ll max_right(np root,\
-    \ F check, ll L) {\r\n    assert(pid && root && L0 <= L && L <= R0 && check(MX::unit()));\r\
-    \n    X x = MX::unit();\r\n    return max_right_rec(root, check, L0, R0, L, x);\r\
+    \ root, ll i, const X &x) {\r\n    assert(root && L0 <= i && i < R0);\r\n    root\
+    \ = (root ? copy_node(root) : new_node());\r\n    set_rec(root, L0, R0, i, x);\r\
+    \n    return root;\r\n  }\r\n\r\n  np multiply(np root, ll i, const X &x) {\r\n\
+    \    assert(root && L0 <= i && i < R0);\r\n    root = (root ? copy_node(root)\
+    \ : new_node());\r\n    multiply_rec(root, L0, R0, i, x);\r\n    return root;\r\
+    \n  }\r\n\r\n  template <typename F>\r\n  ll max_right(np root, F check, ll L)\
+    \ {\r\n    assert(pid && root && L0 <= L && L <= R0 && check(MX::unit()));\r\n\
+    \    X x = MX::unit();\r\n    return max_right_rec(root, check, L0, R0, L, x);\r\
     \n  }\r\n\r\n  template <typename F>\r\n  ll min_left(np root, F check, ll R)\
     \ {\r\n    assert(pid && L0 <= R && R <= R0 && check(MX::unit()));\r\n    X x\
     \ = MX::unit();\r\n    return min_left_rec(root, check, L0, R0, R, x);\r\n  }\r\
@@ -251,42 +253,42 @@ data:
     \ root, L0, R0);\r\n    return;\r\n  }\r\n\r\n  void reset() { pid = 0; }\r\n\r\
     \nprivate:\r\n  np copy_node(np c) {\r\n    if (!c || !PERSISTENT) return c;\r\
     \n    pool[pid].l = c->l, pool[pid].r = c->r;\r\n    pool[pid].x = c->x;\r\n \
-    \   return &(pool[pid++]);\r\n  }\r\n\r\n  np set_rec(np c, ll l, ll r, ll i,\
-    \ const X &x) {\r\n    if (r == l + 1) {\r\n      c = copy_node(c);\r\n      c->x\
-    \ = x;\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n\r\n    c = copy_node(c);\r\
-    \n    if (i < m) {\r\n      if (!c->l) c->l = new_node(l, m);\r\n      c->l =\
-    \ set_rec(c->l, l, m, i, x);\r\n    } else {\r\n      if (!c->r) c->r = new_node(m,\
-    \ r);\r\n      c->r = set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l\
+    \   return &(pool[pid++]);\r\n  }\r\n\r\n  void set_rec(np c, ll l, ll r, ll i,\
+    \ const X &x) {\r\n    assert(c);\r\n    // \u3082\u3046 c \u306F\u65B0\u3057\u304F\
+    \u3057\u3066\u3042\u308B\r\n    if (r == l + 1) {\r\n      c->x = x;\r\n     \
+    \ return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    if (l <= i && i < m) {\r\n\
+    \      c->l = (c->l ? copy_node(c->l) : new_node());\r\n      set_rec(c->l, l,\
+    \ m, i, x);\r\n    }\r\n    if (m <= i && i < r) {\r\n      c->r = (c->r ? copy_node(c->r)\
+    \ : new_node());\r\n      set_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l\
     \ ? c->l->x : default_prod(l, m));\r\n    X xr = (c->r ? c->r->x : default_prod(m,\
-    \ r));\r\n    c->x = MX::op(xl, xr);\r\n    return c;\r\n  }\r\n\r\n  np multiply_rec(np\
-    \ c, ll l, ll r, ll i, const X &x, bool make_copy = true) {\r\n    if (r == l\
-    \ + 1) {\r\n      if (make_copy) c = copy_node(c);\r\n      c->x = MX::op(c->x,\
-    \ x);\r\n      return c;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    if (make_copy)\
-    \ c = copy_node(c);\r\n\r\n    if (i < m) {\r\n      bool make = true;\r\n   \
-    \   if (!c->l) c->l = new_node(l, m), make = false;\r\n      c->l = multiply_rec(c->l,\
-    \ l, m, i, x, make);\r\n    } else {\r\n      bool make = true;\r\n      if (!c->r)\
-    \ c->r = new_node(m, r), make = false;\r\n      c->r = multiply_rec(c->r, m, r,\
-    \ i, x, make);\r\n    }\r\n    X xl = (c->l ? c->l->x : default_prod(l, m));\r\
-    \n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\n    c->x = MX::op(xl, xr);\r\
-    \n    return c;\r\n  }\r\n\r\n  void prod_rec(np c, ll l, ll r, ll ql, ll qr,\
-    \ X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\n    if (ql >= qr) return;\r\
-    \n    if (!c) {\r\n      x = MX::op(x, default_prod(ql, qr));\r\n      return;\r\
-    \n    }\r\n    if (l == ql && r == qr) {\r\n      x = MX::op(x, c->x);\r\n   \
-    \   return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n    prod_rec(c->l, l, m, ql,\
-    \ qr, x);\r\n    prod_rec(c->r, m, r, ql, qr, x);\r\n  }\r\n\r\n  // \u3053\u308C\
-    \ new node \u4F5C\u3063\u3066\u308B\u306E\u306F\u3055\u307C\u308A\r\n  template\
-    \ <typename F>\r\n  ll max_right_rec(np c, const F &check, ll l, ll r, ll ql,\
-    \ X &x) {\r\n    if (r <= ql) return R0;\r\n    if (ql <= l && check(MX::op(x,\
-    \ c->x))) {\r\n      x = MX::op(x, c->x);\r\n      return R0;\r\n    }\r\n   \
-    \ if (r == l + 1) return l;\r\n    ll m = (l + r) / 2;\r\n    if (!c->l) c->l\
-    \ = new_node(l, m);\r\n    ll k = max_right_rec(c->l, check, l, m, ql, x);\r\n\
-    \    if (k != R0) return k;\r\n    if (!c->r) c->r = new_node(m, r);\r\n    return\
-    \ max_right_rec(c->r, check, m, r, ql, x);\r\n  }\r\n\r\n  // \u3053\u308C new\
-    \ node \u4F5C\u3063\u3066\u308B\u306E\u306F\u3055\u307C\u308A\r\n  template <typename\
-    \ F>\r\n  ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X &x) {\r\n\
-    \    if (qr <= l) return L0;\r\n    if (r <= qr && check(MX::op(c->x, x))) {\r\
-    \n      x = MX::op(x, c->x);\r\n      return L0;\r\n    }\r\n    if (r == l +\
-    \ 1) return r;\r\n    ll m = (l + r) / 2;\r\n    if (!c->r) c->r = new_node(m,\
+    \ r));\r\n    c->x = MX::op(xl, xr);\r\n    return;\r\n  }\r\n\r\n  void multiply_rec(np\
+    \ c, ll l, ll r, ll i, const X &x) {\r\n    assert(c);\r\n    // \u3082\u3046\
+    \ c \u306F\u65B0\u3057\u304F\u3057\u3066\u3042\u308B\r\n    if (r == l + 1) {\r\
+    \n      c->x = MX::op(c->x, x);\r\n      return;\r\n    }\r\n    ll m = (l + r)\
+    \ / 2;\r\n    if (l <= i && i < m) {\r\n      c->l = (c->l ? copy_node(c->l) :\
+    \ new_node());\r\n      multiply_rec(c->l, l, m, i, x);\r\n    }\r\n    if (m\
+    \ <= i && i < r) {\r\n      c->r = (c->r ? copy_node(c->r) : new_node());\r\n\
+    \      multiply_rec(c->r, m, r, i, x);\r\n    }\r\n    X xl = (c->l ? c->l->x\
+    \ : default_prod(l, m));\r\n    X xr = (c->r ? c->r->x : default_prod(m, r));\r\
+    \n    c->x = MX::op(xl, xr);\r\n    return;\r\n  }\r\n\r\n  void prod_rec(np c,\
+    \ ll l, ll r, ll ql, ll qr, X &x) {\r\n    chmax(ql, l);\r\n    chmin(qr, r);\r\
+    \n    if (ql >= qr) return;\r\n    if (!c) {\r\n      x = MX::op(x, default_prod(ql,\
+    \ qr));\r\n      return;\r\n    }\r\n    if (l == ql && r == qr) {\r\n      x\
+    \ = MX::op(x, c->x);\r\n      return;\r\n    }\r\n    ll m = (l + r) / 2;\r\n\
+    \    prod_rec(c->l, l, m, ql, qr, x);\r\n    prod_rec(c->r, m, r, ql, qr, x);\r\
+    \n  }\r\n\r\n  // \u3053\u308C new node \u4F5C\u3063\u3066\u308B\u306E\u306F\u3055\
+    \u307C\u308A\r\n  template <typename F>\r\n  ll max_right_rec(np c, const F &check,\
+    \ ll l, ll r, ll ql, X &x) {\r\n    if (r <= ql) return R0;\r\n    if (ql <= l\
+    \ && check(MX::op(x, c->x))) {\r\n      x = MX::op(x, c->x);\r\n      return R0;\r\
+    \n    }\r\n    if (r == l + 1) return l;\r\n    ll m = (l + r) / 2;\r\n    if\
+    \ (!c->l) c->l = new_node(l, m);\r\n    ll k = max_right_rec(c->l, check, l, m,\
+    \ ql, x);\r\n    if (k != R0) return k;\r\n    if (!c->r) c->r = new_node(m, r);\r\
+    \n    return max_right_rec(c->r, check, m, r, ql, x);\r\n  }\r\n\r\n  // \u3053\
+    \u308C new node \u4F5C\u3063\u3066\u308B\u306E\u306F\u3055\u307C\u308A\r\n  template\
+    \ <typename F>\r\n  ll min_left_rec(np c, const F &check, ll l, ll r, ll qr, X\
+    \ &x) {\r\n    if (qr <= l) return L0;\r\n    if (r <= qr && check(MX::op(c->x,\
+    \ x))) {\r\n      x = MX::op(x, c->x);\r\n      return L0;\r\n    }\r\n    if\
+    \ (r == l + 1) return r;\r\n    ll m = (l + r) / 2;\r\n    if (!c->r) c->r = new_node(m,\
     \ r);\r\n    ll k = min_left_rec(c->r, check, m, r, qr, x);\r\n    if (k != L0)\
     \ return k;\r\n    if (!c->l) c->l = new_node(l, m);\r\n    return min_left_rec(c->l,\
     \ check, l, m, qr, x);\r\n  }\r\n};\n#line 6 \"test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp\"\
@@ -315,8 +317,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   requiredBy: []
-  timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-13 13:55:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
 layout: document

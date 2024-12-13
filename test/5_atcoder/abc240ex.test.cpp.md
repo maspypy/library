@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
@@ -19,17 +19,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://atcoder.jp/contests/abc240/tasks/abc240_Ex
@@ -72,13 +72,13 @@ data:
     #define fi first\n#define se second\n\n#define stoi stoll\n\nint popcnt(int x)\
     \ { return __builtin_popcount(x); }\nint popcnt(u32 x) { return __builtin_popcount(x);\
     \ }\nint popcnt(ll x) { return __builtin_popcountll(x); }\nint popcnt(u64 x) {\
-    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(x)\
+    \ return __builtin_popcountll(x); }\nint popcnt_sgn(int x) { return (__builtin_parity(unsigned(x))\
     \ & 1 ? -1 : 1); }\nint popcnt_sgn(u32 x) { return (__builtin_parity(x) & 1 ?\
-    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parity(x) & 1 ? -1 : 1);\
-    \ }\nint popcnt_sgn(u64 x) { return (__builtin_parity(x) & 1 ? -1 : 1); }\n//\
-    \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x == 0 ? -1\
-    \ : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1 : 31 -\
-    \ __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
+    \ -1 : 1); }\nint popcnt_sgn(ll x) { return (__builtin_parityll(x) & 1 ? -1 :\
+    \ 1); }\nint popcnt_sgn(u64 x) { return (__builtin_parityll(x) & 1 ? -1 : 1);\
+    \ }\n// (0, 1, 2, 3, 4) -> (-1, 0, 1, 1, 2)\nint topbit(int x) { return (x ==\
+    \ 0 ? -1 : 31 - __builtin_clz(x)); }\nint topbit(u32 x) { return (x == 0 ? -1\
+    \ : 31 - __builtin_clz(x)); }\nint topbit(ll x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x));\
     \ }\nint topbit(u64 x) { return (x == 0 ? -1 : 63 - __builtin_clzll(x)); }\n//\
     \ (0, 1, 2, 3, 4) -> (-1, 0, 1, 0, 2)\nint lowbit(int x) { return (x == 0 ? -1\
     \ : __builtin_ctz(x)); }\nint lowbit(u32 x) { return (x == 0 ? -1 : __builtin_ctz(x));\
@@ -356,28 +356,31 @@ data:
     \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
     \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
     \    }\n    LCP.resize(n - 1);\n  }\n};\n#line 2 \"string/sort_substrings.hpp\"\
-    \n\n// dp[i][j]\uFF1AS[i:i+j) \u306E rank\ntemplate <typename STRING>\nvvc<int>\
-    \ sort_substrings(STRING& S, int max_len = -1) {\n  int n = len(S);\n  if (max_len\
-    \ == -1) max_len = n;\n  Suffix_Array sa(S);\n  auto& SA = sa.SA;\n  auto& LCP\
-    \ = sa.LCP;\n  int nxt = 0;\n  vv(int, dp, n, max_len + 1, -1);\n  FOR(i, len(SA))\
-    \ {\n    auto L = SA[i];\n    FOR(k, 1, min(n - L, max_len) + 1) {\n      int\
-    \ R = L + k;\n      if (i > 0 && LCP[i - 1] >= k)\n        dp[L][R - L] = dp[SA[i\
-    \ - 1]][k];\n      else\n        dp[L][R - L] = nxt++;\n    }\n  }\n  return dp;\n\
-    }\n#line 2 \"alg/monoid/max.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Max\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return max(x, y); }\r\n  static constexpr X unit()\
-    \ { return -infty<E>; }\r\n  static constexpr bool commute = true;\r\n};\r\n#line\
-    \ 7 \"test/5_atcoder/abc240ex.test.cpp\"\n\nvoid solve() {\n  LL(N);\n  STR(S);\n\
-    \  ll LIM = 1;\n  while (LIM * LIM < 2 * N) LIM++;\n  LIM += 10;\n  chmin(LIM,\
-    \ N);\n  auto rank = sort_substrings(S, LIM);\n\n  // \u6587\u5B57\u5217\u30E9\
-    \u30F3\u30AF -> (L, R)\n  ll mx = 0;\n  FOR(i, len(rank)) chmax(mx, MAX(rank[i]));\n\
-    \  vvc<pair<int, int>> LR(mx + 1);\n  FOR_R(i, N) FOR(j, LIM + 1) {\n    int r\
-    \ = rank[i][j];\n    if (r != -1) LR[r].eb(i, i + j);\n  }\n\n  using Mono = Monoid_Max<int>;\n\
-    \  SegTree<Mono> seg(N + 1);\n  seg.set(0, 0);\n\n  vc<int> DP(N + 1, -infty<int>);\n\
-    \  DP[0] = 0;\n\n  FOR(rk, mx + 1) {\n    for (auto&& [L, R]: LR[rk]) {\n    \
-    \  ll x = 1 + seg.prod(0, L + 1);\n      if (DP[R] < x) seg.set(R, x);\n     \
-    \ chmax(DP[R], x);\n    }\n  }\n  print(seg.prod_all());\n}\n\nsigned main() {\n\
-    \  solve();\n  return 0;\n}\n"
+    \n\n// dp[i][j]\uFF1AS[i:i+j) \u306E rank\n// \u7D50\u679C\u306E\u30C6\u30FC\u30D6\
+    \u30EB\u304C\u4F7F\u3044\u306B\u304F\u3044\u306A\u3089 suffix tree \u3092 dfs\
+    \ \u3057\u3066\u3082\u3089\u3046\u65B9\u304C\u3088\u3044\u304B\u3082\ntemplate\
+    \ <typename STRING>\nvvc<int> sort_substrings(STRING& S, int max_len = -1) {\n\
+    \  int n = len(S);\n  if (max_len == -1) max_len = n;\n  Suffix_Array sa(S);\n\
+    \  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n  int nxt = 0;\n  vv(int, dp, n,\
+    \ max_len + 1, -1);\n  FOR(i, len(SA)) {\n    auto L = SA[i];\n    FOR(k, 1, min(n\
+    \ - L, max_len) + 1) {\n      int R = L + k;\n      if (i > 0 && LCP[i - 1] >=\
+    \ k)\n        dp[L][R - L] = dp[SA[i - 1]][k];\n      else\n        dp[L][R -\
+    \ L] = nxt++;\n    }\n  }\n  return dp;\n}\n#line 2 \"alg/monoid/max.hpp\"\n\r\
+    \ntemplate <typename E>\r\nstruct Monoid_Max {\r\n  using X = E;\r\n  using value_type\
+    \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return max(x,\
+    \ y); }\r\n  static constexpr X unit() { return -infty<E>; }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 7 \"test/5_atcoder/abc240ex.test.cpp\"\n\
+    \nvoid solve() {\n  LL(N);\n  STR(S);\n  ll LIM = 1;\n  while (LIM * LIM < 2 *\
+    \ N) LIM++;\n  LIM += 10;\n  chmin(LIM, N);\n  auto rank = sort_substrings(S,\
+    \ LIM);\n\n  // \u6587\u5B57\u5217\u30E9\u30F3\u30AF -> (L, R)\n  ll mx = 0;\n\
+    \  FOR(i, len(rank)) chmax(mx, MAX(rank[i]));\n  vvc<pair<int, int>> LR(mx + 1);\n\
+    \  FOR_R(i, N) FOR(j, LIM + 1) {\n    int r = rank[i][j];\n    if (r != -1) LR[r].eb(i,\
+    \ i + j);\n  }\n\n  using Mono = Monoid_Max<int>;\n  SegTree<Mono> seg(N + 1);\n\
+    \  seg.set(0, 0);\n\n  vc<int> DP(N + 1, -infty<int>);\n  DP[0] = 0;\n\n  FOR(rk,\
+    \ mx + 1) {\n    for (auto&& [L, R]: LR[rk]) {\n      ll x = 1 + seg.prod(0, L\
+    \ + 1);\n      if (DP[R] < x) seg.set(R, x);\n      chmax(DP[R], x);\n    }\n\
+    \  }\n  print(seg.prod_all());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://atcoder.jp/contests/abc240/tasks/abc240_Ex\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"string/sort_substrings.hpp\"\
     \n#include \"ds/segtree/segtree.hpp\"\n#include \"alg/monoid/max.hpp\"\n\nvoid\
@@ -403,8 +406,8 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc240ex.test.cpp
   requiredBy: []
-  timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-13 13:55:16+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc240ex.test.cpp
 layout: document

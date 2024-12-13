@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/5_atcoder/abc240ex.test.cpp
     title: test/5_atcoder/abc240ex.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/suffix_array.hpp\"\n\n#line 2 \"alg/monoid/min.hpp\"\
@@ -163,22 +163,26 @@ data:
     \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
     \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
     \    }\n    LCP.resize(n - 1);\n  }\n};\n#line 2 \"string/sort_substrings.hpp\"\
-    \n\n// dp[i][j]\uFF1AS[i:i+j) \u306E rank\ntemplate <typename STRING>\nvvc<int>\
-    \ sort_substrings(STRING& S, int max_len = -1) {\n  int n = len(S);\n  if (max_len\
-    \ == -1) max_len = n;\n  Suffix_Array sa(S);\n  auto& SA = sa.SA;\n  auto& LCP\
-    \ = sa.LCP;\n  int nxt = 0;\n  vv(int, dp, n, max_len + 1, -1);\n  FOR(i, len(SA))\
-    \ {\n    auto L = SA[i];\n    FOR(k, 1, min(n - L, max_len) + 1) {\n      int\
-    \ R = L + k;\n      if (i > 0 && LCP[i - 1] >= k)\n        dp[L][R - L] = dp[SA[i\
-    \ - 1]][k];\n      else\n        dp[L][R - L] = nxt++;\n    }\n  }\n  return dp;\n\
-    }\n"
+    \n\n// dp[i][j]\uFF1AS[i:i+j) \u306E rank\n// \u7D50\u679C\u306E\u30C6\u30FC\u30D6\
+    \u30EB\u304C\u4F7F\u3044\u306B\u304F\u3044\u306A\u3089 suffix tree \u3092 dfs\
+    \ \u3057\u3066\u3082\u3089\u3046\u65B9\u304C\u3088\u3044\u304B\u3082\ntemplate\
+    \ <typename STRING>\nvvc<int> sort_substrings(STRING& S, int max_len = -1) {\n\
+    \  int n = len(S);\n  if (max_len == -1) max_len = n;\n  Suffix_Array sa(S);\n\
+    \  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n  int nxt = 0;\n  vv(int, dp, n,\
+    \ max_len + 1, -1);\n  FOR(i, len(SA)) {\n    auto L = SA[i];\n    FOR(k, 1, min(n\
+    \ - L, max_len) + 1) {\n      int R = L + k;\n      if (i > 0 && LCP[i - 1] >=\
+    \ k)\n        dp[L][R - L] = dp[SA[i - 1]][k];\n      else\n        dp[L][R -\
+    \ L] = nxt++;\n    }\n  }\n  return dp;\n}\n"
   code: "#include \"string/suffix_array.hpp\"\n\n// dp[i][j]\uFF1AS[i:i+j) \u306E\
-    \ rank\ntemplate <typename STRING>\nvvc<int> sort_substrings(STRING& S, int max_len\
-    \ = -1) {\n  int n = len(S);\n  if (max_len == -1) max_len = n;\n  Suffix_Array\
-    \ sa(S);\n  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n  int nxt = 0;\n  vv(int,\
-    \ dp, n, max_len + 1, -1);\n  FOR(i, len(SA)) {\n    auto L = SA[i];\n    FOR(k,\
-    \ 1, min(n - L, max_len) + 1) {\n      int R = L + k;\n      if (i > 0 && LCP[i\
-    \ - 1] >= k)\n        dp[L][R - L] = dp[SA[i - 1]][k];\n      else\n        dp[L][R\
-    \ - L] = nxt++;\n    }\n  }\n  return dp;\n}"
+    \ rank\n// \u7D50\u679C\u306E\u30C6\u30FC\u30D6\u30EB\u304C\u4F7F\u3044\u306B\u304F\
+    \u3044\u306A\u3089 suffix tree \u3092 dfs \u3057\u3066\u3082\u3089\u3046\u65B9\
+    \u304C\u3088\u3044\u304B\u3082\ntemplate <typename STRING>\nvvc<int> sort_substrings(STRING&\
+    \ S, int max_len = -1) {\n  int n = len(S);\n  if (max_len == -1) max_len = n;\n\
+    \  Suffix_Array sa(S);\n  auto& SA = sa.SA;\n  auto& LCP = sa.LCP;\n  int nxt\
+    \ = 0;\n  vv(int, dp, n, max_len + 1, -1);\n  FOR(i, len(SA)) {\n    auto L =\
+    \ SA[i];\n    FOR(k, 1, min(n - L, max_len) + 1) {\n      int R = L + k;\n   \
+    \   if (i > 0 && LCP[i - 1] >= k)\n        dp[L][R - L] = dp[SA[i - 1]][k];\n\
+    \      else\n        dp[L][R - L] = nxt++;\n    }\n  }\n  return dp;\n}"
   dependsOn:
   - string/suffix_array.hpp
   - alg/monoid/min.hpp
@@ -187,8 +191,8 @@ data:
   isVerificationFile: false
   path: string/sort_substrings.hpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-13 13:55:16+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/5_atcoder/abc240ex.test.cpp
 documentation_of: string/sort_substrings.hpp
