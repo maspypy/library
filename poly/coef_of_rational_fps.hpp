@@ -4,8 +4,7 @@
 
 template <typename mint>
 mint coef_of_rational_fps_small(vector<mint> P, vector<mint> Q, ll N) {
-  assert(0 <= len(P) && len(P) + 1 == len(Q) && len(Q) <= 16
-         && Q[0] == mint(1));
+  assert(0 <= len(P) && len(P) + 1 == len(Q) && len(Q) <= 16 && Q[0] == mint(1));
   if (P.empty()) return 0;
   int m = len(Q) - 1;
   vc<u32> Q32(m + 1);
@@ -62,14 +61,9 @@ mint coef_of_rational_fps_ntt(vector<mint> P, vector<mint> Q, ll N) {
 
   while (N >= n) {
     if (N % 2 == 0) {
-      FOR(i, n) {
-        P[i] = (P[2 * i] * Q[2 * i + 1] + P[2 * i + 1] * Q[2 * i])
-               * inv<mint>(2);
-      }
+      FOR(i, n) { P[i] = (P[2 * i] * Q[2 * i + 1] + P[2 * i + 1] * Q[2 * i]) * inv<mint>(2); }
     } else {
-      FOR(i, n) {
-        P[i] = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i];
-      }
+      FOR(i, n) { P[i] = (P[2 * i] * Q[2 * i + 1] - P[2 * i + 1] * Q[2 * i]) * W[i]; }
     }
     FOR(i, n) Q[i] = Q[2 * i] * Q[2 * i + 1];
     P.resize(n), Q.resize(n);
@@ -122,7 +116,6 @@ mint coef_of_rational_fps(vector<mint> P, vector<mint> Q, ll N) {
     if (n <= 10) return base + coef_of_rational_fps_small(P, Q, N);
     if (n > 10) return base + coef_of_rational_fps_ntt(P, Q, N);
   }
-  mint x = (n <= 16 ? coef_of_rational_fps_small(P, Q, N)
-                    : coef_of_rational_fps_convolution(P, Q, N));
+  mint x = (n <= 16 ? coef_of_rational_fps_small(P, Q, N) : coef_of_rational_fps_convolution(P, Q, N));
   return base + x;
 }

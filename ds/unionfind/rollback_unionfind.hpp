@@ -1,9 +1,10 @@
 #include "ds/rollback_array.hpp"
 
 struct Rollback_UnionFind {
+  int n;
   Rollback_Array<int> dat; // parent or size
 
-  Rollback_UnionFind(int n) : dat(vc<int>(n, -1)) {}
+  Rollback_UnionFind(int n) : n(n), dat(vc<int>(n, -1)) {}
 
   int operator[](int v) {
     while (dat.get(v) >= 0) v = dat.get(v);
@@ -22,5 +23,10 @@ struct Rollback_UnionFind {
     dat.set(a, dat.get(a) + dat.get(b));
     dat.set(b, a);
     return true;
+  }
+  vc<int> get_all() {
+    vc<int> ANS(n);
+    FOR(i, n) ANS[i] = (*this)[i];
+    return ANS;
   }
 };

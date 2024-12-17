@@ -330,6 +330,21 @@ struct My_Bitset {
       if (dat[i] != u64(-1)) return false;
     return true;
   }
+  // bs[i]==true であるような i 全体
+  vc<int> collect_idx() {
+    vc<int> I;
+    FOR(i, N) if ((*this)[i]) I.eb(i);
+    return I;
+  }
+
+  bool is_subset(T &other) {
+    assert(len(other) == N);
+    FOR(i, len(dat)) {
+      u64 a = dat[i], b = other.dat[i];
+      if ((a & b) != a) return false;
+    }
+    return true;
+  }
 
   int _Find_first() { return next(0); }
   int _Find_next(int p) { return next(p + 1); }
