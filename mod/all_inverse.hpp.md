@@ -23,6 +23,9 @@ data:
   - icon: ':question:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
+  - icon: ':warning:'
+    path: seq/p_recursive.hpp
+    title: seq/p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/all_inverse.test.cpp
@@ -118,6 +121,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - mod/q_analogue.hpp
   - linalg/blackbox/vandermonde.hpp
+  - seq/p_recursive.hpp
   - graph/chromatic.hpp
   timestamp: '2022-11-23 08:11:54+09:00'
   verificationStatus: LIBRARY_SOME_WA

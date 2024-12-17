@@ -1,7 +1,10 @@
 ---
 data:
   _extendedDependsOn: []
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: seq/p_recursive.hpp
+    title: seq/p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/solve_linear.test.cpp
@@ -51,7 +54,8 @@ data:
   dependsOn: []
   isVerificationFile: false
   path: linalg/solve_linear.hpp
-  requiredBy: []
+  requiredBy:
+  - seq/p_recursive.hpp
   timestamp: '2023-11-16 18:26:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

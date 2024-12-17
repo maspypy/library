@@ -223,23 +223,28 @@ data:
     \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
     \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
     \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
-    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
-    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
-    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
-    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
-    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
-    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];\n#line 6 \"test/1_mytest/mybitset.test.cpp\"\n\n\
-    void test() {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset\
-    \ B(N);\n    FOR(Q) {\n      int t = RNG(0, 4);\n      int i = RNG(0, N);\n  \
-    \    if (t == 0) {\n        A[i] = 0;\n        B[i] = 0;\n      }\n      if (t\
-    \ == 1) {\n        A[i] = 1;\n        B[i] = 1;\n      }\n      if (t == 2) {\n\
-    \        int p = i;\n        while (p < N && A[p] == 0) ++p;\n        assert(B.next(i)\
-    \ == p);\n      }\n      if (t == 3) {\n        int p = i;\n        while (p >=\
-    \ 0 && A[p] == 0) --p;\n        assert(B.prev(i) == p);\n      }\n    }\n  }\n\
-    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
-    ;\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
+    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
+    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
+    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
+    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
+    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static string\
+    \ TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n\
+    \    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) &\
+    \ 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute()\
+    \ {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i &\
+    \ 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 6 \"test/1_mytest/mybitset.test.cpp\"\n\nvoid test() {\n  FOR(N, 2000) {\n\
+    \    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset B(N);\n    FOR(Q) {\n \
+    \     int t = RNG(0, 4);\n      int i = RNG(0, N);\n      if (t == 0) {\n    \
+    \    A[i] = 0;\n        B[i] = 0;\n      }\n      if (t == 1) {\n        A[i]\
+    \ = 1;\n        B[i] = 1;\n      }\n      if (t == 2) {\n        int p = i;\n\
+    \        while (p < N && A[p] == 0) ++p;\n        assert(B.next(i) == p);\n  \
+    \    }\n      if (t == 3) {\n        int p = i;\n        while (p >= 0 && A[p]\
+    \ == 0) --p;\n        assert(B.prev(i) == p);\n      }\n    }\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/base.hpp\"\n#include \"ds/my_bitset.hpp\"\n\nvoid test()\
     \ {\n  FOR(N, 2000) {\n    int Q = 10 * N;\n    vc<int> A(N);\n    My_Bitset B(N);\n\
@@ -258,7 +263,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/mybitset.test.cpp
   requiredBy: []
-  timestamp: '2024-12-13 13:55:16+09:00'
+  timestamp: '2024-12-17 23:15:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/mybitset.test.cpp

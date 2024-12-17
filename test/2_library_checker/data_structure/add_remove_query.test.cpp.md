@@ -244,18 +244,19 @@ data:
     \n    history.eb(idx, dat[idx]);\r\n    dat[idx] = x;\r\n  }\r\n\r\n  vc<T> get_all()\
     \ {\r\n    vc<T> res(N);\r\n    FOR(i, N) res[i] = get(i);\r\n    return res;\r\
     \n  }\r\n};\r\n#line 2 \"ds/unionfind/rollback_unionfind.hpp\"\n\r\nstruct Rollback_UnionFind\
-    \ {\r\n  Rollback_Array<int> dat; // parent or size\r\n\r\n  Rollback_UnionFind(int\
-    \ n) : dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while (dat.get(v)\
-    \ >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  ll size(int v) { return\
-    \ -dat.get((*this)[v]); }\r\n  int time() { return dat.time(); }\r\n  void rollback(int\
-    \ t) { dat.rollback(t); }\r\n  void reset() { rollback(0); }\r\n\r\n  bool merge(int\
-    \ a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\n    if (a == b) return\
-    \ false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\n    dat.set(a, dat.get(a)\
-    \ + dat.get(b));\r\n    dat.set(b, a);\r\n    return true;\r\n  }\r\n};\r\n#line\
-    \ 8 \"test/2_library_checker/data_structure/add_remove_query.test.cpp\"\n\nvoid\
-    \ solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\n \
-    \ vc<int> query;\n\n  Add_Remove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n \
-    \   if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
+    \ {\r\n  int n;\r\n  Rollback_Array<int> dat; // parent or size\r\n\r\n  Rollback_UnionFind(int\
+    \ n) : n(n), dat(vc<int>(n, -1)) {}\r\n\r\n  int operator[](int v) {\r\n    while\
+    \ (dat.get(v) >= 0) v = dat.get(v);\r\n    return v;\r\n  }\r\n\r\n  ll size(int\
+    \ v) { return -dat.get((*this)[v]); }\r\n  int time() { return dat.time(); }\r\
+    \n  void rollback(int t) { dat.rollback(t); }\r\n  void reset() { rollback(0);\
+    \ }\r\n\r\n  bool merge(int a, int b) {\r\n    a = (*this)[a], b = (*this)[b];\r\
+    \n    if (a == b) return false;\r\n    if (dat.get(a) > dat.get(b)) swap(a, b);\r\
+    \n    dat.set(a, dat.get(a) + dat.get(b));\r\n    dat.set(b, a);\r\n    return\
+    \ true;\r\n  }\r\n  vc<int> get_all() {\r\n    vc<int> ANS(n);\r\n    FOR(i, n)\
+    \ ANS[i] = (*this)[i];\r\n    return ANS;\r\n  }\r\n};\r\n#line 8 \"test/2_library_checker/data_structure/add_remove_query.test.cpp\"\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(ll, A0, N);\n  using P = pair<int, int>;\n\
+    \n  vc<int> query;\n\n  Add_Remove_Query<P, true> X;\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(a, b);\n      if (a > b) swap(a, b);\n      P e =\
     \ {a, b};\n      X.add(len(query), e);\n    }\n    if (t == 1) {\n      LL(a,\
     \ b);\n      if (a > b) swap(a, b);\n      P e = {a, b};\n      X.remove(len(query),\
     \ e);\n    }\n    if (t == 2) {\n      LL(v, x);\n      P p = {~v, x};\n     \
@@ -321,7 +322,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/add_remove_query.test.cpp
   requiredBy: []
-  timestamp: '2024-12-13 13:55:16+09:00'
+  timestamp: '2024-12-17 23:15:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/add_remove_query.test.cpp

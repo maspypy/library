@@ -128,28 +128,33 @@ data:
     \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
     \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
     \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
-    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
-    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
-    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
-    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
-    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
-    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\
-    \n\n// Method of Four Russians O(NMK/wlogN)\n// (N1/K+2^K)/K N2 N3 / w\nvc<My_Bitset>\
-    \ matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1,\
-    \ int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 = len(A), N2 =\
-    \ len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  if (N1 < 50) {\n    FOR(i,\
-    \ N1) FOR(j, N2) {\n      if (A[i][j]) C[i] ^= B[j];\n    }\n    return C;\n \
-    \ }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1 << K, BS(N3));\n\n \
-    \ for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n    int n =\
-    \ R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] ^ B[L + i];\n\
-    \    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 << K) - 1);\n\
-    \      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n#line 3 \"linalg/bitset/matrix_pow.hpp\"\
-    \n\nvc<My_Bitset> matrix_pow(vc<My_Bitset> A, ll n) {\n  int N = len(A);\n  vc<My_Bitset>\
-    \ ret(N, My_Bitset(N));\n  FOR(i, N) ret[i][i] = 1;\n  while (n) {\n    if (n\
-    \ & 1) ret = matrix_mul_mod_2(ret, A, N, N, N);\n    n /= 2;\n    if (n) A = matrix_mul_mod_2(A,\
-    \ A, N, N, N);\n  }\n  return ret;\n}\n"
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
+    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
+    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
+    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
+    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
+    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static string\
+    \ TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n\
+    \    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) &\
+    \ 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute()\
+    \ {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i &\
+    \ 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 2 \"linalg/bitset/matrix_mul_mod_2.hpp\"\n\n// Method of Four Russians O(NMK/wlogN)\n\
+    // (N1/K+2^K)/K N2 N3 / w\nvc<My_Bitset> matrix_mul_mod_2(vc<My_Bitset>& A, vc<My_Bitset>&\
+    \ B, int N1 = -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1\
+    \ == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n\
+    \  if (N1 < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] ^= B[j];\n\
+    \    }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
+    \ << K, BS(N3));\n\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K,\
+    \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
+    \ ^ B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
+    \ ((1 << K) - 1);\n      C[i] ^= tmp[s];\n    }\n  }\n  return C;\n}\n#line 3\
+    \ \"linalg/bitset/matrix_pow.hpp\"\n\nvc<My_Bitset> matrix_pow(vc<My_Bitset> A,\
+    \ ll n) {\n  int N = len(A);\n  vc<My_Bitset> ret(N, My_Bitset(N));\n  FOR(i,\
+    \ N) ret[i][i] = 1;\n  while (n) {\n    if (n & 1) ret = matrix_mul_mod_2(ret,\
+    \ A, N, N, N);\n    n /= 2;\n    if (n) A = matrix_mul_mod_2(A, A, N, N, N);\n\
+    \  }\n  return ret;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n#include \"linalg/bitset/matrix_mul_mod_2.hpp\"\
     \n\nvc<My_Bitset> matrix_pow(vc<My_Bitset> A, ll n) {\n  int N = len(A);\n  vc<My_Bitset>\
     \ ret(N, My_Bitset(N));\n  FOR(i, N) ret[i][i] = 1;\n  while (n) {\n    if (n\
@@ -161,7 +166,7 @@ data:
   isVerificationFile: false
   path: linalg/bitset/matrix_pow.hpp
   requiredBy: []
-  timestamp: '2024-11-07 23:01:00+09:00'
+  timestamp: '2024-12-17 23:15:20+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: linalg/bitset/matrix_pow.hpp

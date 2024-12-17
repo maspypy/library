@@ -202,14 +202,18 @@ data:
     \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
     \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
     \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
-    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
-    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
-    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
-    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
-    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
-    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];\n"
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
+    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
+    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
+    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
+    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
+    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static string\
+    \ TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n\
+    \    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) &\
+    \ 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute()\
+    \ {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i &\
+    \ 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n"
   code: "#pragma once\n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
     // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
     \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
@@ -323,14 +327,18 @@ data:
     \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
     \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
     \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
-    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
-    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
-    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
-    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
-    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
-    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];"
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
+    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
+    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
+    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
+    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
+    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static string\
+    \ TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n\
+    \    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) &\
+    \ 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute()\
+    \ {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i &\
+    \ 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];"
   dependsOn: []
   isVerificationFile: false
   path: ds/my_bitset.hpp
@@ -346,7 +354,7 @@ data:
   - graph/bitset/reachability_bitset.hpp
   - graph/bitset/bfs_bitset.hpp
   - flow/bipartite_dense.hpp
-  timestamp: '2024-11-07 23:01:00+09:00'
+  timestamp: '2024-12-17 23:15:20+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/421_2.test.cpp

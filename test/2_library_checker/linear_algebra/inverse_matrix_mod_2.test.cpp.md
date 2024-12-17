@@ -319,25 +319,29 @@ data:
     \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
     \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
     \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
-    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
-    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
-    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
-    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
-    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
-    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/mat_inv.hpp\"\n\n// det\
-    \ = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\ntemplate\
-    \ <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS> B(N);\n\
-    \  if constexpr (is_same_v<BS, My_Bitset>) { FOR(i, N) B[i] = BS(N); }\n  FOR(i,\
-    \ N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n      swap(A[k],\
-    \ A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if (!A[i][i]) return\
-    \ {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if (A[k][i]) {\n  \
-    \      if constexpr (is_same_v<BS, My_Bitset>) {\n          A[k].xor_suffix(i,\
-    \ A[i]);\n          B[k] ^= B[i];\n        } else {\n          A[k] ^= A[i];\n\
-    \          B[k] ^= B[i];\n        }\n      }\n    }\n  }\n  return B;\n}\n#line\
-    \ 6 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\n\n\
-    using BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
+    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
+    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
+    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
+    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
+    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static string\
+    \ TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n\
+    \    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) &\
+    \ 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute()\
+    \ {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i &\
+    \ 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 2 \"linalg/bitset/mat_inv.hpp\"\n\n// det = 0 \u306E\u5834\u5408\u306B\u306F\
+    \ empty \u3092\u304B\u3048\u3059\ntemplate <typename BS>\nvc<BS> mat_inv(vc<BS>\
+    \ A) {\n  int N = len(A);\n  vc<BS> B(N);\n  if constexpr (is_same_v<BS, My_Bitset>)\
+    \ { FOR(i, N) B[i] = BS(N); }\n  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k,\
+    \ i + 1, N) if (A[k][i]) {\n      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n\
+    \      break;\n    }\n    if (!A[i][i]) return {};\n    FOR(k, N) {\n      if\
+    \ (i == k) continue;\n      if (A[k][i]) {\n        if constexpr (is_same_v<BS,\
+    \ My_Bitset>) {\n          A[k].xor_suffix(i, A[i]);\n          B[k] ^= B[i];\n\
+    \        } else {\n          A[k] ^= A[i];\n          B[k] ^= B[i];\n        }\n\
+    \      }\n    }\n  }\n  return B;\n}\n#line 6 \"test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp\"\
+    \n\nusing BS = My_Bitset;\n\nvoid solve() {\n  LL(N);\n  vc<BS> mat(N);\n  FOR(i,\
     \ N) {\n    STR(S);\n    mat[i].resize(N);\n    FOR(j, N) mat[i][j] = (S[j] ==\
     \ '1');\n  }\n  mat = mat_inv(mat);\n  if (mat.empty()) return print(-1);\n  FOR(i,\
     \ N) print(mat[i].to_string());\n}\n\nsigned main() {\n  solve();\n  return 0;\n\
@@ -357,7 +361,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   requiredBy: []
-  timestamp: '2024-12-13 13:55:16+09:00'
+  timestamp: '2024-12-17 23:15:20+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp

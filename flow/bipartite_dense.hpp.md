@@ -134,44 +134,48 @@ data:
     \    return false;\n  }\n\n  bool ALL() {\n    dat.resize((N + 63) >> 6);\n  \
     \  int r = N & 63;\n    if (r != 0) {\n      u64 mask = (u64(1) << r) - 1;\n \
     \     if (dat.back() != mask) return 0;\n    }\n    for (int i = 0; i < N / 64;\
-    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n\n\
-    \  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return next(p\
-    \ + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n    if\
-    \ (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat) { FOR(i,\
-    \ 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n \
-    \ }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n    \
-    \  FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\n\
-    string My_Bitset::TO_STR[256];\n#line 2 \"flow/bipartite_dense.hpp\"\n\n// vc<bitset>\
-    \ \u3067 biadj matrix \u3092\u6E21\u3059\n// N_1^2N_2/w.\n// (5000,5000) \u3067\
-    \ 300ms \u7A0B\u5EA6\u3067\u52D5\u304F\u5834\u5408\u304C\u3042\u308B\n// https://qoj.ac/problem/6308\n\
-    // (10000?, 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n//\
-    \ (10000, 20000) \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\n\
-    // (10000, 10000) 6500ms TLE. row, col \u3068\u3082 shuffle \u3067 3000ms AC.\n\
-    // bitset \u306E\u65B9\u304C My_Bitset \u3088\u308A\u9AD8\u901F\uFF1F(2024/05/27)\n\
-    template <typename BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>&\
-    \ adj;\n  vc<int> match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\
-    \n  BipartiteMatching_Dense(vc<BS>& adj, int N1, int N2) : N1(N1), N2(N2), adj(adj),\
-    \ match_1(N1, -1), match_2(N2, -1) {\n    if constexpr (is_same_v<BS, My_Bitset>)\
-    \ vis.resize(N2);\n    FOR(s, N1) bfs(s);\n  }\n\n  void bfs(int s) {\n    if\
-    \ (match_1[s] != -1) return;\n    que.resize(N1), prev.resize(N1);\n    int l\
-    \ = 0, r = 0;\n    prev[s] = -1;\n    vis.set();\n\n    que[r++] = s;\n    while\
-    \ (l < r) {\n      int u = que[l++];\n      BS cand = vis & adj[u];\n      for\
-    \ (int v = cand._Find_first(); v < N2; v = cand._Find_next(v)) {\n        vis[v]\
-    \ = 0;\n        if (match_2[v] != -1) {\n          que[r++] = match_2[v];\n  \
-    \        prev[match_2[v]] = u;\n          continue;\n        }\n        int a\
-    \ = u, b = v;\n        while (a != -1) {\n          int t = match_1[a];\n    \
-    \      match_1[a] = b, match_2[b] = a, a = prev[a], b = t;\n        }\n      \
-    \  return;\n      }\n    }\n    return;\n  }\n\n  vc<pair<int, int>> matching()\
-    \ {\n    vc<pair<int, int>> res;\n    FOR(v, N1) if (match_1[v] != -1) res.eb(v,\
-    \ match_1[v]);\n    return res;\n  }\n\n  pair<vc<int>, vc<int>> vertex_cover()\
-    \ {\n    vc<int> que(N1);\n    int l = 0, r = 0;\n    vis.set();\n    vc<bool>\
-    \ done(N1);\n    FOR(i, N1) {\n      if (match_1[i] == -1) done[i] = 1, que[r++]\
-    \ = i;\n    }\n    while (l < r) {\n      int a = que[l++];\n      BS cand = adj[a]\
-    \ & vis;\n      for (int b = cand._Find_first(); b < N2; b = cand._Find_next(b))\
-    \ {\n        vis[b] = 0;\n        int to = match_2[b];\n        assert(to != -1);\n\
-    \        if (!done[to]) done[to] = 1, que[r++] = to;\n      }\n    }\n    vc<int>\
-    \ left, right;\n    FOR(i, N1) if (!done[i]) left.eb(i);\n    FOR(i, N2) if (!vis[i])\
-    \ right.eb(i);\n    return {left, right};\n  }\n};\n"
+    \ ++i)\n      if (dat[i] != u64(-1)) return false;\n    return true;\n  }\n  //\
+    \ bs[i]==true \u3067\u3042\u308B\u3088\u3046\u306A i \u5168\u4F53\n  vc<int> collect_idx()\
+    \ {\n    vc<int> I;\n    FOR(i, N) if ((*this)[i]) I.eb(i);\n    return I;\n \
+    \ }\n\n  bool is_subset(T &other) {\n    assert(len(other) == N);\n    FOR(i,\
+    \ len(dat)) {\n      u64 a = dat[i], b = other.dat[i];\n      if ((a & b) != a)\
+    \ return false;\n    }\n    return true;\n  }\n\n  int _Find_first() { return\
+    \ next(0); }\n  int _Find_next(int p) { return next(p + 1); }\n\n  static string\
+    \ TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty()) precompute();\n\
+    \    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x >> (8 * i) &\
+    \ 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void precompute()\
+    \ {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0' + (s >> i &\
+    \ 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 2 \"flow/bipartite_dense.hpp\"\n\n// vc<bitset> \u3067 biadj matrix \u3092\
+    \u6E21\u3059\n// N_1^2N_2/w.\n// (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\
+    \u304F\u5834\u5408\u304C\u3042\u308B\n// https://qoj.ac/problem/6308\n// (10000?,\
+    \ 5000) 655ms\n// https://codeforces.com/contest/1045/problem/A\n// (10000, 20000)\
+    \ \u3067 3837ms\n// https://codeforces.com/contest/786/problem/E\n// (10000, 10000)\
+    \ 6500ms TLE. row, col \u3068\u3082 shuffle \u3067 3000ms AC.\n// bitset \u306E\
+    \u65B9\u304C My_Bitset \u3088\u308A\u9AD8\u901F\uFF1F(2024/05/27)\ntemplate <typename\
+    \ BS>\nstruct BipartiteMatching_Dense {\n  int N1, N2;\n  vc<BS>& adj;\n  vc<int>\
+    \ match_1, match_2;\n  vc<int> que;\n  vc<int> prev;\n  BS vis;\n\n  BipartiteMatching_Dense(vc<BS>&\
+    \ adj, int N1, int N2) : N1(N1), N2(N2), adj(adj), match_1(N1, -1), match_2(N2,\
+    \ -1) {\n    if constexpr (is_same_v<BS, My_Bitset>) vis.resize(N2);\n    FOR(s,\
+    \ N1) bfs(s);\n  }\n\n  void bfs(int s) {\n    if (match_1[s] != -1) return;\n\
+    \    que.resize(N1), prev.resize(N1);\n    int l = 0, r = 0;\n    prev[s] = -1;\n\
+    \    vis.set();\n\n    que[r++] = s;\n    while (l < r) {\n      int u = que[l++];\n\
+    \      BS cand = vis & adj[u];\n      for (int v = cand._Find_first(); v < N2;\
+    \ v = cand._Find_next(v)) {\n        vis[v] = 0;\n        if (match_2[v] != -1)\
+    \ {\n          que[r++] = match_2[v];\n          prev[match_2[v]] = u;\n     \
+    \     continue;\n        }\n        int a = u, b = v;\n        while (a != -1)\
+    \ {\n          int t = match_1[a];\n          match_1[a] = b, match_2[b] = a,\
+    \ a = prev[a], b = t;\n        }\n        return;\n      }\n    }\n    return;\n\
+    \  }\n\n  vc<pair<int, int>> matching() {\n    vc<pair<int, int>> res;\n    FOR(v,\
+    \ N1) if (match_1[v] != -1) res.eb(v, match_1[v]);\n    return res;\n  }\n\n \
+    \ pair<vc<int>, vc<int>> vertex_cover() {\n    vc<int> que(N1);\n    int l = 0,\
+    \ r = 0;\n    vis.set();\n    vc<bool> done(N1);\n    FOR(i, N1) {\n      if (match_1[i]\
+    \ == -1) done[i] = 1, que[r++] = i;\n    }\n    while (l < r) {\n      int a =\
+    \ que[l++];\n      BS cand = adj[a] & vis;\n      for (int b = cand._Find_first();\
+    \ b < N2; b = cand._Find_next(b)) {\n        vis[b] = 0;\n        int to = match_2[b];\n\
+    \        assert(to != -1);\n        if (!done[to]) done[to] = 1, que[r++] = to;\n\
+    \      }\n    }\n    vc<int> left, right;\n    FOR(i, N1) if (!done[i]) left.eb(i);\n\
+    \    FOR(i, N2) if (!vis[i]) right.eb(i);\n    return {left, right};\n  }\n};\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// vc<bitset> \u3067 biadj matrix \u3092\
     \u6E21\u3059\n// N_1^2N_2/w.\n// (5000,5000) \u3067 300ms \u7A0B\u5EA6\u3067\u52D5\
     \u304F\u5834\u5408\u304C\u3042\u308B\n// https://qoj.ac/problem/6308\n// (10000?,\
@@ -207,7 +211,7 @@ data:
   isVerificationFile: false
   path: flow/bipartite_dense.hpp
   requiredBy: []
-  timestamp: '2024-11-07 23:01:00+09:00'
+  timestamp: '2024-12-17 23:15:20+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/421_2.test.cpp
