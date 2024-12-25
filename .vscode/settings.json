@@ -85,7 +85,8 @@
         "stop_token": "cpp",
         "tmp": "cpp",
         "cassert": "cpp",
-        "rope": "cpp"
+        "rope": "cpp",
+        "dynamic_bitset": "cpp"
     },
     "[python]": {
         "editor.tabSize": 4,

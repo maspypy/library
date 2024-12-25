@@ -39,7 +39,10 @@ struct Wavelet_Matrix {
   void build(int m, F f) {
     vc<Y> A(m);
     vc<T> S(m);
-    for (int i = 0; i < m; ++i) tie(A[i], S[i]) = f(i);
+    for (int i = 0; i < m; ++i) {
+      auto p = f(i);
+      A[i] = p.fi, S[i] = p.se;
+    }
     build(A, S);
   }
 

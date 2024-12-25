@@ -47,7 +47,8 @@ struct FenwickTree_01 {
 
   void add(int k, int x) {
     if (x == 1) add(k);
-    if (x == -1) remove(k);
+    elif (x == -1) remove(k);
+    else assert(0);
   }
 
   void add(int k) {
@@ -74,8 +75,7 @@ struct FenwickTree_01 {
     u64 x = dat[idx];
     int p = popcnt(x);
     if (p <= k) return N;
-    k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },
-                      0, 64, 0);
+    k = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);
     return 64 * idx + k;
   }
 

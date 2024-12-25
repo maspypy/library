@@ -97,6 +97,11 @@ struct SplayTree {
     return {a, b, c, d};
   }
 
+  tuple<np, np, np> split_L_root_R(np root) {
+    u32 s = (root->l ? root->l->size : 0);
+    return split3(root, s, s + 1);
+  }
+
   // 部分木が区間 [l,r) に対応するようなノードを作って返す
   // そのノードが root になるわけではないので、
   // このノードを参照した後にすぐに splay して根に持ち上げること
