@@ -68,7 +68,6 @@ using pqg = priority_queue<T, vector<T>, greater<T>>;
 #define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)
 #define FOR_R(...) overload3(__VA_ARGS__, FOR3_R, FOR2_R, FOR1_R)(__VA_ARGS__)
 
-#define FOR_subset(t, s) for (ll t = (s); t >= 0; t = (t == 0 ? -1 : (t - 1) & (s)))
 #define all(x) x.begin(), x.end()
 #define len(x) ll(x.size())
 #define elif else if
@@ -108,6 +107,44 @@ template <typename T>
 bool has_kth_bit(T x, int k) {
   return x >> k & 1;
 }
+
+template <typename UINT>
+struct all_bit {
+  struct iter {
+    UINT s;
+    iter(UINT s) : s(s) {}
+    int operator*() const { return lowbit(s); }
+    iter &operator++() {
+      s &= s - 1;
+      return *this;
+    }
+    bool operator!=(const iter) const { return s != 0; }
+  };
+  UINT s;
+  all_bit(UINT s) : s(s) {}
+  iter begin() const { return iter(s); }
+  iter end() const { return iter(0); }
+};
+
+template <typename UINT>
+struct all_subset {
+  static_assert(is_unsigned<UINT>::value);
+  struct iter {
+    UINT s, t;
+    bool ed;
+    iter(UINT s) : s(s), t(s), ed(0) {}
+    int operator*() const { return s ^ t; }
+    iter &operator++() {
+      (t == 0 ? ed = 1 : t = (t - 1) & s);
+      return *this;
+    }
+    bool operator!=(const iter) const { return !ed; }
+  };
+  UINT s;
+  all_subset(UINT s) : s(s) {}
+  iter begin() const { return iter(s); }
+  iter end() const { return iter(0); }
+};
 
 template <typename T>
 T floor(T a, T b) {
