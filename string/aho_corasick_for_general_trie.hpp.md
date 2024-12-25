@@ -69,7 +69,7 @@ data:
     \  HashMap<int> MP;\n  To_Small_Key(u32 n = 0) : MP(n) {}\n  void reserve(u32\
     \ n) { MP.build(n); }\n  int size() { return MP.size(); }\n  int query(u64 x,\
     \ bool set_if_not_exist) {\n    int ans = MP.get(x, -1);\n    if (ans == -1 &&\
-    \ set_if_not_exist) MP[x] = ans = kind++;\n    return ans;\n  }\n};\n#line 2 \"\
+    \ set_if_not_exist) MP[x] = ans = kind++;\n    return ans;\n  }\n};\n#line 3 \"\
     graph/base.hpp\"\n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T\
     \ cost;\n  int id;\n};\n\ntemplate <typename T = int, bool directed = false>\n\
     struct Graph {\n  static constexpr bool is_directed = directed;\n  int N, M;\n\
@@ -97,29 +97,28 @@ data:
     \ {\n      indptr[e.frm + 1]++;\n      if (!directed) indptr[e.to + 1]++;\n  \
     \  }\n    for (int v = 0; v < N; ++v) { indptr[v + 1] += indptr[v]; }\n    auto\
     \ counter = indptr;\n    csr_edges.resize(indptr.back() + 1);\n    for (auto&&\
-    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed)\n\
-    \        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});\n\
-    \    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
-    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
-    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
-    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
-    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
-    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
-    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
-    \n#ifdef FASTIO\n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n\
-    \      print(\"frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to,\
-    \ e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n      print(\"\
-    frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to,\
-    \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
-    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
-    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
-    \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
-    \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
-    \u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\u3067\u6CE8\
-    \u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if\
-    \ (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
-    \ n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
+    \ e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n      if (!directed) csr_edges[counter[e.to]++]\
+    \ = edge_type({e.to, e.frm, e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int\
+    \ v) const {\n    assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n\
+    \  }\n\n  vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return\
+    \ vc_deg;\n  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
+    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
+    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
+    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
+    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n    print(\"\
+    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
+    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
+    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
+    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n\
+    \  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\
+    \u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\
+    \u306B\u3059\u308B\n  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\
+    \u306A\u3063\u3066\u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\
+    \u306E n+m \u3088\u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\
+    \u3067\u6CE8\u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid =\
+    \ 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n\
+    \    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
     \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (len(used_e)\
     \ <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id]) continue;\n   \
     \     int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] !=\
@@ -134,21 +133,27 @@ data:
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 4 \"string/aho_corasick_for_general_trie.hpp\"\
-    \n\n// \u5165\u529B: 0 \u3092\u6839\u3068\u3059\u308B\u6728\u3067\u8FBA\u306B\u306F\
-    \ int \u30E9\u30D9\u30EB\u304C\u3064\u3044\u3066\u3044\u308B\n// return: suffix\
-    \ link\n// https://qoj.ac/contest/1435/problem/7742\nvc<int> aho_corasick_for_general_trie(Graph<int,\
-    \ 1> G) {\n  const int N = G.N;\n  To_Small_Key MP(N);\n  assert(N < (1 << 20));\n\
-    \  Dynamic_Array<int, true> X(6 * N, 0);\n  vc<int> BFS(N), link(N, -1);\n  using\
-    \ np = decltype(X)::np;\n  vc<np> S(N);\n  int p = 0, q = 0;\n  BFS[q++] = 0;\n\
-    \  S[0] = X.new_root();\n  while (p < q) {\n    int v = BFS[p++];\n    if (v)\
-    \ S[v] = S[link[v]];\n    for (auto& e: G[v]) {\n      int s = MP.query(e.cost,\
-    \ 1), w = e.to;\n      link[w] = X.get(S[v], s);\n      S[v] = X.set(S[v], s,\
-    \ w);\n      BFS[q++] = w;\n    }\n  }\n  return link;\n}\n"
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  HashMap<int> MP_FOR_EID;\n\n\
+    \  int get_eid(u64 a, u64 b) {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N\
+    \ - 1);\n      for (auto& e: edges) {\n        u64 a = e.frm, b = e.to;\n    \
+    \    u64 k = to_eid_key(a, b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n\
+    \    return MP_FOR_EID.get(to_eid_key(a, b), -1);\n  }\n\n  u64 to_eid_key(u64\
+    \ a, u64 b) {\n    if (!directed && a > b) swap(a, b);\n    return N * a + b;\n\
+    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
+    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 4 \"string/aho_corasick_for_general_trie.hpp\"\n\n// \u5165\u529B: 0 \u3092\
+    \u6839\u3068\u3059\u308B\u6728\u3067\u8FBA\u306B\u306F int \u30E9\u30D9\u30EB\u304C\
+    \u3064\u3044\u3066\u3044\u308B\n// return: suffix link\n// https://qoj.ac/contest/1435/problem/7742\n\
+    vc<int> aho_corasick_for_general_trie(Graph<int, 1> G) {\n  const int N = G.N;\n\
+    \  To_Small_Key MP(N);\n  assert(N < (1 << 20));\n  Dynamic_Array<int, true> X(6\
+    \ * N, 0);\n  vc<int> BFS(N), link(N, -1);\n  using np = decltype(X)::np;\n  vc<np>\
+    \ S(N);\n  int p = 0, q = 0;\n  BFS[q++] = 0;\n  S[0] = X.new_root();\n  while\
+    \ (p < q) {\n    int v = BFS[p++];\n    if (v) S[v] = S[link[v]];\n    for (auto&\
+    \ e: G[v]) {\n      int s = MP.query(e.cost, 1), w = e.to;\n      link[w] = X.get(S[v],\
+    \ s);\n      S[v] = X.set(S[v], s, w);\n      BFS[q++] = w;\n    }\n  }\n  return\
+    \ link;\n}\n"
   code: "#include \"ds/dynamic_array.hpp\"\n#include \"ds/to_small_key.hpp\"\n#include\
     \ \"graph/base.hpp\"\n\n// \u5165\u529B: 0 \u3092\u6839\u3068\u3059\u308B\u6728\
     \u3067\u8FBA\u306B\u306F int \u30E9\u30D9\u30EB\u304C\u3064\u3044\u3066\u3044\u308B\
@@ -169,7 +174,7 @@ data:
   isVerificationFile: false
   path: string/aho_corasick_for_general_trie.hpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
+  timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/aho_corasick_for_general_trie.hpp

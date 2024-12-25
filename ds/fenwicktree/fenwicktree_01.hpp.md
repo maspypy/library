@@ -33,16 +33,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':x:'
@@ -146,17 +146,17 @@ data:
     \ 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L / 64] &\
     \ ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1) << (R\
     \ % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n  }\n\n\
-    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    if (x == -1) remove(k);\n\
-    \  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
-    \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
-    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
-    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
-    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
-    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
-    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
-    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
-    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
-    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    elif (x == -1) remove(k);\n\
+    \    else assert(0);\n  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) <<\
+    \ (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int k) {\n    dat[k /\
+    \ 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int\
+    \ k, int L = 0) {\n    if (k >= sum_all()) return N;\n    k += popcnt(dat[L /\
+    \ 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int mid = 0;\n    auto\
+    \ check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid, e);\n      return\
+    \ e <= k;\n    };\n    int idx = bit.max_right(check, L);\n    if (idx == n) return\
+    \ N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p\
+    \ <= k) return N;\n    k = binary_search([&](int n) -> bool { return (p - popcnt(x\
+    \ >> n)) <= k; }, 0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
     \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
     \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
     \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
@@ -180,22 +180,22 @@ data:
     \ ans = 0;\n    ans -= popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n   \
     \ ans += popcnt(dat[R / 64] & ((u64(1) << (R % 64)) - 1));\n    ans += bit.sum(L\
     \ / 64, R / 64);\n    return ans;\n  }\n\n  void add(int k, int x) {\n    if (x\
-    \ == 1) add(k);\n    if (x == -1) remove(k);\n  }\n\n  void add(int k) {\n   \
-    \ dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int\
-    \ k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n\
-    \  }\n\n  int kth(int k, int L = 0) {\n    if (k >= sum_all()) return N;\n   \
-    \ k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int\
-    \ mid = 0;\n    auto check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid,\
-    \ e);\n      return e <= k;\n    };\n    int idx = bit.max_right(check, L);\n\
-    \    if (idx == n) return N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p\
-    \ = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search([&](int n) ->\
-    \ bool { return (p - popcnt(x >> n)) <= k; },\n                      0, 64, 0);\n\
-    \    return 64 * idx + k;\n  }\n\n  int next(int k) {\n    int idx = k / 64;\n\
-    \    k %= 64;\n    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return\
-    \ 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx + 1);\n    if (idx == n || !dat[idx])\
-    \ return N;\n    return 64 * idx + lowbit(dat[idx]);\n  }\n\n  int prev(int k)\
-    \ {\n    if (k == N) --k;\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n\
-    \    if (k < 63) x &= (u64(1) << (k + 1)) - 1;\n    if (x) return 64 * idx + topbit(x);\n\
+    \ == 1) add(k);\n    elif (x == -1) remove(k);\n    else assert(0);\n  }\n\n \
+    \ void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64,\
+    \ 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n\
+    \    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if (k >=\
+    \ sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) -\
+    \ 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool {\n\
+    \      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx =\
+    \ bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n    u64\
+    \ x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search([&](int\
+    \ n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n    return 64\
+    \ * idx + k;\n  }\n\n  int next(int k) {\n    int idx = k / 64;\n    k %= 64;\n\
+    \    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n\
+    \    idx = bit.kth(0, idx + 1);\n    if (idx == n || !dat[idx]) return N;\n  \
+    \  return 64 * idx + lowbit(dat[idx]);\n  }\n\n  int prev(int k) {\n    if (k\
+    \ == N) --k;\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n   \
+    \ if (k < 63) x &= (u64(1) << (k + 1)) - 1;\n    if (x) return 64 * idx + topbit(x);\n\
     \    idx = bit.min_left([&](auto e) -> bool { return e <= 0; }, idx) - 1;\n  \
     \  if (idx == -1) return -1;\n    return 64 * idx + topbit(dat[idx]);\n  }\n};"
   dependsOn:
@@ -209,7 +209,7 @@ data:
   - geo/count_points_in_triangles.hpp
   - seq/inversion.hpp
   - graph/ds/range_edge_connected_component_query.hpp
-  timestamp: '2024-11-18 00:58:39+09:00'
+  timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1838.test.cpp

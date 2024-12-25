@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
   - icon: ':question:'
@@ -44,19 +44,19 @@ data:
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/124815
@@ -461,11 +461,7 @@ data:
     \ == mint(0)) POP(f);\n    int d = len(g);\n    vc<mint> q;\n    FOR_R(i, d, len(f))\
     \ {\n      q.eb(f[i]);\n      FOR(j, len(g)) f[i - d + j] += f[i] * g[j];\n  \
     \    f[i] = 0;\n    }\n    while (len(f) && f.back() == mint(0)) POP(f);\n   \
-    \ reverse(all(q));\n    return q;\n  }\n\n  // x^n mod (x^d-g(x))\n  vc<mint>\
-    \ powmod(vc<mint>& g, ll n) {\n    if (n < len(g)) {\n      vc<mint> f(n + 1);\n\
-    \      f[n] = 1;\n      return f;\n    }\n    vc<mint> f = powmod(g, n / 2);\n\
-    \    f = convolution_naive(f, f);\n    if (n & 1) f.insert(f.begin(), 0);\n  \
-    \  divmod_inplace(f, g);\n    return f;\n  }\n};\n"
+    \ reverse(all(q));\n    return q;\n  }\n};\n"
   code: "#pragma once\n#include \"random/base.hpp\"\n#include \"linalg/matrix_inv.hpp\"\
     \n#include \"linalg/matrix_mul.hpp\"\n#include \"poly/convolution.hpp\"\n#include\
     \ \"linalg/basis.hpp\"\n#include \"poly/convolution_all.hpp\"\n\n// https://codeforces.com/blog/entry/124815\n\
@@ -512,11 +508,7 @@ data:
     \ == mint(0)) POP(f);\n    int d = len(g);\n    vc<mint> q;\n    FOR_R(i, d, len(f))\
     \ {\n      q.eb(f[i]);\n      FOR(j, len(g)) f[i - d + j] += f[i] * g[j];\n  \
     \    f[i] = 0;\n    }\n    while (len(f) && f.back() == mint(0)) POP(f);\n   \
-    \ reverse(all(q));\n    return q;\n  }\n\n  // x^n mod (x^d-g(x))\n  vc<mint>\
-    \ powmod(vc<mint>& g, ll n) {\n    if (n < len(g)) {\n      vc<mint> f(n + 1);\n\
-    \      f[n] = 1;\n      return f;\n    }\n    vc<mint> f = powmod(g, n / 2);\n\
-    \    f = convolution_naive(f, f);\n    if (n & 1) f.insert(f.begin(), 0);\n  \
-    \  divmod_inplace(f, g);\n    return f;\n  }\n};"
+    \ reverse(all(q));\n    return q;\n  }\n};"
   dependsOn:
   - random/base.hpp
   - linalg/matrix_inv.hpp
@@ -536,8 +528,8 @@ data:
   path: linalg/frobenius.hpp
   requiredBy:
   - linalg/adjugate_matrix.hpp
-  timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-25 20:50:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp

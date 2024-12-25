@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -280,30 +280,30 @@ data:
     \ vc<Y>& A, vc<T>& SUM_Data) { build(A, SUM_Data); }\r\n  template <typename F>\r\
     \n  Wavelet_Matrix(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  template\
     \ <typename F>\r\n  void build(int m, F f) {\r\n    vc<Y> A(m);\r\n    vc<T> S(m);\r\
-    \n    for (int i = 0; i < m; ++i) tie(A[i], S[i]) = f(i);\r\n    build(A, S);\r\
-    \n  }\r\n\r\n  void build(const vc<Y>& A) { build(A, vc<T>(len(A), Mono::unit()));\
-    \ }\r\n  void build(const vc<Y>& A, vc<T> S) {\r\n    n = len(A);\r\n    vc<int>\
-    \ B = IDX.build(A);\r\n    K = 0;\r\n    for (auto& x: B) chmax(K, x + 1);\r\n\
-    \    ItoY.resize(K);\r\n    FOR(i, n) ItoY[B[i]] = A[i];\r\n    log = 0;\r\n \
-    \   while ((1 << log) < K) ++log;\r\n    mid.resize(log), bv.assign(log, Bit_Vector(n));\r\
-    \n    vc<int> B0(n), B1(n);\r\n    vc<T> S0(n), S1(n);\r\n    seg.resize(log +\
-    \ 1);\r\n    seg[log].build(S);\r\n    for (int d = log - 1; d >= 0; --d) {\r\n\
-    \      int p0 = 0, p1 = 0;\r\n      for (int i = 0; i < n; ++i) {\r\n        bool\
-    \ f = (B[i] >> d & 1);\r\n        if (!f) { B0[p0] = B[i], S0[p0] = S[i], p0++;\
-    \ }\r\n        if (f) { bv[d].set(i), B1[p1] = B[i], S1[p1] = S[i], p1++; }\r\n\
-    \      }\r\n      swap(B, B0), swap(S, S0);\r\n      move(B1.begin(), B1.begin()\
-    \ + p1, B.begin() + p0);\r\n      move(S1.begin(), S1.begin() + p1, S.begin()\
-    \ + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\n    }\r\n  }\r\
-    \n\r\n  // [L,R) x [0,y)\r\n  int prefix_count(int L, int R, Y y) {\r\n    int\
-    \ p = IDX(y);\r\n    if (L == R || p == 0) return 0;\r\n    if (p == K) return\
-    \ R - L;\r\n    int cnt = 0;\r\n    for (int d = log - 1; d >= 0; --d) {\r\n \
-    \     int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\n  \
-    \    int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (p >> d & 1)\
-    \ cnt += r0 - l0, L = l1, R = r1;\r\n      if (!(p >> d & 1)) L = l0, R = r0;\r\
-    \n    }\r\n    return cnt;\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n  int count(int\
-    \ L, int R, Y y1, Y y2) { return prefix_count(L, R, y2) - prefix_count(L, R, y1);\
-    \ }\r\n\r\n  // [L,R) x [0,y)\r\n  pair<int, T> prefix_count_and_prod(int L, int\
-    \ R, Y y) {\r\n    int p = IDX(y);\r\n    if (p == 0) return {0, Mono::unit()};\r\
+    \n    for (int i = 0; i < m; ++i) {\r\n      auto p = f(i);\r\n      A[i] = p.fi,\
+    \ S[i] = p.se;\r\n    }\r\n    build(A, S);\r\n  }\r\n\r\n  void build(const vc<Y>&\
+    \ A) { build(A, vc<T>(len(A), Mono::unit())); }\r\n  void build(const vc<Y>& A,\
+    \ vc<T> S) {\r\n    n = len(A);\r\n    vc<int> B = IDX.build(A);\r\n    K = 0;\r\
+    \n    for (auto& x: B) chmax(K, x + 1);\r\n    ItoY.resize(K);\r\n    FOR(i, n)\
+    \ ItoY[B[i]] = A[i];\r\n    log = 0;\r\n    while ((1 << log) < K) ++log;\r\n\
+    \    mid.resize(log), bv.assign(log, Bit_Vector(n));\r\n    vc<int> B0(n), B1(n);\r\
+    \n    vc<T> S0(n), S1(n);\r\n    seg.resize(log + 1);\r\n    seg[log].build(S);\r\
+    \n    for (int d = log - 1; d >= 0; --d) {\r\n      int p0 = 0, p1 = 0;\r\n  \
+    \    for (int i = 0; i < n; ++i) {\r\n        bool f = (B[i] >> d & 1);\r\n  \
+    \      if (!f) { B0[p0] = B[i], S0[p0] = S[i], p0++; }\r\n        if (f) { bv[d].set(i),\
+    \ B1[p1] = B[i], S1[p1] = S[i], p1++; }\r\n      }\r\n      swap(B, B0), swap(S,\
+    \ S0);\r\n      move(B1.begin(), B1.begin() + p1, B.begin() + p0);\r\n      move(S1.begin(),\
+    \ S1.begin() + p1, S.begin() + p0);\r\n      mid[d] = p0, bv[d].build(), seg[d].build(S);\r\
+    \n    }\r\n  }\r\n\r\n  // [L,R) x [0,y)\r\n  int prefix_count(int L, int R, Y\
+    \ y) {\r\n    int p = IDX(y);\r\n    if (L == R || p == 0) return 0;\r\n    if\
+    \ (p == K) return R - L;\r\n    int cnt = 0;\r\n    for (int d = log - 1; d >=\
+    \ 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
+    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (p\
+    \ >> d & 1) cnt += r0 - l0, L = l1, R = r1;\r\n      if (!(p >> d & 1)) L = l0,\
+    \ R = r0;\r\n    }\r\n    return cnt;\r\n  }\r\n\r\n  // [L,R) x [y1,y2)\r\n \
+    \ int count(int L, int R, Y y1, Y y2) { return prefix_count(L, R, y2) - prefix_count(L,\
+    \ R, y1); }\r\n\r\n  // [L,R) x [0,y)\r\n  pair<int, T> prefix_count_and_prod(int\
+    \ L, int R, Y y) {\r\n    int p = IDX(y);\r\n    if (p == 0) return {0, Mono::unit()};\r\
     \n    if (p == K) return {R - L, seg[log].prod(L, R)};\r\n    int cnt = 0;\r\n\
     \    T t = Mono::unit();\r\n    for (int d = log - 1; d >= 0; --d) {\r\n     \
     \ int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\n      int\
@@ -415,7 +415,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2024-12-13 13:55:16+09:00'
+  timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/prefix_substring_lcs.test.cpp

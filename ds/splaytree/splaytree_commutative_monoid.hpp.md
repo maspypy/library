@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_cm.test.cpp
     title: test/1_mytest/splay_cm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n\n/*\nupdate \u3067\u3061\u3083\
@@ -53,26 +53,28 @@ data:
     \    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np,\
     \ np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root,\
     \ d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a,\
-    \ b, c, d};\n  }\n\n  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r) \u306B\u5BFE\
-    \u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\u3063\u3066\
-    \u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\u306A\u308B\
-    \u308F\u3051\u3067\u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\u306E\u30CE\
-    \u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\u306B splay\
-    \ \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\n  void goto_between(np\
-    \ &root, u32 l, u32 r) {\n    if (l == 0 && r == root->size) return;\n    if (l\
-    \ == 0) {\n      splay_kth(root, r);\n      root = root->l;\n      return;\n \
-    \   }\n    if (r == root->size) {\n      splay_kth(root, l - 1);\n      root =\
-    \ root->r;\n      return;\n    }\n    splay_kth(root, r);\n    np rp = root;\n\
-    \    root = rp->l;\n    root->p = nullptr;\n    splay_kth(root, l - 1);\n    root->p\
-    \ = rp;\n    rp->l = root;\n    rp->update();\n    root = root->r;\n  }\n\n  vc<X>\
-    \ get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np\
-    \ root) -> void {\n      if (!root) return;\n      root->prop();\n      dfs(dfs,\
-    \ root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n  \
-    \  dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k) {\n    assert(root\
-    \ == nullptr || !root->p);\n    splay_kth(root, k);\n    return root->get();\n\
-    \  }\n\n  void set(np &root, u32 k, const X &x) {\n    assert(root != nullptr\
-    \ && !root->p);\n    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np\
-    \ &root, u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n    splay_kth(root,\
+    \ b, c, d};\n  }\n\n  tuple<np, np, np> split_L_root_R(np root) {\n    u32 s =\
+    \ (root->l ? root->l->size : 0);\n    return split3(root, s, s + 1);\n  }\n\n\
+    \  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r) \u306B\u5BFE\u5FDC\u3059\u308B\
+    \u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\u3063\u3066\u8FD4\u3059\n  //\
+    \ \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\u306A\u308B\u308F\u3051\u3067\
+    \u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\u306E\u30CE\u30FC\u30C9\u3092\
+    \u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\u306B splay \u3057\u3066\u6839\
+    \u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\n  void goto_between(np &root,\
+    \ u32 l, u32 r) {\n    if (l == 0 && r == root->size) return;\n    if (l == 0)\
+    \ {\n      splay_kth(root, r);\n      root = root->l;\n      return;\n    }\n\
+    \    if (r == root->size) {\n      splay_kth(root, l - 1);\n      root = root->r;\n\
+    \      return;\n    }\n    splay_kth(root, r);\n    np rp = root;\n    root =\
+    \ rp->l;\n    root->p = nullptr;\n    splay_kth(root, l - 1);\n    root->p = rp;\n\
+    \    rp->l = root;\n    rp->update();\n    root = root->r;\n  }\n\n  vc<X> get_all(const\
+    \ np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void\
+    \ {\n      if (!root) return;\n      root->prop();\n      dfs(dfs, root->l);\n\
+    \      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n\
+    \    return res;\n  }\n\n  X get(np &root, u32 k) {\n    assert(root == nullptr\
+    \ || !root->p);\n    splay_kth(root, k);\n    return root->get();\n  }\n\n  void\
+    \ set(np &root, u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n\
+    \    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root,\
+    \ u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n    splay_kth(root,\
     \ k);\n    root->multiply(x);\n  }\n\n  X prod(np &root, u32 l, u32 r) {\n   \
     \ assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
     \    if (l == r) return Mono::unit();\n    assert(0 <= l && l < r && r <= root->size);\n\
@@ -204,8 +206,8 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_commutative_monoid.hpp
   requiredBy: []
-  timestamp: '2024-10-18 02:58:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2024-12-25 20:50:37+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/splay_cm.test.cpp
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

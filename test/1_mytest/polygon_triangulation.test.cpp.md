@@ -11,6 +11,9 @@ data:
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':question:'
+    path: ds/hashmap.hpp
+    title: ds/hashmap.hpp
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   - icon: ':question:'
@@ -358,17 +361,17 @@ data:
     \ 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L / 64] &\
     \ ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1) << (R\
     \ % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n  }\n\n\
-    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    if (x == -1) remove(k);\n\
-    \  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
-    \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
-    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
-    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
-    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
-    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
-    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
-    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
-    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; },\n\
-    \                      0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
+    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    elif (x == -1) remove(k);\n\
+    \    else assert(0);\n  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) <<\
+    \ (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int k) {\n    dat[k /\
+    \ 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int\
+    \ k, int L = 0) {\n    if (k >= sum_all()) return N;\n    k += popcnt(dat[L /\
+    \ 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int mid = 0;\n    auto\
+    \ check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid, e);\n      return\
+    \ e <= k;\n    };\n    int idx = bit.max_right(check, L);\n    if (idx == n) return\
+    \ N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p\
+    \ <= k) return N;\n    k = binary_search([&](int n) -> bool { return (p - popcnt(x\
+    \ >> n)) <= k; }, 0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
     \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
     \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
     \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
@@ -475,26 +478,28 @@ data:
     \    tie(root, nm) = split(root, l);\n    return {root, nm, nr};\n  }\n  tuple<np,\
     \ np, np, np> split4(np root, u32 i, u32 j, u32 k) {\n    np d;\n    tie(root,\
     \ d) = split(root, k);\n    auto [a, b, c] = split3(root, i, j);\n    return {a,\
-    \ b, c, d};\n  }\n\n  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r) \u306B\u5BFE\
-    \u5FDC\u3059\u308B\u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\u3063\u3066\
-    \u8FD4\u3059\n  // \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\u306A\u308B\
-    \u308F\u3051\u3067\u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\u306E\u30CE\
-    \u30FC\u30C9\u3092\u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\u306B splay\
-    \ \u3057\u3066\u6839\u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\n  void goto_between(np\
-    \ &root, u32 l, u32 r) {\n    if (l == 0 && r == root->size) return;\n    if (l\
-    \ == 0) {\n      splay_kth(root, r);\n      root = root->l;\n      return;\n \
-    \   }\n    if (r == root->size) {\n      splay_kth(root, l - 1);\n      root =\
-    \ root->r;\n      return;\n    }\n    splay_kth(root, r);\n    np rp = root;\n\
-    \    root = rp->l;\n    root->p = nullptr;\n    splay_kth(root, l - 1);\n    root->p\
-    \ = rp;\n    rp->l = root;\n    rp->update();\n    root = root->r;\n  }\n\n  vc<X>\
-    \ get_all(const np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np\
-    \ root) -> void {\n      if (!root) return;\n      root->prop();\n      dfs(dfs,\
-    \ root->l);\n      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n  \
-    \  dfs(dfs, root);\n    return res;\n  }\n\n  X get(np &root, u32 k) {\n    assert(root\
-    \ == nullptr || !root->p);\n    splay_kth(root, k);\n    return root->get();\n\
-    \  }\n\n  void set(np &root, u32 k, const X &x) {\n    assert(root != nullptr\
-    \ && !root->p);\n    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np\
-    \ &root, u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n    splay_kth(root,\
+    \ b, c, d};\n  }\n\n  tuple<np, np, np> split_L_root_R(np root) {\n    u32 s =\
+    \ (root->l ? root->l->size : 0);\n    return split3(root, s, s + 1);\n  }\n\n\
+    \  // \u90E8\u5206\u6728\u304C\u533A\u9593 [l,r) \u306B\u5BFE\u5FDC\u3059\u308B\
+    \u3088\u3046\u306A\u30CE\u30FC\u30C9\u3092\u4F5C\u3063\u3066\u8FD4\u3059\n  //\
+    \ \u305D\u306E\u30CE\u30FC\u30C9\u304C root \u306B\u306A\u308B\u308F\u3051\u3067\
+    \u306F\u306A\u3044\u306E\u3067\u3001\n  // \u3053\u306E\u30CE\u30FC\u30C9\u3092\
+    \u53C2\u7167\u3057\u305F\u5F8C\u306B\u3059\u3050\u306B splay \u3057\u3066\u6839\
+    \u306B\u6301\u3061\u4E0A\u3052\u308B\u3053\u3068\n  void goto_between(np &root,\
+    \ u32 l, u32 r) {\n    if (l == 0 && r == root->size) return;\n    if (l == 0)\
+    \ {\n      splay_kth(root, r);\n      root = root->l;\n      return;\n    }\n\
+    \    if (r == root->size) {\n      splay_kth(root, l - 1);\n      root = root->r;\n\
+    \      return;\n    }\n    splay_kth(root, r);\n    np rp = root;\n    root =\
+    \ rp->l;\n    root->p = nullptr;\n    splay_kth(root, l - 1);\n    root->p = rp;\n\
+    \    rp->l = root;\n    rp->update();\n    root = root->r;\n  }\n\n  vc<X> get_all(const\
+    \ np &root) {\n    vc<X> res;\n    auto dfs = [&](auto &dfs, np root) -> void\
+    \ {\n      if (!root) return;\n      root->prop();\n      dfs(dfs, root->l);\n\
+    \      res.eb(root->get());\n      dfs(dfs, root->r);\n    };\n    dfs(dfs, root);\n\
+    \    return res;\n  }\n\n  X get(np &root, u32 k) {\n    assert(root == nullptr\
+    \ || !root->p);\n    splay_kth(root, k);\n    return root->get();\n  }\n\n  void\
+    \ set(np &root, u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n\
+    \    splay_kth(root, k);\n    root->set(x);\n  }\n\n  void multiply(np &root,\
+    \ u32 k, const X &x) {\n    assert(root != nullptr && !root->p);\n    splay_kth(root,\
     \ k);\n    root->multiply(x);\n  }\n\n  X prod(np &root, u32 l, u32 r) {\n   \
     \ assert(root == nullptr || !root->p);\n    using Mono = typename Node::Monoid_X;\n\
     \    if (l == r) return Mono::unit();\n    assert(0 <= l && l < r && r <= root->size);\n\
@@ -593,22 +598,47 @@ data:
     \u3002\n  S get() { return x; }\n  void set(const S &xx) {\n    x = xx;\n    update();\n\
     \  }\n  void reverse() {\n    swap(l, r);\n    rev ^= 1;\n  }\n};\ntemplate <typename\
     \ S>\nusing SplayTree_Basic = SplayTree<Node_Basic<S>>;\n} // namespace SplayTreeNodes\n\
-    \nusing SplayTreeNodes::SplayTree_Basic;\n#line 2 \"graph/base.hpp\"\n\ntemplate\
-    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
-    \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
-    \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
-    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
-    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
-    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
-    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
-    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
-    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
-    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
-    \ { return prepared; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
-    \ N) : N(N), M(0), prepared(0) {}\n\n  void build(int n) {\n    N = n, M = 0;\n\
-    \    prepared = 0;\n    edges.clear();\n    indptr.clear();\n    csr_edges.clear();\n\
-    \    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n  }\n\n \
-    \ void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \nusing SplayTreeNodes::SplayTree_Basic;\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64\
+    \ -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\
+    \u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n =\
+    \ 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k\
+    \ < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
+    \ used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E\
+    . size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\
+    \n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) /\
+    \ 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const\
+    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
+    \ i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
+    \ u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if\
+    \ (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return\
+    \ val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int\
+    \ i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\
+    \n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return used[i]\
+    \ && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n\
+    \  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\
+    \n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\
+    \n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\
+    \ = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x += FIXED_RANDOM;\r\
+    \n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
+    \n    return (x ^ (x >> 31)) & mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64,\
+    \ Val>> dat;\r\n    dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used))\
+    \ {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\
+    \n    for (auto& [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\
+    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
+    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
+    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
+    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
+    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool\
+    \ prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph*\
+    \ G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const\
+    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n\
+    \    const edge_type* end() const {\n      if (l == r) { return 0; }\n      return\
+    \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
+    \  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() : N(0), M(0),\
+    \ prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void build(int\
+    \ n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n    indptr.clear();\n\
+    \    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n\
+    \  }\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
     \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
     \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef\
     \ FASTIO\n  // wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N\
@@ -621,28 +651,28 @@ data:
     \ indptr[e.to + 1]++;\n    }\n    for (int v = 0; v < N; ++v) { indptr[v + 1]\
     \ += indptr[v]; }\n    auto counter = indptr;\n    csr_edges.resize(indptr.back()\
     \ + 1);\n    for (auto&& e: edges) {\n      csr_edges[counter[e.frm]++] = e;\n\
-    \      if (!directed)\n        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm,\
-    \ e.cost, e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n \
-    \   assert(prepared);\n    return {this, indptr[v], indptr[v + 1]};\n  }\n\n \
-    \ vc<int> deg_array() {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n\
-    \  }\n\n  pair<vc<int>, vc<int>> deg_array_inout() {\n    if (vc_indeg.empty())\
-    \ calc_deg_inout();\n    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v)\
-    \ {\n    if (vc_deg.empty()) calc_deg();\n    return vc_deg[v];\n  }\n\n  int\
-    \ in_deg(int v) {\n    if (vc_indeg.empty()) calc_deg_inout();\n    return vc_indeg[v];\n\
-    \  }\n\n  int out_deg(int v) {\n    if (vc_outdeg.empty()) calc_deg_inout();\n\
-    \    return vc_outdeg[v];\n  }\n\n#ifdef FASTIO\n  void debug() {\n    print(\"\
-    Graph\");\n    if (!prepared) {\n      print(\"frm to cost id\");\n      for (auto&&\
-    \ e: edges) print(e.frm, e.to, e.cost, e.id);\n    } else {\n      print(\"indptr\"\
-    , indptr);\n      print(\"frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v])\
-    \ print(e.frm, e.to, e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n\
-    \  vc<bool> used_e;\n\n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\
-    \u3001\u65B0\u3057\u3044\u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\
-    \u306B\u3059\u308B\n  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\
-    \u306A\u3063\u3066\u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\
-    \u306E n+m \u3088\u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\
-    \u3067\u6CE8\u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid =\
-    \ 0) {\n    if (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n\
-    \    FOR(i, n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
+    \      if (!directed) csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost,\
+    \ e.id});\n    }\n  }\n\n  OutgoingEdges operator[](int v) const {\n    assert(prepared);\n\
+    \    return {this, indptr[v], indptr[v + 1]};\n  }\n\n  vc<int> deg_array() {\n\
+    \    if (vc_deg.empty()) calc_deg();\n    return vc_deg;\n  }\n\n  pair<vc<int>,\
+    \ vc<int>> deg_array_inout() {\n    if (vc_indeg.empty()) calc_deg_inout();\n\
+    \    return {vc_indeg, vc_outdeg};\n  }\n\n  int deg(int v) {\n    if (vc_deg.empty())\
+    \ calc_deg();\n    return vc_deg[v];\n  }\n\n  int in_deg(int v) {\n    if (vc_indeg.empty())\
+    \ calc_deg_inout();\n    return vc_indeg[v];\n  }\n\n  int out_deg(int v) {\n\
+    \    if (vc_outdeg.empty()) calc_deg_inout();\n    return vc_outdeg[v];\n  }\n\
+    \n#ifdef FASTIO\n  void debug() {\n    print(\"Graph\");\n    if (!prepared) {\n\
+    \      print(\"frm to cost id\");\n      for (auto&& e: edges) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    } else {\n      print(\"indptr\", indptr);\n      print(\"\
+    frm to cost id\");\n      FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to,\
+    \ e.cost, e.id);\n    }\n  }\n#endif\n\n  vc<int> new_idx;\n  vc<bool> used_e;\n\
+    \n  // G \u306B\u304A\u3051\u308B\u9802\u70B9 V[i] \u304C\u3001\u65B0\u3057\u3044\
+    \u30B0\u30E9\u30D5\u3067 i \u306B\u306A\u308B\u3088\u3046\u306B\u3059\u308B\n\
+    \  // {G, es}\n  // sum(deg(v)) \u306E\u8A08\u7B97\u91CF\u306B\u306A\u3063\u3066\
+    \u3044\u3066\u3001\n  // \u65B0\u3057\u3044\u30B0\u30E9\u30D5\u306E n+m \u3088\
+    \u308A\u5927\u304D\u3044\u53EF\u80FD\u6027\u304C\u3042\u308B\u306E\u3067\u6CE8\
+    \u610F\n  Graph<T, directed> rearrange(vc<int> V, bool keep_eid = 0) {\n    if\
+    \ (len(new_idx) != N) new_idx.assign(N, -1);\n    int n = len(V);\n    FOR(i,\
+    \ n) new_idx[V[i]] = i;\n    Graph<T, directed> G(n);\n    vc<int> history;\n\
     \    FOR(i, n) {\n      for (auto&& e: (*this)[V[i]]) {\n        if (len(used_e)\
     \ <= e.id) used_e.resize(e.id + 1);\n        if (used_e[e.id]) continue;\n   \
     \     int a = e.frm, b = e.to;\n        if (new_idx[a] != -1 && new_idx[b] !=\
@@ -657,44 +687,49 @@ data:
     \        par[e.to] = v, dfs(dfs, e.to);\n      }\n    };\n    dfs(dfs, root);\n\
     \    for (auto& e: edges) {\n      int a = e.frm, b = e.to;\n      if (par[a]\
     \ == b) swap(a, b);\n      assert(par[b] == a);\n      G1.add(a, b, e.cost);\n\
-    \    }\n    G1.build();\n    return G1;\n  }\n\nprivate:\n  void calc_deg() {\n\
-    \    assert(vc_deg.empty());\n    vc_deg.resize(N);\n    for (auto&& e: edges)\
-    \ vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout() {\n    assert(vc_indeg.empty());\n\
-    \    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n    for (auto&& e: edges)\
-    \ { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n#line 4 \"graph/planar_graph.hpp\"\
-    \n\n/*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\u30E9\u30D5\u306B\u306A\u3063\u3066\
-    \u3044\u306A\u3044\u3068\u304D\u306B\u3069\u3046\u52D5\u4F5C\u3059\u308B\u304B\
-    \u306F\u4F55\u3082\u8003\u3048\u3066\u3044\u306A\u3044\n\u30FBN=1 \u3082\u6271\
-    \u308F\u306A\u3044\n\u30FB0\u756A\u76EE\u306B\u5916\u9762\u304C\u5165\u308B\n\
-    */\ntemplate <typename XY>\nstruct Planar_Graph {\n  using P = Point<XY>;\n  int\
-    \ NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\u3089\u306A\u308B\u30B0\u30E9\u30D5\
-    . \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\u3066\u304A\u304F\n  Graph<int,\
-    \ 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P> point; // \u5EA7\u6A19\n  // \u8FBA\
-    \u5C5E\u6027\n  vc<int> left_face; // \u6709\u5411\u8FBA\u306E\u5DE6\u306B\u3042\
-    \u308B\u9762\u306E\u756A\u53F7\n  vc<int> nxt_edge;  // \u9762\u3092\u53CD\u6642\
-    \u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\u3068\u304D\u306E\u6B21\u306E\u8FBA\
-    \n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\n  Planar_Graph(int N, vc<P>\
-    \ point) : NV(N), G(N), point(point) { assert(N > 1); }\n\n  void add(int a, int\
-    \ b) { G.add(a, b), G.add(b, a); }\n  void build() {\n    G.build();\n    NE =\
-    \ G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M, -1);\n  \
-    \  int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v] < point[v0])\
-    \ v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto& e: G[v]) {\n\
-    \        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n      }\n\
-    \      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k, len(I))\
-    \ {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j = I[k];\n\
-    \        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n      }\n    \
-    \  if (v == v0) e0 = eid[I[0]] ^ 1;\n    }\n    for (auto& x: nxt_edge) assert(x\
-    \ != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p = len(first_edge);\n\
-    \      first_edge.eb(e);\n      while (left_face[e] == -1) {\n        left_face[e]\
-    \ = p;\n        e = nxt_edge[e];\n      }\n    };\n\n    make_face(e0);\n    FOR(e,\
-    \ 2 * NE) {\n      if (left_face[e] == -1) make_face(e);\n    }\n    NF = len(first_edge);\n\
-    \    assert(NV - NE + NF == 2);\n  }\n\n  // return {vs, es}\n  // vs = [v0,v1,v2,v0],\
-    \ es = [e0,e1,e2]\n  pair<vc<int>, vc<int>> get_face_data(int fid) {\n    vc<int>\
-    \ eid = {first_edge[fid]};\n    while (1) {\n      int e = nxt_edge[eid.back()];\n\
-    \      if (e == first_edge[fid]) break;\n      eid.eb(e);\n    }\n    vc<int>\
-    \ vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n    vid.eb(vid[0]);\n\
-    \    return {vid, eid};\n  }\n};\n#line 4 \"geo/polygon_triangulation.hpp\"\n\n\
-    template <typename T>\nvc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>>\
+    \    }\n    G1.build();\n    return G1;\n  }\n\n  HashMap<int> MP_FOR_EID;\n\n\
+    \  int get_eid(u64 a, u64 b) {\n    if (len(MP_FOR_EID) == 0) {\n      MP_FOR_EID.build(N\
+    \ - 1);\n      for (auto& e: edges) {\n        u64 a = e.frm, b = e.to;\n    \
+    \    u64 k = to_eid_key(a, b);\n        MP_FOR_EID[k] = e.id;\n      }\n    }\n\
+    \    return MP_FOR_EID.get(to_eid_key(a, b), -1);\n  }\n\n  u64 to_eid_key(u64\
+    \ a, u64 b) {\n    if (!directed && a > b) swap(a, b);\n    return N * a + b;\n\
+    \  }\n\nprivate:\n  void calc_deg() {\n    assert(vc_deg.empty());\n    vc_deg.resize(N);\n\
+    \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
+    \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
+    \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
+    #line 4 \"graph/planar_graph.hpp\"\n\n/*\n\u30FB\u9023\u7D50\u5E73\u9762\u30B0\
+    \u30E9\u30D5\u306B\u306A\u3063\u3066\u3044\u306A\u3044\u3068\u304D\u306B\u3069\
+    \u3046\u52D5\u4F5C\u3059\u308B\u304B\u306F\u4F55\u3082\u8003\u3048\u3066\u3044\
+    \u306A\u3044\n\u30FBN=1 \u3082\u6271\u308F\u306A\u3044\n\u30FB0\u756A\u76EE\u306B\
+    \u5916\u9762\u304C\u5165\u308B\n*/\ntemplate <typename XY>\nstruct Planar_Graph\
+    \ {\n  using P = Point<XY>;\n  int NV, NE, NF;\n  // \u9802\u70B9, \u8FBA\u304B\
+    \u3089\u306A\u308B\u30B0\u30E9\u30D5. \u6709\u5411\u8FBA\u3092 2 \u3064\u5165\u308C\
+    \u3066\u304A\u304F\n  Graph<int, 1> G;\n  // \u9802\u70B9\u5C5E\u6027\n  vc<P>\
+    \ point; // \u5EA7\u6A19\n  // \u8FBA\u5C5E\u6027\n  vc<int> left_face; // \u6709\
+    \u5411\u8FBA\u306E\u5DE6\u306B\u3042\u308B\u9762\u306E\u756A\u53F7\n  vc<int>\
+    \ nxt_edge;  // \u9762\u3092\u53CD\u6642\u8A08\u56DE\u308A\u306B\u307E\u308F\u308B\
+    \u3068\u304D\u306E\u6B21\u306E\u8FBA\n  // \u9762\u5C5E\u6027\n  vc<int> first_edge;\n\
+    \n  Planar_Graph(int N, vc<P> point) : NV(N), G(N), point(point) { assert(N >\
+    \ 1); }\n\n  void add(int a, int b) { G.add(a, b), G.add(b, a); }\n  void build()\
+    \ {\n    G.build();\n    NE = G.M / 2;\n    nxt_edge.assign(G.M, -1);\n    left_face.assign(G.M,\
+    \ -1);\n    int v0 = 0;\n    int e0 = 0;\n    FOR(v, NV) {\n      if (point[v]\
+    \ < point[v0]) v0 = v;\n      vc<int> eid;\n      vc<P> dir;\n      for (auto&\
+    \ e: G[v]) {\n        eid.eb(e.id);\n        dir.eb(point[e.to] - point[e.frm]);\n\
+    \      }\n      auto I = angle_sort(dir);\n      assert(len(I) > 0);\n      FOR(k,\
+    \ len(I)) {\n        int i = (k == 0 ? I.back() : I[k - 1]);\n        int j =\
+    \ I[k];\n        i = eid[i], j = eid[j];\n        nxt_edge[j ^ 1] = i;\n     \
+    \ }\n      if (v == v0) e0 = eid[I[0]] ^ 1;\n    }\n    for (auto& x: nxt_edge)\
+    \ assert(x != -1);\n\n    auto make_face = [&](int e) -> void {\n      int p =\
+    \ len(first_edge);\n      first_edge.eb(e);\n      while (left_face[e] == -1)\
+    \ {\n        left_face[e] = p;\n        e = nxt_edge[e];\n      }\n    };\n\n\
+    \    make_face(e0);\n    FOR(e, 2 * NE) {\n      if (left_face[e] == -1) make_face(e);\n\
+    \    }\n    NF = len(first_edge);\n    assert(NV - NE + NF == 2);\n  }\n\n  //\
+    \ return {vs, es}\n  // vs = [v0,v1,v2,v0], es = [e0,e1,e2]\n  pair<vc<int>, vc<int>>\
+    \ get_face_data(int fid) {\n    vc<int> eid = {first_edge[fid]};\n    while (1)\
+    \ {\n      int e = nxt_edge[eid.back()];\n      if (e == first_edge[fid]) break;\n\
+    \      eid.eb(e);\n    }\n    vc<int> vid;\n    for (auto& e: eid) vid.eb(G.edges[e].frm);\n\
+    \    vid.eb(vid[0]);\n    return {vid, eid};\n  }\n};\n#line 4 \"geo/polygon_triangulation.hpp\"\
+    \n\ntemplate <typename T>\nvc<tuple<int, int, int>> monotone_polygon_triangulation(vc<Point<T>>\
     \ point) {\n  int N = len(point);\n  int rot = min_element(all(point)) - point.begin();\n\
     \  rotate(point.begin(), point.begin() + rot, point.end());\n  int n = max_element(all(point))\
     \ - point.begin();\n  FOR(i, n) assert(point[i] < point[i + 1]);\n  FOR(i, n,\
@@ -800,10 +835,11 @@ data:
   - ds/splaytree/splaytree.hpp
   - graph/planar_graph.hpp
   - graph/base.hpp
+  - ds/hashmap.hpp
   isVerificationFile: true
   path: test/1_mytest/polygon_triangulation.test.cpp
   requiredBy: []
-  timestamp: '2024-12-13 13:55:16+09:00'
+  timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/polygon_triangulation.test.cpp

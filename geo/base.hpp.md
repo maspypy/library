@@ -54,6 +54,9 @@ data:
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':warning:'
+    path: geo/minimum_three_distance_sum.hpp
+    title: geo/minimum_three_distance_sum.hpp
+  - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
   - icon: ':x:'
@@ -111,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/convex_layers.test.cpp
     title: test/2_library_checker/geometry/convex_layers.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -311,6 +314,7 @@ data:
   - geo/convex_hull.hpp
   - geo/minimum_enclosing_circle.hpp
   - geo/dynamicupperhull.hpp
+  - geo/minimum_three_distance_sum.hpp
   - geo/incircle.hpp
   - geo/polygon_triangulation.hpp
   - geo/furthest_pair.hpp

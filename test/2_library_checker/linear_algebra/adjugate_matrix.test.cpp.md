@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
   - icon: ':question:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':question:'
@@ -60,9 +60,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/adjugate_matrix
@@ -651,11 +651,7 @@ data:
     \ == mint(0)) POP(f);\n    int d = len(g);\n    vc<mint> q;\n    FOR_R(i, d, len(f))\
     \ {\n      q.eb(f[i]);\n      FOR(j, len(g)) f[i - d + j] += f[i] * g[j];\n  \
     \    f[i] = 0;\n    }\n    while (len(f) && f.back() == mint(0)) POP(f);\n   \
-    \ reverse(all(q));\n    return q;\n  }\n\n  // x^n mod (x^d-g(x))\n  vc<mint>\
-    \ powmod(vc<mint>& g, ll n) {\n    if (n < len(g)) {\n      vc<mint> f(n + 1);\n\
-    \      f[n] = 1;\n      return f;\n    }\n    vc<mint> f = powmod(g, n / 2);\n\
-    \    f = convolution_naive(f, f);\n    if (n & 1) f.insert(f.begin(), 0);\n  \
-    \  divmod_inplace(f, g);\n    return f;\n  }\n};\n#line 1 \"linalg/characteristic_poly.hpp\"\
+    \ reverse(all(q));\n    return q;\n  }\n};\n#line 1 \"linalg/characteristic_poly.hpp\"\
     \ntemplate <typename T>\r\nvoid to_Hessenberg_matrix(vc<vc<T>>& A) {\r\n  /*\r\
     \n  P^{-1}AP \u306E\u5F62\u306E\u5909\u63DB\u3067\u3001Hessenberg \u884C\u5217\
     \u306B\u5909\u5F62\u3059\u308B\u3002\r\n  \u7279\u5B9A\u591A\u9805\u5F0F\u306E\
@@ -715,8 +711,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-12-13 13:55:16+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2024-12-25 20:50:37+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
 layout: document
