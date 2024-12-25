@@ -19,7 +19,8 @@ data:
     \   }\n    auto operator!=(const iter) const { return t < n; }\n  };\n  UINT s,\
     \ k;\n  all_k_subset(UINT s, UINT k) : s(s), k(k) { assert(s != UINT(-1)); }\n\
     \  auto begin() { return iter(s, k); }\n  auto end() { return iter(0, 0); }\n\
-    };\n"
+    };\n\n// all_nCk\u95A2\u6570\u306E\u5B9F\u88C5\nauto all_nCk(int n, int k) { return\
+    \ all_k_subset<u32>((u32(1) << n) - 1, k); }\n"
   code: "\n#ifdef _MSC_VER\n#include <intrin.h>\n#else\n#include <x86intrin.h>\n#endif\n\
     \ntemplate <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
@@ -30,12 +31,13 @@ data:
     \   }\n    auto operator!=(const iter) const { return t < n; }\n  };\n  UINT s,\
     \ k;\n  all_k_subset(UINT s, UINT k) : s(s), k(k) { assert(s != UINT(-1)); }\n\
     \  auto begin() { return iter(s, k); }\n  auto end() { return iter(0, 0); }\n\
-    };"
+    };\n\n// all_nCk\u95A2\u6570\u306E\u5B9F\u88C5\nauto all_nCk(int n, int k) { return\
+    \ all_k_subset<u32>((u32(1) << n) - 1, k); }"
   dependsOn: []
   isVerificationFile: false
   path: setfunc/all_k_subset.hpp
   requiredBy: []
-  timestamp: '2024-12-26 06:06:11+09:00'
+  timestamp: '2024-12-26 06:32:57+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: setfunc/all_k_subset.hpp

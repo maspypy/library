@@ -4,7 +4,7 @@ data:
   - icon: ':x:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   _extendedRequiredBy: []

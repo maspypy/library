@@ -4,10 +4,10 @@ data:
   - icon: ':x:'
     path: alg/monoid/min2.hpp
     title: alg/monoid/min2.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []

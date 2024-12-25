@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/5_atcoder/agc060c.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qoj.ac/problem/5
@@ -73,7 +73,7 @@ data:
   path: mod/O1_inverse.hpp
   requiredBy: []
   timestamp: '2024-04-04 04:49:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/agc060c.test.cpp
   - test/1_mytest/O1_inv.test.cpp
