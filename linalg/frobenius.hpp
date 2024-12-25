@@ -146,18 +146,4 @@ private:
     reverse(all(q));
     return q;
   }
-
-  // x^n mod (x^d-g(x))
-  vc<mint> powmod(vc<mint>& g, ll n) {
-    if (n < len(g)) {
-      vc<mint> f(n + 1);
-      f[n] = 1;
-      return f;
-    }
-    vc<mint> f = powmod(g, n / 2);
-    f = convolution_naive(f, f);
-    if (n & 1) f.insert(f.begin(), 0);
-    divmod_inplace(f, g);
-    return f;
-  }
 };

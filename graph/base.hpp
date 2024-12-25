@@ -1,4 +1,5 @@
 #pragma once
+#include "ds/hashmap.hpp"
 
 template <typename T>
 struct Edge {
@@ -96,8 +97,7 @@ struct Graph {
     csr_edges.resize(indptr.back() + 1);
     for (auto&& e: edges) {
       csr_edges[counter[e.frm]++] = e;
-      if (!directed)
-        csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});
+      if (!directed) csr_edges[counter[e.to]++] = edge_type({e.to, e.frm, e.cost, e.id});
     }
   }
 
@@ -197,6 +197,25 @@ struct Graph {
     }
     G1.build();
     return G1;
+  }
+
+  HashMap<int> MP_FOR_EID;
+
+  int get_eid(u64 a, u64 b) {
+    if (len(MP_FOR_EID) == 0) {
+      MP_FOR_EID.build(N - 1);
+      for (auto& e: edges) {
+        u64 a = e.frm, b = e.to;
+        u64 k = to_eid_key(a, b);
+        MP_FOR_EID[k] = e.id;
+      }
+    }
+    return MP_FOR_EID.get(to_eid_key(a, b), -1);
+  }
+
+  u64 to_eid_key(u64 a, u64 b) {
+    if (!directed && a > b) swap(a, b);
+    return N * a + b;
   }
 
 private:
