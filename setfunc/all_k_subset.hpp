@@ -28,3 +28,6 @@ struct all_k_subset {
   auto begin() { return iter(s, k); }
   auto end() { return iter(0, 0); }
 };
+
+// all_nCk関数の実装
+auto all_nCk(int n, int k) { return all_k_subset<u32>((u32(1) << n) - 1, k); }

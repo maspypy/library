@@ -112,15 +112,6 @@ bool has_kth_bit(T x, int k) {
   return x >> k & 1;
 }
 
-template <typename T>
-T kth_bit(int k) {
-  return T(1) << k;
-}
-template <typename T>
-bool has_kth_bit(T x, int k) {
-  return x >> k & 1;
-}
-
 template <typename UINT>
 struct all_bit {
   struct iter {
