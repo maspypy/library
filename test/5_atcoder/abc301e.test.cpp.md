@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/grid_bfs.hpp
     title: graph/shortest_path/grid_bfs.hpp
   - icon: ':question:'

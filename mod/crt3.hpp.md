@@ -71,7 +71,7 @@ data:
   - icon: ':question:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':question:'
@@ -173,7 +173,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
   - icon: ':question:'
@@ -239,7 +239,7 @@ data:
   - icon: ':question:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
   - icon: ':question:'
@@ -278,7 +278,7 @@ data:
   - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
@@ -287,19 +287,19 @@ data:
   - icon: ':question:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
   - icon: ':question:'
@@ -657,31 +657,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
     title: test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1321.test.cpp
     title: test/3_yukicoder/1321.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1357.test.cpp
     title: test/3_yukicoder/1357.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
   - icon: ':x:'
