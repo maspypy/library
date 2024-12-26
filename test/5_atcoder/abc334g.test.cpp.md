@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
   - icon: ':question:'

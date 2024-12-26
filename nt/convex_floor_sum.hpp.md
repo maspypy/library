@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: nt/sigma_0_sum.hpp
     title: nt/sigma_0_sum.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sigma_0_sum.test.cpp
     title: test/1_mytest/sigma_0_sum.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/5_atcoder/abc230e.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qoj.ac/contest/1195/problem/6188
@@ -72,7 +72,7 @@ data:
   requiredBy:
   - nt/sigma_0_sum.hpp
   timestamp: '2024-08-28 14:07:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/5_atcoder/abc230e.test.cpp
   - test/1_mytest/sigma_0_sum.test.cpp

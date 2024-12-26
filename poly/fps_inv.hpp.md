@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_unicyclic.hpp
     title: graph/count/count_labeled_unicyclic.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':question:'
@@ -155,7 +155,7 @@ data:
   - icon: ':question:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
   - icon: ':question:'
@@ -261,19 +261,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/vandermonde.test.cpp
     title: test/1_mytest/vandermonde.test.cpp
   - icon: ':x:'
