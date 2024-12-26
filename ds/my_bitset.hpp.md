@@ -36,7 +36,7 @@ data:
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':x:'
@@ -83,7 +83,7 @@ data:
     title: test/5_atcoder/abc350g2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -355,7 +355,7 @@ data:
   - graph/bitset/bfs_bitset.hpp
   - flow/bipartite_dense.hpp
   timestamp: '2024-12-17 23:15:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/421_2.test.cpp
   - test/3_yukicoder/1340.test.cpp

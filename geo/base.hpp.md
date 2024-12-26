@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: geo/convex_layers.hpp
     title: geo/convex_layers.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
   - icon: ':question:'
@@ -99,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/incremental_ch.test.cpp
     title: test/1_mytest/incremental_ch.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
   - icon: ':x:'
