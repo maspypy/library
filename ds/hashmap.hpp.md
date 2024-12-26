@@ -35,10 +35,10 @@ data:
   - icon: ':x:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/polygon_triangulation.hpp
     title: geo/polygon_triangulation.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
   - icon: ':question:'
@@ -236,10 +236,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/planar_graph.hpp
     title: graph/planar_graph.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/prufer_code.hpp
     title: graph/prufer_code.hpp
   - icon: ':x:'
@@ -423,13 +423,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':x:'

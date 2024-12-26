@@ -68,7 +68,7 @@ data:
   - icon: ':x:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
   - icon: ':x:'
@@ -92,7 +92,7 @@ data:
   - icon: ':x:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
   - icon: ':warning:'
@@ -161,7 +161,7 @@ data:
   - icon: ':warning:'
     path: poly/egf_convolution.hpp
     title: poly/egf_convolution.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
   - icon: ':question:'
@@ -236,10 +236,10 @@ data:
   - icon: ':question:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/poly_gcd.hpp
     title: poly/poly_gcd.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
   - icon: ':question:'
@@ -257,10 +257,10 @@ data:
   - icon: ':x:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':x:'
@@ -507,49 +507,49 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_pow.test.cpp
     title: test/1_mytest/online_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_square.test.cpp
     title: test/1_mytest/online_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/partial_frac.test.cpp
     title: test/1_mytest/partial_frac.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/pascal.test.cpp
     title: test/1_mytest/pascal.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
     title: test/1_mytest/permtation_group_basis_npcapc2024j.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/powerquery.test.cpp
     title: test/1_mytest/powerquery.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prefix_max_segtree.test.cpp
     title: test/1_mytest/prefix_max_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prefix_sum_of_binom.test.cpp
     title: test/1_mytest/prefix_sum_of_binom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prime_sum.test.cpp
     title: test/1_mytest/prime_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/qbinom.test.cpp
     title: test/1_mytest/qbinom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_commutative_persistent.test.cpp
     title: test/1_mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid.test.cpp
     title: test/1_mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_2.test.cpp
     title: test/1_mytest/rbst_monoid_2.test.cpp
   - icon: ':x:'
