@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
   - icon: ':question:'
