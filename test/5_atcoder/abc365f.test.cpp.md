@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/monoid/add_chmin_chmax_with_cost.hpp
     title: alg/monoid/add_chmin_chmax_with_cost.hpp
   - icon: ':question:'
