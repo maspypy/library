@@ -2,10 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/ITP2_11_D.test.cpp
+    title: test/4_aoj/ITP2_11_D.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"setfunc/all_k_subset.hpp\"\n\n#ifdef _MSC_VER\n#include\
@@ -38,8 +41,9 @@ data:
   path: setfunc/all_k_subset.hpp
   requiredBy: []
   timestamp: '2024-12-26 06:32:57+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/4_aoj/ITP2_11_D.test.cpp
 documentation_of: setfunc/all_k_subset.hpp
 layout: document
 redirect_from:

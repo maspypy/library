@@ -2446,6 +2446,9 @@ data:
     path: test/4_aoj/ITP1_D_D.test.cpp
     title: test/4_aoj/ITP1_D_D.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/4_aoj/ITP2_11_D.test.cpp
+    title: test/4_aoj/ITP2_11_D.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP2_3_B.test.cpp
     title: test/4_aoj/ITP2_3_B.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3423,6 +3426,7 @@ data:
   - test/4_aoj/DSL_2_G.test.cpp
   - test/4_aoj/GRL_6_B.test.cpp
   - test/4_aoj/2251_1.test.cpp
+  - test/4_aoj/ITP2_11_D.test.cpp
   - test/4_aoj/GRL_3_B.test.cpp
   - test/4_aoj/DPL_1_B.test.cpp
   - test/4_aoj/ITP1_11_B.test.cpp
