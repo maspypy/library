@@ -1,26 +1,18 @@
-#define PROBLEM \
-  "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D"
+#define PROBLEM "https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "setfunc/for_nck.hpp"
+#include "setfunc/all_k_subset.hpp"
 
 void solve() {
   LL(N, K);
-  FOR_nCk(s, N, K) {
+  for (u32 s: all_nCk(N, K)) {
     vi I;
-    FOR(i, N) if (s & 1 << i) I.eb(i);
+    for (int i: all_bit<u32>(s)) I.eb(i);
     print(to_string(s) + ":", I);
   }
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(_, T) solve();
-
+  solve();
   return 0;
 }
