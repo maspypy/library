@@ -325,7 +325,7 @@ data:
     \n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g = RB[s];\r\n    FOR_R(d, n +\
     \ 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n    \
     \  f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line\
-    \ 2 \"setfunc/sps_exp.hpp\"\n\n// sum_i f_i/i! s^i, s^i is subset-convolution\n\
+    \ 2 \"setfunc/sps_exp.hpp\"\n\n// sum_i 1/i! s^i, s^i is subset-convolution\n\
     template <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>& s) {\n  const int\
     \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
     \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
@@ -361,7 +361,7 @@ data:
   isVerificationFile: true
   path: test/5_atcoder/abc236h.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
+  timestamp: '2024-12-28 10:55:16+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/5_atcoder/abc236h.test.cpp

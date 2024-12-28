@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   - icon: ':question:'
@@ -30,9 +30,9 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/hafnian_of_matrix
@@ -331,7 +331,7 @@ data:
     \n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g = RB[s];\r\n    FOR_R(d, n +\
     \ 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n    \
     \  f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line\
-    \ 2 \"setfunc/sps_exp.hpp\"\n\n// sum_i f_i/i! s^i, s^i is subset-convolution\n\
+    \ 2 \"setfunc/sps_exp.hpp\"\n\n// sum_i 1/i! s^i, s^i is subset-convolution\n\
     template <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>& s) {\n  const int\
     \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
     \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
@@ -352,17 +352,17 @@ data:
     \ for (int s = 0; s < (1 << i); ++s) {\r\n      for (int j = 0; j < i; ++j) {\r\
     \n        int j0 = 2 * j + 0, j1 = 2 * j + 1;\r\n        cyc[s | 1 << i] += dp[K\
     \ * s + j0] * mat[B][j0];\r\n        cyc[s | 1 << i] += dp[K * s + j1] * mat[B][j1];\r\
-    \n        enumerate_bits_32((1 << i) - 1 - s, [&](int k) -> void {\r\n       \
-    \   int k0 = 2 * k + 0, k1 = 2 * k + 1;\r\n          int t = s | 1 << k;\r\n \
-    \         dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K *\
-    \ t + k0] += dp[K * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K\
-    \ * s + j0] * mat[j0][k0];\r\n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\
-    \n        });\r\n      }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\
-    \n}\r\n#line 6 \"test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp\"\
-    \n\r\nusing mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N,\
-    \ N);\r\n  auto ANS = Hufnian(B);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\
-    \n  cin.tie(nullptr);\r\n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\
-    \n\r\n  solve();\r\n\r\n  return 0;\r\n}\r\n"
+    \n        for (int k: all_bit<u32>((1 << i) - 1 - s)) {\r\n          int k0 =\
+    \ 2 * k + 0, k1 = 2 * k + 1;\r\n          int t = s | 1 << k;\r\n          dp[K\
+    \ * t + k0] += dp[K * s + j0] * mat[j0][k1];\r\n          dp[K * t + k0] += dp[K\
+    \ * s + j1] * mat[j1][k1];\r\n          dp[K * t + k1] += dp[K * s + j0] * mat[j0][k0];\r\
+    \n          dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];\r\n        }\r\n \
+    \     }\r\n    }\r\n  }\r\n  return sps_exp<mint, LIM>(cyc).back();\r\n}\r\n#line\
+    \ 6 \"test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp\"\n\r\n\
+    using mint = modint998;\r\nvoid solve() {\r\n  LL(N);\r\n  VV(mint, B, N, N);\r\
+    \n  auto ANS = Hufnian(B);\r\n  print(ANS);\r\n}\r\n\r\nsigned main() {\r\n  cin.tie(nullptr);\r\
+    \n  ios::sync_with_stdio(false);\r\n  cout << setprecision(15);\r\n\r\n  solve();\r\
+    \n\r\n  return 0;\r\n}\r\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/hafnian_of_matrix\"\r\n\
     #include \"my_template.hpp\"\r\n#include \"other/io.hpp\"\r\n#include \"mod/modint.hpp\"\
     \r\n#include \"linalg/hafnian.hpp\"\r\n\r\nusing mint = modint998;\r\nvoid solve()\
@@ -382,8 +382,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-28 10:55:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 layout: document

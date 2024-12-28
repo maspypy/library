@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -130,10 +130,10 @@ data:
     \ v_wt.assign(N, 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root\
     \ -> cost\n  vv(T, DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\
     \n  // 2 * t or 2 * eid + 1\n  vv(int, par, 1 << K, N, -1);\n\n  for (int s =\
-    \ 1; s < (1 << K); ++s) {\n    auto& dp = DP[s];\n    enumerate_bits_32(s, [&](int\
-    \ k) -> void {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n\
-    \    });\n    FOR_subset(t, s) {\n      if (t == 0 || t == s) continue;\n    \
-    \  FOR(v, N) {\n        if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v]\
+    \ 1; s < (1 << K); ++s) {\n    auto& dp = DP[s];\n    for (int k: all_bit<u32>(s))\
+    \ {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n    }\n    for\
+    \ (u32 t: all_subset<u32>(s)) {\n      if (t == 0 || t == s) continue;\n     \
+    \ FOR(v, N) {\n        if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v]\
     \ = 2 * t;\n      }\n    }\n    // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\
     \n    pqg<pair<T, int>> que;\n    FOR(v, N) que.emplace(dp[v], v);\n    while\
     \ (!que.empty()) {\n      auto [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n\
@@ -162,10 +162,10 @@ data:
     \ v_wt.assign(N, 0);\n\n  // \u30BF\u30FC\u30DF\u30CA\u30EB\u96C6\u5408, root\
     \ -> cost\n  vv(T, DP, 1 << K, N, infty<T>);\n  FOR(v, N) DP[0][v] = v_wt[v];\n\
     \n  // 2 * t or 2 * eid + 1\n  vv(int, par, 1 << K, N, -1);\n\n  for (int s =\
-    \ 1; s < (1 << K); ++s) {\n    auto& dp = DP[s];\n    enumerate_bits_32(s, [&](int\
-    \ k) -> void {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n\
-    \    });\n    FOR_subset(t, s) {\n      if (t == 0 || t == s) continue;\n    \
-    \  FOR(v, N) {\n        if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v]\
+    \ 1; s < (1 << K); ++s) {\n    auto& dp = DP[s];\n    for (int k: all_bit<u32>(s))\
+    \ {\n      int v = S[k];\n      chmin(dp[v], DP[s ^ 1 << k][v]);\n    }\n    for\
+    \ (u32 t: all_subset<u32>(s)) {\n      if (t == 0 || t == s) continue;\n     \
+    \ FOR(v, N) {\n        if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v]\
     \ = 2 * t;\n      }\n    }\n    // \u6839\u306E\u79FB\u52D5\u3092 dijkstra \u3067\
     \n    pqg<pair<T, int>> que;\n    FOR(v, N) que.emplace(dp[v], v);\n    while\
     \ (!que.empty()) {\n      auto [dv, v] = POP(que);\n      if (dv != dp[v]) continue;\n\
@@ -192,8 +192,8 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2024-12-26 06:06:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-12-28 10:55:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/114.test.cpp
 documentation_of: graph/steiner_tree.hpp

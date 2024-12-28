@@ -11,17 +11,17 @@ data:
   - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/hafnian.hpp
     title: linalg/hafnian.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/set_power_series/sps_exp.test.cpp
     title: test/2_library_checker/set_power_series/sps_exp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
   - icon: ':x:'
@@ -61,14 +61,14 @@ data:
     \n  int n = topbit(len(RA));\r\n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g\
     \ = RB[s];\r\n    FOR_R(d, n + 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x\
     \ += f[i] * g[d - i];\r\n      f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T,\
-    \ LIM>(RA);\r\n}\r\n#line 2 \"setfunc/sps_exp.hpp\"\n\n// sum_i f_i/i! s^i, s^i\
+    \ LIM>(RA);\r\n}\r\n#line 2 \"setfunc/sps_exp.hpp\"\n\n// sum_i 1/i! s^i, s^i\
     \ is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>&\
     \ s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] ==\
     \ mint(0));\n  vc<mint> dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint>\
     \ a = {s.begin() + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(),\
     \ dp.begin() + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n"
-  code: "#include \"setfunc/subset_convolution.hpp\"\n\n// sum_i f_i/i! s^i, s^i is\
+  code: "#include \"setfunc/subset_convolution.hpp\"\n\n// sum_i 1/i! s^i, s^i is\
     \ subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>&\
     \ s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] ==\
     \ mint(0));\n  vc<mint> dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint>\
@@ -83,7 +83,7 @@ data:
   requiredBy:
   - linalg/hafnian.hpp
   - graph/tutte_polynomial.hpp
-  timestamp: '2023-09-23 23:33:32+09:00'
+  timestamp: '2024-12-28 10:55:16+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp

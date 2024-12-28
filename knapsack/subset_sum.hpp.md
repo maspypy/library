@@ -4,20 +4,20 @@ data:
   - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/contest/755/problem/F
@@ -174,18 +174,18 @@ data:
     \ dp);\n    if (len(newdp) > target + 1) newdp.resize(target + 1);\n    // update\
     \ \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i, len(newdp.dat))\
     \ {\n      u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];\n\
-    \      enumerate_bits_64(upd, [&](int p) -> void { last[(i << 6) | p] = I[k];\
-    \ });\n    }\n    swap(dp, newdp);\n  }\n  if (target >= len(dp) || !dp[target])\
-    \ return {};\n  vc<int> ANS;\n  while (target > 0) {\n    int i = last[target];\n\
-    \    ANS.eb(i);\n    target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5}\
-    \ / w)\n// sum=10^6 \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\n\
-    template <typename T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target)\
-    \ {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n\
-    \  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int>\
-    \ grp_vals;\n  vc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n\
-    \    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n      int c = len(par);\n\
-    \      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n    for (auto& i: I) {\n\
-    \      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
+    \      for (int p: all_bit<u64>(upd)) { last[(i << 6) | p] = I[k]; }\n    }\n\
+    \    swap(dp, newdp);\n  }\n  if (target >= len(dp) || !dp[target]) return {};\n\
+    \  vc<int> ANS;\n  while (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n\
+    \    target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6\
+    \ \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\ntemplate <typename\
+    \ T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target) {\n  int SM = SUM<int>(vals);\n\
+    \  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n\
+    \  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int> grp_vals;\n  vc<int> raw_idx;\n\
+    \  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n    while (len(I) >= 3) {\n   \
+    \   int a = POP(I), b = POP(I);\n      int c = len(par);\n      par.eb(a, b);\n\
+    \      IDS[2 * x].eb(c);\n    }\n    for (auto& i: I) {\n      grp_vals.eb(x);\n\
+    \      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
     \ target);\n  vc<int> ANS;\n  for (auto& i: I) {\n    vc<int> st = {raw_idx[i]};\n\
     \    while (len(st)) {\n      auto c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n\
     \        continue;\n      }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n\
@@ -240,18 +240,18 @@ data:
     \ dp);\n    if (len(newdp) > target + 1) newdp.resize(target + 1);\n    // update\
     \ \u3057\u305F\u3068\u3053\u308D\u3092\u30E1\u30E2\n    FOR(i, len(newdp.dat))\
     \ {\n      u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];\n\
-    \      enumerate_bits_64(upd, [&](int p) -> void { last[(i << 6) | p] = I[k];\
-    \ });\n    }\n    swap(dp, newdp);\n  }\n  if (target >= len(dp) || !dp[target])\
-    \ return {};\n  vc<int> ANS;\n  while (target > 0) {\n    int i = last[target];\n\
-    \    ANS.eb(i);\n    target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5}\
-    \ / w)\n// sum=10^6 \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\n\
-    template <typename T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target)\
-    \ {\n  int SM = SUM<int>(vals);\n  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n\
-    \  FOR(i, N) IDS[vals[i]].eb(i);\n  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int>\
-    \ grp_vals;\n  vc<int> raw_idx;\n  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n\
-    \    while (len(I) >= 3) {\n      int a = POP(I), b = POP(I);\n      int c = len(par);\n\
-    \      par.eb(a, b);\n      IDS[2 * x].eb(c);\n    }\n    for (auto& i: I) {\n\
-    \      grp_vals.eb(x);\n      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
+    \      for (int p: all_bit<u64>(upd)) { last[(i << 6) | p] = I[k]; }\n    }\n\
+    \    swap(dp, newdp);\n  }\n  if (target >= len(dp) || !dp[target]) return {};\n\
+    \  vc<int> ANS;\n  while (target > 0) {\n    int i = last[target];\n    ANS.eb(i);\n\
+    \    target -= vals[i];\n  }\n  return ANS;\n}\n\n// O(sum^{1.5} / w)\n// sum=10^6\
+    \ \u3067 150ms\uFF1Ahttps://codeforces.com/contest/755/problem/F\ntemplate <typename\
+    \ T>\nvc<int> subset_sum_solution_3(vc<T>& vals, int target) {\n  int SM = SUM<int>(vals);\n\
+    \  int N = len(vals);\n  vvc<int> IDS(SM + 1);\n  FOR(i, N) IDS[vals[i]].eb(i);\n\
+    \  vc<pair<int, int>> par(N, {-1, -1});\n  vc<int> grp_vals;\n  vc<int> raw_idx;\n\
+    \  FOR(x, 1, SM + 1) {\n    auto& I = IDS[x];\n    while (len(I) >= 3) {\n   \
+    \   int a = POP(I), b = POP(I);\n      int c = len(par);\n      par.eb(a, b);\n\
+    \      IDS[2 * x].eb(c);\n    }\n    for (auto& i: I) {\n      grp_vals.eb(x);\n\
+    \      raw_idx.eb(i);\n    }\n  }\n  auto I = subset_sum_solution_2<int>(grp_vals,\
     \ target);\n  vc<int> ANS;\n  for (auto& i: I) {\n    vc<int> st = {raw_idx[i]};\n\
     \    while (len(st)) {\n      auto c = POP(st);\n      if (c < N) {\n        ANS.eb(c);\n\
     \        continue;\n      }\n      auto [a, b] = par[c];\n      st.eb(a), st.eb(b);\n\
@@ -287,8 +287,8 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2024-12-26 06:06:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-12-28 10:55:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/4_2.test.cpp
   - test/1_mytest/subset_sum.test.cpp

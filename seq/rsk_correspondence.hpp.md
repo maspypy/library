@@ -23,10 +23,10 @@ data:
     \u3088\u308A worst(N^1.5) \u306B\u306A\u3063\u3066\u3044\u308B.\n// \u30E9\u30F3\
     \u30C0\u30E0\u30B1\u30FC\u30B9\u3060\u3068\u666E\u901A\u306B\u3084\u308B\u65B9\
     \u304C\u901F\u3044.\npair<vvc<int>, vvc<int>> RSK_correspondence(vc<int> A) {\n\
-    \  int N = len(A);\n  int M = 1;\n  while (M * M < N) ++M;\n  auto [X1, Y1] =\
-    \ RSK_correspondence_prefix(A, M);\n  reverse(all(A));\n  int m = len(X1);\n \
-    \ auto [X2, Y2] = RSK_correspondence_prefix(A, m);\n  reverse(all(A));\n  for\
-    \ (auto& x: A) x = N - 1 - x;\n  auto [X3, Y3] = RSK_correspondence_prefix(A,\
+    \  int N = len(A);\n  if (N == 0) return {};\n  int M = 1;\n  while (M * M < N)\
+    \ ++M;\n  auto [X1, Y1] = RSK_correspondence_prefix(A, M);\n  reverse(all(A));\n\
+    \  int m = len(X1);\n  auto [X2, Y2] = RSK_correspondence_prefix(A, m);\n  reverse(all(A));\n\
+    \  for (auto& x: A) x = N - 1 - x;\n  auto [X3, Y3] = RSK_correspondence_prefix(A,\
     \ m);\n  X1.resize(len(X2[0]));\n  Y1.resize(len(X2[0]));\n  FOR(i, len(X2)) {\n\
     \    FOR(j, M, len(X2[i])) {\n      X1[j].eb(X2[i][j]);\n      Y1[j].eb(Y3[i][j]);\n\
     \    }\n  }\n  return {X1, Y1};\n}\n"
@@ -44,10 +44,10 @@ data:
     \u306E\u5229\u7528\u306B\u3088\u308A worst(N^1.5) \u306B\u306A\u3063\u3066\u3044\
     \u308B.\n// \u30E9\u30F3\u30C0\u30E0\u30B1\u30FC\u30B9\u3060\u3068\u666E\u901A\
     \u306B\u3084\u308B\u65B9\u304C\u901F\u3044.\npair<vvc<int>, vvc<int>> RSK_correspondence(vc<int>\
-    \ A) {\n  int N = len(A);\n  int M = 1;\n  while (M * M < N) ++M;\n  auto [X1,\
-    \ Y1] = RSK_correspondence_prefix(A, M);\n  reverse(all(A));\n  int m = len(X1);\n\
-    \  auto [X2, Y2] = RSK_correspondence_prefix(A, m);\n  reverse(all(A));\n  for\
-    \ (auto& x: A) x = N - 1 - x;\n  auto [X3, Y3] = RSK_correspondence_prefix(A,\
+    \ A) {\n  int N = len(A);\n  if (N == 0) return {};\n  int M = 1;\n  while (M\
+    \ * M < N) ++M;\n  auto [X1, Y1] = RSK_correspondence_prefix(A, M);\n  reverse(all(A));\n\
+    \  int m = len(X1);\n  auto [X2, Y2] = RSK_correspondence_prefix(A, m);\n  reverse(all(A));\n\
+    \  for (auto& x: A) x = N - 1 - x;\n  auto [X3, Y3] = RSK_correspondence_prefix(A,\
     \ m);\n  X1.resize(len(X2[0]));\n  Y1.resize(len(X2[0]));\n  FOR(i, len(X2)) {\n\
     \    FOR(j, M, len(X2[i])) {\n      X1[j].eb(X2[i][j]);\n      Y1[j].eb(Y3[i][j]);\n\
     \    }\n  }\n  return {X1, Y1};\n}\n"
@@ -55,7 +55,7 @@ data:
   isVerificationFile: false
   path: seq/rsk_correspondence.hpp
   requiredBy: []
-  timestamp: '2024-08-03 00:17:18+09:00'
+  timestamp: '2024-12-28 10:55:16+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: seq/rsk_correspondence.hpp

@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -12,12 +12,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
@@ -131,11 +131,10 @@ data:
     \ cyc(1 << N);\n  for (int v = 0; v < N; ++v) {\n    vc<T> dp(v << v);\n    for\
     \ (int w = 0; w < v; ++w) {\n      if (nbd[v] >> w & 1) dp[(v << w) + w] = 1;\n\
     \    }\n    const u32 mask = (u32(1) << v) - 1;\n    for (u32 s = 0; s < (u32(1)\
-    \ << v); ++s) {\n      enumerate_bits_32(s, [&](int a) -> void {\n        enumerate_bits_32(nbd[a]\
-    \ & mask & (~s), [&](int b) -> void {\n          dp[v * (s | 1 << b) + b] += dp[v\
-    \ * s + a];\n        });\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s\
-    \ | 1 << v] += dp[v * s + a];\n      });\n    }\n  }\n  for (auto& x: cyc) x /=\
-    \ T(2);\n  return cyc;\n}\n"
+    \ << v); ++s) {\n      for (int a: all_bit<u32>(s)) {\n        for (int b: all_bit<u32>(nbd[a]\
+    \ & mask & (~s))) { dp[v * (s | 1 << b) + b] += dp[v * s + a]; }\n        if (popcnt(s)\
+    \ >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];\n      }\n    }\n\
+    \  }\n  for (auto& x: cyc) x /= T(2);\n  return cyc;\n}\n"
   code: "#include \"enumerate/bits.hpp\"\n#include \"graph/base.hpp\"\n\n// \u9802\
     \u70B9\u96C6\u5408\u3054\u3068\u306B\u30B5\u30A4\u30AF\u30EB\u3092\u6570\u3048\
     \u308B. N^22^N.\n// \u30B5\u30A4\u30AF\u30EB\u306E\u9577\u3055\u306F 3 \u4EE5\u4E0A\
@@ -145,12 +144,11 @@ data:
     \ nbd[v] |= u32(1) << (e.to);\n\n  vc<T> cyc(1 << N);\n  for (int v = 0; v < N;\
     \ ++v) {\n    vc<T> dp(v << v);\n    for (int w = 0; w < v; ++w) {\n      if (nbd[v]\
     \ >> w & 1) dp[(v << w) + w] = 1;\n    }\n    const u32 mask = (u32(1) << v) -\
-    \ 1;\n    for (u32 s = 0; s < (u32(1) << v); ++s) {\n      enumerate_bits_32(s,\
-    \ [&](int a) -> void {\n        enumerate_bits_32(nbd[a] & mask & (~s), [&](int\
-    \ b) -> void {\n          dp[v * (s | 1 << b) + b] += dp[v * s + a];\n       \
-    \ });\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v\
-    \ * s + a];\n      });\n    }\n  }\n  for (auto& x: cyc) x /= T(2);\n  return\
-    \ cyc;\n}\n"
+    \ 1;\n    for (u32 s = 0; s < (u32(1) << v); ++s) {\n      for (int a: all_bit<u32>(s))\
+    \ {\n        for (int b: all_bit<u32>(nbd[a] & mask & (~s))) { dp[v * (s | 1 <<\
+    \ b) + b] += dp[v * s + a]; }\n        if (popcnt(s) >= 2 && nbd[a] >> v & 1)\
+    \ cyc[s | 1 << v] += dp[v * s + a];\n      }\n    }\n  }\n  for (auto& x: cyc)\
+    \ x /= T(2);\n  return cyc;\n}\n"
   dependsOn:
   - enumerate/bits.hpp
   - graph/base.hpp
@@ -158,8 +156,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_cycle.hpp
   requiredBy: []
-  timestamp: '2024-12-26 06:06:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2024-12-28 10:55:16+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
 documentation_of: graph/count/count_cycle.hpp

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_inv.hpp
     title: linalg/matrix_inv.hpp
   - icon: ':question:'
@@ -54,9 +54,9 @@ data:
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_matrix
@@ -633,10 +633,14 @@ data:
     \    return X;\n  }\n\n  vc<mint> characteristic_poly() {\n    vvc<mint> polys;\n\
     \    for (auto& f: F) {\n      vc<mint> g = f;\n      for (auto& x: g) x = -x;\n\
     \      g.eb(1);\n      polys.eb(g);\n    }\n    vc<mint> f = convolution_all(polys);\n\
-    \    return f;\n  }\n\nprivate:\n  bool trial() {\n    V.clear(), F.clear();\n\
-    \    Basis<mint> S(n);\n    while (1) {\n      if (S.rank == n) break;\n     \
-    \ int r = S.rank;\n      vc<mint> v = random_vector();\n      V.eb(v);\n     \
-    \ while (1) {\n        auto [solved, cf] = S.solve_or_add(v);\n        if (!solved)\
+    \    return f;\n  }\n\n  // x^n mod (x^d-g(x))\n  vc<mint> powmod(vc<mint>& g,\
+    \ ll n) {\n    if (n < len(g)) {\n      vc<mint> f(n + 1);\n      f[n] = 1;\n\
+    \      return f;\n    }\n    vc<mint> f = powmod(g, n / 2);\n    f = convolution_naive(f,\
+    \ f);\n    if (n & 1) f.insert(f.begin(), 0);\n    divmod_inplace(f, g);\n   \
+    \ return f;\n  }\n\nprivate:\n  bool trial() {\n    V.clear(), F.clear();\n  \
+    \  Basis<mint> S(n);\n    while (1) {\n      if (S.rank == n) break;\n      int\
+    \ r = S.rank;\n      vc<mint> v = random_vector();\n      V.eb(v);\n      while\
+    \ (1) {\n        auto [solved, cf] = S.solve_or_add(v);\n        if (!solved)\
     \ {\n          v = apply(v);\n          continue;\n        }\n        vc<mint>\
     \ f = {cf.begin() + r, cf.end()};\n        F.eb(f);\n        if (len(V) == 1)\
     \ break;\n        v = V.back();\n        int s = 0;\n        FOR(k, len(V) - 1)\
@@ -687,8 +691,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2024-12-28 10:55:16+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
 layout: document
