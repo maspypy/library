@@ -23,14 +23,14 @@ mint Hufnian(vc<vc<mint>>& mat) {
         int j0 = 2 * j + 0, j1 = 2 * j + 1;
         cyc[s | 1 << i] += dp[K * s + j0] * mat[B][j0];
         cyc[s | 1 << i] += dp[K * s + j1] * mat[B][j1];
-        enumerate_bits_32((1 << i) - 1 - s, [&](int k) -> void {
+        for (int k: all_bit<u32>((1 << i) - 1 - s)) {
           int k0 = 2 * k + 0, k1 = 2 * k + 1;
           int t = s | 1 << k;
           dp[K * t + k0] += dp[K * s + j0] * mat[j0][k1];
           dp[K * t + k0] += dp[K * s + j1] * mat[j1][k1];
           dp[K * t + k1] += dp[K * s + j0] * mat[j0][k0];
           dp[K * t + k1] += dp[K * s + j1] * mat[j1][k0];
-        });
+        }
       }
     }
   }

@@ -1,6 +1,5 @@
 #pragma once
 #include "graph/base.hpp"
-#include "enumerate/bits.hpp"
 
 /*
 return [cost, cycle]
@@ -20,11 +19,11 @@ pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
   FOR(v, n) chmin(dp[1 << v][v], dist[n][v]);
   for (int s = 0; s < (1 << n); ++s) {
     FOR(frm, n) if (dp[s][frm] < infty<T>) {
-      enumerate_bits_32(full - s, [&](int to) -> void {
+      for (int to: all_bit<u32>(full - s)) {
         int t = s | 1 << to;
         T cost = dist[frm][to];
         if (cost < infty<T>) chmin(dp[t][to], dp[s][frm] + cost);
-      });
+      }
     }
   }
   int s = (1 << n) - 1;
@@ -42,9 +41,7 @@ pair<T, vc<int>> minimum_hamiltonian_cycle(GT& G) {
       FOR(frm, n) {
         int s = t ^ (1 << to);
         T inf = infty<T>;
-        if (dp[s][frm] < inf && dist[frm][to] < inf
-            && dp[s][frm] + dist[frm][to] == dp[t][to])
-          return frm;
+        if (dp[s][frm] < inf && dist[frm][to] < inf && dp[s][frm] + dist[frm][to] == dp[t][to]) return frm;
       }
       return -1;
     }();

@@ -1,6 +1,6 @@
 #include "setfunc/subset_convolution.hpp"
 
-// sum_i f_i/i! s^i, s^i is subset-convolution
+// sum_i 1/i! s^i, s^i is subset-convolution
 template <typename mint, int LIM>
 vc<mint> sps_exp(vc<mint>& s) {
   const int N = topbit(len(s));

@@ -76,7 +76,7 @@ vc<int> subset_sum_solution_2(vc<T>& vals, int target) {
     // update したところをメモ
     FOR(i, len(newdp.dat)) {
       u64 upd = (i < len(dp.dat) ? dp.dat[i] : u64(0)) ^ newdp.dat[i];
-      enumerate_bits_64(upd, [&](int p) -> void { last[(i << 6) | p] = I[k]; });
+      for (int p: all_bit<u64>(upd)) { last[(i << 6) | p] = I[k]; }
     }
     swap(dp, newdp);
   }

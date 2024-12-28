@@ -34,6 +34,7 @@ pair<vvc<int>, vvc<int>> RSK_correspondence_prefix(vc<int> A, int nrow = -1) {
 // ランダムケースだと普通にやる方が速い.
 pair<vvc<int>, vvc<int>> RSK_correspondence(vc<int> A) {
   int N = len(A);
+  if (N == 0) return {};
   int M = 1;
   while (M * M < N) ++M;
   auto [X1, Y1] = RSK_correspondence_prefix(A, M);

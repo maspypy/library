@@ -18,12 +18,10 @@ vc<T> count_cycle(GT& G) {
     }
     const u32 mask = (u32(1) << v) - 1;
     for (u32 s = 0; s < (u32(1) << v); ++s) {
-      enumerate_bits_32(s, [&](int a) -> void {
-        enumerate_bits_32(nbd[a] & mask & (~s), [&](int b) -> void {
-          dp[v * (s | 1 << b) + b] += dp[v * s + a];
-        });
+      for (int a: all_bit<u32>(s)) {
+        for (int b: all_bit<u32>(nbd[a] & mask & (~s))) { dp[v * (s | 1 << b) + b] += dp[v * s + a]; }
         if (popcnt(s) >= 2 && nbd[a] >> v & 1) cyc[s | 1 << v] += dp[v * s + a];
-      });
+      }
     }
   }
   for (auto& x: cyc) x /= T(2);

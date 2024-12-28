@@ -19,11 +19,11 @@ tuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {
 
   for (int s = 1; s < (1 << K); ++s) {
     auto& dp = DP[s];
-    enumerate_bits_32(s, [&](int k) -> void {
+    for (int k: all_bit<u32>(s)) {
       int v = S[k];
       chmin(dp[v], DP[s ^ 1 << k][v]);
-    });
-    FOR_subset(t, s) {
+    }
+    for (u32 t: all_subset<u32>(s)) {
       if (t == 0 || t == s) continue;
       FOR(v, N) {
         if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v] = 2 * t;
