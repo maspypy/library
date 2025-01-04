@@ -63,6 +63,9 @@ struct Tree_AbelGroup {
     if (root == -1) return bit_subtree.prod(l + edge, r);
     if (root == u) return bit_subtree.prod_all();
     if (tree.in_subtree(u, root)) return bit_subtree.prod(l + edge, r);
-    return MX::op(bit_subtree.prod(0, l + 1), bit_subtree.prod(r, N));
+    assert(!edge); // さぼり
+    u = tree.jump(u, root, 1);
+    int L = tree.LID[u], R = tree.RID[u];
+    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));
   }
 };

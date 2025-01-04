@@ -29,6 +29,11 @@ struct My_Bitset {
     N = size;
   }
 
+  void append(int idx, bool b) {
+    assert(N == idx);
+    resize(idx + 1), (*this)[idx] = b;
+  }
+
   static T from_string(string &S) {
     int N = len(S);
     T ANS(N);
@@ -86,6 +91,17 @@ struct My_Bitset {
     T p = (*this);
     p.flip_range(0, N);
     return p;
+  }
+
+  void set_minus_inplace(T &other) {
+    assert(N == other.N);
+    FOR(i, len(dat)) dat[i] = dat[i] & (~other.dat[i]);
+  }
+
+  T set_minus(T other) {
+    assert(N == other.N);
+    FOR(i, len(dat)) other.dat[i] = dat[i] & (~other.dat[i]);
+    return other;
   }
 
   int count() {
