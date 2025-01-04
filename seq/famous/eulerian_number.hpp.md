@@ -46,7 +46,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://oeis.org/A123125
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
     \ primetable(int LIM) {\n  ++LIM;\n  const int S = 32768;\n  static int done =\
     \ 2;\n  static vc<T> primes = {2}, sieve(S + 1);\n\n  if (done < LIM) {\n    done\
@@ -311,25 +312,29 @@ data:
     \ {};\r\n  if (mint::can_ntt()) {\r\n    if (min(n, m) <= 50) return convolution_karatsuba<mint>(a,\
     \ b);\r\n    return convolution_ntt(a, b);\r\n  }\r\n  if (min(n, m) <= 200) return\
     \ convolution_karatsuba<mint>(a, b);\r\n  return convolution_garner(a, b);\r\n\
-    }\r\n#line 3 \"seq/famous/eulerian_number.hpp\"\n\n// Eulerian number\n// sum\
-    \ n^dx^n = A_d(x) / (1-x)^{d+1} \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\u306E\
-    \u4FC2\u6570\u5217\ntemplate <typename mint>\nvvc<mint> eulerian_number_2d(int\
-    \ N, int K) {\n  vv(mint, A, N + 1, K + 1);\n  A[0][0] = mint(1);\n  FOR(d, N)\
-    \ FOR(k, 1, K + 1) {\n    A[d + 1][k] = mint(k) * A[d][k] + mint(d - k + 2) *\
-    \ A[d][k - 1];\n  }\n  return A;\n}\n\ntemplate <typename mint>\nvc<mint> eulerian_number_n(int\
-    \ n) {\n  vc<mint> f = powertable_2<mint>(n, n);\n  vc<mint> g(n + 1);\n  FOR(k,\
-    \ n + 1) g[k] = C<mint>(n + 1, k);\n  FOR(k, 1, n + 1, 2) g[k] = -g[k];\n  f =\
-    \ convolution(f, g);\n  f.resize(n + 1);\n  return f;\n}\n"
+    }\r\n#line 3 \"seq/famous/eulerian_number.hpp\"\n\n// Eulerian number, https://oeis.org/A123125\n\
+    // sum n^dx^n = A_d(x) / (1-x)^{d+1} \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\
+    \u306E\u4FC2\u6570\u5217\n// ascent \u306E\u500B\u6570\u3054\u3068\u306B\u9806\
+    \u5217\u3092\u6570\u3048\u305F\u3082\u306E\n// 1/n!, (1-y)/(1-y*exp((1-y)x))\n\
+    template <typename mint>\nvvc<mint> eulerian_number_2d(int N, int K) {\n  vv(mint,\
+    \ A, N + 1, K + 1);\n  A[0][0] = mint(1);\n  FOR(d, N) FOR(k, 1, K + 1) { A[d\
+    \ + 1][k] = mint(k) * A[d][k] + mint(d - k + 2) * A[d][k - 1]; }\n  return A;\n\
+    }\n\ntemplate <typename mint>\nvc<mint> eulerian_number_n(int n) {\n  vc<mint>\
+    \ f = powertable_2<mint>(n, n);\n  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] =\
+    \ C<mint>(n + 1, k);\n  FOR(k, 1, n + 1, 2) g[k] = -g[k];\n  f = convolution(f,\
+    \ g);\n  f.resize(n + 1);\n  return f;\n}\n"
   code: "#include \"mod/powertable.hpp\"\n#include \"poly/convolution.hpp\"\n\n//\
-    \ Eulerian number\n// sum n^dx^n = A_d(x) / (1-x)^{d+1} \u3068\u306A\u308B d \u6B21\
-    \u591A\u9805\u5F0F\u306E\u4FC2\u6570\u5217\ntemplate <typename mint>\nvvc<mint>\
+    \ Eulerian number, https://oeis.org/A123125\n// sum n^dx^n = A_d(x) / (1-x)^{d+1}\
+    \ \u3068\u306A\u308B d \u6B21\u591A\u9805\u5F0F\u306E\u4FC2\u6570\u5217\n// ascent\
+    \ \u306E\u500B\u6570\u3054\u3068\u306B\u9806\u5217\u3092\u6570\u3048\u305F\u3082\
+    \u306E\n// 1/n!, (1-y)/(1-y*exp((1-y)x))\ntemplate <typename mint>\nvvc<mint>\
     \ eulerian_number_2d(int N, int K) {\n  vv(mint, A, N + 1, K + 1);\n  A[0][0]\
-    \ = mint(1);\n  FOR(d, N) FOR(k, 1, K + 1) {\n    A[d + 1][k] = mint(k) * A[d][k]\
-    \ + mint(d - k + 2) * A[d][k - 1];\n  }\n  return A;\n}\n\ntemplate <typename\
-    \ mint>\nvc<mint> eulerian_number_n(int n) {\n  vc<mint> f = powertable_2<mint>(n,\
-    \ n);\n  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] = C<mint>(n + 1, k);\n  FOR(k,\
-    \ 1, n + 1, 2) g[k] = -g[k];\n  f = convolution(f, g);\n  f.resize(n + 1);\n \
-    \ return f;\n}"
+    \ = mint(1);\n  FOR(d, N) FOR(k, 1, K + 1) { A[d + 1][k] = mint(k) * A[d][k] +\
+    \ mint(d - k + 2) * A[d][k - 1]; }\n  return A;\n}\n\ntemplate <typename mint>\n\
+    vc<mint> eulerian_number_n(int n) {\n  vc<mint> f = powertable_2<mint>(n, n);\n\
+    \  vc<mint> g(n + 1);\n  FOR(k, n + 1) g[k] = C<mint>(n + 1, k);\n  FOR(k, 1,\
+    \ n + 1, 2) g[k] = -g[k];\n  f = convolution(f, g);\n  f.resize(n + 1);\n  return\
+    \ f;\n}"
   dependsOn:
   - mod/powertable.hpp
   - nt/primetable.hpp
@@ -344,7 +349,7 @@ data:
   isVerificationFile: false
   path: seq/famous/eulerian_number.hpp
   requiredBy: []
-  timestamp: '2024-11-14 21:00:22+09:00'
+  timestamp: '2025-01-04 13:02:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1821.test.cpp

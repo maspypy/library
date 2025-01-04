@@ -1,15 +1,24 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
-    path: alg/acted_monoid/sum_add.hpp
-    title: alg/acted_monoid/sum_add.hpp
+  - icon: ':heavy_check_mark:'
+    path: alg/acted_monoid/sum_affine.hpp
+    title: alg/acted_monoid/sum_affine.hpp
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':question:'
+    path: alg/monoid/affine.hpp
+    title: alg/monoid/affine.hpp
+  - icon: ':question:'
     path: ds/segtree/dynamic_lazy_segtree.hpp
     title: ds/segtree/dynamic_lazy_segtree.hpp
+  - icon: ':question:'
+    path: mod/modint.hpp
+    title: mod/modint.hpp
+  - icon: ':question:'
+    path: mod/modint_common.hpp
+    title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -18,16 +27,17 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://yukicoder.me/problems/no/789
+    PROBLEM: https://judge.yosupo.jp/problem/persistent_range_affine_range_sum
     links:
-    - https://yukicoder.me/problems/no/789
-  bundledCode: "#line 1 \"test/3_yukicoder/789_2.test.cpp\"\n#define PROBLEM \"https://yukicoder.me/problems/no/789\"\
-    \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
+    - https://judge.yosupo.jp/problem/persistent_range_affine_range_sum
+  bundledCode: "#line 1 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
+    \n#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_range_affine_range_sum\"\
+    \n\n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n#pragma GCC optimize(\"Ofast,unroll-loops\"\
     )\n// \u3044\u307E\u306E CF \u3060\u3068\u3053\u308C\u5165\u308C\u308B\u3068\u52D5\
     \u304B\u306A\u3044\uFF1F\n// #pragma GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\
@@ -217,45 +227,46 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\
-    \n\n// Q*2logN \u7A0B\u5EA6\u5FC5\u8981\ntemplate <typename ActedMonoid, bool\
-    \ PERSISTENT>\nstruct Dynamic_Lazy_SegTree {\n  using AM = ActedMonoid;\n  using\
-    \ MX = typename AM::Monoid_X;\n  using MA = typename AM::Monoid_A;\n  using X\
-    \ = typename AM::X;\n  using A = typename AM::A;\n  using F = function<X(ll, ll)>;\n\
-    \  F default_prod;\n\n  struct Node {\n    Node *l, *r;\n    X x;\n    A lazy;\n\
-    \  };\n\n  const int NODES;\n  const ll L0, R0;\n  Node *pool;\n  int pid;\n \
-    \ using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n      int NODES, ll L0, ll R0,\
-    \ F default_prod = [](ll, ll) -> X { return MX::unit(); })\n      : default_prod(default_prod),\
-    \ NODES(NODES), L0(L0), R0(R0), pid(0) {\n    pool = new Node[NODES];\n  }\n \
-    \ ~Dynamic_Lazy_SegTree() { delete[] pool; }\n\n  np new_root() { return new_node(L0,\
-    \ R0); }\n\n  np new_node(const X x) {\n    assert(pid < NODES);\n    pool[pid].l\
-    \ = pool[pid].r = nullptr;\n    pool[pid].x = x;\n    pool[pid].lazy = MA::unit();\n\
-    \    return &(pool[pid++]);\n  }\n\n  np new_node(ll l, ll r) { return new_node(default_prod(l,\
-    \ r)); }\n  np new_node() { return new_node(L0, R0); }\n\n  np new_node(const\
-    \ vc<X> &dat) {\n    assert(L0 == 0 && R0 == len(dat));\n    auto dfs = [&](auto\
-    \ &dfs, ll l, ll r) -> Node * {\n      if (l == r) return nullptr;\n      if (r\
-    \ == l + 1) return new_node(dat[l]);\n      ll m = (l + r) / 2;\n      np l_root\
-    \ = dfs(dfs, l, m), r_root = dfs(dfs, m, r);\n      X x = MX::op(l_root->x, r_root->x);\n\
-    \      np root = new_node(x);\n      root->l = l_root, root->r = r_root;\n   \
-    \   return root;\n    };\n    return dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np\
-    \ root, ll l, ll r) {\n    if (l == r || !root) return MX::unit();\n    assert(pid\
-    \ && L0 <= l && l < r && r <= R0);\n    X x = MX::unit();\n    prod_rec(root,\
-    \ L0, R0, l, r, x, MA::unit());\n    return x;\n  }\n\n  X prod_all(np root) {\
-    \ return prod(root, L0, R0); }\n\n  np set(np root, ll i, const X &x) {\n    assert(pid\
-    \ && L0 <= i && i < R0);\n    return set_rec(root, L0, R0, i, x);\n  }\n\n  np\
-    \ multiply(np root, ll i, const X &x) {\n    assert(pid && L0 <= i && i < R0);\n\
-    \    return multiply_rec(root, L0, R0, i, x);\n  }\n\n  np apply(np root, ll l,\
-    \ ll r, const A &a) {\n    if (l == r) return root;\n    assert(pid && L0 <= l\
-    \ && l < r && r <= R0);\n    return apply_rec(root, L0, R0, l, r, a);\n  }\n\n\
-    \  template <typename F>\n  ll max_right(np root, F check, ll L) {\n    assert(pid\
-    \ && L0 <= L && L <= R0 && check(MX::unit()));\n    X x = MX::unit();\n    return\
-    \ max_right_rec(root, check, L0, R0, L, x);\n  }\n\n  template <typename F>\n\
-    \  ll min_left(np root, F check, ll R) {\n    assert(pid && L0 <= R && R <= R0\
-    \ && check(MX::unit()));\n    X x = MX::unit();\n    return min_left_rec(root,\
-    \ check, L0, R0, R, x);\n  }\n\n  // f(idx, val)\n  template <typename F>\n  void\
-    \ enumerate(np root, F f) {\n    auto dfs = [&](auto &dfs, np c, ll l, ll r, A\
-    \ a) -> void {\n      if (!c) return;\n      if (r - l == 1) {\n        f(l, AM::act(c->x,\
-    \ a, 1));\n        return;\n      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy,\
+    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 5 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
+    \n\n#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\n// Q*2logN \u7A0B\u5EA6\
+    \u5FC5\u8981\ntemplate <typename ActedMonoid, bool PERSISTENT>\nstruct Dynamic_Lazy_SegTree\
+    \ {\n  using AM = ActedMonoid;\n  using MX = typename AM::Monoid_X;\n  using MA\
+    \ = typename AM::Monoid_A;\n  using X = typename AM::X;\n  using A = typename\
+    \ AM::A;\n  using F = function<X(ll, ll)>;\n  F default_prod;\n\n  struct Node\
+    \ {\n    Node *l, *r;\n    X x;\n    A lazy;\n  };\n\n  const int NODES;\n  const\
+    \ ll L0, R0;\n  Node *pool;\n  int pid;\n  using np = Node *;\n\n  Dynamic_Lazy_SegTree(\n\
+    \      int NODES, ll L0, ll R0, F default_prod = [](ll, ll) -> X { return MX::unit();\
+    \ })\n      : default_prod(default_prod), NODES(NODES), L0(L0), R0(R0), pid(0)\
+    \ {\n    pool = new Node[NODES];\n  }\n  ~Dynamic_Lazy_SegTree() { delete[] pool;\
+    \ }\n\n  np new_root() { return new_node(L0, R0); }\n\n  np new_node(const X x)\
+    \ {\n    assert(pid < NODES);\n    pool[pid].l = pool[pid].r = nullptr;\n    pool[pid].x\
+    \ = x;\n    pool[pid].lazy = MA::unit();\n    return &(pool[pid++]);\n  }\n\n\
+    \  np new_node(ll l, ll r) { return new_node(default_prod(l, r)); }\n  np new_node()\
+    \ { return new_node(L0, R0); }\n\n  np new_node(const vc<X> &dat) {\n    assert(L0\
+    \ == 0 && R0 == len(dat));\n    auto dfs = [&](auto &dfs, ll l, ll r) -> Node\
+    \ * {\n      if (l == r) return nullptr;\n      if (r == l + 1) return new_node(dat[l]);\n\
+    \      ll m = (l + r) / 2;\n      np l_root = dfs(dfs, l, m), r_root = dfs(dfs,\
+    \ m, r);\n      X x = MX::op(l_root->x, r_root->x);\n      np root = new_node(x);\n\
+    \      root->l = l_root, root->r = r_root;\n      return root;\n    };\n    return\
+    \ dfs(dfs, 0, len(dat));\n  }\n\n  X prod(np root, ll l, ll r) {\n    if (l ==\
+    \ r || !root) return MX::unit();\n    assert(pid && L0 <= l && l < r && r <= R0);\n\
+    \    X x = MX::unit();\n    prod_rec(root, L0, R0, l, r, x, MA::unit());\n   \
+    \ return x;\n  }\n\n  X prod_all(np root) { return prod(root, L0, R0); }\n\n \
+    \ np set(np root, ll i, const X &x) {\n    assert(pid && L0 <= i && i < R0);\n\
+    \    return set_rec(root, L0, R0, i, x);\n  }\n\n  np multiply(np root, ll i,\
+    \ const X &x) {\n    assert(pid && L0 <= i && i < R0);\n    return multiply_rec(root,\
+    \ L0, R0, i, x);\n  }\n\n  np apply(np root, ll l, ll r, const A &a) {\n    if\
+    \ (l == r) return root;\n    assert(pid && L0 <= l && l < r && r <= R0);\n   \
+    \ return apply_rec(root, L0, R0, l, r, a);\n  }\n\n  template <typename F>\n \
+    \ ll max_right(np root, F check, ll L) {\n    assert(pid && L0 <= L && L <= R0\
+    \ && check(MX::unit()));\n    X x = MX::unit();\n    return max_right_rec(root,\
+    \ check, L0, R0, L, x);\n  }\n\n  template <typename F>\n  ll min_left(np root,\
+    \ F check, ll R) {\n    assert(pid && L0 <= R && R <= R0 && check(MX::unit()));\n\
+    \    X x = MX::unit();\n    return min_left_rec(root, check, L0, R0, R, x);\n\
+    \  }\n\n  // f(idx, val)\n  template <typename F>\n  void enumerate(np root, F\
+    \ f) {\n    auto dfs = [&](auto &dfs, np c, ll l, ll r, A a) -> void {\n     \
+    \ if (!c) return;\n      if (r - l == 1) {\n        f(l, AM::act(c->x, a, 1));\n\
+    \        return;\n      }\n      ll m = (l + r) / 2;\n      a = MA::op(c->lazy,\
     \ a);\n      dfs(dfs, c->l, l, m, a);\n      dfs(dfs, c->r, m, r, a);\n    };\n\
     \    dfs(dfs, root, L0, R0, MA::unit());\n  }\n\n  void reset() { pid = 0; }\n\
     \n  // root[l:r) \u3092 apply(other[l:r),a) \u3067\u4E0A\u66F8\u304D\u3057\u305F\
@@ -328,41 +339,137 @@ data:
     \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
     \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
     \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
-    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/acted_monoid/sum_add.hpp\"\
-    \n\r\ntemplate <typename E>\r\nstruct ActedMonoid_Sum_Add {\r\n  using Monoid_X\
-    \ = Monoid_Add<E>;\r\n  using Monoid_A = Monoid_Add<E>;\r\n  using X = typename\
-    \ Monoid_X::value_type;\r\n  using A = typename Monoid_A::value_type;\r\n  static\
-    \ constexpr X act(const X &x, const A &a, const ll &size) {\r\n    return x +\
-    \ a * E(size);\r\n  }\r\n};\r\n#line 6 \"test/3_yukicoder/789_2.test.cpp\"\n\n\
-    void solve() {\n  LL(Q);\n  using AM = ActedMonoid_Sum_Add<ll>;\n  Dynamic_Lazy_SegTree<AM,\
-    \ false> seg(60 * Q, 0, infty<int>);\n  auto root = seg.new_node();\n  ll ANS\
-    \ = 0;\n  FOR(Q) {\n    LL(t, a, b);\n    if (t == 0) { seg.apply(root, a, a +\
-    \ 1, b); }\n    if (t == 1) { ANS += seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n\
-    }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://yukicoder.me/problems/no/789\"\n#include \"my_template.hpp\"\
-    \n#include \"other/io.hpp\"\n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\
-    #include \"alg/acted_monoid/sum_add.hpp\"\n\nvoid solve() {\n  LL(Q);\n  using\
-    \ AM = ActedMonoid_Sum_Add<ll>;\n  Dynamic_Lazy_SegTree<AM, false> seg(60 * Q,\
-    \ 0, infty<int>);\n  auto root = seg.new_node();\n  ll ANS = 0;\n  FOR(Q) {\n\
-    \    LL(t, a, b);\n    if (t == 0) { seg.apply(root, a, a + 1, b); }\n    if (t\
-    \ == 1) { ANS += seg.prod(root, a, b + 1); }\n  }\n  print(ANS);\n}\n\nsigned\
-    \ main() {\n  solve();\n  return 0;\n}"
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid/affine.hpp\"\
+    \n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\u3067 G\ntemplate <typename\
+    \ K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n  using value_type = F;\n\
+    \  using X = value_type;\n  static constexpr F op(const F &x, const F &y) noexcept\
+    \ {\n    return F({x.first * y.first, x.second * y.first + y.second});\n  }\n\
+    \  static constexpr F inverse(const F &x) {\n    auto [a, b] = x;\n    a = K(1)\
+    \ / a;\n    return {a, a * (-b)};\n  }\n  static constexpr K eval(const F &f,\
+    \ K x) noexcept {\n    return f.first * x + f.second;\n  }\n  static constexpr\
+    \ F unit() { return {K(1), K(0)}; }\n  static constexpr bool commute = false;\n\
+    };\n#line 3 \"alg/acted_monoid/sum_affine.hpp\"\n\r\ntemplate <typename E>\r\n\
+    struct ActedMonoid_Sum_Affine {\r\n  using Monoid_X = Monoid_Add<E>;\r\n  using\
+    \ Monoid_A = Monoid_Affine<E>;\r\n  using X = typename Monoid_X::value_type;\r\
+    \n  using A = typename Monoid_A::value_type;\r\n  static constexpr X act(const\
+    \ X &x, const A &a, const ll &size) {\r\n    return x * a.fi + E(size) * a.se;\r\
+    \n  }\r\n};\r\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
+    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
+    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
+    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
+    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
+    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
+    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
+    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
+    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
+    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
+    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
+    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
+    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
+    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
+    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
+    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
+    \ 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if (mod == 1012924417)\
+    \ return {21, 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool\
+    \ can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int\
+    \ mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  //\
+    \ assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 9 \"test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp\"\
+    \n\nusing mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n\
+    \  using AM = ActedMonoid_Sum_Affine<mint>;\n  Dynamic_Lazy_SegTree<AM, true>\
+    \ seg(10000000, 0, N);\n  using np = decltype(seg)::np;\n  vc<np> root(Q + 1);\n\
+    \  root[0] = seg.new_node(A);\n\n  FOR(q, 1, Q + 1) {\n    INT(t);\n    if (t\
+    \ == 0) {\n      INT(k, L, R, b, c);\n      ++k;\n      root[q] = seg.apply(root[k],\
+    \ L, R, {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      INT(k, s, l, r);\n\
+    \      ++k, ++s;\n      root[q] = seg.copy_interval(root[k], root[s], l, r, {mint(1),\
+    \ mint(0)});\n    }\n    if (t == 2) {\n      INT(k, l, r);\n      ++k;\n    \
+    \  root[q] = root[k];\n      mint ANS = seg.prod(root[q], l, r);\n      print(ANS);\n\
+    \    }\n  }\n}\n\nsigned main() { solve(); }\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/persistent_range_affine_range_sum\"\
+    \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"ds/segtree/dynamic_lazy_segtree.hpp\"\
+    \n#include \"alg/acted_monoid/sum_affine.hpp\"\n#include \"mod/modint.hpp\"\n\n\
+    using mint = modint998;\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n \
+    \ using AM = ActedMonoid_Sum_Affine<mint>;\n  Dynamic_Lazy_SegTree<AM, true> seg(10000000,\
+    \ 0, N);\n  using np = decltype(seg)::np;\n  vc<np> root(Q + 1);\n  root[0] =\
+    \ seg.new_node(A);\n\n  FOR(q, 1, Q + 1) {\n    INT(t);\n    if (t == 0) {\n \
+    \     INT(k, L, R, b, c);\n      ++k;\n      root[q] = seg.apply(root[k], L, R,\
+    \ {mint(b), mint(c)});\n    }\n    if (t == 1) {\n      INT(k, s, l, r);\n   \
+    \   ++k, ++s;\n      root[q] = seg.copy_interval(root[k], root[s], l, r, {mint(1),\
+    \ mint(0)});\n    }\n    if (t == 2) {\n      INT(k, l, r);\n      ++k;\n    \
+    \  root[q] = root[k];\n      mint ANS = seg.prod(root[q], l, r);\n      print(ANS);\n\
+    \    }\n  }\n}\n\nsigned main() { solve(); }"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
   - ds/segtree/dynamic_lazy_segtree.hpp
-  - alg/acted_monoid/sum_add.hpp
+  - alg/acted_monoid/sum_affine.hpp
   - alg/monoid/add.hpp
+  - alg/monoid/affine.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
   isVerificationFile: true
-  path: test/3_yukicoder/789_2.test.cpp
+  path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   requiredBy: []
   timestamp: '2025-01-04 13:02:14+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/3_yukicoder/789_2.test.cpp
+documentation_of: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
 layout: document
 redirect_from:
-- /verify/test/3_yukicoder/789_2.test.cpp
-- /verify/test/3_yukicoder/789_2.test.cpp.html
-title: test/3_yukicoder/789_2.test.cpp
+- /verify/test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+- /verify/test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp.html
+title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
 ---

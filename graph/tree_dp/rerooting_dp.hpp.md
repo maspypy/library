@@ -272,12 +272,43 @@ data:
     \u90E8\u5206\u6728 v\r\n  vc<Data> dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\
     \u3001\u90E8\u5206\u6728 p\r\n  vc<Data> dp;   // full tree\r\n\r\n  template\
     \ <typename F1, typename F2, typename F3>\r\n  Rerooting_dp(TREE& tree, F1 f_ee,\
-    \ F2 f_ev, F3 f_ve, const Data unit)\r\n      : tree(tree) {\r\n    build(f_ee,\
-    \ f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\
-    \u304D\u306E full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n \
-    \ // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\
-    \n  Data get(int v, int root) {\r\n    if (root == v) return dp[v];\r\n    if\
-    \ (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
+    \ F2 f_ev, F3 f_ve, const Data unit) : tree(tree) {\r\n    build(f_ee, f_ev, f_ve,\
+    \ unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\
+    \ full tree\r\n  Data operator[](int v) { return dp[v]; }\r\n\r\n  // root \u3092\
+    \u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\u5206\u6728 v\r\n  Data get(int\
+    \ v, int root) {\r\n    if (root == v) return dp[v];\r\n    if (!tree.in_subtree(root,\
+    \ v)) { return dp_1[v]; }\r\n    int w = tree.jump(v, root, 1);\r\n    return\
+    \ dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename F2, typename F3>\r\n\
+    \  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) {\r\n    int N = tree.N;\r\
+    \n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\n    FOR_R(i, N) {\r\n  \
+    \    int v = tree.V[i];\r\n      for (auto&& e: tree.G[v]) {\r\n        if (e.to\
+    \ == tree.parent[v]) continue;\r\n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to],\
+    \ e));\r\n      }\r\n      dp_1[v] = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    //\
+    \ dp2[v]: subtree of p, rooted at v\r\n    dp_2.assign(N, unit);\r\n    // dp[v]:\
+    \ fulltree, rooted at v\r\n    dp.assign(N, unit);\r\n    FOR(i, N) {\r\n    \
+    \  int p = tree.V[i];\r\n      vc<int> ch;\r\n      vc<Data> ch_data;\r\n    \
+    \  Data x = unit;\r\n      for (auto&& e: tree.G[p]) {\r\n        if (e.to ==\
+    \ tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\n        } else {\r\n\
+    \          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to], e));\r\n    \
+    \    }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n        dp[p]\
+    \ = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data> prod_left(n,\
+    \ x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i], ch_data[i]);\r\
+    \n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n        dp_2[ch[i]]\
+    \ = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right = f_ee(prod_right,\
+    \ ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n \
+    \   }\r\n  }\r\n};\r\n"
+  code: "#pragma once\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\
+    \r\n\r\ntemplate <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n \
+    \ static_assert(!TREE::Graph_type::is_directed);\r\n  TREE& tree;\r\n  vc<Data>\
+    \ dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 v\r\n  vc<Data>\
+    \ dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data>\
+    \ dp;   // full tree\r\n\r\n  template <typename F1, typename F2, typename F3>\r\
+    \n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) : tree(tree)\
+    \ {\r\n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  // v \u3092\u6839\u3068\
+    \u3057\u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int v) { return\
+    \ dp[v]; }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E\u90E8\
+    \u5206\u6728 v\r\n  Data get(int v, int root) {\r\n    if (root == v) return dp[v];\r\
+    \n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\n    int w = tree.jump(v,\
     \ root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template <typename F1, typename\
     \ F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\
     \ {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n    dp_1.assign(N, unit);\r\
@@ -297,37 +328,6 @@ data:
     \ = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right = f_ee(prod_right,\
     \ ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right), p);\r\n \
     \   }\r\n  }\r\n};\r\n"
-  code: "#pragma once\r\n#include \"graph/base.hpp\"\r\n#include \"graph/tree.hpp\"\
-    \r\n\r\ntemplate <typename TREE, typename Data>\r\nstruct Rerooting_dp {\r\n \
-    \ static_assert(!TREE::Graph_type::is_directed);\r\n  TREE& tree;\r\n  vc<Data>\
-    \ dp_1; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 v\r\n  vc<Data>\
-    \ dp_2; // \u8FBA pv \u306B\u5BFE\u3057\u3066\u3001\u90E8\u5206\u6728 p\r\n  vc<Data>\
-    \ dp;   // full tree\r\n\r\n  template <typename F1, typename F2, typename F3>\r\
-    \n  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)\r\n \
-    \     : tree(tree) {\r\n    build(f_ee, f_ev, f_ve, unit);\r\n  }\r\n\r\n  //\
-    \ v \u3092\u6839\u3068\u3057\u305F\u3068\u304D\u306E full tree\r\n  Data operator[](int\
-    \ v) { return dp[v]; }\r\n\r\n  // root \u3092\u6839\u3068\u3057\u305F\u3068\u304D\
-    \u306E\u90E8\u5206\u6728 v\r\n  Data get(int v, int root) {\r\n    if (root ==\
-    \ v) return dp[v];\r\n    if (!tree.in_subtree(root, v)) { return dp_1[v]; }\r\
-    \n    int w = tree.jump(v, root, 1);\r\n    return dp_2[w];\r\n  }\r\n\r\n  template\
-    \ <typename F1, typename F2, typename F3>\r\n  void build(F1 f_ee, F2 f_ev, F3\
-    \ f_ve, const Data unit) {\r\n    int N = tree.N;\r\n    // dp1: subtree\r\n \
-    \   dp_1.assign(N, unit);\r\n    FOR_R(i, N) {\r\n      int v = tree.V[i];\r\n\
-    \      for (auto&& e: tree.G[v]) {\r\n        if (e.to == tree.parent[v]) continue;\r\
-    \n        dp_1[v] = f_ee(dp_1[v], f_ve(dp_1[e.to], e));\r\n      }\r\n      dp_1[v]\
-    \ = f_ev(dp_1[v], v);\r\n    }\r\n\r\n    // dp2[v]: subtree of p, rooted at v\r\
-    \n    dp_2.assign(N, unit);\r\n    // dp[v]: fulltree, rooted at v\r\n    dp.assign(N,\
-    \ unit);\r\n    FOR(i, N) {\r\n      int p = tree.V[i];\r\n      vc<int> ch;\r\
-    \n      vc<Data> ch_data;\r\n      Data x = unit;\r\n      for (auto&& e: tree.G[p])\
-    \ {\r\n        if (e.to == tree.parent[p]) {\r\n          x = f_ve(dp_2[p], e);\r\
-    \n        } else {\r\n          ch.eb(e.to);\r\n          ch_data.eb(f_ve(dp_1[e.to],\
-    \ e));\r\n        }\r\n      }\r\n      int n = len(ch);\r\n      if (!n) {\r\n\
-    \        dp[p] = f_ev(x, p);\r\n        continue;\r\n      }\r\n      vc<Data>\
-    \ prod_left(n, x);\r\n      FOR(i, n - 1) prod_left[i + 1] = f_ee(prod_left[i],\
-    \ ch_data[i]);\r\n      Data prod_right = unit;\r\n      FOR_R(i, n) {\r\n   \
-    \     dp_2[ch[i]] = f_ev(f_ee(prod_left[i], prod_right), p);\r\n        prod_right\
-    \ = f_ee(prod_right, ch_data[i]);\r\n      }\r\n      dp[p] = f_ev(f_ee(x, prod_right),\
-    \ p);\r\n    }\r\n  }\r\n};\r\n"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -338,7 +338,7 @@ data:
   - graph/tree_dp/subtree_depth_sum.hpp
   - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
-  timestamp: '2024-12-25 20:50:37+09:00'
+  timestamp: '2025-01-04 13:02:14+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2360.test.cpp

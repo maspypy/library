@@ -658,6 +658,9 @@ data:
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+    title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1221,7 +1224,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2626.test.cpp
     title: test/3_yukicoder/2626.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1971,6 +1974,7 @@ data:
   - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/range_parallel_uf.test.cpp
+  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - test/2_library_checker/convolution/bitwise_or_convolution.test.cpp
   - test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
   - test/2_library_checker/convolution/online_convolution.test.cpp

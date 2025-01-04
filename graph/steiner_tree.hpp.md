@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':question:'
@@ -120,8 +120,8 @@ data:
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
-    \ b, int L, int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p\
-    \ < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"graph/steiner_tree.hpp\"\
+    \ b, int L, int R, F f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"graph/steiner_tree.hpp\"\
     \n\n// \u8FBA\u91CD\u307F\u306F e.cost\u3001\u9802\u70B9\u91CD\u307F\u306F vector\
     \ \u3067\u6E21\u3059\u3002\u8FD4\u308A\u5024\uFF1A{cost, vs, es}\n// O(3^kn +\
     \ 2^k(n+m)log n), k: terminal size\ntemplate <typename T, typename GT>\ntuple<T,\
@@ -192,7 +192,7 @@ data:
   isVerificationFile: false
   path: graph/steiner_tree.hpp
   requiredBy: []
-  timestamp: '2024-12-28 10:55:16+09:00'
+  timestamp: '2025-01-04 13:02:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/114.test.cpp

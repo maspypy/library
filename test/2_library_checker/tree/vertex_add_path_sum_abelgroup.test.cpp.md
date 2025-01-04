@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':question:'
@@ -519,8 +519,10 @@ data:
     \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
     \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
     \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
-    \ bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0, l +\
-    \ 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n#line 7 \"test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp\"\
+    \ bit_subtree.prod(l + edge, r);\r\n    assert(!edge); // \u3055\u307C\u308A\r\
+    \n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u], R = tree.RID[u];\r\
+    \n    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));\r\n  }\r\n\
+    };\r\n#line 7 \"test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp\"\
     \n\r\nvoid solve() {\r\n  LL(N, Q);\r\n  VEC(ll, A, N);\r\n  Graph G(N);\r\n \
     \ G.read_tree(0, 0);\r\n\r\n  Tree tree(G);\r\n  Tree_AbelGroup<decltype(tree),\
     \ Monoid_Add<ll>, 0, 1, 0> TA(tree, A);\r\n\r\n  FOR(Q) {\r\n    LL(t);\r\n  \
@@ -550,7 +552,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
+  timestamp: '2025-01-04 13:02:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp

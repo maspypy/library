@@ -17,7 +17,7 @@ data:
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   _extendedVerifiedWith:
@@ -30,12 +30,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1641.test.cpp
     title: test/3_yukicoder/1641.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -329,8 +329,10 @@ data:
     \   static_assert(subtree_query);\r\n    int l = tree.LID[u], r = tree.RID[u];\r\
     \n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\n    if (root ==\
     \ u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u, root)) return\
-    \ bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0, l +\
-    \ 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
+    \ bit_subtree.prod(l + edge, r);\r\n    assert(!edge); // \u3055\u307C\u308A\r\
+    \n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u], R = tree.RID[u];\r\
+    \n    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R, N));\r\n  }\r\n\
+    };\r\n"
   code: "#include \"ds/fenwicktree/fenwicktree.hpp\"\r\n#include \"graph/tree.hpp\"\
     \r\n\r\ntemplate <typename TREE, typename AbelGroup, bool edge, bool path_query,\
     \ bool subtree_query>\r\nstruct Tree_AbelGroup {\r\n  using MX = AbelGroup;\r\n\
@@ -358,8 +360,10 @@ data:
     \ root = -1) {\r\n    static_assert(subtree_query);\r\n    int l = tree.LID[u],\
     \ r = tree.RID[u];\r\n    if (root == -1) return bit_subtree.prod(l + edge, r);\r\
     \n    if (root == u) return bit_subtree.prod_all();\r\n    if (tree.in_subtree(u,\
-    \ root)) return bit_subtree.prod(l + edge, r);\r\n    return MX::op(bit_subtree.prod(0,\
-    \ l + 1), bit_subtree.prod(r, N));\r\n  }\r\n};\r\n"
+    \ root)) return bit_subtree.prod(l + edge, r);\r\n    assert(!edge); // \u3055\
+    \u307C\u308A\r\n    u = tree.jump(u, root, 1);\r\n    int L = tree.LID[u], R =\
+    \ tree.RID[u];\r\n    return MX::op(bit_subtree.prod(0, L), bit_subtree.prod(R,\
+    \ N));\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/fenwicktree/fenwicktree.hpp
   - alg/monoid/add.hpp
@@ -370,8 +374,8 @@ data:
   path: graph/ds/tree_abelgroup.hpp
   requiredBy:
   - graph/ds/incremental_centroid.hpp
-  timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-04 13:02:14+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1326.test.cpp

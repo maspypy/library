@@ -16,6 +16,9 @@ data:
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+    title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
@@ -65,6 +68,7 @@ data:
   - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
 documentation_of: alg/acted_monoid/sum_affine.hpp
 layout: document
 redirect_from:

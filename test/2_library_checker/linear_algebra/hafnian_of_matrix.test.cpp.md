@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   - icon: ':heavy_check_mark:'
@@ -339,9 +339,9 @@ data:
     \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
     \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 1 \"enumerate/bits.hpp\"\
     \ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L,\
-    \ int R, F f) {\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p < R) {\n\
-    \    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"linalg/hafnian.hpp\"\n\
-    \r\n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\
+    \ int R, F f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"linalg/hafnian.hpp\"\
+    \n\r\n// \u96A3\u63A5\u884C\u5217\u306B\u5BFE\u3057\u3066\u5B8C\u5168\u30DE\u30C3\
     \u30C1\u30F3\u30B0\u3092\u6570\u3048\u308B\u3002\r\ntemplate <typename mint, int\
     \ LIM = 20>\r\nmint Hufnian(vc<vc<mint>>& mat) {\r\n  int N = len(mat);\r\n  int\
     \ n = N / 2;\r\n  assert(n <= LIM);\r\n  vc<mint> cyc(1 << n);\r\n\r\n  FOR(i,\
@@ -382,7 +382,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   requiredBy: []
-  timestamp: '2024-12-28 10:55:16+09:00'
+  timestamp: '2025-01-04 13:02:14+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp

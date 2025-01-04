@@ -110,13 +110,13 @@ data:
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
   - icon: ':warning:'
@@ -216,6 +216,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+    title: test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/point_add_range_sum.test.cpp
     title: test/2_library_checker/data_structure/point_add_range_sum.test.cpp
@@ -444,7 +447,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -459,7 +462,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
   - icon: ':heavy_check_mark:'
@@ -735,6 +738,7 @@ data:
   - test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
+  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
   - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
