@@ -11,8 +11,7 @@ struct Rerooting_dp {
   vc<Data> dp;   // full tree
 
   template <typename F1, typename F2, typename F3>
-  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit)
-      : tree(tree) {
+  Rerooting_dp(TREE& tree, F1 f_ee, F2 f_ev, F3 f_ve, const Data unit) : tree(tree) {
     build(f_ee, f_ev, f_ve, unit);
   }
 

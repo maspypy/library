@@ -117,6 +117,14 @@ struct Dynamic_Lazy_SegTree {
 
   void reset() { pid = 0; }
 
+  // root[l:r) を apply(other[l:r),a) で上書きしたものを返す
+  np copy_interval(np root, np other, ll l, ll r, A a) {
+    if (root == other) return root;
+    root = copy_node(root);
+    copy_interval_rec(root, other, L0, R0, l, r, a);
+    return root;
+  }
+
 private:
   np copy_node(np c) {
     if (!c || !PERSISTENT) return c;
@@ -137,6 +145,38 @@ private:
     c->r->x = AM::act(c->r->x, c->lazy, r - m);
     c->r->lazy = MA::op(c->r->lazy, c->lazy);
     c->lazy = MA::unit();
+  }
+
+  void copy_interval_rec(np c, np d, ll l, ll r, ll ql, ll qr, A a) {
+    // c[ql,qr) <- apply(d[ql,qr),a)
+    // もう c は新しくしてある
+    assert(c);
+    chmax(ql, l), chmin(qr, r);
+    if (ql >= qr) return;
+    if (l == ql && r == qr) {
+      if (d) {
+        c->x = AM::act(d->x, a, r - l), c->lazy = MA::op(d->lazy, a);
+        c->l = d->l, c->r = d->r;
+      } else {
+        c->x = AM::act(default_prod(l, r), a, r - l), c->lazy = a;
+        c->l = nullptr, c->r = nullptr;
+      }
+      return;
+    }
+    // push
+    ll m = (l + r) / 2;
+    c->l = (c->l ? copy_node(c->l) : new_node());
+    c->r = (c->r ? copy_node(c->r) : new_node());
+    c->l->x = AM::act(c->l->x, c->lazy, m - l);
+    c->l->lazy = MA::op(c->l->lazy, c->lazy);
+    c->r->x = AM::act(c->r->x, c->lazy, r - m);
+    c->r->lazy = MA::op(c->r->lazy, c->lazy);
+    c->lazy = MA::unit();
+    if (d) a = MA::op(d->lazy, a);
+    copy_interval_rec(c->l, (d && d->l ? d->l : nullptr), l, m, ql, qr, a);
+    copy_interval_rec(c->r, (d && d->r ? d->r : nullptr), m, r, ql, qr, a);
+    c->x = MX::op(c->l->x, c->r->x);
+    return;
   }
 
   np set_rec(np c, ll l, ll r, ll i, const X &x) {
