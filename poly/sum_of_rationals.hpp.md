@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':heavy_check_mark:'
@@ -81,24 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc260h.test.cpp
-    title: test/5_atcoder/abc260h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g.test.cpp
-    title: test/5_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g_2.test.cpp
-    title: test/5_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc281g.test.cpp
-    title: test/5_atcoder/abc281g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc154f.test.cpp
-    title: test/5_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/sum_of_rationals.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -474,7 +459,7 @@ data:
   - linalg/blackbox/vandermonde.hpp
   - seq/sum_of_powers.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1962.test.cpp
   - test/3_yukicoder/1145.test.cpp
@@ -482,11 +467,6 @@ data:
   - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1875.test.cpp
-  - test/5_atcoder/arc154f.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
-  - test/5_atcoder/abc260h.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/vandermonde.test.cpp
   - test/1_mytest/partial_frac.test.cpp

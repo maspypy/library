@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bridgeless.hpp
     title: graph/count/count_labeled_bridgeless.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -23,16 +23,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   _extendedVerifiedWith:
@@ -114,27 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc241h.test.cpp
-    title: test/5_atcoder/abc241h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc260h.test.cpp
-    title: test/5_atcoder/abc260h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc267g.test.cpp
-    title: test/5_atcoder/abc267g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc272_h.test.cpp
-    title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc013e.test.cpp
-    title: test/5_atcoder/agc013e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc058d2.test.cpp
-    title: test/5_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/transposed_ntt.hpp\"\n\ntemplate <class mint>\nvoid\
@@ -260,18 +242,12 @@ data:
   - graph/count/count_labeled_biconnected.hpp
   - graph/chromatic.hpp
   timestamp: '2024-04-23 20:14:58+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2166.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
-  - test/5_atcoder/abc272_h.test.cpp
-  - test/5_atcoder/abc260h.test.cpp
-  - test/5_atcoder/agc013e.test.cpp
-  - test/5_atcoder/abc267g.test.cpp
-  - test/5_atcoder/abc241h.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp

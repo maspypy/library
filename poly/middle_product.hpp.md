@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -32,13 +32,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
@@ -114,30 +114,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc241h.test.cpp
-    title: test/5_atcoder/abc241h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc260h.test.cpp
-    title: test/5_atcoder/abc260h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc267g.test.cpp
-    title: test/5_atcoder/abc267g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc272_h.test.cpp
-    title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc333f.test.cpp
-    title: test/5_atcoder/abc333f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc013e.test.cpp
-    title: test/5_atcoder/agc013e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc058d2.test.cpp
-    title: test/5_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/middle_product.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\
@@ -370,7 +349,7 @@ data:
   - seq/count_grid_path.hpp
   - graph/chromatic.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/2231.test.cpp
@@ -379,13 +358,6 @@ data:
   - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/2626.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
-  - test/5_atcoder/abc272_h.test.cpp
-  - test/5_atcoder/abc260h.test.cpp
-  - test/5_atcoder/abc333f.test.cpp
-  - test/5_atcoder/agc013e.test.cpp
-  - test/5_atcoder/abc267g.test.cpp
-  - test/5_atcoder/abc241h.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/typical_dc.test.cpp
   - test/1_mytest/vandermonde.test.cpp

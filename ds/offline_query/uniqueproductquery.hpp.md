@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc174f.test.cpp
-    title: test/5_atcoder/abc174f.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -97,9 +94,8 @@ data:
   path: ds/offline_query/uniqueproductquery.hpp
   requiredBy: []
   timestamp: '2024-01-21 19:07:46+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc174f.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: ds/offline_query/uniqueproductquery.hpp
 layout: document
 redirect_from:

@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon.hpp
+    title: convex/count_lattice_point_in_convex_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_sum_of_linear.hpp
     title: mod/mod_sum_of_linear.hpp
@@ -69,6 +72,7 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear.hpp
   requiredBy:
+  - convex/count_lattice_point_in_convex_polygon.hpp
   - mod/mod_sum_of_linear.hpp
   - mod/range_freq_of_linear.hpp
   - nt/range_rational_count.hpp

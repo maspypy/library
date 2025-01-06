@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon.hpp
+    title: convex/count_lattice_point_in_convex_polygon.hpp
+  - icon: ':warning:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
   - icon: ':warning:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/angle_sort.hpp
     title: geo/angle_sort.hpp
   - icon: ':warning:'
@@ -17,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
@@ -26,13 +29,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
   - icon: ':heavy_check_mark:'
@@ -44,13 +47,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: geo/max_norm_sum.hpp
     title: geo/max_norm_sum.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   - icon: ':warning:'
@@ -59,10 +62,10 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: geo/perpendicular_bisector.hpp
     title: geo/perpendicular_bisector.hpp
   - icon: ':warning:'
@@ -162,33 +165,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc139f.test.cpp
-    title: test/5_atcoder/abc139f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc151f.test.cpp
-    title: test/5_atcoder/abc151f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc202_f.test.cpp
-    title: test/5_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc220g.test.cpp
-    title: test/5_atcoder/abc220g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc266c.test.cpp
-    title: test/5_atcoder/abc266c.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc314.test.cpp
-    title: test/5_atcoder/abc314.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc064c.test.cpp
-    title: test/5_atcoder/arc064c.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc130f.test.cpp
-    title: test/5_atcoder/arc130f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -296,6 +275,7 @@ data:
   path: geo/base.hpp
   requiredBy:
   - random/random_polygon.hpp
+  - convex/count_lattice_point_in_convex_polygon.hpp
   - convex/fenchel.hpp
   - convex/line_min_function.hpp
   - geo/reflection.hpp
@@ -324,7 +304,7 @@ data:
   - geo/angle_sort.hpp
   - graph/planar_graph.hpp
   timestamp: '2024-10-20 23:29:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp
   - test/3_yukicoder/1777.test.cpp
@@ -337,14 +317,6 @@ data:
   - test/4_aoj/CGL_2_A.test.cpp
   - test/4_aoj/CGL_2_D.test.cpp
   - test/4_aoj/CGL_7_C.test.cpp
-  - test/5_atcoder/abc220g.test.cpp
-  - test/5_atcoder/abc266c.test.cpp
-  - test/5_atcoder/abc314.test.cpp
-  - test/5_atcoder/abc202_f.test.cpp
-  - test/5_atcoder/abc139f.test.cpp
-  - test/5_atcoder/arc130f.test.cpp
-  - test/5_atcoder/arc064c.test.cpp
-  - test/5_atcoder/abc151f.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp

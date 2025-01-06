@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -21,12 +21,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1919.test.cpp
     title: test/3_yukicoder/1919.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc266h_2.test.cpp
-    title: test/5_atcoder/abc266h_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -181,12 +178,11 @@ data:
   path: ds/fenwicktree/fenwicktree_2d.hpp
   requiredBy: []
   timestamp: '2024-02-04 20:58:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1216.test.cpp
   - test/3_yukicoder/1216_2.test.cpp
   - test/3_yukicoder/1919.test.cpp
-  - test/5_atcoder/abc266h_2.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_bit2d.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_2d.hpp

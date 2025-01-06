@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/arc107.test.cpp
-    title: test/5_atcoder/arc107.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/k_ary_optimization.hpp\"\n\n#line 1 \"flow/maxflow.hpp\"\
@@ -176,9 +173,8 @@ data:
   path: flow/k_ary_optimization.hpp
   requiredBy: []
   timestamp: '2024-04-19 22:50:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/arc107.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: flow/k_ary_optimization.hpp
 layout: document
 redirect_from:

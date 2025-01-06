@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -63,15 +63,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/online_convolution.test.cpp
     title: test/2_library_checker/convolution/online_convolution.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc230h.test.cpp
-    title: test/5_atcoder/abc230h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc315h.test.cpp
-    title: test/5_atcoder/abc315h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt.hpp\"\n\r\ntemplate <class mint>\r\nvoid ntt(vector<mint>&\
@@ -255,10 +249,8 @@ data:
   - seq/famous/simple_permutations.hpp
   - graph/count/count_unlabeled_tree.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc315h.test.cpp
-  - test/5_atcoder/abc230h.test.cpp
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/count_unlabeled_tree.test.cpp
   - test/1_mytest/online_exp.test.cpp

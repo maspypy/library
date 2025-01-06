@@ -1,13 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon.hpp
+    title: convex/count_lattice_point_in_convex_polygon.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -211,7 +214,8 @@ data:
   - geo/base.hpp
   isVerificationFile: false
   path: convex/line_min_function.hpp
-  requiredBy: []
+  requiredBy:
+  - convex/count_lattice_point_in_convex_polygon.hpp
   timestamp: '2024-11-05 21:50:26+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

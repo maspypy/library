@@ -11,13 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
     path: mod/tetration.hpp
     title: mod/tetration.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
   - icon: ':heavy_check_mark:'
@@ -26,7 +26,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/euler_phi.hpp
     title: nt/euler_phi.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: nt/factor_interval.hpp
     title: nt/factor_interval.hpp
   - icon: ':heavy_check_mark:'
@@ -35,7 +35,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/lcm_convolution.hpp
     title: nt/lcm_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/lpf_table.hpp
     title: nt/lpf_table.hpp
   - icon: ':heavy_check_mark:'
@@ -68,10 +68,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -104,7 +104,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -276,33 +276,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_1_D.test.cpp
     title: test/4_aoj/NTL_1_D.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc152e.test.cpp
-    title: test/5_atcoder/abc152e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc202_f.test.cpp
-    title: test/5_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc227g.test.cpp
-    title: test/5_atcoder/abc227g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc249_ex.test.cpp
-    title: test/5_atcoder/abc249_ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc281g.test.cpp
-    title: test/5_atcoder/abc281g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc060c.test.cpp
-    title: test/5_atcoder/agc060c.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc133f.test.cpp
-    title: test/5_atcoder/arc133f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc153f.test.cpp
-    title: test/5_atcoder/arc153f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -370,7 +346,7 @@ data:
   - nt/count_by_factor_type.hpp
   - nt/mobius_table.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp
   - test/3_yukicoder/1262.test.cpp
@@ -395,14 +371,6 @@ data:
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/4_aoj/NTL_1_D.test.cpp
-  - test/5_atcoder/arc133f.test.cpp
-  - test/5_atcoder/abc227g.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/abc202_f.test.cpp
-  - test/5_atcoder/arc153f.test.cpp
-  - test/5_atcoder/abc152e.test.cpp
-  - test/5_atcoder/agc060c.test.cpp
-  - test/5_atcoder/abc249_ex.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp

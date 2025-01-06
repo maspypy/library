@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -17,13 +17,13 @@ data:
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
@@ -62,16 +62,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/tree_dp/subtree_depth_sum.hpp
     title: graph/tree_dp/subtree_depth_sum.hpp
   - icon: ':warning:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
   _extendedVerifiedWith:
@@ -258,39 +258,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc160f.test.cpp
-    title: test/5_atcoder/abc160f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc220f.test.cpp
-    title: test/5_atcoder/abc220f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc266f.test.cpp
-    title: test/5_atcoder/abc266f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex.test.cpp
-    title: test/5_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex2.test.cpp
-    title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc270_f.test.cpp
-    title: test/5_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc298ex.test.cpp
-    title: test/5_atcoder/abc298ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc301h.test.cpp
-    title: test/5_atcoder/abc301h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc351g.test.cpp
-    title: test/5_atcoder/abc351g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc023f.test.cpp
-    title: test/5_atcoder/agc023f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -631,7 +601,7 @@ data:
   - graph/compress_tree.hpp
   - graph/count_matching_on_tree.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1242.test.cpp
@@ -671,16 +641,6 @@ data:
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/2636.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
-  - test/5_atcoder/abc220f.test.cpp
-  - test/5_atcoder/abc269ex2.test.cpp
-  - test/5_atcoder/agc023f.test.cpp
-  - test/5_atcoder/abc270_f.test.cpp
-  - test/5_atcoder/abc351g.test.cpp
-  - test/5_atcoder/abc266f.test.cpp
-  - test/5_atcoder/abc301h.test.cpp
-  - test/5_atcoder/abc298ex.test.cpp
-  - test/5_atcoder/abc269ex.test.cpp
-  - test/5_atcoder/abc160f.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
   - test/1_mytest/QOJ5445.test.cpp

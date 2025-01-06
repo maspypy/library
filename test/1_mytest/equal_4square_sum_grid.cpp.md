@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
   - icon: ':question:'
@@ -118,10 +118,10 @@ data:
     \ others.begin(), others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/equal_4square_sum_grid.cpp\"\
     \n\n#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
     \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
-    \ == 0 ? 0 : len(A[0])); }\n  if (H == 0) return {};\n  vc<VC> B(W, VC(H, A[0][0]));\n\
-    \  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n}\n#line 1 \"other/equal_4square_sum_grid.hpp\"\
-    \n\n// https://atcoder.jp/contests/tupc2023/tasks/tupc2023_k\n// [0,HW-1]\u306E\
-    \u9806\u5217\u3067\u3059\u3079\u3066\u306E(2,2)\u6B63\u65B9\u5F62\u306E\u548C\u304C\
+    \ == 0 ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
+    \ = A[x][y];\n  return B;\n}\n#line 1 \"other/equal_4square_sum_grid.hpp\"\n\n\
+    // https://atcoder.jp/contests/tupc2023/tasks/tupc2023_k\n// [0,HW-1]\u306E\u9806\
+    \u5217\u3067\u3059\u3079\u3066\u306E(2,2)\u6B63\u65B9\u5F62\u306E\u548C\u304C\
     S, \u89E3\u3044\u305F\u5834\u5408.\n// \u4E00\u822C\u306B\u89E3\u3044\u305F\u308F\
     \u3051\u3067\u306F\u306A\u3044. mod HW \u3067\u306F\u89E3\u3051\u3066\u3044\u308B\
     .\n// (even,even) \u306F S \u304C\u78BA\u5B9A. \u4ED6\u306F\u5FAE\u8ABF\u6574\u306F\
@@ -180,7 +180,7 @@ data:
   isVerificationFile: false
   path: test/1_mytest/equal_4square_sum_grid.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
+  timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: test/1_mytest/equal_4square_sum_grid.cpp

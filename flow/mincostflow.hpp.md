@@ -33,12 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_B.test.cpp
     title: test/4_aoj/GRL_6_B.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc214h.test.cpp
-    title: test/5_atcoder/abc214h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/mincostflow.hpp\"\n\n// atcoder library \u306E\u3082\
@@ -261,7 +258,7 @@ data:
   requiredBy:
   - flow/longest_shortest_path.hpp
   timestamp: '2024-11-07 04:20:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1678.test.cpp
   - test/3_yukicoder/1288.test.cpp
@@ -271,7 +268,6 @@ data:
   - test/3_yukicoder/1676.test.cpp
   - test/3_yukicoder/1341.test.cpp
   - test/4_aoj/GRL_6_B.test.cpp
-  - test/5_atcoder/abc214h.test.cpp
   - test/2_library_checker/graph/assignment_mcf.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document

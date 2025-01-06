@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -25,9 +25,9 @@ data:
     links: []
   bundledCode: "#line 1 \"linalg/transpose.hpp\"\ntemplate <typename VC>\nvc<VC> transpose(const\
     \ vc<VC>& A, int H = -1, int W = -1) {\n  if (H == -1) { H = len(A), W = (len(A)\
-    \ == 0 ? 0 : len(A[0])); }\n  if (H == 0) return {};\n  vc<VC> B(W, VC(H, A[0][0]));\n\
-    \  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n}\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\
-    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
+    \ == 0 ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H, 0));\n  FOR(x, H) FOR(y, W) B[y][x]\
+    \ = A[x][y];\n  return B;\n}\n#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n\
+    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
     \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
     \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
     \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
@@ -309,7 +309,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2024-12-25 20:50:37+09:00'
+  timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

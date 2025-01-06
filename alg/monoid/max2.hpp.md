@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc220g.test.cpp
-    title: test/5_atcoder/abc220g.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/max2.hpp\"\n\ntemplate <typename T, typename\
@@ -40,9 +37,8 @@ data:
   path: alg/monoid/max2.hpp
   requiredBy: []
   timestamp: '2023-12-23 11:53:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc220g.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/max2.hpp
 layout: document
 redirect_from:

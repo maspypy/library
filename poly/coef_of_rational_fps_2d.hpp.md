@@ -1,50 +1,47 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/agc058d.test.cpp
-    title: test/5_atcoder/agc058d.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://atcoder.jp/contests/agc058/tasks/agc058_d
@@ -331,11 +328,10 @@ data:
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
     \    }\n  }\n  return f;\n}\n#line 1 \"linalg/transpose.hpp\"\ntemplate <typename\
     \ VC>\nvc<VC> transpose(const vc<VC>& A, int H = -1, int W = -1) {\n  if (H ==\
-    \ -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n  if (H == 0) return\
-    \ {};\n  vc<VC> B(W, VC(H, A[0][0]));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n\
-    \  return B;\n}\n#line 4 \"poly/coef_of_rational_fps_2d.hpp\"\n\n// P, Q \u304C\
-    \ x \u306B\u3064\u3044\u3066 O(1) \u6B21\u3067\u3042\u308B\u3068\u3059\u308B\n\
-    // ANS(x) = [y^N]P/Q \u3092 M \u6B21\u307E\u3067\n// https://atcoder.jp/contests/nadafes2022_day2/tasks/nadafes2022_day2_p\n\
+    \ -1) { H = len(A), W = (len(A) == 0 ? 0 : len(A[0])); }\n  vc<VC> B(W, VC(H,\
+    \ 0));\n  FOR(x, H) FOR(y, W) B[y][x] = A[x][y];\n  return B;\n}\n#line 4 \"poly/coef_of_rational_fps_2d.hpp\"\
+    \n\n// P, Q \u304C x \u306B\u3064\u3044\u3066 O(1) \u6B21\u3067\u3042\u308B\u3068\
+    \u3059\u308B\n// ANS(x) = [y^N]P/Q \u3092 M \u6B21\u307E\u3067\n// https://atcoder.jp/contests/nadafes2022_day2/tasks/nadafes2022_day2_p\n\
     // (2^n,2^m) \u6B21\u304C\u305F\u304F\u3055\u3093\u51FA\u3066\u304D\u3066\u3044\
     \u308B\u3068\u5B9A\u6570\u500D\u304C\u3072\u3069\u304F\u306A\u3063\u3066\u3057\
     \u307E\u3046\ntemplate <typename mint>\nvc<mint> coef_of_rational_fps_2d(vvc<mint>\
@@ -470,10 +466,9 @@ data:
   isVerificationFile: false
   path: poly/coef_of_rational_fps_2d.hpp
   requiredBy: []
-  timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/agc058d.test.cpp
+  timestamp: '2025-01-06 16:30:28+09:00'
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: poly/coef_of_rational_fps_2d.hpp
 layout: document
 redirect_from:

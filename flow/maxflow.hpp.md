@@ -2,10 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/binary_optimization.hpp
     title: flow/binary_optimization.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: flow/k_ary_optimization.hpp
     title: flow/k_ary_optimization.hpp
   - icon: ':warning:'
@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dag_path_cover.hpp
     title: graph/dag_path_cover.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/maximum_weighted_antichain.hpp
     title: graph/maximum_weighted_antichain.hpp
   _extendedVerifiedWith:
@@ -36,27 +36,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_6_A.test.cpp
     title: test/4_aoj/GRL_6_A.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc193f.test.cpp
-    title: test/5_atcoder/abc193f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc259g.test.cpp
-    title: test/5_atcoder/abc259g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc318g.test.cpp
-    title: test/5_atcoder/abc318g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc326g.test.cpp
-    title: test/5_atcoder/abc326g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc354g.test.cpp
-    title: test/5_atcoder/abc354g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc107.test.cpp
-    title: test/5_atcoder/arc107.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\
@@ -233,7 +215,7 @@ data:
   - flow/k_ary_optimization.hpp
   - flow/binary_optimization.hpp
   timestamp: '2024-04-19 22:50:36+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/177.test.cpp
   - test/3_yukicoder/2320.test.cpp
@@ -241,12 +223,6 @@ data:
   - test/4_aoj/2835.test.cpp
   - test/4_aoj/GRL_6_A.test.cpp
   - test/4_aoj/2251_1.test.cpp
-  - test/5_atcoder/abc354g.test.cpp
-  - test/5_atcoder/abc326g.test.cpp
-  - test/5_atcoder/abc259g.test.cpp
-  - test/5_atcoder/arc107.test.cpp
-  - test/5_atcoder/abc318g.test.cpp
-  - test/5_atcoder/abc193f.test.cpp
 documentation_of: flow/maxflow.hpp
 layout: document
 redirect_from:

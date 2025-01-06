@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -14,19 +14,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -35,10 +35,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_log_1_minus_x.hpp
     title: poly/composition_f_log_1_minus_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -47,16 +47,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
   - icon: ':heavy_check_mark:'
@@ -210,39 +210,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc241h.test.cpp
-    title: test/5_atcoder/abc241h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc260h.test.cpp
-    title: test/5_atcoder/abc260h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc267g.test.cpp
-    title: test/5_atcoder/abc267g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex.test.cpp
-    title: test/5_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc272_h.test.cpp
-    title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g.test.cpp
-    title: test/5_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g_2.test.cpp
-    title: test/5_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc281g.test.cpp
-    title: test/5_atcoder/abc281g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc058d2.test.cpp
-    title: test/5_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc154f.test.cpp
-    title: test/5_atcoder/arc154f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/ntt_doubling.hpp\"\n\n#line 2 \"poly/ntt.hpp\"\n\r\n\
@@ -356,7 +326,7 @@ data:
   - graph/tree_walk_generating_function.hpp
   - graph/chromatic.hpp
   timestamp: '2024-07-19 12:50:09+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/1962.test.cpp
@@ -381,16 +351,6 @@ data:
   - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/578.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
-  - test/5_atcoder/arc154f.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
-  - test/5_atcoder/abc272_h.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
-  - test/5_atcoder/abc260h.test.cpp
-  - test/5_atcoder/abc269ex.test.cpp
-  - test/5_atcoder/abc267g.test.cpp
-  - test/5_atcoder/abc241h.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp

@@ -1,37 +1,37 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/differentiate.hpp
     title: poly/differentiate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -53,7 +53,7 @@ data:
   - icon: ':warning:'
     path: poly/composed_sum.hpp
     title: poly/composed_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - icon: ':heavy_check_mark:'
@@ -62,7 +62,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -71,10 +71,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -219,36 +219,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc222h.test.cpp
-    title: test/5_atcoder/abc222h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc267h.test.cpp
-    title: test/5_atcoder/abc267h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc285h.test.cpp
-    title: test/5_atcoder/abc285h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc288ex.test.cpp
-    title: test/5_atcoder/abc288ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc318h.test.cpp
-    title: test/5_atcoder/abc318h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc331g.test.cpp
-    title: test/5_atcoder/abc331g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc133f.test.cpp
-    title: test/5_atcoder/arc133f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc153f.test.cpp
-    title: test/5_atcoder/arc153f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc160d.test.cpp
-    title: test/5_atcoder/arc160d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -627,7 +600,7 @@ data:
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_biconnected.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2062.test.cpp
   - test/3_yukicoder/2583.test.cpp
@@ -639,15 +612,6 @@ data:
   - test/3_yukicoder/1875.test.cpp
   - test/3_yukicoder/1533.test.cpp
   - test/3_yukicoder/1549.test.cpp
-  - test/5_atcoder/arc133f.test.cpp
-  - test/5_atcoder/abc267h.test.cpp
-  - test/5_atcoder/abc318h.test.cpp
-  - test/5_atcoder/abc285h.test.cpp
-  - test/5_atcoder/arc153f.test.cpp
-  - test/5_atcoder/abc222h.test.cpp
-  - test/5_atcoder/abc288ex.test.cpp
-  - test/5_atcoder/arc160d.test.cpp
-  - test/5_atcoder/abc331g.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/online_square.test.cpp
   - test/1_mytest/online_pow.test.cpp

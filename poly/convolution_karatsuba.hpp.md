@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: bigint/base.hpp
     title: bigint/base.hpp
   - icon: ':heavy_check_mark:'
@@ -68,10 +68,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/pascal.hpp
     title: linalg/blackbox/pascal.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/vandermonde.hpp
     title: linalg/blackbox/vandermonde.hpp
   - icon: ':heavy_check_mark:'
@@ -89,10 +89,10 @@ data:
   - icon: ':warning:'
     path: new_poly/base.hpp
     title: new_poly/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: poly/coef_of_rational_fps_2d.hpp
     title: poly/coef_of_rational_fps_2d.hpp
   - icon: ':warning:'
@@ -107,13 +107,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/composition_f_ex.hpp
     title: poly/composition_f_ex.hpp
   - icon: ':heavy_check_mark:'
@@ -128,13 +128,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
   - icon: ':heavy_check_mark:'
     path: poly/convolution2d.hpp
     title: poly/convolution2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_all.hpp
     title: poly/convolution_all.hpp
   - icon: ':warning:'
@@ -152,34 +152,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/finding_root_of_polynomial.hpp
     title: poly/finding_root_of_polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: poly/fps_inv_2d.hpp
     title: poly/fps_inv_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_pow.hpp
     title: poly/fps_pow.hpp
   - icon: ':heavy_check_mark:'
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/multipoint.hpp
     title: poly/multipoint.hpp
   - icon: ':heavy_check_mark:'
@@ -191,10 +191,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/multivar_convolution_cyclic.hpp
     title: poly/multivar_convolution_cyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/partial_frac_decomposition_1.hpp
     title: poly/partial_frac_decomposition_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
   - icon: ':heavy_check_mark:'
@@ -203,13 +203,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_mod_pow.hpp
     title: poly/poly_mod_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
@@ -218,34 +218,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/product_of_f_rk_x.hpp
     title: poly/product_of_f_rk_x.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_minus_xn.hpp
     title: poly/product_of_one_minus_xn.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/product_of_one_plus_xn.hpp
     title: poly/product_of_one_plus_xn.hpp
   - icon: ':heavy_check_mark:'
     path: poly/product_of_pow_of_linear.hpp
     title: poly/product_of_pow_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
   - icon: ':warning:'
     path: poly/sum_of_power_of_roots.hpp
     title: poly/sum_of_power_of_roots.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: poly/sum_of_prefix_suffix_products.hpp
     title: poly/sum_of_prefix_suffix_products.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/sum_of_rationals.hpp
     title: poly/sum_of_rationals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/typical_divide_conquer.hpp
     title: poly/typical_divide_conquer.hpp
   - icon: ':warning:'
@@ -275,7 +275,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
@@ -287,13 +287,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   - icon: ':heavy_check_mark:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: setfunc/power_projection_of_sps.hpp
     title: setfunc/power_projection_of_sps.hpp
   - icon: ':warning:'
@@ -816,96 +816,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc222h.test.cpp
-    title: test/5_atcoder/abc222h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc222h_2.test.cpp
-    title: test/5_atcoder/abc222h_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc241h.test.cpp
-    title: test/5_atcoder/abc241h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc253h.test.cpp
-    title: test/5_atcoder/abc253h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc260h.test.cpp
-    title: test/5_atcoder/abc260h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc267g.test.cpp
-    title: test/5_atcoder/abc267g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc267h.test.cpp
-    title: test/5_atcoder/abc267h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex.test.cpp
-    title: test/5_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex2.test.cpp
-    title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc272_h.test.cpp
-    title: test/5_atcoder/abc272_h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g.test.cpp
-    title: test/5_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g_2.test.cpp
-    title: test/5_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc281g.test.cpp
-    title: test/5_atcoder/abc281g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc285h.test.cpp
-    title: test/5_atcoder/abc285h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc288ex.test.cpp
-    title: test/5_atcoder/abc288ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc318h.test.cpp
-    title: test/5_atcoder/abc318h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc331g.test.cpp
-    title: test/5_atcoder/abc331g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc333f.test.cpp
-    title: test/5_atcoder/abc333f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc333g.test.cpp
-    title: test/5_atcoder/abc333g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc339f.test.cpp
-    title: test/5_atcoder/abc339f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc345g.test.cpp
-    title: test/5_atcoder/abc345g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc013e.test.cpp
-    title: test/5_atcoder/agc013e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc058d.test.cpp
-    title: test/5_atcoder/agc058d.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc058d2.test.cpp
-    title: test/5_atcoder/agc058d2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc133f.test.cpp
-    title: test/5_atcoder/arc133f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc153f.test.cpp
-    title: test/5_atcoder/arc153f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc154f.test.cpp
-    title: test/5_atcoder/arc154f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc160d.test.cpp
-    title: test/5_atcoder/arc160d.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc162f.test.cpp
-    title: test/5_atcoder/arc162f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_naive.hpp\"\n\r\ntemplate <class T, typename\
@@ -1057,7 +970,7 @@ data:
   - graph/chromatic.hpp
   - setfunc/power_projection_of_sps.hpp
   timestamp: '2023-10-18 00:17:26+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/2440.test.cpp
@@ -1117,35 +1030,6 @@ data:
   - test/4_aoj/NTL_2_C.test.cpp
   - test/4_aoj/NTL_2_A.test.cpp
   - test/4_aoj/NTL_2_B.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
-  - test/5_atcoder/abc269ex2.test.cpp
-  - test/5_atcoder/arc133f.test.cpp
-  - test/5_atcoder/abc339f.test.cpp
-  - test/5_atcoder/abc267h.test.cpp
-  - test/5_atcoder/arc154f.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/abc318h.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
-  - test/5_atcoder/abc272_h.test.cpp
-  - test/5_atcoder/agc058d.test.cpp
-  - test/5_atcoder/abc222h_2.test.cpp
-  - test/5_atcoder/abc285h.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
-  - test/5_atcoder/arc153f.test.cpp
-  - test/5_atcoder/abc260h.test.cpp
-  - test/5_atcoder/abc333f.test.cpp
-  - test/5_atcoder/abc345g.test.cpp
-  - test/5_atcoder/agc013e.test.cpp
-  - test/5_atcoder/arc162f.test.cpp
-  - test/5_atcoder/abc222h.test.cpp
-  - test/5_atcoder/abc288ex.test.cpp
-  - test/5_atcoder/arc160d.test.cpp
-  - test/5_atcoder/abc253h.test.cpp
-  - test/5_atcoder/abc269ex.test.cpp
-  - test/5_atcoder/abc267g.test.cpp
-  - test/5_atcoder/abc241h.test.cpp
-  - test/5_atcoder/abc331g.test.cpp
-  - test/5_atcoder/abc333g.test.cpp
   - test/1_mytest/chirp_z.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp

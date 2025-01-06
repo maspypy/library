@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: other/connected_dp.hpp
     title: other/connected_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/hash_vector.hpp
     title: random/hash_vector.hpp
   - icon: ':warning:'
@@ -99,12 +99,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_14_C.test.cpp
     title: test/4_aoj/ALDS1_14_C.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc339f.test.cpp
-    title: test/5_atcoder/abc339f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr\
@@ -182,7 +179,7 @@ data:
   - graph/ds/rolling_hash_on_tree.hpp
   - graph/maximum_matching_size.hpp
   timestamp: '2024-08-27 05:16:49+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1397.test.cpp
   - test/3_yukicoder/263.test.cpp
@@ -196,7 +193,6 @@ data:
   - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/2626.test.cpp
   - test/4_aoj/ALDS1_14_C.test.cpp
-  - test/5_atcoder/abc339f.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/tutte.test.cpp
   - test/1_mytest/tdpc_grid_dp.test.cpp

@@ -1,17 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc224h.test.cpp
-    title: test/5_atcoder/abc224h.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\
@@ -125,9 +122,8 @@ data:
   path: flow/dual_mcf.hpp
   requiredBy: []
   timestamp: '2024-11-20 19:40:41+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc224h.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: flow/dual_mcf.hpp
 layout: document
 redirect_from:

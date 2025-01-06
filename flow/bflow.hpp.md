@@ -2,19 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: flow/dual_mcf.hpp
     title: flow/dual_mcf.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/min_cost_b-flow.test.cpp
     title: test/2_library_checker/graph/min_cost_b-flow.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc224h.test.cpp
-    title: test/5_atcoder/abc224h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\u304C\u3042\u3063\u3066\
@@ -193,9 +190,8 @@ data:
   requiredBy:
   - flow/dual_mcf.hpp
   timestamp: '2024-11-20 19:40:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc224h.test.cpp
   - test/2_library_checker/graph/min_cost_b-flow.test.cpp
 documentation_of: flow/bflow.hpp
 layout: document

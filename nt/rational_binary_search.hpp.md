@@ -6,12 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/rational_approximation.test.cpp
     title: test/2_library_checker/number_theory/rational_approximation.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc333g.test.cpp
-    title: test/5_atcoder/abc333g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/rational_binary_search.hpp\"\n\n// 0/1 OK, 1/0 NG. 3N\
@@ -40,9 +37,8 @@ data:
   path: nt/rational_binary_search.hpp
   requiredBy: []
   timestamp: '2024-08-27 20:48:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc333g.test.cpp
   - test/2_library_checker/number_theory/rational_approximation.test.cpp
 documentation_of: nt/rational_binary_search.hpp
 layout: document

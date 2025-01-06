@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':warning:'
@@ -111,21 +111,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc234g.test.cpp
-    title: test/5_atcoder/abc234g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc256ex.test.cpp
-    title: test/5_atcoder/abc256ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc256ex2.test.cpp
-    title: test/5_atcoder/abc256ex2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc318b.test.cpp
-    title: test/5_atcoder/abc318b.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -251,7 +239,7 @@ data:
   - graph/count/count_connected_intervals.hpp
   - graph/ds/lazy_tree_monoid.hpp
   timestamp: '2023-05-21 00:13:10+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/899.test.cpp
@@ -268,10 +256,6 @@ data:
   - test/4_aoj/DSL_2_H.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
   - test/4_aoj/DSL_4_A.test.cpp
-  - test/5_atcoder/abc256ex2.test.cpp
-  - test/5_atcoder/abc256ex.test.cpp
-  - test/5_atcoder/abc318b.test.cpp
-  - test/5_atcoder/abc234g.test.cpp
   - test/1_mytest/summin_add.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/max_min.test.cpp

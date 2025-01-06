@@ -14,7 +14,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/triangle.hpp
     title: enumerate/triangle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':warning:'
@@ -23,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: flow/rank_maximal_bipartite_matching.hpp
     title: flow/rank_maximal_bipartite_matching.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: game/graph_game.hpp
     title: game/graph_game.hpp
   - icon: ':warning:'
@@ -32,7 +32,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/manhattan_mst.hpp
     title: geo/manhattan_mst.hpp
   - icon: ':heavy_check_mark:'
@@ -41,16 +41,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/blackbox/complement_graph_bfs.hpp
     title: graph/blackbox/complement_graph_bfs.hpp
   - icon: ':warning:'
@@ -59,7 +59,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/blackbox/complement_graph_unionfind.hpp
     title: graph/blackbox/complement_graph_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':heavy_check_mark:'
@@ -80,7 +80,7 @@ data:
   - icon: ':warning:'
     path: graph/compress_tree.hpp
     title: graph/compress_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -122,13 +122,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/contour_query_range.hpp
     title: graph/ds/contour_query_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_tree_dp.hpp
     title: graph/ds/dynamic_tree_dp.hpp
   - icon: ':heavy_check_mark:'
@@ -146,13 +146,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/remove_one_edge_connectivity.hpp
     title: graph/ds/remove_one_edge_connectivity.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -161,7 +161,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
@@ -170,7 +170,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/eulerwalk.hpp
     title: graph/eulerwalk.hpp
   - icon: ':heavy_check_mark:'
@@ -203,7 +203,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
   - icon: ':heavy_check_mark:'
@@ -218,19 +218,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/maximum_weighted_antichain.hpp
     title: graph/maximum_weighted_antichain.hpp
   - icon: ':heavy_check_mark:'
     path: graph/minimum_cost_cycle.hpp
     title: graph/minimum_cost_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -248,7 +248,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/reverse_graph.hpp
     title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -266,13 +266,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dial.hpp
     title: graph/shortest_path/dial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/dijkstra.hpp
     title: graph/shortest_path/dijkstra.hpp
   - icon: ':heavy_check_mark:'
     path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
     title: graph/shortest_path/nonzero_group_product_shortest_path.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/shortest_path/top2_dijkstra.hpp
     title: graph/shortest_path/top2_dijkstra.hpp
   - icon: ':heavy_check_mark:'
@@ -284,16 +284,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':warning:'
     path: graph/to_directed_tree.hpp
     title: graph/to_directed_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -305,10 +305,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_diameter.hpp
     title: graph/tree_diameter.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/tree_dp/subtree_depth_sum.hpp
     title: graph/tree_dp/subtree_depth_sum.hpp
   - icon: ':warning:'
@@ -320,7 +320,7 @@ data:
   - icon: ':warning:'
     path: graph/tree_dp/tree_dp.hpp
     title: graph/tree_dp/tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -332,10 +332,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/twosat.hpp
     title: graph/twosat.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/unicyclic.hpp
     title: graph/unicyclic.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
   - icon: ':heavy_check_mark:'
@@ -344,10 +344,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
   - icon: ':heavy_check_mark:'
@@ -939,123 +939,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc160f.test.cpp
-    title: test/5_atcoder/abc160f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc180e.test.cpp
-    title: test/5_atcoder/abc180e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc209e.test.cpp
-    title: test/5_atcoder/abc209e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc212g.test.cpp
-    title: test/5_atcoder/abc212g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc214h.test.cpp
-    title: test/5_atcoder/abc214h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc220f.test.cpp
-    title: test/5_atcoder/abc220f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc220g.test.cpp
-    title: test/5_atcoder/abc220g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc222g.test.cpp
-    title: test/5_atcoder/abc222g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc223d.test.cpp
-    title: test/5_atcoder/abc223d.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc227g.test.cpp
-    title: test/5_atcoder/abc227g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc237ex.test.cpp
-    title: test/5_atcoder/abc237ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc245g.test.cpp
-    title: test/5_atcoder/abc245g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc245g2.test.cpp
-    title: test/5_atcoder/abc245g2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc266f.test.cpp
-    title: test/5_atcoder/abc266f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex.test.cpp
-    title: test/5_atcoder/abc269ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc269ex2.test.cpp
-    title: test/5_atcoder/abc269ex2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc270_f.test.cpp
-    title: test/5_atcoder/abc270_f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc270_g.test.cpp
-    title: test/5_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc273_e.test.cpp
-    title: test/5_atcoder/abc273_e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc274g.test.cpp
-    title: test/5_atcoder/abc274g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc283f.test.cpp
-    title: test/5_atcoder/abc283f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc298ex.test.cpp
-    title: test/5_atcoder/abc298ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc301h.test.cpp
-    title: test/5_atcoder/abc301h.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc314f.test.cpp
-    title: test/5_atcoder/abc314f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc319g.test.cpp
-    title: test/5_atcoder/abc319g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc334g.test.cpp
-    title: test/5_atcoder/abc334g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc335g.test.cpp
-    title: test/5_atcoder/abc335g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc336g.test.cpp
-    title: test/5_atcoder/abc336g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc339f.test.cpp
-    title: test/5_atcoder/abc339f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc349f.test.cpp
-    title: test/5_atcoder/abc349f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc351g.test.cpp
-    title: test/5_atcoder/abc351g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc354g.test.cpp
-    title: test/5_atcoder/abc354g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc023f.test.cpp
-    title: test/5_atcoder/agc023f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc064c.test.cpp
-    title: test/5_atcoder/arc064c.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc107.test.cpp
-    title: test/5_atcoder/arc107.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc151_e.test.cpp
-    title: test/5_atcoder/arc151_e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc153f.test.cpp
-    title: test/5_atcoder/arc153f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc157a.test.cpp
-    title: test/5_atcoder/arc157a.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1238,7 +1124,7 @@ data:
   - nt/discrete_log.hpp
   - nt/array_on_divisors.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1615.test.cpp
   - test/3_yukicoder/114.test.cpp
@@ -1340,44 +1226,6 @@ data:
   - test/4_aoj/ITP1_11_D.test.cpp
   - test/4_aoj/1566.test.cpp
   - test/4_aoj/GRL_1_C.test.cpp
-  - test/5_atcoder/abc220f.test.cpp
-  - test/5_atcoder/abc220g.test.cpp
-  - test/5_atcoder/abc269ex2.test.cpp
-  - test/5_atcoder/abc283f.test.cpp
-  - test/5_atcoder/agc023f.test.cpp
-  - test/5_atcoder/abc270_f.test.cpp
-  - test/5_atcoder/abc270_g.test.cpp
-  - test/5_atcoder/abc354g.test.cpp
-  - test/5_atcoder/abc351g.test.cpp
-  - test/5_atcoder/abc227g.test.cpp
-  - test/5_atcoder/abc339f.test.cpp
-  - test/5_atcoder/abc237ex.test.cpp
-  - test/5_atcoder/abc335g.test.cpp
-  - test/5_atcoder/arc153f.test.cpp
-  - test/5_atcoder/arc107.test.cpp
-  - test/5_atcoder/abc180e.test.cpp
-  - test/5_atcoder/abc336g.test.cpp
-  - test/5_atcoder/abc266f.test.cpp
-  - test/5_atcoder/abc274g.test.cpp
-  - test/5_atcoder/abc349f.test.cpp
-  - test/5_atcoder/abc223d.test.cpp
-  - test/5_atcoder/abc214h.test.cpp
-  - test/5_atcoder/abc209e.test.cpp
-  - test/5_atcoder/arc157a.test.cpp
-  - test/5_atcoder/abc245g2.test.cpp
-  - test/5_atcoder/abc301h.test.cpp
-  - test/5_atcoder/abc334g.test.cpp
-  - test/5_atcoder/abc273_e.test.cpp
-  - test/5_atcoder/abc245g.test.cpp
-  - test/5_atcoder/abc298ex.test.cpp
-  - test/5_atcoder/abc212g.test.cpp
-  - test/5_atcoder/abc319g.test.cpp
-  - test/5_atcoder/abc314f.test.cpp
-  - test/5_atcoder/abc269ex.test.cpp
-  - test/5_atcoder/arc064c.test.cpp
-  - test/5_atcoder/arc151_e.test.cpp
-  - test/5_atcoder/abc222g.test.cpp
-  - test/5_atcoder/abc160f.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/matching_line_graph.test.cpp
   - test/1_mytest/enumerate_labeled_tree.test.cpp

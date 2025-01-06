@@ -1,23 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
     path: graph/blackbox/complement_graph_distance.hpp
     title: graph/blackbox/complement_graph_distance.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc319g.test.cpp
-    title: test/5_atcoder/abc319g.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -149,9 +146,8 @@ data:
   requiredBy:
   - graph/blackbox/complement_graph_distance.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc319g.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/blackbox/complement_graph_bfs.hpp
 layout: document
 redirect_from:

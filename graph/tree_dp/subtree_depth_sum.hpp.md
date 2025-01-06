@@ -1,29 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_dp/rerooting_dp.hpp
     title: graph/tree_dp/rerooting_dp.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc220f.test.cpp
-    title: test/5_atcoder/abc220f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc298ex.test.cpp
-    title: test/5_atcoder/abc298ex.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/tree_dp/subtree_depth_sum.hpp\"\n\n#line 2 \"ds/hashmap.hpp\"\
@@ -297,10 +291,8 @@ data:
   path: graph/tree_dp/subtree_depth_sum.hpp
   requiredBy: []
   timestamp: '2025-01-04 13:02:14+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc220f.test.cpp
-  - test/5_atcoder/abc298ex.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: graph/tree_dp/subtree_depth_sum.hpp
 layout: document
 redirect_from:

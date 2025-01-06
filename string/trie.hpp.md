@@ -6,15 +6,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1269.test.cpp
     title: test/3_yukicoder/1269.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc268_ex.test.cpp
-    title: test/5_atcoder/abc268_ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc362g.test.cpp
-    title: test/5_atcoder/abc362g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_d
@@ -74,11 +68,9 @@ data:
   path: string/trie.hpp
   requiredBy: []
   timestamp: '2024-09-19 11:54:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1269.test.cpp
-  - test/5_atcoder/abc268_ex.test.cpp
-  - test/5_atcoder/abc362g.test.cpp
 documentation_of: string/trie.hpp
 layout: document
 redirect_from:

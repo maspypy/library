@@ -1,20 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc222g.test.cpp
-    title: test/5_atcoder/abc222g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc270_g.test.cpp
-    title: test/5_atcoder/abc270_g.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
@@ -42,10 +36,8 @@ data:
   path: alg/acted_set/affine.hpp
   requiredBy: []
   timestamp: '2023-07-25 22:13:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc270_g.test.cpp
-  - test/5_atcoder/abc222g.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/acted_set/affine.hpp
 layout: document
 redirect_from:

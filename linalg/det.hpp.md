@@ -1,11 +1,11 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -45,12 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc336g.test.cpp
-    title: test/5_atcoder/abc336g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/barrett.hpp\"\n\n// https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp\n\
@@ -102,10 +99,9 @@ data:
   - graph/count/BEST.hpp
   - graph/count/count_spanning_tree.hpp
   timestamp: '2023-10-24 14:53:54+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1303.test.cpp
-  - test/5_atcoder/abc336g.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/2_library_checker/linear_algebra/det_mod.test.cpp
   - test/2_library_checker/linear_algebra/matrix_det.test.cpp

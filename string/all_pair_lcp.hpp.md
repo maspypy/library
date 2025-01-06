@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc141e.test.cpp
-    title: test/5_atcoder/abc141e.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"string/all_pair_lcp.hpp\"\n// dp[i][j] = lcp(S[i:], T[j:])\n\
@@ -25,9 +22,8 @@ data:
   path: string/all_pair_lcp.hpp
   requiredBy: []
   timestamp: '2023-09-02 04:19:30+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc141e.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: string/all_pair_lcp.hpp
 layout: document
 redirect_from:

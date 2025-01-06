@@ -11,7 +11,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/powersums_assign.hpp
     title: alg/acted_monoid/powersums_assign.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':question:'
@@ -69,12 +69,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_I.test.cpp
     title: test/4_aoj/DSL_2_I.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc256ex.test.cpp
-    title: test/5_atcoder/abc256ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc256ex2.test.cpp
-    title: test/5_atcoder/abc256ex2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -106,8 +100,6 @@ data:
   - test/4_aoj/DSL_2_I.test.cpp
   - test/4_aoj/DSL_2_F.test.cpp
   - test/4_aoj/DSL_2_D.test.cpp
-  - test/5_atcoder/abc256ex2.test.cpp
-  - test/5_atcoder/abc256ex.test.cpp
   - test/1_mytest/rbst_am.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/max_assign.test.cpp

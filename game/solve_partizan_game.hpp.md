@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/dyadic_rational.hpp
     title: game/dyadic_rational.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/mex.hpp
     title: other/mex.hpp
   _extendedRequiredBy: []
@@ -15,12 +15,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc229h.test.cpp
-    title: test/5_atcoder/abc229h.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://qoj.ac/contest/1828/problem/9567
@@ -134,9 +131,8 @@ data:
   path: game/solve_partizan_game.hpp
   requiredBy: []
   timestamp: '2024-11-16 13:34:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/5_atcoder/abc229h.test.cpp
   - test/1_mytest/partizan.test.cpp
 documentation_of: game/solve_partizan_game.hpp
 layout: document

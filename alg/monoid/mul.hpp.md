@@ -14,28 +14,28 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/discrete_log.hpp
     title: nt/discrete_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':warning:'
     path: poly/sum_of_C_negative.hpp
     title: poly/sum_of_C_negative.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/kth_term_of_p_recursive.hpp
     title: seq/kth_term_of_p_recursive.hpp
   _extendedVerifiedWith:
@@ -81,30 +81,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc222g.test.cpp
-    title: test/5_atcoder/abc222g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc222h_2.test.cpp
-    title: test/5_atcoder/abc222h_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc270_g.test.cpp
-    title: test/5_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g.test.cpp
-    title: test/5_atcoder/abc276_g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc276_g_2.test.cpp
-    title: test/5_atcoder/abc276_g_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc144d.test.cpp
-    title: test/5_atcoder/arc144d.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/arc160d.test.cpp
-    title: test/5_atcoder/arc160d.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/mul.hpp\"\n\r\ntemplate <class T>\r\nstruct Monoid_Mul\
@@ -134,7 +113,7 @@ data:
   - graph/count/count_labeled_bipartite.hpp
   - nt/discrete_log.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/899.test.cpp
   - test/3_yukicoder/1339.test.cpp
@@ -143,13 +122,6 @@ data:
   - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
-  - test/5_atcoder/arc144d.test.cpp
-  - test/5_atcoder/abc270_g.test.cpp
-  - test/5_atcoder/abc276_g_2.test.cpp
-  - test/5_atcoder/abc222h_2.test.cpp
-  - test/5_atcoder/abc276_g.test.cpp
-  - test/5_atcoder/arc160d.test.cpp
-  - test/5_atcoder/abc222g.test.cpp
   - test/1_mytest/powerquery.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/factorial_998.test.cpp

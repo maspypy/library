@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc218c.test.cpp
-    title: test/5_atcoder/abc218c.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/rot90.hpp\"\ntemplate <typename VC>\nvc<VC> rot90(const\
@@ -27,9 +24,8 @@ data:
   path: linalg/rot90.hpp
   requiredBy: []
   timestamp: '2023-10-24 14:07:00+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc218c.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: linalg/rot90.hpp
 layout: document
 redirect_from:

@@ -20,16 +20,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmax_add.hpp
     title: alg/acted_monoid/minmax_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_add.hpp
     title: alg/acted_monoid/sum_add.hpp
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_assign.hpp
     title: alg/acted_monoid/sum_assign.hpp
   - icon: ':heavy_check_mark:'
@@ -44,10 +44,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_trick_1.hpp
     title: convex/slope_trick/slope_trick_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/cumsum_2d.hpp
     title: ds/cumsum_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/doubling.hpp
     title: ds/doubling.hpp
   - icon: ':heavy_check_mark:'
@@ -56,13 +56,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/dual_fenwicktree_2d.hpp
     title: ds/fenwicktree/dual_fenwicktree_2d.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/fenwicktree/fenwicktree_2d.hpp
     title: ds/fenwicktree/fenwicktree_2d.hpp
   - icon: ':heavy_check_mark:'
@@ -86,7 +86,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/range_add_range_sum.hpp
     title: ds/range_add_range_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/rectangle_union.hpp
     title: ds/rectangle_union.hpp
   - icon: ':warning:'
@@ -95,16 +95,16 @@ data:
   - icon: ':warning:'
     path: ds/segtree/range_add_make_increasing.hpp
     title: ds/segtree/range_add_make_increasing.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
@@ -134,7 +134,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/factorial_digit_system.hpp
     title: seq/factorial_digit_system.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   - icon: ':heavy_check_mark:'
@@ -498,57 +498,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc127f_1.test.cpp
-    title: test/5_atcoder/abc127f_1.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc174f.test.cpp
-    title: test/5_atcoder/abc174f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc190f.test.cpp
-    title: test/5_atcoder/abc190f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc202_f.test.cpp
-    title: test/5_atcoder/abc202_f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc228f.test.cpp
-    title: test/5_atcoder/abc228f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc234g.test.cpp
-    title: test/5_atcoder/abc234g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc237g.test.cpp
-    title: test/5_atcoder/abc237g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc241e.test.cpp
-    title: test/5_atcoder/abc241e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc256ex.test.cpp
-    title: test/5_atcoder/abc256ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc256ex2.test.cpp
-    title: test/5_atcoder/abc256ex2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc266h_2.test.cpp
-    title: test/5_atcoder/abc266h_2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc280f.test.cpp
-    title: test/5_atcoder/abc280f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc318b.test.cpp
-    title: test/5_atcoder/abc318b.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc324g.test.cpp
-    title: test/5_atcoder/abc324g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc324g2.test.cpp
-    title: test/5_atcoder/abc324g2.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc362g.test.cpp
-    title: test/5_atcoder/abc362g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -614,7 +566,7 @@ data:
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1234.test.cpp
   - test/3_yukicoder/2003.test.cpp
@@ -670,22 +622,6 @@ data:
   - test/4_aoj/2842.test.cpp
   - test/4_aoj/DSL_1_B.test.cpp
   - test/4_aoj/DSL_4_A.test.cpp
-  - test/5_atcoder/abc237g.test.cpp
-  - test/5_atcoder/abc256ex2.test.cpp
-  - test/5_atcoder/abc256ex.test.cpp
-  - test/5_atcoder/abc324g2.test.cpp
-  - test/5_atcoder/abc127f_1.test.cpp
-  - test/5_atcoder/abc174f.test.cpp
-  - test/5_atcoder/abc324g.test.cpp
-  - test/5_atcoder/abc202_f.test.cpp
-  - test/5_atcoder/abc266h_2.test.cpp
-  - test/5_atcoder/abc362g.test.cpp
-  - test/5_atcoder/abc318b.test.cpp
-  - test/5_atcoder/abc228f.test.cpp
-  - test/5_atcoder/abc280f.test.cpp
-  - test/5_atcoder/abc190f.test.cpp
-  - test/5_atcoder/abc234g.test.cpp
-  - test/5_atcoder/abc241e.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/summin_add.test.cpp

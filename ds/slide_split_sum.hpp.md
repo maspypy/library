@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   _extendedRequiredBy: []
@@ -9,18 +9,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2654.test.cpp
     title: test/3_yukicoder/2654.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc281e.test.cpp
-    title: test/5_atcoder/abc281e.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc312f.test.cpp
-    title: test/5_atcoder/abc312f.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc314g.test.cpp
-    title: test/5_atcoder/abc314g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/removable_queue.hpp\"\n\ntemplate <typename QUE_TYPE>\n\
@@ -80,12 +71,9 @@ data:
   path: ds/slide_split_sum.hpp
   requiredBy: []
   timestamp: '2024-10-14 04:14:06+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2654.test.cpp
-  - test/5_atcoder/abc314g.test.cpp
-  - test/5_atcoder/abc281e.test.cpp
-  - test/5_atcoder/abc312f.test.cpp
 documentation_of: ds/slide_split_sum.hpp
 layout: document
 redirect_from:

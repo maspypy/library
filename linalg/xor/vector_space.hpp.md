@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
   _extendedRequiredBy:
@@ -18,12 +18,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/184.test.cpp
     title: test/3_yukicoder/184.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc141f.test.cpp
-    title: test/5_atcoder/abc141f.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E\
@@ -104,10 +101,9 @@ data:
   requiredBy:
   - alg/monoid/merge_vector_space.hpp
   timestamp: '2024-05-04 19:37:33+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/184.test.cpp
-  - test/5_atcoder/abc141f.test.cpp
   - test/1_mytest/QOJ5445.test.cpp
   - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
 documentation_of: linalg/xor/vector_space.hpp

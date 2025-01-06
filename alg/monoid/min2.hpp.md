@@ -2,19 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: graph/shortest_path/top2_dijkstra.hpp
     title: graph/shortest_path/top2_dijkstra.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc245g.test.cpp
-    title: test/5_atcoder/abc245g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc245g2.test.cpp
-    title: test/5_atcoder/abc245g2.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/min2.hpp\"\n\ntemplate <typename T, typename\
@@ -47,10 +41,8 @@ data:
   requiredBy:
   - graph/shortest_path/top2_dijkstra.hpp
   timestamp: '2023-12-23 11:53:13+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc245g2.test.cpp
-  - test/5_atcoder/abc245g.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/min2.hpp
 layout: document
 redirect_from:

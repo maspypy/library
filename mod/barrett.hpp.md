@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/count/BEST.hpp
     title: graph/count/BEST.hpp
   - icon: ':heavy_check_mark:'
@@ -11,13 +11,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
   - icon: ':heavy_check_mark:'
     path: mod/binomial.hpp
     title: mod/binomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
   - icon: ':warning:'
@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -38,7 +38,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':heavy_check_mark:'
@@ -240,27 +240,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc222g.test.cpp
-    title: test/5_atcoder/abc222g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc270_g.test.cpp
-    title: test/5_atcoder/abc270_g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc281g.test.cpp
-    title: test/5_atcoder/abc281g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc335g.test.cpp
-    title: test/5_atcoder/abc335g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc336g.test.cpp
-    title: test/5_atcoder/abc336g.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/agc058d2.test.cpp
-    title: test/5_atcoder/agc058d2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://github.com/atcoder/ac-library/blob/master/atcoder/internal_math.hpp
@@ -326,7 +308,7 @@ data:
   - nt/four_square.hpp
   - nt/two_square.hpp
   timestamp: '2023-10-17 07:10:25+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1339.test.cpp
   - test/3_yukicoder/2119.test.cpp
@@ -342,12 +324,6 @@ data:
   - test/3_yukicoder/1025.test.cpp
   - test/3_yukicoder/1956.test.cpp
   - test/3_yukicoder/2120.test.cpp
-  - test/5_atcoder/agc058d2.test.cpp
-  - test/5_atcoder/abc270_g.test.cpp
-  - test/5_atcoder/abc281g.test.cpp
-  - test/5_atcoder/abc335g.test.cpp
-  - test/5_atcoder/abc336g.test.cpp
-  - test/5_atcoder/abc222g.test.cpp
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/three_square.test.cpp
   - test/1_mytest/count_bipartite.test.cpp

@@ -2,16 +2,13 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':warning:'
     path: geo3d/cross_point.hpp
     title: geo3d/cross_point.hpp
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc301g.test.cpp
-    title: test/5_atcoder/abc301g.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo3d/base.hpp\"\n\ntemplate <typename T>\nstruct Point_3d\
@@ -60,9 +57,8 @@ data:
   requiredBy:
   - geo3d/cross_point.hpp
   timestamp: '2024-10-26 12:13:04+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc301g.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: geo3d/base.hpp
 layout: document
 redirect_from:

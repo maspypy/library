@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/arc153b2.test.cpp
-    title: test/5_atcoder/arc153b2.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links:
     - https://qoj.ac/contest/1576/problem/8512
@@ -58,9 +55,8 @@ data:
   path: alg/monoid/dihedral.hpp
   requiredBy: []
   timestamp: '2024-04-04 05:59:02+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/arc153b2.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: alg/monoid/dihedral.hpp
 layout: document
 redirect_from:

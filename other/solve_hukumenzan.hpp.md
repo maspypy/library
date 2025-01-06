@@ -2,13 +2,10 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
-  _extendedVerifiedWith:
-  - icon: ':x:'
-    path: test/5_atcoder/abc198d.test.cpp
-    title: test/5_atcoder/abc198d.test.cpp
-  _isVerificationFailed: true
+  _extendedVerifiedWith: []
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':warning:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/solve_hukumenzan.hpp\"\n// a + b = c \u3092\u89E3\u304F\
@@ -37,9 +34,8 @@ data:
   path: other/solve_hukumenzan.hpp
   requiredBy: []
   timestamp: '2022-08-27 04:53:49+09:00'
-  verificationStatus: LIBRARY_ALL_WA
-  verifiedWith:
-  - test/5_atcoder/abc198d.test.cpp
+  verificationStatus: LIBRARY_NO_TESTS
+  verifiedWith: []
 documentation_of: other/solve_hukumenzan.hpp
 layout: document
 redirect_from:

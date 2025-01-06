@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_periodic_sequence.hpp
     title: seq/interpolate_periodic_sequence.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
   - icon: ':heavy_check_mark:'
@@ -33,18 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc237ex.test.cpp
-    title: test/5_atcoder/abc237ex.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc279b.test.cpp
-    title: test/5_atcoder/abc279b.test.cpp
-  - icon: ':x:'
-    path: test/5_atcoder/abc354g.test.cpp
-    title: test/5_atcoder/abc354g.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> //\
@@ -68,14 +59,11 @@ data:
   - string/is_substring.hpp
   - seq/interpolate_periodic_sequence.hpp
   timestamp: '2024-09-03 08:13:21+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2858.test.cpp
   - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/1848.test.cpp
-  - test/5_atcoder/abc354g.test.cpp
-  - test/5_atcoder/abc237ex.test.cpp
-  - test/5_atcoder/abc279b.test.cpp
   - test/1_mytest/is_substring.test.cpp
   - test/2_library_checker/string/run_enumerate_vec.test.cpp
   - test/2_library_checker/string/zalgorithm.test.cpp
