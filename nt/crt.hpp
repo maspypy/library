@@ -7,13 +7,11 @@
 template <typename T>
 i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
   int n = len(vals);
-  FOR(i, n) {
-    vals[i] = ((vals[i] %= mods[i]) >= 0 ? vals[i] : vals[i] + mods[i]);
-  }
+  FOR(i, n) { vals[i] = ((vals[i] %= mods[i]) >= 0 ? vals[i] : vals[i] + mods[i]); }
 
   bool ng = 0;
   auto reduction_by_factor = [&]() -> void {
-    unordered_map<T, pair<T, int>> MP;
+    unordered_map<T, pair<T, T>> MP;
     FOR(i, n) {
       for (auto&& [p, e]: factor(mods[i])) {
         T mod = 1;
@@ -41,7 +39,7 @@ i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
   auto reduction_by_coprime_factor = [&]() -> void {
     auto [basis, pfs] = coprime_factorization<T>(mods);
     int k = len(basis);
-    vc<pair<T, int>> dat(k, {1, 0});
+    vc<pair<T, T>> dat(k, {1, 0});
     FOR(i, n) {
       for (auto&& [pid, exp]: pfs[i]) {
         T mod = 1;
@@ -59,9 +57,7 @@ i128 CRT(vc<T> vals, vc<T> mods, ll new_mod = -1, bool coprime = false) {
     for (auto&& [mod, val]: dat) { mods.eb(mod), vals.eb(val); }
     n = len(vals);
   };
-  if (!coprime) {
-    (n <= 10 ? reduction_by_coprime_factor() : reduction_by_factor());
-  }
+  if (!coprime) { (n <= 10 ? reduction_by_coprime_factor() : reduction_by_factor()); }
 
   if (ng) return -1;
   if (n == 0) return 0;
