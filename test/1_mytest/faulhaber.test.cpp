@@ -1,19 +1,8 @@
 #define PROBLEM "https://judge.yosupo.jp/problem/aplusb"
 #include "my_template.hpp"
 
-#include "seq/famous/bernoulli.hpp"
+#include "seq/famous/faulhaber.hpp"
 #include "mod/modint.hpp"
-
-// sum_[1,n]i^p=f(n)
-template <typename mint>
-vc<mint> faulhaber_formula(int p) {
-  vc<mint> F = bernoulli_number<mint>(p + 1);
-  if (1 <= p) F[1] = inv<mint>(2);
-  reverse(all(F));
-  F[0] = 0;
-  FOR(r, p + 1) { F[p - r + 1] *= fact<mint>(p) * fact_inv<mint>(r) * fact_inv<mint>(p + 1 - r); }
-  return F;
-}
 
 void test() {
   using mint = modint107;
