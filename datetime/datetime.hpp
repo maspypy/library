@@ -1,20 +1,21 @@
+// https://codeforces.com/problemset/problem/698/E
 struct DateTime {
-  static constexpr int month_days[13]
-      = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-  int year, month, day;
-  DateTime(int y, int m, int d) : year(y), month(m), day(d) {}
+  static constexpr int month_days[13] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+  ll year;
+  int month, day;
+  DateTime(ll y, int m, int d) : year(y), month(m), day(d) {}
 
-  // 1年1月1日が 0 となるように変換
-  int to_int() {
-    int y = (month <= 2 ? year - 1 : year);
+  // 1年1月1日が 0 となるように変換 (return: long long)
+  ll to_int() {
+    ll y = (month <= 2 ? year - 1 : year);
     int m = (month <= 2 ? month + 12 : month);
     int d = day;
     return 365 * y + y / 4 - y / 100 + y / 400 + 306 * (m + 1) / 10 + d - 429;
   }
 
   // to_int() の逆関数
-  static DateTime from_int(int x) {
-    int y = x * 400 / 146097 + 1;
+  static DateTime from_int(ll x) {
+    ll y = x * 400 / 146097 + 1;
     int d = x - DateTime(y, 1, 1).to_int();
     int m = 1;
     while (d >= 28) {
@@ -53,24 +54,12 @@ struct DateTime {
     return tmp;
   }
 
-  bool operator==(DateTime const& rhs) const {
-    return to_tuple() == rhs.to_tuple();
-  }
-  bool operator!=(DateTime const& rhs) const {
-    return to_tuple() != rhs.to_tuple();
-  }
-  bool operator<(DateTime const& rhs) const {
-    return to_tuple() < rhs.to_tuple();
-  }
-  bool operator<=(DateTime const& rhs) const {
-    return to_tuple() <= rhs.to_tuple();
-  }
-  bool operator>(DateTime const& rhs) const {
-    return to_tuple() > rhs.to_tuple();
-  }
-  bool operator>=(DateTime const& rhs) const {
-    return to_tuple() >= rhs.to_tuple();
-  }
+  bool operator==(DateTime const& rhs) const { return to_tuple() == rhs.to_tuple(); }
+  bool operator!=(DateTime const& rhs) const { return to_tuple() != rhs.to_tuple(); }
+  bool operator<(DateTime const& rhs) const { return to_tuple() < rhs.to_tuple(); }
+  bool operator<=(DateTime const& rhs) const { return to_tuple() <= rhs.to_tuple(); }
+  bool operator>(DateTime const& rhs) const { return to_tuple() > rhs.to_tuple(); }
+  bool operator>=(DateTime const& rhs) const { return to_tuple() >= rhs.to_tuple(); }
 
   // yyyy[sep]mm[sep]dd
   string to_string(string sep = "-") {
@@ -83,14 +72,14 @@ struct DateTime {
     return y + sep + m + sep + d;
   }
 
-  tuple<int, int, int> to_tuple() const { return {year, month, day}; }
+  tuple<ll, int, int> to_tuple() const { return {year, month, day}; }
 
-  static bool is_leap_year(int y) {
+  static bool is_leap_year(ll y) {
     if (y % 400 == 0) return true;
     return (y % 4 == 0 && y % 100 != 0);
   }
 
-  static bool is_valid_date(int y, int m, int d) {
+  static bool is_valid_date(ll y, int m, int d) {
     if (!(1 <= m && m <= 12)) return 0;
     int mx = month_days[m];
     if (m == 2 && is_leap_year(y)) ++mx;

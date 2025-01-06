@@ -5,6 +5,7 @@
 // n ループで打ち切っても大きさ n のマッチングの最適解ではない
 template <typename T, bool MINIMIZE>
 tuple<T, vc<int>, vc<T>, vc<T>> hungarian(vvc<T>& C) {
+  if (C.empty()) { return {0, {}, {}, {}}; }
   int N = len(C);
   int M = len(C[0]);
   assert(N <= M);
