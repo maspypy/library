@@ -38,19 +38,31 @@ i128 count_lattice_point_in_convex_polygon(ll L, ll R, vc<tuple<ll, ll, ll>> LIN
     elif (s > 0) {
       // 上側の方が傾きが大きい
       i128 x = ceil<i128>(t, s);
-      if (R <= x) return;
       chmax(L, x);
     }
     else {
       i128 x = floor<i128>(-t, -s);
-      if (x < L) return;
       chmin(R, x + 1);
     }
     if (L >= R) return;
-    ANS += floor_sum_of_linear<i128, ll>(L, R, a2, b2, c2);
-    ANS -= floor_sum_of_linear<i128, ll>(L, R, a1, b1 - 1, c1);
+    ANS += floor_sum_of_linear<i128, i128>(L, R, a2, b2, c2);
+    ANS -= floor_sum_of_linear<i128, i128>(L, R, a1, b1 - 1, c1);
   };
 
-  for (auto& [L, R, a1, b1, c1, a2, b2, c2]: merge_58<ll>(LOWER, UPPER)) { wk(L, R, a1, b1, c1, a2, b2, c2); }
+  merge_58(LOWER, UPPER, wk);
+
+  // reverse(all(LOWER));
+  // reverse(all(UPPER));
+  // while (len(LOWER) && len(UPPER)) {
+  //   auto [L1, R1, a1, b1, c1] = POP(LOWER);
+  //   auto [L2, R2, a2, b2, c2] = POP(UPPER);
+  //   assert(L1 == L2);
+  //   ll R = min(R1, R2);
+  //   wk(L1, R, a1, b1, c1, a2, b2, c2);
+  //   if (R < R1) LOWER.eb(R, R1, a1, b1, c1);
+  //   if (R < R2) UPPER.eb(R, R2, a2, b2, c2);
+  // }
+
+  // for (auto& [L, R, a1, b1, c1, a2, b2, c2]: merge_58<ll>(LOWER, UPPER)) { wk(L, R, a1, b1, c1, a2, b2, c2); }
   return ANS;
 }

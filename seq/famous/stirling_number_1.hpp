@@ -3,7 +3,7 @@
 #include "poly/fps_div.hpp"
 
 template <typename mint>
-vc<mint> stirling_number_1_2d(int nmax, int kmax) {
+vvc<mint> stirling_number_1_2d(int nmax, int kmax) {
   vv(mint, A, nmax + 1, kmax + 1);
   A[0][0] = 1;
   for (int i = 1; i <= nmax; ++i) {
@@ -14,6 +14,7 @@ vc<mint> stirling_number_1_2d(int nmax, int kmax) {
       x -= A[i - 1][j] * mint(i - 1);
     }
   }
+  return A;
 }
 
 // x(x+1)...(x+n-1) の係数 c(n, k)

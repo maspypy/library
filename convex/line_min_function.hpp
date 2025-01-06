@@ -167,20 +167,29 @@ vc<tuple<T, T, T, T, T, T>> merge_46(vc<tuple<T, T, T, T>> A, vc<tuple<T, T, T, 
 }
 
 // (L,R,func) の下側と上側をマージするときなどに使う用
-template <typename T>
-vc<tuple<T, T, T, T, T, T, T, T>> merge_58(vc<tuple<T, T, T, T, T>> A, vc<tuple<T, T, T, T, T>> B) {
-  vc<tuple<T, T, T, T, T, T, T, T, T>> ANS;
-  reverse(all(A));
-  reverse(all(B));
-  while (len(A) && len(B)) {
-    auto& [l1, r1, a1, b1, c1] = A.back();
-    auto& [l2, r2, a2, b2, c2] = B.back();
-    assert(l1 == l2);
-    T r = min(r1, r2);
-    ANS.eb(l1, r, a1, b1, c1, a2, b2, c2);
-    l1 = r, l2 = r;
-    if (r1 == r) POP(A);
-    if (r2 == r) POP(B);
-  };
-  return ANS;
+// f(L,R,a1,b1,a2,b2)
+template <typename T, typename F>
+void merge_46(const vc<tuple<T, T, T, T>>& A, const vc<tuple<T, T, T, T>>& B, F f) {
+  int i = 0, j = 0;
+  while (i < len(A) && j < len(B)) {
+    auto& [l1, r1, a1, b1] = A[i];
+    auto& [l2, r2, a2, b2] = B[j];
+    T l = max(l1, l2), r = min(r1, r2);
+    if (l < r) f(l, r, a1, b1, a2, b2);
+    (r1 < r2 ? i : j)++;
+  }
+}
+
+// (L,R,func) の下側と上側をマージするときなどに使う用
+// f(L,R,a1,b1,a2,b2)
+template <typename T, typename F>
+void merge_58(const vc<tuple<T, T, T, T, T>>& A, const vc<tuple<T, T, T, T, T>>& B, F f) {
+  int i = 0, j = 0;
+  while (i < len(A) && j < len(B)) {
+    auto& [l1, r1, a1, b1, c1] = A[i];
+    auto& [l2, r2, a2, b2, c2] = B[j];
+    T l = max(l1, l2), r = min(r1, r2);
+    if (l < r) f(l, r, a1, b1, c1, a2, b2, c2);
+    (r1 < r2 ? i : j)++;
+  }
 }
