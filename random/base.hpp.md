@@ -244,6 +244,9 @@ data:
     path: test/1_mytest/count_indep_set.test.cpp
     title: test/1_mytest/count_indep_set.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+    title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
     title: test/1_mytest/count_points_in_triangles.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1092,6 +1095,7 @@ data:
   - test/1_mytest/nth_element_from_sorted_lists.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
   - test/1_mytest/pascal.test.cpp
+  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/rbst_monoid_2.test.cpp

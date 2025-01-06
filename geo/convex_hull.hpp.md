@@ -5,13 +5,13 @@ data:
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convex/count_lattice_point_in_convex_polygon.hpp
     title: convex/count_lattice_point_in_convex_polygon.hpp
   - icon: ':warning:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':heavy_check_mark:'
@@ -33,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+    title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/max_dot.test.cpp
     title: test/1_mytest/max_dot.test.cpp
@@ -160,6 +163,7 @@ data:
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp

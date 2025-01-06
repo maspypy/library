@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':heavy_check_mark:'
@@ -14,13 +14,15 @@ data:
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
+  _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+    title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links:
-    - https://codeforces.com/contest/1098/submission/299841182
+    links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
     \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
@@ -111,104 +113,113 @@ data:
     \ = -b;\n  auto ANS = line_min_function_real<Re, T>(LINE);\n  for (auto& [l, r,\
     \ a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c,\
     \ \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092\
-    \ [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\
-    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename\
-    \ T>\nvc<tuple<T, T, T, T, T>> line_min_function_rational(vc<tuple<T, T, T>> LINE,\
-    \ T L, T R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto& L, auto&\
-    \ R) -> bool {\n    auto& [a1, b1, c1] = L;\n    auto& [a2, b2, c2] = R;\n   \
-    \ return a1 * c2 > a2 * c1;\n  });\n  vc<tuple<T, T, T, T, T>> ANS;\n  for (auto&\
-    \ [a2, b2, c2]: LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L,\
-    \ R, a2, b2, c2);\n        break;\n      }\n      auto& [L1, R1, a1, b1, c1] =\
-    \ ANS.back();\n      if ((a1 * L1 + b1) * c2 > (a2 * L1 + b2) * c1) {\n      \
-    \  ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n\
-    \      }\n      T s = c2 * a1 - a2 * c1;\n      if (s == 0) break;\n      assert(s\
-    \ > 0);\n      T t = b2 * c1 - b1 * c2;\n      T x = t / s;\n      assert(L1 <=\
-    \ x);\n      if (x >= R1 - 1) break;\n      R1 = x + 1;\n      ANS.eb(x + 1, R,\
-    \ a2, b2, c2);\n    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\
-    \u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b,c]\
-    \ \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\
-    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename T>\nvc<tuple<T,\
-    \ T, T, T, T>> line_max_function_rational(vc<tuple<T, T, T>> LINE, T L, T R) {\n\
-    \  for (auto& [a, b, c]: LINE) a = -a, b = -b;\n  auto ANS = line_min_function_rational<T>(LINE,\
-    \ L, R);\n  for (auto& [L, R, a, b, c]: ANS) a = -a, b = -b;\n  return ANS;\n\
-    }\n\n// LINE(a,b): y=ax+b, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\
-    \u6570\u306E min \u3092 [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n\
-    // ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\n\
-    template <typename T>\nvc<tuple<T, T, T, T>> line_min_function_integer(vc<pair<T,\
-    \ T>> LINE, T L, T R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE), [&](auto&\
-    \ L, auto& R) -> bool {\n    auto& [a1, b1] = L;\n    auto& [a2, b2] = R;\n  \
-    \  return a1 > a2;\n  });\n  vc<tuple<T, T, T, T>> ANS;\n  for (auto& [a2, b2]:\
-    \ LINE) {\n    while (1) {\n      if (ANS.empty()) {\n        ANS.eb(L, R, a2,\
-    \ b2);\n        break;\n      }\n      auto& [L1, R1, a1, b1] = ANS.back();\n\
-    \      if ((a1 * L1 + b1) > (a2 * L1 + b2)) {\n        ANS.pop_back();\n     \
-    \   if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n      T\
-    \ s = a1 - a2;\n      if (s == 0) break;\n      assert(s > 0);\n      T t = b2\
-    \ - b1;\n      T x = t / s;\n      assert(L1 <= x);\n      if (x >= R1 - 1) break;\n\
-    \      R1 = x + 1;\n      ANS.eb(x + 1, R, a2, b2);\n    }\n  }\n  return ANS;\n\
-    }\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\
-    \u95A2\u6570\u306E min \u3092 [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\
-    \u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\
-    \u306A\u3044,\ntemplate <typename T>\nvc<tuple<T, T, T, T>> line_max_function_integer(vc<pair<T,\
-    \ T>> LINE, T L, T R) {\n  for (auto& [a, b]: LINE) a = -a, b = -b;\n  auto ANS\
-    \ = line_min_function_integer<T>(LINE, L, R);\n  for (auto& [L, R, a, b]: ANS)\
-    \ a = -a, b = -b;\n  return ANS;\n}\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\
-    \n// sum_{x in [L,R)} floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067\
-    \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
-    \u5EA6\ntemplate <typename O = i128, typename I = long long>\nO floor_sum_of_linear(I\
-    \ L, I R, I a, I b, I mod) {\n  assert(L <= R);\n  O res = 0;\n  b += L * a;\n\
-    \  I N = R - L;\n\n  if (b < 0) {\n    I k = ceil(-b, mod);\n    b += k * mod;\n\
-    \    res -= O(N) * O(k);\n  }\n\n  while (N) {\n    I q;\n    tie(q, a) = divmod(a,\
-    \ mod);\n    res += (N & 1 ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1)\
-    \ * O(q));\n    if (b >= mod) {\n      tie(q, b) = divmod(b, mod);\n      res\
-    \ += O(N) * q;\n    }\n    tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod)\
-    \ = mp(mod, a);\n  }\n  return res;\n}\n#line 3 \"convex/count_lattice_point_in_convex_polygon.hpp\"\
-    \n\n// L<=x<R, ax+by>=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\
-    \u754C\u3067\u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// ab \u304C\
-    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u306A\u3069\n// https://codeforces.com/contest/1098/submission/299841182\n\
-    i128 count_lattice_point_in_convex_polygon(ll L, ll R, vc<tuple<ll, ll, ll>> LINE)\
-    \ {\n  vc<tuple<ll, ll, ll>> LINE1, LINE2;\n  for (auto& [a, b, c]: LINE) {\n\
-    \    if (b == 0) {\n      // ax>=c\n      assert(a != 0);\n      if (a > 0) {\
-    \ chmax(L, ceil<ll>(c, a)); }\n      elif (a < 0) { chmin(R, floor<ll>(-c, -a)\
-    \ + 1); }\n    } else {\n      if (b > 0) {\n        LINE1.eb(-a, c, b);\n   \
-    \   } else {\n        LINE2.eb(a, -c, -b);\n      }\n    }\n  }\n  if (L >= R)\
-    \ return 0;\n  if (LINE1.empty() || LINE2.empty()) return -1;\n\n  auto LOWER\
-    \ = line_max_function_rational(LINE1, L, R);\n  auto UPPER = line_min_function_rational(LINE2,\
-    \ L, R);\n\n  i128 ANS = 0;\n\n  auto wk = [&](ll L, ll R, ll a1, ll b1, ll c1,\
-    \ ll a2, ll b2, ll c2) -> void {\n    if (a1 * c2 > a2 * c1) {\n      a1 = -a1,\
-    \ b1 = -b1;\n      a2 = -a2, b2 = -b2;\n    }\n    i128 lhs = i128(a1 * L + b1)\
-    \ * c2;\n    i128 rhs = i128(a2 * L + b2) * c1;\n    if (lhs > rhs) {\n      ll\
-    \ s = a2 * c1 - a1 * c2;\n      ll t = b1 * c2 - b2 * c1;\n      if (s == 0) return;\n\
-    \      chmax(L, ceil<ll>(t, s));\n    }\n    if (L >= R) return;\n    ANS += floor_sum_of_linear<i128,\
-    \ ll>(L, R, a2, b2, c2);\n    ANS -= floor_sum_of_linear<i128, ll>(L, R, a1, b1\
-    \ - 1, c1);\n  };\n\n  reverse(all(LOWER));\n  reverse(all(UPPER));\n  while (len(LOWER)\
-    \ && len(UPPER)) {\n    auto [L1, R1, a1, b1, c1] = POP(LOWER);\n    auto [L2,\
-    \ R2, a2, b2, c2] = POP(UPPER);\n    assert(L1 == L2);\n    ll R = min(R1, R2);\n\
-    \    wk(L1, R, a1, b1, c1, a2, b2, c2);\n    if (R < R1) LOWER.eb(R, R1, a1, b1,\
-    \ c1);\n    if (R < R2) UPPER.eb(R, R2, a2, b2, c2);\n  }\n  return ANS;\n}\n"
+    \ [L,R,a,b,c] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\
+    \u30FC\u30D5\u30ED\u30FC\u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(vc<tuple<ll,\
+    \ ll, ll>> LINE, ll L, ll R) {\n  // \u50BE\u304D\u964D\u9806\n  sort(all(LINE),\
+    \ [&](auto& L, auto& R) -> bool {\n    auto& [a1, b1, c1] = L;\n    auto& [a2,\
+    \ b2, c2] = R;\n    return i128(a1) * c2 > i128(a2) * c1;\n  });\n  vc<tuple<ll,\
+    \ ll, ll, ll, ll>> ANS;\n  for (auto& [a2, b2, c2]: LINE) {\n    while (1) {\n\
+    \      if (ANS.empty()) {\n        ANS.eb(L, R, a2, b2, c2);\n        break;\n\
+    \      }\n      auto& [L1, R1, a1, b1, c1] = ANS.back();\n      i128 s = i128(c2)\
+    \ * a1 - i128(a2) * c1; // >= 0\n      i128 t = i128(b2) * c1 - i128(b1) * c2;\n\
+    \      if (s == 0) {\n        // \u5E73\u884C\u306A\u306E\u3067\u5C0F\u3055\u3044\
+    \u65B9\u3060\u3051\u3092\u6B8B\u3059\n        if (t >= 0) break;\n        ANS.pop_back();\n\
+    \        if (len(ANS)) get<1>(ANS.back()) = R;\n        continue;\n      }\n \
+    \     i128 x = ceil<i128>(t, s);\n      // x \u4EE5\u4E0A\u3067 2 \u306E\u65B9\
+    \u304C\u4E0B\u306B\u6765\u308B\n      if (x <= L1) {\n        ANS.pop_back();\n\
+    \        continue;\n      }\n      if (x < R) {\n        R1 = x;\n        ANS.eb(x,\
+    \ R, a2, b2, c2);\n        break;\n      } else {\n        break;\n      }\n \
+    \   }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\
+    \u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b,c] \u306E\
+    \u5217\u3068\u3057\u3066\u51FA\u529B\n// \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
+    \u5B89\u5168\nvc<tuple<ll, ll, ll, ll, ll>> line_max_function_rational(vc<tuple<ll,\
+    \ ll, ll>> LINE, ll L, ll R) {\n  for (auto& [a, b, c]: LINE) a = -a, b = -b;\n\
+    \  auto ANS = line_min_function_rational(LINE, L, R);\n  for (auto& [L, R, a,\
+    \ b, c]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\n// LINE(a,b): y=ax+b, \u8A55\
+    \u4FA1\u70B9\u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b]\
+    \ \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// ax+b \u304C\u30AA\u30FC\u30D0\
+    \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename T>\nvc<tuple<T,\
+    \ T, T, T>> line_min_function_integer(vc<pair<T, T>> LINE, T L, T R) {\n  // \u50BE\
+    \u304D\u964D\u9806\n  sort(all(LINE), [&](auto& L, auto& R) -> bool {\n    auto&\
+    \ [a1, b1] = L;\n    auto& [a2, b2] = R;\n    return a1 > a2;\n  });\n  vc<tuple<T,\
+    \ T, T, T>> ANS;\n  for (auto& [a2, b2]: LINE) {\n    while (1) {\n      if (ANS.empty())\
+    \ {\n        ANS.eb(L, R, a2, b2);\n        break;\n      }\n      auto& [L1,\
+    \ R1, a1, b1] = ANS.back();\n      if ((a1 * L1 + b1) > (a2 * L1 + b2)) {\n  \
+    \      ANS.pop_back();\n        if (len(ANS)) get<1>(ANS.back()) = R;\n      \
+    \  continue;\n      }\n      T s = a1 - a2;\n      if (s == 0) break;\n      assert(s\
+    \ > 0);\n      T t = b2 - b1;\n      T x = t / s;\n      assert(L1 <= x);\n  \
+    \    if (x >= R1 - 1) break;\n      R1 = x + 1;\n      ANS.eb(x + 1, R, a2, b2);\n\
+    \    }\n  }\n  return ANS;\n}\n\n// LINE(a,b,c): y=(ax+b)/c, \u8A55\u4FA1\u70B9\
+    \u306F\u6574\u6570\n// 1 \u6B21\u95A2\u6570\u306E min \u3092 [L,R,a,b,c] \u306E\
+    \u5217\u3068\u3057\u3066\u51FA\u529B\n// c>0, (ax+b)c \u304C\u30AA\u30FC\u30D0\
+    \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044,\ntemplate <typename T>\nvc<tuple<T,\
+    \ T, T, T>> line_max_function_integer(vc<pair<T, T>> LINE, T L, T R) {\n  for\
+    \ (auto& [a, b]: LINE) a = -a, b = -b;\n  auto ANS = line_min_function_integer<T>(LINE,\
+    \ L, R);\n  for (auto& [L, R, a, b]: ANS) a = -a, b = -b;\n  return ANS;\n}\n\
+    #line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax + b, mod)\n\
+    // I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
+    \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O = i128, typename I\
+    \ = long long>\nO floor_sum_of_linear(I L, I R, I a, I b, I mod) {\n  assert(L\
+    \ <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n  if (b < 0) {\n    I\
+    \ k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N) * O(k);\n  }\n\n  while\
+    \ (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n    res += (N & 1 ? O(N) *\
+    \ O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n    if (b >= mod) {\n\
+    \      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n    }\n    tie(N,\
+    \ b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n  }\n  return res;\n\
+    }\n#line 3 \"convex/count_lattice_point_in_convex_polygon.hpp\"\n\n// L<=x<R,\
+    \ ax+by<=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\u754C\u3067\
+    \u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// \u5165\u529B\u304C pow(10,18)\
+    \ \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\u30D0\u30FC\u30D5\
+    \u30ED\u30FC\u3057\u306A\u3044\u3064\u3082\u308A\ni128 count_lattice_point_in_convex_polygon(ll\
+    \ L, ll R, vc<tuple<ll, ll, ll>> LINE) {\n  vc<tuple<ll, ll, ll>> LINE1, LINE2;\n\
+    \  for (auto& [a, b, c]: LINE) {\n    if (b == 0) {\n      // ax<=c\n      assert(a\
+    \ != 0);\n      if (a > 0) { chmin(R, floor<ll>(c, a) + 1); }\n      elif (a <\
+    \ 0) { chmax(L, ceil<ll>(-c, -a)); }\n    } else {\n      if (b > 0) {\n     \
+    \   LINE2.eb(-a, c, b);\n      } else {\n        LINE1.eb(a, -c, -b);\n      }\n\
+    \    }\n  }\n  if (L >= R) return 0;\n  if (LINE1.empty() || LINE2.empty()) return\
+    \ -1;\n\n  auto LOWER = line_max_function_rational(LINE1, L, R);\n  auto UPPER\
+    \ = line_min_function_rational(LINE2, L, R);\n\n  i128 ANS = 0;\n\n  auto wk =\
+    \ [&](ll L, ll R, ll a1, ll b1, ll c1, ll a2, ll b2, ll c2) -> void {\n    //\
+    \ \u4EA4\u70B9 t/s\n    i128 s = i128(a2) * c1 - i128(a1) * c2;\n    i128 t =\
+    \ i128(b1) * c2 - i128(b2) * c1;\n    if (s == 0) {\n      if (t > 0) return;\n\
+    \    }\n    elif (s > 0) {\n      // \u4E0A\u5074\u306E\u65B9\u304C\u50BE\u304D\
+    \u304C\u5927\u304D\u3044\n      i128 x = ceil<i128>(t, s);\n      if (R <= x)\
+    \ return;\n      chmax(L, x);\n    }\n    else {\n      i128 x = floor<i128>(-t,\
+    \ -s);\n      if (x < L) return;\n      chmin(R, x + 1);\n    }\n    if (L >=\
+    \ R) return;\n    ANS += floor_sum_of_linear<i128, ll>(L, R, a2, b2, c2);\n  \
+    \  ANS -= floor_sum_of_linear<i128, ll>(L, R, a1, b1 - 1, c1);\n  };\n\n  reverse(all(LOWER));\n\
+    \  reverse(all(UPPER));\n  while (len(LOWER) && len(UPPER)) {\n    auto [L1, R1,\
+    \ a1, b1, c1] = POP(LOWER);\n    auto [L2, R2, a2, b2, c2] = POP(UPPER);\n   \
+    \ assert(L1 == L2);\n    ll R = min(R1, R2);\n    wk(L1, R, a1, b1, c1, a2, b2,\
+    \ c2);\n    if (R < R1) LOWER.eb(R, R1, a1, b1, c1);\n    if (R < R2) UPPER.eb(R,\
+    \ R2, a2, b2, c2);\n  }\n  return ANS;\n}\n"
   code: "#include \"convex/line_min_function.hpp\"\n#include \"mod/floor_sum_of_linear.hpp\"\
-    \n\n// L<=x<R, ax+by>=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\
-    \u754C\u3067\u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// ab \u304C\
-    \u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u306A\u3069\n// https://codeforces.com/contest/1098/submission/299841182\n\
-    i128 count_lattice_point_in_convex_polygon(ll L, ll R, vc<tuple<ll, ll, ll>> LINE)\
-    \ {\n  vc<tuple<ll, ll, ll>> LINE1, LINE2;\n  for (auto& [a, b, c]: LINE) {\n\
-    \    if (b == 0) {\n      // ax>=c\n      assert(a != 0);\n      if (a > 0) {\
-    \ chmax(L, ceil<ll>(c, a)); }\n      elif (a < 0) { chmin(R, floor<ll>(-c, -a)\
-    \ + 1); }\n    } else {\n      if (b > 0) {\n        LINE1.eb(-a, c, b);\n   \
-    \   } else {\n        LINE2.eb(a, -c, -b);\n      }\n    }\n  }\n  if (L >= R)\
-    \ return 0;\n  if (LINE1.empty() || LINE2.empty()) return -1;\n\n  auto LOWER\
-    \ = line_max_function_rational(LINE1, L, R);\n  auto UPPER = line_min_function_rational(LINE2,\
-    \ L, R);\n\n  i128 ANS = 0;\n\n  auto wk = [&](ll L, ll R, ll a1, ll b1, ll c1,\
-    \ ll a2, ll b2, ll c2) -> void {\n    if (a1 * c2 > a2 * c1) {\n      a1 = -a1,\
-    \ b1 = -b1;\n      a2 = -a2, b2 = -b2;\n    }\n    i128 lhs = i128(a1 * L + b1)\
-    \ * c2;\n    i128 rhs = i128(a2 * L + b2) * c1;\n    if (lhs > rhs) {\n      ll\
-    \ s = a2 * c1 - a1 * c2;\n      ll t = b1 * c2 - b2 * c1;\n      if (s == 0) return;\n\
-    \      chmax(L, ceil<ll>(t, s));\n    }\n    if (L >= R) return;\n    ANS += floor_sum_of_linear<i128,\
-    \ ll>(L, R, a2, b2, c2);\n    ANS -= floor_sum_of_linear<i128, ll>(L, R, a1, b1\
-    \ - 1, c1);\n  };\n\n  reverse(all(LOWER));\n  reverse(all(UPPER));\n  while (len(LOWER)\
-    \ && len(UPPER)) {\n    auto [L1, R1, a1, b1, c1] = POP(LOWER);\n    auto [L2,\
-    \ R2, a2, b2, c2] = POP(UPPER);\n    assert(L1 == L2);\n    ll R = min(R1, R2);\n\
-    \    wk(L1, R, a1, b1, c1, a2, b2, c2);\n    if (R < R1) LOWER.eb(R, R1, a1, b1,\
-    \ c1);\n    if (R < R2) UPPER.eb(R, R2, a2, b2, c2);\n  }\n  return ANS;\n}\n"
+    \n\n// L<=x<R, ax+by<=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\
+    \u754C\u3067\u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// \u5165\u529B\
+    \u304C pow(10,18) \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\
+    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3064\u3082\u308A\ni128 count_lattice_point_in_convex_polygon(ll\
+    \ L, ll R, vc<tuple<ll, ll, ll>> LINE) {\n  vc<tuple<ll, ll, ll>> LINE1, LINE2;\n\
+    \  for (auto& [a, b, c]: LINE) {\n    if (b == 0) {\n      // ax<=c\n      assert(a\
+    \ != 0);\n      if (a > 0) { chmin(R, floor<ll>(c, a) + 1); }\n      elif (a <\
+    \ 0) { chmax(L, ceil<ll>(-c, -a)); }\n    } else {\n      if (b > 0) {\n     \
+    \   LINE2.eb(-a, c, b);\n      } else {\n        LINE1.eb(a, -c, -b);\n      }\n\
+    \    }\n  }\n  if (L >= R) return 0;\n  if (LINE1.empty() || LINE2.empty()) return\
+    \ -1;\n\n  auto LOWER = line_max_function_rational(LINE1, L, R);\n  auto UPPER\
+    \ = line_min_function_rational(LINE2, L, R);\n\n  i128 ANS = 0;\n\n  auto wk =\
+    \ [&](ll L, ll R, ll a1, ll b1, ll c1, ll a2, ll b2, ll c2) -> void {\n    //\
+    \ \u4EA4\u70B9 t/s\n    i128 s = i128(a2) * c1 - i128(a1) * c2;\n    i128 t =\
+    \ i128(b1) * c2 - i128(b2) * c1;\n    if (s == 0) {\n      if (t > 0) return;\n\
+    \    }\n    elif (s > 0) {\n      // \u4E0A\u5074\u306E\u65B9\u304C\u50BE\u304D\
+    \u304C\u5927\u304D\u3044\n      i128 x = ceil<i128>(t, s);\n      if (R <= x)\
+    \ return;\n      chmax(L, x);\n    }\n    else {\n      i128 x = floor<i128>(-t,\
+    \ -s);\n      if (x < L) return;\n      chmin(R, x + 1);\n    }\n    if (L >=\
+    \ R) return;\n    ANS += floor_sum_of_linear<i128, ll>(L, R, a2, b2, c2);\n  \
+    \  ANS -= floor_sum_of_linear<i128, ll>(L, R, a1, b1 - 1, c1);\n  };\n\n  reverse(all(LOWER));\n\
+    \  reverse(all(UPPER));\n  while (len(LOWER) && len(UPPER)) {\n    auto [L1, R1,\
+    \ a1, b1, c1] = POP(LOWER);\n    auto [L2, R2, a2, b2, c2] = POP(UPPER);\n   \
+    \ assert(L1 == L2);\n    ll R = min(R1, R2);\n    wk(L1, R, a1, b1, c1, a2, b2,\
+    \ c2);\n    if (R < R1) LOWER.eb(R, R1, a1, b1, c1);\n    if (R < R2) UPPER.eb(R,\
+    \ R2, a2, b2, c2);\n  }\n  return ANS;\n}\n"
   dependsOn:
   - convex/line_min_function.hpp
   - geo/convex_hull.hpp
@@ -217,9 +228,10 @@ data:
   isVerificationFile: false
   path: convex/count_lattice_point_in_convex_polygon.hpp
   requiredBy: []
-  timestamp: '2025-01-06 16:30:28+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-01-06 21:46:40+09:00'
+  verificationStatus: LIBRARY_ALL_AC
+  verifiedWith:
+  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
 documentation_of: convex/count_lattice_point_in_convex_polygon.hpp
 layout: document
 redirect_from:

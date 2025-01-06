@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':heavy_check_mark:'
     path: convex/count_lattice_point_in_convex_polygon.hpp
     title: convex/count_lattice_point_in_convex_polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -15,6 +15,9 @@ data:
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+    title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_sum_of_linear.test.cpp
     title: test/1_mytest/mod_sum_of_linear.test.cpp
@@ -85,6 +88,7 @@ data:
   - test/3_yukicoder/1201.test.cpp
   - test/3_yukicoder/2280.test.cpp
   - test/1_mytest/mod_sum_of_linear.test.cpp
+  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/range_freq_of_linear.test.cpp
   - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear.test.cpp
