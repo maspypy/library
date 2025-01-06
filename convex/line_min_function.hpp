@@ -86,7 +86,7 @@ vc<tuple<ll, ll, ll, ll, ll>> line_min_function_rational(vc<tuple<ll, ll, ll>> L
 }
 
 // LINE(a,b,c): y=(ax+b)/c, 評価点は整数
-// 1 次関数の min を [L,R,a,b,c] の列として出力
+// 1 次関数の max を [L,R,a,b,c] の列として出力
 // オーバーフロー安全
 vc<tuple<ll, ll, ll, ll, ll>> line_max_function_rational(vc<tuple<ll, ll, ll>> LINE, ll L, ll R) {
   for (auto& [a, b, c]: LINE) a = -a, b = -b;
@@ -97,16 +97,15 @@ vc<tuple<ll, ll, ll, ll, ll>> line_max_function_rational(vc<tuple<ll, ll, ll>> L
 
 // LINE(a,b): y=ax+b, 評価点は整数
 // 1 次関数の min を [L,R,a,b] の列として出力
-// ax+b がオーバーフローしない,
-template <typename T>
-vc<tuple<T, T, T, T>> line_min_function_integer(vc<pair<T, T>> LINE, T L, T R) {
+// オーバーフロー安全
+vc<tuple<ll, ll, ll, ll>> line_min_function_integer(vc<pair<ll, ll>> LINE, ll L, ll R) {
   // 傾き降順
   sort(all(LINE), [&](auto& L, auto& R) -> bool {
     auto& [a1, b1] = L;
     auto& [a2, b2] = R;
     return a1 > a2;
   });
-  vc<tuple<T, T, T, T>> ANS;
+  vc<tuple<ll, ll, ll, ll>> ANS;
   for (auto& [a2, b2]: LINE) {
     while (1) {
       if (ANS.empty()) {
@@ -114,20 +113,25 @@ vc<tuple<T, T, T, T>> line_min_function_integer(vc<pair<T, T>> LINE, T L, T R) {
         break;
       }
       auto& [L1, R1, a1, b1] = ANS.back();
-      if ((a1 * L1 + b1) > (a2 * L1 + b2)) {
+      if (a1 == a2) {
+        if (b1 <= b2) break;
         ANS.pop_back();
         if (len(ANS)) get<1>(ANS.back()) = R;
         continue;
       }
-      T s = a1 - a2;
-      if (s == 0) break;
-      assert(s > 0);
-      T t = b2 - b1;
-      T x = t / s;
-      assert(L1 <= x);
-      if (x >= R1 - 1) break;
-      R1 = x + 1;
-      ANS.eb(x + 1, R, a2, b2);
+      ll x = ceil<ll>(b2 - b1, a1 - a2);
+      // x 以上で 2 の方が下に来る
+      if (x <= L1) {
+        ANS.pop_back();
+        continue;
+      }
+      if (x < R) {
+        R1 = x;
+        ANS.eb(x, R, a2, b2);
+        break;
+      } else {
+        break;
+      }
     }
   }
   return ANS;
@@ -136,10 +140,47 @@ vc<tuple<T, T, T, T>> line_min_function_integer(vc<pair<T, T>> LINE, T L, T R) {
 // LINE(a,b,c): y=(ax+b)/c, 評価点は整数
 // 1 次関数の min を [L,R,a,b,c] の列として出力
 // c>0, (ax+b)c がオーバーフローしない,
-template <typename T>
-vc<tuple<T, T, T, T>> line_max_function_integer(vc<pair<T, T>> LINE, T L, T R) {
+vc<tuple<ll, ll, ll, ll>> line_max_function_integer(vc<pair<ll, ll>> LINE, ll L, ll R) {
   for (auto& [a, b]: LINE) a = -a, b = -b;
-  auto ANS = line_min_function_integer<T>(LINE, L, R);
+  auto ANS = line_min_function_integer(LINE, L, R);
   for (auto& [L, R, a, b]: ANS) a = -a, b = -b;
+  return ANS;
+}
+
+// (L,R,func) の下側と上側をマージするときなどに使う用
+template <typename T>
+vc<tuple<T, T, T, T, T, T>> merge_46(vc<tuple<T, T, T, T>> A, vc<tuple<T, T, T, T>> B) {
+  vc<tuple<T, T, T, T, T, T>> ANS;
+  reverse(all(A));
+  reverse(all(B));
+  while (len(A) && len(B)) {
+    auto& [l1, r1, a1, b1] = A.back();
+    auto& [l2, r2, a2, b2] = B.back();
+    assert(l1 == l2);
+    T r = min(r1, r2);
+    ANS.eb(l1, r, a1, b1, a2, b2);
+    l1 = r, l2 = r;
+    if (r1 == r) POP(A);
+    if (r2 == r) POP(B);
+  };
+  return ANS;
+}
+
+// (L,R,func) の下側と上側をマージするときなどに使う用
+template <typename T>
+vc<tuple<T, T, T, T, T, T, T, T>> merge_58(vc<tuple<T, T, T, T, T>> A, vc<tuple<T, T, T, T, T>> B) {
+  vc<tuple<T, T, T, T, T, T, T, T, T>> ANS;
+  reverse(all(A));
+  reverse(all(B));
+  while (len(A) && len(B)) {
+    auto& [l1, r1, a1, b1, c1] = A.back();
+    auto& [l2, r2, a2, b2, c2] = B.back();
+    assert(l1 == l2);
+    T r = min(r1, r2);
+    ANS.eb(l1, r, a1, b1, c1, a2, b2, c2);
+    l1 = r, l2 = r;
+    if (r1 == r) POP(A);
+    if (r2 == r) POP(B);
+  };
   return ANS;
 }
