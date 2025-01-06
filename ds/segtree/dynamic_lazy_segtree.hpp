@@ -1,6 +1,6 @@
 #pragma once
 
-// Q*2logN 程度必要
+// Q*4logN 程度必要? apply で 4logN ノード作っていると思う
 template <typename ActedMonoid, bool PERSISTENT>
 struct Dynamic_Lazy_SegTree {
   using AM = ActedMonoid;
@@ -40,7 +40,10 @@ struct Dynamic_Lazy_SegTree {
     return &(pool[pid++]);
   }
 
-  np new_node(ll l, ll r) { return new_node(default_prod(l, r)); }
+  np new_node(ll l, ll r) {
+    assert(l < r);
+    return new_node(default_prod(l, r));
+  }
   np new_node() { return new_node(L0, R0); }
 
   np new_node(const vc<X> &dat) {
