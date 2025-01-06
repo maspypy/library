@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -165,24 +165,29 @@ data:
     \ == l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, a2, b2);\n    l1\
     \ = r, l2 = r;\n    if (r1 == r) POP(A);\n    if (r2 == r) POP(B);\n  };\n  return\
     \ ANS;\n}\n\n// (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\
-    \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\ntemplate <typename\
-    \ T>\nvc<tuple<T, T, T, T, T, T, T, T>> merge_58(vc<tuple<T, T, T, T, T>> A, vc<tuple<T,\
-    \ T, T, T, T>> B) {\n  vc<tuple<T, T, T, T, T, T, T, T, T>> ANS;\n  reverse(all(A));\n\
-    \  reverse(all(B));\n  while (len(A) && len(B)) {\n    auto& [l1, r1, a1, b1,\
-    \ c1] = A.back();\n    auto& [l2, r2, a2, b2, c2] = B.back();\n    assert(l1 ==\
-    \ l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, c1, a2, b2, c2);\n \
-    \   l1 = r, l2 = r;\n    if (r1 == r) POP(A);\n    if (r2 == r) POP(B);\n  };\n\
-    \  return ANS;\n}\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)}\
-    \ floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\
-    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename\
-    \ O = i128, typename I = long long>\nO floor_sum_of_linear(I L, I R, I a, I b,\
-    \ I mod) {\n  assert(L <= R);\n  O res = 0;\n  b += L * a;\n  I N = R - L;\n\n\
-    \  if (b < 0) {\n    I k = ceil(-b, mod);\n    b += k * mod;\n    res -= O(N)\
-    \ * O(k);\n  }\n\n  while (N) {\n    I q;\n    tie(q, a) = divmod(a, mod);\n \
-    \   res += (N & 1 ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1) * O(q));\n\
-    \    if (b >= mod) {\n      tie(q, b) = divmod(b, mod);\n      res += O(N) * q;\n\
-    \    }\n    tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod) = mp(mod, a);\n\
-    \  }\n  return res;\n}\n#line 3 \"convex/count_lattice_point_in_convex_polygon.hpp\"\
+    \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\n\
+    template <typename T, typename F>\nvoid merge_46(const vc<tuple<T, T, T, T>>&\
+    \ A, const vc<tuple<T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i <\
+    \ len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1] = A[i];\n    auto& [l2,\
+    \ r2, a2, b2] = B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r)\
+    \ f(l, r, a1, b1, a2, b2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n\n// (L,R,func)\
+    \ \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\
+    \u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\ntemplate <typename\
+    \ T, typename F>\nvoid merge_58(const vc<tuple<T, T, T, T, T>>& A, const vc<tuple<T,\
+    \ T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i < len(A) && j < len(B))\
+    \ {\n    auto& [l1, r1, a1, b1, c1] = A[i];\n    auto& [l2, r2, a2, b2, c2] =\
+    \ B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r) f(l, r, a1, b1,\
+    \ c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n#line 2 \"mod/floor_sum_of_linear.hpp\"\
+    \n\n// sum_{x in [L,R)} floor(ax + b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067\
+    \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
+    \u5EA6\ntemplate <typename O = i128, typename I = long long>\nO floor_sum_of_linear(I\
+    \ L, I R, I a, I b, I mod) {\n  assert(L <= R);\n  O res = 0;\n  b += L * a;\n\
+    \  I N = R - L;\n\n  if (b < 0) {\n    I k = ceil(-b, mod);\n    b += k * mod;\n\
+    \    res -= O(N) * O(k);\n  }\n\n  while (N) {\n    I q;\n    tie(q, a) = divmod(a,\
+    \ mod);\n    res += (N & 1 ? O(N) * O((N - 1) / 2) * O(q) : O(N / 2) * O(N - 1)\
+    \ * O(q));\n    if (b >= mod) {\n      tie(q, b) = divmod(b, mod);\n      res\
+    \ += O(N) * q;\n    }\n    tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod)\
+    \ = mp(mod, a);\n  }\n  return res;\n}\n#line 3 \"convex/count_lattice_point_in_convex_polygon.hpp\"\
     \n\n// L<=x<R, ax+by<=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\
     \u754C\u3067\u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// \u5165\u529B\
     \u304C pow(10,18) \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\
@@ -199,13 +204,18 @@ data:
     \ \u4EA4\u70B9 t/s\n    i128 s = i128(a2) * c1 - i128(a1) * c2;\n    i128 t =\
     \ i128(b1) * c2 - i128(b2) * c1;\n    if (s == 0) {\n      if (t > 0) return;\n\
     \    }\n    elif (s > 0) {\n      // \u4E0A\u5074\u306E\u65B9\u304C\u50BE\u304D\
-    \u304C\u5927\u304D\u3044\n      i128 x = ceil<i128>(t, s);\n      if (R <= x)\
-    \ return;\n      chmax(L, x);\n    }\n    else {\n      i128 x = floor<i128>(-t,\
-    \ -s);\n      if (x < L) return;\n      chmin(R, x + 1);\n    }\n    if (L >=\
-    \ R) return;\n    ANS += floor_sum_of_linear<i128, ll>(L, R, a2, b2, c2);\n  \
-    \  ANS -= floor_sum_of_linear<i128, ll>(L, R, a1, b1 - 1, c1);\n  };\n\n  for\
-    \ (auto& [L, R, a1, b1, c1, a2, b2, c2]: merge_58<ll>(LOWER, UPPER)) { wk(L, R,\
-    \ a1, b1, c1, a2, b2, c2); }\n  return ANS;\n}\n"
+    \u304C\u5927\u304D\u3044\n      i128 x = ceil<i128>(t, s);\n      chmax(L, x);\n\
+    \    }\n    else {\n      i128 x = floor<i128>(-t, -s);\n      chmin(R, x + 1);\n\
+    \    }\n    if (L >= R) return;\n    ANS += floor_sum_of_linear<i128, i128>(L,\
+    \ R, a2, b2, c2);\n    ANS -= floor_sum_of_linear<i128, i128>(L, R, a1, b1 - 1,\
+    \ c1);\n  };\n\n  merge_58(LOWER, UPPER, wk);\n\n  // reverse(all(LOWER));\n \
+    \ // reverse(all(UPPER));\n  // while (len(LOWER) && len(UPPER)) {\n  //   auto\
+    \ [L1, R1, a1, b1, c1] = POP(LOWER);\n  //   auto [L2, R2, a2, b2, c2] = POP(UPPER);\n\
+    \  //   assert(L1 == L2);\n  //   ll R = min(R1, R2);\n  //   wk(L1, R, a1, b1,\
+    \ c1, a2, b2, c2);\n  //   if (R < R1) LOWER.eb(R, R1, a1, b1, c1);\n  //   if\
+    \ (R < R2) UPPER.eb(R, R2, a2, b2, c2);\n  // }\n\n  // for (auto& [L, R, a1,\
+    \ b1, c1, a2, b2, c2]: merge_58<ll>(LOWER, UPPER)) { wk(L, R, a1, b1, c1, a2,\
+    \ b2, c2); }\n  return ANS;\n}\n"
   code: "#include \"convex/line_min_function.hpp\"\n#include \"mod/floor_sum_of_linear.hpp\"\
     \n\n// L<=x<R, ax+by<=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\
     \u754C\u3067\u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// \u5165\u529B\
@@ -223,13 +233,18 @@ data:
     \ \u4EA4\u70B9 t/s\n    i128 s = i128(a2) * c1 - i128(a1) * c2;\n    i128 t =\
     \ i128(b1) * c2 - i128(b2) * c1;\n    if (s == 0) {\n      if (t > 0) return;\n\
     \    }\n    elif (s > 0) {\n      // \u4E0A\u5074\u306E\u65B9\u304C\u50BE\u304D\
-    \u304C\u5927\u304D\u3044\n      i128 x = ceil<i128>(t, s);\n      if (R <= x)\
-    \ return;\n      chmax(L, x);\n    }\n    else {\n      i128 x = floor<i128>(-t,\
-    \ -s);\n      if (x < L) return;\n      chmin(R, x + 1);\n    }\n    if (L >=\
-    \ R) return;\n    ANS += floor_sum_of_linear<i128, ll>(L, R, a2, b2, c2);\n  \
-    \  ANS -= floor_sum_of_linear<i128, ll>(L, R, a1, b1 - 1, c1);\n  };\n\n  for\
-    \ (auto& [L, R, a1, b1, c1, a2, b2, c2]: merge_58<ll>(LOWER, UPPER)) { wk(L, R,\
-    \ a1, b1, c1, a2, b2, c2); }\n  return ANS;\n}\n"
+    \u304C\u5927\u304D\u3044\n      i128 x = ceil<i128>(t, s);\n      chmax(L, x);\n\
+    \    }\n    else {\n      i128 x = floor<i128>(-t, -s);\n      chmin(R, x + 1);\n\
+    \    }\n    if (L >= R) return;\n    ANS += floor_sum_of_linear<i128, i128>(L,\
+    \ R, a2, b2, c2);\n    ANS -= floor_sum_of_linear<i128, i128>(L, R, a1, b1 - 1,\
+    \ c1);\n  };\n\n  merge_58(LOWER, UPPER, wk);\n\n  // reverse(all(LOWER));\n \
+    \ // reverse(all(UPPER));\n  // while (len(LOWER) && len(UPPER)) {\n  //   auto\
+    \ [L1, R1, a1, b1, c1] = POP(LOWER);\n  //   auto [L2, R2, a2, b2, c2] = POP(UPPER);\n\
+    \  //   assert(L1 == L2);\n  //   ll R = min(R1, R2);\n  //   wk(L1, R, a1, b1,\
+    \ c1, a2, b2, c2);\n  //   if (R < R1) LOWER.eb(R, R1, a1, b1, c1);\n  //   if\
+    \ (R < R2) UPPER.eb(R, R2, a2, b2, c2);\n  // }\n\n  // for (auto& [L, R, a1,\
+    \ b1, c1, a2, b2, c2]: merge_58<ll>(LOWER, UPPER)) { wk(L, R, a1, b1, c1, a2,\
+    \ b2, c2); }\n  return ANS;\n}\n"
   dependsOn:
   - convex/line_min_function.hpp
   - geo/convex_hull.hpp
@@ -238,8 +253,8 @@ data:
   isVerificationFile: false
   path: convex/count_lattice_point_in_convex_polygon.hpp
   requiredBy: []
-  timestamp: '2025-01-06 22:01:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-01-06 23:56:37+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
 documentation_of: convex/count_lattice_point_in_convex_polygon.hpp

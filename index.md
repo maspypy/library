@@ -202,9 +202,12 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/cht_monotone.hpp
       title: convex/cht_monotone.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/count_lattice_point_in_convex_polygon.hpp
       title: convex/count_lattice_point_in_convex_polygon.hpp
+    - icon: ':warning:'
+      path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+      title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
     - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
@@ -217,7 +220,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/line_min_function.hpp
       title: convex/line_min_function.hpp
     - icon: ':heavy_check_mark:'
@@ -704,13 +707,13 @@ data:
     - icon: ':warning:'
       path: geo/apollonian_circle.hpp
       title: geo/apollonian_circle.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/base.hpp
       title: geo/base.hpp
     - icon: ':heavy_check_mark:'
       path: geo/closest_pair.hpp
       title: geo/closest_pair.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: geo/convex_hull.hpp
       title: geo/convex_hull.hpp
     - icon: ':heavy_check_mark:'
@@ -1398,7 +1401,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: mod/floor_monoid_product.hpp
       title: mod/floor_monoid_product.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: mod/floor_sum_of_linear.hpp
       title: mod/floor_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
@@ -1475,7 +1478,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1920,7 +1923,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2032,6 +2035,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: seq/famous/eulerian_number.hpp
       title: seq/famous/eulerian_number.hpp
+    - icon: ':heavy_check_mark:'
+      path: seq/famous/faulhaber.hpp
+      title: seq/famous/faulhaber.hpp
     - icon: ':heavy_check_mark:'
       path: seq/famous/fibonacci.hpp
       title: seq/famous/fibonacci.hpp
@@ -2376,7 +2382,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_labeled_undirected.test.cpp
       title: test/1_mytest/count_labeled_undirected.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
       title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     - icon: ':heavy_check_mark:'

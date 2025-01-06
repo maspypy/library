@@ -5,6 +5,9 @@ data:
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+    title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
@@ -74,6 +77,7 @@ data:
   isVerificationFile: false
   path: mod/floor_monoid_product.hpp
   requiredBy:
+  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
   timestamp: '2024-01-23 03:59:43+09:00'
   verificationStatus: LIBRARY_ALL_AC

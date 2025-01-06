@@ -90,6 +90,9 @@ data:
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
@@ -587,6 +590,7 @@ data:
   - seq/famous/bell_number_large.hpp
   - seq/famous/bernoulli.hpp
   - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/faulhaber.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/sum_of_powers.hpp
   - seq/interpolate_linear_rec.hpp

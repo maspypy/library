@@ -45,6 +45,9 @@ data:
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   _extendedVerifiedWith:
@@ -419,6 +422,7 @@ data:
   requiredBy:
   - poly/prefix_sum_of_polynomial.hpp
   - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/faulhaber.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

@@ -10,7 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+    title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_sum_of_polynomial.test.cpp
@@ -122,7 +125,8 @@ data:
   - alg/monoid/monoid_for_floor_sum.hpp
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial.hpp
-  requiredBy: []
+  requiredBy:
+  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

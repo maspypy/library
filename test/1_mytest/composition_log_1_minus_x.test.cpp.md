@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -85,7 +85,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/transposed_ntt.hpp
     title: poly/transposed_ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -791,18 +791,18 @@ data:
     \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
     \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
     \n}\r\n#line 4 \"seq/famous/stirling_number_1.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nvc<mint> stirling_number_1_2d(int nmax, int kmax) {\r\n  vv(mint, A, nmax +\
+    \nvvc<mint> stirling_number_1_2d(int nmax, int kmax) {\r\n  vv(mint, A, nmax +\
     \ 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int i = 1; i <= nmax; ++i) {\r\n \
     \   for (int j = 0; j < i + 1; ++j) {\r\n      if (j > kmax) break;\r\n      mint\
     \ &x = A[i][j];\r\n      if (j) x += A[i - 1][j - 1];\r\n      x -= A[i - 1][j]\
-    \ * mint(i - 1);\r\n    }\r\n  }\r\n}\r\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\u6570\
-    \ c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001k \u500B\u306E\u30B5\
-    \u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\u306E\u500B\u6570\
-    \u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\u5217\u6319\u3092\
-    \ O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\nvc<mint>\
-    \ stirling_number_1_n(int n, bool sgn = false) {\r\n  auto dfs = [&](auto self,\
-    \ int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\n    if (n == 1) return\
-    \ {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto g = poly_taylor_shift(f,\
+    \ * mint(i - 1);\r\n    }\r\n  }\r\n  return A;\r\n}\r\n\r\n// x(x+1)...(x+n-1)\
+    \ \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001\
+    k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\
+    \u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\
+    \u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\
+    \nvc<mint> stirling_number_1_n(int n, bool sgn = false) {\r\n  auto dfs = [&](auto\
+    \ self, int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\n    if (n == 1)\
+    \ return {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto g = poly_taylor_shift(f,\
     \ mint(n / 2));\r\n    f = convolution(f, g);\r\n    if (n & 1) {\r\n      g =\
     \ {(n - 1), 1};\r\n      f = convolution(f, g);\r\n    }\r\n    return f;\r\n\
     \  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn) { FOR(i, n + 1) if ((n + i) % 2\
@@ -980,7 +980,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/composition_log_1_minus_x.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
+  timestamp: '2025-01-06 23:56:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/composition_log_1_minus_x.test.cpp

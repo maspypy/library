@@ -1,23 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/count_lattice_point_in_convex_polygon.hpp
     title: convex/count_lattice_point_in_convex_polygon.hpp
+  - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+    title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://qoj.ac/contest/1576/problem/8505
@@ -163,14 +166,19 @@ data:
     \ == l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, a2, b2);\n    l1\
     \ = r, l2 = r;\n    if (r1 == r) POP(A);\n    if (r2 == r) POP(B);\n  };\n  return\
     \ ANS;\n}\n\n// (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\
-    \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\ntemplate <typename\
-    \ T>\nvc<tuple<T, T, T, T, T, T, T, T>> merge_58(vc<tuple<T, T, T, T, T>> A, vc<tuple<T,\
-    \ T, T, T, T>> B) {\n  vc<tuple<T, T, T, T, T, T, T, T, T>> ANS;\n  reverse(all(A));\n\
-    \  reverse(all(B));\n  while (len(A) && len(B)) {\n    auto& [l1, r1, a1, b1,\
-    \ c1] = A.back();\n    auto& [l2, r2, a2, b2, c2] = B.back();\n    assert(l1 ==\
-    \ l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, c1, a2, b2, c2);\n \
-    \   l1 = r, l2 = r;\n    if (r1 == r) POP(A);\n    if (r2 == r) POP(B);\n  };\n\
-    \  return ANS;\n}\n"
+    \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\n\
+    template <typename T, typename F>\nvoid merge_46(const vc<tuple<T, T, T, T>>&\
+    \ A, const vc<tuple<T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i <\
+    \ len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1] = A[i];\n    auto& [l2,\
+    \ r2, a2, b2] = B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r)\
+    \ f(l, r, a1, b1, a2, b2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n\n// (L,R,func)\
+    \ \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\
+    \u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\ntemplate <typename\
+    \ T, typename F>\nvoid merge_58(const vc<tuple<T, T, T, T, T>>& A, const vc<tuple<T,\
+    \ T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i < len(A) && j < len(B))\
+    \ {\n    auto& [l1, r1, a1, b1, c1] = A[i];\n    auto& [l2, r2, a2, b2, c2] =\
+    \ B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r) f(l, r, a1, b1,\
+    \ c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n"
   code: "#include \"geo/convex_hull.hpp\"\n\n// 1 \u6B21\u95A2\u6570\u306E max \u3092\
     \ [L,R,a,b] \u306E\u5217\u3068\u3057\u3066\u51FA\u529B\n// https://qoj.ac/contest/1576/problem/8505\n\
     template <typename Re, typename T>\nvc<tuple<Re, Re, Re, Re>> line_min_function_real(vc<pair<T,\
@@ -242,14 +250,19 @@ data:
     \ == l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, a2, b2);\n    l1\
     \ = r, l2 = r;\n    if (r1 == r) POP(A);\n    if (r2 == r) POP(B);\n  };\n  return\
     \ ANS;\n}\n\n// (L,R,func) \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\
-    \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\ntemplate <typename\
-    \ T>\nvc<tuple<T, T, T, T, T, T, T, T>> merge_58(vc<tuple<T, T, T, T, T>> A, vc<tuple<T,\
-    \ T, T, T, T>> B) {\n  vc<tuple<T, T, T, T, T, T, T, T, T>> ANS;\n  reverse(all(A));\n\
-    \  reverse(all(B));\n  while (len(A) && len(B)) {\n    auto& [l1, r1, a1, b1,\
-    \ c1] = A.back();\n    auto& [l2, r2, a2, b2, c2] = B.back();\n    assert(l1 ==\
-    \ l2);\n    T r = min(r1, r2);\n    ANS.eb(l1, r, a1, b1, c1, a2, b2, c2);\n \
-    \   l1 = r, l2 = r;\n    if (r1 == r) POP(A);\n    if (r2 == r) POP(B);\n  };\n\
-    \  return ANS;\n}\n"
+    \u30B8\u3059\u308B\u3068\u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\n\
+    template <typename T, typename F>\nvoid merge_46(const vc<tuple<T, T, T, T>>&\
+    \ A, const vc<tuple<T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i <\
+    \ len(A) && j < len(B)) {\n    auto& [l1, r1, a1, b1] = A[i];\n    auto& [l2,\
+    \ r2, a2, b2] = B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r)\
+    \ f(l, r, a1, b1, a2, b2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n\n// (L,R,func)\
+    \ \u306E\u4E0B\u5074\u3068\u4E0A\u5074\u3092\u30DE\u30FC\u30B8\u3059\u308B\u3068\
+    \u304D\u306A\u3069\u306B\u4F7F\u3046\u7528\n// f(L,R,a1,b1,a2,b2)\ntemplate <typename\
+    \ T, typename F>\nvoid merge_58(const vc<tuple<T, T, T, T, T>>& A, const vc<tuple<T,\
+    \ T, T, T, T>>& B, F f) {\n  int i = 0, j = 0;\n  while (i < len(A) && j < len(B))\
+    \ {\n    auto& [l1, r1, a1, b1, c1] = A[i];\n    auto& [l2, r2, a2, b2, c2] =\
+    \ B[j];\n    T l = max(l1, l2), r = min(r1, r2);\n    if (l < r) f(l, r, a1, b1,\
+    \ c1, a2, b2, c2);\n    (r1 < r2 ? i : j)++;\n  }\n}\n"
   dependsOn:
   - geo/convex_hull.hpp
   - geo/base.hpp
@@ -257,8 +270,9 @@ data:
   path: convex/line_min_function.hpp
   requiredBy:
   - convex/count_lattice_point_in_convex_polygon.hpp
-  timestamp: '2025-01-06 22:01:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+  timestamp: '2025-01-06 23:56:37+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
 documentation_of: convex/line_min_function.hpp

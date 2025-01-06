@@ -294,6 +294,9 @@ data:
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
   - icon: ':heavy_check_mark:'
@@ -1071,6 +1074,7 @@ data:
   - seq/famous/stirling_number_2.hpp
   - seq/famous/indecomposable_permutations.hpp
   - seq/famous/simple_permutations.hpp
+  - seq/famous/faulhaber.hpp
   - seq/famous/partition_number.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/eulerian_number.hpp

@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -46,6 +46,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -469,23 +472,24 @@ data:
     \ = ... gx^{i-1}\n    G[i] = h * inv<mint>(i);\n    sm += inv<mint>(i);\n  }\n\
     \  G[0] = sm;\n  FOR(i, n) G[i + 1] += G[i];\n  vc<mint> pow = powertable_2<mint>(n,\
     \ n);\n  mint ans = 0;\n  FOR(i, n + 1) { ans += pow[i] * G[i]; }\n  return ans;\n\
-    }\n#line 6 \"test/1_mytest/faulhaber.test.cpp\"\n\n// sum_[1,n]i^p=f(n)\ntemplate\
-    \ <typename mint>\nvc<mint> faulhaber_formula(int p) {\n  vc<mint> F = bernoulli_number<mint>(p\
-    \ + 1);\n  if (1 <= p) F[1] = inv<mint>(2);\n  reverse(all(F));\n  F[0] = 0;\n\
-    \  FOR(r, p + 1) { F[p - r + 1] *= fact<mint>(p) * fact_inv<mint>(r) * fact_inv<mint>(p\
-    \ + 1 - r); }\n  return F;\n}\n\nvoid test() {\n  using mint = modint107;\n  FOR(p,\
-    \ 0, 100) {\n    vc<mint> F = faulhaber_formula<mint>(p);\n    FOR(n, 0, 100)\
-    \ {\n      mint LHS = 0, RHS = 0;\n      FOR(i, 1, n + 1) LHS += mint(i).pow(p);\n\
-    \      FOR(i, len(F)) RHS += F[i] * mint(n).pow(i);\n      assert(LHS == RHS);\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n}\n"
+    }\n#line 2 \"seq/famous/faulhaber.hpp\"\n\n// sum_[1,n]i^k=f(n)\ntemplate <typename\
+    \ mint>\nvc<mint> faulhaber_formula(int k) {\n  vc<mint> F = bernoulli_number<mint>(k\
+    \ + 1);\n  if (1 <= k) F[1] = inv<mint>(2);\n  reverse(all(F));\n  F[0] = 0;\n\
+    \  FOR(r, k + 1) { F[k - r + 1] *= fact<mint>(k) * fact_inv<mint>(r) * fact_inv<mint>(k\
+    \ + 1 - r); }\n  return F;\n}\n\n// sum_[1,n]i^k=f(n)\ntemplate <typename mint>\n\
+    vvc<mint> faulhaber_formula_2d(int n) {\n  vc<mint> B = bernoulli_number<mint>(n);\n\
+    \  if (1 <= n) B[1] = inv<mint>(2);\n  vvc<mint> ANS(n + 1);\n  FOR(k, n + 1)\
+    \ {\n    ANS[k].resize(k + 2);\n    FOR(j, k + 1) ANS[k][k + 1 - j] = inv<mint>(k\
+    \ + 1) * C<mint>(k + 1, j) * B[j];\n  }\n  return ANS;\n}\n#line 6 \"test/1_mytest/faulhaber.test.cpp\"\
+    \n\nvoid test() {\n  using mint = modint107;\n  FOR(p, 0, 100) {\n    vc<mint>\
+    \ F = faulhaber_formula<mint>(p);\n    FOR(n, 0, 100) {\n      mint LHS = 0, RHS\
+    \ = 0;\n      FOR(i, 1, n + 1) LHS += mint(i).pow(p);\n      FOR(i, len(F)) RHS\
+    \ += F[i] * mint(n).pow(i);\n      assert(LHS == RHS);\n    }\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  test();\n  solve();\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"seq/famous/bernoulli.hpp\"\n#include \"mod/modint.hpp\"\n\n// sum_[1,n]i^p=f(n)\n\
-    template <typename mint>\nvc<mint> faulhaber_formula(int p) {\n  vc<mint> F =\
-    \ bernoulli_number<mint>(p + 1);\n  if (1 <= p) F[1] = inv<mint>(2);\n  reverse(all(F));\n\
-    \  F[0] = 0;\n  FOR(r, p + 1) { F[p - r + 1] *= fact<mint>(p) * fact_inv<mint>(r)\
-    \ * fact_inv<mint>(p + 1 - r); }\n  return F;\n}\n\nvoid test() {\n  using mint\
-    \ = modint107;\n  FOR(p, 0, 100) {\n    vc<mint> F = faulhaber_formula<mint>(p);\n\
+    \n\n#include \"seq/famous/faulhaber.hpp\"\n#include \"mod/modint.hpp\"\n\nvoid\
+    \ test() {\n  using mint = modint107;\n  FOR(p, 0, 100) {\n    vc<mint> F = faulhaber_formula<mint>(p);\n\
     \    FOR(n, 0, 100) {\n      mint LHS = 0, RHS = 0;\n      FOR(i, 1, n + 1) LHS\
     \ += mint(i).pow(p);\n      FOR(i, len(F)) RHS += F[i] * mint(n).pow(i);\n   \
     \   assert(LHS == RHS);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
@@ -493,6 +497,7 @@ data:
     }"
   dependsOn:
   - my_template.hpp
+  - seq/famous/faulhaber.hpp
   - seq/famous/bernoulli.hpp
   - poly/fps_div.hpp
   - poly/count_terms.hpp
@@ -510,7 +515,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/faulhaber.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
+  timestamp: '2025-01-06 23:56:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/faulhaber.test.cpp

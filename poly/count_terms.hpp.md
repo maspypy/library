@@ -147,6 +147,9 @@ data:
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
   - icon: ':heavy_check_mark:'
@@ -551,6 +554,7 @@ data:
   - seq/famous/riemann_zeta_even.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/indecomposable_permutations.hpp
+  - seq/famous/faulhaber.hpp
   - seq/famous/partition_number.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/sum_of_powers.hpp

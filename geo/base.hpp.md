@@ -2,13 +2,16 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/count_lattice_point_in_convex_polygon.hpp
     title: convex/count_lattice_point_in_convex_polygon.hpp
   - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+    title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+  - icon: ':warning:'
     path: convex/fenchel.hpp
     title: convex/fenchel.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':heavy_check_mark:'
@@ -20,7 +23,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
@@ -96,7 +99,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/convex_polygon_visible_range.test.cpp
     title: test/1_mytest/convex_polygon_visible_range.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - icon: ':heavy_check_mark:'
@@ -168,9 +171,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -280,6 +283,7 @@ data:
   - random/random_polygon.hpp
   - convex/count_lattice_point_in_convex_polygon.hpp
   - convex/fenchel.hpp
+  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   - convex/line_min_function.hpp
   - geo/reflection.hpp
   - geo/count_points_in_triangles.hpp
@@ -307,7 +311,7 @@ data:
   - geo/angle_sort.hpp
   - graph/planar_graph.hpp
   timestamp: '2024-10-20 23:29:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2602.test.cpp
   - test/3_yukicoder/1777.test.cpp

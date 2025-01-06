@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -680,33 +680,33 @@ data:
     \  FOR(i, 1, len(g)) if (g[i] != mint(0)) dat.eb(i, -g[i]);\n  FOR(i, len(f))\
     \ {\n    for (auto&& [j, x]: dat) {\n      if (i >= j) f[i] += x * f[i - j];\n\
     \    }\n  }\n  return f;\n}\n#line 4 \"seq/famous/stirling_number_1.hpp\"\n\r\n\
-    template <typename mint>\r\nvc<mint> stirling_number_1_2d(int nmax, int kmax)\
+    template <typename mint>\r\nvvc<mint> stirling_number_1_2d(int nmax, int kmax)\
     \ {\r\n  vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int i =\
     \ 1; i <= nmax; ++i) {\r\n    for (int j = 0; j < i + 1; ++j) {\r\n      if (j\
     \ > kmax) break;\r\n      mint &x = A[i][j];\r\n      if (j) x += A[i - 1][j -\
-    \ 1];\r\n      x -= A[i - 1][j] * mint(i - 1);\r\n    }\r\n  }\r\n}\r\n\r\n//\
-    \ x(x+1)...(x+n-1) \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\
-    \u3046\u3061\u3001k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\
-    \u308B\u3082\u306E\u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\
-    \u3068\u304D\u306E\u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate\
-    \ <typename mint>\r\nvc<mint> stirling_number_1_n(int n, bool sgn = false) {\r\
-    \n  auto dfs = [&](auto self, int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\
-    \n    if (n == 1) return {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto\
-    \ g = poly_taylor_shift(f, mint(n / 2));\r\n    f = convolution(f, g);\r\n   \
-    \ if (n & 1) {\r\n      g = {(n - 1), 1};\r\n      f = convolution(f, g);\r\n\
-    \    }\r\n    return f;\r\n  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn) { FOR(i,\
-    \ n + 1) if ((n + i) % 2 == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\r\n// k\
-    \ \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\u6319\u3002\
-    \r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_k(int k, int n_max,\
-    \ bool sgn = false) {\r\n  if (n_max < k) {\r\n    vc<mint> f(n_max + 1);\r\n\
-    \    return f;\r\n  }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n\
-    \  FOR(i, LIM + 1) f[i] = inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn)\
-    \ { FOR(i, LIM + 1) if (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\
-    \n  vc<mint> res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k\
-    \ + i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i) \u3092\u9006\u9806\u306B\u4E26\
-    \u3079\u305F\u3082\u306E\r\n// (1+0x)(1+1x)(1+2x)...(1+(N-1)x) \u3092 [x^K] \u307E\
-    \u3067\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_suffix(ll N,\
-    \ ll K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\
+    \ 1];\r\n      x -= A[i - 1][j] * mint(i - 1);\r\n    }\r\n  }\r\n  return A;\r\
+    \n}\r\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\
+    \u5217\u306E\u3046\u3061\u3001k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\
+    \u304B\u308C\u308B\u3082\u306E\u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\
+    \u3057\u305F\u3068\u304D\u306E\u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\
+    \u3002\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_n(int n, bool\
+    \ sgn = false) {\r\n  auto dfs = [&](auto self, int n) -> vc<mint> {\r\n    if\
+    \ (n == 0) return {1};\r\n    if (n == 1) return {0, 1};\r\n    auto f = self(self,\
+    \ n / 2);\r\n    auto g = poly_taylor_shift(f, mint(n / 2));\r\n    f = convolution(f,\
+    \ g);\r\n    if (n & 1) {\r\n      g = {(n - 1), 1};\r\n      f = convolution(f,\
+    \ g);\r\n    }\r\n    return f;\r\n  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn)\
+    \ { FOR(i, n + 1) if ((n + i) % 2 == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\
+    \r\n// k \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\
+    \u6319\u3002\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_k(int k,\
+    \ int n_max, bool sgn = false) {\r\n  if (n_max < k) {\r\n    vc<mint> f(n_max\
+    \ + 1);\r\n    return f;\r\n  }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM\
+    \ + 1);\r\n  FOR(i, LIM + 1) f[i] = inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\
+    \n  if (sgn) { FOR(i, LIM + 1) if (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf\
+    \ = fact_inv<mint>(k);\r\n  vc<mint> res(n_max + 1);\r\n  FOR(i, len(f)) res[k\
+    \ + i] = cf * f[i] * fact<mint>(k + i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i)\
+    \ \u3092\u9006\u9806\u306B\u4E26\u3079\u305F\u3082\u306E\r\n// (1+0x)(1+1x)(1+2x)...(1+(N-1)x)\
+    \ \u3092 [x^K] \u307E\u3067\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_suffix(ll\
+    \ N, ll K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\
     \r\n  vc<mint> num(K + 1), den(K + 1);\r\n  mint powN = 1;\r\n  FOR(k, K + 1)\
     \ {\r\n    powN *= N;\r\n    num[k] = fact_inv<mint>(k + 1) * powN;\r\n    den[k]\
     \ = fact_inv<mint>(k + 1);\r\n  }\r\n  vc<mint> S = fps_div<mint>(num, den);\r\
@@ -748,7 +748,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
+  timestamp: '2025-01-06 23:56:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp

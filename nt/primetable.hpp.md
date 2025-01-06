@@ -99,6 +99,9 @@ data:
     path: seq/famous/eulerian_number.hpp
     title: seq/famous/eulerian_number.hpp
   - icon: ':heavy_check_mark:'
+    path: seq/famous/faulhaber.hpp
+    title: seq/famous/faulhaber.hpp
+  - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
@@ -326,6 +329,7 @@ data:
   - seq/famous/surjection.hpp
   - seq/famous/riemann_zeta_even.hpp
   - seq/famous/stirling_number_2.hpp
+  - seq/famous/faulhaber.hpp
   - seq/famous/stirling_number_1.hpp
   - seq/famous/eulerian_number.hpp
   - graph/count/count_labeled_bridgeless.hpp

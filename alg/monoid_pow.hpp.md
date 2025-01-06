@@ -2,6 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':warning:'
+    path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+    title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
@@ -64,6 +67,7 @@ data:
   isVerificationFile: false
   path: alg/monoid_pow.hpp
   requiredBy:
+  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   - mod/floor_monoid_product.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
   - ds/segtree/range_assignment_segtree.hpp
