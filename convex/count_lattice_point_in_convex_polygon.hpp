@@ -1,23 +1,22 @@
 #include "convex/line_min_function.hpp"
 #include "mod/floor_sum_of_linear.hpp"
 
-// L<=x<R, ax+by>=c という半平面たち
+// L<=x<R, ax+by<=c という半平面たち
 // 有界でないときは -1 を返す
-// ab がオーバーフローしないなど
-// https://codeforces.com/contest/1098/submission/299841182
+// 入力が pow(10,18) 以下とかであればオーバーフローしないつもり
 i128 count_lattice_point_in_convex_polygon(ll L, ll R, vc<tuple<ll, ll, ll>> LINE) {
   vc<tuple<ll, ll, ll>> LINE1, LINE2;
   for (auto& [a, b, c]: LINE) {
     if (b == 0) {
-      // ax>=c
+      // ax<=c
       assert(a != 0);
-      if (a > 0) { chmax(L, ceil<ll>(c, a)); }
-      elif (a < 0) { chmin(R, floor<ll>(-c, -a) + 1); }
+      if (a > 0) { chmin(R, floor<ll>(c, a) + 1); }
+      elif (a < 0) { chmax(L, ceil<ll>(-c, -a)); }
     } else {
       if (b > 0) {
-        LINE1.eb(-a, c, b);
+        LINE2.eb(-a, c, b);
       } else {
-        LINE2.eb(a, -c, -b);
+        LINE1.eb(a, -c, -b);
       }
     }
   }
@@ -30,17 +29,22 @@ i128 count_lattice_point_in_convex_polygon(ll L, ll R, vc<tuple<ll, ll, ll>> LIN
   i128 ANS = 0;
 
   auto wk = [&](ll L, ll R, ll a1, ll b1, ll c1, ll a2, ll b2, ll c2) -> void {
-    if (a1 * c2 > a2 * c1) {
-      a1 = -a1, b1 = -b1;
-      a2 = -a2, b2 = -b2;
+    // 交点 t/s
+    i128 s = i128(a2) * c1 - i128(a1) * c2;
+    i128 t = i128(b1) * c2 - i128(b2) * c1;
+    if (s == 0) {
+      if (t > 0) return;
     }
-    i128 lhs = i128(a1 * L + b1) * c2;
-    i128 rhs = i128(a2 * L + b2) * c1;
-    if (lhs > rhs) {
-      ll s = a2 * c1 - a1 * c2;
-      ll t = b1 * c2 - b2 * c1;
-      if (s == 0) return;
-      chmax(L, ceil<ll>(t, s));
+    elif (s > 0) {
+      // 上側の方が傾きが大きい
+      i128 x = ceil<i128>(t, s);
+      if (R <= x) return;
+      chmax(L, x);
+    }
+    else {
+      i128 x = floor<i128>(-t, -s);
+      if (x < L) return;
+      chmin(R, x + 1);
     }
     if (L >= R) return;
     ANS += floor_sum_of_linear<i128, ll>(L, R, a2, b2, c2);
