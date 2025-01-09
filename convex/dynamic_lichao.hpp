@@ -43,7 +43,15 @@ struct Dynamic_LiChao_Tree {
     return &(pool[pid++]);
   }
 
-  np add_line(np root, FUNC f) {
+  np chmin_line(np root, FUNC f) {
+    static_assert(MINIMIZE);
+    int fid = len(funcs);
+    funcs.eb(f);
+    if (!root) root = new_node();
+    return add_line_rec(root, fid, L, R);
+  }
+  np chmax_line(np root, FUNC f) {
+    static_assert(!MINIMIZE);
     int fid = len(funcs);
     funcs.eb(f);
     if (!root) root = new_node();
@@ -51,7 +59,16 @@ struct Dynamic_LiChao_Tree {
   }
 
   // [xl, xr)
-  np add_segment(np root, ll xl, ll xr, FUNC f) {
+  np chmin_segment(np root, ll xl, ll xr, FUNC f) {
+    static_assert(MINIMIZE);
+    int fid = len(funcs);
+    funcs.eb(f);
+    if (!root) root = new_node();
+    return add_segment_rec(root, xl, xr, fid, L, R);
+  }
+  // [xl, xr)
+  np chmax_segment(np root, ll xl, ll xr, FUNC f) {
+    static_assert(!MINIMIZE);
     int fid = len(funcs);
     funcs.eb(f);
     if (!root) root = new_node();

@@ -1,19 +1,18 @@
 #define PROBLME "https://judge.yosupo.jp/problem/many_aplusb"
 #include "my_template.hpp"
 
-#include "convex/extended_lichao_1.hpp"
+#include "convex/extended_lichao_2.hpp"
 #include "random/base.hpp"
 #include "random/shuffle.hpp"
 
 void test_minimize() {
   ll N = RNG(1, 100);
-
   vi X(201);
   FOR(i, 201) X[i] = i - 100;
   shuffle(X);
   X.resize(N);
 
-  Extended_LiChao_Tree_1<true> LCT(X);
+  Extended_LiChao_Tree_2<true> LCT(X);
   vi A(N, infty<ll>);
 
   ll Q = 100;
@@ -39,28 +38,28 @@ void test_minimize() {
     }
     if (t == 2) {
       // apply
-      LCT.add_segment(L, R, a, b);
+      LCT.add_segment(L, R, b);
       FOR(i, N) {
-        if (L <= X[i] && X[i] < R && A[i] < infty<ll>) A[i] += a * X[i] + b;
+        if (L <= X[i] && X[i] < R && A[i] < infty<ll>) A[i] += b;
       }
     }
+    ll god = infty<ll>;
     FOR(i, N) {
-      ll god = A[i];
-      ll ans = LCT.query(X[i]);
-      assert(god == ans);
+      if (L <= X[i] && X[i] < R) chmin(god, A[i]);
     }
+    ll ans = LCT.query(L, R);
+    assert(god == ans);
   }
 }
 
 void test_maximize() {
   ll N = RNG(1, 100);
-
   vi X(201);
   FOR(i, 201) X[i] = i - 100;
   shuffle(X);
   X.resize(N);
 
-  Extended_LiChao_Tree_1<false> LCT(X);
+  Extended_LiChao_Tree_2<false> LCT(X);
   vi A(N, -infty<ll>);
 
   ll Q = 100;
@@ -86,16 +85,17 @@ void test_maximize() {
     }
     if (t == 2) {
       // apply
-      LCT.add_segment(L, R, a, b);
+      LCT.add_segment(L, R, b);
       FOR(i, N) {
-        if (L <= X[i] && X[i] < R && A[i] > -infty<ll>) A[i] += a * X[i] + b;
+        if (L <= X[i] && X[i] < R && A[i] > -infty<ll>) A[i] += b;
       }
     }
+    ll god = -infty<ll>;
     FOR(i, N) {
-      ll god = A[i];
-      ll ans = LCT.query(X[i]);
-      assert(god == ans);
+      if (L <= X[i] && X[i] < R) chmax(god, A[i]);
     }
+    ll ans = LCT.query(L, R);
+    assert(god == ans);
   }
 }
 
