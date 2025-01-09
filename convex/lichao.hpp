@@ -44,9 +44,28 @@ struct LiChao_Tree {
     dat.assign(size << 1, default_fn);
   }
 
-  void add_line(FUNC f) { return add_line_at(1, f); }
+  void chmin_line(FUNC f) {
+    static_assert(MINIMIZE);
+    return add_line_at(1, f);
+  }
+  void chmax_line(FUNC f) {
+    static_assert(!MINIMIZE);
+    return add_line_at(1, f);
+  }
 
-  void add_segment(ll xl, ll xr, FUNC f) {
+  void chmin_segment(ll xl, ll xr, FUNC f) {
+    static_assert(MINIMIZE);
+    xl = get_idx(xl), xr = get_idx(xr);
+    xl += size, xr += size;
+    while (xl < xr) {
+      if (xl & 1) add_line_at(xl++, f);
+      if (xr & 1) add_line_at(--xr, f);
+      xl >>= 1, xr >>= 1;
+    }
+  }
+
+  void chmax_segment(ll xl, ll xr, FUNC f) {
+    static_assert(!MINIMIZE);
     xl = get_idx(xl), xr = get_idx(xr);
     xl += size, xr += size;
     while (xl < xr) {

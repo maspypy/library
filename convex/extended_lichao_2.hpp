@@ -1,32 +1,30 @@
 // https://codeforces.com/blog/entry/86731)
-// chmin(A[x],ax+b), A[x]+=ax+b, get A[x]
-template <bool PERSISTENT, bool MINIMIZE>
-struct Extended_LiChao_Tree {
+// chmin(A[x],ax+b), A[x]+=b, get range min
+template <bool MINIMIZE>
+struct Extended_LiChao_Tree_2 {
   // 入出力以外では minimize している
   struct F {
     ll a, b;
     F(ll a = 0, ll b = 0) : a(a), b(b) {}
     ll operator()(ll x) { return a * x + b; }
-    void add(F &other) {
-      if (b == infty<ll> || other.b == infty<ll>) {
-        a = 0, b = infty<ll>;
-      } else {
-        a += other.a, b += other.b;
-      }
+    void add(ll c) {
+      if (b != infty<ll>) b += c;
     }
   };
 
-  vi X;
-  vc<F> dat, lazy;
+  vi X, lazy;
+  vc<F> dat;
+  vi val;
   int n, log, size;
 
-  Extended_LiChao_Tree(vi X_) : X(X_) {
+  Extended_LiChao_Tree_2(vi X_) : X(X_) {
     UNIQUE(X);
     n = len(X), log = 1;
     while ((1 << log) < n) ++log;
     size = 1 << log;
     dat.assign(size << 1, F(0, infty<ll>));
-    lazy.assign(size << 1, F(0, 0));
+    lazy.assign(size << 1, 0);
+    val.assign(size << 1, infty<ll>);
   }
 
   // O(logN). f(x) := min(f(x), ax+b).
@@ -50,35 +48,36 @@ struct Extended_LiChao_Tree {
 
   // O(log^2N). f(x) := max(f(x), ax+b) for L<=x<R.
   // index ではなくて X[] の範囲.
-  void chmax_setment(ll L, ll R, ll a, ll b) {
-    static_assert(MINIMIZE);
-    chmin_segment_rec(1, LB(X, L), LB(X, R), F(a, b), 0, n);
+  void chmax_segment(ll L, ll R, ll a, ll b) {
+    static_assert(!MINIMIZE);
+    chmin_segment_rec(1, LB(X, L), LB(X, R), F(-a, -b), 0, n);
   }
 
-  // O(1). f(x) := f(x)+ax+b.
-  void add_line(ll a, ll b) {
-    if (!MINIMIZE) a = -a, b = -b;
-    add_segment_rec(1, 0, n, F(a, b), 0, n);
+  // O(1). f(x) := f(x)+b.
+  void add_line(ll b) {
+    if (!MINIMIZE) b = -b;
+    add_segment_rec(1, 0, n, b, 0, n);
   }
 
-  // O(log^2N). f(x) := f(x)+ax+b for L<=x<R.
+  // O(log^2N). f(x) := f(x)+b for L<=x<R.
   // index ではなくて X[] の範囲.
-  void add_segment(ll L, ll R, ll a, ll b) {
-    if (!MINIMIZE) a = -a, b = -b;
-    add_segment_rec(1, LB(X, L), LB(X, R), F(a, b), 0, n);
+  void add_segment(ll L, ll R, ll b) {
+    if (!MINIMIZE) b = -b;
+    add_segment_rec(1, LB(X, L), LB(X, R), b, 0, n);
   }
 
-  ll query(ll x) {
-    int idx = LB(X, x);
-    assert(0 <= idx && idx < n && X[idx] == x);
-    return query_rec(1, idx, 0, n, F(0, 0));
+  ll query(ll L, ll R) {
+    ll ans = query_rec(1, LB(X, L), LB(X, R), 0, n, 0);
+    return (MINIMIZE ? ans : -ans);
   }
 
 private:
   void push(int i) {
-    dat[2 * i + 0].add(lazy[i]), lazy[2 * i + 0].add(lazy[i]);
-    dat[2 * i + 1].add(lazy[i]), lazy[2 * i + 1].add(lazy[i]);
-    lazy[i] = F(0, 0);
+    dat[2 * i + 0].add(lazy[i]), lazy[2 * i + 0] += lazy[i];
+    dat[2 * i + 1].add(lazy[i]), lazy[2 * i + 1] += lazy[i];
+    if (val[2 * i + 0] < infty<ll>) val[2 * i + 0] += lazy[i];
+    if (val[2 * i + 1] < infty<ll>) val[2 * i + 1] += lazy[i];
+    lazy[i] = 0;
   }
 
   void chmin_segment_rec(int i, ll xl, ll xr, F f, ll node_l, ll node_r) {
@@ -89,6 +88,7 @@ private:
       push(i);
       chmin_segment_rec(2 * i + 0, xl, xr, f, node_l, node_m);
       chmin_segment_rec(2 * i + 1, xl, xr, f, node_m, node_r);
+      chmin(val[i], min(val[2 * i + 0], val[2 * i + 1]));
       return;
     }
     chmin_line_rec(i, f, node_l, node_r);
@@ -98,6 +98,7 @@ private:
     F g = dat[i];
     ll fl = f(X[node_l]), fr = f(X[node_r - 1]);
     ll gl = g(X[node_l]), gr = g(X[node_r - 1]);
+    chmin(val[i], min(fl, fr));
     if (fl <= gl && fr <= gr) {
       dat[i] = f;
       return;
@@ -112,7 +113,7 @@ private:
     elif (fm >= gm && gl >= fl) chmin_line_rec(2 * i + 0, f, node_l, node_m);
   }
 
-  void add_segment_rec(int i, ll xl, ll xr, F f, ll node_l, ll node_r) {
+  void add_segment_rec(int i, ll xl, ll xr, ll b, ll node_l, ll node_r) {
     chmax(xl, node_l), chmin(xr, node_r);
     if (xl >= xr) return;
     if (node_l < xl || xr < node_r) {
@@ -121,21 +122,29 @@ private:
       chmin_line_rec(2 * i + 0, dat[i], node_l, node_m);
       chmin_line_rec(2 * i + 1, dat[i], node_m, node_r);
       dat[i] = F(0, infty<ll>);
-      add_segment_rec(2 * i + 0, xl, xr, f, node_l, node_m);
-      add_segment_rec(2 * i + 1, xl, xr, f, node_m, node_r);
+      add_segment_rec(2 * i + 0, xl, xr, b, node_l, node_m);
+      add_segment_rec(2 * i + 1, xl, xr, b, node_m, node_r);
+      val[i] = min(val[2 * i + 0], val[2 * i + 1]);
+      chmin(val[i], dat[i](X[node_l]));
+      chmin(val[i], dat[i](X[node_r - 1]));
       return;
     }
-    dat[i].add(f), lazy[i].add(f);
+    dat[i].add(b), lazy[i] += b;
+    if (val[i] < infty<ll>) val[i] += b;
   }
 
-  ll query_rec(int i, ll x, ll node_l, ll node_r, F laz) {
-    ll res = dat[i](X[x]);
-    if (res < infty<ll>) res += laz(X[x]);
-    ll node_m = (node_l + node_r) / 2;
-    laz.add(lazy[i]);
-    if (node_r == node_l + 1) return res;
-    if (x < node_m) { chmin(res, query_rec(2 * i + 0, x, node_l, node_m, laz)); }
-    if (x >= node_m) { chmin(res, query_rec(2 * i + 1, x, node_m, node_r, laz)); }
-    return res;
+  ll query_rec(int i, ll L, ll R, ll node_l, ll node_r, ll laz) {
+    chmax(L, node_l), chmin(R, node_r);
+    if (L >= R) return infty<ll>;
+    if (node_l < L || R < node_r) {
+      ll node_m = (node_l + node_r) / 2;
+      ll ans = infty<ll>;
+      if (dat[i].b != infty<ll>) chmin(ans, min(dat[i](X[L]), dat[i](X[R - 1])) + laz);
+      laz += lazy[i];
+      chmin(ans, query_rec(2 * i + 0, L, R, node_l, node_m, laz));
+      chmin(ans, query_rec(2 * i + 1, L, R, node_m, node_r, laz));
+      return ans;
+    }
+    return (val[i] == infty<ll> ? infty<ll> : val[i] + laz);
   }
 };
