@@ -421,15 +421,15 @@ data:
   path: seq/famous/bernoulli.hpp
   requiredBy:
   - poly/prefix_sum_of_polynomial.hpp
-  - seq/famous/riemann_zeta_even.hpp
   - seq/famous/faulhaber.hpp
+  - seq/famous/riemann_zeta_even.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/1357.test.cpp
   - test/1_mytest/faulhaber.test.cpp
-  - test/2_library_checker/number_theory/bernoulli.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document
 redirect_from:

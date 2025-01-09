@@ -544,10 +544,10 @@ data:
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1321.test.cpp
-  - test/3_yukicoder/1392.test.cpp
-  - test/1_mytest/bell.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/1321.test.cpp
+  - test/1_mytest/bell.test.cpp
 documentation_of: seq/famous/stirling_number_2.hpp
 layout: document
 redirect_from:

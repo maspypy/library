@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -305,9 +305,9 @@ data:
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
 documentation_of: geo/count_points_in_triangles.hpp
 layout: document
 redirect_from:

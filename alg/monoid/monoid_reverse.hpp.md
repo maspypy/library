@@ -76,27 +76,27 @@ data:
   isVerificationFile: false
   path: alg/monoid/monoid_reverse.hpp
   requiredBy:
+  - graph/minimum_spanning_tree.hpp
+  - graph/ds/static_tree_monoid.hpp
   - graph/ds/lazy_tree_monoid.hpp
   - graph/ds/tree_monoid.hpp
-  - graph/ds/static_tree_monoid.hpp
-  - graph/minimum_spanning_tree.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
+  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
+  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
+  - test/3_yukicoder/1216_2.test.cpp
   - test/3_yukicoder/529.test.cpp
   - test/3_yukicoder/1197.test.cpp
-  - test/3_yukicoder/1790.test.cpp
   - test/3_yukicoder/1216.test.cpp
-  - test/3_yukicoder/1216_2.test.cpp
-  - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1212.test.cpp
+  - test/3_yukicoder/1790.test.cpp
+  - test/3_yukicoder/235.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
-  - test/1_mytest/mo_on_tree.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
-  - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
 documentation_of: alg/monoid/monoid_reverse.hpp
 layout: document
 redirect_from:

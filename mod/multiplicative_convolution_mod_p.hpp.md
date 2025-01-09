@@ -43,7 +43,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -441,8 +441,8 @@ data:
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2613.test.cpp
   - test/2_library_checker/convolution/mul_modp_conv.test.cpp
+  - test/3_yukicoder/2613.test.cpp
 documentation_of: mod/multiplicative_convolution_mod_p.hpp
 layout: document
 redirect_from:

@@ -110,20 +110,20 @@ data:
   isVerificationFile: false
   path: nt/primesum.hpp
   requiredBy:
-  - nt/primesum_mod4.hpp
-  - nt/primesum_mod6.hpp
   - nt/count_by_factor_type.hpp
+  - nt/primesum_mod6.hpp
+  - nt/primesum_mod4.hpp
   timestamp: '2024-09-30 22:44:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/number_theory/counting_primes.test.cpp
+  - test/2_library_checker/number_theory/totient_sum.test.cpp
   - test/3_yukicoder/1276.test.cpp
   - test/3_yukicoder/1781.test.cpp
   - test/1_mytest/primesum_mod6.test.cpp
   - test/1_mytest/prime_sum.test.cpp
-  - test/1_mytest/primesum_mod4.test.cpp
   - test/1_mytest/count_by_factor_type.test.cpp
-  - test/2_library_checker/number_theory/counting_primes.test.cpp
-  - test/2_library_checker/number_theory/totient_sum.test.cpp
+  - test/1_mytest/primesum_mod4.test.cpp
 documentation_of: nt/primesum.hpp
 layout: document
 redirect_from:

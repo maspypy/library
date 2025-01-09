@@ -504,8 +504,8 @@ data:
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
 documentation_of: poly/from_log_differentiation.hpp
 layout: document
 redirect_from:

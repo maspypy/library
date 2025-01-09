@@ -126,8 +126,8 @@ data:
   timestamp: '2024-08-26 01:20:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1339.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
+  - test/3_yukicoder/1339.test.cpp
 documentation_of: nt/discrete_log.hpp
 layout: document
 redirect_from:

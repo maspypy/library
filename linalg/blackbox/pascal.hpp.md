@@ -322,8 +322,8 @@ data:
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/2108.test.cpp
+  - test/3_yukicoder/2243.test.cpp
   - test/1_mytest/pascal.test.cpp
 documentation_of: linalg/blackbox/pascal.hpp
 layout: document

@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -223,9 +223,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2119.test.cpp
-  - test/3_yukicoder/590.test.cpp
-  - test/3_yukicoder/187.test.cpp
   - test/3_yukicoder/1956.test.cpp
+  - test/3_yukicoder/187.test.cpp
+  - test/3_yukicoder/590.test.cpp
 documentation_of: nt/crt.hpp
 layout: document
 redirect_from:

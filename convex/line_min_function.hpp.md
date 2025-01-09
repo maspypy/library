@@ -269,8 +269,8 @@ data:
   isVerificationFile: false
   path: convex/line_min_function.hpp
   requiredBy:
-  - convex/count_lattice_point_in_convex_polygon.hpp
   - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+  - convex/count_lattice_point_in_convex_polygon.hpp
   timestamp: '2025-01-06 23:56:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

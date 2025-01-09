@@ -68,8 +68,8 @@ data:
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
-  - ds/static_range_frequency.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - ds/static_range_frequency.hpp
   timestamp: '2024-11-01 21:56:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

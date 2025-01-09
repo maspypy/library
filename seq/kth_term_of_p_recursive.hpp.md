@@ -471,14 +471,14 @@ data:
   isVerificationFile: false
   path: seq/kth_term_of_p_recursive.hpp
   requiredBy:
-  - poly/from_log_differentiation.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/502_2.test.cpp
-  - test/3_yukicoder/2166.test.cpp
 documentation_of: seq/kth_term_of_p_recursive.hpp
 layout: document
 redirect_from:

@@ -211,6 +211,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
+    - icon: ':x:'
+      path: convex/extended_lichao.hpp
+      title: convex/extended_lichao.hpp
     - icon: ':warning:'
       path: convex/fenchel.hpp
       title: convex/fenchel.hpp
@@ -1478,7 +1481,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1923,7 +1926,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -1941,7 +1944,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/random_polygon.hpp
       title: random/random_polygon.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp
   - name: seq
@@ -2433,6 +2436,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/eulerian_number.test.cpp
       title: test/1_mytest/eulerian_number.test.cpp
+    - icon: ':x:'
+      path: test/1_mytest/extended_lichao.test.cpp
+      title: test/1_mytest/extended_lichao.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/factorial_998.test.cpp
       title: test/1_mytest/factorial_998.test.cpp

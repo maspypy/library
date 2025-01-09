@@ -337,42 +337,42 @@ data:
   isVerificationFile: false
   path: poly/middle_product.hpp
   requiredBy:
-  - poly/slice_rational_fps.hpp
+  - string/wildcard_pattern_matching.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/partial_frac_decomposition_1.hpp
   - poly/typical_divide_conquer.hpp
   - poly/multipoint_evaluation_for_prefix_product.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/multipoint.hpp
-  - poly/partial_frac_decomposition_1.hpp
+  - poly/slice_rational_fps.hpp
   - poly/multivar_convolution_cyclic.hpp
-  - string/wildcard_pattern_matching.hpp
-  - linalg/blackbox/vandermonde.hpp
+  - poly/multipoint.hpp
   - seq/count_grid_path.hpp
+  - linalg/blackbox/vandermonde.hpp
   - graph/chromatic.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1796_1.test.cpp
-  - test/3_yukicoder/2231.test.cpp
-  - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/2877.test.cpp
-  - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/2626.test.cpp
-  - test/1_mytest/chirp_z.test.cpp
-  - test/1_mytest/typical_dc.test.cpp
-  - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/multipoint_prefix.test.cpp
   - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/2231.test.cpp
+  - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/1796_1.test.cpp
+  - test/3_yukicoder/2626.test.cpp
+  - test/3_yukicoder/2877.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
+  - test/1_mytest/typical_dc.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/chirp_z.test.cpp
 documentation_of: poly/middle_product.hpp
 layout: document
 redirect_from:

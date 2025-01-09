@@ -141,18 +141,18 @@ data:
   - geo/count_points_in_triangles.hpp
   - geo/minkowski_sum.hpp
   - geo/rotating_swaps.hpp
-  - geo/polygon_triangulation.hpp
   - geo/max_norm_sum.hpp
+  - geo/polygon_triangulation.hpp
   - graph/planar_graph.hpp
   timestamp: '2024-12-05 21:21:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/3_yukicoder/1777.test.cpp
   - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

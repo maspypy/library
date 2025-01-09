@@ -388,9 +388,9 @@ data:
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
   - test/3_yukicoder/2062.test.cpp
   - test/1_mytest/product_of_one_pm_xn.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document
 redirect_from:
