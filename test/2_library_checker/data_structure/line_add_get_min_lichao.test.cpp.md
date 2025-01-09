@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -227,10 +227,16 @@ data:
     \ L, ll R) : pid(0), L(L), R(R) { pool = new Node[NODES]; }\n\n  void reset()\
     \ {\n    funcs.clear();\n    pid = 0;\n  }\n\n  np new_root() { return nullptr;\
     \ }\n\n  np new_node() {\n    pool[pid].fid = -1;\n    pool[pid].l = nullptr,\
-    \ pool[pid].r = nullptr;\n    return &(pool[pid++]);\n  }\n\n  np add_line(np\
-    \ root, FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n    if (!root)\
-    \ root = new_node();\n    return add_line_rec(root, fid, L, R);\n  }\n\n  // [xl,\
-    \ xr)\n  np add_segment(np root, ll xl, ll xr, FUNC f) {\n    int fid = len(funcs);\n\
+    \ pool[pid].r = nullptr;\n    return &(pool[pid++]);\n  }\n\n  np chmin_line(np\
+    \ root, FUNC f) {\n    static_assert(MINIMIZE);\n    int fid = len(funcs);\n \
+    \   funcs.eb(f);\n    if (!root) root = new_node();\n    return add_line_rec(root,\
+    \ fid, L, R);\n  }\n  np chmax_line(np root, FUNC f) {\n    static_assert(!MINIMIZE);\n\
+    \    int fid = len(funcs);\n    funcs.eb(f);\n    if (!root) root = new_node();\n\
+    \    return add_line_rec(root, fid, L, R);\n  }\n\n  // [xl, xr)\n  np chmin_segment(np\
+    \ root, ll xl, ll xr, FUNC f) {\n    static_assert(MINIMIZE);\n    int fid = len(funcs);\n\
+    \    funcs.eb(f);\n    if (!root) root = new_node();\n    return add_segment_rec(root,\
+    \ xl, xr, fid, L, R);\n  }\n  // [xl, xr)\n  np chmax_segment(np root, ll xl,\
+    \ ll xr, FUNC f) {\n    static_assert(!MINIMIZE);\n    int fid = len(funcs);\n\
     \    funcs.eb(f);\n    if (!root) root = new_node();\n    return add_segment_rec(root,\
     \ xl, xr, fid, L, R);\n  }\n\n  // (\u5024\u30FB\u95A2\u6570\u756A\u53F7)\n  pair<T,\
     \ int> query(np root, ll x) {\n    assert(L <= x && x < R);\n    if (!root) {\n\
@@ -294,8 +300,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-09 21:54:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
 layout: document

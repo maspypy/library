@@ -207,6 +207,9 @@ data:
   - icon: ':x:'
     path: test/1_mytest/extended_lichao.test.cpp
     title: test/1_mytest/extended_lichao.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/extended_lichao_2.test.cpp
+    title: test/1_mytest/extended_lichao_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/factorial_998.test.cpp
     title: test/1_mytest/factorial_998.test.cpp
@@ -711,10 +714,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -816,10 +819,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1845,7 +1848,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1857.test.cpp
     title: test/3_yukicoder/1857.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1867.test.cpp
     title: test/3_yukicoder/1867.test.cpp
   - icon: ':heavy_check_mark:'
@@ -2232,7 +2235,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/705.test.cpp
     title: test/3_yukicoder/705.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/705_2.test.cpp
     title: test/3_yukicoder/705_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3289,6 +3292,7 @@ data:
   - test/1_mytest/cf702_F_splay.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
   - test/1_mytest/O1_inv.test.cpp
+  - test/1_mytest/extended_lichao_2.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
   - test/1_mytest/power_projection.test.cpp

@@ -30,6 +30,9 @@ data:
   - icon: ':x:'
     path: test/1_mytest/extended_lichao.test.cpp
     title: test/1_mytest/extended_lichao.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/extended_lichao_2.test.cpp
+    title: test/1_mytest/extended_lichao_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/find_C4.test.cpp
     title: test/1_mytest/find_C4.test.cpp
@@ -115,6 +118,7 @@ data:
   - test/1_mytest/remove_one_edge.test.cpp
   - test/1_mytest/find_odd_cycle.test.cpp
   - test/1_mytest/extended_lichao.test.cpp
+  - test/1_mytest/extended_lichao_2.test.cpp
   - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/nth_element_from_sorted_lists.test.cpp
   - test/1_mytest/st_numbering.test.cpp

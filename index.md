@@ -208,19 +208,22 @@ data:
     - icon: ':warning:'
       path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
       title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
     - icon: ':x:'
-      path: convex/extended_lichao.hpp
-      title: convex/extended_lichao.hpp
+      path: convex/extended_lichao_1.hpp
+      title: convex/extended_lichao_1.hpp
+    - icon: ':x:'
+      path: convex/extended_lichao_2.hpp
+      title: convex/extended_lichao_2.hpp
     - icon: ':warning:'
       path: convex/fenchel.hpp
       title: convex/fenchel.hpp
     - icon: ':heavy_check_mark:'
       path: convex/larsch.hpp
       title: convex/larsch.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
     - icon: ':heavy_check_mark:'
@@ -1657,7 +1660,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2439,6 +2442,9 @@ data:
     - icon: ':x:'
       path: test/1_mytest/extended_lichao.test.cpp
       title: test/1_mytest/extended_lichao.test.cpp
+    - icon: ':x:'
+      path: test/1_mytest/extended_lichao_2.test.cpp
+      title: test/1_mytest/extended_lichao_2.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/factorial_998.test.cpp
       title: test/1_mytest/factorial_998.test.cpp
@@ -2955,10 +2961,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3060,10 +3066,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
       title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4115,7 +4121,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1857.test.cpp
       title: test/3_yukicoder/1857.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/1867.test.cpp
       title: test/3_yukicoder/1867.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4502,7 +4508,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/705.test.cpp
       title: test/3_yukicoder/705.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/3_yukicoder/705_2.test.cpp
       title: test/3_yukicoder/705_2.test.cpp
     - icon: ':heavy_check_mark:'

@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -228,23 +228,29 @@ data:
     \ new Node[NODES]; }\n\n  void reset() {\n    funcs.clear();\n    pid = 0;\n \
     \ }\n\n  np new_root() { return nullptr; }\n\n  np new_node() {\n    pool[pid].fid\
     \ = -1;\n    pool[pid].l = nullptr, pool[pid].r = nullptr;\n    return &(pool[pid++]);\n\
-    \  }\n\n  np add_line(np root, FUNC f) {\n    int fid = len(funcs);\n    funcs.eb(f);\n\
-    \    if (!root) root = new_node();\n    return add_line_rec(root, fid, L, R);\n\
-    \  }\n\n  // [xl, xr)\n  np add_segment(np root, ll xl, ll xr, FUNC f) {\n   \
+    \  }\n\n  np chmin_line(np root, FUNC f) {\n    static_assert(MINIMIZE);\n   \
     \ int fid = len(funcs);\n    funcs.eb(f);\n    if (!root) root = new_node();\n\
-    \    return add_segment_rec(root, xl, xr, fid, L, R);\n  }\n\n  // (\u5024\u30FB\
-    \u95A2\u6570\u756A\u53F7)\n  pair<T, int> query(np root, ll x) {\n    assert(L\
-    \ <= x && x < R);\n    if (!root) {\n      if (MINIMIZE) return {infty<T>, -1};\n\
-    \      if (!MINIMIZE) return {-infty<T>, -1};\n    }\n    return query_rec(root,\
-    \ x, L, R);\n  }\n\nprivate:\n  np copy_node(Node *c) {\n    if (!c || !PERSISTENT)\
-    \ return c;\n    pool[pid].fid = c->fid;\n    pool[pid].l = c->l, pool[pid].r\
-    \ = c->r;\n    return &(pool[pid++]);\n  }\n\n  inline T evaluate_inner(int fid,\
-    \ ll x) {\n    if (fid == -1) { return (MINIMIZE ? infty<T> : -infty<T>); };\n\
-    \    return evaluate(funcs[fid], x);\n  }\n\n  np add_segment_rec(np c, ll xl,\
-    \ ll xr, int fid, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr, node_r);\n\
-    \    if (xl >= xr) return c;\n    if (node_l < xl || xr < node_r) {\n      c =\
-    \ copy_node(c);\n      ll node_m = (node_l + node_r) / 2;\n      if (!c->l) c->l\
-    \ = new_node();\n      if (!c->r) c->r = new_node();\n      c->l = add_segment_rec(c->l,\
+    \    return add_line_rec(root, fid, L, R);\n  }\n  np chmax_line(np root, FUNC\
+    \ f) {\n    static_assert(!MINIMIZE);\n    int fid = len(funcs);\n    funcs.eb(f);\n\
+    \    if (!root) root = new_node();\n    return add_line_rec(root, fid, L, R);\n\
+    \  }\n\n  // [xl, xr)\n  np chmin_segment(np root, ll xl, ll xr, FUNC f) {\n \
+    \   static_assert(MINIMIZE);\n    int fid = len(funcs);\n    funcs.eb(f);\n  \
+    \  if (!root) root = new_node();\n    return add_segment_rec(root, xl, xr, fid,\
+    \ L, R);\n  }\n  // [xl, xr)\n  np chmax_segment(np root, ll xl, ll xr, FUNC f)\
+    \ {\n    static_assert(!MINIMIZE);\n    int fid = len(funcs);\n    funcs.eb(f);\n\
+    \    if (!root) root = new_node();\n    return add_segment_rec(root, xl, xr, fid,\
+    \ L, R);\n  }\n\n  // (\u5024\u30FB\u95A2\u6570\u756A\u53F7)\n  pair<T, int> query(np\
+    \ root, ll x) {\n    assert(L <= x && x < R);\n    if (!root) {\n      if (MINIMIZE)\
+    \ return {infty<T>, -1};\n      if (!MINIMIZE) return {-infty<T>, -1};\n    }\n\
+    \    return query_rec(root, x, L, R);\n  }\n\nprivate:\n  np copy_node(Node *c)\
+    \ {\n    if (!c || !PERSISTENT) return c;\n    pool[pid].fid = c->fid;\n    pool[pid].l\
+    \ = c->l, pool[pid].r = c->r;\n    return &(pool[pid++]);\n  }\n\n  inline T evaluate_inner(int\
+    \ fid, ll x) {\n    if (fid == -1) { return (MINIMIZE ? infty<T> : -infty<T>);\
+    \ };\n    return evaluate(funcs[fid], x);\n  }\n\n  np add_segment_rec(np c, ll\
+    \ xl, ll xr, int fid, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr,\
+    \ node_r);\n    if (xl >= xr) return c;\n    if (node_l < xl || xr < node_r) {\n\
+    \      c = copy_node(c);\n      ll node_m = (node_l + node_r) / 2;\n      if (!c->l)\
+    \ c->l = new_node();\n      if (!c->r) c->r = new_node();\n      c->l = add_segment_rec(c->l,\
     \ xl, xr, fid, node_l, node_m);\n      c->r = add_segment_rec(c->r, xl, xr, fid,\
     \ node_m, node_r);\n      return c;\n    }\n    return add_line_rec(c, fid, node_l,\
     \ node_r);\n  }\n\n  np add_line_rec(np c, int fid, ll node_l, ll node_r) {\n\
@@ -298,8 +304,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-01-09 21:54:53+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
 layout: document

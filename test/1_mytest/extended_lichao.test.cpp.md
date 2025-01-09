@@ -2,8 +2,8 @@
 data:
   _extendedDependsOn:
   - icon: ':x:'
-    path: convex/extended_lichao.hpp
-    title: convex/extended_lichao.hpp
+    path: convex/extended_lichao_1.hpp
+    title: convex/extended_lichao_1.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
@@ -120,36 +120,36 @@ data:
     \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
     \ &first, const Vectors &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
     \ others.begin(), others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/extended_lichao.test.cpp\"\
-    \n\n#line 1 \"convex/extended_lichao.hpp\"\n// https://codeforces.com/blog/entry/86731)\n\
-    // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]\ntemplate <bool PERSISTENT, bool MINIMIZE>\n\
-    struct Extended_LiChao_Tree {\n  // \u5165\u51FA\u529B\u4EE5\u5916\u3067\u306F\
-    \ minimize \u3057\u3066\u3044\u308B\n  struct F {\n    ll a, b;\n    F(ll a =\
-    \ 0, ll b = 0) : a(a), b(b) {}\n    ll operator()(ll x) { return a * x + b; }\n\
-    \    void add(F &other) {\n      if (b == infty<ll> || other.b == infty<ll>) {\n\
-    \        a = 0, b = infty<ll>;\n      } else {\n        a += other.a, b += other.b;\n\
-    \      }\n    }\n  };\n\n  vi X;\n  vc<F> dat, lazy;\n  int n, log, size;\n\n\
-    \  Extended_LiChao_Tree(vi X_) : X(X_) {\n    UNIQUE(X);\n    n = len(X), log\
-    \ = 1;\n    while ((1 << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size\
-    \ << 1, F(0, infty<ll>));\n    lazy.assign(size << 1, F(0, 0));\n  }\n\n  // O(logN).\
-    \ f(x) := min(f(x), ax+b).\n  void chmin_line(ll a, ll b) {\n    static_assert(MINIMIZE);\n\
-    \    chmin_line_rec(1, F(a, b), 0, n);\n  }\n\n  // O(logN). f(x) := max(f(x),\
-    \ ax+b).\n  void chmax_line(ll a, ll b) {\n    static_assert(!MINIMIZE);\n   \
-    \ chmin_line_rec(1, F(-a, -b), 0, n);\n  }\n\n  // O(log^2N). f(x) := min(f(x),\
+    \n\n#line 1 \"convex/extended_lichao_1.hpp\"\n// https://codeforces.com/blog/entry/86731)\n\
+    // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]\ntemplate <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1\
+    \ {\n  // \u5165\u51FA\u529B\u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\
+    \u308B\n  struct F {\n    ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n\
+    \    ll operator()(ll x) { return a * x + b; }\n    void add(F &other) {\n   \
+    \   if (b == infty<ll> || other.b == infty<ll>) {\n        a = 0, b = infty<ll>;\n\
+    \      } else {\n        a += other.a, b += other.b;\n      }\n    }\n  };\n\n\
+    \  vi X;\n  vc<F> dat, lazy;\n  int n, log, size;\n\n  Extended_LiChao_Tree_1(vi\
+    \ X_) : X(X_) {\n    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log)\
+    \ < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, F(0, infty<ll>));\n\
+    \    lazy.assign(size << 1, F(0, 0));\n  }\n\n  // O(logN). f(x) := min(f(x),\
+    \ ax+b).\n  void chmin_line(ll a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_line_rec(1,\
+    \ F(a, b), 0, n);\n  }\n\n  // O(logN). f(x) := max(f(x), ax+b).\n  void chmax_line(ll\
+    \ a, ll b) {\n    static_assert(!MINIMIZE);\n    chmin_line_rec(1, F(-a, -b),\
+    \ 0, n);\n  }\n\n  // O(log^2N). f(x) := min(f(x), ax+b) for L<=x<R.\n  // index\
+    \ \u3067\u306F\u306A\u304F\u3066 X[] \u306E\u7BC4\u56F2.\n  void chmin_segment(ll\
+    \ L, ll R, ll a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_segment_rec(1,\
+    \ LB(X, L), LB(X, R), F(a, b), 0, n);\n  }\n\n  // O(log^2N). f(x) := max(f(x),\
     \ ax+b) for L<=x<R.\n  // index \u3067\u306F\u306A\u304F\u3066 X[] \u306E\u7BC4\
-    \u56F2.\n  void chmin_segment(ll L, ll R, ll a, ll b) {\n    static_assert(MINIMIZE);\n\
-    \    chmin_segment_rec(1, LB(X, L), LB(X, R), F(a, b), 0, n);\n  }\n\n  // O(log^2N).\
-    \ f(x) := max(f(x), ax+b) for L<=x<R.\n  // index \u3067\u306F\u306A\u304F\u3066\
-    \ X[] \u306E\u7BC4\u56F2.\n  void chmax_setment(ll L, ll R, ll a, ll b) {\n  \
-    \  static_assert(MINIMIZE);\n    chmin_segment_rec(1, LB(X, L), LB(X, R), F(a,\
-    \ b), 0, n);\n  }\n\n  // O(1). f(x) := f(x)+ax+b.\n  void add_line(ll a, ll b)\
-    \ {\n    if (!MINIMIZE) a = -a, b = -b;\n    add_segment_rec(1, 0, n, F(a, b),\
-    \ 0, n);\n  }\n\n  // O(log^2N). f(x) := f(x)+ax+b for L<=x<R.\n  // index \u3067\
-    \u306F\u306A\u304F\u3066 X[] \u306E\u7BC4\u56F2.\n  void add_segment(ll L, ll\
-    \ R, ll a, ll b) {\n    if (!MINIMIZE) a = -a, b = -b;\n    add_segment_rec(1,\
-    \ LB(X, L), LB(X, R), F(a, b), 0, n);\n  }\n\n  ll query(ll x) {\n    int idx\
-    \ = LB(X, x);\n    assert(0 <= idx && idx < n && X[idx] == x);\n    return query_rec(1,\
-    \ idx, 0, n, F(0, 0));\n  }\n\nprivate:\n  void push(int i) {\n    dat[2 * i +\
-    \ 0].add(lazy[i]), lazy[2 * i + 0].add(lazy[i]);\n    dat[2 * i + 1].add(lazy[i]),\
+    \u56F2.\n  void chmax_segment(ll L, ll R, ll a, ll b) {\n    static_assert(!MINIMIZE);\n\
+    \    chmin_segment_rec(1, LB(X, L), LB(X, R), F(-a, -b), 0, n);\n  }\n\n  // O(1).\
+    \ f(x) := f(x)+ax+b.\n  void add_line(ll a, ll b) {\n    if (!MINIMIZE) a = -a,\
+    \ b = -b;\n    add_segment_rec(1, 0, n, F(a, b), 0, n);\n  }\n\n  // O(log^2N).\
+    \ f(x) := f(x)+ax+b for L<=x<R.\n  // index \u3067\u306F\u306A\u304F\u3066 X[]\
+    \ \u306E\u7BC4\u56F2.\n  void add_segment(ll L, ll R, ll a, ll b) {\n    if (!MINIMIZE)\
+    \ a = -a, b = -b;\n    add_segment_rec(1, LB(X, L), LB(X, R), F(a, b), 0, n);\n\
+    \  }\n\n  ll query(ll x) {\n    int idx = LB(X, x);\n    assert(0 <= idx && idx\
+    \ < n && X[idx] == x);\n    ll ans = query_rec(1, idx, 0, n, F(0, 0));\n    return\
+    \ MINIMIZE ? ans : -ans;\n  }\n\nprivate:\n  void push(int i) {\n    dat[2 * i\
+    \ + 0].add(lazy[i]), lazy[2 * i + 0].add(lazy[i]);\n    dat[2 * i + 1].add(lazy[i]),\
     \ lazy[2 * i + 1].add(lazy[i]);\n    lazy[i] = F(0, 0);\n  }\n\n  void chmin_segment_rec(int\
     \ i, ll xl, ll xr, F f, ll node_l, ll node_r) {\n    chmax(xl, node_l), chmin(xr,\
     \ node_r);\n    if (xl >= xr) return;\n    if (node_l < xl || xr < node_r) {\n\
@@ -185,8 +185,8 @@ data:
     \ RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\n\ntemplate <typename\
     \ T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n\
     \    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 7 \"test/1_mytest/extended_lichao.test.cpp\"\
-    \n\nvoid test() {\n  ll N = RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201) X[i] =\
-    \ i - 100;\n  shuffle(X);\n  X.resize(N);\n\n  Extended_LiChao_Tree<false, true>\
+    \n\nvoid test_minimize() {\n  ll N = RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201)\
+    \ X[i] = i - 100;\n  shuffle(X);\n  X.resize(N);\n\n  Extended_LiChao_Tree_1<true>\
     \ LCT(X);\n  vi A(N, infty<ll>);\n\n  ll Q = 100;\n  FOR(Q) {\n    ll t = RNG(0,\
     \ 3);\n    ll L = RNG(-100, 101);\n    ll R = RNG(-100, 101);\n    if (L > R)\
     \ swap(L, R);\n    ++R;\n    ll a = RNG(-10, 10);\n    ll b = RNG(-100, 100);\n\
@@ -197,14 +197,27 @@ data:
     \    // apply\n      LCT.add_segment(L, R, a, b);\n      FOR(i, N) {\n       \
     \ if (L <= X[i] && X[i] < R && A[i] < infty<ll>) A[i] += a * X[i] + b;\n     \
     \ }\n    }\n    FOR(i, N) {\n      ll god = A[i];\n      ll ans = LCT.query(X[i]);\n\
-    \      assert(god == ans);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000)\
-    \ test();\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLME \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
-    \ \"my_template.hpp\"\n\n#include \"convex/extended_lichao.hpp\"\n#include \"\
-    random/base.hpp\"\n#include \"random/shuffle.hpp\"\n\nvoid test() {\n  ll N =\
+    \      assert(god == ans);\n    }\n  }\n}\n\nvoid test_maximize() {\n  ll N =\
     \ RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201) X[i] = i - 100;\n  shuffle(X);\n\
-    \  X.resize(N);\n\n  Extended_LiChao_Tree<false, true> LCT(X);\n  vi A(N, infty<ll>);\n\
+    \  X.resize(N);\n\n  Extended_LiChao_Tree_1<false> LCT(X);\n  vi A(N, -infty<ll>);\n\
+    \n  ll Q = 100;\n  FOR(Q) {\n    ll t = RNG(0, 3);\n    ll L = RNG(-100, 101);\n\
+    \    ll R = RNG(-100, 101);\n    if (L > R) swap(L, R);\n    ++R;\n    ll a =\
+    \ RNG(-10, 10);\n    ll b = RNG(-100, 100);\n    if (t == 0) {\n      // line\n\
+    \      LCT.chmax_line(a, b);\n      FOR(i, N) chmax(A[i], a * X[i] + b);\n   \
+    \ }\n    if (t == 1) {\n      // segment\n      LCT.chmax_segment(L, R, a, b);\n\
+    \      FOR(i, N) {\n        if (L <= X[i] && X[i] < R) chmax(A[i], a * X[i] +\
+    \ b);\n      }\n    }\n    if (t == 2) {\n      // apply\n      LCT.add_segment(L,\
+    \ R, a, b);\n      FOR(i, N) {\n        if (L <= X[i] && X[i] < R && A[i] > -infty<ll>)\
+    \ A[i] += a * X[i] + b;\n      }\n    }\n    FOR(i, N) {\n      ll god = A[i];\n\
+    \      ll ans = LCT.query(X[i]);\n      assert(god == ans);\n    }\n  }\n}\n\n\
+    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
+    \nsigned main() {\n  FOR(10000) test_minimize();\n  FOR(10000) test_maximize();\n\
+    \  solve();\n  return 0;\n}\n"
+  code: "#define PROBLME \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
+    \ \"my_template.hpp\"\n\n#include \"convex/extended_lichao_1.hpp\"\n#include \"\
+    random/base.hpp\"\n#include \"random/shuffle.hpp\"\n\nvoid test_minimize() {\n\
+    \  ll N = RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201) X[i] = i - 100;\n  shuffle(X);\n\
+    \  X.resize(N);\n\n  Extended_LiChao_Tree_1<true> LCT(X);\n  vi A(N, infty<ll>);\n\
     \n  ll Q = 100;\n  FOR(Q) {\n    ll t = RNG(0, 3);\n    ll L = RNG(-100, 101);\n\
     \    ll R = RNG(-100, 101);\n    if (L > R) swap(L, R);\n    ++R;\n    ll a =\
     \ RNG(-10, 10);\n    ll b = RNG(-100, 100);\n    if (t == 0) {\n      // line\n\
@@ -215,17 +228,30 @@ data:
     \ R, a, b);\n      FOR(i, N) {\n        if (L <= X[i] && X[i] < R && A[i] < infty<ll>)\
     \ A[i] += a * X[i] + b;\n      }\n    }\n    FOR(i, N) {\n      ll god = A[i];\n\
     \      ll ans = LCT.query(X[i]);\n      assert(god == ans);\n    }\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  FOR(10000) test();\n  solve();\n  return 0;\n}\n"
+    void test_maximize() {\n  ll N = RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201) X[i]\
+    \ = i - 100;\n  shuffle(X);\n  X.resize(N);\n\n  Extended_LiChao_Tree_1<false>\
+    \ LCT(X);\n  vi A(N, -infty<ll>);\n\n  ll Q = 100;\n  FOR(Q) {\n    ll t = RNG(0,\
+    \ 3);\n    ll L = RNG(-100, 101);\n    ll R = RNG(-100, 101);\n    if (L > R)\
+    \ swap(L, R);\n    ++R;\n    ll a = RNG(-10, 10);\n    ll b = RNG(-100, 100);\n\
+    \    if (t == 0) {\n      // line\n      LCT.chmax_line(a, b);\n      FOR(i, N)\
+    \ chmax(A[i], a * X[i] + b);\n    }\n    if (t == 1) {\n      // segment\n   \
+    \   LCT.chmax_segment(L, R, a, b);\n      FOR(i, N) {\n        if (L <= X[i] &&\
+    \ X[i] < R) chmax(A[i], a * X[i] + b);\n      }\n    }\n    if (t == 2) {\n  \
+    \    // apply\n      LCT.add_segment(L, R, a, b);\n      FOR(i, N) {\n       \
+    \ if (L <= X[i] && X[i] < R && A[i] > -infty<ll>) A[i] += a * X[i] + b;\n    \
+    \  }\n    }\n    FOR(i, N) {\n      ll god = A[i];\n      ll ans = LCT.query(X[i]);\n\
+    \      assert(god == ans);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000)\
+    \ test_minimize();\n  FOR(10000) test_maximize();\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - convex/extended_lichao.hpp
+  - convex/extended_lichao_1.hpp
   - random/base.hpp
   - random/shuffle.hpp
   isVerificationFile: true
   path: test/1_mytest/extended_lichao.test.cpp
   requiredBy: []
-  timestamp: '2025-01-09 20:26:25+09:00'
+  timestamp: '2025-01-09 21:54:53+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/extended_lichao.test.cpp
