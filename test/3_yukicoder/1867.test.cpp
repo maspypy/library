@@ -23,8 +23,7 @@ void solve() {
 
   FOR_R(L, N + 1) FOR(R, L, N + 1) {
     if (R - L <= 1) continue;
-    inv[L][R]
-        = inv[L + 1][R] + inv[L][R - 1] - inv[L + 1][R - 1] + (A[L] > A[R - 1]);
+    inv[L][R] = inv[L + 1][R] + inv[L][R - 1] - inv[L + 1][R - 1] + (A[L] > A[R - 1]);
   }
 
   dp.assign(N + 1, 0);
@@ -33,7 +32,7 @@ void solve() {
     LiChao_Tree<F, false, false> LCT(0, N + 1, F{-1});
     FOR(i, N + 1) {
       chmax(newdp[i], LCT.query(i).fi);
-      LCT.add_line(F{int(i)});
+      LCT.chmax_line(F{int(i)});
     }
     swap(dp, newdp);
     int ans = inv[0][N] - dp[N];

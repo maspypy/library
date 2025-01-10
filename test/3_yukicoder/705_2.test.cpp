@@ -32,7 +32,7 @@ void solve() {
 
   FOR(i, N + 1) {
     if (i > 0) { dp[i] = LCT.query(i).fi; }
-    if (i < N) LCT.add_line(F{int(i)});
+    if (i < N) LCT.chmin_line(F{int(i)});
   }
   print(dp[N]);
 }

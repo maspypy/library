@@ -18,13 +18,13 @@ void solve() {
   np root = X.new_root();
   FOR(N) {
     LL(a, b);
-    root = X.add_line(root, {int(a), b});
+    root = X.chmin_line(root, {int(a), b});
   }
   FOR(Q) {
     INT(t);
     if (t == 0) {
       LL(a, b);
-      root = X.add_line(root, {int(a), b});
+      root = X.chmin_line(root, {int(a), b});
     }
     if (t == 1) {
       INT(x);
