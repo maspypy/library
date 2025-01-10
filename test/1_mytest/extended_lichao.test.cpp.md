@@ -20,9 +20,10 @@ data:
   _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
+    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
     links:
     - https://judge.yosupo.jp/problem/many_aplusb
-  bundledCode: "#line 1 \"test/1_mytest/extended_lichao.test.cpp\"\n#define PROBLME\
+  bundledCode: "#line 1 \"test/1_mytest/extended_lichao.test.cpp\"\n#define PROBLEM\
     \ \"https://judge.yosupo.jp/problem/many_aplusb\"\n#line 1 \"my_template.hpp\"\
     \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
@@ -213,7 +214,7 @@ data:
     void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
     \nsigned main() {\n  FOR(10000) test_minimize();\n  FOR(10000) test_maximize();\n\
     \  solve();\n  return 0;\n}\n"
-  code: "#define PROBLME \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
     \ \"my_template.hpp\"\n\n#include \"convex/extended_lichao_1.hpp\"\n#include \"\
     random/base.hpp\"\n#include \"random/shuffle.hpp\"\n\nvoid test_minimize() {\n\
     \  ll N = RNG(1, 100);\n\n  vi X(201);\n  FOR(i, 201) X[i] = i - 100;\n  shuffle(X);\n\
@@ -251,7 +252,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/extended_lichao.test.cpp
   requiredBy: []
-  timestamp: '2025-01-09 21:54:53+09:00'
+  timestamp: '2025-01-11 01:34:00+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/extended_lichao.test.cpp

@@ -208,7 +208,7 @@ data:
     - icon: ':warning:'
       path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
       title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: convex/dynamic_lichao.hpp
       title: convex/dynamic_lichao.hpp
     - icon: ':x:'
@@ -223,7 +223,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: convex/larsch.hpp
       title: convex/larsch.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: convex/lichao.hpp
       title: convex/lichao.hpp
     - icon: ':heavy_check_mark:'
@@ -2961,10 +2961,10 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
       title: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3066,7 +3066,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
       title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
       title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     - icon: ':x:'
@@ -4121,7 +4121,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1857.test.cpp
       title: test/3_yukicoder/1857.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/1867.test.cpp
       title: test/3_yukicoder/1867.test.cpp
     - icon: ':heavy_check_mark:'
@@ -4508,7 +4508,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/705.test.cpp
       title: test/3_yukicoder/705.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/705_2.test.cpp
       title: test/3_yukicoder/705_2.test.cpp
     - icon: ':heavy_check_mark:'

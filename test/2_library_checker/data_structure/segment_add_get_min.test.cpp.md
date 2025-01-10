@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/dynamic_lichao.hpp
     title: convex/dynamic_lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -279,9 +279,9 @@ data:
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<F, 0, 20'000'000, 1> X(-infty<int>, infty<int>);\n\
     \  using np = decltype(X)::np;\n  np root = X.new_root();\n  FOR(N) {\n    LL(l,\
-    \ r, a, b);\n    root = X.add_segment(root, l, r, {int(a), b});\n  }\n  vc<int>\
+    \ r, a, b);\n    root = X.chmin_segment(root, l, r, {int(a), b});\n  }\n  vc<int>\
     \ points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l, r, a, b);\n\
-    \      root = X.add_segment(root, l, r, {int(a), b});\n    }\n    if (t == 1)\
+    \      root = X.chmin_segment(root, l, r, {int(a), b});\n    }\n    if (t == 1)\
     \ {\n      INT(x);\n      auto [fval, fid] = X.query(root, x);\n      if (fid\
     \ == -1) print(\"INFINITY\");\n      if (fid != -1) print(fval);\n    }\n  }\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
@@ -291,9 +291,9 @@ data:
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  Dynamic_LiChao_Tree<F, 0, 20'000'000, 1> X(-infty<int>, infty<int>);\n\
     \  using np = decltype(X)::np;\n  np root = X.new_root();\n  FOR(N) {\n    LL(l,\
-    \ r, a, b);\n    root = X.add_segment(root, l, r, {int(a), b});\n  }\n  vc<int>\
+    \ r, a, b);\n    root = X.chmin_segment(root, l, r, {int(a), b});\n  }\n  vc<int>\
     \ points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      LL(l, r, a, b);\n\
-    \      root = X.add_segment(root, l, r, {int(a), b});\n    }\n    if (t == 1)\
+    \      root = X.chmin_segment(root, l, r, {int(a), b});\n    }\n    if (t == 1)\
     \ {\n      INT(x);\n      auto [fval, fid] = X.query(root, x);\n      if (fid\
     \ == -1) print(\"INFINITY\");\n      if (fid != -1) print(fval);\n    }\n  }\n\
     }\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
@@ -304,8 +304,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2025-01-09 21:54:53+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-11 01:34:00+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
 layout: document
