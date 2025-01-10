@@ -1,4 +1,4 @@
-#define PROBLME "https://judge.yosupo.jp/problem/many_aplusb"
+#define PROBLEM "https://judge.yosupo.jp/problem/many_aplusb"
 #include "my_template.hpp"
 
 #include "convex/extended_lichao_1.hpp"
