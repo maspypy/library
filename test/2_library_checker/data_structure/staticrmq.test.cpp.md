@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':question:'
@@ -301,11 +301,20 @@ data:
     \ LOG, b = R >> LOG;\n    if (a < b) {\n      X x = ST.prod(a + 1, b);\n     \
     \ x = MX::op(suf[L], x);\n      x = MX::op(x, pre[R]);\n      return x;\n    }\n\
     \    X x = A[L];\n    FOR(i, L + 1, R + 1) x = MX::op(x, A[i]);\n    return x;\n\
-    \  }\n};\n#line 7 \"test/2_library_checker/data_structure/staticrmq.test.cpp\"\
-    \n\nsigned main() {\n  using Mono = Monoid_Min<u32>;\n  using ST = Sparse_Table<Mono>;\n\
-    \  INT(N, Q);\n  Static_Range_Product<Mono, ST> X(N, [&](int i) -> u32 {\n   \
-    \ u32 x;\n    read(x);\n    return x;\n  });\n  FOR(Q) {\n    u32 L, R;\n    read(L,\
-    \ R);\n    print(X.prod(L, R));\n  }\n  return 0;\n}\n"
+    \  }\n\n  template <class F>\n  int max_right(const F check, int L) {\n    assert(0\
+    \ <= L && L <= N && check(MX::unit()));\n    if (L == N) return N;\n    int ok\
+    \ = L, ng = N + 1;\n    while (ok + 1 < ng) {\n      int k = (ok + ng) / 2;\n\
+    \      bool bl = check(prod(L, k));\n      if (bl) ok = k;\n      if (!bl) ng\
+    \ = k;\n    }\n    return ok;\n  }\n\n  template <class F>\n  int min_left(const\
+    \ F check, int R) {\n    assert(0 <= R && R <= N && check(MX::unit()));\n    if\
+    \ (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok) {\n  \
+    \    int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if (bl)\
+    \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n#line 7 \"\
+    test/2_library_checker/data_structure/staticrmq.test.cpp\"\n\nsigned main() {\n\
+    \  using Mono = Monoid_Min<u32>;\n  using ST = Sparse_Table<Mono>;\n  INT(N, Q);\n\
+    \  Static_Range_Product<Mono, ST> X(N, [&](int i) -> u32 {\n    u32 x;\n    read(x);\n\
+    \    return x;\n  });\n  FOR(Q) {\n    u32 L, R;\n    read(L, R);\n    print(X.prod(L,\
+    \ R));\n  }\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/staticrmq\"\n#include \"\
     my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/min.hpp\"\
     \n#include \"ds/static_range_product.hpp\"\n\nsigned main() {\n  using Mono =\
@@ -323,7 +332,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq.test.cpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
+  timestamp: '2025-01-16 21:29:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq.test.cpp

@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/disjoint_sparse_table.hpp
     title: ds/sparse_table/disjoint_sparse_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   _extendedRequiredBy: []
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/106668
@@ -96,7 +96,15 @@ data:
     \ MX::unit();\n    R -= 1;\n    int a = L >> LOG, b = R >> LOG;\n    if (a < b)\
     \ {\n      X x = ST.prod(a + 1, b);\n      x = MX::op(suf[L], x);\n      x = MX::op(x,\
     \ pre[R]);\n      return x;\n    }\n    X x = A[L];\n    FOR(i, L + 1, R + 1)\
-    \ x = MX::op(x, A[i]);\n    return x;\n  }\n};\n"
+    \ x = MX::op(x, A[i]);\n    return x;\n  }\n\n  template <class F>\n  int max_right(const\
+    \ F check, int L) {\n    assert(0 <= L && L <= N && check(MX::unit()));\n    if\
+    \ (L == N) return N;\n    int ok = L, ng = N + 1;\n    while (ok + 1 < ng) {\n\
+    \      int k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl)\
+    \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class\
+    \ F>\n  int min_left(const F check, int R) {\n    assert(0 <= R && R <= N && check(MX::unit()));\n\
+    \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
+    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
+    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};\n"
   code: "#include \"ds/sparse_table/sparse_table.hpp\"\n#include \"ds/sparse_table/disjoint_sparse_table.hpp\"\
     \n\n/*\n\u53C2\u8003\uFF1Ahttps://judge.yosupo.jp/submission/106668\n\u9577\u3055\
     \ 2^LOG \u306E\u30D6\u30ED\u30C3\u30AF\u306B\u5206\u3051\u308B\uFF0E\u30D6\u30ED\
@@ -121,15 +129,23 @@ data:
     \ MX::unit();\n    R -= 1;\n    int a = L >> LOG, b = R >> LOG;\n    if (a < b)\
     \ {\n      X x = ST.prod(a + 1, b);\n      x = MX::op(suf[L], x);\n      x = MX::op(x,\
     \ pre[R]);\n      return x;\n    }\n    X x = A[L];\n    FOR(i, L + 1, R + 1)\
-    \ x = MX::op(x, A[i]);\n    return x;\n  }\n};"
+    \ x = MX::op(x, A[i]);\n    return x;\n  }\n\n  template <class F>\n  int max_right(const\
+    \ F check, int L) {\n    assert(0 <= L && L <= N && check(MX::unit()));\n    if\
+    \ (L == N) return N;\n    int ok = L, ng = N + 1;\n    while (ok + 1 < ng) {\n\
+    \      int k = (ok + ng) / 2;\n      bool bl = check(prod(L, k));\n      if (bl)\
+    \ ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n\n  template <class\
+    \ F>\n  int min_left(const F check, int R) {\n    assert(0 <= R && R <= N && check(MX::unit()));\n\
+    \    if (R == 0) return 0;\n    int ok = R, ng = -1;\n    while (ng + 1 < ok)\
+    \ {\n      int k = (ok + ng) / 2;\n      bool bl = check(prod(k, R));\n      if\
+    \ (bl) ok = k;\n      if (!bl) ng = k;\n    }\n    return ok;\n  }\n};"
   dependsOn:
   - ds/sparse_table/sparse_table.hpp
   - ds/sparse_table/disjoint_sparse_table.hpp
   isVerificationFile: false
   path: ds/static_range_product.hpp
   requiredBy: []
-  timestamp: '2024-02-11 04:08:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-01-16 21:29:51+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/data_structure/staticrmq.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
