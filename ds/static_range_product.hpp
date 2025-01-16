@@ -59,4 +59,32 @@ struct Static_Range_Product {
     FOR(i, L + 1, R + 1) x = MX::op(x, A[i]);
     return x;
   }
+
+  template <class F>
+  int max_right(const F check, int L) {
+    assert(0 <= L && L <= N && check(MX::unit()));
+    if (L == N) return N;
+    int ok = L, ng = N + 1;
+    while (ok + 1 < ng) {
+      int k = (ok + ng) / 2;
+      bool bl = check(prod(L, k));
+      if (bl) ok = k;
+      if (!bl) ng = k;
+    }
+    return ok;
+  }
+
+  template <class F>
+  int min_left(const F check, int R) {
+    assert(0 <= R && R <= N && check(MX::unit()));
+    if (R == 0) return 0;
+    int ok = R, ng = -1;
+    while (ng + 1 < ok) {
+      int k = (ok + ng) / 2;
+      bool bl = check(prod(k, R));
+      if (bl) ok = k;
+      if (!bl) ng = k;
+    }
+    return ok;
+  }
 };

@@ -24,8 +24,7 @@ struct LiChao_Tree {
     return x - lo;
   }
 
-  template <typename XY>
-  LiChao_Tree(const vc<XY>& pts, FUNC default_fn) {
+  LiChao_Tree(const vc<ll>& pts, FUNC default_fn) {
     static_assert(COMPRESS);
     for (auto&& x: pts) X.eb(x);
     UNIQUE(X);
