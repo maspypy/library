@@ -65,7 +65,7 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':warning:'
@@ -144,6 +144,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2602.test.cpp
     title: test/3_yukicoder/2602.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3005.test.cpp
+    title: test/3_yukicoder/3005.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_1_A.test.cpp
     title: test/4_aoj/CGL_1_A.test.cpp
@@ -171,9 +174,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_7_C.test.cpp
     title: test/4_aoj/CGL_7_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
@@ -311,7 +314,7 @@ data:
   - geo/incremental_convexhull.hpp
   - graph/planar_graph.hpp
   timestamp: '2024-10-20 23:29:28+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
@@ -322,6 +325,7 @@ data:
   - test/2_library_checker/geometry/closest_pair.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/3_yukicoder/1777.test.cpp
+  - test/3_yukicoder/3005.test.cpp
   - test/3_yukicoder/2602.test.cpp
   - test/1_mytest/incremental_ch.test.cpp
   - test/1_mytest/max_dot.test.cpp
