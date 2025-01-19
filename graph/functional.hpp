@@ -111,6 +111,7 @@ struct FunctionalGraph {
     return tree.in_subtree(bottom, v);
   }
 
+  // 葉側から順にならんだものを出力
   vc<int> collect_cycle(int r) {
     assert(r == root[r]);
     vc<int> cyc = {TO[r]};
