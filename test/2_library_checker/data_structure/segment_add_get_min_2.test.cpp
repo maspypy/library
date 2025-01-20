@@ -19,7 +19,7 @@ void solve() {
     LL(l, r, a, b);
     query.eb(0, l, r, a, b);
   }
-  vc<int> points;
+  vc<ll> points;
   FOR(Q) {
     INT(t);
     if (t == 0) {
