@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
   - icon: ':question:'
@@ -260,28 +260,28 @@ data:
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, ll>;\n  vc<T> query;\n\
     \  query.reserve(N + Q);\n  FOR(N) {\n    LL(l, r, a, b);\n    query.eb(0, l,\
-    \ r, a, b);\n  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0)\
-    \ {\n      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n    }\n    if (t ==\
-    \ 1) {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n      points.eb(x);\n \
-    \   }\n  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t,\
-    \ l, r, a, b]: query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n    if\
-    \ (t == 1) {\n      auto [fx, f] = X.query(l);\n      if (fx == infty<ll>)\n \
-    \       print(\"INFINITY\");\n      else\n        print(fx);\n    }\n  }\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \ r, a, b);\n  }\n  vc<ll> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n\
+    \      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n    }\n    if (t == 1)\
+    \ {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n      points.eb(x);\n    }\n\
+    \  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, l,\
+    \ r, a, b]: query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n    if (t\
+    \ == 1) {\n      auto [fx, f] = X.query(l);\n      if (fx == infty<ll>)\n    \
+    \    print(\"INFINITY\");\n      else\n        print(fx);\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/segment_add_get_min\"\n\
     #include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
     \n\nstruct F {\n  using value_type = ll; // operator() \u306E\u623B\u308A\u5024\
     \n  int a;\n  ll b;\n  ll operator()(ll x) { return a * x + b; }\n};\n\nvoid solve()\
     \ {\n  LL(N, Q);\n  using T = tuple<int, int, int, int, ll>;\n  vc<T> query;\n\
     \  query.reserve(N + Q);\n  FOR(N) {\n    LL(l, r, a, b);\n    query.eb(0, l,\
-    \ r, a, b);\n  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0)\
-    \ {\n      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n    }\n    if (t ==\
-    \ 1) {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n      points.eb(x);\n \
-    \   }\n  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t,\
-    \ l, r, a, b]: query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n    if\
-    \ (t == 1) {\n      auto [fx, f] = X.query(l);\n      if (fx == infty<ll>)\n \
-    \       print(\"INFINITY\");\n      else\n        print(fx);\n    }\n  }\n}\n\n\
-    signed main() {\n  solve();\n  return 0;\n}\n"
+    \ r, a, b);\n  }\n  vc<ll> points;\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n\
+    \      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n    }\n    if (t == 1)\
+    \ {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n      points.eb(x);\n    }\n\
+    \  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, l,\
+    \ r, a, b]: query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n    if (t\
+    \ == 1) {\n      auto [fx, f] = X.query(l);\n      if (fx == infty<ll>)\n    \
+    \    print(\"INFINITY\");\n      else\n        print(fx);\n    }\n  }\n}\n\nsigned\
+    \ main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -289,7 +289,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 21:29:51+09:00'
+  timestamp: '2025-01-20 22:37:49+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp

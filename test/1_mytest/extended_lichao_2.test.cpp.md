@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/extended_lichao_2.hpp
     title: convex/extended_lichao_2.hpp
   - icon: ':question:'
@@ -10,22 +10,22 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/many_aplusb
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/many_aplusb
+    - https://judge.yosupo.jp/problem/aplusb
   bundledCode: "#line 1 \"test/1_mytest/extended_lichao_2.test.cpp\"\n#define PROBLEM\
-    \ \"https://judge.yosupo.jp/problem/many_aplusb\"\n#line 1 \"my_template.hpp\"\
-    \n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
+    \ \"https://judge.yosupo.jp/problem/aplusb\"\n#line 1 \"my_template.hpp\"\n#if\
+    \ defined(LOCAL)\n#include <my_template_compiled.hpp>\n#else\n\n// https://codeforces.com/blog/entry/96344\n\
     #pragma GCC optimize(\"Ofast,unroll-loops\")\n// \u3044\u307E\u306E CF \u3060\u3068\
     \u3053\u308C\u5165\u308C\u308B\u3068\u52D5\u304B\u306A\u3044\uFF1F\n// #pragma\
     \ GCC target(\"avx2,popcnt\")\n\n#include <bits/stdc++.h>\n\nusing namespace std;\n\
@@ -220,37 +220,37 @@ data:
     }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
     ;\n}\n\nsigned main() {\n  FOR(10000) test_minimize();\n  FOR(10000) test_maximize();\n\
     \  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/many_aplusb\"\n#include\
-    \ \"my_template.hpp\"\n\n#include \"convex/extended_lichao_2.hpp\"\n#include \"\
-    random/base.hpp\"\n#include \"random/shuffle.hpp\"\n\nvoid test_minimize() {\n\
-    \  ll N = RNG(1, 100);\n  vi X(201);\n  FOR(i, 201) X[i] = i - 100;\n  shuffle(X);\n\
-    \  X.resize(N);\n\n  Extended_LiChao_Tree_2<true> LCT(X);\n  vi A(N, infty<ll>);\n\
-    \n  ll Q = 100;\n  FOR(Q) {\n    ll t = RNG(0, 3);\n    ll L = RNG(-100, 101);\n\
-    \    ll R = RNG(-100, 101);\n    if (L > R) swap(L, R);\n    ++R;\n    ll a =\
-    \ RNG(-10, 10);\n    ll b = RNG(-100, 100);\n    if (t == 0) {\n      // line\n\
-    \      LCT.chmin_line(a, b);\n      FOR(i, N) chmin(A[i], a * X[i] + b);\n   \
-    \ }\n    if (t == 1) {\n      // segment\n      LCT.chmin_segment(L, R, a, b);\n\
-    \      FOR(i, N) {\n        if (L <= X[i] && X[i] < R) chmin(A[i], a * X[i] +\
-    \ b);\n      }\n    }\n    if (t == 2) {\n      // apply\n      LCT.add_segment(L,\
-    \ R, b);\n      FOR(i, N) {\n        if (L <= X[i] && X[i] < R && A[i] < infty<ll>)\
-    \ A[i] += b;\n      }\n    }\n    ll god = infty<ll>;\n    FOR(i, N) {\n     \
-    \ if (L <= X[i] && X[i] < R) chmin(god, A[i]);\n    }\n    ll ans = LCT.query(L,\
-    \ R);\n    assert(god == ans);\n  }\n}\n\nvoid test_maximize() {\n  ll N = RNG(1,\
-    \ 100);\n  vi X(201);\n  FOR(i, 201) X[i] = i - 100;\n  shuffle(X);\n  X.resize(N);\n\
-    \n  Extended_LiChao_Tree_2<false> LCT(X);\n  vi A(N, -infty<ll>);\n\n  ll Q =\
-    \ 100;\n  FOR(Q) {\n    ll t = RNG(0, 3);\n    ll L = RNG(-100, 101);\n    ll\
-    \ R = RNG(-100, 101);\n    if (L > R) swap(L, R);\n    ++R;\n    ll a = RNG(-10,\
-    \ 10);\n    ll b = RNG(-100, 100);\n    if (t == 0) {\n      // line\n      LCT.chmax_line(a,\
-    \ b);\n      FOR(i, N) chmax(A[i], a * X[i] + b);\n    }\n    if (t == 1) {\n\
-    \      // segment\n      LCT.chmax_segment(L, R, a, b);\n      FOR(i, N) {\n \
-    \       if (L <= X[i] && X[i] < R) chmax(A[i], a * X[i] + b);\n      }\n    }\n\
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"convex/extended_lichao_2.hpp\"\n#include \"random/base.hpp\"\n\
+    #include \"random/shuffle.hpp\"\n\nvoid test_minimize() {\n  ll N = RNG(1, 100);\n\
+    \  vi X(201);\n  FOR(i, 201) X[i] = i - 100;\n  shuffle(X);\n  X.resize(N);\n\n\
+    \  Extended_LiChao_Tree_2<true> LCT(X);\n  vi A(N, infty<ll>);\n\n  ll Q = 100;\n\
+    \  FOR(Q) {\n    ll t = RNG(0, 3);\n    ll L = RNG(-100, 101);\n    ll R = RNG(-100,\
+    \ 101);\n    if (L > R) swap(L, R);\n    ++R;\n    ll a = RNG(-10, 10);\n    ll\
+    \ b = RNG(-100, 100);\n    if (t == 0) {\n      // line\n      LCT.chmin_line(a,\
+    \ b);\n      FOR(i, N) chmin(A[i], a * X[i] + b);\n    }\n    if (t == 1) {\n\
+    \      // segment\n      LCT.chmin_segment(L, R, a, b);\n      FOR(i, N) {\n \
+    \       if (L <= X[i] && X[i] < R) chmin(A[i], a * X[i] + b);\n      }\n    }\n\
     \    if (t == 2) {\n      // apply\n      LCT.add_segment(L, R, b);\n      FOR(i,\
-    \ N) {\n        if (L <= X[i] && X[i] < R && A[i] > -infty<ll>) A[i] += b;\n \
-    \     }\n    }\n    ll god = -infty<ll>;\n    FOR(i, N) {\n      if (L <= X[i]\
-    \ && X[i] < R) chmax(god, A[i]);\n    }\n    ll ans = LCT.query(L, R);\n    assert(god\
-    \ == ans);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout <<\
-    \ a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(10000) test_minimize();\n  FOR(10000)\
-    \ test_maximize();\n  solve();\n  return 0;\n}\n"
+    \ N) {\n        if (L <= X[i] && X[i] < R && A[i] < infty<ll>) A[i] += b;\n  \
+    \    }\n    }\n    ll god = infty<ll>;\n    FOR(i, N) {\n      if (L <= X[i] &&\
+    \ X[i] < R) chmin(god, A[i]);\n    }\n    ll ans = LCT.query(L, R);\n    assert(god\
+    \ == ans);\n  }\n}\n\nvoid test_maximize() {\n  ll N = RNG(1, 100);\n  vi X(201);\n\
+    \  FOR(i, 201) X[i] = i - 100;\n  shuffle(X);\n  X.resize(N);\n\n  Extended_LiChao_Tree_2<false>\
+    \ LCT(X);\n  vi A(N, -infty<ll>);\n\n  ll Q = 100;\n  FOR(Q) {\n    ll t = RNG(0,\
+    \ 3);\n    ll L = RNG(-100, 101);\n    ll R = RNG(-100, 101);\n    if (L > R)\
+    \ swap(L, R);\n    ++R;\n    ll a = RNG(-10, 10);\n    ll b = RNG(-100, 100);\n\
+    \    if (t == 0) {\n      // line\n      LCT.chmax_line(a, b);\n      FOR(i, N)\
+    \ chmax(A[i], a * X[i] + b);\n    }\n    if (t == 1) {\n      // segment\n   \
+    \   LCT.chmax_segment(L, R, a, b);\n      FOR(i, N) {\n        if (L <= X[i] &&\
+    \ X[i] < R) chmax(A[i], a * X[i] + b);\n      }\n    }\n    if (t == 2) {\n  \
+    \    // apply\n      LCT.add_segment(L, R, b);\n      FOR(i, N) {\n        if\
+    \ (L <= X[i] && X[i] < R && A[i] > -infty<ll>) A[i] += b;\n      }\n    }\n  \
+    \  ll god = -infty<ll>;\n    FOR(i, N) {\n      if (L <= X[i] && X[i] < R) chmax(god,\
+    \ A[i]);\n    }\n    ll ans = LCT.query(L, R);\n    assert(god == ans);\n  }\n\
+    }\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\"\
+    ;\n}\n\nsigned main() {\n  FOR(10000) test_minimize();\n  FOR(10000) test_maximize();\n\
+    \  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - convex/extended_lichao_2.hpp
@@ -259,8 +259,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/extended_lichao_2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-11 01:34:00+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-20 22:35:24+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/extended_lichao_2.test.cpp
 layout: document

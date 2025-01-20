@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/lichao.hpp
     title: convex/lichao.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -259,23 +259,23 @@ data:
     \n\nstruct F {\n  using value_type = ll;\n  int a;\n  ll b;\n  ll operator()(ll\
     \ x) { return a * x + b; }\n};\n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int,\
     \ int, ll>;\n  vc<T> query;\n  query.reserve(N + Q);\n  FOR(N) {\n    LL(a, b);\n\
-    \    query.eb(0, a, b);\n  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n   \
-    \ if (t == 0) {\n      LL(a, b);\n      query.eb(0, a, b);\n    }\n    if (t ==\
-    \ 1) {\n      INT(x);\n      query.eb(1, x, 0);\n      points.eb(x);\n    }\n\
-    \  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, a,\
-    \ b]: query) {\n    if (t == 0) X.chmin_line({a, b});\n    if (t == 1) print(X.query(a).fi);\n\
+    \    query.eb(0, a, b);\n  }\n  vc<ll> points;\n  FOR(Q) {\n    INT(t);\n    if\
+    \ (t == 0) {\n      LL(a, b);\n      query.eb(0, a, b);\n    }\n    if (t == 1)\
+    \ {\n      INT(x);\n      query.eb(1, x, 0);\n      points.eb(x);\n    }\n  }\n\
+    \  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, a, b]: query)\
+    \ {\n    if (t == 0) X.chmin_line({a, b});\n    if (t == 1) print(X.query(a).fi);\n\
     \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/line_add_get_min\"\n#include\
     \ \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"convex/lichao.hpp\"\
     \n\nstruct F {\n  using value_type = ll;\n  int a;\n  ll b;\n  ll operator()(ll\
     \ x) { return a * x + b; }\n};\n\nvoid solve() {\n  LL(N, Q);\n  using T = tuple<int,\
     \ int, ll>;\n  vc<T> query;\n  query.reserve(N + Q);\n  FOR(N) {\n    LL(a, b);\n\
-    \    query.eb(0, a, b);\n  }\n  vc<int> points;\n  FOR(Q) {\n    INT(t);\n   \
-    \ if (t == 0) {\n      LL(a, b);\n      query.eb(0, a, b);\n    }\n    if (t ==\
-    \ 1) {\n      INT(x);\n      query.eb(1, x, 0);\n      points.eb(x);\n    }\n\
-    \  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, a,\
-    \ b]: query) {\n    if (t == 0) X.chmin_line({a, b});\n    if (t == 1) print(X.query(a).fi);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
+    \    query.eb(0, a, b);\n  }\n  vc<ll> points;\n  FOR(Q) {\n    INT(t);\n    if\
+    \ (t == 0) {\n      LL(a, b);\n      query.eb(0, a, b);\n    }\n    if (t == 1)\
+    \ {\n      INT(x);\n      query.eb(1, x, 0);\n      points.eb(x);\n    }\n  }\n\
+    \  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, a, b]: query)\
+    \ {\n    if (t == 0) X.chmin_line({a, b});\n    if (t == 1) print(X.query(a).fi);\n\
+    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
@@ -283,8 +283,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-16 21:29:51+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-20 22:37:25+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
 layout: document
