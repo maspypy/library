@@ -27,9 +27,7 @@ void solve() {
   FOR(i, N) read(Y[i]);
 
   dp.resize(N + 1);
-  vi point(N+1);
-  FOR(i,N+1)point[i]=i;
-  LiChao_Tree<F, false, true> LCT(point, F{-1});
+  LiChao_Tree<F, false, true> LCT(1, N + 1, F{-1});
 
   FOR(i, N + 1) {
     if (i > 0) { dp[i] = LCT.query(i).fi; }
