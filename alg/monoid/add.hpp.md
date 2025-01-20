@@ -98,10 +98,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':heavy_check_mark:'
@@ -378,7 +378,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1490.test.cpp
     title: test/3_yukicoder/1490.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
   - icon: ':heavy_check_mark:'
@@ -498,9 +498,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -566,7 +566,7 @@ data:
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abelgroup.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - test/2_library_checker/unionfind_with_potential.test.cpp
