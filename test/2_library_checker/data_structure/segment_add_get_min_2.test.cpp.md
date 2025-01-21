@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -264,7 +264,7 @@ data:
     \      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n    }\n    if (t == 1)\
     \ {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n      points.eb(x);\n    }\n\
     \  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, l,\
-    \ r, a, b]: query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n    if (t\
+    \ r, a, b]: query) {\n    if (t == 0) X.chmin_segment(l, r, {a, b});\n    if (t\
     \ == 1) {\n      auto [fx, f] = X.query(l);\n      if (fx == infty<ll>)\n    \
     \    print(\"INFINITY\");\n      else\n        print(fx);\n    }\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -278,7 +278,7 @@ data:
     \      LL(l, r, a, b);\n      query.eb(0, l, r, a, b);\n    }\n    if (t == 1)\
     \ {\n      INT(x);\n      query.eb(1, x, 0, 0, 0);\n      points.eb(x);\n    }\n\
     \  }\n  LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});\n  for (auto&& [t, l,\
-    \ r, a, b]: query) {\n    if (t == 0) X.add_segment(l, r, {a, b});\n    if (t\
+    \ r, a, b]: query) {\n    if (t == 0) X.chmin_segment(l, r, {a, b});\n    if (t\
     \ == 1) {\n      auto [fx, f] = X.query(l);\n      if (fx == infty<ll>)\n    \
     \    print(\"INFINITY\");\n      else\n        print(fx);\n    }\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -289,8 +289,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-20 22:37:49+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-01-21 12:22:07+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
 layout: document
