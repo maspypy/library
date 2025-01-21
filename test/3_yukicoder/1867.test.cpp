@@ -29,9 +29,7 @@ void solve() {
   dp.assign(N + 1, 0);
   FOR(n, 1, N + 1) {
     vc<int> newdp(N + 1, -infty<int>);
-    vi point(N+1);
-    FOR(i,N+1)point[i]=i;
-    LiChao_Tree<F, false, false> LCT(point, F{-1});
+    LiChao_Tree<F, false, false> LCT(0, N + 1, F{-1});
     FOR(i, N + 1) {
       chmax(newdp[i], LCT.query(i).fi);
       LCT.chmax_line(F{int(i)});
