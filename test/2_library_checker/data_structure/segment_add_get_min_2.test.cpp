@@ -34,7 +34,7 @@ void solve() {
   }
   LiChao_Tree<F, 1, 1> X(points, {0, infty<ll>});
   for (auto&& [t, l, r, a, b]: query) {
-    if (t == 0) X.add_segment(l, r, {a, b});
+    if (t == 0) X.chmin_segment(l, r, {a, b});
     if (t == 1) {
       auto [fx, f] = X.query(l);
       if (fx == infty<ll>)
