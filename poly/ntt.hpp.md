@@ -296,7 +296,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
   - icon: ':question:'
@@ -305,7 +305,7 @@ data:
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   - icon: ':question:'
@@ -468,13 +468,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':x:'

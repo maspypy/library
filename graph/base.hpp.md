@@ -47,7 +47,7 @@ data:
   - icon: ':x:'
     path: graph/blackbox/complement_graph_unionfind.hpp
     title: graph/blackbox/complement_graph_unionfind.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
   - icon: ':x:'
@@ -131,13 +131,13 @@ data:
   - icon: ':warning:'
     path: graph/ds/range_edge_connected_component_query.hpp
     title: graph/ds/range_edge_connected_component_query.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/remove_one_edge_connectivity.hpp
     title: graph/ds/remove_one_edge_connectivity.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/remove_one_vertex_connectivity.hpp
     title: graph/ds/remove_one_vertex_connectivity.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
   - icon: ':x:'
@@ -248,7 +248,7 @@ data:
   - icon: ':x:'
     path: graph/shortest_path/bellmanford.hpp
     title: graph/shortest_path/bellmanford.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/shortest_path/bfs01.hpp
     title: graph/shortest_path/bfs01.hpp
   - icon: ':x:'
@@ -266,7 +266,7 @@ data:
   - icon: ':x:'
     path: graph/shortest_path/warshall_floyd.hpp
     title: graph/shortest_path/warshall_floyd.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
   - icon: ':x:'
@@ -393,19 +393,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/prufer.test.cpp
     title: test/1_mytest/prufer.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_edge.test.cpp
     title: test/1_mytest/remove_one_edge.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/remove_one_vertex.test.cpp
     title: test/1_mytest/remove_one_vertex.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rolling_hash_on_tree.test.cpp
     title: test/1_mytest/rolling_hash_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/scc_tournament.test.cpp
     title: test/1_mytest/scc_tournament.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/st_numbering.test.cpp
     title: test/1_mytest/st_numbering.test.cpp
   - icon: ':x:'

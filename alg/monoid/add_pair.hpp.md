@@ -8,7 +8,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_super.hpp
     title: convex/slope_trick/slope_super.hpp
   _extendedVerifiedWith:
@@ -21,7 +21,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/slope_super.test.cpp
     title: test/1_mytest/slope_super.test.cpp
   - icon: ':x:'

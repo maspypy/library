@@ -101,7 +101,7 @@ data:
   - icon: ':x:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/q_analogue.hpp
     title: mod/q_analogue.hpp
   - icon: ':warning:'
@@ -320,7 +320,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/indecomposable_permutations.hpp
     title: seq/famous/indecomposable_permutations.hpp
   - icon: ':question:'
@@ -329,7 +329,7 @@ data:
   - icon: ':x:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/simple_permutations.hpp
     title: seq/famous/simple_permutations.hpp
   - icon: ':question:'
@@ -555,43 +555,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/qbinom.test.cpp
     title: test/1_mytest/qbinom.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_commutative_persistent.test.cpp
     title: test/1_mytest/rbst_commutative_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid.test.cpp
     title: test/1_mytest/rbst_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_2.test.cpp
     title: test/1_mytest/rbst_monoid_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rbst_monoid_persistent.test.cpp
     title: test/1_mytest/rbst_monoid_persistent.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/rect_add_pt_sum.test.cpp
     title: test/1_mytest/rect_add_pt_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/simple_perm.test.cpp
     title: test/1_mytest/simple_perm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay.test.cpp
     title: test/1_mytest/splay.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_am.test.cpp
     title: test/1_mytest/splay_am.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_cm.test.cpp
     title: test/1_mytest/splay_cm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':x:'
