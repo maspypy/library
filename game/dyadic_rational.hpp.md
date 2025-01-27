@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: game/number_and_star.hpp
     title: game/number_and_star.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: game/solve_partizan_game.hpp
     title: game/solve_partizan_game.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/dyadic_rational.test.cpp
     title: test/1_mytest/dyadic_rational.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/partizan.test.cpp
     title: test/1_mytest/partizan.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"game/dyadic_rational.hpp\"\n// a+b/2^M \u306E\u5F62\u3067\
@@ -103,13 +103,13 @@ data:
   isVerificationFile: false
   path: game/dyadic_rational.hpp
   requiredBy:
-  - game/number_and_star.hpp
   - game/solve_partizan_game.hpp
+  - game/number_and_star.hpp
   timestamp: '2024-11-11 22:49:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/1_mytest/dyadic_rational.test.cpp
   - test/1_mytest/partizan.test.cpp
+  - test/1_mytest/dyadic_rational.test.cpp
 documentation_of: game/dyadic_rational.hpp
 layout: document
 redirect_from:

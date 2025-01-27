@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -161,13 +161,13 @@ data:
   isVerificationFile: false
   path: graph/path_cycle.hpp
   requiredBy:
-  - graph/count/count_clique.hpp
   - graph/count/count_independent_set.hpp
+  - graph/count/count_clique.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
 documentation_of: graph/path_cycle.hpp
 layout: document
 redirect_from:

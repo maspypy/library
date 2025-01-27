@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/enumerate_palindromes.test.cpp
     title: test/2_library_checker/string/enumerate_palindromes.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/xmascontest2015noon/tasks/xmascontest2015_c
@@ -56,10 +56,10 @@ data:
   path: string/manacher.hpp
   requiredBy: []
   timestamp: '2024-09-05 12:30:58+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/2_library_checker/string/enumerate_palindromes.test.cpp
   - test/3_yukicoder/2858.test.cpp
+  - test/2_library_checker/string/enumerate_palindromes.test.cpp
 documentation_of: string/manacher.hpp
 layout: document
 redirect_from:

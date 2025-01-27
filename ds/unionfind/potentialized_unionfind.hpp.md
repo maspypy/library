@@ -3,24 +3,24 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
     title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/unionfind_with_potential.test.cpp
     title: test/2_library_checker/unionfind_with_potential.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1502.test.cpp
     title: test/3_yukicoder/1502.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2294.test.cpp
     title: test/3_yukicoder/2294.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_1_B.test.cpp
     title: test/4_aoj/DSL_1_B.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/unionfind/potentialized_unionfind.hpp\"\ntemplate <typename\
@@ -68,12 +68,12 @@ data:
   path: ds/unionfind/potentialized_unionfind.hpp
   requiredBy: []
   timestamp: '2024-09-10 11:48:49+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/2_library_checker/unionfind_with_potential.test.cpp
-  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/1502.test.cpp
+  - test/2_library_checker/unionfind_with_potential.test.cpp
+  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - test/4_aoj/DSL_1_B.test.cpp
 documentation_of: ds/unionfind/potentialized_unionfind.hpp
 layout: document

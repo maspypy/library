@@ -3,15 +3,15 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/dynamic_lichao.hpp\"\n/*\nstruct F {\n  using value_type\
@@ -143,10 +143,10 @@ data:
   path: convex/dynamic_lichao.hpp
   requiredBy: []
   timestamp: '2025-01-09 21:54:53+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/2_library_checker/data_structure/segment_add_get_min.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min_lichao.test.cpp
+  - test/2_library_checker/data_structure/segment_add_get_min.test.cpp
 documentation_of: convex/dynamic_lichao.hpp
 layout: document
 redirect_from:
