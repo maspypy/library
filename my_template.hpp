@@ -3,10 +3,10 @@
 #else
 
 // https://codeforces.com/blog/entry/96344
+// https://codeforces.com/blog/entry/126772?#comment-1154880
+#include <bits/allocator.h>
 #pragma GCC optimize("Ofast,unroll-loops")
-// いまの CF だとこれ入れると動かない？
-// #pragma GCC target("avx2,popcnt")
-
+#pragma GCC target("avx2,popcnt")
 #include <bits/stdc++.h>
 
 using namespace std;
