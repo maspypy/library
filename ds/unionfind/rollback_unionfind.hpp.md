@@ -1,12 +1,12 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/add_remove_query.test.cpp
     title: test/2_library_checker/data_structure/add_remove_query.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate <typename T>\r\nstruct\
@@ -56,7 +56,7 @@ data:
   path: ds/unionfind/rollback_unionfind.hpp
   requiredBy: []
   timestamp: '2024-12-17 23:15:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   - test/2_library_checker/data_structure/add_remove_query.test.cpp
