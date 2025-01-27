@@ -6,7 +6,7 @@ data:
     path: ds/my_multiset.hpp
     title: ds/my_multiset.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/dynamic_segtree_sparse.test.cpp
     title: test/1_mytest/dynamic_segtree_sparse.test.cpp
   - icon: ':x:'
@@ -32,7 +32,7 @@ data:
     title: test/3_yukicoder/789_3.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/671/D
@@ -198,7 +198,7 @@ data:
   requiredBy:
   - ds/my_multiset.hpp
   timestamp: '2024-09-09 03:15:51+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1826_2.test.cpp
   - test/3_yukicoder/2627.test.cpp
