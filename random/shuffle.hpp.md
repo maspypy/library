@@ -54,10 +54,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/matching_ve.test.cpp
     title: test/1_mytest/matching_ve.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
     title: test/1_mytest/nth_element_from_sorted_lists.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
     title: test/1_mytest/nth_element_from_sorted_matrix.test.cpp
   - icon: ':x:'

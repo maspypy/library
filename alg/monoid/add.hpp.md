@@ -125,7 +125,7 @@ data:
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
   - icon: ':x:'
@@ -171,7 +171,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/minmax_add.test.cpp
     title: test/1_mytest/minmax_add.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
   - icon: ':x:'
