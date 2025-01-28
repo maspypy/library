@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_min.hpp
     title: alg/acted_monoid/max_min.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/min_add.hpp
     title: alg/acted_monoid/min_add.hpp
   - icon: ':question:'
@@ -32,7 +32,7 @@ data:
   - icon: ':x:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
   - icon: ':heavy_check_mark:'
@@ -114,7 +114,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq_x.test.cpp
     title: test/2_library_checker/data_structure/staticrmq_x.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':x:'

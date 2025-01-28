@@ -39,7 +39,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
     title: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartitematching.test.cpp
     title: test/2_library_checker/graph/bipartitematching.test.cpp
   - icon: ':x:'
