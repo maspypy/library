@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
   - icon: ':warning:'
@@ -45,15 +45,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/furthest_pair.test.cpp
     title: test/2_library_checker/geometry/furthest_pair.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/geometry/static_convex_hull.test.cpp
     title: test/2_library_checker/geometry/static_convex_hull.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"geo/convex_hull.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
@@ -162,7 +162,7 @@ data:
   - geo/furthest_pair.hpp
   - random/random_polygon.hpp
   timestamp: '2024-10-20 23:29:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
