@@ -17,7 +17,7 @@ data:
   - icon: ':warning:'
     path: ds/segtree/range_add_make_increasing.hpp
     title: ds/segtree/range_add_make_increasing.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':x:'
@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - icon: ':x:'
