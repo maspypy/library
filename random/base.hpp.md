@@ -32,13 +32,13 @@ data:
   - icon: ':x:'
     path: graph/find_path_through_specified.hpp
     title: graph/find_path_through_specified.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
   - icon: ':heavy_check_mark:'
     path: graph/tree_dp/subtree_hash.hpp
     title: graph/tree_dp/subtree_hash.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: linalg/adjugate_matrix.hpp
     title: linalg/adjugate_matrix.hpp
   - icon: ':question:'
@@ -53,7 +53,7 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
   - icon: ':question:'
@@ -651,10 +651,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
     title: test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/general_matching.test.cpp
     title: test/2_library_checker/graph/general_matching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - icon: ':x:'

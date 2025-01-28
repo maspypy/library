@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/find_odd_cycle.hpp
     title: graph/find_odd_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
   - icon: ':x:'
@@ -51,10 +51,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartitematching.test.cpp
     title: test/2_library_checker/graph/bipartitematching.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/incremental_scc.test.cpp
     title: test/2_library_checker/graph/incremental_scc.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/scc.test.cpp
     title: test/2_library_checker/graph/scc.test.cpp
   - icon: ':x:'
