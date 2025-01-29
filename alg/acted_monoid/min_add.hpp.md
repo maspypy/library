@@ -13,6 +13,9 @@ data:
     title: seq/common_interval_decomposition.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/common_interval_decomposition.test.cpp
     title: test/2_library_checker/graph/common_interval_decomposition.test.cpp
   - icon: ':x:'
@@ -67,6 +70,7 @@ data:
   - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/1720.test.cpp
   - test/2_library_checker/graph/common_interval_decomposition.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/4_aoj/DSL_2_H.test.cpp
 documentation_of: alg/acted_monoid/min_add.hpp
 layout: document

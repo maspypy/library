@@ -5,7 +5,7 @@ data:
   - icon: ':x:'
     path: alg/acted_monoid/cntsum_add.hpp
     title: alg/acted_monoid/cntsum_add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
   - icon: ':heavy_check_mark:'
@@ -174,6 +174,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
@@ -665,6 +671,7 @@ data:
   - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/rect_add_pt_sum.test.cpp
   - test/1_mytest/range_assign.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/segtree_xor_prod.test.cpp
   - test/1_mytest/fenwick01.test.cpp
@@ -672,6 +679,7 @@ data:
   - test/1_mytest/minmax_add.test.cpp
   - test/1_mytest/splay_cm.test.cpp
   - test/1_mytest/dual_fenwick.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/summin_add.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp

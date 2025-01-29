@@ -9,7 +9,7 @@ data:
     - icon: ':x:'
       path: alg/acted_monoid/cntsum_affine.hpp
       title: alg/acted_monoid/cntsum_affine.hpp
-    - icon: ':x:'
+    - icon: ':question:'
       path: alg/acted_monoid/max_add.hpp
       title: alg/acted_monoid/max_add.hpp
     - icon: ':heavy_check_mark:'
@@ -514,6 +514,12 @@ data:
     - icon: ':warning:'
       path: ds/segtree/range_add_make_increasing.hpp
       title: ds/segtree/range_add_make_increasing.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/segtree/range_add_range_max.hpp
+      title: ds/segtree/range_add_range_max.hpp
+    - icon: ':heavy_check_mark:'
+      path: ds/segtree/range_add_range_min.hpp
+      title: ds/segtree/range_add_range_min.hpp
     - icon: ':heavy_check_mark:'
       path: ds/segtree/range_assignment_segtree.hpp
       title: ds/segtree/range_assignment_segtree.hpp
@@ -1844,7 +1850,7 @@ data:
     - icon: ':question:'
       path: poly/poly_divmod.hpp
       title: poly/poly_divmod.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: poly/poly_gcd.hpp
       title: poly/poly_gcd.hpp
     - icon: ':heavy_check_mark:'
@@ -2704,6 +2710,12 @@ data:
       path: test/1_mytest/qoj5443.test.cpp
       title: test/1_mytest/qoj5443.test.cpp
     - icon: ':heavy_check_mark:'
+      path: test/1_mytest/range_add_range_max.test.cpp
+      title: test/1_mytest/range_add_range_max.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/range_add_range_min.test.cpp
+      title: test/1_mytest/range_add_range_min.test.cpp
+    - icon: ':heavy_check_mark:'
       path: test/1_mytest/range_assign.test.cpp
       title: test/1_mytest/range_assign.test.cpp
     - icon: ':heavy_check_mark:'
@@ -3455,58 +3467,58 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
       title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/exp_of_fps.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
       title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/polynomial_division.test.cpp
       title: test/2_library_checker/polynomial/polynomial_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
       title: test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
     - icon: ':x:'

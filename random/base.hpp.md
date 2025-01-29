@@ -463,6 +463,12 @@ data:
     path: test/1_mytest/product_of_one_pm_xn.test.cpp
     title: test/1_mytest/product_of_one_pm_xn.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -693,25 +699,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
@@ -1096,6 +1102,7 @@ data:
   - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/incremental_scc.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/online_square.test.cpp
   - test/1_mytest/all_inverse.test.cpp
   - test/1_mytest/poly_root_finding.test.cpp
@@ -1148,6 +1155,7 @@ data:
   - test/1_mytest/dual_fenwick.test.cpp
   - test/1_mytest/rbst_monoid.test.cpp
   - test/1_mytest/extended_lichao.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/max_dot.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp

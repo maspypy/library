@@ -43,6 +43,12 @@ data:
     path: test/1_mytest/minmax_add.test.cpp
     title: test/1_mytest/minmax_add.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_max.test.cpp
+    title: test/1_mytest/range_add_range_max.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
   - icon: ':heavy_check_mark:'
@@ -261,10 +267,12 @@ data:
   - test/1_mytest/min_max.test.cpp
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/range_assign.test.cpp
+  - test/1_mytest/range_add_range_max.test.cpp
   - test/1_mytest/minidx_add.test.cpp
   - test/1_mytest/max_max.test.cpp
   - test/1_mytest/max_assign.test.cpp
   - test/1_mytest/minmax_add.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/summin_add.test.cpp
   - test/1_mytest/summin_assign.test.cpp

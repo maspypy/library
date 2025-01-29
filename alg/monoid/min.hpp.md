@@ -73,6 +73,9 @@ data:
     path: test/1_mytest/min_min.test.cpp
     title: test/1_mytest/min_min.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/range_add_range_min.test.cpp
+    title: test/1_mytest/range_add_range_min.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_closest_pair.test.cpp
     title: test/1_mytest/range_closest_pair.test.cpp
   - icon: ':heavy_check_mark:'
@@ -249,6 +252,7 @@ data:
   - test/1_mytest/min_min.test.cpp
   - test/1_mytest/range_mex.test.cpp
   - test/1_mytest/rbst_am.test.cpp
+  - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/rbst_am_persistent.test.cpp
   - test/1_mytest/wavelet_matrix.test.cpp
   - test/4_aoj/1508.test.cpp
