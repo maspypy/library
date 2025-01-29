@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/st_numbering.hpp
     title: graph/st_numbering.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
   - icon: ':question:'
@@ -195,16 +195,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1254.test.cpp
     title: test/3_yukicoder/1254.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1451.test.cpp
     title: test/3_yukicoder/1451.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1479.test.cpp
     title: test/3_yukicoder/1479.test.cpp
   - icon: ':x:'

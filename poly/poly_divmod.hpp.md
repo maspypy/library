@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
@@ -75,13 +75,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1547.test.cpp
     title: test/3_yukicoder/1547.test.cpp
   - icon: ':x:'
