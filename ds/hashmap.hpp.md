@@ -71,7 +71,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/centroid_decomposition_old.hpp
     title: graph/centroid_decomposition_old.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
     title: graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - icon: ':heavy_check_mark:'
@@ -152,7 +152,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/rolling_hash_on_tree.hpp
     title: graph/ds/rolling_hash_on_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
   - icon: ':heavy_check_mark:'
@@ -323,7 +323,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/tree_of_unionfind.hpp
     title: graph/tree_of_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':question:'
@@ -843,19 +843,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2578.test.cpp
     title: test/3_yukicoder/2578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/263.test.cpp
     title: test/3_yukicoder/263.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2654.test.cpp
     title: test/3_yukicoder/2654.test.cpp
   - icon: ':x:'
