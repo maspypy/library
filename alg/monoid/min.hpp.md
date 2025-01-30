@@ -47,10 +47,10 @@ data:
   - icon: ':warning:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -156,7 +156,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1720.test.cpp
     title: test/3_yukicoder/1720.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
   - icon: ':x:'

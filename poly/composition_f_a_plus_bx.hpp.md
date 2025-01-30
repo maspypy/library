@@ -39,7 +39,7 @@ data:
     path: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
     title: poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
   - icon: ':x:'
@@ -47,7 +47,7 @@ data:
     title: test/3_yukicoder/2583.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/composition_f_a_plus_bx.hpp\"\n\n#line 2 \"poly/poly_taylor_shift.hpp\"\
@@ -345,7 +345,7 @@ data:
   requiredBy:
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/2580.test.cpp

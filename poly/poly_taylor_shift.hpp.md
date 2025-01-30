@@ -47,7 +47,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/composition_f_1_minus_ex.hpp
     title: poly/composition_f_1_minus_ex.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':x:'
@@ -123,7 +123,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
   - icon: ':x:'

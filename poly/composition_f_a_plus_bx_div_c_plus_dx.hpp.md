@@ -19,7 +19,7 @@ data:
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: poly/composition_f_a_plus_bx.hpp
     title: poly/composition_f_a_plus_bx.hpp
   - icon: ':question:'
