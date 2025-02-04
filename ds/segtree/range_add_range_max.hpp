@@ -51,14 +51,6 @@ struct Range_Add_Range_Max {
     return ans + lazy;
   }
 
-  void apply(int L, int R, T x) {
-    T l = seg.get(L).fi + x;
-    seg.set(L, {l, l});
-    if (R == n) return;
-    T r = seg.get(R).fi - x;
-    seg.set(R, {r, r});
-  }
-
   void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }
 
   // [0,i)
