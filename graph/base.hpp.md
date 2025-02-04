@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -218,7 +218,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -281,7 +281,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -543,6 +543,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+    title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/tree_diameter.test.cpp
     title: test/2_library_checker/tree/tree_diameter.test.cpp
@@ -816,9 +819,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1111,7 +1114,7 @@ data:
   - string/aho_corasick_for_general_trie.hpp
   - string/suffix_automaton.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2654.test.cpp
@@ -1221,6 +1224,7 @@ data:
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/lca.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp

@@ -9,10 +9,12 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/863/submission/194294053
+    - https://codeforces.com/problemset/problem/111/E
   bundledCode: "#line 1 \"graph/grid_hamiltonian_path.hpp\"\n// \u59CB\u70B9\u3092\
     \u56FA\u5B9A\u3057\u3066\u3001\u30CF\u30DF\u30EB\u30C8\u30F3\u30D1\u30B9\u3092\
     \u4F5C\u308B\u3002\u5076\u6570\u306A\u3089\u30B5\u30A4\u30AF\u30EB\u306B\u3059\
     \u308B\u3002\n// \u9AD8\u6B21\u5143\u7248\uFF1Ahttps://codeforces.com/contest/863/submission/194294053\n\
+    // \u59CB\u70B9\u7D42\u70B9\u3092\u6B62\u3081\u308B:https://codeforces.com/problemset/problem/111/E\n\
     vc<pair<int, int>> grid_hamiltonian_path(int H, int W, int sx = 0, int sy = 0)\
     \ {\n  using P = pair<int, int>;\n  if (H == 1) {\n    vc<P> path;\n    if (sy\
     \ == 0) {\n      FOR(y, W) path.eb(0, y);\n      return path;\n    }\n    if (sy\
@@ -55,6 +57,7 @@ data:
   code: "// \u59CB\u70B9\u3092\u56FA\u5B9A\u3057\u3066\u3001\u30CF\u30DF\u30EB\u30C8\
     \u30F3\u30D1\u30B9\u3092\u4F5C\u308B\u3002\u5076\u6570\u306A\u3089\u30B5\u30A4\
     \u30AF\u30EB\u306B\u3059\u308B\u3002\n// \u9AD8\u6B21\u5143\u7248\uFF1Ahttps://codeforces.com/contest/863/submission/194294053\n\
+    // \u59CB\u70B9\u7D42\u70B9\u3092\u6B62\u3081\u308B:https://codeforces.com/problemset/problem/111/E\n\
     vc<pair<int, int>> grid_hamiltonian_path(int H, int W, int sx = 0, int sy = 0)\
     \ {\n  using P = pair<int, int>;\n  if (H == 1) {\n    vc<P> path;\n    if (sy\
     \ == 0) {\n      FOR(y, W) path.eb(0, y);\n      return path;\n    }\n    if (sy\
@@ -98,7 +101,7 @@ data:
   isVerificationFile: false
   path: graph/grid_hamiltonian_path.hpp
   requiredBy: []
-  timestamp: '2023-02-28 19:12:59+09:00'
+  timestamp: '2025-02-04 13:02:36+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/grid_hamiltonian_path.hpp

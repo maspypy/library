@@ -12,21 +12,23 @@ data:
   attributes:
     links:
     - https://codeforces.com/blog/entry/86731)
+    - https://codeforces.com/contest/1120/problem/F
   bundledCode: "#line 1 \"convex/extended_lichao_1.hpp\"\n// https://codeforces.com/blog/entry/86731)\n\
-    // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]\ntemplate <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1\
-    \ {\n  // \u5165\u51FA\u529B\u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\
-    \u308B\n  struct F {\n    ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n\
-    \    ll operator()(ll x) { return a * x + b; }\n    void add(F &other) {\n   \
-    \   if (b == infty<ll> || other.b == infty<ll>) {\n        a = 0, b = infty<ll>;\n\
-    \      } else {\n        a += other.a, b += other.b;\n      }\n    }\n  };\n\n\
-    \  vi X;\n  vc<F> dat, lazy;\n  int n, log, size;\n\n  Extended_LiChao_Tree_1(vi\
-    \ X_) : X(X_) {\n    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log)\
-    \ < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, F(0, infty<ll>));\n\
-    \    lazy.assign(size << 1, F(0, 0));\n  }\n\n  // O(logN). f(x) := min(f(x),\
-    \ ax+b).\n  void chmin_line(ll a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_line_rec(1,\
-    \ F(a, b), 0, n);\n  }\n\n  // O(logN). f(x) := max(f(x), ax+b).\n  void chmax_line(ll\
-    \ a, ll b) {\n    static_assert(!MINIMIZE);\n    chmin_line_rec(1, F(-a, -b),\
-    \ 0, n);\n  }\n\n  // O(log^2N). f(x) := min(f(x), ax+b) for L<=x<R.\n  // index\
+    // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]\n// \u3064\u304B\u3048\u305F https://codeforces.com/contest/1120/problem/F\n\
+    template <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1 {\n  // \u5165\u51FA\u529B\
+    \u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\u308B\n  struct F {\n   \
+    \ ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n    ll operator()(ll x)\
+    \ { return a * x + b; }\n    void add(F &other) {\n      if (b == infty<ll> ||\
+    \ other.b == infty<ll>) {\n        a = 0, b = infty<ll>;\n      } else {\n   \
+    \     a += other.a, b += other.b;\n      }\n    }\n  };\n\n  vi X;\n  vc<F> dat,\
+    \ lazy;\n  int n, log, size;\n\n  Extended_LiChao_Tree_1(vi X_) : X(X_) {\n  \
+    \  UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n \
+    \   size = 1 << log;\n    dat.assign(size << 1, F(0, infty<ll>));\n    lazy.assign(size\
+    \ << 1, F(0, 0));\n  }\n\n  // O(logN). f(x) := min(f(x), ax+b).\n  void chmin_line(ll\
+    \ a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_line_rec(1, F(a, b), 0,\
+    \ n);\n  }\n\n  // O(logN). f(x) := max(f(x), ax+b).\n  void chmax_line(ll a,\
+    \ ll b) {\n    static_assert(!MINIMIZE);\n    chmin_line_rec(1, F(-a, -b), 0,\
+    \ n);\n  }\n\n  // O(log^2N). f(x) := min(f(x), ax+b) for L<=x<R.\n  // index\
     \ \u3067\u306F\u306A\u304F\u3066 X[] \u306E\u7BC4\u56F2.\n  void chmin_segment(ll\
     \ L, ll R, ll a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_segment_rec(1,\
     \ LB(X, L), LB(X, R), F(a, b), 0, n);\n  }\n\n  // O(log^2N). f(x) := max(f(x),\
@@ -72,15 +74,16 @@ data:
     \ (x >= node_m) { chmin(res, query_rec(2 * i + 1, x, node_m, node_r, laz)); }\n\
     \    return res;\n  }\n};\n"
   code: "// https://codeforces.com/blog/entry/86731)\n// chmin(A[x],ax+b), A[x]+=ax+b,\
-    \ get A[x]\ntemplate <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1 {\n  // \u5165\
-    \u51FA\u529B\u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\u308B\n  struct\
-    \ F {\n    ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n    ll operator()(ll\
-    \ x) { return a * x + b; }\n    void add(F &other) {\n      if (b == infty<ll>\
-    \ || other.b == infty<ll>) {\n        a = 0, b = infty<ll>;\n      } else {\n\
-    \        a += other.a, b += other.b;\n      }\n    }\n  };\n\n  vi X;\n  vc<F>\
-    \ dat, lazy;\n  int n, log, size;\n\n  Extended_LiChao_Tree_1(vi X_) : X(X_) {\n\
-    \    UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n\
-    \    size = 1 << log;\n    dat.assign(size << 1, F(0, infty<ll>));\n    lazy.assign(size\
+    \ get A[x]\n// \u3064\u304B\u3048\u305F https://codeforces.com/contest/1120/problem/F\n\
+    template <bool MINIMIZE>\nstruct Extended_LiChao_Tree_1 {\n  // \u5165\u51FA\u529B\
+    \u4EE5\u5916\u3067\u306F minimize \u3057\u3066\u3044\u308B\n  struct F {\n   \
+    \ ll a, b;\n    F(ll a = 0, ll b = 0) : a(a), b(b) {}\n    ll operator()(ll x)\
+    \ { return a * x + b; }\n    void add(F &other) {\n      if (b == infty<ll> ||\
+    \ other.b == infty<ll>) {\n        a = 0, b = infty<ll>;\n      } else {\n   \
+    \     a += other.a, b += other.b;\n      }\n    }\n  };\n\n  vi X;\n  vc<F> dat,\
+    \ lazy;\n  int n, log, size;\n\n  Extended_LiChao_Tree_1(vi X_) : X(X_) {\n  \
+    \  UNIQUE(X);\n    n = len(X), log = 1;\n    while ((1 << log) < n) ++log;\n \
+    \   size = 1 << log;\n    dat.assign(size << 1, F(0, infty<ll>));\n    lazy.assign(size\
     \ << 1, F(0, 0));\n  }\n\n  // O(logN). f(x) := min(f(x), ax+b).\n  void chmin_line(ll\
     \ a, ll b) {\n    static_assert(MINIMIZE);\n    chmin_line_rec(1, F(a, b), 0,\
     \ n);\n  }\n\n  // O(logN). f(x) := max(f(x), ax+b).\n  void chmax_line(ll a,\
@@ -134,7 +137,7 @@ data:
   isVerificationFile: false
   path: convex/extended_lichao_1.hpp
   requiredBy: []
-  timestamp: '2025-01-09 21:54:53+09:00'
+  timestamp: '2025-02-04 13:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/extended_lichao.test.cpp

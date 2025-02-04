@@ -1,26 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+    title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://atcoder.jp/contests/agc023/tasks/agc023_f
@@ -301,8 +304,8 @@ data:
     \ (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1)\
     \ {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p\
     \ = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
-    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[v] = c,\
-    \ tail[v] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
+    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[w] = c,\
+    \ tail[w] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
     \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
     \ av), set(p, ap);\n  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1)\
     \ I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n}\n"
@@ -331,8 +334,8 @@ data:
     \ (i != root) seg[size + i] = i;\n  FOR_R(i, 1, size) upd(i);\n\n  FOR(N - 1)\
     \ {\n    int v = seg[1];\n    int a = head[uf[v]], b = tail[uf[v]];\n    int p\
     \ = uf[tree.parent[a]];\n    int c = head[p], d = tail[p];\n    X pv = Monoid::op(A[p],\
-    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[v] = c,\
-    \ tail[v] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
+    \ A[v]);\n    uf.merge(p, v);\n    int w = uf[v];\n    A[w] = pv, head[w] = c,\
+    \ tail[w] = b, nxt[d] = a;\n    int av = -1, ap = -1;\n    if (v == w && uf[v]\
     \ != uf[root]) av = v;\n    if (p == w && uf[p] != uf[root]) ap = p;\n    set(v,\
     \ av), set(p, ap);\n  }\n  vc<int> I = {root};\n  while (nxt[I.back()] != -1)\
     \ I.eb(nxt[I.back()]);\n  return {I, A[uf[root]]};\n}"
@@ -345,9 +348,10 @@ data:
   isVerificationFile: false
   path: graph/optimal_product_on_tree.hpp
   requiredBy: []
-  timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  timestamp: '2025-02-04 13:02:36+09:00'
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
 documentation_of: graph/optimal_product_on_tree.hpp
 layout: document
 redirect_from:

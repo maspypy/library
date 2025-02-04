@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/686.test.cpp
     title: test/3_yukicoder/686.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
@@ -48,7 +48,7 @@ data:
   path: alg/acted_monoid/max_add.hpp
   requiredBy: []
   timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/686.test.cpp
   - test/1_mytest/range_add_range_max.test.cpp

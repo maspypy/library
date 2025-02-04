@@ -819,6 +819,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+    title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/tree_diameter.test.cpp
     title: test/2_library_checker/tree/tree_diameter.test.cpp
@@ -1899,9 +1902,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/21623
@@ -2104,7 +2107,7 @@ data:
   - other/mhc_template_directory/para.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2024-11-26 12:06:01+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/789_2.test.cpp
@@ -2612,6 +2615,7 @@ data:
   - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/lca.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp

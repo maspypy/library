@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -129,6 +129,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
+  - icon: ':x:'
+    path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
+    title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
@@ -258,9 +261,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/problemset/problem/500/G
@@ -601,7 +604,7 @@ data:
   - graph/tree_dp/tree_dp.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1295.test.cpp
@@ -644,6 +647,7 @@ data:
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
+  - test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   - test/2_library_checker/tree/lca_fast.test.cpp
   - test/2_library_checker/tree/lca.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp

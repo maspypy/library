@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
@@ -59,45 +59,51 @@ data:
     \ T>\nstruct Range_Add_Range_Min {\n  struct Mono {\n    using value_type = pair<T,\
     \ T>;\n    using X = value_type;\n    static X op(X L, X R) { return {L.fi + R.fi,\
     \ min(L.se, L.fi + R.se)}; }\n    static constexpr X unit() { return {0, infty<ll>};\
-    \ }\n    static constexpr bool commute = false;\n  };\n  int n;\n  SegTree<Mono>\
-    \ seg;\n\n  Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int n) { build(n);\
-    \ }\n  template <typename F>\n  Range_Add_Range_Min(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  Range_Add_Range_Min(const vc<T>& v) { build(v); }\n\n  void build(int\
-    \ m) {\n    build(m, [](int i) -> T { return infty<T>; });\n  }\n  void build(const\
-    \ vc<T>& v) {\n    build(len(v), [&](int i) -> T { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m;\n    T pre = 0;\n    seg.build(n,\
-    \ [&](int i) -> pair<T, T> {\n      T t = f(i) - pre;\n      pre += t;\n     \
-    \ return {t, t};\n    });\n  }\n\n  T prod(int L, int R) {\n    if (L == R) return\
-    \ infty<T>;\n    ll ans = seg.prod(L, R).se;\n    L += seg.size;\n    for (; L\
-    \ > 0; L /= 2) {\n      if (L & 1) ans += seg.dat[--L].fi;\n    }\n    return\
-    \ ans;\n  }\n\n  void apply(int L, int R, T x) {\n    T l = seg.get(L).fi + x;\n\
-    \    seg.set(L, {l, l});\n    if (R == n) return;\n    T r = seg.get(R).fi - x;\n\
-    \    seg.set(R, {r, r});\n  }\n};\n"
+    \ }\n    static constexpr bool commute = false;\n  };\n  int n;\n  T lazy;\n \
+    \ SegTree<Mono> seg;\n\n  Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int\
+    \ n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Min(int n, F f)\
+    \ {\n    build(n, f);\n  }\n  Range_Add_Range_Min(const vc<T>& v) { build(v);\
+    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> T { return infty<T>; });\n\
+    \  }\n  void build(const vc<T>& v) {\n    build(len(v), [&](int i) -> T { return\
+    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    lazy\
+    \ = 0;\n    n = m;\n    T pre = 0;\n    seg.build(n, [&](int i) -> pair<T, T>\
+    \ {\n      T t = f(i) - pre;\n      pre += t;\n      return {t, t};\n    });\n\
+    \  }\n\n  T prod(int L, int R) {\n    if (L == R) return infty<T>;\n    ll ans\
+    \ = seg.prod(L, R).se;\n    L += seg.size;\n    for (; L > 0; L /= 2) {\n    \
+    \  if (L & 1) ans += seg.dat[--L].fi;\n    }\n    return ans + lazy;\n  }\n\n\
+    \  void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\
+    \n  // [0,i)\n  void apply_prefix(int i, T x) {\n    lazy += x;\n    apply_suffix(i,\
+    \ -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int i, T x) {\n    if (i == n)\
+    \ return;\n    T t = seg.get(i).fi + x;\n    seg.set(i, {t, t});\n  }\n  void\
+    \ apply_all(T x) { lazy += x; }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n\n// INF+x==INF \u307F\u305F\u3044\u306A\
     \u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree\
     \ \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Min\
     \ {\n  struct Mono {\n    using value_type = pair<T, T>;\n    using X = value_type;\n\
     \    static X op(X L, X R) { return {L.fi + R.fi, min(L.se, L.fi + R.se)}; }\n\
     \    static constexpr X unit() { return {0, infty<ll>}; }\n    static constexpr\
-    \ bool commute = false;\n  };\n  int n;\n  SegTree<Mono> seg;\n\n  Range_Add_Range_Min()\
-    \ {}\n  Range_Add_Range_Min(int n) { build(n); }\n  template <typename F>\n  Range_Add_Range_Min(int\
-    \ n, F f) {\n    build(n, f);\n  }\n  Range_Add_Range_Min(const vc<T>& v) { build(v);\
-    \ }\n\n  void build(int m) {\n    build(m, [](int i) -> T { return infty<T>; });\n\
-    \  }\n  void build(const vc<T>& v) {\n    build(len(v), [&](int i) -> T { return\
-    \ v[i]; });\n  }\n  template <typename F>\n  void build(int m, F f) {\n    n =\
-    \ m;\n    T pre = 0;\n    seg.build(n, [&](int i) -> pair<T, T> {\n      T t =\
-    \ f(i) - pre;\n      pre += t;\n      return {t, t};\n    });\n  }\n\n  T prod(int\
-    \ L, int R) {\n    if (L == R) return infty<T>;\n    ll ans = seg.prod(L, R).se;\n\
-    \    L += seg.size;\n    for (; L > 0; L /= 2) {\n      if (L & 1) ans += seg.dat[--L].fi;\n\
-    \    }\n    return ans;\n  }\n\n  void apply(int L, int R, T x) {\n    T l = seg.get(L).fi\
-    \ + x;\n    seg.set(L, {l, l});\n    if (R == n) return;\n    T r = seg.get(R).fi\
-    \ - x;\n    seg.set(R, {r, r});\n  }\n};"
+    \ bool commute = false;\n  };\n  int n;\n  T lazy;\n  SegTree<Mono> seg;\n\n \
+    \ Range_Add_Range_Min() {}\n  Range_Add_Range_Min(int n) { build(n); }\n  template\
+    \ <typename F>\n  Range_Add_Range_Min(int n, F f) {\n    build(n, f);\n  }\n \
+    \ Range_Add_Range_Min(const vc<T>& v) { build(v); }\n\n  void build(int m) {\n\
+    \    build(m, [](int i) -> T { return infty<T>; });\n  }\n  void build(const vc<T>&\
+    \ v) {\n    build(len(v), [&](int i) -> T { return v[i]; });\n  }\n  template\
+    \ <typename F>\n  void build(int m, F f) {\n    lazy = 0;\n    n = m;\n    T pre\
+    \ = 0;\n    seg.build(n, [&](int i) -> pair<T, T> {\n      T t = f(i) - pre;\n\
+    \      pre += t;\n      return {t, t};\n    });\n  }\n\n  T prod(int L, int R)\
+    \ {\n    if (L == R) return infty<T>;\n    ll ans = seg.prod(L, R).se;\n    L\
+    \ += seg.size;\n    for (; L > 0; L /= 2) {\n      if (L & 1) ans += seg.dat[--L].fi;\n\
+    \    }\n    return ans + lazy;\n  }\n\n  void apply(int L, int R, T x) { apply_suffix(L,\
+    \ x), apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int i, T x) {\n\
+    \    lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int\
+    \ i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi + x;\n    seg.set(i,\
+    \ {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};"
   dependsOn:
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/segtree/range_add_range_min.hpp
   requiredBy: []
-  timestamp: '2025-01-29 14:09:50+09:00'
+  timestamp: '2025-02-04 13:02:36+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_min.test.cpp
