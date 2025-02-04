@@ -46,7 +46,7 @@ pair<vc<int>, typename Monoid::value_type> optimal_product_on_tree(TREE& tree, v
     X pv = Monoid::op(A[p], A[v]);
     uf.merge(p, v);
     int w = uf[v];
-    A[w] = pv, head[v] = c, tail[v] = b, nxt[d] = a;
+    A[w] = pv, head[w] = c, tail[w] = b, nxt[d] = a;
     int av = -1, ap = -1;
     if (v == w && uf[v] != uf[root]) av = v;
     if (p == w && uf[p] != uf[root]) ap = p;

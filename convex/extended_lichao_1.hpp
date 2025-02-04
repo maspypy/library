@@ -1,5 +1,6 @@
 // https://codeforces.com/blog/entry/86731)
 // chmin(A[x],ax+b), A[x]+=ax+b, get A[x]
+// つかえた https://codeforces.com/contest/1120/problem/F
 template <bool MINIMIZE>
 struct Extended_LiChao_Tree_1 {
   // 入出力以外では minimize している

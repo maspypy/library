@@ -1,5 +1,6 @@
 // 始点を固定して、ハミルトンパスを作る。偶数ならサイクルにする。
 // 高次元版：https://codeforces.com/contest/863/submission/194294053
+// 始点終点を止める:https://codeforces.com/problemset/problem/111/E
 vc<pair<int, int>> grid_hamiltonian_path(int H, int W, int sx = 0, int sy = 0) {
   using P = pair<int, int>;
   if (H == 1) {

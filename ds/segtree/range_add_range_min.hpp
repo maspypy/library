@@ -12,6 +12,7 @@ struct Range_Add_Range_Min {
     static constexpr bool commute = false;
   };
   int n;
+  T lazy;
   SegTree<Mono> seg;
 
   Range_Add_Range_Min() {}
@@ -30,6 +31,7 @@ struct Range_Add_Range_Min {
   }
   template <typename F>
   void build(int m, F f) {
+    lazy = 0;
     n = m;
     T pre = 0;
     seg.build(n, [&](int i) -> pair<T, T> {
@@ -46,14 +48,22 @@ struct Range_Add_Range_Min {
     for (; L > 0; L /= 2) {
       if (L & 1) ans += seg.dat[--L].fi;
     }
-    return ans;
+    return ans + lazy;
   }
 
-  void apply(int L, int R, T x) {
-    T l = seg.get(L).fi + x;
-    seg.set(L, {l, l});
-    if (R == n) return;
-    T r = seg.get(R).fi - x;
-    seg.set(R, {r, r});
+  void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }
+
+  // [0,i)
+  void apply_prefix(int i, T x) {
+    lazy += x;
+    apply_suffix(i, -x);
   }
+
+  // [i,n)
+  void apply_suffix(int i, T x) {
+    if (i == n) return;
+    T t = seg.get(i).fi + x;
+    seg.set(i, {t, t});
+  }
+  void apply_all(T x) { lazy += x; }
 };
