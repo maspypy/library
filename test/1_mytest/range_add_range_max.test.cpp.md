@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/max_add.hpp
     title: alg/acted_monoid/max_add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/max.hpp
     title: alg/monoid/max.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/range_add_range_max.hpp
     title: ds/segtree/range_add_range_max.hpp
   - icon: ':question:'
@@ -22,14 +22,14 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -265,13 +265,11 @@ data:
     \  }\n\n  T prod(int L, int R) {\n    if (L == R) return -infty<T>;\n    ll ans\
     \ = seg.prod(L, R).se;\n    L += seg.size;\n    for (; L > 0; L /= 2) {\n    \
     \  if (L & 1) ans += seg.dat[--L].fi;\n    }\n    return ans + lazy;\n  }\n\n\
-    \  void apply(int L, int R, T x) {\n    T l = seg.get(L).fi + x;\n    seg.set(L,\
-    \ {l, l});\n    if (R == n) return;\n    T r = seg.get(R).fi - x;\n    seg.set(R,\
-    \ {r, r});\n  }\n\n  void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R,\
-    \ -x); }\n\n  // [0,i)\n  void apply_prefix(int i, T x) {\n    lazy += x;\n  \
-    \  apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int i, T x) {\n\
-    \    if (i == n) return;\n    T t = seg.get(i).fi + x;\n    seg.set(i, {t, t});\n\
-    \  }\n  void apply_all(T x) { lazy += x; }\n};\n#line 8 \"test/1_mytest/range_add_range_max.test.cpp\"\
+    \  void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\
+    \n  // [0,i)\n  void apply_prefix(int i, T x) {\n    lazy += x;\n    apply_suffix(i,\
+    \ -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int i, T x) {\n    if (i == n)\
+    \ return;\n    T t = seg.get(i).fi + x;\n    seg.set(i, {t, t});\n  }\n  void\
+    \ apply_all(T x) { lazy += x; }\n};\n#line 8 \"test/1_mytest/range_add_range_max.test.cpp\"\
     \n\nvi sol_0(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Max_Add<ll>>\
     \ seg(A);\n  vi ANS;\n  for (auto [t, l, r, x]: query) {\n    if (t == 0) { ANS.eb(seg.prod(l,\
     \ r)); }\n    if (t == 1) { seg.apply(l, r, x); }\n  }\n  return ANS;\n}\n\nvi\
@@ -337,8 +335,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_max.test.cpp
   requiredBy: []
-  timestamp: '2025-02-04 13:02:36+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-04 13:39:42+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_max.test.cpp
 layout: document

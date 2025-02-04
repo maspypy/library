@@ -6,12 +6,12 @@ data:
     title: ds/segtree/segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct\
@@ -71,13 +71,11 @@ data:
     \  }\n\n  T prod(int L, int R) {\n    if (L == R) return -infty<T>;\n    ll ans\
     \ = seg.prod(L, R).se;\n    L += seg.size;\n    for (; L > 0; L /= 2) {\n    \
     \  if (L & 1) ans += seg.dat[--L].fi;\n    }\n    return ans + lazy;\n  }\n\n\
-    \  void apply(int L, int R, T x) {\n    T l = seg.get(L).fi + x;\n    seg.set(L,\
-    \ {l, l});\n    if (R == n) return;\n    T r = seg.get(R).fi - x;\n    seg.set(R,\
-    \ {r, r});\n  }\n\n  void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R,\
-    \ -x); }\n\n  // [0,i)\n  void apply_prefix(int i, T x) {\n    lazy += x;\n  \
-    \  apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int i, T x) {\n\
-    \    if (i == n) return;\n    T t = seg.get(i).fi + x;\n    seg.set(i, {t, t});\n\
-    \  }\n  void apply_all(T x) { lazy += x; }\n};\n"
+    \  void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\
+    \n  // [0,i)\n  void apply_prefix(int i, T x) {\n    lazy += x;\n    apply_suffix(i,\
+    \ -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int i, T x) {\n    if (i == n)\
+    \ return;\n    T t = seg.get(i).fi + x;\n    seg.set(i, {t, t});\n  }\n  void\
+    \ apply_all(T x) { lazy += x; }\n};\n"
   code: "#include \"ds/segtree/segtree.hpp\"\n\n// INF+x==INF \u307F\u305F\u3044\u306A\
     \u51E6\u7406\u306F\u5165\u308C\u3066\u3044\u306A\u3044\n// N=Q=10^6 \u3067 lazysegtree\
     \ \u3088\u308A 40% \u7A0B\u5EA6\u9AD8\u901F\ntemplate <typename T>\nstruct Range_Add_Range_Max\
@@ -95,21 +93,18 @@ data:
     \      pre += t;\n      return {t, t};\n    });\n  }\n\n  T prod(int L, int R)\
     \ {\n    if (L == R) return -infty<T>;\n    ll ans = seg.prod(L, R).se;\n    L\
     \ += seg.size;\n    for (; L > 0; L /= 2) {\n      if (L & 1) ans += seg.dat[--L].fi;\n\
-    \    }\n    return ans + lazy;\n  }\n\n  void apply(int L, int R, T x) {\n   \
-    \ T l = seg.get(L).fi + x;\n    seg.set(L, {l, l});\n    if (R == n) return;\n\
-    \    T r = seg.get(R).fi - x;\n    seg.set(R, {r, r});\n  }\n\n  void apply(int\
-    \ L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\n  // [0,i)\n\
-    \  void apply_prefix(int i, T x) {\n    lazy += x;\n    apply_suffix(i, -x);\n\
-    \  }\n\n  // [i,n)\n  void apply_suffix(int i, T x) {\n    if (i == n) return;\n\
-    \    T t = seg.get(i).fi + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T\
-    \ x) { lazy += x; }\n};"
+    \    }\n    return ans + lazy;\n  }\n\n  void apply(int L, int R, T x) { apply_suffix(L,\
+    \ x), apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int i, T x) {\n\
+    \    lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int\
+    \ i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi + x;\n    seg.set(i,\
+    \ {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};"
   dependsOn:
   - ds/segtree/segtree.hpp
   isVerificationFile: false
   path: ds/segtree/range_add_range_max.hpp
   requiredBy: []
-  timestamp: '2025-02-04 13:02:36+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-02-04 13:39:42+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_max.test.cpp
 documentation_of: ds/segtree/range_add_range_max.hpp
