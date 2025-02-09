@@ -10,19 +10,19 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/find_cycle.hpp
     title: graph/find_cycle.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -288,38 +288,42 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 2 \"graph/find_cycle.hpp\"\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
-    \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT& G) {\r\n  static_assert(GT::is_directed);\r\
-    \n  assert(G.is_prepared());\r\n\r\n  int N = G.N;\r\n  vc<int> used(N);\r\n \
-    \ vc<pair<int, int>> par(N);\r\n  vector<int> es, vs;\r\n\r\n  auto dfs = [&](auto\
-    \ self, int v) -> void {\r\n    used[v] = 1;\r\n    for (auto&& e: G[v]) {\r\n\
-    \      if (len(es)) return;\r\n      if (!used[e.to]) {\r\n        par[e.to] =\
-    \ {v, e.id};\r\n        self(self, e.to);\r\n      }\r\n      elif (used[e.to]\
-    \ == 1) {\r\n        es = {e.id};\r\n        int cur = v;\r\n        while (cur\
-    \ != e.to) {\r\n          es.eb(par[cur].se);\r\n          cur = par[cur].fi;\r\
-    \n        }\r\n        reverse(all(es));\r\n        return;\r\n      }\r\n   \
-    \ }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if (!used[v]) dfs(dfs, v);\r\n\
-    \  if (es.empty()) return {vs, es};\r\n\r\n  // minimal cycle\r\n  vc<int> nxt(N,\
-    \ -1);\r\n  for (auto&& eid: es) nxt[G.edges[eid].frm] = eid;\r\n\r\n  for (auto&&\
-    \ e: G.edges) {\r\n    int a = e.frm, b = e.to;\r\n    if (nxt[a] == -1 || nxt[b]\
-    \ == -1) continue;\r\n    if (G.edges[nxt[a]].to == e.to) continue;\r\n    while\
-    \ (a != b) {\r\n      int t = G.edges[nxt[a]].to;\r\n      nxt[a] = -1;\r\n  \
-    \    a = t;\r\n    }\r\n    nxt[e.frm] = e.id;\r\n  }\r\n  es.clear();\r\n  FOR(v,\
-    \ N) {\r\n    if (nxt[v] == -1) continue;\r\n    int x = v;\r\n    while (1) {\r\
-    \n      vs.eb(x);\r\n      es.eb(nxt[x]);\r\n      x = G.edges[nxt[x]].to;\r\n\
-    \      if (x == v) break;\r\n    }\r\n    break;\r\n  }\r\n  return {vs, es};\r\
-    \n}\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate <typename GT>\r\npair<vc<int>,\
-    \ vc<int>> find_cycle_undirected(GT& G) {\r\n  assert(!GT::is_directed);\r\n \
-    \ assert(G.is_prepared());\r\n  const int N = G.N;\r\n  const int M = G.M;\r\n\
-    \  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n  vc<int> par(N, -1); // edge\
-    \ idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int d) -> void {\r\n    dep[v]\
-    \ = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to] != -1) continue;\r\
-    \n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n      dfs(dfs, e.to, d\
-    \ + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v, N) {\r\n    if (dep[v]\
-    \ == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\n  int back_e\
-    \ = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\n \
-    \   int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e =\
-    \ e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 2 \"graph/find_cycle.hpp\"\n\r\n// {vs, es} or empty.\
+    \ minimal.\r\ntemplate <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_directed(GT&\
+    \ G) {\r\n  static_assert(GT::is_directed);\r\n  assert(G.is_prepared());\r\n\r\
+    \n  int N = G.N;\r\n  vc<int> used(N);\r\n  vc<pair<int, int>> par(N);\r\n  vector<int>\
+    \ es, vs;\r\n\r\n  auto dfs = [&](auto self, int v) -> void {\r\n    used[v] =\
+    \ 1;\r\n    for (auto&& e: G[v]) {\r\n      if (len(es)) return;\r\n      if (!used[e.to])\
+    \ {\r\n        par[e.to] = {v, e.id};\r\n        self(self, e.to);\r\n      }\r\
+    \n      elif (used[e.to] == 1) {\r\n        es = {e.id};\r\n        int cur =\
+    \ v;\r\n        while (cur != e.to) {\r\n          es.eb(par[cur].se);\r\n   \
+    \       cur = par[cur].fi;\r\n        }\r\n        reverse(all(es));\r\n     \
+    \   return;\r\n      }\r\n    }\r\n    used[v] = 2;\r\n  };\r\n  FOR(v, N) if\
+    \ (!used[v]) dfs(dfs, v);\r\n  if (es.empty()) return {vs, es};\r\n\r\n  // minimal\
+    \ cycle\r\n  vc<int> nxt(N, -1);\r\n  for (auto&& eid: es) nxt[G.edges[eid].frm]\
+    \ = eid;\r\n\r\n  for (auto&& e: G.edges) {\r\n    int a = e.frm, b = e.to;\r\n\
+    \    if (nxt[a] == -1 || nxt[b] == -1) continue;\r\n    if (G.edges[nxt[a]].to\
+    \ == e.to) continue;\r\n    while (a != b) {\r\n      int t = G.edges[nxt[a]].to;\r\
+    \n      nxt[a] = -1;\r\n      a = t;\r\n    }\r\n    nxt[e.frm] = e.id;\r\n  }\r\
+    \n  es.clear();\r\n  FOR(v, N) {\r\n    if (nxt[v] == -1) continue;\r\n    int\
+    \ x = v;\r\n    while (1) {\r\n      vs.eb(x);\r\n      es.eb(nxt[x]);\r\n   \
+    \   x = G.edges[nxt[x]].to;\r\n      if (x == v) break;\r\n    }\r\n    break;\r\
+    \n  }\r\n  return {vs, es};\r\n}\r\n\r\n// {vs, es} or empty. minimal.\r\ntemplate\
+    \ <typename GT>\r\npair<vc<int>, vc<int>> find_cycle_undirected(GT& G) {\r\n \
+    \ assert(!GT::is_directed);\r\n  assert(G.is_prepared());\r\n  const int N = G.N;\r\
+    \n  const int M = G.M;\r\n  vc<int> dep(N, -1);\r\n  vc<bool> used_e(M);\r\n \
+    \ vc<int> par(N, -1); // edge idx\r\n\r\n  auto dfs = [&](auto& dfs, int v, int\
+    \ d) -> void {\r\n    dep[v] = d;\r\n    for (auto&& e: G[v]) {\r\n      if (dep[e.to]\
+    \ != -1) continue;\r\n      used_e[e.id] = 1;\r\n      par[e.to] = e.id;\r\n \
+    \     dfs(dfs, e.to, d + 1);\r\n    }\r\n  };\r\n\r\n  vc<int> vs, es;\r\n  FOR(v,\
+    \ N) {\r\n    if (dep[v] == -1) dfs(dfs, v, 0);\r\n  }\r\n  int mi_len = infty<int>;\r\
+    \n  int back_e = -1;\r\n  for (auto& e: G.edges) {\r\n    if (used_e[e.id]) continue;\r\
+    \n    int d = abs(dep[e.frm] - dep[e.to]);\r\n    if (chmin(mi_len, d)) back_e\
+    \ = e.id;\r\n  }\r\n  if (back_e == -1) return {vs, es};\r\n  int a = G.edges[back_e].frm,\
     \ b = G.edges[back_e].to;\r\n  if (dep[a] > dep[b]) swap(a, b);\r\n  es.eb(back_e),\
     \ vs.eb(a);\r\n  while (1) {\r\n    int x = vs.back();\r\n    auto& e = G.edges[es.back()];\r\
     \n    int y = e.frm + e.to - x;\r\n    if (y == a) break;\r\n    vs.eb(y);\r\n\
@@ -360,7 +364,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/find_cycle_minimum.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/find_cycle_minimum.test.cpp

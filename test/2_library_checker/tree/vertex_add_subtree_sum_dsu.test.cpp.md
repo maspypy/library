@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   - icon: ':question:'
@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/vertex_add_subtree_sum
@@ -227,7 +227,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"\
     ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap\
     \ {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
     \ ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32\
@@ -547,8 +547,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
 layout: document

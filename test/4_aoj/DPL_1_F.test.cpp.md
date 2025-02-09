@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: knapsack/knapsack01.hpp
     title: knapsack/knapsack01.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=DPL_1_F
@@ -212,11 +212,11 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"knapsack/knapsack01.hpp\"\n/*\n\
-    knapsack01 \u306E\u5168\u5217\u6319\n\u30FBO(2^n) \u3067\u3001(wt, val) \u3092\
-    \u5168\u5217\u6319 + wt \u3067\u30BD\u30FC\u30C8\n\u30FBremove extra = true \u2192\
-    \ val \u304C\u5897\u52A0\u306B\u306A\u308B\u3068\u3053\u308D\u3060\u3051\u6B8B\
-    \u3059\n*/\ntemplate <typename WT, typename VAL>\nvc<pair<WT, VAL>> knapsack01_gen_all(vc<WT>\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 1 \"knapsack/knapsack01.hpp\"\n/*\nknapsack01\
+    \ \u306E\u5168\u5217\u6319\n\u30FBO(2^n) \u3067\u3001(wt, val) \u3092\u5168\u5217\
+    \u6319 + wt \u3067\u30BD\u30FC\u30C8\n\u30FBremove extra = true \u2192 val \u304C\
+    \u5897\u52A0\u306B\u306A\u308B\u3068\u3053\u308D\u3060\u3051\u6B8B\u3059\n*/\n\
+    template <typename WT, typename VAL>\nvc<pair<WT, VAL>> knapsack01_gen_all(vc<WT>\
     \ weight, vc<VAL> val,\n                                     bool remove_extra)\
     \ {\n  int n = len(weight);\n  using P = pair<WT, VAL>;\n  vc<P> dp;\n  dp.eb(0,\
     \ 0);\n  FOR(i, n) {\n    vc<P> tmp(len(dp));\n    FOR(j, len(dp)) tmp[j] = {dp[j].fi\
@@ -267,8 +267,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DPL_1_F.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DPL_1_F.test.cpp
 layout: document

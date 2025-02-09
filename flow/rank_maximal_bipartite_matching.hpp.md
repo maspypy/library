@@ -10,17 +10,17 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1615.test.cpp
     title: test/3_yukicoder/1615.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://qoj.ac/contest/1388/problem/6546
@@ -248,7 +248,7 @@ data:
   path: flow/rank_maximal_bipartite_matching.hpp
   requiredBy: []
   timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1615.test.cpp
 documentation_of: flow/rank_maximal_bipartite_matching.hpp

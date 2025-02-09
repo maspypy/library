@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
     title: test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2259.test.cpp
     title: test/3_yukicoder/2259.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/min_of_linear_segments.hpp\"\n\n/*\nax + b (x>=0) \u304C\
@@ -58,7 +58,7 @@ data:
   path: mod/min_of_linear.hpp
   requiredBy: []
   timestamp: '2024-04-09 15:17:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2259.test.cpp
   - test/2_library_checker/number_theory/min_of_mod_of_linear.test.cpp

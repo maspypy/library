@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -287,32 +287,37 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 1 \"graph/count/count_K4.hpp\"\n\n// M^{1.5} + M^2/w\n// simple graph\
-    \ \u3092\u4EEE\u5B9A\ntemplate <typename GT>\nll count_K4(GT& G) {\n  static_assert(!GT::is_directed);\n\
-    \  assert(G.is_prepared());\n  const int N = G.N;\n  Graph<int, 1> DAG(N);\n \
-    \ {\n    auto deg = G.deg_array();\n    auto comp = [&](int a, int b) -> bool\
-    \ {\n      return (deg[a] == deg[b] ? a < b : deg[a] < deg[b]);\n    };\n    for\
-    \ (auto&& e: G.edges) {\n      int a = e.frm, b = e.to;\n      if (!comp(a, b))\
-    \ swap(a, b);\n      DAG.add(a, b);\n    }\n    DAG.build();\n  }\n\n  vc<int>\
-    \ new_idx(N, -1);\n  ll ANS = 0;\n  FOR(a, N) {\n    vc<int> V;\n    for (auto&&\
-    \ e: DAG[a]) V.eb(e.to);\n    FOR(i, len(V)) new_idx[V[i]] = i;\n    int n = len(V);\n\
-    \    Graph<bool, 1> H(n);\n    FOR(i, n) {\n      for (auto&& e: DAG[V[i]]) {\n\
-    \        int j = new_idx[e.to];\n        if (j == -1) continue;\n        H.add(i,\
-    \ j);\n      }\n    }\n    H.build();\n    FOR(b, ceil(n, 64)) {\n      int L\
-    \ = 64 * b;\n      int R = L + 64;\n      chmin(R, n);\n      vc<u64> dp(n);\n\
-    \      FOR(i, L, R) {\n        for (auto&& e: H[i]) { dp[e.to] |= u64(1) << (i\
-    \ - L); }\n      }\n      for (auto&& e: H.edges) { ANS += popcnt(dp[e.frm] &\
-    \ dp[e.to]); }\n    }\n    FOR(i, len(V)) new_idx[V[i]] = -1;\n  }\n  return ANS;\n\
-    }\n#line 6 \"test/1_mytest/count_K4.test.cpp\"\n\nvoid test() {\n  FOR(N, 20)\
-    \ {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<false>(N,\
-    \ true)) G.add(a, b);\n      G.build();\n      vv(int, adj, N, N);\n      for\
-    \ (auto& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm] = 1;\n      ll ans =\
-    \ 0;\n      FOR(d, N) FOR(c, d) FOR(b, c) FOR(a, b) {\n        ll n = 0;\n   \
-    \     n += adj[a][b];\n        n += adj[a][c];\n        n += adj[a][d];\n    \
-    \    n += adj[b][c];\n        n += adj[b][d];\n        n += adj[c][d];\n     \
-    \   ans += n == 6;\n      }\n      ll x = count_K4(G);\n      assert(ans == x);\n\
-    \    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
-    \ b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 1 \"graph/count/count_K4.hpp\"\n\n// M^{1.5} + M^2/w\n\
+    // simple graph \u3092\u4EEE\u5B9A\ntemplate <typename GT>\nll count_K4(GT& G)\
+    \ {\n  static_assert(!GT::is_directed);\n  assert(G.is_prepared());\n  const int\
+    \ N = G.N;\n  Graph<int, 1> DAG(N);\n  {\n    auto deg = G.deg_array();\n    auto\
+    \ comp = [&](int a, int b) -> bool {\n      return (deg[a] == deg[b] ? a < b :\
+    \ deg[a] < deg[b]);\n    };\n    for (auto&& e: G.edges) {\n      int a = e.frm,\
+    \ b = e.to;\n      if (!comp(a, b)) swap(a, b);\n      DAG.add(a, b);\n    }\n\
+    \    DAG.build();\n  }\n\n  vc<int> new_idx(N, -1);\n  ll ANS = 0;\n  FOR(a, N)\
+    \ {\n    vc<int> V;\n    for (auto&& e: DAG[a]) V.eb(e.to);\n    FOR(i, len(V))\
+    \ new_idx[V[i]] = i;\n    int n = len(V);\n    Graph<bool, 1> H(n);\n    FOR(i,\
+    \ n) {\n      for (auto&& e: DAG[V[i]]) {\n        int j = new_idx[e.to];\n  \
+    \      if (j == -1) continue;\n        H.add(i, j);\n      }\n    }\n    H.build();\n\
+    \    FOR(b, ceil(n, 64)) {\n      int L = 64 * b;\n      int R = L + 64;\n   \
+    \   chmin(R, n);\n      vc<u64> dp(n);\n      FOR(i, L, R) {\n        for (auto&&\
+    \ e: H[i]) { dp[e.to] |= u64(1) << (i - L); }\n      }\n      for (auto&& e: H.edges)\
+    \ { ANS += popcnt(dp[e.frm] & dp[e.to]); }\n    }\n    FOR(i, len(V)) new_idx[V[i]]\
+    \ = -1;\n  }\n  return ANS;\n}\n#line 6 \"test/1_mytest/count_K4.test.cpp\"\n\n\
+    void test() {\n  FOR(N, 20) {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n  \
+    \    for (auto& [a, b]: random_graph<false>(N, true)) G.add(a, b);\n      G.build();\n\
+    \      vv(int, adj, N, N);\n      for (auto& e: G.edges) adj[e.frm][e.to] = adj[e.to][e.frm]\
+    \ = 1;\n      ll ans = 0;\n      FOR(d, N) FOR(c, d) FOR(b, c) FOR(a, b) {\n \
+    \       ll n = 0;\n        n += adj[a][b];\n        n += adj[a][c];\n        n\
+    \ += adj[a][d];\n        n += adj[b][c];\n        n += adj[b][d];\n        n +=\
+    \ adj[c][d];\n        ans += n == 6;\n      }\n      ll x = count_K4(G);\n   \
+    \   assert(ans == x);\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >>\
+    \ a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n\
+    \  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/random_graph.hpp\"\n#include \"graph/count/count_K4.hpp\"\
     \n\nvoid test() {\n  FOR(N, 20) {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n\
@@ -337,7 +342,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_K4.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_K4.test.cpp

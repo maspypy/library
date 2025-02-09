@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/dynamic_segtree.hpp
     title: ds/segtree/dynamic_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
@@ -21,9 +21,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_range_composite
@@ -221,7 +221,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp\"\
     \n\n#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\u3042\u308B\
     \u306E\u3067\u72B6\u6CC1\u306B\u3088\u3063\u3066\u306F\u305D\u3063\u3061\u3067\
     \r\ntemplate <typename Monoid, bool PERSISTENT>\r\nstruct Dynamic_SegTree {\r\n\
@@ -411,8 +411,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
 layout: document

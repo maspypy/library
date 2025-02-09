@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/max_of_linear_segments.hpp
     title: mod/max_of_linear_segments.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/min_of_linear_segments.hpp
     title: mod/min_of_linear_segments.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

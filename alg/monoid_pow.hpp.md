@@ -5,13 +5,13 @@ data:
   - icon: ':warning:'
     path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
     title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
   _extendedVerifiedWith:
@@ -21,18 +21,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
@@ -72,7 +72,7 @@ data:
   - mod/floor_sum_of_linear_polynomial.hpp
   - ds/segtree/range_assignment_segtree.hpp
   timestamp: '2024-01-23 03:59:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp

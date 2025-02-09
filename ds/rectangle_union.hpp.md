@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/acted_monoid/minmincnt_add.hpp
     title: alg/acted_monoid/minmincnt_add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: alg/monoid/minmincnt.hpp
     title: alg/monoid/minmincnt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/segtree/lazy_segtree.hpp
     title: ds/segtree/lazy_segtree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
     title: test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DSL_4_A.test.cpp
     title: test/4_aoj/DSL_4_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/lazy_segtree.hpp\"\n\ntemplate <typename ActedMonoid>\n\
@@ -105,34 +105,35 @@ data:
     \n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n  void add_rect(XY xl, XY xr,\
     \ XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\n    X.eb(xl), X.eb(xr),\
     \ Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl, yr);\r\n  }\r\n\r\n  template\
-    \ <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    int N = len(X);\r\n \
-    \   vc<int> ord_x = argsort(X);\r\n    vc<int> ord_y = argsort(Y);\r\n    vc<int>\
-    \ rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]] = i;\r\n    X = rearrange(X, ord_x);\r\
-    \n    Y = rearrange(Y, ord_y);\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\
-    \n    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> {\r\n      return\
-    \ {0, Y[i + 1] - Y[i]};\r\n    });\r\n\r\n    ANS_TYPE ANS = 0;\r\n    XY total\
-    \ = Y.back() - Y[0];\r\n    FOR(i, N - 1) {\r\n      int k = ord_x[i] / 2;\r\n\
-    \      int a = (ord_x[i] & 1 ? -1 : 1);\r\n      seg.apply(rk_y[2 * k], rk_y[2\
-    \ * k + 1], a);\r\n      auto [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE\
-    \ dy = total - (min == 0 ? mincnt : 0);\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\
-    \n      ANS += dx * dy;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
+    \ <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc() {\r\n    if (rectangles.empty())\
+    \ return 0;\r\n    int N = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int>\
+    \ ord_y = argsort(Y);\r\n    vc<int> rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]]\
+    \ = i;\r\n    X = rearrange(X, ord_x);\r\n    Y = rearrange(Y, ord_y);\r\n\r\n\
+    \    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    Lazy_SegTree<AM> seg(N -\
+    \ 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]}; });\r\n\r\n   \
+    \ ANS_TYPE ANS = 0;\r\n    XY total = Y.back() - Y[0];\r\n    FOR(i, N - 1) {\r\
+    \n      int k = ord_x[i] / 2;\r\n      int a = (ord_x[i] & 1 ? -1 : 1);\r\n  \
+    \    seg.apply(rk_y[2 * k], rk_y[2 * k + 1], a);\r\n      auto [min, mincnt] =\
+    \ seg.prod_all();\r\n      ANS_TYPE dy = total - (min == 0 ? mincnt : 0);\r\n\
+    \      ANS_TYPE dx = X[i + 1] - X[i];\r\n      ANS += dx * dy;\r\n    }\r\n  \
+    \  return ANS;\r\n  }\r\n};\r\n"
   code: "#include \"ds/segtree/lazy_segtree.hpp\"\r\n#include \"alg/acted_monoid/minmincnt_add.hpp\"\
     \r\n\r\ntemplate <typename XY = int>\r\nstruct Rectangle_Union {\r\n  using RECT\
     \ = tuple<XY, XY, XY, XY>;\r\n  vc<RECT> rectangles;\r\n  vc<XY> X, Y;\r\n\r\n\
     \  void add_rect(XY xl, XY xr, XY yl, XY yr) {\r\n    assert(xl < xr && yl < yr);\r\
     \n    X.eb(xl), X.eb(xr), Y.eb(yl), Y.eb(yr);\r\n    rectangles.eb(xl, xr, yl,\
     \ yr);\r\n  }\r\n\r\n  template <typename ANS_TYPE = ll>\r\n  ANS_TYPE calc()\
-    \ {\r\n    int N = len(X);\r\n    vc<int> ord_x = argsort(X);\r\n    vc<int> ord_y\
-    \ = argsort(Y);\r\n    vc<int> rk_y(N);\r\n    FOR(i, N) rk_y[ord_y[i]] = i;\r\
-    \n    X = rearrange(X, ord_x);\r\n    Y = rearrange(Y, ord_y);\r\n\r\n    using\
-    \ AM = ActedMonoid_MinMincnt_Add<XY>;\r\n    Lazy_SegTree<AM> seg(N - 1, [&](int\
-    \ i) -> pair<XY, XY> {\r\n      return {0, Y[i + 1] - Y[i]};\r\n    });\r\n\r\n\
-    \    ANS_TYPE ANS = 0;\r\n    XY total = Y.back() - Y[0];\r\n    FOR(i, N - 1)\
-    \ {\r\n      int k = ord_x[i] / 2;\r\n      int a = (ord_x[i] & 1 ? -1 : 1);\r\
-    \n      seg.apply(rk_y[2 * k], rk_y[2 * k + 1], a);\r\n      auto [min, mincnt]\
-    \ = seg.prod_all();\r\n      ANS_TYPE dy = total - (min == 0 ? mincnt : 0);\r\n\
-    \      ANS_TYPE dx = X[i + 1] - X[i];\r\n      ANS += dx * dy;\r\n    }\r\n  \
-    \  return ANS;\r\n  }\r\n};\r\n"
+    \ {\r\n    if (rectangles.empty()) return 0;\r\n    int N = len(X);\r\n    vc<int>\
+    \ ord_x = argsort(X);\r\n    vc<int> ord_y = argsort(Y);\r\n    vc<int> rk_y(N);\r\
+    \n    FOR(i, N) rk_y[ord_y[i]] = i;\r\n    X = rearrange(X, ord_x);\r\n    Y =\
+    \ rearrange(Y, ord_y);\r\n\r\n    using AM = ActedMonoid_MinMincnt_Add<XY>;\r\n\
+    \    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> { return {0, Y[i +\
+    \ 1] - Y[i]}; });\r\n\r\n    ANS_TYPE ANS = 0;\r\n    XY total = Y.back() - Y[0];\r\
+    \n    FOR(i, N - 1) {\r\n      int k = ord_x[i] / 2;\r\n      int a = (ord_x[i]\
+    \ & 1 ? -1 : 1);\r\n      seg.apply(rk_y[2 * k], rk_y[2 * k + 1], a);\r\n    \
+    \  auto [min, mincnt] = seg.prod_all();\r\n      ANS_TYPE dy = total - (min ==\
+    \ 0 ? mincnt : 0);\r\n      ANS_TYPE dx = X[i + 1] - X[i];\r\n      ANS += dx\
+    \ * dy;\r\n    }\r\n    return ANS;\r\n  }\r\n};\r\n"
   dependsOn:
   - ds/segtree/lazy_segtree.hpp
   - alg/acted_monoid/minmincnt_add.hpp
@@ -141,8 +142,8 @@ data:
   isVerificationFile: false
   path: ds/rectangle_union.hpp
   requiredBy: []
-  timestamp: '2024-01-23 05:58:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
   - test/4_aoj/DSL_4_A.test.cpp

@@ -24,10 +24,10 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/611/problem/H
-  bundledCode: "#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate\
-    \ <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n\
-    \  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if\
-    \ (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
+  bundledCode: "#line 2 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\n\
+    template <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N =\
+    \ len(A);\n  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n\
+    \    if (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
     \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
     \ 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct\
     \ HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
@@ -165,7 +165,7 @@ data:
   isVerificationFile: false
   path: enumerate/labeled_tree.hpp
   requiredBy: []
-  timestamp: '2024-12-25 20:50:37+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/enumerate_labeled_tree.test.cpp

@@ -7,31 +7,31 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/bipartite_vertex_coloring.hpp
     title: graph/bipartite_vertex_coloring.hpp
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_between_vertex_edge.hpp
     title: graph/maximum_matching_between_vertex_edge.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -403,11 +403,15 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 7 \"test/1_mytest/matching_ve.test.cpp\"\n\nvoid test() {\n  FOR(N, 50)\
-    \ {\n    FOR(100) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<0>(N,\
-    \ false)) G.add(a, b);\n      G.build();\n      Graph<int, 0> VE(G.N + G.M);\n\
-    \      for (auto& e: G.edges) {\n        VE.add(e.frm, N + e.id);\n        VE.add(e.to,\
-    \ N + e.id);\n      }\n      VE.build();\n      BipartiteMatching<decltype(G)>\
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 7 \"test/1_mytest/matching_ve.test.cpp\"\n\nvoid test()\
+    \ {\n  FOR(N, 50) {\n    FOR(100) {\n      Graph<int, 0> G(N);\n      for (auto&\
+    \ [a, b]: random_graph<0>(N, false)) G.add(a, b);\n      G.build();\n      Graph<int,\
+    \ 0> VE(G.N + G.M);\n      for (auto& e: G.edges) {\n        VE.add(e.frm, N +\
+    \ e.id);\n        VE.add(e.to, N + e.id);\n      }\n      VE.build();\n      BipartiteMatching<decltype(G)>\
     \ BM(VE);\n      int n = len(BM.matching());\n\n      auto match = maximum_matching_between_vertex_edge(G);\n\
     \      assert(len(match) == n);\n      vc<int> used_v(N), used_e(G.M);\n     \
     \ for (auto& [v, e]: match) {\n        assert(!used_v[v]);\n        assert(!used_e[e]);\n\
@@ -444,7 +448,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/matching_ve.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/matching_ve.test.cpp

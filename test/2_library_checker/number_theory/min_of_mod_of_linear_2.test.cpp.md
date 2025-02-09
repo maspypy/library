@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/range_freq_of_linear.hpp
     title: mod/range_freq_of_linear.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_of_mod_of_linear
@@ -215,7 +215,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp\"\
     \n\n#line 2 \"mod/floor_sum_of_linear.hpp\"\n\n// sum_{x in [L,R)} floor(ax +\
     \ b, mod)\n// I \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\
     \u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\u5EA6\ntemplate <typename O = i128,\
@@ -252,8 +252,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
 layout: document

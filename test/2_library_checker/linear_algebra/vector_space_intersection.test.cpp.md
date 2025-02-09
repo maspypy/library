@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/transpose.hpp
     title: linalg/xor/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/xor/vector_space.hpp
     title: linalg/xor/vector_space.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/intersection_of_f2_vector_spaces
@@ -215,7 +215,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 5 \"test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp\"\
     \n\n#line 2 \"linalg/xor/transpose.hpp\"\n\n// n x m \u884C\u5217\u306E transpose\u3002\
     O((n+m)log(n+m)) \u6642\u9593\u3002\n// https://github.com/dsnet/matrix-transpose\n\
     template <typename UINT>\nvc<UINT> transpose(int n, int m, vc<UINT>& A, bool keep_A\
@@ -276,8 +276,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
 layout: document

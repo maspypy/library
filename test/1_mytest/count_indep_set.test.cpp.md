@@ -16,40 +16,40 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/path_cycle.hpp
     title: graph/path_cycle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -315,11 +315,15 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 2 \"graph/path_cycle.hpp\"\n\n// \u3069\u306E\u70B9\u306E\u6B21\u6570\
-    \u3082 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\u30D5\u304C\u3042\u308B\u3068\u304D\u306B\
-    \u3001\n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\u30EB\u306E\
-    \u9802\u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename GT>\n\
-    pair<vvc<int>, vvc<int>> path_cycle(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 2 \"graph/path_cycle.hpp\"\n\n// \u3069\u306E\u70B9\u306E\
+    \u6B21\u6570\u3082 2 \u4EE5\u4E0B\u306E\u30B0\u30E9\u30D5\u304C\u3042\u308B\u3068\
+    \u304D\u306B\u3001\n// \u30D1\u30B9\u306E\u9802\u70B9\u5217, \u30B5\u30A4\u30AF\
+    \u30EB\u306E\u9802\u70B9\u5217\n// \u306B\u5206\u89E3\u3059\u308B\ntemplate <typename\
+    \ GT>\npair<vvc<int>, vvc<int>> path_cycle(GT& G) {\n  static_assert(!GT::is_directed);\n\
     \  int N = G.N;\n  auto deg = G.deg_array();\n  assert(MAX(deg) <= 2);\n\n  vc<bool>\
     \ done(N);\n  auto calc_frm = [&](int v) -> vc<int> {\n    vc<int> P = {v};\n\
     \    done[v] = 1;\n    while (1) {\n      bool ok = 0;\n      for (auto&& e: G[P.back()])\
@@ -702,7 +706,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_indep_set.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_indep_set.test.cpp

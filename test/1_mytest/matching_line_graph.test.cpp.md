@@ -13,25 +13,25 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/maximum_matching_of_line_graph.hpp
     title: graph/maximum_matching_of_line_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/maximum_matching_size.hpp
     title: graph/maximum_matching_size.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/matrix_rank.hpp
     title: linalg/matrix_rank.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -297,10 +297,14 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static constexpr u64\
-    \ mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61() : val(0ULL)\
-    \ {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64 x)\
-    \ : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 2 \"mod/modint61.hpp\"\n\r\nstruct modint61 {\r\n  static\
+    \ constexpr u64 mod = (1ULL << 61) - 1;\r\n  u64 val;\r\n  constexpr modint61()\
+    \ : val(0ULL) {}\r\n  constexpr modint61(u32 x) : val(x) {}\r\n  constexpr modint61(u64\
+    \ x) : val(x % mod) {}\r\n  constexpr modint61(int x) : val((x < 0) ? (x + static_cast<ll>(mod))\
     \ : x) {}\r\n  constexpr modint61(ll x) : val(((x %= static_cast<ll>(mod)) < 0)\
     \ ? (x + static_cast<ll>(mod)) : x) {}\r\n  static constexpr u64 get_mod() { return\
     \ mod; }\r\n\r\n  modint61 &operator+=(const modint61 &a) {\r\n    val = ((val\
@@ -406,7 +410,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/matching_line_graph.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/matching_line_graph.test.cpp

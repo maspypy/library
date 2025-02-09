@@ -7,17 +7,17 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/zalgorithm.hpp
     title: string/zalgorithm.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/runenumerate
@@ -215,7 +215,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"string/zalgorithm.hpp\"\n\ntemplate\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"string/zalgorithm.hpp\"\n\ntemplate\
     \ <typename STRING> // string, vector \u3069\u3061\u3089\u3067\u3082\nvector<int>\
     \ zalgorithm(const STRING& s) {\n  int n = int(s.size());\n  if (n == 0) return\
     \ {};\n  vector<int> z(n);\n  z[0] = 0;\n  for (int i = 1, j = 0; i < n; i++)\
@@ -268,8 +268,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/run_enumerate_vec.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/run_enumerate_vec.test.cpp
 layout: document

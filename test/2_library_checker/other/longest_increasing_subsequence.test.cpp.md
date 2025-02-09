@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/longest_increasing_subsequence.hpp
     title: seq/longest_increasing_subsequence.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/longest_increasing_subsequence
@@ -212,7 +212,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/2_library_checker/other/longest_increasing_subsequence.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/other/longest_increasing_subsequence.test.cpp\"\
     \n\n#line 1 \"seq/longest_increasing_subsequence.hpp\"\n// dp[i] := \u7B2C i \u9805\
     \u3067\u7D42\u308F\u308B lis \u9577\u306E\u6700\u5927\u5024\uFF08[1, LIS]\uFF09\
     \ntemplate <typename T, bool strong = true>\npair<int, vc<int>> longest_increasing_subsequence_dp(vector<T>\
@@ -242,8 +242,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/other/longest_increasing_subsequence.test.cpp
 layout: document

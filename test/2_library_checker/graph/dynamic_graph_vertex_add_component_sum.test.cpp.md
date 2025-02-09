@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/add_remove_query.hpp
     title: ds/offline_query/add_remove_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/rollback_array.hpp
     title: ds/rollback_array.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/unionfind/rollback_unionfind.hpp
     title: ds/unionfind/rollback_unionfind.hpp
   - icon: ':question:'
@@ -18,9 +18,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/dynamic_graph_vertex_add_component_sum
@@ -218,7 +218,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"ds/rollback_array.hpp\"\n\r\ntemplate\
     \ <typename T>\r\nstruct Rollback_Array {\r\n  int N;\r\n  vc<T> dat;\r\n  vc<pair<int,\
     \ T>> history;\r\n\r\n  Rollback_Array() {}\r\n  Rollback_Array(vc<T> x) : N(len(x)),\
     \ dat(x) {}\r\n  Rollback_Array(int N) : N(N), dat(N) {}\r\n  template <typename\
@@ -329,8 +329,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
 layout: document

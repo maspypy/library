@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/predecessor_problem
@@ -212,12 +212,12 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary\
-    \ tree\r\n// space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32\
-    \ B = 64;\r\n  int n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int\
-    \ n) { build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  template <typename\
-    \ F>\r\n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int\
-    \ m) {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\
+    \n// space: (N/63) * u64\r\nstruct FastSet {\r\n  static constexpr u32 B = 64;\r\
+    \n  int n, log;\r\n  vvc<u64> seg;\r\n\r\n  FastSet() {}\r\n  FastSet(int n) {\
+    \ build(n); }\r\n\r\n  int size() { return n; }\r\n\r\n  template <typename F>\r\
+    \n  FastSet(int n, F f) {\r\n    build(n, f);\r\n  }\r\n\r\n  void build(int m)\
+    \ {\r\n    seg.clear();\r\n    n = m;\r\n    do {\r\n      seg.push_back(vc<u64>((m\
     \ + B - 1) / B));\r\n      m = (m + B - 1) / B;\r\n    } while (m > 1);\r\n  \
     \  log = len(seg);\r\n  }\r\n  template <typename F>\r\n  void build(int n, F\
     \ f) {\r\n    build(n);\r\n    FOR(i, n) { seg[0][i / B] |= u64(f(i)) << (i %\
@@ -269,8 +269,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/predecessor_problem.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/predecessor_problem.test.cpp
 layout: document

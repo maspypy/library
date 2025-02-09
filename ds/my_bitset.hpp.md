@@ -5,34 +5,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/bipartite_dense.hpp
     title: flow/bipartite_dense.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bitset/bfs_bitset.hpp
     title: graph/bitset/bfs_bitset.hpp
   - icon: ':warning:'
     path: graph/bitset/reachability_bitset.hpp
     title: graph/bitset/reachability_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
     path: linalg/bitset/det.hpp
     title: linalg/bitset/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/matrix_mul_and_or.hpp
     title: linalg/bitset/matrix_mul_and_or.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   - icon: ':warning:'
     path: linalg/bitset/matrix_pow.hpp
     title: linalg/bitset/matrix_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
@@ -45,42 +45,42 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1340.test.cpp
     title: test/3_yukicoder/1340.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1400.test.cpp
     title: test/3_yukicoder/1400.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/142.test.cpp
     title: test/3_yukicoder/142.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1421.test.cpp
     title: test/3_yukicoder/1421.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2490.test.cpp
     title: test/3_yukicoder/2490.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/421.test.cpp
     title: test/3_yukicoder/421.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/421_2.test.cpp
     title: test/3_yukicoder/421_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -362,7 +362,7 @@ data:
   - knapsack/subset_sum.hpp
   - ds/sum_over_bit_positions.hpp
   timestamp: '2025-01-04 13:02:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1421.test.cpp
   - test/3_yukicoder/1400.test.cpp

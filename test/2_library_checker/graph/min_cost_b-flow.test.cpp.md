@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/min_cost_b_flow
@@ -212,7 +212,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"flow/bflow.hpp\"\n\n// \u8CA0\u8FBA\
     \u304C\u3042\u3063\u3066\u3082\u52D5\u4F5C\u3059\u308B\u3088\ntemplate <class\
     \ Flow = ll, class Cost = ll>\nstruct MinCostFlow {\nprivate:\n  static constexpr\
     \ int SCALING_FACTOR = 2;\n  using V_id = uint32_t;\n  using E_id = uint32_t;\n\
@@ -319,8 +319,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/min_cost_b-flow.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/min_cost_b-flow.test.cpp
 layout: document

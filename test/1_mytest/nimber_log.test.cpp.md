@@ -4,22 +4,22 @@ data:
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/base.hpp
     title: nt/nimber/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/nimber/nimber_impl.hpp
     title: nt/nimber/nimber_impl.hpp
   - icon: ':heavy_check_mark:'
     path: nt/nimber/nimber_log.hpp
     title: nt/nimber/nimber_log.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

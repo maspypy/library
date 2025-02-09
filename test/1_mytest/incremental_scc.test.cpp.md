@@ -10,22 +10,22 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/incremental_scc.hpp
     title: graph/incremental_scc.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -333,19 +333,24 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 6 \"test/1_mytest/incremental_scc.test.cpp\"\n\nvoid test() {\n  FOR(N,\
-    \ 1, 30) {\n    FOR(50) {\n      auto edges = random_graph<true>(N, false);\n\n\
-    \      int M = len(edges);\n      vvc<int> comp(M + 1);\n      FOR(t, M + 1) {\n\
-    \        Graph<int, 1> G(N);\n        FOR(i, t) {\n          auto [a, b] = edges[i];\n\
-    \          G.add(a, b);\n        }\n        G.build();\n        comp[t] = strongly_connected_component(G).se;\n\
-    \      }\n      Graph<int, 1> G(N);\n      for (auto& [a, b]: edges) G.add(a,\
-    \ b);\n      G.build();\n      auto time = incremental_scc(G);\n\n      FOR(i,\
-    \ M) {\n        auto [a, b] = edges[i];\n        int t = time[i];\n        assert(i\
-    \ < t);\n        if (t == infty<int>) {\n          assert(comp[M][a] != comp[M][b]);\n\
-    \        } else {\n          assert(comp[t][a] == comp[t][b]);\n          if (i\
-    \ + 1 < t) assert(comp[t - 1][a] != comp[t - 1][b]);\n        }\n      }\n   \
-    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
-    \ << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return 0;\n}\n"
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 6 \"test/1_mytest/incremental_scc.test.cpp\"\n\nvoid\
+    \ test() {\n  FOR(N, 1, 30) {\n    FOR(50) {\n      auto edges = random_graph<true>(N,\
+    \ false);\n\n      int M = len(edges);\n      vvc<int> comp(M + 1);\n      FOR(t,\
+    \ M + 1) {\n        Graph<int, 1> G(N);\n        FOR(i, t) {\n          auto [a,\
+    \ b] = edges[i];\n          G.add(a, b);\n        }\n        G.build();\n    \
+    \    comp[t] = strongly_connected_component(G).se;\n      }\n      Graph<int,\
+    \ 1> G(N);\n      for (auto& [a, b]: edges) G.add(a, b);\n      G.build();\n \
+    \     auto time = incremental_scc(G);\n\n      FOR(i, M) {\n        auto [a, b]\
+    \ = edges[i];\n        int t = time[i];\n        assert(i < t);\n        if (t\
+    \ == infty<int>) {\n          assert(comp[M][a] != comp[M][b]);\n        } else\
+    \ {\n          assert(comp[t][a] == comp[t][b]);\n          if (i + 1 < t) assert(comp[t\
+    \ - 1][a] != comp[t - 1][b]);\n        }\n      }\n    }\n  }\n}\n\nvoid solve()\
+    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ {\n  test();\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"graph/incremental_scc.hpp\"\n#include \"random/random_graph.hpp\"\
     \n\nvoid test() {\n  FOR(N, 1, 30) {\n    FOR(50) {\n      auto edges = random_graph<true>(N,\
@@ -374,7 +379,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/incremental_scc.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/incremental_scc.test.cpp

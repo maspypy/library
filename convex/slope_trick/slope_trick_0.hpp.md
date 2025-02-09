@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_cost_matching_on_line.test.cpp
     title: test/1_mytest/min_cost_matching_on_line.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1077.test.cpp
     title: test/3_yukicoder/1077.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/slope_trick/slope_trick_0.hpp\"\n// \u6700\u521D\u306B\
@@ -102,7 +102,7 @@ data:
   requiredBy:
   - flow/min_cost_matching_on_line.hpp
   timestamp: '2024-10-23 21:57:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1077.test.cpp
   - test/1_mytest/min_cost_matching_on_line.test.cpp

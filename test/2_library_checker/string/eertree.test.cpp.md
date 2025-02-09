@@ -7,14 +7,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/palindromic_tree.hpp
     title: string/palindromic_tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/eertree
@@ -212,7 +212,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 4 \"test/2_library_checker/string/eertree.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/string/eertree.test.cpp\"\
     \n\n#line 1 \"string/palindromic_tree.hpp\"\n// palindromic tree \u3092\u4F5C\u308B\
     \ntemplate <int sigma>\nstruct Palindromic_Tree {\n  struct Node {\n    array<int,\
     \ sigma> TO;\n    int link;\n    int length;\n    pair<int, int> pos; // position\
@@ -258,8 +258,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/eertree.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/string/eertree.test.cpp
 layout: document

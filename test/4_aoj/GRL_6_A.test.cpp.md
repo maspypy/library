@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=GRL_6_A
@@ -212,7 +212,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 5 \"test/4_aoj/GRL_6_A.test.cpp\"\n\r\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/4_aoj/GRL_6_A.test.cpp\"\n\r\
     \n#line 1 \"flow/maxflow.hpp\"\n// incremental \u306B\u8FBA\u3092\u8FFD\u52A0\u3057\
     \u3066\u3088\u3044\n// \u8FBA\u306E\u5BB9\u91CF\u306E\u5909\u66F4\u304C\u53EF\u80FD\
     \n// \u5909\u66F4\u3059\u308B capacity \u304C F \u306E\u3068\u304D\u3001O((N+M)|F|)\
@@ -311,8 +311,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_6_A.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_6_A.test.cpp
 layout: document

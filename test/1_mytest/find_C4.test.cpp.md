@@ -19,13 +19,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -290,35 +290,40 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 2 \"graph/count/count_C3_C4.hpp\"\n\n// \u5404\u70B9\u306B\u5BFE\u3057\
-    \u3066\u305D\u306E\u70B9\u3092\u542B\u3080 C3, C4 \u3092\u6570\u3048\u308B\n//\
-    \ simple graph \u3092\u4EEE\u5B9A\ntemplate <typename GT>\npair<vi, vi> count_C3_C4_pointwise(GT\
-    \ &G) {\n  static_assert(!GT::is_directed);\n  int N = G.N;\n  auto deg = G.deg_array();\n\
-    \  auto I = argsort(deg);\n  reverse(all(I));\n  vc<int> rk(N);\n  FOR(i, N) rk[I[i]]\
-    \ = i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\u9806\u306B\u4E26\u3079\u308B\n\
-    \  vvc<int> TO(N);\n  for (auto &&e: G.edges) {\n    int a = rk[e.frm], b = rk[e.to];\n\
-    \    TO[a].eb(b), TO[b].eb(a);\n  }\n  FOR(v, N) { sort(all(TO[v])), reverse(all(TO[v]));\
-    \ }\n\n  vc<int> A(N);\n  vi C3(N), C4(N);\n  FOR(a, N) {\n    for (auto &b: TO[a])\
-    \ TO[b].pop_back();\n    for (auto &b: TO[a]) {\n      for (auto &c: TO[b]) {\
-    \ C4[a] += A[c], C4[c] += A[c], A[c] += 1; }\n    }\n    for (auto &b: TO[a])\
-    \ {\n      C3[a] += A[b], C3[b] += A[b] + A[b];\n      for (auto &c: TO[b]) {\
-    \ C4[b] += A[c] - 1; }\n    }\n    for (auto &b: TO[a]) {\n      for (auto &c:\
-    \ TO[b]) { A[c] = 0; }\n    }\n  }\n  for (auto &x: C3) x /= 2;\n  C3 = rearrange(C3,\
-    \ rk), C4 = rearrange(C4, rk);\n  return {C3, C4};\n}\n\n// (2e5,5e5) \u3067 500\
-    \ ms\n// https://codeforces.com/gym/104053/problem/K\ntemplate <typename GT>\n\
-    pair<ll, ll> count_C3_C4(GT &G) {\n  static_assert(!GT::is_directed);\n  int N\
-    \ = G.N;\n  ll x3 = 0, x4 = 0;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n\
-    \  reverse(all(I));\n  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] = i;\n\n  // \u9077\
-    \u79FB\u5148\u3092\u964D\u9806\u306B\u4E26\u3079\u308B\n  vvc<int> TO(N);\n  for\
-    \ (auto &&e: G.edges) {\n    int a = rk[e.frm], b = rk[e.to];\n    if (a != b)\
-    \ TO[a].eb(b), TO[b].eb(a);\n  }\n  FOR(v, N) {\n    sort(all(TO[v]));\n    reverse(all(TO[v]));\n\
-    \  }\n\n  vc<int> A(N);\n  FOR(a, N) {\n    for (auto &&b: TO[a]) TO[b].pop_back();\n\
-    \    for (auto &&b: TO[a]) {\n      for (auto &&c: TO[b]) { x4 += A[c]++; }\n\
-    \    }\n    for (auto &&b: TO[a]) { x3 += A[b]; }\n    for (auto &&b: TO[a]) {\n\
-    \      for (auto &&c: TO[b]) { A[c] = 0; }\n    }\n  }\n  x3 /= 2;\n  return {x3,\
-    \ x4};\n}\n#line 2 \"graph/find_C4.hpp\"\n\n// \u7121\u5411\u30B0\u30E9\u30D5\u304B\
-    \u3089 C4 \u3092\u3072\u3068\u3064\u898B\u3064\u3051\u308B\n// https://codeforces.com/problemset/problem/1468/M\n\
-    template <typename GT>\ntuple<int, int, int, int> find_C4(GT& G) {\n  static_assert(!GT::is_directed);\n\
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 2 \"graph/count/count_C3_C4.hpp\"\n\n// \u5404\u70B9\u306B\
+    \u5BFE\u3057\u3066\u305D\u306E\u70B9\u3092\u542B\u3080 C3, C4 \u3092\u6570\u3048\
+    \u308B\n// simple graph \u3092\u4EEE\u5B9A\ntemplate <typename GT>\npair<vi, vi>\
+    \ count_C3_C4_pointwise(GT &G) {\n  static_assert(!GT::is_directed);\n  int N\
+    \ = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
+    \  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] = i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\
+    \u9806\u306B\u4E26\u3079\u308B\n  vvc<int> TO(N);\n  for (auto &&e: G.edges) {\n\
+    \    int a = rk[e.frm], b = rk[e.to];\n    TO[a].eb(b), TO[b].eb(a);\n  }\n  FOR(v,\
+    \ N) { sort(all(TO[v])), reverse(all(TO[v])); }\n\n  vc<int> A(N);\n  vi C3(N),\
+    \ C4(N);\n  FOR(a, N) {\n    for (auto &b: TO[a]) TO[b].pop_back();\n    for (auto\
+    \ &b: TO[a]) {\n      for (auto &c: TO[b]) { C4[a] += A[c], C4[c] += A[c], A[c]\
+    \ += 1; }\n    }\n    for (auto &b: TO[a]) {\n      C3[a] += A[b], C3[b] += A[b]\
+    \ + A[b];\n      for (auto &c: TO[b]) { C4[b] += A[c] - 1; }\n    }\n    for (auto\
+    \ &b: TO[a]) {\n      for (auto &c: TO[b]) { A[c] = 0; }\n    }\n  }\n  for (auto\
+    \ &x: C3) x /= 2;\n  C3 = rearrange(C3, rk), C4 = rearrange(C4, rk);\n  return\
+    \ {C3, C4};\n}\n\n// (2e5,5e5) \u3067 500 ms\n// https://codeforces.com/gym/104053/problem/K\n\
+    template <typename GT>\npair<ll, ll> count_C3_C4(GT &G) {\n  static_assert(!GT::is_directed);\n\
+    \  int N = G.N;\n  ll x3 = 0, x4 = 0;\n  auto deg = G.deg_array();\n  auto I =\
+    \ argsort(deg);\n  reverse(all(I));\n  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] =\
+    \ i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\u9806\u306B\u4E26\u3079\u308B\n  vvc<int>\
+    \ TO(N);\n  for (auto &&e: G.edges) {\n    int a = rk[e.frm], b = rk[e.to];\n\
+    \    if (a != b) TO[a].eb(b), TO[b].eb(a);\n  }\n  FOR(v, N) {\n    sort(all(TO[v]));\n\
+    \    reverse(all(TO[v]));\n  }\n\n  vc<int> A(N);\n  FOR(a, N) {\n    for (auto\
+    \ &&b: TO[a]) TO[b].pop_back();\n    for (auto &&b: TO[a]) {\n      for (auto\
+    \ &&c: TO[b]) { x4 += A[c]++; }\n    }\n    for (auto &&b: TO[a]) { x3 += A[b];\
+    \ }\n    for (auto &&b: TO[a]) {\n      for (auto &&c: TO[b]) { A[c] = 0; }\n\
+    \    }\n  }\n  x3 /= 2;\n  return {x3, x4};\n}\n#line 2 \"graph/find_C4.hpp\"\n\
+    \n// \u7121\u5411\u30B0\u30E9\u30D5\u304B\u3089 C4 \u3092\u3072\u3068\u3064\u898B\
+    \u3064\u3051\u308B\n// https://codeforces.com/problemset/problem/1468/M\ntemplate\
+    \ <typename GT>\ntuple<int, int, int, int> find_C4(GT& G) {\n  static_assert(!GT::is_directed);\n\
     \  int N = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
     \  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] = i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\
     \u9806\u306B\u4E26\u3079\u308B\n  vvc<int> TO(N);\n  for (auto&& e: G.edges) {\n\
@@ -362,7 +367,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/find_C4.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/find_C4.test.cpp

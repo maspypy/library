@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/rational_binary_search.hpp
     title: nt/rational_binary_search.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rational_approximation
@@ -212,7 +212,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 1 \"nt/rational_binary_search.hpp\"\n\
     \n// 0/1 OK, 1/0 NG. 3N \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\
     \u306A\u3044. unsigned OK.\n// return : (a,b,c,d) such that a/b OK, c/d NG.\n\
     template <typename T, typename F>\ntuple<T, T, T, T> rational_binary_search(F\
@@ -241,8 +241,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/rational_approximation.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/rational_approximation.test.cpp
 layout: document

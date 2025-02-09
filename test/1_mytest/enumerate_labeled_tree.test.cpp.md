@@ -130,18 +130,18 @@ data:
     \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
     \ &first, const Vectors &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
     \ others.begin(), others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\
-    \n\n#line 1 \"enumerate/product.hpp\"\n// [0, A0) x [0, A1) x ...\ntemplate <typename\
-    \ F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n  auto\
-    \ dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if (n ==\
-    \ N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs, p);\n\
-    \      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line 2 \"\
-    ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap\
-    \ {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067\
-    \ ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32\
-    \ k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n\
-    \    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size\
-    \ \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F\
-    \ build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used),\
+    \n\n#line 2 \"enumerate/product.hpp\"\n\n// [0, A0) x [0, A1) x ...\ntemplate\
+    \ <typename F>\nvoid enumerate_product(vc<int> A, F query) {\n  int N = len(A);\n\
+    \  auto dfs = [&](auto& dfs, vc<int>& p) -> void {\n    int n = len(p);\n    if\
+    \ (n == N) return query(p);\n    FOR(x, A[n]) {\n      p.eb(x);\n      dfs(dfs,\
+    \ p);\n      p.pop_back();\n    }\n  };\n  vc<int> p;\n  dfs(dfs, p);\n}\n#line\
+    \ 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct\
+    \ HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\
+    \u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\n \
+    \   u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k -\
+    \ 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  //\
+    \ size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\
+    \u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used),\
     \ 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) /\
     \ 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i\
     \ = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\
@@ -296,7 +296,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_labeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_labeled_tree.test.cpp

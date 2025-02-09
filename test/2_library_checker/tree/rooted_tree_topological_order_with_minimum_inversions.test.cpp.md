@@ -227,7 +227,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 5 \"test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp\"\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp\"\
     \n\n#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 ->\
     \ Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\
     \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) {\
@@ -547,7 +547,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   requiredBy: []
-  timestamp: '2025-02-04 13:02:36+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp

@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"nt/range_rational_count.hpp\"\n\n#line 1 \"nt/array_on_floor.hpp\"\
@@ -159,7 +159,7 @@ data:
   path: nt/range_rational_count.hpp
   requiredBy: []
   timestamp: '2024-09-14 09:20:23+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/range_rational_count.hpp

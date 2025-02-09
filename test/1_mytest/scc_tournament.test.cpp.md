@@ -10,13 +10,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/scc_tounament_by_indegrees.hpp
     title: graph/scc_tounament_by_indegrees.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []

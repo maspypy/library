@@ -7,7 +7,7 @@ data:
   - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/maxflow.hpp
     title: flow/maxflow.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -249,7 +249,7 @@ data:
   path: graph/dag_path_cover.hpp
   requiredBy: []
   timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/2251_1.test.cpp
 documentation_of: graph/dag_path_cover.hpp

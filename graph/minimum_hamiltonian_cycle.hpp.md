@@ -9,12 +9,12 @@ data:
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/DPL_2_A.test.cpp
     title: test/4_aoj/DPL_2_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -161,7 +161,7 @@ data:
   path: graph/minimum_hamiltonian_cycle.hpp
   requiredBy: []
   timestamp: '2024-12-28 10:55:16+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/DPL_2_A.test.cpp
 documentation_of: graph/minimum_hamiltonian_cycle.hpp

@@ -16,13 +16,13 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
     path: random/random_graph.hpp
     title: random/random_graph.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
   _extendedRequiredBy: []
@@ -288,13 +288,18 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n#line 2 \"graph/ds/remove_one_edge_connectivity.hpp\"\n\n// 1 \u8FBA\u6D88\u3057\
-    \u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B / \u9023\u7D50\u6210\
-    \u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\u30BA\nstruct Remove_One_Edge_Connectivity\
-    \ {\n  int N, M;\n  int n_comp_base;\n  vc<pair<int, int>> edge;\n  vc<int> root;\n\
-    \  vc<int> LID, RID;\n  vc<bool> bridge;\n\n  template <typename GT>\n  Remove_One_Edge_Connectivity(GT&\
-    \ G) {\n    build(G);\n  }\n\n  template <typename GT>\n  void build(GT& G) {\n\
-    \    N = G.N, M = G.M;\n    edge.resize(M);\n    for (auto& e: G.edges) edge[e.id]\
+    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
+    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
+    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
+    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
+    \  return par;\n}\n#line 2 \"graph/ds/remove_one_edge_connectivity.hpp\"\n\n//\
+    \ 1 \u8FBA\u6D88\u3057\u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B\
+    \ / \u9023\u7D50\u6210\u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\
+    \u30BA\nstruct Remove_One_Edge_Connectivity {\n  int N, M;\n  int n_comp_base;\n\
+    \  vc<pair<int, int>> edge;\n  vc<int> root;\n  vc<int> LID, RID;\n  vc<bool>\
+    \ bridge;\n\n  template <typename GT>\n  Remove_One_Edge_Connectivity(GT& G) {\n\
+    \    build(G);\n  }\n\n  template <typename GT>\n  void build(GT& G) {\n    N\
+    \ = G.N, M = G.M;\n    edge.resize(M);\n    for (auto& e: G.edges) edge[e.id]\
     \ = {e.frm, e.to};\n    root.assign(N, -1);\n    LID.assign(N, -1), RID.assign(N,\
     \ -1);\n    bridge.assign(M, 0);\n    vc<int> low(N, -1);\n    n_comp_base = 0;\n\
     \    int p = 0;\n    auto dfs = [&](auto& dfs, int v, int last_e) -> void {\n\
@@ -349,7 +354,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/remove_one_edge.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-02-09 09:51:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/remove_one_edge.test.cpp

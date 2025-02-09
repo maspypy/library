@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/extgcd.hpp
     title: nt/extgcd.hpp
   - icon: ':question:'
@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=NTL_1_E
@@ -211,7 +211,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 1 \"nt/extgcd.hpp\"\n// {g,x,y}, ax+by=g\r\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 1 \"nt/extgcd.hpp\"\n// {g,x,y}, ax+by=g\r\
     \ntemplate <typename T>\r\ntuple<T, T, T> extgcd(T a, T b) {\r\n  static_assert(is_same_v<T,\
     \ int> || is_same_v<T, ll>);\r\n  T x = 1, y = 0, x1 = 0, y1 = 1;\r\n  while (b\
     \ != 0) {\r\n    T q = a / b;\r\n    swap(a %= b, b);\r\n    T X = x - q * x1,\
@@ -243,8 +243,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/NTL_1_E.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/NTL_1_E.test.cpp
 layout: document

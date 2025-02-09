@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/distance.hpp
     title: geo/distance.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/incircle.hpp
     title: geo/incircle.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
   - icon: ':question:'
@@ -24,9 +24,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     ERROR: '0.000001'
@@ -225,7 +225,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"geo/base.hpp\"\ntemplate <typename\
     \ T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename\
     \ A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename A,\
     \ typename B>\n  Point(pair<A, B> p) : x(p.fi), y(p.se) {}\n\n  Point operator+=(const\
@@ -365,8 +365,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/CGL_7_B.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/CGL_7_B.test.cpp
 layout: document

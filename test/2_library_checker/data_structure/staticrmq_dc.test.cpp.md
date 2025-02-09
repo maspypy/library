@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/offline_query/static_monoid_products.hpp
     title: ds/offline_query/static_monoid_products.hpp
   - icon: ':question:'
@@ -15,9 +15,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/staticrmq
@@ -215,7 +215,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YES(!t); }\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate\
     \ <typename E>\r\nstruct Monoid_Min {\r\n  using X = E;\r\n  using value_type\
     \ = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept { return min(x,\
     \ y); }\r\n  static constexpr X unit() { return infty<E>; }\r\n  static constexpr\
@@ -256,8 +256,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-09 09:51:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/staticrmq_dc.test.cpp
 layout: document
