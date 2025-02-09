@@ -130,3 +130,18 @@ vc<pair<int, int>> random_cactus(int N, bool EDGE) {
   random_relabel(N, G);
   return G;
 }
+
+// |child|<=2, ラベルはトポロジカル
+// return: par
+vc<int> random_binary_tree(int N) {
+  vc<int> S;
+  S.eb(0), S.eb(0);
+  vc<int> par(N, -1);
+  FOR(v, 1, N) {
+    int k = RNG(0, len(S));
+    swap(S[k], S.back());
+    par[v] = POP(S);
+    S.eb(v), S.eb(v);
+  }
+  return par;
+}
