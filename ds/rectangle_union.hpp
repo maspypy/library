@@ -15,6 +15,7 @@ struct Rectangle_Union {
 
   template <typename ANS_TYPE = ll>
   ANS_TYPE calc() {
+    if (rectangles.empty()) return 0;
     int N = len(X);
     vc<int> ord_x = argsort(X);
     vc<int> ord_y = argsort(Y);
@@ -24,9 +25,7 @@ struct Rectangle_Union {
     Y = rearrange(Y, ord_y);
 
     using AM = ActedMonoid_MinMincnt_Add<XY>;
-    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> {
-      return {0, Y[i + 1] - Y[i]};
-    });
+    Lazy_SegTree<AM> seg(N - 1, [&](int i) -> pair<XY, XY> { return {0, Y[i + 1] - Y[i]}; });
 
     ANS_TYPE ANS = 0;
     XY total = Y.back() - Y[0];
