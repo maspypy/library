@@ -365,6 +365,12 @@ data:
   - icon: ':warning:'
     path: string/aho_corasick_for_general_trie.hpp
     title: string/aho_corasick_for_general_trie.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   - icon: ':x:'
     path: string/suffix_automaton.hpp
     title: string/suffix_automaton.hpp
@@ -1125,7 +1131,9 @@ data:
   - random/random_graph.hpp
   - string/suffix_tree.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - string/basic_substring_structure.hpp
   - string/suffix_automaton.hpp
+  - string/substring_count_in_substring.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

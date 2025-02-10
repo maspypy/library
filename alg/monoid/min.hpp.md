@@ -35,6 +35,9 @@ data:
   - icon: ':question:'
     path: seq/common_interval_decomposition.hpp
     title: seq/common_interval_decomposition.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
     path: string/lex_max_suffix_for_all_prefix.hpp
     title: string/lex_max_suffix_for_all_prefix.hpp
@@ -47,6 +50,9 @@ data:
   - icon: ':warning:'
     path: string/sort_substrings.hpp
     title: string/sort_substrings.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
@@ -212,7 +218,9 @@ data:
   - string/suffix_array.hpp
   - string/longest_common_substring.hpp
   - string/suffix_tree.hpp
+  - string/basic_substring_structure.hpp
   - string/sort_substrings.hpp
+  - string/substring_count_in_substring.hpp
   - string/many_string_compare.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
   timestamp: '2023-02-02 02:12:17+09:00'

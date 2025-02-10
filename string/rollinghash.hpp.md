@@ -7,7 +7,13 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   _extendedVerifiedWith:
   - icon: ':x:'
     path: test/2_library_checker/string/zalgorithm_by_rollinghash.test.cpp
@@ -110,7 +116,9 @@ data:
   - mod/modint61.hpp
   isVerificationFile: false
   path: string/rollinghash.hpp
-  requiredBy: []
+  requiredBy:
+  - string/basic_substring_structure.hpp
+  - string/substring_count_in_substring.hpp
   timestamp: '2024-10-18 02:58:53+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

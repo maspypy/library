@@ -54,9 +54,9 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/pow_of_formal_power_series_sparse
@@ -659,7 +659,7 @@ data:
   path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
   requiredBy: []
   timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
 layout: document

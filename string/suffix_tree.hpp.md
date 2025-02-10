@@ -173,7 +173,7 @@ data:
     \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
     \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
     \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
-    \    }\n    LCP.resize(n - 1);\n  }\n};\n#line 1 \"seq/cartesian_tree.hpp\"\n\
+    \    }\n    LCP.resize(n - 1);\n  }\n};\n#line 2 \"seq/cartesian_tree.hpp\"\n\
     /*\r\n\u8F9E\u66F8\u9806\u3067\u9AD8\u3055\u3092 unique \u3057\u3066\u3001\u6728\
     \u306B\u3057\u3066\u3044\u308B\u3002\r\n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\
     \u30B4\u30EA\u30BA\u30E0\u3067\u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\r\n*/\r\
@@ -384,7 +384,7 @@ data:
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2024-12-25 20:50:37+09:00'
+  timestamp: '2025-02-11 00:32:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp

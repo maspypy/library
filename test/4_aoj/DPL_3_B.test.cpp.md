@@ -212,7 +212,7 @@ data:
     \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 1 \"seq/cartesian_tree.hpp\"\n/*\r\n\u8F9E\
+    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 2 \"seq/cartesian_tree.hpp\"\n/*\r\n\u8F9E\
     \u66F8\u9806\u3067\u9AD8\u3055\u3092 unique \u3057\u3066\u3001\u6728\u306B\u3057\
     \u3066\u3044\u308B\u3002\r\n\u6975\u5927\u9577\u65B9\u5F62\u30A2\u30EB\u30B4\u30EA\
     \u30BA\u30E0\u3067\u7DDA\u5F62\u6642\u9593\u69CB\u7BC9\u3002\r\n*/\r\ntemplate\
@@ -261,7 +261,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/DPL_3_B.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-02-11 00:32:32+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/DPL_3_B.test.cpp

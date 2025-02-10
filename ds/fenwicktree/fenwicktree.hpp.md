@@ -50,6 +50,9 @@ data:
   - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
@@ -319,6 +322,7 @@ data:
   - random/random_polygon.hpp
   - seq/inversion.hpp
   - seq/factorial_digit_system.hpp
+  - string/substring_count_in_substring.hpp
   timestamp: '2024-11-18 00:58:39+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

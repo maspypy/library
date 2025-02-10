@@ -140,6 +140,9 @@ data:
   - icon: ':x:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/ARC30D.test.cpp
@@ -571,6 +574,7 @@ data:
   - seq/common_interval_decomposition.hpp
   - seq/factorial_digit_system.hpp
   - string/prefix_substring_LCS.hpp
+  - string/substring_count_in_substring.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

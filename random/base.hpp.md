@@ -149,12 +149,18 @@ data:
   - icon: ':question:'
     path: random/shuffle.hpp
     title: random/shuffle.hpp
+  - icon: ':warning:'
+    path: string/basic_substring_structure.hpp
+    title: string/basic_substring_structure.hpp
   - icon: ':x:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':x:'
     path: string/rollinghash_2d.hpp
     title: string/rollinghash_2d.hpp
+  - icon: ':warning:'
+    path: string/substring_count_in_substring.hpp
+    title: string/substring_count_in_substring.hpp
   - icon: ':x:'
     path: string/wildcard_pattern_matching.hpp
     title: string/wildcard_pattern_matching.hpp
@@ -717,16 +723,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
@@ -942,7 +948,9 @@ data:
   - random/hash_pair.hpp
   - random/shuffle.hpp
   - random/random_matrix.hpp
+  - string/basic_substring_structure.hpp
   - string/rollinghash.hpp
+  - string/substring_count_in_substring.hpp
   - string/rollinghash_2d.hpp
   - string/wildcard_pattern_matching.hpp
   timestamp: '2024-10-18 02:58:53+09:00'

@@ -2144,6 +2144,9 @@ data:
     - icon: ':warning:'
       path: string/all_pair_lcp.hpp
       title: string/all_pair_lcp.hpp
+    - icon: ':warning:'
+      path: string/basic_substring_structure.hpp
+      title: string/basic_substring_structure.hpp
     - icon: ':x:'
       path: string/count_subseq.hpp
       title: string/count_subseq.hpp
@@ -2231,6 +2234,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: string/substring_abundant_string.hpp
       title: string/substring_abundant_string.hpp
+    - icon: ':warning:'
+      path: string/substring_count_in_substring.hpp
+      title: string/substring_count_in_substring.hpp
     - icon: ':question:'
       path: string/suffix_array.hpp
       title: string/suffix_array.hpp
@@ -3503,49 +3509,49 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
       title: test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
       title: test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/polynomial_division.test.cpp
       title: test/2_library_checker/polynomial/polynomial_division.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
       title: test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
       title: test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
       title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/pow_of_fps.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
       title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     - icon: ':x:'
