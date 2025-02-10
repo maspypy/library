@@ -41,7 +41,7 @@ data:
   - icon: ':x:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
   - icon: ':x:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
     title: test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - icon: ':x:'
@@ -444,20 +444,20 @@ data:
   isVerificationFile: false
   path: poly/lagrange_interpolate_iota.hpp
   requiredBy:
+  - seq/interpolate_poly_exp_sum.hpp
+  - seq/kth_term_of_p_recursive.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
-  - seq/interpolate_poly_exp_sum.hpp
-  - seq/kth_term_of_p_recursive.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2747.test.cpp
-  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/1_mytest/factorial_998.test.cpp
 documentation_of: poly/lagrange_interpolate_iota.hpp

@@ -211,16 +211,16 @@ data:
   isVerificationFile: false
   path: poly/online/online_division.hpp
   requiredBy:
-  - poly/online/online_log.hpp
   - poly/online/online_pow.hpp
   - poly/online/online_inv.hpp
+  - poly/online/online_log.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/online_inv.test.cpp
-  - test/1_mytest/online_division.test.cpp
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/online_inv.test.cpp
+  - test/1_mytest/online_division.test.cpp
 documentation_of: poly/online/online_division.hpp
 layout: document
 redirect_from:

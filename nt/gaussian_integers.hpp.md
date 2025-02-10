@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/three_triangular.hpp
     title: nt/three_triangular.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/two_square.hpp
     title: nt/two_square.hpp
   _extendedVerifiedWith:
@@ -42,10 +42,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_triangular.test.cpp
     title: test/1_mytest/three_triangular.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/gaussian_integers.test.cpp
     title: test/2_library_checker/number_theory/gaussian_integers.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
   - icon: ':x:'
@@ -271,19 +271,19 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy:
-  - nt/three_triangular.hpp
-  - nt/two_square.hpp
   - nt/four_square.hpp
+  - nt/two_square.hpp
   - nt/three_square.hpp
+  - nt/three_triangular.hpp
   timestamp: '2025-01-20 22:41:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1593.test.cpp
   - test/2_library_checker/number_theory/gaussian_integers.test.cpp
   - test/2_library_checker/number_theory/two_square.test.cpp
-  - test/1_mytest/three_square.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/three_square.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:
