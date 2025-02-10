@@ -183,9 +183,6 @@ data:
     path: poly/fps_sqrt.hpp
     title: poly/fps_sqrt.hpp
   - icon: ':question:'
-    path: poly/from_log_differentiation.hpp
-    title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
@@ -218,7 +215,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/power_projection.hpp
     title: poly/power_projection.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':x:'
@@ -239,9 +236,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/slice_rational_fps.hpp
     title: poly/slice_rational_fps.hpp
-  - icon: ':heavy_check_mark:'
-    path: poly/sparse_exp_of_div.hpp
-    title: poly/sparse_exp_of_div.hpp
   - icon: ':question:'
     path: poly/sum_of_exp_bx.hpp
     title: poly/sum_of_exp_bx.hpp
@@ -281,27 +275,27 @@ data:
   - icon: ':question:'
     path: seq/famous/partition_number.hpp
     title: seq/famous/partition_number.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/riemann_zeta_even.hpp
     title: seq/famous/riemann_zeta_even.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_1.hpp
     title: seq/famous/stirling_number_1.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/stirling_number_2.hpp
     title: seq/famous/stirling_number_2.hpp
   - icon: ':heavy_check_mark:'
     path: seq/famous/surjection.hpp
     title: seq/famous/surjection.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':question:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
+  - icon: ':warning:'
+    path: seq/p_recursive.hpp
+    title: seq/p_recursive.hpp
   - icon: ':question:'
     path: seq/sum_of_powers.hpp
     title: seq/sum_of_powers.hpp
@@ -667,9 +661,6 @@ data:
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1080_2.test.cpp
-    title: test/3_yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1145.test.cpp
     title: test/3_yukicoder/1145.test.cpp
   - icon: ':heavy_check_mark:'
@@ -678,31 +669,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1321.test.cpp
     title: test/3_yukicoder/1321.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1357.test.cpp
     title: test/3_yukicoder/1357.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1392.test.cpp
     title: test/3_yukicoder/1392.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1500.test.cpp
     title: test/3_yukicoder/1500.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1516.test.cpp
     title: test/3_yukicoder/1516.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1533.test.cpp
     title: test/3_yukicoder/1533.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1547.test.cpp
     title: test/3_yukicoder/1547.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1549.test.cpp
     title: test/3_yukicoder/1549.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1561.test.cpp
     title: test/3_yukicoder/1561.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
   - icon: ':x:'
@@ -772,9 +763,6 @@ data:
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':x:'
-    path: test/3_yukicoder/2166.test.cpp
-    title: test/3_yukicoder/2166.test.cpp
-  - icon: ':x:'
     path: test/3_yukicoder/2181.test.cpp
     title: test/3_yukicoder/2181.test.cpp
   - icon: ':x:'
@@ -831,9 +819,6 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/303.test.cpp
     title: test/3_yukicoder/303.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/502_2.test.cpp
-    title: test/3_yukicoder/502_2.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
@@ -912,7 +897,6 @@ data:
   - mod/mod_kth_root.hpp
   - mod/multiplicative_convolution_mod_2n.hpp
   - poly/multivar_convolution_cyclic.hpp
-  - poly/sparse_exp_of_div.hpp
   - poly/convolution_huge.hpp
   - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/multipoint.hpp
@@ -930,7 +914,6 @@ data:
   - poly/composition_f_ex.hpp
   - poly/sum_of_rationals.hpp
   - poly/lagrange_interpolate_iota.hpp
-  - poly/from_log_differentiation.hpp
   - poly/composition.hpp
   - poly/convolution.hpp
   - poly/fps_pow.hpp
@@ -969,8 +952,8 @@ data:
   - seq/count_grid_path.hpp
   - seq/interpolate_linear_rec.hpp
   - seq/interpolate_poly_exp_sum.hpp
+  - seq/p_recursive.hpp
   - seq/sum_of_powers.hpp
-  - seq/kth_term_of_p_recursive.hpp
   - seq/famous/stirling_number_2.hpp
   - seq/famous/indecomposable_permutations.hpp
   - seq/famous/bell_number_large.hpp
@@ -996,14 +979,12 @@ data:
   - test/3_yukicoder/2459.test.cpp
   - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/1549.test.cpp
-  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/1796.test.cpp
   - test/3_yukicoder/1321.test.cpp
   - test/3_yukicoder/2508.test.cpp
   - test/3_yukicoder/1956.test.cpp
   - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1755.test.cpp
   - test/3_yukicoder/2440.test.cpp
   - test/3_yukicoder/1907.test.cpp
@@ -1013,7 +994,6 @@ data:
   - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2062.test.cpp
   - test/3_yukicoder/2613.test.cpp
-  - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2649.test.cpp
   - test/3_yukicoder/2108.test.cpp
   - test/3_yukicoder/2587_2.test.cpp

@@ -20,21 +20,15 @@ data:
   - icon: ':question:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
-  - icon: ':question:'
-    path: poly/from_log_differentiation.hpp
-    title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':heavy_check_mark:'
-    path: poly/sparse_exp_of_div.hpp
-    title: poly/sparse_exp_of_div.hpp
-  - icon: ':heavy_check_mark:'
     path: random/random_matrix.hpp
     title: random/random_matrix.hpp
-  - icon: ':question:'
-    path: seq/kth_term_of_p_recursive.hpp
-    title: seq/kth_term_of_p_recursive.hpp
+  - icon: ':warning:'
+    path: seq/p_recursive.hpp
+    title: seq/p_recursive.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/blackbox_solve_linear.test.cpp
@@ -64,9 +58,6 @@ data:
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/1080_2.test.cpp
-    title: test/3_yukicoder/1080_2.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1303.test.cpp
     title: test/3_yukicoder/1303.test.cpp
   - icon: ':x:'
@@ -79,17 +70,11 @@ data:
     path: test/3_yukicoder/1907.test.cpp
     title: test/3_yukicoder/1907.test.cpp
   - icon: ':x:'
-    path: test/3_yukicoder/2166.test.cpp
-    title: test/3_yukicoder/2166.test.cpp
-  - icon: ':x:'
     path: test/3_yukicoder/2810.test.cpp
     title: test/3_yukicoder/2810.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/502_2.test.cpp
-    title: test/3_yukicoder/502_2.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
   _verificationStatusIcon: ':question:'
@@ -240,20 +225,15 @@ data:
   - linalg/frobenius.hpp
   - linalg/adjugate_matrix.hpp
   - linalg/det_A_plus_xB.hpp
-  - poly/sparse_exp_of_div.hpp
-  - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
   - random/random_matrix.hpp
-  - seq/kth_term_of_p_recursive.hpp
+  - seq/p_recursive.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/1810.test.cpp
   - test/3_yukicoder/1750.test.cpp
-  - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/502_2.test.cpp
   - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/426.test.cpp

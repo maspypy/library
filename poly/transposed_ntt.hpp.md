@@ -102,12 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1575.test.cpp
     title: test/3_yukicoder/1575.test.cpp
-  - icon: ':x:'
-    path: test/3_yukicoder/2166.test.cpp
-    title: test/3_yukicoder/2166.test.cpp
   - icon: ':x:'
     path: test/3_yukicoder/2243.test.cpp
     title: test/3_yukicoder/2243.test.cpp
@@ -246,7 +243,6 @@ data:
   verifiedWith:
   - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1575.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
