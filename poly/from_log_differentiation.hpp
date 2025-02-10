@@ -1,6 +1,6 @@
 #pragma once
 
-#include "seq/kth_term_of_p_recursive.hpp"
+#include "seq/p_recursive.hpp"
 
 // 対数微分 F'/F = a(x)/b(x) から F を復元する。
 // a, b が sparse であれば、O(N(K1+K2)) 時間でできる
