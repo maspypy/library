@@ -25,7 +25,7 @@ data:
   - icon: ':question:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy:
