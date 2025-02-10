@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: linalg/characteristic_poly.hpp
     title: linalg/characteristic_poly.hpp
   - icon: ':question:'
