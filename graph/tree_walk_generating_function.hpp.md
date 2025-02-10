@@ -733,8 +733,8 @@ data:
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/tree_walk_generating_function.hpp
 layout: document

@@ -91,8 +91,8 @@ data:
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1977.test.cpp
-  - test/3_yukicoder/1097.test.cpp
   - test/3_yukicoder/2242.test.cpp
+  - test/3_yukicoder/1097.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document
 redirect_from:

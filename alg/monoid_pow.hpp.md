@@ -67,16 +67,16 @@ data:
   isVerificationFile: false
   path: alg/monoid_pow.hpp
   requiredBy:
-  - ds/segtree/range_assignment_segtree.hpp
   - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   - mod/floor_monoid_product.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
+  - ds/segtree/range_assignment_segtree.hpp
   timestamp: '2024-01-23 03:59:43+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
-  - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
   - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
 documentation_of: alg/monoid_pow.hpp

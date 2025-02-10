@@ -258,8 +258,8 @@ data:
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/4_aoj/2995.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
+  - test/4_aoj/2995.test.cpp
 documentation_of: graph/dsu_on_tree.hpp
 layout: document
 redirect_from:

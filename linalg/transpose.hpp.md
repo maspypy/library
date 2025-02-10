@@ -41,8 +41,8 @@ data:
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/3_yukicoder/2108.test.cpp
   - test/3_yukicoder/2907.test.cpp
+  - test/3_yukicoder/2108.test.cpp
 documentation_of: linalg/transpose.hpp
 layout: document
 redirect_from:

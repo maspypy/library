@@ -76,8 +76,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/1270.test.cpp
-  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
+  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
 documentation_of: ds/offline_query/mo.hpp
 layout: document

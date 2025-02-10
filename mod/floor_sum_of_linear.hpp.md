@@ -77,21 +77,21 @@ data:
   requiredBy:
   - convex/count_lattice_point_in_convex_polygon.hpp
   - nt/range_rational_count.hpp
-  - mod/range_freq_of_linear.hpp
   - mod/mod_sum_of_linear.hpp
+  - mod/range_freq_of_linear.hpp
   timestamp: '2023-11-10 22:48:13+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2280.test.cpp
-  - test/3_yukicoder/2440.test.cpp
-  - test/3_yukicoder/2266.test.cpp
   - test/3_yukicoder/1201.test.cpp
+  - test/3_yukicoder/2440.test.cpp
+  - test/3_yukicoder/2280.test.cpp
   - test/3_yukicoder/2066.test.cpp
-  - test/2_library_checker/number_theory/sum_of_floor_of_linear.test.cpp
+  - test/3_yukicoder/2266.test.cpp
   - test/2_library_checker/number_theory/min_of_mod_of_linear_2.test.cpp
-  - test/1_mytest/range_freq_of_linear.test.cpp
-  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+  - test/2_library_checker/number_theory/sum_of_floor_of_linear.test.cpp
   - test/1_mytest/mod_sum_of_linear.test.cpp
+  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+  - test/1_mytest/range_freq_of_linear.test.cpp
 documentation_of: mod/floor_sum_of_linear.hpp
 layout: document
 redirect_from:
