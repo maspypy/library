@@ -183,7 +183,7 @@ data:
   - icon: ':x:'
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
   - icon: ':x:'

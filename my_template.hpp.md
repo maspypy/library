@@ -379,6 +379,9 @@ data:
     path: test/1_mytest/mybitset.test.cpp
     title: test/1_mytest/mybitset.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/narayana.test.cpp
+    title: test/1_mytest/narayana.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1401,88 +1404,88 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
     title: test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/rerooting_dp.test.cpp
     title: test/2_library_checker/tree/rerooting_dp.test.cpp
   - icon: ':x:'
     path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
     title: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/tree_diameter.test.cpp
     title: test/2_library_checker/tree/tree_diameter.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
     title: test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_dsu.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
     title: test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
     title: test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/unionfind_with_potential.test.cpp
     title: test/2_library_checker/unionfind_with_potential.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1025.test.cpp
     title: test/3_yukicoder/1025.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036.test.cpp
     title: test/3_yukicoder/1036.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036_2.test.cpp
     title: test/3_yukicoder/1036_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036_3.test.cpp
     title: test/3_yukicoder/1036_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036_4.test.cpp
     title: test/3_yukicoder/1036_4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1038.test.cpp
     title: test/3_yukicoder/1038.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1069.test.cpp
     title: test/3_yukicoder/1069.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1077.test.cpp
     title: test/3_yukicoder/1077.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1077_2.test.cpp
     title: test/3_yukicoder/1077_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080.test.cpp
     title: test/3_yukicoder/1080.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1080_2.test.cpp
     title: test/3_yukicoder/1080_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1097.test.cpp
     title: test/3_yukicoder/1097.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1117.test.cpp
     title: test/3_yukicoder/1117.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/114.test.cpp
     title: test/3_yukicoder/114.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1141.test.cpp
     title: test/3_yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1142.test.cpp
     title: test/3_yukicoder/1142.test.cpp
   - icon: ':x:'
@@ -3313,6 +3316,7 @@ data:
   - test/1_mytest/mod_sum_of_linear.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/bell_number.test.cpp
+  - test/1_mytest/narayana.test.cpp
   - test/1_mytest/substring_abundant.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp

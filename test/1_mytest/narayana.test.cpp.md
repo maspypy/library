@@ -2,12 +2,6 @@
 data:
   _extendedDependsOn:
   - icon: ':question:'
-    path: alg/monoid/add.hpp
-    title: alg/monoid/add.hpp
-  - icon: ':question:'
-    path: ds/unionfind/potentialized_unionfind.hpp
-    title: ds/unionfind/potentialized_unionfind.hpp
-  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
   - icon: ':question:'
@@ -16,9 +10,9 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
-    path: other/io.hpp
-    title: other/io.hpp
+  - icon: ':heavy_check_mark:'
+    path: seq/famous/narayana.hpp
+    title: seq/famous/narayana.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -26,11 +20,10 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
-    PROBLEM: https://judge.yosupo.jp/problem/unionfind_with_potential
+    PROBLEM: https://judge.yosupo.jp/problem/aplusb
     links:
-    - https://judge.yosupo.jp/problem/unionfind_with_potential
-  bundledCode: "#line 1 \"test/2_library_checker/unionfind_with_potential.test.cpp\"\
-    \n#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
+    - https://judge.yosupo.jp/problem/aplusb
+  bundledCode: "#line 1 \"test/1_mytest/narayana.test.cpp\"\n#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\
     \n#line 1 \"my_template.hpp\"\n#if defined(LOCAL)\n#include <my_template_compiled.hpp>\n\
     #else\n\n// https://codeforces.com/blog/entry/96344\n// https://codeforces.com/blog/entry/126772?#comment-1154880\n\
     #include <bits/allocator.h>\n#pragma GCC optimize(\"Ofast,unroll-loops\")\n#pragma\
@@ -126,129 +119,9 @@ data:
     \ &A, const vc<int> &I) {\n  vc<T> B(len(I));\n  FOR(i, len(I)) B[i] = A[I[i]];\n\
     \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
     \ &first, const Vectors &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
-    \ others.begin(), others.end()), ...);\n}\n#endif\n#line 1 \"other/io.hpp\"\n\
-    #define FASTIO\r\n#include <unistd.h>\r\n\r\n// https://judge.yosupo.jp/submission/21623\r\
-    \nnamespace fastio {\r\nstatic constexpr uint32_t SZ = 1 << 17;\r\nchar ibuf[SZ];\r\
-    \nchar obuf[SZ];\r\nchar out[100];\r\n// pointer of ibuf, obuf\r\nuint32_t pil\
-    \ = 0, pir = 0, por = 0;\r\n\r\nstruct Pre {\r\n  char num[10000][4];\r\n  constexpr\
-    \ Pre() : num() {\r\n    for (int i = 0; i < 10000; i++) {\r\n      int n = i;\r\
-    \n      for (int j = 3; j >= 0; j--) {\r\n        num[i][j] = n % 10 | '0';\r\n\
-    \        n /= 10;\r\n      }\r\n    }\r\n  }\r\n} constexpr pre;\r\n\r\ninline\
-    \ void load() {\r\n  memcpy(ibuf, ibuf + pil, pir - pil);\r\n  pir = pir - pil\
-    \ + fread(ibuf + pir - pil, 1, SZ - pir + pil, stdin);\r\n  pil = 0;\r\n  if (pir\
-    \ < SZ) ibuf[pir++] = '\\n';\r\n}\r\n\r\ninline void flush() {\r\n  fwrite(obuf,\
-    \ 1, por, stdout);\r\n  por = 0;\r\n}\r\n\r\nvoid rd(char &c) {\r\n  do {\r\n\
-    \    if (pil + 1 > pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\
-    \n}\r\n\r\nvoid rd(string &x) {\r\n  x.clear();\r\n  char c;\r\n  do {\r\n   \
-    \ if (pil + 1 > pir) load();\r\n    c = ibuf[pil++];\r\n  } while (isspace(c));\r\
-    \n  do {\r\n    x += c;\r\n    if (pil == pir) load();\r\n    c = ibuf[pil++];\r\
-    \n  } while (!isspace(c));\r\n}\r\n\r\ntemplate <typename T>\r\nvoid rd_real(T\
-    \ &x) {\r\n  string s;\r\n  rd(s);\r\n  x = stod(s);\r\n}\r\n\r\ntemplate <typename\
-    \ T>\r\nvoid rd_integer(T &x) {\r\n  if (pil + 100 > pir) load();\r\n  char c;\r\
-    \n  do\r\n    c = ibuf[pil++];\r\n  while (c < '-');\r\n  bool minus = 0;\r\n\
-    \  if constexpr (is_signed<T>::value || is_same_v<T, i128>) {\r\n    if (c ==\
-    \ '-') { minus = 1, c = ibuf[pil++]; }\r\n  }\r\n  x = 0;\r\n  while ('0' <= c)\
-    \ { x = x * 10 + (c & 15), c = ibuf[pil++]; }\r\n  if constexpr (is_signed<T>::value\
-    \ || is_same_v<T, i128>) {\r\n    if (minus) x = -x;\r\n  }\r\n}\r\n\r\nvoid rd(int\
-    \ &x) { rd_integer(x); }\r\nvoid rd(ll &x) { rd_integer(x); }\r\nvoid rd(i128\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u32 &x) { rd_integer(x); }\r\nvoid rd(u64\
-    \ &x) { rd_integer(x); }\r\nvoid rd(u128 &x) { rd_integer(x); }\r\nvoid rd(double\
-    \ &x) { rd_real(x); }\r\nvoid rd(long double &x) { rd_real(x); }\r\nvoid rd(f128\
-    \ &x) { rd_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid rd(pair<T, U>\
-    \ &p) {\r\n  return rd(p.first), rd(p.second);\r\n}\r\ntemplate <size_t N = 0,\
-    \ typename T>\r\nvoid rd_tuple(T &t) {\r\n  if constexpr (N < std::tuple_size<T>::value)\
-    \ {\r\n    auto &x = std::get<N>(t);\r\n    rd(x);\r\n    rd_tuple<N + 1>(t);\r\
-    \n  }\r\n}\r\ntemplate <class... T>\r\nvoid rd(tuple<T...> &tpl) {\r\n  rd_tuple(tpl);\r\
-    \n}\r\n\r\ntemplate <size_t N = 0, typename T>\r\nvoid rd(array<T, N> &x) {\r\n\
-    \  for (auto &d: x) rd(d);\r\n}\r\ntemplate <class T>\r\nvoid rd(vc<T> &x) {\r\
-    \n  for (auto &d: x) rd(d);\r\n}\r\n\r\nvoid read() {}\r\ntemplate <class H, class...\
-    \ T>\r\nvoid read(H &h, T &... t) {\r\n  rd(h), read(t...);\r\n}\r\n\r\nvoid wt(const\
-    \ char c) {\r\n  if (por == SZ) flush();\r\n  obuf[por++] = c;\r\n}\r\nvoid wt(const\
-    \ string s) {\r\n  for (char c: s) wt(c);\r\n}\r\nvoid wt(const char *s) {\r\n\
-    \  size_t len = strlen(s);\r\n  for (size_t i = 0; i < len; i++) wt(s[i]);\r\n\
-    }\r\n\r\ntemplate <typename T>\r\nvoid wt_integer(T x) {\r\n  if (por > SZ - 100)\
-    \ flush();\r\n  if (x < 0) { obuf[por++] = '-', x = -x; }\r\n  int outi;\r\n \
-    \ for (outi = 96; x >= 10000; outi -= 4) {\r\n    memcpy(out + outi, pre.num[x\
-    \ % 10000], 4);\r\n    x /= 10000;\r\n  }\r\n  if (x >= 1000) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x], 4);\r\n    por += 4;\r\n  } else if (x >= 100) {\r\n    memcpy(obuf\
-    \ + por, pre.num[x] + 1, 3);\r\n    por += 3;\r\n  } else if (x >= 10) {\r\n \
-    \   int q = (x * 103) >> 10;\r\n    obuf[por] = q | '0';\r\n    obuf[por + 1]\
-    \ = (x - q * 10) | '0';\r\n    por += 2;\r\n  } else\r\n    obuf[por++] = x |\
-    \ '0';\r\n  memcpy(obuf + por, out + outi + 4, 96 - outi);\r\n  por += 96 - outi;\r\
-    \n}\r\n\r\ntemplate <typename T>\r\nvoid wt_real(T x) {\r\n  ostringstream oss;\r\
-    \n  oss << fixed << setprecision(15) << double(x);\r\n  string s = oss.str();\r\
-    \n  wt(s);\r\n}\r\n\r\nvoid wt(int x) { wt_integer(x); }\r\nvoid wt(ll x) { wt_integer(x);\
-    \ }\r\nvoid wt(i128 x) { wt_integer(x); }\r\nvoid wt(u32 x) { wt_integer(x); }\r\
-    \nvoid wt(u64 x) { wt_integer(x); }\r\nvoid wt(u128 x) { wt_integer(x); }\r\n\
-    void wt(double x) { wt_real(x); }\r\nvoid wt(long double x) { wt_real(x); }\r\n\
-    void wt(f128 x) { wt_real(x); }\r\n\r\ntemplate <class T, class U>\r\nvoid wt(const\
-    \ pair<T, U> val) {\r\n  wt(val.first);\r\n  wt(' ');\r\n  wt(val.second);\r\n\
-    }\r\ntemplate <size_t N = 0, typename T>\r\nvoid wt_tuple(const T t) {\r\n  if\
-    \ constexpr (N < std::tuple_size<T>::value) {\r\n    if constexpr (N > 0) { wt('\
-    \ '); }\r\n    const auto x = std::get<N>(t);\r\n    wt(x);\r\n    wt_tuple<N\
-    \ + 1>(t);\r\n  }\r\n}\r\ntemplate <class... T>\r\nvoid wt(tuple<T...> tpl) {\r\
-    \n  wt_tuple(tpl);\r\n}\r\ntemplate <class T, size_t S>\r\nvoid wt(const array<T,\
-    \ S> val) {\r\n  auto n = val.size();\r\n  for (size_t i = 0; i < n; i++) {\r\n\
-    \    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\ntemplate <class T>\r\n\
-    void wt(const vector<T> val) {\r\n  auto n = val.size();\r\n  for (size_t i =\
-    \ 0; i < n; i++) {\r\n    if (i) wt(' ');\r\n    wt(val[i]);\r\n  }\r\n}\r\n\r\
-    \nvoid print() { wt('\\n'); }\r\ntemplate <class Head, class... Tail>\r\nvoid\
-    \ print(Head &&head, Tail &&... tail) {\r\n  wt(head);\r\n  if (sizeof...(Tail))\
-    \ wt(' ');\r\n  print(forward<Tail>(tail)...);\r\n}\r\n\r\n// gcc expansion. called\
-    \ automaticall after main.\r\nvoid __attribute__((destructor)) _d() { flush();\
-    \ }\r\n} // namespace fastio\r\nusing fastio::read;\r\nusing fastio::print;\r\n\
-    using fastio::flush;\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) SHOW_IMPL(__VA_ARGS__,\
-    \ SHOW6, SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1,\
-    \ _2, _3, _4, _5, _6, NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x)),\
-    \ flush()\r\n#define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y)), flush()\r\
-    \n#define SHOW3(x, y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z)),\
-    \ flush()\r\n#define SHOW4(x, y, z, w) print(#x, \"=\", (x), #y, \"=\", (y), #z,\
-    \ \"=\", (z), #w, \"=\", (w)), flush()\r\n#define SHOW5(x, y, z, w, v) print(#x,\
-    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", (v)),\
-    \ flush()\r\n#define SHOW6(x, y, z, w, v, u) print(#x, \"=\", (x), #y, \"=\",\
-    \ (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", (v), #u, \"=\", (u)), flush()\r\
-    \n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\n#define INT(...)   \\\r\n  int __VA_ARGS__;\
-    \ \\\r\n  read(__VA_ARGS__)\r\n#define LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n\
-    \  read(__VA_ARGS__)\r\n#define U32(...)   \\\r\n  u32 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\
-    \n#define U64(...)   \\\r\n  u64 __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ STR(...)      \\\r\n  string __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define\
-    \ CHAR(...)   \\\r\n  char __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n#define DBL(...)\
-    \      \\\r\n  double __VA_ARGS__; \\\r\n  read(__VA_ARGS__)\r\n\r\n#define VEC(type,\
-    \ name, size) \\\r\n  vector<type> name(size);    \\\r\n  read(name)\r\n#define\
-    \ VV(type, name, h, w)                     \\\r\n  vector<vector<type>> name(h,\
-    \ vector<type>(w)); \\\r\n  read(name)\r\n\r\nvoid YES(bool t = 1) { print(t ?\
-    \ \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\nvoid Yes(bool t\
-    \ = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1) { Yes(!t); }\r\n\
-    void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
-    \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
-    \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/unionfind_with_potential.test.cpp\"\
-    \n\n#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 1 \"ds/unionfind/potentialized_unionfind.hpp\"\
-    \ntemplate <typename Group>\r\nstruct Potentialized_UnionFind {\r\n  using E =\
-    \ typename Group::value_type;\r\n  int N;\r\n  int n_comp;\r\n  vc<E> vals;\r\n\
-    \  vc<int> par;\r\n  vc<int> size;\r\n\r\n  Potentialized_UnionFind(int N) : N(N),\
-    \ n_comp(N), vals(N, Group::unit()), size(N, 1) {\r\n    par.resize(N);\r\n  \
-    \  iota(all(par), 0);\r\n  }\r\n\r\n  // (root, P[root]^{-1}P[v])\r\n  pair<int,\
-    \ E> get(int v) {\r\n    E res = Group::unit();\r\n    while (v != par[v]) {\r\
-    \n      res = Group::op(vals[v], res);\r\n      res = Group::op(vals[par[v]],\
-    \ res);\r\n      vals[v] = Group::op(vals[par[v]], vals[v]);\r\n      v = par[v]\
-    \ = par[par[v]];\r\n    }\r\n    return {v, res};\r\n  }\r\n\r\n  pair<int, E>\
-    \ operator[](int v) { return get(v); }\r\n\r\n  // is_same / path value\r\n  pair<bool,\
-    \ E> get_path(int u, int v) {\r\n    auto [ru, xu] = get(u);\r\n    auto [rv,\
-    \ xv] = get(v);\r\n    if (ru != rv) return {false, Group::unit()};\r\n    return\
-    \ {true, Group::op(Group::inverse(xu), xv)};\r\n  }\r\n\r\n  // if same : do nothing.\r\
-    \n  // P[to]==P[frm]x\r\n  bool merge(int frm, int to, E x) {\r\n    auto [v1,\
-    \ x1] = get(frm);\r\n    auto [v2, x2] = get(to);\r\n    if (v1 == v2) return\
-    \ false; // same\r\n    if (size[v1] < size[v2]) {\r\n      swap(v1, v2);\r\n\
-    \      swap(x1, x2);\r\n      x = Group::inverse(x);\r\n    }\r\n    x = Group::op(x1,\
-    \ x);\r\n    x = Group::op(x, Group::inverse(x2));\r\n    vals[v2] = x;\r\n  \
-    \  par[v2] = v1;\r\n    size[v1] += size[v2];\r\n    --n_comp;\r\n    return true;\r\
-    \n  }\r\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
-    \ <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \ others.begin(), others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/narayana.test.cpp\"\
+    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
     \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
     \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
@@ -321,41 +194,49 @@ data:
     \ mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  //\
     \ assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 8 \"test/2_library_checker/unionfind_with_potential.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  Potentialized_UnionFind<Monoid_Add<mint>>\
-    \ uf(N);\n\n  FOR(Q) {\n    INT(t, u, v);\n    if (t == 0) {\n      mint x;\n\
-    \      read(x);\n      auto [is_same, path] = uf.get_path(v, u);\n      bool valid\
-    \ = (!is_same) || (path == x);\n      print(valid);\n      if (!is_same) uf.merge(v,\
-    \ u, x);\n    }\n    if (t == 1) {\n      auto [is_same, path] = uf.get_path(v,\
-    \ u);\n      if (!is_same) {\n        print(-1);\n      } else {\n        print(path);\n\
-    \      }\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/unionfind_with_potential\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"alg/monoid/add.hpp\"\
-    \n#include \"ds/unionfind/potentialized_unionfind.hpp\"\n#include \"mod/modint.hpp\"\
-    \n\nusing mint = modint998;\n\nvoid solve() {\n  INT(N, Q);\n  Potentialized_UnionFind<Monoid_Add<mint>>\
-    \ uf(N);\n\n  FOR(Q) {\n    INT(t, u, v);\n    if (t == 0) {\n      mint x;\n\
-    \      read(x);\n      auto [is_same, path] = uf.get_path(v, u);\n      bool valid\
-    \ = (!is_same) || (path == x);\n      print(valid);\n      if (!is_same) uf.merge(v,\
-    \ u, x);\n    }\n    if (t == 1) {\n      auto [is_same, path] = uf.get_path(v,\
-    \ u);\n      if (!is_same) {\n        print(-1);\n      } else {\n        print(path);\n\
-    \      }\n    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    using modint998 = modint<998244353>;\n#line 1 \"seq/famous/narayana.hpp\"\n\n\
+    // https://atcoder.jp/contests/agc070/tasks/agc070_c\n// a>=b \u306E\u3068\u304D\
+    , (0,0) \u304B\u3089 (a,b) \u3078\u306E\u30D1\u30B9\u3067\u3061\u3087\u3046\u3069\
+    \ k \u56DE\u66F2\u304C\u308B.\n// \u666E\u901A\u306E narayana number \u306F (n,n,2k-1)\n\
+    template <typename mint>\nmint narayana_number(int a, int b, int k) {\n  assert(0\
+    \ <= a && 0 <= b && 0 <= k);\n  if (a < b) return 0;\n  if (b == 0) return (k\
+    \ == 0 ? 1 : 0);\n\n  if (k % 2 == 1) {\n    k = (k - 1) / 2;\n    return C<mint>(a\
+    \ - 1, k) * C<mint>(b - 1, k) - C<mint>(a - 1, k - 1) * C<mint>(b - 1, k + 1);\n\
+    \  }\n  k /= 2;\n  return C<mint>(a - 1, k) * C<mint>(b - 1, k - 1) - C<mint>(a\
+    \ - 1, k - 1) * C<mint>(b - 1, k);\n}\n#line 6 \"test/1_mytest/narayana.test.cpp\"\
+    \n\nusing mint = modint107;\n\nvoid test(int a, int b) {\n  int n = a + b;\n \
+    \ vc<mint> ANS(n + 1);\n  FOR(s, 1 << n) {\n    if (popcnt(s) != a) continue;\n\
+    \    vc<int> A(n);\n    FOR(i, n) A[i] = (s >> i & 1 ? 1 : -1);\n    auto Ac =\
+    \ cumsum<int>(A);\n    if (MIN(Ac) < 0) continue;\n    int k = 0;\n    FOR(i,\
+    \ n - 1) k += (A[i] != A[i + 1]);\n    ANS[k] += 1;\n  }\n  FOR(k, n + 1) { assert(ANS[k]\
+    \ == narayana_number<mint>(a, b, k)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(a, 10)\
+    \ FOR(b, 10) test(a, b);\n  solve();\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
+    \n\n#include \"mod/modint.hpp\"\n#include \"seq/famous/narayana.hpp\"\n\nusing\
+    \ mint = modint107;\n\nvoid test(int a, int b) {\n  int n = a + b;\n  vc<mint>\
+    \ ANS(n + 1);\n  FOR(s, 1 << n) {\n    if (popcnt(s) != a) continue;\n    vc<int>\
+    \ A(n);\n    FOR(i, n) A[i] = (s >> i & 1 ? 1 : -1);\n    auto Ac = cumsum<int>(A);\n\
+    \    if (MIN(Ac) < 0) continue;\n    int k = 0;\n    FOR(i, n - 1) k += (A[i]\
+    \ != A[i + 1]);\n    ANS[k] += 1;\n  }\n  FOR(k, n + 1) { assert(ANS[k] == narayana_number<mint>(a,\
+    \ b, k)); }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a +\
+    \ b << \"\\n\";\n}\n\nsigned main() {\n  FOR(a, 10) FOR(b, 10) test(a, b);\n \
+    \ solve();\n}\n"
   dependsOn:
   - my_template.hpp
-  - other/io.hpp
-  - alg/monoid/add.hpp
-  - ds/unionfind/potentialized_unionfind.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
+  - seq/famous/narayana.hpp
   isVerificationFile: true
-  path: test/2_library_checker/unionfind_with_potential.test.cpp
+  path: test/1_mytest/narayana.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-02-11 03:31:26+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
-documentation_of: test/2_library_checker/unionfind_with_potential.test.cpp
+documentation_of: test/1_mytest/narayana.test.cpp
 layout: document
 redirect_from:
-- /verify/test/2_library_checker/unionfind_with_potential.test.cpp
-- /verify/test/2_library_checker/unionfind_with_potential.test.cpp.html
-title: test/2_library_checker/unionfind_with_potential.test.cpp
+- /verify/test/1_mytest/narayana.test.cpp
+- /verify/test/1_mytest/narayana.test.cpp.html
+title: test/1_mytest/narayana.test.cpp
 ---
