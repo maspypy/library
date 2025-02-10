@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -271,19 +271,19 @@ data:
   isVerificationFile: false
   path: nt/gaussian_integers.hpp
   requiredBy:
-  - nt/three_triangular.hpp
-  - nt/two_square.hpp
   - nt/four_square.hpp
+  - nt/two_square.hpp
   - nt/three_square.hpp
+  - nt/three_triangular.hpp
   timestamp: '2025-01-20 22:41:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1593.test.cpp
   - test/2_library_checker/number_theory/gaussian_integers.test.cpp
   - test/2_library_checker/number_theory/two_square.test.cpp
-  - test/1_mytest/three_square.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/three_square.test.cpp
 documentation_of: nt/gaussian_integers.hpp
 layout: document
 redirect_from:

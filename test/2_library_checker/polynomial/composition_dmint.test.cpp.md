@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -28,7 +28,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'

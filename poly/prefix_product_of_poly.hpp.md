@@ -38,7 +38,13 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
+  - icon: ':x:'
+    path: poly/from_log_differentiation.hpp
+    title: poly/from_log_differentiation.hpp
+  - icon: ':x:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
+  - icon: ':x:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedVerifiedWith:
@@ -48,9 +54,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/3_yukicoder/1080_2.test.cpp
+    title: test/3_yukicoder/1080_2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2166.test.cpp
+    title: test/3_yukicoder/2166.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://github.com/noshi91/n91lib_rs/blob/master/src/algorithm/polynomial_matrix_prod.rs
@@ -473,9 +485,13 @@ data:
   path: poly/prefix_product_of_poly.hpp
   requiredBy:
   - seq/p_recursive.hpp
+  - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/1_mytest/factorial_998.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp

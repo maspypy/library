@@ -2,19 +2,25 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
+  - icon: ':x:'
+    path: poly/from_log_differentiation.hpp
+    title: poly/from_log_differentiation.hpp
   - icon: ':question:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
+  - icon: ':x:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
   - icon: ':warning:'
     path: poly/sum_of_C_negative.hpp
     title: poly/sum_of_C_negative.hpp
   - icon: ':heavy_check_mark:'
     path: seq/interpolate_poly_exp_sum.hpp
     title: seq/interpolate_poly_exp_sum.hpp
-  - icon: ':warning:'
+  - icon: ':x:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedVerifiedWith:
@@ -39,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1036_3.test.cpp
     title: test/3_yukicoder/1036_3.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/1080_2.test.cpp
+    title: test/3_yukicoder/1080_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1117.test.cpp
     title: test/3_yukicoder/1117.test.cpp
@@ -49,6 +58,9 @@ data:
     path: test/3_yukicoder/2026.test.cpp
     title: test/3_yukicoder/2026.test.cpp
   - icon: ':x:'
+    path: test/3_yukicoder/2166.test.cpp
+    title: test/3_yukicoder/2166.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
   _isVerificationFailed: true
@@ -123,24 +135,28 @@ data:
   isVerificationFile: false
   path: ds/sliding_window_aggregation.hpp
   requiredBy:
-  - poly/sum_of_C_negative.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/prefix_product_of_poly.hpp
   - seq/interpolate_poly_exp_sum.hpp
   - seq/p_recursive.hpp
+  - poly/lagrange_interpolate_iota.hpp
+  - poly/sum_of_C_negative.hpp
+  - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
+  - poly/prefix_product_of_poly.hpp
   timestamp: '2024-11-01 21:56:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1036_3.test.cpp
-  - test/3_yukicoder/1435_2.test.cpp
-  - test/3_yukicoder/1117.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/2026.test.cpp
   - test/3_yukicoder/2747.test.cpp
-  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - test/3_yukicoder/1435_2.test.cpp
+  - test/3_yukicoder/1036_3.test.cpp
+  - test/3_yukicoder/1117.test.cpp
   - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-  - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+  - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
   - test/1_mytest/factorial_998.test.cpp
 documentation_of: ds/sliding_window_aggregation.hpp
 layout: document

@@ -6,7 +6,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/kdtree_nns.test.cpp
     title: test/1_mytest/kdtree_nns.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2909.test.cpp
     title: test/3_yukicoder/2909.test.cpp
   - icon: ':x:'
@@ -124,8 +124,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2909.test.cpp
-  - test/1_mytest/kdtree_nns.test.cpp
   - test/4_aoj/DSL_2_C.test.cpp
+  - test/1_mytest/kdtree_nns.test.cpp
 documentation_of: ds/kdtree/kdtree.hpp
 layout: document
 redirect_from:

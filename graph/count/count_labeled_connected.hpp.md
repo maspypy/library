@@ -31,7 +31,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':question:'
@@ -373,8 +373,8 @@ data:
   isVerificationFile: false
   path: graph/count/count_labeled_connected.hpp
   requiredBy:
-  - graph/count/count_labeled_biconnected.hpp
   - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

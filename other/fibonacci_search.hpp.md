@@ -12,7 +12,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2276.test.cpp
     title: test/3_yukicoder/2276.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2627.test.cpp
     title: test/3_yukicoder/2627.test.cpp
   - icon: ':x:'
@@ -60,8 +60,8 @@ data:
   timestamp: '2024-01-01 07:01:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/705.test.cpp
   - test/3_yukicoder/2276.test.cpp
+  - test/3_yukicoder/705.test.cpp
   - test/3_yukicoder/2627.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp
 documentation_of: other/fibonacci_search.hpp

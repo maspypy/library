@@ -7,13 +7,13 @@ data:
   - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
@@ -253,9 +253,9 @@ data:
   timestamp: '2025-01-20 22:41:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2120.test.cpp
-  - test/3_yukicoder/2613.test.cpp
   - test/3_yukicoder/2181.test.cpp
+  - test/3_yukicoder/2613.test.cpp
+  - test/3_yukicoder/2120.test.cpp
   - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
 documentation_of: mod/binomial.hpp
 layout: document

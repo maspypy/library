@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/factorial998.hpp
     title: mod/factorial998.hpp
   - icon: ':question:'
@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
   - icon: ':question:'

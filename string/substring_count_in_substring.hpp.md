@@ -31,7 +31,7 @@ data:
   - icon: ':warning:'
     path: string/basic_substring_structure.hpp
     title: string/basic_substring_structure.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/rollinghash.hpp
     title: string/rollinghash.hpp
   - icon: ':heavy_check_mark:'

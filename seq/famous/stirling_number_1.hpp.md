@@ -43,7 +43,7 @@ data:
   - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_log.hpp
     title: poly/fps_log.hpp
   - icon: ':heavy_check_mark:'
@@ -584,8 +584,8 @@ data:
   timestamp: '2025-01-06 23:56:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
 documentation_of: seq/famous/stirling_number_1.hpp

@@ -82,8 +82,8 @@ data:
   isVerificationFile: false
   path: linalg/basis.hpp
   requiredBy:
-  - linalg/frobenius.hpp
   - linalg/adjugate_matrix.hpp
+  - linalg/frobenius.hpp
   timestamp: '2024-11-01 21:56:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

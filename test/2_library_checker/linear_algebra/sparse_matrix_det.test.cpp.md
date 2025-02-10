@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/det.hpp
     title: linalg/blackbox/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/blackbox/min_poly.hpp
     title: linalg/blackbox/min_poly.hpp
   - icon: ':question:'

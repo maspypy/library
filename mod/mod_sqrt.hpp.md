@@ -4,7 +4,7 @@ data:
   - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
@@ -146,8 +146,8 @@ data:
   isVerificationFile: false
   path: mod/mod_sqrt.hpp
   requiredBy:
-  - graph/count/count_labeled_bipartite.hpp
   - poly/fps_sqrt.hpp
+  - graph/count/count_labeled_bipartite.hpp
   timestamp: '2025-01-20 22:41:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

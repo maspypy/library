@@ -17,6 +17,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
+  - icon: ':warning:'
+    path: convex/lower_integer_hull.hpp
+    title: convex/lower_integer_hull.hpp
   - icon: ':heavy_check_mark:'
     path: geo/convex_polygon.hpp
     title: geo/convex_polygon.hpp
@@ -153,24 +156,25 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
-  - convex/fenchel.hpp
+  - convex/lower_integer_hull.hpp
   - convex/count_lattice_point_in_convex_polygon.hpp
-  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   - convex/line_min_function.hpp
+  - convex/fenchel.hpp
+  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+  - random/random_polygon.hpp
   - geo/convex_polygon.hpp
   - geo/minkowski_sum.hpp
   - geo/furthest_pair.hpp
-  - random/random_polygon.hpp
   timestamp: '2024-10-20 23:29:28+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/furthest_pair.test.cpp
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

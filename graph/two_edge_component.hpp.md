@@ -160,10 +160,10 @@ data:
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/529.test.cpp
-  - test/2_library_checker/graph/two_edge_component.test.cpp
+  - test/3_yukicoder/1983.test.cpp
   - test/4_aoj/GRL_3_B.test.cpp
+  - test/2_library_checker/graph/two_edge_component.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:

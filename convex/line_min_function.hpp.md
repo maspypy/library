@@ -14,6 +14,9 @@ data:
   - icon: ':warning:'
     path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
     title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+  - icon: ':warning:'
+    path: convex/lower_integer_hull.hpp
+    title: convex/lower_integer_hull.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
@@ -269,6 +272,7 @@ data:
   isVerificationFile: false
   path: convex/line_min_function.hpp
   requiredBy:
+  - convex/lower_integer_hull.hpp
   - convex/count_lattice_point_in_convex_polygon.hpp
   - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
   timestamp: '2025-01-06 23:56:37+09:00'

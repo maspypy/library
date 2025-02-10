@@ -10,7 +10,7 @@ data:
   - icon: ':question:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
   - icon: ':question:'
@@ -43,14 +43,26 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  _extendedRequiredBy: []
-  _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: poly/from_log_differentiation.hpp
+    title: poly/from_log_differentiation.hpp
+  - icon: ':x:'
+    path: poly/sparse_exp_of_div.hpp
+    title: poly/sparse_exp_of_div.hpp
+  _extendedVerifiedWith:
+  - icon: ':x:'
+    path: test/3_yukicoder/1080_2.test.cpp
+    title: test/3_yukicoder/1080_2.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/2166.test.cpp
+    title: test/3_yukicoder/2166.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':warning:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"seq/p_recursive.hpp\"\n\n#line 2 \"mod/modint_common.hpp\"\
@@ -540,10 +552,14 @@ data:
   - mod/all_inverse.hpp
   isVerificationFile: false
   path: seq/p_recursive.hpp
-  requiredBy: []
+  requiredBy:
+  - poly/sparse_exp_of_div.hpp
+  - poly/from_log_differentiation.hpp
   timestamp: '2025-02-11 04:20:31+09:00'
-  verificationStatus: LIBRARY_NO_TESTS
-  verifiedWith: []
+  verificationStatus: LIBRARY_ALL_WA
+  verifiedWith:
+  - test/3_yukicoder/1080_2.test.cpp
+  - test/3_yukicoder/2166.test.cpp
 documentation_of: seq/p_recursive.hpp
 layout: document
 redirect_from:
