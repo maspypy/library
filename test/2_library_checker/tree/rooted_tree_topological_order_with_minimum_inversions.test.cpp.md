@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':question:'
@@ -27,9 +27,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions
@@ -517,8 +517,9 @@ data:
     \ 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(p, v);\n  }\n  G.build();\n\
     \  Tree<decltype(G)> tree(G);\n\n  vc<Data> A(N);\n  FOR(i, N) A[i].ans = 0;\n\
     \  FOR(i, N) {\n    INT(x);\n    A[i].x0 = x;\n  }\n  FOR(i, N) {\n    INT(x);\n\
-    \    A[i].x1 = x;\n  }\n\n  auto comp = [&](Data x, Data y) -> bool { return x.x0\
-    \ * y.x1 > x.x1 * y.x0; };\n  auto [ord, x] = optimal_product_on_tree<decltype(tree),\
+    \    A[i].x1 = x;\n  }\n\n  auto comp = [&](Data x, Data y) -> bool {\n    if\
+    \ (x.x0 == 0 && x.x1 == 0) return false;\n    if (y.x0 == 0 && y.x1 == 0) return\
+    \ true;\n    return x.x0 * y.x1 > x.x1 * y.x0;\n  };\n  auto [ord, x] = optimal_product_on_tree<decltype(tree),\
     \ Mono, true>(tree, A, comp);\n  print(x.ans);\n  print(ord);\n}\n\nsigned main()\
     \ { solve(); }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/rooted_tree_topological_order_with_minimum_inversions\"\
@@ -531,8 +532,9 @@ data:
     \ 1> G(N);\n  FOR(v, 1, N) {\n    INT(p);\n    G.add(p, v);\n  }\n  G.build();\n\
     \  Tree<decltype(G)> tree(G);\n\n  vc<Data> A(N);\n  FOR(i, N) A[i].ans = 0;\n\
     \  FOR(i, N) {\n    INT(x);\n    A[i].x0 = x;\n  }\n  FOR(i, N) {\n    INT(x);\n\
-    \    A[i].x1 = x;\n  }\n\n  auto comp = [&](Data x, Data y) -> bool { return x.x0\
-    \ * y.x1 > x.x1 * y.x0; };\n  auto [ord, x] = optimal_product_on_tree<decltype(tree),\
+    \    A[i].x1 = x;\n  }\n\n  auto comp = [&](Data x, Data y) -> bool {\n    if\
+    \ (x.x0 == 0 && x.x1 == 0) return false;\n    if (y.x0 == 0 && y.x1 == 0) return\
+    \ true;\n    return x.x0 * y.x1 > x.x1 * y.x0;\n  };\n  auto [ord, x] = optimal_product_on_tree<decltype(tree),\
     \ Mono, true>(tree, A, comp);\n  print(x.ans);\n  print(ord);\n}\n\nsigned main()\
     \ { solve(); }"
   dependsOn:
@@ -547,8 +549,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-11 04:45:29+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp
 layout: document
