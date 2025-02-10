@@ -43,7 +43,11 @@ void solve() {
     A[i].x1 = x;
   }
 
-  auto comp = [&](Data x, Data y) -> bool { return x.x0 * y.x1 > x.x1 * y.x0; };
+  auto comp = [&](Data x, Data y) -> bool {
+    if (x.x0 == 0 && x.x1 == 0) return false;
+    if (y.x0 == 0 && y.x1 == 0) return true;
+    return x.x0 * y.x1 > x.x1 * y.x0;
+  };
   auto [ord, x] = optimal_product_on_tree<decltype(tree), Mono, true>(tree, A, comp);
   print(x.ans);
   print(ord);
