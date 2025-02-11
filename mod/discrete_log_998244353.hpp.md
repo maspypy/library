@@ -8,16 +8,16 @@ data:
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log_998244353.hpp
     title: mod/mod_log_998244353.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_log_998.test.cpp
     title: test/1_mytest/mod_log_998.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -141,7 +141,7 @@ data:
   requiredBy:
   - mod/mod_log_998244353.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/mod_log_998.test.cpp
 documentation_of: mod/discrete_log_998244353.hpp
