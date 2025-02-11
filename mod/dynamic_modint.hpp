@@ -64,24 +64,12 @@ struct Dynamic_Modint {
     return u;
   }
 
-  friend mint operator+(const mint& lhs, const mint& rhs) {
-    return mint(lhs) += rhs;
-  }
-  friend mint operator-(const mint& lhs, const mint& rhs) {
-    return mint(lhs) -= rhs;
-  }
-  friend mint operator*(const mint& lhs, const mint& rhs) {
-    return mint(lhs) *= rhs;
-  }
-  friend mint operator/(const mint& lhs, const mint& rhs) {
-    return mint(lhs) /= rhs;
-  }
-  friend bool operator==(const mint& lhs, const mint& rhs) {
-    return lhs.val == rhs.val;
-  }
-  friend bool operator!=(const mint& lhs, const mint& rhs) {
-    return lhs.val != rhs.val;
-  }
+  friend mint operator+(const mint& lhs, const mint& rhs) { return mint(lhs) += rhs; }
+  friend mint operator-(const mint& lhs, const mint& rhs) { return mint(lhs) -= rhs; }
+  friend mint operator*(const mint& lhs, const mint& rhs) { return mint(lhs) *= rhs; }
+  friend mint operator/(const mint& lhs, const mint& rhs) { return mint(lhs) /= rhs; }
+  friend bool operator==(const mint& lhs, const mint& rhs) { return lhs.val == rhs.val; }
+  friend bool operator!=(const mint& lhs, const mint& rhs) { return lhs.val != rhs.val; }
   static pair<int, int>& get_ntt() {
     static pair<int, int> p = {-1, -1};
     return p;

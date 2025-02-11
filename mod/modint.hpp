@@ -52,6 +52,7 @@ struct modint {
     return modint(u);
   }
   modint pow(ll n) const {
+    if (n < 0) return inverse().pow(-n);
     assert(n >= 0);
     modint ret(1), mul(val);
     while (n > 0) {
