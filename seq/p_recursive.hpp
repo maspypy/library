@@ -98,7 +98,7 @@ T kth_term_of_p_recursive(vc<T> a, vc<vc<T>>& fs, ll k) {
 }
 
 template <typename mint>
-vvc<mint> interpolate_p_recursive(vc<mint> A, int max_m, int max_deg, int k) {
-  auto fs = find_p_recursive<mint>(a, 1, 1);
+vvc<mint> interpolate_p_recursive(vc<mint> a, int max_m, int max_deg, int k) {
+  auto fs = find_p_recursive<mint>(a, max_m, max_deg);
   return kth_term_of_p_recursive<mint>(a, fs, k);
 }
