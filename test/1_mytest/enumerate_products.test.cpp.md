@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -186,32 +186,33 @@ data:
     \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
     \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
-    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if (mod == 1012924417)\
-    \ return {21, 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool\
-    \ can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int\
-    \ mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  //\
-    \ assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 6 \"test/1_mytest/enumerate_products.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  {\n    vvc<int> res;\n    auto\
-    \ f = [&](vc<int> A) -> void { res.eb(A); };\n    enumerate_product(vc<int>(2,\
-    \ 3), f);\n    assert(len(res) == 9);\n    assert(res[0] == vc<int>({0, 0}));\n\
-    \    assert(res[1] == vc<int>({0, 1}));\n    assert(res[2] == vc<int>({0, 2}));\n\
-    \    assert(res[3] == vc<int>({1, 0}));\n    assert(res[4] == vc<int>({1, 1}));\n\
-    \    assert(res[5] == vc<int>({1, 2}));\n    assert(res[6] == vc<int>({2, 0}));\n\
-    \    assert(res[7] == vc<int>({2, 1}));\n    assert(res[8] == vc<int>({2, 2}));\n\
-    \  }\n  {\n    int cnt = 0;\n    auto f = [&](vc<int> A) -> void { ++cnt; };\n\
-    \    enumerate_product(vc<int>(4, 3), f);\n    assert(cnt == 81);\n  }\n}\n\n\
-    void solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\
-    \nsigned main() {\n  test();\n  solve();\n\n  return 0;\n}\n"
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 6 \"test/1_mytest/enumerate_products.test.cpp\"\n\nusing mint = modint998;\n\
+    \nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int> A) -> void {\
+    \ res.eb(A); };\n    enumerate_product(vc<int>(2, 3), f);\n    assert(len(res)\
+    \ == 9);\n    assert(res[0] == vc<int>({0, 0}));\n    assert(res[1] == vc<int>({0,\
+    \ 1}));\n    assert(res[2] == vc<int>({0, 2}));\n    assert(res[3] == vc<int>({1,\
+    \ 0}));\n    assert(res[4] == vc<int>({1, 1}));\n    assert(res[5] == vc<int>({1,\
+    \ 2}));\n    assert(res[6] == vc<int>({2, 0}));\n    assert(res[7] == vc<int>({2,\
+    \ 1}));\n    assert(res[8] == vc<int>({2, 2}));\n  }\n  {\n    int cnt = 0;\n\
+    \    auto f = [&](vc<int> A) -> void { ++cnt; };\n    enumerate_product(vc<int>(4,\
+    \ 3), f);\n    assert(cnt == 81);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
+    \ >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n \
+    \ solve();\n\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"enumerate/product.hpp\"\n#include \"mod/modint.hpp\"\n\nusing mint\
     \ = modint998;\n\nvoid test() {\n  {\n    vvc<int> res;\n    auto f = [&](vc<int>\
@@ -233,7 +234,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_products.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_products.test.cpp

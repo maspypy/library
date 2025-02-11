@@ -1,32 +1,32 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/offline_query/rectangle_add_point_sum.hpp
     title: ds/offline_query/rectangle_add_point_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -280,37 +280,37 @@ data:
     \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
     \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
     \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
-    \  }\n  modint pow(ll n) const {\n    assert(n >= 0);\n    modint ret(1), mul(val);\n\
-    \    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n      n\
-    \ >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod() { return\
-    \ mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
-    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
-    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
-    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
-    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
-    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
-    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 7 \"test/1_mytest/rect_add_pt_sum.test.cpp\"\n\nusing mint = modint998;\n\
-    using QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>, vc<pi>> gen(int H, int W,\
-    \ int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n  FOR(Q) {\n    ll a =\
-    \ RNG(0, H);\n    ll b = RNG(a + 1, H + 1);\n    ll c = RNG(0, W);\n    ll d =\
-    \ RNG(c + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n    add_query.eb(a,\
-    \ b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n    ll x = RNG(0, H),\
-    \ y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query, sum_query};\n\
-    }\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vv(mint,\
-    \ A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i, a, b) FOR(j,\
-    \ c, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query)\
-    \ ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int H, int W, vc<QT> add_query,\
-    \ vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&& [x, y]: sum_query) {\n \
-    \   mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query) {\n      if (a\
-    \ <= x && x < b && c <= y && y < d) ans += mint(v);\n    }\n    ANS.eb(ans);\n\
-    \  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
-    \ 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
+    \  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n \
+    \   assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n     \
+    \ if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
+    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
+    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
+    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
+    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
+    \ (mod == 1012924417) return {21, 368093570};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 7 \"test/1_mytest/rect_add_pt_sum.test.cpp\"\
+    \n\nusing mint = modint998;\nusing QT = tuple<ll, ll, ll, ll, ll>;\n\npair<vc<QT>,\
+    \ vc<pi>> gen(int H, int W, int Q) {\n  vc<tuple<ll, ll, ll, ll, ll>> add_query;\n\
+    \  FOR(Q) {\n    ll a = RNG(0, H);\n    ll b = RNG(a + 1, H + 1);\n    ll c =\
+    \ RNG(0, W);\n    ll d = RNG(c + 1, W + 1);\n    ll x = RNG(0, mint::get_mod());\n\
+    \    add_query.eb(a, b, c, d, x);\n  }\n\n  vc<pi> sum_query;\n  FOR(Q) {\n  \
+    \  ll x = RNG(0, H), y = RNG(0, W);\n    sum_query.eb(x, y);\n  }\n  return {add_query,\
+    \ sum_query};\n}\n\nvc<mint> sol_1(int H, int W, vc<QT> add_query, vc<pi> sum_query)\
+    \ {\n  vv(mint, A, H, W);\n  for (auto&& [a, b, c, d, x]: add_query) {\n    FOR(i,\
+    \ a, b) FOR(j, c, d) { A[i][j] += mint(x); }\n  }\n  vc<mint> ANS;\n  for (auto&&\
+    \ [x, y]: sum_query) ANS.eb(A[x][y]);\n  return ANS;\n}\n\nvc<mint> sol_2(int\
+    \ H, int W, vc<QT> add_query, vc<pi> sum_query) {\n  vc<mint> ANS;\n  for (auto&&\
+    \ [x, y]: sum_query) {\n    mint ans = 0;\n    for (auto&& [a, b, c, d, v]: add_query)\
+    \ {\n      if (a <= x && x < b && c <= y && y < d) ans += mint(v);\n    }\n  \
+    \  ANS.eb(ans);\n  }\n  return ANS;\n}\n\nvoid test() {\n  FOR(H, 1, 10) FOR(W,\
+    \ 1, 10) FOR(Q, 10) {\n    auto [add_query, sum_query] = gen(H, W, Q);\n    Rectangle_Add_Point_Sum<Monoid_Add<mint>,\
     \ int, 0> X;\n    for (auto&& [a, b, c, d, v]: add_query) X.add_query(a, b, c,\
     \ d, v);\n    for (auto&& [a, b]: sum_query) X.sum_query(a, b);\n    assert(X.calc()\
     \ == sol_1(H, W, add_query, sum_query));\n  }\n  FOR(H, 1, 10) FOR(W, 1, 10) FOR(Q,\
@@ -368,8 +368,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rect_add_pt_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-12 05:55:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/rect_add_pt_sum.test.cpp
 layout: document

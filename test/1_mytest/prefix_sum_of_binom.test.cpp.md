@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/prefix_sum_of_binom.hpp
     title: mod/prefix_sum_of_binom.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -181,36 +181,36 @@ data:
     \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
     \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
-    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if (mod == 1012924417)\
-    \ return {21, 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool\
-    \ can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int\
-    \ mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  //\
-    \ assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 1 \"mod/prefix_sum_of_binom.hpp\"\n\
-    template <typename mint>\nstruct Prefix_Sum_Of_Binom {\n  static constexpr u32\
-    \ mod = mint::get_mod();\n  const int MAX_N;\n  const int B;\n  vc<mint> POW;\n\
-    \  vvc<mint> dat;\n\n  Prefix_Sum_Of_Binom(int MAX_N) : MAX_N(MAX_N), B(sqrt(MAX_N\
-    \ + 1)) {\n    assert(MAX_N >= 0);\n    int K = ceil(MAX_N, B + B) + 2;\n    int\
-    \ p = max(MAX_N, K * B);\n    POW.assign(p + 1, mint(1));\n    FOR(i, p) POW[i\
-    \ + 1] = POW[i] + POW[i];\n    dat.resize(K);\n    FOR(k, 0, K) {\n      // [0,\
-    \ kB] \u3067\u306E closed sum\n      vc<mint> &f = dat[k];\n      if (MAX_N +\
-    \ 1 - k * B <= 0) continue;\n      f.resize(MAX_N + 1 - k * B);\n      int m =\
-    \ k * B;\n      f[0] = POW[m] * fact<mint>(m);\n      FOR(i, MAX_N - m) {\n  \
-    \      f[i + 1] = f[i] + f[i] - fact<mint>(i + m) * fact_inv<mint>(i);\n     \
-    \ }\n    }\n  }\n\n  // \\sum_{k=0}^{m-1} binom(n,k)\n  mint query(int n, int\
-    \ m) {\n    assert(0 <= m);\n    chmin(m, n + 1);\n    if (m == 0) return mint(0);\n\
-    \    if (m + m > n + 1) return POW[n] - query(n, n + 1 - m);\n    --m;\n    int\
-    \ a = m / B;\n\n    if (m <= a * B + B / 2) {\n      u128 t = 0;\n      FOR(i,\
-    \ a * B + 1, m + 1) {\n        t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n\
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 1 \"mod/prefix_sum_of_binom.hpp\"\ntemplate <typename mint>\nstruct Prefix_Sum_Of_Binom\
+    \ {\n  static constexpr u32 mod = mint::get_mod();\n  const int MAX_N;\n  const\
+    \ int B;\n  vc<mint> POW;\n  vvc<mint> dat;\n\n  Prefix_Sum_Of_Binom(int MAX_N)\
+    \ : MAX_N(MAX_N), B(sqrt(MAX_N + 1)) {\n    assert(MAX_N >= 0);\n    int K = ceil(MAX_N,\
+    \ B + B) + 2;\n    int p = max(MAX_N, K * B);\n    POW.assign(p + 1, mint(1));\n\
+    \    FOR(i, p) POW[i + 1] = POW[i] + POW[i];\n    dat.resize(K);\n    FOR(k, 0,\
+    \ K) {\n      // [0, kB] \u3067\u306E closed sum\n      vc<mint> &f = dat[k];\n\
+    \      if (MAX_N + 1 - k * B <= 0) continue;\n      f.resize(MAX_N + 1 - k * B);\n\
+    \      int m = k * B;\n      f[0] = POW[m] * fact<mint>(m);\n      FOR(i, MAX_N\
+    \ - m) {\n        f[i + 1] = f[i] + f[i] - fact<mint>(i + m) * fact_inv<mint>(i);\n\
+    \      }\n    }\n  }\n\n  // \\sum_{k=0}^{m-1} binom(n,k)\n  mint query(int n,\
+    \ int m) {\n    assert(0 <= m);\n    chmin(m, n + 1);\n    if (m == 0) return\
+    \ mint(0);\n    if (m + m > n + 1) return POW[n] - query(n, n + 1 - m);\n    --m;\n\
+    \    int a = m / B;\n\n    if (m <= a * B + B / 2) {\n      u128 t = 0;\n    \
+    \  FOR(i, a * B + 1, m + 1) {\n        t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n\
     \ - i).val);\n      }\n      return _get(n, a) + mint::raw(t % mod) * fact<mint>(n);\n\
     \    } else {\n      u128 t = 0;\n      FOR(i, m + 1, (a + 1) * B + 1) {\n   \
     \     t += u64(fact_inv<mint>(i).val) * (fact_inv<mint>(n - i).val);\n      }\n\
@@ -238,8 +238,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_sum_of_binom.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-12 05:55:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_sum_of_binom.test.cpp
 layout: document

@@ -1,26 +1,26 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -219,39 +219,40 @@ data:
     \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
     \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
     \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n      if\
-    \ (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n\
-    \  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r \u306F\
-    \ 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info() {\n\
-    \    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161) return\
-    \ {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod == 754974721)\
-    \ return {24, 362};\n    if (mod == 880803841) return {23, 211};\n    if (mod\
-    \ == 943718401) return {22, 663003469};\n    if (mod == 998244353) return {23,\
-    \ 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if (mod == 1012924417)\
-    \ return {21, 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool\
-    \ can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int\
-    \ mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  //\
-    \ assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 7 \"test/1_mytest/prime_sum.test.cpp\"\
-    \n\nvoid test_count() {\n  vc<int> A(1000);\n  for (auto&& p: primetable(1000))\
-    \ { A[p]++; }\n  A = cumsum<int>(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int>\
-    \ X(N);\n    X.calc_count();\n    FOR(K, 1, N + 10) { assert(X[N / K] == A[N /\
-    \ K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i]\
-    \ * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll> X(N);\n  X.calc_count();\n  assert(X[TEN[0]]\
-    \ == 0);\n  assert(X[TEN[1]] == 4);\n  assert(X[TEN[2]] == 25);\n  assert(X[TEN[3]]\
-    \ == 168);\n  assert(X[TEN[4]] == 1229);\n  assert(X[TEN[5]] == 9592);\n  assert(X[TEN[6]]\
-    \ == 78498);\n  assert(X[TEN[7]] == 664579);\n  assert(X[TEN[8]] == 5761455);\n\
-    \  assert(X[TEN[9]] == 50847534);\n  assert(X[TEN[10]] == 455052511);\n  assert(X[TEN[11]]\
-    \ == 4118054813);\n  assert(X[TEN[12]] == 37607912018);\n}\n\nvoid test_sum()\
-    \ {\n  vc<int> A(1000);\n  for (auto&& p: primetable(1000)) { A[p] += p; }\n \
-    \ A = cumsum<int>(A, 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_sum();\n\
-    \    FOR(K, 1, N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n\
-    \  TEN[0] = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\n  using mint = modint998;\n\
-    \  ll N = TEN[12];\n  PrimeSum<mint> X(N);\n  X.calc_sum();\n\n  auto f = [&](string\
-    \ S) -> mint {\n    mint x = 0;\n    for (auto&& s: S) { x = x * mint(10) + mint(s\
-    \ - '0'); }\n    return x;\n  };\n\n  assert(X[TEN[0]] == f(\"0\"));\n  assert(X[TEN[1]]\
-    \ == f(\"17\"));\n  assert(X[TEN[2]] == f(\"1060\"));\n  assert(X[TEN[3]] == f(\"\
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 7 \"test/1_mytest/prime_sum.test.cpp\"\n\nvoid test_count() {\n  vc<int>\
+    \ A(1000);\n  for (auto&& p: primetable(1000)) { A[p]++; }\n  A = cumsum<int>(A,\
+    \ 0);\n\n  FOR(N, 1000) {\n    PrimeSum<int> X(N);\n    X.calc_count();\n    FOR(K,\
+    \ 1, N + 10) { assert(X[N / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0]\
+    \ = 1;\n  FOR(i, 12) TEN[i + 1] = TEN[i] * 10;\n\n  ll N = TEN[12];\n  PrimeSum<ll>\
+    \ X(N);\n  X.calc_count();\n  assert(X[TEN[0]] == 0);\n  assert(X[TEN[1]] == 4);\n\
+    \  assert(X[TEN[2]] == 25);\n  assert(X[TEN[3]] == 168);\n  assert(X[TEN[4]] ==\
+    \ 1229);\n  assert(X[TEN[5]] == 9592);\n  assert(X[TEN[6]] == 78498);\n  assert(X[TEN[7]]\
+    \ == 664579);\n  assert(X[TEN[8]] == 5761455);\n  assert(X[TEN[9]] == 50847534);\n\
+    \  assert(X[TEN[10]] == 455052511);\n  assert(X[TEN[11]] == 4118054813);\n  assert(X[TEN[12]]\
+    \ == 37607912018);\n}\n\nvoid test_sum() {\n  vc<int> A(1000);\n  for (auto&&\
+    \ p: primetable(1000)) { A[p] += p; }\n  A = cumsum<int>(A, 0);\n\n  FOR(N, 1000)\
+    \ {\n    PrimeSum<int> X(N);\n    X.calc_sum();\n    FOR(K, 1, N + 10) { assert(X[N\
+    \ / K] == A[N / K]); }\n  }\n\n  vc<ll> TEN(13);\n  TEN[0] = 1;\n  FOR(i, 12)\
+    \ TEN[i + 1] = TEN[i] * 10;\n\n  using mint = modint998;\n  ll N = TEN[12];\n\
+    \  PrimeSum<mint> X(N);\n  X.calc_sum();\n\n  auto f = [&](string S) -> mint {\n\
+    \    mint x = 0;\n    for (auto&& s: S) { x = x * mint(10) + mint(s - '0'); }\n\
+    \    return x;\n  };\n\n  assert(X[TEN[0]] == f(\"0\"));\n  assert(X[TEN[1]] ==\
+    \ f(\"17\"));\n  assert(X[TEN[2]] == f(\"1060\"));\n  assert(X[TEN[3]] == f(\"\
     76127\"));\n  assert(X[TEN[4]] == f(\"5736396\"));\n  assert(X[TEN[5]] == f(\"\
     454396537\"));\n  assert(X[TEN[6]] == f(\"37550402023\"));\n  assert(X[TEN[7]]\
     \ == f(\"3203324994356\"));\n  assert(X[TEN[8]] == f(\"279209790387276\"));\n\
@@ -300,8 +301,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prime_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-12 05:55:32+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/prime_sum.test.cpp
 layout: document
