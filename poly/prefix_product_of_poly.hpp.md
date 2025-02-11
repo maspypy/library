@@ -60,6 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/502_2.test.cpp
+    title: test/3_yukicoder/502_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -492,6 +495,7 @@ data:
   verifiedWith:
   - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - test/1_mytest/factorial_998.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp

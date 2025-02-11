@@ -90,6 +90,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/502_2.test.cpp
+    title: test/3_yukicoder/502_2.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -127,6 +130,7 @@ data:
   - test/3_yukicoder/2243.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/502_2.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
   - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
