@@ -1,7 +1,7 @@
 #define PROBLEM "https://yukicoder.me/problems/no/502"
 #include "my_template.hpp"
 #include "other/io.hpp"
-#include "seq/kth_term_of_p_recursive.hpp"
+#include "seq/p_recursive.hpp"
 #include "mod/modint.hpp"
 
 using mint = modint107;
