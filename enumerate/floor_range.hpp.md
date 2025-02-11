@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2266.test.cpp
     title: test/3_yukicoder/2266.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/4954.test.cpp
     title: test/3_yukicoder/4954.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/floor_range.hpp\"\n// \u5546\u304C q \u306E\u533A\
@@ -58,16 +58,16 @@ data:
   isVerificationFile: false
   path: enumerate/floor_range.hpp
   requiredBy:
-  - nt/range_rational_count.hpp
   - nt/mertens.hpp
+  - nt/range_rational_count.hpp
   timestamp: '2024-09-14 09:20:23+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1276.test.cpp
-  - test/3_yukicoder/1260.test.cpp
-  - test/3_yukicoder/1573.test.cpp
-  - test/3_yukicoder/2266.test.cpp
   - test/3_yukicoder/4954.test.cpp
+  - test/3_yukicoder/1573.test.cpp
+  - test/3_yukicoder/1260.test.cpp
+  - test/3_yukicoder/2266.test.cpp
   - test/2_library_checker/number_theory/enumerate_quotients.test.cpp
   - test/1_mytest/floor_ceil_ranges.test.cpp
 documentation_of: enumerate/floor_range.hpp

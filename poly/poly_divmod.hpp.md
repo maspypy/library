@@ -32,7 +32,7 @@ data:
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':heavy_check_mark:'
@@ -50,7 +50,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/famous/bell_number_large.hpp
     title: seq/famous/bell_number_large.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/interpolate_linear_rec.hpp
     title: seq/interpolate_linear_rec.hpp
   _extendedVerifiedWith:
@@ -111,18 +111,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/poly_divmod.hpp\"\n\r\n#line 2 \"poly/count_terms.hpp\"\
@@ -425,38 +425,38 @@ data:
   isVerificationFile: false
   path: poly/poly_divmod.hpp
   requiredBy:
-  - seq/famous/bell_number_large.hpp
-  - seq/interpolate_linear_rec.hpp
-  - poly/poly_gcd.hpp
-  - poly/poly_mod_pow.hpp
   - poly/slice_rational_fps.hpp
-  - poly/coef_of_rational_fps.hpp
+  - poly/poly_gcd.hpp
   - poly/finding_root_of_polynomial.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/poly_mod_pow.hpp
+  - seq/interpolate_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1962.test.cpp
-  - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/1962.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/579.test.cpp
   - test/3_yukicoder/2305.test.cpp
   - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/2877.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2583.test.cpp
-  - test/2_library_checker/polynomial/polynomial_division.test.cpp
-  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/2_library_checker/polynomial/slice_rational.test.cpp
+  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/2587.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
+  - test/2_library_checker/polynomial/slice_rational.test.cpp
+  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/2_library_checker/polynomial/polynomial_division.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
   - test/1_mytest/bell.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
 redirect_from:

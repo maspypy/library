@@ -428,14 +428,14 @@ data:
   isVerificationFile: false
   path: poly/composition_f_ex.hpp
   requiredBy:
-  - poly/composition_f_ex_minus_1.hpp
   - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_ex_minus_1.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1875.test.cpp
-  - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
 documentation_of: poly/composition_f_ex.hpp
 layout: document
 redirect_from:

@@ -15,12 +15,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2292.test.cpp
     title: test/3_yukicoder/2292.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789_2.test.cpp
     title: test/3_yukicoder/789_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_lazy_segtree.hpp\"\n\n// Q*4logN \u7A0B\
@@ -244,13 +244,13 @@ data:
   path: ds/segtree/dynamic_lazy_segtree.hpp
   requiredBy: []
   timestamp: '2025-01-06 20:00:41+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/789_2.test.cpp
   - test/3_yukicoder/2292.test.cpp
   - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
   - test/1_mytest/dynamic_lazy_segtree.test.cpp
+  - test/1_mytest/dynamic_lazy_segtree_persistent.test.cpp
 documentation_of: ds/segtree/dynamic_lazy_segtree.hpp
 layout: document
 redirect_from:

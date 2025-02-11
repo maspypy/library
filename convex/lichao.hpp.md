@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1867.test.cpp
     title: test/3_yukicoder/1867.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/705_2.test.cpp
     title: test/3_yukicoder/705_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/lichao.hpp\"\n/*\nstruct F {\n  using value_type\
@@ -112,12 +112,12 @@ data:
   path: convex/lichao.hpp
   requiredBy: []
   timestamp: '2025-01-16 21:29:51+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/705_2.test.cpp
   - test/3_yukicoder/1867.test.cpp
-  - test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
   - test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
+  - test/2_library_checker/data_structure/line_add_get_min_lichao_2.test.cpp
 documentation_of: convex/lichao.hpp
 layout: document
 redirect_from:

@@ -97,26 +97,26 @@ data:
   path: setfunc/ranked_zeta.hpp
   requiredBy:
   - linalg/hafnian.hpp
-  - setfunc/subset_convolution.hpp
-  - setfunc/sps_inv.hpp
-  - setfunc/sps_composition.hpp
+  - graph/tutte_polynomial.hpp
+  - graph/chromatic.hpp
   - setfunc/sps_log.hpp
   - setfunc/sps_exp.hpp
+  - setfunc/subset_convolution.hpp
   - setfunc/power_projection_of_sps.hpp
-  - graph/chromatic.hpp
-  - graph/tutte_polynomial.hpp
+  - setfunc/sps_inv.hpp
+  - setfunc/sps_composition.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
-  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
-  - test/2_library_checker/set_power_series/composition_sps.test.cpp
-  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
-  - test/2_library_checker/set_power_series/powproj_sps.test.cpp
-  - test/2_library_checker/set_power_series/sps_exp.test.cpp
   - test/2_library_checker/graph/chromatic_number.test.cpp
   - test/2_library_checker/graph/chromatic_polynomial.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/set_power_series/composition_sps.test.cpp
+  - test/2_library_checker/set_power_series/powproj_sps.test.cpp
+  - test/2_library_checker/set_power_series/sps_exp.test.cpp
+  - test/2_library_checker/set_power_series/subset_convolution.test.cpp
+  - test/2_library_checker/set_power_series/power_projection_of_sps.test.cpp
 documentation_of: setfunc/ranked_zeta.hpp
 layout: document
 redirect_from:

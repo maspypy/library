@@ -161,9 +161,9 @@ data:
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2810.test.cpp
-  - test/3_yukicoder/1750.test.cpp
   - test/3_yukicoder/1810.test.cpp
+  - test/3_yukicoder/1750.test.cpp
+  - test/3_yukicoder/2810.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
 documentation_of: linalg/matrix_pow.hpp
 layout: document

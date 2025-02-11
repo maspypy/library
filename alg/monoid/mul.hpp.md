@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_mul.hpp
     title: alg/acted_monoid/sum_mul.hpp
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/899.test.cpp
     title: test/3_yukicoder/899.test.cpp
   _isVerificationFailed: true
@@ -97,31 +97,31 @@ data:
   isVerificationFile: false
   path: alg/monoid/mul.hpp
   requiredBy:
-  - seq/interpolate_poly_exp_sum.hpp
-  - seq/p_recursive.hpp
-  - ds/power_query.hpp
+  - nt/discrete_log.hpp
   - alg/acted_monoid/sum_mul.hpp
-  - poly/lagrange_interpolate_iota.hpp
-  - poly/sum_of_C_negative.hpp
+  - graph/count/count_labeled_bipartite.hpp
+  - mod/mod_log.hpp
+  - ds/power_query.hpp
   - poly/sparse_exp_of_div.hpp
+  - poly/sum_of_C_negative.hpp
+  - poly/lagrange_interpolate_iota.hpp
   - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
-  - nt/discrete_log.hpp
-  - mod/mod_log.hpp
-  - graph/count/count_labeled_bipartite.hpp
+  - seq/interpolate_poly_exp_sum.hpp
+  - seq/p_recursive.hpp
   timestamp: '2022-11-27 14:10:12+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/899.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/3_yukicoder/1339.test.cpp
   - test/3_yukicoder/2005.test.cpp
   - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/1339.test.cpp
-  - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
-  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/polynomial/shift_of_sampling_points_of_polynomial.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/1_mytest/factorial_998.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
   - test/1_mytest/powerquery.test.cpp

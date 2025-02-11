@@ -23,7 +23,7 @@ data:
   - icon: ':x:'
     path: graph/maximum_antichain.hpp
     title: graph/maximum_antichain.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/reachability.hpp
     title: graph/reachability.hpp
   - icon: ':heavy_check_mark:'
@@ -78,7 +78,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1813.test.cpp
     title: test/3_yukicoder/1813.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/0275.test.cpp
     title: test/4_aoj/0275.test.cpp
   - icon: ':x:'
@@ -230,34 +230,34 @@ data:
   path: graph/strongly_connected_component.hpp
   requiredBy:
   - flow/bipartite.hpp
-  - graph/maximum_antichain.hpp
-  - graph/reachability.hpp
-  - graph/find_odd_cycle.hpp
-  - graph/twosat.hpp
-  - graph/bipartite_edge_coloring.hpp
   - graph/incremental_scc.hpp
+  - graph/bipartite_edge_coloring.hpp
+  - graph/reachability.hpp
+  - graph/twosat.hpp
+  - graph/maximum_antichain.hpp
+  - graph/find_odd_cycle.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/1293.test.cpp
+  - test/3_yukicoder/1745.test.cpp
+  - test/3_yukicoder/1479.test.cpp
+  - test/3_yukicoder/1744.test.cpp
   - test/3_yukicoder/1813.test.cpp
   - test/3_yukicoder/1170.test.cpp
-  - test/3_yukicoder/1745.test.cpp
-  - test/3_yukicoder/1744.test.cpp
-  - test/3_yukicoder/1293.test.cpp
-  - test/3_yukicoder/1479.test.cpp
-  - test/4_aoj/0275.test.cpp
-  - test/4_aoj/2251_2.test.cpp
-  - test/4_aoj/1566.test.cpp
   - test/2_library_checker/other/twosat.test.cpp
   - test/2_library_checker/graph/incremental_scc.test.cpp
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
   - test/2_library_checker/graph/bipartitematching.test.cpp
   - test/2_library_checker/graph/scc.test.cpp
-  - test/1_mytest/incremental_scc.test.cpp
-  - test/1_mytest/matching_ve.test.cpp
-  - test/1_mytest/find_odd_cycle.test.cpp
   - test/1_mytest/tutte.test.cpp
+  - test/1_mytest/find_odd_cycle.test.cpp
+  - test/1_mytest/incremental_scc.test.cpp
   - test/1_mytest/scc_tournament.test.cpp
+  - test/1_mytest/matching_ve.test.cpp
+  - test/4_aoj/1566.test.cpp
+  - test/4_aoj/0275.test.cpp
+  - test/4_aoj/2251_2.test.cpp
 documentation_of: graph/strongly_connected_component.hpp
 layout: document
 redirect_from:

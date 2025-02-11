@@ -24,15 +24,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2296.test.cpp
     title: test/3_yukicoder/2296.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/772.test.cpp
     title: test/3_yukicoder/772.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/902.test.cpp
     title: test/3_yukicoder/902.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"graph/ds/link_cut_tree.hpp\"\n/*\n\u5404 heavy path \u3092\
@@ -238,16 +238,16 @@ data:
   requiredBy:
   - graph/ds/range_edge_connected_component_query.hpp
   timestamp: '2024-08-14 01:37:11+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/772.test.cpp
-  - test/3_yukicoder/2295.test.cpp
   - test/3_yukicoder/902.test.cpp
+  - test/3_yukicoder/2295.test.cpp
   - test/3_yukicoder/2296.test.cpp
+  - test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_path_sum.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_add_subtree_sum.test.cpp
-  - test/2_library_checker/tree/dynamic_tree_subtree_add_subtree_sum.test.cpp
 documentation_of: graph/ds/link_cut_tree.hpp
 layout: document
 redirect_from:

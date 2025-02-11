@@ -13,7 +13,7 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/coef_of_rational_fps.hpp
     title: poly/coef_of_rational_fps.hpp
   - icon: ':question:'
@@ -40,10 +40,10 @@ data:
   - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/poly_divmod.hpp
     title: poly/poly_divmod.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/find_linear_rec.hpp
     title: seq/find_linear_rec.hpp
   _extendedRequiredBy: []
@@ -66,18 +66,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2877.test.cpp
     title: test/3_yukicoder/2877.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/541.test.cpp
     title: test/3_yukicoder/541.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/578.test.cpp
     title: test/3_yukicoder/578.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/579.test.cpp
     title: test/3_yukicoder/579.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"seq/interpolate_linear_rec.hpp\"\n\r\n#line 2 \"seq/find_linear_rec.hpp\"\
@@ -469,17 +469,17 @@ data:
   path: seq/interpolate_linear_rec.hpp
   requiredBy: []
   timestamp: '2024-12-17 23:15:20+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1516.test.cpp
   - test/3_yukicoder/1500.test.cpp
   - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/541.test.cpp
-  - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/541.test.cpp
 documentation_of: seq/interpolate_linear_rec.hpp
 layout: document
 redirect_from:

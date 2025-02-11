@@ -825,16 +825,16 @@ data:
   isVerificationFile: false
   path: poly/compositional_inverse.hpp
   requiredBy:
-  - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
   timestamp: '2024-11-14 21:00:22+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
 documentation_of: poly/compositional_inverse.hpp
 layout: document
 redirect_from:
