@@ -192,10 +192,10 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1326.test.cpp
-  - test/4_aoj/GRL_3_A.test.cpp
   - test/2_library_checker/graph/biconnected_component.test.cpp
   - test/2_library_checker/graph/st_numbering.test.cpp
   - test/1_mytest/st_numbering.test.cpp
+  - test/4_aoj/GRL_3_A.test.cpp
 documentation_of: graph/block_cut.hpp
 layout: document
 redirect_from:

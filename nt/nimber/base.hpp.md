@@ -122,8 +122,8 @@ data:
   isVerificationFile: false
   path: nt/nimber/base.hpp
   requiredBy:
-  - nt/nimber/nimber_log.hpp
   - nt/nimber/solve_quadratic.hpp
+  - nt/nimber/nimber_log.hpp
   timestamp: '2024-10-16 04:41:29+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

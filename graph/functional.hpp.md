@@ -362,8 +362,8 @@ data:
   timestamp: '2025-01-20 02:22:17+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2122.test.cpp
+  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/1242.test.cpp
 documentation_of: graph/functional.hpp

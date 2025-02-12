@@ -54,13 +54,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
     title: test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/composition_dmint.test.cpp
     title: test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - icon: ':x:'
@@ -330,25 +330,25 @@ data:
   verifiedWith:
   - test/3_yukicoder/1667.test.cpp
   - test/3_yukicoder/1339.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
-  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - test/2_library_checker/polynomial/exp_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_dmint.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
+  - test/2_library_checker/convolution/convolution_mod_setntt.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/1_mytest/O1_inv.test.cpp
-  - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
+  - test/1_mytest/geometric_sequence_sum.test.cpp
 documentation_of: mod/dynamic_modint.hpp
 layout: document
 redirect_from:

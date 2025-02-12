@@ -326,18 +326,18 @@ data:
   isVerificationFile: false
   path: graph/tree_dp/rerooting_dp.hpp
   requiredBy:
-  - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_hash.hpp
+  - graph/tree_dp/subtree_diameter.hpp
   - graph/tree_dp/subtree_depth_sum.hpp
   timestamp: '2025-01-04 13:02:14+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1976.test.cpp
-  - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/1295.test.cpp
+  - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/1718.test.cpp
-  - test/3_yukicoder/2360.test.cpp
   - test/3_yukicoder/1418.test.cpp
+  - test/3_yukicoder/2360.test.cpp
+  - test/3_yukicoder/1976.test.cpp
   - test/2_library_checker/graph/classify_tree.test.cpp
   - test/2_library_checker/tree/rerooting_dp.test.cpp
   - test/1_mytest/QOJ5445.test.cpp

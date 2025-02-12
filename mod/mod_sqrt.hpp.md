@@ -146,8 +146,8 @@ data:
   isVerificationFile: false
   path: mod/mod_sqrt.hpp
   requiredBy:
-  - poly/fps_sqrt.hpp
   - graph/count/count_labeled_bipartite.hpp
+  - poly/fps_sqrt.hpp
   timestamp: '2025-01-20 22:41:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

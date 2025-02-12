@@ -41,14 +41,14 @@ data:
   isVerificationFile: false
   path: alg/monoid/minmincnt.hpp
   requiredBy:
-  - ds/rectangle_union.hpp
   - alg/acted_monoid/minmincnt_add.hpp
   - graph/count/count_connected_intervals.hpp
+  - ds/rectangle_union.hpp
   timestamp: '2023-04-02 02:09:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/DSL_4_A.test.cpp
   - test/2_library_checker/data_structure/area_of_union_of_rectangles.test.cpp
+  - test/4_aoj/DSL_4_A.test.cpp
 documentation_of: alg/monoid/minmincnt.hpp
 layout: document
 redirect_from:

@@ -86,8 +86,8 @@ data:
   isVerificationFile: false
   path: setfunc/sps_composition.hpp
   requiredBy:
-  - setfunc/sps_log.hpp
   - graph/tutte_polynomial.hpp
+  - setfunc/sps_log.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:

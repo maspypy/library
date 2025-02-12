@@ -555,8 +555,8 @@ data:
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/composition_log_1_minus_x.test.cpp
 documentation_of: poly/partial_frac_decomposition_1.hpp
 layout: document
 redirect_from:
