@@ -11,7 +11,7 @@ using mint = modint998;
 void test(int K) {
   FOR(r, 1000) {
     if (r == 1) continue;
-    auto [c, f] = geometic_sequence_sum_formula<mint>(r, K);
+    auto [c, f] = geometric_sequence_sum_formula<mint>(r, K);
     mint god = 0;
     FOR(N, 1000) {
       mint ans = 0;
