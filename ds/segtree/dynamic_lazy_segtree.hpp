@@ -168,8 +168,8 @@ private:
     }
     // push
     ll m = (l + r) / 2;
-    c->l = (c->l ? copy_node(c->l) : new_node());
-    c->r = (c->r ? copy_node(c->r) : new_node());
+    c->l = (c->l ? copy_node(c->l) : new_node(m - l));
+    c->r = (c->r ? copy_node(c->r) : new_node(r - m));
     c->l->x = AM::act(c->l->x, c->lazy, m - l);
     c->l->lazy = MA::op(c->l->lazy, c->lazy);
     c->r->x = AM::act(c->r->x, c->lazy, r - m);

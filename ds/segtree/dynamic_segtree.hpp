@@ -126,11 +126,11 @@ private:
     }
     ll m = (l + r) / 2;
     if (l <= i && i < m) {
-      c->l = (c->l ? copy_node(c->l) : new_node());
+      c->l = (c->l ? copy_node(c->l) : new_node(m - l));
       set_rec(c->l, l, m, i, x);
     }
     if (m <= i && i < r) {
-      c->r = (c->r ? copy_node(c->r) : new_node());
+      c->r = (c->r ? copy_node(c->r) : new_node(r - m));
       set_rec(c->r, m, r, i, x);
     }
     X xl = (c->l ? c->l->x : default_prod(l, m));
@@ -148,11 +148,11 @@ private:
     }
     ll m = (l + r) / 2;
     if (l <= i && i < m) {
-      c->l = (c->l ? copy_node(c->l) : new_node());
+      c->l = (c->l ? copy_node(c->l) : new_node(m - l));
       multiply_rec(c->l, l, m, i, x);
     }
     if (m <= i && i < r) {
-      c->r = (c->r ? copy_node(c->r) : new_node());
+      c->r = (c->r ? copy_node(c->r) : new_node(r - m));
       multiply_rec(c->r, m, r, i, x);
     }
     X xl = (c->l ? c->l->x : default_prod(l, m));
