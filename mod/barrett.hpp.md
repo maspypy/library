@@ -88,6 +88,9 @@ data:
     path: test/1_mytest/four_square.test.cpp
     title: test/1_mytest/four_square.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/geometric_sequence_sum.test.cpp
+    title: test/1_mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/three_square.test.cpp
     title: test/1_mytest/three_square.test.cpp
   - icon: ':heavy_check_mark:'
@@ -358,6 +361,7 @@ data:
   - test/1_mytest/O1_inv.test.cpp
   - test/1_mytest/four_square.test.cpp
   - test/1_mytest/three_triangular.test.cpp
+  - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/three_square.test.cpp
   - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/1_mytest/count_bipartite.test.cpp

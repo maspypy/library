@@ -37,6 +37,9 @@ data:
     path: test/1_mytest/O1_inv.test.cpp
     title: test/1_mytest/O1_inv.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/geometric_sequence_sum.test.cpp
+    title: test/1_mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
   - icon: ':heavy_check_mark:'
@@ -344,6 +347,7 @@ data:
   - test/2_library_checker/polynomial/exp_of_fps_dmint.test.cpp
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/1_mytest/O1_inv.test.cpp
+  - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
 documentation_of: mod/dynamic_modint.hpp
 layout: document
