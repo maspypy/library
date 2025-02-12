@@ -7,6 +7,7 @@
 
 void test() {
   ll N = RNG(0, 7);
+
   vc<tuple<ll, ll, ll>> LINE;
   FOR(N) {
     while (1) {
@@ -19,12 +20,12 @@ void test() {
     }
   }
 
+  ll K = 200;
   ll god = 0;
-  FOR(x, -10, 11) {
+  FOR(x, -2 * K, 2 * K + 1) {
     ll mi = -infty<ll>, ma = infty<ll>;
     for (auto& [a, b, c]: LINE) {
       if (b == 0) {
-        // ax>=c
         if (a * x <= c) continue;
         mi = infty<ll> + 1;
         break;
@@ -34,8 +35,8 @@ void test() {
     }
 
     if (mi > ma) continue;
-    if (mi == -infty<ll> || ma == infty<ll>) {
-      god = -1;
+    if (abs(x) >= K || mi == -infty<ll> || ma == infty<ll>) {
+      god = 0;
       break;
     }
     god += ma - mi + 1;
@@ -52,7 +53,7 @@ void solve() {
 }
 
 signed main() {
-  FOR(1000000) test();
+  FOR(100000) test();
 
   solve();
 
