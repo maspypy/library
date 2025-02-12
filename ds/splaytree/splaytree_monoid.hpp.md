@@ -221,9 +221,9 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1441.test.cpp
-  - test/1_mytest/splay_monoid.test.cpp
-  - test/1_mytest/splay.test.cpp
   - test/4_aoj/1508.test.cpp
+  - test/1_mytest/splay.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
 documentation_of: ds/splaytree/splaytree_monoid.hpp
 layout: document
 redirect_from:

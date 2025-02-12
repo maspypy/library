@@ -70,9 +70,9 @@ data:
   isVerificationFile: false
   path: linalg/solve_linear.hpp
   requiredBy:
+  - seq/p_recursive.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
-  - seq/p_recursive.hpp
   timestamp: '2023-11-16 18:26:59+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

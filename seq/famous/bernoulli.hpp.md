@@ -47,7 +47,7 @@ data:
   - icon: ':x:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_sum_of_polynomial.hpp
     title: poly/prefix_sum_of_polynomial.hpp
   - icon: ':question:'
@@ -72,7 +72,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1357.test.cpp
     title: test/3_yukicoder/1357.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2580.test.cpp
     title: test/3_yukicoder/2580.test.cpp
   _isVerificationFailed: true
@@ -432,19 +432,19 @@ data:
   isVerificationFile: false
   path: seq/famous/bernoulli.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial_pq.hpp
-  - convex/lattice_point_sum_polynomial.hpp
-  - poly/prefix_sum_of_polynomial.hpp
-  - seq/famous/faulhaber.hpp
   - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/faulhaber.hpp
+  - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - poly/prefix_sum_of_polynomial.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1357.test.cpp
   - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/1357.test.cpp
   - test/2_library_checker/number_theory/bernoulli.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/faulhaber.test.cpp
 documentation_of: seq/famous/bernoulli.hpp
 layout: document

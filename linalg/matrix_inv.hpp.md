@@ -63,16 +63,16 @@ data:
   isVerificationFile: false
   path: linalg/matrix_inv.hpp
   requiredBy:
-  - linalg/frobenius.hpp
-  - linalg/matrix_lowrank_update.hpp
-  - linalg/adjugate_matrix.hpp
   - linalg/det_A_plus_xB.hpp
+  - linalg/adjugate_matrix.hpp
+  - linalg/matrix_lowrank_update.hpp
+  - linalg/frobenius.hpp
   timestamp: '2024-11-01 21:56:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1774.test.cpp
   - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/1303.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp

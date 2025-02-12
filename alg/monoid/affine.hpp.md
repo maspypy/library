@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/cntsum_affine.hpp
     title: alg/acted_monoid/cntsum_affine.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/sum_affine.hpp
     title: alg/acted_monoid/sum_affine.hpp
   - icon: ':warning:'
@@ -75,21 +75,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1891.test.cpp
     title: test/3_yukicoder/1891.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2342.test.cpp
     title: test/3_yukicoder/2342.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2342_2.test.cpp
     title: test/3_yukicoder/2342_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/255.test.cpp
     title: test/3_yukicoder/255.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2595.test.cpp
     title: test/3_yukicoder/2595.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\
@@ -114,36 +114,36 @@ data:
   isVerificationFile: false
   path: alg/monoid/affine.hpp
   requiredBy:
-  - alg/acted_monoid/sum_affine.hpp
-  - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_set/affine.hpp
+  - alg/acted_monoid/cntsum_affine.hpp
+  - alg/acted_monoid/sum_affine.hpp
   timestamp: '2023-07-25 22:13:04+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1891.test.cpp
-  - test/3_yukicoder/1502.test.cpp
-  - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/2342.test.cpp
-  - test/3_yukicoder/2342_2.test.cpp
+  - test/3_yukicoder/255.test.cpp
   - test/3_yukicoder/2595.test.cpp
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
-  - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
-  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
-  - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
-  - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
-  - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
-  - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+  - test/3_yukicoder/1502.test.cpp
+  - test/3_yukicoder/2342_2.test.cpp
+  - test/3_yukicoder/1891.test.cpp
   - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_rbst.test.cpp
+  - test/2_library_checker/data_structure/deque_operate_all_compsite.test.cpp
+  - test/2_library_checker/data_structure/queue_operate_all_composite.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree_1.test.cpp
+  - test/2_library_checker/data_structure/persistent_range_affine_range_sum.test.cpp
+  - test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_monoid.test.cpp
+  - test/2_library_checker/data_structure/sort_segtree.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
+  - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
+  - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
-  - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/splay.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/rbst_monoid_2.test.cpp
   - test/1_mytest/prefix_max_segtree.test.cpp
 documentation_of: alg/monoid/affine.hpp
 layout: document

@@ -30,7 +30,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
   _isVerificationFailed: true
@@ -135,16 +135,16 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial_pq.hpp
   - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
   timestamp: '2025-02-12 14:27:42+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - test/1_mytest/floor_sum_of_polynomial.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/floor_sum_of_polynomial.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial.hpp
 layout: document
 redirect_from:
