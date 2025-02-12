@@ -2,7 +2,8 @@
 #include "mod/floor_sum_of_linear.hpp"
 
 // ax+by<=c という半平面たち
-// 有界でないときは -1 を返す
+// 有界でないときは 0 を返す
+// （格子点が 0 個ということはあるので答えが inf とは限らない）
 // 入力が pow(10,18) 以下とかであればオーバーフローしないつもり
 i128 lattice_point_count(vc<tuple<ll, ll, ll>> LINE) {
   ll L = -infty<ll>, R = infty<ll>;
@@ -18,7 +19,7 @@ i128 lattice_point_count(vc<tuple<ll, ll, ll>> LINE) {
     }
   }
   if (L >= R) return 0;
-  if (LINE1.empty() || LINE2.empty()) return -1;
+  if (LINE1.empty() || LINE2.empty()) return 0;
 
   auto LOWER = line_max_function_rational(LINE1, L, R);
   auto UPPER = line_min_function_rational(LINE2, L, R);
@@ -45,6 +46,6 @@ i128 lattice_point_count(vc<tuple<ll, ll, ll>> LINE) {
   };
 
   merge_58(LOWER, UPPER, wk);
-  if (bad) return -1;
+  if (bad) return 0;
   return ANS;
 }
