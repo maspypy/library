@@ -5,7 +5,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/slope_trick/slope_super.hpp
     title: convex/slope_trick/slope_super.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree_acted_monoid.hpp
     title: ds/splaytree/splaytree_acted_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -48,7 +48,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/splay_monoid.test.cpp
     title: test/1_mytest/splay_monoid.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
     title: test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
   - icon: ':heavy_check_mark:'
@@ -60,9 +60,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/1508.test.cpp
     title: test/4_aoj/1508.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/splaytree/splaytree.hpp\"\n\n/*\nupdate \u3067\u3061\u3083\
@@ -350,28 +350,28 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree.hpp
   requiredBy:
-  - convex/slope_trick/slope_super.hpp
-  - geo/polygon_triangulation.hpp
-  - ds/splaytree/splaytree_acted_set.hpp
+  - seq/cycle_decomposition.hpp
   - ds/splaytree/splaytree_commutative_monoid.hpp
   - ds/splaytree/splaytree_basic.hpp
   - ds/splaytree/splaytree_acted_monoid.hpp
+  - ds/splaytree/splaytree_acted_set.hpp
   - ds/splaytree/splaytree_monoid.hpp
-  - seq/cycle_decomposition.hpp
+  - convex/slope_trick/slope_super.hpp
+  - geo/polygon_triangulation.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1441.test.cpp
-  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
-  - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/splay_am.test.cpp
-  - test/1_mytest/splay_monoid.test.cpp
-  - test/1_mytest/slope_super.test.cpp
-  - test/1_mytest/splay.test.cpp
-  - test/1_mytest/splay_cm.test.cpp
-  - test/1_mytest/cf702_F_splay.test.cpp
   - test/4_aoj/1508.test.cpp
+  - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
+  - test/2_library_checker/data_structure/dynamic_sequence_range_affine_range_sum_splay.test.cpp
+  - test/1_mytest/splay.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
+  - test/1_mytest/splay_cm.test.cpp
+  - test/1_mytest/splay_am.test.cpp
+  - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/splay_monoid.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: ds/splaytree/splaytree.hpp
 layout: document
 redirect_from:

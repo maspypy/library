@@ -263,8 +263,8 @@ data:
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
   - test/2_library_checker/graph/counting_eulerian_sparse.test.cpp
+  - test/2_library_checker/graph/counting_eulerian_dense.test.cpp
 documentation_of: graph/count/BEST.hpp
 layout: document
 redirect_from:

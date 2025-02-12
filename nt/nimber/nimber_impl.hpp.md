@@ -127,9 +127,9 @@ data:
   isVerificationFile: false
   path: nt/nimber/nimber_impl.hpp
   requiredBy:
-  - nt/nimber/solve_quadratic.hpp
   - nt/nimber/nimber_log.hpp
   - nt/nimber/base.hpp
+  - nt/nimber/solve_quadratic.hpp
   timestamp: '2024-10-01 00:24:30+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

@@ -81,8 +81,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
-  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - test/2_library_checker/set_power_series/sps_exp.test.cpp
+  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 documentation_of: setfunc/sps_exp.hpp
 layout: document
 redirect_from:

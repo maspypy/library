@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy:
@@ -198,8 +198,8 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_basic.hpp
   requiredBy:
-  - geo/polygon_triangulation.hpp
   - seq/cycle_decomposition.hpp
+  - geo/polygon_triangulation.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

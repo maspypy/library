@@ -52,8 +52,8 @@ data:
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2230.test.cpp
-  - test/2_library_checker/other/longest_increasing_subsequence.test.cpp
   - test/4_aoj/DPL_1_D.test.cpp
+  - test/2_library_checker/other/longest_increasing_subsequence.test.cpp
 documentation_of: seq/longest_increasing_subsequence.hpp
 layout: document
 redirect_from:

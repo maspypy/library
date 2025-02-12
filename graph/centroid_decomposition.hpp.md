@@ -341,14 +341,14 @@ data:
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/1038.test.cpp
-  - test/3_yukicoder/1796_1.test.cpp
   - test/3_yukicoder/2892.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
-  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
+  - test/3_yukicoder/1796_1.test.cpp
+  - test/3_yukicoder/1038.test.cpp
   - test/2_library_checker/tree/vertex_add_range_contour_sum_on_tree.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_0.test.cpp
   - test/2_library_checker/tree/vertex_get_range_contour_add_on_tree.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance_2.test.cpp
+  - test/2_library_checker/tree/frequency_table_of_tree_distance.test.cpp
 documentation_of: graph/centroid_decomposition.hpp
 layout: document
 redirect_from:

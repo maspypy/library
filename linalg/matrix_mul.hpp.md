@@ -45,10 +45,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_poly.test.cpp
     title: test/1_mytest/min_poly.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
     title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
     title: test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
   - icon: ':x:'
@@ -236,36 +236,36 @@ data:
   isVerificationFile: false
   path: linalg/matrix_mul.hpp
   requiredBy:
+  - seq/p_recursive.hpp
+  - linalg/det_A_plus_xB.hpp
+  - linalg/adjugate_matrix.hpp
   - linalg/matrix_pow.hpp
   - linalg/frobenius.hpp
-  - linalg/adjugate_matrix.hpp
-  - linalg/det_A_plus_xB.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
   - poly/prefix_product_of_poly.hpp
   - random/random_matrix.hpp
-  - seq/p_recursive.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
-  - test/3_yukicoder/1810.test.cpp
+  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1750.test.cpp
+  - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/2166.test.cpp
   - test/3_yukicoder/1907.test.cpp
   - test/3_yukicoder/502_2.test.cpp
-  - test/3_yukicoder/2810.test.cpp
-  - test/3_yukicoder/1303.test.cpp
-  - test/3_yukicoder/426.test.cpp
-  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
-  - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
-  - test/2_library_checker/linear_algebra/matrix_product.test.cpp
+  - test/3_yukicoder/1810.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
+  - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
+  - test/2_library_checker/linear_algebra/matrix_product.test.cpp
+  - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix.test.cpp
+  - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/1_mytest/min_poly.test.cpp
-  - test/1_mytest/blackbox_solve_linear.test.cpp
   - test/1_mytest/factorial_998.test.cpp
+  - test/1_mytest/blackbox_solve_linear.test.cpp
 documentation_of: linalg/matrix_mul.hpp
 layout: document
 redirect_from:

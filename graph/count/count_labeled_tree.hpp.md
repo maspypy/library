@@ -36,8 +36,8 @@ data:
   timestamp: '2024-08-08 19:22:51+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/count_labeled_forest.test.cpp
   - test/1_mytest/graph_count.test.cpp
+  - test/1_mytest/count_labeled_forest.test.cpp
 documentation_of: graph/count/count_labeled_tree.hpp
 layout: document
 redirect_from:

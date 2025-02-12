@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
     title: test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
   - icon: ':x:'
@@ -70,11 +70,11 @@ data:
   timestamp: '2024-09-10 11:48:49+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/3_yukicoder/2294.test.cpp
   - test/3_yukicoder/1502.test.cpp
+  - test/3_yukicoder/2294.test.cpp
+  - test/4_aoj/DSL_1_B.test.cpp
   - test/2_library_checker/unionfind_with_potential.test.cpp
   - test/2_library_checker/data_structure/unionfind_with_potential_group.test.cpp
-  - test/4_aoj/DSL_1_B.test.cpp
 documentation_of: ds/unionfind/potentialized_unionfind.hpp
 layout: document
 redirect_from:
