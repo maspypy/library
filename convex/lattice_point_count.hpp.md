@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':question:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
   - icon: ':question:'
@@ -15,12 +15,12 @@ data:
     title: mod/floor_sum_of_linear.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"convex/line_min_function.hpp\"\n\n#line 2 \"geo/convex_hull.hpp\"\
@@ -190,15 +190,17 @@ data:
     \ += O(N) * q;\n    }\n    tie(N, b) = divmod(a * N + b, mod);\n    tie(a, mod)\
     \ = mp(mod, a);\n  }\n  return res;\n}\n#line 3 \"convex/lattice_point_count.hpp\"\
     \n\n// ax+by<=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\u754C\
-    \u3067\u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// \u5165\u529B\u304C\
-    \ pow(10,18) \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\u30D0\
-    \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3064\u3082\u308A\ni128 lattice_point_count(vc<tuple<ll,\
+    \u3067\u306A\u3044\u3068\u304D\u306F 0 \u3092\u8FD4\u3059\n// \uFF08\u683C\u5B50\
+    \u70B9\u304C 0 \u500B\u3068\u3044\u3046\u3053\u3068\u306F\u3042\u308B\u306E\u3067\
+    \u7B54\u3048\u304C inf \u3068\u306F\u9650\u3089\u306A\u3044\uFF09\n// \u5165\u529B\
+    \u304C pow(10,18) \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\
+    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3064\u3082\u308A\ni128 lattice_point_count(vc<tuple<ll,\
     \ ll, ll>> LINE) {\n  ll L = -infty<ll>, R = infty<ll>;\n  vc<tuple<ll, ll, ll>>\
     \ LINE1, LINE2;\n  for (auto& [a, b, c]: LINE) {\n    if (b == 0) {\n      assert(a\
     \ != 0);\n      if (a > 0) { chmin(R, floor<ll>(c, a) + 1); }\n      elif (a <\
     \ 0) { chmax(L, ceil<ll>(-c, -a)); }\n    } else {\n      if (b > 0) { LINE2.eb(-a,\
     \ c, b); }\n      if (b < 0) { LINE1.eb(a, -c, -b); }\n    }\n  }\n  if (L >=\
-    \ R) return 0;\n  if (LINE1.empty() || LINE2.empty()) return -1;\n\n  auto LOWER\
+    \ R) return 0;\n  if (LINE1.empty() || LINE2.empty()) return 0;\n\n  auto LOWER\
     \ = line_max_function_rational(LINE1, L, R);\n  auto UPPER = line_min_function_rational(LINE2,\
     \ L, R);\n\n  i128 ANS = 0;\n\n  bool bad = 0;\n  auto wk = [&](ll L, ll R, ll\
     \ a1, ll b1, ll c1, ll a2, ll b2, ll c2) -> void {\n    // \u4EA4\u70B9 t/s\n\
@@ -208,19 +210,21 @@ data:
     \ + 1); }\n    if (L >= R) return;\n    if (L == -infty<ll> || R == infty<ll>)\
     \ {\n      bad = 1;\n      return;\n    }\n    ANS += floor_sum_of_linear<i128,\
     \ i128>(L, R, a2, b2, c2);\n    ANS -= floor_sum_of_linear<i128, i128>(L, R, a1,\
-    \ b1 - 1, c1);\n  };\n\n  merge_58(LOWER, UPPER, wk);\n  if (bad) return -1;\n\
+    \ b1 - 1, c1);\n  };\n\n  merge_58(LOWER, UPPER, wk);\n  if (bad) return 0;\n\
     \  return ANS;\n}\n"
   code: "#include \"convex/line_min_function.hpp\"\n#include \"mod/floor_sum_of_linear.hpp\"\
     \n\n// ax+by<=c \u3068\u3044\u3046\u534A\u5E73\u9762\u305F\u3061\n// \u6709\u754C\
-    \u3067\u306A\u3044\u3068\u304D\u306F -1 \u3092\u8FD4\u3059\n// \u5165\u529B\u304C\
-    \ pow(10,18) \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\u30D0\
-    \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3064\u3082\u308A\ni128 lattice_point_count(vc<tuple<ll,\
+    \u3067\u306A\u3044\u3068\u304D\u306F 0 \u3092\u8FD4\u3059\n// \uFF08\u683C\u5B50\
+    \u70B9\u304C 0 \u500B\u3068\u3044\u3046\u3053\u3068\u306F\u3042\u308B\u306E\u3067\
+    \u7B54\u3048\u304C inf \u3068\u306F\u9650\u3089\u306A\u3044\uFF09\n// \u5165\u529B\
+    \u304C pow(10,18) \u4EE5\u4E0B\u3068\u304B\u3067\u3042\u308C\u3070\u30AA\u30FC\
+    \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u3064\u3082\u308A\ni128 lattice_point_count(vc<tuple<ll,\
     \ ll, ll>> LINE) {\n  ll L = -infty<ll>, R = infty<ll>;\n  vc<tuple<ll, ll, ll>>\
     \ LINE1, LINE2;\n  for (auto& [a, b, c]: LINE) {\n    if (b == 0) {\n      assert(a\
     \ != 0);\n      if (a > 0) { chmin(R, floor<ll>(c, a) + 1); }\n      elif (a <\
     \ 0) { chmax(L, ceil<ll>(-c, -a)); }\n    } else {\n      if (b > 0) { LINE2.eb(-a,\
     \ c, b); }\n      if (b < 0) { LINE1.eb(a, -c, -b); }\n    }\n  }\n  if (L >=\
-    \ R) return 0;\n  if (LINE1.empty() || LINE2.empty()) return -1;\n\n  auto LOWER\
+    \ R) return 0;\n  if (LINE1.empty() || LINE2.empty()) return 0;\n\n  auto LOWER\
     \ = line_max_function_rational(LINE1, L, R);\n  auto UPPER = line_min_function_rational(LINE2,\
     \ L, R);\n\n  i128 ANS = 0;\n\n  bool bad = 0;\n  auto wk = [&](ll L, ll R, ll\
     \ a1, ll b1, ll c1, ll a2, ll b2, ll c2) -> void {\n    // \u4EA4\u70B9 t/s\n\
@@ -230,7 +234,7 @@ data:
     \ + 1); }\n    if (L >= R) return;\n    if (L == -infty<ll> || R == infty<ll>)\
     \ {\n      bad = 1;\n      return;\n    }\n    ANS += floor_sum_of_linear<i128,\
     \ i128>(L, R, a2, b2, c2);\n    ANS -= floor_sum_of_linear<i128, i128>(L, R, a1,\
-    \ b1 - 1, c1);\n  };\n\n  merge_58(LOWER, UPPER, wk);\n  if (bad) return -1;\n\
+    \ b1 - 1, c1);\n  };\n\n  merge_58(LOWER, UPPER, wk);\n  if (bad) return 0;\n\
     \  return ANS;\n}\n"
   dependsOn:
   - convex/line_min_function.hpp
@@ -240,8 +244,8 @@ data:
   isVerificationFile: false
   path: convex/lattice_point_count.hpp
   requiredBy: []
-  timestamp: '2025-02-12 14:27:42+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-02-12 17:59:58+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
 documentation_of: convex/lattice_point_count.hpp
