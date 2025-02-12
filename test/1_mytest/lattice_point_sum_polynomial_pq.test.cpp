@@ -3,11 +3,16 @@
 #include "my_template.hpp"
 
 #include "random/base.hpp"
-#include "convex/lattice_point_count.hpp"
+#include "convex/lattice_point_sum_polynomial_pq.hpp"
+#include "mod/modint.hpp"
 
-void test() {
+using mint = modint998;
+
+template <int K1, int K2>
+void test(mint p, mint q) {
   ll N = RNG(0, 7);
   vc<tuple<ll, ll, ll>> LINE;
+
   FOR(N) {
     while (1) {
       ll a = RNG(-3, 4);
@@ -19,7 +24,11 @@ void test() {
     }
   }
 
-  ll god = 0;
+  array<array<mint, K2 + 1>, K1 + 1> god{};
+  auto add_point = [&](ll x, ll y) -> void {
+    FOR(i, K1 + 1) FOR(j, K2 + 1) { god[i][j] += p.pow(x) * q.pow(y) * mint(x).pow(i) * mint(y).pow(j); }
+  };
+
   FOR(x, -10, 11) {
     ll mi = -infty<ll>, ma = infty<ll>;
     for (auto& [a, b, c]: LINE) {
@@ -35,13 +44,13 @@ void test() {
 
     if (mi > ma) continue;
     if (mi == -infty<ll> || ma == infty<ll>) {
-      god = -1;
+      FOR(i, K1 + 1) FOR(j, K2 + 1) god[i][j] = 0;
       break;
     }
-    god += ma - mi + 1;
+    FOR(y, mi, ma + 1) add_point(x, y);
   }
 
-  ll ANS = lattice_point_count(LINE);
+  auto ANS = lattice_point_sum_polynomial_pq<mint, K1, K2>(p, q, LINE);
   assert(god == ANS);
 }
 
@@ -52,7 +61,20 @@ void solve() {
 }
 
 signed main() {
-  FOR(1000000) test();
+  FOR(1000) {
+    FOR(p, 1, 4) FOR(q, 1, 4) {
+      test<0, 0>(p, q);
+      test<0, 1>(p, q);
+      test<0, 2>(p, q);
+      test<1, 0>(p, q);
+      test<1, 1>(p, q);
+      test<1, 2>(p, q);
+      test<2, 0>(p, q);
+      test<2, 1>(p, q);
+      test<2, 2>(p, q);
+      test<3, 3>(p, q);
+    }
+  }
 
   solve();
 
