@@ -11,7 +11,7 @@ void test() {
     FOR(r, 50) {
       FOR(n, 50) {
         mint::set_mod(p);
-        auto A = geometic_sequence_sum_K<mint, K>(r, n);
+        auto A = geometric_sequence_sum_K<mint, K>(r, n);
         FOR(k, K + 1) {
           mint ans = 0;
           mint pow = 1;
@@ -32,7 +32,7 @@ void test_sum() {
         mint ans = 0;
         mint pow = 1;
         FOR(i, n) { ans += pow, pow *= mint(r); }
-        mint me = geometic_sequence_sum<mint>(r, n);
+        mint me = geometric_sequence_sum<mint>(r, n);
         assert(ans == me);
       }
     }
