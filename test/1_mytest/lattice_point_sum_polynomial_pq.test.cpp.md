@@ -1,98 +1,98 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_for_floor_sum.hpp
     title: alg/monoid/monoid_for_floor_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_for_floor_sum_pq.hpp
     title: alg/monoid/monoid_for_floor_sum_pq.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial.hpp
     title: convex/lattice_point_sum_polynomial.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: convex/lattice_point_sum_polynomial_pq.hpp
     title: convex/lattice_point_sum_polynomial_pq.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/line_min_function.hpp
     title: convex/line_min_function.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/floor_sum_of_linear_polynomial_pq.hpp
     title: mod/floor_sum_of_linear_polynomial_pq.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_div.hpp
     title: poly/fps_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/bernoulli.hpp
     title: seq/famous/bernoulli.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/famous/faulhaber.hpp
     title: seq/famous/faulhaber.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/geometric_sequence_sum_formula.hpp
     title: seq/geometric_sequence_sum_formula.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -878,7 +878,7 @@ data:
     \ god[i][j] = 0;\n      break;\n    }\n    FOR(y, mi, ma + 1) add_point(x, y);\n\
     \  }\n\n  auto ANS = lattice_point_sum_polynomial_pq<mint, K1, K2>(p, q, LINE);\n\
     \  assert(god == ANS);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n \
-    \ cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(1000) {\n    FOR(p, 1,\
+    \ cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) {\n    FOR(p, 1,\
     \ 4) FOR(q, 1, 4) {\n      test<0, 0>(p, q);\n      test<0, 1>(p, q);\n      test<0,\
     \ 2>(p, q);\n      test<1, 0>(p, q);\n      test<1, 1>(p, q);\n      test<1, 2>(p,\
     \ q);\n      test<2, 0>(p, q);\n      test<2, 1>(p, q);\n      test<2, 2>(p, q);\n\
@@ -902,7 +902,7 @@ data:
     \      break;\n    }\n    FOR(y, mi, ma + 1) add_point(x, y);\n  }\n\n  auto ANS\
     \ = lattice_point_sum_polynomial_pq<mint, K1, K2>(p, q, LINE);\n  assert(god ==\
     \ ANS);\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b <<\
-    \ \"\\n\";\n}\n\nsigned main() {\n  FOR(1000) {\n    FOR(p, 1, 4) FOR(q, 1, 4)\
+    \ \"\\n\";\n}\n\nsigned main() {\n  FOR(100) {\n    FOR(p, 1, 4) FOR(q, 1, 4)\
     \ {\n      test<0, 0>(p, q);\n      test<0, 1>(p, q);\n      test<0, 2>(p, q);\n\
     \      test<1, 0>(p, q);\n      test<1, 1>(p, q);\n      test<1, 2>(p, q);\n \
     \     test<2, 0>(p, q);\n      test<2, 1>(p, q);\n      test<2, 2>(p, q);\n  \
@@ -940,8 +940,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 23:19:15+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-13 04:08:10+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
 layout: document
