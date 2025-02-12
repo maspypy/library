@@ -2,9 +2,9 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
-    path: convex/count_lattice_point_in_convex_polygon.hpp
-    title: convex/count_lattice_point_in_convex_polygon.hpp
+  - icon: ':x:'
+    path: convex/lattice_point_count.hpp
+    title: convex/lattice_point_count.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_sum_of_linear.hpp
     title: mod/mod_sum_of_linear.hpp
@@ -15,7 +15,7 @@ data:
     path: nt/range_rational_count.hpp
     title: nt/range_rational_count.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
     title: test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - icon: ':heavy_check_mark:'
@@ -75,7 +75,7 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear.hpp
   requiredBy:
-  - convex/count_lattice_point_in_convex_polygon.hpp
+  - convex/lattice_point_count.hpp
   - nt/range_rational_count.hpp
   - mod/range_freq_of_linear.hpp
   - mod/mod_sum_of_linear.hpp

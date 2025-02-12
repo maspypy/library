@@ -1,29 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
-    title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
+    path: convex/lattice_point_sum_polynomial.hpp
+    title: convex/lattice_point_sum_polynomial.hpp
+  - icon: ':x:'
+    path: convex/lattice_point_sum_polynomial_pq.hpp
+    title: convex/lattice_point_sum_polynomial_pq.hpp
+  - icon: ':question:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
+  - icon: ':question:'
+    path: mod/floor_sum_of_linear_polynomial_pq.hpp
+    title: mod/floor_sum_of_linear_polynomial_pq.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_sum_of_polynomial.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
+    title: test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://qoj.ac/contest/1411/problem/7620
@@ -41,7 +56,7 @@ data:
     \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
     \ exp);\n  } else {\n    assert(exp >= 0);\n    X res = Monoid::unit();\n    while\
     \ (exp) {\n      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x,\
-    \ x);\n      exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\
+    \ x);\n      exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 3 \"mod/floor_monoid_product.hpp\"\
     \n\n// https://yukicoder.me/submissions/883884\n// https://qoj.ac/contest/1411/problem/7620\n\
     // U \u306F\u7BC4\u56F2\u5185\u3067 ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\
     \u30FC\u3057\u306A\u3044\u7A0B\u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092\
@@ -57,7 +72,7 @@ data:
     \ N - d), suf));\n    b = m - b - 1 + a, N = c - 1, c = d;\n    swap(m, a), swap(x,\
     \ y);\n  }\n  x = monoid_pow<Monoid>(x, N);\n  return Monoid::op(Monoid::op(pre,\
     \ x), suf);\n}\n"
-  code: "#include \"alg/monoid_pow.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
+  code: "#pragma once\n#include \"alg/monoid_pow.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
     // https://qoj.ac/contest/1411/problem/7620\n// U \u306F\u7BC4\u56F2\u5185\u3067\
     \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
     \u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092 N \u500B)\n// k \u500B\u76EE\u306E\
@@ -77,14 +92,19 @@ data:
   isVerificationFile: false
   path: mod/floor_monoid_product.hpp
   requiredBy:
-  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+  - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - mod/floor_sum_of_linear_polynomial_pq.hpp
   - mod/floor_sum_of_linear_polynomial.hpp
-  timestamp: '2024-01-23 03:59:43+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-02-12 14:27:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
+  - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
 documentation_of: mod/floor_monoid_product.hpp
 layout: document
 redirect_from:

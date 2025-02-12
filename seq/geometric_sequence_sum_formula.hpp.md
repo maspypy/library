@@ -31,14 +31,20 @@ data:
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':x:'
+    path: convex/lattice_point_sum_polynomial_pq.hpp
+    title: convex/lattice_point_sum_polynomial_pq.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
     title: test/1_mytest/geometric_sequence_sum_formula.test.cpp
-  _isVerificationFailed: false
+  - icon: ':x:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
@@ -313,14 +319,14 @@ data:
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
     \n}\r\n#line 2 \"seq/geometric_sequence_sum_formula.hpp\"\n\n// r != 1 \u3068\u3059\
     \u308B. sum_{i=0}^{n-1}i^kr^i = c + r^n f(n) \u3068\u66F8\u3051\u308B. return\
-    \ : c, f\ntemplate <typename mint>\npair<mint, vc<mint>> geometic_sequence_sum_formula(mint\
+    \ : c, f\ntemplate <typename mint>\npair<mint, vc<mint>> geometric_sequence_sum_formula(mint\
     \ r, int K) {\n  assert(r != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i,\
     \ K + 1) F[i] -= r * fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  mint c = F[K]\
     \ * fact<mint>(K);\n  reverse(all(F));\n  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k)\
     \ * fact<mint>(K);\n  return {c, F};\n}\n"
   code: "#include \"poly/fps_inv.hpp\"\n\n// r != 1 \u3068\u3059\u308B. sum_{i=0}^{n-1}i^kr^i\
     \ = c + r^n f(n) \u3068\u66F8\u3051\u308B. return : c, f\ntemplate <typename mint>\n\
-    pair<mint, vc<mint>> geometic_sequence_sum_formula(mint r, int K) {\n  assert(r\
+    pair<mint, vc<mint>> geometric_sequence_sum_formula(mint r, int K) {\n  assert(r\
     \ != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i, K + 1) F[i] -= r * fact_inv<mint>(i);\n\
     \  F = fps_inv<mint>(F);\n  mint c = F[K] * fact<mint>(K);\n  reverse(all(F));\n\
     \  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k) * fact<mint>(K);\n  return {c, F};\n\
@@ -338,10 +344,12 @@ data:
   - poly/ntt.hpp
   isVerificationFile: false
   path: seq/geometric_sequence_sum_formula.hpp
-  requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  requiredBy:
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  timestamp: '2025-02-12 14:27:42+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/geometric_sequence_sum_formula.test.cpp
 documentation_of: seq/geometric_sequence_sum_formula.hpp
 layout: document

@@ -1,35 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/monoid_for_floor_sum.hpp
     title: alg/monoid/monoid_for_floor_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
   _extendedRequiredBy:
-  - icon: ':warning:'
-    path: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
-    title: convex/count_lattice_point_in_convex_polygon_polynomial.hpp
+  - icon: ':x:'
+    path: convex/lattice_point_sum_polynomial.hpp
+    title: convex/lattice_point_sum_polynomial.hpp
+  - icon: ':x:'
+    path: convex/lattice_point_sum_polynomial_pq.hpp
+    title: convex/lattice_point_sum_polynomial_pq.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_sum_of_polynomial.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - icon: ':x:'
+    path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+    title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
     title: test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2362.test.cpp
     title: test/3_yukicoder/2362.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
-  bundledCode: "#line 1 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n#line 2 \"alg/monoid_pow.hpp\"\
+  bundledCode: "#line 2 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n#line 2 \"alg/monoid_pow.hpp\"\
     \n\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
     \ {\nprivate:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n \
     \ template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
@@ -43,7 +52,7 @@ data:
     \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
     \ >= 0);\n    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res\
     \ = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n\
-    \    return res;\n  }\n}\n#line 2 \"mod/floor_monoid_product.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
+    \    return res;\n  }\n}\n#line 3 \"mod/floor_monoid_product.hpp\"\n\n// https://yukicoder.me/submissions/883884\n\
     // https://qoj.ac/contest/1411/problem/7620\n// U \u306F\u7BC4\u56F2\u5185\u3067\
     \ ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\u7A0B\
     \u5EA6\n// yyy x yyyy x ... yyy x yyy (x \u3092 N \u500B)\n// k \u500B\u76EE\u306E\
@@ -58,7 +67,7 @@ data:
     \  suf = Monoid::op(y, Monoid::op(monoid_pow<Monoid>(x, N - d), suf));\n    b\
     \ = m - b - 1 + a, N = c - 1, c = d;\n    swap(m, a), swap(x, y);\n  }\n  x =\
     \ monoid_pow<Monoid>(x, N);\n  return Monoid::op(Monoid::op(pre, x), suf);\n}\n\
-    #line 1 \"alg/monoid/monoid_for_floor_sum.hpp\"\n// sum i^k1floor^k2: floor path\
+    #line 2 \"alg/monoid/monoid_for_floor_sum.hpp\"\n// sum i^k1floor^k2: floor path\
     \ \u3067 (x,y) \u304B\u3089 x \u65B9\u5411\u306B\u9032\u3080\u3068\u304D\u306B\
     \ x^k1y^k2 \u3092\u8DB3\u3059\ntemplate <typename T, int K1, int K2>\nstruct Monoid_for_floor_sum\
     \ {\n  using ARR = array<array<T, K2 + 1>, K1 + 1>;\n  struct Data {\n    ARR\
@@ -77,7 +86,7 @@ data:
     \    x.dp[0][0] = 1, x.dx = 1;\n    return x;\n  }\n  static X to_y() {\n    X\
     \ x = unit();\n    x.dy = 1;\n    return x;\n  }\n  static constexpr X unit()\
     \ { return {ARR{}, T(0), T(0)}; }\n  static constexpr bool commute = 0;\n};\n\
-    #line 4 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n// \u5168\u90E8\u975E\u8CA0\
+    #line 5 \"mod/floor_sum_of_linear_polynomial.hpp\"\n\n// \u5168\u90E8\u975E\u8CA0\
     , T \u306F\u7B54, U \u306F ax+b \u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
     \u3057\u306A\u3044\ntemplate <typename T, int K1, int K2, typename U>\narray<array<T,\
     \ K2 + 1>, K1 + 1> floor_sum_of_linear_polynomial_nonnegative(U N, U a, U b, U\
@@ -94,11 +103,11 @@ data:
     \  }\n  assert(a >= 0);\n  I ADD_X = L;\n  I N = R - L;\n  b += a * L;\n  I ADD_Y\
     \ = floor<I>(b, mod);\n  b -= ADD_Y * mod;\n  assert(a >= 0 && b >= 0);\n\n  using\
     \ Mono = Monoid_for_floor_sum<T, K1, K2>;\n  using Data = typename Mono::Data;\n\
-    \  using U = std::conditional_t<is_same_v<I, ll>, i128, u128>;\n  Data A = floor_monoid_product<Mono,\
+    \  using U = std::conditional_t<is_same_v<I, ll>, u64, u128>;\n  Data A = floor_monoid_product<Mono,\
     \ Data, U>(Mono::to_x(), Mono::to_y(), N, a, b, mod);\n  Data offset = Mono::unit();\n\
     \  offset.dx = T(ADD_X), offset.dy = T(ADD_Y);\n  A = Mono::op(offset, A);\n \
     \ return A.dp;\n};\n"
-  code: "\n#include \"mod/floor_monoid_product.hpp\"\n#include \"alg/monoid/monoid_for_floor_sum.hpp\"\
+  code: "#pragma once\n\n#include \"mod/floor_monoid_product.hpp\"\n#include \"alg/monoid/monoid_for_floor_sum.hpp\"\
     \n\n// \u5168\u90E8\u975E\u8CA0, T \u306F\u7B54, U \u306F ax+b \u304C\u30AA\u30FC\
     \u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\ntemplate <typename T, int K1,\
     \ int K2, typename U>\narray<array<T, K2 + 1>, K1 + 1> floor_sum_of_linear_polynomial_nonnegative(U\
@@ -116,7 +125,7 @@ data:
     \ L;\n  I N = R - L;\n  b += a * L;\n  I ADD_Y = floor<I>(b, mod);\n  b -= ADD_Y\
     \ * mod;\n  assert(a >= 0 && b >= 0);\n\n  using Mono = Monoid_for_floor_sum<T,\
     \ K1, K2>;\n  using Data = typename Mono::Data;\n  using U = std::conditional_t<is_same_v<I,\
-    \ ll>, i128, u128>;\n  Data A = floor_monoid_product<Mono, Data, U>(Mono::to_x(),\
+    \ ll>, u64, u128>;\n  Data A = floor_monoid_product<Mono, Data, U>(Mono::to_x(),\
     \ Mono::to_y(), N, a, b, mod);\n  Data offset = Mono::unit();\n  offset.dx = T(ADD_X),\
     \ offset.dy = T(ADD_Y);\n  A = Mono::op(offset, A);\n  return A.dp;\n};\n"
   dependsOn:
@@ -126,12 +135,15 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial.hpp
   requiredBy:
-  - convex/count_lattice_point_in_convex_polygon_polynomial.hpp
-  timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - convex/lattice_point_sum_polynomial.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  timestamp: '2025-02-12 14:27:42+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2362.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial.hpp
 layout: document

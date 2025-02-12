@@ -37,14 +37,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/geometric_sequence_sum_formula.hpp
     title: seq/geometric_sequence_sum_formula.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -423,7 +423,7 @@ data:
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
     \n}\r\n#line 2 \"seq/geometric_sequence_sum_formula.hpp\"\n\n// r != 1 \u3068\u3059\
     \u308B. sum_{i=0}^{n-1}i^kr^i = c + r^n f(n) \u3068\u66F8\u3051\u308B. return\
-    \ : c, f\ntemplate <typename mint>\npair<mint, vc<mint>> geometic_sequence_sum_formula(mint\
+    \ : c, f\ntemplate <typename mint>\npair<mint, vc<mint>> geometric_sequence_sum_formula(mint\
     \ r, int K) {\n  assert(r != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i,\
     \ K + 1) F[i] -= r * fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  mint c = F[K]\
     \ * fact<mint>(K);\n  reverse(all(F));\n  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k)\
@@ -462,8 +462,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-12 14:27:42+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/geometric_sequence_sum_formula.test.cpp
 layout: document
