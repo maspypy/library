@@ -80,6 +80,7 @@
 "test/1_mytest/floor_sum_of_polynomial.test.cpp": "2025-02-12 14:27:42 +0900",
 "test/1_mytest/floor_sum_of_polynomial_pq.test.cpp": "2025-02-12 14:27:42 +0900",
 "test/1_mytest/four_square.test.cpp": "2025-01-27 19:24:29 +0900",
+"test/1_mytest/geometric_sequence_sum.test.cpp": "2025-02-13 03:28:49 +0900",
 "test/1_mytest/geometric_sequence_sum_formula.test.cpp": "2025-02-13 02:13:43 +0900",
 "test/1_mytest/graph_count.test.cpp": "2025-02-12 05:55:32 +0900",
 "test/1_mytest/gray_code.test.cpp": "2025-01-27 19:24:29 +0900",
