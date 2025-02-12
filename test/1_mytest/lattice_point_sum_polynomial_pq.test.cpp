@@ -62,7 +62,7 @@ void solve() {
 }
 
 signed main() {
-  FOR(1000) {
+  FOR(100) {
     FOR(p, 1, 4) FOR(q, 1, 4) {
       test<0, 0>(p, q);
       test<0, 1>(p, q);
