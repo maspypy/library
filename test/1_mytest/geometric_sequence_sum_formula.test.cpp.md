@@ -37,14 +37,14 @@ data:
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: seq/geometric_sequence_sum_formula.hpp
     title: seq/geometric_sequence_sum_formula.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -429,7 +429,7 @@ data:
     \ * fact<mint>(K);\n  reverse(all(F));\n  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k)\
     \ * fact<mint>(K);\n  return {c, F};\n}\n#line 8 \"test/1_mytest/geometric_sequence_sum_formula.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test(int K) {\n  FOR(r, 1000) {\n    if (r\
-    \ == 1) continue;\n    auto [c, f] = geometic_sequence_sum_formula<mint>(r, K);\n\
+    \ == 1) continue;\n    auto [c, f] = geometric_sequence_sum_formula<mint>(r, K);\n\
     \    mint god = 0;\n    FOR(N, 1000) {\n      mint ans = 0;\n      FOR(i, len(f))\
     \ ans += f[i] * mint(N).pow(i);\n      ans *= mint(r).pow(N);\n      ans += c;\n\
     \      assert(god == ans);\n      god += mint(r).pow(N) * mint(N).pow(K);\n  \
@@ -439,12 +439,12 @@ data:
     my_template.hpp\"\n\n#include \"mod/modint.hpp\"\n#include \"random/base.hpp\"\
     \n#include \"seq/geometric_sequence_sum_formula.hpp\"\n\nusing mint = modint998;\n\
     \nvoid test(int K) {\n  FOR(r, 1000) {\n    if (r == 1) continue;\n    auto [c,\
-    \ f] = geometic_sequence_sum_formula<mint>(r, K);\n    mint god = 0;\n    FOR(N,\
+    \ f] = geometric_sequence_sum_formula<mint>(r, K);\n    mint god = 0;\n    FOR(N,\
     \ 1000) {\n      mint ans = 0;\n      FOR(i, len(f)) ans += f[i] * mint(N).pow(i);\n\
     \      ans *= mint(r).pow(N);\n      ans += c;\n      assert(god == ans);\n  \
     \    god += mint(r).pow(N) * mint(N).pow(K);\n    }\n  }\n}\n\nvoid solve() {\n\
     \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(K, 10) test(K);\n  solve();\n}"
+    \ {\n  FOR(K, 10) test(K);\n  solve();\n}\n"
   dependsOn:
   - my_template.hpp
   - mod/modint.hpp
@@ -462,8 +462,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 14:27:42+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-13 02:13:43+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/geometric_sequence_sum_formula.test.cpp
 layout: document

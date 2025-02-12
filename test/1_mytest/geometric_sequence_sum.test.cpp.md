@@ -1,44 +1,44 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/dynamic_modint.hpp
     title: mod/dynamic_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/primitive_root.hpp
     title: mod/primitive_root.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
   - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/geometric_sequence_sum.hpp
     title: seq/geometric_sequence_sum.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -318,23 +318,23 @@ data:
     \  x.val %= Dynamic_Modint<id>::umod();\n}\ntemplate <int id>\nvoid wt(Dynamic_Modint<id>\
     \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing dmint = Dynamic_Modint<-1>;\n\
     template <int id>\nBarrett Dynamic_Modint<id>::bt;\n#line 1 \"seq/geometric_sequence_sum.hpp\"\
-    \n\n// sum_{i=0}^{n-1}r^i\ntemplate <typename T>\nT geometic_sequence_sum(T r,\
+    \n\n// sum_{i=0}^{n-1}r^i\ntemplate <typename T>\nT geometric_sequence_sum(T r,\
     \ ll n) {\n  if (n == 0) return T(0);\n  // (r^n, 1+...+r^{n-1})\n  auto dfs =\
     \ [&](auto& dfs, ll n) -> pair<T, T> {\n    if (n == 1) return {r, 1};\n    auto\
     \ [x, y] = dfs(dfs, n / 2);\n    tie(x, y) = mp(x * x, x * y + y);\n    if (n\
     \ % 2 == 0) return {x, y};\n    return {x * r, y + x};\n  };\n  return dfs(dfs,\
     \ n).se;\n}\n\n// sum_{i=0}^{n-1}i^kr^i \u3092 k=0,1,...,K\ntemplate <typename\
-    \ T, int K>\narray<T, K + 1> geometic_sequence_sum_K(T r, ll n) {\n  array<array<T,\
+    \ T, int K>\narray<T, K + 1> geometric_sequence_sum_K(T r, ll n) {\n  array<array<T,\
     \ K + 1>, K + 1> comb{};\n  comb[0][0] = 1;\n  FOR(i, K) {\n    FOR(j, i + 1)\
-    \ {\n      comb[i + 1][j] += comb[i][j], comb[i + 1][j + 1] += comb[i][j];\n \
-    \   }\n  }\n\n  // (n, r^n, sum i^kr^i)\n  using X = tuple<T, T, array<T, K +\
-    \ 1>>;\n  auto mul = [&](X& l, X& r) -> X {\n    auto& [n1, r1, A] = l;\n    auto&\
-    \ [n2, r2, B] = r;\n    array<T, K + 1> C;\n    FOR(k, K + 1) {\n      C[k] =\
-    \ A[k];\n      T c = r1;\n      FOR(j, k + 1) { C[k] += comb[k][j] * c * B[k -\
-    \ j], c *= n1; }\n    }\n    return {n1 + n2, r1 * r2, C};\n  };\n\n  X res =\
-    \ {T(0), T(1), array<T, K + 1>{}};\n  X a = {T(1), T(r), array<T, K + 1>{}};\n\
-    \  get<2>(a)[0] = 1;\n\n  while (n) {\n    if (n & 1) res = mul(res, a);\n   \
-    \ a = mul(a, a), n /= 2;\n  }\n  return get<2>(res);\n}\n#line 6 \"test/1_mytest/geometric_sequence_sum.test.cpp\"\
+    \ { comb[i + 1][j] += comb[i][j], comb[i + 1][j + 1] += comb[i][j]; }\n  }\n\n\
+    \  // (n, r^n, sum i^kr^i)\n  using X = tuple<T, T, array<T, K + 1>>;\n  auto\
+    \ mul = [&](X& l, X& r) -> X {\n    auto& [n1, r1, A] = l;\n    auto& [n2, r2,\
+    \ B] = r;\n    array<T, K + 1> C;\n    FOR(k, K + 1) {\n      C[k] = A[k];\n \
+    \     T c = r1;\n      FOR(j, k + 1) { C[k] += comb[k][j] * c * B[k - j], c *=\
+    \ n1; }\n    }\n    return {n1 + n2, r1 * r2, C};\n  };\n\n  X res = {T(0), T(1),\
+    \ array<T, K + 1>{}};\n  X a = {T(1), T(r), array<T, K + 1>{}};\n  get<2>(a)[0]\
+    \ = 1;\n\n  while (n) {\n    if (n & 1) res = mul(res, a);\n    a = mul(a, a),\
+    \ n /= 2;\n  }\n  return get<2>(res);\n}\n#line 6 \"test/1_mytest/geometric_sequence_sum.test.cpp\"\
     \n\ntemplate <int K>\nvoid test() {\n  using mint = dmint;\n  FOR(p, 1, 50) {\n\
     \    FOR(r, 50) {\n      FOR(n, 50) {\n        mint::set_mod(p);\n        auto\
     \ A = geometic_sequence_sum_K<mint, K>(r, n);\n        FOR(k, K + 1) {\n     \
@@ -378,8 +378,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/geometric_sequence_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-13 02:13:23+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/geometric_sequence_sum.test.cpp
 layout: document
