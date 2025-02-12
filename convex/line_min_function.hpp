@@ -1,3 +1,5 @@
+#pragma once
+
 #include "geo/convex_hull.hpp"
 
 // 1 次関数の max を [L,R,a,b] の列として出力
