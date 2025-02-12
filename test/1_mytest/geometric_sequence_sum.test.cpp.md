@@ -27,17 +27,17 @@ data:
     \n\n#include \"mod/dynamic_modint.hpp\"\n#include \"seq/geometric_sequence_sum.hpp\"\
     \n\ntemplate <int K>\nvoid test() {\n  using mint = dmint;\n  FOR(p, 1, 50) {\n\
     \    FOR(r, 50) {\n      FOR(n, 50) {\n        mint::set_mod(p);\n        auto\
-    \ A = geometic_sequence_sum_K<mint, K>(r, n);\n        FOR(k, K + 1) {\n     \
-    \     mint ans = 0;\n          mint pow = 1;\n          FOR(i, n) { ans += pow\
+    \ A = geometric_sequence_sum_K<mint, K>(r, n);\n        FOR(k, K + 1) {\n    \
+    \      mint ans = 0;\n          mint pow = 1;\n          FOR(i, n) { ans += pow\
     \ * mint(i).pow(k), pow *= mint(r); }\n          assert(A[k] == ans);\n      \
     \  }\n      }\n    }\n  }\n}\n\nvoid test_sum() {\n  using mint = dmint;\n  FOR(p,\
     \ 1, 50) {\n    FOR(r, 50) {\n      FOR(n, 50) {\n        mint::set_mod(p);\n\
     \        mint ans = 0;\n        mint pow = 1;\n        FOR(i, n) { ans += pow,\
-    \ pow *= mint(r); }\n        mint me = geometic_sequence_sum<mint>(r, n);\n  \
-    \      assert(ans == me);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a,\
+    \ pow *= mint(r); }\n        mint me = geometric_sequence_sum<mint>(r, n);\n \
+    \       assert(ans == me);\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a,\
     \ b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test<0>();\n\
     \  test<1>();\n  test<2>();\n  test<3>();\n  test<4>();\n  test_sum();\n  solve();\n\
-    \  return 0;\n}"
+    \  return 0;\n}\n"
   dependsOn: []
   isVerificationFile: true
   path: test/1_mytest/geometric_sequence_sum.test.cpp
