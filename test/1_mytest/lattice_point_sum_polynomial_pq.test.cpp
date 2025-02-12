@@ -29,7 +29,8 @@ void test(mint p, mint q) {
     FOR(i, K1 + 1) FOR(j, K2 + 1) { god[i][j] += p.pow(x) * q.pow(y) * mint(x).pow(i) * mint(y).pow(j); }
   };
 
-  FOR(x, -10, 11) {
+  ll K = 200;
+  FOR(x, -2 * K, 2 * K + 1) {
     ll mi = -infty<ll>, ma = infty<ll>;
     for (auto& [a, b, c]: LINE) {
       if (b == 0) {
@@ -43,7 +44,7 @@ void test(mint p, mint q) {
     }
 
     if (mi > ma) continue;
-    if (mi == -infty<ll> || ma == infty<ll>) {
+    if (abs(x) >= K || mi == -infty<ll> || ma == infty<ll>) {
       FOR(i, K1 + 1) FOR(j, K2 + 1) god[i][j] = 0;
       break;
     }
