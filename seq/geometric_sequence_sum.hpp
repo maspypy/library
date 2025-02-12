@@ -1,7 +1,7 @@
 
 // sum_{i=0}^{n-1}r^i
 template <typename T>
-T geometic_sequence_sum(T r, ll n) {
+T geometric_sequence_sum(T r, ll n) {
   if (n == 0) return T(0);
   // (r^n, 1+...+r^{n-1})
   auto dfs = [&](auto& dfs, ll n) -> pair<T, T> {
@@ -16,13 +16,11 @@ T geometic_sequence_sum(T r, ll n) {
 
 // sum_{i=0}^{n-1}i^kr^i を k=0,1,...,K
 template <typename T, int K>
-array<T, K + 1> geometic_sequence_sum_K(T r, ll n) {
+array<T, K + 1> geometric_sequence_sum_K(T r, ll n) {
   array<array<T, K + 1>, K + 1> comb{};
   comb[0][0] = 1;
   FOR(i, K) {
-    FOR(j, i + 1) {
-      comb[i + 1][j] += comb[i][j], comb[i + 1][j + 1] += comb[i][j];
-    }
+    FOR(j, i + 1) { comb[i + 1][j] += comb[i][j], comb[i + 1][j + 1] += comb[i][j]; }
   }
 
   // (n, r^n, sum i^kr^i)
