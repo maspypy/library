@@ -103,8 +103,8 @@ data:
     \  Suffix_Array() {}\n  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s)\
     \ > 0);\n    char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first,\
     \ c);\n      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n\
-    \    calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int>& s) {\n    build_seg = 0;\n \
-    \   assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
+    \    calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int> s) {\n    build_seg = 0;\n  \
+    \  assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
     \n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n    if (!build_seg) {\n \
     \     build_seg = true;\n      seg.build(LCP);\n    }\n    int n = len(SA);\n\
     \    if (i == n || j == n) return 0;\n    if (i == j) return n - i;\n    i = ISA[i],\
@@ -203,7 +203,7 @@ data:
   isVerificationFile: false
   path: string/lex_max_suffix_for_all_prefix.hpp
   requiredBy: []
-  timestamp: '2024-11-01 21:56:32+09:00'
+  timestamp: '2025-02-14 21:17:25+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/lex_minmax_suffix.test.cpp

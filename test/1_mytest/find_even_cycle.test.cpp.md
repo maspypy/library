@@ -288,13 +288,18 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
-    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
-    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
-    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
-    \  return par;\n}\n#line 2 \"graph/find_even_cycle.hpp\"\n\n// (vs, es), size=(n+1,n)\n\
-    // [R] https://scoreboard.icpc.global/46/finals46.pdf\ntemplate <typename GT>\n\
-    pair<vc<int>, vc<int>> find_even_cycle(GT &G) {\n  /*\n  \u53C2\u8003\uFF1Ahttps://chaoxu.prof/posts/2014-03-08-even-cycle-in-a-simple-graph.html\n\
+    }\n\n// |child| = 0 or 2 or (1 if can1), \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\
+    \u30B8\u30AB\u30EB\n// return: par\nvc<int> random_binary_tree(int N, bool can_1)\
+    \ {\n  if (can_1) {\n    vc<int> S;\n    S.eb(0), S.eb(0);\n    vc<int> par(N,\
+    \ -1);\n    FOR(v, 1, N) {\n      int k = RNG(0, len(S));\n      swap(S[k], S.back());\n\
+    \      par[v] = POP(S);\n      S.eb(v), S.eb(v);\n    }\n    return par;\n  }\n\
+    \  // 0 or 2\n  assert(N % 2 == 1);\n  vc<int> par(N, -1);\n  vc<int> S;\n  FOR(v,\
+    \ N / 2, N) S.eb(v);\n  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n\
+    \    int a = POP(S), b = POP(S);\n    par[a] = par[b] = nxt;\n    S.eb(nxt), --nxt;\n\
+    \  }\n  return par;\n}\n#line 2 \"graph/find_even_cycle.hpp\"\n\n// (vs, es),\
+    \ size=(n+1,n)\n// [R] https://scoreboard.icpc.global/46/finals46.pdf\ntemplate\
+    \ <typename GT>\npair<vc<int>, vc<int>> find_even_cycle(GT &G) {\n  /*\n  \u53C2\
+    \u8003\uFF1Ahttps://chaoxu.prof/posts/2014-03-08-even-cycle-in-a-simple-graph.html\n\
     \  DFS\u6728\u3092\u4F5C\u308B, \u5F8C\u9000\u8FBA\u3054\u3068\u306B\u30B5\u30A4\
     \u30AF\u30EB\u3092\u4F5C\u308B\n  \u5076\u30B5\u30A4\u30AF\u30EB\u304C\u3067\u304D\
     \u308C\u3070 OK\n  \u5171\u901A\u8FBA\u3092\u6301\u3064\u5947\u30B5\u30A4\u30AF\
@@ -384,7 +389,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/find_even_cycle.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-02-14 21:17:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/find_even_cycle.test.cpp

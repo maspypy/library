@@ -476,17 +476,21 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
-    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
-    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
-    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
-    \  return par;\n}\n#line 7 \"test/1_mytest/rolling_hash_on_tree.test.cpp\"\n\n\
-    void test_edge() {\n  ll N = RNG(1, 20);\n  auto edges = random_tree(N);\n  Graph<int,\
-    \ 0> G(N);\n  for (auto& [a, b]: edges) {\n    int x = RNG(0, 3);\n    G.add(a,\
-    \ b, x);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using mint = modint61;\n\
-    \  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree), true> RH(\n\
-    \      tree, [&](int i) -> int { return G.edges[i].cost; }, base);\n\n  vvv(int,\
-    \ dat, N, N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a,\
+    }\n\n// |child| = 0 or 2 or (1 if can1), \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\
+    \u30B8\u30AB\u30EB\n// return: par\nvc<int> random_binary_tree(int N, bool can_1)\
+    \ {\n  if (can_1) {\n    vc<int> S;\n    S.eb(0), S.eb(0);\n    vc<int> par(N,\
+    \ -1);\n    FOR(v, 1, N) {\n      int k = RNG(0, len(S));\n      swap(S[k], S.back());\n\
+    \      par[v] = POP(S);\n      S.eb(v), S.eb(v);\n    }\n    return par;\n  }\n\
+    \  // 0 or 2\n  assert(N % 2 == 1);\n  vc<int> par(N, -1);\n  vc<int> S;\n  FOR(v,\
+    \ N / 2, N) S.eb(v);\n  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n\
+    \    int a = POP(S), b = POP(S);\n    par[a] = par[b] = nxt;\n    S.eb(nxt), --nxt;\n\
+    \  }\n  return par;\n}\n#line 7 \"test/1_mytest/rolling_hash_on_tree.test.cpp\"\
+    \n\nvoid test_edge() {\n  ll N = RNG(1, 20);\n  auto edges = random_tree(N);\n\
+    \  Graph<int, 0> G(N);\n  for (auto& [a, b]: edges) {\n    int x = RNG(0, 3);\n\
+    \    G.add(a, b, x);\n  }\n  G.build();\n  Tree<decltype(G)> tree(G);\n\n  using\
+    \ mint = modint61;\n  mint base = RNG_64();\n\n  Rolling_Hash_On_Tree<decltype(tree),\
+    \ true> RH(\n      tree, [&](int i) -> int { return G.edges[i].cost; }, base);\n\
+    \n  vvv(int, dat, N, N, 0);\n  FOR(a, N) FOR(b, N) {\n    vc<int> P = tree.restore_path(a,\
     \ b);\n    vc<int> S;\n    FOR(i, len(P) - 1) {\n      int eid = tree.get_eid(P[i],\
     \ P[i + 1]);\n      S.eb(G.edges[eid].cost);\n    }\n    dat[a][b] = S;\n  }\n\
     \n  FOR(a, N) FOR(b, N) {\n    mint h = 0;\n    for (auto& x: dat[a][b]) { h =\
@@ -559,7 +563,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/rolling_hash_on_tree.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-02-14 21:17:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/rolling_hash_on_tree.test.cpp

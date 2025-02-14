@@ -755,6 +755,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: geo/definite_integral.hpp
       title: geo/definite_integral.hpp
+    - icon: ':warning:'
+      path: geo/delaunay_triangulation_of_convex_polygon.hpp
+      title: geo/delaunay_triangulation_of_convex_polygon.hpp
     - icon: ':heavy_check_mark:'
       path: geo/distance.hpp
       title: geo/distance.hpp

@@ -44,6 +44,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
+  - icon: ':warning:'
+    path: geo/delaunay_triangulation_of_convex_polygon.hpp
+    title: geo/delaunay_triangulation_of_convex_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: geo/distance.hpp
     title: geo/distance.hpp
@@ -313,6 +316,7 @@ data:
   - geo/count_points_in_triangles.hpp
   - geo/incremental_convexhull.hpp
   - geo/minimum_enclosing_circle.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   - geo/outcircle.hpp
   - geo/perpendicular_bisector.hpp
   - geo/polygon.hpp

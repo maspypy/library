@@ -288,57 +288,62 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
-    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
-    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
-    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
-    \  return par;\n}\n#line 6 \"test/1_mytest/remove_one_vertex.test.cpp\"\n\n#line\
-    \ 2 \"graph/ds/remove_one_vertex_connectivity.hpp\"\n\n// 1 \u70B9\u6D88\u3057\
-    \u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B / \u9023\u7D50\u6210\
-    \u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\u30BA\nstruct Remove_One_Vertex_Connectivity\
-    \ {\n  int N, M, n_comp_base;\n  vc<int> root;\n  vc<int> LID, RID;\n  vc<int>\
-    \ low;\n  vvc<int> ch;\n  vc<int> rm_sz, rm_comp;\n\n  template <typename GT>\n\
-    \  Remove_One_Vertex_Connectivity(GT& G) {\n    build(G);\n  }\n\n  template <typename\
-    \ GT>\n  void build(GT& G) {\n    N = G.N, M = G.M;\n    root.assign(N, -1);\n\
-    \    LID.assign(N, -1), RID.assign(N, -1), low.assign(N, -1);\n    ch.resize(N);\n\
-    \    int p = 0;\n    n_comp_base = 0;\n    auto dfs = [&](auto& dfs, int v, int\
-    \ last_e) -> void {\n      low[v] = LID[v] = p++;\n      for (auto&& e: G[v])\
-    \ {\n        if (e.id == last_e) continue;\n        if (root[e.to] == -1) {\n\
-    \          root[e.to] = root[v];\n          ch[v].eb(e.to);\n          dfs(dfs,\
-    \ e.to, e.id);\n          chmin(low[v], low[e.to]);\n        } else {\n      \
-    \    chmin(low[v], LID[e.to]);\n        }\n      }\n      RID[v] = p;\n    };\n\
-    \    FOR(v, N) {\n      if (root[v] == -1) { n_comp_base++, root[v] = v, dfs(dfs,\
-    \ v, -1); }\n    }\n    rm_sz.assign(N, 0);\n    rm_comp.assign(N, n_comp_base);\n\
-    \    FOR(v, N) {\n      if (root[v] == v) {\n        rm_comp[v] += len(ch[v])\
-    \ - 1;\n      } else {\n        rm_sz[v] = subtree_size(root[v]) - 1;\n      \
-    \  for (auto& c: ch[v]) {\n          if (low[c] >= LID[v]) { rm_sz[v] -= subtree_size(c),\
-    \ rm_comp[v]++; }\n        }\n      }\n    }\n  }\n\n  int n_comp(int rm) { return\
-    \ rm_comp[rm]; }\n\n  bool is_connected(int rm, int u, int v) {\n    assert(u\
-    \ != rm && v != rm);\n    if (root[u] != root[v]) return false;\n    if (root[u]\
-    \ != root[rm]) return true;\n    bool in_u = in_subtree(u, rm), in_v = in_subtree(v,\
-    \ rm);\n    if (in_u) { u = jump(rm, u), in_u = low[u] >= LID[rm]; }\n    if (in_v)\
-    \ { v = jump(rm, v), in_v = low[v] >= LID[rm]; }\n    if (in_u != in_v) return\
-    \ false;\n    return (in_u ? u == v : true);\n  }\n\n  int size(int rm, int v)\
-    \ {\n    assert(rm != v);\n    if (root[v] != root[rm]) return subtree_size(root[v]);\n\
-    \    if (rm == root[v]) { return subtree_size(jump(rm, v)); }\n    if (!in_subtree(v,\
-    \ rm)) { return rm_sz[rm]; }\n    v = jump(rm, v);\n    return (LID[rm] <= low[v]\
-    \ ? subtree_size(v) : rm_sz[rm]);\n  }\n\nprivate:\n  bool in_subtree(int a, int\
-    \ b) { return LID[b] <= LID[a] && LID[a] < RID[b]; }\n  int subtree_size(int v)\
-    \ { return RID[v] - LID[v]; }\n  int jump(int r, int v) {\n    assert(r != v &&\
-    \ in_subtree(v, r));\n    int n = len(ch[r]);\n    int k = binary_search(\n  \
-    \      [&](int k) -> bool {\n          int c = ch[r][k];\n          return LID[c]\
-    \ <= LID[v];\n        },\n        0, n);\n    return ch[r][k];\n  }\n};\n#line\
-    \ 8 \"test/1_mytest/remove_one_vertex.test.cpp\"\n\nvoid test() {\n  FOR(N, 20)\
-    \ {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n      for (auto& [a, b]: random_graph<false>(N,\
-    \ false)) G.add(a, b);\n      G.build();\n      Remove_One_Vertex_Connectivity\
-    \ X(G);\n      FOR(rm, N) {\n        UnionFind uf(N);\n        for (auto& e: G.edges)\
-    \ {\n          if (e.frm == rm || e.to == rm) continue;\n          uf.merge(e.frm,\
-    \ e.to);\n        }\n        assert(X.n_comp(rm) == uf.n_comp - 1);\n        FOR(u,\
-    \ N) FOR(v, N) {\n          if (u == rm || v == rm) continue;\n          assert(X.is_connected(rm,\
-    \ u, v) == (uf[u] == uf[v]));\n        }\n        FOR(v, N) if (v != rm) assert(X.size(rm,\
-    \ v) == uf.size(v));\n      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n\
-    \  solve();\n  return 0;\n}\n"
+    }\n\n// |child| = 0 or 2 or (1 if can1), \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\
+    \u30B8\u30AB\u30EB\n// return: par\nvc<int> random_binary_tree(int N, bool can_1)\
+    \ {\n  if (can_1) {\n    vc<int> S;\n    S.eb(0), S.eb(0);\n    vc<int> par(N,\
+    \ -1);\n    FOR(v, 1, N) {\n      int k = RNG(0, len(S));\n      swap(S[k], S.back());\n\
+    \      par[v] = POP(S);\n      S.eb(v), S.eb(v);\n    }\n    return par;\n  }\n\
+    \  // 0 or 2\n  assert(N % 2 == 1);\n  vc<int> par(N, -1);\n  vc<int> S;\n  FOR(v,\
+    \ N / 2, N) S.eb(v);\n  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n\
+    \    int a = POP(S), b = POP(S);\n    par[a] = par[b] = nxt;\n    S.eb(nxt), --nxt;\n\
+    \  }\n  return par;\n}\n#line 6 \"test/1_mytest/remove_one_vertex.test.cpp\"\n\
+    \n#line 2 \"graph/ds/remove_one_vertex_connectivity.hpp\"\n\n// 1 \u70B9\u6D88\
+    \u3057\u305F\u3068\u304D\u306B\n// u,v \u304C\u9023\u7D50\u304B / \u9023\u7D50\
+    \u6210\u5206\u6570 / v \u306E\u9023\u7D50\u6210\u5206\u30B5\u30A4\u30BA\nstruct\
+    \ Remove_One_Vertex_Connectivity {\n  int N, M, n_comp_base;\n  vc<int> root;\n\
+    \  vc<int> LID, RID;\n  vc<int> low;\n  vvc<int> ch;\n  vc<int> rm_sz, rm_comp;\n\
+    \n  template <typename GT>\n  Remove_One_Vertex_Connectivity(GT& G) {\n    build(G);\n\
+    \  }\n\n  template <typename GT>\n  void build(GT& G) {\n    N = G.N, M = G.M;\n\
+    \    root.assign(N, -1);\n    LID.assign(N, -1), RID.assign(N, -1), low.assign(N,\
+    \ -1);\n    ch.resize(N);\n    int p = 0;\n    n_comp_base = 0;\n    auto dfs\
+    \ = [&](auto& dfs, int v, int last_e) -> void {\n      low[v] = LID[v] = p++;\n\
+    \      for (auto&& e: G[v]) {\n        if (e.id == last_e) continue;\n       \
+    \ if (root[e.to] == -1) {\n          root[e.to] = root[v];\n          ch[v].eb(e.to);\n\
+    \          dfs(dfs, e.to, e.id);\n          chmin(low[v], low[e.to]);\n      \
+    \  } else {\n          chmin(low[v], LID[e.to]);\n        }\n      }\n      RID[v]\
+    \ = p;\n    };\n    FOR(v, N) {\n      if (root[v] == -1) { n_comp_base++, root[v]\
+    \ = v, dfs(dfs, v, -1); }\n    }\n    rm_sz.assign(N, 0);\n    rm_comp.assign(N,\
+    \ n_comp_base);\n    FOR(v, N) {\n      if (root[v] == v) {\n        rm_comp[v]\
+    \ += len(ch[v]) - 1;\n      } else {\n        rm_sz[v] = subtree_size(root[v])\
+    \ - 1;\n        for (auto& c: ch[v]) {\n          if (low[c] >= LID[v]) { rm_sz[v]\
+    \ -= subtree_size(c), rm_comp[v]++; }\n        }\n      }\n    }\n  }\n\n  int\
+    \ n_comp(int rm) { return rm_comp[rm]; }\n\n  bool is_connected(int rm, int u,\
+    \ int v) {\n    assert(u != rm && v != rm);\n    if (root[u] != root[v]) return\
+    \ false;\n    if (root[u] != root[rm]) return true;\n    bool in_u = in_subtree(u,\
+    \ rm), in_v = in_subtree(v, rm);\n    if (in_u) { u = jump(rm, u), in_u = low[u]\
+    \ >= LID[rm]; }\n    if (in_v) { v = jump(rm, v), in_v = low[v] >= LID[rm]; }\n\
+    \    if (in_u != in_v) return false;\n    return (in_u ? u == v : true);\n  }\n\
+    \n  int size(int rm, int v) {\n    assert(rm != v);\n    if (root[v] != root[rm])\
+    \ return subtree_size(root[v]);\n    if (rm == root[v]) { return subtree_size(jump(rm,\
+    \ v)); }\n    if (!in_subtree(v, rm)) { return rm_sz[rm]; }\n    v = jump(rm,\
+    \ v);\n    return (LID[rm] <= low[v] ? subtree_size(v) : rm_sz[rm]);\n  }\n\n\
+    private:\n  bool in_subtree(int a, int b) { return LID[b] <= LID[a] && LID[a]\
+    \ < RID[b]; }\n  int subtree_size(int v) { return RID[v] - LID[v]; }\n  int jump(int\
+    \ r, int v) {\n    assert(r != v && in_subtree(v, r));\n    int n = len(ch[r]);\n\
+    \    int k = binary_search(\n        [&](int k) -> bool {\n          int c = ch[r][k];\n\
+    \          return LID[c] <= LID[v];\n        },\n        0, n);\n    return ch[r][k];\n\
+    \  }\n};\n#line 8 \"test/1_mytest/remove_one_vertex.test.cpp\"\n\nvoid test()\
+    \ {\n  FOR(N, 20) {\n    FOR(1000) {\n      Graph<int, 0> G(N);\n      for (auto&\
+    \ [a, b]: random_graph<false>(N, false)) G.add(a, b);\n      G.build();\n    \
+    \  Remove_One_Vertex_Connectivity X(G);\n      FOR(rm, N) {\n        UnionFind\
+    \ uf(N);\n        for (auto& e: G.edges) {\n          if (e.frm == rm || e.to\
+    \ == rm) continue;\n          uf.merge(e.frm, e.to);\n        }\n        assert(X.n_comp(rm)\
+    \ == uf.n_comp - 1);\n        FOR(u, N) FOR(v, N) {\n          if (u == rm ||\
+    \ v == rm) continue;\n          assert(X.is_connected(rm, u, v) == (uf[u] == uf[v]));\n\
+    \        }\n        FOR(v, N) if (v != rm) assert(X.size(rm, v) == uf.size(v));\n\
+    \      }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout\
+    \ << a + b << \"\\n\";\n}\n\nsigned main() {\n  test();\n  solve();\n  return\
+    \ 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
     \n\n#include \"random/random_graph.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
     \n\n#include \"graph/ds/remove_one_vertex_connectivity.hpp\"\n\nvoid test() {\n\
@@ -365,7 +370,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/remove_one_vertex.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-02-14 21:17:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/remove_one_vertex.test.cpp

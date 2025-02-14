@@ -9,6 +9,9 @@ data:
     title: geo/triangle_area.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: geo/delaunay_triangulation_of_convex_polygon.hpp
+    title: geo/delaunay_triangulation_of_convex_polygon.hpp
+  - icon: ':warning:'
     path: geo/minimum_enclosing_circle.hpp
     title: geo/minimum_enclosing_circle.hpp
   _extendedVerifiedWith:
@@ -122,6 +125,7 @@ data:
   path: geo/outcircle.hpp
   requiredBy:
   - geo/minimum_enclosing_circle.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   timestamp: '2024-10-25 19:29:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

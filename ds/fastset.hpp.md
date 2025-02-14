@@ -26,6 +26,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
+  - icon: ':warning:'
+    path: geo/delaunay_triangulation_of_convex_polygon.hpp
+    title: geo/delaunay_triangulation_of_convex_polygon.hpp
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
@@ -153,6 +156,7 @@ data:
   - graph/ds/incremental_centroid.hpp
   - graph/toposort.hpp
   - bigint/redundant_binary_number.hpp
+  - geo/delaunay_triangulation_of_convex_polygon.hpp
   timestamp: '2024-10-28 19:23:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

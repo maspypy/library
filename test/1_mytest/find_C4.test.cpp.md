@@ -290,15 +290,19 @@ data:
     \ {\n    vc<int>& V = A[i];\n    for (auto& v: V) v = new_idx[v];\n    if (len(V)\
     \ == 2) {\n      G.eb(V[0], V[1]);\n    } else {\n      FOR(k, len(V)) { G.eb(V[k],\
     \ V[(1 + k) % len(V)]); }\n    }\n  }\n  random_relabel(N, G);\n  return G;\n\
-    }\n\n// |child|<=2, \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\u30B8\u30AB\u30EB\
-    \n// return: par\nvc<int> random_binary_tree(int N) {\n  vc<int> S;\n  S.eb(0),\
-    \ S.eb(0);\n  vc<int> par(N, -1);\n  FOR(v, 1, N) {\n    int k = RNG(0, len(S));\n\
-    \    swap(S[k], S.back());\n    par[v] = POP(S);\n    S.eb(v), S.eb(v);\n  }\n\
-    \  return par;\n}\n#line 2 \"graph/count/count_C3_C4.hpp\"\n\n// \u5404\u70B9\u306B\
-    \u5BFE\u3057\u3066\u305D\u306E\u70B9\u3092\u542B\u3080 C3, C4 \u3092\u6570\u3048\
-    \u308B\n// simple graph \u3092\u4EEE\u5B9A\ntemplate <typename GT>\npair<vi, vi>\
-    \ count_C3_C4_pointwise(GT &G) {\n  static_assert(!GT::is_directed);\n  int N\
-    \ = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
+    }\n\n// |child| = 0 or 2 or (1 if can1), \u30E9\u30D9\u30EB\u306F\u30C8\u30DD\u30ED\
+    \u30B8\u30AB\u30EB\n// return: par\nvc<int> random_binary_tree(int N, bool can_1)\
+    \ {\n  if (can_1) {\n    vc<int> S;\n    S.eb(0), S.eb(0);\n    vc<int> par(N,\
+    \ -1);\n    FOR(v, 1, N) {\n      int k = RNG(0, len(S));\n      swap(S[k], S.back());\n\
+    \      par[v] = POP(S);\n      S.eb(v), S.eb(v);\n    }\n    return par;\n  }\n\
+    \  // 0 or 2\n  assert(N % 2 == 1);\n  vc<int> par(N, -1);\n  vc<int> S;\n  FOR(v,\
+    \ N / 2, N) S.eb(v);\n  int nxt = N / 2 - 1;\n  while (len(S) >= 2) {\n    shuffle(S);\n\
+    \    int a = POP(S), b = POP(S);\n    par[a] = par[b] = nxt;\n    S.eb(nxt), --nxt;\n\
+    \  }\n  return par;\n}\n#line 2 \"graph/count/count_C3_C4.hpp\"\n\n// \u5404\u70B9\
+    \u306B\u5BFE\u3057\u3066\u305D\u306E\u70B9\u3092\u542B\u3080 C3, C4 \u3092\u6570\
+    \u3048\u308B\n// simple graph \u3092\u4EEE\u5B9A\ntemplate <typename GT>\npair<vi,\
+    \ vi> count_C3_C4_pointwise(GT &G) {\n  static_assert(!GT::is_directed);\n  int\
+    \ N = G.N;\n  auto deg = G.deg_array();\n  auto I = argsort(deg);\n  reverse(all(I));\n\
     \  vc<int> rk(N);\n  FOR(i, N) rk[I[i]] = i;\n\n  // \u9077\u79FB\u5148\u3092\u964D\
     \u9806\u306B\u4E26\u3079\u308B\n  vvc<int> TO(N);\n  for (auto &&e: G.edges) {\n\
     \    int a = rk[e.frm], b = rk[e.to];\n    TO[a].eb(b), TO[b].eb(a);\n  }\n  FOR(v,\
@@ -367,7 +371,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/find_C4.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-02-14 21:17:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/find_C4.test.cpp
