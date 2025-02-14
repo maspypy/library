@@ -131,17 +131,32 @@ vc<pair<int, int>> random_cactus(int N, bool EDGE) {
   return G;
 }
 
-// |child|<=2, ラベルはトポロジカル
+// |child| = 0 or 2 or (1 if can1), ラベルはトポロジカル
 // return: par
-vc<int> random_binary_tree(int N) {
-  vc<int> S;
-  S.eb(0), S.eb(0);
+vc<int> random_binary_tree(int N, bool can_1) {
+  if (can_1) {
+    vc<int> S;
+    S.eb(0), S.eb(0);
+    vc<int> par(N, -1);
+    FOR(v, 1, N) {
+      int k = RNG(0, len(S));
+      swap(S[k], S.back());
+      par[v] = POP(S);
+      S.eb(v), S.eb(v);
+    }
+    return par;
+  }
+  // 0 or 2
+  assert(N % 2 == 1);
   vc<int> par(N, -1);
-  FOR(v, 1, N) {
-    int k = RNG(0, len(S));
-    swap(S[k], S.back());
-    par[v] = POP(S);
-    S.eb(v), S.eb(v);
+  vc<int> S;
+  FOR(v, N / 2, N) S.eb(v);
+  int nxt = N / 2 - 1;
+  while (len(S) >= 2) {
+    shuffle(S);
+    int a = POP(S), b = POP(S);
+    par[a] = par[b] = nxt;
+    S.eb(nxt), --nxt;
   }
   return par;
 }

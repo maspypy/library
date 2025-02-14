@@ -30,7 +30,7 @@ struct Suffix_Array {
     calc_LCP(s);
   }
 
-  Suffix_Array(vc<int>& s) {
+  Suffix_Array(vc<int> s) {
     build_seg = 0;
     assert(len(s) > 0);
     SA = calc_suffix_array(s);
