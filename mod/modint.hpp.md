@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   _extendedRequiredBy:
@@ -92,10 +92,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
-  - icon: ':heavy_check_mark:'
-    path: mod/discrete_log_998244353.hpp
-    title: mod/discrete_log_998244353.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log_998244353.hpp
     title: mod/mod_log_998244353.hpp
   - icon: ':heavy_check_mark:'
@@ -516,7 +513,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/mod_log_998.test.cpp
     title: test/1_mytest/mod_log_998.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1326,9 +1323,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template\
@@ -1550,7 +1547,6 @@ data:
   - mod/multiplicative_convolution_mod_p.hpp
   - mod/multiplicative_convolution_mod_2n.hpp
   - mod/mod_log_998244353.hpp
-  - mod/discrete_log_998244353.hpp
   - graph/tree_all_distances.hpp
   - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
@@ -1575,7 +1571,7 @@ data:
   - random/random_matrix.hpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2810.test.cpp
   - test/3_yukicoder/2580.test.cpp

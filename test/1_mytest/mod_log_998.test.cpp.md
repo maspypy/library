@@ -1,32 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
-    path: mod/discrete_log_998244353.hpp
-    title: mod/discrete_log_998244353.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: mod/mod_log_998244353.hpp
     title: mod/mod_log_998244353.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -208,8 +205,15 @@ data:
     \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 2 \"mod/discrete_log_998244353.hpp\"\n\nnamespace DISCRETE_LOG_998 {\nconst\
-    \ int A = 32768;\nconst int B = 30464;\nconst int r = 3;\nconst int mod = 998244353;\n\
+    #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
+    \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
+    \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
+    \r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
+    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
+    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
+    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
+    #line 3 \"mod/mod_log_998244353.hpp\"\n\nnamespace DISCRETE_LOG_998 {\nconst int\
+    \ A = 32768;\nconst int B = 30464;\nconst int r = 3;\nconst int mod = 998244353;\n\
     \nu32 rpow_0[A + 1];\nu32 rpow_1[A + 1];\nu32 AX[4 * B + 1];\nu32 AI[4 * B + 1];\n\
     u32 BX[4 * B + 1];\nu32 BI[4 * B + 1];\n\nu32 get_pow_30(u32 n) { return u64(rpow_1[n\
     \ / A]) * rpow_0[n % A] % mod; }\nu32 get_pow(u64 n) { return get_pow_30(n % (mod\
@@ -220,28 +224,23 @@ data:
     \ ++k;\n    AX[k] = x, AI[k] = i;\n  }\n  FOR(i, A) {\n    u32 x = get_pow_30(B\
     \ * i);\n    int k = H(x);\n    while (BX[k]) ++k;\n    BX[k] = x, BI[k] = i;\n\
     \  }\n}\n\n// \u639B\u3051\u7B97 17 \u56DE + hashmap 2 \u56DE\n// 10^7 \u56DE\
-    \ 0.6 sec\nint discrete_log_mod_998244353_primitive_root(modint998 a) {\n  //\
-    \ a^A \u306F 1 \u306E B \u4E57\u6839\u306A\u306E\u3067 pow(r, xA) \u3068\u66F8\
-    \u3051\u308B\n  modint998 b = a;\n  FOR(15) b *= b;\n  int k = H(b.val);\n  while\
-    \ (AX[k] != b.val) ++k;\n  int x = AI[k];\n  // ar^{-x} \u306F 1 \u306E A \u4E57\
-    \u6839\u306A\u306E\u3067 pow(r, yB) \u3068\u66F8\u3051\u308B\n  a *= get_pow_30(mod\
-    \ - 1 - x);\n  k = H(a.val);\n  while (BX[k] != a.val) ++k;\n  int y = BI[k];\n\
-    \  return x + y * B;\n}\n} // namespace DISCRETE_LOG_998\nusing DISCRETE_LOG_998::discrete_log_mod_998244353_primitive_root;\n\
-    #line 2 \"mod/mod_inv.hpp\"\n\r\n// long \u3067\u3082\u5927\u4E08\u592B\r\n//\
-    \ (val * x - 1) \u304C mod \u306E\u500D\u6570\u306B\u306A\u308B\u3088\u3046\u306B\
-    \u3059\u308B\r\n// \u7279\u306B mod=0 \u306A\u3089 x=0 \u304C\u6E80\u305F\u3059\
-    \r\nll mod_inv(ll val, ll mod) {\r\n  if (mod == 0) return 0;\r\n  mod = abs(mod);\r\
-    \n  val %= mod;\r\n  if (val < 0) val += mod;\r\n  ll a = val, b = mod, u = 1,\
-    \ v = 0, t;\r\n  while (b > 0) {\r\n    t = a / b;\r\n    swap(a -= t * b, b),\
-    \ swap(u -= t * v, v);\r\n  }\r\n  if (u < 0) u += mod;\r\n  return u;\r\n}\r\n\
-    #line 3 \"mod/mod_log_998244353.hpp\"\n\nint mod_log_998244353(int a, int b) {\n\
-    \  int x = discrete_log_mod_998244353_primitive_root(a);\n  int y = discrete_log_mod_998244353_primitive_root(b);\n\
-    \  int m = 998244353 - 1;\n  int g = gcd(x, m);\n  if (y % g != 0) return -1;\n\
-    \  x /= g, y /= g, m /= g;\n  return mod_inv(x, g) * y % m;\n}\n#line 7 \"test/1_mytest/mod_log_998.test.cpp\"\
-    \n\nusing mint = modint998;\n\nvoid test() {\n  int mod = 998244353;\n  FOR(100000)\
-    \ {\n    int a = RNG(1, mod - 1);\n    int k = discrete_log_mod_998244353_primitive_root(a);\n\
-    \    int b = mint(3).pow(k).val;\n    assert(a == b);\n  }\n  FOR(100000) {\n\
-    \    int a = RNG(1, mod - 1);\n    int b = RNG(1, mod - 1);\n    int k = mod_log_998244353(a,\
+    \ 0.6 sec\nint mod_log_998_primitive_root(modint998 a) {\n  // a^A \u306F 1 \u306E\
+    \ B \u4E57\u6839\u306A\u306E\u3067 pow(r, xA) \u3068\u66F8\u3051\u308B\n  modint998\
+    \ b = a;\n  FOR(15) b *= b;\n  int k = H(b.val);\n  while (AX[k] != b.val) ++k;\n\
+    \  int x = AI[k];\n  // ar^{-x} \u306F 1 \u306E A \u4E57\u6839\u306A\u306E\u3067\
+    \ pow(r, yB) \u3068\u66F8\u3051\u308B\n  a *= get_pow_30(mod - 1 - x);\n  k =\
+    \ H(a.val);\n  while (BX[k] != a.val) ++k;\n  int y = BI[k];\n  return x + y *\
+    \ B;\n}\n\nint mod_log_998(int a, int b) {\n  int x = mod_log_998_primitive_root(a);\n\
+    \  int y = mod_log_998_primitive_root(b);\n  int m = 998244353 - 1;\n  int g =\
+    \ gcd(x, m);\n  if (y % g != 0) return -1;\n  x /= g, y /= g, m /= g;\n  return\
+    \ mod_inv(x, g) * y % m;\n}\n\nu32 mod_pow_998_primitive_root(u64 n) { return\
+    \ get_pow(n); }\n} // namespace DISCRETE_LOG_998\nusing DISCRETE_LOG_998::mod_pow_998_primitive_root;\n\
+    using DISCRETE_LOG_998::mod_log_998_primitive_root;\nusing DISCRETE_LOG_998::mod_log_998;\n\
+    #line 7 \"test/1_mytest/mod_log_998.test.cpp\"\n\nusing mint = modint998;\n\n\
+    void test() {\n  int mod = 998244353;\n  FOR(100000) {\n    int a = RNG(1, mod\
+    \ - 1);\n    int k = discrete_log_mod_998244353_primitive_root(a);\n    int b\
+    \ = mint(3).pow(k).val;\n    assert(a == b);\n  }\n  FOR(100000) {\n    int a\
+    \ = RNG(1, mod - 1);\n    int b = RNG(1, mod - 1);\n    int k = mod_log_998244353(a,\
     \ b);\n    if (k != -1) {\n      int c = mint(a).pow(k).val;\n      assert(b ==\
     \ c);\n    }\n  }\n  FOR(100000) {\n    int a = RNG(1, mod - 1);\n    int k =\
     \ RNG(0, mod - 2);\n    int b = mint(a).pow(k).val;\n    k = mod_log_998244353(a,\
@@ -262,15 +261,14 @@ data:
   - my_template.hpp
   - random/base.hpp
   - mod/mod_log_998244353.hpp
-  - mod/discrete_log_998244353.hpp
   - mod/modint.hpp
   - mod/modint_common.hpp
   - mod/mod_inv.hpp
   isVerificationFile: true
   path: test/1_mytest/mod_log_998.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-02-16 02:48:19+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/mod_log_998.test.cpp
 layout: document
