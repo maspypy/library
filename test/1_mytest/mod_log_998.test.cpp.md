@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_log_998244353.hpp
     title: mod/mod_log_998244353.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -238,25 +238,25 @@ data:
     using DISCRETE_LOG_998::mod_log_998_primitive_root;\nusing DISCRETE_LOG_998::mod_log_998;\n\
     #line 7 \"test/1_mytest/mod_log_998.test.cpp\"\n\nusing mint = modint998;\n\n\
     void test() {\n  int mod = 998244353;\n  FOR(100000) {\n    int a = RNG(1, mod\
-    \ - 1);\n    int k = discrete_log_mod_998244353_primitive_root(a);\n    int b\
-    \ = mint(3).pow(k).val;\n    assert(a == b);\n  }\n  FOR(100000) {\n    int a\
-    \ = RNG(1, mod - 1);\n    int b = RNG(1, mod - 1);\n    int k = mod_log_998244353(a,\
-    \ b);\n    if (k != -1) {\n      int c = mint(a).pow(k).val;\n      assert(b ==\
-    \ c);\n    }\n  }\n  FOR(100000) {\n    int a = RNG(1, mod - 1);\n    int k =\
-    \ RNG(0, mod - 2);\n    int b = mint(a).pow(k).val;\n    k = mod_log_998244353(a,\
-    \ b);\n    assert(k != -1);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
-    \ >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() { solve(); }\n"
+    \ - 1);\n    int k = mod_log_998_primitive_root(a);\n    int b = mint(3).pow(k).val;\n\
+    \    assert(a == b);\n  }\n  FOR(100000) {\n    int a = RNG(1, mod - 1);\n   \
+    \ int b = RNG(1, mod - 1);\n    int k = mod_log_998(a, b);\n    if (k != -1) {\n\
+    \      int c = mint(a).pow(k).val;\n      assert(b == c);\n    }\n  }\n  FOR(100000)\
+    \ {\n    int a = RNG(1, mod - 1);\n    int k = RNG(0, mod - 2);\n    int b = mint(a).pow(k).val;\n\
+    \    k = mod_log_998(a, b);\n    assert(k != -1);\n  }\n}\n\nvoid solve() {\n\
+    \  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
+    \ { solve(); }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"random/base.hpp\"\n#include \"mod/mod_log_998244353.hpp\"\
     \n\nusing mint = modint998;\n\nvoid test() {\n  int mod = 998244353;\n  FOR(100000)\
-    \ {\n    int a = RNG(1, mod - 1);\n    int k = discrete_log_mod_998244353_primitive_root(a);\n\
+    \ {\n    int a = RNG(1, mod - 1);\n    int k = mod_log_998_primitive_root(a);\n\
     \    int b = mint(3).pow(k).val;\n    assert(a == b);\n  }\n  FOR(100000) {\n\
-    \    int a = RNG(1, mod - 1);\n    int b = RNG(1, mod - 1);\n    int k = mod_log_998244353(a,\
+    \    int a = RNG(1, mod - 1);\n    int b = RNG(1, mod - 1);\n    int k = mod_log_998(a,\
     \ b);\n    if (k != -1) {\n      int c = mint(a).pow(k).val;\n      assert(b ==\
     \ c);\n    }\n  }\n  FOR(100000) {\n    int a = RNG(1, mod - 1);\n    int k =\
-    \ RNG(0, mod - 2);\n    int b = mint(a).pow(k).val;\n    k = mod_log_998244353(a,\
-    \ b);\n    assert(k != -1);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a\
-    \ >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main() { solve(); }\n"
+    \ RNG(0, mod - 2);\n    int b = mint(a).pow(k).val;\n    k = mod_log_998(a, b);\n\
+    \    assert(k != -1);\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n\
+    \  cout << a + b << \"\\n\";\n}\n\nsigned main() { solve(); }\n"
   dependsOn:
   - my_template.hpp
   - random/base.hpp
@@ -267,8 +267,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/mod_log_998.test.cpp
   requiredBy: []
-  timestamp: '2025-02-16 02:48:19+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-02-16 04:36:11+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/mod_log_998.test.cpp
 layout: document
