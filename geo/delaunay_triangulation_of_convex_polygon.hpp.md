@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
   - icon: ':heavy_check_mark:'
@@ -13,6 +13,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/triangle_area.hpp
     title: geo/triangle_area.hpp
+  - icon: ':question:'
+    path: random/base.hpp
+    title: random/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: random/shuffle.hpp
+    title: random/shuffle.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
@@ -20,6 +26,7 @@ data:
   _verificationStatusIcon: ':warning:'
   attributes:
     links:
+    - https://codeforces.com/contest/1984/problem/H
     - https://codeforces.com/contest/549/problem/E
   bundledCode: "#line 2 \"geo/base.hpp\"\ntemplate <typename T>\nstruct Point {\n\
     \  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template <typename A, typename B>\n\
@@ -125,35 +132,43 @@ data:
     \ <typename F>\r\n  void enumerate(int l, int r, F f) {\r\n    for (int x = next(l);\
     \ x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n  string to_string() {\r\n    string\
     \ s(n, '?');\r\n    for (int i = 0; i < n; ++i) s[i] = ((*this)[i] ? '1' : '0');\r\
-    \n    return s;\r\n  }\r\n};\n#line 3 \"geo/delaunay_triangulation_of_convex_polygon.hpp\"\
+    \n    return s;\r\n  }\r\n};\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
+    u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
+    \ RNG_64() % (r - l); }\n#line 2 \"random/shuffle.hpp\"\n\ntemplate <typename\
+    \ T>\nvoid shuffle(vc<T>& A) {\n  FOR(i, len(A)) {\n    int j = RNG(0, i + 1);\n\
+    \    if (i != j) swap(A[i], A[j]);\n  }\n}\n#line 4 \"geo/delaunay_triangulation_of_convex_polygon.hpp\"\
     \n\n// \u5EA7\u6A19\u306E 4 \u4E57\u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\
     \u3057\u306A\u3044\n// return : array<int,3>, triangles\n// https://codeforces.com/contest/549/problem/E\n\
-    template <typename T>\nvc<array<int, 3>> delaunay_triangulation_of_convex_polygon(vc<Point<T>>\
-    \ A, bool farthest) {\n  using P = Point<T>;\n  int N = len(A);\n  if (N <= 2)\
-    \ return {};\n\n  FastSet FS(N);\n\n  vc<int> I(N);\n  FOR(i, N) I[i] = i;\n \
-    \ shuffle(I);\n\n  sort(I.end() - 3, I.end());\n\n  struct E {\n    int a, b,\
-    \ nxt, rev;\n  };\n\n  int c = POP(I), b = POP(I), a = POP(I);\n  vc<E> dat;\n\
-    \  dat.eb(a, b, 1, -1);\n  dat.eb(b, c, 2, -1);\n  dat.eb(c, a, 0, -1);\n  vc<int>\
-    \ v_to_e(N, -1);\n  v_to_e[a] = 0, v_to_e[b] = 1, v_to_e[c] = 2;\n  FS.insert(a),\
-    \ FS.insert(b), FS.insert(c);\n\n  auto dfs = [&](auto& dfs, int i) -> void {\n\
-    \    int j = dat[i].rev;\n    if (j == -1) return;\n    int i1 = dat[i].nxt;\n\
-    \    int i2 = dat[i1].nxt;\n    int j1 = dat[j].nxt;\n    int j2 = dat[j1].nxt;\n\
-    \    int b = dat[i].a, c = dat[i1].a, a = dat[i2].a, d = dat[j2].a;\n    int side\
-    \ = outcircle_side(A[a], A[b], A[c], A[d]);\n    bool flip = (farthest ? (side\
-    \ == -1) : (side == 1));\n    if (!flip) return;\n    dat[i] = {d, a, i2, j};\n\
-    \    dat[j] = {a, d, j2, i};\n    dat[i1].nxt = j, dat[i2].nxt = j1, dat[j1].nxt\
-    \ = i, dat[j2].nxt = i1;\n    dfs(dfs, i1), dfs(dfs, i2), dfs(dfs, j1), dfs(dfs,\
-    \ j2);\n  };\n\n  while (len(I)) {\n    int v = POP(I);\n    int l = FS.prev(v),\
-    \ r = FS.next(v);\n    if (l == -1) l = FS.prev(N);\n    if (r == N) r = FS.next(0);\n\
-    \    FS.insert(v);\n    int k = v_to_e[l];\n    int s = len(dat);\n    v_to_e[l]\
-    \ = s + 1, v_to_e[v] = s + 2;\n    dat[k].rev = s;\n    dat.eb(r, l, s + 1, k);\n\
-    \    dat.eb(l, v, s + 2, -1);\n    dat.eb(v, r, s, -1);\n    dfs(dfs, k);\n  }\n\
-    \  vc<array<int, 3>> ANS;\n  FOR(i, len(dat)) {\n    int j = dat[i].nxt;\n   \
-    \ int k = dat[j].nxt;\n    if (i > j || i > k) continue;\n    ANS.eb(array<int,\
-    \ 3>{dat[i].a, dat[j].a, dat[k].a});\n  }\n\n  return ANS;\n}\n"
-  code: "#include \"geo/outcircle.hpp\"\n#include \"ds/fastset.hpp\"\n\n// \u5EA7\u6A19\
-    \u306E 4 \u4E57\u304C\u30AA\u30FC\u30D0\u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\
-    \n// return : array<int,3>, triangles\n// https://codeforces.com/contest/549/problem/E\n\
+    // https://codeforces.com/contest/1984/problem/H\ntemplate <typename T>\nvc<array<int,\
+    \ 3>> delaunay_triangulation_of_convex_polygon(vc<Point<T>> A, bool farthest)\
+    \ {\n  using P = Point<T>;\n  int N = len(A);\n  if (N <= 2) return {};\n\n  FastSet\
+    \ FS(N);\n\n  vc<int> I(N);\n  FOR(i, N) I[i] = i;\n  shuffle(I);\n\n  sort(I.end()\
+    \ - 3, I.end());\n\n  struct E {\n    int a, b, nxt, rev;\n  };\n\n  int c = POP(I),\
+    \ b = POP(I), a = POP(I);\n  vc<E> dat;\n  dat.eb(a, b, 1, -1);\n  dat.eb(b, c,\
+    \ 2, -1);\n  dat.eb(c, a, 0, -1);\n  vc<int> v_to_e(N, -1);\n  v_to_e[a] = 0,\
+    \ v_to_e[b] = 1, v_to_e[c] = 2;\n  FS.insert(a), FS.insert(b), FS.insert(c);\n\
+    \n  auto dfs = [&](auto& dfs, int i) -> void {\n    int j = dat[i].rev;\n    if\
+    \ (j == -1) return;\n    int i1 = dat[i].nxt;\n    int i2 = dat[i1].nxt;\n   \
+    \ int j1 = dat[j].nxt;\n    int j2 = dat[j1].nxt;\n    int b = dat[i].a, c = dat[i1].a,\
+    \ a = dat[i2].a, d = dat[j2].a;\n    int side = outcircle_side(A[a], A[b], A[c],\
+    \ A[d]);\n    bool flip = (farthest ? (side == -1) : (side == 1));\n    if (!flip)\
+    \ return;\n    dat[i] = {d, a, i2, j};\n    dat[j] = {a, d, j2, i};\n    dat[i1].nxt\
+    \ = j, dat[i2].nxt = j1, dat[j1].nxt = i, dat[j2].nxt = i1;\n    dfs(dfs, i1),\
+    \ dfs(dfs, i2), dfs(dfs, j1), dfs(dfs, j2);\n  };\n\n  while (len(I)) {\n    int\
+    \ v = POP(I);\n    int l = FS.prev(v), r = FS.next(v);\n    if (l == -1) l = FS.prev(N);\n\
+    \    if (r == N) r = FS.next(0);\n    FS.insert(v);\n    int k = v_to_e[l];\n\
+    \    int s = len(dat);\n    v_to_e[l] = s + 1, v_to_e[v] = s + 2;\n    dat[k].rev\
+    \ = s;\n    dat.eb(r, l, s + 1, k);\n    dat.eb(l, v, s + 2, -1);\n    dat.eb(v,\
+    \ r, s, -1);\n    dfs(dfs, k);\n  }\n  vc<array<int, 3>> ANS;\n  FOR(i, len(dat))\
+    \ {\n    int j = dat[i].nxt;\n    int k = dat[j].nxt;\n    if (i > j || i > k)\
+    \ continue;\n    ANS.eb(array<int, 3>{dat[i].a, dat[j].a, dat[k].a});\n  }\n\n\
+    \  return ANS;\n}\n"
+  code: "#include \"geo/outcircle.hpp\"\n#include \"ds/fastset.hpp\"\n#include \"\
+    random/shuffle.hpp\"\n\n// \u5EA7\u6A19\u306E 4 \u4E57\u304C\u30AA\u30FC\u30D0\
+    \u30FC\u30D5\u30ED\u30FC\u3057\u306A\u3044\n// return : array<int,3>, triangles\n\
+    // https://codeforces.com/contest/549/problem/E\n// https://codeforces.com/contest/1984/problem/H\n\
     template <typename T>\nvc<array<int, 3>> delaunay_triangulation_of_convex_polygon(vc<Point<T>>\
     \ A, bool farthest) {\n  using P = Point<T>;\n  int N = len(A);\n  if (N <= 2)\
     \ return {};\n\n  FastSet FS(N);\n\n  vc<int> I(N);\n  FOR(i, N) I[i] = i;\n \
@@ -182,10 +197,12 @@ data:
   - geo/base.hpp
   - geo/triangle_area.hpp
   - ds/fastset.hpp
+  - random/shuffle.hpp
+  - random/base.hpp
   isVerificationFile: false
   path: geo/delaunay_triangulation_of_convex_polygon.hpp
   requiredBy: []
-  timestamp: '2025-02-14 21:17:25+09:00'
+  timestamp: '2025-02-18 22:12:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/delaunay_triangulation_of_convex_polygon.hpp
