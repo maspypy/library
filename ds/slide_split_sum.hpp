@@ -21,16 +21,22 @@ struct Slide_Split_Sum {
   void insert(T x) { (x <= lmax() ? push_l(x) : push_r(x)); }
   void erase(T x) { (x <= lmax() ? erase_l(x) : erase_r(x)); }
   pair<SUM_T, SUM_T> query(int k) {
-    assert(0 <= k && k <= size());
-    while (len(ql) < k) { push_l(pop_r()); }
-    while (len(ql) > k) { push_r(pop_l()); }
+    slide(k);
     return {sl, sr};
   }
   // 下位 k 個
   SUM_T query_l(int k) { return query(k).fi; }
   // 上位 k 個
   SUM_T query_r(int k) { return query(size() - k).se; }
-  T kth(int k) { return query_l(k + 1) - query_l(k); }
+  T kth(int k) {
+    slide(k);
+    return qr.top();
+  }
+  void slide(int k) {
+    assert(0 <= k && k <= size());
+    while (len(ql) < k) { push_l(pop_r()); }
+    while (len(ql) > k) { push_r(pop_l()); }
+  }
 
 private:
   inline T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }

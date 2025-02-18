@@ -1,9 +1,11 @@
 #include "geo/outcircle.hpp"
 #include "ds/fastset.hpp"
+#include "random/shuffle.hpp"
 
 // 座標の 4 乗がオーバーフローしない
 // return : array<int,3>, triangles
 // https://codeforces.com/contest/549/problem/E
+// https://codeforces.com/contest/1984/problem/H
 template <typename T>
 vc<array<int, 3>> delaunay_triangulation_of_convex_polygon(vc<Point<T>> A, bool farthest) {
   using P = Point<T>;

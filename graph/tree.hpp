@@ -85,6 +85,20 @@ struct Tree {
     return (parent[w] == v ? w : -1);
   }
 
+  vc<int> memo_tail;
+
+  int tail(int v) {
+    if (memo_tail.empty()) {
+      memo_tail.assign(N, -1);
+      FOR_R(i, N) {
+        int v = V[i];
+        int w = heavy_child(v);
+        memo_tail[v] = (w == -1 ? v : memo_tail[w]);
+      }
+    }
+    return memo_tail[v];
+  }
+
   int e_to_v(int eid) {
     auto e = G.edges[eid];
     return (parent[e.frm] == e.to ? e.frm : e.to);
