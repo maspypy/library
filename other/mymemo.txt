@@ -1,0 +1,23 @@
+wsl --install
+PC再起動
+wsl --set-default-version 2
+wsl --install -d Ubuntu
+vs code をダウンロード、インストール
+vscode 拡張：WSL
+Ubuntu から code . で editor が開ける
+vscode 同期
+
+git clone https://github.com/maspypy/library.git
+.bashrc をコピー
+sudo apt update
+sudo apt upgrade
+sudo apt install g++
+sudo apt install python3-pip
+pip install online-judge-tools
+pip install online-judge-verify-helper
+
+事前こんぱいる
+make_gch
+
+import random
+from random import randint,choice,shuffle

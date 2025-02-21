@@ -1,0 +1,328 @@
+{
+	// Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"lambda expression": {
+		"prefix": "lambda=",
+		"body": [
+			"auto $1 = [&]($2) -> $3 {",
+			"  $4",
+			"};"
+		],
+		"description": "lambda expression"
+	},
+	"set INF": {
+		"prefix": "INF=",
+		"body": [
+			"const ll INF = infty<ll>;"
+		],
+		"description": "set INF"
+	},
+	"rerooting_dp_template": {
+		"prefix": "rerooting_dp_template",
+		"body": [
+			"struct Data {",
+			"  ;",
+			"  ;",
+			"};",
+			"Data unit = {};",
+			"auto fee = [&](Data x, Data y) -> Data {};",
+			"auto fev = [&](Data x, int v) -> Data {};",
+			"// e は v に入る有向辺",
+			"auto fve = [&](Data x, auto& e) -> Data { return x; };",
+			"Rerooting_dp<decltype(tree), Data> dp(tree, fee, fev, fve, unit);",
+		],
+		"description": "rerooting_dp_template"
+	},
+	"tree_dp_template": {
+		"prefix": "tree_dp_template",
+		"body": [
+			"using T = ;",
+			"T unit = ;",
+			"auto f_ee = [&](T& A, T B) -> T {};",
+			"auto f_ev = [&](T& A, int v) -> T {",
+			"  // v ごとの計算を行う場合、ここで",
+			"};",
+			"auto f_ve = [&](T A, const auto& e) -> T {",
+			"  // e は v から出る有向辺",
+			"};",
+			"auto dp = tree_dp(G, f_ee, f_ev, f_ve, unit);",
+			""
+		],
+		"description": "tree_dp_template"
+	},
+	"sort_template": {
+		"prefix": "sort_template",
+		"body": [
+			"sort(all($1), [&](auto& a, auto& b) -> bool { return $2; });",
+			""
+		],
+		"description": "sort_template"
+	},
+	"isin": {
+		"prefix": "isin",
+		"body": [
+			"auto isin = [&](int x, int y) -> bool { return (0 <= x && x < H && 0 <= y && y < W); };",
+			"int dx[] = {1, 0, -1, 0, 1, 1, -1, -1};",
+			"int dy[] = {0, 1, 0, -1, 1, -1, 1, -1};"
+		],
+		"description": "isin"
+	},
+	"Mo_main": {
+		"prefix": "Mo_main",
+		"body": [
+			"  auto ADD = [&](int i) -> void {",
+			"  };",
+			"  auto RM = [&](int i) -> void {",
+			"  };",
+			"  auto CALC = [&](int q) -> void {",
+			"  };",
+			"  mo.calc(ADD, ADD, RM, RM, CALC);",
+			""
+		],
+		"description": "Mo_main"
+	},
+	"Mo_main_LR": {
+		"prefix": "Mo_main_LR",
+		"body": [
+			"auto ADD_L = [&](int i) -> void {};",
+			"auto ADD_R = [&](int i) -> void {};",
+			"auto RM_L = [&](int i) -> void {};",
+			"auto RM_R = [&](int i) -> void {};",
+			"auto CALC = [&](int q) -> void {};",
+			"mo.calc(ADD_L, ADD_R, RM_L, RM_R, CALC);",
+			""
+		],
+		"description": "Mo_main_LR"
+	},
+	"dsu_on_tree_template": {
+		"prefix": "dsu_on_tree_template",
+		"body": [
+			"auto ADD = [&](int v) -> void {};",
+			"auto QUERY = [&](int v) -> void {};",
+			"auto RESET = [&]() -> void {};",
+			"DSU_on_Tree(hld, ADD, QUERY, RESET);",
+			""
+		],
+		"description": "dsu_on_tree_template"
+	},
+	"acted_monoid_template": {
+		"prefix": "acted_monoid_template",
+		"body": [
+			"struct ActedMonoid {",
+			"  using Monoid_X = $1;",
+			"  using Monoid_A = $2;",
+			"  using X = typename Monoid_X::value_type;",
+			"  using A = typename Monoid_A::value_type;",
+			"  static X act(const X &x, const A &a, const ll& size) { ",
+			"    return $3;",
+			"  }",
+			"};"
+		],
+		"description": "acted_monoid_template"
+	},
+	"monoid_template": {
+		"prefix": "monoid_template",
+		"body": [
+			"struct Mono {",
+			"  using value_type = $1",
+			"  using X = value_type;",
+			"  static X op(X x, X y) {",
+			"    // if unit ??",
+			"    return {$2};",
+			"  }",
+			"  static constexpr X unit(){return $3;}",
+			"  static constexpr bool commute = $4;",
+			"};"
+		],
+		"description": "monoid_template"
+	},
+	"monoid_template_lambda": {
+		"prefix": "monoid_template_lambda",
+		"body": [
+			"struct Mono {",
+			"  using value_type = $1;",
+			"  using X = value_type;",
+			"  using F = function<X(X, X)>;",
+			"  static F& get_f() {",
+			"    static F f;",
+			"    return f;",
+			"  }",
+			"  template <typename G>",
+			"  static void set_f(G& g) {",
+			"    get_f() = g;",
+			"    return;",
+			"  }",
+			"  static X op(X x, X y) {",
+			"    auto& f = get_f();",
+			"    return f(x, y);",
+			"  }",
+			"",
+			"  static constexpr X unit() { return $2; }",
+			"  static constexpr bool commute = $3;",
+			"};",
+			""
+		],
+		"description": "monoid_template_lambda"
+	},
+	"group_template": {
+		"prefix": "group_template",
+		"body": [
+			"struct Grp {",
+			"  using X = ;",
+			"  using value_type = X;",
+			"  static X op(const X &x, const X &y) { return; }",
+			"  static X inverse(const X &x) { return; }",
+			"  // static X power(const X &x, ll n) { return n * x; }",
+			"  static constexpr X unit() { return; }",
+			"  static constexpr bool commute = ;",
+			"};",
+			""
+		],
+		"description": "group_template"
+	},
+	"beats_template": {
+		"prefix": "beats_template",
+		"body": [
+			"struct Beats {",
+			"  struct MonoX {",
+			"    struct X {",
+			"      bool fail;",
+			"      int size;",
+			"    };",
+			"    using value_type = X;",
+			"    static X op(X x, X y) {",
+			"      if (!x.size) return y;",
+			"      if (!y.size) return x;",
+			"      // fail は 0 のまま。",
+			"      return X({});",
+			"    }",
+			"    static constexpr X unit() {",
+			"      // size を 0 にしておけばなんでもよい",
+			"      return X({});",
+			"    }",
+			"    static constexpr bool commute = ;",
+			"  };",
+			"",
+			"  struct MonoA {",
+			"    // 作用モノイドは特に気にせず実装",
+			"    using value_type = ;",
+			"    using X = value_type;",
+			"    static X op(X x, X y) {}",
+			"    static constexpr X unit() {}",
+			"    static constexpr bool commute = ;",
+			"  };",
+			"",
+			"  using MX = MonoX;",
+			"  using MA = MonoA;",
+			"  using X_structure = MX;",
+			"  using A_structure = MA;",
+			"  using X = typename MX::value_type;",
+			"  using A = typename MA::value_type;",
+			"",
+			"  template <typename T>",
+			"  static X from_element(T a) {",
+			"    // fail = 0, size = 1",
+			"    return X({});",
+			"  }",
+			"",
+			"  static const X act(X x, const A& a) {",
+			"    assert(!x.fail);",
+			"    // 更新に失敗したら、x.fail = 1 として return x すること",
+			"  }",
+			"};",
+			""
+		],
+		"description": "beats_template"
+	},
+	"forauto": {
+		"prefix": "forauto",
+		"body": [
+			"for(auto& $1 : $2)"
+		],
+		"description": "forauto"
+	},
+	"static_set_get": {
+		"prefix": "static_set_get",
+		"body": [
+			"static u32 &get_param() {",
+			"    static u32 mod = 0;",
+			"    return mod;",
+			"  }",
+			"static void set_param(int md) { get_param() = md; }",
+			""
+		],
+		"description": "static_set_get"
+	},
+	"rollback_dfs": {
+		"prefix": "rollback_dfs",
+		"body": [
+			"",
+			"// rollback_dfs",
+			"auto upd = X.calc(len(query));",
+			"vi ANS(len(query));",
+			"vc<int> I(len(upd));",
+			"iota(all(I), 0);",
+			"auto dfs = [&](auto& dfs, vc<int>& upd_query_I, int begin, int end) -> void {",
+			"  if (begin == end) return;",
+			"  // snapshot",
+			"  ;",
+			"  vc<int> IL, IR;",
+			"  int mid = (begin + end) / 2;",
+			"  for (auto&& i: upd_query_I) {",
+			"    auto [a, b, X] = upd[i];",
+			"    if (a <= begin && end <= b) {",
+			"      // X で表される update query を処理する",
+			"      ;",
+			"      ;",
+			"    } else {",
+			"      if (a < mid) IL.eb(i);",
+			"      if (mid < b) IR.eb(i);",
+			"    }",
+			"  }",
+			"  if (begin + 1 == end) {",
+			"    // 求値クエリ",
+			"    int qid = begin;",
+			"    ;",
+			"    ;  // ここで出力してしまってもよい",
+			"  } else {",
+			"    dfs(dfs, IL, begin, mid);",
+			"    dfs(dfs, IR, mid, end);",
+			"  }",
+			"  // rollback",
+			"  ;",
+			"};",
+			"dfs(dfs, I, 0, len(query));"
+		],
+		"description": "rollback_dfs"
+	},
+	"check_TLE": {
+		"prefix": "check_TLE",
+		"body": [
+			"auto check_TLE = [&](const double LIM) -> bool {",
+			"  return CLOCKS_PER_SEC * LIM > clock();",
+			"};",
+			""
+		],
+		"description": "check_TLE"
+	},
+	"BINGO": {
+		"prefix": "BINGO",
+		"body": [
+			"  vc<tuple<int, int, int>> BINGO = {{0, 1, 2}, {3, 4, 5}, {6, 7, 8}, {0, 3, 6},",
+			"                                    {1, 4, 7}, {2, 5, 8}, {0, 4, 8}, {2, 4, 6}};",
+			""
+		],
+		"description": "BINGO"
+	}
+}

@@ -1,0 +1,50 @@
+
+alias python="python3"
+ulimit -s unlimited
+
+function myg++ () {
+  g++ -std=c++2a -O2 $1
+}
+
+function randomtest () {
+  rm -rf randomtest
+  mkdir randomtest
+  g++ -std=c++2a ac.cpp -o ./ac.out
+  for i in `seq 1 $1` ; do
+    python3 generate.py > randomtest/sample-${i}.in
+    ./ac.out < randomtest/sample-${i}.in > randomtest/sample-${i}.out
+  done
+  oj t -d randomtest
+}
+
+function randomtest_cpp () {
+  rm -rf randomtest
+  mkdir randomtest
+  g++ -std=c++2a ac.cpp -o ./ac.out
+  oj-bundle -I ~/compro/library generate.cpp > gen_temp.cpp
+  g++ -I ~/compro/library -D=LOCAL -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG gen_temp.cpp -o gen.out
+  for i in `seq 1 $1` ; do
+    ./gen.out > randomtest/sample-${i}.in
+    ./ac.out < randomtest/sample-${i}.in > randomtest/sample-${i}.out
+  done
+  oj t -d randomtest
+}
+
+fix_wsl2_interop() {
+    for i in $(pstree -np -s $$ | grep -o -E '[0-9]+'); do
+        if [[ -e "/run/WSL/${i}_interop" ]]; then
+            export WSL_INTEROP=/run/WSL/${i}_interop
+        fi
+    done
+}
+
+alias ccfast="oj-bundle -I ~/compro/library main.cpp > temp.cpp;g++ -I ~/compro/library -std=c++2a -O2 temp.cpp"
+alias ccf="oj-bundle -I ~/compro/library main.cpp > temp.cpp;g++ -I ~/compro/library -std=c++2a -O2 temp.cpp"
+alias cc="oj-bundle -I ~/compro/library main.cpp > temp.cpp;cat temp.cpp | xclip -selection clipboard;g++ -I ~/compro/library -D=LOCAL -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG temp.cpp"
+alias cc2="oj-bundle -I ~/compro/library main.cpp > temp.cpp;cat temp.cpp | xclip -selection clipboard;g++ -I ~/compro/library -D=LOCAL -std=c++2a -O2 -fsanitize=address -fno-omit-frame-pointer -g -fsanitize=undefined temp.cpp"
+alias ojt="cat temp.cpp | xclip -selection clipboard; oj t -S;rm -rf a.out"
+alias ojtpy="cat main.py | xclip -selection clipboard; oj t -S -c 'python3 main.py'"
+alias ojtcc="cc"
+
+alias make_gch="g++ -o my_template_cc.hpp.gch -I ~/compro/library -D=LOCAL -std=c++2a -O2 -Wall -Wfatal-errors -D_GLIBCXX_DEBUG my_template_compiled.hpp;g++ -o my_template_cc2.hpp.gch -I ~/compro/library -D=LOCAL -std=c++2a -O2 -fsanitize=address -fno-omit-frame-pointer -g -fsanitize=undefined my_template_compiled.hpp;g++ -o my_template_ccfast.hpp.gch -I ~/compro/library -std=c++2a -O2 my_template_compiled.hpp"
+alias aa="./a.out"
