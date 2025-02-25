@@ -33,6 +33,9 @@ data:
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_p.hpp
     title: mod/multiplicative_convolution_mod_p.hpp
   - icon: ':heavy_check_mark:'
@@ -48,6 +51,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/geometric_sequence_sum.test.cpp
     title: test/1_mytest/geometric_sequence_sum.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
     title: test/2_library_checker/convolution/convolution_mod_107_dmint.test.cpp
@@ -267,6 +273,7 @@ data:
   - poly/multivar_convolution_cyclic.hpp
   - mod/multiplicative_convolution_mod_p.hpp
   - mod/mod_kth_root.hpp
+  - mod/modfast.hpp
   - mod/dynamic_modint.hpp
   - mod/binomial.hpp
   - mod/mod_log.hpp
@@ -302,6 +309,7 @@ data:
   - test/2_library_checker/number_theory/discrete_logarithm_mod.test.cpp
   - test/2_library_checker/enumerative_combinatorics/binomial_coefficient.test.cpp
   - test/1_mytest/O1_inv.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/geometric_sequence_sum.test.cpp
   - test/1_mytest/31bit_modint.test.cpp
 documentation_of: mod/primitive_root.hpp

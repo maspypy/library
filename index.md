@@ -1468,6 +1468,9 @@ data:
       path: mod/mod_sum_of_linear.hpp
       title: mod/mod_sum_of_linear.hpp
     - icon: ':heavy_check_mark:'
+      path: mod/modfast.hpp
+      title: mod/modfast.hpp
+    - icon: ':heavy_check_mark:'
       path: mod/modint.hpp
       title: mod/modint.hpp
     - icon: ':heavy_check_mark:'
@@ -1717,6 +1720,9 @@ data:
     - icon: ':warning:'
       path: other/solve_hukumenzan.hpp
       title: other/solve_hukumenzan.hpp
+    - icon: ':warning:'
+      path: other/timer.hpp
+      title: other/timer.hpp
   - name: other/mhc_template_directory
     pages:
     - icon: ':warning:'
@@ -2652,6 +2658,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/mod_sum_of_linear.test.cpp
       title: test/1_mytest/mod_sum_of_linear.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/modfast.test.cpp
+      title: test/1_mytest/modfast.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/multinomial.test.cpp
       title: test/1_mytest/multinomial.test.cpp

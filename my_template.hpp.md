@@ -382,6 +382,9 @@ data:
     path: test/1_mytest/mod_sum_of_linear.test.cpp
     title: test/1_mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3399,6 +3402,7 @@ data:
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/catalan_convolution.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/cf702_F.test.cpp

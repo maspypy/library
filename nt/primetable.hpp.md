@@ -18,6 +18,9 @@ data:
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/powertable.hpp
     title: mod/powertable.hpp
   - icon: ':heavy_check_mark:'
@@ -159,6 +162,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
     title: test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/prime_sum.test.cpp
     title: test/1_mytest/prime_sum.test.cpp
@@ -360,6 +366,7 @@ data:
   - nt/count_by_factor_type.hpp
   - nt/gcd_convolution.hpp
   - mod/tetration.hpp
+  - mod/modfast.hpp
   - mod/powertable.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_labeled_biconnected.hpp
@@ -409,6 +416,7 @@ data:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/eulerian_number.test.cpp
   - test/1_mytest/count_labeled_biconnected.test.cpp

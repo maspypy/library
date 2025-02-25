@@ -75,6 +75,9 @@ data:
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/modular_subset_sum.hpp
     title: mod/modular_subset_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -417,6 +420,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_sum_of_linear.test.cpp
     title: test/1_mytest/mod_sum_of_linear.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
@@ -943,6 +949,7 @@ data:
   - mod/primitive_root.hpp
   - mod/mod_kth_root.hpp
   - mod/tetration.hpp
+  - mod/modfast.hpp
   - mod/modular_subset_sum.hpp
   - mod/dynamic_modint.hpp
   - mod/mod_sqrt.hpp
@@ -1104,6 +1111,7 @@ data:
   - test/1_mytest/max_assign.test.cpp
   - test/1_mytest/rbst_test.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/reduce_intervals.test.cpp

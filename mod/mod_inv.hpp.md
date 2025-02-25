@@ -93,6 +93,9 @@ data:
     path: mod/mod_log_998244353.hpp
     title: mod/mod_log_998244353.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
+  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
   - icon: ':heavy_check_mark:'
@@ -426,6 +429,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_log_998.test.cpp
     title: test/1_mytest/mod_log_998.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multipoint_prefix.test.cpp
     title: test/1_mytest/multipoint_prefix.test.cpp
@@ -978,6 +984,7 @@ data:
   - nt/crt.hpp
   - mod/multiplicative_convolution_mod_p.hpp
   - mod/mod_kth_root.hpp
+  - mod/modfast.hpp
   - mod/multiplicative_convolution_mod_2n.hpp
   - mod/binomial.hpp
   - mod/mod_log_998244353.hpp
@@ -1152,6 +1159,7 @@ data:
   - test/1_mytest/bell_number.test.cpp
   - test/1_mytest/graph_count.test.cpp
   - test/1_mytest/catalan_convolution.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/conv_leq.test.cpp
   - test/1_mytest/online_inv.test.cpp

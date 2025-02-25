@@ -345,6 +345,9 @@ data:
     path: mod/mod_log.hpp
     title: mod/mod_log.hpp
   - icon: ':heavy_check_mark:'
+    path: mod/modfast.hpp
+    title: mod/modfast.hpp
+  - icon: ':heavy_check_mark:'
     path: nt/array_on_divisors.hpp
     title: nt/array_on_divisors.hpp
   - icon: ':heavy_check_mark:'
@@ -426,6 +429,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/nimber_log.test.cpp
     title: test/1_mytest/nimber_log.test.cpp
@@ -1027,6 +1033,7 @@ data:
   - nt/nimber/nimber_log.hpp
   - nt/discrete_log.hpp
   - mod/mod_kth_root.hpp
+  - mod/modfast.hpp
   - mod/mod_log.hpp
   - graph/tree_center.hpp
   - graph/dag_path_cover.hpp
@@ -1306,6 +1313,7 @@ data:
   - test/1_mytest/rolling_hash_on_tree.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/matching_ve.test.cpp
   - test/1_mytest/count_clique.test.cpp
   - test/1_mytest/nimber_log.test.cpp
