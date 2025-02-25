@@ -1,5 +1,9 @@
+#pragma once
+
 #include "mod/modint.hpp"
 #include "mod/mod_inv.hpp"
+
+#define MOD_LOG_998
 
 namespace DISCRETE_LOG_998 {
 const int A = 32768;

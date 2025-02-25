@@ -1,5 +1,4 @@
 #include "mod/primitive_root.hpp"
-#include "mod/mod_log_998244353.hpp"
 #include "nt/lpf_table.hpp"
 #include "ds/hashmap.hpp"
 
@@ -65,15 +64,28 @@ private:
     FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1 << 15]) % p;
   }
 
-  // 0.72sec [0.10sec if p=998]
+  // 0.17 sec. mod_log_998 を include すると 0.1 sec.
   void build_log() {
+#ifdef MOD_LOG_998
     if (p == 998244353) return build_log_998();
-    auto lpf = lpf_table(1 << 21);
-    const int S = 5'000'000;
+#endif
+    const int LIM = 1 << 21;
+    auto lpf = lpf_table(LIM);
+
+    const int S = 1 << 17;
     HashMap<u32> MP(S);
     u32 pw = 1;
     for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) { MP[pw] = k; }
     u32 q = pow_r(p - 1 - S);
+    auto BSGS = [&](u32 s) -> u32 {
+      u32 ans = 0;
+      while (1) {
+        u32 v = MP.get(s, -1);
+        if (v != u32(-1)) { return ans + v; }
+        ans += S, s = u64(s) * q % p;
+      }
+      return 0;
+    };
 
     LOG[K + 1] = 0;
     FOR(i, 2, 1 + (1 << 21)) {
@@ -81,26 +93,38 @@ private:
         LOG[K + i] = (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1);
         continue;
       }
-      u32 s = i;
-      LOG[K + i] = 0;
+      if (i < 100) {
+        LOG[K + i] = BSGS(i);
+        continue;
+      }
       while (1) {
-        u32 v = MP.get(s, -1);
-        if (v != u32(-1)) {
-          LOG[K + i] += v;
+        u32 k = RNG(0, p - 1);
+        u64 ans = p - 1 - k;
+        u32 x = u64(i) * pow_r(k) % p;
+        auto div = [&](u32 q) -> void { x /= q, ans += LOG[K + q]; };
+        for (u32 q: {2, 3, 5, 7, 11, 13, 17, 19}) {
+          while (x % q == 0) div(q);
+        }
+        if (x >= LIM) continue;
+        while (i < x && x < LIM && lpf[x] < i) div(lpf[x]);
+        if (1 < x && x < i) div(x);
+        if (x == 1) {
+          LOG[K + i] = ans % (p - 1);
           break;
         }
-        LOG[K + i] += S, s = u64(s) * q % p;
       }
     }
     FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }
   }
 
+#ifdef MOD_LOG_998
   void build_log_998() {
     auto lpf = lpf_table(1 << 21);
     LOG[K + 1] = 0;
     FOR(i, 2, 1 + (1 << 21)) { LOG[K + i] = (lpf[i] < i ? (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1) : mod_log_998_primitive_root(i)); }
     FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }
   }
+#endif
 
   void build_frac() {
     vc<tuple<u16, u16, u16, u16>> que;
