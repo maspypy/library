@@ -309,61 +309,18 @@ data:
     \n  void build_inv() {\n    INV[K + 1] = 1;\n    for (u32 i = 2; i <= K; ++i)\
     \ {\n      u64 q = (p + i - 1) / i;\n      INV[K + i] = INV[K + i * q - p] * u64(q)\
     \ % p;\n    }\n    FOR(i, 1, K + 1) INV[K - i] = p - INV[K + i];\n  }\n\n  u32\
-    \ pow(u32 a, ll exp) {\n    assert(0 <= a && a < p && exp >= 0);\n    if (a ==\
-    \ 0) return (exp == 0 ? 1 : 0);\n    exp %= p - 1;\n    assert(pow_r(log_r(a))\
-    \ == a);\n    return pow_r(log_r(a) * exp % (p - 1));\n  }\n\n  u32 pow_r(u32\
-    \ exp) {\n    assert(0 <= exp && exp <= 2 * p - 2);\n    return u64(POW[0][exp\
-    \ & 65535]) * POW[1][exp >> 16] % p;\n  }\n\n  // [0, 2p-2)\n  u32 log_r(u32 x)\
-    \ {\n    assert(1 <= x && x < p);\n    auto [a, b] = FRAC[x >> 10];\n    u32 t\
-    \ = x * b - a * p;\n    return LOG[K + t] + (p - 1) - LOG[K + b];\n  }\n\n  u32\
-    \ inverse(u32 x) {\n    assert(1 <= x && x < p);\n    auto [a, b] = FRAC[x >>\
-    \ 10];\n    u32 t = x * b - a * p;\n    return INV[K + t] * u64(b) % p;\n  }\n\
-    \nprivate:\n  void build_pow() {\n    POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1\
-    \ << 16)) POW[0][i + 1] = POW[0][i] * u64(root) % p;\n    FOR(i, (1 << 16)) POW[1][i\
-    \ + 1] = POW[1][i] * u64(POW[0][1 << 16]) % p;\n  }\n\n  // 0.72sec [0.10sec if\
-    \ p=998]\n  void build_log() {\n    if (p == 998244353) return build_log_998();\n\
-    \    auto lpf = lpf_table(1 << 21);\n    const int S = 5'000'000;\n    HashMap<u32>\
-    \ MP(S);\n    u32 pw = 1;\n    for (int k = 0; k < S; ++k, pw = u64(root) * pw\
-    \ % p) { MP[pw] = k; }\n    u32 q = pow_r(p - 1 - S);\n\n    LOG[K + 1] = 0;\n\
-    \    FOR(i, 2, 1 + (1 << 21)) {\n      if (lpf[i] < i) {\n        LOG[K + i] =\
-    \ (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1);\n        continue;\n    \
-    \  }\n      u32 s = i;\n      LOG[K + i] = 0;\n      while (1) {\n        u32\
-    \ v = MP.get(s, -1);\n        if (v != u32(-1)) {\n          LOG[K + i] += v;\n\
-    \          break;\n        }\n        LOG[K + i] += S, s = u64(s) * q % p;\n \
-    \     }\n    }\n    FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p -\
-    \ 1) / 2) % (p - 1); }\n  }\n\n  void build_log_998() {\n    auto lpf = lpf_table(1\
-    \ << 21);\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1 + (1 << 21)) { LOG[K + i] = (lpf[i]\
-    \ < i ? (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1) : mod_log_998_primitive_root(i));\
-    \ }\n    FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) %\
-    \ (p - 1); }\n  }\n\n  void build_frac() {\n    vc<tuple<u16, u16, u16, u16>>\
-    \ que;\n    que.eb(0, 1, 1, 1);\n    while (len(que)) {\n      auto [a, b, c,\
-    \ d] = POP(que);\n      if (b + d < 2048) {\n        que.eb(a + c, b + d, c, d),\
-    \ que.eb(a, b, a + c, b + d);\n        continue;\n      }\n      u32 s = (u64(a)\
-    \ * p) / (1024 * b);\n      u32 t = (u64(c) * p) / (1024 * d);\n      FRAC[s]\
-    \ = {a, b}, FRAC[t] = {c, d};\n      a = min(a, c), b = min(b, d);\n      FOR(i,\
-    \ s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n"
-  code: "#include \"mod/primitive_root.hpp\"\n#include \"mod/mod_log_998244353.hpp\"\
-    \n#include \"nt/lpf_table.hpp\"\n#include \"ds/hashmap.hpp\"\n\ntemplate <int\
-    \ p>\nstruct ModFast {\n  static_assert(p < (1 << 30));\n\n  u32 root;\n  array<u32,\
-    \ 65537> POW[2];\n  array<pair<u16, u16>, 1 + (1 << 20)> FRAC;\n\n  static constexpr\
-    \ int K = 1 << 21;\n  array<u32, 2 * K + 1> LOG;\n  array<u32, 2 * K + 1> INV;\n\
-    \n  ModFast() {\n    root = (p == 998244353 ? 3 : primitive_root(p));\n    build_pow();\n\
-    \    build_inv();\n    build_log();\n    build_frac();\n  }\n\n  void build_inv()\
-    \ {\n    INV[K + 1] = 1;\n    for (u32 i = 2; i <= K; ++i) {\n      u64 q = (p\
-    \ + i - 1) / i;\n      INV[K + i] = INV[K + i * q - p] * u64(q) % p;\n    }\n\
-    \    FOR(i, 1, K + 1) INV[K - i] = p - INV[K + i];\n  }\n\n  u32 pow(u32 a, ll\
-    \ exp) {\n    assert(0 <= a && a < p && exp >= 0);\n    if (a == 0) return (exp\
-    \ == 0 ? 1 : 0);\n    exp %= p - 1;\n    assert(pow_r(log_r(a)) == a);\n    return\
-    \ pow_r(log_r(a) * exp % (p - 1));\n  }\n\n  u32 pow_r(u32 exp) {\n    assert(0\
-    \ <= exp && exp <= 2 * p - 2);\n    return u64(POW[0][exp & 65535]) * POW[1][exp\
-    \ >> 16] % p;\n  }\n\n  // [0, 2p-2)\n  u32 log_r(u32 x) {\n    assert(1 <= x\
-    \ && x < p);\n    auto [a, b] = FRAC[x >> 10];\n    u32 t = x * b - a * p;\n \
-    \   return LOG[K + t] + (p - 1) - LOG[K + b];\n  }\n\n  u32 inverse(u32 x) {\n\
-    \    assert(1 <= x && x < p);\n    auto [a, b] = FRAC[x >> 10];\n    u32 t = x\
-    \ * b - a * p;\n    return INV[K + t] * u64(b) % p;\n  }\n\nprivate:\n  void build_pow()\
-    \ {\n    POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1 << 16)) POW[0][i + 1] = POW[0][i]\
-    \ * u64(root) % p;\n    FOR(i, (1 << 16)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1\
-    \ << 16]) % p;\n  }\n\n  // 0.72sec [0.10sec if p=998]\n  void build_log() {\n\
+    \ pow(u32 a, ll exp) {\n    assert(0 <= a && a < p && 0 <= exp && exp < (1 <<\
+    \ 30));\n    if (a == 0) return (exp == 0 ? 1 : 0);\n    return pow_r(log_r(a)\
+    \ * exp % (p - 1));\n  }\n\n  u32 pow_r(u32 exp) {\n    assert(0 <= exp && exp\
+    \ <= p - 1);\n    return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;\n \
+    \ }\n\n  // [0, 2p-2)\n  u32 log_r(u32 x) {\n    assert(1 <= x && x < p);\n  \
+    \  auto [a, b] = FRAC[x >> 10];\n    u32 t = x * b - a * p;\n    return LOG[K\
+    \ + t] + (p - 1) - LOG[K + b];\n  }\n\n  u32 inverse(u32 x) {\n    assert(1 <=\
+    \ x && x < p);\n    auto [a, b] = FRAC[x >> 10];\n    u32 t = x * b - a * p;\n\
+    \    return INV[K + t] * u64(b) % p;\n  }\n\nprivate:\n  void build_pow() {\n\
+    \    POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i]\
+    \ * u64(root) % p;\n    FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1\
+    \ << 15]) % p;\n  }\n\n  // 0.72sec [0.10sec if p=998]\n  void build_log() {\n\
     \    if (p == 998244353) return build_log_998();\n    auto lpf = lpf_table(1 <<\
     \ 21);\n    const int S = 5'000'000;\n    HashMap<u32> MP(S);\n    u32 pw = 1;\n\
     \    for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) { MP[pw] = k; }\n  \
@@ -385,6 +342,48 @@ data:
     \ * p) / (1024 * b);\n      u32 t = (u64(c) * p) / (1024 * d);\n      FRAC[s]\
     \ = {a, b}, FRAC[t] = {c, d};\n      a = min(a, c), b = min(b, d);\n      FOR(i,\
     \ s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n"
+  code: "#include \"mod/primitive_root.hpp\"\n#include \"mod/mod_log_998244353.hpp\"\
+    \n#include \"nt/lpf_table.hpp\"\n#include \"ds/hashmap.hpp\"\n\ntemplate <int\
+    \ p>\nstruct ModFast {\n  static_assert(p < (1 << 30));\n\n  u32 root;\n  array<u32,\
+    \ 65537> POW[2];\n  array<pair<u16, u16>, 1 + (1 << 20)> FRAC;\n\n  static constexpr\
+    \ int K = 1 << 21;\n  array<u32, 2 * K + 1> LOG;\n  array<u32, 2 * K + 1> INV;\n\
+    \n  ModFast() {\n    root = (p == 998244353 ? 3 : primitive_root(p));\n    build_pow();\n\
+    \    build_inv();\n    build_log();\n    build_frac();\n  }\n\n  void build_inv()\
+    \ {\n    INV[K + 1] = 1;\n    for (u32 i = 2; i <= K; ++i) {\n      u64 q = (p\
+    \ + i - 1) / i;\n      INV[K + i] = INV[K + i * q - p] * u64(q) % p;\n    }\n\
+    \    FOR(i, 1, K + 1) INV[K - i] = p - INV[K + i];\n  }\n\n  u32 pow(u32 a, ll\
+    \ exp) {\n    assert(0 <= a && a < p && 0 <= exp && exp < (1 << 30));\n    if\
+    \ (a == 0) return (exp == 0 ? 1 : 0);\n    return pow_r(log_r(a) * exp % (p -\
+    \ 1));\n  }\n\n  u32 pow_r(u32 exp) {\n    assert(0 <= exp && exp <= p - 1);\n\
+    \    return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;\n  }\n\n  // [0,\
+    \ 2p-2)\n  u32 log_r(u32 x) {\n    assert(1 <= x && x < p);\n    auto [a, b] =\
+    \ FRAC[x >> 10];\n    u32 t = x * b - a * p;\n    return LOG[K + t] + (p - 1)\
+    \ - LOG[K + b];\n  }\n\n  u32 inverse(u32 x) {\n    assert(1 <= x && x < p);\n\
+    \    auto [a, b] = FRAC[x >> 10];\n    u32 t = x * b - a * p;\n    return INV[K\
+    \ + t] * u64(b) % p;\n  }\n\nprivate:\n  void build_pow() {\n    POW[0][0] = POW[1][0]\
+    \ = 1;\n    FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i] * u64(root) % p;\n   \
+    \ FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1 << 15]) % p;\n  }\n\
+    \n  // 0.72sec [0.10sec if p=998]\n  void build_log() {\n    if (p == 998244353)\
+    \ return build_log_998();\n    auto lpf = lpf_table(1 << 21);\n    const int S\
+    \ = 5'000'000;\n    HashMap<u32> MP(S);\n    u32 pw = 1;\n    for (int k = 0;\
+    \ k < S; ++k, pw = u64(root) * pw % p) { MP[pw] = k; }\n    u32 q = pow_r(p -\
+    \ 1 - S);\n\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1 + (1 << 21)) {\n      if (lpf[i]\
+    \ < i) {\n        LOG[K + i] = (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p -\
+    \ 1);\n        continue;\n      }\n      u32 s = i;\n      LOG[K + i] = 0;\n \
+    \     while (1) {\n        u32 v = MP.get(s, -1);\n        if (v != u32(-1)) {\n\
+    \          LOG[K + i] += v;\n          break;\n        }\n        LOG[K + i] +=\
+    \ S, s = u64(s) * q % p;\n      }\n    }\n    FOR(i, 1, 1 + (1 << 21)) { LOG[K\
+    \ - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }\n  }\n\n  void build_log_998()\
+    \ {\n    auto lpf = lpf_table(1 << 21);\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1\
+    \ + (1 << 21)) { LOG[K + i] = (lpf[i] < i ? (LOG[K + lpf[i]] + LOG[K + i / lpf[i]])\
+    \ % (p - 1) : mod_log_998_primitive_root(i)); }\n    FOR(i, 1, 1 + (1 << 21))\
+    \ { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }\n  }\n\n  void build_frac()\
+    \ {\n    vc<tuple<u16, u16, u16, u16>> que;\n    que.eb(0, 1, 1, 1);\n    while\
+    \ (len(que)) {\n      auto [a, b, c, d] = POP(que);\n      if (b + d < 2048) {\n\
+    \        que.eb(a + c, b + d, c, d), que.eb(a, b, a + c, b + d);\n        continue;\n\
+    \      }\n      u32 s = (u64(a) * p) / (1024 * b);\n      u32 t = (u64(c) * p)\
+    \ / (1024 * d);\n      FRAC[s] = {a, b}, FRAC[t] = {c, d};\n      a = min(a, c),\
+    \ b = min(b, d);\n      FOR(i, s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n"
   dependsOn:
   - mod/primitive_root.hpp
   - nt/factor.hpp
@@ -403,7 +402,7 @@ data:
   isVerificationFile: false
   path: mod/modfast.hpp
   requiredBy: []
-  timestamp: '2025-02-25 18:00:53+09:00'
+  timestamp: '2025-02-25 18:46:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/modfast.test.cpp
