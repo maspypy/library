@@ -3,6 +3,7 @@
 
 #include "mod/modfast.hpp"
 #include "random/base.hpp"
+#include "mod/modint.hpp"
 
 using mint = modint998;
 
