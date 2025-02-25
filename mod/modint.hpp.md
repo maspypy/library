@@ -96,9 +96,6 @@ data:
     path: mod/mod_log_998244353.hpp
     title: mod/mod_log_998244353.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/modfast.hpp
-    title: mod/modfast.hpp
-  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
   - icon: ':heavy_check_mark:'
@@ -519,9 +516,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_log_998.test.cpp
     title: test/1_mytest/mod_log_998.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/modfast.test.cpp
-    title: test/1_mytest/modfast.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
@@ -1551,7 +1545,6 @@ data:
   - poly/middle_product.hpp
   - mod/q_analogue.hpp
   - mod/multiplicative_convolution_mod_p.hpp
-  - mod/modfast.hpp
   - mod/multiplicative_convolution_mod_2n.hpp
   - mod/mod_log_998244353.hpp
   - graph/tree_all_distances.hpp
@@ -1838,7 +1831,6 @@ data:
   - test/1_mytest/graph_count.test.cpp
   - test/1_mytest/catalan_convolution.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/conv_leq.test.cpp
   - test/1_mytest/narayana.test.cpp
