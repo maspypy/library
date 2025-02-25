@@ -33,16 +33,14 @@ struct ModFast {
   }
 
   u32 pow(u32 a, ll exp) {
-    assert(0 <= a && a < p && exp >= 0);
+    assert(0 <= a && a < p && 0 <= exp && exp < (1 << 30));
     if (a == 0) return (exp == 0 ? 1 : 0);
-    exp %= p - 1;
-    assert(pow_r(log_r(a)) == a);
     return pow_r(log_r(a) * exp % (p - 1));
   }
 
   u32 pow_r(u32 exp) {
-    assert(0 <= exp && exp <= 2 * p - 2);
-    return u64(POW[0][exp & 65535]) * POW[1][exp >> 16] % p;
+    assert(0 <= exp && exp <= p - 1);
+    return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;
   }
 
   // [0, 2p-2)
@@ -63,8 +61,8 @@ struct ModFast {
 private:
   void build_pow() {
     POW[0][0] = POW[1][0] = 1;
-    FOR(i, (1 << 16)) POW[0][i + 1] = POW[0][i] * u64(root) % p;
-    FOR(i, (1 << 16)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1 << 16]) % p;
+    FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i] * u64(root) % p;
+    FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1 << 15]) % p;
   }
 
   // 0.72sec [0.10sec if p=998]
