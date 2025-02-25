@@ -1456,9 +1456,6 @@ data:
       path: mod/mod_log.hpp
       title: mod/mod_log.hpp
     - icon: ':heavy_check_mark:'
-      path: mod/mod_log_998244353.hpp
-      title: mod/mod_log_998244353.hpp
-    - icon: ':heavy_check_mark:'
       path: mod/mod_pow.hpp
       title: mod/mod_pow.hpp
     - icon: ':heavy_check_mark:'
@@ -2652,9 +2649,6 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/mo_on_tree.test.cpp
       title: test/1_mytest/mo_on_tree.test.cpp
-    - icon: ':heavy_check_mark:'
-      path: test/1_mytest/mod_log_998.test.cpp
-      title: test/1_mytest/mod_log_998.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/mod_sum_of_linear.test.cpp
       title: test/1_mytest/mod_sum_of_linear.test.cpp

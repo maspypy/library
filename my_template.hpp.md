@@ -376,9 +376,6 @@ data:
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
   - icon: ':heavy_check_mark:'
-    path: test/1_mytest/mod_log_998.test.cpp
-    title: test/1_mytest/mod_log_998.test.cpp
-  - icon: ':heavy_check_mark:'
     path: test/1_mytest/mod_sum_of_linear.test.cpp
     title: test/1_mytest/mod_sum_of_linear.test.cpp
   - icon: ':heavy_check_mark:'
@@ -3382,7 +3379,6 @@ data:
   - test/1_mytest/min_max.test.cpp
   - test/1_mytest/extended_lichao_2.test.cpp
   - test/1_mytest/gray_code.test.cpp
-  - test/1_mytest/mod_log_998.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/all_but_one_products.test.cpp
   - test/1_mytest/fibonacci_search.test.cpp

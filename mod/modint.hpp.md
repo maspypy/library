@@ -93,9 +93,6 @@ data:
     path: linalg/matrix_pow.hpp
     title: linalg/matrix_pow.hpp
   - icon: ':heavy_check_mark:'
-    path: mod/mod_log_998244353.hpp
-    title: mod/mod_log_998244353.hpp
-  - icon: ':heavy_check_mark:'
     path: mod/multiplicative_convolution_mod_2n.hpp
     title: mod/multiplicative_convolution_mod_2n.hpp
   - icon: ':heavy_check_mark:'
@@ -513,9 +510,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mo_on_tree.test.cpp
     title: test/1_mytest/mo_on_tree.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/mod_log_998.test.cpp
-    title: test/1_mytest/mod_log_998.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
@@ -1549,7 +1543,6 @@ data:
   - mod/q_analogue.hpp
   - mod/multiplicative_convolution_mod_p.hpp
   - mod/multiplicative_convolution_mod_2n.hpp
-  - mod/mod_log_998244353.hpp
   - graph/tree_all_distances.hpp
   - graph/chromatic.hpp
   - graph/count_matching_on_tree.hpp
@@ -1823,7 +1816,6 @@ data:
   - test/1_mytest/min_poly.test.cpp
   - test/1_mytest/online_pow.test.cpp
   - test/1_mytest/typical_dc.test.cpp
-  - test/1_mytest/mod_log_998.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/count_unbordered_string.test.cpp
   - test/1_mytest/splay_am.test.cpp

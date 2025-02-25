@@ -202,37 +202,33 @@ data:
     \    return INV[K + t] * u64(b) % p;\n  }\n\nprivate:\n  void build_pow() {\n\
     \    POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i]\
     \ * u64(root) % p;\n    FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1\
-    \ << 15]) % p;\n  }\n\n  // 0.17 sec. mod_log_998 \u3092 include \u3059\u308B\u3068\
-    \ 0.1 sec.\n  void build_log() {\n#ifdef MOD_LOG_998\n    if (p == 998244353)\
-    \ return build_log_998();\n#endif\n    const int LIM = 1 << 21;\n    auto lpf\
-    \ = lpf_table(LIM);\n\n    const int S = 1 << 17;\n    HashMap<u32> MP(S);\n \
-    \   u32 pw = 1;\n    for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) { MP[pw]\
-    \ = k; }\n    u32 q = pow_r(p - 1 - S);\n    auto BSGS = [&](u32 s) -> u32 {\n\
-    \      u32 ans = 0;\n      while (1) {\n        u32 v = MP.get(s, -1);\n     \
-    \   if (v != u32(-1)) { return ans + v; }\n        ans += S, s = u64(s) * q %\
-    \ p;\n      }\n      return 0;\n    };\n\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1\
-    \ + (1 << 21)) {\n      if (lpf[i] < i) {\n        LOG[K + i] = (LOG[K + lpf[i]]\
-    \ + LOG[K + i / lpf[i]]) % (p - 1);\n        continue;\n      }\n      if (i <\
-    \ 100) {\n        LOG[K + i] = BSGS(i);\n        continue;\n      }\n      while\
-    \ (1) {\n        u32 k = RNG(0, p - 1);\n        u64 ans = p - 1 - k;\n      \
-    \  u32 x = u64(i) * pow_r(k) % p;\n        auto div = [&](u32 q) -> void { x /=\
-    \ q, ans += LOG[K + q]; };\n        for (u32 q: {2, 3, 5, 7, 11, 13, 17, 19})\
-    \ {\n          while (x % q == 0) div(q);\n        }\n        if (x >= LIM) continue;\n\
-    \        while (i < x && x < LIM && lpf[x] < i) div(lpf[x]);\n        if (1 <\
-    \ x && x < i) div(x);\n        if (x == 1) {\n          LOG[K + i] = ans % (p\
-    \ - 1);\n          break;\n        }\n      }\n    }\n    FOR(i, 1, 1 + (1 <<\
-    \ 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }\n  }\n\n#ifdef MOD_LOG_998\n\
-    \  void build_log_998() {\n    auto lpf = lpf_table(1 << 21);\n    LOG[K + 1]\
-    \ = 0;\n    FOR(i, 2, 1 + (1 << 21)) { LOG[K + i] = (lpf[i] < i ? (LOG[K + lpf[i]]\
-    \ + LOG[K + i / lpf[i]]) % (p - 1) : mod_log_998_primitive_root(i)); }\n    FOR(i,\
-    \ 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }\n \
-    \ }\n#endif\n\n  void build_frac() {\n    vc<tuple<u16, u16, u16, u16>> que;\n\
-    \    que.eb(0, 1, 1, 1);\n    while (len(que)) {\n      auto [a, b, c, d] = POP(que);\n\
-    \      if (b + d < 2048) {\n        que.eb(a + c, b + d, c, d), que.eb(a, b, a\
-    \ + c, b + d);\n        continue;\n      }\n      u32 s = (u64(a) * p) / (1024\
-    \ * b);\n      u32 t = (u64(c) * p) / (1024 * d);\n      FRAC[s] = {a, b}, FRAC[t]\
-    \ = {c, d};\n      a = min(a, c), b = min(b, d);\n      FOR(i, s + 1, t) FRAC[i]\
-    \ = {a, b};\n    }\n  }\n};\n"
+    \ << 15]) % p;\n  }\n\n  // 0.085 sec.\n  void build_log() {\n    const int LIM\
+    \ = 1 << 21;\n    auto lpf = lpf_table(LIM);\n\n    const int S = 1 << 17;\n \
+    \   HashMap<u32> MP(S);\n    u32 pw = 1;\n    for (int k = 0; k < S; ++k, pw =\
+    \ u64(root) * pw % p) { MP[pw] = k; }\n    u32 q = pow_r(p - 1 - S);\n    auto\
+    \ BSGS = [&](u32 s) -> u32 {\n      u32 ans = 0;\n      while (1) {\n        u32\
+    \ v = MP.get(s, -1);\n        if (v != u32(-1)) { return ans + v; }\n        ans\
+    \ += S, s = u64(s) * q % p;\n      }\n      return 0;\n    };\n\n    LOG[K + 1]\
+    \ = 0;\n    FOR(i, 2, 1 + (1 << 21)) {\n      if (lpf[i] < i) {\n        LOG[K\
+    \ + i] = (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1);\n        continue;\n\
+    \      }\n      if (i < 100) {\n        LOG[K + i] = BSGS(i);\n        continue;\n\
+    \      }\n      if (i * i > p) {\n        auto [j, k] = divmod<int>(p, i);\n \
+    \       // i = (-k)/j\n        LOG[K + i] = (LOG[K + k] + (p - 1) / 2 + (p - 1)\
+    \ - LOG[K + j]) % (p - 1);\n        continue;\n      }\n      while (1) {\n  \
+    \      u32 k = RNG(0, p - 1);\n        u64 ans = p - 1 - k;\n        u32 x = u64(i)\
+    \ * pow_r(k) % p;\n        auto div = [&](u32 q) -> void { x /= q, ans += LOG[K\
+    \ + q]; };\n        for (u32 q: {2, 3, 5, 7, 11, 13, 17, 19}) {\n          while\
+    \ (x % q == 0) div(q);\n        }\n        if (x >= LIM) continue;\n        while\
+    \ (i < x && x < LIM && lpf[x] < i) div(lpf[x]);\n        if (1 < x && x < i) div(x);\n\
+    \        if (x == 1) {\n          LOG[K + i] = ans % (p - 1);\n          break;\n\
+    \        }\n      }\n    }\n    FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K\
+    \ + i] + (p - 1) / 2) % (p - 1); }\n  }\n\n  void build_frac() {\n    vc<tuple<u16,\
+    \ u16, u16, u16>> que;\n    que.eb(0, 1, 1, 1);\n    while (len(que)) {\n    \
+    \  auto [a, b, c, d] = POP(que);\n      if (b + d < 2048) {\n        que.eb(a\
+    \ + c, b + d, c, d), que.eb(a, b, a + c, b + d);\n        continue;\n      }\n\
+    \      u32 s = (u64(a) * p) / (1024 * b);\n      u32 t = (u64(c) * p) / (1024\
+    \ * d);\n      FRAC[s] = {a, b}, FRAC[t] = {c, d};\n      a = min(a, c), b = min(b,\
+    \ d);\n      FOR(i, s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n"
   code: "#include \"mod/primitive_root.hpp\"\n#include \"nt/lpf_table.hpp\"\n#include\
     \ \"ds/hashmap.hpp\"\n\ntemplate <int p>\nstruct ModFast {\n  static_assert(p\
     \ < (1 << 30));\n\n  u32 root;\n  array<u32, 65537> POW[2];\n  array<pair<u16,\
@@ -253,37 +249,33 @@ data:
     \ * b - a * p;\n    return INV[K + t] * u64(b) % p;\n  }\n\nprivate:\n  void build_pow()\
     \ {\n    POW[0][0] = POW[1][0] = 1;\n    FOR(i, (1 << 15)) POW[0][i + 1] = POW[0][i]\
     \ * u64(root) % p;\n    FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1\
-    \ << 15]) % p;\n  }\n\n  // 0.17 sec. mod_log_998 \u3092 include \u3059\u308B\u3068\
-    \ 0.1 sec.\n  void build_log() {\n#ifdef MOD_LOG_998\n    if (p == 998244353)\
-    \ return build_log_998();\n#endif\n    const int LIM = 1 << 21;\n    auto lpf\
-    \ = lpf_table(LIM);\n\n    const int S = 1 << 17;\n    HashMap<u32> MP(S);\n \
-    \   u32 pw = 1;\n    for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) { MP[pw]\
-    \ = k; }\n    u32 q = pow_r(p - 1 - S);\n    auto BSGS = [&](u32 s) -> u32 {\n\
-    \      u32 ans = 0;\n      while (1) {\n        u32 v = MP.get(s, -1);\n     \
-    \   if (v != u32(-1)) { return ans + v; }\n        ans += S, s = u64(s) * q %\
-    \ p;\n      }\n      return 0;\n    };\n\n    LOG[K + 1] = 0;\n    FOR(i, 2, 1\
-    \ + (1 << 21)) {\n      if (lpf[i] < i) {\n        LOG[K + i] = (LOG[K + lpf[i]]\
-    \ + LOG[K + i / lpf[i]]) % (p - 1);\n        continue;\n      }\n      if (i <\
-    \ 100) {\n        LOG[K + i] = BSGS(i);\n        continue;\n      }\n      while\
-    \ (1) {\n        u32 k = RNG(0, p - 1);\n        u64 ans = p - 1 - k;\n      \
-    \  u32 x = u64(i) * pow_r(k) % p;\n        auto div = [&](u32 q) -> void { x /=\
-    \ q, ans += LOG[K + q]; };\n        for (u32 q: {2, 3, 5, 7, 11, 13, 17, 19})\
-    \ {\n          while (x % q == 0) div(q);\n        }\n        if (x >= LIM) continue;\n\
-    \        while (i < x && x < LIM && lpf[x] < i) div(lpf[x]);\n        if (1 <\
-    \ x && x < i) div(x);\n        if (x == 1) {\n          LOG[K + i] = ans % (p\
-    \ - 1);\n          break;\n        }\n      }\n    }\n    FOR(i, 1, 1 + (1 <<\
-    \ 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }\n  }\n\n#ifdef MOD_LOG_998\n\
-    \  void build_log_998() {\n    auto lpf = lpf_table(1 << 21);\n    LOG[K + 1]\
-    \ = 0;\n    FOR(i, 2, 1 + (1 << 21)) { LOG[K + i] = (lpf[i] < i ? (LOG[K + lpf[i]]\
-    \ + LOG[K + i / lpf[i]]) % (p - 1) : mod_log_998_primitive_root(i)); }\n    FOR(i,\
-    \ 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }\n \
-    \ }\n#endif\n\n  void build_frac() {\n    vc<tuple<u16, u16, u16, u16>> que;\n\
-    \    que.eb(0, 1, 1, 1);\n    while (len(que)) {\n      auto [a, b, c, d] = POP(que);\n\
-    \      if (b + d < 2048) {\n        que.eb(a + c, b + d, c, d), que.eb(a, b, a\
-    \ + c, b + d);\n        continue;\n      }\n      u32 s = (u64(a) * p) / (1024\
-    \ * b);\n      u32 t = (u64(c) * p) / (1024 * d);\n      FRAC[s] = {a, b}, FRAC[t]\
-    \ = {c, d};\n      a = min(a, c), b = min(b, d);\n      FOR(i, s + 1, t) FRAC[i]\
-    \ = {a, b};\n    }\n  }\n};\n"
+    \ << 15]) % p;\n  }\n\n  // 0.085 sec.\n  void build_log() {\n    const int LIM\
+    \ = 1 << 21;\n    auto lpf = lpf_table(LIM);\n\n    const int S = 1 << 17;\n \
+    \   HashMap<u32> MP(S);\n    u32 pw = 1;\n    for (int k = 0; k < S; ++k, pw =\
+    \ u64(root) * pw % p) { MP[pw] = k; }\n    u32 q = pow_r(p - 1 - S);\n    auto\
+    \ BSGS = [&](u32 s) -> u32 {\n      u32 ans = 0;\n      while (1) {\n        u32\
+    \ v = MP.get(s, -1);\n        if (v != u32(-1)) { return ans + v; }\n        ans\
+    \ += S, s = u64(s) * q % p;\n      }\n      return 0;\n    };\n\n    LOG[K + 1]\
+    \ = 0;\n    FOR(i, 2, 1 + (1 << 21)) {\n      if (lpf[i] < i) {\n        LOG[K\
+    \ + i] = (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1);\n        continue;\n\
+    \      }\n      if (i < 100) {\n        LOG[K + i] = BSGS(i);\n        continue;\n\
+    \      }\n      if (i * i > p) {\n        auto [j, k] = divmod<int>(p, i);\n \
+    \       // i = (-k)/j\n        LOG[K + i] = (LOG[K + k] + (p - 1) / 2 + (p - 1)\
+    \ - LOG[K + j]) % (p - 1);\n        continue;\n      }\n      while (1) {\n  \
+    \      u32 k = RNG(0, p - 1);\n        u64 ans = p - 1 - k;\n        u32 x = u64(i)\
+    \ * pow_r(k) % p;\n        auto div = [&](u32 q) -> void { x /= q, ans += LOG[K\
+    \ + q]; };\n        for (u32 q: {2, 3, 5, 7, 11, 13, 17, 19}) {\n          while\
+    \ (x % q == 0) div(q);\n        }\n        if (x >= LIM) continue;\n        while\
+    \ (i < x && x < LIM && lpf[x] < i) div(lpf[x]);\n        if (1 < x && x < i) div(x);\n\
+    \        if (x == 1) {\n          LOG[K + i] = ans % (p - 1);\n          break;\n\
+    \        }\n      }\n    }\n    FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K\
+    \ + i] + (p - 1) / 2) % (p - 1); }\n  }\n\n  void build_frac() {\n    vc<tuple<u16,\
+    \ u16, u16, u16>> que;\n    que.eb(0, 1, 1, 1);\n    while (len(que)) {\n    \
+    \  auto [a, b, c, d] = POP(que);\n      if (b + d < 2048) {\n        que.eb(a\
+    \ + c, b + d, c, d), que.eb(a, b, a + c, b + d);\n        continue;\n      }\n\
+    \      u32 s = (u64(a) * p) / (1024 * b);\n      u32 t = (u64(c) * p) / (1024\
+    \ * d);\n      FRAC[s] = {a, b}, FRAC[t] = {c, d};\n      a = min(a, c), b = min(b,\
+    \ d);\n      FOR(i, s + 1, t) FRAC[i] = {a, b};\n    }\n  }\n};\n"
   dependsOn:
   - mod/primitive_root.hpp
   - nt/factor.hpp
@@ -298,7 +290,7 @@ data:
   isVerificationFile: false
   path: mod/modfast.hpp
   requiredBy: []
-  timestamp: '2025-02-26 02:14:25+09:00'
+  timestamp: '2025-02-26 02:51:41+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/modfast.test.cpp
