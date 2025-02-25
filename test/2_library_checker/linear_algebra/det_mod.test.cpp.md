@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/det.hpp
     title: linalg/det.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'

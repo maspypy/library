@@ -517,6 +517,9 @@ data:
     path: test/1_mytest/mod_log_998.test.cpp
     title: test/1_mytest/mod_log_998.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/modfast.test.cpp
+    title: test/1_mytest/modfast.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/multinomial.test.cpp
     title: test/1_mytest/multinomial.test.cpp
   - icon: ':heavy_check_mark:'
@@ -1831,6 +1834,7 @@ data:
   - test/1_mytest/graph_count.test.cpp
   - test/1_mytest/catalan_convolution.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
+  - test/1_mytest/modfast.test.cpp
   - test/1_mytest/partial_frac.test.cpp
   - test/1_mytest/conv_leq.test.cpp
   - test/1_mytest/narayana.test.cpp
