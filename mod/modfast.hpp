@@ -64,11 +64,8 @@ private:
     FOR(i, (1 << 15)) POW[1][i + 1] = POW[1][i] * u64(POW[0][1 << 15]) % p;
   }
 
-  // 0.17 sec. mod_log_998 を include すると 0.1 sec.
+  // 0.085 sec.
   void build_log() {
-#ifdef MOD_LOG_998
-    if (p == 998244353) return build_log_998();
-#endif
     const int LIM = 1 << 21;
     auto lpf = lpf_table(LIM);
 
@@ -97,6 +94,12 @@ private:
         LOG[K + i] = BSGS(i);
         continue;
       }
+      if (i * i > p) {
+        auto [j, k] = divmod<int>(p, i);
+        // i = (-k)/j
+        LOG[K + i] = (LOG[K + k] + (p - 1) / 2 + (p - 1) - LOG[K + j]) % (p - 1);
+        continue;
+      }
       while (1) {
         u32 k = RNG(0, p - 1);
         u64 ans = p - 1 - k;
@@ -116,15 +119,6 @@ private:
     }
     FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }
   }
-
-#ifdef MOD_LOG_998
-  void build_log_998() {
-    auto lpf = lpf_table(1 << 21);
-    LOG[K + 1] = 0;
-    FOR(i, 2, 1 + (1 << 21)) { LOG[K + i] = (lpf[i] < i ? (LOG[K + lpf[i]] + LOG[K + i / lpf[i]]) % (p - 1) : mod_log_998_primitive_root(i)); }
-    FOR(i, 1, 1 + (1 << 21)) { LOG[K - i] = (LOG[K + i] + (p - 1) / 2) % (p - 1); }
-  }
-#endif
 
   void build_frac() {
     vc<tuple<u16, u16, u16, u16>> que;
