@@ -43,7 +43,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -441,8 +441,8 @@ data:
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1303.test.cpp
 documentation_of: linalg/det_A_plus_xB.hpp
 layout: document
 redirect_from:

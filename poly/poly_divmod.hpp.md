@@ -426,38 +426,38 @@ data:
   isVerificationFile: false
   path: poly/poly_divmod.hpp
   requiredBy:
-  - seq/famous/bell_number_large.hpp
   - seq/interpolate_linear_rec.hpp
+  - seq/famous/bell_number_large.hpp
   - poly/poly_gcd.hpp
   - poly/poly_mod_pow.hpp
-  - poly/slice_rational_fps.hpp
   - poly/coef_of_rational_fps.hpp
+  - poly/slice_rational_fps.hpp
   - poly/finding_root_of_polynomial.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1962.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
+  - test/3_yukicoder/578.test.cpp
   - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/3_yukicoder/1500.test.cpp
-  - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/1844.test.cpp
+  - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/541.test.cpp
   - test/3_yukicoder/2305.test.cpp
-  - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/1500.test.cpp
+  - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/2877.test.cpp
+  - test/3_yukicoder/1547.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1561.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/polynomial/polynomial_division.test.cpp
   - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/1_mytest/coef_of_rational.test.cpp
-  - test/1_mytest/bell.test.cpp
 documentation_of: poly/poly_divmod.hpp
 layout: document
 redirect_from:

@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy:
@@ -253,8 +253,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/four_square.test.cpp
-  - test/1_mytest/three_triangular.test.cpp
   - test/1_mytest/three_square.test.cpp
+  - test/1_mytest/three_triangular.test.cpp
 documentation_of: nt/three_square.hpp
 layout: document
 redirect_from:

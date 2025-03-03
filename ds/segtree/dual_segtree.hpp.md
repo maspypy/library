@@ -95,22 +95,22 @@ data:
   isVerificationFile: false
   path: ds/segtree/dual_segtree.hpp
   requiredBy:
+  - graph/minimum_spanning_tree.hpp
+  - graph/ds/dual_tree_monoid.hpp
+  - geo/range_closest_pair_query.hpp
   - ds/segtree/range_add_make_decreasing.hpp
   - ds/segtree/range_add_make_increasing.hpp
-  - graph/ds/dual_tree_monoid.hpp
-  - graph/minimum_spanning_tree.hpp
-  - geo/range_closest_pair_query.hpp
   timestamp: '2024-10-12 22:46:11+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1524.test.cpp
-  - test/3_yukicoder/2498.test.cpp
-  - test/3_yukicoder/913.test.cpp
+  - test/1_mytest/range_closest_pair.test.cpp
   - test/4_aoj/DSL_2_D.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
-  - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
+  - test/3_yukicoder/913.test.cpp
+  - test/3_yukicoder/1524.test.cpp
+  - test/3_yukicoder/2498.test.cpp
   - test/2_library_checker/tree/mst.test.cpp
-  - test/1_mytest/range_closest_pair.test.cpp
+  - test/2_library_checker/data_structure/range_affine_point_add.test.cpp
 documentation_of: ds/segtree/dual_segtree.hpp
 layout: document
 redirect_from:

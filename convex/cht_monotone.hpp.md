@@ -89,8 +89,8 @@ data:
   timestamp: '2024-06-12 21:50:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1297.test.cpp
   - test/3_yukicoder/913.test.cpp
+  - test/3_yukicoder/1297.test.cpp
 documentation_of: convex/cht_monotone.hpp
 layout: document
 redirect_from:

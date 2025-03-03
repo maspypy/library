@@ -35,8 +35,8 @@ data:
   isVerificationFile: false
   path: linalg/transpose.hpp
   requiredBy:
-  - other/sliding_puzzle_solver.hpp
   - poly/coef_of_rational_fps_2d.hpp
+  - other/sliding_puzzle_solver.hpp
   - test/1_mytest/equal_4square_sum_grid.cpp
   timestamp: '2025-01-06 16:30:28+09:00'
   verificationStatus: LIBRARY_ALL_AC

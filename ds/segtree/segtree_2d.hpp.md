@@ -185,9 +185,9 @@ data:
   timestamp: '2024-01-26 19:43:43+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/seg2d.test.cpp
   - test/3_yukicoder/1600.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_seg2d.test.cpp
-  - test/1_mytest/seg2d.test.cpp
 documentation_of: ds/segtree/segtree_2d.hpp
 layout: document
 redirect_from:

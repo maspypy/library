@@ -148,10 +148,10 @@ data:
   isVerificationFile: false
   path: graph/reverse_graph.hpp
   requiredBy:
-  - graph/shortest_path/K_shortest_walk.hpp
-  - graph/dominator_tree.hpp
   - game/graph_path_game.hpp
   - game/graph_game.hpp
+  - graph/dominator_tree.hpp
+  - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

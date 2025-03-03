@@ -66,23 +66,23 @@ data:
   isVerificationFile: false
   path: alg/monoid/add_pair.hpp
   requiredBy:
-  - alg/acted_monoid/cntsum_affine.hpp
   - alg/acted_monoid/cntsum_add.hpp
+  - alg/acted_monoid/cntsum_affine.hpp
   - convex/slope_trick/slope_super.hpp
   timestamp: '2022-12-01 09:04:06+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/749.test.cpp
-  - test/3_yukicoder/255.test.cpp
+  - test/1_mytest/cf702_F.test.cpp
+  - test/1_mytest/cf702_F_splay.test.cpp
+  - test/1_mytest/slope_super.test.cpp
+  - test/1_mytest/mo_on_tree.test.cpp
   - test/3_yukicoder/2627.test.cpp
   - test/3_yukicoder/1919.test.cpp
-  - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/255.test.cpp
+  - test/3_yukicoder/749.test.cpp
   - test/3_yukicoder/235.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
   - test/2_library_checker/data_structure/dynamic_point_rectangle_affine_rectangle_sum.test.cpp
-  - test/1_mytest/cf702_F_splay.test.cpp
-  - test/1_mytest/mo_on_tree.test.cpp
-  - test/1_mytest/cf702_F.test.cpp
-  - test/1_mytest/slope_super.test.cpp
 documentation_of: alg/monoid/add_pair.hpp
 layout: document
 redirect_from:

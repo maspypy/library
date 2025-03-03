@@ -10,7 +10,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -113,8 +113,8 @@ data:
   timestamp: '2024-10-18 02:58:53+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1575.test.cpp
   - test/4_aoj/ITP1_D_D.test.cpp
+  - test/3_yukicoder/1575.test.cpp
 documentation_of: nt/divisors.hpp
 layout: document
 redirect_from:

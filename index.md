@@ -1511,7 +1511,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1705,10 +1705,13 @@ data:
     - icon: ':heavy_check_mark:'
       path: other/magic_square.hpp
       title: other/magic_square.hpp
+    - icon: ':warning:'
+      path: other/manhattan_path.hpp
+      title: other/manhattan_path.hpp
     - icon: ':heavy_check_mark:'
       path: other/mex.hpp
       title: other/mex.hpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: other/reduce_intervals.hpp
       title: other/reduce_intervals.hpp
     - icon: ':warning:'
@@ -1959,7 +1962,7 @@ data:
       title: poly/online/online_square.hpp
   - name: random
     pages:
-    - icon: ':heavy_check_mark:'
+    - icon: ':question:'
       path: random/base.hpp
       title: random/base.hpp
     - icon: ':heavy_check_mark:'
@@ -2805,7 +2808,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/rect_add_pt_sum.test.cpp
       title: test/1_mytest/rect_add_pt_sum.test.cpp
-    - icon: ':heavy_check_mark:'
+    - icon: ':x:'
       path: test/1_mytest/reduce_intervals.test.cpp
       title: test/1_mytest/reduce_intervals.test.cpp
     - icon: ':heavy_check_mark:'

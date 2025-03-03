@@ -422,8 +422,8 @@ data:
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/faulhaber.test.cpp
 documentation_of: seq/famous/faulhaber.hpp
 layout: document

@@ -75,14 +75,14 @@ data:
   isVerificationFile: false
   path: setfunc/sps_exp.hpp
   requiredBy:
-  - linalg/hafnian.hpp
   - graph/tutte_polynomial.hpp
+  - linalg/hafnian.hpp
   timestamp: '2024-12-28 10:55:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2507.test.cpp
-  - test/2_library_checker/set_power_series/sps_exp.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/2_library_checker/set_power_series/sps_exp.test.cpp
 documentation_of: setfunc/sps_exp.hpp
 layout: document
 redirect_from:

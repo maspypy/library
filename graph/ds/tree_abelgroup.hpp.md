@@ -380,9 +380,9 @@ data:
   timestamp: '2025-02-18 22:12:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/4_aoj/2636.test.cpp
   - test/3_yukicoder/1641.test.cpp
   - test/3_yukicoder/1326.test.cpp
-  - test/4_aoj/2636.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_abelgroup.test.cpp
 documentation_of: graph/ds/tree_abelgroup.hpp
 layout: document

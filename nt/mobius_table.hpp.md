@@ -65,8 +65,8 @@ data:
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2266.test.cpp
   - test/3_yukicoder/1760.test.cpp
+  - test/3_yukicoder/2266.test.cpp
 documentation_of: nt/mobius_table.hpp
 layout: document
 redirect_from:

@@ -174,8 +174,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1490.test.cpp
-  - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
+  - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
 documentation_of: ds/offline_query/coeffient_query_2d.hpp
 layout: document
 redirect_from:

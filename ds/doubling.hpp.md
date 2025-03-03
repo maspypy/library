@@ -90,9 +90,9 @@ data:
   timestamp: '2024-08-07 16:19:15+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2242.test.cpp
   - test/3_yukicoder/1977.test.cpp
   - test/3_yukicoder/1097.test.cpp
-  - test/3_yukicoder/2242.test.cpp
 documentation_of: ds/doubling.hpp
 layout: document
 redirect_from:

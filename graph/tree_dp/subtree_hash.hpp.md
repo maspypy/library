@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -348,8 +348,8 @@ data:
   timestamp: '2025-02-18 22:12:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/classify_tree.test.cpp
   - test/1_mytest/enumerate_unlabeled_tree.test.cpp
+  - test/2_library_checker/graph/classify_tree.test.cpp
 documentation_of: graph/tree_dp/subtree_hash.hpp
 layout: document
 redirect_from:
