@@ -171,7 +171,6 @@
 "test/1_mytest/rbst_monoid_persistent.test.cpp": "2025-02-12 05:55:32 +0900",
 "test/1_mytest/rbst_test.test.cpp": "2025-01-27 19:24:29 +0900",
 "test/1_mytest/rect_add_pt_sum.test.cpp": "2025-02-12 05:55:32 +0900",
-"test/1_mytest/reduce_intervals.test.cpp": "2025-01-27 19:24:29 +0900",
 "test/1_mytest/remove_one_edge.test.cpp": "2025-02-14 21:17:25 +0900",
 "test/1_mytest/remove_one_vertex.test.cpp": "2025-02-14 21:17:25 +0900",
 "test/1_mytest/rolling_hash_on_tree.test.cpp": "2025-02-18 22:12:10 +0900",
