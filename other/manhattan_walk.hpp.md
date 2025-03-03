@@ -10,7 +10,7 @@ data:
     links:
     - https://atcoder.jp/contests/abc135/tasks/abc135_e
     - https://codeforces.com/contest/2068/problem/H
-  bundledCode: "#line 1 \"other/manhattan_path.hpp\"\n\n// Find A suth that: A[0]=s,\
+  bundledCode: "#line 1 \"other/manhattan_walk.hpp\"\n\n// Find A suth that: A[0]=s,\
     \ A[N]=t, dist(A[i],A[i+1])==D[i]. (integer points)\n// empty if it does not exists.\n\
     // https://atcoder.jp/contests/abc135/tasks/abc135_e\n// https://codeforces.com/contest/2068/problem/H\n\
     vc<pi> manhattan_path(pi s, pi t, vi D) {\n  int N = len(D);\n  ll S = SUM<ll>(D);\n\
@@ -66,15 +66,15 @@ data:
     \ point;\n}\n"
   dependsOn: []
   isVerificationFile: false
-  path: other/manhattan_path.hpp
+  path: other/manhattan_walk.hpp
   requiredBy: []
-  timestamp: '2025-03-03 15:27:45+09:00'
+  timestamp: '2025-03-03 17:37:44+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
-documentation_of: other/manhattan_path.hpp
+documentation_of: other/manhattan_walk.hpp
 layout: document
 redirect_from:
-- /library/other/manhattan_path.hpp
-- /library/other/manhattan_path.hpp.html
-title: other/manhattan_path.hpp
+- /library/other/manhattan_walk.hpp
+- /library/other/manhattan_walk.hpp.html
+title: other/manhattan_walk.hpp
 ---

@@ -1706,8 +1706,8 @@ data:
       path: other/magic_square.hpp
       title: other/magic_square.hpp
     - icon: ':warning:'
-      path: other/manhattan_path.hpp
-      title: other/manhattan_path.hpp
+      path: other/manhattan_walk.hpp
+      title: other/manhattan_walk.hpp
     - icon: ':heavy_check_mark:'
       path: other/mex.hpp
       title: other/mex.hpp
