@@ -140,9 +140,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
-  - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/ARC30D.test.cpp
@@ -545,7 +542,6 @@ data:
   - alg/acted_monoid/sum_mul.hpp
   - alg/acted_monoid/min_add.hpp
   - convex/slope_trick/slope_trick_1.hpp
-  - string/substring_count_in_substring.hpp
   - string/prefix_substring_LCS.hpp
   - random/random_polygon.hpp
   - graph/count/count_connected_intervals.hpp

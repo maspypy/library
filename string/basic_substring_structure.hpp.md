@@ -16,7 +16,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/modint61.hpp
     title: mod/modint61.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -28,10 +28,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -467,8 +464,7 @@ data:
   - seq/cartesian_tree.hpp
   isVerificationFile: false
   path: string/basic_substring_structure.hpp
-  requiredBy:
-  - string/substring_count_in_substring.hpp
+  requiredBy: []
   timestamp: '2025-02-14 21:17:25+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

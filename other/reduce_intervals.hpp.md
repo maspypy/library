@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/reduce_intervals.test.cpp
     title: test/1_mytest/reduce_intervals.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/reduce_intervals.hpp\"\n\n// rm_included = true :\
@@ -23,13 +23,12 @@ data:
     \ I(N);\n  FOR(i, N) I[i] = i;\n  if (rm_included) {\n    sort(all(I), [&](auto\
     \ &a, auto &b) -> bool {\n      if (L[a] != L[b])\n        return L[a] < L[b];\n\
     \      return R[a] > R[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty())\
-    \ {\n        int i = ANS.back();\n        if (R[j] <= R[i] && R[j] - L[j] <= R[i]\
-    \ - L[i])\n          continue;\n      }\n      ANS.eb(j);\n    }\n  } else {\n\
-    \    sort(all(I), [&](auto &a, auto &b) -> bool {\n      if (R[a] != R[b])\n \
-    \       return R[a] < R[b];\n      return L[a] > L[b];\n    });\n    for (auto\
-    \ &j : I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n        if\
-    \ (R[j] <= R[i] && R[j] - L[j] == R[i] - L[i])\n          continue;\n      }\n\
-    \      ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n"
+    \ {\n        int i = ANS.back();\n        if (R[j] <= R[i])\n          continue;\n\
+    \      }\n      ANS.eb(j);\n    }\n  } else {\n    sort(all(I), [&](auto &a, auto\
+    \ &b) -> bool {\n      if (R[a] != R[b])\n        return R[a] < R[b];\n      return\
+    \ L[a] > L[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n\
+    \        int i = ANS.back();\n        if (L[j] <= L[i])\n          continue;\n\
+    \      }\n      ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n"
   code: "\n// rm_included = true : I < J \u3068\u306A\u308B J \u304C\u5B58\u5728\u3059\
     \u308C\u3070 I \u3092\u6D88\u3059\n// rm_included = false : I > J \u3068\u306A\
     \u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I \u3092\u6D88\u3059\n// \u6B8B\u3059\
@@ -42,18 +41,18 @@ data:
     \    sort(all(I), [&](auto &a, auto &b) -> bool {\n      if (L[a] != L[b])\n \
     \       return L[a] < L[b];\n      return R[a] > R[b];\n    });\n    for (auto\
     \ &j : I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n        if\
-    \ (R[j] <= R[i] && R[j] - L[j] <= R[i] - L[i])\n          continue;\n      }\n\
-    \      ANS.eb(j);\n    }\n  } else {\n    sort(all(I), [&](auto &a, auto &b) ->\
-    \ bool {\n      if (R[a] != R[b])\n        return R[a] < R[b];\n      return L[a]\
-    \ > L[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n     \
-    \   int i = ANS.back();\n        if (R[j] <= R[i] && R[j] - L[j] == R[i] - L[i])\n\
-    \          continue;\n      }\n      ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n"
+    \ (R[j] <= R[i])\n          continue;\n      }\n      ANS.eb(j);\n    }\n  } else\
+    \ {\n    sort(all(I), [&](auto &a, auto &b) -> bool {\n      if (R[a] != R[b])\n\
+    \        return R[a] < R[b];\n      return L[a] > L[b];\n    });\n    for (auto\
+    \ &j : I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n        if\
+    \ (L[j] <= L[i])\n          continue;\n      }\n      ANS.eb(j);\n    }\n  }\n\
+    \  return ANS;\n}\n"
   dependsOn: []
   isVerificationFile: false
   path: other/reduce_intervals.hpp
   requiredBy: []
-  timestamp: '2025-03-03 15:27:12+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-03-03 18:09:09+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/reduce_intervals.test.cpp
 documentation_of: other/reduce_intervals.hpp

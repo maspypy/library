@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: other/reduce_intervals.hpp
     title: other/reduce_intervals.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -130,14 +130,13 @@ data:
     \ N) I[i] = i;\n  if (rm_included) {\n    sort(all(I), [&](auto &a, auto &b) ->\
     \ bool {\n      if (L[a] != L[b])\n        return L[a] < L[b];\n      return R[a]\
     \ > R[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n     \
-    \   int i = ANS.back();\n        if (R[j] <= R[i] && R[j] - L[j] <= R[i] - L[i])\n\
-    \          continue;\n      }\n      ANS.eb(j);\n    }\n  } else {\n    sort(all(I),\
-    \ [&](auto &a, auto &b) -> bool {\n      if (R[a] != R[b])\n        return R[a]\
-    \ < R[b];\n      return L[a] > L[b];\n    });\n    for (auto &j : I) {\n     \
-    \ if (!ANS.empty()) {\n        int i = ANS.back();\n        if (R[j] <= R[i] &&\
-    \ R[j] - L[j] == R[i] - L[i])\n          continue;\n      }\n      ANS.eb(j);\n\
-    \    }\n  }\n  return ANS;\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
-    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \   int i = ANS.back();\n        if (R[j] <= R[i])\n          continue;\n    \
+    \  }\n      ANS.eb(j);\n    }\n  } else {\n    sort(all(I), [&](auto &a, auto\
+    \ &b) -> bool {\n      if (R[a] != R[b])\n        return R[a] < R[b];\n      return\
+    \ L[a] > L[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n\
+    \        int i = ANS.back();\n        if (L[j] <= L[i])\n          continue;\n\
+    \      }\n      ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/reduce_intervals.test.cpp\"\n\
@@ -180,8 +179,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/reduce_intervals.test.cpp
   requiredBy: []
-  timestamp: '2025-03-03 18:08:39+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-03-03 18:09:09+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/reduce_intervals.test.cpp
 layout: document

@@ -50,9 +50,6 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
-  - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/count_points_in_triangles.test.cpp
@@ -309,7 +306,6 @@ data:
   requiredBy:
   - seq/factorial_digit_system.hpp
   - seq/inversion.hpp
-  - string/substring_count_in_substring.hpp
   - random/random_polygon.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_abelgroup.hpp
