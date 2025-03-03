@@ -118,62 +118,69 @@ data:
     \  return B;\n}\n\ntemplate <typename T, typename... Vectors>\nvoid concat(vc<T>\
     \ &first, const Vectors &... others) {\n  vc<T> &res = first;\n  (res.insert(res.end(),\
     \ others.begin(), others.end()), ...);\n}\n#endif\n#line 3 \"test/1_mytest/reduce_intervals.test.cpp\"\
-    \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \n\n#line 1 \"other/reduce_intervals.hpp\"\n\n// rm_included = true : I < J \u3068\
+    \u306A\u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I \u3092\u6D88\u3059\n// rm_included\
+    \ = false : I > J \u3068\u306A\u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I\
+    \ \u3092\u6D88\u3059\n// \u6B8B\u3059\u533A\u9593\u306E\u30A4\u30F3\u30C7\u30C3\
+    \u30AF\u30B9\u3092\u533A\u9593\u306E\u9806\u5E8F\u306B\u3064\u3044\u3066\u30BD\
+    \u30FC\u30C8\u3057\u3066\u8FD4\u3059\n// \u5B8C\u5168\u306B\u540C\u3058\u533A\u9593\
+    \u306F\u4EFB\u610F\u306B\u9078\u3093\u3060\u3072\u3068\u3064\u3060\u3051\u6B8B\
+    \u3059\ntemplate <typename T>\nvc<int> reduce_intervals(vc<T> L, vc<T> R, bool\
+    \ rm_included) {\n  int N = len(L);\n  vc<int> ANS;\n  vc<int> I(N);\n  FOR(i,\
+    \ N) I[i] = i;\n  if (rm_included) {\n    sort(all(I), [&](auto &a, auto &b) ->\
+    \ bool {\n      if (L[a] != L[b])\n        return L[a] < L[b];\n      return R[a]\
+    \ > R[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty()) {\n     \
+    \   int i = ANS.back();\n        if (R[j] <= R[i] && R[j] - L[j] <= R[i] - L[i])\n\
+    \          continue;\n      }\n      ANS.eb(j);\n    }\n  } else {\n    sort(all(I),\
+    \ [&](auto &a, auto &b) -> bool {\n      if (R[a] != R[b])\n        return R[a]\
+    \ < R[b];\n      return L[a] > L[b];\n    });\n    for (auto &j : I) {\n     \
+    \ if (!ANS.empty()) {\n        int i = ANS.back();\n        if (R[j] <= R[i] &&\
+    \ R[j] - L[j] == R[i] - L[i])\n          continue;\n      }\n      ANS.eb(j);\n\
+    \    }\n  }\n  return ANS;\n}\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n\
+    \  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"other/reduce_intervals.hpp\"\n\n// rm_included\
-    \ = true : I < J \u3068\u306A\u308B J \u304C\u5B58\u5728\u3059\u308C\u3070 I \u3092\
-    \u6D88\u3059\n// rm_included = false : I > J \u3068\u306A\u308B J \u304C\u5B58\
-    \u5728\u3059\u308C\u3070 I \u3092\u6D88\u3059\n// \u6B8B\u3059\u533A\u9593\u306E\
-    \u30A4\u30F3\u30C7\u30C3\u30AF\u30B9\u3092\u533A\u9593\u306E\u9806\u5E8F\u306B\
-    \u3064\u3044\u3066\u30BD\u30FC\u30C8\u3057\u3066\u8FD4\u3059\n// \u5B8C\u5168\u306B\
-    \u540C\u3058\u533A\u9593\u306F\u4EFB\u610F\u306B\u9078\u3093\u3060\u3072\u3068\
-    \u3064\u3060\u3051\u6B8B\u3059\ntemplate <typename T>\nvc<int> reduce_intervals(vc<T>\
-    \ L, vc<T> R, bool rm_included) {\n  int N = len(L);\n  vc<int> ANS;\n  vc<int>\
-    \ I(N);\n  FOR(i, N) I[i] = i;\n  if (rm_included) {\n    sort(all(I), [&](auto\
-    \ &a, auto &b) -> bool {\n      if (L[a] != L[b])\n        return L[a] < L[b];\n\
-    \      return R[a] > R[b];\n    });\n    for (auto &j : I) {\n      if (!ANS.empty())\
-    \ {\n        int i = ANS.back();\n        if (R[j] <= R[i] && R[j] - L[j] <= R[i]\
-    \ - L[i])\n          continue;\n      }\n      ANS.eb(j);\n    }\n  } else {\n\
-    \    sort(all(I), [&](auto &a, auto &b) -> bool {\n      if (R[a] != R[b])\n \
-    \       return R[a] < R[b];\n      return L[a] > L[b];\n    });\n    for (auto\
-    \ &j : I) {\n      if (!ANS.empty()) {\n        int i = ANS.back();\n        if\
-    \ (R[j] <= R[i] && R[j] - L[j] == R[i] - L[i])\n          continue;\n      }\n\
-    \      ANS.eb(j);\n    }\n  }\n  return ANS;\n}\n#line 6 \"test/1_mytest/reduce_intervals.test.cpp\"\
-    \n\nvoid test(bool rm_included) {\n  FOR(mx, 100) {\n    FOR(N, 100) {\n     \
-    \ vc<int> L(N), R(N);\n      FOR(i, N) {\n        int a = RNG(0, mx + 1);\n  \
-    \      int b = RNG(0, mx + 1);\n        if (a > b) swap(a, b);\n        L[i] =\
-    \ a, R[i] = b;\n      }\n      auto I = reduce_intervals(L, R, rm_included);\n\
-    \      vc<int> rm(N);\n      FOR(i, N) FOR(j, N) {\n        if (L[i] <= L[j] &&\
-    \ R[j] <= R[i] && R[i] - L[i] > R[j] - L[j]) {\n          rm[(rm_included ? j\
-    \ : i)] = 1;\n        }\n      }\n      vc<int> cnt(N);\n      for (auto& i: I)\
-    \ cnt[i]++;\n      FOR(i, N) { assert(cnt[i] == 1 - rm[i]); }\n      L = rearrange(L,\
-    \ I);\n      R = rearrange(R, I);\n      FOR(k, len(L) - 1) { assert(L[k] <= L[k\
-    \ + 1] && R[k] <= R[k + 1]); }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n\
-    \  cin >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test(false);\n\
-    \  test(true);\n  solve();\n  return 0;\n}\n"
+    \ RNG_64() % (r - l); }\n#line 6 \"test/1_mytest/reduce_intervals.test.cpp\"\n\
+    \nvoid test(bool rm_included) {\n  FOR(mx, 100) {\n    FOR(NN, 100) {\n      set<pair<int,\
+    \ int>> st;\n      vc<int> L, R;\n      FOR(i, NN) {\n        int a = RNG(0, mx\
+    \ + 1);\n        int b = RNG(0, mx + 1);\n        if (a > b)\n          swap(a,\
+    \ b);\n        pair<int, int> p = {a, b};\n        if (st.count(p))\n        \
+    \  continue;\n        st.insert(p);\n        L.eb(a), R.eb(b);\n      }\n    \
+    \  int N = len(L);\n      auto I = reduce_intervals(L, R, rm_included);\n    \
+    \  vc<int> er(N, 1);\n      for (auto &i : I)\n        er[i] = 0;\n      FOR(i,\
+    \ N) if (er[i]) {\n        bool ok = 0;\n        for (auto &j : I) {\n       \
+    \   if (rm_included && L[j] <= L[i] && R[i] <= R[j])\n            ok = 1;\n  \
+    \        if (!rm_included && L[i] <= L[j] && R[j] <= R[i])\n            ok = 1;\n\
+    \        }\n        assert(ok);\n      }\n      L = rearrange(L, I);\n      R\
+    \ = rearrange(R, I);\n      FOR(k, len(L) - 1) { assert(L[k] < L[k + 1] && R[k]\
+    \ < R[k + 1]); }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test(false);\n  test(true);\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n#include \"my_template.hpp\"\
-    \n\n#include \"random/base.hpp\"\n#include \"other/reduce_intervals.hpp\"\n\n\
-    void test(bool rm_included) {\n  FOR(mx, 100) {\n    FOR(N, 100) {\n      vc<int>\
-    \ L(N), R(N);\n      FOR(i, N) {\n        int a = RNG(0, mx + 1);\n        int\
-    \ b = RNG(0, mx + 1);\n        if (a > b) swap(a, b);\n        L[i] = a, R[i]\
-    \ = b;\n      }\n      auto I = reduce_intervals(L, R, rm_included);\n      vc<int>\
-    \ rm(N);\n      FOR(i, N) FOR(j, N) {\n        if (L[i] <= L[j] && R[j] <= R[i]\
-    \ && R[i] - L[i] > R[j] - L[j]) {\n          rm[(rm_included ? j : i)] = 1;\n\
-    \        }\n      }\n      vc<int> cnt(N);\n      for (auto& i: I) cnt[i]++;\n\
-    \      FOR(i, N) { assert(cnt[i] == 1 - rm[i]); }\n      L = rearrange(L, I);\n\
-    \      R = rearrange(R, I);\n      FOR(k, len(L) - 1) { assert(L[k] <= L[k + 1]\
-    \ && R[k] <= R[k + 1]); }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin\
-    \ >> a >> b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test(false);\n\
-    \  test(true);\n  solve();\n  return 0;\n}"
+    \n\n#include \"other/reduce_intervals.hpp\"\n#include \"random/base.hpp\"\n\n\
+    void test(bool rm_included) {\n  FOR(mx, 100) {\n    FOR(NN, 100) {\n      set<pair<int,\
+    \ int>> st;\n      vc<int> L, R;\n      FOR(i, NN) {\n        int a = RNG(0, mx\
+    \ + 1);\n        int b = RNG(0, mx + 1);\n        if (a > b)\n          swap(a,\
+    \ b);\n        pair<int, int> p = {a, b};\n        if (st.count(p))\n        \
+    \  continue;\n        st.insert(p);\n        L.eb(a), R.eb(b);\n      }\n    \
+    \  int N = len(L);\n      auto I = reduce_intervals(L, R, rm_included);\n    \
+    \  vc<int> er(N, 1);\n      for (auto &i : I)\n        er[i] = 0;\n      FOR(i,\
+    \ N) if (er[i]) {\n        bool ok = 0;\n        for (auto &j : I) {\n       \
+    \   if (rm_included && L[j] <= L[i] && R[i] <= R[j])\n            ok = 1;\n  \
+    \        if (!rm_included && L[i] <= L[j] && R[j] <= R[i])\n            ok = 1;\n\
+    \        }\n        assert(ok);\n      }\n      L = rearrange(L, I);\n      R\
+    \ = rearrange(R, I);\n      FOR(k, len(L) - 1) { assert(L[k] < L[k + 1] && R[k]\
+    \ < R[k + 1]); }\n    }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >>\
+    \ b;\n  cout << a + b << '\\n';\n}\n\nsigned main() {\n  test(false);\n  test(true);\n\
+    \  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
-  - random/base.hpp
   - other/reduce_intervals.hpp
+  - random/base.hpp
   isVerificationFile: true
   path: test/1_mytest/reduce_intervals.test.cpp
   requiredBy: []
-  timestamp: '2025-03-03 15:27:12+09:00'
+  timestamp: '2025-03-03 18:08:39+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/reduce_intervals.test.cpp
