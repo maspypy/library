@@ -10,56 +10,14 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  _extendedRequiredBy:
-  - icon: ':warning:'
-    path: string/basic_substring_structure.hpp
-    title: string/basic_substring_structure.hpp
   - icon: ':heavy_check_mark:'
-    path: string/lex_max_suffix_for_all_prefix.hpp
-    title: string/lex_max_suffix_for_all_prefix.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/longest_common_substring.hpp
-    title: string/longest_common_substring.hpp
-  - icon: ':warning:'
-    path: string/many_string_compare.hpp
-    title: string/many_string_compare.hpp
-  - icon: ':warning:'
-    path: string/sort_substrings.hpp
-    title: string/sort_substrings.hpp
-  - icon: ':warning:'
-    path: string/substring_count_in_substring.hpp
-    title: string/substring_count_in_substring.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_lcp_change.hpp
-    title: string/suffix_lcp_change.hpp
-  - icon: ':heavy_check_mark:'
-    path: string/suffix_tree.hpp
-    title: string/suffix_tree.hpp
+    path: string/suffix_array.hpp
+    title: string/suffix_array.hpp
+  _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/lex_minmax_suffix.test.cpp
-    title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/1_mytest/longest_common_substr.test.cpp
-    title: test/1_mytest/longest_common_substr.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/string/longest_common_substring.test.cpp
-    title: test/2_library_checker/string/longest_common_substring.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/string/number_of_substrings.test.cpp
-    title: test/2_library_checker/string/number_of_substrings.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/string/suffix_array.test.cpp
-    title: test/2_library_checker/string/suffix_array.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/2_library_checker/string/suffix_array_vec.test.cpp
-    title: test/2_library_checker/string/suffix_array_vec.test.cpp
-  - icon: ':heavy_check_mark:'
-    path: test/3_yukicoder/2361.test.cpp
-    title: test/3_yukicoder/2361.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -204,110 +162,66 @@ data:
     \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
     \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
     \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
-    \    }\n    LCP.resize(n - 1);\n  }\n};\n"
-  code: "#pragma once\n\n#include \"alg/monoid/min.hpp\"\n#include \"ds/sparse_table/sparse_table.hpp\"\
-    \n#include \"ds/segtree/segtree.hpp\"\n\n// \u8F9E\u66F8\u9806 i \u756A\u76EE\u306E\
-    \ suffix \u304C j \u6587\u5B57\u76EE\u59CB\u307E\u308A\u3067\u3042\u308B\u3068\
-    \u304D\u3001\n// SA[i] = j, ISA[j] = i\n// |S|>0 \u3092\u524D\u63D0\uFF08\u305D\
-    \u3046\u3067\u306A\u3044\u5834\u5408 dummy \u6587\u5B57\u3092\u8FFD\u52A0\u3057\
-    \u3066\u5229\u7528\u305B\u3088\uFF09\ntemplate <bool USE_SPARSE_TABLE = true>\n\
-    struct Suffix_Array {\n  vc<int> SA;\n  vc<int> ISA;\n  vc<int> LCP;\n  using\
-    \ Mono = Monoid_Min<int>;\n  using SegType = conditional_t<USE_SPARSE_TABLE, Sparse_Table<Mono>,\
-    \ SegTree<Mono> >;\n  SegType seg;\n  bool build_seg;\n\n  Suffix_Array() {}\n\
-    \  Suffix_Array(string& s) {\n    build_seg = 0;\n    assert(len(s) > 0);\n  \
-    \  char first = 127, last = 0;\n    for (auto&& c: s) {\n      chmin(first, c);\n\
-    \      chmax(last, c);\n    }\n    SA = calc_suffix_array(s, first, last);\n \
-    \   calc_LCP(s);\n  }\n\n  Suffix_Array(vc<int> s) {\n    build_seg = 0;\n   \
-    \ assert(len(s) > 0);\n    SA = calc_suffix_array(s);\n    calc_LCP(s);\n  }\n\
-    \n  // lcp(S[i:], S[j:])\n  int lcp(int i, int j) {\n    if (!build_seg) {\n \
-    \     build_seg = true;\n      seg.build(LCP);\n    }\n    int n = len(SA);\n\
-    \    if (i == n || j == n) return 0;\n    if (i == j) return n - i;\n    i = ISA[i],\
-    \ j = ISA[j];\n    if (i > j) swap(i, j);\n    return seg.prod(i, j);\n  }\n\n\
-    \  // S[i:] \u3068\u306E lcp \u304C n \u4EE5\u4E0A\u3067\u3042\u308B\u3088\u3046\
-    \u306A\u534A\u958B\u533A\u9593\n  pair<int, int> lcp_range(int i, int n) {\n \
-    \   if (!build_seg) {\n      build_seg = true;\n      seg.build(LCP);\n    }\n\
-    \    i = ISA[i];\n    int a = seg.min_left([&](auto e) -> bool { return e >= n;\
-    \ }, i);\n    int b = seg.max_right([&](auto e) -> bool { return e >= n; }, i);\n\
-    \    return {a, b + 1};\n  }\n\n  // -1: S[L1:R1) < S[L2, R2)\n  //  0: S[L1:R1)\
-    \ = S[L2, R2)\n  // +1: S[L1:R1) > S[L2, R2)\n  int compare(int L1, int R1, int\
-    \ L2, int R2) {\n    int n1 = R1 - L1, n2 = R2 - L2;\n    int n = lcp(L1, L2);\n\
-    \    if (n == n1 && n == n2) return 0;\n    if (n == n1) return -1;\n    if (n\
-    \ == n2) return 1;\n    return (ISA[L1 + n] > ISA[L2 + n] ? 1 : -1);\n  }\n\n\
-    private:\n  void induced_sort(const vc<int>& vect, int val_range, vc<int>& SA,\
-    \ const vc<bool>& sl, const vc<int>& lms_idx) {\n    vc<int> l(val_range, 0),\
-    \ r(val_range, 0);\n    for (int c: vect) {\n      if (c + 1 < val_range) ++l[c\
-    \ + 1];\n      ++r[c];\n    }\n    partial_sum(l.begin(), l.end(), l.begin());\n\
-    \    partial_sum(r.begin(), r.end(), r.begin());\n    fill(SA.begin(), SA.end(),\
-    \ -1);\n    for (int i = (int)lms_idx.size() - 1; i >= 0; --i) SA[--r[vect[lms_idx[i]]]]\
-    \ = lms_idx[i];\n    for (int i: SA)\n      if (i >= 1 && sl[i - 1]) SA[l[vect[i\
-    \ - 1]]++] = i - 1;\n    fill(r.begin(), r.end(), 0);\n    for (int c: vect) ++r[c];\n\
-    \    partial_sum(r.begin(), r.end(), r.begin());\n    for (int k = (int)SA.size()\
-    \ - 1, i = SA[k]; k >= 1; --k, i = SA[k])\n      if (i >= 1 && !sl[i - 1]) { SA[--r[vect[i\
-    \ - 1]]] = i - 1; }\n  }\n\n  vc<int> SA_IS(const vc<int>& vect, int val_range)\
-    \ {\n    const int n = vect.size();\n    vc<int> SA(n), lms_idx;\n    vc<bool>\
-    \ sl(n);\n    sl[n - 1] = false;\n    for (int i = n - 2; i >= 0; --i) {\n   \
-    \   sl[i] = (vect[i] > vect[i + 1] || (vect[i] == vect[i + 1] && sl[i + 1]));\n\
-    \      if (sl[i] && !sl[i + 1]) lms_idx.push_back(i + 1);\n    }\n    reverse(lms_idx.begin(),\
-    \ lms_idx.end());\n    induced_sort(vect, val_range, SA, sl, lms_idx);\n    vc<int>\
-    \ new_lms_idx(lms_idx.size()), lms_vec(lms_idx.size());\n    for (int i = 0, k\
-    \ = 0; i < n; ++i)\n      if (!sl[SA[i]] && SA[i] >= 1 && sl[SA[i] - 1]) { new_lms_idx[k++]\
-    \ = SA[i]; }\n    int cur = 0;\n    SA[n - 1] = cur;\n    for (size_t k = 1; k\
-    \ < new_lms_idx.size(); ++k) {\n      int i = new_lms_idx[k - 1], j = new_lms_idx[k];\n\
-    \      if (vect[i] != vect[j]) {\n        SA[j] = ++cur;\n        continue;\n\
-    \      }\n      bool flag = false;\n      for (int a = i + 1, b = j + 1;; ++a,\
-    \ ++b) {\n        if (vect[a] != vect[b]) {\n          flag = true;\n        \
-    \  break;\n        }\n        if ((!sl[a] && sl[a - 1]) || (!sl[b] && sl[b - 1]))\
-    \ {\n          flag = !((!sl[a] && sl[a - 1]) && (!sl[b] && sl[b - 1]));\n   \
-    \       break;\n        }\n      }\n      SA[j] = (flag ? ++cur : cur);\n    }\n\
-    \    for (size_t i = 0; i < lms_idx.size(); ++i) lms_vec[i] = SA[lms_idx[i]];\n\
-    \    if (cur + 1 < (int)lms_idx.size()) {\n      auto lms_SA = SA_IS(lms_vec,\
-    \ cur + 1);\n      for (size_t i = 0; i < lms_idx.size(); ++i) { new_lms_idx[i]\
-    \ = lms_idx[lms_SA[i]]; }\n    }\n    induced_sort(vect, val_range, SA, sl, new_lms_idx);\n\
-    \    return SA;\n  }\n\n  vc<int> calc_suffix_array(const string& s, const char\
-    \ first = 'a', const char last = 'z') {\n    vc<int> vect(s.size() + 1);\n   \
-    \ copy(begin(s), end(s), begin(vect));\n    for (auto& x: vect) x -= (int)first\
-    \ - 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, (int)last - (int)first\
-    \ + 2);\n    ret.erase(ret.begin());\n    return ret;\n  }\n\n  vc<int> calc_suffix_array(const\
-    \ vc<int>& s) {\n    vc<int> ss = s;\n    UNIQUE(ss);\n\n    vc<int> vect(s.size()\
-    \ + 1);\n    copy(all(s), vect.begin());\n    for (auto& x: vect) x = LB(ss, x)\
-    \ + 1;\n    vect.back() = 0;\n    auto ret = SA_IS(vect, MAX(vect) + 2);\n   \
-    \ ret.erase(ret.begin());\n    return ret;\n  }\n\n  template <typename STRING>\n\
-    \  void calc_LCP(const STRING& s) {\n    int n = s.size(), k = 0;\n    ISA.resize(n);\n\
-    \    LCP.resize(n);\n    for (int i = 0; i < n; i++) ISA[SA[i]] = i;\n    for\
-    \ (int i = 0; i < n; i++, k ? k-- : 0) {\n      if (ISA[i] == n - 1) {\n     \
-    \   k = 0;\n        continue;\n      }\n      int j = SA[ISA[i] + 1];\n      while\
-    \ (i + k < n && j + k < n && s[i + k] == s[j + k]) k++;\n      LCP[ISA[i]] = k;\n\
-    \    }\n    LCP.resize(n - 1);\n  }\n};"
+    \    }\n    LCP.resize(n - 1);\n  }\n};\n#line 2 \"string/suffix_lcp_change.hpp\"\
+    \n\n// \u8F9E\u66F8\u9806 k \u756A\u76EE\u306E suffix \u3068\u306E LCP. k=0,1,2,...\
+    \ \u3068\u3057\u305F\u3068\u304D\u306E\u5909\u5316.\n// return: {init,change}\n\
+    // init[i] = lcp(0,i)\n// change[k]: k->k+1, (l,r,x)\ntemplate <typename SUFFIX>\n\
+    pair<vc<int>, vvc<tuple<int, int, int>>> suffix_lcp_change(SUFFIX& X) {\n  auto&\
+    \ SA = X.SA;\n  auto& LCP = X.LCP;\n  int N = len(SA);\n  vc<int> init(N);\n \
+    \ vvc<tuple<int, int, int>> left(N - 1), right(N - 1);\n  {\n    vc<tuple<int,\
+    \ int, int>> st;\n    st.eb(0, 1, N - SA[0]);\n    FOR(i, N - 1) {\n      while\
+    \ (len(st)) {\n        auto [l, r, x] = st.back();\n        if (x <= LCP[i]) break;\n\
+    \        POP(st);\n      }\n      int s = (st.empty() ? 0 : get<1>(st.back()));\n\
+    \      st.eb(s, i + 1, LCP[i]);\n      if (s < i + 1) left[i].eb(s, i + 1, LCP[i]);\n\
+    \      st.eb(i + 1, i + 2, N - SA[i + 1]);\n    }\n  }\n  {\n    vc<tuple<int,\
+    \ int, int>> st;\n    st.eb(N - 1, N, N - SA[N - 1]);\n    FOR_R(i, N - 1) {\n\
+    \      while (len(st)) {\n        auto [l, r, x] = st.back();\n        if (x <=\
+    \ LCP[i]) break;\n        right[i].eb(l, r, x);\n        POP(st);\n      }\n \
+    \     int t = (st.empty() ? N : get<0>(st.back()));\n      st.eb(i + 1, t, LCP[i]);\n\
+    \      st.eb(i, i + 1, N - SA[i]);\n    }\n    for (auto [l, r, x]: st) { FOR(i,\
+    \ l, r) init[i] = x; }\n  }\n  vvc<tuple<int, int, int>> change(N - 1);\n  FOR(i,\
+    \ N - 1) {\n    vc<tuple<int, int, int>> S;\n    concat(S, left[i], right[i]);\n\
+    \    for (auto [l, r, x]: S) {\n      if (!change[i].empty() && get<2>(change[i].back())\
+    \ == x) {\n        get<1>(change[i].back()) = r;\n      } else {\n        change[i].eb(l,\
+    \ r, x);\n      }\n    }\n  }\n  return {init, change};\n}\n"
+  code: "#include \"string/suffix_array.hpp\"\n\n// \u8F9E\u66F8\u9806 k \u756A\u76EE\
+    \u306E suffix \u3068\u306E LCP. k=0,1,2,... \u3068\u3057\u305F\u3068\u304D\u306E\
+    \u5909\u5316.\n// return: {init,change}\n// init[i] = lcp(0,i)\n// change[k]:\
+    \ k->k+1, (l,r,x)\ntemplate <typename SUFFIX>\npair<vc<int>, vvc<tuple<int, int,\
+    \ int>>> suffix_lcp_change(SUFFIX& X) {\n  auto& SA = X.SA;\n  auto& LCP = X.LCP;\n\
+    \  int N = len(SA);\n  vc<int> init(N);\n  vvc<tuple<int, int, int>> left(N -\
+    \ 1), right(N - 1);\n  {\n    vc<tuple<int, int, int>> st;\n    st.eb(0, 1, N\
+    \ - SA[0]);\n    FOR(i, N - 1) {\n      while (len(st)) {\n        auto [l, r,\
+    \ x] = st.back();\n        if (x <= LCP[i]) break;\n        POP(st);\n      }\n\
+    \      int s = (st.empty() ? 0 : get<1>(st.back()));\n      st.eb(s, i + 1, LCP[i]);\n\
+    \      if (s < i + 1) left[i].eb(s, i + 1, LCP[i]);\n      st.eb(i + 1, i + 2,\
+    \ N - SA[i + 1]);\n    }\n  }\n  {\n    vc<tuple<int, int, int>> st;\n    st.eb(N\
+    \ - 1, N, N - SA[N - 1]);\n    FOR_R(i, N - 1) {\n      while (len(st)) {\n  \
+    \      auto [l, r, x] = st.back();\n        if (x <= LCP[i]) break;\n        right[i].eb(l,\
+    \ r, x);\n        POP(st);\n      }\n      int t = (st.empty() ? N : get<0>(st.back()));\n\
+    \      st.eb(i + 1, t, LCP[i]);\n      st.eb(i, i + 1, N - SA[i]);\n    }\n  \
+    \  for (auto [l, r, x]: st) { FOR(i, l, r) init[i] = x; }\n  }\n  vvc<tuple<int,\
+    \ int, int>> change(N - 1);\n  FOR(i, N - 1) {\n    vc<tuple<int, int, int>> S;\n\
+    \    concat(S, left[i], right[i]);\n    for (auto [l, r, x]: S) {\n      if (!change[i].empty()\
+    \ && get<2>(change[i].back()) == x) {\n        get<1>(change[i].back()) = r;\n\
+    \      } else {\n        change[i].eb(l, r, x);\n      }\n    }\n  }\n  return\
+    \ {init, change};\n}\n"
   dependsOn:
+  - string/suffix_array.hpp
   - alg/monoid/min.hpp
   - ds/sparse_table/sparse_table.hpp
   - ds/segtree/segtree.hpp
   isVerificationFile: false
-  path: string/suffix_array.hpp
-  requiredBy:
-  - string/substring_count_in_substring.hpp
-  - string/lex_max_suffix_for_all_prefix.hpp
-  - string/suffix_lcp_change.hpp
-  - string/many_string_compare.hpp
-  - string/suffix_tree.hpp
-  - string/basic_substring_structure.hpp
-  - string/longest_common_substring.hpp
-  - string/sort_substrings.hpp
-  timestamp: '2025-02-14 21:17:25+09:00'
+  path: string/suffix_lcp_change.hpp
+  requiredBy: []
+  timestamp: '2025-03-05 12:06:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/suffix_lcp_change.test.cpp
-  - test/1_mytest/longest_common_substr.test.cpp
-  - test/1_mytest/lex_minmax_suffix.test.cpp
-  - test/3_yukicoder/2361.test.cpp
-  - test/2_library_checker/string/number_of_substrings.test.cpp
-  - test/2_library_checker/string/suffix_array_vec.test.cpp
-  - test/2_library_checker/string/longest_common_substring.test.cpp
-  - test/2_library_checker/string/suffix_array.test.cpp
-documentation_of: string/suffix_array.hpp
+documentation_of: string/suffix_lcp_change.hpp
 layout: document
 redirect_from:
-- /library/string/suffix_array.hpp
-- /library/string/suffix_array.hpp.html
-title: string/suffix_array.hpp
+- /library/string/suffix_lcp_change.hpp
+- /library/string/suffix_lcp_change.hpp.html
+title: string/suffix_lcp_change.hpp
 ---

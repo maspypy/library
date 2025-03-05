@@ -2265,6 +2265,9 @@ data:
       path: string/suffix_automaton.hpp
       title: string/suffix_automaton.hpp
     - icon: ':heavy_check_mark:'
+      path: string/suffix_lcp_change.hpp
+      title: string/suffix_lcp_change.hpp
+    - icon: ':heavy_check_mark:'
       path: string/suffix_tree.hpp
       title: string/suffix_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -2880,6 +2883,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/substring_abundant.test.cpp
       title: test/1_mytest/substring_abundant.test.cpp
+    - icon: ':heavy_check_mark:'
+      path: test/1_mytest/suffix_lcp_change.test.cpp
+      title: test/1_mytest/suffix_lcp_change.test.cpp
     - icon: ':heavy_check_mark:'
       path: test/1_mytest/sum_over_bit_positions.test.cpp
       title: test/1_mytest/sum_over_bit_positions.test.cpp

@@ -583,6 +583,9 @@ data:
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/1_mytest/suffix_lcp_change.test.cpp
+    title: test/1_mytest/suffix_lcp_change.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
   - icon: ':heavy_check_mark:'
@@ -988,6 +991,7 @@ data:
   - test/1_mytest/range_add_range_min.test.cpp
   - test/1_mytest/kdtree_am.test.cpp
   - test/1_mytest/minplus_convex.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/pascal.test.cpp
   - test/1_mytest/add_chmin.test.cpp
   - test/1_mytest/rbst_am_2.test.cpp

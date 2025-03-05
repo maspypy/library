@@ -33,6 +33,9 @@ data:
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
+    path: string/suffix_lcp_change.hpp
+    title: string/suffix_lcp_change.hpp
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -42,6 +45,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/longest_common_substr.test.cpp
     title: test/1_mytest/longest_common_substr.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/suffix_lcp_change.test.cpp
+    title: test/1_mytest/suffix_lcp_change.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
@@ -139,6 +145,7 @@ data:
   requiredBy:
   - string/substring_count_in_substring.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
+  - string/suffix_lcp_change.hpp
   - string/many_string_compare.hpp
   - string/suffix_tree.hpp
   - string/basic_substring_structure.hpp
@@ -151,6 +158,7 @@ data:
   timestamp: '2024-02-11 04:08:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/3_yukicoder/866.test.cpp

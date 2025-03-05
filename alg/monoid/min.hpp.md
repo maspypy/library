@@ -57,6 +57,9 @@ data:
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   - icon: ':heavy_check_mark:'
+    path: string/suffix_lcp_change.hpp
+    title: string/suffix_lcp_change.hpp
+  - icon: ':heavy_check_mark:'
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
@@ -99,6 +102,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/seg2d.test.cpp
     title: test/1_mytest/seg2d.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/1_mytest/suffix_lcp_change.test.cpp
+    title: test/1_mytest/suffix_lcp_change.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
@@ -212,6 +218,7 @@ data:
   - alg/acted_monoid/min_add.hpp
   - string/substring_count_in_substring.hpp
   - string/lex_max_suffix_for_all_prefix.hpp
+  - string/suffix_lcp_change.hpp
   - string/many_string_compare.hpp
   - string/suffix_tree.hpp
   - string/basic_substring_structure.hpp
@@ -227,6 +234,7 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/range_add_range_min.test.cpp
+  - test/1_mytest/suffix_lcp_change.test.cpp
   - test/1_mytest/min_max.test.cpp
   - test/1_mytest/range_closest_pair.test.cpp
   - test/1_mytest/longest_common_substr.test.cpp
