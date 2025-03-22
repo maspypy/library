@@ -484,6 +484,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_kinetic.hpp
       title: ds/segtree/beats_kinetic.hpp
+    - icon: ':warning:'
+      path: ds/segtree/beats_multiset_chmin.hpp
+      title: ds/segtree/beats_multiset_chmin.hpp
     - icon: ':heavy_check_mark:'
       path: ds/segtree/beats_summax_chmin.hpp
       title: ds/segtree/beats_summax_chmin.hpp

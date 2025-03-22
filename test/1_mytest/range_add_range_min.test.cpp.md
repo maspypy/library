@@ -265,12 +265,16 @@ data:
     \  }\n\n  T prod(int L, int R) {\n    if (L == R) return infty<T>;\n    ll ans\
     \ = seg.prod(L, R).se;\n    L += seg.size;\n    for (; L > 0; L /= 2) {\n    \
     \  if (L & 1) ans += seg.dat[--L].fi;\n    }\n    return ans + lazy;\n  }\n\n\
-    \  void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\
-    \n  // [0,i)\n  void apply_prefix(int i, T x) {\n    lazy += x;\n    apply_suffix(i,\
-    \ -x);\n  }\n\n  // [i,n)\n  void apply_suffix(int i, T x) {\n    if (i == n)\
-    \ return;\n    T t = seg.get(i).fi + x;\n    seg.set(i, {t, t});\n  }\n  void\
-    \ apply_all(T x) { lazy += x; }\n};\n#line 8 \"test/1_mytest/range_add_range_min.test.cpp\"\
-    \n\nvi sol_0(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Min_Add<ll>>\
+    \  T prod_all() { return prod(0, n); }\n\n  // \u57FA\u672C\u30C7\u30D0\u30C3\u30B0\
+    \u7528\u3068\u3044\u3046\u3064\u3082\u308A\u3067\u3055\u307C\u308A O(NlogN) \u306B\
+    \u306A\u3063\u3066\u3044\u308B\n  vc<T> get_all() {\n    vc<T> ANS(n);\n    FOR(i,\
+    \ n) ANS[i] = prod(i, i + 1);\n    return ANS;\n  }\n\n  void apply(int L, int\
+    \ R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }\n\n  // [0,i)\n  void apply_prefix(int\
+    \ i, T x) {\n    lazy += x;\n    apply_suffix(i, -x);\n  }\n\n  // [i,n)\n  void\
+    \ apply_suffix(int i, T x) {\n    if (i == n) return;\n    T t = seg.get(i).fi\
+    \ + x;\n    seg.set(i, {t, t});\n  }\n  void apply_all(T x) { lazy += x; }\n};\n\
+    #line 8 \"test/1_mytest/range_add_range_min.test.cpp\"\n\nvi sol_0(int N, int\
+    \ Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Lazy_SegTree<ActedMonoid_Min_Add<ll>>\
     \ seg(A);\n  vi ANS;\n  for (auto [t, l, r, x]: query) {\n    if (t == 0) { ANS.eb(seg.prod(l,\
     \ r)); }\n    if (t == 1) { seg.apply(l, r, x); }\n  }\n  return ANS;\n}\n\nvi\
     \ sol_1(int N, int Q, vi A, vc<tuple<int, int, int, int>> query) {\n  Range_Add_Range_Min<ll>\
@@ -335,7 +339,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/range_add_range_min.test.cpp
   requiredBy: []
-  timestamp: '2025-02-04 13:02:36+09:00'
+  timestamp: '2025-03-22 20:18:36+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/range_add_range_min.test.cpp
