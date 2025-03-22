@@ -195,6 +195,7 @@
 "test/1_mytest/stirling_1_suffix.test.cpp": "2025-02-12 05:55:32 +0900",
 "test/1_mytest/subset_sum.test.cpp": "2025-01-27 19:24:29 +0900",
 "test/1_mytest/substring_abundant.test.cpp": "2025-01-27 19:24:29 +0900",
+"test/1_mytest/suffix_lcp_change.test.cpp": "2025-03-05 12:06:56 +0900",
 "test/1_mytest/sum_over_bit_positions.test.cpp": "2025-01-27 19:24:29 +0900",
 "test/1_mytest/summax_add.test.cpp": "2025-01-27 19:24:29 +0900",
 "test/1_mytest/summax_assign.test.cpp": "2025-01-27 19:24:29 +0900",
