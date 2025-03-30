@@ -1,19 +1,24 @@
+#include "alg/monoid_pow.hpp"
 #include "graph/tree.hpp"
 #include "ds/unionfind/unionfind.hpp"
 
-// N が根となる木を新たに作る
-template <typename T = int>
+// 内部実装は N が根となる木を新たに作る
+// functional graph の辺に static な群の要素があるとする
+// （モノイドにもできるがそれは doubling してもらうということでさぼり. ）
+template <typename Monoid>
 struct FunctionalGraph {
+  using MX = Monoid;
+  using X = typename MX::value_type;
   int N, M;
   vc<int> TO;
-  vc<T> wt;
+  vc<X> wt, dp;
   vc<int> root;
-  Graph<T, 1> G;
+  Graph<int, 1> G;
 
   FunctionalGraph() {}
-  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N), root(N, -1) {}
+  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N, MX::unit()), root(N, -1) {}
 
-  void add(int a, int b, T c = 1) {
+  void add(int a, int b, X c = MX::unit()) {
     assert(0 <= a && a < N);
     assert(TO[a] == -1);
     ++M;
@@ -21,7 +26,7 @@ struct FunctionalGraph {
     wt[a] = c;
   }
 
-  pair<Graph<T, 1>, Tree<Graph<T, 1>>> build() {
+  pair<Graph<int, 1>, Tree<Graph<int, 1>>> build() {
     assert(N == M);
     UnionFind uf(N);
     FOR(v, N) if (!uf.merge(v, TO[v])) { root[v] = v; }
@@ -31,12 +36,19 @@ struct FunctionalGraph {
     G.build(N + 1);
     FOR(v, N) {
       if (root[v] == v)
-        G.add(N, v, wt[v]);
+        G.add(N, v);
       else
-        G.add(TO[v], v, wt[v]);
+        G.add(TO[v], v);
     }
     G.build();
-    Tree<Graph<T, 1>> tree(G, N);
+    Tree<Graph<int, 1>> tree(G, N);
+    dp.assign(N, MX::unit());
+    FOR(i, 1, N + 1) {
+      int v = tree.V[i];
+      int p = tree.parent[v];
+      if (p == N) { continue; }
+      dp[v] = MX::op(wt[v], dp[p]);
+    }
     return {G, tree};
   }
 
@@ -57,17 +69,27 @@ struct FunctionalGraph {
   }
 
   // functional graph に向かって進む
+  // return: 終点, 群の積
   template <typename TREE>
-  int jump(TREE& tree, int v, ll step) {
+  pair<int, X> jump(TREE& tree, int v, ll step) {
     int d = tree.depth[v];
-    if (step <= d - 1) return tree.jump(v, N, step);
+    if (step <= d - 1) {
+      int w = tree.jump(v, N, step);
+      return {w, MX::op(dp[v], MX::inverse(dp[w]))};
+    }
+    X x = dp[v];
     v = root[v];
     step -= d - 1;
     int bottom = TO[v];
     int c = tree.depth[bottom];
+    x = MX::op(x, monoid_pow<MX>(MX::op(wt[v], dp[bottom]), step / c));
     step %= c;
-    if (step == 0) return v;
-    return tree.jump(bottom, N, step - 1);
+    if (step == 0) return {v, x};
+    int w = tree.jump(bottom, N, step - 1);
+    x = MX::op(x, wt[v]);
+    x = MX::op(x, dp[bottom]);
+    x = MX::op(x, MX::inverse(dp[w]));
+    return {w, x};
   }
 
   // functional graph に step 回進む

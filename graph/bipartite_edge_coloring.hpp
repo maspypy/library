@@ -16,9 +16,7 @@ struct RegularBipartiteColoring {
     return solve_inner(M / N, A);
   }
 
-  vvc<int> solve_inner(int k, vc<int> A) {
-    return (k % 2 == 0 ? solve_even(k, A) : solve_odd(k, A));
-  }
+  vvc<int> solve_inner(int k, vc<int> A) { return (k % 2 == 0 ? solve_even(k, A) : solve_odd(k, A)); }
 
   vvc<int> solve_even(int k, vc<int> A) {
     assert(k % 2 == 0);
@@ -120,6 +118,7 @@ struct RegularBipartiteColoring {
 
 template <typename GT>
 pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
+  if (G.M == 0) { return {0, {}}; }
   auto vcolor = bipartite_vertex_coloring<GT>(G);
   auto deg = G.deg_array();
   int D = MAX(deg);
