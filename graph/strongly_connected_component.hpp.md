@@ -1,16 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
+  - icon: ':warning:'
+    path: graph/bipartite_balanced_edge_coloring.hpp
+    title: graph/bipartite_balanced_edge_coloring.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
@@ -235,6 +238,7 @@ data:
   - graph/find_odd_cycle.hpp
   - graph/incremental_scc.hpp
   - graph/maximum_antichain.hpp
+  - graph/bipartite_balanced_edge_coloring.hpp
   - flow/bipartite.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
   verificationStatus: LIBRARY_ALL_AC

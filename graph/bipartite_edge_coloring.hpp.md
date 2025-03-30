@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
     path: flow/bipartite.hpp
     title: flow/bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -19,7 +19,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/bipartite_balanced_edge_coloring.hpp
+    title: graph/bipartite_balanced_edge_coloring.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/bipartite_edge_coloring.test.cpp
@@ -234,20 +237,20 @@ data:
     \ P = pair<int, int>;\n  int N, M;\n  vc<P> edges;\n\n  vvc<int> solve(int n,\
     \ int k, vc<P> G) {\n    N = n;\n    M = len(G);\n    edges = G;\n    vc<int>\
     \ A(M);\n    iota(all(A), 0);\n    return solve_inner(M / N, A);\n  }\n\n  vvc<int>\
-    \ solve_inner(int k, vc<int> A) {\n    return (k % 2 == 0 ? solve_even(k, A) :\
-    \ solve_odd(k, A));\n  }\n\n  vvc<int> solve_even(int k, vc<int> A) {\n    assert(k\
-    \ % 2 == 0);\n    if (k == 0) return {};\n    // 2^m <= k < 2^{m+1}\n    int m\
-    \ = 0;\n    while (1 << (m + 1) <= k) ++m;\n    vvc<int> res;\n    if (k != 1\
-    \ << m) {\n      auto [B, C] = split(k, A);\n      auto dat = solve_inner(k /\
-    \ 2, C);\n      FOR(j, k - (1 << m)) { res.eb(dat[j]); }\n      FOR(j, k - (1\
-    \ << m), len(dat)) {\n        for (auto&& idx: dat[j]) B.eb(idx);\n      }\n \
-    \     k = 1 << m;\n      swap(A, B);\n    }\n    auto dfs = [&](auto& dfs, int\
-    \ K, vc<int> A) -> void {\n      if (K == 1) {\n        res.eb(A);\n        return;\n\
-    \      }\n      auto [B, C] = split(k, A);\n      dfs(dfs, K / 2, B);\n      dfs(dfs,\
-    \ K / 2, C);\n    };\n    dfs(dfs, k, A);\n    return res;\n  }\n\n  vvc<int>\
-    \ solve_odd(int k, vc<int> A) {\n    assert(k % 2 == 1);\n    if (k == 1) { return\
-    \ {A}; }\n    vc<bool> match = matching(k, A);\n    vc<int> B;\n    B.reserve(len(A)\
-    \ - N);\n    vc<int> es;\n    FOR(i, len(A)) {\n      if (match[i]) es.eb(A[i]);\n\
+    \ solve_inner(int k, vc<int> A) { return (k % 2 == 0 ? solve_even(k, A) : solve_odd(k,\
+    \ A)); }\n\n  vvc<int> solve_even(int k, vc<int> A) {\n    assert(k % 2 == 0);\n\
+    \    if (k == 0) return {};\n    // 2^m <= k < 2^{m+1}\n    int m = 0;\n    while\
+    \ (1 << (m + 1) <= k) ++m;\n    vvc<int> res;\n    if (k != 1 << m) {\n      auto\
+    \ [B, C] = split(k, A);\n      auto dat = solve_inner(k / 2, C);\n      FOR(j,\
+    \ k - (1 << m)) { res.eb(dat[j]); }\n      FOR(j, k - (1 << m), len(dat)) {\n\
+    \        for (auto&& idx: dat[j]) B.eb(idx);\n      }\n      k = 1 << m;\n   \
+    \   swap(A, B);\n    }\n    auto dfs = [&](auto& dfs, int K, vc<int> A) -> void\
+    \ {\n      if (K == 1) {\n        res.eb(A);\n        return;\n      }\n     \
+    \ auto [B, C] = split(k, A);\n      dfs(dfs, K / 2, B);\n      dfs(dfs, K / 2,\
+    \ C);\n    };\n    dfs(dfs, k, A);\n    return res;\n  }\n\n  vvc<int> solve_odd(int\
+    \ k, vc<int> A) {\n    assert(k % 2 == 1);\n    if (k == 1) { return {A}; }\n\
+    \    vc<bool> match = matching(k, A);\n    vc<int> B;\n    B.reserve(len(A) -\
+    \ N);\n    vc<int> es;\n    FOR(i, len(A)) {\n      if (match[i]) es.eb(A[i]);\n\
     \      if (!match[i]) B.eb(A[i]);\n    }\n    vvc<int> res = solve_inner(k - 1,\
     \ B);\n    res.eb(es);\n    return res;\n  }\n\n  vc<bool> matching(int k, vc<int>\
     \ A) {\n    Graph<bool, 0> G(N + N);\n    vc<int> color(N + N);\n    FOR(v, N)\
@@ -266,43 +269,43 @@ data:
     \ continue;\n        rest[i] = 0;\n        if (color == 0) A0.eb(A[i]);\n    \
     \    if (color == 1) A1.eb(A[i]);\n        dfs(dfs, to, 1 ^ color);\n      }\n\
     \    };\n    FOR(v, N) dfs(dfs, v, 0);\n    return {A0, A1};\n  }\n};\n\ntemplate\
-    \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  auto vcolor\
-    \ = bipartite_vertex_coloring<GT>(G);\n  auto deg = G.deg_array();\n  int D =\
-    \ MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c, 2) {\n    pqg<pair<int, int>> que;\n\
-    \    FOR(v, G.N) {\n      if (vcolor[v] == c) que.emplace(deg[v], v);\n    }\n\
-    \    while (len(que) > 1) {\n      auto [d1, v1] = POP(que);\n      auto [d2,\
-    \ v2] = POP(que);\n      if (d1 + d2 > D) break;\n      uf.merge(v1, v2);\n  \
-    \    int r = uf[v1];\n      que.emplace(d1 + d2, r);\n    }\n  }\n\n  vc<int>\
-    \ LV, RV;\n  FOR(v, G.N) if (uf[v] == v) {\n    if (vcolor[v] == 0) LV.eb(v);\n\
-    \    if (vcolor[v] == 1) RV.eb(v);\n  }\n  int X = max(len(LV), len(RV));\n  vc<int>\
-    \ degL(X), degR(X);\n\n  vc<pair<int, int>> edges;\n  for (auto&& e: G.edges)\
-    \ {\n    int a = e.frm, b = e.to;\n    a = uf[a], b = uf[b];\n    a = LB(LV, a);\n\
-    \    b = LB(RV, b);\n    degL[a]++, degR[b]++;\n    edges.eb(a, X + b);\n  }\n\
-    \  int p = 0, q = 0;\n  while (p < X && q < X) {\n    if (degL[p] == D) {\n  \
-    \    ++p;\n      continue;\n    }\n    if (degR[q] == D) {\n      ++q;\n     \
-    \ continue;\n    }\n    edges.eb(p, X + q);\n    degL[p]++, degR[q]++;\n  }\n\
-    \  RegularBipartiteColoring RBC;\n  vvc<int> res = RBC.solve(X, D, edges);\n \
-    \ vc<int> ecolor(len(edges));\n  FOR(i, len(res)) {\n    for (auto&& j: res[i])\
+    \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  if (G.M\
+    \ == 0) { return {0, {}}; }\n  auto vcolor = bipartite_vertex_coloring<GT>(G);\n\
+    \  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c,\
+    \ 2) {\n    pqg<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v] ==\
+    \ c) que.emplace(deg[v], v);\n    }\n    while (len(que) > 1) {\n      auto [d1,\
+    \ v1] = POP(que);\n      auto [d2, v2] = POP(que);\n      if (d1 + d2 > D) break;\n\
+    \      uf.merge(v1, v2);\n      int r = uf[v1];\n      que.emplace(d1 + d2, r);\n\
+    \    }\n  }\n\n  vc<int> LV, RV;\n  FOR(v, G.N) if (uf[v] == v) {\n    if (vcolor[v]\
+    \ == 0) LV.eb(v);\n    if (vcolor[v] == 1) RV.eb(v);\n  }\n  int X = max(len(LV),\
+    \ len(RV));\n  vc<int> degL(X), degR(X);\n\n  vc<pair<int, int>> edges;\n  for\
+    \ (auto&& e: G.edges) {\n    int a = e.frm, b = e.to;\n    a = uf[a], b = uf[b];\n\
+    \    a = LB(LV, a);\n    b = LB(RV, b);\n    degL[a]++, degR[b]++;\n    edges.eb(a,\
+    \ X + b);\n  }\n  int p = 0, q = 0;\n  while (p < X && q < X) {\n    if (degL[p]\
+    \ == D) {\n      ++p;\n      continue;\n    }\n    if (degR[q] == D) {\n     \
+    \ ++q;\n      continue;\n    }\n    edges.eb(p, X + q);\n    degL[p]++, degR[q]++;\n\
+    \  }\n  RegularBipartiteColoring RBC;\n  vvc<int> res = RBC.solve(X, D, edges);\n\
+    \  vc<int> ecolor(len(edges));\n  FOR(i, len(res)) {\n    for (auto&& j: res[i])\
     \ ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n  return {D, ecolor};\n}\n"
   code: "#include \"graph/bipartite_vertex_coloring.hpp\"\n#include \"ds/unionfind/unionfind.hpp\"\
     \n#include \"flow/bipartite.hpp\"\n\nstruct RegularBipartiteColoring {\n  using\
     \ P = pair<int, int>;\n  int N, M;\n  vc<P> edges;\n\n  vvc<int> solve(int n,\
     \ int k, vc<P> G) {\n    N = n;\n    M = len(G);\n    edges = G;\n    vc<int>\
     \ A(M);\n    iota(all(A), 0);\n    return solve_inner(M / N, A);\n  }\n\n  vvc<int>\
-    \ solve_inner(int k, vc<int> A) {\n    return (k % 2 == 0 ? solve_even(k, A) :\
-    \ solve_odd(k, A));\n  }\n\n  vvc<int> solve_even(int k, vc<int> A) {\n    assert(k\
-    \ % 2 == 0);\n    if (k == 0) return {};\n    // 2^m <= k < 2^{m+1}\n    int m\
-    \ = 0;\n    while (1 << (m + 1) <= k) ++m;\n    vvc<int> res;\n    if (k != 1\
-    \ << m) {\n      auto [B, C] = split(k, A);\n      auto dat = solve_inner(k /\
-    \ 2, C);\n      FOR(j, k - (1 << m)) { res.eb(dat[j]); }\n      FOR(j, k - (1\
-    \ << m), len(dat)) {\n        for (auto&& idx: dat[j]) B.eb(idx);\n      }\n \
-    \     k = 1 << m;\n      swap(A, B);\n    }\n    auto dfs = [&](auto& dfs, int\
-    \ K, vc<int> A) -> void {\n      if (K == 1) {\n        res.eb(A);\n        return;\n\
-    \      }\n      auto [B, C] = split(k, A);\n      dfs(dfs, K / 2, B);\n      dfs(dfs,\
-    \ K / 2, C);\n    };\n    dfs(dfs, k, A);\n    return res;\n  }\n\n  vvc<int>\
-    \ solve_odd(int k, vc<int> A) {\n    assert(k % 2 == 1);\n    if (k == 1) { return\
-    \ {A}; }\n    vc<bool> match = matching(k, A);\n    vc<int> B;\n    B.reserve(len(A)\
-    \ - N);\n    vc<int> es;\n    FOR(i, len(A)) {\n      if (match[i]) es.eb(A[i]);\n\
+    \ solve_inner(int k, vc<int> A) { return (k % 2 == 0 ? solve_even(k, A) : solve_odd(k,\
+    \ A)); }\n\n  vvc<int> solve_even(int k, vc<int> A) {\n    assert(k % 2 == 0);\n\
+    \    if (k == 0) return {};\n    // 2^m <= k < 2^{m+1}\n    int m = 0;\n    while\
+    \ (1 << (m + 1) <= k) ++m;\n    vvc<int> res;\n    if (k != 1 << m) {\n      auto\
+    \ [B, C] = split(k, A);\n      auto dat = solve_inner(k / 2, C);\n      FOR(j,\
+    \ k - (1 << m)) { res.eb(dat[j]); }\n      FOR(j, k - (1 << m), len(dat)) {\n\
+    \        for (auto&& idx: dat[j]) B.eb(idx);\n      }\n      k = 1 << m;\n   \
+    \   swap(A, B);\n    }\n    auto dfs = [&](auto& dfs, int K, vc<int> A) -> void\
+    \ {\n      if (K == 1) {\n        res.eb(A);\n        return;\n      }\n     \
+    \ auto [B, C] = split(k, A);\n      dfs(dfs, K / 2, B);\n      dfs(dfs, K / 2,\
+    \ C);\n    };\n    dfs(dfs, k, A);\n    return res;\n  }\n\n  vvc<int> solve_odd(int\
+    \ k, vc<int> A) {\n    assert(k % 2 == 1);\n    if (k == 1) { return {A}; }\n\
+    \    vc<bool> match = matching(k, A);\n    vc<int> B;\n    B.reserve(len(A) -\
+    \ N);\n    vc<int> es;\n    FOR(i, len(A)) {\n      if (match[i]) es.eb(A[i]);\n\
     \      if (!match[i]) B.eb(A[i]);\n    }\n    vvc<int> res = solve_inner(k - 1,\
     \ B);\n    res.eb(es);\n    return res;\n  }\n\n  vc<bool> matching(int k, vc<int>\
     \ A) {\n    Graph<bool, 0> G(N + N);\n    vc<int> color(N + N);\n    FOR(v, N)\
@@ -321,23 +324,23 @@ data:
     \ continue;\n        rest[i] = 0;\n        if (color == 0) A0.eb(A[i]);\n    \
     \    if (color == 1) A1.eb(A[i]);\n        dfs(dfs, to, 1 ^ color);\n      }\n\
     \    };\n    FOR(v, N) dfs(dfs, v, 0);\n    return {A0, A1};\n  }\n};\n\ntemplate\
-    \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  auto vcolor\
-    \ = bipartite_vertex_coloring<GT>(G);\n  auto deg = G.deg_array();\n  int D =\
-    \ MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c, 2) {\n    pqg<pair<int, int>> que;\n\
-    \    FOR(v, G.N) {\n      if (vcolor[v] == c) que.emplace(deg[v], v);\n    }\n\
-    \    while (len(que) > 1) {\n      auto [d1, v1] = POP(que);\n      auto [d2,\
-    \ v2] = POP(que);\n      if (d1 + d2 > D) break;\n      uf.merge(v1, v2);\n  \
-    \    int r = uf[v1];\n      que.emplace(d1 + d2, r);\n    }\n  }\n\n  vc<int>\
-    \ LV, RV;\n  FOR(v, G.N) if (uf[v] == v) {\n    if (vcolor[v] == 0) LV.eb(v);\n\
-    \    if (vcolor[v] == 1) RV.eb(v);\n  }\n  int X = max(len(LV), len(RV));\n  vc<int>\
-    \ degL(X), degR(X);\n\n  vc<pair<int, int>> edges;\n  for (auto&& e: G.edges)\
-    \ {\n    int a = e.frm, b = e.to;\n    a = uf[a], b = uf[b];\n    a = LB(LV, a);\n\
-    \    b = LB(RV, b);\n    degL[a]++, degR[b]++;\n    edges.eb(a, X + b);\n  }\n\
-    \  int p = 0, q = 0;\n  while (p < X && q < X) {\n    if (degL[p] == D) {\n  \
-    \    ++p;\n      continue;\n    }\n    if (degR[q] == D) {\n      ++q;\n     \
-    \ continue;\n    }\n    edges.eb(p, X + q);\n    degL[p]++, degR[q]++;\n  }\n\
-    \  RegularBipartiteColoring RBC;\n  vvc<int> res = RBC.solve(X, D, edges);\n \
-    \ vc<int> ecolor(len(edges));\n  FOR(i, len(res)) {\n    for (auto&& j: res[i])\
+    \ <typename GT>\npair<int, vc<int>> bipartite_edge_coloring(GT& G) {\n  if (G.M\
+    \ == 0) { return {0, {}}; }\n  auto vcolor = bipartite_vertex_coloring<GT>(G);\n\
+    \  auto deg = G.deg_array();\n  int D = MAX(deg);\n\n  UnionFind uf(G.N);\n  FOR(c,\
+    \ 2) {\n    pqg<pair<int, int>> que;\n    FOR(v, G.N) {\n      if (vcolor[v] ==\
+    \ c) que.emplace(deg[v], v);\n    }\n    while (len(que) > 1) {\n      auto [d1,\
+    \ v1] = POP(que);\n      auto [d2, v2] = POP(que);\n      if (d1 + d2 > D) break;\n\
+    \      uf.merge(v1, v2);\n      int r = uf[v1];\n      que.emplace(d1 + d2, r);\n\
+    \    }\n  }\n\n  vc<int> LV, RV;\n  FOR(v, G.N) if (uf[v] == v) {\n    if (vcolor[v]\
+    \ == 0) LV.eb(v);\n    if (vcolor[v] == 1) RV.eb(v);\n  }\n  int X = max(len(LV),\
+    \ len(RV));\n  vc<int> degL(X), degR(X);\n\n  vc<pair<int, int>> edges;\n  for\
+    \ (auto&& e: G.edges) {\n    int a = e.frm, b = e.to;\n    a = uf[a], b = uf[b];\n\
+    \    a = LB(LV, a);\n    b = LB(RV, b);\n    degL[a]++, degR[b]++;\n    edges.eb(a,\
+    \ X + b);\n  }\n  int p = 0, q = 0;\n  while (p < X && q < X) {\n    if (degL[p]\
+    \ == D) {\n      ++p;\n      continue;\n    }\n    if (degR[q] == D) {\n     \
+    \ ++q;\n      continue;\n    }\n    edges.eb(p, X + q);\n    degL[p]++, degR[q]++;\n\
+    \  }\n  RegularBipartiteColoring RBC;\n  vvc<int> res = RBC.solve(X, D, edges);\n\
+    \  vc<int> ecolor(len(edges));\n  FOR(i, len(res)) {\n    for (auto&& j: res[i])\
     \ ecolor[j] = i;\n  }\n  ecolor.resize(G.M);\n  return {D, ecolor};\n}"
   dependsOn:
   - graph/bipartite_vertex_coloring.hpp
@@ -348,8 +351,9 @@ data:
   - graph/strongly_connected_component.hpp
   isVerificationFile: false
   path: graph/bipartite_edge_coloring.hpp
-  requiredBy: []
-  timestamp: '2024-12-25 20:50:37+09:00'
+  requiredBy:
+  - graph/bipartite_balanced_edge_coloring.hpp
+  timestamp: '2025-03-31 01:16:57+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/bipartite_edge_coloring.test.cpp

@@ -22,7 +22,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -314,22 +314,24 @@ data:
     \n\ntemplate <typename Monoid>\nstruct Static_Range_Product_Group {\n  using MX\
     \ = Monoid;\n  using X = typename MX::value_type;\n  int n;\n  vc<X> dat;\n  Static_Range_Product_Group()\
     \ {}\n  template <typename F>\n  Static_Range_Product_Group(int m, F f) {\n  \
-    \  build(m, f);\n  }\n  template <typename F>\n  void build(int m, F f) {\n  \
-    \  n = m;\n    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i)\
-    \ dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>& A) {\n    n = len(A);\n\
-    \    dat.assign(n + 1, MX::unit());\n    for (int i = 0; i < n; ++i) dat[i + 1]\
-    \ = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int r) { return MX::op(MX::inverse(dat[l]),\
-    \ dat[r]); }\n};\n\ntemplate <typename T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n\
-    #line 2 \"ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree\
-    \ {\n  using MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type\
-    \ = X;\n  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n)\
-    \ { build(n); }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n,\
-    \ f);\n  }\n  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n\
-    \    build(m, [](int i) -> X { return MX::unit(); });\n  }\n  void build(const\
-    \ vc<X>& v) {\n    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template\
-    \ <typename F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1\
-    \ << log) < n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n\
-    \    FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
+    \  build(m, f);\n  }\n  Static_Range_Product_Group(vc<X>& A) {\n    build(len(A),\
+    \ [&](int i) -> X { return A[i]; });\n  }\n  template <typename F>\n  void build(int\
+    \ m, F f) {\n    n = m;\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
+    \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], f(i));\n  }\n  void build(vc<X>&\
+    \ A) {\n    n = len(A);\n    dat.assign(n + 1, MX::unit());\n    for (int i =\
+    \ 0; i < n; ++i) dat[i + 1] = MX::op(dat[i], A[i]);\n  }\n  X prod(int l, int\
+    \ r) { return MX::op(MX::inverse(dat[l]), dat[r]); }\n};\n\ntemplate <typename\
+    \ T>\nusing Prefix_Sum = Static_Range_Product_Group<Monoid_Add<T>>;\n#line 2 \"\
+    ds/segtree/segtree.hpp\"\n\ntemplate <class Monoid>\nstruct SegTree {\n  using\
+    \ MX = Monoid;\n  using X = typename MX::value_type;\n  using value_type = X;\n\
+    \  vc<X> dat;\n  int n, log, size;\n\n  SegTree() {}\n  SegTree(int n) { build(n);\
+    \ }\n  template <typename F>\n  SegTree(int n, F f) {\n    build(n, f);\n  }\n\
+    \  SegTree(const vc<X>& v) { build(v); }\n\n  void build(int m) {\n    build(m,\
+    \ [](int i) -> X { return MX::unit(); });\n  }\n  void build(const vc<X>& v) {\n\
+    \    build(len(v), [&](int i) -> X { return v[i]; });\n  }\n  template <typename\
+    \ F>\n  void build(int m, F f) {\n    n = m, log = 1;\n    while ((1 << log) <\
+    \ n) ++log;\n    size = 1 << log;\n    dat.assign(size << 1, MX::unit());\n  \
+    \  FOR(i, n) dat[size + i] = f(i);\n    FOR_R(i, 1, size) update(i);\n  }\n\n\
     \  X get(int i) { return dat[size + i]; }\n  vc<X> get_all() { return {dat.begin()\
     \ + size, dat.begin() + size + n}; }\n\n  void update(int i) { dat[i] = Monoid::op(dat[2\
     \ * i], dat[2 * i + 1]); }\n  void set(int i, const X& x) {\n    assert(i < n);\n\
@@ -453,7 +455,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-03-31 01:16:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/wavelet_matrix.test.cpp

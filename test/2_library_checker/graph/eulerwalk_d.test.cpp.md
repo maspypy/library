@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/vs_to_es.hpp
     title: graph/vs_to_es.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
@@ -346,46 +346,47 @@ data:
     \ es;\n}\n#line 4 \"graph/eulerwalk.hpp\"\n\r\n// (vs, es) or empty\r\ntemplate\
     \ <typename GT>\r\npair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {\r\n\
     \  const int N = G.N, M = G.M;\r\n  assert(G.is_prepared());\r\n  assert(N > 0);\r\
-    \n\r\n  if (s == -1) {\r\n    vc<int> deg(N);\r\n    for (auto&& e: G.edges) {\r\
-    \n      if constexpr (GT::is_directed) {\r\n        deg[e.frm]++, deg[e.to]--;\r\
-    \n      } else {\r\n        deg[e.frm]++, deg[e.to]++;\r\n      }\r\n    }\r\n\
-    \    if constexpr (GT::is_directed) {\r\n      s = max_element(all(deg)) - deg.begin();\r\
-    \n      if (deg[s] == 0) s = (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n\
-    \      s = [&]() -> int {\r\n        FOR(v, N) if (deg[v] & 1) return v;\r\n \
-    \       return (M == 0 ? 0 : G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\
-    \r\n  if (M == 0) return {{s}, {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st =\
-    \ {s};\r\n  FOR(v, N) its[v] = G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty())\
-    \ {\r\n    int x = st.back(), y, e, &it = its[x], end = G.indptr[x + 1];\r\n \
-    \   if (it == end) {\r\n      vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\
-    \n    }\r\n    auto& ee = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n\
-    \    if (!eu[e]) {\r\n      D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\
-    \n    }\r\n  }\r\n  for (auto&& x: D)\r\n    if (x < 0) return {{}, {}};\r\n \
-    \ if (len(vs) != M + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es =\
-    \ vs_to_es(G, vs, false);\r\n  return {vs, es};\r\n}\r\n\r\ntemplate <typename\
-    \ GT>\r\nbool has_euler_walk(GT& G, int s = -1) {\r\n  int N = G.N, M = G.M;\r\
-    \n  if (M == 0) return true;\r\n  if constexpr (!GT::is_directed) {\r\n    vc<int>\
-    \ odd(N);\r\n    for (auto& e: G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;\r\n \
-    \   int n_odd = 0;\r\n    for (auto x: odd) n_odd += x;\r\n\r\n    if (n_odd >=\
-    \ 4) return false;\r\n    if (s != -1 && n_odd == 2 && !odd[s]) return false;\r\
-    \n    UnionFind uf(N);\r\n    for (auto& e: G.edges) uf.merge(e.frm, e.to);\r\n\
-    \    vector<int> cnt_edge(N);\r\n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\
-    \n    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\
-    \u3042\u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for\
-    \ (int v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\
-    \n    }\r\n    return nc <= 1;\r\n  } else {\r\n    int N = G.N;\r\n    vc<int>\
-    \ in(N), out(N);\r\n    for (auto& e: G.edges) out[e.frm]++, in[e.to]++;\r\n\r\
-    \n    int ng = 0;\r\n    FOR(v, N) ng += abs(out[v] - in[v]);\r\n    if (ng >=\
-    \ 4) return false;\r\n    if (s != -1 && ng == 2 && out[s] != in[s] + 1) return\
-    \ false;\r\n\r\n    UnionFind uf(N);\r\n    for (auto& e: G.edges) uf.merge(e.frm,\
-    \ e.to);\r\n    vector<int> cnt_edge(N);\r\n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\
-    \n    if (s != -1 && cnt_edge[uf[s]] == 0) return false;\r\n    // \u8FBA\u304C\
-    \u3042\u308B\u6210\u5206\u3092\u6570\u3048\u308B\r\n    int nc = 0;\r\n    for\
-    \ (int v = 0; v < N; ++v) {\r\n      if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\
-    \n    }\r\n    return nc <= 1;\r\n  }\r\n}\n#line 6 \"test/2_library_checker/graph/eulerwalk_d.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\
-    \  auto [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n\
-    \  print(vs);\n  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
-    \  return 0;\n}\n"
+    \n  assert((s == -1) || (0 < s && s < N));\r\n\r\n  if (s == -1) {\r\n    vc<int>\
+    \ deg(N);\r\n    for (auto&& e: G.edges) {\r\n      if constexpr (GT::is_directed)\
+    \ {\r\n        deg[e.frm]++, deg[e.to]--;\r\n      } else {\r\n        deg[e.frm]++,\
+    \ deg[e.to]++;\r\n      }\r\n    }\r\n    if constexpr (GT::is_directed) {\r\n\
+    \      s = max_element(all(deg)) - deg.begin();\r\n      if (deg[s] == 0) s =\
+    \ (M == 0 ? 0 : G.edges[0].frm);\r\n    } else {\r\n      s = [&]() -> int {\r\
+    \n        FOR(v, N) if (deg[v] & 1) return v;\r\n        return (M == 0 ? 0 :\
+    \ G.edges[0].frm);\r\n      }();\r\n    }\r\n  }\r\n\r\n  if (M == 0) return {{s},\
+    \ {}};\r\n  vc<int> D(N), its(N), eu(M), vs, st = {s};\r\n  FOR(v, N) its[v] =\
+    \ G.indptr[v];\r\n  ++D[s];\r\n  while (!st.empty()) {\r\n    int x = st.back(),\
+    \ y, e, &it = its[x], end = G.indptr[x + 1];\r\n    if (it == end) {\r\n     \
+    \ vs.eb(x);\r\n      st.pop_back();\r\n      continue;\r\n    }\r\n    auto& ee\
+    \ = G.csr_edges[it++];\r\n    y = ee.to, e = ee.id;\r\n    if (!eu[e]) {\r\n \
+    \     D[x]--, D[y]++;\r\n      eu[e] = 1;\r\n      st.eb(y);\r\n    }\r\n  }\r\
+    \n  for (auto&& x: D)\r\n    if (x < 0) return {{}, {}};\r\n  if (len(vs) != M\
+    \ + 1) return {{}, {}};\r\n  reverse(all(vs));\r\n  auto es = vs_to_es(G, vs,\
+    \ false);\r\n  return {vs, es};\r\n}\r\n\r\ntemplate <typename GT>\r\nbool has_euler_walk(GT&\
+    \ G, int s = -1) {\r\n  int N = G.N, M = G.M;\r\n  if (M == 0) return true;\r\n\
+    \  if constexpr (!GT::is_directed) {\r\n    vc<int> odd(N);\r\n    for (auto&\
+    \ e: G.edges) odd[e.frm] ^= 1, odd[e.to] ^= 1;\r\n    int n_odd = 0;\r\n    for\
+    \ (auto x: odd) n_odd += x;\r\n\r\n    if (n_odd >= 4) return false;\r\n    if\
+    \ (s != -1 && n_odd == 2 && !odd[s]) return false;\r\n    UnionFind uf(N);\r\n\
+    \    for (auto& e: G.edges) uf.merge(e.frm, e.to);\r\n    vector<int> cnt_edge(N);\r\
+    \n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\n    if (s != -1 && cnt_edge[uf[s]]\
+    \ == 0) return false;\r\n    // \u8FBA\u304C\u3042\u308B\u6210\u5206\u3092\u6570\
+    \u3048\u308B\r\n    int nc = 0;\r\n    for (int v = 0; v < N; ++v) {\r\n     \
+    \ if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\n    }\r\n    return nc <= 1;\r\n\
+    \  } else {\r\n    int N = G.N;\r\n    vc<int> in(N), out(N);\r\n    for (auto&\
+    \ e: G.edges) out[e.frm]++, in[e.to]++;\r\n\r\n    int ng = 0;\r\n    FOR(v, N)\
+    \ ng += abs(out[v] - in[v]);\r\n    if (ng >= 4) return false;\r\n    if (s !=\
+    \ -1 && ng == 2 && out[s] != in[s] + 1) return false;\r\n\r\n    UnionFind uf(N);\r\
+    \n    for (auto& e: G.edges) uf.merge(e.frm, e.to);\r\n    vector<int> cnt_edge(N);\r\
+    \n    for (auto& e: G.edges) cnt_edge[uf[e.frm]]++;\r\n    if (s != -1 && cnt_edge[uf[s]]\
+    \ == 0) return false;\r\n    // \u8FBA\u304C\u3042\u308B\u6210\u5206\u3092\u6570\
+    \u3048\u308B\r\n    int nc = 0;\r\n    for (int v = 0; v < N; ++v) {\r\n     \
+    \ if (uf[v] == v && cnt_edge[v] >= 1) ++nc;\r\n    }\r\n    return nc <= 1;\r\n\
+    \  }\r\n}\n#line 6 \"test/2_library_checker/graph/eulerwalk_d.test.cpp\"\n\nvoid\
+    \ solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n  auto\
+    \ [vs, es] = euler_walk(G);\n  if (vs.empty()) return No();\n  Yes();\n  print(vs);\n\
+    \  print(es);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n  return 0;\n\
+    }\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/eulerian_trail_directed\"\
     \n\n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"graph/eulerwalk.hpp\"\
     \n\nvoid solve() {\n  LL(N, M);\n  Graph<int, 1> G(N);\n  G.read_graph(M, 0, 0);\n\
@@ -403,7 +404,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/graph/eulerwalk_d.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-03-31 01:16:57+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/graph/eulerwalk_d.test.cpp

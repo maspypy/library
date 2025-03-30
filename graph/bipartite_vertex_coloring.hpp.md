@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -20,6 +20,9 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
+  - icon: ':warning:'
+    path: graph/bipartite_balanced_edge_coloring.hpp
+    title: graph/bipartite_balanced_edge_coloring.hpp
   - icon: ':heavy_check_mark:'
     path: graph/bipartite_edge_coloring.hpp
     title: graph/bipartite_edge_coloring.hpp
@@ -208,6 +211,7 @@ data:
   - game/graph_path_game.hpp
   - graph/bipartite_edge_coloring.hpp
   - graph/maximum_antichain.hpp
+  - graph/bipartite_balanced_edge_coloring.hpp
   - flow/rank_maximal_bipartite_matching.hpp
   - flow/bipartite.hpp
   timestamp: '2024-12-25 20:50:37+09:00'
