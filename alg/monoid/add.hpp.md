@@ -122,6 +122,9 @@ data:
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/functional.hpp
+    title: graph/functional.hpp
   - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
@@ -358,6 +361,9 @@ data:
     path: test/3_yukicoder/1197.test.cpp
     title: test/3_yukicoder/1197.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1211.test.cpp
+    title: test/3_yukicoder/1211.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1216.test.cpp
     title: test/3_yukicoder/1216.test.cpp
   - icon: ':heavy_check_mark:'
@@ -366,6 +372,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1234.test.cpp
     title: test/3_yukicoder/1234.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/1242.test.cpp
+    title: test/3_yukicoder/1242.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1270.test.cpp
     title: test/3_yukicoder/1270.test.cpp
@@ -418,6 +427,9 @@ data:
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
   - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/2122.test.cpp
+    title: test/3_yukicoder/2122.test.cpp
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2161.test.cpp
     title: test/3_yukicoder/2161.test.cpp
   - icon: ':heavy_check_mark:'
@@ -441,6 +453,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/3_yukicoder/590.test.cpp
+    title: test/3_yukicoder/590.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/655.test.cpp
     title: test/3_yukicoder/655.test.cpp
@@ -545,6 +560,7 @@ data:
   - string/prefix_substring_LCS.hpp
   - random/random_polygon.hpp
   - graph/count/count_connected_intervals.hpp
+  - graph/functional.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - graph/ds/tree_wavelet_matrix.hpp
   - graph/ds/tree_abelgroup.hpp
@@ -613,6 +629,7 @@ data:
   - test/3_yukicoder/1141.test.cpp
   - test/3_yukicoder/1874.test.cpp
   - test/3_yukicoder/2161.test.cpp
+  - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/2242.test.cpp
   - test/3_yukicoder/789_2.test.cpp
   - test/3_yukicoder/1641.test.cpp
@@ -626,9 +643,12 @@ data:
   - test/3_yukicoder/2296.test.cpp
   - test/3_yukicoder/1270.test.cpp
   - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/1242.test.cpp
   - test/3_yukicoder/919.test.cpp
   - test/3_yukicoder/2003.test.cpp
+  - test/3_yukicoder/2122.test.cpp
   - test/3_yukicoder/1441.test.cpp
+  - test/3_yukicoder/1211.test.cpp
   - test/3_yukicoder/789_3.test.cpp
   - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/2338.test.cpp

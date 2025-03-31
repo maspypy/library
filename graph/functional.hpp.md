@@ -1,74 +1,83 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
+    path: alg/monoid/add.hpp
+    title: alg/monoid/add.hpp
+  - icon: ':heavy_check_mark:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1211.test.cpp
     title: test/3_yukicoder/1211.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1242.test.cpp
     title: test/3_yukicoder/1242.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2122.test.cpp
     title: test/3_yukicoder/2122.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/590.test.cpp
     title: test/3_yukicoder/590.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
-  bundledCode: "#line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
-    \ U, typename Arg1, typename Arg2>\nstruct has_power_method {\nprivate:\n  //\
-    \ \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n  template <typename\
-    \ V, typename A1, typename A2>\n  static auto check(int)\n      -> decltype(std::declval<V>().power(std::declval<A1>(),\n\
-    \                                          std::declval<A2>()),\n            \
-    \      std::true_type{});\n  template <typename, typename, typename>\n  static\
-    \ auto check(...) -> std::false_type;\n\npublic:\n  // \u30E1\u30BD\u30C3\u30C9\
-    \u306E\u6709\u7121\u3092\u8868\u3059\u578B\n  static constexpr bool value = decltype(check<U,\
-    \ Arg1, Arg2>(0))::value;\n};\n\ntemplate <typename Monoid>\ntypename Monoid::X\
-    \ monoid_pow(typename Monoid::X x, ll exp) {\n  using X = typename Monoid::X;\n\
-    \  if constexpr (has_power_method<Monoid, X, ll>::value) {\n    return Monoid::power(x,\
-    \ exp);\n  } else {\n    assert(exp >= 0);\n    X res = Monoid::unit();\n    while\
-    \ (exp) {\n      if (exp & 1) res = Monoid::op(res, x);\n      x = Monoid::op(x,\
-    \ x);\n      exp >>= 1;\n    }\n    return res;\n  }\n}\n#line 2 \"graph/tree.hpp\"\
-    \n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\
-    \nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\
-    \u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32 n) {\r\
-    \n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k\
-    \ - 1;\r\n    key.resize(k), val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n\
-    \  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\
-    \u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used),\
-    \ 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) /\
-    \ 2 - cap; }\r\n\r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i\
-    \ = hash(k); used[i] && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\
-    \n  }\r\n\r\n  Val& operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\
-    \n    int i = index(k);\r\n    if (!used[i]) { used[i] = 1, key[i] = k, val[i]\
-    \ = Val{}, --cap; }\r\n    return val[i];\r\n  }\r\n\r\n  Val get(const u64& k,\
-    \ Val default_value) {\r\n    int i = index(k);\r\n    return (used[i] ? val[i]\
-    \ : default_value);\r\n  }\r\n\r\n  bool count(const u64& k) {\r\n    int i =\
-    \ index(k);\r\n    return used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\
-    \n  template <typename F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used))\
-    \ if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\
-    \n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x)\
-    \ {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+  bundledCode: "#line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct\
+    \ Monoid_Add {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr\
+    \ X op(const X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr\
+    \ X inverse(const X &x) noexcept { return -x; }\r\n  static constexpr X power(const\
+    \ X &x, ll n) noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return\
+    \ X(0); }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 2 \"alg/monoid_pow.hpp\"\
+    \n\n// chat gpt\ntemplate <typename U, typename Arg1, typename Arg2>\nstruct has_power_method\
+    \ {\nprivate:\n  // \u30D8\u30EB\u30D1\u30FC\u95A2\u6570\u306E\u5B9F\u88C5\n \
+    \ template <typename V, typename A1, typename A2>\n  static auto check(int)\n\
+    \      -> decltype(std::declval<V>().power(std::declval<A1>(),\n             \
+    \                             std::declval<A2>()),\n                  std::true_type{});\n\
+    \  template <typename, typename, typename>\n  static auto check(...) -> std::false_type;\n\
+    \npublic:\n  // \u30E1\u30BD\u30C3\u30C9\u306E\u6709\u7121\u3092\u8868\u3059\u578B\
+    \n  static constexpr bool value = decltype(check<U, Arg1, Arg2>(0))::value;\n\
+    };\n\ntemplate <typename Monoid>\ntypename Monoid::X monoid_pow(typename Monoid::X\
+    \ x, ll exp) {\n  using X = typename Monoid::X;\n  if constexpr (has_power_method<Monoid,\
+    \ X, ll>::value) {\n    return Monoid::power(x, exp);\n  } else {\n    assert(exp\
+    \ >= 0);\n    X res = Monoid::unit();\n    while (exp) {\n      if (exp & 1) res\
+    \ = Monoid::op(res, x);\n      x = Monoid::op(x, x);\n      exp >>= 1;\n    }\n\
+    \    return res;\n  }\n}\n#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\
+    \n\r\n// u64 -> Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\
+    \u5165\u308C\u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32\
+    \ n = 0) { build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while\
+    \ (k < n * 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k),\
+    \ val.resize(k), used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\
+    \u305F\u307E\u307E. size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\
+    \u3053\u3068.\r\n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap\
+    \ = (mask + 1) / 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\
+    \r\n  int index(const u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i]\
+    \ && key[i] != k; i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val&\
+    \ operator[](const u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\
+    \n    if (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n  \
+    \  return val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\
+    \n    int i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n\
+    \  }\r\n\r\n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return\
+    \ used[i] && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename\
+    \ F>\r\n  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i],\
+    \ val[i]);\r\n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val>\
+    \ val;\r\n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64\
+    \ FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
     \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
     \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
     \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
@@ -263,7 +272,7 @@ data:
     \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
     \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
     \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 4 \"graph/functional.hpp\"\n\r\n// \u5185\u90E8\
+    \    return A;\n  }\n};\n#line 5 \"graph/functional.hpp\"\n\r\n// \u5185\u90E8\
     \u5B9F\u88C5\u306F N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\
     \u4F5C\u308B\r\n// functional graph \u306E\u8FBA\u306B static \u306A\u7FA4\u306E\
     \u8981\u7D20\u304C\u3042\u308B\u3068\u3059\u308B\r\n// \uFF08\u30E2\u30CE\u30A4\
@@ -329,37 +338,38 @@ data:
     \ - tree.depth[lca];\r\n    }\r\n    int ti = tree.depth[i] - tree.depth[tree.lca(b,\
     \ i)];\r\n    int tj = tree.depth[j] - tree.depth[tree.lca(b, j)];\r\n    return\
     \ max(ti, tj);\r\n  }\r\n};\r\n"
-  code: "#include \"alg/monoid_pow.hpp\"\r\n#include \"graph/tree.hpp\"\r\n#include\
-    \ \"ds/unionfind/unionfind.hpp\"\r\n\r\n// \u5185\u90E8\u5B9F\u88C5\u306F N \u304C\
-    \u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\u306B\u4F5C\u308B\r\n// functional\
-    \ graph \u306E\u8FBA\u306B static \u306A\u7FA4\u306E\u8981\u7D20\u304C\u3042\u308B\
-    \u3068\u3059\u308B\r\n// \uFF08\u30E2\u30CE\u30A4\u30C9\u306B\u3082\u3067\u304D\
-    \u308B\u304C\u305D\u308C\u306F doubling \u3057\u3066\u3082\u3089\u3046\u3068\u3044\
-    \u3046\u3053\u3068\u3067\u3055\u307C\u308A. \uFF09\r\ntemplate <typename Monoid>\r\
-    \nstruct FunctionalGraph {\r\n  using MX = Monoid;\r\n  using X = typename MX::value_type;\r\
-    \n  int N, M;\r\n  vc<int> TO;\r\n  vc<X> wt, dp;\r\n  vc<int> root;\r\n  Graph<int,\
-    \ 1> G;\r\n\r\n  FunctionalGraph() {}\r\n  FunctionalGraph(int N) : N(N), M(0),\
-    \ TO(N, -1), wt(N, MX::unit()), root(N, -1) {}\r\n\r\n  void add(int a, int b,\
-    \ X c = MX::unit()) {\r\n    assert(0 <= a && a < N);\r\n    assert(TO[a] == -1);\r\
-    \n    ++M;\r\n    TO[a] = b;\r\n    wt[a] = c;\r\n  }\r\n\r\n  pair<Graph<int,\
-    \ 1>, Tree<Graph<int, 1>>> build() {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\
-    \n    FOR(v, N) if (!uf.merge(v, TO[v])) { root[v] = v; }\r\n    FOR(v, N) if\
-    \ (root[v] == v) root[uf[v]] = v;\r\n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\
-    \n    G.build(N + 1);\r\n    FOR(v, N) {\r\n      if (root[v] == v)\r\n      \
-    \  G.add(N, v);\r\n      else\r\n        G.add(TO[v], v);\r\n    }\r\n    G.build();\r\
-    \n    Tree<Graph<int, 1>> tree(G, N);\r\n    dp.assign(N, MX::unit());\r\n   \
-    \ FOR(i, 1, N + 1) {\r\n      int v = tree.V[i];\r\n      int p = tree.parent[v];\r\
-    \n      if (p == N) { continue; }\r\n      dp[v] = MX::op(wt[v], dp[p]);\r\n \
-    \   }\r\n    return {G, tree};\r\n  }\r\n\r\n  // a -> b \u306B\u304B\u304B\u308B\
-    \u56DE\u6570. \u4E0D\u53EF\u80FD\u306A\u3089 infty<int>. O(1).\r\n  template <typename\
-    \ TREE>\r\n  int dist(TREE& tree, int a, int b) {\r\n    if (tree.in_subtree(a,\
-    \ b)) return tree.depth[a] - tree.depth[b];\r\n    int r = root[a];\r\n    int\
-    \ btm = TO[r];\r\n    // a -> r -> btm -> b\r\n    if (tree.in_subtree(btm, b))\
-    \ {\r\n      int x = tree.depth[a] - tree.depth[r];\r\n      x += 1;\r\n     \
-    \ x += tree.depth[btm] - tree.depth[b];\r\n      return x;\r\n    }\r\n    return\
-    \ infty<int>;\r\n  }\r\n\r\n  // functional graph \u306B\u5411\u304B\u3063\u3066\
-    \u9032\u3080\r\n  // return: \u7D42\u70B9, \u7FA4\u306E\u7A4D\r\n  template <typename\
-    \ TREE>\r\n  pair<int, X> jump(TREE& tree, int v, ll step) {\r\n    int d = tree.depth[v];\r\
+  code: "#include \"alg/monoid/add.hpp\"\r\n#include \"alg/monoid_pow.hpp\"\r\n#include\
+    \ \"graph/tree.hpp\"\r\n#include \"ds/unionfind/unionfind.hpp\"\r\n\r\n// \u5185\
+    \u90E8\u5B9F\u88C5\u306F N \u304C\u6839\u3068\u306A\u308B\u6728\u3092\u65B0\u305F\
+    \u306B\u4F5C\u308B\r\n// functional graph \u306E\u8FBA\u306B static \u306A\u7FA4\
+    \u306E\u8981\u7D20\u304C\u3042\u308B\u3068\u3059\u308B\r\n// \uFF08\u30E2\u30CE\
+    \u30A4\u30C9\u306B\u3082\u3067\u304D\u308B\u304C\u305D\u308C\u306F doubling \u3057\
+    \u3066\u3082\u3089\u3046\u3068\u3044\u3046\u3053\u3068\u3067\u3055\u307C\u308A\
+    . \uFF09\r\ntemplate <typename Monoid>\r\nstruct FunctionalGraph {\r\n  using\
+    \ MX = Monoid;\r\n  using X = typename MX::value_type;\r\n  int N, M;\r\n  vc<int>\
+    \ TO;\r\n  vc<X> wt, dp;\r\n  vc<int> root;\r\n  Graph<int, 1> G;\r\n\r\n  FunctionalGraph()\
+    \ {}\r\n  FunctionalGraph(int N) : N(N), M(0), TO(N, -1), wt(N, MX::unit()), root(N,\
+    \ -1) {}\r\n\r\n  void add(int a, int b, X c = MX::unit()) {\r\n    assert(0 <=\
+    \ a && a < N);\r\n    assert(TO[a] == -1);\r\n    ++M;\r\n    TO[a] = b;\r\n \
+    \   wt[a] = c;\r\n  }\r\n\r\n  pair<Graph<int, 1>, Tree<Graph<int, 1>>> build()\
+    \ {\r\n    assert(N == M);\r\n    UnionFind uf(N);\r\n    FOR(v, N) if (!uf.merge(v,\
+    \ TO[v])) { root[v] = v; }\r\n    FOR(v, N) if (root[v] == v) root[uf[v]] = v;\r\
+    \n    FOR(v, N) root[v] = root[uf[v]];\r\n\r\n    G.build(N + 1);\r\n    FOR(v,\
+    \ N) {\r\n      if (root[v] == v)\r\n        G.add(N, v);\r\n      else\r\n  \
+    \      G.add(TO[v], v);\r\n    }\r\n    G.build();\r\n    Tree<Graph<int, 1>>\
+    \ tree(G, N);\r\n    dp.assign(N, MX::unit());\r\n    FOR(i, 1, N + 1) {\r\n \
+    \     int v = tree.V[i];\r\n      int p = tree.parent[v];\r\n      if (p == N)\
+    \ { continue; }\r\n      dp[v] = MX::op(wt[v], dp[p]);\r\n    }\r\n    return\
+    \ {G, tree};\r\n  }\r\n\r\n  // a -> b \u306B\u304B\u304B\u308B\u56DE\u6570. \u4E0D\
+    \u53EF\u80FD\u306A\u3089 infty<int>. O(1).\r\n  template <typename TREE>\r\n \
+    \ int dist(TREE& tree, int a, int b) {\r\n    if (tree.in_subtree(a, b)) return\
+    \ tree.depth[a] - tree.depth[b];\r\n    int r = root[a];\r\n    int btm = TO[r];\r\
+    \n    // a -> r -> btm -> b\r\n    if (tree.in_subtree(btm, b)) {\r\n      int\
+    \ x = tree.depth[a] - tree.depth[r];\r\n      x += 1;\r\n      x += tree.depth[btm]\
+    \ - tree.depth[b];\r\n      return x;\r\n    }\r\n    return infty<int>;\r\n \
+    \ }\r\n\r\n  // functional graph \u306B\u5411\u304B\u3063\u3066\u9032\u3080\r\n\
+    \  // return: \u7D42\u70B9, \u7FA4\u306E\u7A4D\r\n  template <typename TREE>\r\
+    \n  pair<int, X> jump(TREE& tree, int v, ll step) {\r\n    int d = tree.depth[v];\r\
     \n    if (step <= d - 1) {\r\n      int w = tree.jump(v, N, step);\r\n      return\
     \ {w, MX::op(dp[v], MX::inverse(dp[w]))};\r\n    }\r\n    X x = dp[v];\r\n   \
     \ v = root[v];\r\n    step -= d - 1;\r\n    int bottom = TO[v];\r\n    int c =\
@@ -396,6 +406,7 @@ data:
     \ i)];\r\n    int tj = tree.depth[j] - tree.depth[tree.lca(b, j)];\r\n    return\
     \ max(ti, tj);\r\n  }\r\n};\r\n"
   dependsOn:
+  - alg/monoid/add.hpp
   - alg/monoid_pow.hpp
   - graph/tree.hpp
   - graph/base.hpp
@@ -404,8 +415,8 @@ data:
   isVerificationFile: false
   path: graph/functional.hpp
   requiredBy: []
-  timestamp: '2025-03-31 01:16:57+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  timestamp: '2025-03-31 22:40:50+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/590.test.cpp
   - test/3_yukicoder/1242.test.cpp
