@@ -1,3 +1,4 @@
+#include "alg/monoid/add.hpp"
 #include "alg/monoid_pow.hpp"
 #include "graph/tree.hpp"
 #include "ds/unionfind/unionfind.hpp"

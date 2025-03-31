@@ -45,7 +45,7 @@ void solve() {
   };
 
   ll N = 10000;
-  FunctionalGraph<bool> X(N);
+  FunctionalGraph<Monoid_Add<int>> X(N);
   FOR(n, N) {
     ll m = to(n, M);
     X.add(n, m);
@@ -54,16 +54,11 @@ void solve() {
   ll a = stoi(S);
 
   auto [G, tree] = X.build();
-  ll ANS = X.jump(tree, a, L);
+  ll ANS = X.jump(tree, a, L).fi;
   out(ANS);
 }
 
 signed main() {
-  cout << fixed << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
