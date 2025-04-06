@@ -1,6 +1,7 @@
 #include "poly/fps_inv.hpp"
 
 // r != 1 とする. sum_{i=0}^{n-1}i^kr^i = c + r^n f(n) と書ける. return : c, f
+// https://codeforces.com/contest/1677/problem/F
 template <typename mint>
 pair<mint, vc<mint>> geometric_sequence_sum_formula(mint r, int K) {
   assert(r != 1);

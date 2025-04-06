@@ -93,6 +93,54 @@ struct FunctionalGraph {
     return {w, x};
   }
 
+  // check(to, prod). infty<ll> 以下.
+  template <typename TREE, typename F>
+  ll max_jump(TREE& tree, F check, int v) {
+    X prod = MX::unit();
+    assert(check(v, prod));
+    ll ans = 0;
+    if (check(root[v], dp[v])) {
+      ans += tree.depth[v] - 1, prod = dp[v], v = root[v];
+      int bottom = TO[v];
+      ll c = tree.depth[bottom];
+      vc<X> pw;
+      pw.eb(MX::op(wt[v], dp[bottom]));
+      FOR(k, 63) {
+        if (!check(root[v], MX::op(prod, pw[k]))) { break; }
+        if (ans + (c << k) >= infty<ll>) return infty<ll>;
+        pw.eb(MX::op(pw.back(), pw.back()));
+      }
+      FOR_R(k, len(pw)) {
+        if (check(root[v], MX::op(prod, pw[k]))) {
+          ans = min(ans + (c << k), infty<ll>);
+          prod = MX::op(prod, pw[k]);
+        }
+      }
+      if (!check(bottom, MX::op(prod, wt[v]))) return ans;
+      v = bottom, prod = MX::op(prod, wt[v]);
+    }
+    auto pd = tree.get_path_decomposition(v, root[v], false);
+    auto mycheck = [&](int w) -> bool {
+      X x = MX::op(prod, MX::op(dp[v], MX::inverse(dp[w])));
+      return check(w, x);
+    };
+    int last = v;
+    for (auto [a, b]: pd) {
+      swap(a, b);
+      assert(a <= b);
+      if (mycheck(tree.V[a])) {
+        last = tree.V[a];
+        continue;
+      }
+      if (!mycheck(tree.V[b])) { break; }
+      int k = binary_search([&](int i) -> bool { return mycheck(tree.V[i]); }, b, a, 0);
+      last = tree.V[k];
+      break;
+    }
+    ans += tree.depth[v] - tree.depth[last];
+    return min(ans, infty<ll>);
+  }
+
   // functional graph に step 回進む
   template <typename TREE>
   vc<int> jump_all(TREE& tree, ll step) {
