@@ -1,40 +1,40 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   - icon: ':heavy_check_mark:'
@@ -423,11 +423,12 @@ data:
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
     \n}\r\n#line 2 \"seq/geometric_sequence_sum_formula.hpp\"\n\n// r != 1 \u3068\u3059\
     \u308B. sum_{i=0}^{n-1}i^kr^i = c + r^n f(n) \u3068\u66F8\u3051\u308B. return\
-    \ : c, f\ntemplate <typename mint>\npair<mint, vc<mint>> geometric_sequence_sum_formula(mint\
-    \ r, int K) {\n  assert(r != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i,\
-    \ K + 1) F[i] -= r * fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  mint c = F[K]\
-    \ * fact<mint>(K);\n  reverse(all(F));\n  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k)\
-    \ * fact<mint>(K);\n  return {c, F};\n}\n#line 8 \"test/1_mytest/geometric_sequence_sum_formula.test.cpp\"\
+    \ : c, f\n// https://codeforces.com/contest/1677/problem/F\ntemplate <typename\
+    \ mint>\npair<mint, vc<mint>> geometric_sequence_sum_formula(mint r, int K) {\n\
+    \  assert(r != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i, K + 1) F[i] -=\
+    \ r * fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  mint c = F[K] * fact<mint>(K);\n\
+    \  reverse(all(F));\n  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k) * fact<mint>(K);\n\
+    \  return {c, F};\n}\n#line 8 \"test/1_mytest/geometric_sequence_sum_formula.test.cpp\"\
     \n\nusing mint = modint998;\n\nvoid test(int K) {\n  FOR(r, 1000) {\n    if (r\
     \ == 1) continue;\n    auto [c, f] = geometric_sequence_sum_formula<mint>(r, K);\n\
     \    mint god = 0;\n    FOR(N, 1000) {\n      mint ans = 0;\n      FOR(i, len(f))\
@@ -462,7 +463,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/geometric_sequence_sum_formula.test.cpp
   requiredBy: []
-  timestamp: '2025-02-13 02:13:43+09:00'
+  timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/geometric_sequence_sum_formula.test.cpp

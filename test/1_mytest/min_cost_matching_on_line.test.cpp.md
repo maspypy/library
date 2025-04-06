@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: convex/slope_trick/slope_trick_0.hpp
     title: convex/slope_trick/slope_trick_0.hpp
   - icon: ':heavy_check_mark:'
     path: flow/min_cost_matching_on_line.hpp
     title: flow/min_cost_matching_on_line.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
   _extendedRequiredBy: []
@@ -141,29 +141,30 @@ data:
     \u5074\u3092\u6D88\u3057\u3066\u3001\u5897\u52A0\u5074\u306E\u307F\u306B\u3059\
     \u308B\r\n  void clear_left() { que_l = pq<ll>(); }\r\n  void shift(const ll &a)\
     \ { add_l += a, add_r += a; }\r\n\r\n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n\
-    \  void sliding_window_minimum(const ll &a, const ll &b) { add_l += a, add_r +=\
-    \ b; }\r\n\r\n  // O(size log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\
-    \n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n  \
-    \  while (len(que_r_copy)) { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\
-    \n    return y;\r\n  }\r\n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r);\
-    \ }\r\n  void push_L(const ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R()\
-    \ {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\n    return que_r.top() +\
-    \ add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\
-    \n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\
-    \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
-    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\
-    \n  void debug() {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n\
-    \    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy)\
-    \ + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r);\
-    \ }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
-    \ \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};\n#line 2 \"flow/min_cost_matching_on_line.hpp\"\
-    \n\n// \u5EA7\u6A19 0, ..., N-1 \u306B A_i \u500B\u3042\u308B\n// \u5EA7\u6A19\
-    \ 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\u53D7\u3051\u5165\u308C\u3089\u308C\
-    \u308B\nll min_cost_matching_on_line_1(vi A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n\
-    \  const int N = len(A);\n  Slope_Trick_0 f;\n  FOR(N + 1) f.add_a_minus_x(0);\n\
-    \  FOR(i, N) {\n    ll c = A[i] - B[i];\n    f.shift(c);\n    f.clear_right();\n\
-    \    f.add_abs(0);\n  }\n  return f.eval(0);\n}\n#line 4 \"test/1_mytest/min_cost_matching_on_line.test.cpp\"\
+    \  void sliding_window_minimum(const ll &a, const ll &b) {\r\n    assert(a <=\
+    \ b);\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size log(size))\r\n\
+    \  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy = que_l;\r\
+    \n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<ll>(0,\
+    \ (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<ll>(0,\
+    \ x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const\
+    \ ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const ll &x) { que_l.emplace(x\
+    \ - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\
+    \n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty())\
+    \ que_l.emplace(LMIN);\r\n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R()\
+    \ {\r\n    ll res = top_R();\r\n    que_r.pop();\r\n    return res;\r\n  }\r\n\
+    \  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\n    return res;\r\
+    \n  }\r\n\r\n#ifdef FASTIO\r\n  void debug() {\r\n    vi left, right;\r\n    pq<ll>\
+    \ que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy))\
+    \ { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy)\
+    \ + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"\
+    min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};\n#line\
+    \ 2 \"flow/min_cost_matching_on_line.hpp\"\n\n// \u5EA7\u6A19 0, ..., N-1 \u306B\
+    \ A_i \u500B\u3042\u308B\n// \u5EA7\u6A19 0, ..., N-1 \u3067 B_i \u500B\u307E\u3067\
+    \u53D7\u3051\u5165\u308C\u3089\u308C\u308B\nll min_cost_matching_on_line_1(vi\
+    \ A, vi B) {\n  assert(SUM<ll>(A) <= SUM<ll>(B));\n  const int N = len(A);\n \
+    \ Slope_Trick_0 f;\n  FOR(N + 1) f.add_a_minus_x(0);\n  FOR(i, N) {\n    ll c\
+    \ = A[i] - B[i];\n    f.shift(c);\n    f.clear_right();\n    f.add_abs(0);\n \
+    \ }\n  return f.eval(0);\n}\n#line 4 \"test/1_mytest/min_cost_matching_on_line.test.cpp\"\
     \n\nvoid test() {\n  // https://atcoder.jp/contests/kupc2016/tasks/kupc2016_h\n\
     \  vi A = {3, 1}, B = {1, 5};\n  assert(min_cost_matching_on_line_1(A, B) == 2);\n\
     \  A = {3, 3, 1, 1, 1}, B = {1, 2, 3, 4, 5};\n  assert(min_cost_matching_on_line_1(A,\
@@ -202,7 +203,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/min_cost_matching_on_line.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/min_cost_matching_on_line.test.cpp

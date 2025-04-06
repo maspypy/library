@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/min_cost_matching_on_line.test.cpp
     title: test/1_mytest/min_cost_matching_on_line.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1077.test.cpp
     title: test/3_yukicoder/1077.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/slope_trick/slope_trick_0.hpp\"\n// \u6700\u521D\u306B\
@@ -40,23 +40,23 @@ data:
     \u5074\u3092\u6D88\u3057\u3066\u3001\u5897\u52A0\u5074\u306E\u307F\u306B\u3059\
     \u308B\r\n  void clear_left() { que_l = pq<ll>(); }\r\n  void shift(const ll &a)\
     \ { add_l += a, add_r += a; }\r\n\r\n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n\
-    \  void sliding_window_minimum(const ll &a, const ll &b) { add_l += a, add_r +=\
-    \ b; }\r\n\r\n  // O(size log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\
-    \n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n  \
-    \  while (len(que_r_copy)) { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\
-    \n    return y;\r\n  }\r\n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r);\
-    \ }\r\n  void push_L(const ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R()\
-    \ {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\n    return que_r.top() +\
-    \ add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\
-    \n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\
-    \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
-    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\
-    \n  void debug() {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n\
-    \    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy)\
-    \ + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r);\
-    \ }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
-    \ \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};\n"
+    \  void sliding_window_minimum(const ll &a, const ll &b) {\r\n    assert(a <=\
+    \ b);\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size log(size))\r\n\
+    \  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy = que_l;\r\
+    \n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<ll>(0,\
+    \ (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<ll>(0,\
+    \ x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const\
+    \ ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const ll &x) { que_l.emplace(x\
+    \ - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\
+    \n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty())\
+    \ que_l.emplace(LMIN);\r\n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R()\
+    \ {\r\n    ll res = top_R();\r\n    que_r.pop();\r\n    return res;\r\n  }\r\n\
+    \  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\n    return res;\r\
+    \n  }\r\n\r\n#ifdef FASTIO\r\n  void debug() {\r\n    vi left, right;\r\n    pq<ll>\
+    \ que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy))\
+    \ { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy)\
+    \ + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"\
+    min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};\n"
   code: "// \u6700\u521D\u306B\u4F5C\u3063\u305F\u6700\u3082\u30B7\u30F3\u30D7\u30EB\
     \u306A\u3084\u3064\u3092\u4E00\u5FDC\u6B8B\u3057\u3066\u304A\u304F\r\nstruct Slope_Trick_0\
     \ {\r\n  static constexpr ll LMIN = -infty<ll>;\r\n  static constexpr ll RMAX\
@@ -79,30 +79,30 @@ data:
     \u5074\u3092\u6D88\u3057\u3066\u3001\u5897\u52A0\u5074\u306E\u307F\u306B\u3059\
     \u308B\r\n  void clear_left() { que_l = pq<ll>(); }\r\n  void shift(const ll &a)\
     \ { add_l += a, add_r += a; }\r\n\r\n  // g(x) = min_{x-b <= y <= x-a} f(y)\r\n\
-    \  void sliding_window_minimum(const ll &a, const ll &b) { add_l += a, add_r +=\
-    \ b; }\r\n\r\n  // O(size log(size))\r\n  i128 eval(ll x) {\r\n    i128 y = min_f;\r\
-    \n    pq<ll> que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while\
-    \ (len(que_l_copy)) { y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }\r\n  \
-    \  while (len(que_r_copy)) { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }\r\
-    \n    return y;\r\n  }\r\n\r\n  void push_R(const ll &x) { que_r.emplace(x - add_r);\
-    \ }\r\n  void push_L(const ll &x) { que_l.emplace(x - add_l); }\r\n  ll top_R()\
-    \ {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\n    return que_r.top() +\
-    \ add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty()) que_l.emplace(LMIN);\r\
-    \n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R() {\r\n    ll res = top_R();\r\
-    \n    que_r.pop();\r\n    return res;\r\n  }\r\n  ll pop_L() {\r\n    ll res =\
-    \ top_L();\r\n    que_l.pop();\r\n    return res;\r\n  }\r\n\r\n#ifdef FASTIO\r\
-    \n  void debug() {\r\n    vi left, right;\r\n    pq<ll> que_l_copy = que_l;\r\n\
-    \    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { left.eb(POP(que_l_copy)\
-    \ + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r);\
-    \ }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"min_f\", min_f,\
-    \ \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};"
+    \  void sliding_window_minimum(const ll &a, const ll &b) {\r\n    assert(a <=\
+    \ b);\r\n    add_l += a, add_r += b;\r\n  }\r\n\r\n  // O(size log(size))\r\n\
+    \  i128 eval(ll x) {\r\n    i128 y = min_f;\r\n    pq<ll> que_l_copy = que_l;\r\
+    \n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy)) { y += max<ll>(0,\
+    \ (POP(que_l_copy) + add_l) - x); }\r\n    while (len(que_r_copy)) { y += max<ll>(0,\
+    \ x - (POP(que_r_copy) + add_r)); }\r\n    return y;\r\n  }\r\n\r\n  void push_R(const\
+    \ ll &x) { que_r.emplace(x - add_r); }\r\n  void push_L(const ll &x) { que_l.emplace(x\
+    \ - add_l); }\r\n  ll top_R() {\r\n    if (que_r.empty()) que_r.emplace(RMAX);\r\
+    \n    return que_r.top() + add_r;\r\n  }\r\n  ll top_L() {\r\n    if (que_l.empty())\
+    \ que_l.emplace(LMIN);\r\n    return que_l.top() + add_l;\r\n  }\r\n  ll pop_R()\
+    \ {\r\n    ll res = top_R();\r\n    que_r.pop();\r\n    return res;\r\n  }\r\n\
+    \  ll pop_L() {\r\n    ll res = top_L();\r\n    que_l.pop();\r\n    return res;\r\
+    \n  }\r\n\r\n#ifdef FASTIO\r\n  void debug() {\r\n    vi left, right;\r\n    pq<ll>\
+    \ que_l_copy = que_l;\r\n    pqg<ll> que_r_copy = que_r;\r\n    while (len(que_l_copy))\
+    \ { left.eb(POP(que_l_copy) + add_l); }\r\n    while (len(que_r_copy)) { right.eb(POP(que_r_copy)\
+    \ + add_r); }\r\n    sort(all(left));\r\n    sort(all(right));\r\n    print(\"\
+    min_f\", min_f, \"left\", left, \"right\", right);\r\n  }\r\n#endif\r\n};"
   dependsOn: []
   isVerificationFile: false
   path: convex/slope_trick/slope_trick_0.hpp
   requiredBy:
   - flow/min_cost_matching_on_line.hpp
-  timestamp: '2024-10-23 21:57:13+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-04-06 22:14:02+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/min_cost_matching_on_line.test.cpp
   - test/3_yukicoder/1077.test.cpp

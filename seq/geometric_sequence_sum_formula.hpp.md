@@ -1,34 +1,34 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -46,7 +46,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/contest/1677/problem/F
   bundledCode: "#line 2 \"poly/count_terms.hpp\"\ntemplate<typename mint>\r\nint count_terms(const\
     \ vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\
     \n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n\
@@ -319,18 +320,19 @@ data:
     \ : 820);\r\n  return (n <= t ? fps_inv_sparse<mint>(f) : fps_inv_dense<mint>(f));\r\
     \n}\r\n#line 2 \"seq/geometric_sequence_sum_formula.hpp\"\n\n// r != 1 \u3068\u3059\
     \u308B. sum_{i=0}^{n-1}i^kr^i = c + r^n f(n) \u3068\u66F8\u3051\u308B. return\
-    \ : c, f\ntemplate <typename mint>\npair<mint, vc<mint>> geometric_sequence_sum_formula(mint\
+    \ : c, f\n// https://codeforces.com/contest/1677/problem/F\ntemplate <typename\
+    \ mint>\npair<mint, vc<mint>> geometric_sequence_sum_formula(mint r, int K) {\n\
+    \  assert(r != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i, K + 1) F[i] -=\
+    \ r * fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  mint c = F[K] * fact<mint>(K);\n\
+    \  reverse(all(F));\n  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k) * fact<mint>(K);\n\
+    \  return {c, F};\n}\n"
+  code: "#include \"poly/fps_inv.hpp\"\n\n// r != 1 \u3068\u3059\u308B. sum_{i=0}^{n-1}i^kr^i\
+    \ = c + r^n f(n) \u3068\u66F8\u3051\u308B. return : c, f\n// https://codeforces.com/contest/1677/problem/F\n\
+    template <typename mint>\npair<mint, vc<mint>> geometric_sequence_sum_formula(mint\
     \ r, int K) {\n  assert(r != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i,\
     \ K + 1) F[i] -= r * fact_inv<mint>(i);\n  F = fps_inv<mint>(F);\n  mint c = F[K]\
     \ * fact<mint>(K);\n  reverse(all(F));\n  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k)\
     \ * fact<mint>(K);\n  return {c, F};\n}\n"
-  code: "#include \"poly/fps_inv.hpp\"\n\n// r != 1 \u3068\u3059\u308B. sum_{i=0}^{n-1}i^kr^i\
-    \ = c + r^n f(n) \u3068\u66F8\u3051\u308B. return : c, f\ntemplate <typename mint>\n\
-    pair<mint, vc<mint>> geometric_sequence_sum_formula(mint r, int K) {\n  assert(r\
-    \ != 1);\n  vc<mint> F(K + 1);\n  F[0] = 1;\n  FOR(i, K + 1) F[i] -= r * fact_inv<mint>(i);\n\
-    \  F = fps_inv<mint>(F);\n  mint c = F[K] * fact<mint>(K);\n  reverse(all(F));\n\
-    \  FOR(k, K + 1) F[k] *= -fact_inv<mint>(k) * fact<mint>(K);\n  return {c, F};\n\
-    }\n"
   dependsOn:
   - poly/fps_inv.hpp
   - poly/count_terms.hpp
@@ -346,7 +348,7 @@ data:
   path: seq/geometric_sequence_sum_formula.hpp
   requiredBy:
   - convex/lattice_point_sum_polynomial_pq.hpp
-  timestamp: '2025-02-12 14:27:42+09:00'
+  timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/geometric_sequence_sum_formula.test.cpp
