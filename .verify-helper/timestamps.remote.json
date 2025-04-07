@@ -468,6 +468,7 @@
 "test/2_library_checker/tree/lca_directed.test.cpp": "2025-04-06 22:14:02 +0900",
 "test/2_library_checker/tree/lca_fast.test.cpp": "2025-04-06 22:14:02 +0900",
 "test/2_library_checker/tree/mst.test.cpp": "2025-04-06 22:14:02 +0900",
+"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp": "2025-04-07 22:46:12 +0900",
 "test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp": "2025-04-06 22:14:02 +0900",
 "test/2_library_checker/tree/rerooting_dp.test.cpp": "2025-04-06 22:14:02 +0900",
 "test/2_library_checker/tree/rooted_tree_topological_order_with_minimum_inversions.test.cpp": "2025-04-06 22:14:02 +0900",
