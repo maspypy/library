@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dynamic_rerooting_tree_dp.hpp
     title: graph/ds/dynamic_rerooting_tree_dp.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/static_toptree.hpp
     title: graph/ds/static_toptree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum
@@ -231,47 +231,122 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
     \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 4 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
-    \n\n#line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 ->\
-    \ Val\r\ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\
-    \u305F\u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) {\
-    \ build(n); }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n *\
-    \ 2) k *= 2;\r\n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k),\
-    \ used.assign(k, 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E\
-    . size=0 \u306B\u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\
-    \n  void clear() {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) /\
-    \ 2;\r\n  }\r\n  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const\
-    \ u64& k) {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k;\
-    \ i = (i + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const\
-    \ u64& k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if\
-    \ (!used[i]) { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return\
-    \ val[i];\r\n  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int\
-    \ i = index(k);\r\n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\
-    \n  bool count(const u64& k) {\r\n    int i = index(k);\r\n    return used[i]\
-    \ && key[i] == k;\r\n  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n\
-    \  void enumerate_all(F f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\
-    \n  }\r\n\r\nprivate:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\
-    \n  vc<bool> used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM\
-    \ = std::chrono::steady_clock::now().time_since_epoch().count();\r\n    x += FIXED_RANDOM;\r\
-    \n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\
-    \n    return (x ^ (x >> 31)) & mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64,\
-    \ Val>> dat;\r\n    dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used))\
-    \ {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\
-    \n    for (auto& [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\
-    \n\ntemplate <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n\
-    };\n\ntemplate <typename T = int, bool directed = false>\nstruct Graph {\n  static\
-    \ constexpr bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n\
-    \  using edge_type = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n\
-    \  vector<edge_type> csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool\
-    \ prepared;\n\n  class OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph*\
-    \ G, int l, int r) : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const\
-    \ {\n      if (l == r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n\
-    \    const edge_type* end() const {\n      if (l == r) { return 0; }\n      return\
-    \ &G->csr_edges[r];\n    }\n\n  private:\n    const Graph* G;\n    int l, r;\n\
-    \  };\n\n  bool is_prepared() { return prepared; }\n\n  Graph() : N(0), M(0),\
-    \ prepared(0) {}\n  Graph(int N) : N(N), M(0), prepared(0) {}\n\n  void build(int\
-    \ n) {\n    N = n, M = 0;\n    prepared = 0;\n    edges.clear();\n    indptr.clear();\n\
-    \    csr_edges.clear();\n    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n\
-    \  }\n\n  void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
+    \n\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class\
+    \ T>\n  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n\
+    \  template <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate\
+    \ <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
+    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
+    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
+    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
+    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
+    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
+    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
+    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
+    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
+    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
+    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
+    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
+    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
+    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
+    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
+    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
+    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
+    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
+    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
+    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
+    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
+    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
+    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
+    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
+    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
+    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
+    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
+    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
+    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
+    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
+    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
+    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
+    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
+    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
+    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
+    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
+    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
+    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
+    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
+    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
+    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
+    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
+    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
+    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    return\
+    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
+    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
+    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
+    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
+    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 2 \"graph/tree.hpp\"\n\r\n#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\
+    \ntemplate <typename Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\
+    \u3044\u3082\u306E\u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n);\
+    \ }\r\n  void build(u32 n) {\r\n    u32 k = 8;\r\n    while (k < n * 2) k *= 2;\r\
+    \n    cap = k / 2, mask = k - 1;\r\n    key.resize(k), val.resize(k), used.assign(k,\
+    \ 0);\r\n  }\r\n\r\n  // size \u3092\u4FDD\u3063\u305F\u307E\u307E. size=0 \u306B\
+    \u3059\u308B\u3068\u304D\u306F build \u3059\u308B\u3053\u3068.\r\n  void clear()\
+    \ {\r\n    used.assign(len(used), 0);\r\n    cap = (mask + 1) / 2;\r\n  }\r\n\
+    \  int size() { return len(used) / 2 - cap; }\r\n\r\n  int index(const u64& k)\
+    \ {\r\n    int i = 0;\r\n    for (i = hash(k); used[i] && key[i] != k; i = (i\
+    \ + 1) & mask) {}\r\n    return i;\r\n  }\r\n\r\n  Val& operator[](const u64&\
+    \ k) {\r\n    if (cap == 0) extend();\r\n    int i = index(k);\r\n    if (!used[i])\
+    \ { used[i] = 1, key[i] = k, val[i] = Val{}, --cap; }\r\n    return val[i];\r\n\
+    \  }\r\n\r\n  Val get(const u64& k, Val default_value) {\r\n    int i = index(k);\r\
+    \n    return (used[i] ? val[i] : default_value);\r\n  }\r\n\r\n  bool count(const\
+    \ u64& k) {\r\n    int i = index(k);\r\n    return used[i] && key[i] == k;\r\n\
+    \  }\r\n\r\n  // f(key, val)\r\n  template <typename F>\r\n  void enumerate_all(F\
+    \ f) {\r\n    FOR(i, len(used)) if (used[i]) f(key[i], val[i]);\r\n  }\r\n\r\n\
+    private:\r\n  u32 cap, mask;\r\n  vc<u64> key;\r\n  vc<Val> val;\r\n  vc<bool>\
+    \ used;\r\n\r\n  u64 hash(u64 x) {\r\n    static const u64 FIXED_RANDOM = std::chrono::steady_clock::now().time_since_epoch().count();\r\
+    \n    x += FIXED_RANDOM;\r\n    x = (x ^ (x >> 30)) * 0xbf58476d1ce4e5b9;\r\n\
+    \    x = (x ^ (x >> 27)) * 0x94d049bb133111eb;\r\n    return (x ^ (x >> 31)) &\
+    \ mask;\r\n  }\r\n\r\n  void extend() {\r\n    vc<pair<u64, Val>> dat;\r\n   \
+    \ dat.reserve(len(used) / 2 - cap);\r\n    FOR(i, len(used)) {\r\n      if (used[i])\
+    \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
+    \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 3 \"graph/base.hpp\"\n\ntemplate\
+    \ <typename T>\nstruct Edge {\n  int frm, to;\n  T cost;\n  int id;\n};\n\ntemplate\
+    \ <typename T = int, bool directed = false>\nstruct Graph {\n  static constexpr\
+    \ bool is_directed = directed;\n  int N, M;\n  using cost_type = T;\n  using edge_type\
+    \ = Edge<T>;\n  vector<edge_type> edges;\n  vector<int> indptr;\n  vector<edge_type>\
+    \ csr_edges;\n  vc<int> vc_deg, vc_indeg, vc_outdeg;\n  bool prepared;\n\n  class\
+    \ OutgoingEdges {\n  public:\n    OutgoingEdges(const Graph* G, int l, int r)\
+    \ : G(G), l(l), r(r) {}\n\n    const edge_type* begin() const {\n      if (l ==\
+    \ r) { return 0; }\n      return &G->csr_edges[l];\n    }\n\n    const edge_type*\
+    \ end() const {\n      if (l == r) { return 0; }\n      return &G->csr_edges[r];\n\
+    \    }\n\n  private:\n    const Graph* G;\n    int l, r;\n  };\n\n  bool is_prepared()\
+    \ { return prepared; }\n\n  Graph() : N(0), M(0), prepared(0) {}\n  Graph(int\
+    \ N) : N(N), M(0), prepared(0) {}\n\n  void build(int n) {\n    N = n, M = 0;\n\
+    \    prepared = 0;\n    edges.clear();\n    indptr.clear();\n    csr_edges.clear();\n\
+    \    vc_deg.clear();\n    vc_indeg.clear();\n    vc_outdeg.clear();\n  }\n\n \
+    \ void add(int frm, int to, T cost = 1, int i = -1) {\n    assert(!prepared);\n\
     \    assert(0 <= frm && 0 <= to && to < N);\n    if (i == -1) i = M;\n    auto\
     \ e = edge_type({frm, to, cost, i});\n    edges.eb(e);\n    ++M;\n  }\n\n#ifdef\
     \ FASTIO\n  // wt, off\n  void read_tree(bool wt = false, int off = 1) { read_graph(N\
@@ -525,147 +600,95 @@ data:
     \ i) {\n    auto& [L1, L2] = dp[STT.lch[i]];\n    auto& [R1, R2] = dp[STT.rch[i]];\n\
     \    if (STT.is_compress[i]) {\n      dp[i] = {TREE_DP::compress(L1, R1), TREE_DP::compress2(R2,\
     \ L2)};\n    } else {\n      dp[i] = {TREE_DP::rake(L1, R1), TREE_DP::compress3(L2,\
-    \ R1)};\n    }\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
-    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
-    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
-    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
-    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
-    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
-    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
-    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
-    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
-    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
-    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
-    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 7 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
-    \n\nusing mint = modint998;\n\nstruct Data {\n  mint a, b; // path composition\
-    \ = x -> ax+b\n  mint cnt;\n  mint ans;\n  void out() { SHOW(a, b, cnt, ans);\
-    \ }\n};\n\nstruct TREE_DP {\n  using value_type = Data;\n  using X = value_type;\n\
-    \n  static X unit() { return {mint(1), mint(0), mint(0), mint(0)}; }\n  static\
-    \ X rake(X& L, X& R) { return {L.a, L.b, L.cnt + R.cnt, L.ans + R.ans}; }\n  static\
-    \ X compress(X& L, X& R) {\n    mint a = L.a, b = L.b;\n    mint c = R.a, d =\
-    \ R.b;\n    // x -> (cx+d) -> a(cx+d)+b\n    mint aa = a * c, bb = a * d + b;\n\
-    \    mint cnt = L.cnt + R.cnt;\n    mint ans = L.ans + a * R.ans + b * R.cnt;\n\
-    \    return {aa, bb, cnt, ans};\n  }\n  static X rake2(X& L, X& R) { return {L.a,\
-    \ L.b, L.cnt + R.cnt, L.ans + L.a * R.ans + L.b * R.cnt}; }\n  static X rake3(X&\
-    \ L, X& R) { return rake(L, R); }\n  static X compress2(X& L, X& R) { return compress(R,\
-    \ L); }\n};\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  vc<mint> B(N\
-    \ - 1), C(N - 1);\n  Graph<int, 0> G(N);\n  FOR(i, N - 1) {\n    INT(u, v);\n\
-    \    G.add(u, v);\n    read(B[i], C[i]);\n  }\n  G.build();\n\n  Tree<decltype(G)>\
-    \ tree(G);\n\n  auto single = [&](int v) -> pair<Data, Data> {\n    assert(v >\
-    \ 0);\n    int e = tree.v_to_e(v);\n    Data up = {B[e], C[e], 1, B[e] * A[v]\
-    \ + C[e]};\n    Data down = {B[e], C[e], 1, A[v]};\n    return {up, down};\n \
-    \ };\n\n  Dynamic_Rerooting_Tree_Dp<decltype(tree), TREE_DP> DP(tree, single);\n\
-    \n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(w, x);\n      A[w] = x;\n\
-    \      if (w > 0) DP.set(w, single(w));\n    }\n    if (t == 1) {\n      INT(e,\
-    \ b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n      DP.set(v,\
-    \ single(v));\n    }\n    INT(r);\n    Data x = DP.prod_all(r);\n    // x.out();\n\
-    \    mint ans = x.ans + x.a * A[0] + x.b;\n    print(ans);\n  }\n}\n\nsigned main()\
-    \ {\n  solve();\n  return 0;\n}\n"
-  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum\"\
-    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
-    \n#include \"mod/modint.hpp\"\n\nusing mint = modint998;\n\nstruct Data {\n  mint\
-    \ a, b; // path composition = x -> ax+b\n  mint cnt;\n  mint ans;\n  void out()\
-    \ { SHOW(a, b, cnt, ans); }\n};\n\nstruct TREE_DP {\n  using value_type = Data;\n\
-    \  using X = value_type;\n\n  static X unit() { return {mint(1), mint(0), mint(0),\
-    \ mint(0)}; }\n  static X rake(X& L, X& R) { return {L.a, L.b, L.cnt + R.cnt,\
-    \ L.ans + R.ans}; }\n  static X compress(X& L, X& R) {\n    mint a = L.a, b =\
-    \ L.b;\n    mint c = R.a, d = R.b;\n    // x -> (cx+d) -> a(cx+d)+b\n    mint\
-    \ aa = a * c, bb = a * d + b;\n    mint cnt = L.cnt + R.cnt;\n    mint ans = L.ans\
-    \ + a * R.ans + b * R.cnt;\n    return {aa, bb, cnt, ans};\n  }\n  static X rake2(X&\
-    \ L, X& R) { return {L.a, L.b, L.cnt + R.cnt, L.ans + L.a * R.ans + L.b * R.cnt};\
-    \ }\n  static X rake3(X& L, X& R) { return rake(L, R); }\n  static X compress2(X&\
-    \ L, X& R) { return compress(R, L); }\n};\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint,\
-    \ A, N);\n  vc<mint> B(N - 1), C(N - 1);\n  Graph<int, 0> G(N);\n  FOR(i, N -\
-    \ 1) {\n    INT(u, v);\n    G.add(u, v);\n    read(B[i], C[i]);\n  }\n  G.build();\n\
-    \n  Tree<decltype(G)> tree(G);\n\n  auto single = [&](int v) -> pair<Data, Data>\
-    \ {\n    assert(v > 0);\n    int e = tree.v_to_e(v);\n    Data up = {B[e], C[e],\
-    \ 1, B[e] * A[v] + C[e]};\n    Data down = {B[e], C[e], 1, A[v]};\n    return\
-    \ {up, down};\n  };\n\n  Dynamic_Rerooting_Tree_Dp<decltype(tree), TREE_DP> DP(tree,\
-    \ single);\n\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(w, x);\n \
-    \     A[w] = x;\n      if (w > 0) DP.set(w, single(w));\n    }\n    if (t == 1)\
-    \ {\n      INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n\
+    \ R1)};\n    }\n  }\n};\n#line 7 \"test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp\"\
+    \n\nusing mint = modint998;\n\nstruct Data {\n  // type, s, t \u306F\u5FC5\u305A\
+    \u5B9A\u7FA9\u3059\u308B. \uFF08\u7D4C\u9A13\u4E0A\u3069\u3046\u305B\u30C7\u30D0\
+    \u30C3\u30B0\u3067\u5FC5\u8981\u306B\u306A\u308B\uFF09. s \u304C\u6839.\n  //\
+    \ type==0: s\u304C virtual. type==1: t \u304C virtual.\n  int type, s, t;\n  mint\
+    \ a, b; // path composition\n  mint cnt, ans;\n};\n\nstruct TREE_DP {\n  using\
+    \ value_type = Data;\n  using X = value_type;\n\n  static X rake(const X& L, const\
+    \ X& R) {\n    assert(L.type == 0 && R.type == 0 && L.s == R.s);\n    X ANS =\
+    \ {0, L.s, L.t};\n\n    ANS.a = L.a, ANS.b = L.b;\n    ANS.cnt = L.cnt + R.cnt,\
+    \ ANS.ans = L.ans + R.ans;\n    return ANS;\n  }\n  static X rake2(const X& L,\
+    \ const X& R) {\n    assert(L.type == 1 && R.type == 0 && L.s == R.s);\n    X\
+    \ ANS = {1, L.s, L.t};\n\n    ANS.a = L.a, ANS.b = L.b;\n    ANS.cnt = L.cnt +\
+    \ R.cnt, ANS.ans = L.ans + R.ans;\n    return ANS;\n  }\n  static X compress(const\
+    \ X& L, const X& R) {\n    assert(L.type == 0 && R.type == 0 && L.t == R.s);\n\
+    \    X ANS = {0, L.s, R.t};\n\n    ANS.a = L.a * R.a, ANS.b = L.a * R.b + L.b;\n\
+    \    ANS.cnt = L.cnt + R.cnt, ANS.ans = L.ans + (L.a * R.ans + L.b * R.cnt);\n\
+    \    return ANS;\n  }\n  static X compress2(const X& L, const X& R) {\n    assert(L.type\
+    \ == 1 && R.type == 1 && L.t == R.s);\n    X ANS = {1, L.s, R.t};\n\n    ANS.a\
+    \ = L.a * R.a, ANS.b = L.a * R.b + L.b;\n    ANS.cnt = L.cnt + R.cnt, ANS.ans\
+    \ = L.ans + (L.a * R.ans + L.b * R.cnt);\n    return ANS;\n  }\n  static X compress3(const\
+    \ X& L, const X& R) {\n    assert(L.type == 1 && R.type == 0 && L.t == R.s);\n\
+    \    X ANS = {1, L.s, L.t};\n\n    ANS.a = L.a, ANS.b = L.b;\n    ANS.cnt = L.cnt\
+    \ + R.cnt, ANS.ans = L.ans + (L.a * R.ans + L.b * R.cnt);\n    return ANS;\n \
+    \ }\n};\n\nvoid solve() {\n  LL(N, Q);\n  VEC(mint, A, N);\n  vc<mint> B(N - 1),\
+    \ C(N - 1);\n  Graph<int, 0> G(N);\n  FOR(i, N - 1) {\n    INT(u, v);\n    G.add(u,\
+    \ v);\n    read(B[i], C[i]);\n  }\n  G.build();\n\n  Tree<decltype(G)> tree(G);\n\
+    \n  auto single = [&](int v) -> pair<Data, Data> {\n    if (v == 0) {\n      Data\
+    \ up = {0, -1, 0, 1, 0, 1, A[v]};\n      Data down = {1, 0, -1, 1, 0, 1, A[v]};\n\
+    \      return {up, down};\n    }\n    int e = tree.v_to_e(v);\n    int p = tree.parent[v];\n\
+    \    Data up = {0, p, v, B[e], C[e], 1, B[e] * A[v] + C[e]};\n    Data down =\
+    \ {1, v, p, B[e], C[e], 1, A[v]};\n    return {up, down};\n  };\n\n  Dynamic_Rerooting_Tree_Dp<decltype(tree),\
+    \ TREE_DP> DP(tree, single);\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n   \
+    \   INT(w, x);\n      A[w] = x;\n      DP.set(w, single(w));\n    }\n    if (t\
+    \ == 1) {\n      INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n\
     \      DP.set(v, single(v));\n    }\n    INT(r);\n    Data x = DP.prod_all(r);\n\
-    \    // x.out();\n    mint ans = x.ans + x.a * A[0] + x.b;\n    print(ans);\n\
-    \  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+    \    print(x.ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
+  code: "#define PROBLEM \"https://judge.yosupo.jp/problem/point_set_tree_path_composite_sum\"\
+    \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n\n#include \"mod/modint.hpp\"\
+    \n#include \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\n\nusing mint = modint998;\n\
+    \nstruct Data {\n  // type, s, t \u306F\u5FC5\u305A\u5B9A\u7FA9\u3059\u308B. \uFF08\
+    \u7D4C\u9A13\u4E0A\u3069\u3046\u305B\u30C7\u30D0\u30C3\u30B0\u3067\u5FC5\u8981\
+    \u306B\u306A\u308B\uFF09. s \u304C\u6839.\n  // type==0: s\u304C virtual. type==1:\
+    \ t \u304C virtual.\n  int type, s, t;\n  mint a, b; // path composition\n  mint\
+    \ cnt, ans;\n};\n\nstruct TREE_DP {\n  using value_type = Data;\n  using X = value_type;\n\
+    \n  static X rake(const X& L, const X& R) {\n    assert(L.type == 0 && R.type\
+    \ == 0 && L.s == R.s);\n    X ANS = {0, L.s, L.t};\n\n    ANS.a = L.a, ANS.b =\
+    \ L.b;\n    ANS.cnt = L.cnt + R.cnt, ANS.ans = L.ans + R.ans;\n    return ANS;\n\
+    \  }\n  static X rake2(const X& L, const X& R) {\n    assert(L.type == 1 && R.type\
+    \ == 0 && L.s == R.s);\n    X ANS = {1, L.s, L.t};\n\n    ANS.a = L.a, ANS.b =\
+    \ L.b;\n    ANS.cnt = L.cnt + R.cnt, ANS.ans = L.ans + R.ans;\n    return ANS;\n\
+    \  }\n  static X compress(const X& L, const X& R) {\n    assert(L.type == 0 &&\
+    \ R.type == 0 && L.t == R.s);\n    X ANS = {0, L.s, R.t};\n\n    ANS.a = L.a *\
+    \ R.a, ANS.b = L.a * R.b + L.b;\n    ANS.cnt = L.cnt + R.cnt, ANS.ans = L.ans\
+    \ + (L.a * R.ans + L.b * R.cnt);\n    return ANS;\n  }\n  static X compress2(const\
+    \ X& L, const X& R) {\n    assert(L.type == 1 && R.type == 1 && L.t == R.s);\n\
+    \    X ANS = {1, L.s, R.t};\n\n    ANS.a = L.a * R.a, ANS.b = L.a * R.b + L.b;\n\
+    \    ANS.cnt = L.cnt + R.cnt, ANS.ans = L.ans + (L.a * R.ans + L.b * R.cnt);\n\
+    \    return ANS;\n  }\n  static X compress3(const X& L, const X& R) {\n    assert(L.type\
+    \ == 1 && R.type == 0 && L.t == R.s);\n    X ANS = {1, L.s, L.t};\n\n    ANS.a\
+    \ = L.a, ANS.b = L.b;\n    ANS.cnt = L.cnt + R.cnt, ANS.ans = L.ans + (L.a * R.ans\
+    \ + L.b * R.cnt);\n    return ANS;\n  }\n};\n\nvoid solve() {\n  LL(N, Q);\n \
+    \ VEC(mint, A, N);\n  vc<mint> B(N - 1), C(N - 1);\n  Graph<int, 0> G(N);\n  FOR(i,\
+    \ N - 1) {\n    INT(u, v);\n    G.add(u, v);\n    read(B[i], C[i]);\n  }\n  G.build();\n\
+    \n  Tree<decltype(G)> tree(G);\n\n  auto single = [&](int v) -> pair<Data, Data>\
+    \ {\n    if (v == 0) {\n      Data up = {0, -1, 0, 1, 0, 1, A[v]};\n      Data\
+    \ down = {1, 0, -1, 1, 0, 1, A[v]};\n      return {up, down};\n    }\n    int\
+    \ e = tree.v_to_e(v);\n    int p = tree.parent[v];\n    Data up = {0, p, v, B[e],\
+    \ C[e], 1, B[e] * A[v] + C[e]};\n    Data down = {1, v, p, B[e], C[e], 1, A[v]};\n\
+    \    return {up, down};\n  };\n\n  Dynamic_Rerooting_Tree_Dp<decltype(tree), TREE_DP>\
+    \ DP(tree, single);\n  FOR(Q) {\n    INT(t);\n    if (t == 0) {\n      INT(w,\
+    \ x);\n      A[w] = x;\n      DP.set(w, single(w));\n    }\n    if (t == 1) {\n\
+    \      INT(e, b, c);\n      B[e] = b, C[e] = c;\n      int v = tree.e_to_v(e);\n\
+    \      DP.set(v, single(v));\n    }\n    INT(r);\n    Data x = DP.prod_all(r);\n\
+    \    print(x.ans);\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   dependsOn:
   - my_template.hpp
   - other/io.hpp
+  - mod/modint.hpp
+  - mod/modint_common.hpp
   - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/static_toptree.hpp
   - graph/tree.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
-  - mod/modint.hpp
-  - mod/modint_common.hpp
   isVerificationFile: true
   path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-04-07 22:46:12+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
 layout: document
