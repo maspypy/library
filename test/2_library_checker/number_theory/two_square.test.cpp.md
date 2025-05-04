@@ -1,41 +1,41 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/two_square.hpp
     title: nt/two_square.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/two_square_sum
@@ -385,7 +385,7 @@ data:
     \ return ANS;\n  }\n  if (only_nonnegative) {\n    for (auto& g: solve_norm_equation<i128>(N))\
     \ { ANS.eb(g.x, g.y); }\n    ll sqN = sqrtl(N);\n    if (sqN * sqN == N) ANS.eb(0,\
     \ sqN);\n    return ANS;\n  }\n  for (auto& g: solve_norm_equation<i128>(N)) {\n\
-    \    FOR(4) {\n      ANS.eb(g.x, g.y);\n      tie(g.x, g.y) = mp(g.y, g.x);\n\
+    \    FOR(4) {\n      ANS.eb(g.x, g.y);\n      tie(g.x, g.y) = mp(-g.y, g.x);\n\
     \    }\n  }\n  return ANS;\n}\n#line 6 \"test/2_library_checker/number_theory/two_square.test.cpp\"\
     \n\nvoid solve() {\n  LL(N);\n  vc<pi> ANS = two_square(N, true);\n  print(len(ANS));\n\
     \  for (auto& x: ANS) print(x);\n}\n\nsigned main() {\n  INT(T);\n  FOR(T) solve();\n\
@@ -409,8 +409,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/number_theory/two_square.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/number_theory/two_square.test.cpp
 layout: document

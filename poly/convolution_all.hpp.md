@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt_doubling.hpp
     title: poly/ntt_doubling.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/tree_walk_generating_function.hpp
     title: graph/tree_walk_generating_function.hpp
   - icon: ':heavy_check_mark:'
@@ -54,7 +54,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/tree_walk_gf.test.cpp
     title: test/1_mytest/tree_walk_gf.test.cpp
   - icon: ':heavy_check_mark:'
@@ -84,18 +84,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2459.test.cpp
     title: test/3_yukicoder/2459.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2747.test.cpp
     title: test/3_yukicoder/2747.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"poly/convolution_all.hpp\"\n\r\n#line 2 \"mod/modint_common.hpp\"\
@@ -427,27 +427,27 @@ data:
   isVerificationFile: false
   path: poly/convolution_all.hpp
   requiredBy:
-  - seq/sum_of_powers.hpp
-  - poly/multipoint_evaluation_for_prefix_product.hpp
-  - graph/tree_walk_generating_function.hpp
-  - linalg/adjugate_matrix.hpp
   - linalg/frobenius.hpp
+  - linalg/adjugate_matrix.hpp
+  - graph/tree_walk_generating_function.hpp
+  - poly/multipoint_evaluation_for_prefix_product.hpp
+  - seq/sum_of_powers.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
+  - test/3_yukicoder/1857.test.cpp
+  - test/3_yukicoder/2459.test.cpp
+  - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/1392.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
+  - test/1_mytest/convolution_all_1.test.cpp
   - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/multipoint_prefix.test.cpp
-  - test/1_mytest/convolution_all_1.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/3_yukicoder/1392.test.cpp
-  - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/1145.test.cpp
-  - test/3_yukicoder/2747.test.cpp
-  - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/1857.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/2_library_checker/polynomial/product_of_polynomial_sequence.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp

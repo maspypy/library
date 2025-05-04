@@ -5,34 +5,34 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/sum_over_bit_positions.hpp
     title: ds/sum_over_bit_positions.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: flow/bipartite_dense.hpp
     title: flow/bipartite_dense.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: graph/bitset/bfs_bitset.hpp
     title: graph/bitset/bfs_bitset.hpp
   - icon: ':warning:'
     path: graph/bitset/reachability_bitset.hpp
     title: graph/bitset/reachability_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':warning:'
     path: linalg/bitset/det.hpp
     title: linalg/bitset/det.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/mat_inv.hpp
     title: linalg/bitset/mat_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/matrix_mul_and_or.hpp
     title: linalg/bitset/matrix_mul_and_or.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/matrix_mul_mod_2.hpp
     title: linalg/bitset/matrix_mul_mod_2.hpp
   - icon: ':warning:'
     path: linalg/bitset/matrix_pow.hpp
     title: linalg/bitset/matrix_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
   _extendedVerifiedWith:
@@ -45,42 +45,42 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/sum_over_bit_positions.test.cpp
     title: test/1_mytest/sum_over_bit_positions.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
     title: test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1340.test.cpp
     title: test/3_yukicoder/1340.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1400.test.cpp
     title: test/3_yukicoder/1400.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/142.test.cpp
     title: test/3_yukicoder/142.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1421.test.cpp
     title: test/3_yukicoder/1421.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2490.test.cpp
     title: test/3_yukicoder/2490.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/421.test.cpp
     title: test/3_yukicoder/421.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/421_2.test.cpp
     title: test/3_yukicoder/421_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/914/problem/F
@@ -210,12 +210,14 @@ data:
     \    assert(len(other) == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b\
     \ = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n    return true;\n\
     \  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return\
-    \ next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n\
-    \    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat)\
-    \ { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return\
-    \ S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n\
-    \      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\
-    };\nstring My_Bitset::TO_STR[256];\n"
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) {\n    if (L >= size()) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
+    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n"
   code: "#pragma once\n\n// https://codeforces.com/contest/914/problem/F\n// https://yukicoder.me/problems/no/142\n\
     // \u308F\u305A\u304B\u306B\u666E\u901A\u306E bitset \u3088\u308A\u9045\u3044\u3068\
     \u304D\u3082\u3042\u308B\u3088\u3046\u3060\u304C\uFF0C\n// \u56FA\u5B9A\u9577\u306B\
@@ -340,42 +342,44 @@ data:
     \    assert(len(other) == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b\
     \ = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n    return true;\n\
     \  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return\
-    \ next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n\
-    \    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat)\
-    \ { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return\
-    \ S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n\
-    \      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\
-    };\nstring My_Bitset::TO_STR[256];"
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) {\n    if (L >= size()) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
+    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];"
   dependsOn: []
   isVerificationFile: false
   path: ds/my_bitset.hpp
   requiredBy:
+  - knapsack/subset_sum.hpp
+  - ds/sum_over_bit_positions.hpp
+  - linalg/bitset/matrix_pow.hpp
+  - linalg/bitset/matrix_mul_mod_2.hpp
+  - linalg/bitset/matrix_mul_and_or.hpp
+  - linalg/bitset/mat_inv.hpp
+  - linalg/bitset/det.hpp
+  - linalg/bitset/solve_linear.hpp
   - graph/bitset/bfs_bitset.hpp
   - graph/bitset/reachability_bitset.hpp
   - flow/bipartite_dense.hpp
-  - linalg/bitset/matrix_pow.hpp
-  - linalg/bitset/matrix_mul_and_or.hpp
-  - linalg/bitset/solve_linear.hpp
-  - linalg/bitset/mat_inv.hpp
-  - linalg/bitset/det.hpp
-  - linalg/bitset/matrix_mul_mod_2.hpp
-  - ds/sum_over_bit_positions.hpp
-  - knapsack/subset_sum.hpp
-  timestamp: '2025-01-04 13:02:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/mybitset.test.cpp
+  - test/3_yukicoder/1421.test.cpp
+  - test/3_yukicoder/142.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/421_2.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
+  - test/3_yukicoder/421.test.cpp
+  - test/3_yukicoder/1400.test.cpp
+  - test/3_yukicoder/1340.test.cpp
+  - test/3_yukicoder/2490.test.cpp
   - test/1_mytest/sum_over_bit_positions.test.cpp
   - test/1_mytest/subset_sum.test.cpp
-  - test/3_yukicoder/1340.test.cpp
-  - test/3_yukicoder/421.test.cpp
-  - test/3_yukicoder/4_2.test.cpp
-  - test/3_yukicoder/142.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
-  - test/3_yukicoder/2490.test.cpp
-  - test/3_yukicoder/421_2.test.cpp
-  - test/3_yukicoder/1400.test.cpp
-  - test/3_yukicoder/1421.test.cpp
+  - test/1_mytest/mybitset.test.cpp
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
   - test/2_library_checker/linear_algebra/matrix_product_mod2.test.cpp
 documentation_of: ds/my_bitset.hpp

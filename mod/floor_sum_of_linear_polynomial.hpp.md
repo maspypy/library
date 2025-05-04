@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_for_floor_sum.hpp
     title: alg/monoid/monoid_for_floor_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -135,15 +135,15 @@ data:
   isVerificationFile: false
   path: mod/floor_sum_of_linear_polynomial.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_sum_polynomial.hpp
   timestamp: '2025-02-12 14:27:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/3_yukicoder/2362.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/floor_sum_of_polynomial.test.cpp
-  - test/3_yukicoder/2362.test.cpp
   - test/2_library_checker/number_theory/sum_of_floor_of_linear_2.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial.hpp
 layout: document

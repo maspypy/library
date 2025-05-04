@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -249,15 +249,17 @@ data:
     \    assert(len(other) == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b\
     \ = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n    return true;\n\
     \  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return\
-    \ next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n\
-    \    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat)\
-    \ { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return\
-    \ S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n\
-    \      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\
-    };\nstring My_Bitset::TO_STR[256];\n#line 1 \"enumerate/bits.hpp\"\ntemplate <typename\
-    \ BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F f) {\n  if\
-    \ (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p <\
-    \ R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) {\n    if (L >= size()) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
+    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
     \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
     \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
     \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
@@ -362,7 +364,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/subset_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/subset_sum.test.cpp

@@ -7,16 +7,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/power_query.hpp
     title: ds/power_query.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -143,12 +143,18 @@ data:
     \ n) {\n    X res = Mono::unit();\n    int k = 0;\n    while (n) {\n      int\
     \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
     \ - 1].back())); }\n      res = Mono::op(res, dat[k][r]);\n      ++k;\n    }\n\
-    \    return res;\n  }\n\n  X operator[](ll n) { return (*this)(n); }\n\nprivate:\n\
-    \  vc<X> make_pow(X a) {\n    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
-    \ a)); }\n    return res;\n  }\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct\
-    \ has_mod_impl {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
+    \    return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\u306E\u3068\u304D\u306B\u304B\
+    \u3051\u308B\u3082\u306E\u3092\u5217\u6319. \u884C\u5217\u30D9\u30AF\u30C8\u30EB\
+    \u7A4D\u3068\u304B\u3067\u4F7F\u7528\u53EF.\n  vc<X> get_list(ll n) {\n    vc<X>\
+    \ lst;\n    int k = 0;\n    while (n) {\n      int r = n % B;\n      n /= B;\n\
+    \      if (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }\n      lst.eb(dat[k][r]);\n\
+    \      ++k;\n    }\n    return lst;\n  }\n\n  X operator[](ll n) { return (*this)(n);\
+    \ }\n\nprivate:\n  vc<X> make_pow(X a) {\n    vc<X> res = {Mono::unit()};\n  \
+    \  FOR(B) { res.eb(Mono::op(res.back(), a)); }\n    return res;\n  }\n};\n#line\
+    \ 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl {\n  template <class T>\n\
+    \  static auto check(T &&x) -> decltype(x.get_mod(), std::true_type{});\n  template\
+    \ <class T>\n  static auto check(...) -> std::false_type;\n};\n\ntemplate <class\
+    \ T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
     \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
     \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
     \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
@@ -244,7 +250,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/powerquery.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/powerquery.test.cpp

@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ITP2_11_D.test.cpp
     title: test/4_aoj/ITP2_11_D.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"setfunc/all_k_subset.hpp\"\n\n#ifdef _MSC_VER\n#include\
@@ -16,7 +16,7 @@ data:
     struct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n  struct iter\
     \ {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT k) : n(UINT(1)\
     \ << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}\n    __attribute__((target(\"\
-    bmi2\"))) auto operator*() const { return _pdep_u32(t, s); }\n    auto operator++()\
+    bmi2\"))) auto operator*() const { return _pdep_u64(t, s); }\n    auto operator++()\
     \ {\n      if (k == 0) {\n        t = UINT(-1);\n      } else {\n        UINT\
     \ y = t + (-t & t);\n        t = y | ((y ^ t) >> lowbit(t << 2));\n      }\n \
     \   }\n    auto operator!=(const iter) const { return t < n; }\n  };\n  UINT s,\
@@ -28,7 +28,7 @@ data:
     \ntemplate <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
     \ k) : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}\n    __attribute__((target(\"\
-    bmi2\"))) auto operator*() const { return _pdep_u32(t, s); }\n    auto operator++()\
+    bmi2\"))) auto operator*() const { return _pdep_u64(t, s); }\n    auto operator++()\
     \ {\n      if (k == 0) {\n        t = UINT(-1);\n      } else {\n        UINT\
     \ y = t + (-t & t);\n        t = y | ((y ^ t) >> lowbit(t << 2));\n      }\n \
     \   }\n    auto operator!=(const iter) const { return t < n; }\n  };\n  UINT s,\
@@ -40,8 +40,8 @@ data:
   isVerificationFile: false
   path: setfunc/all_k_subset.hpp
   requiredBy: []
-  timestamp: '2024-12-26 06:32:57+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/ITP2_11_D.test.cpp
 documentation_of: setfunc/all_k_subset.hpp

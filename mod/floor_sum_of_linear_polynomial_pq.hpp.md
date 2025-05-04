@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/monoid_for_floor_sum_pq.hpp
     title: alg/monoid/monoid_for_floor_sum_pq.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid_pow.hpp
     title: alg/monoid_pow.hpp
   - icon: ':heavy_check_mark:'
@@ -136,8 +136,8 @@ data:
   timestamp: '2025-02-12 14:27:42+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/floor_sum_of_polynomial_pq.test.cpp
 documentation_of: mod/floor_sum_of_linear_polynomial_pq.hpp
 layout: document
 redirect_from:

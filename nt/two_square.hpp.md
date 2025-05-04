@@ -1,35 +1,35 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/gaussian_integers.hpp
     title: nt/gaussian_integers.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetest.hpp
     title: nt/primetest.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/number_theory/two_square.test.cpp
     title: test/2_library_checker/number_theory/two_square.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/factor.hpp\"\n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64()\
@@ -183,14 +183,14 @@ data:
     \ return ANS;\n  }\n  if (only_nonnegative) {\n    for (auto& g: solve_norm_equation<i128>(N))\
     \ { ANS.eb(g.x, g.y); }\n    ll sqN = sqrtl(N);\n    if (sqN * sqN == N) ANS.eb(0,\
     \ sqN);\n    return ANS;\n  }\n  for (auto& g: solve_norm_equation<i128>(N)) {\n\
-    \    FOR(4) {\n      ANS.eb(g.x, g.y);\n      tie(g.x, g.y) = mp(g.y, g.x);\n\
+    \    FOR(4) {\n      ANS.eb(g.x, g.y);\n      tie(g.x, g.y) = mp(-g.y, g.x);\n\
     \    }\n  }\n  return ANS;\n}\n"
   code: "#include \"nt/gaussian_integers.hpp\"\n\nvc<pair<ll, ll>> two_square(ll N,\
     \ bool only_nonnegative) {\n  vc<pi> ANS;\n  if (N == 0) {\n    ANS.eb(0, 0);\n\
     \    return ANS;\n  }\n  if (only_nonnegative) {\n    for (auto& g: solve_norm_equation<i128>(N))\
     \ { ANS.eb(g.x, g.y); }\n    ll sqN = sqrtl(N);\n    if (sqN * sqN == N) ANS.eb(0,\
     \ sqN);\n    return ANS;\n  }\n  for (auto& g: solve_norm_equation<i128>(N)) {\n\
-    \    FOR(4) {\n      ANS.eb(g.x, g.y);\n      tie(g.x, g.y) = mp(g.y, g.x);\n\
+    \    FOR(4) {\n      ANS.eb(g.x, g.y);\n      tie(g.x, g.y) = mp(-g.y, g.x);\n\
     \    }\n  }\n  return ANS;\n}\n"
   dependsOn:
   - nt/gaussian_integers.hpp
@@ -203,8 +203,8 @@ data:
   isVerificationFile: false
   path: nt/two_square.hpp
   requiredBy: []
-  timestamp: '2025-01-20 22:41:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/number_theory/two_square.test.cpp
 documentation_of: nt/two_square.hpp

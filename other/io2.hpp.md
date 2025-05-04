@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ITP1_9_A.test.cpp
     title: test/4_aoj/ITP1_9_A.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"other/io2.hpp\"\n#define INT(...)   \\\r\n  int __VA_ARGS__;\
@@ -37,10 +37,20 @@ data:
     \  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class...\
     \ Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  cout << head;\r\n \
     \ if (sizeof...(Tail)) cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n\
-    }\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool\
-    \ t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n"
+    }\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) SHOW_IMPL(__VA_ARGS__, SHOW6,\
+    \ SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2,\
+    \ _3, _4, _5, _6, NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x))\r\n\
+    #define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y))\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z))\r\n#define SHOW4(x,\
+    \ y, z, w) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w))\r\
+    \n#define SHOW5(x, y, z, w, v) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
+    , (z), #w, \"=\", (w), #v, \"=\", (v))\r\n#define SHOW6(x, y, z, w, v, u) print(#x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", (v),\
+    \ #u, \"=\", (u))\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool\
+    \ t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\
+    \nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1)\
+    \ { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid\
+    \ no(bool t = 1) { yes(!t); }\r\n"
   code: "#define INT(...)   \\\r\n  int __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define\
     \ LL(...)   \\\r\n  ll __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define STR(...)\
     \      \\\r\n  string __VA_ARGS__; \\\r\n  IN(__VA_ARGS__)\r\n#define CHR(...)\
@@ -67,16 +77,26 @@ data:
     \  cout << \"\\n\";\r\n  cout.flush();\r\n}\r\n\r\ntemplate <class Head, class...\
     \ Tail>\r\nvoid print(Head &&head, Tail &&... tail) {\r\n  cout << head;\r\n \
     \ if (sizeof...(Tail)) cout << \" \";\r\n  print(forward<Tail>(tail)...);\r\n\
-    }\r\n\r\nvoid YES(bool t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool\
-    \ t = 1) { YES(!t); }\r\nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\
-    \nvoid No(bool t = 1) { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\"\
-    \ : \"no\"); }\r\nvoid no(bool t = 1) { yes(!t); }\r\n"
+    }\r\n\r\n#if defined(LOCAL)\r\n#define SHOW(...) SHOW_IMPL(__VA_ARGS__, SHOW6,\
+    \ SHOW5, SHOW4, SHOW3, SHOW2, SHOW1)(__VA_ARGS__)\r\n#define SHOW_IMPL(_1, _2,\
+    \ _3, _4, _5, _6, NAME, ...) NAME\r\n#define SHOW1(x) print(#x, \"=\", (x))\r\n\
+    #define SHOW2(x, y) print(#x, \"=\", (x), #y, \"=\", (y))\r\n#define SHOW3(x,\
+    \ y, z) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z))\r\n#define SHOW4(x,\
+    \ y, z, w) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w))\r\
+    \n#define SHOW5(x, y, z, w, v) print(#x, \"=\", (x), #y, \"=\", (y), #z, \"=\"\
+    , (z), #w, \"=\", (w), #v, \"=\", (v))\r\n#define SHOW6(x, y, z, w, v, u) print(#x,\
+    \ \"=\", (x), #y, \"=\", (y), #z, \"=\", (z), #w, \"=\", (w), #v, \"=\", (v),\
+    \ #u, \"=\", (u))\r\n#else\r\n#define SHOW(...)\r\n#endif\r\n\r\nvoid YES(bool\
+    \ t = 1) { print(t ? \"YES\" : \"NO\"); }\r\nvoid NO(bool t = 1) { YES(!t); }\r\
+    \nvoid Yes(bool t = 1) { print(t ? \"Yes\" : \"No\"); }\r\nvoid No(bool t = 1)\
+    \ { Yes(!t); }\r\nvoid yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid\
+    \ no(bool t = 1) { yes(!t); }\r\n"
   dependsOn: []
   isVerificationFile: false
   path: other/io2.hpp
   requiredBy: []
-  timestamp: '2024-08-27 20:48:04+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/ITP1_9_A.test.cpp
 documentation_of: other/io2.hpp

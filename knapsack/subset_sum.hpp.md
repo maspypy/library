@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: enumerate/bits.hpp
     title: enumerate/bits.hpp
   _extendedRequiredBy: []
@@ -12,12 +12,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/subset_sum.test.cpp
     title: test/1_mytest/subset_sum.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://codeforces.com/contest/755/problem/F
@@ -146,15 +146,17 @@ data:
     \    assert(len(other) == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b\
     \ = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n    return true;\n\
     \  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return\
-    \ next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n\
-    \    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat)\
-    \ { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return\
-    \ S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n\
-    \      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\
-    };\nstring My_Bitset::TO_STR[256];\n#line 1 \"enumerate/bits.hpp\"\ntemplate <typename\
-    \ BS, typename F>\nvoid enumerate_bits_bitset(BS& b, int L, int R, F f) {\n  if\
-    \ (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n  while (p <\
-    \ R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) {\n    if (L >= size()) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
+    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\nvoid enumerate_bits_bitset(BS&\
+    \ b, int L, int R, F f) {\n  if (L >= len(b)) return;\n  int p = (b[L] ? L : b._Find_next(L));\n\
+    \  while (p < R) {\n    f(p);\n    p = b._Find_next(p);\n  }\n}\n#line 3 \"knapsack/subset_sum.hpp\"\
     \n\n// O(N MAX(vals))\ntemplate <typename T>\nvc<int> subset_sum_solution_1(vc<T>&\
     \ vals, int target) {\n  int n = len(vals);\n  if (n == 0) return {};\n  int mx\
     \ = MAX(vals);\n  int b = 0, sb = 0;\n  while (b < n && sb + vals[b] <= target)\
@@ -292,11 +294,11 @@ data:
   isVerificationFile: false
   path: knapsack/subset_sum.hpp
   requiredBy: []
-  timestamp: '2025-01-04 13:02:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/subset_sum.test.cpp
   - test/3_yukicoder/4_2.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
 documentation_of: knapsack/subset_sum.hpp
 layout: document
 redirect_from:

@@ -3,18 +3,18 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/line_add_get_min.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1297.test.cpp
     title: test/3_yukicoder/1297.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2012.test.cpp
     title: test/3_yukicoder/2012.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"convex/cht.hpp\"\nnamespace CHT {\r\ntemplate <typename\
@@ -55,14 +55,15 @@ data:
     \ a);\r\n    cht_max.add(b, a);\r\n    pair<T, T> p = {a, b};\r\n    MP[p] = i;\r\
     \n\r\n    if (chmax(amax, a)) amax_idx = i;\r\n    if (chmin(amin, a)) amin_idx\
     \ = i;\r\n    if (chmax(bmax, b)) bmax_idx = i;\r\n    if (chmin(bmin, b)) bmin_idx\
-    \ = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T x, T y) {\r\n    if (cht_min.empty())\
-    \ return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n      if (bmax * y > bmin\
-    \ * y) { return {bmax * y, bmax_idx}; }\r\n      return {bmin * y, bmin_idx};\r\
-    \n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      T a = l->m, b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx\
-    \ = MP[p];\r\n      return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
-    \n    T a = -(l->m), b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx\
-    \ = MP[p];\r\n    return {a * x + b * y, idx};\r\n  }\r\n\r\n  pair<T, int> get_min(T\
+    \ = i;\r\n  }\r\n\r\n  // max, idx\r\n  pair<T, int> get_max(T x, T y) {\r\n \
+    \   if (cht_min.empty()) return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n\
+    \      if (bmax * y > bmin * y) { return {bmax * y, bmax_idx}; }\r\n      return\
+    \ {bmin * y, bmin_idx};\r\n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\
+    \n      auto l = cht_max.lower_bound(z);\r\n      T a = l->m, b = l->k;\r\n  \
+    \    pair<T, T> p = {a, b};\r\n      int idx = MP[p];\r\n      return {a * x +\
+    \ b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n    T a = -(l->m),\
+    \ b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx = MP[p];\r\n    return\
+    \ {a * x + b * y, idx};\r\n  }\r\n\r\n  // min, idx\r\n  pair<T, int> get_min(T\
     \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
     \ }\r\n};\r\n"
   code: "namespace CHT {\r\ntemplate <typename T>\r\nstruct Line {\r\n  mutable T\
@@ -102,25 +103,26 @@ data:
     \ a);\r\n    cht_max.add(b, a);\r\n    pair<T, T> p = {a, b};\r\n    MP[p] = i;\r\
     \n\r\n    if (chmax(amax, a)) amax_idx = i;\r\n    if (chmin(amin, a)) amin_idx\
     \ = i;\r\n    if (chmax(bmax, b)) bmax_idx = i;\r\n    if (chmin(bmin, b)) bmin_idx\
-    \ = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T x, T y) {\r\n    if (cht_min.empty())\
-    \ return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n      if (bmax * y > bmin\
-    \ * y) { return {bmax * y, bmax_idx}; }\r\n      return {bmin * y, bmin_idx};\r\
-    \n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      T a = l->m, b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx\
-    \ = MP[p];\r\n      return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
-    \n    T a = -(l->m), b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx\
-    \ = MP[p];\r\n    return {a * x + b * y, idx};\r\n  }\r\n\r\n  pair<T, int> get_min(T\
+    \ = i;\r\n  }\r\n\r\n  // max, idx\r\n  pair<T, int> get_max(T x, T y) {\r\n \
+    \   if (cht_min.empty()) return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n\
+    \      if (bmax * y > bmin * y) { return {bmax * y, bmax_idx}; }\r\n      return\
+    \ {bmin * y, bmin_idx};\r\n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\
+    \n      auto l = cht_max.lower_bound(z);\r\n      T a = l->m, b = l->k;\r\n  \
+    \    pair<T, T> p = {a, b};\r\n      int idx = MP[p];\r\n      return {a * x +\
+    \ b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n    T a = -(l->m),\
+    \ b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx = MP[p];\r\n    return\
+    \ {a * x + b * y, idx};\r\n  }\r\n\r\n  // min, idx\r\n  pair<T, int> get_min(T\
     \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
     \ }\r\n};\r\n"
   dependsOn: []
   isVerificationFile: false
   path: convex/cht.hpp
   requiredBy: []
-  timestamp: '2024-06-12 17:41:41+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/3_yukicoder/1297.test.cpp
   - test/3_yukicoder/2012.test.cpp
+  - test/3_yukicoder/1297.test.cpp
   - test/2_library_checker/data_structure/line_add_get_min.test.cpp
 documentation_of: convex/cht.hpp
 layout: document

@@ -10,31 +10,31 @@ data:
   - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
   - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -487,16 +487,16 @@ data:
   isVerificationFile: false
   path: poly/prefix_product_of_poly.hpp
   requiredBy:
-  - seq/p_recursive.hpp
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
+  - seq/p_recursive.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/factorial_998.test.cpp
-  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/502_2.test.cpp
+  - test/3_yukicoder/1080_2.test.cpp
   - test/3_yukicoder/2166.test.cpp
+  - test/1_mytest/factorial_998.test.cpp
   - test/2_library_checker/enumerative_combinatorics/factorial.test.cpp
 documentation_of: poly/prefix_product_of_poly.hpp
 layout: document

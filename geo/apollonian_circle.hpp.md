@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -58,11 +58,11 @@ data:
     \ {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if\
     \ (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A -\
     \ B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
-    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 2 \"geo/apollonian_circle.hpp\"\n\n// https://codeforces.com/contest/2/problem/C\n\
+    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n\
+    \  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL\
+    \ r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T> p) {\n\
+    \    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r *\
+    \ r;\n  }\n};\n#line 2 \"geo/apollonian_circle.hpp\"\n\n// https://codeforces.com/contest/2/problem/C\n\
     template <typename REAL, typename T>\nCircle<REAL> apollonian_circle(Point<T>\
     \ A, Point<T> B, T a, T b) {\n  assert(a != b);\n  Point<REAL> X = (A * b + B\
     \ * a) / (a + b);\n  Point<REAL> Y = (A * b - B * a) / (b - a);\n  Point<REAL>\
@@ -79,7 +79,7 @@ data:
   isVerificationFile: false
   path: geo/apollonian_circle.hpp
   requiredBy: []
-  timestamp: '2024-10-20 23:29:28+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/apollonian_circle.hpp

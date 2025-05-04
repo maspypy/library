@@ -1,19 +1,19 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree_01.hpp
     title: ds/fenwicktree/fenwicktree_01.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/transpose.hpp
     title: linalg/transpose.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedRequiredBy: []
@@ -90,95 +90,98 @@ data:
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
     \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
     \ bool { return x <= k; }, L);\n  }\n};\n#line 4 \"ds/fenwicktree/fenwicktree_01.hpp\"\
-    \n\nstruct FenwickTree_01 {\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
-    \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
-    \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
-    \ build(int m) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
-    \ u64(0));\n    bit.build(n);\n  }\n\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n\
-    \    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }\n    bit.build(n, [&](int\
-    \ i) -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return bit.sum_all();\
-    \ }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int k) {\n \
-    \   int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1) << (k\
-    \ % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    if (L ==\
-    \ 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L / 64] &\
-    \ ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1) << (R\
-    \ % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n  }\n\n\
-    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    elif (x == -1) remove(k);\n\
-    \    else assert(0);\n  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) <<\
-    \ (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int k) {\n    dat[k /\
-    \ 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int\
-    \ k, int L = 0) {\n    if (k >= sum_all()) return N;\n    k += popcnt(dat[L /\
-    \ 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int mid = 0;\n    auto\
-    \ check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid, e);\n      return\
-    \ e <= k;\n    };\n    int idx = bit.max_right(check, L);\n    if (idx == n) return\
-    \ N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p\
-    \ <= k) return N;\n    k = binary_search([&](int n) -> bool { return (p - popcnt(x\
-    \ >> n)) <= k; }, 0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
-    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
-    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
-    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
-    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
-    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
-    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
-    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
-    \  return 64 * idx + topbit(dat[idx]);\n  }\n};\n#line 3 \"seq/inversion.hpp\"\
-    \n\ntemplate <typename T>\nll inversion(vc<T> A) {\n  int N = len(A);\n  if (A.empty())\
-    \ return 0;\n  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n\
-    \  for (auto& i: I) {\n    ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i,\
-    \ 1);\n  }\n  return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\
-    \u306A\u308B\u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\
-    \u6570\ntemplate <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>&\
-    \ A) {\n  const int N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n\
-    \    for (auto&& x: A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS =\
-    \ 0;\n  FenwickTree<Monoid_Add<int>> bit(K);\n  for (auto&& x: A) {\n    ANS +=\
-    \ bit.sum(x + 1, K);\n    bit.add(x, 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n \
-    \   res[i] = ANS;\n    ll x = A[i];\n    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n\
-    \  }\n  return res;\n}\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\
-    \u3046\u306A (N+1, N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int>\
-    \ all_range_inversion(vc<T>& A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N +\
-    \ 1);\n  FOR_R(L, N + 1) FOR(R, L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] +\
-    \ dp[L + 1][R] - dp[L + 1][R - 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n\
-    \  return dp;\n}\n\ntemplate <typename T>\nll inversion_between(vc<T> A, vc<T>\
-    \ B) {\n  int N = len(A);\n  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n\
-    \  vc<int> TO(N);\n  FOR_R(i, N) {\n    auto& I = MP[A[i]];\n    if (I.empty())\
-    \ return -1;\n    TO[i] = POP(I);\n  }\n  return inversion(TO);\n}\n#line 3 \"\
-    other/sliding_puzzle_solver.hpp\"\n\n/*\nO(HW(H+W))\n\u7A7A\u30DE\u30B9\u306F\
-    \ -1 (unique)\n\u540C\u3058\u5024\u304C\u8907\u6570\u3042\u3063\u3066\u3082\u3088\
-    \u3044\n\u64CD\u4F5C\u56DE\u6570\u3092 K \u3068\u3057\u3066\u3001\u9577\u3055\
-    \ K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\u6A19\u5217\u3092\u304B\u3048\u3059\
-    \n*/\nstruct Slinding_Puzzle_Solver {\n  using P = pair<int, int>;\n  vc<P> solve(vvc<int>\
-    \ A, vvc<int> B) {\n    int H = len(A), W = len(A[0]);\n    auto find = [&](vvc<int>&\
-    \ A, int k) -> P {\n      FOR(x, H) FOR(y, W) if (A[x][y] == k) return {x, y};\n\
-    \      assert(0);\n      return {0, 0};\n    };\n    auto [ax, ay] = find(A, -1);\n\
-    \    auto [bx, by] = find(B, -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0)\
-    \ { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax - 1][ay]), --ax; }\n    while (ay >\
-    \ 0) { ANS_1.eb(ax, ay), swap(A[ax][ay], A[ax][ay - 1]), --ay; }\n    while (bx\
-    \ > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx - 1][by]), --bx; }\n    while\
-    \ (by > 0) { ANS_2.eb(bx, by), swap(B[bx][by], B[bx][by - 1]), --by; }\n    vc<P>\
-    \ ANS = solve_00(A, B);\n    if (ANS.empty()) return {};\n    reverse(all(ANS_2));\n\
-    \    return concat(ANS_1, ANS, ANS_2);\n  }\n\nprivate:\n  vc<P> solve_00(vvc<int>\
-    \ A, vvc<int> B) {\n    assert(A[0][0] == -1 && B[0][0] == -1);\n    int H = len(A),\
-    \ W = len(A[0]);\n    if (H == 1 || W == 1) {\n      if (A != B) return {};\n\
-    \      vc<P> ANS;\n      ANS.eb(0, 0);\n      return ANS;\n    }\n    vc<P> XYA,\
-    \ XYB;\n    FOR(x, H) FOR(y, W) XYA.eb(x, y), XYB.eb(x, y);\n    sort(all(XYA),\
-    \ [&](auto& a, auto& b) -> bool { return A[a.fi][a.se] < A[b.fi][b.se]; });\n\
-    \    sort(all(XYB), [&](auto& a, auto& b) -> bool { return B[a.fi][a.se] < B[b.fi][b.se];\
-    \ });\n    auto check = [&]() -> bool {\n      vc<int> S, T;\n      FOR(i, H *\
-    \ W) {\n        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYB[i];\n   \
-    \     if (A[x1][y1] != B[x2][y2]) return 0;\n        S.eb(W * x1 + y1);\n    \
-    \    T.eb(W * x2 + y2);\n      }\n      ll x = inversion_between(S, T);\n    \
-    \  return x % 2 == 0;\n    };\n    if (!check()) {\n      FOR(i, H * W - 1) {\n\
-    \        auto [x1, y1] = XYA[i];\n        auto [x2, y2] = XYA[i + 1];\n      \
-    \  if (A[x1][y1] != A[x2][y2]) continue;\n        swap(XYA[i], XYA[i + 1]);\n\
-    \        break;\n      }\n      if (!check()) return {};\n    }\n    vv(P, X,\
-    \ H, W);\n    FOR(i, H * W) {\n      auto [x1, y1] = XYA[i];\n      auto [x2,\
-    \ y2] = XYB[i];\n      X[x1][y1] = {x2, y2};\n    }\n    vc<P> ANS;\n    ANS.eb(0,\
-    \ 0);\n    solve_sort(X, ANS, false);\n    return ANS;\n  }\n\n  // \u79FB\u52D5\
-    \u5148\u306E\u5EA7\u6A19\u306E\u5217\u3092\u4E26\u3079\u305F\u30B0\u30EA\u30C3\
-    \u30C9\u3092\u4E0E\u3048\u308B.\n  // (0,0) \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int,\
-    \ int>>& A, vc<P>& ANS, bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P,\
-    \ pos, H, W);\n    FOR(x, H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se]\
+    \n\nstruct FenwickTree_01 {\n  using MX = Monoid_Add<int>;\n  int N, n;\n  vc<u64>\
+    \ dat;\n  FenwickTree<Monoid_Add<int>> bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int\
+    \ n) { build(n); }\n  template <typename F>\n  FenwickTree_01(int n, F f) {\n\
+    \    build(n, f);\n  }\n\n  void build(int m) {\n    N = m;\n    n = ceil<int>(N\
+    \ + 1, 64);\n    dat.assign(n, u64(0));\n    bit.build(n);\n  }\n  void build(vc<int>\
+    \ dat) {\n    build(len(dat), [&](int i) -> int { return dat[i]; });\n  }\n\n\
+    \  template <typename F>\n  void build(int m, F f) {\n    N = m;\n    n = ceil<int>(N\
+    \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(f(i))\
+    \ << (i % 64); }\n    bit.build(n, [&](int i) -> int { return popcnt(dat[i]);\
+    \ });\n  }\n\n  int sum_all() { return bit.sum_all(); }\n  int sum(int k) { return\
+    \ prefix_sum(k); }\n  int prefix_sum(int k) {\n    int ans = bit.sum(k / 64);\n\
+    \    ans += popcnt(dat[k / 64] & ((u64(1) << (k % 64)) - 1));\n    return ans;\n\
+    \  }\n  int sum(int L, int R) {\n    if (L == 0) return prefix_sum(R);\n    int\
+    \ ans = 0;\n    ans -= popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n   \
+    \ ans += popcnt(dat[R / 64] & ((u64(1) << (R % 64)) - 1));\n    ans += bit.sum(L\
+    \ / 64, R / 64);\n    return ans;\n  }\n  int prod(int L, int R) { return sum(L,\
+    \ R); }\n\n  void add(int k, int x) {\n    if (x == 1) add(k);\n    elif (x ==\
+    \ -1) remove(k);\n    else assert(0);\n  }\n  void multiply(int k, int x) { add(k,\
+    \ x); }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
+    \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
+    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
+    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
+    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
+    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
+    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
+    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0,\
+    \ 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int k) {\n    int idx =\
+    \ k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if\
+    \ (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx + 1);\n    if (idx\
+    \ == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n  }\n\
+    \n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n    k %= 64;\n\
+    \    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) - 1;\n    if\
+    \ (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto e) -> bool\
+    \ { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n    return 64\
+    \ * idx + topbit(dat[idx]);\n  }\n};\n#line 3 \"seq/inversion.hpp\"\n\ntemplate\
+    \ <typename T>\nll inversion(vc<T> A) {\n  int N = len(A);\n  if (A.empty()) return\
+    \ 0;\n  ll ANS = 0;\n  FenwickTree_01 bit(N);\n  auto I = argsort(A);\n  for (auto&\
+    \ i: I) {\n    ANS += bit.sum_all() - bit.sum(i);\n    bit.add(i, 1);\n  }\n \
+    \ return ANS;\n}\n\n// i \u756A\u76EE\uFF1AA_i \u304C\u5148\u982D\u306B\u306A\u308B\
+    \u3088\u3046\u306B rotate \u3057\u305F\u3068\u304D\u306E\u8EE2\u5012\u6570\ntemplate\
+    \ <typename T, bool SMALL = false>\nvi inversion_rotate(vc<T>& A) {\n  const int\
+    \ N = len(A);\n  if (!SMALL) {\n    auto key = A;\n    UNIQUE(key);\n    for (auto&&\
+    \ x: A) x = LB(key, x);\n  }\n  ll K = MAX(A) + 1;\n  ll ANS = 0;\n  FenwickTree<Monoid_Add<int>>\
+    \ bit(K);\n  for (auto&& x: A) {\n    ANS += bit.sum(x + 1, K);\n    bit.add(x,\
+    \ 1);\n  }\n  vi res(N);\n  FOR(i, N) {\n    res[i] = ANS;\n    ll x = A[i];\n\
+    \    ANS = ANS + bit.sum(x + 1, K) - bit.prefix_sum(x);\n  }\n  return res;\n\
+    }\n\n// inv[i][j] = inversion A[i:j) \u3067\u3042\u308B\u3088\u3046\u306A (N+1,\
+    \ N+1) \u30C6\u30FC\u30D6\u30EB\ntemplate <typename T>\nvvc<int> all_range_inversion(vc<T>&\
+    \ A) {\n  int N = len(A);\n  vv(int, dp, N + 1, N + 1);\n  FOR_R(L, N + 1) FOR(R,\
+    \ L + 2, N + 1) {\n    dp[L][R] = dp[L][R - 1] + dp[L + 1][R] - dp[L + 1][R -\
+    \ 1];\n    if (A[L] > A[R - 1]) ++dp[L][R];\n  }\n  return dp;\n}\n\ntemplate\
+    \ <typename T>\nll inversion_between(vc<T> A, vc<T> B) {\n  int N = len(A);\n\
+    \  map<T, vc<int>> MP;\n  FOR(i, N) MP[B[i]].eb(i);\n  vc<int> TO(N);\n  FOR_R(i,\
+    \ N) {\n    auto& I = MP[A[i]];\n    if (I.empty()) return -1;\n    TO[i] = POP(I);\n\
+    \  }\n  return inversion(TO);\n}\n#line 3 \"other/sliding_puzzle_solver.hpp\"\n\
+    \n/*\nO(HW(H+W))\n\u7A7A\u30DE\u30B9\u306F -1 (unique)\n\u540C\u3058\u5024\u304C\
+    \u8907\u6570\u3042\u3063\u3066\u3082\u3088\u3044\n\u64CD\u4F5C\u56DE\u6570\u3092\
+    \ K \u3068\u3057\u3066\u3001\u9577\u3055 K+1 \u306E\u7A7A\u30DE\u30B9\u306E\u5EA7\
+    \u6A19\u5217\u3092\u304B\u3048\u3059\n*/\nstruct Slinding_Puzzle_Solver {\n  using\
+    \ P = pair<int, int>;\n  vc<P> solve(vvc<int> A, vvc<int> B) {\n    int H = len(A),\
+    \ W = len(A[0]);\n    auto find = [&](vvc<int>& A, int k) -> P {\n      FOR(x,\
+    \ H) FOR(y, W) if (A[x][y] == k) return {x, y};\n      assert(0);\n      return\
+    \ {0, 0};\n    };\n    auto [ax, ay] = find(A, -1);\n    auto [bx, by] = find(B,\
+    \ -1);\n    vc<P> ANS_1, ANS_2;\n    while (ax > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay],\
+    \ A[ax - 1][ay]), --ax; }\n    while (ay > 0) { ANS_1.eb(ax, ay), swap(A[ax][ay],\
+    \ A[ax][ay - 1]), --ay; }\n    while (bx > 0) { ANS_2.eb(bx, by), swap(B[bx][by],\
+    \ B[bx - 1][by]), --bx; }\n    while (by > 0) { ANS_2.eb(bx, by), swap(B[bx][by],\
+    \ B[bx][by - 1]), --by; }\n    vc<P> ANS = solve_00(A, B);\n    if (ANS.empty())\
+    \ return {};\n    reverse(all(ANS_2));\n    return concat(ANS_1, ANS, ANS_2);\n\
+    \  }\n\nprivate:\n  vc<P> solve_00(vvc<int> A, vvc<int> B) {\n    assert(A[0][0]\
+    \ == -1 && B[0][0] == -1);\n    int H = len(A), W = len(A[0]);\n    if (H == 1\
+    \ || W == 1) {\n      if (A != B) return {};\n      vc<P> ANS;\n      ANS.eb(0,\
+    \ 0);\n      return ANS;\n    }\n    vc<P> XYA, XYB;\n    FOR(x, H) FOR(y, W)\
+    \ XYA.eb(x, y), XYB.eb(x, y);\n    sort(all(XYA), [&](auto& a, auto& b) -> bool\
+    \ { return A[a.fi][a.se] < A[b.fi][b.se]; });\n    sort(all(XYB), [&](auto& a,\
+    \ auto& b) -> bool { return B[a.fi][a.se] < B[b.fi][b.se]; });\n    auto check\
+    \ = [&]() -> bool {\n      vc<int> S, T;\n      FOR(i, H * W) {\n        auto\
+    \ [x1, y1] = XYA[i];\n        auto [x2, y2] = XYB[i];\n        if (A[x1][y1] !=\
+    \ B[x2][y2]) return 0;\n        S.eb(W * x1 + y1);\n        T.eb(W * x2 + y2);\n\
+    \      }\n      ll x = inversion_between(S, T);\n      return x % 2 == 0;\n  \
+    \  };\n    if (!check()) {\n      FOR(i, H * W - 1) {\n        auto [x1, y1] =\
+    \ XYA[i];\n        auto [x2, y2] = XYA[i + 1];\n        if (A[x1][y1] != A[x2][y2])\
+    \ continue;\n        swap(XYA[i], XYA[i + 1]);\n        break;\n      }\n    \
+    \  if (!check()) return {};\n    }\n    vv(P, X, H, W);\n    FOR(i, H * W) {\n\
+    \      auto [x1, y1] = XYA[i];\n      auto [x2, y2] = XYB[i];\n      X[x1][y1]\
+    \ = {x2, y2};\n    }\n    vc<P> ANS;\n    ANS.eb(0, 0);\n    solve_sort(X, ANS,\
+    \ false);\n    return ANS;\n  }\n\n  // \u79FB\u52D5\u5148\u306E\u5EA7\u6A19\u306E\
+    \u5217\u3092\u4E26\u3079\u305F\u30B0\u30EA\u30C3\u30C9\u3092\u4E0E\u3048\u308B\
+    .\n  // (0,0) \u304C\u7A7A\u30DE\u30B9\n  void solve_sort(vvc<pair<int, int>>&\
+    \ A, vc<P>& ANS, bool tr) {\n    int H = len(A), W = len(A[0]);\n    vv(P, pos,\
+    \ H, W);\n    FOR(x, H) FOR(y, W) {\n      P p = A[x][y];\n      pos[p.fi][p.se]\
     \ = {x, y};\n    }\n\n    auto [px, py] = pos[0][0];\n\n    auto ope = [&](int\
     \ x, int y) -> void {\n      assert(abs(px - x) + abs(py - y) == 1);\n      swap(A[px][py],\
     \ A[x][y]);\n      if (!tr) ANS.eb(x, y);\n      if (tr) ANS.eb(y, x);\n     \
@@ -309,7 +312,7 @@ data:
   isVerificationFile: false
   path: other/sliding_puzzle_solver.hpp
   requiredBy: []
-  timestamp: '2025-01-06 16:30:28+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: other/sliding_puzzle_solver.hpp

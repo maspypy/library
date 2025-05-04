@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/steiner_tree.hpp
     title: graph/steiner_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: knapsack/subset_sum.hpp
     title: knapsack/subset_sum.hpp
   - icon: ':heavy_check_mark:'
@@ -27,12 +27,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2507.test.cpp
     title: test/3_yukicoder/2507.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/4_2.test.cpp
     title: test/3_yukicoder/4_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/bits.hpp\"\ntemplate <typename BS, typename F>\n\
@@ -46,17 +46,17 @@ data:
   isVerificationFile: false
   path: enumerate/bits.hpp
   requiredBy:
-  - graph/count/count_cycle.hpp
-  - graph/steiner_tree.hpp
-  - linalg/hafnian.hpp
   - knapsack/subset_sum.hpp
+  - linalg/hafnian.hpp
+  - graph/steiner_tree.hpp
+  - graph/count/count_cycle.hpp
   timestamp: '2025-01-04 13:02:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/subset_sum.test.cpp
   - test/3_yukicoder/4_2.test.cpp
-  - test/3_yukicoder/114.test.cpp
   - test/3_yukicoder/2507.test.cpp
+  - test/3_yukicoder/114.test.cpp
+  - test/1_mytest/subset_sum.test.cpp
   - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document

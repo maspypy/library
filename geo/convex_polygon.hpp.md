@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   _extendedRequiredBy:
@@ -27,6 +27,7 @@ data:
   attributes:
     links:
     - https://codeforces.com/contest/1906/problem/D
+    - https://codeforces.com/contest/799/problem/G
   bundledCode: "#line 2 \"geo/convex_polygon.hpp\"\n\n#line 2 \"geo/base.hpp\"\ntemplate\
     \ <typename T>\nstruct Point {\n  T x, y;\n\n  Point() : x(0), y(0) {}\n\n  template\
     \ <typename A, typename B>\n  Point(A x, B y) : x(x), y(y) {}\n\n  template <typename\
@@ -73,14 +74,14 @@ data:
     \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
     \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
     \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
-    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true\
-    \ \u3067\u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\
-    \u308B\n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\n\
-    template <typename T, bool allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>&\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\
+    \n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\
+    \u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\
+    \u306A\u308B\ntemplate <typename T, bool allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>&\
     \ XY, string mode = \"full\", bool sorted = false) {\n  assert(mode == \"full\"\
     \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
     \ 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n   \
@@ -142,12 +143,27 @@ data:
     \ A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a, b] = visible_range(A);\n\
     \      if ((point[a] - A).det(B - A) >= 0) return 0;\n      if ((point[b] - A).det(B\
     \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n\n  vc<T> AREA;\n\n  // point[i,...,j]\
-    \ (inclusive) \u306E\u9762\u7A4D\n  T area_between(int i, int j) {\n    assert(i\
-    \ <= j && j <= i + n);\n    if (j == i + n) return area2;\n    i %= n, j %= n;\n\
-    \    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
-    \ - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA() {\n  \
-    \  AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
-    \    AREA = cumsum<T>(AREA);\n  }\n};\n"
+    \ (inclusive) \u306E\u9762\u7A4D\u306E 2 \u500D\n  T area_between(int i, int j)\
+    \ {\n    assert(i <= j && j <= i + n);\n    if (j == i + n) return area2;\n  \
+    \  i %= n, j %= n;\n    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n\
+    \    return AREA[j] - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA()\
+    \ {\n    AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n\n  // \u76F4\u7DDA\u306E\u5DE6\u5074\u306E\
+    \u9762\u7A4D. strict \u306B 2 \u56DE\u4EA4\u308F\u308B\u3053\u3068\u3092\u4EEE\
+    \u5B9A.\n  // https://codeforces.com/contest/799/problem/G\n  T left_area(Line<T>\
+    \ L) {\n    static_assert(is_same<T, double>::value || is_same<T, long double>::value);\n\
+    \    Point<T> normal(L.a, L.b);\n    int a = min_dot(normal).se;\n    int b =\
+    \ max_dot(normal).se;\n    if (b < a) b += n;\n    assert(L.eval(point[a % n])\
+    \ < 0 && L.eval(point[b % n]) > 0);\n    int p = binary_search([&](int i) -> bool\
+    \ { return L.eval(point[i % n]) < 0; }, a, b);\n    int q = binary_search([&](int\
+    \ i) -> bool { return L.eval(point[i % n]) > 0; }, b, a + n);\n    T s, t;\n \
+    \   {\n      T x = L.eval(point[p % n]);\n      T y = L.eval(point[(p + 1) % n]);\n\
+    \      s = x / (x - y);\n    }\n    {\n      T x = L.eval(point[q % n]);\n   \
+    \   T y = L.eval(point[(q + 1) % n]);\n      t = x / (x - y);\n    }\n    P A(point[p\
+    \ % n]), B(point[(p + 1) % n]);\n    P C(point[q % n]), D(point[(q + 1) % n]);\n\
+    \    P X = B * s + A * (1 - s);\n    P Y = D * t + C * (1 - t);\n    T ANS = area_between(p,\
+    \ q);\n    ANS -= (A - C).det(X - C);\n    ANS += (Y - C).det(X - C);\n    return\
+    \ ANS;\n  }\n};\n"
   code: "#pragma once\n\n#include \"geo/base.hpp\"\n#include \"geo/convex_hull.hpp\"\
     \n\n// n=2 \u306F\u73FE\u72B6\u30B5\u30DD\u30FC\u30C8\u3057\u3066\u3044\u306A\u3044\
     \ntemplate <typename T>\nstruct ConvexPolygon {\n  using P = Point<T>;\n  int\
@@ -193,12 +209,27 @@ data:
     \ A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a, b] = visible_range(A);\n\
     \      if ((point[a] - A).det(B - A) >= 0) return 0;\n      if ((point[b] - A).det(B\
     \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n\n  vc<T> AREA;\n\n  // point[i,...,j]\
-    \ (inclusive) \u306E\u9762\u7A4D\n  T area_between(int i, int j) {\n    assert(i\
-    \ <= j && j <= i + n);\n    if (j == i + n) return area2;\n    i %= n, j %= n;\n\
-    \    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
-    \ - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA() {\n  \
-    \  AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
-    \    AREA = cumsum<T>(AREA);\n  }\n};"
+    \ (inclusive) \u306E\u9762\u7A4D\u306E 2 \u500D\n  T area_between(int i, int j)\
+    \ {\n    assert(i <= j && j <= i + n);\n    if (j == i + n) return area2;\n  \
+    \  i %= n, j %= n;\n    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n\
+    \    return AREA[j] - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA()\
+    \ {\n    AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n\n  // \u76F4\u7DDA\u306E\u5DE6\u5074\u306E\
+    \u9762\u7A4D. strict \u306B 2 \u56DE\u4EA4\u308F\u308B\u3053\u3068\u3092\u4EEE\
+    \u5B9A.\n  // https://codeforces.com/contest/799/problem/G\n  T left_area(Line<T>\
+    \ L) {\n    static_assert(is_same<T, double>::value || is_same<T, long double>::value);\n\
+    \    Point<T> normal(L.a, L.b);\n    int a = min_dot(normal).se;\n    int b =\
+    \ max_dot(normal).se;\n    if (b < a) b += n;\n    assert(L.eval(point[a % n])\
+    \ < 0 && L.eval(point[b % n]) > 0);\n    int p = binary_search([&](int i) -> bool\
+    \ { return L.eval(point[i % n]) < 0; }, a, b);\n    int q = binary_search([&](int\
+    \ i) -> bool { return L.eval(point[i % n]) > 0; }, b, a + n);\n    T s, t;\n \
+    \   {\n      T x = L.eval(point[p % n]);\n      T y = L.eval(point[(p + 1) % n]);\n\
+    \      s = x / (x - y);\n    }\n    {\n      T x = L.eval(point[q % n]);\n   \
+    \   T y = L.eval(point[(q + 1) % n]);\n      t = x / (x - y);\n    }\n    P A(point[p\
+    \ % n]), B(point[(p + 1) % n]);\n    P C(point[q % n]), D(point[(q + 1) % n]);\n\
+    \    P X = B * s + A * (1 - s);\n    P Y = D * t + C * (1 - t);\n    T ANS = area_between(p,\
+    \ q);\n    ANS -= (A - C).det(X - C);\n    ANS += (Y - C).det(X - C);\n    return\
+    \ ANS;\n  }\n};"
   dependsOn:
   - geo/base.hpp
   - geo/convex_hull.hpp
@@ -206,12 +237,12 @@ data:
   path: geo/convex_polygon.hpp
   requiredBy:
   - geo/minkowski_sum.hpp
-  timestamp: '2024-10-25 01:17:46+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/convex_polygon_visible_range.test.cpp
-  - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/convex_polygon_visible_range.test.cpp
 documentation_of: geo/convex_polygon.hpp
 layout: document
 redirect_from:

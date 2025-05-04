@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
@@ -137,16 +137,19 @@ data:
     \    assert(len(other) == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b\
     \ = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n    return true;\n\
     \  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return\
-    \ next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n\
-    \    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat)\
-    \ { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return\
-    \ S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n\
-    \      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\
-    };\nstring My_Bitset::TO_STR[256];\n#line 2 \"graph/bitset/reachability_bitset.hpp\"\
-    \n\n// https://codeforces.com/contest/641/problem/F\nvc<My_Bitset> reachability_bitset(vc<My_Bitset>\
-    \ G) {\n  int N = len(G);\n  FOR(i, N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k]\
-    \ and G[k][j]\n    FOR(i, N) {\n      if (!G[i][k]) continue;\n      G[i] |= G[k];\n\
-    \    }\n  }\n  return G;\n}\n"
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) {\n    if (L >= size()) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
+    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 2 \"graph/bitset/reachability_bitset.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
+    vc<My_Bitset> reachability_bitset(vc<My_Bitset> G) {\n  int N = len(G);\n  FOR(i,\
+    \ N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k] and G[k][j]\n    FOR(i, N) {\n\
+    \      if (!G[i][k]) continue;\n      G[i] |= G[k];\n    }\n  }\n  return G;\n\
+    }\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/641/problem/F\n\
     vc<My_Bitset> reachability_bitset(vc<My_Bitset> G) {\n  int N = len(G);\n  FOR(i,\
     \ N) G[i][i] = 1;\n  FOR(k, N) {\n    // G[i][k] and G[k][j]\n    FOR(i, N) {\n\
@@ -157,7 +160,7 @@ data:
   isVerificationFile: false
   path: graph/bitset/reachability_bitset.hpp
   requiredBy: []
-  timestamp: '2025-01-04 13:02:14+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/bitset/reachability_bitset.hpp

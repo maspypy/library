@@ -1,14 +1,14 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/count_points_in_triangles.hpp
     title: geo/count_points_in_triangles.hpp
   - icon: ':warning:'
@@ -20,7 +20,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: random/random_polygon.hpp
     title: random/random_polygon.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: seq/inversion.hpp
     title: seq/inversion.hpp
   _extendedVerifiedWith:
@@ -33,33 +33,33 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/polygon_triangulation.test.cpp
     title: test/1_mytest/polygon_triangulation.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
     title: test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
     title: test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
     title: test/2_library_checker/geometry/count_points_in_triangles.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1838.test.cpp
     title: test/3_yukicoder/1838.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/694.test.cpp
     title: test/3_yukicoder/694.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_2_A.test.cpp
     title: test/4_aoj/ALDS1_2_A.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/ALDS1_5.test.cpp
     title: test/4_aoj/ALDS1_5.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fenwicktree/fenwicktree_01.hpp\"\n\n#line 2 \"alg/monoid/add.hpp\"\
@@ -126,45 +126,13 @@ data:
     \ - 1]));\n      if (!check(t)) { i += (1 << k), s = t; }\n    }\n    return i\
     \ + 1;\n  }\n\n  int kth(E k, int L = 0) {\n    return max_right([&k](E x) ->\
     \ bool { return x <= k; }, L);\n  }\n};\n#line 4 \"ds/fenwicktree/fenwicktree_01.hpp\"\
-    \n\nstruct FenwickTree_01 {\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
-    \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
-    \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
-    \ build(int m) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
-    \ u64(0));\n    bit.build(n);\n  }\n\n  template <typename F>\n  void build(int\
-    \ m, F f) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n\
-    \    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }\n    bit.build(n, [&](int\
-    \ i) -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return bit.sum_all();\
-    \ }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int k) {\n \
-    \   int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1) << (k\
-    \ % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    if (L ==\
-    \ 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L / 64] &\
-    \ ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1) << (R\
-    \ % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n  }\n\n\
-    \  void add(int k, int x) {\n    if (x == 1) add(k);\n    elif (x == -1) remove(k);\n\
-    \    else assert(0);\n  }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) <<\
-    \ (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int k) {\n    dat[k /\
-    \ 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int\
-    \ k, int L = 0) {\n    if (k >= sum_all()) return N;\n    k += popcnt(dat[L /\
-    \ 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int mid = 0;\n    auto\
-    \ check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid, e);\n      return\
-    \ e <= k;\n    };\n    int idx = bit.max_right(check, L);\n    if (idx == n) return\
-    \ N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p\
-    \ <= k) return N;\n    k = binary_search([&](int n) -> bool { return (p - popcnt(x\
-    \ >> n)) <= k; }, 0, 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int\
-    \ k) {\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1)\
-    \ << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx\
-    \ + 1);\n    if (idx == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n\
-    \  }\n\n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n   \
-    \ k %= 64;\n    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) -\
-    \ 1;\n    if (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto\
-    \ e) -> bool { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n  \
-    \  return 64 * idx + topbit(dat[idx]);\n  }\n};\n"
-  code: "#pragma once\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\nstruct FenwickTree_01\
-    \ {\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>> bit;\n  FenwickTree_01()\
-    \ {}\n  FenwickTree_01(int n) { build(n); }\n  template <typename F>\n  FenwickTree_01(int\
-    \ n, F f) {\n    build(n, f);\n  }\n\n  void build(int m) {\n    N = m;\n    n\
-    \ = ceil<int>(N + 1, 64);\n    dat.assign(n, u64(0));\n    bit.build(n);\n  }\n\
-    \n  template <typename F>\n  void build(int m, F f) {\n    N = m;\n    n = ceil<int>(N\
+    \n\nstruct FenwickTree_01 {\n  using MX = Monoid_Add<int>;\n  int N, n;\n  vc<u64>\
+    \ dat;\n  FenwickTree<Monoid_Add<int>> bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int\
+    \ n) { build(n); }\n  template <typename F>\n  FenwickTree_01(int n, F f) {\n\
+    \    build(n, f);\n  }\n\n  void build(int m) {\n    N = m;\n    n = ceil<int>(N\
+    \ + 1, 64);\n    dat.assign(n, u64(0));\n    bit.build(n);\n  }\n  void build(vc<int>\
+    \ dat) {\n    build(len(dat), [&](int i) -> int { return dat[i]; });\n  }\n\n\
+    \  template <typename F>\n  void build(int m, F f) {\n    N = m;\n    n = ceil<int>(N\
     \ + 1, 64);\n    dat.assign(n, u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(f(i))\
     \ << (i % 64); }\n    bit.build(n, [&](int i) -> int { return popcnt(dat[i]);\
     \ });\n  }\n\n  int sum_all() { return bit.sum_all(); }\n  int sum(int k) { return\
@@ -173,19 +141,57 @@ data:
     \  }\n  int sum(int L, int R) {\n    if (L == 0) return prefix_sum(R);\n    int\
     \ ans = 0;\n    ans -= popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n   \
     \ ans += popcnt(dat[R / 64] & ((u64(1) << (R % 64)) - 1));\n    ans += bit.sum(L\
-    \ / 64, R / 64);\n    return ans;\n  }\n\n  void add(int k, int x) {\n    if (x\
-    \ == 1) add(k);\n    elif (x == -1) remove(k);\n    else assert(0);\n  }\n\n \
-    \ void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64,\
-    \ 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n\
-    \    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if (k >=\
-    \ sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) -\
-    \ 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool {\n\
-    \      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx =\
-    \ bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n    u64\
-    \ x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search([&](int\
-    \ n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n    return 64\
-    \ * idx + k;\n  }\n\n  int next(int k) {\n    int idx = k / 64;\n    k %= 64;\n\
-    \    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n\
+    \ / 64, R / 64);\n    return ans;\n  }\n  int prod(int L, int R) { return sum(L,\
+    \ R); }\n\n  void add(int k, int x) {\n    if (x == 1) add(k);\n    elif (x ==\
+    \ -1) remove(k);\n    else assert(0);\n  }\n  void multiply(int k, int x) { add(k,\
+    \ x); }\n\n  void add(int k) {\n    dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k\
+    \ / 64, 1);\n  }\n  void remove(int k) {\n    dat[k / 64] &= ~(u64(1) << (k %\
+    \ 64));\n    bit.add(k / 64, -1);\n  }\n\n  int kth(int k, int L = 0) {\n    if\
+    \ (k >= sum_all()) return N;\n    k += popcnt(dat[L / 64] & ((u64(1) << (L % 64))\
+    \ - 1));\n    L /= 64;\n    int mid = 0;\n    auto check = [&](auto e) -> bool\
+    \ {\n      if (e <= k) chmax(mid, e);\n      return e <= k;\n    };\n    int idx\
+    \ = bit.max_right(check, L);\n    if (idx == n) return N;\n    k -= mid;\n   \
+    \ u64 x = dat[idx];\n    int p = popcnt(x);\n    if (p <= k) return N;\n    k\
+    \ = binary_search([&](int n) -> bool { return (p - popcnt(x >> n)) <= k; }, 0,\
+    \ 64, 0);\n    return 64 * idx + k;\n  }\n\n  int next(int k) {\n    int idx =\
+    \ k / 64;\n    k %= 64;\n    u64 x = dat[idx] & ~((u64(1) << k) - 1);\n    if\
+    \ (x) return 64 * idx + lowbit(x);\n    idx = bit.kth(0, idx + 1);\n    if (idx\
+    \ == n || !dat[idx]) return N;\n    return 64 * idx + lowbit(dat[idx]);\n  }\n\
+    \n  int prev(int k) {\n    if (k == N) --k;\n    int idx = k / 64;\n    k %= 64;\n\
+    \    u64 x = dat[idx];\n    if (k < 63) x &= (u64(1) << (k + 1)) - 1;\n    if\
+    \ (x) return 64 * idx + topbit(x);\n    idx = bit.min_left([&](auto e) -> bool\
+    \ { return e <= 0; }, idx) - 1;\n    if (idx == -1) return -1;\n    return 64\
+    \ * idx + topbit(dat[idx]);\n  }\n};\n"
+  code: "#pragma once\n\n#include \"ds/fenwicktree/fenwicktree.hpp\"\n\nstruct FenwickTree_01\
+    \ {\n  using MX = Monoid_Add<int>;\n  int N, n;\n  vc<u64> dat;\n  FenwickTree<Monoid_Add<int>>\
+    \ bit;\n  FenwickTree_01() {}\n  FenwickTree_01(int n) { build(n); }\n  template\
+    \ <typename F>\n  FenwickTree_01(int n, F f) {\n    build(n, f);\n  }\n\n  void\
+    \ build(int m) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
+    \ u64(0));\n    bit.build(n);\n  }\n  void build(vc<int> dat) {\n    build(len(dat),\
+    \ [&](int i) -> int { return dat[i]; });\n  }\n\n  template <typename F>\n  void\
+    \ build(int m, F f) {\n    N = m;\n    n = ceil<int>(N + 1, 64);\n    dat.assign(n,\
+    \ u64(0));\n    FOR(i, N) { dat[i / 64] |= u64(f(i)) << (i % 64); }\n    bit.build(n,\
+    \ [&](int i) -> int { return popcnt(dat[i]); });\n  }\n\n  int sum_all() { return\
+    \ bit.sum_all(); }\n  int sum(int k) { return prefix_sum(k); }\n  int prefix_sum(int\
+    \ k) {\n    int ans = bit.sum(k / 64);\n    ans += popcnt(dat[k / 64] & ((u64(1)\
+    \ << (k % 64)) - 1));\n    return ans;\n  }\n  int sum(int L, int R) {\n    if\
+    \ (L == 0) return prefix_sum(R);\n    int ans = 0;\n    ans -= popcnt(dat[L /\
+    \ 64] & ((u64(1) << (L % 64)) - 1));\n    ans += popcnt(dat[R / 64] & ((u64(1)\
+    \ << (R % 64)) - 1));\n    ans += bit.sum(L / 64, R / 64);\n    return ans;\n\
+    \  }\n  int prod(int L, int R) { return sum(L, R); }\n\n  void add(int k, int\
+    \ x) {\n    if (x == 1) add(k);\n    elif (x == -1) remove(k);\n    else assert(0);\n\
+    \  }\n  void multiply(int k, int x) { add(k, x); }\n\n  void add(int k) {\n  \
+    \  dat[k / 64] |= u64(1) << (k % 64);\n    bit.add(k / 64, 1);\n  }\n  void remove(int\
+    \ k) {\n    dat[k / 64] &= ~(u64(1) << (k % 64));\n    bit.add(k / 64, -1);\n\
+    \  }\n\n  int kth(int k, int L = 0) {\n    if (k >= sum_all()) return N;\n   \
+    \ k += popcnt(dat[L / 64] & ((u64(1) << (L % 64)) - 1));\n    L /= 64;\n    int\
+    \ mid = 0;\n    auto check = [&](auto e) -> bool {\n      if (e <= k) chmax(mid,\
+    \ e);\n      return e <= k;\n    };\n    int idx = bit.max_right(check, L);\n\
+    \    if (idx == n) return N;\n    k -= mid;\n    u64 x = dat[idx];\n    int p\
+    \ = popcnt(x);\n    if (p <= k) return N;\n    k = binary_search([&](int n) ->\
+    \ bool { return (p - popcnt(x >> n)) <= k; }, 0, 64, 0);\n    return 64 * idx\
+    \ + k;\n  }\n\n  int next(int k) {\n    int idx = k / 64;\n    k %= 64;\n    u64\
+    \ x = dat[idx] & ~((u64(1) << k) - 1);\n    if (x) return 64 * idx + lowbit(x);\n\
     \    idx = bit.kth(0, idx + 1);\n    if (idx == n || !dat[idx]) return N;\n  \
     \  return 64 * idx + lowbit(dat[idx]);\n  }\n\n  int prev(int k) {\n    if (k\
     \ == N) --k;\n    int idx = k / 64;\n    k %= 64;\n    u64 x = dat[idx];\n   \
@@ -198,25 +204,25 @@ data:
   isVerificationFile: false
   path: ds/fenwicktree/fenwicktree_01.hpp
   requiredBy:
-  - seq/inversion.hpp
-  - random/random_polygon.hpp
   - graph/ds/range_edge_connected_component_query.hpp
   - geo/count_points_in_triangles.hpp
+  - random/random_polygon.hpp
   - other/sliding_puzzle_solver.hpp
-  timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - seq/inversion.hpp
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/fenwick01.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/4_aoj/ALDS1_2_A.test.cpp
-  - test/4_aoj/ALDS1_5.test.cpp
   - test/3_yukicoder/1838.test.cpp
   - test/3_yukicoder/694.test.cpp
-  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
-  - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
+  - test/1_mytest/fenwick01.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/4_aoj/ALDS1_2_A.test.cpp
+  - test/4_aoj/ALDS1_5.test.cpp
   - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/2_library_checker/data_structure/predecessor_problem_4.test.cpp
+  - test/2_library_checker/data_structure/point_set_range_freq.test.cpp
+  - test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
 documentation_of: ds/fenwicktree/fenwicktree_01.hpp
 layout: document
 redirect_from:

@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy:
@@ -239,25 +239,25 @@ data:
   isVerificationFile: false
   path: poly/online/online_convolution.hpp
   requiredBy:
-  - seq/famous/simple_permutations.hpp
-  - poly/online/online_exp.hpp
-  - poly/online/online_convolution_garner.hpp
-  - poly/online/online_pow.hpp
-  - poly/online/online_log.hpp
-  - poly/online/online_inv.hpp
-  - poly/online/online_division.hpp
-  - poly/online/online_exp_garner.hpp
   - graph/count/count_unlabeled_tree.hpp
+  - poly/online/online_exp.hpp
+  - poly/online/online_division.hpp
+  - poly/online/online_convolution_garner.hpp
+  - poly/online/online_inv.hpp
+  - poly/online/online_log.hpp
+  - poly/online/online_pow.hpp
+  - poly/online/online_exp_garner.hpp
+  - seq/famous/simple_permutations.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/online_inv.test.cpp
-  - test/1_mytest/online_pow.test.cpp
-  - test/1_mytest/online_exp.test.cpp
-  - test/1_mytest/online_log.test.cpp
+  - test/1_mytest/count_unlabeled_tree.test.cpp
   - test/1_mytest/simple_perm.test.cpp
   - test/1_mytest/online_division.test.cpp
-  - test/1_mytest/count_unlabeled_tree.test.cpp
+  - test/1_mytest/online_exp.test.cpp
+  - test/1_mytest/online_inv.test.cpp
+  - test/1_mytest/online_pow.test.cpp
+  - test/1_mytest/online_log.test.cpp
   - test/2_library_checker/convolution/online_convolution.test.cpp
 documentation_of: poly/online/online_convolution.hpp
 layout: document

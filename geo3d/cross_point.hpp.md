@@ -30,8 +30,18 @@ data:
     \ A) { assert(d.dot(d) != 0); }\n  bool is_parallel(Line_3d<T> other) {\n    Point_3d<T>\
     \ n = d.cross(other.d);\n    return (n.x == T(0) && n.y == T(0) && n.z == T(0));\n\
     \  }\n  bool contain(Point_3d<T> p) {\n    p = p - a;\n    p = p.cross(d);\n \
-    \   return (p.x == T(0) && p.y == T(0) && p.z == T(0));\n  }\n};\n#line 2 \"geo3d/cross_point.hpp\"\
-    \n\n// 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
+    \   return (p.x == T(0) && p.y == T(0) && p.z == T(0));\n  }\n};\n\ntemplate <typename\
+    \ T>\nstruct Plane {\n  // ax + by + cz == d\n  T a, b, c, d;\n  Point_3d<T> normal_vec;\n\
+    \n  Plane(Point_3d<T> A, Point_3d<T> B, Point_3d<T> C) {\n    Point_3d<T> AB =\
+    \ B - A;\n    Point_3d<T> AC = C - A;\n    normal_vec = AB.cross(AC);\n    a =\
+    \ normal_vec.x, b = normal_vec.y, c = normal_vec.z;\n    d = normal_vec.dot(A);\n\
+    \  }\n\n  int side(Point_3d<T> p) {\n    T x = normal_vec.dot(p) - d;\n    if\
+    \ (x == 0) return 0;\n    return (x > 0 ? 1 : -1);\n  }\n\n  template <typename\
+    \ Re>\n  Point_3d<Re> cross_point(Line_3d<T> L) {\n    // a + td\n    T x = normal_vec.dot(L.a);\n\
+    \    T y = normal_vec.dot(L.d);\n    Re t = Re(d - x) / y;\n    Point_3d<Re> ANS;\n\
+    \    ANS.x = L.a.x + t * L.d.x;\n    ANS.y = L.a.y + t * L.d.y;\n    ANS.z = L.a.z\
+    \ + t * L.d.z;\n    return ANS;\n  }\n};\n#line 2 \"geo3d/cross_point.hpp\"\n\n\
+    // 0: \u4EA4\u70B9\u306A\u3057\n// 1: \u4E00\u610F\u306A\u4EA4\u70B9\n// 2\uFF1A\
     2 \u3064\u4EE5\u4E0A\u306E\u4EA4\u70B9\ntemplate <typename T>\nint count_cross(Line_3d<T>\
     \ L1, Line_3d<T> L2) {\n  static_assert(!std::is_floating_point<T>::value);\n\
     \  if (L1.is_parallel(L2)) {\n    if (L1.contain(L2.a)) return 2;\n    return\
@@ -66,7 +76,7 @@ data:
   isVerificationFile: false
   path: geo3d/cross_point.hpp
   requiredBy: []
-  timestamp: '2024-10-26 12:13:04+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo3d/cross_point.hpp

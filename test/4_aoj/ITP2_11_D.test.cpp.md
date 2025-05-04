@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: setfunc/all_k_subset.hpp
     title: setfunc/all_k_subset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.u-aizu.ac.jp/onlinejudge/description.jsp?id=ITP2_11_D
@@ -216,7 +216,7 @@ data:
     \ <typename UINT>\nstruct all_k_subset {\n  static_assert(is_unsigned<UINT>::value);\n\
     \  struct iter {\n    const UINT n, k, s;\n    UINT t;\n    iter(UINT s, UINT\
     \ k) : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}\n    __attribute__((target(\"\
-    bmi2\"))) auto operator*() const { return _pdep_u32(t, s); }\n    auto operator++()\
+    bmi2\"))) auto operator*() const { return _pdep_u64(t, s); }\n    auto operator++()\
     \ {\n      if (k == 0) {\n        t = UINT(-1);\n      } else {\n        UINT\
     \ y = t + (-t & t);\n        t = y | ((y ^ t) >> lowbit(t << 2));\n      }\n \
     \   }\n    auto operator!=(const iter) const { return t < n; }\n  };\n  UINT s,\
@@ -239,8 +239,8 @@ data:
   isVerificationFile: true
   path: test/4_aoj/ITP2_11_D.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/4_aoj/ITP2_11_D.test.cpp
 layout: document

@@ -10,43 +10,43 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_labeled_bipartite.hpp
     title: graph/count/count_labeled_bipartite.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_pow.hpp
     title: mod/mod_pow.hpp
   - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mongomery_modint.hpp
     title: mod/mongomery_modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
   - icon: ':heavy_check_mark:'
@@ -55,7 +55,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/fps_exp.hpp
     title: poly/fps_exp.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
   - icon: ':heavy_check_mark:'
@@ -70,10 +70,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/integrate.hpp
     title: poly/integrate.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -660,11 +660,16 @@ data:
     \ a) { dat.eb(make_pow(a)); }\n\n  X operator()(ll n) {\n    X res = Mono::unit();\n\
     \    int k = 0;\n    while (n) {\n      int r = n % B;\n      n /= B;\n      if\
     \ (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }\n      res = Mono::op(res,\
-    \ dat[k][r]);\n      ++k;\n    }\n    return res;\n  }\n\n  X operator[](ll n)\
-    \ { return (*this)(n); }\n\nprivate:\n  vc<X> make_pow(X a) {\n    vc<X> res =\
-    \ {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(), a)); }\n    return\
-    \ res;\n  }\n};\n#line 4 \"graph/count/count_labeled_bipartite.hpp\"\n\n// connected\
-    \ = false: https://oeis.org/A047864\n// connected = true: https://oeis.org/A001832\n\
+    \ dat[k][r]);\n      ++k;\n    }\n    return res;\n  }\n\n  // n \u4E57\u8A08\u7B97\
+    \u306E\u3068\u304D\u306B\u304B\u3051\u308B\u3082\u306E\u3092\u5217\u6319. \u884C\
+    \u5217\u30D9\u30AF\u30C8\u30EB\u7A4D\u3068\u304B\u3067\u4F7F\u7528\u53EF.\n  vc<X>\
+    \ get_list(ll n) {\n    vc<X> lst;\n    int k = 0;\n    while (n) {\n      int\
+    \ r = n % B;\n      n /= B;\n      if (len(dat) == k) { dat.eb(make_pow(dat[k\
+    \ - 1].back())); }\n      lst.eb(dat[k][r]);\n      ++k;\n    }\n    return lst;\n\
+    \  }\n\n  X operator[](ll n) { return (*this)(n); }\n\nprivate:\n  vc<X> make_pow(X\
+    \ a) {\n    vc<X> res = {Mono::unit()};\n    FOR(B) { res.eb(Mono::op(res.back(),\
+    \ a)); }\n    return res;\n  }\n};\n#line 4 \"graph/count/count_labeled_bipartite.hpp\"\
+    \n\n// connected = false: https://oeis.org/A047864\n// connected = true: https://oeis.org/A001832\n\
     template <typename mint>\nvc<mint> count_labeled_bipartite(int N, bool connected)\
     \ {\n  // colored bipartite\n  vc<mint> F(N + 1);\n  mint ipow = 1;\n  F[0] =\
     \ 1;\n  FOR(i, 1, N + 1) F[i] = F[i - 1] * ipow, ipow *= inv<mint>(2);\n  FOR(i,\
@@ -720,7 +725,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/count_bipartite.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/count_bipartite.test.cpp

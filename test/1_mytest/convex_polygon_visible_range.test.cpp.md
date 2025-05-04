@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/convex_hull.hpp
     title: geo/convex_hull.hpp
   - icon: ':heavy_check_mark:'
@@ -13,10 +13,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/incremental_convexhull.hpp
     title: geo/incremental_convexhull.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -173,14 +173,14 @@ data:
     \ {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if\
     \ (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A -\
     \ B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
-    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\n\n// allow_180=true\
-    \ \u3067\u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\u3053\u308F\u308C\
-    \u308B\n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\u306A\u308B\n\
-    template <typename T, bool allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>&\
+    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n\
+    \  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL\
+    \ r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T> p) {\n\
+    \    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r *\
+    \ r;\n  }\n};\n#line 2 \"geo/convex_hull.hpp\"\n\n#line 4 \"geo/convex_hull.hpp\"\
+    \n\n// allow_180=true \u3067\u540C\u4E00\u5EA7\u6A19\u70B9\u304C\u3042\u308B\u3068\
+    \u3053\u308F\u308C\u308B\n// full \u306A\u3089 I[0] \u304C sorted \u3067 min \u306B\
+    \u306A\u308B\ntemplate <typename T, bool allow_180 = false>\nvector<int> ConvexHull(vector<Point<T>>&\
     \ XY, string mode = \"full\", bool sorted = false) {\n  assert(mode == \"full\"\
     \ || mode == \"lower\" || mode == \"upper\");\n  ll N = XY.size();\n  if (N ==\
     \ 1) return {0};\n  if (N == 2) {\n    if (XY[0] < XY[1]) return {0, 1};\n   \
@@ -242,21 +242,36 @@ data:
     \ A, P B) {\n    FOR(2) {\n      swap(A, B);\n      auto [a, b] = visible_range(A);\n\
     \      if ((point[a] - A).det(B - A) >= 0) return 0;\n      if ((point[b] - A).det(B\
     \ - A) <= 0) return 0;\n    }\n    return 1;\n  }\n\n  vc<T> AREA;\n\n  // point[i,...,j]\
-    \ (inclusive) \u306E\u9762\u7A4D\n  T area_between(int i, int j) {\n    assert(i\
-    \ <= j && j <= i + n);\n    if (j == i + n) return area2;\n    i %= n, j %= n;\n\
-    \    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n    return AREA[j]\
-    \ - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA() {\n  \
-    \  AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
-    \    AREA = cumsum<T>(AREA);\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\
-    \n\n// \u4E0B\u5074\u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct\
-    \ IncrementalConvexHull_Lower {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower()\
-    \ {}\n\n  int size() { return len(S); }\n\n  template <typename ADD_V, typename\
-    \ RM_V, typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V\
-    \ rm_v, ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >=\
-    \ 0) return;\n    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n\
-    \    add_v(p);\n    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n\
-    \      while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n\
-    \          left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
+    \ (inclusive) \u306E\u9762\u7A4D\u306E 2 \u500D\n  T area_between(int i, int j)\
+    \ {\n    assert(i <= j && j <= i + n);\n    if (j == i + n) return area2;\n  \
+    \  i %= n, j %= n;\n    if (i > j) j += n;\n    if (AREA.empty()) build_AREA();\n\
+    \    return AREA[j] - AREA[i] + (point[j % n].det(point[i]));\n  }\n\n  void build_AREA()\
+    \ {\n    AREA.resize(2 * n);\n    FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);\n\
+    \    AREA = cumsum<T>(AREA);\n  }\n\n  // \u76F4\u7DDA\u306E\u5DE6\u5074\u306E\
+    \u9762\u7A4D. strict \u306B 2 \u56DE\u4EA4\u308F\u308B\u3053\u3068\u3092\u4EEE\
+    \u5B9A.\n  // https://codeforces.com/contest/799/problem/G\n  T left_area(Line<T>\
+    \ L) {\n    static_assert(is_same<T, double>::value || is_same<T, long double>::value);\n\
+    \    Point<T> normal(L.a, L.b);\n    int a = min_dot(normal).se;\n    int b =\
+    \ max_dot(normal).se;\n    if (b < a) b += n;\n    assert(L.eval(point[a % n])\
+    \ < 0 && L.eval(point[b % n]) > 0);\n    int p = binary_search([&](int i) -> bool\
+    \ { return L.eval(point[i % n]) < 0; }, a, b);\n    int q = binary_search([&](int\
+    \ i) -> bool { return L.eval(point[i % n]) > 0; }, b, a + n);\n    T s, t;\n \
+    \   {\n      T x = L.eval(point[p % n]);\n      T y = L.eval(point[(p + 1) % n]);\n\
+    \      s = x / (x - y);\n    }\n    {\n      T x = L.eval(point[q % n]);\n   \
+    \   T y = L.eval(point[(q + 1) % n]);\n      t = x / (x - y);\n    }\n    P A(point[p\
+    \ % n]), B(point[(p + 1) % n]);\n    P C(point[q % n]), D(point[(q + 1) % n]);\n\
+    \    P X = B * s + A * (1 - s);\n    P Y = D * t + C * (1 - t);\n    T ANS = area_between(p,\
+    \ q);\n    ANS -= (A - C).det(X - C);\n    ANS += (Y - C).det(X - C);\n    return\
+    \ ANS;\n  }\n};\n#line 2 \"geo/incremental_convexhull.hpp\"\n\n// \u4E0B\u5074\
+    \u51F8\u5305\ntemplate <typename T, bool strict = true>\nstruct IncrementalConvexHull_Lower\
+    \ {\n  using P = Point<T>;\n  set<P> S;\n\n  IncrementalConvexHull_Lower() {}\n\
+    \n  int size() { return len(S); }\n\n  template <typename ADD_V, typename RM_V,\
+    \ typename ADD_E, typename RM_E>\n  void add(Point<T> p, ADD_V add_v, RM_V rm_v,\
+    \ ADD_E add_e, RM_E rm_e) {\n    int s = side(p);\n    if (strict && s >= 0) return;\n\
+    \    if (!strict && s > 0) return;\n\n    // \u70B9\u8FFD\u52A0\n    add_v(p);\n\
+    \    S.insert(p);\n\n    vc<P> left;\n    {\n      auto it = S.find(p);\n    \
+    \  while (it != S.begin()) {\n        --it;\n        if (left.empty()) {\n   \
+    \       left.eb(*it);\n          continue;\n        }\n        auto a = *it;\n\
     \        auto b = left.back();\n        T det = (b - a).det(p - a);\n        if\
     \ (strict && det > 0) break;\n        if (!strict && det >= 0) break;\n      \
     \  left.eb(a);\n      }\n    }\n\n    vc<P> right;\n    {\n      auto it = S.find(p);\n\
@@ -345,7 +360,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/convex_polygon_visible_range.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/convex_polygon_visible_range.test.cpp

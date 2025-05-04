@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   _extendedRequiredBy:
@@ -44,7 +44,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/compositional_inverse.hpp
     title: poly/compositional_inverse.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/poly_taylor_shift.hpp
     title: poly/poly_taylor_shift.hpp
   - icon: ':heavy_check_mark:'
@@ -180,15 +180,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2583.test.cpp
     title: test/3_yukicoder/2583.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587.test.cpp
     title: test/3_yukicoder/2587.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2587_2.test.cpp
     title: test/3_yukicoder/2587_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"nt/primetable.hpp\"\n\ntemplate <typename T = int>\nvc<T>\
@@ -225,69 +225,69 @@ data:
   isVerificationFile: false
   path: mod/powertable.hpp
   requiredBy:
-  - seq/famous/stirling_number_1.hpp
-  - seq/famous/riemann_zeta_even.hpp
-  - seq/famous/eulerian_number.hpp
-  - seq/famous/faulhaber.hpp
-  - seq/famous/surjection.hpp
-  - seq/famous/stirling_number_2.hpp
-  - seq/famous/bernoulli.hpp
-  - poly/composition.hpp
-  - poly/composition_f_a_plus_bx.hpp
+  - linalg/det_A_plus_xB.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_sum_polynomial.hpp
   - poly/composition_f_ex_minus_1.hpp
-  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/composition_f_x_plus_1x.hpp
-  - poly/poly_taylor_shift.hpp
   - poly/compositional_inverse.hpp
   - poly/composition_f_1_minus_ex.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+  - poly/composition_f_a_plus_bx.hpp
+  - poly/composition_f_x_plus_1x.hpp
   - poly/prefix_sum_of_polynomial.hpp
-  - convex/lattice_point_sum_polynomial.hpp
-  - convex/lattice_point_sum_polynomial_pq.hpp
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  - linalg/det_A_plus_xB.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/poly_taylor_shift.hpp
+  - poly/composition.hpp
+  - seq/famous/stirling_number_2.hpp
+  - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/surjection.hpp
+  - seq/famous/faulhaber.hpp
+  - seq/famous/bernoulli.hpp
+  - seq/famous/stirling_number_1.hpp
+  - seq/famous/eulerian_number.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/bell.test.cpp
+  - test/3_yukicoder/1321.test.cpp
+  - test/3_yukicoder/2206.test.cpp
+  - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/1357.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/3_yukicoder/1760.test.cpp
+  - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1875.test.cpp
+  - test/3_yukicoder/1821.test.cpp
+  - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/1303.test.cpp
+  - test/3_yukicoder/2005.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
   - test/1_mytest/eulerian_number.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - test/1_mytest/faulhaber.test.cpp
   - test/1_mytest/composition_f_x_plus_1x.test.cpp
-  - test/3_yukicoder/1392.test.cpp
-  - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/2580.test.cpp
-  - test/3_yukicoder/2583.test.cpp
-  - test/3_yukicoder/1821.test.cpp
-  - test/3_yukicoder/2206.test.cpp
-  - test/3_yukicoder/1321.test.cpp
-  - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2005.test.cpp
-  - test/3_yukicoder/1760.test.cpp
-  - test/3_yukicoder/1303.test.cpp
-  - test/3_yukicoder/1357.test.cpp
-  - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/2587.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/1_mytest/bell.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/composition_of_fps.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
+  - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - test/2_library_checker/polynomial/composition_dmint.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
-  - test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/2_library_checker/number_theory/bernoulli.test.cpp
-  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
   - test/2_library_checker/other/sum_of_exp_times_poly_limit.test.cpp
+  - test/2_library_checker/other/sum_of_exp_times_poly.test.cpp
 documentation_of: mod/powertable.hpp
 layout: document
 redirect_from:

@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: geo/base.hpp
     title: geo/base.hpp
   _extendedRequiredBy: []
@@ -57,14 +57,14 @@ data:
     \ {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if\
     \ (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A -\
     \ B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
-    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle(Point<REAL>\
-    \ O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL r) : O(x, y), r(r)\
-    \ {}\n  template <typename T>\n  bool contain(Point<T> p) {\n    REAL dx = p.x\
-    \ - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r * r;\n  }\n};\n#line\
-    \ 2 \"geo/perpendicular_bisector.hpp\"\n\ntemplate <typename T>\nLine<T> perpendicular_bisector(Point<T>\
-    \ A, Point<T> B) {\n  assert(A != B);\n  T a = 2 * (B.x - A.x);\n  T b = 2 * (B.y\
-    \ - A.y);\n  T c = (A.x * A.x + A.y * A.y) - (B.x * B.x + B.y * B.y);\n  return\
-    \ Line<T>(a, b, c);\n}\n"
+    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n\
+    \  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL\
+    \ r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T> p) {\n\
+    \    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r *\
+    \ r;\n  }\n};\n#line 2 \"geo/perpendicular_bisector.hpp\"\n\ntemplate <typename\
+    \ T>\nLine<T> perpendicular_bisector(Point<T> A, Point<T> B) {\n  assert(A !=\
+    \ B);\n  T a = 2 * (B.x - A.x);\n  T b = 2 * (B.y - A.y);\n  T c = (A.x * A.x\
+    \ + A.y * A.y) - (B.x * B.x + B.y * B.y);\n  return Line<T>(a, b, c);\n}\n"
   code: "#include \"geo/base.hpp\"\n\ntemplate <typename T>\nLine<T> perpendicular_bisector(Point<T>\
     \ A, Point<T> B) {\n  assert(A != B);\n  T a = 2 * (B.x - A.x);\n  T b = 2 * (B.y\
     \ - A.y);\n  T c = (A.x * A.x + A.y * A.y) - (B.x * B.x + B.y * B.y);\n  return\
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: geo/perpendicular_bisector.hpp
   requiredBy: []
-  timestamp: '2024-10-20 23:29:28+09:00'
+  timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/perpendicular_bisector.hpp

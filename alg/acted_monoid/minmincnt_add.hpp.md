@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -58,8 +58,8 @@ data:
   isVerificationFile: false
   path: alg/acted_monoid/minmincnt_add.hpp
   requiredBy:
-  - graph/count/count_connected_intervals.hpp
   - ds/rectangle_union.hpp
+  - graph/count/count_connected_intervals.hpp
   timestamp: '2024-01-23 05:58:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

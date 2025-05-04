@@ -1,20 +1,20 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: convex/cht.hpp
     title: convex/cht.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/line_add_get_min
@@ -250,14 +250,15 @@ data:
     \ a);\r\n    cht_max.add(b, a);\r\n    pair<T, T> p = {a, b};\r\n    MP[p] = i;\r\
     \n\r\n    if (chmax(amax, a)) amax_idx = i;\r\n    if (chmin(amin, a)) amin_idx\
     \ = i;\r\n    if (chmax(bmax, b)) bmax_idx = i;\r\n    if (chmin(bmin, b)) bmin_idx\
-    \ = i;\r\n  }\r\n\r\n  pair<T, int> get_max(T x, T y) {\r\n    if (cht_min.empty())\
-    \ return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n      if (bmax * y > bmin\
-    \ * y) { return {bmax * y, bmax_idx}; }\r\n      return {bmin * y, bmin_idx};\r\
-    \n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\n      auto l = cht_max.lower_bound(z);\r\
-    \n      T a = l->m, b = l->k;\r\n      pair<T, T> p = {a, b};\r\n      int idx\
-    \ = MP[p];\r\n      return {a * x + b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\
-    \n    T a = -(l->m), b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx\
-    \ = MP[p];\r\n    return {a * x + b * y, idx};\r\n  }\r\n\r\n  pair<T, int> get_min(T\
+    \ = i;\r\n  }\r\n\r\n  // max, idx\r\n  pair<T, int> get_max(T x, T y) {\r\n \
+    \   if (cht_min.empty()) return {-infty<T>, -1};\r\n\r\n    if (x == 0) {\r\n\
+    \      if (bmax * y > bmin * y) { return {bmax * y, bmax_idx}; }\r\n      return\
+    \ {bmin * y, bmin_idx};\r\n    }\r\n    ld z = ld(y) / x;\r\n    if (x > 0) {\r\
+    \n      auto l = cht_max.lower_bound(z);\r\n      T a = l->m, b = l->k;\r\n  \
+    \    pair<T, T> p = {a, b};\r\n      int idx = MP[p];\r\n      return {a * x +\
+    \ b * y, idx};\r\n    }\r\n    auto l = cht_min.lower_bound(z);\r\n    T a = -(l->m),\
+    \ b = -(l->k);\r\n    pair<T, T> p = {a, b};\r\n    int idx = MP[p];\r\n    return\
+    \ {a * x + b * y, idx};\r\n  }\r\n\r\n  // min, idx\r\n  pair<T, int> get_min(T\
     \ x, T y) {\r\n    auto [f, i] = get_max(-x, -y);\r\n    return {-f, i};\r\n \
     \ }\r\n};\r\n#line 5 \"test/2_library_checker/data_structure/line_add_get_min.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  CHT_min<ll> cht_min;\n  CHT_max<ll> cht_max;\n\
@@ -281,8 +282,8 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/line_add_get_min.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/line_add_get_min.test.cpp
 layout: document

@@ -1,17 +1,17 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/my_bitset.hpp
     title: ds/my_bitset.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
     title: test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
@@ -139,21 +139,24 @@ data:
     \    assert(len(other) == N);\n    FOR(i, len(dat)) {\n      u64 a = dat[i], b\
     \ = other.dat[i];\n      if ((a & b) != a) return false;\n    }\n    return true;\n\
     \  }\n\n  int _Find_first() { return next(0); }\n  int _Find_next(int p) { return\
-    \ next(p + 1); }\n\n  static string TO_STR[256];\n  string to_string() const {\n\
-    \    if (TO_STR[0].empty()) precompute();\n    string S;\n    for (auto &x: dat)\
-    \ { FOR(i, 8) S += TO_STR[(x >> (8 * i) & 255)]; }\n    S.resize(N);\n    return\
-    \ S;\n  }\n\n  static void precompute() {\n    FOR(s, 256) {\n      string x;\n\
-    \      FOR(i, 8) x += '0' + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n\
-    };\nstring My_Bitset::TO_STR[256];\n#line 2 \"linalg/bitset/mat_inv.hpp\"\n\n\
-    // det = 0 \u306E\u5834\u5408\u306B\u306F empty \u3092\u304B\u3048\u3059\ntemplate\
-    \ <typename BS>\nvc<BS> mat_inv(vc<BS> A) {\n  int N = len(A);\n  vc<BS> B(N);\n\
-    \  if constexpr (is_same_v<BS, My_Bitset>) { FOR(i, N) B[i] = BS(N); }\n  FOR(i,\
-    \ N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k, i + 1, N) if (A[k][i]) {\n      swap(A[k],\
-    \ A[i]);\n      swap(B[k], B[i]);\n      break;\n    }\n    if (!A[i][i]) return\
-    \ {};\n    FOR(k, N) {\n      if (i == k) continue;\n      if (A[k][i]) {\n  \
-    \      if constexpr (is_same_v<BS, My_Bitset>) {\n          A[k].xor_suffix(i,\
-    \ A[i]);\n          B[k] ^= B[i];\n        } else {\n          A[k] ^= A[i];\n\
-    \          B[k] ^= B[i];\n        }\n      }\n    }\n  }\n  return B;\n}\n"
+    \ next(p + 1); }\n\n  template <typename F>\n  void enumerate(int L, int R, F\
+    \ f) {\n    if (L >= size()) return;\n    int p = ((*this)[L] ? L : _Find_next(L));\n\
+    \    while (p < R) {\n      f(p);\n      p = _Find_next(p);\n    }\n  }\n\n  static\
+    \ string TO_STR[256];\n  string to_string() const {\n    if (TO_STR[0].empty())\
+    \ precompute();\n    string S;\n    for (auto &x: dat) { FOR(i, 8) S += TO_STR[(x\
+    \ >> (8 * i) & 255)]; }\n    S.resize(N);\n    return S;\n  }\n\n  static void\
+    \ precompute() {\n    FOR(s, 256) {\n      string x;\n      FOR(i, 8) x += '0'\
+    \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
+    #line 2 \"linalg/bitset/mat_inv.hpp\"\n\n// det = 0 \u306E\u5834\u5408\u306B\u306F\
+    \ empty \u3092\u304B\u3048\u3059\ntemplate <typename BS>\nvc<BS> mat_inv(vc<BS>\
+    \ A) {\n  int N = len(A);\n  vc<BS> B(N);\n  if constexpr (is_same_v<BS, My_Bitset>)\
+    \ { FOR(i, N) B[i] = BS(N); }\n  FOR(i, N) B[i][i] = 1;\n  FOR(i, N) {\n    FOR(k,\
+    \ i + 1, N) if (A[k][i]) {\n      swap(A[k], A[i]);\n      swap(B[k], B[i]);\n\
+    \      break;\n    }\n    if (!A[i][i]) return {};\n    FOR(k, N) {\n      if\
+    \ (i == k) continue;\n      if (A[k][i]) {\n        if constexpr (is_same_v<BS,\
+    \ My_Bitset>) {\n          A[k].xor_suffix(i, A[i]);\n          B[k] ^= B[i];\n\
+    \        } else {\n          A[k] ^= A[i];\n          B[k] ^= B[i];\n        }\n\
+    \      }\n    }\n  }\n  return B;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// det = 0 \u306E\u5834\u5408\u306B\u306F\
     \ empty \u3092\u304B\u3048\u3059\ntemplate <typename BS>\nvc<BS> mat_inv(vc<BS>\
     \ A) {\n  int N = len(A);\n  vc<BS> B(N);\n  if constexpr (is_same_v<BS, My_Bitset>)\
@@ -169,8 +172,8 @@ data:
   isVerificationFile: false
   path: linalg/bitset/mat_inv.hpp
   requiredBy: []
-  timestamp: '2025-01-04 13:02:14+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/2_library_checker/linear_algebra/inverse_matrix_mod_2.test.cpp
 documentation_of: linalg/bitset/mat_inv.hpp

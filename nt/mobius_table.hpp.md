@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
   - icon: ':heavy_check_mark:'
@@ -60,8 +60,8 @@ data:
   isVerificationFile: false
   path: nt/mobius_table.hpp
   requiredBy:
-  - nt/range_rational_count.hpp
   - nt/mertens.hpp
+  - nt/range_rational_count.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

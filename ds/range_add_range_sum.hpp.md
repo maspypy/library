@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fenwicktree/fenwicktree.hpp
     title: ds/fenwicktree/fenwicktree.hpp
   _extendedRequiredBy: []
@@ -126,8 +126,8 @@ data:
   timestamp: '2024-11-18 00:58:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/DSL_2_E.test.cpp
   - test/4_aoj/DSL_2_G.test.cpp
+  - test/4_aoj/DSL_2_E.test.cpp
 documentation_of: ds/range_add_range_sum.hpp
 layout: document
 redirect_from:

@@ -1,74 +1,74 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
     title: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
     title: test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
     title: test/2_library_checker/string/prefix_substring_lcs.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1332.test.cpp
     title: test/3_yukicoder/1332.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1600_2.test.cpp
     title: test/3_yukicoder/1600_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1625_2.test.cpp
     title: test/3_yukicoder/1625_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/1919_2.test.cpp
     title: test/3_yukicoder/1919_2.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2065.test.cpp
     title: test/3_yukicoder/2065.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2859.test.cpp
     title: test/3_yukicoder/2859.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/919.test.cpp
     title: test/3_yukicoder/919.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/924.test.cpp
     title: test/3_yukicoder/924.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"ds/bit_vector.hpp\"\nstruct Bit_Vector {\n  int n;\n  bool\
@@ -220,21 +220,25 @@ data:
     \ int R, int k1, int k2) {\r\n    static_assert(has_inverse<Mono>::value);\r\n\
     \    T t1 = kth_value_and_prod(L, R, k1).se;\r\n    T t2 = kth_value_and_prod(L,\
     \ R, k2).se;\r\n    return Mono::op(Mono::inverse(t1), t2);\r\n  }\r\n\r\n  //\
-    \ [L,R) x [0,y) \u3067\u306E check(cnt, prod) \u304C true \u3068\u306A\u308B\u6700\
-    \u5927\u306E (cnt,prod)\r\n  template <typename F>\r\n  pair<int, T> max_right(F\
-    \ check, int L, int R) {\r\n    int cnt = 0;\r\n    T t = Mono::unit();\r\n  \
-    \  assert(check(0, Mono::unit()));\r\n    if (check(R - L, seg[log].prod(L, R)))\
-    \ { return {R - L, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1; d >= 0;\
-    \ --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
+    \ [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\u306A\u308B\
+    \u6700\u5927\u306E (cnt,prod)\r\n  // \u305F\u3060\u3057 y \u306F\u3074\u3063\u305F\
+    \u308A\u306E\u3068\u3053\u308D\u3060\u3051\u3067\u3059\r\n  template <typename\
+    \ F>\r\n  tuple<Y, int, T> max_right(F check, int L, int R) {\r\n    int cnt =\
+    \ 0;\r\n    int p = 0;\r\n    T t = Mono::unit();\r\n    assert(check(-infty<Y>,\
+    \ 0, Mono::unit()));\r\n    if (check(infty<Y>, R - L, seg[log].prod(L, R))) {\
+    \ return {R - L, infty<Y>, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1;\
+    \ d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
     \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      int cnt1\
-    \ = cnt + r0 - l0;\r\n      T t1 = Mono::op(t, seg[d].prod(l0, r0));\r\n     \
-    \ if (check(cnt1, t1)) {\r\n        cnt = cnt1, t = t1, L = l1, R = r1;\r\n  \
-    \    } else {\r\n        L = l0, R = r0;\r\n      }\r\n    }\r\n    return {cnt,\
-    \ t};\r\n  }\r\n\r\n  void set(int i, T t) {\r\n    assert(0 <= i && i < n);\r\
-    \n    int L = i, R = i + 1;\r\n    seg[log].set(L, t);\r\n    for (int d = log\
-    \ - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
-    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0\
-    \ < r0) L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].set(L,\
+    \ = cnt + r0 - l0;\r\n      int p1 = p | 1 << d;\r\n      T t1 = Mono::op(t, seg[d].prod(l0,\
+    \ r0));\r\n      int y1 = (p1 < len(ItoY) ? ItoY[p1] : infty<Y>);\r\n      if\
+    \ (check(y1, cnt1, t1)) {\r\n        p = p1, cnt = cnt1, t = t1, L = l1, R = r1;\r\
+    \n      } else {\r\n        L = l0, R = r0;\r\n      }\r\n    }\r\n    int y =\
+    \ (p < len(ItoY) ? ItoY[p] : infty<Y>);\r\n    return {y, cnt, t};\r\n  }\r\n\r\
+    \n  void set(int i, T t) {\r\n    assert(0 <= i && i < n);\r\n    int L = i, R\
+    \ = i + 1;\r\n    seg[log].set(L, t);\r\n    for (int d = log - 1; d >= 0; --d)\
+    \ {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\
+    \n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0 < r0)\
+    \ L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].set(L,\
     \ t);\r\n    }\r\n  }\r\n  void multiply(int i, T t) {\r\n    assert(0 <= i &&\
     \ i < n);\r\n    int L = i, R = i + 1;\r\n    seg[log].multiply(L, t);\r\n   \
     \ for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L,\
@@ -342,21 +346,25 @@ data:
     \ int R, int k1, int k2) {\r\n    static_assert(has_inverse<Mono>::value);\r\n\
     \    T t1 = kth_value_and_prod(L, R, k1).se;\r\n    T t2 = kth_value_and_prod(L,\
     \ R, k2).se;\r\n    return Mono::op(Mono::inverse(t1), t2);\r\n  }\r\n\r\n  //\
-    \ [L,R) x [0,y) \u3067\u306E check(cnt, prod) \u304C true \u3068\u306A\u308B\u6700\
-    \u5927\u306E (cnt,prod)\r\n  template <typename F>\r\n  pair<int, T> max_right(F\
-    \ check, int L, int R) {\r\n    int cnt = 0;\r\n    T t = Mono::unit();\r\n  \
-    \  assert(check(0, Mono::unit()));\r\n    if (check(R - L, seg[log].prod(L, R)))\
-    \ { return {R - L, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1; d >= 0;\
-    \ --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
+    \ [L,R) x [0,y) \u3067\u306E check(y, cnt, prod) \u304C true \u3068\u306A\u308B\
+    \u6700\u5927\u306E (cnt,prod)\r\n  // \u305F\u3060\u3057 y \u306F\u3074\u3063\u305F\
+    \u308A\u306E\u3068\u3053\u308D\u3060\u3051\u3067\u3059\r\n  template <typename\
+    \ F>\r\n  tuple<Y, int, T> max_right(F check, int L, int R) {\r\n    int cnt =\
+    \ 0;\r\n    int p = 0;\r\n    T t = Mono::unit();\r\n    assert(check(-infty<Y>,\
+    \ 0, Mono::unit()));\r\n    if (check(infty<Y>, R - L, seg[log].prod(L, R))) {\
+    \ return {R - L, infty<Y>, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1;\
+    \ d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
     \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      int cnt1\
-    \ = cnt + r0 - l0;\r\n      T t1 = Mono::op(t, seg[d].prod(l0, r0));\r\n     \
-    \ if (check(cnt1, t1)) {\r\n        cnt = cnt1, t = t1, L = l1, R = r1;\r\n  \
-    \    } else {\r\n        L = l0, R = r0;\r\n      }\r\n    }\r\n    return {cnt,\
-    \ t};\r\n  }\r\n\r\n  void set(int i, T t) {\r\n    assert(0 <= i && i < n);\r\
-    \n    int L = i, R = i + 1;\r\n    seg[log].set(L, t);\r\n    for (int d = log\
-    \ - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
-    \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0\
-    \ < r0) L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].set(L,\
+    \ = cnt + r0 - l0;\r\n      int p1 = p | 1 << d;\r\n      T t1 = Mono::op(t, seg[d].prod(l0,\
+    \ r0));\r\n      int y1 = (p1 < len(ItoY) ? ItoY[p1] : infty<Y>);\r\n      if\
+    \ (check(y1, cnt1, t1)) {\r\n        p = p1, cnt = cnt1, t = t1, L = l1, R = r1;\r\
+    \n      } else {\r\n        L = l0, R = r0;\r\n      }\r\n    }\r\n    int y =\
+    \ (p < len(ItoY) ? ItoY[p] : infty<Y>);\r\n    return {y, cnt, t};\r\n  }\r\n\r\
+    \n  void set(int i, T t) {\r\n    assert(0 <= i && i < n);\r\n    int L = i, R\
+    \ = i + 1;\r\n    seg[log].set(L, t);\r\n    for (int d = log - 1; d >= 0; --d)\
+    \ {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);\r\
+    \n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      if (l0 < r0)\
+    \ L = l0, R = r0;\r\n      if (l0 == r0) L = l1, R = r1;\r\n      seg[d].set(L,\
     \ t);\r\n    }\r\n  }\r\n  void multiply(int i, T t) {\r\n    assert(0 <= i &&\
     \ i < n);\r\n    int L = i, R = i + 1;\r\n    seg[log].multiply(L, t);\r\n   \
     \ for (int d = log - 1; d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L,\
@@ -371,27 +379,27 @@ data:
   isVerificationFile: false
   path: ds/wavelet_matrix/wavelet_matrix.hpp
   requiredBy:
-  - string/prefix_substring_LCS.hpp
-  - graph/ds/tree_wavelet_matrix.hpp
   - ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
-  timestamp: '2024-12-25 20:50:37+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  - graph/ds/tree_wavelet_matrix.hpp
+  - string/prefix_substring_LCS.hpp
+  timestamp: '2025-05-05 02:10:07+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
-  - test/1_mytest/wavelet_matrix.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
-  - test/3_yukicoder/919.test.cpp
-  - test/3_yukicoder/2065.test.cpp
   - test/3_yukicoder/2859.test.cpp
-  - test/3_yukicoder/1332.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/924.test.cpp
   - test/3_yukicoder/1919_2.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/919.test.cpp
+  - test/3_yukicoder/2065.test.cpp
+  - test/3_yukicoder/1332.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/1_mytest/wavelet_matrix.test.cpp
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
+  - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
+  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
-  - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix.hpp
 layout: document
 redirect_from:

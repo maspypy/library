@@ -260,14 +260,14 @@ data:
   timestamp: '2024-11-07 04:20:47+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/4_aoj/GRL_6_B.test.cpp
-  - test/3_yukicoder/1341.test.cpp
-  - test/3_yukicoder/2604.test.cpp
-  - test/3_yukicoder/1301.test.cpp
   - test/3_yukicoder/1676.test.cpp
-  - test/3_yukicoder/1678.test.cpp
-  - test/3_yukicoder/1324.test.cpp
   - test/3_yukicoder/1288.test.cpp
+  - test/3_yukicoder/1678.test.cpp
+  - test/3_yukicoder/1301.test.cpp
+  - test/3_yukicoder/1341.test.cpp
+  - test/3_yukicoder/1324.test.cpp
+  - test/3_yukicoder/2604.test.cpp
+  - test/4_aoj/GRL_6_B.test.cpp
   - test/2_library_checker/graph/assignment_mcf.test.cpp
 documentation_of: flow/mincostflow.hpp
 layout: document

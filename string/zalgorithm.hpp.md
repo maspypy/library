@@ -27,15 +27,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1848.test.cpp
     title: test/3_yukicoder/1848.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/3_yukicoder/2626_2.test.cpp
     title: test/3_yukicoder/2626_2.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2858.test.cpp
     title: test/3_yukicoder/2858.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/zalgorithm.hpp\"\n\ntemplate <typename STRING> //\
@@ -55,18 +55,18 @@ data:
   isVerificationFile: false
   path: string/zalgorithm.hpp
   requiredBy:
-  - seq/interpolate_periodic_sequence.hpp
   - string/run_enumerate.hpp
   - string/is_substring.hpp
+  - seq/interpolate_periodic_sequence.hpp
   timestamp: '2024-09-03 08:13:21+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
-  - test/1_mytest/is_substring.test.cpp
-  - test/3_yukicoder/1848.test.cpp
-  - test/3_yukicoder/2626_2.test.cpp
   - test/3_yukicoder/2858.test.cpp
-  - test/2_library_checker/string/run_enumerate_vec.test.cpp
+  - test/3_yukicoder/2626_2.test.cpp
+  - test/3_yukicoder/1848.test.cpp
+  - test/1_mytest/is_substring.test.cpp
   - test/2_library_checker/string/zalgorithm.test.cpp
+  - test/2_library_checker/string/run_enumerate_vec.test.cpp
   - test/2_library_checker/string/run_enumerate.test.cpp
 documentation_of: string/zalgorithm.hpp
 layout: document
