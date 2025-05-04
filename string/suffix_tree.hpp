@@ -97,4 +97,68 @@ struct Suffix_Tree {
     }
     return {-1, 0};
   }
+
+  // 頂点番号 [0,n) が suffix そのものになるような木.
+  // 頂点 G.N - 1 が root
+  Graph<int, 1> build_2() {
+    auto& SA = X.SA;
+    auto& LCP = X.LCP;
+
+    int nxt = X.N;
+
+    vc<pair<int, int>> edges;
+
+    int N = len(SA);
+    if (N == 1) {
+      Graph<int, 1> G(2);
+      G.add(0, 1);
+      G.build();
+      dat.eb(0, 1, 0, 1), dat.eb(0, 1, 1, 2);
+      return {G, dat};
+    }
+
+    dat.eb(0, N, -1, 0);
+    CartesianTree<int, true> CT(LCP);
+
+    auto dfs = [&](auto& dfs, int p, int idx, int h) -> void {
+      int L = CT.range[idx].fi;
+      int R = CT.range[idx].se + 1;
+      int hh = LCP[idx];
+      if (h < hh) {
+        edges.eb(p, len(dat));
+        p = len(dat);
+        dat.eb(L, R, h, hh);
+      }
+      if (CT.lch[idx] == -1) {
+        if (hh < N - SA[idx]) {
+          edges.eb(p, len(dat));
+          dat.eb(idx, idx + 1, hh, N - SA[idx]);
+        }
+      } else {
+        dfs(dfs, p, CT.lch[idx], hh);
+      }
+      if (CT.rch[idx] == -1) {
+        if (hh < N - SA[idx + 1]) {
+          edges.eb(p, len(dat));
+          dat.eb(idx + 1, idx + 2, hh, N - SA[idx + 1]);
+        }
+      } else {
+        dfs(dfs, p, CT.rch[idx], hh);
+      }
+    };
+    int r = CT.root;
+    if (LCP[r] > 0) {
+      edges.eb(0, 1);
+      dat.eb(0, N, 0, LCP[r]);
+      dfs(dfs, 1, r, LCP[r]);
+    } else {
+      dfs(dfs, 0, r, 0);
+    }
+    for (auto& [a, b, c, d]: dat) ++c, ++d;
+
+    Graph<int, 1> G(len(dat));
+    for (auto&& [a, b]: edges) G.add(a, b);
+    G.build();
+    return {G, dat};
+  }
 };
