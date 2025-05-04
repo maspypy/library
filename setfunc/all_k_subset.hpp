@@ -12,7 +12,7 @@ struct all_k_subset {
     const UINT n, k, s;
     UINT t;
     iter(UINT s, UINT k) : n(UINT(1) << popcnt(s)), k(k), s(s), t((UINT(1) << k) - 1) {}
-    __attribute__((target("bmi2"))) auto operator*() const { return _pdep_u32(t, s); }
+    __attribute__((target("bmi2"))) auto operator*() const { return _pdep_u64(t, s); }
     auto operator++() {
       if (k == 0) {
         t = UINT(-1);

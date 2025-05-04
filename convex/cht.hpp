@@ -101,6 +101,7 @@ struct CHT_xy {
     if (chmin(bmin, b)) bmin_idx = i;
   }
 
+  // max, idx
   pair<T, int> get_max(T x, T y) {
     if (cht_min.empty()) return {-infty<T>, -1};
 
@@ -123,6 +124,7 @@ struct CHT_xy {
     return {a * x + b * y, idx};
   }
 
+  // min, idx
   pair<T, int> get_min(T x, T y) {
     auto [f, i] = get_max(-x, -y);
     return {-f, i};

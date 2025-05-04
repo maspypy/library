@@ -1,11 +1,11 @@
 #include "ds/unionfind/unionfind.hpp"
 
 // Brouvka
-// find_unused(v)：unused なうちで、v と最小コストで結べる点を探す。
+// find_unused(v)：unused なうちで、v と最小コストで結べる点を探す。(w,cost)
 // pair<int,COST> なければ {-1,*} を返すこと。
+// 極大な森を返す
 template <typename COST, typename F0, typename F1, typename F2>
-vc<tuple<int, int, COST>> blackbox_mst(int N, F0 set_used, F1 set_unused,
-                                       F2 find_unused) {
+vc<tuple<int, int, COST>> blackbox_mst(int N, F0 set_used, F1 set_unused, F2 find_unused) {
   using edge = tuple<int, int, COST>;
   UnionFind uf(N);
   vc<edge> res;
@@ -42,8 +42,7 @@ vc<tuple<int, int, COST>> blackbox_mst(int N, F0 set_used, F1 set_unused,
 // add：探索対象に追加
 // find：(w,wt) or (-1,*)
 template <typename COST, typename F0, typename F1, typename F2>
-vc<tuple<int, int, COST>> blackbox_mst_incremental(int N, F0 init, F1 add,
-                                                   F2 find) {
+vc<tuple<int, int, COST>> blackbox_mst_incremental(int N, F0 init, F1 add, F2 find) {
   using edge = tuple<int, int, COST>;
   UnionFind uf(N);
   vc<edge> res;

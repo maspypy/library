@@ -102,7 +102,7 @@ struct ConvexPolygon {
 
   vc<T> AREA;
 
-  // point[i,...,j] (inclusive) の面積
+  // point[i,...,j] (inclusive) の面積の 2 倍
   T area_between(int i, int j) {
     assert(i <= j && j <= i + n);
     if (j == i + n) return area2;
@@ -116,5 +116,37 @@ struct ConvexPolygon {
     AREA.resize(2 * n);
     FOR(i, n) AREA[n + i] = AREA[i] = point[i].det(point[nxt_idx(i)]);
     AREA = cumsum<T>(AREA);
+  }
+
+  // 直線の左側の面積. strict に 2 回交わることを仮定.
+  // https://codeforces.com/contest/799/problem/G
+  T left_area(Line<T> L) {
+    static_assert(is_same<T, double>::value || is_same<T, long double>::value);
+    Point<T> normal(L.a, L.b);
+    int a = min_dot(normal).se;
+    int b = max_dot(normal).se;
+    if (b < a) b += n;
+    assert(L.eval(point[a % n]) < 0 && L.eval(point[b % n]) > 0);
+    int p = binary_search([&](int i) -> bool { return L.eval(point[i % n]) < 0; }, a, b);
+    int q = binary_search([&](int i) -> bool { return L.eval(point[i % n]) > 0; }, b, a + n);
+    T s, t;
+    {
+      T x = L.eval(point[p % n]);
+      T y = L.eval(point[(p + 1) % n]);
+      s = x / (x - y);
+    }
+    {
+      T x = L.eval(point[q % n]);
+      T y = L.eval(point[(q + 1) % n]);
+      t = x / (x - y);
+    }
+    P A(point[p % n]), B(point[(p + 1) % n]);
+    P C(point[q % n]), D(point[(q + 1) % n]);
+    P X = B * s + A * (1 - s);
+    P Y = D * t + C * (1 - t);
+    T ANS = area_between(p, q);
+    ANS -= (A - C).det(X - C);
+    ANS += (Y - C).det(X - C);
+    return ANS;
   }
 };

@@ -228,25 +228,30 @@ struct Wavelet_Matrix {
     return Mono::op(Mono::inverse(t1), t2);
   }
 
-  // [L,R) x [0,y) での check(cnt, prod) が true となる最大の (cnt,prod)
+  // [L,R) x [0,y) での check(y, cnt, prod) が true となる最大の (cnt,prod)
+  // ただし y はぴったりのところだけです
   template <typename F>
-  pair<int, T> max_right(F check, int L, int R) {
+  tuple<Y, int, T> max_right(F check, int L, int R) {
     int cnt = 0;
+    int p = 0;
     T t = Mono::unit();
-    assert(check(0, Mono::unit()));
-    if (check(R - L, seg[log].prod(L, R))) { return {R - L, seg[log].prod(L, R)}; }
+    assert(check(-infty<Y>, 0, Mono::unit()));
+    if (check(infty<Y>, R - L, seg[log].prod(L, R))) { return {R - L, infty<Y>, seg[log].prod(L, R)}; }
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;
       int cnt1 = cnt + r0 - l0;
+      int p1 = p | 1 << d;
       T t1 = Mono::op(t, seg[d].prod(l0, r0));
-      if (check(cnt1, t1)) {
-        cnt = cnt1, t = t1, L = l1, R = r1;
+      int y1 = (p1 < len(ItoY) ? ItoY[p1] : infty<Y>);
+      if (check(y1, cnt1, t1)) {
+        p = p1, cnt = cnt1, t = t1, L = l1, R = r1;
       } else {
         L = l0, R = r0;
       }
     }
-    return {cnt, t};
+    int y = (p < len(ItoY) ? ItoY[p] : infty<Y>);
+    return {y, cnt, t};
   }
 
   void set(int i, T t) {

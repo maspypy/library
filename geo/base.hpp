@@ -126,6 +126,7 @@ template <typename REAL>
 struct Circle {
   Point<REAL> O;
   REAL r;
+  Circle() {}
   Circle(Point<REAL> O, REAL r) : O(O), r(r) {}
   Circle(REAL x, REAL y, REAL r) : O(x, y), r(r) {}
   template <typename T>

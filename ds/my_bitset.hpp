@@ -365,6 +365,16 @@ struct My_Bitset {
   int _Find_first() { return next(0); }
   int _Find_next(int p) { return next(p + 1); }
 
+  template <typename F>
+  void enumerate(int L, int R, F f) {
+    if (L >= size()) return;
+    int p = ((*this)[L] ? L : _Find_next(L));
+    while (p < R) {
+      f(p);
+      p = _Find_next(p);
+    }
+  }
+
   static string TO_STR[256];
   string to_string() const {
     if (TO_STR[0].empty()) precompute();
