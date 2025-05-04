@@ -19,7 +19,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/longest_common_substring.hpp
     title: string/longest_common_substring.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []

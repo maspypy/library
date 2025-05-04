@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
   - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -19,14 +19,14 @@ data:
   - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: string/prefix_substring_LCS.hpp
     title: string/prefix_substring_LCS.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/prefix_substring_lcs
@@ -431,7 +431,7 @@ data:
   path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
   timestamp: '2025-05-05 02:10:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/prefix_substring_lcs.test.cpp
 layout: document
