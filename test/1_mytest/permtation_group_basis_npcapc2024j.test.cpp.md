@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: seq/permutation_group_basis.hpp
     title: seq/permutation_group_basis.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/split.hpp
     title: string/split.hpp
   _extendedRequiredBy: []

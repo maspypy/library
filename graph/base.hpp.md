@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -116,7 +116,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/distance_sum.hpp
     title: graph/ds/distance_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -128,7 +128,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -155,13 +155,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -221,7 +221,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -287,7 +287,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -783,10 +783,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2995.test.cpp
     title: test/4_aoj/2995.test.cpp
   - icon: ':heavy_check_mark:'
@@ -801,7 +801,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_C.test.cpp
     title: test/4_aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -810,7 +810,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_3_B.test.cpp
     title: test/4_aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
@@ -825,9 +825,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1122,7 +1122,7 @@ data:
   - random/random_graph.hpp
   - other/dice.hpp
   timestamp: '2025-04-06 22:14:02+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/1776.test.cpp

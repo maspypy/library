@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/fast_lca.hpp
     title: graph/fast_lca.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -192,7 +192,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/DSL_2_H.test.cpp
     title: test/4_aoj/DSL_2_H.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   _isVerificationFailed: true

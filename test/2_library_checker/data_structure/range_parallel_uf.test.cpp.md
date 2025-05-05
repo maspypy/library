@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/unionfind/parallel_unionfind.hpp
     title: ds/unionfind/parallel_unionfind.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -16,7 +16,7 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

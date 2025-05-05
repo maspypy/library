@@ -29,7 +29,7 @@ data:
   - icon: ':warning:'
     path: game/graph_path_game.hpp
     title: game/graph_path_game.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: geo/closest_pair.hpp
     title: geo/closest_pair.hpp
   - icon: ':heavy_check_mark:'
@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -128,7 +128,7 @@ data:
   - icon: ':warning:'
     path: graph/ds/distance_sum.hpp
     title: graph/ds/distance_sum.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/dual_tree_monoid.hpp
     title: graph/ds/dual_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -140,7 +140,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/incremental_centroid.hpp
     title: graph/ds/incremental_centroid.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/lazy_tree_monoid.hpp
     title: graph/ds/lazy_tree_monoid.hpp
   - icon: ':heavy_check_mark:'
@@ -167,13 +167,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/tree_abelgroup.hpp
     title: graph/ds/tree_abelgroup.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/ds/tree_monoid.hpp
     title: graph/ds/tree_monoid.hpp
   - icon: ':warning:'
     path: graph/ds/tree_wavelet_matrix.hpp
     title: graph/ds/tree_wavelet_matrix.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/dsu_on_tree.hpp
     title: graph/dsu_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -233,7 +233,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_hamiltonian_cycle.hpp
     title: graph/minimum_hamiltonian_cycle.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -299,7 +299,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -915,16 +915,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/2636.test.cpp
     title: test/4_aoj/2636.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2677.test.cpp
     title: test/4_aoj/2677.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/2995.test.cpp
     title: test/4_aoj/2995.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ALDS1_12_B.test.cpp
     title: test/4_aoj/ALDS1_12_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/CGL_5_A.test.cpp
     title: test/4_aoj/CGL_5_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -936,7 +936,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_1_C.test.cpp
     title: test/4_aoj/GRL_1_C.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_2_A.test.cpp
     title: test/4_aoj/GRL_2_A.test.cpp
   - icon: ':heavy_check_mark:'
@@ -945,7 +945,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_3_B.test.cpp
     title: test/4_aoj/GRL_3_B.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/4_aoj/GRL_5_E.test.cpp
     title: test/4_aoj/GRL_5_E.test.cpp
   - icon: ':heavy_check_mark:'
@@ -960,9 +960,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1150,7 +1150,7 @@ data:
   - mod/mod_log.hpp
   - mod/modfast.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1494.test.cpp
   - test/3_yukicoder/1776.test.cpp
