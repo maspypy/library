@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: ds/to_small_key.hpp
     title: ds/to_small_key.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':question:'

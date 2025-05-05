@@ -4,34 +4,38 @@ data:
   - icon: ':question:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
+  - icon: ':heavy_check_mark:'
+    path: ds/fastset.hpp
+    title: ds/fastset.hpp
   - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
   - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/cartesian_tree.hpp
     title: seq/cartesian_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: string/suffix_array.hpp
     title: string/suffix_array.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2361.test.cpp
     title: test/3_yukicoder/2361.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
+    - https://codeforces.com/problemset/problem/1098/F
     - https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g
   bundledCode: "#line 1 \"string/suffix_tree.hpp\"\n\n#line 2 \"string/suffix_array.hpp\"\
     \n\n#line 2 \"alg/monoid/min.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Min\
@@ -300,7 +304,42 @@ data:
     \    for (auto&& e: edges) vc_deg[e.frm]++, vc_deg[e.to]++;\n  }\n\n  void calc_deg_inout()\
     \ {\n    assert(vc_indeg.empty());\n    vc_indeg.resize(N);\n    vc_outdeg.resize(N);\n\
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
-    #line 5 \"string/suffix_tree.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
+    #line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63) * u64\r\nstruct\
+    \ FastSet {\r\n  static constexpr u32 B = 64;\r\n  int n, log;\r\n  vvc<u64> seg;\r\
+    \n\r\n  FastSet() {}\r\n  FastSet(int n) { build(n); }\r\n\r\n  int size() { return\
+    \ n; }\r\n\r\n  template <typename F>\r\n  FastSet(int n, F f) {\r\n    build(n,\
+    \ f);\r\n  }\r\n\r\n  void build(int m) {\r\n    seg.clear();\r\n    n = m;\r\n\
+    \    do {\r\n      seg.push_back(vc<u64>((m + B - 1) / B));\r\n      m = (m +\
+    \ B - 1) / B;\r\n    } while (m > 1);\r\n    log = len(seg);\r\n  }\r\n  template\
+    \ <typename F>\r\n  void build(int n, F f) {\r\n    build(n);\r\n    FOR(i, n)\
+    \ { seg[0][i / B] |= u64(f(i)) << (i % B); }\r\n    FOR(h, log - 1) {\r\n    \
+    \  FOR(i, len(seg[h])) { seg[h + 1][i / B] |= u64(bool(seg[h][i])) << (i % B);\
+    \ }\r\n    }\r\n  }\r\n\r\n  bool operator[](int i) const { return seg[0][i /\
+    \ B] >> (i % B) & 1; }\r\n  void insert(int i) {\r\n    assert(0 <= i && i < n);\r\
+    \n    for (int h = 0; h < log; h++) { seg[h][i / B] |= u64(1) << (i % B), i /=\
+    \ B; }\r\n  }\r\n  void add(int i) { insert(i); }\r\n  void erase(int i) {\r\n\
+    \    assert(0 <= i && i < n);\r\n    u64 x = 0;\r\n    for (int h = 0; h < log;\
+    \ h++) {\r\n      seg[h][i / B] &= ~(u64(1) << (i % B));\r\n      seg[h][i / B]\
+    \ |= x << (i % B);\r\n      x = bool(seg[h][i / B]);\r\n      i /= B;\r\n    }\r\
+    \n  }\r\n  void remove(int i) { erase(i); }\r\n\r\n  // min[x,n) or n\r\n  int\
+    \ next(int i) {\r\n    assert(i <= n);\r\n    chmax(i, 0);\r\n    for (int h =\
+    \ 0; h < log; h++) {\r\n      if (i / B == seg[h].size()) break;\r\n      u64\
+    \ d = seg[h][i / B] >> (i % B);\r\n      if (!d) {\r\n        i = i / B + 1;\r\
+    \n        continue;\r\n      }\r\n      i += lowbit(d);\r\n      for (int g =\
+    \ h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i += lowbit(seg[g][i / B]);\r\
+    \n      }\r\n      return i;\r\n    }\r\n    return n;\r\n  }\r\n\r\n  // max\
+    \ [0,x], or -1\r\n  int prev(int i) {\r\n    assert(i >= -1);\r\n    if (i >=\
+    \ n) i = n - 1;\r\n    for (int h = 0; h < log; h++) {\r\n      if (i == -1) break;\r\
+    \n      u64 d = seg[h][i / B] << (63 - i % B);\r\n      if (!d) {\r\n        i\
+    \ = i / B - 1;\r\n        continue;\r\n      }\r\n      i -= __builtin_clzll(d);\r\
+    \n      for (int g = h - 1; g >= 0; g--) {\r\n        i *= B;\r\n        i +=\
+    \ topbit(seg[g][i / B]);\r\n      }\r\n      return i;\r\n    }\r\n    return\
+    \ -1;\r\n  }\r\n\r\n  bool any(int l, int r) { return next(l) < r; }\r\n\r\n \
+    \ // [l, r)\r\n  template <typename F>\r\n  void enumerate(int l, int r, F f)\
+    \ {\r\n    for (int x = next(l); x < r; x = next(x + 1)) f(x);\r\n  }\r\n\r\n\
+    \  string to_string() {\r\n    string s(n, '?');\r\n    for (int i = 0; i < n;\
+    \ ++i) s[i] = ((*this)[i] ? '1' : '0');\r\n    return s;\r\n  }\r\n};\n#line 6\
+    \ \"string/suffix_tree.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
     // \u5404\u30CE\u30FC\u30C9\u306F\u3001suffix array \u3067\u306E\u9577\u65B9\u5F62\
     \u9818\u57DF\u3068\u898B\u306A\u3057\u3066\u3001\n// \u30B0\u30E9\u30D5\u304A\u3088\
     \u3073\u3001\u9818\u57DF\u30C7\u30FC\u30BF\u3092\u4F5C\u308B\u3002\n// sample:\
@@ -308,57 +347,43 @@ data:
     struct Suffix_Tree {\n  STRING& S;\n  SUFFIX& X;\n  Suffix_Tree(STRING& S, SUFFIX&\
     \ X) : S(S), X(X) {}\n\n  pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> build()\
     \ {\n    auto& SA = X.SA;\n    auto& LCP = X.LCP;\n\n    vc<tuple<int, int, int,\
-    \ int>> dat;\n    vc<pair<int, int>> edges;\n\n    int N = len(SA);\n    if (N\
-    \ == 1) {\n      Graph<int, 1> G(2);\n      G.add(0, 1);\n      G.build();\n \
-    \     dat.eb(0, 1, 0, 1), dat.eb(0, 1, 1, 2);\n      return {G, dat};\n    }\n\
+    \ int>> dat;\n    vc<tuple<int, int, int>> edges;\n\n    int N = len(SA);\n  \
+    \  if (N == 1) {\n      Graph<int, 1> G(2);\n      G.add(0, 1);\n      G.build();\n\
+    \      dat.eb(0, 1, 0, 1), dat.eb(0, 1, 1, 2);\n      return {G, dat};\n    }\n\
     \n    dat.eb(0, N, -1, 0);\n    CartesianTree<int, true> CT(LCP);\n\n    auto\
     \ dfs = [&](auto& dfs, int p, int idx, int h) -> void {\n      int L = CT.range[idx].fi;\n\
     \      int R = CT.range[idx].se + 1;\n      int hh = LCP[idx];\n      if (h <\
-    \ hh) {\n        edges.eb(p, len(dat));\n        p = len(dat);\n        dat.eb(L,\
-    \ R, h, hh);\n      }\n      if (CT.lch[idx] == -1) {\n        if (hh < N - SA[idx])\
-    \ {\n          edges.eb(p, len(dat));\n          dat.eb(idx, idx + 1, hh, N -\
-    \ SA[idx]);\n        }\n      } else {\n        dfs(dfs, p, CT.lch[idx], hh);\n\
-    \      }\n      if (CT.rch[idx] == -1) {\n        if (hh < N - SA[idx + 1]) {\n\
-    \          edges.eb(p, len(dat));\n          dat.eb(idx + 1, idx + 2, hh, N -\
-    \ SA[idx + 1]);\n        }\n      } else {\n        dfs(dfs, p, CT.rch[idx], hh);\n\
-    \      }\n    };\n    int r = CT.root;\n    if (LCP[r] > 0) {\n      edges.eb(0,\
-    \ 1);\n      dat.eb(0, N, 0, LCP[r]);\n      dfs(dfs, 1, r, LCP[r]);\n    } else\
-    \ {\n      dfs(dfs, 0, r, 0);\n    }\n    for (auto& [a, b, c, d]: dat) ++c, ++d;\n\
-    \n    Graph<int, 1> G(len(dat));\n    for (auto&& [a, b]: edges) G.add(a, b);\n\
-    \    G.build();\n    return {G, dat};\n  }\n\n  // trie \u306E\u8981\u9818\u3067\
-    \u3059\u3059\u3080\uFF08failure link \u306F\u306A\u3044\uFF09\n  // (node, length)\n\
-    \  // \u884C\u304D\u904E\u304E\uFF1A(-1,0)\n  pair<int, int> next(Graph<int, 1>&\
-    \ G, vc<tuple<int, int, int, int>>& dat, pair<int, int> p, int ch) {\n    auto\
-    \ [node, length] = p;\n    if (node == -1) return {-1, 0};\n    auto [l, r, a,\
-    \ b] = dat[node];\n    if (length + 1 < b) {\n      int i = X.SA[l];\n      //\
-    \ S[i:i+length]\n      if (ch != S[i + length]) return {-1, 0};\n      return\
-    \ {node, length + 1};\n    }\n    for (auto& e: G[node]) {\n      int n = e.to;\n\
-    \      auto [l, r, a, b] = dat[n];\n      assert(a == length + 1);\n      int\
-    \ i = X.SA[l];\n      // S[i:i+length]\n      if (ch == S[i + length]) return\
-    \ {n, length + 1};\n    }\n    return {-1, 0};\n  }\n\n  // \u9802\u70B9\u756A\
-    \u53F7 [0,n) \u304C suffix \u305D\u306E\u3082\u306E\u306B\u306A\u308B\u3088\u3046\
-    \u306A\u6728.\n  // \u9802\u70B9 G.N - 1 \u304C root\n  Graph<int, 1> build_2()\
-    \ {\n    auto& SA = X.SA;\n    auto& LCP = X.LCP;\n\n    int nxt = X.N;\n\n  \
-    \  vc<pair<int, int>> edges;\n\n    int N = len(SA);\n    if (N == 1) {\n    \
-    \  Graph<int, 1> G(2);\n      G.add(0, 1);\n      G.build();\n      dat.eb(0,\
-    \ 1, 0, 1), dat.eb(0, 1, 1, 2);\n      return {G, dat};\n    }\n\n    dat.eb(0,\
-    \ N, -1, 0);\n    CartesianTree<int, true> CT(LCP);\n\n    auto dfs = [&](auto&\
-    \ dfs, int p, int idx, int h) -> void {\n      int L = CT.range[idx].fi;\n   \
-    \   int R = CT.range[idx].se + 1;\n      int hh = LCP[idx];\n      if (h < hh)\
-    \ {\n        edges.eb(p, len(dat));\n        p = len(dat);\n        dat.eb(L,\
-    \ R, h, hh);\n      }\n      if (CT.lch[idx] == -1) {\n        if (hh < N - SA[idx])\
-    \ {\n          edges.eb(p, len(dat));\n          dat.eb(idx, idx + 1, hh, N -\
-    \ SA[idx]);\n        }\n      } else {\n        dfs(dfs, p, CT.lch[idx], hh);\n\
-    \      }\n      if (CT.rch[idx] == -1) {\n        if (hh < N - SA[idx + 1]) {\n\
-    \          edges.eb(p, len(dat));\n          dat.eb(idx + 1, idx + 2, hh, N -\
-    \ SA[idx + 1]);\n        }\n      } else {\n        dfs(dfs, p, CT.rch[idx], hh);\n\
-    \      }\n    };\n    int r = CT.root;\n    if (LCP[r] > 0) {\n      edges.eb(0,\
-    \ 1);\n      dat.eb(0, N, 0, LCP[r]);\n      dfs(dfs, 1, r, LCP[r]);\n    } else\
-    \ {\n      dfs(dfs, 0, r, 0);\n    }\n    for (auto& [a, b, c, d]: dat) ++c, ++d;\n\
-    \n    Graph<int, 1> G(len(dat));\n    for (auto&& [a, b]: edges) G.add(a, b);\n\
-    \    G.build();\n    return {G, dat};\n  }\n};\n"
+    \ hh) {\n        edges.eb(p, len(dat), hh - h);\n        p = len(dat);\n     \
+    \   dat.eb(L, R, h, hh);\n      }\n      if (CT.lch[idx] == -1) {\n        if\
+    \ (hh < N - SA[idx]) {\n          edges.eb(p, len(dat), N - SA[idx] - hh);\n \
+    \         dat.eb(idx, idx + 1, hh, N - SA[idx]);\n        }\n      } else {\n\
+    \        dfs(dfs, p, CT.lch[idx], hh);\n      }\n      if (CT.rch[idx] == -1)\
+    \ {\n        if (hh < N - SA[idx + 1]) {\n          edges.eb(p, len(dat), N -\
+    \ SA[idx + 1] - hh);\n          dat.eb(idx + 1, idx + 2, hh, N - SA[idx + 1]);\n\
+    \        }\n      } else {\n        dfs(dfs, p, CT.rch[idx], hh);\n      }\n \
+    \   };\n    int r = CT.root;\n    if (LCP[r] > 0) {\n      edges.eb(0, 1, LCP[r]);\n\
+    \      dat.eb(0, N, 0, LCP[r]);\n      dfs(dfs, 1, r, LCP[r]);\n    } else {\n\
+    \      dfs(dfs, 0, r, 0);\n    }\n    for (auto& [a, b, c, d]: dat) ++c, ++d;\n\
+    \n    Graph<int, 1> G(len(dat));\n    for (auto&& [a, b, c]: edges) G.add(a, b,\
+    \ c);\n    G.build();\n    return {G, dat};\n  }\n\n  // S[i:N) \u306B\u5BFE\u5FDC\
+    \u3059\u308B\u30CE\u30FC\u30C9\u756A\u53F7\u3092\u8FD4\u3059\n  // https://codeforces.com/problemset/problem/1098/F\n\
+    \  vc<int> get_suffix_positions(Graph<int, 1>& G, vc<tuple<int, int, int, int>>&\
+    \ dat) {\n    int N = len(S);\n    FastSet FS(N);\n    FOR(i, N) FS.insert(i);\n\
+    \    vc<int> ANS(N);\n    FOR_R(v, len(dat)) {\n      auto [a, b, c, d] = dat[v];\n\
+    \      FS.enumerate(a, b, [&](int i) -> void {\n        FS.erase(i);\n       \
+    \ ANS[X.SA[i]] = v;\n      });\n    }\n    return ANS;\n  }\n\n  // trie \u306E\
+    \u8981\u9818\u3067\u3059\u3059\u3080\uFF08failure link \u306F\u306A\u3044\uFF09\
+    \n  // (node, length)\n  // \u884C\u304D\u904E\u304E\uFF1A(-1,0)\n  pair<int,\
+    \ int> next(Graph<int, 1>& G, vc<tuple<int, int, int, int>>& dat, pair<int, int>\
+    \ p, int ch) {\n    auto [node, length] = p;\n    if (node == -1) return {-1,\
+    \ 0};\n    auto [l, r, a, b] = dat[node];\n    if (length + 1 < b) {\n      int\
+    \ i = X.SA[l];\n      // S[i:i+length]\n      if (ch != S[i + length]) return\
+    \ {-1, 0};\n      return {node, length + 1};\n    }\n    for (auto& e: G[node])\
+    \ {\n      int n = e.to;\n      auto [l, r, a, b] = dat[n];\n      assert(a ==\
+    \ length + 1);\n      int i = X.SA[l];\n      // S[i:i+length]\n      if (ch ==\
+    \ S[i + length]) return {n, length + 1};\n    }\n    return {-1, 0};\n  }\n};\n"
   code: "\n#include \"string/suffix_array.hpp\"\n#include \"seq/cartesian_tree.hpp\"\
-    \n#include \"graph/base.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
+    \n#include \"graph/base.hpp\"\n#include \"ds/fastset.hpp\"\n\n// https://twitter.com/maspy_stars/status/1565901414236205057?s=20&t=S2Tu6ayozHcakxai8dmh4g\n\
     // \u5404\u30CE\u30FC\u30C9\u306F\u3001suffix array \u3067\u306E\u9577\u65B9\u5F62\
     \u9818\u57DF\u3068\u898B\u306A\u3057\u3066\u3001\n// \u30B0\u30E9\u30D5\u304A\u3088\
     \u3073\u3001\u9818\u57DF\u30C7\u30FC\u30BF\u3092\u4F5C\u308B\u3002\n// sample:\
@@ -366,55 +391,41 @@ data:
     struct Suffix_Tree {\n  STRING& S;\n  SUFFIX& X;\n  Suffix_Tree(STRING& S, SUFFIX&\
     \ X) : S(S), X(X) {}\n\n  pair<Graph<int, 1>, vc<tuple<int, int, int, int>>> build()\
     \ {\n    auto& SA = X.SA;\n    auto& LCP = X.LCP;\n\n    vc<tuple<int, int, int,\
-    \ int>> dat;\n    vc<pair<int, int>> edges;\n\n    int N = len(SA);\n    if (N\
-    \ == 1) {\n      Graph<int, 1> G(2);\n      G.add(0, 1);\n      G.build();\n \
-    \     dat.eb(0, 1, 0, 1), dat.eb(0, 1, 1, 2);\n      return {G, dat};\n    }\n\
+    \ int>> dat;\n    vc<tuple<int, int, int>> edges;\n\n    int N = len(SA);\n  \
+    \  if (N == 1) {\n      Graph<int, 1> G(2);\n      G.add(0, 1);\n      G.build();\n\
+    \      dat.eb(0, 1, 0, 1), dat.eb(0, 1, 1, 2);\n      return {G, dat};\n    }\n\
     \n    dat.eb(0, N, -1, 0);\n    CartesianTree<int, true> CT(LCP);\n\n    auto\
     \ dfs = [&](auto& dfs, int p, int idx, int h) -> void {\n      int L = CT.range[idx].fi;\n\
     \      int R = CT.range[idx].se + 1;\n      int hh = LCP[idx];\n      if (h <\
-    \ hh) {\n        edges.eb(p, len(dat));\n        p = len(dat);\n        dat.eb(L,\
-    \ R, h, hh);\n      }\n      if (CT.lch[idx] == -1) {\n        if (hh < N - SA[idx])\
-    \ {\n          edges.eb(p, len(dat));\n          dat.eb(idx, idx + 1, hh, N -\
-    \ SA[idx]);\n        }\n      } else {\n        dfs(dfs, p, CT.lch[idx], hh);\n\
-    \      }\n      if (CT.rch[idx] == -1) {\n        if (hh < N - SA[idx + 1]) {\n\
-    \          edges.eb(p, len(dat));\n          dat.eb(idx + 1, idx + 2, hh, N -\
-    \ SA[idx + 1]);\n        }\n      } else {\n        dfs(dfs, p, CT.rch[idx], hh);\n\
-    \      }\n    };\n    int r = CT.root;\n    if (LCP[r] > 0) {\n      edges.eb(0,\
-    \ 1);\n      dat.eb(0, N, 0, LCP[r]);\n      dfs(dfs, 1, r, LCP[r]);\n    } else\
-    \ {\n      dfs(dfs, 0, r, 0);\n    }\n    for (auto& [a, b, c, d]: dat) ++c, ++d;\n\
-    \n    Graph<int, 1> G(len(dat));\n    for (auto&& [a, b]: edges) G.add(a, b);\n\
-    \    G.build();\n    return {G, dat};\n  }\n\n  // trie \u306E\u8981\u9818\u3067\
-    \u3059\u3059\u3080\uFF08failure link \u306F\u306A\u3044\uFF09\n  // (node, length)\n\
-    \  // \u884C\u304D\u904E\u304E\uFF1A(-1,0)\n  pair<int, int> next(Graph<int, 1>&\
-    \ G, vc<tuple<int, int, int, int>>& dat, pair<int, int> p, int ch) {\n    auto\
-    \ [node, length] = p;\n    if (node == -1) return {-1, 0};\n    auto [l, r, a,\
-    \ b] = dat[node];\n    if (length + 1 < b) {\n      int i = X.SA[l];\n      //\
-    \ S[i:i+length]\n      if (ch != S[i + length]) return {-1, 0};\n      return\
-    \ {node, length + 1};\n    }\n    for (auto& e: G[node]) {\n      int n = e.to;\n\
-    \      auto [l, r, a, b] = dat[n];\n      assert(a == length + 1);\n      int\
-    \ i = X.SA[l];\n      // S[i:i+length]\n      if (ch == S[i + length]) return\
-    \ {n, length + 1};\n    }\n    return {-1, 0};\n  }\n\n  // \u9802\u70B9\u756A\
-    \u53F7 [0,n) \u304C suffix \u305D\u306E\u3082\u306E\u306B\u306A\u308B\u3088\u3046\
-    \u306A\u6728.\n  // \u9802\u70B9 G.N - 1 \u304C root\n  Graph<int, 1> build_2()\
-    \ {\n    auto& SA = X.SA;\n    auto& LCP = X.LCP;\n\n    int nxt = X.N;\n\n  \
-    \  vc<pair<int, int>> edges;\n\n    int N = len(SA);\n    if (N == 1) {\n    \
-    \  Graph<int, 1> G(2);\n      G.add(0, 1);\n      G.build();\n      dat.eb(0,\
-    \ 1, 0, 1), dat.eb(0, 1, 1, 2);\n      return {G, dat};\n    }\n\n    dat.eb(0,\
-    \ N, -1, 0);\n    CartesianTree<int, true> CT(LCP);\n\n    auto dfs = [&](auto&\
-    \ dfs, int p, int idx, int h) -> void {\n      int L = CT.range[idx].fi;\n   \
-    \   int R = CT.range[idx].se + 1;\n      int hh = LCP[idx];\n      if (h < hh)\
-    \ {\n        edges.eb(p, len(dat));\n        p = len(dat);\n        dat.eb(L,\
-    \ R, h, hh);\n      }\n      if (CT.lch[idx] == -1) {\n        if (hh < N - SA[idx])\
-    \ {\n          edges.eb(p, len(dat));\n          dat.eb(idx, idx + 1, hh, N -\
-    \ SA[idx]);\n        }\n      } else {\n        dfs(dfs, p, CT.lch[idx], hh);\n\
-    \      }\n      if (CT.rch[idx] == -1) {\n        if (hh < N - SA[idx + 1]) {\n\
-    \          edges.eb(p, len(dat));\n          dat.eb(idx + 1, idx + 2, hh, N -\
-    \ SA[idx + 1]);\n        }\n      } else {\n        dfs(dfs, p, CT.rch[idx], hh);\n\
-    \      }\n    };\n    int r = CT.root;\n    if (LCP[r] > 0) {\n      edges.eb(0,\
-    \ 1);\n      dat.eb(0, N, 0, LCP[r]);\n      dfs(dfs, 1, r, LCP[r]);\n    } else\
-    \ {\n      dfs(dfs, 0, r, 0);\n    }\n    for (auto& [a, b, c, d]: dat) ++c, ++d;\n\
-    \n    Graph<int, 1> G(len(dat));\n    for (auto&& [a, b]: edges) G.add(a, b);\n\
-    \    G.build();\n    return {G, dat};\n  }\n};\n"
+    \ hh) {\n        edges.eb(p, len(dat), hh - h);\n        p = len(dat);\n     \
+    \   dat.eb(L, R, h, hh);\n      }\n      if (CT.lch[idx] == -1) {\n        if\
+    \ (hh < N - SA[idx]) {\n          edges.eb(p, len(dat), N - SA[idx] - hh);\n \
+    \         dat.eb(idx, idx + 1, hh, N - SA[idx]);\n        }\n      } else {\n\
+    \        dfs(dfs, p, CT.lch[idx], hh);\n      }\n      if (CT.rch[idx] == -1)\
+    \ {\n        if (hh < N - SA[idx + 1]) {\n          edges.eb(p, len(dat), N -\
+    \ SA[idx + 1] - hh);\n          dat.eb(idx + 1, idx + 2, hh, N - SA[idx + 1]);\n\
+    \        }\n      } else {\n        dfs(dfs, p, CT.rch[idx], hh);\n      }\n \
+    \   };\n    int r = CT.root;\n    if (LCP[r] > 0) {\n      edges.eb(0, 1, LCP[r]);\n\
+    \      dat.eb(0, N, 0, LCP[r]);\n      dfs(dfs, 1, r, LCP[r]);\n    } else {\n\
+    \      dfs(dfs, 0, r, 0);\n    }\n    for (auto& [a, b, c, d]: dat) ++c, ++d;\n\
+    \n    Graph<int, 1> G(len(dat));\n    for (auto&& [a, b, c]: edges) G.add(a, b,\
+    \ c);\n    G.build();\n    return {G, dat};\n  }\n\n  // S[i:N) \u306B\u5BFE\u5FDC\
+    \u3059\u308B\u30CE\u30FC\u30C9\u756A\u53F7\u3092\u8FD4\u3059\n  // https://codeforces.com/problemset/problem/1098/F\n\
+    \  vc<int> get_suffix_positions(Graph<int, 1>& G, vc<tuple<int, int, int, int>>&\
+    \ dat) {\n    int N = len(S);\n    FastSet FS(N);\n    FOR(i, N) FS.insert(i);\n\
+    \    vc<int> ANS(N);\n    FOR_R(v, len(dat)) {\n      auto [a, b, c, d] = dat[v];\n\
+    \      FS.enumerate(a, b, [&](int i) -> void {\n        FS.erase(i);\n       \
+    \ ANS[X.SA[i]] = v;\n      });\n    }\n    return ANS;\n  }\n\n  // trie \u306E\
+    \u8981\u9818\u3067\u3059\u3059\u3080\uFF08failure link \u306F\u306A\u3044\uFF09\
+    \n  // (node, length)\n  // \u884C\u304D\u904E\u304E\uFF1A(-1,0)\n  pair<int,\
+    \ int> next(Graph<int, 1>& G, vc<tuple<int, int, int, int>>& dat, pair<int, int>\
+    \ p, int ch) {\n    auto [node, length] = p;\n    if (node == -1) return {-1,\
+    \ 0};\n    auto [l, r, a, b] = dat[node];\n    if (length + 1 < b) {\n      int\
+    \ i = X.SA[l];\n      // S[i:i+length]\n      if (ch != S[i + length]) return\
+    \ {-1, 0};\n      return {node, length + 1};\n    }\n    for (auto& e: G[node])\
+    \ {\n      int n = e.to;\n      auto [l, r, a, b] = dat[n];\n      assert(a ==\
+    \ length + 1);\n      int i = X.SA[l];\n      // S[i:i+length]\n      if (ch ==\
+    \ S[i + length]) return {n, length + 1};\n    }\n    return {-1, 0};\n  }\n};\n"
   dependsOn:
   - string/suffix_array.hpp
   - alg/monoid/min.hpp
@@ -423,11 +434,12 @@ data:
   - seq/cartesian_tree.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
+  - ds/fastset.hpp
   isVerificationFile: false
   path: string/suffix_tree.hpp
   requiredBy: []
-  timestamp: '2025-05-05 02:23:48+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  timestamp: '2025-05-05 21:05:55+09:00'
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2361.test.cpp
 documentation_of: string/suffix_tree.hpp

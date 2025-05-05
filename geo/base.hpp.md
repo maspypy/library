@@ -74,7 +74,7 @@ data:
   - icon: ':warning:'
     path: geo/minkowski_sum.hpp
     title: geo/minkowski_sum.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: geo/outcircle.hpp
     title: geo/outcircle.hpp
   - icon: ':warning:'
@@ -156,10 +156,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1777.test.cpp
     title: test/3_yukicoder/1777.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2602.test.cpp
     title: test/3_yukicoder/2602.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3005.test.cpp
     title: test/3_yukicoder/3005.test.cpp
   - icon: ':x:'
