@@ -47,5 +47,32 @@ struct Many_String_Compare {
     return comp3(b, lb + nb - na, rb, a, la, ra);
   }
 
+  // [<]-1, [=]0, [>]1, vc of {idx, l, r}
+  int comp3(vc<tuple<int, int, int>> A, vc<tuple<int, int, int>> B) {
+    reverse(all(A));
+    reverse(all(B));
+    while (1) {
+      while (!A.empty()) {
+        auto [i, l, r] = A.back();
+        if (l < r) break;
+        POP(A);
+      }
+      while (!B.empty()) {
+        auto [i, l, r] = B.back();
+        if (l < r) break;
+        POP(B);
+      }
+      if (A.empty() && B.empty()) return 0;
+      if (A.empty()) return -1;
+      if (B.empty()) return 1;
+      auto &[a, la, ra] = A.back();
+      auto &[b, lb, rb] = B.back();
+      int k = lcp(a, la, ra, b, lb, rb);
+      if (k == 0) return (ALL[pos[a] + la] < ALL[pos[b] + lb] ? -1 : 1);
+      la += k, lb += k;
+    }
+    return 0;
+  }
+
   int length(int a) { return pos[a + 1] - pos[a]; }
 };

@@ -1,3 +1,5 @@
+#define PROBLEM "https://yukicoder.me/problems/no/3148"
+
 #include "my_template.hpp"
 #include "other/io.hpp"
 
