@@ -184,8 +184,8 @@ data:
   timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1838.test.cpp
   - test/3_yukicoder/694.test.cpp
+  - test/3_yukicoder/1838.test.cpp
   - test/4_aoj/ALDS1_2_A.test.cpp
   - test/4_aoj/ALDS1_5.test.cpp
 documentation_of: seq/inversion.hpp

@@ -162,8 +162,8 @@ data:
   verifiedWith:
   - test/3_yukicoder/1983.test.cpp
   - test/3_yukicoder/529.test.cpp
-  - test/4_aoj/GRL_3_B.test.cpp
   - test/2_library_checker/graph/two_edge_component.test.cpp
+  - test/4_aoj/GRL_3_B.test.cpp
 documentation_of: graph/two_edge_component.hpp
 layout: document
 redirect_from:

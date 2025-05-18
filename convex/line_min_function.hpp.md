@@ -282,16 +282,16 @@ data:
   isVerificationFile: false
   path: convex/line_min_function.hpp
   requiredBy:
-  - convex/lattice_point_sum_polynomial_pq.hpp
-  - convex/lower_integer_hull.hpp
-  - convex/lattice_point_sum_polynomial.hpp
   - convex/lattice_point_count.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_sum_polynomial.hpp
+  - convex/lower_integer_hull.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
 documentation_of: convex/line_min_function.hpp
 layout: document
 redirect_from:

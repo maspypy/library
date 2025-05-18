@@ -104,8 +104,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/184.test.cpp
-  - test/1_mytest/QOJ5445.test.cpp
   - test/2_library_checker/linear_algebra/vector_space_intersection.test.cpp
+  - test/1_mytest/QOJ5445.test.cpp
 documentation_of: linalg/xor/vector_space.hpp
 layout: document
 redirect_from:

@@ -75,8 +75,8 @@ data:
   isVerificationFile: false
   path: setfunc/sps_exp.hpp
   requiredBy:
-  - linalg/hafnian.hpp
   - graph/tutte_polynomial.hpp
+  - linalg/hafnian.hpp
   timestamp: '2024-12-28 10:55:16+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

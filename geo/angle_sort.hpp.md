@@ -138,21 +138,21 @@ data:
   path: geo/angle_sort.hpp
   requiredBy:
   - graph/planar_graph.hpp
+  - geo/count_points_in_triangles.hpp
+  - geo/max_norm_sum.hpp
   - geo/rotating_swaps.hpp
   - geo/polygon_triangulation.hpp
-  - geo/max_norm_sum.hpp
-  - geo/count_points_in_triangles.hpp
   - geo/minkowski_sum.hpp
   - random/random_polygon.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1777.test.cpp
-  - test/1_mytest/count_points_in_triangles.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument.test.cpp
-  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
   - test/2_library_checker/geometry/sort_points_by_argument_pair.test.cpp
+  - test/2_library_checker/geometry/count_points_in_triangles.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
+  - test/1_mytest/count_points_in_triangles.test.cpp
 documentation_of: geo/angle_sort.hpp
 layout: document
 redirect_from:

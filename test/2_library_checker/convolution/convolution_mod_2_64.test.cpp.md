@@ -486,9 +486,9 @@ data:
     vector<T> convolution_u64(const vector<u64>& a, const vector<u64>& b) {\r\n  static_assert(is_same_v<T,\
     \ u64> || is_same_v<T, u128>);\r\n  int n = len(a), m = len(b);\r\n  if (!n ||\
     \ !m) return {};\r\n  if (min(n, m) <= 12500) return convolution_karatsuba(a,\
-    \ b);\r\n  constexpr int p0 = 167772161;\r\n  constexpr int p1 = 469762049;\r\n\
-    \  constexpr int p2 = 754974721;\r\n  constexpr int p3 = 880803841;\r\n  constexpr\
-    \ int p4 = 998244353;\r\n  using M0 = modint<p0>;\r\n  using M1 = modint<p1>;\r\
+    \ b);\r\n  constexpr int p0 = 880803841;\r\n  constexpr int p1 = 943718401;\r\n\
+    \  constexpr int p2 = 998244353;\r\n  constexpr int p3 = 1004535809;\r\n  constexpr\
+    \ int p4 = 1012924417;\r\n  using M0 = modint<p0>;\r\n  using M1 = modint<p1>;\r\
     \n  using M2 = modint<p2>;\r\n  using M3 = modint<p3>;\r\n  using M4 = modint<p4>;\r\
     \n  vc<M0> a0(n), b0(m);\r\n  vc<M1> a1(n), b1(m);\r\n  vc<M2> a2(n), b2(m);\r\
     \n  vc<M3> a3(n), b3(m);\r\n  vc<M4> a4(n), b4(m);\r\n  FOR(i, n) { a0[i] = a[i],\
@@ -522,7 +522,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-05-18 10:14:19+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/convolution_mod_2_64.test.cpp

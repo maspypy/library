@@ -100,9 +100,9 @@ data:
   verifiedWith:
   - test/3_yukicoder/2574.test.cpp
   - test/3_yukicoder/2361.test.cpp
+  - test/2_library_checker/tree/cartesian_tree.test.cpp
   - test/4_aoj/DPL_3_C.test.cpp
   - test/4_aoj/DPL_3_B.test.cpp
-  - test/2_library_checker/tree/cartesian_tree.test.cpp
 documentation_of: seq/cartesian_tree.hpp
 layout: document
 redirect_from:

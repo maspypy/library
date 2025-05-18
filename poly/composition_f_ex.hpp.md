@@ -434,8 +434,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1875.test.cpp
-  - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/composition_1_minus_ex.test.cpp
 documentation_of: poly/composition_f_ex.hpp
 layout: document
 redirect_from:

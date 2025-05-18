@@ -68,14 +68,14 @@ data:
   isVerificationFile: false
   path: ds/to_small_key.hpp
   requiredBy:
-  - ds/static_range_frequency.hpp
   - string/aho_corasick_for_general_trie.hpp
+  - ds/static_range_frequency.hpp
   timestamp: '2024-11-01 21:56:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/2_library_checker/data_structure/static_range_freq.test.cpp
   - test/2_library_checker/data_structure/static_range_mode_query.test.cpp
   - test/2_library_checker/data_structure/static_range_frequency.test.cpp
-  - test/2_library_checker/data_structure/static_range_freq.test.cpp
 documentation_of: ds/to_small_key.hpp
 layout: document
 redirect_from:

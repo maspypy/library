@@ -390,8 +390,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2062.test.cpp
-  - test/1_mytest/product_of_one_pm_xn.test.cpp
   - test/2_library_checker/enumerative_combinatorics/sharp_p_subset_sum.test.cpp
+  - test/1_mytest/product_of_one_pm_xn.test.cpp
 documentation_of: poly/product_of_one_plus_xn.hpp
 layout: document
 redirect_from:

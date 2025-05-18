@@ -351,8 +351,8 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
   - test/1_mytest/geometric_sequence_sum_formula.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
 documentation_of: seq/geometric_sequence_sum_formula.hpp
 layout: document
 redirect_from:

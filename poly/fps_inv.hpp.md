@@ -808,164 +808,164 @@ data:
   isVerificationFile: false
   path: poly/fps_inv.hpp
   requiredBy:
-  - linalg/blackbox/vandermonde.hpp
-  - graph/chromatic.hpp
-  - graph/count/count_labeled_eulerian.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  - graph/count/count_labeled_connected.hpp
-  - graph/count/count_labeled_dag.hpp
-  - graph/count/count_labeled_biconnected.hpp
-  - graph/count/count_labeled_bipartite.hpp
-  - graph/count/count_labeled_strong_tournament.hpp
-  - graph/count/count_labeled_unicyclic.hpp
-  - graph/count/count_labeled_strong_digraph.hpp
-  - convex/lattice_point_sum_polynomial_pq.hpp
-  - convex/lattice_point_sum_polynomial.hpp
-  - poly/sum_of_power_of_roots.hpp
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/compositional_inverse.hpp
-  - poly/product_of_f_rk_x.hpp
+  - poly/finding_root_of_polynomial.hpp
+  - poly/composed_sum.hpp
+  - poly/poly_mod_pow.hpp
+  - poly/composed_product.hpp
+  - poly/slice_rational_fps.hpp
+  - poly/prefix_sum_of_polynomial.hpp
+  - poly/poly_gcd.hpp
+  - poly/sum_of_exp_bx.hpp
+  - poly/product_of_pow_of_linear.hpp
   - poly/multivar_convolution_cyclic.hpp
+  - poly/multipoint.hpp
+  - poly/composition_f_ex.hpp
+  - poly/coef_of_rational_fps_2d.hpp
+  - poly/sum_of_power_of_roots.hpp
+  - poly/fps_inv_2d.hpp
+  - poly/fps_pow.hpp
+  - poly/product_of_f_rk_x.hpp
+  - poly/composition_f_ex_minus_1.hpp
   - poly/multipoint_evaluation_for_prefix_product.hpp
   - poly/composition_f_1_minus_ex.hpp
-  - poly/finding_root_of_polynomial.hpp
-  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - poly/composed_product.hpp
-  - poly/prefix_sum_of_polynomial.hpp
-  - poly/sum_of_exp_bx.hpp
-  - poly/fps_log.hpp
-  - poly/composed_sum.hpp
-  - poly/coef_of_rational_fps_2d.hpp
-  - poly/poly_gcd.hpp
-  - poly/slice_rational_fps.hpp
-  - poly/fps_pow.hpp
-  - poly/fps_div.hpp
-  - poly/poly_mod_pow.hpp
-  - poly/composition_f_log_1_minus_x.hpp
   - poly/partial_frac_decomposition_1.hpp
-  - poly/composition_f_ex.hpp
-  - poly/coef_of_rational_fps.hpp
   - poly/fps_sqrt.hpp
-  - poly/product_of_pow_of_linear.hpp
+  - poly/fps_div.hpp
+  - poly/composition_f_log_1_minus_x.hpp
+  - poly/compositional_inverse.hpp
+  - poly/fps_log.hpp
+  - poly/coef_of_rational_fps.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
   - poly/poly_divmod.hpp
-  - poly/multipoint.hpp
-  - poly/fps_inv_2d.hpp
-  - seq/interpolate_linear_rec.hpp
   - seq/geometric_sequence_sum_formula.hpp
   - seq/sum_of_powers.hpp
-  - seq/famous/partition_number.hpp
-  - seq/famous/stirling_number_2.hpp
-  - seq/famous/riemann_zeta_even.hpp
-  - seq/famous/indecomposable_permutations.hpp
-  - seq/famous/surjection.hpp
-  - seq/famous/bell_number_large.hpp
-  - seq/famous/faulhaber.hpp
+  - seq/interpolate_linear_rec.hpp
   - seq/famous/bernoulli.hpp
+  - seq/famous/stirling_number_2.hpp
+  - seq/famous/faulhaber.hpp
+  - seq/famous/riemann_zeta_even.hpp
+  - seq/famous/surjection.hpp
+  - seq/famous/partition_number.hpp
+  - seq/famous/bell_number_large.hpp
   - seq/famous/stirling_number_1.hpp
+  - seq/famous/indecomposable_permutations.hpp
+  - graph/chromatic.hpp
+  - graph/count/count_labeled_dag.hpp
+  - graph/count/count_labeled_strong_digraph.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - graph/count/count_labeled_connected.hpp
+  - graph/count/count_labeled_strong_tournament.hpp
+  - graph/count/count_labeled_unicyclic.hpp
+  - graph/count/count_labeled_bipartite.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_eulerian.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lattice_point_sum_polynomial.hpp
+  - linalg/blackbox/vandermonde.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2944.test.cpp
-  - test/3_yukicoder/1321.test.cpp
-  - test/3_yukicoder/2580.test.cpp
-  - test/3_yukicoder/1516.test.cpp
-  - test/3_yukicoder/1357.test.cpp
-  - test/3_yukicoder/579.test.cpp
-  - test/3_yukicoder/1939.test.cpp
-  - test/3_yukicoder/1561.test.cpp
-  - test/3_yukicoder/1962.test.cpp
-  - test/3_yukicoder/2097.test.cpp
-  - test/3_yukicoder/2583.test.cpp
   - test/3_yukicoder/2459.test.cpp
-  - test/3_yukicoder/2243.test.cpp
-  - test/3_yukicoder/1500.test.cpp
-  - test/3_yukicoder/1547.test.cpp
-  - test/3_yukicoder/578.test.cpp
-  - test/3_yukicoder/1755.test.cpp
-  - test/3_yukicoder/2747.test.cpp
   - test/3_yukicoder/1145.test.cpp
+  - test/3_yukicoder/2747.test.cpp
+  - test/3_yukicoder/1321.test.cpp
+  - test/3_yukicoder/1500.test.cpp
+  - test/3_yukicoder/1755.test.cpp
+  - test/3_yukicoder/1549.test.cpp
+  - test/3_yukicoder/1080.test.cpp
+  - test/3_yukicoder/1392.test.cpp
+  - test/3_yukicoder/1575.test.cpp
+  - test/3_yukicoder/579.test.cpp
+  - test/3_yukicoder/541.test.cpp
+  - test/3_yukicoder/1962.test.cpp
+  - test/3_yukicoder/1357.test.cpp
+  - test/3_yukicoder/1516.test.cpp
+  - test/3_yukicoder/2305.test.cpp
+  - test/3_yukicoder/1875.test.cpp
+  - test/3_yukicoder/578.test.cpp
+  - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/2944.test.cpp
+  - test/3_yukicoder/1844.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
+  - test/3_yukicoder/1547.test.cpp
   - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/1939.test.cpp
+  - test/3_yukicoder/2243.test.cpp
+  - test/3_yukicoder/1561.test.cpp
   - test/3_yukicoder/2877.test.cpp
   - test/3_yukicoder/2122.test.cpp
-  - test/3_yukicoder/1844.test.cpp
-  - test/3_yukicoder/1080.test.cpp
-  - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/1533.test.cpp
-  - test/3_yukicoder/1575.test.cpp
-  - test/3_yukicoder/1392.test.cpp
-  - test/3_yukicoder/1549.test.cpp
   - test/3_yukicoder/2166.test.cpp
-  - test/3_yukicoder/2305.test.cpp
-  - test/3_yukicoder/541.test.cpp
-  - test/1_mytest/faulhaber.test.cpp
-  - test/1_mytest/coef_of_rational.test.cpp
-  - test/1_mytest/poly_root_finding.test.cpp
-  - test/1_mytest/partial_frac.test.cpp
-  - test/1_mytest/enum_partitions.test.cpp
-  - test/1_mytest/vandermonde.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/1_mytest/online_square.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/3_yukicoder/2097.test.cpp
+  - test/3_yukicoder/1533.test.cpp
+  - test/3_yukicoder/2583.test.cpp
+  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/2_library_checker/number_theory/bernoulli.test.cpp
+  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
+  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
+  - test/2_library_checker/graph/chromatic_number.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
+  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/polynomial_division.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/slice_rational.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
+  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
+  - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
+  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
+  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
-  - test/1_mytest/simple_perm.test.cpp
+  - test/1_mytest/poly_root_finding.test.cpp
+  - test/1_mytest/power_projection.test.cpp
+  - test/1_mytest/partial_frac.test.cpp
+  - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/online_square.test.cpp
+  - test/1_mytest/count_bipartite.test.cpp
+  - test/1_mytest/faulhaber.test.cpp
+  - test/1_mytest/geometric_sequence_sum_formula.test.cpp
+  - test/1_mytest/online_inv.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/count_labeled_eulerian.test.cpp
+  - test/1_mytest/count_labeled_tournament.test.cpp
+  - test/1_mytest/graph_count.test.cpp
+  - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/count_labeled_connected.test.cpp
+  - test/1_mytest/online_pow.test.cpp
+  - test/1_mytest/sparse_pow_2d.test.cpp
+  - test/1_mytest/online_log.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
+  - test/1_mytest/chirp_z.test.cpp
+  - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
+  - test/1_mytest/simple_perm.test.cpp
+  - test/1_mytest/multipoint_prefix.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
   - test/1_mytest/online_division.test.cpp
-  - test/1_mytest/graph_count.test.cpp
-  - test/1_mytest/count_labeled_tournament.test.cpp
+  - test/1_mytest/tree_walk_gf.test.cpp
   - test/1_mytest/bell.test.cpp
-  - test/1_mytest/power_projection.test.cpp
-  - test/1_mytest/lattice_point_sum_polynomial.test.cpp
-  - test/1_mytest/sparse_pow_2d.test.cpp
-  - test/1_mytest/online_inv.test.cpp
-  - test/1_mytest/chirp_z.test.cpp
-  - test/1_mytest/online_pow.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
-  - test/1_mytest/count_bipartite.test.cpp
-  - test/1_mytest/composition_ex_minus_1.test.cpp
-  - test/1_mytest/geometric_sequence_sum_formula.test.cpp
-  - test/1_mytest/multipoint_prefix.test.cpp
-  - test/1_mytest/count_labeled_eulerian.test.cpp
-  - test/1_mytest/count_labeled_strong.test.cpp
-  - test/1_mytest/count_labeled_connected.test.cpp
   - test/1_mytest/count_labeled_dag.test.cpp
-  - test/1_mytest/online_log.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps.test.cpp
-  - test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse.test.cpp
-  - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_sparse.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom_2.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_sparse.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation.test.cpp
-  - test/2_library_checker/polynomial/slice_rational.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/polynomial_division.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/polynomial_interpolation_on_geom.test.cpp
-  - test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - test/2_library_checker/polynomial/inv_of_fps_dmint.test.cpp
-  - test/2_library_checker/polynomial/multipoint_evaluation_on_geom.test.cpp
-  - test/2_library_checker/graph/chromatic_number.test.cpp
-  - test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - test/2_library_checker/number_theory/bernoulli.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_second_kind.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/partition.test.cpp
-  - test/2_library_checker/convolution/multivariate_convolution_cyclic.test.cpp
-  - test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
+  - test/1_mytest/count_labeled_strong.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/vandermonde.test.cpp
+  - test/1_mytest/enum_partitions.test.cpp
 documentation_of: poly/fps_inv.hpp
 layout: document
 redirect_from:
