@@ -1,16 +1,16 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   _extendedRequiredBy: []
@@ -179,7 +179,7 @@ data:
     \ F>\r\n  tuple<Y, int, T> max_right(F check, int L, int R) {\r\n    int cnt =\
     \ 0;\r\n    int p = 0;\r\n    T t = Mono::unit();\r\n    assert(check(-infty<Y>,\
     \ 0, Mono::unit()));\r\n    if (check(infty<Y>, R - L, seg[log].prod(L, R))) {\
-    \ return {R - L, infty<Y>, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1;\
+    \ return {infty<Y>, R - L, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1;\
     \ d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
     \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      int cnt1\
     \ = cnt + r0 - l0;\r\n      int p1 = p | 1 << d;\r\n      T t1 = Mono::op(t, seg[d].prod(l0,\
@@ -230,7 +230,7 @@ data:
   isVerificationFile: false
   path: string/prefix_substring_LCS.hpp
   requiredBy: []
-  timestamp: '2025-05-05 02:10:07+09:00'
+  timestamp: '2025-05-18 10:20:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/string/prefix_substring_lcs.test.cpp

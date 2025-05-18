@@ -1,38 +1,38 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':question:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/static_range_product_group.hpp
     title: ds/static_range_product_group.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -295,7 +295,7 @@ data:
     \ F>\r\n  tuple<Y, int, T> max_right(F check, int L, int R) {\r\n    int cnt =\
     \ 0;\r\n    int p = 0;\r\n    T t = Mono::unit();\r\n    assert(check(-infty<Y>,\
     \ 0, Mono::unit()));\r\n    if (check(infty<Y>, R - L, seg[log].prod(L, R))) {\
-    \ return {R - L, infty<Y>, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1;\
+    \ return {infty<Y>, R - L, seg[log].prod(L, R)}; }\r\n    for (int d = log - 1;\
     \ d >= 0; --d) {\r\n      int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R,\
     \ 0);\r\n      int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;\r\n      int cnt1\
     \ = cnt + r0 - l0;\r\n      int p1 = p | 1 << d;\r\n      T t1 = Mono::op(t, seg[d].prod(l0,\
@@ -385,24 +385,24 @@ data:
     \     if (L == R) continue;\n      int k = RNG(R - L);\n      sort(all(B));\n\
     \      assert(WM.kth(L, R, k) == B[k]);\n    }\n    if (is_same_v<Mono, Monoid_Add<int>>\
     \ && t == 3) { // max_right\n      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n\
-    \      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n\
-    \          = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n\
+    \      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\
+    \ = [&](int cut, int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n\
     \      auto p = WM.max_right(check, L, R);\n      int cnt = 0, sm = 0;\n     \
     \ binary_search(\n          [&](int y) -> bool {\n            auto [c, s] = WM.prefix_count_and_prod(L,\
-    \ R, y);\n            if (check(c, s)) cnt = c, sm = s;\n            return check(c,\
-    \ s);\n          },\n          -10, MAX + 10);\n      assert(p.fi == cnt && p.se\
-    \ == sm);\n    }\n    if (t == 4) { // k-th value and prod\n      int k = RNG(0,\
-    \ R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n      int\
-    \ val = B[I[k]];\n      int sm = Mono::unit();\n      FOR(i, k) sm = Mono::op(sm,\
-    \ Y[I[i]]);\n      auto p = WM.kth_value_and_prod(L, R, k);\n      assert(p.fi\
-    \ == val && p.se == sm);\n    }\n    if (t == 5) { // next\n      int x = RNG(-1,\
-    \ MAX + 2);\n      int ans = infty<int>;\n      for (auto& b: B) {\n        if\
-    \ (x <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L, R, x));\n \
-    \   }\n    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n      int ans\
-    \ = -infty<int>;\n      for (auto& b: B) {\n        if (b <= x) chmax(ans, b);\n\
-    \      }\n      assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(N, 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
+    \ R, y);\n            if (check(0, c, s)) cnt = c, sm = s;\n            return\
+    \ check(0, c, s);\n          },\n          -10, MAX + 10);\n      assert(get<1>(p)\
+    \ == cnt && get<2>(p) == sm);\n    }\n    if (t == 4) { // k-th value and prod\n\
+    \      int k = RNG(0, R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n\
+    \      int val = B[I[k]];\n      int sm = Mono::unit();\n      FOR(i, k) sm =\
+    \ Mono::op(sm, Y[I[i]]);\n      auto p = WM.kth_value_and_prod(L, R, k);\n   \
+    \   assert(p.fi == val && p.se == sm);\n    }\n    if (t == 5) { // next\n   \
+    \   int x = RNG(-1, MAX + 2);\n      int ans = infty<int>;\n      for (auto& b:\
+    \ B) {\n        if (x <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L,\
+    \ R, x));\n    }\n    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n\
+    \      int ans = -infty<int>;\n      for (auto& b: B) {\n        if (b <= x) chmax(ans,\
+    \ b);\n      }\n      assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(N, 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
     \      test<false, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<true,\
     \ SegTree<Monoid_Min<int>>>(N);\n      test<false, SegTree<Monoid_Min<int>>>(N);\n\
     \    }\n  }\n  solve();\n\n  return 0;\n}\n"
@@ -425,24 +425,24 @@ data:
     \     if (L == R) continue;\n      int k = RNG(R - L);\n      sort(all(B));\n\
     \      assert(WM.kth(L, R, k) == B[k]);\n    }\n    if (is_same_v<Mono, Monoid_Add<int>>\
     \ && t == 3) { // max_right\n      int a = RNG(0, 10);\n      int b = RNG(0, 10);\n\
-    \      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\n\
-    \          = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n\
+    \      int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);\n      auto check\
+    \ = [&](int cut, int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };\n\
     \      auto p = WM.max_right(check, L, R);\n      int cnt = 0, sm = 0;\n     \
     \ binary_search(\n          [&](int y) -> bool {\n            auto [c, s] = WM.prefix_count_and_prod(L,\
-    \ R, y);\n            if (check(c, s)) cnt = c, sm = s;\n            return check(c,\
-    \ s);\n          },\n          -10, MAX + 10);\n      assert(p.fi == cnt && p.se\
-    \ == sm);\n    }\n    if (t == 4) { // k-th value and prod\n      int k = RNG(0,\
-    \ R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n      int\
-    \ val = B[I[k]];\n      int sm = Mono::unit();\n      FOR(i, k) sm = Mono::op(sm,\
-    \ Y[I[i]]);\n      auto p = WM.kth_value_and_prod(L, R, k);\n      assert(p.fi\
-    \ == val && p.se == sm);\n    }\n    if (t == 5) { // next\n      int x = RNG(-1,\
-    \ MAX + 2);\n      int ans = infty<int>;\n      for (auto& b: B) {\n        if\
-    \ (x <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L, R, x));\n \
-    \   }\n    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n      int ans\
-    \ = -infty<int>;\n      for (auto& b: B) {\n        if (b <= x) chmax(ans, b);\n\
-    \      }\n      assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid solve()\
-    \ {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\nsigned main()\
-    \ {\n  FOR(N, 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
+    \ R, y);\n            if (check(0, c, s)) cnt = c, sm = s;\n            return\
+    \ check(0, c, s);\n          },\n          -10, MAX + 10);\n      assert(get<1>(p)\
+    \ == cnt && get<2>(p) == sm);\n    }\n    if (t == 4) { // k-th value and prod\n\
+    \      int k = RNG(0, R - L + 1);\n      B.eb(infty<int>);\n      auto I = argsort(B);\n\
+    \      int val = B[I[k]];\n      int sm = Mono::unit();\n      FOR(i, k) sm =\
+    \ Mono::op(sm, Y[I[i]]);\n      auto p = WM.kth_value_and_prod(L, R, k);\n   \
+    \   assert(p.fi == val && p.se == sm);\n    }\n    if (t == 5) { // next\n   \
+    \   int x = RNG(-1, MAX + 2);\n      int ans = infty<int>;\n      for (auto& b:\
+    \ B) {\n        if (x <= b) chmin(ans, b);\n      }\n      assert(ans == WM.next(L,\
+    \ R, x));\n    }\n    if (t == 6) { // prev\n      int x = RNG(-1, MAX + 1);\n\
+    \      int ans = -infty<int>;\n      for (auto& b: B) {\n        if (b <= x) chmax(ans,\
+    \ b);\n      }\n      assert(ans == WM.prev(L, R, x));\n    }\n  }\n}\n\nvoid\
+    \ solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n}\n\n\
+    signed main() {\n  FOR(N, 64) {\n    FOR(50) {\n      test<true, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n\
     \      test<false, Static_Range_Product_Group<Monoid_Add<int>>>(N);\n      test<true,\
     \ SegTree<Monoid_Min<int>>>(N);\n      test<false, SegTree<Monoid_Min<int>>>(N);\n\
     \    }\n  }\n  solve();\n\n  return 0;\n}\n"
@@ -459,8 +459,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/wavelet_matrix.test.cpp
   requiredBy: []
-  timestamp: '2025-05-05 02:10:07+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  timestamp: '2025-05-18 10:20:59+09:00'
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/wavelet_matrix.test.cpp
 layout: document

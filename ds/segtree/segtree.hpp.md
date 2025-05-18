@@ -29,7 +29,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':warning:'
@@ -93,7 +93,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/wavelet_matrix.test.cpp
     title: test/1_mytest/wavelet_matrix.test.cpp
   - icon: ':heavy_check_mark:'
@@ -174,6 +174,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2897.test.cpp
     title: test/3_yukicoder/2897.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3148.test.cpp
+    title: test/3_yukicoder/3148.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/426.test.cpp
     title: test/3_yukicoder/426.test.cpp
@@ -307,6 +310,7 @@ data:
   - test/3_yukicoder/426.test.cpp
   - test/3_yukicoder/1625_2.test.cpp
   - test/3_yukicoder/2361.test.cpp
+  - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/2859.test.cpp
   - test/3_yukicoder/2595.test.cpp
   - test/3_yukicoder/529.test.cpp

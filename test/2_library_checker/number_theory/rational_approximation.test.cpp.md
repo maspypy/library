@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: nt/rational_binary_search.hpp
     title: nt/rational_binary_search.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

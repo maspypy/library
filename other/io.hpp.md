@@ -1605,6 +1605,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/310.test.cpp
     title: test/3_yukicoder/310.test.cpp
+  - icon: ':x:'
+    path: test/3_yukicoder/3148.test.cpp
+    title: test/3_yukicoder/3148.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/421.test.cpp
     title: test/3_yukicoder/421.test.cpp
@@ -1902,9 +1905,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/NTL_2_C.test.cpp
     title: test/4_aoj/NTL_2_C.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links:
     - https://judge.yosupo.jp/submission/21623
@@ -2107,7 +2110,7 @@ data:
   - other/mhc_template_directory/main.cpp
   - test/2_library_checker/convolution/convolution_huge.test___.cpp
   timestamp: '2025-02-09 09:51:19+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/2206.test.cpp
   - test/3_yukicoder/502_2.test.cpp
@@ -2302,6 +2305,7 @@ data:
   - test/3_yukicoder/1593.test.cpp
   - test/3_yukicoder/1774.test.cpp
   - test/3_yukicoder/789_2.test.cpp
+  - test/3_yukicoder/3148.test.cpp
   - test/3_yukicoder/1790.test.cpp
   - test/3_yukicoder/2109.test.cpp
   - test/3_yukicoder/2507.test.cpp
