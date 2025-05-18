@@ -85,7 +85,7 @@ struct Line {
 
   template <typename U>
   U eval(Point<U> P) {
-    return a * P.x + b * P.y + c;
+    return U(a) * P.x + U(b) * P.y + U(c);
   }
 
   template <typename U>
