@@ -236,7 +236,7 @@ struct Wavelet_Matrix {
     int p = 0;
     T t = Mono::unit();
     assert(check(-infty<Y>, 0, Mono::unit()));
-    if (check(infty<Y>, R - L, seg[log].prod(L, R))) { return {R - L, infty<Y>, seg[log].prod(L, R)}; }
+    if (check(infty<Y>, R - L, seg[log].prod(L, R))) { return {infty<Y>, R - L, seg[log].prod(L, R)}; }
     for (int d = log - 1; d >= 0; --d) {
       int l0 = bv[d].count_prefix(L, 0), r0 = bv[d].count_prefix(R, 0);
       int l1 = L + mid[d] - l0, r1 = R + mid[d] - r0;

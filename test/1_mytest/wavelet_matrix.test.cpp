@@ -52,18 +52,17 @@ void test(int N) {
       int a = RNG(0, 10);
       int b = RNG(0, 10);
       int c = RNG(0, a * (R - L) + b * MAX * (R - L) + 1);
-      auto check
-          = [&](int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };
+      auto check = [&](int cut, int cnt, int sm) -> bool { return a * cnt + b * sm <= c; };
       auto p = WM.max_right(check, L, R);
       int cnt = 0, sm = 0;
       binary_search(
           [&](int y) -> bool {
             auto [c, s] = WM.prefix_count_and_prod(L, R, y);
-            if (check(c, s)) cnt = c, sm = s;
-            return check(c, s);
+            if (check(0, c, s)) cnt = c, sm = s;
+            return check(0, c, s);
           },
           -10, MAX + 10);
-      assert(p.fi == cnt && p.se == sm);
+      assert(get<1>(p) == cnt && get<2>(p) == sm);
     }
     if (t == 4) { // k-th value and prod
       int k = RNG(0, R - L + 1);
