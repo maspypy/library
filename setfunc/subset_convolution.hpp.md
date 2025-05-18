@@ -9,6 +9,12 @@ data:
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
   - icon: ':warning:'
+    path: graph/count/count_bridgeless_subgraph.hpp
+    title: graph/count/count_bridgeless_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_tree_subgraph.hpp
+    title: graph/count/count_tree_subgraph.hpp
+  - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -98,6 +104,8 @@ data:
   - setfunc/power_projection_of_sps.hpp
   - graph/tutte_polynomial.hpp
   - graph/chromatic.hpp
+  - graph/count/count_tree_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   - linalg/hafnian.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC

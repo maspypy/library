@@ -1,12 +1,15 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
+  - icon: ':heavy_check_mark:'
+    path: graph/reverse_graph.hpp
+    title: graph/reverse_graph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/strongly_connected_component.hpp
     title: graph/strongly_connected_component.hpp
@@ -19,7 +22,8 @@ data:
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
-    links: []
+    links:
+    - https://codeforces.com/contest/2041/problem/K
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
     \ Val>\r\nstruct HashMap {\r\n  // n \u306F\u5165\u308C\u305F\u3044\u3082\u306E\
     \u306E\u500B\u6570\u3067 ok\r\n  HashMap(u32 n = 0) { build(n); }\r\n  void build(u32\
@@ -134,7 +138,10 @@ data:
     \  Graph<int, 1> DAG(C);\n  vvc<int> edges(C);\n  for (auto&& e: G.edges) {\n\
     \    int x = comp[e.frm], y = comp[e.to];\n    if (x == y) continue;\n    edges[x].eb(y);\n\
     \  }\n  FOR(c, C) {\n    UNIQUE(edges[c]);\n    for (auto&& to: edges[c]) DAG.add(c,\
-    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 3 \"graph/reachability.hpp\"\
+    \ to);\n  }\n  DAG.build();\n  return DAG;\n}\n#line 2 \"graph/reverse_graph.hpp\"\
+    \n\r\ntemplate <typename GT>\r\nGT reverse_graph(GT& G) {\r\n  static_assert(GT::is_directed);\r\
+    \n  GT G1(G.N);\r\n  for (auto&& e: G.edges) { G1.add(e.to, e.frm, e.cost, e.id);\
+    \ }\r\n  G1.build();\r\n  return G1;\r\n}\r\n#line 4 \"graph/reachability.hpp\"\
     \n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\
     \u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int>\
     \ reachability(GT& G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\
@@ -151,32 +158,64 @@ data:
     \ < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |= dp[edges[i].fi];\
     \ }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for (auto& qid: QID[s])\
     \ {\n        int t = query[qid].se;\n        ANS[qid] = dp[t] >> i & 1;\n    \
-    \  }\n    }\n  }\n  return ANS;\n}\n"
-  code: "#pragma once\n#include \"graph/strongly_connected_component.hpp\"\n\n// \u6709\
-    \u5411\u30B0\u30E9\u30D5\u306E\u5230\u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\
-    \u3002O((N+M)Q/w)\u3002\ntemplate <typename GT, typename P>\nvc<int> reachability(GT&\
-    \ G, vc<P> query) {\n  using U = u64;\n  constexpr int W = 64;\n\n  auto [C, comp]\
-    \ = strongly_connected_component(G);\n\n  vc<pair<int, int>> edges;\n  for (auto&&\
-    \ e: G.edges) {\n    auto a = comp[e.frm], b = comp[e.to];\n    assert(a <= b);\n\
-    \    if (a < b) edges.eb(a, b);\n  }\n  UNIQUE(edges);\n  for (auto& [a, b]: query)\
-    \ a = comp[a], b = comp[b];\n\n  int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int>\
-    \ S;\n  vvc<int> QID(C);\n  FOR(q, Q) {\n    auto [a, b] = query[q];\n    if (a\
-    \ >= b) {\n      ANS[q] = (a == b);\n      continue;\n    }\n    QID[a].eb(q);\n\
-    \    S.eb(a);\n  }\n\n  UNIQUE(S);\n  vc<U> dp(C);\n  int p = 0;\n  for (int l\
-    \ = 0; l < len(S); l += W) {\n    int r = min<int>(l + W, len(S));\n    fill(dp.begin()\
-    \ + S[l], dp.end(), U(0));\n    FOR(i, r - l) { dp[S[l + i]] |= U(1) << i; }\n\
-    \    while (p < len(edges) && edges[p].fi < S[l]) ++p;\n    FOR(i, p, len(edges))\
-    \ { dp[edges[i].se] |= dp[edges[i].fi]; }\n    FOR(i, r - l) {\n      int s =\
-    \ S[l + i];\n      for (auto& qid: QID[s]) {\n        int t = query[qid].se;\n\
-    \        ANS[qid] = dp[t] >> i & 1;\n      }\n    }\n  }\n  return ANS;\n}"
+    \  }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable from v).\n\
+    // (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\u69CB\u5B9F\
+    \u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
+    vc<int> count_reachable(Graph<int, 1> G) {\n  G = reverse_graph(G);\n  int N =\
+    \ G.N;\n  auto [nc, comp] = strongly_connected_component(G);\n  vc<int> sz(nc);\n\
+    \  FOR(v, N) sz[comp[v]]++;\n\n  // sorted pairs\n  vc<pair<int, int>> E;\n  for\
+    \ (auto& e: G.edges) {\n    int a = comp[e.frm], b = comp[e.to];\n    if (a !=\
+    \ b) E.eb(a, b);\n  }\n  UNIQUE(E);\n\n  vc<int> ANS(nc);\n  int p = 0;\n  int\
+    \ idx = 0;\n  vc<u128> dp(nc);\n  while (p < nc) {\n    int k = 0;\n    int s\
+    \ = p;\n    memset(dp.data() + s, 0, (nc - s) * sizeof(u128));\n    while (k <\
+    \ 128 && p < nc) {\n      if (sz[p] == 0) ++p;\n      if (p == nc) break;\n  \
+    \    int m = min(sz[p], 128 - k);\n      for (int i = k; i < k + m; ++i) dp[p]\
+    \ |= u128(1) << i;\n      sz[p] -= m, k += m;\n    }\n    while (idx < len(E)\
+    \ && E[idx].fi < s) ++idx;\n    FOR(i, idx, len(E)) { dp[E[i].se] |= dp[E[i].fi];\
+    \ }\n    FOR(v, s, nc) { ANS[v] += popcnt(u64(dp[v] >> 64)) + popcnt(u64(dp[v]));\
+    \ }\n  }\n  ANS = rearrange(ANS, comp);\n  return ANS;\n}\n"
+  code: "#pragma once\n#include \"graph/strongly_connected_component.hpp\"\n#include\
+    \ \"graph/reverse_graph.hpp\"\n\n// \u6709\u5411\u30B0\u30E9\u30D5\u306E\u5230\
+    \u9054\u53EF\u80FD\u6027\u30AF\u30A8\u30EA\u3002O((N+M)Q/w)\u3002\ntemplate <typename\
+    \ GT, typename P>\nvc<int> reachability(GT& G, vc<P> query) {\n  using U = u64;\n\
+    \  constexpr int W = 64;\n\n  auto [C, comp] = strongly_connected_component(G);\n\
+    \n  vc<pair<int, int>> edges;\n  for (auto&& e: G.edges) {\n    auto a = comp[e.frm],\
+    \ b = comp[e.to];\n    assert(a <= b);\n    if (a < b) edges.eb(a, b);\n  }\n\
+    \  UNIQUE(edges);\n  for (auto& [a, b]: query) a = comp[a], b = comp[b];\n\n \
+    \ int Q = len(query);\n  vc<int> ANS(Q);\n\n  vc<int> S;\n  vvc<int> QID(C);\n\
+    \  FOR(q, Q) {\n    auto [a, b] = query[q];\n    if (a >= b) {\n      ANS[q] =\
+    \ (a == b);\n      continue;\n    }\n    QID[a].eb(q);\n    S.eb(a);\n  }\n\n\
+    \  UNIQUE(S);\n  vc<U> dp(C);\n  int p = 0;\n  for (int l = 0; l < len(S); l +=\
+    \ W) {\n    int r = min<int>(l + W, len(S));\n    fill(dp.begin() + S[l], dp.end(),\
+    \ U(0));\n    FOR(i, r - l) { dp[S[l + i]] |= U(1) << i; }\n    while (p < len(edges)\
+    \ && edges[p].fi < S[l]) ++p;\n    FOR(i, p, len(edges)) { dp[edges[i].se] |=\
+    \ dp[edges[i].fi]; }\n    FOR(i, r - l) {\n      int s = S[l + i];\n      for\
+    \ (auto& qid: QID[s]) {\n        int t = query[qid].se;\n        ANS[qid] = dp[t]\
+    \ >> i & 1;\n      }\n    }\n  }\n  return ANS;\n}\n\n// ANS[v] := count(reachable\
+    \ from v).\n// (N,M)=(2e5,4e5): \u307B\u307C\u3061\u3087\u3046\u3069 1.5sec. \u7D50\
+    \u69CB\u5B9F\u884C\u6642\u9593\u304C\u3076\u308C\u308B.\n// https://codeforces.com/contest/2041/problem/K\n\
+    vc<int> count_reachable(Graph<int, 1> G) {\n  G = reverse_graph(G);\n  int N =\
+    \ G.N;\n  auto [nc, comp] = strongly_connected_component(G);\n  vc<int> sz(nc);\n\
+    \  FOR(v, N) sz[comp[v]]++;\n\n  // sorted pairs\n  vc<pair<int, int>> E;\n  for\
+    \ (auto& e: G.edges) {\n    int a = comp[e.frm], b = comp[e.to];\n    if (a !=\
+    \ b) E.eb(a, b);\n  }\n  UNIQUE(E);\n\n  vc<int> ANS(nc);\n  int p = 0;\n  int\
+    \ idx = 0;\n  vc<u128> dp(nc);\n  while (p < nc) {\n    int k = 0;\n    int s\
+    \ = p;\n    memset(dp.data() + s, 0, (nc - s) * sizeof(u128));\n    while (k <\
+    \ 128 && p < nc) {\n      if (sz[p] == 0) ++p;\n      if (p == nc) break;\n  \
+    \    int m = min(sz[p], 128 - k);\n      for (int i = k; i < k + m; ++i) dp[p]\
+    \ |= u128(1) << i;\n      sz[p] -= m, k += m;\n    }\n    while (idx < len(E)\
+    \ && E[idx].fi < s) ++idx;\n    FOR(i, idx, len(E)) { dp[E[i].se] |= dp[E[i].fi];\
+    \ }\n    FOR(v, s, nc) { ANS[v] += popcnt(u64(dp[v] >> 64)) + popcnt(u64(dp[v]));\
+    \ }\n  }\n  ANS = rearrange(ANS, comp);\n  return ANS;\n}\n"
   dependsOn:
   - graph/strongly_connected_component.hpp
   - graph/base.hpp
   - ds/hashmap.hpp
+  - graph/reverse_graph.hpp
   isVerificationFile: false
   path: graph/reachability.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2025-05-18 17:51:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/4_aoj/0275.test.cpp

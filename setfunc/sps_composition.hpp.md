@@ -6,6 +6,15 @@ data:
     title: setfunc/ranked_zeta.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: graph/count/count_biconnected_subgraph.hpp
+    title: graph/count/count_biconnected_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_bridgeless_subgraph.hpp
+    title: graph/count/count_bridgeless_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_connected_subgraph.hpp
+    title: graph/count/count_connected_subgraph.hpp
+  - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
   - icon: ':warning:'
@@ -88,6 +97,9 @@ data:
   requiredBy:
   - setfunc/sps_log.hpp
   - graph/tutte_polynomial.hpp
+  - graph/count/count_connected_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   timestamp: '2023-09-23 23:33:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

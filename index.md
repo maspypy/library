@@ -313,7 +313,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/fastset.hpp
       title: ds/fastset.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/hashmap.hpp
       title: ds/hashmap.hpp
     - icon: ':warning:'
@@ -544,7 +544,7 @@ data:
     - icon: ':warning:'
       path: ds/segtree/rollback_lazy_segtree.hpp
       title: ds/segtree/rollback_lazy_segtree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/segtree/segtree.hpp
       title: ds/segtree/segtree.hpp
     - icon: ':heavy_check_mark:'
@@ -613,7 +613,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: ds/unionfind/rollback_unionfind.hpp
       title: ds/unionfind/rollback_unionfind.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: ds/unionfind/unionfind.hpp
       title: ds/unionfind/unionfind.hpp
   - name: ds/wavelet_matrix
@@ -806,6 +806,9 @@ data:
     - icon: ':warning:'
       path: geo/minkowski_sum.hpp
       title: geo/minkowski_sum.hpp
+    - icon: ':warning:'
+      path: geo/modint_real.hpp
+      title: geo/modint_real.hpp
     - icon: ':heavy_check_mark:'
       path: geo/outcircle.hpp
       title: geo/outcircle.hpp
@@ -843,7 +846,7 @@ data:
       title: geo3d/cross_point.hpp
   - name: graph
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/base.hpp
       title: graph/base.hpp
     - icon: ':warning:'
@@ -861,7 +864,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/block_cut.hpp
       title: graph/block_cut.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/bracket_graph.hpp
       title: graph/bracket_graph.hpp
     - icon: ':heavy_check_mark:'
@@ -972,7 +975,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/minimum_spanning_tree.hpp
       title: graph/minimum_spanning_tree.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/optimal_product_on_tree.hpp
       title: graph/optimal_product_on_tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1017,7 +1020,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/tournament.hpp
       title: graph/tournament.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: graph/tree.hpp
       title: graph/tree.hpp
     - icon: ':heavy_check_mark:'
@@ -1104,12 +1107,21 @@ data:
     - icon: ':heavy_check_mark:'
       path: graph/count/count_P3_P4_P5.hpp
       title: graph/count/count_P3_P4_P5.hpp
+    - icon: ':warning:'
+      path: graph/count/count_biconnected_subgraph.hpp
+      title: graph/count/count_biconnected_subgraph.hpp
+    - icon: ':warning:'
+      path: graph/count/count_bridgeless_subgraph.hpp
+      title: graph/count/count_bridgeless_subgraph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_clique.hpp
       title: graph/count/count_clique.hpp
     - icon: ':warning:'
       path: graph/count/count_connected_intervals.hpp
       title: graph/count/count_connected_intervals.hpp
+    - icon: ':warning:'
+      path: graph/count/count_connected_subgraph.hpp
+      title: graph/count/count_connected_subgraph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_cycle.hpp
       title: graph/count/count_cycle.hpp
@@ -1158,6 +1170,9 @@ data:
     - icon: ':warning:'
       path: graph/count/count_tree_by_root_degree.hpp
       title: graph/count/count_tree_by_root_degree.hpp
+    - icon: ':warning:'
+      path: graph/count/count_tree_subgraph.hpp
+      title: graph/count/count_tree_subgraph.hpp
     - icon: ':heavy_check_mark:'
       path: graph/count/count_unlabeled_tree.hpp
       title: graph/count/count_unlabeled_tree.hpp
@@ -1526,7 +1541,7 @@ data:
       title: mod/tetration.hpp
   - name: .
     pages:
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: my_template.hpp
       title: my_template.hpp
     - icon: ':warning:'
@@ -1705,7 +1720,7 @@ data:
     - icon: ':warning:'
       path: other/greedy_coin_counter_example.hpp
       title: other/greedy_coin_counter_example.hpp
-    - icon: ':question:'
+    - icon: ':heavy_check_mark:'
       path: other/io.hpp
       title: other/io.hpp
     - icon: ':heavy_check_mark:'
@@ -2237,6 +2252,12 @@ data:
     - icon: ':warning:'
       path: string/many_string_compare.hpp
       title: string/many_string_compare.hpp
+    - icon: ':warning:'
+      path: string/minimum_cyclic_shift.hpp
+      title: string/minimum_cyclic_shift.hpp
+    - icon: ':warning:'
+      path: string/non_dominated_suffix.hpp
+      title: string/non_dominated_suffix.hpp
     - icon: ':heavy_check_mark:'
       path: string/online_z_algorithm.hpp
       title: string/online_z_algorithm.hpp
@@ -4550,7 +4571,7 @@ data:
     - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/310.test.cpp
       title: test/3_yukicoder/310.test.cpp
-    - icon: ':x:'
+    - icon: ':heavy_check_mark:'
       path: test/3_yukicoder/3148.test.cpp
       title: test/3_yukicoder/3148.test.cpp
     - icon: ':heavy_check_mark:'

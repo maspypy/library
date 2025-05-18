@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':heavy_check_mark:'
@@ -180,7 +180,17 @@ data:
     \ lb, rb, a, la, ra);\n    int k = comp3(a, la, la + na, b, lb, lb + na);\n  \
     \  if (k != 0) return k;\n    k = comp3(b, lb, lb + nb - na, b, lb + na, rb);\n\
     \    if (k != 0) return k;\n    return comp3(b, lb + nb - na, rb, a, la, ra);\n\
-    \  }\n\n  int length(int a) { return pos[a + 1] - pos[a]; }\n};\n"
+    \  }\n\n  // [<]-1, [=]0, [>]1, vc of {idx, l, r}\n  int comp3(vc<tuple<int, int,\
+    \ int>> A, vc<tuple<int, int, int>> B) {\n    reverse(all(A));\n    reverse(all(B));\n\
+    \    while (1) {\n      while (!A.empty()) {\n        auto [i, l, r] = A.back();\n\
+    \        if (l < r) break;\n        POP(A);\n      }\n      while (!B.empty())\
+    \ {\n        auto [i, l, r] = B.back();\n        if (l < r) break;\n        POP(B);\n\
+    \      }\n      if (A.empty() && B.empty()) return 0;\n      if (A.empty()) return\
+    \ -1;\n      if (B.empty()) return 1;\n      auto &[a, la, ra] = A.back();\n \
+    \     auto &[b, lb, rb] = B.back();\n      int k = lcp(a, la, ra, b, lb, rb);\n\
+    \      if (k == 0) return (ALL[pos[a] + la] < ALL[pos[b] + lb] ? -1 : 1);\n  \
+    \    la += k, lb += k;\n    }\n    return 0;\n  }\n\n  int length(int a) { return\
+    \ pos[a + 1] - pos[a]; }\n};\n"
   code: "#include \"string/suffix_array.hpp\"\n\n// https://qoj.ac/contest/1803/problem/9406\n\
     template <bool USE_SPARSE_TABLE>\nstruct Many_String_Compare {\n  int n;\n  string\
     \ ALL;\n  vc<int> pos;\n  Suffix_Array<USE_SPARSE_TABLE> X;\n\n  template <typename\
@@ -200,7 +210,17 @@ data:
     \ lb, rb, a, la, ra);\n    int k = comp3(a, la, la + na, b, lb, lb + na);\n  \
     \  if (k != 0) return k;\n    k = comp3(b, lb, lb + nb - na, b, lb + na, rb);\n\
     \    if (k != 0) return k;\n    return comp3(b, lb + nb - na, rb, a, la, ra);\n\
-    \  }\n\n  int length(int a) { return pos[a + 1] - pos[a]; }\n};\n"
+    \  }\n\n  // [<]-1, [=]0, [>]1, vc of {idx, l, r}\n  int comp3(vc<tuple<int, int,\
+    \ int>> A, vc<tuple<int, int, int>> B) {\n    reverse(all(A));\n    reverse(all(B));\n\
+    \    while (1) {\n      while (!A.empty()) {\n        auto [i, l, r] = A.back();\n\
+    \        if (l < r) break;\n        POP(A);\n      }\n      while (!B.empty())\
+    \ {\n        auto [i, l, r] = B.back();\n        if (l < r) break;\n        POP(B);\n\
+    \      }\n      if (A.empty() && B.empty()) return 0;\n      if (A.empty()) return\
+    \ -1;\n      if (B.empty()) return 1;\n      auto &[a, la, ra] = A.back();\n \
+    \     auto &[b, lb, rb] = B.back();\n      int k = lcp(a, la, ra, b, lb, rb);\n\
+    \      if (k == 0) return (ALL[pos[a] + la] < ALL[pos[b] + lb] ? -1 : 1);\n  \
+    \    la += k, lb += k;\n    }\n    return 0;\n  }\n\n  int length(int a) { return\
+    \ pos[a + 1] - pos[a]; }\n};\n"
   dependsOn:
   - string/suffix_array.hpp
   - alg/monoid/min.hpp
@@ -209,7 +229,7 @@ data:
   isVerificationFile: false
   path: string/many_string_compare.hpp
   requiredBy: []
-  timestamp: '2025-02-14 21:17:25+09:00'
+  timestamp: '2025-05-18 18:12:51+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: string/many_string_compare.hpp

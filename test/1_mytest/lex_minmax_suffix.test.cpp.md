@@ -4,13 +4,13 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/monoid/min.hpp
     title: alg/monoid/min.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/segtree/segtree.hpp
     title: ds/segtree/segtree.hpp
   - icon: ':heavy_check_mark:'
     path: ds/sparse_table/sparse_table.hpp
     title: ds/sparse_table/sparse_table.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
   - icon: ':heavy_check_mark:'
@@ -139,7 +139,7 @@ data:
     \n\n#line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
-    \ RNG_64() % (r - l); }\n#line 1 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\n\
+    \ RNG_64() % (r - l); }\n#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\n\
     struct Incremental_Lyndon_Factorization {\n  vc<CHAR> S;\n  int i = 0, j = 0,\
     \ k = 0;\n  vc<int> minimum_suffix_len = {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n\
     \    // [j, j+(i-k)) simple\n    while (i < len(S)) {\n      if (k == i) {\n \
@@ -345,7 +345,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/lex_minmax_suffix.test.cpp
   requiredBy: []
-  timestamp: '2025-02-14 21:17:25+09:00'
+  timestamp: '2025-05-18 18:12:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/lex_minmax_suffix.test.cpp

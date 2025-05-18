@@ -9,6 +9,12 @@ data:
     title: setfunc/subset_convolution.hpp
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: graph/count/count_bridgeless_subgraph.hpp
+    title: graph/count/count_bridgeless_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_tree_subgraph.hpp
+    title: graph/count/count_tree_subgraph.hpp
+  - icon: ':warning:'
     path: graph/tutte_polynomial.hpp
     title: graph/tutte_polynomial.hpp
   - icon: ':heavy_check_mark:'
@@ -76,6 +82,8 @@ data:
   path: setfunc/sps_exp.hpp
   requiredBy:
   - graph/tutte_polynomial.hpp
+  - graph/count/count_tree_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   - linalg/hafnian.hpp
   timestamp: '2024-12-28 10:55:16+09:00'
   verificationStatus: LIBRARY_ALL_AC

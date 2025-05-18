@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy:
@@ -18,6 +18,9 @@ data:
     path: graph/dominator_tree.hpp
     title: graph/dominator_tree.hpp
   - icon: ':heavy_check_mark:'
+    path: graph/reachability.hpp
+    title: graph/reachability.hpp
+  - icon: ':heavy_check_mark:'
     path: graph/shortest_path/K_shortest_walk.hpp
     title: graph/shortest_path/K_shortest_walk.hpp
   _extendedVerifiedWith:
@@ -30,6 +33,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1601.test.cpp
     title: test/3_yukicoder/1601.test.cpp
+  - icon: ':heavy_check_mark:'
+    path: test/4_aoj/0275.test.cpp
+    title: test/4_aoj/0275.test.cpp
   _isVerificationFailed: false
   _pathExtension: hpp
   _verificationStatusIcon: ':heavy_check_mark:'
@@ -151,6 +157,7 @@ data:
   - game/graph_game.hpp
   - game/graph_path_game.hpp
   - graph/dominator_tree.hpp
+  - graph/reachability.hpp
   - graph/shortest_path/K_shortest_walk.hpp
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
@@ -158,6 +165,7 @@ data:
   - test/3_yukicoder/1601.test.cpp
   - test/2_library_checker/graph/domninator_tree.test.cpp
   - test/2_library_checker/graph/K_shortest_walk.test.cpp
+  - test/4_aoj/0275.test.cpp
 documentation_of: graph/reverse_graph.hpp
 layout: document
 redirect_from:

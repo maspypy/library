@@ -8,6 +8,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: string/is_substring.hpp
     title: string/is_substring.hpp
+  - icon: ':warning:'
+    path: string/non_dominated_suffix.hpp
+    title: string/non_dominated_suffix.hpp
   - icon: ':heavy_check_mark:'
     path: string/run_enumerate.hpp
     title: string/run_enumerate.hpp
@@ -55,6 +58,7 @@ data:
   isVerificationFile: false
   path: string/zalgorithm.hpp
   requiredBy:
+  - string/non_dominated_suffix.hpp
   - string/is_substring.hpp
   - string/run_enumerate.hpp
   - seq/interpolate_periodic_sequence.hpp

@@ -43,25 +43,25 @@ data:
     \ {}\n  Line(Point<T> A, Point<T> B) { a = A.y - B.y, b = B.x - A.x, c = A.x *\
     \ B.y - A.y * B.x; }\n  Line(T x1, T y1, T x2, T y2) : Line(Point<T>(x1, y1),\
     \ Point<T>(x2, y2)) {}\n\n  template <typename U>\n  U eval(Point<U> P) {\n  \
-    \  return a * P.x + b * P.y + c;\n  }\n\n  template <typename U>\n  T eval(U x,\
-    \ U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\u7DDA\u304C\
-    \u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\u306B\u3059\
-    \u308B\n  void normalize() {\n    static_assert(is_same_v<T, int> || is_same_v<T,\
-    \ long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n    a /= g, b /=\
-    \ g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n    if (b == 0 && a\
-    \ < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line other) { return\
-    \ a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line other) { return\
-    \ a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename T>\nstruct Segment\
-    \ {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B) : A(A), B(B) {}\n \
-    \ Segment(T x1, T y1, T x2, T y2) : Segment(Point<T>(x1, y1), Point<T>(x2, y2))\
-    \ {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B - A);\n    if\
-    \ (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C - B).dot(A -\
-    \ B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\ntemplate\
-    \ <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle() {}\n\
-    \  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y, REAL\
-    \ r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T> p) {\n\
-    \    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy <= r *\
-    \ r;\n  }\n};\n#line 2 \"geo/perpendicular_bisector.hpp\"\n\ntemplate <typename\
+    \  return U(a) * P.x + U(b) * P.y + U(c);\n  }\n\n  template <typename U>\n  T\
+    \ eval(U x, U y) {\n    return a * x + b * y + c;\n  }\n\n  // \u540C\u3058\u76F4\
+    \u7DDA\u304C\u540C\u3058 a,b,c \u3067\u8868\u73FE\u3055\u308C\u308B\u3088\u3046\
+    \u306B\u3059\u308B\n  void normalize() {\n    static_assert(is_same_v<T, int>\
+    \ || is_same_v<T, long long>);\n    T g = gcd(gcd(abs(a), abs(b)), abs(c));\n\
+    \    a /= g, b /= g, c /= g;\n    if (b < 0) { a = -a, b = -b, c = -c; }\n   \
+    \ if (b == 0 && a < 0) { a = -a, b = -b, c = -c; }\n  }\n\n  bool is_parallel(Line\
+    \ other) { return a * other.b - b * other.a == 0; }\n  bool is_orthogonal(Line\
+    \ other) { return a * other.a + b * other.b == 0; }\n};\n\ntemplate <typename\
+    \ T>\nstruct Segment {\n  Point<T> A, B;\n\n  Segment(Point<T> A, Point<T> B)\
+    \ : A(A), B(B) {}\n  Segment(T x1, T y1, T x2, T y2) : Segment(Point<T>(x1, y1),\
+    \ Point<T>(x2, y2)) {}\n\n  bool contain(Point<T> C) {\n    T det = (C - A).det(B\
+    \ - A);\n    if (det != 0) return 0;\n    return (C - A).dot(B - A) >= 0 && (C\
+    \ - B).dot(A - B) >= 0;\n  }\n\n  Line<T> to_Line() { return Line(A, B); }\n};\n\
+    \ntemplate <typename REAL>\nstruct Circle {\n  Point<REAL> O;\n  REAL r;\n  Circle()\
+    \ {}\n  Circle(Point<REAL> O, REAL r) : O(O), r(r) {}\n  Circle(REAL x, REAL y,\
+    \ REAL r) : O(x, y), r(r) {}\n  template <typename T>\n  bool contain(Point<T>\
+    \ p) {\n    REAL dx = p.x - O.x, dy = p.y - O.y;\n    return dx * dx + dy * dy\
+    \ <= r * r;\n  }\n};\n#line 2 \"geo/perpendicular_bisector.hpp\"\n\ntemplate <typename\
     \ T>\nLine<T> perpendicular_bisector(Point<T> A, Point<T> B) {\n  assert(A !=\
     \ B);\n  T a = 2 * (B.x - A.x);\n  T b = 2 * (B.y - A.y);\n  T c = (A.x * A.x\
     \ + A.y * A.y) - (B.x * B.x + B.y * B.y);\n  return Line<T>(a, b, c);\n}\n"
@@ -74,7 +74,7 @@ data:
   isVerificationFile: false
   path: geo/perpendicular_bisector.hpp
   requiredBy: []
-  timestamp: '2025-05-05 02:10:07+09:00'
+  timestamp: '2025-05-18 17:51:29+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: geo/perpendicular_bisector.hpp

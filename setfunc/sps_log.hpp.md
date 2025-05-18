@@ -13,7 +13,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: setfunc/sps_composition.hpp
     title: setfunc/sps_composition.hpp
-  _extendedRequiredBy: []
+  _extendedRequiredBy:
+  - icon: ':warning:'
+    path: graph/count/count_biconnected_subgraph.hpp
+    title: graph/count/count_biconnected_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_bridgeless_subgraph.hpp
+    title: graph/count/count_bridgeless_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_connected_subgraph.hpp
+    title: graph/count/count_connected_subgraph.hpp
   _extendedVerifiedWith: []
   _isVerificationFailed: false
   _pathExtension: hpp
@@ -159,7 +168,10 @@ data:
   - setfunc/ranked_zeta.hpp
   isVerificationFile: false
   path: setfunc/sps_log.hpp
-  requiredBy: []
+  requiredBy:
+  - graph/count/count_connected_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []

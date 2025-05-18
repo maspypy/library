@@ -41,7 +41,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/range_closest_pair_query.hpp
     title: geo/range_closest_pair_query.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':warning:'
@@ -65,7 +65,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/block_cut.hpp
     title: graph/block_cut.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/bracket_graph.hpp
     title: graph/bracket_graph.hpp
   - icon: ':heavy_check_mark:'
@@ -92,12 +92,21 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_P3_P4_P5.hpp
     title: graph/count/count_P3_P4_P5.hpp
+  - icon: ':warning:'
+    path: graph/count/count_biconnected_subgraph.hpp
+    title: graph/count/count_biconnected_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_bridgeless_subgraph.hpp
+    title: graph/count/count_bridgeless_subgraph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
   - icon: ':warning:'
     path: graph/count/count_connected_intervals.hpp
     title: graph/count/count_connected_intervals.hpp
+  - icon: ':warning:'
+    path: graph/count/count_connected_subgraph.hpp
+    title: graph/count/count_connected_subgraph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_cycle.hpp
     title: graph/count/count_cycle.hpp
@@ -107,6 +116,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/count/count_spanning_tree.hpp
     title: graph/count/count_spanning_tree.hpp
+  - icon: ':warning:'
+    path: graph/count/count_tree_subgraph.hpp
+    title: graph/count/count_tree_subgraph.hpp
   - icon: ':warning:'
     path: graph/count_matching_on_tree.hpp
     title: graph/count_matching_on_tree.hpp
@@ -236,7 +248,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/optimal_product_on_tree.hpp
     title: graph/optimal_product_on_tree.hpp
   - icon: ':heavy_check_mark:'
@@ -299,7 +311,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/toposort.hpp
     title: graph/toposort.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/tree.hpp
     title: graph/tree.hpp
   - icon: ':heavy_check_mark:'
@@ -882,7 +894,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2892.test.cpp
     title: test/3_yukicoder/2892.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/3148.test.cpp
     title: test/3_yukicoder/3148.test.cpp
   - icon: ':heavy_check_mark:'
@@ -963,9 +975,9 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/4_aoj/ITP1_11_D.test.cpp
     title: test/4_aoj/ITP1_11_D.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -1119,9 +1131,13 @@ data:
   - graph/count/count_C3_C4.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_spanning_tree.hpp
+  - graph/count/count_connected_subgraph.hpp
   - graph/count/count_connected_intervals.hpp
+  - graph/count/count_tree_subgraph.hpp
+  - graph/count/count_biconnected_subgraph.hpp
   - graph/count/BEST.hpp
   - graph/count/count_P3_P4_P5.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_cycle.hpp
   - graph/find_path_through_specified.hpp
   - graph/range_to_range_graph.hpp
@@ -1153,7 +1169,7 @@ data:
   - flow/rank_maximal_bipartite_matching.hpp
   - flow/longest_shortest_path.hpp
   timestamp: '2024-08-26 01:20:39+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/235.test.cpp
   - test/3_yukicoder/1775.test.cpp

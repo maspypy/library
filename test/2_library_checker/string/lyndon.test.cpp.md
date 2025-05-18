@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: other/io.hpp
     title: other/io.hpp
   - icon: ':heavy_check_mark:'
@@ -213,7 +213,7 @@ data:
     void yes(bool t = 1) { print(t ? \"yes\" : \"no\"); }\r\nvoid no(bool t = 1) {\
     \ yes(!t); }\r\nvoid YA(bool t = 1) { print(t ? \"YA\" : \"TIDAK\"); }\r\nvoid\
     \ TIDAK(bool t = 1) { YA(!t); }\r\n#line 5 \"test/2_library_checker/string/lyndon.test.cpp\"\
-    \n\n#line 1 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization\
+    \n\n#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct Incremental_Lyndon_Factorization\
     \ {\n  vc<CHAR> S;\n  int i = 0, j = 0, k = 0;\n  vc<int> minimum_suffix_len =\
     \ {0};\n\n  int add(CHAR c) {\n    S.eb(c);\n    // [j, j+(i-k)) simple\n    while\
     \ (i < len(S)) {\n      if (k == i) {\n        assert(j == k);\n        ++i;\n\
@@ -240,7 +240,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/lyndon.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-05-18 18:12:51+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/lyndon.test.cpp

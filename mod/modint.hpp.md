@@ -23,9 +23,18 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/chromatic.hpp
     title: graph/chromatic.hpp
+  - icon: ':warning:'
+    path: graph/count/count_biconnected_subgraph.hpp
+    title: graph/count/count_biconnected_subgraph.hpp
+  - icon: ':warning:'
+    path: graph/count/count_bridgeless_subgraph.hpp
+    title: graph/count/count_bridgeless_subgraph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_clique.hpp
     title: graph/count/count_clique.hpp
+  - icon: ':warning:'
+    path: graph/count/count_connected_subgraph.hpp
+    title: graph/count/count_connected_subgraph.hpp
   - icon: ':heavy_check_mark:'
     path: graph/count/count_independent_set.hpp
     title: graph/count/count_independent_set.hpp
@@ -1544,11 +1553,14 @@ data:
   - graph/count/count_labeled_dag.hpp
   - graph/count/count_clique.hpp
   - graph/count/count_labeled_strong_digraph.hpp
+  - graph/count/count_connected_subgraph.hpp
   - graph/count/count_labeled_bridgeless.hpp
   - graph/count/count_unlabeled_tree.hpp
+  - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_labeled_forest.hpp
   - graph/count/count_labeled_connected.hpp
   - graph/count/count_labeled_strong_tournament.hpp
+  - graph/count/count_bridgeless_subgraph.hpp
   - graph/count/count_labeled_unicyclic.hpp
   - graph/count/count_labeled_bipartite.hpp
   - graph/count/count_labeled_biconnected.hpp
