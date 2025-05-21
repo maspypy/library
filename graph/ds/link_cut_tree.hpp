@@ -209,10 +209,6 @@ struct Link_Cut_Tree {
     }
   }
 
-private:
-  // splay tree 内で完結する操作. 特に heavy, light 構造は変わらない.
-  // light pointer は rotate 内でケア
-  // c は push 済になる
   void splay(Node *c) {
     c->push();
     while (!is_root(c)) {
@@ -234,6 +230,11 @@ private:
       }
     }
   }
+
+private:
+  // splay tree 内で完結する操作. 特に heavy, light 構造は変わらない.
+  // light pointer は rotate 内でケア
+  // c は push 済になる
 
   // パスを表す splay tree の根になっているかどうか
   // underlying tree ではない
