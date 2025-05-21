@@ -298,133 +298,132 @@ data:
     \ -> int { return (c ? c->idx : -1); };\n    FOR(i, len(nodes)) { print(i, \"\
     ,\", f((*this)[i]->p), f((*this)[i]->l), f((*this)[i]->r), (*this)[i]->rev); }\n\
     \    FOR(i, len(nodes)) {\n      np c = (*this)[i];\n      if (c->l) assert(c->l->p\
-    \ == c);\n      if (c->r) assert(c->r->p == c);\n    }\n  }\n\nprivate:\n  //\
-    \ splay tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy,\
-    \ light \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n  // light pointer\
-    \ \u306F rotate \u5185\u3067\u30B1\u30A2\n  // c \u306F push \u6E08\u306B\u306A\
-    \u308B\n  void splay(Node *c) {\n    c->push();\n    while (!is_root(c)) {\n \
-    \     Node *p = c->p;\n      Node *pp = (p ? p->p : nullptr);\n      if (state(p)\
-    \ == 0) {\n        p->push(), c->push();\n        rotate(c);\n      }\n      elif\
-    \ (state(c) == state(p)) {\n        pp->push(), p->push(), c->push();\n      \
-    \  rotate(p);\n        rotate(c);\n      }\n      else {\n        pp->push(),\
-    \ p->push(), c->push();\n        rotate(c);\n        rotate(c);\n      }\n   \
-    \ }\n  }\n\n  // \u30D1\u30B9\u3092\u8868\u3059 splay tree \u306E\u6839\u306B\u306A\
-    \u3063\u3066\u3044\u308B\u304B\u3069\u3046\u304B\n  // underlying tree \u3067\u306F\
-    \u306A\u3044\n  bool is_root(Node *c) { return state(c) == 0; }\n\n  // splay\
-    \ tree \u5185\u3067\u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light\
-    \ \u69CB\u9020\u306F\u5909\u308F\u3089\u306A\u3044.\n  // light edge \u306E\u30DD\
-    \u30A4\u30F3\u30BF\u306F\u5909\u66F4\u3055\u308C\u3046\u308B\n  void rotate(Node\
-    \ *n) {\n    // n \u3092\u6839\u306B\u8FD1\u3065\u3051\u308B\n    Node *pp, *p,\
-    \ *c;\n    p = n->p;\n    pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n\
-    \      n->r = p;\n      p->l = c;\n    } else {\n      c = n->l;\n      n->l =\
-    \ p;\n      p->r = c;\n    }\n    p->update(), n->update();\n\n    if (pp) {\n\
-    \      if (pp->l == p) pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else\
-    \ {\n        // light edge pointer \u304C (pp-p) \u304B\u3089 (pp-n) \u306B\u5909\
-    \u308F\u308B\n        pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n\
-    \    p->p = n;\n    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n \
-    \   if (!n->p) return 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r ==\
-    \ n) return -1;\n    return 0;\n  }\n};\n#line 1 \"graph/ds/lct_node_monoid.hpp\"\
-    \n\ntemplate <typename Monoid>\nstruct LCT_Node_Monoid {\n  using np = LCT_Node_Monoid\
-    \ *;\n  // \u30C7\u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int idx, size; //\
-    \ size \u306F heavy path \u306E\u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\
-    \u3054\u3068\u306B\u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X =\
-    \ typename MX::value_type;\n  using VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int\
-    \ i = 0)\n      : l(nullptr),\n        r(nullptr),\n        p(nullptr),\n    \
-    \    idx(i),\n        size(1),\n        rev(0),\n        x(MX::unit()),\n    \
-    \    rx(MX::unit()),\n        vx(MX::unit()) {}\n\n  void update() {\n    size\
-    \ = 1;\n    x = vx, rx = vx;\n    if (l) {\n      size += l->size, x = Monoid::op(l->x,\
-    \ x), rx = Monoid::op(rx, l->rx);\n    }\n    if (r) {\n      size += r->size,\
-    \ x = Monoid::op(x, r->x), rx = Monoid::op(r->rx, rx);\n    }\n  }\n\n  void push()\
-    \ {\n    if (rev) {\n      if (l) l->reverse();\n      if (r) r->reverse();\n\
-    \      rev = 0;\n    }\n  }\n\n  // data \u306E reverse \u3082\u884C\u3046\n \
-    \ void reverse() {\n    rev ^= 1;\n    swap(l, r);\n    swap(x, rx);\n  }\n\n\
-    \  // LCT \u5185\u3067 expose, update \u3092\u884C\u3046\u306E\u3067\u3053\u3053\
-    \u306F\u5909\u66F4\u3060\u3051\n  void set(VX x) { vx = x; }\n\n  void add_light(np\
-    \ c) {}\n  void erase_light(np c) {}\n  void change_light(np a, np b) {}\n};\n\
-    #line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F), F \u306E\u3042\u3068\
-    \u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n  using F = pair<K, K>;\n\
-    \  using value_type = F;\n  using X = value_type;\n  static constexpr F op(const\
-    \ F &x, const F &y) noexcept {\n    return F({x.first * y.first, x.second * y.first\
-    \ + y.second});\n  }\n  static constexpr F inverse(const F &x) {\n    auto [a,\
-    \ b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n  }\n  static constexpr\
-    \ K eval(const F &f, K x) noexcept {\n    return f.first * x + f.second;\n  }\n\
-    \  static constexpr F unit() { return {K(1), K(0)}; }\n  static constexpr bool\
-    \ commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\n\nstruct has_mod_impl\
-    \ {\n  template <class T>\n  static auto check(T &&x) -> decltype(x.get_mod(),\
-    \ std::true_type{});\n  template <class T>\n  static auto check(...) -> std::false_type;\n\
-    };\n\ntemplate <class T>\nclass has_mod : public decltype(has_mod_impl::check<T>(std::declval<T>()))\
-    \ {};\n\ntemplate <typename mint>\nmint inv(int n) {\n  static const int mod =\
-    \ mint::get_mod();\n  static vector<mint> dat = {0, 1};\n  assert(0 <= n);\n \
-    \ if (n >= mod) n %= mod;\n  while (len(dat) <= n) {\n    int k = len(dat);\n\
-    \    int q = (mod + k - 1) / k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n\
-    \  }\n  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static\
-    \ const int mod = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint>\
-    \ dat = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n\
-    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
-    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
-    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
-    \ Tail>\nmint multinomial(Head &&head, Tail &&... tail) {\n  return fact<mint>(head)\
-    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
-    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
-    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
-    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
-    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
-    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
-    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
-    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
-    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
-    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
-    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
-    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
-    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
-    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
-    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
-    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
-    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) { return (d == 0 ? mint(1)\
-    \ : mint(0)); }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n#line 3 \"\
-    mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr u32\
-    \ umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n  static\
-    \ modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n  }\n  constexpr\
-    \ modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x) : val(x % umod)\
-    \ {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr\
-    \ modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n  constexpr modint(i128\
-    \ x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const modint &other)\
-    \ const { return val < other.val; }\n  modint &operator+=(const modint &p) {\n\
-    \    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint\
-    \ &operator-=(const modint &p) {\n    if ((val += umod - p.val) >= umod) val -=\
-    \ umod;\n    return *this;\n  }\n  modint &operator*=(const modint &p) {\n   \
-    \ val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint &operator/=(const\
-    \ modint &p) {\n    *this *= p.inverse();\n    return *this;\n  }\n  modint operator-()\
-    \ const { return modint::raw(val ? mod - val : u32(0)); }\n  modint operator+(const\
-    \ modint &p) const { return modint(*this) += p; }\n  modint operator-(const modint\
-    \ &p) const { return modint(*this) -= p; }\n  modint operator*(const modint &p)\
-    \ const { return modint(*this) *= p; }\n  modint operator/(const modint &p) const\
-    \ { return modint(*this) /= p; }\n  bool operator==(const modint &p) const { return\
-    \ val == p.val; }\n  bool operator!=(const modint &p) const { return val != p.val;\
-    \ }\n  modint inverse() const {\n    int a = val, b = mod, u = 1, v = 0, t;\n\
-    \    while (b > 0) {\n      t = a / b;\n      swap(a -= t * b, b), swap(u -= t\
-    \ * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll n) const {\n  \
-    \  if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n    modint ret(1),\
-    \ mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n      mul *= mul;\n\
-    \      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr int get_mod()\
-    \ { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr\
-    \ pair<int, int> ntt_info() {\n    if (mod == 120586241) return {20, 74066978};\n\
-    \    if (mod == 167772161) return {25, 17};\n    if (mod == 469762049) return\
-    \ {26, 30};\n    if (mod == 754974721) return {24, 362};\n    if (mod == 880803841)\
-    \ return {23, 211};\n    if (mod == 943718401) return {22, 663003469};\n    if\
-    \ (mod == 998244353) return {23, 31};\n    if (mod == 1004535809) return {21,\
-    \ 582313106};\n    if (mod == 1012924417) return {21, 368093570};\n    return\
-    \ {-1, -1};\n  }\n  static constexpr bool can_ntt() { return ntt_info().fi !=\
-    \ -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid rd(modint<mod> &x) {\n\
-    \  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <= x.val && x.val < mod);\n\
-    }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
-    \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
-    #line 10 \"test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp\"\
+    \ == c);\n      if (c->r) assert(c->r->p == c);\n    }\n  }\n\n  void splay(Node\
+    \ *c) {\n    c->push();\n    while (!is_root(c)) {\n      Node *p = c->p;\n  \
+    \    Node *pp = (p ? p->p : nullptr);\n      if (state(p) == 0) {\n        p->push(),\
+    \ c->push();\n        rotate(c);\n      }\n      elif (state(c) == state(p)) {\n\
+    \        pp->push(), p->push(), c->push();\n        rotate(p);\n        rotate(c);\n\
+    \      }\n      else {\n        pp->push(), p->push(), c->push();\n        rotate(c);\n\
+    \        rotate(c);\n      }\n    }\n  }\n\nprivate:\n  // splay tree \u5185\u3067\
+    \u5B8C\u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\u306F\
+    \u5909\u308F\u3089\u306A\u3044.\n  // light pointer \u306F rotate \u5185\u3067\
+    \u30B1\u30A2\n  // c \u306F push \u6E08\u306B\u306A\u308B\n\n  // \u30D1\u30B9\
+    \u3092\u8868\u3059 splay tree \u306E\u6839\u306B\u306A\u3063\u3066\u3044\u308B\
+    \u304B\u3069\u3046\u304B\n  // underlying tree \u3067\u306F\u306A\u3044\n  bool\
+    \ is_root(Node *c) { return state(c) == 0; }\n\n  // splay tree \u5185\u3067\u5B8C\
+    \u7D50\u3059\u308B\u64CD\u4F5C. \u7279\u306B heavy, light \u69CB\u9020\u306F\u5909\
+    \u308F\u3089\u306A\u3044.\n  // light edge \u306E\u30DD\u30A4\u30F3\u30BF\u306F\
+    \u5909\u66F4\u3055\u308C\u3046\u308B\n  void rotate(Node *n) {\n    // n \u3092\
+    \u6839\u306B\u8FD1\u3065\u3051\u308B\n    Node *pp, *p, *c;\n    p = n->p;\n \
+    \   pp = p->p;\n    if (p->l == n) {\n      c = n->r;\n      n->r = p;\n     \
+    \ p->l = c;\n    } else {\n      c = n->l;\n      n->l = p;\n      p->r = c;\n\
+    \    }\n    p->update(), n->update();\n\n    if (pp) {\n      if (pp->l == p)\
+    \ pp->l = n;\n      elif (pp->r == p) pp->r = n;\n      else {\n        // light\
+    \ edge pointer \u304C (pp-p) \u304B\u3089 (pp-n) \u306B\u5909\u308F\u308B\n  \
+    \      pp->change_light(p, n);\n      }\n    }\n    n->p = pp;\n    p->p = n;\n\
+    \    if (c) c->p = p;\n  }\n\n  inline int state(Node *n) {\n    if (!n->p) return\
+    \ 0;\n    if (n->p->l == n) return 1;\n    if (n->p->r == n) return -1;\n    return\
+    \ 0;\n  }\n};\n#line 1 \"graph/ds/lct_node_monoid.hpp\"\n\ntemplate <typename\
+    \ Monoid>\nstruct LCT_Node_Monoid {\n  using np = LCT_Node_Monoid *;\n  // \u30C7\
+    \u30D5\u30A9\u30EB\u30C8\n  np l, r, p;\n  int idx, size; // size \u306F heavy\
+    \ path \u306E\u9802\u70B9\u6570\n  bool rev;\n  // \u76EE\u7684\u3054\u3068\u306B\
+    \u5B9A\u7FA9\u3059\u308B.\n  using MX = Monoid;\n  using X = typename MX::value_type;\n\
+    \  using VX = X;\n\n  X x, rx, vx;\n\n  LCT_Node_Monoid(int i = 0)\n      : l(nullptr),\n\
+    \        r(nullptr),\n        p(nullptr),\n        idx(i),\n        size(1),\n\
+    \        rev(0),\n        x(MX::unit()),\n        rx(MX::unit()),\n        vx(MX::unit())\
+    \ {}\n\n  void update() {\n    size = 1;\n    x = vx, rx = vx;\n    if (l) {\n\
+    \      size += l->size, x = Monoid::op(l->x, x), rx = Monoid::op(rx, l->rx);\n\
+    \    }\n    if (r) {\n      size += r->size, x = Monoid::op(x, r->x), rx = Monoid::op(r->rx,\
+    \ rx);\n    }\n  }\n\n  void push() {\n    if (rev) {\n      if (l) l->reverse();\n\
+    \      if (r) r->reverse();\n      rev = 0;\n    }\n  }\n\n  // data \u306E reverse\
+    \ \u3082\u884C\u3046\n  void reverse() {\n    rev ^= 1;\n    swap(l, r);\n   \
+    \ swap(x, rx);\n  }\n\n  // LCT \u5185\u3067 expose, update \u3092\u884C\u3046\
+    \u306E\u3067\u3053\u3053\u306F\u5909\u66F4\u3060\u3051\n  void set(VX x) { vx\
+    \ = x; }\n\n  void add_light(np c) {}\n  void erase_light(np c) {}\n  void change_light(np\
+    \ a, np b) {}\n};\n#line 2 \"alg/monoid/affine.hpp\"\n\n// op(F, G) = comp(G,F),\
+    \ F \u306E\u3042\u3068\u3067 G\ntemplate <typename K>\nstruct Monoid_Affine {\n\
+    \  using F = pair<K, K>;\n  using value_type = F;\n  using X = value_type;\n \
+    \ static constexpr F op(const F &x, const F &y) noexcept {\n    return F({x.first\
+    \ * y.first, x.second * y.first + y.second});\n  }\n  static constexpr F inverse(const\
+    \ F &x) {\n    auto [a, b] = x;\n    a = K(1) / a;\n    return {a, a * (-b)};\n\
+    \  }\n  static constexpr K eval(const F &f, K x) noexcept {\n    return f.first\
+    \ * x + f.second;\n  }\n  static constexpr F unit() { return {K(1), K(0)}; }\n\
+    \  static constexpr bool commute = false;\n};\n#line 2 \"mod/modint_common.hpp\"\
+    \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
+    \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
+    \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
+    \ decltype(has_mod_impl::check<T>(std::declval<T>())) {};\n\ntemplate <typename\
+    \ mint>\nmint inv(int n) {\n  static const int mod = mint::get_mod();\n  static\
+    \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
+    \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
+    \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
+    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
+    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
+    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
+    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
+    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
+    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
+    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
+    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
+    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
+    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
+    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
+    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
+    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
+    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
+    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
+    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
+    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
+    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
+    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
+    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
+    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
+    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
+    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
+    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
+    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
+    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
+    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
+    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
+    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
+    \ modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
+    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
+    \ : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n\
+    \  bool operator<(const modint &other) const { return val < other.val; }\n  modint\
+    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n\
+    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
+    \ += umod - p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const\
+    \ modint &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n \
+    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
+    \ *this;\n  }\n  modint operator-() const { return modint::raw(val ? mod - val\
+    \ : u32(0)); }\n  modint operator+(const modint &p) const { return modint(*this)\
+    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
+    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
+    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
+    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
+    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
+    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
+    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
+    \  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n \
+    \   assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n     \
+    \ if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
+    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
+    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
+    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
+    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
+    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
+    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
+    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
+    \ (mod == 1012924417) return {21, 368093570};\n    return {-1, -1};\n  }\n  static\
+    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
+    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
+    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
+    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
+    using modint998 = modint<998244353>;\n#line 10 \"test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp\"\
     \n\nusing mint = modint998;\n\nusing Mono = Monoid_Affine<mint>;\nusing Node =\
     \ LCT_Node_Monoid<Mono>;\n\nvoid solve() {\n  LL(N, Q);\n  Link_Cut_Tree<Node>\
     \ LCT(N);\n  FOR(i, N) {\n    mint a, b;\n    read(a, b);\n    LCT.set(i, {a,\
@@ -459,7 +458,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-05-22 01:12:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/dynamic_tree_vertex_set_path_composite.test.cpp
