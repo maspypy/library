@@ -29,7 +29,7 @@ struct Link_Cut_Tree {
   // underlying tree の根
   int get_root(int c) { return get_root(&nodes[c])->idx; }
 
-  // parent(c)==p となるように link.
+  // parent(c)==p となるように link. p の根は変わらない.
   void link(Node *c, Node *p) {
     evert(c);
     expose(p);
@@ -42,9 +42,10 @@ struct Link_Cut_Tree {
     p->update();
   }
 
-  // parent(c)==p となるように link.
+  // parent(c)==p となるように link. p の根は変わらない.
   void link(int c, int p) { return link(&nodes[c], &nodes[p]); }
 
+  // a,b が根に変更される
   void cut(Node *a, Node *b) {
     evert(a);
     expose(b);
@@ -56,6 +57,7 @@ struct Link_Cut_Tree {
     b->update();
   }
 
+  // a,b が根に変更される
   void cut(int a, int b) { return cut(&nodes[a], &nodes[b]); }
 
   // c を underlying tree の根とする.
@@ -71,20 +73,29 @@ struct Link_Cut_Tree {
   // c は splay tree の根にもなる.
   void evert(int c) { evert(&nodes[c]); }
 
+  // 根は変えない
   Node *lca(Node *u, Node *v) {
     assert(get_root(u) == get_root(v));
     expose(u);
     return expose(v);
   }
 
+  // 根は変えない
   int lca(int u, int v) { return lca(&nodes[u], &nodes[v])->idx; }
 
-  // 辺の個数
+  // 辺の個数. 根を変える.
   int dist(int u, int v) {
     evert(u), expose(v);
     return ((*this)[v]->size) - 1;
   }
 
+  // 根を変えない.
+  int depth(int v) {
+    expose(v);
+    return ((*this)[v]->size) - 1;
+  }
+
+  // 根を変える.
   Node *jump(Node *u, Node *v, int k) {
     evert(v);
     expose(u);
@@ -104,6 +115,7 @@ struct Link_Cut_Tree {
     return u;
   }
 
+  // 根を変える.
   int jump(int u, int v, int k) {
     auto c = jump((*this)[u], (*this)[v], k);
     return c->idx;
@@ -139,6 +151,7 @@ struct Link_Cut_Tree {
     return x->idx;
   }
 
+  // 根を変えない.
   Node *get_parent(Node *x) {
     expose(x);
     x->push();
@@ -148,23 +161,28 @@ struct Link_Cut_Tree {
     return x;
   }
 
+  // 根を変えない.
   int get_parent(int x) {
     Node *p = get_parent((*this)[x]);
     return (p ? p->idx : -1);
   }
 
+  // 根を変える.
   void set(Node *c, typename Node::VX x) {
     evert(c);
     c->set(x);
   }
 
+  // 根を変える.
   void set(int c, typename Node::VX x) { set((*this)[c], x); }
 
+  // 根を変える.
   typename Node::X prod_path(int a, int b) {
     evert(a), expose(b);
     return (*this)[b]->x;
   }
 
+  // 根を変える.
   // subtree 用の node を使う
   typename Node::X prod_subtree(int v, int root) {
     static_assert(Node::NODE_FOR_SUBTREE);
@@ -229,6 +247,35 @@ struct Link_Cut_Tree {
         rotate(c);
       }
     }
+  }
+
+  // uv path 上で prod_path(u, x) が check を満たす最後の x, なければ （つまり path(u,u) が ng ）-1.
+  // 根を変える.
+  // あまり verify されてないよ.
+  // https://codeforces.com/contest/1039/submission/320681517
+  // https://codesprintla25.kattis.com/contests/cxeqb3/submissions/17431394
+  template <class F>
+  int max_path(F check, int u, int v) {
+    evert(u), expose(v);
+    Node *c = (*this)[v];
+    using MX = typename Node::MX;
+    using X = typename MX::value_type;
+    Node *last_ok = nullptr, *last = nullptr;
+    X lprod = MX::unit();
+    while (c) {
+      last = c;
+      c->push();
+      X x = (c->l ? MX::op(c->l->x, c->vx) : c->vx);
+      x = MX::op(lprod, x);
+      if (!check(x)) {
+        c = c->l;
+      } else {
+        last_ok = c, c = c->r, lprod = x;
+      }
+    }
+    splay(last);
+    if (!last_ok) return -1;
+    return last_ok->idx;
   }
 
 private:
