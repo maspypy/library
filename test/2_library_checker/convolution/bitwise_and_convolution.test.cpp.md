@@ -298,18 +298,18 @@ data:
     }\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n}\n#endif\n\
     \nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
     #line 2 \"setfunc/zeta.hpp\"\n\r\ntemplate <typename T>\r\nvoid superset_zeta(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) A[s]\
-    \ += A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid superset_mobius(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s < t) A[s]\
-    \ -= A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_zeta(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s > t) A[s]\
-    \ += A[t];\r\n  }\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_mobius(vc<T>&\
-    \ A) {\r\n  int log = topbit(len(A));\r\n  assert(1 << log == len(A));\r\n  FOR(n,\
-    \ log) FOR(s, 1 << log) {\r\n    int t = s ^ (1 << n);\r\n    if (s > t) A[s]\
-    \ -= A[t];\r\n  }\r\n}\n#line 2 \"setfunc/and_convolution.hpp\"\ntemplate <typename\
+    \ a) {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
+    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[j + k] +=\
+    \ a[i + j + k];\r\n}\r\n\r\ntemplate <typename T>\r\nvoid superset_mobius(vc<T>&\
+    \ a) {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
+    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[j + k] -=\
+    \ a[i + j + k];\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_zeta(vc<T>& a)\
+    \ {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
+    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[i + j +\
+    \ k] += a[j + k];\r\n}\r\n\r\ntemplate <typename T>\r\nvoid subset_mobius(vc<T>&\
+    \ a) {\r\n  int n = len(a);\r\n  for (int i = 1; i != n; i <<= 1)\r\n    for (int\
+    \ j = 0; j != n; j += i << 1)\r\n      for (int k = 0; k != i; k++) a[i + j +\
+    \ k] -= a[j + k];\r\n}\n#line 2 \"setfunc/and_convolution.hpp\"\ntemplate <typename\
     \ T>\r\nvc<T> and_convolution(vc<T> A, vc<T> B) {\r\n  superset_zeta(A);\r\n \
     \ superset_zeta(B);\r\n  FOR(i, len(A)) A[i] *= B[i];\r\n  superset_mobius(A);\r\
     \n  return A;\r\n}\r\n#line 7 \"test/2_library_checker/convolution/bitwise_and_convolution.test.cpp\"\
@@ -334,7 +334,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-05-25 23:45:10+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/convolution/bitwise_and_convolution.test.cpp

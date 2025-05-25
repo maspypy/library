@@ -2190,6 +2190,17 @@ data:
     - icon: ':heavy_check_mark:'
       path: setfunc/zeta.hpp
       title: setfunc/zeta.hpp
+  - name: setfunc/online
+    pages:
+    - icon: ':warning:'
+      path: setfunc/online/online_or_convolution.hpp
+      title: setfunc/online/online_or_convolution.hpp
+    - icon: ':warning:'
+      path: setfunc/online/online_subset_mobius.hpp
+      title: setfunc/online/online_subset_mobius.hpp
+    - icon: ':warning:'
+      path: setfunc/online/online_subset_zeta.hpp
+      title: setfunc/online/online_subset_zeta.hpp
   - name: string
     pages:
     - icon: ':warning:'

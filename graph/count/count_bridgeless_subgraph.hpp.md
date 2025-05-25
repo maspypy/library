@@ -227,39 +227,38 @@ data:
     \ s = p; s < p + w; ++s) {\r\n        int t = s | 1 << i;\r\n        for (int\
     \ d = 0; d <= n; ++d) Rf[t][d] -= Rf[s][d];\r\n      }\r\n    }\r\n  }\r\n  vc<T>\
     \ f(1 << n);\r\n  for (int s = 0; s < (1 << n); ++s) f[s] = Rf[s][popcnt(s)];\r\
-    \n  return f;\r\n}\n#line 2 \"setfunc/sps_composition.hpp\"\n\n// sum_i f_i/i!\
+    \n  return f;\r\n}\n#line 3 \"setfunc/sps_composition.hpp\"\n\n// sum_i f_i/i!\
     \ s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
     \ sps_composition_egf(vc<mint>& f, vc<mint>& s) {\n  const int N = topbit(len(s));\n\
     \  assert(len(s) == (1 << N) && s[0] == mint(0));\n  if (len(f) > N) f.resize(N\
     \ + 1);\n  int D = len(f) - 1;\n  using ARR = array<mint, LIM + 1>;\n  vvc<ARR>\
-    \ zs(N);\n  FOR(i, N) {\n    zs[i]\n        = ranked_zeta<mint, LIM>({s.begin()\
-    \ + (1 << i), s.begin() + (2 << i)});\n  }\n\n  // dp : (d/dt)^df(s) (d=D,D-1,...)\n\
-    \  vc<mint> dp(1 << (N - D));\n  dp[0] = f[D];\n  FOR_R(d, D) {\n    vc<mint>\
-    \ newdp(1 << (N - d));\n    newdp[0] = f[d];\n    vc<ARR> zdp = ranked_zeta<mint,\
-    \ LIM>(dp);\n    FOR(i, N - d) {\n      // zs[1<<i:2<<i], zdp[0:1<<i]\n      vc<ARR>\
-    \ znewdp(1 << i);\n      FOR(k, 1 << i) {\n        FOR(p, i + 1) FOR(q, i - p\
-    \ + 1) {\n          znewdp[k][p + q] += zdp[k][p] * zs[i][k][q];\n        }\n\
-    \      }\n      auto x = ranked_mobius<mint, LIM>(znewdp);\n      copy(all(x),\
-    \ newdp.begin() + (1 << i));\n    }\n    swap(dp, newdp);\n  }\n  return dp;\n\
-    }\n\n// sum_i f_i s^i, s^i is subset-convolution\ntemplate <typename mint, int\
-    \ LIM>\nvc<mint> sps_composition_poly(vc<mint> f, vc<mint> s) {\n  const int N\
-    \ = topbit(len(s));\n  assert(len(s) == (1 << N));\n  if (f.empty()) return vc<mint>(1\
-    \ << N, mint(0));\n  // convert to egf problem\n  int D = min<int>(len(f) - 1,\
-    \ N);\n  vc<mint> g(D + 1);\n  mint c = s[0];\n  s[0] = 0;\n  // (x+c)^i\n  vc<mint>\
-    \ pow(D + 1);\n  pow[0] = 1;\n  FOR(i, len(f)) {\n    FOR(j, D + 1) g[j] += f[i]\
-    \ * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ? mint(0) : pow[j\
-    \ - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D + 1) g[j] *= factorial,\
-    \ factorial *= mint(j + 1);\n  return sps_composition_egf<mint, LIM>(g, s);\n\
-    }\n#line 3 \"setfunc/sps_log.hpp\"\n\n// exp \u306E\u9006\u624B\u9806\u3067\u8A08\
-    \u7B97\u3059\u308B\ntemplate <typename mint, int LIM>\nvc<mint> sps_log(vc<mint>&\
-    \ dp) {\n  const int N = topbit(len(dp));\n  assert(len(dp) == (1 << N) && dp[0]\
-    \ == mint(1));\n  vc<mint> s(1 << N);\n  FOR_R(i, N) {\n    vc<mint> a = {dp.begin()\
-    \ + (1 << i), dp.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(), dp.begin()\
-    \ + (1 << i)};\n    auto RA = ranked_zeta<mint, LIM>(a);\n    auto RB = ranked_zeta<mint,\
-    \ LIM>(b);\n    FOR(s, 1 << i) {\n      auto &f = RA[s], &g = RB[s];\n      //\
-    \ assert(g[0] == mint(1));\n      FOR(d, i + 1) { FOR(i, d) f[d] -= f[i] * g[d\
-    \ - i]; }\n    }\n    a = ranked_mobius<mint, LIM>(RA);\n    copy(all(a), s.begin()\
-    \ + (1 << i));\n  }\n  return s;\n}\n#line 3 \"graph/count/count_connected_subgraph.hpp\"\
+    \ zs(N);\n  FOR(i, N) { zs[i] = ranked_zeta<mint, LIM>({s.begin() + (1 << i),\
+    \ s.begin() + (2 << i)}); }\n\n  // dp : (d/dt)^df(s) (d=D,D-1,...)\n  vc<mint>\
+    \ dp(1 << (N - D));\n  dp[0] = f[D];\n  FOR_R(d, D) {\n    vc<mint> newdp(1 <<\
+    \ (N - d));\n    newdp[0] = f[d];\n    vc<ARR> zdp = ranked_zeta<mint, LIM>(dp);\n\
+    \    FOR(i, N - d) {\n      // zs[1<<i:2<<i], zdp[0:1<<i]\n      vc<ARR> znewdp(1\
+    \ << i);\n      FOR(k, 1 << i) {\n        FOR(p, i + 1) FOR(q, i - p + 1) { znewdp[k][p\
+    \ + q] += zdp[k][p] * zs[i][k][q]; }\n      }\n      auto x = ranked_mobius<mint,\
+    \ LIM>(znewdp);\n      copy(all(x), newdp.begin() + (1 << i));\n    }\n    swap(dp,\
+    \ newdp);\n  }\n  return dp;\n}\n\n// sum_i f_i s^i, s^i is subset-convolution\n\
+    template <typename mint, int LIM>\nvc<mint> sps_composition_poly(vc<mint> f, vc<mint>\
+    \ s) {\n  const int N = topbit(len(s));\n  assert(len(s) == (1 << N));\n  if (f.empty())\
+    \ return vc<mint>(1 << N, mint(0));\n  // convert to egf problem\n  int D = min<int>(len(f)\
+    \ - 1, N);\n  vc<mint> g(D + 1);\n  mint c = s[0];\n  s[0] = 0;\n  // (x+c)^i\n\
+    \  vc<mint> pow(D + 1);\n  pow[0] = 1;\n  FOR(i, len(f)) {\n    FOR(j, D + 1)\
+    \ g[j] += f[i] * pow[j];\n    FOR_R(j, D + 1) pow[j] = pow[j] * c + (j == 0 ?\
+    \ mint(0) : pow[j - 1]);\n  }\n  // to egf\n  mint factorial = 1;\n  FOR(j, D\
+    \ + 1) g[j] *= factorial, factorial *= mint(j + 1);\n  return sps_composition_egf<mint,\
+    \ LIM>(g, s);\n}\n#line 4 \"setfunc/sps_log.hpp\"\n\n// exp \u306E\u9006\u624B\
+    \u9806\u3067\u8A08\u7B97\u3059\u308B\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ sps_log(vc<mint>& dp) {\n  const int N = topbit(len(dp));\n  assert(len(dp)\
+    \ == (1 << N) && dp[0] == mint(1));\n  vc<mint> s(1 << N);\n  FOR_R(i, N) {\n\
+    \    vc<mint> a = {dp.begin() + (1 << i), dp.begin() + (2 << i)};\n    vc<mint>\
+    \ b = {dp.begin(), dp.begin() + (1 << i)};\n    auto RA = ranked_zeta<mint, LIM>(a);\n\
+    \    auto RB = ranked_zeta<mint, LIM>(b);\n    FOR(s, 1 << i) {\n      auto &f\
+    \ = RA[s], &g = RB[s];\n      // assert(g[0] == mint(1));\n      FOR(d, i + 1)\
+    \ { FOR(i, d) f[d] -= f[i] * g[d - i]; }\n    }\n    a = ranked_mobius<mint, LIM>(RA);\n\
+    \    copy(all(a), s.begin() + (1 << i));\n  }\n  return s;\n}\n#line 3 \"graph/count/count_connected_subgraph.hpp\"\
     \n\n// O(N^2 2^N)\ntemplate <typename T, int LIM>\nvc<T> count_connected_subgraph(Graph<int,\
     \ 0> G) {\n  int N = G.N;\n  assert(N <= LIM);\n  vc<T> pw(G.M + 1, 1);\n  FOR(i,\
     \ G.M) pw[i + 1] = pw[i] + pw[i];\n\n  // edge\n  vc<int> E(1 << N);\n  for (auto&\
@@ -279,26 +278,26 @@ data:
     \n  FOR(s, len(RA)) {\r\n    auto &f = RA[s], &g = RB[s];\r\n    FOR_R(d, n +\
     \ 1) {\r\n      T x = 0;\r\n      FOR(i, d + 1) x += f[i] * g[d - i];\r\n    \
     \  f[d] = x;\r\n    }\r\n  }\r\n  return ranked_mobius<T, LIM>(RA);\r\n}\r\n#line\
-    \ 2 \"setfunc/sps_exp.hpp\"\n\n// sum_i 1/i! s^i, s^i is subset-convolution\n\
-    template <typename mint, int LIM>\nvc<mint> sps_exp(vc<mint>& s) {\n  const int\
-    \ N = topbit(len(s));\n  assert(len(s) == (1 << N) && s[0] == mint(0));\n  vc<mint>\
-    \ dp(1 << N);\n  dp[0] = mint(1);\n  FOR(i, N) {\n    vc<mint> a = {s.begin()\
-    \ + (1 << i), s.begin() + (2 << i)};\n    vc<mint> b = {dp.begin(), dp.begin()\
-    \ + (1 << i)};\n    a = subset_convolution<mint, LIM>(a, b);\n    copy(all(a),\
-    \ dp.begin() + (1 << i));\n  }\n  return dp;\n}\n#line 4 \"graph/count/count_bridgeless_subgraph.hpp\"\
-    \n\n// O(N^3 2^N). https://loj.ac/p/6730.\ntemplate <typename T, int LIM>\nvc<T>\
-    \ count_bridgeless_subgraph(Graph<int, 0> G, bool connected = true) {\n  int N\
-    \ = G.N;\n  auto dp = count_connected_subgraph<T, LIM>(G);\n\n  FOR(r, 1, N) {\n\
-    \    u32 nbd = 0;\n    for (auto& e: G[r])\n      if (e.to < r) nbd |= 1 << e.to;\n\
-    \n    // before: [0,r) \u306B\u6A4B\u304C\u306A\u3044\n    // after: [0,r] \u306B\
-    \u6A4B\u304C\u306A\u3044\n    vc<T> f(1 << (N - 1));\n    vc<T> g(1 << (N - 1));\n\
-    \    FOR(L, 1 << r) {\n      FOR(R, 1 << (N - 1 - r)) {\n        f[L | R << r]\
-    \ = dp[L | R << (1 + r)] * popcnt(L & nbd);\n        g[L | R << r] = dp[L | R\
-    \ << (1 + r) | (1 << r)];\n      }\n    }\n\n    FOR(s, 1 << (N - 1)) f[s] = -f[s];\n\
-    \    f = sps_exp<T, LIM - 1>(f);\n    g = subset_convolution<T, LIM - 1>(f, g);\n\
-    \    FOR(L, 1 << r) {\n      FOR(R, 1 << (N - 1 - r)) { dp[L | R << (1 + r) |\
-    \ (1 << r)] = g[L | R << r]; }\n    }\n  }\n  if (!connected) dp = sps_exp<T,\
-    \ LIM>(dp);\n  return dp;\n}\n"
+    \ 2 \"setfunc/sps_exp.hpp\"\n\n#line 4 \"setfunc/sps_exp.hpp\"\n\n// sum_i 1/i!\
+    \ s^i, s^i is subset-convolution\ntemplate <typename mint, int LIM>\nvc<mint>\
+    \ sps_exp(vc<mint>& s) {\n  const int N = topbit(len(s));\n  assert(len(s) ==\
+    \ (1 << N) && s[0] == mint(0));\n  vc<mint> dp(1 << N);\n  dp[0] = mint(1);\n\
+    \  FOR(i, N) {\n    vc<mint> a = {s.begin() + (1 << i), s.begin() + (2 << i)};\n\
+    \    vc<mint> b = {dp.begin(), dp.begin() + (1 << i)};\n    a = subset_convolution<mint,\
+    \ LIM>(a, b);\n    copy(all(a), dp.begin() + (1 << i));\n  }\n  return dp;\n}\n\
+    #line 4 \"graph/count/count_bridgeless_subgraph.hpp\"\n\n// O(N^3 2^N). https://loj.ac/p/6730.\n\
+    template <typename T, int LIM>\nvc<T> count_bridgeless_subgraph(Graph<int, 0>\
+    \ G, bool connected = true) {\n  int N = G.N;\n  auto dp = count_connected_subgraph<T,\
+    \ LIM>(G);\n\n  FOR(r, 1, N) {\n    u32 nbd = 0;\n    for (auto& e: G[r])\n  \
+    \    if (e.to < r) nbd |= 1 << e.to;\n\n    // before: [0,r) \u306B\u6A4B\u304C\
+    \u306A\u3044\n    // after: [0,r] \u306B\u6A4B\u304C\u306A\u3044\n    vc<T> f(1\
+    \ << (N - 1));\n    vc<T> g(1 << (N - 1));\n    FOR(L, 1 << r) {\n      FOR(R,\
+    \ 1 << (N - 1 - r)) {\n        f[L | R << r] = dp[L | R << (1 + r)] * popcnt(L\
+    \ & nbd);\n        g[L | R << r] = dp[L | R << (1 + r) | (1 << r)];\n      }\n\
+    \    }\n\n    FOR(s, 1 << (N - 1)) f[s] = -f[s];\n    f = sps_exp<T, LIM - 1>(f);\n\
+    \    g = subset_convolution<T, LIM - 1>(f, g);\n    FOR(L, 1 << r) {\n      FOR(R,\
+    \ 1 << (N - 1 - r)) { dp[L | R << (1 + r) | (1 << r)] = g[L | R << r]; }\n   \
+    \ }\n  }\n  if (!connected) dp = sps_exp<T, LIM>(dp);\n  return dp;\n}\n"
   code: "#include \"graph/count/count_connected_subgraph.hpp\"\n#include \"setfunc/subset_convolution.hpp\"\
     \n#include \"setfunc/sps_exp.hpp\"\n\n// O(N^3 2^N). https://loj.ac/p/6730.\n\
     template <typename T, int LIM>\nvc<T> count_bridgeless_subgraph(Graph<int, 0>\
@@ -327,7 +326,7 @@ data:
   isVerificationFile: false
   path: graph/count/count_bridgeless_subgraph.hpp
   requiredBy: []
-  timestamp: '2025-05-18 18:12:51+09:00'
+  timestamp: '2025-05-25 23:45:10+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/count/count_bridgeless_subgraph.hpp
