@@ -93,7 +93,7 @@ struct FunctionalGraph {
     return {w, x};
   }
 
-  // check(to, prod). infty<ll> 以下.
+  // check(to, prod). infty<ll> 以下. step をかえす
   template <typename TREE, typename F>
   ll max_jump(TREE& tree, F check, int v) {
     X prod = MX::unit();

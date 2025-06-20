@@ -1,6 +1,7 @@
 #include "enumerate/product.hpp"
 #include "graph/prufer_code.hpp"
 
+// f(pair<int,int>)
 // https://codeforces.com/contest/611/problem/H
 template <typename F>
 void enumerate_labeled_tree(int N, F f) {

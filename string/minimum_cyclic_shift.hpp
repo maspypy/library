@@ -1,8 +1,9 @@
 
 // 始点を返す
-int minimum_cyclic_shift(string S) {
+template <typename STRING>
+int minimum_cyclic_shift(STRING S) {
   int n = len(S), i = 0, ans = 0;
-  S += S;
+  FOR(i, n) S.push_back(S[i]);
   while (i < n) {
     ans = i;
     int j = i + 1, k = i;

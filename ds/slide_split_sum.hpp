@@ -37,6 +37,13 @@ struct Slide_Split_Sum {
     while (len(ql) < k) { push_l(pop_r()); }
     while (len(ql) > k) { push_r(pop_l()); }
   }
+  vc<T> get_all() {
+    vc<T> L = ql.get_all();
+    vc<T> R = qr.get_all();
+    reverse(all(L));
+    concat(L, R);
+    return L;
+  }
 
 private:
   inline T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }

@@ -2,6 +2,7 @@
 
 // Boolean Matrix Multiplication C[i][k] |= A[i][j] && B[j][k]
 // https://contest.ucup.ac/contest/1784/problem/9246
+// https://codeforces.com/contest/1338/problem/E N=8000, 2sec, 静的配列で高速化したら通ったやつ
 vc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1, int N2 = -1, int N3 = -1) {
   using BS = My_Bitset;
   if (N1 == -1) { N1 = len(A), N2 = len(B), N3 = len(B[0]); }
