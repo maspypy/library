@@ -94,11 +94,11 @@ data:
   isVerificationFile: false
   path: setfunc/sps_composition.hpp
   requiredBy:
-  - setfunc/sps_log.hpp
   - graph/tutte_polynomial.hpp
   - graph/count/count_connected_subgraph.hpp
   - graph/count/count_biconnected_subgraph.hpp
   - graph/count/count_bridgeless_subgraph.hpp
+  - setfunc/sps_log.hpp
   timestamp: '2025-05-25 23:45:10+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:

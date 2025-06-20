@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   _extendedRequiredBy: []
@@ -59,9 +59,9 @@ data:
   - test/3_yukicoder/1197.test.cpp
   - test/3_yukicoder/789_2.test.cpp
   - test/4_aoj/GRL_5_E.test.cpp
-  - test/1_mytest/rbst_am_2.test.cpp
   - test/1_mytest/fenwick_raq.test.cpp
   - test/1_mytest/ARC30D.test.cpp
+  - test/1_mytest/rbst_am_2.test.cpp
   - test/1_mytest/splay_am.test.cpp
 documentation_of: alg/acted_monoid/sum_add.hpp
 layout: document

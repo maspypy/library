@@ -118,14 +118,14 @@ data:
     \    for (auto&& e: edges) { vc_indeg[e.to]++, vc_outdeg[e.frm]++; }\n  }\n};\n\
     #line 2 \"alg/monoid/min2.hpp\"\n\ntemplate <typename T, typename KEY>\nstruct\
     \ Monoid_Min2 {\n  struct Data {\n    T min1, min2;\n    KEY key1, key2;\n   \
-    \ bool add_element(T x, KEY key) {\n      if (key1 == key) { return chmin(min1,\
+    \ bool add_element(KEY key, T x) {\n      if (key1 == key) { return chmin(min1,\
     \ x); }\n      if (key2 == key) {\n        bool upd = chmin(min2, x);\n      \
     \  if (min1 > min2) swap(min1, min2), swap(key1, key2);\n        return upd;\n\
     \      }\n      if (min1 > x) {\n        min2 = min1, key2 = key1, min1 = x, key1\
     \ = key;\n        return 1;\n      }\n      elif (min2 > x) {\n        min2 =\
     \ x, key2 = key;\n        return 1;\n      }\n      return 0;\n    }\n  };\n \
     \ using value_type = Data;\n  using X = value_type;\n\n  static X op(X x, X y)\
-    \ {\n    x.add_element(y.min1, y.key1);\n    x.add_element(y.min2, y.key2);\n\
+    \ {\n    x.add_element(y.key1, y.min1);\n    x.add_element(y.key2, y.min2);\n\
     \    return x;\n  }\n  static constexpr X unit() { return {infty<T>, infty<T>,\
     \ -1, -1}; }\n  static constexpr bool commute = true;\n};\n#line 3 \"graph/shortest_path/top2_dijkstra.hpp\"\
     \n\n// \u7D4C\u8DEF\u5FA9\u5143\u306F\u306A\u3057\u3067\u8DDD\u96E2\u3068\u7A2E\
@@ -160,7 +160,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/top2_dijkstra.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2025-06-20 11:41:11+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: graph/shortest_path/top2_dijkstra.hpp

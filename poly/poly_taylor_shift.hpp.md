@@ -7,10 +7,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -433,43 +433,43 @@ data:
   isVerificationFile: false
   path: poly/poly_taylor_shift.hpp
   requiredBy:
-  - poly/composition.hpp
-  - poly/composition_f_x_plus_1x.hpp
-  - poly/composition_f_a_plus_bx.hpp
-  - poly/composition_f_ex_minus_1.hpp
-  - poly/composition_f_1_minus_ex.hpp
-  - poly/composition_f_log_1_minus_x.hpp
-  - poly/compositional_inverse.hpp
-  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
-  - seq/famous/stirling_number_1.hpp
-  - graph/count/count_labeled_bridgeless.hpp
-  - graph/count/count_labeled_biconnected.hpp
   - linalg/det_A_plus_xB.hpp
+  - seq/famous/stirling_number_1.hpp
+  - graph/count/count_labeled_biconnected.hpp
+  - graph/count/count_labeled_bridgeless.hpp
+  - poly/composition_f_ex_minus_1.hpp
+  - poly/compositional_inverse.hpp
+  - poly/composition_f_x_plus_1x.hpp
+  - poly/composition_f_1_minus_ex.hpp
+  - poly/composition.hpp
+  - poly/composition_f_a_plus_bx.hpp
+  - poly/composition_f_a_plus_bx_div_c_plus_dx.hpp
+  - poly/composition_f_log_1_minus_x.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1907.test.cpp
-  - test/3_yukicoder/1303.test.cpp
   - test/3_yukicoder/1875.test.cpp
-  - test/3_yukicoder/2580.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
-  - test/3_yukicoder/2587.test.cpp
   - test/3_yukicoder/2583.test.cpp
-  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/3_yukicoder/1907.test.cpp
+  - test/3_yukicoder/2587.test.cpp
+  - test/3_yukicoder/2580.test.cpp
+  - test/3_yukicoder/1303.test.cpp
   - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind.test.cpp
+  - test/2_library_checker/enumerative_combinatorics/stirling_number_of_the_first_kind_fixed_k.test.cpp
+  - test/2_library_checker/polynomial/composition_dmint.test.cpp
+  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
   - test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - test/2_library_checker/polynomial/compositional_inverse.test.cpp
   - test/2_library_checker/polynomial/composition_of_fps.test.cpp
-  - test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - test/2_library_checker/polynomial/composition_dmint.test.cpp
   - test/1_mytest/composition_log_1_minus_x.test.cpp
-  - test/1_mytest/count_labeled_bridgeless.test.cpp
   - test/1_mytest/composition_ex_minus_1.test.cpp
+  - test/1_mytest/count_labeled_bridgeless.test.cpp
+  - test/1_mytest/composition_f_x_plus_1x.test.cpp
+  - test/1_mytest/count_labeled_biconnected.test.cpp
+  - test/1_mytest/compositional_inverset.test.cpp
   - test/1_mytest/composition_1_minus_ex.test.cpp
   - test/1_mytest/stirling_1_suffix.test.cpp
-  - test/1_mytest/compositional_inverset.test.cpp
-  - test/1_mytest/count_labeled_biconnected.test.cpp
-  - test/1_mytest/composition_f_x_plus_1x.test.cpp
 documentation_of: poly/poly_taylor_shift.hpp
 layout: document
 redirect_from:

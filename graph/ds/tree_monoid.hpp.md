@@ -440,10 +440,10 @@ data:
   verifiedWith:
   - test/3_yukicoder/1212.test.cpp
   - test/3_yukicoder/529.test.cpp
+  - test/2_library_checker/tree/mst.test.cpp
   - test/2_library_checker/tree/vertex_add_path_sum_monoid_c.test.cpp
   - test/2_library_checker/tree/vertex_set_path_composite_monoid.test.cpp
   - test/2_library_checker/tree/vertex_add_subtree_sum_monoid.test.cpp
-  - test/2_library_checker/tree/mst.test.cpp
   - test/4_aoj/GRL_2_A.test.cpp
   - test/1_mytest/mo_on_tree.test.cpp
 documentation_of: graph/ds/tree_monoid.hpp

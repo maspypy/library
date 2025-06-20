@@ -16,10 +16,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/mod_sqrt.hpp
     title: mod/mod_sqrt.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
   - icon: ':heavy_check_mark:'
@@ -593,8 +593,8 @@ data:
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
 documentation_of: poly/fps_sqrt.hpp
 layout: document

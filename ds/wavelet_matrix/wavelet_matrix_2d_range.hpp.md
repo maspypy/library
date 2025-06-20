@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
   - icon: ':heavy_check_mark:'
@@ -285,13 +285,13 @@ data:
   timestamp: '2025-05-18 10:20:59+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1919_2.test.cpp
-  - test/3_yukicoder/1625_2.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/2859.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
+  - test/3_yukicoder/1625_2.test.cpp
+  - test/3_yukicoder/1919_2.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
+  - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_mono.test.cpp
   - test/2_library_checker/data_structure/point_add_rectangle_sum_wm_abel.test.cpp
 documentation_of: ds/wavelet_matrix/wavelet_matrix_2d_range.hpp
 layout: document

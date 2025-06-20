@@ -130,8 +130,8 @@ data:
   - test/3_yukicoder/2907_2.test.cpp
   - test/3_yukicoder/2907.test.cpp
   - test/2_library_checker/number_theory/nim_product.test.cpp
-  - test/1_mytest/nimber.test.cpp
   - test/1_mytest/nimber_log.test.cpp
+  - test/1_mytest/nimber.test.cpp
 documentation_of: nt/nimber/base.hpp
 layout: document
 redirect_from:

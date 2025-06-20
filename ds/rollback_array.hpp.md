@@ -59,8 +59,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/2293.test.cpp
-  - test/2_library_checker/data_structure/add_remove_query.test.cpp
   - test/2_library_checker/graph/dynamic_graph_vertex_add_component_sum.test.cpp
+  - test/2_library_checker/data_structure/add_remove_query.test.cpp
 documentation_of: ds/rollback_array.hpp
 layout: document
 redirect_from:

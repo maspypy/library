@@ -165,28 +165,28 @@ data:
   isVerificationFile: false
   path: geo/convex_hull.hpp
   requiredBy:
-  - convex/lattice_point_count.hpp
-  - convex/lattice_point_sum_polynomial_pq.hpp
-  - convex/lattice_point_sum_polynomial.hpp
-  - convex/line_min_function.hpp
-  - convex/lower_integer_hull.hpp
-  - convex/fenchel.hpp
+  - geo/convex_polygon.hpp
   - geo/furthest_pair.hpp
   - geo/minkowski_sum.hpp
-  - geo/convex_polygon.hpp
   - random/random_polygon.hpp
+  - convex/fenchel.hpp
+  - convex/lattice_point_count.hpp
+  - convex/line_min_function.hpp
+  - convex/lattice_point_sum_polynomial_pq.hpp
+  - convex/lower_integer_hull.hpp
+  - convex/lattice_point_sum_polynomial.hpp
   timestamp: '2025-05-18 17:51:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/geometry/static_convex_hull.test.cpp
   - test/2_library_checker/geometry/furthest_pair.test.cpp
-  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
-  - test/1_mytest/polygon_triangulation.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/lattice_point_sum_polynomial_pq.test.cpp
-  - test/1_mytest/max_dot.test.cpp
-  - test/1_mytest/convex_polygon_side.test.cpp
   - test/1_mytest/convex_polygon_visible_range.test.cpp
+  - test/1_mytest/convex_polygon_side.test.cpp
+  - test/1_mytest/max_dot.test.cpp
+  - test/1_mytest/count_lattice_point_in_convex_polygon.test.cpp
+  - test/1_mytest/polygon_triangulation.test.cpp
 documentation_of: geo/convex_hull.hpp
 layout: document
 redirect_from:

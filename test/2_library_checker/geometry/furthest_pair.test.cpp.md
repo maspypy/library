@@ -10,10 +10,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: geo/furthest_pair.hpp
     title: geo/furthest_pair.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: other/io.hpp
     title: other/io.hpp
   _extendedRequiredBy: []

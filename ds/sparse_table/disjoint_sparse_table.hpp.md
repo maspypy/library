@@ -93,15 +93,15 @@ data:
   isVerificationFile: false
   path: ds/sparse_table/disjoint_sparse_table.hpp
   requiredBy:
-  - ds/static_range_product.hpp
   - graph/ds/static_tree_monoid.hpp
+  - ds/static_range_product.hpp
   timestamp: '2024-02-06 01:35:38+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2005.test.cpp
-  - test/3_yukicoder/1600_2.test.cpp
   - test/3_yukicoder/1216_2.test.cpp
   - test/3_yukicoder/1216.test.cpp
+  - test/3_yukicoder/2005.test.cpp
+  - test/3_yukicoder/1600_2.test.cpp
   - test/2_library_checker/string/zalgorithm_by_rollinghash2.test.cpp
   - test/2_library_checker/data_structure/staticrmq_dst.test.cpp
   - test/2_library_checker/data_structure/staticrmq.test.cpp

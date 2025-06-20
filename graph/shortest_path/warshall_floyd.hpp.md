@@ -156,8 +156,8 @@ data:
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/17.test.cpp
-  - test/3_yukicoder/1789.test.cpp
   - test/3_yukicoder/1344.test.cpp
+  - test/3_yukicoder/1789.test.cpp
   - test/4_aoj/GRL_1_C.test.cpp
 documentation_of: graph/shortest_path/warshall_floyd.hpp
 layout: document
