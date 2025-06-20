@@ -45,6 +45,9 @@ data:
     path: geo/cross_point.hpp
     title: geo/cross_point.hpp
   - icon: ':warning:'
+    path: geo/delaunay_triangulation.hpp
+    title: geo/delaunay_triangulation.hpp
+  - icon: ':warning:'
     path: geo/delaunay_triangulation_of_convex_polygon.hpp
     title: geo/delaunay_triangulation_of_convex_polygon.hpp
   - icon: ':heavy_check_mark:'
@@ -317,6 +320,7 @@ data:
   - geo/polygon.hpp
   - geo/furthest_pair.hpp
   - geo/rotating_swaps.hpp
+  - geo/delaunay_triangulation.hpp
   - geo/dynamicupperhull.hpp
   - geo/convex_layers.hpp
   - geo/closest_pair.hpp

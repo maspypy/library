@@ -4,13 +4,13 @@ data:
   - icon: ':question:'
     path: alg/monoid/add.hpp
     title: alg/monoid/add.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/bit_vector.hpp
     title: ds/bit_vector.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/wavelet_matrix/wavelet_matrix.hpp
     title: ds/wavelet_matrix/wavelet_matrix.hpp
   - icon: ':question:'
@@ -262,20 +262,20 @@ data:
     \   vc<int> res(len(X));\n    for (auto& i: I) { res[i] = len(dat), dat.eb(X[i]);\
     \ }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int operator()(T x) { return\
     \ LB(dat, x); }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
-    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
-    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
-    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
-    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
-    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// (x): lower_bound(X,x)\
-    \ \u3092\u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing\
-    \ Index_Compression =\n    typename std::conditional<SAME, Index_Compression_SAME<T,\
-    \ SMALL>,\n                              Index_Compression_DISTINCT<T, SMALL>>::type;\n\
-    #line 2 \"alg/monoid/add.hpp\"\n\r\ntemplate <typename E>\r\nstruct Monoid_Add\
-    \ {\r\n  using X = E;\r\n  using value_type = X;\r\n  static constexpr X op(const\
-    \ X &x, const X &y) noexcept { return x + y; }\r\n  static constexpr X inverse(const\
-    \ X &x) noexcept { return -x; }\r\n  static constexpr X power(const X &x, ll n)\
-    \ noexcept { return X(n) * x; }\r\n  static constexpr X unit() { return X(0);\
-    \ }\r\n  static constexpr bool commute = true;\r\n};\r\n#line 4 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
+    \ = typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>, Index_Compression_DISTINCT_LARGE<T>>::type;\n\
+    template <typename T, bool SMALL>\nusing Index_Compression_SAME = typename std::conditional<SMALL,\
+    \ Index_Compression_SAME_SMALL<T>, Index_Compression_SAME_LARGE<T>>::type;\n\n\
+    // SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\
+    \u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n//\
+    \ (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool SAME,\
+    \ bool SMALL>\nusing Index_Compression = typename std::conditional<SAME, Index_Compression_SAME<T,\
+    \ SMALL>, Index_Compression_DISTINCT<T, SMALL>>::type;\n#line 2 \"alg/monoid/add.hpp\"\
+    \n\r\ntemplate <typename E>\r\nstruct Monoid_Add {\r\n  using X = E;\r\n  using\
+    \ value_type = X;\r\n  static constexpr X op(const X &x, const X &y) noexcept\
+    \ { return x + y; }\r\n  static constexpr X inverse(const X &x) noexcept { return\
+    \ -x; }\r\n  static constexpr X power(const X &x, ll n) noexcept { return X(n)\
+    \ * x; }\r\n  static constexpr X unit() { return X(0); }\r\n  static constexpr\
+    \ bool commute = true;\r\n};\r\n#line 4 \"ds/wavelet_matrix/wavelet_matrix.hpp\"\
     \n\r\n// \u9759\u7684\u30E1\u30BD\u30C3\u30C9inverse\u306E\u5B58\u5728\u3092\u30C1\
     \u30A7\u30C3\u30AF\u3059\u308B\u30C6\u30F3\u30D7\u30EC\u30FC\u30C8\r\ntemplate\
     \ <typename, typename = std::void_t<>>\r\nstruct has_inverse : std::false_type\
@@ -430,7 +430,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/string/prefix_substring_lcs.test.cpp
   requiredBy: []
-  timestamp: '2025-05-18 10:20:59+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/string/prefix_substring_lcs.test.cpp

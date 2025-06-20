@@ -4,10 +4,10 @@ data:
   - icon: ':warning:'
     path: alg/monoid/min2.hpp
     title: alg/monoid/min2.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []

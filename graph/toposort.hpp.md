@@ -1,23 +1,23 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/fastset.hpp
     title: ds/fastset.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/4_aoj/2251_1.test.cpp
     title: test/4_aoj/2251_1.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/hashmap.hpp\"\n\r\n// u64 -> Val\r\ntemplate <typename\
@@ -160,6 +160,18 @@ data:
     \  FastSet que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n\
     \  while (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v),\
     \ V.eb(v);\n    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n\n// inv_perm=true: inv\
+    \ perm \u304C\u8F9E\u66F8\u6700\u5C0F\uFF08\u5404\u30A4\u30F3\u30C7\u30C3\u30AF\
+    \u30B9\u306E\u73FE\u308C\u308B\u5834\u6240\u306E\u5217\u304C\u6700\u5C0F\uFF09\
+    \ntemplate <typename GT>\nvc<int> lex_min_toposort(GT& G, bool inv_perm = false)\
+    \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  const int\
+    \ N = G.N;\n  if (inv_perm) {\n    GT H(N);\n    for (auto& e: G.edges) H.add(N\
+    \ - 1 - e.to, N - 1 - e.frm);\n    H.build();\n    auto V = lex_min_toposort(H,\
+    \ false);\n    reverse(all(V));\n    for (auto& x: V) x = N - 1 - x;\n    return\
+    \ V;\n  }\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
+    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
+    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n"
   code: "#include \"graph/base.hpp\"\n#include \"ds/fastset.hpp\"\n\n// \u8F9E\u66F8\
     \u9806\u6700\u5C0F\u306E toposort \u3092\u8FD4\u3059\ntemplate <typename GT>\n\
@@ -167,6 +179,18 @@ data:
     \  const int N = G.N;\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet\
     \ que(N);\n  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while\
     \ (1) {\n    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
+    \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
+    \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n\n// inv_perm=true: inv\
+    \ perm \u304C\u8F9E\u66F8\u6700\u5C0F\uFF08\u5404\u30A4\u30F3\u30C7\u30C3\u30AF\
+    \u30B9\u306E\u73FE\u308C\u308B\u5834\u6240\u306E\u5217\u304C\u6700\u5C0F\uFF09\
+    \ntemplate <typename GT>\nvc<int> lex_min_toposort(GT& G, bool inv_perm = false)\
+    \ {\n  static_assert(GT::is_directed);\n  assert(G.is_prepared());\n  const int\
+    \ N = G.N;\n  if (inv_perm) {\n    GT H(N);\n    for (auto& e: G.edges) H.add(N\
+    \ - 1 - e.to, N - 1 - e.frm);\n    H.build();\n    auto V = lex_min_toposort(H,\
+    \ false);\n    reverse(all(V));\n    for (auto& x: V) x = N - 1 - x;\n    return\
+    \ V;\n  }\n  auto [indeg, outdeg] = G.deg_array_inout();\n  FastSet que(N);\n\
+    \  vc<int> V;\n  FOR(v, N) if (indeg[v] == 0) que.insert(v);\n  while (1) {\n\
+    \    int v = que.next(0);\n    if (v == N) break;\n    que.erase(v), V.eb(v);\n\
     \    for (auto&& e: G[v]) {\n      if (--indeg[e.to] == 0) que.insert(e.to);\n\
     \    }\n  }\n  return (len(V) < N ? vc<int>{} : V);\n}\n"
   dependsOn:
@@ -176,8 +200,8 @@ data:
   isVerificationFile: false
   path: graph/toposort.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  timestamp: '2025-06-20 14:02:37+09:00'
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/4_aoj/2251_1.test.cpp
 documentation_of: graph/toposort.hpp

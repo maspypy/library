@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/index_compression.hpp
     title: ds/index_compression.hpp
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
@@ -142,15 +142,15 @@ data:
     \   vc<int> res(len(X));\n    for (auto& i: I) { res[i] = len(dat), dat.eb(X[i]);\
     \ }\n    dat.shrink_to_fit();\n    return res;\n  }\n  int operator()(T x) { return\
     \ LB(dat, x); }\n};\n\ntemplate <typename T, bool SMALL>\nusing Index_Compression_DISTINCT\
-    \ =\n    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,\n\
-    \                              Index_Compression_DISTINCT_LARGE<T>>::type;\ntemplate\
-    \ <typename T, bool SMALL>\nusing Index_Compression_SAME =\n    typename std::conditional<SMALL,\
-    \ Index_Compression_SAME_SMALL<T>,\n                              Index_Compression_SAME_LARGE<T>>::type;\n\
-    \n// SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// (x): lower_bound(X,x)\
-    \ \u3092\u304B\u3048\u3059\ntemplate <typename T, bool SAME, bool SMALL>\nusing\
-    \ Index_Compression =\n    typename std::conditional<SAME, Index_Compression_SAME<T,\
-    \ SMALL>,\n                              Index_Compression_DISTINCT<T, SMALL>>::type;\n\
-    #line 2 \"random/base.hpp\"\n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
+    \ = typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>, Index_Compression_DISTINCT_LARGE<T>>::type;\n\
+    template <typename T, bool SMALL>\nusing Index_Compression_SAME = typename std::conditional<SMALL,\
+    \ Index_Compression_SAME_SMALL<T>, Index_Compression_SAME_LARGE<T>>::type;\n\n\
+    // SAME: [2,3,2] -> [0,1,0]\n// DISTINCT: [2,2,3] -> [0,2,1]\n// build \u3067\u5217\
+    \u3092\u5727\u7E2E\u3057\u3066\u304F\u308C\u308B. \u305D\u306E\u3042\u3068\n//\
+    \ (x): lower_bound(X,x) \u3092\u304B\u3048\u3059\ntemplate <typename T, bool SAME,\
+    \ bool SMALL>\nusing Index_Compression = typename std::conditional<SAME, Index_Compression_SAME<T,\
+    \ SMALL>, Index_Compression_DISTINCT<T, SMALL>>::type;\n#line 2 \"random/base.hpp\"\
+    \n\nu64 RNG_64() {\n  static u64 x_ = u64(chrono::duration_cast<chrono::nanoseconds>(chrono::high_resolution_clock::now().time_since_epoch()).count())\
     \ * 10150724397891781847ULL;\n  x_ ^= x_ << 7;\n  return x_ ^= x_ >> 9;\n}\n\n\
     u64 RNG(u64 lim) { return RNG_64() % lim; }\n\nll RNG(ll l, ll r) { return l +\
     \ RNG_64() % (r - l); }\n#line 7 \"test/1_mytest/index_compression.test.cpp\"\n\
@@ -205,7 +205,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/index_compression.test.cpp
   requiredBy: []
-  timestamp: '2025-01-27 19:24:29+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/index_compression.test.cpp

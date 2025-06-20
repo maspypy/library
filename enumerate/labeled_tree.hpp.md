@@ -1,13 +1,13 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -145,18 +145,19 @@ data:
     \ == -1) {\n      while (deg[p] != 1) p++;\n      leaf = p;\n    }\n    G.add(code[i],\
     \ leaf);\n    deg[leaf]--, deg[code[i]]--;\n    leaf = (code[i] < p && deg[code[i]]\
     \ == 1 ? code[i] : -1);\n  }\n  G.build();\n  return G;\n}\n#line 3 \"enumerate/labeled_tree.hpp\"\
-    \n\n// https://codeforces.com/contest/611/problem/H\ntemplate <typename F>\nvoid\
-    \ enumerate_labeled_tree(int N, F f) {\n  if (N == 1) {\n    f(vc<pair<int, int>>{});\n\
-    \    return;\n  }\n  enumerate_product(vc<int>(N - 2, N), [&](vc<int> A) -> void\
-    \ {\n    A.eb(N - 1);\n    Graph<int, 0> G = from_prufer_code(A);\n    vc<pair<int,\
-    \ int>> AB;\n    for (auto& e: G.edges) AB.eb(e.frm, e.to);\n    f(AB);\n  });\n\
-    }\n"
+    \n\n// f(pair<int,int>)\n// https://codeforces.com/contest/611/problem/H\ntemplate\
+    \ <typename F>\nvoid enumerate_labeled_tree(int N, F f) {\n  if (N == 1) {\n \
+    \   f(vc<pair<int, int>>{});\n    return;\n  }\n  enumerate_product(vc<int>(N\
+    \ - 2, N), [&](vc<int> A) -> void {\n    A.eb(N - 1);\n    Graph<int, 0> G = from_prufer_code(A);\n\
+    \    vc<pair<int, int>> AB;\n    for (auto& e: G.edges) AB.eb(e.frm, e.to);\n\
+    \    f(AB);\n  });\n}\n"
   code: "#include \"enumerate/product.hpp\"\n#include \"graph/prufer_code.hpp\"\n\n\
-    // https://codeforces.com/contest/611/problem/H\ntemplate <typename F>\nvoid enumerate_labeled_tree(int\
-    \ N, F f) {\n  if (N == 1) {\n    f(vc<pair<int, int>>{});\n    return;\n  }\n\
-    \  enumerate_product(vc<int>(N - 2, N), [&](vc<int> A) -> void {\n    A.eb(N -\
-    \ 1);\n    Graph<int, 0> G = from_prufer_code(A);\n    vc<pair<int, int>> AB;\n\
-    \    for (auto& e: G.edges) AB.eb(e.frm, e.to);\n    f(AB);\n  });\n}\n"
+    // f(pair<int,int>)\n// https://codeforces.com/contest/611/problem/H\ntemplate\
+    \ <typename F>\nvoid enumerate_labeled_tree(int N, F f) {\n  if (N == 1) {\n \
+    \   f(vc<pair<int, int>>{});\n    return;\n  }\n  enumerate_product(vc<int>(N\
+    \ - 2, N), [&](vc<int> A) -> void {\n    A.eb(N - 1);\n    Graph<int, 0> G = from_prufer_code(A);\n\
+    \    vc<pair<int, int>> AB;\n    for (auto& e: G.edges) AB.eb(e.frm, e.to);\n\
+    \    f(AB);\n  });\n}\n"
   dependsOn:
   - enumerate/product.hpp
   - graph/prufer_code.hpp
@@ -165,7 +166,7 @@ data:
   isVerificationFile: false
   path: enumerate/labeled_tree.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/enumerate_labeled_tree.test.cpp

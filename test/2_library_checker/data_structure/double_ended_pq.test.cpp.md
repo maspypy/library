@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/removable_queue.hpp
     title: ds/removable_queue.hpp
   - icon: ':question:'
@@ -219,9 +219,10 @@ data:
     \ }\n  int size() { return len(que) - len(rm_que); }\n  bool empty() { return\
     \ size() == 0; }\n\n  T pop() {\n    refresh();\n    return POP(que);\n  }\n \
     \ T top() {\n    refresh();\n    return que.top();\n  }\n\n  void remove(T x)\
-    \ { rm_que.push(x); }\n\nprivate:\n  void refresh() {\n    while (len(rm_que)\
-    \ && rm_que.top() == que.top()) {\n      rm_que.pop(), que.pop();\n    }\n  }\n\
-    };\n#line 5 \"test/2_library_checker/data_structure/double_ended_pq.test.cpp\"\
+    \ { rm_que.push(x); }\n\n  vc<T> get_all() {\n    vc<T> ANS;\n    while (!empty())\
+    \ { ANS.eb(pop()); }\n    for (auto& x: ANS) push(x);\n    return ANS;\n  }\n\n\
+    private:\n  void refresh() {\n    while (len(rm_que) && rm_que.top() == que.top())\
+    \ { rm_que.pop(), que.pop(); }\n  }\n};\n#line 5 \"test/2_library_checker/data_structure/double_ended_pq.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
     \ que1(A);\n  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n  \
     \  if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n   \
@@ -243,7 +244,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2025-02-09 09:51:19+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/double_ended_pq.test.cpp

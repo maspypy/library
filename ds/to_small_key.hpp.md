@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   _extendedRequiredBy:
@@ -53,16 +53,18 @@ data:
     \ dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\n    for (auto&\
     \ [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\n\
     \n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
-    \  HashMap<int> MP;\n  To_Small_Key(u32 n = 0) : MP(n) {}\n  void reserve(u32\
-    \ n) { MP.build(n); }\n  int size() { return MP.size(); }\n  int query(u64 x,\
-    \ bool set_if_not_exist) {\n    int ans = MP.get(x, -1);\n    if (ans == -1 &&\
-    \ set_if_not_exist) MP[x] = ans = kind++;\n    return ans;\n  }\n};\n"
+    \  HashMap<int> MP;\n  vc<u64> raw;\n  To_Small_Key(u32 n = 0) : MP(n) {}\n  void\
+    \ reserve(u32 n) { MP.build(n); }\n  int size() { return MP.size(); }\n  u64 restore(int\
+    \ i) { return raw[i]; }\n  int query(u64 x, bool set_if_not_exist) {\n    int\
+    \ ans = MP.get(x, -1);\n    if (ans == -1 && set_if_not_exist) {\n      raw.eb(x);\n\
+    \      MP[x] = ans = kind++;\n    }\n    return ans;\n  }\n};\n"
   code: "#include \"ds/hashmap.hpp\"\n\n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct\
-    \ To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n  To_Small_Key(u32 n =\
-    \ 0) : MP(n) {}\n  void reserve(u32 n) { MP.build(n); }\n  int size() { return\
-    \ MP.size(); }\n  int query(u64 x, bool set_if_not_exist) {\n    int ans = MP.get(x,\
-    \ -1);\n    if (ans == -1 && set_if_not_exist) MP[x] = ans = kind++;\n    return\
-    \ ans;\n  }\n};"
+    \ To_Small_Key {\n  int kind = 0;\n  HashMap<int> MP;\n  vc<u64> raw;\n  To_Small_Key(u32\
+    \ n = 0) : MP(n) {}\n  void reserve(u32 n) { MP.build(n); }\n  int size() { return\
+    \ MP.size(); }\n  u64 restore(int i) { return raw[i]; }\n  int query(u64 x, bool\
+    \ set_if_not_exist) {\n    int ans = MP.get(x, -1);\n    if (ans == -1 && set_if_not_exist)\
+    \ {\n      raw.eb(x);\n      MP[x] = ans = kind++;\n    }\n    return ans;\n \
+    \ }\n};"
   dependsOn:
   - ds/hashmap.hpp
   isVerificationFile: false
@@ -70,7 +72,7 @@ data:
   requiredBy:
   - string/aho_corasick_for_general_trie.hpp
   - ds/static_range_frequency.hpp
-  timestamp: '2024-11-01 21:56:32+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/static_range_mode_query.test.cpp

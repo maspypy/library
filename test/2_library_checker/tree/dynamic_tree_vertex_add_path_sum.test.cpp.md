@@ -7,7 +7,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: graph/ds/lct_node_commutative_monoid.hpp
     title: graph/ds/lct_node_commutative_monoid.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/ds/link_cut_tree.hpp
     title: graph/ds/link_cut_tree.hpp
   - icon: ':question:'

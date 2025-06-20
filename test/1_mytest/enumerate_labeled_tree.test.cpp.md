@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/unionfind/unionfind.hpp
     title: ds/unionfind/unionfind.hpp
   - icon: ':heavy_check_mark:'
@@ -13,7 +13,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/product.hpp
     title: enumerate/product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -251,22 +251,22 @@ data:
     \ == -1) {\n      while (deg[p] != 1) p++;\n      leaf = p;\n    }\n    G.add(code[i],\
     \ leaf);\n    deg[leaf]--, deg[code[i]]--;\n    leaf = (code[i] < p && deg[code[i]]\
     \ == 1 ? code[i] : -1);\n  }\n  G.build();\n  return G;\n}\n#line 3 \"enumerate/labeled_tree.hpp\"\
-    \n\n// https://codeforces.com/contest/611/problem/H\ntemplate <typename F>\nvoid\
-    \ enumerate_labeled_tree(int N, F f) {\n  if (N == 1) {\n    f(vc<pair<int, int>>{});\n\
-    \    return;\n  }\n  enumerate_product(vc<int>(N - 2, N), [&](vc<int> A) -> void\
-    \ {\n    A.eb(N - 1);\n    Graph<int, 0> G = from_prufer_code(A);\n    vc<pair<int,\
-    \ int>> AB;\n    for (auto& e: G.edges) AB.eb(e.frm, e.to);\n    f(AB);\n  });\n\
-    }\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind {\n  int n, n_comp;\n\
-    \  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0) { build(n); }\n\n  void\
-    \ build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n, -1);\n  }\n\n  void\
-    \ reset() { build(n); }\n\n  int operator[](int x) {\n    while (dat[x] >= 0)\
-    \ {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return dat[x]; }\n     \
-    \ x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int x) {\n    x = (*this)[x];\n\
-    \    return -dat[x];\n  }\n\n  bool merge(int x, int y) {\n    x = (*this)[x],\
-    \ y = (*this)[y];\n    if (x == y) return false;\n    if (-dat[x] < -dat[y]) swap(x,\
-    \ y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n    return true;\n  }\n\n\
-    \  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i, n) A[i] = (*this)[i];\n\
-    \    return A;\n  }\n};\n#line 6 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\
+    \n\n// f(pair<int,int>)\n// https://codeforces.com/contest/611/problem/H\ntemplate\
+    \ <typename F>\nvoid enumerate_labeled_tree(int N, F f) {\n  if (N == 1) {\n \
+    \   f(vc<pair<int, int>>{});\n    return;\n  }\n  enumerate_product(vc<int>(N\
+    \ - 2, N), [&](vc<int> A) -> void {\n    A.eb(N - 1);\n    Graph<int, 0> G = from_prufer_code(A);\n\
+    \    vc<pair<int, int>> AB;\n    for (auto& e: G.edges) AB.eb(e.frm, e.to);\n\
+    \    f(AB);\n  });\n}\n#line 2 \"ds/unionfind/unionfind.hpp\"\n\nstruct UnionFind\
+    \ {\n  int n, n_comp;\n  vc<int> dat; // par or (-size)\n  UnionFind(int n = 0)\
+    \ { build(n); }\n\n  void build(int m) {\n    n = m, n_comp = m;\n    dat.assign(n,\
+    \ -1);\n  }\n\n  void reset() { build(n); }\n\n  int operator[](int x) {\n   \
+    \ while (dat[x] >= 0) {\n      int pp = dat[dat[x]];\n      if (pp < 0) { return\
+    \ dat[x]; }\n      x = dat[x] = pp;\n    }\n    return x;\n  }\n\n  ll size(int\
+    \ x) {\n    x = (*this)[x];\n    return -dat[x];\n  }\n\n  bool merge(int x, int\
+    \ y) {\n    x = (*this)[x], y = (*this)[y];\n    if (x == y) return false;\n \
+    \   if (-dat[x] < -dat[y]) swap(x, y);\n    dat[x] += dat[y], dat[y] = x, n_comp--;\n\
+    \    return true;\n  }\n\n  vc<int> get_all() {\n    vc<int> A(n);\n    FOR(i,\
+    \ n) A[i] = (*this)[i];\n    return A;\n  }\n};\n#line 6 \"test/1_mytest/enumerate_labeled_tree.test.cpp\"\
     \n\nvoid test(ll N) {\n  vvc<pair<int, int>> dat;\n  enumerate_labeled_tree(N,\
     \ [&](vc<pair<int, int>> G) -> void {\n    assert(len(G) == N - 1);\n    UnionFind\
     \ uf(N);\n    for (auto& [a, b]: G) { uf.merge(a, b); }\n    assert(uf.n_comp\
@@ -296,7 +296,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enumerate_labeled_tree.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enumerate_labeled_tree.test.cpp

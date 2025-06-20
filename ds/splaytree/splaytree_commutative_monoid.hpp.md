@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/splaytree/splaytree.hpp
     title: ds/splaytree/splaytree.hpp
   _extendedRequiredBy: []
@@ -109,55 +109,55 @@ data:
     \      pp->update(), p->update();\n    }\n    // me \u306E update \u306F\u6700\
     \u5F8C\u3060\u3051\u3067\u3088\u3044\n    me->update();\n  }\n\n  void splay_kth(np\
     \ &root, u32 k) {\n    assert(0 <= k && k < (root->size));\n    while (1) {\n\
-    \      root->prop();\n      u32 sl = (root->l ? root->l->size : 0);\n      if\
-    \ (k == sl) break;\n      if (k < sl)\n        root = root->l;\n      else {\n\
-    \        k -= sl + 1;\n        root = root->r;\n      }\n    }\n    splay(root,\
-    \ true);\n  }\n\n  // check(x), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\
-    \u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template\
-    \ <typename F>\n  pair<np, np> split_max_right(np root, F check) {\n    if (!root)\
-    \ return {nullptr, nullptr};\n    assert(!root->p);\n    np c = find_max_right(root,\
+    \      root->prop();\n      u32 s1 = (root->l ? root->l->size : 0);\n      u32\
+    \ s2 = (root->size) - (root->r ? root->r->size : 0);\n      if (k < s1) root =\
+    \ root->l;\n      elif (k < s2) { break; }\n      else {\n        k -= s2;\n \
+    \       root = root->r;\n      }\n    }\n    splay(root, true);\n  }\n\n  // check(x),\
+    \ \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\
+    \u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np, np>\
+    \ split_max_right(np root, F check) {\n    if (!root) return {nullptr, nullptr};\n\
+    \    assert(!root->p);\n    np c = find_max_right(root, check);\n    if (!c) {\n\
+    \      splay(root, true);\n      return {nullptr, root};\n    }\n    splay(c,\
+    \ true);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n    right->p\
+    \ = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c, right};\n\
+    \  }\n\n  // check(x, cnt), \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u304C\
+    \ check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename\
+    \ F>\n  pair<np, np> split_max_right_cnt(np root, F check) {\n    if (!root) return\
+    \ {nullptr, nullptr};\n    assert(!root->p);\n    np c = find_max_right_cnt(root,\
     \ check);\n    if (!c) {\n      splay(root, true);\n      return {nullptr, root};\n\
     \    }\n    splay(c, true);\n    np right = c->r;\n    if (!right) return {c,\
     \ nullptr};\n    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n\
-    \    return {c, right};\n  }\n\n  // check(x, cnt), \u5DE6\u5074\u306E\u30CE\u30FC\
-    \u30C9\u5168\u4F53\u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\
-    \u308B\n  template <typename F>\n  pair<np, np> split_max_right_cnt(np root, F\
-    \ check) {\n    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n\
-    \    np c = find_max_right_cnt(root, check);\n    if (!c) {\n      splay(root,\
+    \    return {c, right};\n  }\n\n  // \u5DE6\u5074\u306E\u30CE\u30FC\u30C9\u5168\
+    \u4F53\u306E prod \u304C check \u3092\u6E80\u305F\u3059\u3088\u3046\u306B\u5207\
+    \u308B\n  template <typename F>\n  pair<np, np> split_max_right_prod(np root,\
+    \ F check) {\n    if (!root) return {nullptr, nullptr};\n    assert(!root->p);\n\
+    \    np c = find_max_right_prod(root, check);\n    if (!c) {\n      splay(root,\
     \ true);\n      return {nullptr, root};\n    }\n    splay(c, true);\n    np right\
     \ = c->r;\n    if (!right) return {c, nullptr};\n    right->p = nullptr;\n   \
-    \ c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  // \u5DE6\
-    \u5074\u306E\u30CE\u30FC\u30C9\u5168\u4F53\u306E prod \u304C check \u3092\u6E80\
-    \u305F\u3059\u3088\u3046\u306B\u5207\u308B\n  template <typename F>\n  pair<np,\
-    \ np> split_max_right_prod(np root, F check) {\n    if (!root) return {nullptr,\
-    \ nullptr};\n    assert(!root->p);\n    np c = find_max_right_prod(root, check);\n\
-    \    if (!c) {\n      splay(root, true);\n      return {nullptr, root};\n    }\n\
-    \    splay(c, true);\n    np right = c->r;\n    if (!right) return {c, nullptr};\n\
-    \    right->p = nullptr;\n    c->r = nullptr;\n    c->update();\n    return {c,\
-    \ right};\n  }\n\n  template <typename F>\n  np find_max_right(np root, const\
-    \ F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\
-    \u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr,\
-    \ last = nullptr;\n    while (root) {\n      last = root;\n      root->prop();\n\
-    \      if (check(root->x)) {\n        last_ok = root;\n        root = root->r;\n\
-    \      } else {\n        root = root->l;\n      }\n    }\n    splay(last, true);\n\
-    \    return last_ok;\n  }\n\n  template <typename F>\n  np find_max_right_cnt(np\
-    \ root, const F &check) {\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok\
-    \ \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok\
-    \ = nullptr, last = nullptr;\n    ll n = 0;\n    while (root) {\n      last =\
-    \ root;\n      root->prop();\n      ll ns = (root->l ? root->l->size : 0);\n \
-    \     if (check(root->x, n + ns + 1)) {\n        last_ok = root;\n        n +=\
-    \ ns + 1;\n        root = root->r;\n      } else {\n        root = root->l;\n\
-    \      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\n  template\
-    \ <typename F>\n  np find_max_right_prod(np root, const F &check) {\n    using\
-    \ Mono = typename Node::Monoid_X;\n    X prod = Mono::unit();\n    // \u6700\u5F8C\
+    \ c->r = nullptr;\n    c->update();\n    return {c, right};\n  }\n\n  template\
+    \ <typename F>\n  np find_max_right(np root, const F &check) {\n    // \u6700\u5F8C\
     \u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\
     \u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n    while (root)\
-    \ {\n      last = root;\n      root->prop();\n      np tmp = root->r;\n      root->r\
-    \ = nullptr;\n      root->update();\n      X lprod = Mono::op(prod, root->prod);\n\
-    \      root->r = tmp;\n      root->update();\n      if (check(lprod)) {\n    \
-    \    prod = lprod;\n        last_ok = root;\n        root = root->r;\n      }\
-    \ else {\n        root = root->l;\n      }\n    }\n    splay(last, true);\n  \
-    \  return last_ok;\n  }\n};\n#line 2 \"ds/splaytree/splaytree_commutative_monoid.hpp\"\
+    \ {\n      last = root;\n      root->prop();\n      if (check(root->x)) {\n  \
+    \      last_ok = root;\n        root = root->r;\n      } else {\n        root\
+    \ = root->l;\n      }\n    }\n    splay(last, true);\n    return last_ok;\n  }\n\
+    \n  template <typename F>\n  np find_max_right_cnt(np root, const F &check) {\n\
+    \    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\u70B9\u3001\u6700\
+    \u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok = nullptr, last = nullptr;\n\
+    \    ll n = 0;\n    while (root) {\n      last = root;\n      root->prop();\n\
+    \      ll k = (root->size) - (root->r ? root->r->size : 0);\n      if (check(root->x,\
+    \ n + k)) {\n        last_ok = root;\n        n += k;\n        root = root->r;\n\
+    \      } else {\n        root = root->l;\n      }\n    }\n    splay(last, true);\n\
+    \    return last_ok;\n  }\n\n  template <typename F>\n  np find_max_right_prod(np\
+    \ root, const F &check) {\n    using Mono = typename Node::Monoid_X;\n    X prod\
+    \ = Mono::unit();\n    // \u6700\u5F8C\u306B\u898B\u3064\u3051\u305F ok \u306E\
+    \u70B9\u3001\u6700\u5F8C\u306B\u63A2\u7D22\u3057\u305F\u70B9\n    np last_ok =\
+    \ nullptr, last = nullptr;\n    while (root) {\n      last = root;\n      root->prop();\n\
+    \      np tmp = root->r;\n      root->r = nullptr;\n      root->update();\n  \
+    \    X lprod = Mono::op(prod, root->prod);\n      root->r = tmp;\n      root->update();\n\
+    \      if (check(lprod)) {\n        prod = lprod;\n        last_ok = root;\n \
+    \       root = root->r;\n      } else {\n        root = root->l;\n      }\n  \
+    \  }\n    splay(last, true);\n    return last_ok;\n  }\n};\n#line 2 \"ds/splaytree/splaytree_commutative_monoid.hpp\"\
     \n\nnamespace SplayTreeNodes {\ntemplate <typename Monoid>\nstruct Node_CM {\n\
     \  using Monoid_X = Monoid;\n  using X = typename Monoid::value_type;\n  using\
     \ value_type = X;\n  using operator_type = int; // \u5B9A\u7FA9\u3060\u3051\u3057\
@@ -206,7 +206,7 @@ data:
   isVerificationFile: false
   path: ds/splaytree/splaytree_commutative_monoid.hpp
   requiredBy: []
-  timestamp: '2024-12-25 20:50:37+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp

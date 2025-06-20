@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
   - icon: ':heavy_check_mark:'
@@ -327,23 +327,23 @@ data:
     \ {\r\n      if (used[i]) dat.eb(key[i], val[i]);\r\n    }\r\n    build(2 * len(dat));\r\
     \n    for (auto& [a, b]: dat) (*this)[a] = b;\r\n  }\r\n};\n#line 2 \"ds/to_small_key.hpp\"\
     \n\n// [30,10,20,30] -> [0,1,2,0] etc.\nstruct To_Small_Key {\n  int kind = 0;\n\
-    \  HashMap<int> MP;\n  To_Small_Key(u32 n = 0) : MP(n) {}\n  void reserve(u32\
-    \ n) { MP.build(n); }\n  int size() { return MP.size(); }\n  int query(u64 x,\
-    \ bool set_if_not_exist) {\n    int ans = MP.get(x, -1);\n    if (ans == -1 &&\
-    \ set_if_not_exist) MP[x] = ans = kind++;\n    return ans;\n  }\n};\n#line 3 \"\
-    ds/static_range_frequency.hpp\"\n\nstruct Static_Range_Frequency {\n  vc<int>\
-    \ pos, indptr;\n  To_Small_Key S;\n\n  template <typename T>\n  Static_Range_Frequency(vc<T>&\
-    \ A) {\n    build(len(A), [&](int i) -> u64 { return A[i]; });\n  }\n\n  template\
-    \ <typename F>\n  Static_Range_Frequency(int N, F f) {\n    build(N, f);\n  }\n\
-    \n  template <typename F>\n  void build(int N, F f) {\n    S.reserve(N);\n   \
-    \ pos.resize(N);\n    vc<int> cnt(N + 1), dat(N);\n    FOR(i, N) {\n      u64\
-    \ x = f(i);\n      int k = S.query(x, true);\n      cnt[1 + k]++, dat[i] = k;\n\
-    \    }\n    FOR(k, N) cnt[1 + k] += cnt[k];\n    indptr = cnt;\n    FOR(i, N)\
-    \ pos[cnt[dat[i]]++] = i;\n  }\n\n  int query(int L, int R, u64 x) {\n    int\
-    \ k = S.query(x, false);\n    if (k == -1) return 0;\n    int a = indptr[k], b\
-    \ = indptr[k + 1];\n    auto nl = lower_bound(pos.begin() + a, pos.begin() + b,\
-    \ L);\n    auto nr = lower_bound(pos.begin() + a, pos.begin() + b, R);\n    return\
-    \ nr - nl;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_frequency.test.cpp\"\
+    \  HashMap<int> MP;\n  vc<u64> raw;\n  To_Small_Key(u32 n = 0) : MP(n) {}\n  void\
+    \ reserve(u32 n) { MP.build(n); }\n  int size() { return MP.size(); }\n  u64 restore(int\
+    \ i) { return raw[i]; }\n  int query(u64 x, bool set_if_not_exist) {\n    int\
+    \ ans = MP.get(x, -1);\n    if (ans == -1 && set_if_not_exist) {\n      raw.eb(x);\n\
+    \      MP[x] = ans = kind++;\n    }\n    return ans;\n  }\n};\n#line 3 \"ds/static_range_frequency.hpp\"\
+    \n\nstruct Static_Range_Frequency {\n  vc<int> pos, indptr;\n  To_Small_Key S;\n\
+    \n  template <typename T>\n  Static_Range_Frequency(vc<T>& A) {\n    build(len(A),\
+    \ [&](int i) -> u64 { return A[i]; });\n  }\n\n  template <typename F>\n  Static_Range_Frequency(int\
+    \ N, F f) {\n    build(N, f);\n  }\n\n  template <typename F>\n  void build(int\
+    \ N, F f) {\n    S.reserve(N);\n    pos.resize(N);\n    vc<int> cnt(N + 1), dat(N);\n\
+    \    FOR(i, N) {\n      u64 x = f(i);\n      int k = S.query(x, true);\n     \
+    \ cnt[1 + k]++, dat[i] = k;\n    }\n    FOR(k, N) cnt[1 + k] += cnt[k];\n    indptr\
+    \ = cnt;\n    FOR(i, N) pos[cnt[dat[i]]++] = i;\n  }\n\n  int query(int L, int\
+    \ R, u64 x) {\n    int k = S.query(x, false);\n    if (k == -1) return 0;\n  \
+    \  int a = indptr[k], b = indptr[k + 1];\n    auto nl = lower_bound(pos.begin()\
+    \ + a, pos.begin() + b, L);\n    auto nr = lower_bound(pos.begin() + a, pos.begin()\
+    \ + b, R);\n    return nr - nl;\n  }\n};\n#line 7 \"test/2_library_checker/data_structure/static_range_frequency.test.cpp\"\
     \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Static_Range_Frequency X(A);\n\
     \  FOR(Q) {\n    INT(l, r, x);\n    print(X.query(l, r, x));\n  }\n}\n\nsigned\
     \ main() {\n  solve();\n  return 0;\n}\n"
@@ -364,7 +364,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/static_range_frequency.test.cpp

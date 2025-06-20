@@ -14,6 +14,7 @@ data:
   _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
+    - https://codeforces.com/contest/1338/problem/E
     - https://contest.ucup.ac/contest/1784/problem/9246
   bundledCode: "#line 2 \"ds/my_bitset.hpp\"\n\n// https://codeforces.com/contest/914/problem/F\n\
     // https://yukicoder.me/problems/no/142\n// \u308F\u305A\u304B\u306B\u666E\u901A\
@@ -150,32 +151,36 @@ data:
     \ + (s >> i & 1);\n      TO_STR[s] = x;\n    }\n  }\n};\nstring My_Bitset::TO_STR[256];\n\
     #line 2 \"linalg/bitset/matrix_mul_and_or.hpp\"\n\n// Boolean Matrix Multiplication\
     \ C[i][k] |= A[i][j] && B[j][k]\n// https://contest.ucup.ac/contest/1784/problem/9246\n\
-    vc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1,\
-    \ int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 =\
-    \ len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  if (N1 <\
-    \ 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] |= B[j];\n    }\n\
-    \    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1 << K,\
-    \ BS(N3));\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n\
-    \    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L\
-    \ + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 <<\
-    \ K) - 1);\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
+    // https://codeforces.com/contest/1338/problem/E N=8000, 2sec, \u9759\u7684\u914D\
+    \u5217\u3067\u9AD8\u901F\u5316\u3057\u305F\u3089\u901A\u3063\u305F\u3084\u3064\
+    \nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 =\
+    \ -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) {\
+    \ N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  if (N1\
+    \ < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] |= B[j];\n   \
+    \ }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
+    \ << K, BS(N3));\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K,\
+    \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
+    \ | B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
+    \ ((1 << K) - 1);\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
   code: "#include \"ds/my_bitset.hpp\"\n\n// Boolean Matrix Multiplication C[i][k]\
     \ |= A[i][j] && B[j][k]\n// https://contest.ucup.ac/contest/1784/problem/9246\n\
-    vc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 = -1,\
-    \ int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) { N1 =\
-    \ len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  if (N1 <\
-    \ 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] |= B[j];\n    }\n\
-    \    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1 << K,\
-    \ BS(N3));\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K, N2);\n\
-    \    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s] | B[L\
-    \ + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) & ((1 <<\
-    \ K) - 1);\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
+    // https://codeforces.com/contest/1338/problem/E N=8000, 2sec, \u9759\u7684\u914D\
+    \u5217\u3067\u9AD8\u901F\u5316\u3057\u305F\u3089\u901A\u3063\u305F\u3084\u3064\
+    \nvc<My_Bitset> matrix_mul_and_or(vc<My_Bitset>& A, vc<My_Bitset>& B, int N1 =\
+    \ -1, int N2 = -1, int N3 = -1) {\n  using BS = My_Bitset;\n  if (N1 == -1) {\
+    \ N1 = len(A), N2 = len(B), N3 = len(B[0]); }\n  vc<BS> C(N1, BS(N3));\n  if (N1\
+    \ < 50) {\n    FOR(i, N1) FOR(j, N2) {\n      if (A[i][j]) C[i] |= B[j];\n   \
+    \ }\n    return C;\n  }\n  const int K = (N1 < 1200 ? 4 : 8);\n  vc<BS> tmp(1\
+    \ << K, BS(N3));\n  for (int L = 0; L < N2; L += K) {\n    int R = min(L + K,\
+    \ N2);\n    int n = R - L;\n    FOR(i, n) FOR(s, 1 << i) tmp[s | 1 << i] = tmp[s]\
+    \ | B[L + i];\n    FOR(i, N1) {\n      u32 s = A[i].dat[L / 64] >> (L & 63) &\
+    \ ((1 << K) - 1);\n      C[i] |= tmp[s];\n    }\n  }\n  return C;\n}\n"
   dependsOn:
   - ds/my_bitset.hpp
   isVerificationFile: false
   path: linalg/bitset/matrix_mul_and_or.hpp
   requiredBy: []
-  timestamp: '2025-05-05 02:10:07+09:00'
+  timestamp: '2025-06-20 14:02:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/3_yukicoder/1340.test.cpp
