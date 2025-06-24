@@ -18,7 +18,7 @@ vc<int> reduce_intervals(vc<T> L, vc<T> R, bool rm_included) {
     for (auto &j : I) {
       if (!ANS.empty()) {
         int i = ANS.back();
-        if (R[j] <= R[i] && R[j] - L[j] <= R[i] - L[i])
+        if (R[j] <= R[i])
           continue;
       }
       ANS.eb(j);
@@ -32,7 +32,7 @@ vc<int> reduce_intervals(vc<T> L, vc<T> R, bool rm_included) {
     for (auto &j : I) {
       if (!ANS.empty()) {
         int i = ANS.back();
-        if (R[j] <= R[i] && R[j] - L[j] == R[i] - L[i])
+        if (L[j] <= L[i])
           continue;
       }
       ANS.eb(j);
