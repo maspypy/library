@@ -257,12 +257,12 @@ struct SplayTree {
     assert(0 <= k && k < (root->size));
     while (1) {
       root->prop();
-      u32 sl = (root->l ? root->l->size : 0);
-      if (k == sl) break;
-      if (k < sl)
-        root = root->l;
+      u32 s1 = (root->l ? root->l->size : 0);
+      u32 s2 = (root->size) - (root->r ? root->r->size : 0);
+      if (k < s1) root = root->l;
+      elif (k < s2) { break; }
       else {
-        k -= sl + 1;
+        k -= s2;
         root = root->r;
       }
     }
@@ -352,10 +352,10 @@ struct SplayTree {
     while (root) {
       last = root;
       root->prop();
-      ll ns = (root->l ? root->l->size : 0);
-      if (check(root->x, n + ns + 1)) {
+      ll k = (root->size) - (root->r ? root->r->size : 0);
+      if (check(root->x, n + k)) {
         last_ok = root;
-        n += ns + 1;
+        n += k;
         root = root->r;
       } else {
         root = root->l;

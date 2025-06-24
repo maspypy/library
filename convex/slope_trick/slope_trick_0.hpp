@@ -51,7 +51,10 @@ struct Slope_Trick_0 {
   void shift(const ll &a) { add_l += a, add_r += a; }
 
   // g(x) = min_{x-b <= y <= x-a} f(y)
-  void sliding_window_minimum(const ll &a, const ll &b) { add_l += a, add_r += b; }
+  void sliding_window_minimum(const ll &a, const ll &b) {
+    assert(a <= b);
+    add_l += a, add_r += b;
+  }
 
   // O(size log(size))
   i128 eval(ll x) {

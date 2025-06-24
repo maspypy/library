@@ -3,6 +3,7 @@
 #include "ds/fenwicktree/fenwicktree.hpp"
 
 struct FenwickTree_01 {
+  using MX = Monoid_Add<int>;
   int N, n;
   vc<u64> dat;
   FenwickTree<Monoid_Add<int>> bit;
@@ -18,6 +19,9 @@ struct FenwickTree_01 {
     n = ceil<int>(N + 1, 64);
     dat.assign(n, u64(0));
     bit.build(n);
+  }
+  void build(vc<int> dat) {
+    build(len(dat), [&](int i) -> int { return dat[i]; });
   }
 
   template <typename F>
@@ -44,12 +48,14 @@ struct FenwickTree_01 {
     ans += bit.sum(L / 64, R / 64);
     return ans;
   }
+  int prod(int L, int R) { return sum(L, R); }
 
   void add(int k, int x) {
     if (x == 1) add(k);
     elif (x == -1) remove(k);
     else assert(0);
   }
+  void multiply(int k, int x) { add(k, x); }
 
   void add(int k) {
     dat[k / 64] |= u64(1) << (k % 64);

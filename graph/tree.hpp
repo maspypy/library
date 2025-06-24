@@ -176,6 +176,8 @@ struct Tree {
     return res;
   }
 
+  vc<int> collect_subtree(int v) { return {V.begin() + LID[v], V.begin() + RID[v]}; }
+
   vc<int> collect_light(int v) {
     vc<int> res;
     bool skip = true;

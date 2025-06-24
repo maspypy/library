@@ -34,11 +34,16 @@ struct ModFast {
   u32 pow(u32 a, ll exp) {
     assert(0 <= a && a < p && 0 <= exp && exp < (1 << 30));
     if (a == 0) return (exp == 0 ? 1 : 0);
-    return pow_r(log_r(a) * exp % (p - 1));
+    return pow_r_32(log_r(a) * exp % (p - 1));
   }
 
-  u32 pow_r(u32 exp) {
+  u32 pow_r_32(u32 exp) {
     assert(0 <= exp && exp <= p - 1);
+    return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;
+  }
+  u32 pow_r(ll exp) {
+    exp %= p - 1;
+    if (exp < 0) exp += p - 1;
     return u64(POW[0][exp & 32767]) * POW[1][exp >> 15] % p;
   }
 
@@ -73,7 +78,7 @@ private:
     HashMap<u32> MP(S);
     u32 pw = 1;
     for (int k = 0; k < S; ++k, pw = u64(root) * pw % p) { MP[pw] = k; }
-    u32 q = pow_r(p - 1 - S);
+    u32 q = pow_r_32(p - 1 - S);
     auto BSGS = [&](u32 s) -> u32 {
       u32 ans = 0;
       while (1) {
@@ -103,7 +108,7 @@ private:
       while (1) {
         u32 k = RNG(0, p - 1);
         u64 ans = p - 1 - k;
-        u32 x = u64(i) * pow_r(k) % p;
+        u32 x = u64(i) * pow_r_32(k) % p;
         auto div = [&](u32 q) -> void { x /= q, ans += LOG[K + q]; };
         for (u32 q: {2, 3, 5, 7, 11, 13, 17, 19}) {
           while (x % q == 0) div(q);

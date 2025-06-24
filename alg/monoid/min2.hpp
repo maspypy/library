@@ -5,7 +5,7 @@ struct Monoid_Min2 {
   struct Data {
     T min1, min2;
     KEY key1, key2;
-    bool add_element(T x, KEY key) {
+    bool add_element(KEY key, T x) {
       if (key1 == key) { return chmin(min1, x); }
       if (key2 == key) {
         bool upd = chmin(min2, x);
@@ -27,8 +27,8 @@ struct Monoid_Min2 {
   using X = value_type;
 
   static X op(X x, X y) {
-    x.add_element(y.min1, y.key1);
-    x.add_element(y.min2, y.key2);
+    x.add_element(y.key1, y.min1);
+    x.add_element(y.key2, y.min2);
     return x;
   }
   static constexpr X unit() { return {infty<T>, infty<T>, -1, -1}; }

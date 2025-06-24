@@ -68,18 +68,13 @@ struct Index_Compression_DISTINCT_LARGE {
 };
 
 template <typename T, bool SMALL>
-using Index_Compression_DISTINCT =
-    typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>,
-                              Index_Compression_DISTINCT_LARGE<T>>::type;
+using Index_Compression_DISTINCT = typename std::conditional<SMALL, Index_Compression_DISTINCT_SMALL<T>, Index_Compression_DISTINCT_LARGE<T>>::type;
 template <typename T, bool SMALL>
-using Index_Compression_SAME =
-    typename std::conditional<SMALL, Index_Compression_SAME_SMALL<T>,
-                              Index_Compression_SAME_LARGE<T>>::type;
+using Index_Compression_SAME = typename std::conditional<SMALL, Index_Compression_SAME_SMALL<T>, Index_Compression_SAME_LARGE<T>>::type;
 
 // SAME: [2,3,2] -> [0,1,0]
 // DISTINCT: [2,2,3] -> [0,2,1]
+// build で列を圧縮してくれる. そのあと
 // (x): lower_bound(X,x) をかえす
 template <typename T, bool SAME, bool SMALL>
-using Index_Compression =
-    typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>,
-                              Index_Compression_DISTINCT<T, SMALL>>::type;
+using Index_Compression = typename std::conditional<SAME, Index_Compression_SAME<T, SMALL>, Index_Compression_DISTINCT<T, SMALL>>::type;

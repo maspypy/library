@@ -85,7 +85,7 @@ struct Line {
 
   template <typename U>
   U eval(Point<U> P) {
-    return a * P.x + b * P.y + c;
+    return U(a) * P.x + U(b) * P.y + U(c);
   }
 
   template <typename U>
@@ -126,6 +126,7 @@ template <typename REAL>
 struct Circle {
   Point<REAL> O;
   REAL r;
+  Circle() {}
   Circle(Point<REAL> O, REAL r) : O(O), r(r) {}
   Circle(REAL x, REAL y, REAL r) : O(x, y), r(r) {}
   template <typename T>

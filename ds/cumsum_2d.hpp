@@ -12,14 +12,21 @@ struct Cumsum_2D {
 
   Cumsum_2D() {}
   Cumsum_2D(vvc<X> &A) { build(A); }
+  template <typename F>
+  Cumsum_2D(int H, int W, F f) {
+    build(H, W, f);
+  }
 
   void build(vvc<X> &A) {
-    H = len(A);
-    W = (H == 0 ? 0 : len(A[0]));
+    build(len(A), len(A[0]), [&](int x, int y) -> int { return A[x][y]; });
+  }
+  template <typename F>
+  void build(int H0, int W0, F f) {
+    H = H0, W = W0;
     dat.assign(H * W, MX::unit());
     FOR(x, H) FOR(y, W) {
       int k = W * x + y;
-      dat[k] = (y == 0 ? A[x][y] : MX::op(dat[k - 1], A[x][y]));
+      dat[k] = (y == 0 ? f(x, y) : MX::op(dat[k - 1], f(x, y)));
     }
     FOR(i, W, H * W) dat[i] = MX::op(dat[i - W], dat[i]);
   }
@@ -42,7 +49,5 @@ struct Cumsum_2D {
     return MX::op(MX::op(a, d), MX::inverse(MX::op(b, c)));
   }
 
-  X prefix_sum(int x, int y) {
-    return (x == 0 || y == 0) ? MX::unit() : dat[W * x + y - (W + 1)];
-  }
+  X prefix_sum(int x, int y) { return (x == 0 || y == 0) ? MX::unit() : dat[W * x + y - (W + 1)]; }
 };

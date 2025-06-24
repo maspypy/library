@@ -25,10 +25,15 @@ struct Removable_Queue {
 
   void remove(T x) { rm_que.push(x); }
 
+  vc<T> get_all() {
+    vc<T> ANS;
+    while (!empty()) { ANS.eb(pop()); }
+    for (auto& x: ANS) push(x);
+    return ANS;
+  }
+
 private:
   void refresh() {
-    while (len(rm_que) && rm_que.top() == que.top()) {
-      rm_que.pop(), que.pop();
-    }
+    while (len(rm_que) && rm_que.top() == que.top()) { rm_que.pop(), que.pop(); }
   }
 };

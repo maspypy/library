@@ -51,6 +51,15 @@ struct Range_Add_Range_Min {
     return ans + lazy;
   }
 
+  T prod_all() { return prod(0, n); }
+
+  // 基本デバッグ用というつもりでさぼり O(NlogN) になっている
+  vc<T> get_all() {
+    vc<T> ANS(n);
+    FOR(i, n) ANS[i] = prod(i, i + 1);
+    return ANS;
+  }
+
   void apply(int L, int R, T x) { apply_suffix(L, x), apply_suffix(R, -x); }
 
   // [0,i)

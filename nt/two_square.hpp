@@ -15,7 +15,7 @@ vc<pair<ll, ll>> two_square(ll N, bool only_nonnegative) {
   for (auto& g: solve_norm_equation<i128>(N)) {
     FOR(4) {
       ANS.eb(g.x, g.y);
-      tie(g.x, g.y) = mp(g.y, g.x);
+      tie(g.x, g.y) = mp(-g.y, g.x);
     }
   }
   return ANS;

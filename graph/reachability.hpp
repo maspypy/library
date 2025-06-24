@@ -1,5 +1,6 @@
 #pragma once
 #include "graph/strongly_connected_component.hpp"
+#include "graph/reverse_graph.hpp"
 
 // 有向グラフの到達可能性クエリ。O((N+M)Q/w)。
 template <typename GT, typename P>
@@ -50,5 +51,46 @@ vc<int> reachability(GT& G, vc<P> query) {
       }
     }
   }
+  return ANS;
+}
+
+// ANS[v] := count(reachable from v).
+// (N,M)=(2e5,4e5): ほぼちょうど 1.5sec. 結構実行時間がぶれる.
+// https://codeforces.com/contest/2041/problem/K
+vc<int> count_reachable(Graph<int, 1> G) {
+  G = reverse_graph(G);
+  int N = G.N;
+  auto [nc, comp] = strongly_connected_component(G);
+  vc<int> sz(nc);
+  FOR(v, N) sz[comp[v]]++;
+
+  // sorted pairs
+  vc<pair<int, int>> E;
+  for (auto& e: G.edges) {
+    int a = comp[e.frm], b = comp[e.to];
+    if (a != b) E.eb(a, b);
+  }
+  UNIQUE(E);
+
+  vc<int> ANS(nc);
+  int p = 0;
+  int idx = 0;
+  vc<u128> dp(nc);
+  while (p < nc) {
+    int k = 0;
+    int s = p;
+    memset(dp.data() + s, 0, (nc - s) * sizeof(u128));
+    while (k < 128 && p < nc) {
+      if (sz[p] == 0) ++p;
+      if (p == nc) break;
+      int m = min(sz[p], 128 - k);
+      for (int i = k; i < k + m; ++i) dp[p] |= u128(1) << i;
+      sz[p] -= m, k += m;
+    }
+    while (idx < len(E) && E[idx].fi < s) ++idx;
+    FOR(i, idx, len(E)) { dp[E[i].se] |= dp[E[i].fi]; }
+    FOR(v, s, nc) { ANS[v] += popcnt(u64(dp[v] >> 64)) + popcnt(u64(dp[v])); }
+  }
+  ANS = rearrange(ANS, comp);
   return ANS;
 }

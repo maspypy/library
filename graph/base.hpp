@@ -133,6 +133,7 @@ struct Graph {
 
 #ifdef FASTIO
   void debug() {
+#ifdef LOCAL
     print("Graph");
     if (!prepared) {
       print("frm to cost id");
@@ -142,6 +143,7 @@ struct Graph {
       print("frm to cost id");
       FOR(v, N) for (auto&& e: (*this)[v]) print(e.frm, e.to, e.cost, e.id);
     }
+#endif
   }
 #endif
 

@@ -11,6 +11,9 @@ struct Static_Range_Product_Group {
   Static_Range_Product_Group(int m, F f) {
     build(m, f);
   }
+  Static_Range_Product_Group(vc<X>& A) {
+    build(len(A), [&](int i) -> X { return A[i]; });
+  }
   template <typename F>
   void build(int m, F f) {
     n = m;

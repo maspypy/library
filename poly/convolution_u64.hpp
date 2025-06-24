@@ -7,11 +7,11 @@ vector<T> convolution_u64(const vector<u64>& a, const vector<u64>& b) {
   int n = len(a), m = len(b);
   if (!n || !m) return {};
   if (min(n, m) <= 12500) return convolution_karatsuba(a, b);
-  constexpr int p0 = 167772161;
-  constexpr int p1 = 469762049;
-  constexpr int p2 = 754974721;
-  constexpr int p3 = 880803841;
-  constexpr int p4 = 998244353;
+  constexpr int p0 = 880803841;
+  constexpr int p1 = 943718401;
+  constexpr int p2 = 998244353;
+  constexpr int p3 = 1004535809;
+  constexpr int p4 = 1012924417;
   using M0 = modint<p0>;
   using M1 = modint<p1>;
   using M2 = modint<p2>;

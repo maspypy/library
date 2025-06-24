@@ -1,3 +1,5 @@
+#pragma once
+
 #include "setfunc/subset_convolution.hpp"
 
 // sum_i 1/i! s^i, s^i is subset-convolution

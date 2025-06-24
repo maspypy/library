@@ -1,3 +1,4 @@
+#pragma once
 #include "setfunc/ranked_zeta.hpp"
 
 // sum_i f_i/i! s^i, s^i is subset-convolution
@@ -9,10 +10,7 @@ vc<mint> sps_composition_egf(vc<mint>& f, vc<mint>& s) {
   int D = len(f) - 1;
   using ARR = array<mint, LIM + 1>;
   vvc<ARR> zs(N);
-  FOR(i, N) {
-    zs[i]
-        = ranked_zeta<mint, LIM>({s.begin() + (1 << i), s.begin() + (2 << i)});
-  }
+  FOR(i, N) { zs[i] = ranked_zeta<mint, LIM>({s.begin() + (1 << i), s.begin() + (2 << i)}); }
 
   // dp : (d/dt)^df(s) (d=D,D-1,...)
   vc<mint> dp(1 << (N - D));
@@ -25,9 +23,7 @@ vc<mint> sps_composition_egf(vc<mint>& f, vc<mint>& s) {
       // zs[1<<i:2<<i], zdp[0:1<<i]
       vc<ARR> znewdp(1 << i);
       FOR(k, 1 << i) {
-        FOR(p, i + 1) FOR(q, i - p + 1) {
-          znewdp[k][p + q] += zdp[k][p] * zs[i][k][q];
-        }
+        FOR(p, i + 1) FOR(q, i - p + 1) { znewdp[k][p + q] += zdp[k][p] * zs[i][k][q]; }
       }
       auto x = ranked_mobius<mint, LIM>(znewdp);
       copy(all(x), newdp.begin() + (1 << i));

@@ -2,7 +2,7 @@
 
 // 連続部分列に含むかどうか。z-algo で線形時間
 template <typename STRING>
-bool is_substring(STRING& S, STRING& T) {
+bool is_substring(STRING S, STRING T) {
   int n = int(S.size()), m = int(T.size());
   STRING ST;
   for (auto&& x: S) ST.push_back(x);

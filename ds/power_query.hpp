@@ -21,6 +21,20 @@ struct Power_Query {
     return res;
   }
 
+  // n 乗計算のときにかけるものを列挙. 行列ベクトル積とかで使用可.
+  vc<X> get_list(ll n) {
+    vc<X> lst;
+    int k = 0;
+    while (n) {
+      int r = n % B;
+      n /= B;
+      if (len(dat) == k) { dat.eb(make_pow(dat[k - 1].back())); }
+      lst.eb(dat[k][r]);
+      ++k;
+    }
+    return lst;
+  }
+
   X operator[](ll n) { return (*this)(n); }
 
 private:

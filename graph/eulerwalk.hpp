@@ -8,6 +8,7 @@ pair<vc<int>, vc<int>> euler_walk(GT& G, int s = -1) {
   const int N = G.N, M = G.M;
   assert(G.is_prepared());
   assert(N > 0);
+  assert((s == -1) || (0 < s && s < N));
 
   if (s == -1) {
     vc<int> deg(N);
