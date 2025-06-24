@@ -4,10 +4,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: enumerate/partition.hpp
     title: enumerate/partition.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -19,22 +19,22 @@ data:
   - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/count_terms.hpp
     title: poly/count_terms.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/fps_inv.hpp
     title: poly/fps_inv.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   - icon: ':question:'
@@ -162,14 +162,22 @@ data:
     \uFF1A1100 ms\nN = 90\uFF0856634173\uFF09\uFF1A4800 ms\nN = 100 (190569292) :\
     \ 15600 ms\n*/\ntemplate <typename F>\nvoid enumerate_partition(int N, F query,\
     \ int LIM_len = -1, int LIM_val = -1) {\n  assert(N >= 0);\n  auto dfs = [&](auto\
-    \ self, vc<int>& p, int sum) -> void {\n    if (sum == N) {\n      query(p);\n\
-    \      return;\n    }\n    if (LIM_len != -1 && len(p) == LIM_len) return;\n \
-    \   int nxt = (len(p) == 0 ? N : p.back());\n    if (LIM_val != -1) chmin(nxt,\
+    \ self, vc<int> &p, int sum) -> void {\n    if (sum == N) {\n      query(p);\n\
+    \      return;\n    }\n    if (LIM_len != -1 && len(p) == LIM_len)\n      return;\n\
+    \    int nxt = (len(p) == 0 ? N : p.back());\n    if (LIM_val != -1)\n      chmin(nxt,\
     \ LIM_val);\n    chmin(nxt, N - sum);\n    p.eb(0);\n    FOR3_R(x, 1, nxt + 1)\
     \ {\n      p.back() = x;\n      self(self, p, sum + x);\n    }\n    p.pop_back();\n\
-    \  };\n  vc<int> p;\n  dfs(dfs, p, 0);\n}\n#line 2 \"poly/count_terms.hpp\"\n\
-    template<typename mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\
-    \n  FOR(i, len(f)) if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
+    \  };\n  vc<int> p;\n  dfs(dfs, p, 0);\n}\n\n// N \u5143\u96C6\u5408\u306E\u5206\
+    \u5272\u306E\u5217\u6319 (Bell number)\n// f({s0,s1,...}), f(vc<int>)\n// https://atcoder.jp/contests/abc390/tasks/abc390_d\n\
+    // N = 11\uFF08678570\uFF09\uFF1A29 ms\n// N = 12\uFF084213597\uFF09\uFF1A208\
+    \ ms\n// N = 13\uFF0827644437\uFF09\uFF1A2084 ms\ntemplate <typename F> void enumerate_set_partition(int\
+    \ N, F f) {\n  vc<int> S;\n  auto dfs = [&](auto &dfs, int rest) -> void {\n \
+    \   if (rest == 0) {\n      return f(S);\n    }\n    int a = lowbit(rest);\n \
+    \   rest -= u32(1) << a;\n    for (int s : all_subset<u32>(rest)) {\n      S.eb(s\
+    \ | 1 << a);\n      dfs(dfs, rest - s);\n      POP(S);\n    }\n  };\n  dfs(dfs,\
+    \ (u32(1) << N) - 1);\n}\n#line 2 \"poly/count_terms.hpp\"\ntemplate<typename\
+    \ mint>\r\nint count_terms(const vc<mint>& f){\r\n  int t = 0;\r\n  FOR(i, len(f))\
+    \ if(f[i] != mint(0)) ++t;\r\n  return t;\r\n}\n#line 2 \"mod/modint_common.hpp\"\
     \n\nstruct has_mod_impl {\n  template <class T>\n  static auto check(T &&x) ->\
     \ decltype(x.get_mod(), std::true_type{});\n  template <class T>\n  static auto\
     \ check(...) -> std::false_type;\n};\n\ntemplate <class T>\nclass has_mod : public\
@@ -493,7 +501,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/enum_partitions.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-06-24 13:25:23+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/enum_partitions.test.cpp

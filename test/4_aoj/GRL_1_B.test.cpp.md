@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/hashmap.hpp
     title: ds/hashmap.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: graph/base.hpp
     title: graph/base.hpp
   - icon: ':heavy_check_mark:'
@@ -323,18 +323,19 @@ data:
     \u3059\u308B.\n// \u5230\u9054\u4E0D\u53EF\u80FD\uFF1Ainfty<T>\n// \u8CA0\u9589\
     \u8DEF\u3092\u7D4C\u7531\u3057\u3066\u3044\u304F\u3089\u3067\u3082\u5C0F\u3055\
     \u304F\u3067\u304D\u308B\uFF1A-infty<T>\ntemplate <typename T, bool END = true,\
-    \ typename GT>\npair<vc<T>, vc<int>> BellmanFord(GT& G, int s) {\n  int N = G.N;\n\
+    \ typename GT>\npair<vc<T>, vc<int>> BellmanFord(GT &G, int s) {\n  int N = G.N;\n\
     \  vc<T> dist(N, infty<T>);\n  vc<int> par(N, -1);\n  dist[s] = 0;\n  int loop\
     \ = 0;\n  while (1) {\n    ++loop;\n    bool upd = 0;\n    FOR(v, N) {\n     \
-    \ if (dist[v] == infty<T>) continue;\n      for (auto&& e: G[v]) {\n        T\
-    \ before = dist[e.to];\n        T after = dist[v] + e.cost;\n        if (dist[v]\
-    \ == -infty<T>) { after = -infty<T>; }\n        chmax(after, -infty<T>);\n   \
-    \     if (before > after) {\n          par[e.to] = v;\n          upd = 1;\n  \
-    \        if (loop >= N) {\n            if constexpr (END) { return {{}, {}}; }\n\
-    \            after = -infty<T>;\n          }\n          dist[e.to] = after;\n\
-    \        }\n      }\n    }\n    if (!upd) break;\n  }\n  return {dist, par};\n\
-    }\n#line 5 \"test/4_aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M, s);\n\
-    \  Graph<int, 1> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist, par] = BellmanFord<int,\
+    \ if (dist[v] == infty<T>)\n        continue;\n      for (auto &&e : G[v]) {\n\
+    \        T before = dist[e.to];\n        T after = dist[v] + e.cost;\n       \
+    \ if (dist[v] == -infty<T>) {\n          after = -infty<T>;\n        }\n     \
+    \   chmax(after, -infty<T>);\n        if (before > after) {\n          par[e.to]\
+    \ = v;\n          upd = 1;\n          if (loop >= N) {\n            if constexpr\
+    \ (END) {\n              return {{}, {}};\n            }\n            after =\
+    \ -infty<T>;\n          }\n          dist[e.to] = after;\n        }\n      }\n\
+    \    }\n    if (!upd)\n      break;\n  }\n  return {dist, par};\n}\n#line 5 \"\
+    test/4_aoj/GRL_1_B.test.cpp\"\n\nvoid solve() {\n  LL(N, M, s);\n  Graph<int,\
+    \ 1> G(N);\n  G.read_graph(M, 1, 0);\n\n  auto [dist, par] = BellmanFord<int,\
     \ true>(G, s);\n  if (dist.empty()) { return print(\"NEGATIVE CYCLE\"); }\n  for\
     \ (auto&& x: dist) {\n    if (x == infty<int>)\n      print(\"INF\");\n    else\n\
     \      print(x);\n  }\n}\n\nsigned main() {\n  solve();\n\n  return 0;\n}\n"
@@ -354,7 +355,7 @@ data:
   isVerificationFile: true
   path: test/4_aoj/GRL_1_B.test.cpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2025-06-24 13:39:30+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/4_aoj/GRL_1_B.test.cpp

@@ -51,7 +51,7 @@ data:
   isVerificationFile: false
   path: other/reduce_intervals.hpp
   requiredBy: []
-  timestamp: '2025-03-03 18:09:09+09:00'
+  timestamp: '2025-06-24 13:25:23+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/1_mytest/reduce_intervals.test.cpp
