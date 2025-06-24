@@ -1,11 +1,12 @@
 #pragma once
 
 #include "ds/hashmap.hpp"
-#include "string/suffix_array.hpp"
-#include "string/rollinghash.hpp"
 #include "seq/cartesian_tree.hpp"
+#include "string/rollinghash.hpp"
+#include "string/suffix_array.hpp"
 
 // https://arxiv.org/pdf/2312.11873
+// https://uoj.ac/problem/697
 struct Basic_Substring_Structure {
   using SA_t = Suffix_Array<false>;
   int N;
@@ -34,9 +35,9 @@ struct Basic_Substring_Structure {
   int n_block() { return len(raw_index); }
   pair<int, int> shape() { return {X.back(), Y.back()}; }
 
-  Basic_Substring_Structure(string& S) { build(S); }
+  Basic_Substring_Structure(string &S) { build(S); }
 
-  void build(string& S_) {
+  void build(string &S_) {
     S = S_, T = {S_.rbegin(), S_.rend()};
     SH = RH.build(S);
     S_SA = SA_t(S), T_SA = SA_t(T);
@@ -44,7 +45,8 @@ struct Basic_Substring_Structure {
     T_SA.seg.build(T_SA.LCP), T_SA.build_seg = true;
     N = len(S);
     if (N == 1) {
-      raw_index = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0}, Y_to_block = {0};
+      raw_index = {{0, 0}}, X = {0, 1}, Y = {0, 1}, X_to_block = {0},
+      Y_to_block = {0};
       width = {1}, height = {1}, right = {-1}, down = {-1};
       return;
     }
@@ -58,12 +60,15 @@ struct Basic_Substring_Structure {
     hash_to_col.build(N - 1);
     HashMap<int> hash_to_row(N - 1);
 
-    auto is_node = [&](CartesianTree<int, true>& CT, int i) -> bool { return (CT.A[i] > 0 && (CT.par[i] == -1 || CT.A[CT.par[i]] != CT.A[i])); };
+    auto is_node = [&](CartesianTree<int, true> &CT, int i) -> bool {
+      return (CT.A[i] > 0 && (CT.par[i] == -1 || CT.A[CT.par[i]] != CT.A[i]));
+    };
 
     // 列の先頭に相当するハッシュを集めておく
     HashMap<int> tmp(N - 1);
     FOR(i, N - 1) {
-      if (!is_node(CS, i)) continue;
+      if (!is_node(CS, i))
+        continue;
       int s = S_SA.SA[i], n = S_SA.LCP[i];
       tmp[RH.query(SH, s, s + n).val] = i;
     }
@@ -71,12 +76,14 @@ struct Basic_Substring_Structure {
     // occur が小さい行から作っていく
     vc<int> ptr(N);
     FOR(i, N - 1) {
-      if (is_node(CT, i)) ptr[CT.range[i].se - CT.range[i].fi]++;
+      if (is_node(CT, i))
+        ptr[CT.range[i].se - CT.range[i].fi]++;
     }
     ptr = cumsum<int>(ptr);
     vc<int> I(ptr.back(), -1);
     FOR(i, N - 1) {
-      if (!is_node(CT, i)) continue;
+      if (!is_node(CT, i))
+        continue;
       int occ = CT.range[i].se - CT.range[i].fi;
       I[ptr[occ]++] = i;
     }
@@ -90,23 +97,33 @@ struct Basic_Substring_Structure {
       return bid;
     };
 
-    auto get_w = [&](int i) -> int { return CT.A[i] - (CT.par[i] == -1 ? 0 : CT.A[CT.par[i]]); };
-    auto get_h = [&](int i) -> int { return CS.A[i] - (CS.par[i] == -1 ? 0 : CS.A[CS.par[i]]); };
+    auto get_w = [&](int i) -> int {
+      return CT.A[i] - (CT.par[i] == -1 ? 0 : CT.A[CT.par[i]]);
+    };
+    auto get_h = [&](int i) -> int {
+      return CS.A[i] - (CS.par[i] == -1 ? 0 : CS.A[CS.par[i]]);
+    };
 
     reverse(all(I));
-    for (int a0: I) {
+    for (int a0 : I) {
       int j = N - T_SA.SA[a0], n = T_SA.LCP[a0];
       u64 key = RH.query(SH, j - n, j).val;
       int b0 = tmp.get(key, -1);
-      if (b0 == -1) continue;
+      if (b0 == -1)
+        continue;
       // occur>=2 に対応する block 発見
       int h = get_h(b0), w = get_w(a0);
       int bid = new_block(h, w, j - n, j);
-      FOR(x, X[bid], X[bid + 1]) { hash_to_row[RH.query(SH, j - n, j - (x - X[bid])).val] = x; }
-      FOR(y, Y[bid], Y[bid + 1]) { hash_to_col[RH.query(SH, j - n + (y - Y[bid]), j).val] = y; }
+      FOR(x, X[bid], X[bid + 1]) {
+        hash_to_row[RH.query(SH, j - n, j - (x - X[bid])).val] = x;
+      }
+      FOR(y, Y[bid], Y[bid + 1]) {
+        hash_to_col[RH.query(SH, j - n + (y - Y[bid]), j).val] = y;
+      }
     }
     FOR(i, N - 1) {
-      if (!is_node(CT, i)) continue;
+      if (!is_node(CT, i))
+        continue;
       int r = N - T_SA.SA[i], n = T_SA.LCP[i];
       u64 key = RH.query(SH, r - n, r).val;
       int x = hash_to_row[key];
@@ -114,7 +131,8 @@ struct Basic_Substring_Structure {
       right[x] = hash_to_row.get(RH.query(SH, r - n + width[x], r).val, -1);
     }
     FOR(i, N - 1) {
-      if (!is_node(CS, i)) continue;
+      if (!is_node(CS, i))
+        continue;
       int l = S_SA.SA[i], n = S_SA.LCP[i];
       u64 key = RH.query(SH, l, l + n).val;
       int y = hash_to_col[key];
@@ -126,15 +144,19 @@ struct Basic_Substring_Structure {
     auto get_w2 = [&](int i) -> int { // [0,i)
       int k = T_SA.ISA[N - i];
       int n = i, m = 0;
-      if (k > 0) chmax(m, T_SA.LCP[k - 1]);
-      if (k < N - 1) chmax(m, T_SA.LCP[k]);
+      if (k > 0)
+        chmax(m, T_SA.LCP[k - 1]);
+      if (k < N - 1)
+        chmax(m, T_SA.LCP[k]);
       return n - m;
     };
     auto get_h2 = [&](int i) -> int { // [i,N)
       int k = S_SA.ISA[i];
       int n = N - i, m = 0;
-      if (k > 0) chmax(m, S_SA.LCP[k - 1]);
-      if (k < N - 1) chmax(m, S_SA.LCP[k]);
+      if (k > 0)
+        chmax(m, S_SA.LCP[k - 1]);
+      if (k < N - 1)
+        chmax(m, S_SA.LCP[k]);
       return n - m;
     };
     int h = get_h2(0), w = get_w2(N);
@@ -154,11 +176,12 @@ struct Basic_Substring_Structure {
   // S[i,j) に対応する (x,y).
   pair<int, int> get_position(int i, int j) {
     // occur を保って長くする
-    auto& seg = S_SA.seg;
+    auto &seg = S_SA.seg;
     int n = j - i, k = S_SA.ISA[i];
     int m = N - i;
     auto check = [&](int e) -> bool {
-      if (e >= n) chmin(m, e);
+      if (e >= n)
+        chmin(m, e);
       return e >= n;
     };
     seg.min_left(check, k), seg.max_right(check, k);
