@@ -90,7 +90,7 @@ template <typename T> struct Dynamic_Range_Add_Range_Max {
   int n;
   Dynamic_SegTree_Sparse<Mono, false> seg;
   T lazy;
-  using np = decltype(seg)::np;
+  using np = typename decltype(seg)::np;
   np root;
 
   // range apply * 2 くらいのノード数
