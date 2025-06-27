@@ -247,13 +247,13 @@ data:
   isVerificationFile: false
   path: nt/three_square.hpp
   requiredBy:
-  - nt/three_triangular.hpp
   - nt/four_square.hpp
+  - nt/three_triangular.hpp
   timestamp: '2025-01-20 22:41:37+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/three_square.test.cpp
   - test/1_mytest/four_square.test.cpp
+  - test/1_mytest/three_square.test.cpp
   - test/1_mytest/three_triangular.test.cpp
 documentation_of: nt/three_square.hpp
 layout: document

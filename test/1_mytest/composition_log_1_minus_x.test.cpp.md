@@ -792,37 +792,40 @@ data:
     \ (a <= i && b <= j) rhs += dp[i - a][j - b] * c * mint(a);\r\n      }\r\n   \
     \   dp[i][j] = (n * rhs - lhs) * inv<mint>(i);\r\n    }\r\n  }\r\n  return dp;\r\
     \n}\r\n#line 4 \"seq/famous/stirling_number_1.hpp\"\n\r\ntemplate <typename mint>\r\
-    \nvvc<mint> stirling_number_1_2d(int nmax, int kmax) {\r\n  vv(mint, A, nmax +\
-    \ 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int i = 1; i <= nmax; ++i) {\r\n \
-    \   for (int j = 0; j < i + 1; ++j) {\r\n      if (j > kmax) break;\r\n      mint\
-    \ &x = A[i][j];\r\n      if (j) x += A[i - 1][j - 1];\r\n      x -= A[i - 1][j]\
-    \ * mint(i - 1);\r\n    }\r\n  }\r\n  return A;\r\n}\r\n\r\n// x(x+1)...(x+n-1)\
-    \ \u306E\u4FC2\u6570 c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001\
-    k \u500B\u306E\u30B5\u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\
-    \u306E\u500B\u6570\u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\
-    \u5217\u6319\u3092 O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint>\r\
-    \nvc<mint> stirling_number_1_n(int n, bool sgn = false) {\r\n  auto dfs = [&](auto\
-    \ self, int n) -> vc<mint> {\r\n    if (n == 0) return {1};\r\n    if (n == 1)\
-    \ return {0, 1};\r\n    auto f = self(self, n / 2);\r\n    auto g = poly_taylor_shift(f,\
+    \nvvc<mint> stirling_number_1_2d(int nmax, int kmax, bool sgn = false) {\r\n \
+    \ vv(mint, A, nmax + 1, kmax + 1);\r\n  A[0][0] = 1;\r\n  for (int i = 1; i <=\
+    \ nmax; ++i) {\r\n    for (int j = 0; j < i + 1; ++j) {\r\n      if (j > kmax)\r\
+    \n        break;\r\n      mint &x = A[i][j];\r\n      if (j)\r\n        x += A[i\
+    \ - 1][j - 1];\r\n      x -= A[i - 1][j] * mint(i - 1);\r\n    }\r\n  }\r\n  if\
+    \ (!sgn) {\r\n    FOR(n, nmax + 1) FOR(i, n + 1) {\r\n      if (i > kmax)\r\n\
+    \        break;\r\n      if ((n + i) % 2 == 1)\r\n        A[n][i] = -A[n][i];\r\
+    \n    }\r\n  }\r\n  return A;\r\n}\r\n\r\n// x(x+1)...(x+n-1) \u306E\u4FC2\u6570\
+    \ c(n, k)\r\n// [n] \u306E\u9806\u5217\u306E\u3046\u3061\u3001k \u500B\u306E\u30B5\
+    \u30A4\u30AF\u30EB\u306B\u5206\u304B\u308C\u308B\u3082\u306E\u306E\u500B\u6570\
+    \u3002\r\n// n \u3092\u56FA\u5B9A\u3057\u305F\u3068\u304D\u306E\u5217\u6319\u3092\
+    \ O(n log n) \u3067\u884C\u3046\u3002\r\ntemplate <typename mint> vc<mint> stirling_number_1_n(int\
+    \ n, bool sgn = false) {\r\n  auto dfs = [&](auto self, int n) -> vc<mint> {\r\
+    \n    if (n == 0)\r\n      return {1};\r\n    if (n == 1)\r\n      return {0,\
+    \ 1};\r\n    auto f = self(self, n / 2);\r\n    auto g = poly_taylor_shift(f,\
     \ mint(n / 2));\r\n    f = convolution(f, g);\r\n    if (n & 1) {\r\n      g =\
     \ {(n - 1), 1};\r\n      f = convolution(f, g);\r\n    }\r\n    return f;\r\n\
-    \  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn) { FOR(i, n + 1) if ((n + i) % 2\
-    \ == 1) f[i] = -f[i]; }\r\n  return f;\r\n}\r\n\r\n// k \u3092\u56FA\u5B9A\u3057\
-    \u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\u6319\u3002\r\ntemplate <typename\
-    \ mint>\r\nvc<mint> stirling_number_1_k(int k, int n_max, bool sgn = false) {\r\
-    \n  if (n_max < k) {\r\n    vc<mint> f(n_max + 1);\r\n    return f;\r\n  }\r\n\
-    \  int LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1) f[i] =\
-    \ inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn) { FOR(i, LIM + 1) if\
-    \ (i % 2 == 1) f[i] = -f[i]; }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\n  vc<mint>\
-    \ res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k +\
-    \ i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i) \u3092\u9006\u9806\u306B\u4E26\
+    \  };\r\n  auto f = dfs(dfs, n);\r\n  if (sgn) {\r\n    FOR(i, n + 1) if ((n +\
+    \ i) % 2 == 1) f[i] = -f[i];\r\n  }\r\n  return f;\r\n}\r\n\r\n// k \u3092\u56FA\
+    \u5B9A\u3057\u305F\u3068\u304D\u306E c(n, k) \u306E\u5217\u6319\u3002\r\ntemplate\
+    \ <typename mint>\r\nvc<mint> stirling_number_1_k(int k, int n_max, bool sgn =\
+    \ false) {\r\n  if (n_max < k) {\r\n    vc<mint> f(n_max + 1);\r\n    return f;\r\
+    \n  }\r\n  int LIM = n_max - k;\r\n  vc<mint> f(LIM + 1);\r\n  FOR(i, LIM + 1)\
+    \ f[i] = inv<mint>(i + 1);\r\n  f = fps_pow(f, k);\r\n  if (sgn) {\r\n    FOR(i,\
+    \ LIM + 1) if (i % 2 == 1) f[i] = -f[i];\r\n  }\r\n\r\n  mint cf = fact_inv<mint>(k);\r\
+    \n  vc<mint> res(n_max + 1);\r\n  FOR(i, len(f)) res[k + i] = cf * f[i] * fact<mint>(k\
+    \ + i);\r\n\r\n  return res;\r\n}\r\n\r\n// s(n,i) \u3092\u9006\u9806\u306B\u4E26\
     \u3079\u305F\u3082\u306E\r\n// (1+0x)(1+1x)(1+2x)...(1+(N-1)x) \u3092 [x^K] \u307E\
-    \u3067\r\ntemplate <typename mint>\r\nvc<mint> stirling_number_1_suffix(ll N,\
-    \ ll K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\
-    \r\n  vc<mint> num(K + 1), den(K + 1);\r\n  mint powN = 1;\r\n  FOR(k, K + 1)\
-    \ {\r\n    powN *= N;\r\n    num[k] = fact_inv<mint>(k + 1) * powN;\r\n    den[k]\
-    \ = fact_inv<mint>(k + 1);\r\n  }\r\n  vc<mint> S = fps_div<mint>(num, den);\r\
-    \n  FOR(i, K + 1) S[i] *= fact<mint>(i);\r\n  vc<mint> LOG_F(K + 1);\r\n  FOR(i,\
+    \u3067\r\ntemplate <typename mint> vc<mint> stirling_number_1_suffix(ll N, ll\
+    \ K) {\r\n  // \u307E\u305A\u306F e^{Nx}-1 / e^x-1 \u3092 [x^K] \u307E\u3067\r\
+    \n  vc<mint> num(K + 1), den(K + 1);\r\n  mint powN = 1;\r\n  FOR(k, K + 1) {\r\
+    \n    powN *= N;\r\n    num[k] = fact_inv<mint>(k + 1) * powN;\r\n    den[k] =\
+    \ fact_inv<mint>(k + 1);\r\n  }\r\n  vc<mint> S = fps_div<mint>(num, den);\r\n\
+    \  FOR(i, K + 1) S[i] *= fact<mint>(i);\r\n  vc<mint> LOG_F(K + 1);\r\n  FOR(i,\
     \ 1, K + 1) LOG_F[i] = S[i] * inv<mint>(i) * (2 * (i & 1) - 1);\r\n  return fps_exp(LOG_F);\r\
     \n}\r\n#line 5 \"poly/composition_f_log_1_minus_x.hpp\"\n\n/*\nf(log(1-x))\n2024/05/01\
     \ noshi\u5408\u6210\u306E\u65B9\u304C\u5C11\u3057\u9AD8\u901F\u306A\u306E\u3067\
@@ -981,7 +984,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/composition_log_1_minus_x.test.cpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-06-27 11:35:25+09:00'
   verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/1_mytest/composition_log_1_minus_x.test.cpp

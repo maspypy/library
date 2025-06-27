@@ -47,17 +47,17 @@ data:
   path: enumerate/bits.hpp
   requiredBy:
   - linalg/hafnian.hpp
+  - knapsack/subset_sum.hpp
   - graph/steiner_tree.hpp
   - graph/count/count_cycle.hpp
-  - knapsack/subset_sum.hpp
   timestamp: '2025-01-04 13:02:14+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/2507.test.cpp
-  - test/3_yukicoder/114.test.cpp
-  - test/3_yukicoder/4_2.test.cpp
-  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
   - test/1_mytest/subset_sum.test.cpp
+  - test/2_library_checker/linear_algebra/hafnian_of_matrix.test.cpp
+  - test/3_yukicoder/4_2.test.cpp
+  - test/3_yukicoder/114.test.cpp
+  - test/3_yukicoder/2507.test.cpp
 documentation_of: enumerate/bits.hpp
 layout: document
 redirect_from:

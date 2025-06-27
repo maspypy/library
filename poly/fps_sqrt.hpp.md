@@ -593,9 +593,9 @@ data:
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
-  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
   - test/1_mytest/count_bipartite.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps_sparse.test.cpp
+  - test/2_library_checker/polynomial/sqrt_of_fps.test.cpp
 documentation_of: poly/fps_sqrt.hpp
 layout: document
 redirect_from:

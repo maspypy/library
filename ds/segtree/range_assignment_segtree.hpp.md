@@ -162,8 +162,8 @@ data:
   timestamp: '2024-10-28 19:23:56+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
   - test/1_mytest/range_assign.test.cpp
+  - test/2_library_checker/data_structure/range_set_range_composite.test.cpp
 documentation_of: ds/segtree/range_assignment_segtree.hpp
 layout: document
 redirect_from:

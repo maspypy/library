@@ -130,9 +130,9 @@ data:
   timestamp: '2025-05-18 17:51:29+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/4_aoj/CGL_7_C.test.cpp
   - test/3_yukicoder/3005.test.cpp
   - test/3_yukicoder/2602.test.cpp
-  - test/4_aoj/CGL_7_C.test.cpp
 documentation_of: geo/outcircle.hpp
 layout: document
 redirect_from:

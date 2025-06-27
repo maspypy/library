@@ -236,8 +236,8 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/2_library_checker/graph/eulerwalk_d.test.cpp
   - test/2_library_checker/graph/eulerwalk_ud.test.cpp
+  - test/2_library_checker/graph/eulerwalk_d.test.cpp
 documentation_of: graph/eulerwalk.hpp
 layout: document
 redirect_from:

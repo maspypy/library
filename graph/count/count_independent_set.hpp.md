@@ -595,8 +595,8 @@ data:
   timestamp: '2025-04-06 22:14:02+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/1_mytest/count_indep_set.test.cpp
   - test/1_mytest/count_clique.test.cpp
+  - test/1_mytest/count_indep_set.test.cpp
 documentation_of: graph/count/count_independent_set.hpp
 layout: document
 redirect_from:

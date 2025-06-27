@@ -2022,6 +2022,9 @@ data:
     - icon: ':heavy_check_mark:'
       path: random/random_polygon.hpp
       title: random/random_polygon.hpp
+    - icon: ':warning:'
+      path: random/random_real.hpp
+      title: random/random_real.hpp
     - icon: ':heavy_check_mark:'
       path: random/shuffle.hpp
       title: random/shuffle.hpp

@@ -173,9 +173,9 @@ data:
   timestamp: '2024-11-18 00:58:39+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
-  - test/3_yukicoder/1490.test.cpp
   - test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
+  - test/3_yukicoder/1490.test.cpp
 documentation_of: ds/offline_query/coeffient_query_2d.hpp
 layout: document
 redirect_from:

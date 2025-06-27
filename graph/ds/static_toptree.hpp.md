@@ -360,19 +360,19 @@ data:
   requiredBy:
   - graph/count_matching_on_tree.hpp
   - graph/tree_walk_generating_function.hpp
-  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   - graph/ds/distance_sum.hpp
-  - graph/ds/dynamic_rerooting_tree_dp.hpp
   - graph/ds/dynamic_tree_dp.hpp
+  - graph/ds/dynamic_rerooting_tree_dp.hpp
+  - graph/characteristic_polynomial_of_tree_adjacency_matrix.hpp
   timestamp: '2025-05-05 02:10:07+09:00'
   verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
+  - test/1_mytest/tree_walk_gf.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
+  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
   - test/3_yukicoder/2258.test.cpp
   - test/3_yukicoder/2587_2.test.cpp
   - test/3_yukicoder/2587.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
-  - test/2_library_checker/tree/point_set_tree_path_composite_sum_fixed_root.test.cpp
-  - test/1_mytest/tree_walk_gf.test.cpp
 documentation_of: graph/ds/static_toptree.hpp
 layout: document
 redirect_from:
