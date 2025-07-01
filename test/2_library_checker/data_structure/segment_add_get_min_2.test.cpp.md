@@ -12,9 +12,9 @@ data:
     title: other/io.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: cpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/segment_add_get_min
@@ -292,7 +292,7 @@ data:
   path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
   requiredBy: []
   timestamp: '2025-07-01 13:07:28+09:00'
-  verificationStatus: TEST_WRONG_ANSWER
+  verificationStatus: TEST_ACCEPTED
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
 layout: document

@@ -813,79 +813,79 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_pseg_sp.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
     title: test/2_library_checker/data_structure/range_kth_smallest_wavelet.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
     title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_reverse_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
     title: test/2_library_checker/data_structure/rect_add_pt_get.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_bit2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_cf2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_sweep.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
     title: test/2_library_checker/data_structure/rectangle_sum_wm_abel.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
     title: test/2_library_checker/data_structure/segment_add_get_min_2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/set_xor_min.test.cpp
     title: test/2_library_checker/data_structure/set_xor_min.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_freq.test.cpp
     title: test/2_library_checker/data_structure/static_range_freq.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo2.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
     title: test/2_library_checker/data_structure/static_range_inversions_mo_3.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
     title: test/2_library_checker/data_structure/static_range_mode_query.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_sum.test.cpp
     title: test/2_library_checker/data_structure/static_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
   - icon: ':x:'

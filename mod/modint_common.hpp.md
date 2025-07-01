@@ -726,22 +726,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
     title: test/2_library_checker/data_structure/range_affine_range_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
     title: test/2_library_checker/data_structure/range_parallel_uf.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
     title: test/2_library_checker/data_structure/range_set_range_composite.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
     title: test/2_library_checker/data_structure/sort_segtree_1.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_range_frequency.test.cpp
     title: test/2_library_checker/data_structure/static_range_frequency.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
     title: test/2_library_checker/data_structure/static_rectangle_add_rectangle_sum.test.cpp
   - icon: ':x:'

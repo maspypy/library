@@ -2,7 +2,7 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/static_range_product.hpp
     title: ds/static_range_product.hpp
   - icon: ':x:'
@@ -51,7 +51,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/suffix_lcp_change.test.cpp
     title: test/1_mytest/suffix_lcp_change.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/data_structure/staticrmq.test.cpp
     title: test/2_library_checker/data_structure/staticrmq.test.cpp
   - icon: ':x:'
