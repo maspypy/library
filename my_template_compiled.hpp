@@ -50,19 +50,24 @@ using pq = priority_queue<T>;
 template <class T>
 using pqg = priority_queue<T, vector<T>, greater<T>>;
 
-#define vv(type, name, h, ...) vector<vector<type>> name(h, vector<type>(__VA_ARGS__))
-#define vvv(type, name, h, w, ...) vector<vector<vector<type>>> name(h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))
-#define vvvv(type, name, a, b, c, ...) \
-  vector<vector<vector<vector<type>>>> name(a, vector<vector<vector<type>>>(b, vector<vector<type>>(c, vector<type>(__VA_ARGS__))))
+#define vv(type, name, h, ...) \
+  vector<vector<type>> name(h, vector<type>(__VA_ARGS__))
+#define vvv(type, name, h, w, ...)   \
+  vector<vector<vector<type>>> name( \
+      h, vector<vector<type>>(w, vector<type>(__VA_ARGS__)))
+#define vvvv(type, name, a, b, c, ...)       \
+  vector<vector<vector<vector<type>>>> name( \
+      a, vector<vector<vector<type>>>(       \
+             b, vector<vector<type>>(c, vector<type>(__VA_ARGS__))))
 
 // https://trap.jp/post/1224/
 #define FOR1(a) for (ll _ = 0; _ < ll(a); ++_)
 #define FOR2(i, a) for (ll i = 0; i < ll(a); ++i)
 #define FOR3(i, a, b) for (ll i = a; i < ll(b); ++i)
 #define FOR4(i, a, b, c) for (ll i = a; i < ll(b); i += (c))
-#define FOR1_R(a) for (ll i = (a)-1; i >= ll(0); --i)
-#define FOR2_R(i, a) for (ll i = (a)-1; i >= ll(0); --i)
-#define FOR3_R(i, a, b) for (ll i = (b)-1; i >= ll(a); --i)
+#define FOR1_R(a) for (ll i = (a) - 1; i >= ll(0); --i)
+#define FOR2_R(i, a) for (ll i = (a) - 1; i >= ll(0); --i)
+#define FOR3_R(i, a, b) for (ll i = (b) - 1; i >= ll(a); --i)
 #define overload4(a, b, c, d, e, ...) e
 #define overload3(a, b, c, d, ...) d
 #define FOR(...) overload4(__VA_ARGS__, FOR4, FOR3, FOR2, FOR1)(__VA_ARGS__)
@@ -165,17 +170,16 @@ pair<T, T> divmod(T x, T y) {
 }
 
 template <typename T, typename U>
-T SUM(const vector<U> &A) {
-  T sm = 0;
-  for (auto &&a: A) sm += a;
-  return sm;
+T SUM(const U &A) {
+  return std::accumulate(A.begin(), A.end(), T{});
 }
 
 #define MIN(v) *min_element(all(v))
 #define MAX(v) *max_element(all(v))
 #define LB(c, x) distance((c).begin(), lower_bound(all(c), (x)))
 #define UB(c, x) distance((c).begin(), upper_bound(all(c), (x)))
-#define UNIQUE(x) sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
+#define UNIQUE(x) \
+  sort(all(x)), x.erase(unique(all(x)), x.end()), x.shrink_to_fit()
 
 template <typename T>
 T POP(deque<T> &que) {
@@ -250,7 +254,8 @@ template <typename T>
 vector<int> argsort(const vector<T> &A) {
   vector<int> ids(len(A));
   iota(all(ids), 0);
-  sort(all(ids), [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });
+  sort(all(ids),
+       [&](int i, int j) { return (A[i] == A[j] ? i < j : A[i] < A[j]); });
   return ids;
 }
 
@@ -263,7 +268,7 @@ vc<T> rearrange(const vc<T> &A, const vc<int> &I) {
 }
 
 template <typename T, typename... Vectors>
-void concat(vc<T> &first, const Vectors &... others) {
+void concat(vc<T> &first, const Vectors &...others) {
   vc<T> &res = first;
   (res.insert(res.end(), others.begin(), others.end()), ...);
 }

@@ -1,7 +1,8 @@
 #include "poly/convolution.hpp"
 #include "poly/middle_product.hpp"
 
-// i 行目に A[i] 個のセルがある. (0,0) -> (n-1,m-1) のパスを数える
+// i 行目に A[i] 個のセルがある. cell(0,0) -> cell(n-1,m-1) のパスを数える
+// 0<=x[i]<A[i]かつx[N-1]=A[N-1] となる単調増加列といってもよい
 // O((n+m)log^2(n+m))
 template <typename mint>
 mint count_grid_path(vc<int> A) {
