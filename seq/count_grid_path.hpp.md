@@ -1,10 +1,10 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/crt3.hpp
     title: mod/crt3.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/mod_inv.hpp
     title: mod/mod_inv.hpp
   - icon: ':question:'
@@ -13,19 +13,19 @@ data:
   - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution.hpp
     title: poly/convolution.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_karatsuba.hpp
     title: poly/convolution_karatsuba.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/convolution_naive.hpp
     title: poly/convolution_naive.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/middle_product.hpp
     title: poly/middle_product.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
   _extendedRequiredBy: []
@@ -303,71 +303,73 @@ data:
     \ c2[i].val);\n  }\n  return c;\n}\n\ntemplate <typename mint>\nvc<mint> middle_product_naive(vc<mint>&\
     \ a, vc<mint>& b) {\n  vc<mint> res(len(a) - len(b) + 1);\n  FOR(i, len(res))\
     \ FOR(j, len(b)) res[i] += b[j] * a[i + j];\n  return res;\n}\n#line 3 \"seq/count_grid_path.hpp\"\
-    \n\n// i \u884C\u76EE\u306B A[i] \u500B\u306E\u30BB\u30EB\u304C\u3042\u308B. (0,0)\
-    \ -> (n-1,m-1) \u306E\u30D1\u30B9\u3092\u6570\u3048\u308B\n// O((n+m)log^2(n+m))\n\
-    template <typename mint>\nmint count_grid_path(vc<int> A) {\n  int N = len(A);\n\
-    \  assert(N >= 1);\n  FOR(i, N - 1) assert(A[i] <= A[i + 1]);\n\n  string S;\n\
-    \  FOR(i, N) {\n    ll pre = (i == 0 ? 0 : A[i - 1]);\n    FOR(A[i] - pre) S +=\
-    \ 'Y';\n    S += 'X';\n  }\n\n  using poly = vc<mint>;\n\n  auto calc_rect = [&](poly\
-    \ FX, poly FY) -> pair<poly, poly> {\n    if (len(FX) == 0 || len(FY) == 0) return\
-    \ {FX, FY};\n    int NX = len(FX), NY = len(FY);\n    vc<mint> GX(NX), GY(NY);\n\
-    \    {\n      vc<mint> f(NX);\n      FOR(i, NX) f[i] = C<mint>(NY - 1 + i, i);\n\
-    \      f = convolution(f, FX);\n      FOR(i, NX) GX[i] += f[i];\n    }\n    {\n\
-    \      vc<mint> f(NY);\n      FOR(i, NY) f[i] = C<mint>(NX - 1 + i, i);\n    \
-    \  f = convolution(f, FY);\n      FOR(i, NY) GY[i] += f[i];\n    }\n    {\n  \
-    \    reverse(all(FX));\n      FOR(i, NX) FX[i] *= fact_inv<mint>(i);\n      vc<mint>\
-    \ f(NX + NY - 1);\n      FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n      f =\
-    \ middle_product(f, FX);\n      FOR(j, NY) GY[j] += f[j] * fact_inv<mint>(j);\n\
-    \    }\n    {\n      reverse(all(FY));\n      FOR(i, NY) FY[i] *= fact_inv<mint>(i);\n\
-    \      vc<mint> f(NX + NY - 1);\n      FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n\
-    \      f = middle_product(f, FY);\n      FOR(j, NX) GX[j] += f[j] * fact_inv<mint>(j);\n\
-    \    }\n    return {GX, GY};\n  };\n\n  auto dfs = [&](auto& dfs, string S, poly\
-    \ FX, poly FY) -> pair<poly, poly> {\n    if (len(S) == 1) return {FX, FY};\n\
-    \    int n = len(S);\n    string S1 = {S.begin(), S.begin() + n / 2};\n    string\
-    \ S2 = {S.begin() + n / 2, S.end()};\n    int x1 = count(all(S1), 'X');\n    int\
-    \ y1 = count(all(S1), 'Y');\n    int x2 = count(all(S2), 'X');\n    int y2 = count(all(S2),\
-    \ 'Y');\n    assert(len(FX) == x1 + x2 && len(FY) == y1 + y2);\n    vc<mint> FX1\
-    \ = {FX.begin(), FX.begin() + x1};\n    vc<mint> FX2 = {FX.begin() + x1, FX.end()};\n\
-    \    vc<mint> FY1 = {FY.begin(), FY.begin() + y1};\n    vc<mint> FY2 = {FY.begin()\
-    \ + y1, FY.end()};\n    tie(FX1, FY1) = dfs(dfs, S1, FX1, FY1);\n    tie(FX2,\
-    \ FY1) = calc_rect(FX2, FY1);\n    tie(FX2, FY2) = dfs(dfs, S2, FX2, FY2);\n \
-    \   FX1.insert(FX1.end(), all(FX2));\n    FY1.insert(FY1.end(), all(FY2));\n \
-    \   return {FX1, FY1};\n  };\n\n  poly FX(count(all(S), 'X'));\n  poly FY(count(all(S),\
-    \ 'Y'));\n  FY[0] = 1;\n  tie(FX, FY) = dfs(dfs, S, FX, FY);\n  return FY.back();\n\
-    }\n"
+    \n\n// i \u884C\u76EE\u306B A[i] \u500B\u306E\u30BB\u30EB\u304C\u3042\u308B. cell(0,0)\
+    \ -> cell(n-1,m-1) \u306E\u30D1\u30B9\u3092\u6570\u3048\u308B\n// 0<=x[i]<A[i]\u304B\
+    \u3064x[N-1]=A[N-1] \u3068\u306A\u308B\u5358\u8ABF\u5897\u52A0\u5217\u3068\u3044\
+    \u3063\u3066\u3082\u3088\u3044\n// O((n+m)log^2(n+m))\ntemplate <typename mint>\n\
+    mint count_grid_path(vc<int> A) {\n  int N = len(A);\n  assert(N >= 1);\n  FOR(i,\
+    \ N - 1) assert(A[i] <= A[i + 1]);\n\n  string S;\n  FOR(i, N) {\n    ll pre =\
+    \ (i == 0 ? 0 : A[i - 1]);\n    FOR(A[i] - pre) S += 'Y';\n    S += 'X';\n  }\n\
+    \n  using poly = vc<mint>;\n\n  auto calc_rect = [&](poly FX, poly FY) -> pair<poly,\
+    \ poly> {\n    if (len(FX) == 0 || len(FY) == 0) return {FX, FY};\n    int NX\
+    \ = len(FX), NY = len(FY);\n    vc<mint> GX(NX), GY(NY);\n    {\n      vc<mint>\
+    \ f(NX);\n      FOR(i, NX) f[i] = C<mint>(NY - 1 + i, i);\n      f = convolution(f,\
+    \ FX);\n      FOR(i, NX) GX[i] += f[i];\n    }\n    {\n      vc<mint> f(NY);\n\
+    \      FOR(i, NY) f[i] = C<mint>(NX - 1 + i, i);\n      f = convolution(f, FY);\n\
+    \      FOR(i, NY) GY[i] += f[i];\n    }\n    {\n      reverse(all(FX));\n    \
+    \  FOR(i, NX) FX[i] *= fact_inv<mint>(i);\n      vc<mint> f(NX + NY - 1);\n  \
+    \    FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n      f = middle_product(f, FX);\n\
+    \      FOR(j, NY) GY[j] += f[j] * fact_inv<mint>(j);\n    }\n    {\n      reverse(all(FY));\n\
+    \      FOR(i, NY) FY[i] *= fact_inv<mint>(i);\n      vc<mint> f(NX + NY - 1);\n\
+    \      FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n      f = middle_product(f,\
+    \ FY);\n      FOR(j, NX) GX[j] += f[j] * fact_inv<mint>(j);\n    }\n    return\
+    \ {GX, GY};\n  };\n\n  auto dfs = [&](auto& dfs, string S, poly FX, poly FY) ->\
+    \ pair<poly, poly> {\n    if (len(S) == 1) return {FX, FY};\n    int n = len(S);\n\
+    \    string S1 = {S.begin(), S.begin() + n / 2};\n    string S2 = {S.begin() +\
+    \ n / 2, S.end()};\n    int x1 = count(all(S1), 'X');\n    int y1 = count(all(S1),\
+    \ 'Y');\n    int x2 = count(all(S2), 'X');\n    int y2 = count(all(S2), 'Y');\n\
+    \    assert(len(FX) == x1 + x2 && len(FY) == y1 + y2);\n    vc<mint> FX1 = {FX.begin(),\
+    \ FX.begin() + x1};\n    vc<mint> FX2 = {FX.begin() + x1, FX.end()};\n    vc<mint>\
+    \ FY1 = {FY.begin(), FY.begin() + y1};\n    vc<mint> FY2 = {FY.begin() + y1, FY.end()};\n\
+    \    tie(FX1, FY1) = dfs(dfs, S1, FX1, FY1);\n    tie(FX2, FY1) = calc_rect(FX2,\
+    \ FY1);\n    tie(FX2, FY2) = dfs(dfs, S2, FX2, FY2);\n    FX1.insert(FX1.end(),\
+    \ all(FX2));\n    FY1.insert(FY1.end(), all(FY2));\n    return {FX1, FY1};\n \
+    \ };\n\n  poly FX(count(all(S), 'X'));\n  poly FY(count(all(S), 'Y'));\n  FY[0]\
+    \ = 1;\n  tie(FX, FY) = dfs(dfs, S, FX, FY);\n  return FY.back();\n}\n"
   code: "#include \"poly/convolution.hpp\"\n#include \"poly/middle_product.hpp\"\n\
-    \n// i \u884C\u76EE\u306B A[i] \u500B\u306E\u30BB\u30EB\u304C\u3042\u308B. (0,0)\
-    \ -> (n-1,m-1) \u306E\u30D1\u30B9\u3092\u6570\u3048\u308B\n// O((n+m)log^2(n+m))\n\
-    template <typename mint>\nmint count_grid_path(vc<int> A) {\n  int N = len(A);\n\
-    \  assert(N >= 1);\n  FOR(i, N - 1) assert(A[i] <= A[i + 1]);\n\n  string S;\n\
-    \  FOR(i, N) {\n    ll pre = (i == 0 ? 0 : A[i - 1]);\n    FOR(A[i] - pre) S +=\
-    \ 'Y';\n    S += 'X';\n  }\n\n  using poly = vc<mint>;\n\n  auto calc_rect = [&](poly\
-    \ FX, poly FY) -> pair<poly, poly> {\n    if (len(FX) == 0 || len(FY) == 0) return\
-    \ {FX, FY};\n    int NX = len(FX), NY = len(FY);\n    vc<mint> GX(NX), GY(NY);\n\
-    \    {\n      vc<mint> f(NX);\n      FOR(i, NX) f[i] = C<mint>(NY - 1 + i, i);\n\
-    \      f = convolution(f, FX);\n      FOR(i, NX) GX[i] += f[i];\n    }\n    {\n\
-    \      vc<mint> f(NY);\n      FOR(i, NY) f[i] = C<mint>(NX - 1 + i, i);\n    \
-    \  f = convolution(f, FY);\n      FOR(i, NY) GY[i] += f[i];\n    }\n    {\n  \
-    \    reverse(all(FX));\n      FOR(i, NX) FX[i] *= fact_inv<mint>(i);\n      vc<mint>\
-    \ f(NX + NY - 1);\n      FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n      f =\
-    \ middle_product(f, FX);\n      FOR(j, NY) GY[j] += f[j] * fact_inv<mint>(j);\n\
-    \    }\n    {\n      reverse(all(FY));\n      FOR(i, NY) FY[i] *= fact_inv<mint>(i);\n\
-    \      vc<mint> f(NX + NY - 1);\n      FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n\
-    \      f = middle_product(f, FY);\n      FOR(j, NX) GX[j] += f[j] * fact_inv<mint>(j);\n\
-    \    }\n    return {GX, GY};\n  };\n\n  auto dfs = [&](auto& dfs, string S, poly\
-    \ FX, poly FY) -> pair<poly, poly> {\n    if (len(S) == 1) return {FX, FY};\n\
-    \    int n = len(S);\n    string S1 = {S.begin(), S.begin() + n / 2};\n    string\
-    \ S2 = {S.begin() + n / 2, S.end()};\n    int x1 = count(all(S1), 'X');\n    int\
-    \ y1 = count(all(S1), 'Y');\n    int x2 = count(all(S2), 'X');\n    int y2 = count(all(S2),\
-    \ 'Y');\n    assert(len(FX) == x1 + x2 && len(FY) == y1 + y2);\n    vc<mint> FX1\
-    \ = {FX.begin(), FX.begin() + x1};\n    vc<mint> FX2 = {FX.begin() + x1, FX.end()};\n\
-    \    vc<mint> FY1 = {FY.begin(), FY.begin() + y1};\n    vc<mint> FY2 = {FY.begin()\
-    \ + y1, FY.end()};\n    tie(FX1, FY1) = dfs(dfs, S1, FX1, FY1);\n    tie(FX2,\
-    \ FY1) = calc_rect(FX2, FY1);\n    tie(FX2, FY2) = dfs(dfs, S2, FX2, FY2);\n \
-    \   FX1.insert(FX1.end(), all(FX2));\n    FY1.insert(FY1.end(), all(FY2));\n \
-    \   return {FX1, FY1};\n  };\n\n  poly FX(count(all(S), 'X'));\n  poly FY(count(all(S),\
-    \ 'Y'));\n  FY[0] = 1;\n  tie(FX, FY) = dfs(dfs, S, FX, FY);\n  return FY.back();\n\
-    }\n"
+    \n// i \u884C\u76EE\u306B A[i] \u500B\u306E\u30BB\u30EB\u304C\u3042\u308B. cell(0,0)\
+    \ -> cell(n-1,m-1) \u306E\u30D1\u30B9\u3092\u6570\u3048\u308B\n// 0<=x[i]<A[i]\u304B\
+    \u3064x[N-1]=A[N-1] \u3068\u306A\u308B\u5358\u8ABF\u5897\u52A0\u5217\u3068\u3044\
+    \u3063\u3066\u3082\u3088\u3044\n// O((n+m)log^2(n+m))\ntemplate <typename mint>\n\
+    mint count_grid_path(vc<int> A) {\n  int N = len(A);\n  assert(N >= 1);\n  FOR(i,\
+    \ N - 1) assert(A[i] <= A[i + 1]);\n\n  string S;\n  FOR(i, N) {\n    ll pre =\
+    \ (i == 0 ? 0 : A[i - 1]);\n    FOR(A[i] - pre) S += 'Y';\n    S += 'X';\n  }\n\
+    \n  using poly = vc<mint>;\n\n  auto calc_rect = [&](poly FX, poly FY) -> pair<poly,\
+    \ poly> {\n    if (len(FX) == 0 || len(FY) == 0) return {FX, FY};\n    int NX\
+    \ = len(FX), NY = len(FY);\n    vc<mint> GX(NX), GY(NY);\n    {\n      vc<mint>\
+    \ f(NX);\n      FOR(i, NX) f[i] = C<mint>(NY - 1 + i, i);\n      f = convolution(f,\
+    \ FX);\n      FOR(i, NX) GX[i] += f[i];\n    }\n    {\n      vc<mint> f(NY);\n\
+    \      FOR(i, NY) f[i] = C<mint>(NX - 1 + i, i);\n      f = convolution(f, FY);\n\
+    \      FOR(i, NY) GY[i] += f[i];\n    }\n    {\n      reverse(all(FX));\n    \
+    \  FOR(i, NX) FX[i] *= fact_inv<mint>(i);\n      vc<mint> f(NX + NY - 1);\n  \
+    \    FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n      f = middle_product(f, FX);\n\
+    \      FOR(j, NY) GY[j] += f[j] * fact_inv<mint>(j);\n    }\n    {\n      reverse(all(FY));\n\
+    \      FOR(i, NY) FY[i] *= fact_inv<mint>(i);\n      vc<mint> f(NX + NY - 1);\n\
+    \      FOR(i, NX + NY - 1) f[i] = fact<mint>(i);\n      f = middle_product(f,\
+    \ FY);\n      FOR(j, NX) GX[j] += f[j] * fact_inv<mint>(j);\n    }\n    return\
+    \ {GX, GY};\n  };\n\n  auto dfs = [&](auto& dfs, string S, poly FX, poly FY) ->\
+    \ pair<poly, poly> {\n    if (len(S) == 1) return {FX, FY};\n    int n = len(S);\n\
+    \    string S1 = {S.begin(), S.begin() + n / 2};\n    string S2 = {S.begin() +\
+    \ n / 2, S.end()};\n    int x1 = count(all(S1), 'X');\n    int y1 = count(all(S1),\
+    \ 'Y');\n    int x2 = count(all(S2), 'X');\n    int y2 = count(all(S2), 'Y');\n\
+    \    assert(len(FX) == x1 + x2 && len(FY) == y1 + y2);\n    vc<mint> FX1 = {FX.begin(),\
+    \ FX.begin() + x1};\n    vc<mint> FX2 = {FX.begin() + x1, FX.end()};\n    vc<mint>\
+    \ FY1 = {FY.begin(), FY.begin() + y1};\n    vc<mint> FY2 = {FY.begin() + y1, FY.end()};\n\
+    \    tie(FX1, FY1) = dfs(dfs, S1, FX1, FY1);\n    tie(FX2, FY1) = calc_rect(FX2,\
+    \ FY1);\n    tie(FX2, FY2) = dfs(dfs, S2, FX2, FY2);\n    FX1.insert(FX1.end(),\
+    \ all(FX2));\n    FY1.insert(FY1.end(), all(FY2));\n    return {FX1, FY1};\n \
+    \ };\n\n  poly FX(count(all(S), 'X'));\n  poly FY(count(all(S), 'Y'));\n  FY[0]\
+    \ = 1;\n  tie(FX, FY) = dfs(dfs, S, FX, FY);\n  return FY.back();\n}\n"
   dependsOn:
   - poly/convolution.hpp
   - mod/modint.hpp
@@ -381,7 +383,7 @@ data:
   isVerificationFile: false
   path: seq/count_grid_path.hpp
   requiredBy: []
-  timestamp: '2025-02-12 05:55:32+09:00'
+  timestamp: '2025-07-01 13:07:28+09:00'
   verificationStatus: LIBRARY_NO_TESTS
   verifiedWith: []
 documentation_of: seq/count_grid_path.hpp
