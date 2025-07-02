@@ -17,7 +17,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: alg/acted_monoid/min_max.hpp
     title: alg/acted_monoid/min_max.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: graph/minimum_spanning_tree.hpp
     title: graph/minimum_spanning_tree.hpp
   _extendedVerifiedWith:
@@ -36,10 +36,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_add_range_max.test.cpp
     title: test/1_mytest/range_add_range_max.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/tree/mst.test.cpp
     title: test/2_library_checker/tree/mst.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1117.test.cpp
     title: test/3_yukicoder/1117.test.cpp
   - icon: ':x:'
