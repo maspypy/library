@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: flow/bflow.hpp
     title: flow/bflow.hpp
   _extendedRequiredBy: []
