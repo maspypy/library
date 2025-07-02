@@ -38,6 +38,9 @@ data:
   - icon: ':warning:'
     path: nt/factor_interval.hpp
     title: nt/factor_interval.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   - icon: ':heavy_check_mark:'
     path: nt/gcd_convolution.hpp
     title: nt/gcd_convolution.hpp
@@ -225,7 +228,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
     title: test/2_library_checker/polynomial/compositional_inverse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
     title: test/2_library_checker/polynomial/polynomial_taylor_shift.test.cpp
   - icon: ':x:'
@@ -360,6 +363,7 @@ data:
   - nt/mobius_table.hpp
   - nt/factor_interval.hpp
   - nt/lpf_table.hpp
+  - nt/find_coprime_pair.hpp
   - nt/range_rational_count.hpp
   - nt/lcm_convolution.hpp
   - nt/euler_phi.hpp

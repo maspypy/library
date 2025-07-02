@@ -8,6 +8,9 @@ data:
   - icon: ':x:'
     path: linalg/det_A_plus_xB.hpp
     title: linalg/det_A_plus_xB.hpp
+  - icon: ':warning:'
+    path: linalg/diagonalize_triangular_matrix.hpp
+    title: linalg/diagonalize_triangular_matrix.hpp
   - icon: ':heavy_check_mark:'
     path: linalg/frobenius.hpp
     title: linalg/frobenius.hpp
@@ -65,6 +68,7 @@ data:
   requiredBy:
   - linalg/matrix_lowrank_update.hpp
   - linalg/adjugate_matrix.hpp
+  - linalg/diagonalize_triangular_matrix.hpp
   - linalg/frobenius.hpp
   - linalg/det_A_plus_xB.hpp
   timestamp: '2024-11-01 21:56:32+09:00'

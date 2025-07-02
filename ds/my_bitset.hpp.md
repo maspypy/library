@@ -35,6 +35,9 @@ data:
   - icon: ':x:'
     path: linalg/bitset/solve_linear.hpp
     title: linalg/bitset/solve_linear.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/mybitset.test.cpp
@@ -361,6 +364,7 @@ data:
   - linalg/bitset/solve_linear.hpp
   - linalg/bitset/det.hpp
   - flow/bipartite_dense.hpp
+  - nt/find_coprime_pair.hpp
   - ds/sum_over_bit_positions.hpp
   - knapsack/subset_sum.hpp
   - graph/bitset/bfs_bitset.hpp

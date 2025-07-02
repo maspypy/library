@@ -11,6 +11,9 @@ data:
   - icon: ':warning:'
     path: nt/all_lcm.hpp
     title: nt/all_lcm.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   _extendedVerifiedWith:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
@@ -56,6 +59,7 @@ data:
   requiredBy:
   - mod/modfast.hpp
   - nt/all_lcm.hpp
+  - nt/find_coprime_pair.hpp
   timestamp: '2023-08-06 03:59:07+09:00'
   verificationStatus: LIBRARY_SOME_WA
   verifiedWith:

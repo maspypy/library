@@ -3,6 +3,9 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy:
   - icon: ':warning:'
+    path: linalg/diagonalize_triangular_matrix.hpp
+    title: linalg/diagonalize_triangular_matrix.hpp
+  - icon: ':warning:'
     path: other/sliding_puzzle_solver.hpp
     title: other/sliding_puzzle_solver.hpp
   - icon: ':warning:'
@@ -35,6 +38,7 @@ data:
   isVerificationFile: false
   path: linalg/transpose.hpp
   requiredBy:
+  - linalg/diagonalize_triangular_matrix.hpp
   - poly/coef_of_rational_fps_2d.hpp
   - test/1_mytest/equal_4square_sum_grid.cpp
   - other/sliding_puzzle_solver.hpp

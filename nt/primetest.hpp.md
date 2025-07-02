@@ -50,6 +50,9 @@ data:
   - icon: ':question:'
     path: nt/factor.hpp
     title: nt/factor.hpp
+  - icon: ':warning:'
+    path: nt/find_coprime_pair.hpp
+    title: nt/find_coprime_pair.hpp
   - icon: ':heavy_check_mark:'
     path: nt/four_square.hpp
     title: nt/four_square.hpp
@@ -180,10 +183,10 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/log_of_fps_sparse_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_dmint.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
     title: test/2_library_checker/polynomial/pow_of_fps_sparse_dmint.test.cpp
   - icon: ':x:'
@@ -328,6 +331,7 @@ data:
   - nt/four_square.hpp
   - nt/array_on_divisors.hpp
   - nt/crt.hpp
+  - nt/find_coprime_pair.hpp
   - nt/gaussian_integers.hpp
   - nt/divisors.hpp
   - nt/three_triangular.hpp
