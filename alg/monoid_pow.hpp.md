@@ -17,17 +17,17 @@ data:
   - icon: ':x:'
     path: graph/functional.hpp
     title: graph/functional.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/floor_monoid_product.hpp
     title: mod/floor_monoid_product.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: mod/floor_sum_of_linear_polynomial.hpp
     title: mod/floor_sum_of_linear_polynomial.hpp
   - icon: ':x:'
     path: mod/floor_sum_of_linear_polynomial_pq.hpp
     title: mod/floor_sum_of_linear_polynomial_pq.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/floor_sum_of_polynomial.test.cpp
     title: test/1_mytest/floor_sum_of_polynomial.test.cpp
   - icon: ':x:'
@@ -65,7 +65,7 @@ data:
     title: test/3_yukicoder/590.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"alg/monoid_pow.hpp\"\n\n// chat gpt\ntemplate <typename\
@@ -109,7 +109,7 @@ data:
   - convex/lattice_point_sum_polynomial_pq.hpp
   - convex/lattice_point_sum_polynomial.hpp
   timestamp: '2024-01-23 03:59:43+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/lattice_point_sum_polynomial.test.cpp
   - test/1_mytest/range_assign.test.cpp
