@@ -33,7 +33,7 @@ data:
     title: poly/ntt.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/eulerian_number.test.cpp
     title: test/1_mytest/eulerian_number.test.cpp
   - icon: ':x:'
@@ -44,7 +44,7 @@ data:
     title: test/3_yukicoder/2005.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links:
     - https://oeis.org/A123125
@@ -351,7 +351,7 @@ data:
   path: seq/famous/eulerian_number.hpp
   requiredBy: []
   timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/eulerian_number.test.cpp
   - test/3_yukicoder/2005.test.cpp

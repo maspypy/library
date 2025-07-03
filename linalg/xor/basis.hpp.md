@@ -2,11 +2,11 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: nt/nimber/solve_quadratic.hpp
     title: nt/nimber/solve_quadratic.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/nimber.test.cpp
     title: test/1_mytest/nimber.test.cpp
   - icon: ':x:'
@@ -14,7 +14,7 @@ data:
     title: test/3_yukicoder/2895.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/xor/basis.hpp\"\n\n// basis[i]: i \u756A\u76EE\u306B\
@@ -62,7 +62,7 @@ data:
   requiredBy:
   - nt/nimber/solve_quadratic.hpp
   timestamp: '2024-09-21 20:54:47+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/nimber.test.cpp
   - test/3_yukicoder/2895.test.cpp

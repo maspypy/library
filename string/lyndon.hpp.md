@@ -2,22 +2,22 @@
 data:
   _extendedDependsOn: []
   _extendedRequiredBy:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: string/lex_min_suffix_for_all_prefix.hpp
     title: string/lex_min_suffix_for_all_prefix.hpp
   - icon: ':warning:'
     path: string/non_dominated_suffix.hpp
     title: string/non_dominated_suffix.hpp
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/lex_minmax_suffix.test.cpp
     title: test/1_mytest/lex_minmax_suffix.test.cpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/2_library_checker/string/lyndon.test.cpp
     title: test/2_library_checker/string/lyndon.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 2 \"string/lyndon.hpp\"\n\ntemplate <typename CHAR>\nstruct\
@@ -51,7 +51,7 @@ data:
   - string/non_dominated_suffix.hpp
   - string/lex_min_suffix_for_all_prefix.hpp
   timestamp: '2025-05-18 18:12:51+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/lex_minmax_suffix.test.cpp
   - test/2_library_checker/string/lyndon.test.cpp

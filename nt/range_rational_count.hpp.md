@@ -1,25 +1,25 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':x:'
     path: enumerate/floor_range.hpp
     title: enumerate/floor_range.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: mod/floor_sum_of_linear.hpp
     title: mod/floor_sum_of_linear.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/array_on_floor.hpp
     title: nt/array_on_floor.hpp
   - icon: ':x:'
     path: nt/mertens.hpp
     title: nt/mertens.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/mobius_table.hpp
     title: nt/mobius_table.hpp
   - icon: ':question:'
     path: nt/primetable.hpp
     title: nt/primetable.hpp
-  - icon: ':question:'
+  - icon: ':x:'
     path: nt/zeta.hpp
     title: nt/zeta.hpp
   _extendedRequiredBy: []

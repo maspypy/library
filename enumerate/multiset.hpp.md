@@ -3,12 +3,12 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: test/1_mytest/enumerate_multisets.test.cpp
     title: test/1_mytest/enumerate_multisets.test.cpp
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     links: []
   bundledCode: "#line 1 \"enumerate/multiset.hpp\"\n// N \u5143 K \u7A2E\u985E\u306E\
@@ -30,7 +30,7 @@ data:
   path: enumerate/multiset.hpp
   requiredBy: []
   timestamp: '2024-03-10 03:27:25+09:00'
-  verificationStatus: LIBRARY_ALL_AC
+  verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/1_mytest/enumerate_multisets.test.cpp
 documentation_of: enumerate/multiset.hpp
