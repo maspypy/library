@@ -46,6 +46,9 @@ data:
   _extendedRequiredBy: []
   _extendedVerifiedWith:
   - icon: ':x:'
+    path: test/1_mytest/slice_rational_fps.test.cpp
+    title: test/1_mytest/slice_rational_fps.test.cpp
+  - icon: ':x:'
     path: test/2_library_checker/polynomial/slice_rational.test.cpp
     title: test/2_library_checker/polynomial/slice_rational.test.cpp
   _isVerificationFailed: true
@@ -555,6 +558,7 @@ data:
   timestamp: '2025-02-12 05:55:32+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
+  - test/1_mytest/slice_rational_fps.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
 documentation_of: poly/slice_rational_fps.hpp
 layout: document

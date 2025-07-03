@@ -157,27 +157,27 @@ data:
     \ x = edge_label[e.id];\n    return (e.frm == frm ? x : Monoid::inverse(x));\n\
     \  };\n\n  // shortest path tree\n  vc<WT> dist(N, infty<WT>);\n  vc<X> phi(N,\
     \ Monoid::unit());\n  vc<int> par(N, -1);\n  vc<int> depth(N);\n  dist[s] = 0;\n\
-    \  pqg<pair<WT, int>> que;\n  que.emplace(0, s);\n  while (len(que)) {\n    auto\
-    \ [dv, v] = POP(que);\n    if (dv != dist[v]) continue;\n    for (auto& e: G[v])\
-    \ {\n      if (chmin(dist[e.to], dv + e.cost)) {\n        phi[e.to] = Monoid::op(phi[v],\
-    \ get(e.id, v));\n        que.emplace(dist[e.to], e.to);\n        par[e.to] =\
-    \ v, depth[e.to] = depth[v] + 1;\n      }\n    }\n  }\n\n  vc<bool> cons(M);\n\
-    \  FOR(i, M) {\n    int a = G.edges[i].frm, b = G.edges[i].to;\n    X x = Monoid::op(phi[a],\
-    \ edge_label[i]);\n    cons[i] = (x == phi[b]);\n  }\n\n  vc<WT> h(M, infty<WT>);\n\
-    \  vc<WT> q(N, infty<WT>);\n  for (auto& e: G.edges) {\n    if (dist[e.frm] ==\
-    \ infty<WT>) continue;\n    if (!cons[e.id] && chmin(h[e.id], dist[e.frm] + dist[e.to]\
-    \ + e.cost)) {\n      que.emplace(h[e.id], e.id);\n    }\n  }\n\n  vc<int> root(N);\n\
-    \  FOR(v, N) root[v] = v;\n\n  auto get_root = [&](int v) -> int {\n    while\
-    \ (root[v] != v) { v = root[v] = root[root[v]]; }\n    return v;\n  };\n\n  while\
-    \ (len(que)) {\n    auto [x, eid] = POP(que);\n    if (x != h[eid]) continue;\n\
-    \    int a = G.edges[eid].frm, b = G.edges[eid].to;\n    a = get_root(a), b =\
-    \ get_root(b);\n    vc<int> B;\n    while (a != b) {\n      if (depth[a] < depth[b])\
-    \ swap(a, b);\n      B.eb(a), a = get_root(par[a]);\n    }\n    for (auto& w:\
-    \ B) {\n      root[w] = a, q[w] = x - dist[w];\n      for (auto& e: G[w]) {\n\
-    \        if (cons[e.id] && chmin(h[e.id], q[w] + dist[e.to] + e.cost)) {\n   \
-    \       que.emplace(h[e.id], e.id);\n        }\n      }\n    }\n  }\n\n  vc<WT>\
-    \ ANS(N, infty<WT>);\n  FOR(v, N) ANS[v] = (phi[v] == Monoid::unit() ? q[v] :\
-    \ dist[v]);\n  return ANS;\n}\n"
+    \  pq_min<pair<WT, int>> que;\n  que.emplace(0, s);\n  while (len(que)) {\n  \
+    \  auto [dv, v] = POP(que);\n    if (dv != dist[v]) continue;\n    for (auto&\
+    \ e : G[v]) {\n      if (chmin(dist[e.to], dv + e.cost)) {\n        phi[e.to]\
+    \ = Monoid::op(phi[v], get(e.id, v));\n        que.emplace(dist[e.to], e.to);\n\
+    \        par[e.to] = v, depth[e.to] = depth[v] + 1;\n      }\n    }\n  }\n\n \
+    \ vc<bool> cons(M);\n  FOR(i, M) {\n    int a = G.edges[i].frm, b = G.edges[i].to;\n\
+    \    X x = Monoid::op(phi[a], edge_label[i]);\n    cons[i] = (x == phi[b]);\n\
+    \  }\n\n  vc<WT> h(M, infty<WT>);\n  vc<WT> q(N, infty<WT>);\n  for (auto& e :\
+    \ G.edges) {\n    if (dist[e.frm] == infty<WT>) continue;\n    if (!cons[e.id]\
+    \ && chmin(h[e.id], dist[e.frm] + dist[e.to] + e.cost)) {\n      que.emplace(h[e.id],\
+    \ e.id);\n    }\n  }\n\n  vc<int> root(N);\n  FOR(v, N) root[v] = v;\n\n  auto\
+    \ get_root = [&](int v) -> int {\n    while (root[v] != v) {\n      v = root[v]\
+    \ = root[root[v]];\n    }\n    return v;\n  };\n\n  while (len(que)) {\n    auto\
+    \ [x, eid] = POP(que);\n    if (x != h[eid]) continue;\n    int a = G.edges[eid].frm,\
+    \ b = G.edges[eid].to;\n    a = get_root(a), b = get_root(b);\n    vc<int> B;\n\
+    \    while (a != b) {\n      if (depth[a] < depth[b]) swap(a, b);\n      B.eb(a),\
+    \ a = get_root(par[a]);\n    }\n    for (auto& w : B) {\n      root[w] = a, q[w]\
+    \ = x - dist[w];\n      for (auto& e : G[w]) {\n        if (cons[e.id] && chmin(h[e.id],\
+    \ q[w] + dist[e.to] + e.cost)) {\n          que.emplace(h[e.id], e.id);\n    \
+    \    }\n      }\n    }\n  }\n\n  vc<WT> ANS(N, infty<WT>);\n  FOR(v, N) ANS[v]\
+    \ = (phi[v] == Monoid::unit() ? q[v] : dist[v]);\n  return ANS;\n}\n"
   code: "\n#include \"graph/base.hpp\"\n#include \"graph/shortest_path/dijkstra.hpp\"\
     \n\n// given: group-labeled undirected graph G, and s.\n// return: shortest path\
     \ length from s to v, for each v.\n// remark: path is not a walk. directed case\
@@ -189,27 +189,27 @@ data:
     \ x = edge_label[e.id];\n    return (e.frm == frm ? x : Monoid::inverse(x));\n\
     \  };\n\n  // shortest path tree\n  vc<WT> dist(N, infty<WT>);\n  vc<X> phi(N,\
     \ Monoid::unit());\n  vc<int> par(N, -1);\n  vc<int> depth(N);\n  dist[s] = 0;\n\
-    \  pqg<pair<WT, int>> que;\n  que.emplace(0, s);\n  while (len(que)) {\n    auto\
-    \ [dv, v] = POP(que);\n    if (dv != dist[v]) continue;\n    for (auto& e: G[v])\
-    \ {\n      if (chmin(dist[e.to], dv + e.cost)) {\n        phi[e.to] = Monoid::op(phi[v],\
-    \ get(e.id, v));\n        que.emplace(dist[e.to], e.to);\n        par[e.to] =\
-    \ v, depth[e.to] = depth[v] + 1;\n      }\n    }\n  }\n\n  vc<bool> cons(M);\n\
-    \  FOR(i, M) {\n    int a = G.edges[i].frm, b = G.edges[i].to;\n    X x = Monoid::op(phi[a],\
-    \ edge_label[i]);\n    cons[i] = (x == phi[b]);\n  }\n\n  vc<WT> h(M, infty<WT>);\n\
-    \  vc<WT> q(N, infty<WT>);\n  for (auto& e: G.edges) {\n    if (dist[e.frm] ==\
-    \ infty<WT>) continue;\n    if (!cons[e.id] && chmin(h[e.id], dist[e.frm] + dist[e.to]\
-    \ + e.cost)) {\n      que.emplace(h[e.id], e.id);\n    }\n  }\n\n  vc<int> root(N);\n\
-    \  FOR(v, N) root[v] = v;\n\n  auto get_root = [&](int v) -> int {\n    while\
-    \ (root[v] != v) { v = root[v] = root[root[v]]; }\n    return v;\n  };\n\n  while\
-    \ (len(que)) {\n    auto [x, eid] = POP(que);\n    if (x != h[eid]) continue;\n\
-    \    int a = G.edges[eid].frm, b = G.edges[eid].to;\n    a = get_root(a), b =\
-    \ get_root(b);\n    vc<int> B;\n    while (a != b) {\n      if (depth[a] < depth[b])\
-    \ swap(a, b);\n      B.eb(a), a = get_root(par[a]);\n    }\n    for (auto& w:\
-    \ B) {\n      root[w] = a, q[w] = x - dist[w];\n      for (auto& e: G[w]) {\n\
-    \        if (cons[e.id] && chmin(h[e.id], q[w] + dist[e.to] + e.cost)) {\n   \
-    \       que.emplace(h[e.id], e.id);\n        }\n      }\n    }\n  }\n\n  vc<WT>\
-    \ ANS(N, infty<WT>);\n  FOR(v, N) ANS[v] = (phi[v] == Monoid::unit() ? q[v] :\
-    \ dist[v]);\n  return ANS;\n}"
+    \  pq_min<pair<WT, int>> que;\n  que.emplace(0, s);\n  while (len(que)) {\n  \
+    \  auto [dv, v] = POP(que);\n    if (dv != dist[v]) continue;\n    for (auto&\
+    \ e : G[v]) {\n      if (chmin(dist[e.to], dv + e.cost)) {\n        phi[e.to]\
+    \ = Monoid::op(phi[v], get(e.id, v));\n        que.emplace(dist[e.to], e.to);\n\
+    \        par[e.to] = v, depth[e.to] = depth[v] + 1;\n      }\n    }\n  }\n\n \
+    \ vc<bool> cons(M);\n  FOR(i, M) {\n    int a = G.edges[i].frm, b = G.edges[i].to;\n\
+    \    X x = Monoid::op(phi[a], edge_label[i]);\n    cons[i] = (x == phi[b]);\n\
+    \  }\n\n  vc<WT> h(M, infty<WT>);\n  vc<WT> q(N, infty<WT>);\n  for (auto& e :\
+    \ G.edges) {\n    if (dist[e.frm] == infty<WT>) continue;\n    if (!cons[e.id]\
+    \ && chmin(h[e.id], dist[e.frm] + dist[e.to] + e.cost)) {\n      que.emplace(h[e.id],\
+    \ e.id);\n    }\n  }\n\n  vc<int> root(N);\n  FOR(v, N) root[v] = v;\n\n  auto\
+    \ get_root = [&](int v) -> int {\n    while (root[v] != v) {\n      v = root[v]\
+    \ = root[root[v]];\n    }\n    return v;\n  };\n\n  while (len(que)) {\n    auto\
+    \ [x, eid] = POP(que);\n    if (x != h[eid]) continue;\n    int a = G.edges[eid].frm,\
+    \ b = G.edges[eid].to;\n    a = get_root(a), b = get_root(b);\n    vc<int> B;\n\
+    \    while (a != b) {\n      if (depth[a] < depth[b]) swap(a, b);\n      B.eb(a),\
+    \ a = get_root(par[a]);\n    }\n    for (auto& w : B) {\n      root[w] = a, q[w]\
+    \ = x - dist[w];\n      for (auto& e : G[w]) {\n        if (cons[e.id] && chmin(h[e.id],\
+    \ q[w] + dist[e.to] + e.cost)) {\n          que.emplace(h[e.id], e.id);\n    \
+    \    }\n      }\n    }\n  }\n\n  vc<WT> ANS(N, infty<WT>);\n  FOR(v, N) ANS[v]\
+    \ = (phi[v] == Monoid::unit() ? q[v] : dist[v]);\n  return ANS;\n}"
   dependsOn:
   - graph/base.hpp
   - ds/hashmap.hpp
@@ -217,7 +217,7 @@ data:
   isVerificationFile: false
   path: graph/shortest_path/nonzero_group_product_shortest_path.hpp
   requiredBy: []
-  timestamp: '2025-04-06 22:14:02+09:00'
+  timestamp: '2025-07-04 07:32:29+09:00'
   verificationStatus: LIBRARY_ALL_WA
   verifiedWith:
   - test/3_yukicoder/1602.test.cpp

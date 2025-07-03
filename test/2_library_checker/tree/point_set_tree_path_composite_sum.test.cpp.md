@@ -521,10 +521,10 @@ data:
     \ : v \u3068\u305D\u306E\u89AA\u8FBA\u3092\u5408\u308F\u305B\u305F\u30AF\u30E9\
     \u30B9\u30BF\nrake(L,R) : L \u306E boundary \u3092\u7DAD\u6301\ncompress(L,R)\
     \  (top-down) \u9806\u306B x,y\n*/\ntemplate <typename TREE>\nstruct Static_TopTree\
-    \ {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B; // A, B boundary\
+    \ {\n  int N;\n  TREE &tree;\n  vc<int> par, lch, rch, A, B;  // A, B boundary\
     \ (top-down)\n  vc<bool> is_compress;\n\n  Static_TopTree(TREE &tree) : tree(tree)\
     \ { build(); }\n\n  void build() {\n    N = tree.N;\n    par.assign(N, -1), lch.assign(N,\
-    \ -1), rch.assign(N, -1), A.assign(N, -1), B.assign(N, -1), is_compress.assign(N,\
+    \ -1), rch.assign(N, -1), A.assign(N, -1),\n        B.assign(N, -1), is_compress.assign(N,\
     \ 0);\n    FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }\n    build_dfs(tree.V[0]);\n\
     \    assert(len(par) == 2 * N - 1);\n  }\n\n  // \u6728\u5168\u4F53\u3067\u306E\
     \u96C6\u7D04\u5024\u3092\u5F97\u308B\n  // single(v) : v \u3068\u305D\u306E\u89AA\
@@ -537,7 +537,7 @@ data:
     \ Data x = dfs(dfs, lch[k]), y = dfs(dfs, rch[k]);\n      if (is_compress[k])\
     \ {\n        assert(B[lch[k]] == A[rch[k]]);\n        return TREE_DP::compress(x,\
     \ y);\n      }\n      return TREE_DP::rake(x, y);\n    };\n    return dfs(dfs,\
-    \ 2 * N - 2);\n  }\n\nprivate:\n  int new_node(int l, int r, int a, int b, bool\
+    \ 2 * N - 2);\n  }\n\n private:\n  int new_node(int l, int r, int a, int b, bool\
     \ c) {\n    int v = len(par);\n    par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a),\
     \ B.eb(b), is_compress.eb(c);\n    par[l] = par[r] = v;\n    return v;\n  }\n\n\
     \  // height, node idx\n  // compress \u53C2\u8003\uFF1Ahttps://atcoder.jp/contests/abc351/editorial/9910\n\
@@ -547,18 +547,19 @@ data:
     \    stack.eb(0, path[0]);\n    auto merge_last_two = [&]() -> void {\n      auto\
     \ [h2, k2] = POP(stack);\n      auto [h1, k1] = POP(stack);\n      stack.eb(max(h1,\
     \ h2) + 1, new_node(k1, k2, A[k1], B[k2], true));\n    };\n\n    FOR(i, 1, len(path))\
-    \ {\n      pqg<pair<int, int>> que;\n      int k = path[i];\n      que.emplace(0,\
-    \ k);\n      for (auto &c: tree.collect_light(path[i - 1])) { que.emplace(build_dfs(c));\
-    \ }\n      while (len(que) >= 2) {\n        auto [h1, i1] = POP(que);\n      \
-    \  auto [h2, i2] = POP(que);\n        if (i2 == k) swap(i1, i2);\n        int\
-    \ i3 = new_node(i1, i2, A[i1], B[i1], false);\n        if (k == i1) k = i3;\n\
+    \ {\n      pq_min<pair<int, int>> que;\n      int k = path[i];\n      que.emplace(0,\
+    \ k);\n      for (auto &c : tree.collect_light(path[i - 1])) {\n        que.emplace(build_dfs(c));\n\
+    \      }\n      while (len(que) >= 2) {\n        auto [h1, i1] = POP(que);\n \
+    \       auto [h2, i2] = POP(que);\n        if (i2 == k) swap(i1, i2);\n      \
+    \  int i3 = new_node(i1, i2, A[i1], B[i1], false);\n        if (k == i1) k = i3;\n\
     \        que.emplace(max(h1, h2) + 1, i3);\n      }\n      stack.eb(POP(que));\n\
     \n      while (1) {\n        int n = len(stack);\n        if (n >= 3 && (stack[n\
-    \ - 3].fi == stack[n - 2].fi || stack[n - 3].fi <= stack[n - 1].fi)) {\n     \
-    \     auto [h3, k3] = POP(stack);\n          merge_last_two(), stack.eb(h3, k3);\n\
-    \        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two();\
-    \ }\n        else break;\n      }\n    }\n    while (len(stack) >= 2) { merge_last_two();\
-    \ }\n    return POP(stack);\n  }\n};\n#line 2 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
+    \ - 3].fi == stack[n - 2].fi ||\n                       stack[n - 3].fi <= stack[n\
+    \ - 1].fi)) {\n          auto [h3, k3] = POP(stack);\n          merge_last_two(),\
+    \ stack.eb(h3, k3);\n        }\n        elif (n >= 2 && stack[n - 2].fi <= stack[n\
+    \ - 1].fi) {\n          merge_last_two();\n        }\n        else break;\n  \
+    \    }\n    }\n    while (len(stack) >= 2) {\n      merge_last_two();\n    }\n\
+    \    return POP(stack);\n  }\n};\n#line 2 \"graph/ds/dynamic_rerooting_tree_dp.hpp\"\
     \n\n/*\nstruct Data {\n  // type, s, t \u306F\u5FC5\u305A\u5B9A\u7FA9\u3059\u308B\
     . \uFF08\u7D4C\u9A13\u4E0A\u3069\u3046\u305B\u30C7\u30D0\u30C3\u30B0\u3067\u5FC5\
     \u8981\u306B\u306A\u308B\uFF09. s \u304C\u6839.\n  // type==0: s\u304C virtual.\
@@ -690,7 +691,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
+  timestamp: '2025-07-04 07:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/tree/point_set_tree_path_composite_sum.test.cpp

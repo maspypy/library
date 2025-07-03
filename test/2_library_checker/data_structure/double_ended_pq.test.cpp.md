@@ -225,18 +225,18 @@ data:
     \ { ANS.eb(pop()); }\n    for (auto& x: ANS) push(x);\n    return ANS;\n  }\n\n\
     private:\n  void refresh() {\n    while (len(rm_que) && rm_que.top() == que.top())\
     \ { rm_que.pop(), que.pop(); }\n  }\n};\n#line 5 \"test/2_library_checker/data_structure/double_ended_pq.test.cpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
-    \ que1(A);\n  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n  \
-    \  if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n   \
-    \ if (t == 1) {\n      int x = que1.pop();\n      print(x), que2.remove(x);\n\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pq_min<int>>\
+    \ que1(A);\n  Removable_Queue<pq_max<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n \
+    \   if (t == 1) {\n      int x = que1.pop();\n      print(x), que2.remove(x);\n\
     \    }\n    if (t == 2) {\n      int x = que2.pop();\n      print(x), que1.remove(x);\n\
     \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/double_ended_priority_queue\"\
     \n#include \"my_template.hpp\"\n#include \"other/io.hpp\"\n#include \"ds/removable_queue.hpp\"\
-    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pqg<int>>\
-    \ que1(A);\n  Removable_Queue<pq<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n  \
-    \  if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n   \
-    \ if (t == 1) {\n      int x = que1.pop();\n      print(x), que2.remove(x);\n\
+    \n\nvoid solve() {\n  LL(N, Q);\n  VEC(int, A, N);\n  Removable_Queue<pq_min<int>>\
+    \ que1(A);\n  Removable_Queue<pq_max<int>> que2(A);\n\n  FOR(Q) {\n    LL(t);\n\
+    \    if (t == 0) {\n      LL(x);\n      que1.push(x), que2.push(x);\n    }\n \
+    \   if (t == 1) {\n      int x = que1.pop();\n      print(x), que2.remove(x);\n\
     \    }\n    if (t == 2) {\n      int x = que2.pop();\n      print(x), que1.remove(x);\n\
     \    }\n  }\n}\n\nsigned main() {\n  solve();\n  return 0;\n}"
   dependsOn:
@@ -246,7 +246,7 @@ data:
   isVerificationFile: true
   path: test/2_library_checker/data_structure/double_ended_pq.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
+  timestamp: '2025-07-04 07:28:26+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/2_library_checker/data_structure/double_ended_pq.test.cpp

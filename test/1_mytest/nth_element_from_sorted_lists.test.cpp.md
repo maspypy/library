@@ -136,13 +136,13 @@ data:
     \u30FC\u30C8\u3055\u308C\u3066\u3044\u308B\u306A\u3089 matrix \u3092\u4F7F\u304A\
     \u3046!!\n// https://codeforces.com/problemset/problem/1034/D\ntemplate <typename\
     \ T, typename F>\nvi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0)\
-    \ {\n  ll N = len(S);\n  ll sm = 0;\n  for (auto& x: S) sm += x >> k;\n  assert(0\
+    \ {\n  ll N = len(S);\n  ll sm = 0;\n  for (auto& x : S) sm += x >> k;\n  assert(0\
     \ <= K && K <= sm);\n  if (K == 0) return vi(N, 0);\n  if (K == sm) return S;\n\
-    \n  ll row = 0;\n  for (auto& x: S) row += (x >= (1LL << k));\n\n  auto g = [&](int\
+    \n  ll row = 0;\n  for (auto& x : S) row += (x >= (1LL << k));\n\n  auto g = [&](int\
     \ i, ll j) -> T {\n    j = ((j + 1) << k) - 1;\n    return (j >= S[i] ? infty<T>\
     \ : f(i, j));\n  };\n  vi A(N);\n  if (K > row) {\n    A = nth_element_from_sorted_lists<T>(S,\
-    \ (K - row) / 2, f, k + 1);\n    for (auto& a: A) a *= 2;\n    K = K - (K - row)\
-    \ / 2 * 2;\n  }\n  pqg<pair<T, int>> que;\n  FOR(i, N) que.emplace(g(i, A[i]),\
+    \ (K - row) / 2, f, k + 1);\n    for (auto& a : A) a *= 2;\n    K = K - (K - row)\
+    \ / 2 * 2;\n  }\n  pq_min<pair<T, int>> que;\n  FOR(i, N) que.emplace(g(i, A[i]),\
     \ i);\n  while (K) {\n    --K;\n    auto [x, i] = POP(que);\n    A[i]++;\n   \
     \ if (K) que.emplace(g(i, A[i]), i);\n  }\n  return A;\n}\n#line 8 \"test/1_mytest/nth_element_from_sorted_lists.test.cpp\"\
     \n\nvoid test() {\n  ll N = RNG(1, 20);\n  vi S(N);\n  FOR(i, N) S[i] = RNG(0,\
@@ -173,7 +173,7 @@ data:
   isVerificationFile: true
   path: test/1_mytest/nth_element_from_sorted_lists.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
+  timestamp: '2025-07-04 07:32:29+09:00'
   verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/nth_element_from_sorted_lists.test.cpp

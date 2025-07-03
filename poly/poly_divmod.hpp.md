@@ -64,6 +64,9 @@ data:
     path: test/1_mytest/poly_root_finding.test.cpp
     title: test/1_mytest/poly_root_finding.test.cpp
   - icon: ':x:'
+    path: test/1_mytest/slice_rational_fps.test.cpp
+    title: test/1_mytest/slice_rational_fps.test.cpp
+  - icon: ':x:'
     path: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
     title: test/2_library_checker/other/kth_term_of_linearly_recurrent_sequence.test.cpp
   - icon: ':x:'
@@ -439,6 +442,7 @@ data:
   - test/1_mytest/poly_root_finding.test.cpp
   - test/1_mytest/bell.test.cpp
   - test/1_mytest/coef_of_rational.test.cpp
+  - test/1_mytest/slice_rational_fps.test.cpp
   - test/2_library_checker/polynomial/inv_of_polynomials.test.cpp
   - test/2_library_checker/polynomial/slice_rational.test.cpp
   - test/2_library_checker/polynomial/polynomial_division.test.cpp
