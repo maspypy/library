@@ -62,10 +62,10 @@ data:
   - icon: ':question:'
     path: nt/primesum.hpp
     title: nt/primesum.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod4.hpp
     title: nt/primesum_mod4.hpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: nt/primesum_mod6.hpp
     title: nt/primesum_mod6.hpp
   - icon: ':x:'
@@ -168,19 +168,19 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/modfast.test.cpp
     title: test/1_mytest/modfast.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prime_sum.test.cpp
     title: test/1_mytest/prime_sum.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod4.test.cpp
     title: test/1_mytest/primesum_mod4.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/primesum_mod6.test.cpp
     title: test/1_mytest/primesum_mod6.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/qoj5443.test.cpp
     title: test/1_mytest/qoj5443.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':x:'

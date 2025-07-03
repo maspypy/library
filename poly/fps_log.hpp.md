@@ -114,22 +114,22 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/1_mytest/graph_count.test.cpp
     title: test/1_mytest/graph_count.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_log.test.cpp
     title: test/1_mytest/online_log.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_pow.test.cpp
     title: test/1_mytest/online_pow.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/online_square.test.cpp
     title: test/1_mytest/online_square.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/power_projection.test.cpp
     title: test/1_mytest/power_projection.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sparse_pow_2d.test.cpp
     title: test/1_mytest/sparse_pow_2d.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/stirling_1_suffix.test.cpp
     title: test/1_mytest/stirling_1_suffix.test.cpp
   - icon: ':x:'

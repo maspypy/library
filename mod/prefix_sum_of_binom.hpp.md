@@ -3,7 +3,7 @@ data:
   _extendedDependsOn: []
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/prefix_sum_of_binom.test.cpp
     title: test/1_mytest/prefix_sum_of_binom.test.cpp
   - icon: ':x:'
@@ -11,7 +11,7 @@ data:
     title: test/3_yukicoder/2206.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 1 \"mod/prefix_sum_of_binom.hpp\"\ntemplate <typename mint>\n\
@@ -63,7 +63,7 @@ data:
   path: mod/prefix_sum_of_binom.hpp
   requiredBy: []
   timestamp: '2024-04-12 12:45:20+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/prefix_sum_of_binom.test.cpp
   - test/3_yukicoder/2206.test.cpp

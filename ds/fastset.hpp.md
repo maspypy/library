@@ -17,13 +17,13 @@ data:
   - icon: ':warning:'
     path: ds/segtree/range_add_make_increasing.hpp
     title: ds/segtree/range_add_make_increasing.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/segtree/range_assignment_segtree.hpp
     title: ds/segtree/range_assignment_segtree.hpp
   - icon: ':x:'
     path: ds/segtree/sortable_segtree.hpp
     title: ds/segtree/sortable_segtree.hpp
-  - icon: ':x:'
+  - icon: ':question:'
     path: ds/sortable_array.hpp
     title: ds/sortable_array.hpp
   - icon: ':warning:'
@@ -42,10 +42,10 @@ data:
     path: string/suffix_tree.hpp
     title: string/suffix_tree.hpp
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/range_assign.test.cpp
     title: test/1_mytest/range_assign.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/1_mytest/sortable_array.test.cpp
     title: test/1_mytest/sortable_array.test.cpp
   - icon: ':x:'
@@ -74,7 +74,7 @@ data:
     title: test/4_aoj/2636.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/fastset.hpp\"\n\r\n// 64-ary tree\r\n// space: (N/63)\
@@ -165,7 +165,7 @@ data:
   - graph/toposort.hpp
   - other/cuboid_union_volume.hpp
   timestamp: '2024-10-28 19:23:56+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/1_mytest/range_assign.test.cpp
   - test/1_mytest/sortable_array.test.cpp
