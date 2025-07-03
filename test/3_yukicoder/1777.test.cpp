@@ -29,11 +29,13 @@ void solve() {
   Graph<int, 0> G(N + NF);
   vc<pi> edges;
   // v-v
-  for (auto& e: PG.G.edges) { edges.eb(e.frm, e.to); }
+  for (auto& e : PG.G.edges) {
+    edges.eb(e.frm, e.to);
+  }
   // v-f
   FOR(f, NF) {
     auto [vs, es] = PG.get_face_data(f);
-    for (auto& v: vs) edges.eb(v, N + f);
+    for (auto& v : vs) edges.eb(v, N + f);
   }
   // f-f
   FOR(i, PG.NE) {
@@ -41,32 +43,34 @@ void solve() {
     int b = PG.left_face[2 * i + 1];
     edges.eb(N + a, N + b);
   }
-  for (auto& [a, b]: edges) {
+  for (auto& [a, b] : edges) {
     if (a > b) swap(a, b);
   }
   UNIQUE(edges);
 
-  for (auto& [a, b]: edges) { G.add(a, b); }
+  for (auto& [a, b] : edges) {
+    G.add(a, b);
+  }
   G.build();
 
   N = G.N;
   vc<int> cand(N, 15);
   vc<int> color(N, -1);
 
-  pqg<pi> que;
+  pq_min<pi> que;
   FOR(v, N) que.emplace(popcnt(cand[v]), v);
 
   auto set_color = [&](int v, int k) -> void {
     assert(color[v] == -1);
     color[v] = k;
-    for (auto& e: G[v]) {
+    for (auto& e : G[v]) {
       int w = e.to;
       cand[w] &= ~(1 << k);
       if (color[w] == -1) que.emplace(popcnt(cand[w]), w);
     }
   };
 
-  set_color(PG.NV, 0); // outer
+  set_color(PG.NV, 0);  // outer
   set_color(0, 1);
   set_color(1, 2);
 
@@ -78,9 +82,9 @@ void solve() {
     int k = topbit(cand[v]);
     set_color(v, k);
   }
-  for (auto& c: color)
+  for (auto& c : color)
     if (c == -1) return print(5);
-  for (auto& e: G.edges)
+  for (auto& e : G.edges)
     if (color[e.frm] == color[e.to]) return print(5);
   print(4);
 }

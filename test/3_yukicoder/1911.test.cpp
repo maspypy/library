@@ -36,7 +36,7 @@ void solve() {
   FOR(S, N) {
     FOR(Sc, 2) {
       vv(ll, dist, 2, N, infty<ll>);
-      pqg<tuple<ll, int, int>> que;
+      pq_min<tuple<ll, int, int>> que;
       auto add = [&](ll c, ll v, ll d) -> void {
         if (chmin(dist[c][v], d)) que.emplace(d, c, v);
       };
@@ -44,7 +44,7 @@ void solve() {
       while (len(que)) {
         auto [d, c, v] = POP(que);
         if (d != dist[c][v]) continue;
-        for (auto&& e: G[v]) {
+        for (auto&& e : G[v]) {
           add(1 - c, e.to, dist[c][v] + loss[1 - c][e.to]);
         }
       }

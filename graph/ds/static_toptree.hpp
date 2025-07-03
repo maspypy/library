@@ -12,14 +12,15 @@ template <typename TREE>
 struct Static_TopTree {
   int N;
   TREE &tree;
-  vc<int> par, lch, rch, A, B; // A, B boundary (top-down)
+  vc<int> par, lch, rch, A, B;  // A, B boundary (top-down)
   vc<bool> is_compress;
 
   Static_TopTree(TREE &tree) : tree(tree) { build(); }
 
   void build() {
     N = tree.N;
-    par.assign(N, -1), lch.assign(N, -1), rch.assign(N, -1), A.assign(N, -1), B.assign(N, -1), is_compress.assign(N, 0);
+    par.assign(N, -1), lch.assign(N, -1), rch.assign(N, -1), A.assign(N, -1),
+        B.assign(N, -1), is_compress.assign(N, 0);
     FOR(v, N) { A[v] = tree.parent[v], B[v] = v; }
     build_dfs(tree.V[0]);
     assert(len(par) == 2 * N - 1);
@@ -44,7 +45,7 @@ struct Static_TopTree {
     return dfs(dfs, 2 * N - 2);
   }
 
-private:
+ private:
   int new_node(int l, int r, int a, int b, bool c) {
     int v = len(par);
     par.eb(-1), lch.eb(l), rch.eb(r), A.eb(a), B.eb(b), is_compress.eb(c);
@@ -67,10 +68,12 @@ private:
     };
 
     FOR(i, 1, len(path)) {
-      pqg<pair<int, int>> que;
+      pq_min<pair<int, int>> que;
       int k = path[i];
       que.emplace(0, k);
-      for (auto &c: tree.collect_light(path[i - 1])) { que.emplace(build_dfs(c)); }
+      for (auto &c : tree.collect_light(path[i - 1])) {
+        que.emplace(build_dfs(c));
+      }
       while (len(que) >= 2) {
         auto [h1, i1] = POP(que);
         auto [h2, i2] = POP(que);
@@ -83,15 +86,20 @@ private:
 
       while (1) {
         int n = len(stack);
-        if (n >= 3 && (stack[n - 3].fi == stack[n - 2].fi || stack[n - 3].fi <= stack[n - 1].fi)) {
+        if (n >= 3 && (stack[n - 3].fi == stack[n - 2].fi ||
+                       stack[n - 3].fi <= stack[n - 1].fi)) {
           auto [h3, k3] = POP(stack);
           merge_last_two(), stack.eb(h3, k3);
         }
-        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) { merge_last_two(); }
+        elif (n >= 2 && stack[n - 2].fi <= stack[n - 1].fi) {
+          merge_last_two();
+        }
         else break;
       }
     }
-    while (len(stack) >= 2) { merge_last_two(); }
+    while (len(stack) >= 2) {
+      merge_last_two();
+    }
     return POP(stack);
   }
 };

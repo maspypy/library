@@ -26,12 +26,12 @@ vc<WT> nonzero_group_product_shortest_path(
   vc<int> par(N, -1);
   vc<int> depth(N);
   dist[s] = 0;
-  pqg<pair<WT, int>> que;
+  pq_min<pair<WT, int>> que;
   que.emplace(0, s);
   while (len(que)) {
     auto [dv, v] = POP(que);
     if (dv != dist[v]) continue;
-    for (auto& e: G[v]) {
+    for (auto& e : G[v]) {
       if (chmin(dist[e.to], dv + e.cost)) {
         phi[e.to] = Monoid::op(phi[v], get(e.id, v));
         que.emplace(dist[e.to], e.to);
@@ -49,7 +49,7 @@ vc<WT> nonzero_group_product_shortest_path(
 
   vc<WT> h(M, infty<WT>);
   vc<WT> q(N, infty<WT>);
-  for (auto& e: G.edges) {
+  for (auto& e : G.edges) {
     if (dist[e.frm] == infty<WT>) continue;
     if (!cons[e.id] && chmin(h[e.id], dist[e.frm] + dist[e.to] + e.cost)) {
       que.emplace(h[e.id], e.id);
@@ -60,7 +60,9 @@ vc<WT> nonzero_group_product_shortest_path(
   FOR(v, N) root[v] = v;
 
   auto get_root = [&](int v) -> int {
-    while (root[v] != v) { v = root[v] = root[root[v]]; }
+    while (root[v] != v) {
+      v = root[v] = root[root[v]];
+    }
     return v;
   };
 
@@ -74,9 +76,9 @@ vc<WT> nonzero_group_product_shortest_path(
       if (depth[a] < depth[b]) swap(a, b);
       B.eb(a), a = get_root(par[a]);
     }
-    for (auto& w: B) {
+    for (auto& w : B) {
       root[w] = a, q[w] = x - dist[w];
-      for (auto& e: G[w]) {
+      for (auto& e : G[w]) {
         if (cons[e.id] && chmin(h[e.id], q[w] + dist[e.to] + e.cost)) {
           que.emplace(h[e.id], e.id);
         }

@@ -20,19 +20,19 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(GT& G, int s, int t, int K) {
   vc<int> par(N, -1);
 
   while (len(res) < K) {
-    for (auto&& [es, ng_es]: nodes) {
+    for (auto&& [es, ng_es] : nodes) {
       fill(all(par), -1);
       fill(all(ng_v), 0);
       fill(all(ng_e), 0);
       fill(all(dist), infty<T>);
 
       T pref_cost = 0;
-      for (auto&& x: es) pref_cost += G.edges[x].cost;
+      for (auto&& x : es) pref_cost += G.edges[x].cost;
 
-      for (auto&& x: es) ng_v[G.edges[x].frm] = 1, ng_e[x] = 1;
-      for (auto&& x: ng_es) ng_e[x] = 1;
+      for (auto&& x : es) ng_v[G.edges[x].frm] = 1, ng_e[x] = 1;
+      for (auto&& x : ng_es) ng_e[x] = 1;
       // dijkstra
-      pqg<pair<T, int>> que;
+      pq_min<pair<T, int>> que;
       auto add = [&](int v, T d, int p) -> void {
         if (chmin(dist[v], d)) {
           que.emplace(d, v);
@@ -45,7 +45,7 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(GT& G, int s, int t, int K) {
         auto [dv, v] = POP(que);
         if (dv != dist[v]) continue;
         if (v == t) break;
-        for (auto&& e: G[v]) {
+        for (auto&& e : G[v]) {
           if (ng_e[e.id] || ng_v[e.to]) continue;
           add(e.to, dv + e.cost, e.id);
         }
@@ -78,7 +78,7 @@ vc<tuple<T, vc<int>, vc<int>>> K_shortest_path(GT& G, int s, int t, int K) {
     swap(paths[idx], paths[len(paths) - 1]);
     auto [cost, es, ng_es, n] = POP(paths);
     vc<int> vs = {s};
-    for (auto&& x: es) vs.eb(G.edges[x].to);
+    for (auto&& x : es) vs.eb(G.edges[x].to);
     res.eb(cost, vs, es);
 
     nodes.clear();

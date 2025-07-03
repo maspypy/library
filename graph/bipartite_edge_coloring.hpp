@@ -16,7 +16,9 @@ struct RegularBipartiteColoring {
     return solve_inner(M / N, A);
   }
 
-  vvc<int> solve_inner(int k, vc<int> A) { return (k % 2 == 0 ? solve_even(k, A) : solve_odd(k, A)); }
+  vvc<int> solve_inner(int k, vc<int> A) {
+    return (k % 2 == 0 ? solve_even(k, A) : solve_odd(k, A));
+  }
 
   vvc<int> solve_even(int k, vc<int> A) {
     assert(k % 2 == 0);
@@ -30,7 +32,7 @@ struct RegularBipartiteColoring {
       auto dat = solve_inner(k / 2, C);
       FOR(j, k - (1 << m)) { res.eb(dat[j]); }
       FOR(j, k - (1 << m), len(dat)) {
-        for (auto&& idx: dat[j]) B.eb(idx);
+        for (auto&& idx : dat[j]) B.eb(idx);
       }
       k = 1 << m;
       swap(A, B);
@@ -50,7 +52,9 @@ struct RegularBipartiteColoring {
 
   vvc<int> solve_odd(int k, vc<int> A) {
     assert(k % 2 == 1);
-    if (k == 1) { return {A}; }
+    if (k == 1) {
+      return {A};
+    }
     vc<bool> match = matching(k, A);
     vc<int> B;
     B.reserve(len(A) - N);
@@ -68,7 +72,7 @@ struct RegularBipartiteColoring {
     Graph<bool, 0> G(N + N);
     vc<int> color(N + N);
     FOR(v, N) color[v] = 0;
-    for (auto&& eid: A) {
+    for (auto&& eid : A) {
       auto [a, b] = edges[eid];
       G.add(a, b);
     }
@@ -118,14 +122,16 @@ struct RegularBipartiteColoring {
 
 template <typename GT>
 pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
-  if (G.M == 0) { return {0, {}}; }
+  if (G.M == 0) {
+    return {0, {}};
+  }
   auto vcolor = bipartite_vertex_coloring<GT>(G);
   auto deg = G.deg_array();
   int D = MAX(deg);
 
   UnionFind uf(G.N);
   FOR(c, 2) {
-    pqg<pair<int, int>> que;
+    pq_min<pair<int, int>> que;
     FOR(v, G.N) {
       if (vcolor[v] == c) que.emplace(deg[v], v);
     }
@@ -148,7 +154,7 @@ pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
   vc<int> degL(X), degR(X);
 
   vc<pair<int, int>> edges;
-  for (auto&& e: G.edges) {
+  for (auto&& e : G.edges) {
     int a = e.frm, b = e.to;
     a = uf[a], b = uf[b];
     a = LB(LV, a);
@@ -173,7 +179,7 @@ pair<int, vc<int>> bipartite_edge_coloring(GT& G) {
   vvc<int> res = RBC.solve(X, D, edges);
   vc<int> ecolor(len(edges));
   FOR(i, len(res)) {
-    for (auto&& j: res[i]) ecolor[j] = i;
+    for (auto&& j : res[i]) ecolor[j] = i;
   }
   ecolor.resize(G.M);
   return {D, ecolor};

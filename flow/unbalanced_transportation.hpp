@@ -25,7 +25,7 @@ struct Unbalanced_Transportation_Problem {
 
   // 流量 -> 費用
   vc<T> calc() {
-    using Q = pqg<pair<T, int>>;
+    using Q = pq_min<pair<T, int>>;
     vc<T> res = {0};
     T MCF = 0;
     vv(Q, edge, K, K);
@@ -50,7 +50,9 @@ struct Unbalanced_Transportation_Problem {
         auto& que = edge[a][b];
         while (len(que)) {
           auto [x, c] = que.top();
-          if (FRM[c] == b) { break; }
+          if (FRM[c] == b) {
+            break;
+          }
           que.pop();
         }
       }
@@ -68,7 +70,9 @@ struct Unbalanced_Transportation_Problem {
       queue<int> que;
       vc<int> par(K, -1);
       FOR(k, K) {
-        if (supply[k]) { dist[k] = 0, in_que[k] = 1, que.emplace(k); }
+        if (supply[k]) {
+          dist[k] = 0, in_que[k] = 1, que.emplace(k);
+        }
       }
       while (!que.empty()) {
         int v = que.front();

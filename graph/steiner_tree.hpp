@@ -19,23 +19,23 @@ tuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {
 
   for (int s = 1; s < (1 << K); ++s) {
     auto& dp = DP[s];
-    for (int k: all_bit<u32>(s)) {
+    for (int k : all_bit<u32>(s)) {
       int v = S[k];
       chmin(dp[v], DP[s ^ 1 << k][v]);
     }
-    for (u32 t: all_subset<u32>(s)) {
+    for (u32 t : all_subset<u32>(s)) {
       if (t == 0 || t == s) continue;
       FOR(v, N) {
         if (chmin(dp[v], DP[t][v] + DP[s ^ t][v] - v_wt[v])) par[s][v] = 2 * t;
       }
     }
     // 根の移動を dijkstra で
-    pqg<pair<T, int>> que;
+    pq_min<pair<T, int>> que;
     FOR(v, N) que.emplace(dp[v], v);
     while (!que.empty()) {
       auto [dv, v] = POP(que);
       if (dv != dp[v]) continue;
-      for (auto&& e: G[v]) {
+      for (auto&& e : G[v]) {
         if (chmin(dp[e.to], dv + e.cost + v_wt[e.to])) {
           par[s][e.to] = 2 * e.id + 1;
           que.emplace(dp[e.to], e.to);
@@ -56,7 +56,9 @@ tuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {
 
   while (len(que)) {
     auto [s, v] = POP(que);
-    if (s == 0) { continue; }
+    if (s == 0) {
+      continue;
+    }
     if (par[s][v] == -1) {
       int k = v_to_k[v];
       assert(k != -1 && s >> k & 1);
@@ -80,8 +82,8 @@ tuple<T, vc<int>, vc<int>> steiner_tree(GT& G, vc<int> S, vc<T> v_wt = {}) {
   FOR(v, N) if (used_v[v]) vs.eb(v);
   FOR(e, M) if (used_e[e]) es.eb(e);
   T cost = 0;
-  for (auto&& v: vs) cost += v_wt[v];
-  for (auto&& e: es) cost += G.edges[e].cost;
+  for (auto&& v : vs) cost += v_wt[v];
+  for (auto&& e : es) cost += G.edges[e].cost;
   assert(cost == DP.back()[root]);
   return {cost, vs, es};
 }

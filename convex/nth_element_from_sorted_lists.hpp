@@ -9,13 +9,13 @@ template <typename T, typename F>
 vi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0) {
   ll N = len(S);
   ll sm = 0;
-  for (auto& x: S) sm += x >> k;
+  for (auto& x : S) sm += x >> k;
   assert(0 <= K && K <= sm);
   if (K == 0) return vi(N, 0);
   if (K == sm) return S;
 
   ll row = 0;
-  for (auto& x: S) row += (x >= (1LL << k));
+  for (auto& x : S) row += (x >= (1LL << k));
 
   auto g = [&](int i, ll j) -> T {
     j = ((j + 1) << k) - 1;
@@ -24,10 +24,10 @@ vi nth_element_from_sorted_lists(vi S, ll K, F f, int k = 0) {
   vi A(N);
   if (K > row) {
     A = nth_element_from_sorted_lists<T>(S, (K - row) / 2, f, k + 1);
-    for (auto& a: A) a *= 2;
+    for (auto& a : A) a *= 2;
     K = K - (K - row) / 2 * 2;
   }
-  pqg<pair<T, int>> que;
+  pq_min<pair<T, int>> que;
   FOR(i, N) que.emplace(g(i, A[i]), i);
   while (K) {
     --K;
