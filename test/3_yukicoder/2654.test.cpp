@@ -12,8 +12,8 @@ void solve() {
   Graph<int, 0> G(N);
   G.read_tree(0, 0);
 
-  Removable_Queue<pqg<ll>> que1;
-  Removable_Queue<pq<ll>> que2;
+  Removable_Queue<pq_min<ll>> que1;
+  Removable_Queue<pq_max<ll>> que2;
 
   Slide_Split_Sum<ll> X;
 
@@ -71,7 +71,7 @@ void solve() {
     X.insert(A[v]);
     que1.push(A[v]);
     que2.push(A[v]);
-    for (auto& e: G[v]) {
+    for (auto& e : G[v]) {
       if (e.to == p) continue;
       dfs(dfs, e.to, v);
     }

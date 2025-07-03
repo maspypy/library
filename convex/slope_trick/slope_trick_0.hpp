@@ -2,11 +2,11 @@
 struct Slope_Trick_0 {
   static constexpr ll LMIN = -infty<ll>;
   static constexpr ll RMAX = infty<ll>;
-  pq<ll> que_l;
-  pqg<ll> que_r;
+  pq_max<ll> que_l;
+  pq_min<ll> que_r;
 
   ll add_l, add_r;
-  i128 min_f; // infty を足し引きしても壊れないように i128 にする
+  i128 min_f;  // infty を足し引きしても壊れないように i128 にする
 
   Slope_Trick_0() : add_l(0), add_r(0), min_f(0) {}
 
@@ -45,9 +45,9 @@ struct Slope_Trick_0 {
   void add_abs(ll a) { add_a_minus_x(a), add_x_minus_a(a); }
 
   // 増加側を消して、減少側のみにする
-  void clear_right() { que_r = pqg<ll>(); }
+  void clear_right() { que_r = pq_min<ll>(); }
   // 減少側を消して、増加側のみにする
-  void clear_left() { que_l = pq<ll>(); }
+  void clear_left() { que_l = pq_max<ll>(); }
   void shift(const ll &a) { add_l += a, add_r += a; }
 
   // g(x) = min_{x-b <= y <= x-a} f(y)
@@ -59,10 +59,14 @@ struct Slope_Trick_0 {
   // O(size log(size))
   i128 eval(ll x) {
     i128 y = min_f;
-    pq<ll> que_l_copy = que_l;
-    pqg<ll> que_r_copy = que_r;
-    while (len(que_l_copy)) { y += max<ll>(0, (POP(que_l_copy) + add_l) - x); }
-    while (len(que_r_copy)) { y += max<ll>(0, x - (POP(que_r_copy) + add_r)); }
+    pq_max<ll> que_l_copy = que_l;
+    pq_min<ll> que_r_copy = que_r;
+    while (len(que_l_copy)) {
+      y += max<ll>(0, (POP(que_l_copy) + add_l) - x);
+    }
+    while (len(que_r_copy)) {
+      y += max<ll>(0, x - (POP(que_r_copy) + add_r));
+    }
     return y;
   }
 
@@ -90,10 +94,14 @@ struct Slope_Trick_0 {
 #ifdef FASTIO
   void debug() {
     vi left, right;
-    pq<ll> que_l_copy = que_l;
-    pqg<ll> que_r_copy = que_r;
-    while (len(que_l_copy)) { left.eb(POP(que_l_copy) + add_l); }
-    while (len(que_r_copy)) { right.eb(POP(que_r_copy) + add_r); }
+    pq_max<ll> que_l_copy = que_l;
+    pq_min<ll> que_r_copy = que_r;
+    while (len(que_l_copy)) {
+      left.eb(POP(que_l_copy) + add_l);
+    }
+    while (len(que_r_copy)) {
+      right.eb(POP(que_r_copy) + add_r);
+    }
     sort(all(left));
     sort(all(right));
     print("min_f", min_f, "left", left, "right", right);

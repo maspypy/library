@@ -6,8 +6,8 @@
 void solve() {
   LL(N, Q);
   VEC(int, A, N);
-  Removable_Queue<pqg<int>> que1(A);
-  Removable_Queue<pq<int>> que2(A);
+  Removable_Queue<pq_min<int>> que1(A);
+  Removable_Queue<pq_max<int>> que2(A);
 
   FOR(Q) {
     LL(t);

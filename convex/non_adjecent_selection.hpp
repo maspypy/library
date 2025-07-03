@@ -10,7 +10,7 @@ struct Non_Adjacent_Selection {
 
   void calc(vc<T> A) {
     if (MINIMIZE) {
-      for (auto& x: A) x = -x;
+      for (auto& x : A) x = -x;
     }
     N = len(A);
     vc<bool> rest(N + 2, 1);
@@ -18,7 +18,7 @@ struct Non_Adjacent_Selection {
     vc<pair<int, int>> range(N + 2);
     vc<int> left(N + 2), right(N + 2);
     vc<T> val(N + 2);
-    pq<pair<T, int>> que;
+    pq_max<pair<T, int>> que;
     FOR(i, N + 2) { left[i] = i - 1, right[i] = i + 1; }
     FOR(i, N) {
       val[i + 1] = A[i], range[i + 1] = {i, i + 1};
@@ -32,8 +32,12 @@ struct Non_Adjacent_Selection {
       ANS.eb(ANS.back() + add);
       int L = left[i], R = right[i];
       history.eb(range[i]);
-      if (1 <= L) { right[left[L]] = i, left[i] = left[L]; }
-      if (R <= N) { left[right[R]] = i, right[i] = right[R]; }
+      if (1 <= L) {
+        right[left[L]] = i, left[i] = left[L];
+      }
+      if (R <= N) {
+        left[right[R]] = i, right[i] = right[R];
+      }
       if (rest[L] && rest[R]) {
         val[i] = val[L] + val[R] - val[i];
         que.emplace(val[i], i);
@@ -45,7 +49,7 @@ struct Non_Adjacent_Selection {
     }
 
     if (MINIMIZE) {
-      for (auto& x: ANS) x = -x;
+      for (auto& x : ANS) x = -x;
     }
   }
 

@@ -12,7 +12,7 @@ void solve() {
   auto [C, comp] = two_edge_component(G0);
 
   Graph G(C);
-  for (auto&& e: G0.edges) {
+  for (auto&& e : G0.edges) {
     ll a = e.frm, b = e.to;
     if (comp[a] == comp[b]) continue;
     G.add(comp[a], comp[b]);
@@ -22,7 +22,7 @@ void solve() {
   using Mono = Monoid_Max_Idx<ll>;
 
   Tree tree(G);
-  vc<pq<ll>> wts(C);
+  vc<pq_max<ll>> wts(C);
   vc<pair<ll, int>> dat(C);
   FOR(i, C) dat[i] = {-infty<ll>, i};
   Tree_Monoid<decltype(tree), Mono, 0> TM(tree, dat);

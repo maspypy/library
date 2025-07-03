@@ -10,23 +10,23 @@ struct Node {
   using np = Node *;
   struct VX {
     bool is_edge = false;
-    ll x = 0; // 頂点なら X[v], 辺なら長さ
+    ll x = 0;  // 頂点なら X[v], 辺なら長さ
   };
   // (wt, light edge の接続先)
   struct MX {
-    Removable_Queue<pq<pair<ll, int>>> que;
+    Removable_Queue<pq_max<pair<ll, int>>> que;
     ll sm = 0;
     ll dist_sum = 0;
   };
 
   struct X {
     ll wt_sum;
-    ll length;     // heavy path len
-    ll sum1, sum2; // heavy path の端点からの dist sum
+    ll length;      // heavy path len
+    ll sum1, sum2;  // heavy path の端点からの dist sum
   };
 
   Node *l, *r, *p;
-  int idx, size; // size は heavy path の頂点数
+  int idx, size;  // size は heavy path の頂点数
   bool rev;
   VX vx;
   MX mx;
@@ -148,7 +148,9 @@ void solve() {
       ll me = (c->vx.is_edge ? 0 : c->vx.x);
       ll mid = c->mx.sm;
       if (me + mid + b >= need) {
-        if (b >= need) { return dfs(dfs, c->r, need); }
+        if (b >= need) {
+          return dfs(dfs, c->r, need);
+        }
         if (mid >= half) {
           auto [val, idx] = c->mx.que.top();
           if (val >= half) return dfs(dfs, LCT[idx], half);

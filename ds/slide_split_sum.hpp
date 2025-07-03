@@ -7,15 +7,15 @@
 */
 template <typename T, typename SUM_T = T>
 struct Slide_Split_Sum {
-  Removable_Queue<pq<T>> ql;
-  Removable_Queue<pqg<T>> qr;
+  Removable_Queue<pq_max<T>> ql;
+  Removable_Queue<pq_min<T>> qr;
   SUM_T sl, sr;
   Slide_Split_Sum() : sl(0), sr(0) {}
 
   inline int size() { return len(ql) + len(qr); }
   void clear() {
-    ql = Removable_Queue<pq<T>>();
-    qr = Removable_Queue<pqg<T>>();
+    ql = Removable_Queue<pq_max<T>>();
+    qr = Removable_Queue<pq_min<T>>();
     sl = sr = 0;
   }
   void insert(T x) { (x <= lmax() ? push_l(x) : push_r(x)); }
@@ -34,8 +34,12 @@ struct Slide_Split_Sum {
   }
   void slide(int k) {
     assert(0 <= k && k <= size());
-    while (len(ql) < k) { push_l(pop_r()); }
-    while (len(ql) > k) { push_r(pop_l()); }
+    while (len(ql) < k) {
+      push_l(pop_r());
+    }
+    while (len(ql) > k) {
+      push_r(pop_l());
+    }
   }
   vc<T> get_all() {
     vc<T> L = ql.get_all();
@@ -45,7 +49,7 @@ struct Slide_Split_Sum {
     return L;
   }
 
-private:
+ private:
   inline T lmax() { return (ql.empty() ? -infty<T> : ql.top()); }
   inline T rmin() { return (qr.empty() ? infty<T> : qr.top()); }
   inline T pop_l() {
