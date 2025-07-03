@@ -50,9 +50,9 @@ using vvvvc = vector<vvvc<T>>;
 template <class T>
 using vvvvvc = vector<vvvvc<T>>;
 template <class T>
-using pq = priority_queue<T>;
+using pq_max = priority_queue<T>;
 template <class T>
-using pqg = priority_queue<T, vector<T>, greater<T>>;
+using pq_min = priority_queue<T, vector<T>, greater<T>>;
 
 #define vv(type, name, h, ...) \
   vector<vector<type>> name(h, vector<type>(__VA_ARGS__))
@@ -192,13 +192,13 @@ T POP(deque<T> &que) {
   return a;
 }
 template <typename T>
-T POP(pq<T> &que) {
+T POP(pq_min<T> &que) {
   T a = que.top();
   que.pop();
   return a;
 }
 template <typename T>
-T POP(pqg<T> &que) {
+T POP(pq_max<T> &que) {
   T a = que.top();
   que.pop();
   return a;

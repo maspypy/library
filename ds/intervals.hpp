@@ -11,7 +11,16 @@ struct Intervals_Fast {
   vc<T> dat;
   FastSet ss;
 
-  Intervals_Fast(int N, T none_val) : LLIM(0), RLIM(N), none_val(none_val), total_num(0), total_len(0), dat(N, none_val), ss(N) { ss.insert(0); }
+  Intervals_Fast(int N, T none_val)
+      : LLIM(0),
+        RLIM(N),
+        none_val(none_val),
+        total_num(0),
+        total_len(0),
+        dat(N, none_val),
+        ss(N) {
+    ss.insert(0);
+  }
 
   // x を含む区間の情報の取得 l, r, t
   tuple<int, int, T> get(int x, bool ERASE = false) {
@@ -70,8 +79,7 @@ struct Intervals_Fast {
 
   void set(int L, int R, T t) {
     if (L == R) return;
-    enumerate_range(
-        L, R, [](int l, int r, T x) -> void {}, true);
+    enumerate_range(L, R, [](int l, int r, T x) -> void {}, true);
     ss.insert(L);
     dat[L] = t;
     if (t != none_val) total_num++, total_len += R - L;
@@ -91,6 +99,14 @@ struct Intervals_Fast {
       if (dat[p] != none_val) --total_num;
       ss.erase(p);
     }
+  }
+
+  vc<T> get_all() {
+    vc<T> res(RLIM, none_val);
+    res.enumerate_all([&](int a, int b, T t) -> void {
+      FOR(i, a, b) res[i] = t;
+    });
+    return res;
   }
 };
 
@@ -169,8 +185,7 @@ struct Intervals {
   void set(X L, X R, T t) {
     assert(L <= R);
     if (L == R) return;
-    enumerate_range(
-        L, R, [](int l, int r, T x) -> void {}, true);
+    enumerate_range(L, R, [](int l, int r, T x) -> void {}, true);
     dat[L] = t;
     if (t != none_val) total_num++, total_len += R - L;
     merge_at(L);
