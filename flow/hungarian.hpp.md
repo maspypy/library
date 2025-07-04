@@ -9,12 +9,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1789.test.cpp
     title: test/3_yukicoder/1789.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2573.test.cpp
     title: test/3_yukicoder/2573.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"flow/hungarian.hpp\"\n// returns: (ans, match, X, Y)\n//\
@@ -72,7 +72,7 @@ data:
   path: flow/hungarian.hpp
   requiredBy: []
   timestamp: '2025-01-06 16:30:28+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/graph/assignment.test.cpp
   - test/3_yukicoder/2573.test.cpp
