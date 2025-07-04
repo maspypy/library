@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: convex/maxplus_convolution.hpp
     title: convex/maxplus_convolution.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: convex/monotone_minima.hpp
     title: convex/monotone_minima.hpp
   - icon: ':question:'
