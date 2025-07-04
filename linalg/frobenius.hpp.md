@@ -1,7 +1,7 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/basis.hpp
     title: linalg/basis.hpp
   - icon: ':question:'
@@ -51,12 +51,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
     title: test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
     title: test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links:
     - https://codeforces.com/blog/entry/124815
@@ -537,7 +537,7 @@ data:
   requiredBy:
   - linalg/adjugate_matrix.hpp
   timestamp: '2025-02-12 05:55:32+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/pow_of_matrix_frobenius.test.cpp
   - test/2_library_checker/linear_algebra/adjugate_matrix.test.cpp

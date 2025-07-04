@@ -174,7 +174,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/2_library_checker/graph/chromatic_polynomial.test.cpp
     title: test/2_library_checker/graph/chromatic_polynomial.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/number_theory/bernoulli.test.cpp
     title: test/2_library_checker/number_theory/bernoulli.test.cpp
   - icon: ':x:'
