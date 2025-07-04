@@ -4,16 +4,16 @@ data:
   - icon: ':question:'
     path: alg/monoid/mul.hpp
     title: alg/monoid/mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: ds/sliding_window_aggregation.hpp
     title: ds/sliding_window_aggregation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/matrix_mul.hpp
     title: linalg/matrix_mul.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: linalg/solve_linear.hpp
     title: linalg/solve_linear.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/all_inverse.hpp
     title: mod/all_inverse.hpp
   - icon: ':question:'
@@ -40,16 +40,16 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/from_log_differentiation.hpp
     title: poly/from_log_differentiation.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/lagrange_interpolate_iota.hpp
     title: poly/lagrange_interpolate_iota.hpp
   - icon: ':question:'
     path: poly/ntt.hpp
     title: poly/ntt.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: poly/prefix_product_of_poly.hpp
     title: poly/prefix_product_of_poly.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedRequiredBy: []

@@ -4,7 +4,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: mod/O1_inverse.hpp
     title: mod/O1_inverse.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: mod/barrett.hpp
     title: mod/barrett.hpp
   - icon: ':heavy_check_mark:'

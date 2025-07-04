@@ -18,15 +18,15 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1826.test.cpp
     title: test/3_yukicoder/1826.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2935.test.cpp
     title: test/3_yukicoder/2935.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/789.test.cpp
     title: test/3_yukicoder/789.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/segtree/dynamic_segtree.hpp\"\n\r\n// sparse \u3082\u3042\
@@ -197,7 +197,7 @@ data:
   path: ds/segtree/dynamic_segtree.hpp
   requiredBy: []
   timestamp: '2024-12-13 13:55:16+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/data_structure/point_set_range_composite_dynamic.test.cpp
   - test/2_library_checker/data_structure/range_kth_smallest_pseg.test.cpp

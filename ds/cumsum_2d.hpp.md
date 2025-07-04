@@ -9,12 +9,12 @@ data:
   - icon: ':x:'
     path: test/3_yukicoder/1141.test.cpp
     title: test/3_yukicoder/1141.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/655.test.cpp
     title: test/3_yukicoder/655.test.cpp
   _isVerificationFailed: true
   _pathExtension: hpp
-  _verificationStatusIcon: ':x:'
+  _verificationStatusIcon: ':question:'
   attributes:
     links: []
   bundledCode: "#line 2 \"ds/cumsum_2d.hpp\"\n\r\n#line 2 \"alg/monoid/add.hpp\"\n\
@@ -75,7 +75,7 @@ data:
   path: ds/cumsum_2d.hpp
   requiredBy: []
   timestamp: '2025-06-20 11:41:11+09:00'
-  verificationStatus: LIBRARY_ALL_WA
+  verificationStatus: LIBRARY_SOME_WA
   verifiedWith:
   - test/3_yukicoder/655.test.cpp
   - test/3_yukicoder/1141.test.cpp
