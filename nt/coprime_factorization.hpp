@@ -1,8 +1,8 @@
 
 /*
 互いに素な整数 p1, p2, ..., pk を用いて n_i = prod p_i^e_i と表す.
-[21,60,140,400]
-[3,7,20], [[(0,1),(1,1)],[(0,1),(2,1)],[(1,1),(2,1)],[(2,2)]]
+input: [21,60,140,400], output: [3,7,20], [[(0,1),(1,1)],[(0,1),(2,1)],[(1,1),(2,1)],[(2,2)]]
+O(N^2\log A) 程度. https://codeforces.com/blog/entry/108053
 */
 template <typename T>
 pair<vc<T>, vvc<pair<int, int>>> coprime_factorization(vc<T> nums) {
