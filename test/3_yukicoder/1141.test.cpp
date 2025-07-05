@@ -25,8 +25,8 @@ void solve() {
   vv(Group::X, A, H, W);
   Cumsum_2D<Group> CS(H, W, [&](int x, int y) -> pair<mint, int> {
     INT(a);
-    if (a == 0) A[x][y] = {mint(1), 1};
-    return A[x][y] = {mint(a), 0};
+    if (a == 0) return {mint(1), 1};
+    return {mint(a), 0};
   });
   LL(Q);
   FOR(Q) {
