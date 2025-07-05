@@ -23,12 +23,11 @@ struct Group {
 void solve() {
   LL(H, W);
   vv(Group::X, A, H, W);
-  FOR(x, H) FOR(y, W) {
-    LL(a);
+  Cumsum_2D<Group> CS(H, W, [&](int x, int y) -> pair<mint, int> {
+    INT(a);
     if (a == 0) A[x][y] = {mint(1), 1};
-    if (a != 0) A[x][y] = {mint(a), 0};
-  }
-  Cumsum_2D<Group> CS(A);
+    return A[x][y] = {mint(a), 0};
+  });
   LL(Q);
   FOR(Q) {
     LL(a, b);
@@ -43,13 +42,6 @@ void solve() {
 }
 
 signed main() {
-  cin.tie(nullptr);
-  ios::sync_with_stdio(false);
-  cout << setprecision(15);
-
-  ll T = 1;
-  // LL(T);
-  FOR(T) solve();
-
+  solve();
   return 0;
 }
