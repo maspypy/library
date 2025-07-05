@@ -1,29 +1,29 @@
 ---
 data:
   _extendedDependsOn:
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: alg/monoid/affine.hpp
     title: alg/monoid/affine.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':x:'
     path: ds/segtree/prefix_max_segtree.hpp
     title: ds/segtree/prefix_max_segtree.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint.hpp
     title: mod/modint.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: mod/modint_common.hpp
     title: mod/modint_common.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: my_template.hpp
     title: my_template.hpp
-  - icon: ':heavy_check_mark:'
+  - icon: ':question:'
     path: random/base.hpp
     title: random/base.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith: []
-  _isVerificationFailed: false
+  _isVerificationFailed: true
   _pathExtension: cpp
-  _verificationStatusIcon: ':heavy_check_mark:'
+  _verificationStatusIcon: ':x:'
   attributes:
     '*NOT_SPECIAL_COMMENTS*': ''
     PROBLEM: https://judge.yosupo.jp/problem/aplusb
@@ -185,94 +185,95 @@ data:
     \ vector<mint> dat = {0, 1};\n  assert(0 <= n);\n  if (n >= mod) n %= mod;\n \
     \ while (len(dat) <= n) {\n    int k = len(dat);\n    int q = (mod + k - 1) /\
     \ k;\n    dat.eb(dat[k * q - mod] * mint::raw(q));\n  }\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod = mint::get_mod();\n\
-    \  assert(0 <= n && n < mod);\n  static vector<mint> dat = {1, 1};\n  while (len(dat)\
-    \ <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));\n  return dat[n];\n}\n\
-    \ntemplate <typename mint>\nmint fact_inv(int n) {\n  static vector<mint> dat\
-    \ = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat) <= n) dat.eb(dat[len(dat)\
-    \ - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\ntemplate <class mint, class...\
-    \ Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1) * ... * fact_inv<mint>(xs));\n\
-    }\n\ntemplate <typename mint, class Head, class... Tail>\nmint multinomial(Head\
-    \ &&head, Tail &&... tail) {\n  return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);\n\
-    }\n\ntemplate <typename mint>\nmint C_dense(int n, int k) {\n  assert(n >= 0);\n\
-    \  if (k < 0 || n < k) return 0;\n  static vvc<mint> C;\n  static int H = 0, W\
-    \ = 0;\n  auto calc = [&](int i, int j) -> mint {\n    if (i == 0) return (j ==\
-    \ 0 ? mint(1) : mint(0));\n    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n\
-    \  };\n  if (W <= k) {\n    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j,\
-    \ W, k + 1) { C[i][j] = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <=\
-    \ n) {\n    C.resize(n + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n\
-    \      FOR(j, W) { C[i][j] = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return\
-    \ C[n][k];\n}\n\ntemplate <typename mint, bool large = false, bool dense = false>\n\
-    mint C(ll n, ll k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if\
-    \ constexpr (dense) return C_dense<mint>(n, k);\n  if constexpr (!large) return\
-    \ multinomial<mint>(n, k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i,\
-    \ k) x *= mint(n - i);\n  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename\
-    \ mint, bool large = false>\nmint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0\
-    \ <= k && k <= n);\n  if (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n\
-    \ - k);\n  return mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate\
-    \ <typename mint, bool large = false, bool dense = false>\nmint C_negative(ll\
-    \ n, ll d) {\n  assert(n >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\
-    \ return (d == 0 ? mint(1) : mint(0)); }\n  return C<mint, large, dense>(n + d\
-    \ - 1, d);\n}\n#line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint\
-    \ {\n  static constexpr u32 umod = u32(mod);\n  static_assert(umod < u32(1) <<\
-    \ 31);\n  u32 val;\n\n  static modint raw(u32 v) {\n    modint x;\n    x.val =\
-    \ v;\n    return x;\n  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32\
-    \ x) : val(x % umod) {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr\
-    \ modint(u128 x) : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod)\
-    \ < 0 ? x + mod : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod\
-    \ : x){};\n  constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n\
-    \  bool operator<(const modint &other) const { return val < other.val; }\n  modint\
-    \ &operator+=(const modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n\
-    \    return *this;\n  }\n  modint &operator-=(const modint &p) {\n    if ((val\
-    \ += umod - p.val) >= umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const\
-    \ modint &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n \
-    \ modint &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return\
-    \ *this;\n  }\n  modint operator-() const { return modint::raw(val ? mod - val\
-    \ : u32(0)); }\n  modint operator+(const modint &p) const { return modint(*this)\
-    \ += p; }\n  modint operator-(const modint &p) const { return modint(*this) -=\
-    \ p; }\n  modint operator*(const modint &p) const { return modint(*this) *= p;\
-    \ }\n  modint operator/(const modint &p) const { return modint(*this) /= p; }\n\
-    \  bool operator==(const modint &p) const { return val == p.val; }\n  bool operator!=(const\
-    \ modint &p) const { return val != p.val; }\n  modint inverse() const {\n    int\
-    \ a = val, b = mod, u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n\
-    \      swap(a -= t * b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n\
-    \  }\n  modint pow(ll n) const {\n    if (n < 0) return inverse().pow(-n);\n \
-    \   assert(n >= 0);\n    modint ret(1), mul(val);\n    while (n > 0) {\n     \
-    \ if (n & 1) ret *= mul;\n      mul *= mul;\n      n >>= 1;\n    }\n    return\
-    \ ret;\n  }\n  static constexpr int get_mod() { return mod; }\n  // (n, r), r\
-    \ \u306F 1 \u306E 2^n \u4E57\u6839\n  static constexpr pair<int, int> ntt_info()\
-    \ {\n    if (mod == 120586241) return {20, 74066978};\n    if (mod == 167772161)\
-    \ return {25, 17};\n    if (mod == 469762049) return {26, 30};\n    if (mod ==\
-    \ 754974721) return {24, 362};\n    if (mod == 880803841) return {23, 211};\n\
-    \    if (mod == 943718401) return {22, 663003469};\n    if (mod == 998244353)\
-    \ return {23, 31};\n    if (mod == 1004535809) return {21, 582313106};\n    if\
-    \ (mod == 1012924417) return {21, 368093570};\n    return {-1, -1};\n  }\n  static\
-    \ constexpr bool can_ntt() { return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\n\
-    template <int mod>\nvoid rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %=\
-    \ mod;\n  // assert(0 <= x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod>\
-    \ x) {\n  fastio::wt(x.val);\n}\n#endif\n\nusing modint107 = modint<1000000007>;\n\
-    using modint998 = modint<998244353>;\n#line 9 \"test/1_mytest/prefix_max_segtree.test.cpp\"\
-    \n\nusing mint = modint998;\nusing F = pair<mint, mint>;\n\nvoid test(ll N) {\n\
-    \  vc<int> key(N);\n  vc<F> X(N);\n  auto get = [&]() -> pair<int, F> {\n    int\
-    \ k = RNG(0, 100);\n    mint a = RNG(0, mint::get_mod());\n    mint b = RNG(0,\
-    \ mint::get_mod());\n    return {k, {a, b}};\n  };\n\n  FOR(i, N) tie(key[i],\
-    \ X[i]) = get();\n\n  auto segf = [&](int i) -> pair<int, F> { return {key[i],\
-    \ X[i]}; };\n\n  using Mono = Monoid_Affine<mint>;\n  Prefix_Max_SegTree<int,\
-    \ Mono> seg(N, segf);\n\n  auto naive = [&](int L, int R) -> F {\n    int mx =\
-    \ -infty<int>;\n    F prod = Mono::unit();\n    FOR(i, L, R) {\n      if (mx <=\
-    \ key[i]) {\n        mx = key[i];\n        prod = Mono::op(prod, X[i]);\n    \
-    \  }\n    }\n    return prod;\n  };\n\n  /*\n  set\n  get\n  get_all\n  prod\n\
-    \  prod_all\n  */\n  int Q = 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n    int\
-    \ i = RNG(0, N);\n    int L = RNG(0, N), R = RNG(0, N);\n    auto [k, x] = get();\n\
-    \    if (L > R) swap(L, R);\n    ++R;\n    if (t == 0) {\n      key[i] = k, X[i]\
-    \ = x;\n      seg.set(i, {k, x});\n    }\n    if (t == 1) {\n      auto [k, x]\
-    \ = seg.get(i);\n      assert(key[i] == k);\n      assert(X[i] == x);\n    }\n\
-    \    if (t == 2) {\n      auto [k, x] = seg.get_all();\n      assert(key == k);\n\
-    \      assert(X == x);\n    }\n    if (t == 3) { assert(naive(L, R) == seg.prod(L,\
-    \ R)); }\n    if (t == 4) { assert(naive(0, N) == seg.prod_all()); }\n  }\n}\n\
-    \nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b << \"\\n\";\n\
-    }\n\nsigned main() {\n  FOR(100) FOR(N, 1, 100) { test(N); }\n  solve();\n  return\
-    \ 0;\n}\n"
+    \ntemplate <>\ndouble inv<double>(int n) {\n  assert(n != 0);\n  return 1.0 /\
+    \ n;\n}\n\ntemplate <typename mint>\nmint fact(int n) {\n  static const int mod\
+    \ = mint::get_mod();\n  assert(0 <= n && n < mod);\n  static vector<mint> dat\
+    \ = {1, 1};\n  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));\n\
+    \  return dat[n];\n}\n\ntemplate <typename mint>\nmint fact_inv(int n) {\n  static\
+    \ vector<mint> dat = {1, 1};\n  if (n < 0) return mint(0);\n  while (len(dat)\
+    \ <= n) dat.eb(dat[len(dat) - 1] * inv<mint>(len(dat)));\n  return dat[n];\n}\n\
+    \ntemplate <class mint, class... Ts>\nmint fact_invs(Ts... xs) {\n  return (mint(1)\
+    \ * ... * fact_inv<mint>(xs));\n}\n\ntemplate <typename mint, class Head, class...\
+    \ Tail>\nmint multinomial(Head &&head, Tail &&...tail) {\n  return fact<mint>(head)\
+    \ * fact_invs<mint>(std::forward<Tail>(tail)...);\n}\n\ntemplate <typename mint>\n\
+    mint C_dense(int n, int k) {\n  assert(n >= 0);\n  if (k < 0 || n < k) return\
+    \ 0;\n  static vvc<mint> C;\n  static int H = 0, W = 0;\n  auto calc = [&](int\
+    \ i, int j) -> mint {\n    if (i == 0) return (j == 0 ? mint(1) : mint(0));\n\
+    \    return C[i - 1][j] + (j ? C[i - 1][j - 1] : 0);\n  };\n  if (W <= k) {\n\
+    \    FOR(i, H) {\n      C[i].resize(k + 1);\n      FOR(j, W, k + 1) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    W = k + 1;\n  }\n  if (H <= n) {\n    C.resize(n\
+    \ + 1);\n    FOR(i, H, n + 1) {\n      C[i].resize(W);\n      FOR(j, W) { C[i][j]\
+    \ = calc(i, j); }\n    }\n    H = n + 1;\n  }\n  return C[n][k];\n}\n\ntemplate\
+    \ <typename mint, bool large = false, bool dense = false>\nmint C(ll n, ll k)\
+    \ {\n  assert(n >= 0);\n  if (k < 0 || n < k) return 0;\n  if constexpr (dense)\
+    \ return C_dense<mint>(n, k);\n  if constexpr (!large) return multinomial<mint>(n,\
+    \ k, n - k);\n  k = min(k, n - k);\n  mint x(1);\n  FOR(i, k) x *= mint(n - i);\n\
+    \  return x * fact_inv<mint>(k);\n}\n\ntemplate <typename mint, bool large = false>\n\
+    mint C_inv(ll n, ll k) {\n  assert(n >= 0);\n  assert(0 <= k && k <= n);\n  if\
+    \ (!large) return fact_inv<mint>(n) * fact<mint>(k) * fact<mint>(n - k);\n  return\
+    \ mint(1) / C<mint, 1>(n, k);\n}\n\n// [x^d](1-x)^{-n}\ntemplate <typename mint,\
+    \ bool large = false, bool dense = false>\nmint C_negative(ll n, ll d) {\n  assert(n\
+    \ >= 0);\n  if (d < 0) return mint(0);\n  if (n == 0) {\n    return (d == 0 ?\
+    \ mint(1) : mint(0));\n  }\n  return C<mint, large, dense>(n + d - 1, d);\n}\n\
+    #line 3 \"mod/modint.hpp\"\n\ntemplate <int mod>\nstruct modint {\n  static constexpr\
+    \ u32 umod = u32(mod);\n  static_assert(umod < u32(1) << 31);\n  u32 val;\n\n\
+    \  static modint raw(u32 v) {\n    modint x;\n    x.val = v;\n    return x;\n\
+    \  }\n  constexpr modint() : val(0) {}\n  constexpr modint(u32 x) : val(x % umod)\
+    \ {}\n  constexpr modint(u64 x) : val(x % umod) {}\n  constexpr modint(u128 x)\
+    \ : val(x % umod) {}\n  constexpr modint(int x) : val((x %= mod) < 0 ? x + mod\
+    \ : x){};\n  constexpr modint(ll x) : val((x %= mod) < 0 ? x + mod : x){};\n \
+    \ constexpr modint(i128 x) : val((x %= mod) < 0 ? x + mod : x){};\n  bool operator<(const\
+    \ modint &other) const { return val < other.val; }\n  modint &operator+=(const\
+    \ modint &p) {\n    if ((val += p.val) >= umod) val -= umod;\n    return *this;\n\
+    \  }\n  modint &operator-=(const modint &p) {\n    if ((val += umod - p.val) >=\
+    \ umod) val -= umod;\n    return *this;\n  }\n  modint &operator*=(const modint\
+    \ &p) {\n    val = u64(val) * p.val % umod;\n    return *this;\n  }\n  modint\
+    \ &operator/=(const modint &p) {\n    *this *= p.inverse();\n    return *this;\n\
+    \  }\n  modint operator-() const { return modint::raw(val ? mod - val : u32(0));\
+    \ }\n  modint operator+(const modint &p) const { return modint(*this) += p; }\n\
+    \  modint operator-(const modint &p) const { return modint(*this) -= p; }\n  modint\
+    \ operator*(const modint &p) const { return modint(*this) *= p; }\n  modint operator/(const\
+    \ modint &p) const { return modint(*this) /= p; }\n  bool operator==(const modint\
+    \ &p) const { return val == p.val; }\n  bool operator!=(const modint &p) const\
+    \ { return val != p.val; }\n  modint inverse() const {\n    int a = val, b = mod,\
+    \ u = 1, v = 0, t;\n    while (b > 0) {\n      t = a / b;\n      swap(a -= t *\
+    \ b, b), swap(u -= t * v, v);\n    }\n    return modint(u);\n  }\n  modint pow(ll\
+    \ n) const {\n    if (n < 0) return inverse().pow(-n);\n    assert(n >= 0);\n\
+    \    modint ret(1), mul(val);\n    while (n > 0) {\n      if (n & 1) ret *= mul;\n\
+    \      mul *= mul;\n      n >>= 1;\n    }\n    return ret;\n  }\n  static constexpr\
+    \ int get_mod() { return mod; }\n  // (n, r), r \u306F 1 \u306E 2^n \u4E57\u6839\
+    \n  static constexpr pair<int, int> ntt_info() {\n    if (mod == 120586241) return\
+    \ {20, 74066978};\n    if (mod == 167772161) return {25, 17};\n    if (mod ==\
+    \ 469762049) return {26, 30};\n    if (mod == 754974721) return {24, 362};\n \
+    \   if (mod == 880803841) return {23, 211};\n    if (mod == 943718401) return\
+    \ {22, 663003469};\n    if (mod == 998244353) return {23, 31};\n    if (mod ==\
+    \ 1004535809) return {21, 582313106};\n    if (mod == 1012924417) return {21,\
+    \ 368093570};\n    return {-1, -1};\n  }\n  static constexpr bool can_ntt() {\
+    \ return ntt_info().fi != -1; }\n};\n\n#ifdef FASTIO\ntemplate <int mod>\nvoid\
+    \ rd(modint<mod> &x) {\n  fastio::rd(x.val);\n  x.val %= mod;\n  // assert(0 <=\
+    \ x.val && x.val < mod);\n}\ntemplate <int mod>\nvoid wt(modint<mod> x) {\n  fastio::wt(x.val);\n\
+    }\n#endif\n\nusing modint107 = modint<1000000007>;\nusing modint998 = modint<998244353>;\n\
+    #line 9 \"test/1_mytest/prefix_max_segtree.test.cpp\"\n\nusing mint = modint998;\n\
+    using F = pair<mint, mint>;\n\nvoid test(ll N) {\n  vc<int> key(N);\n  vc<F> X(N);\n\
+    \  auto get = [&]() -> pair<int, F> {\n    int k = RNG(0, 100);\n    mint a =\
+    \ RNG(0, mint::get_mod());\n    mint b = RNG(0, mint::get_mod());\n    return\
+    \ {k, {a, b}};\n  };\n\n  FOR(i, N) tie(key[i], X[i]) = get();\n\n  auto segf\
+    \ = [&](int i) -> pair<int, F> { return {key[i], X[i]}; };\n\n  using Mono = Monoid_Affine<mint>;\n\
+    \  Prefix_Max_SegTree<int, Mono> seg(N, segf);\n\n  auto naive = [&](int L, int\
+    \ R) -> F {\n    int mx = -infty<int>;\n    F prod = Mono::unit();\n    FOR(i,\
+    \ L, R) {\n      if (mx <= key[i]) {\n        mx = key[i];\n        prod = Mono::op(prod,\
+    \ X[i]);\n      }\n    }\n    return prod;\n  };\n\n  /*\n  set\n  get\n  get_all\n\
+    \  prod\n  prod_all\n  */\n  int Q = 1000;\n  FOR(Q) {\n    int t = RNG(0, 5);\n\
+    \    int i = RNG(0, N);\n    int L = RNG(0, N), R = RNG(0, N);\n    auto [k, x]\
+    \ = get();\n    if (L > R) swap(L, R);\n    ++R;\n    if (t == 0) {\n      key[i]\
+    \ = k, X[i] = x;\n      seg.set(i, {k, x});\n    }\n    if (t == 1) {\n      auto\
+    \ [k, x] = seg.get(i);\n      assert(key[i] == k);\n      assert(X[i] == x);\n\
+    \    }\n    if (t == 2) {\n      auto [k, x] = seg.get_all();\n      assert(key\
+    \ == k);\n      assert(X == x);\n    }\n    if (t == 3) { assert(naive(L, R) ==\
+    \ seg.prod(L, R)); }\n    if (t == 4) { assert(naive(0, N) == seg.prod_all());\
+    \ }\n  }\n}\n\nvoid solve() {\n  int a, b;\n  cin >> a >> b;\n  cout << a + b\
+    \ << \"\\n\";\n}\n\nsigned main() {\n  FOR(100) FOR(N, 1, 100) { test(N); }\n\
+    \  solve();\n  return 0;\n}\n"
   code: "#define PROBLEM \"https://judge.yosupo.jp/problem/aplusb\"\n\n#include \"\
     my_template.hpp\"\n\n#include \"ds/segtree/prefix_max_segtree.hpp\"\n#include\
     \ \"random/base.hpp\"\n#include \"alg/monoid/affine.hpp\"\n#include \"mod/modint.hpp\"\
@@ -307,8 +308,8 @@ data:
   isVerificationFile: true
   path: test/1_mytest/prefix_max_segtree.test.cpp
   requiredBy: []
-  timestamp: '2025-07-03 18:22:07+09:00'
-  verificationStatus: TEST_ACCEPTED
+  timestamp: '2025-07-05 14:54:01+09:00'
+  verificationStatus: TEST_WRONG_ANSWER
   verifiedWith: []
 documentation_of: test/1_mytest/prefix_max_segtree.test.cpp
 layout: document
