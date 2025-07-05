@@ -24,12 +24,18 @@ mint inv(int n) {
   return dat[n];
 }
 
+template <>
+double inv<double>(int n) {
+  assert(n != 0);
+  return 1.0 / n;
+}
+
 template <typename mint>
 mint fact(int n) {
   static const int mod = mint::get_mod();
   assert(0 <= n && n < mod);
   static vector<mint> dat = {1, 1};
-  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint::raw(len(dat)));
+  while (len(dat) <= n) dat.eb(dat[len(dat) - 1] * mint(len(dat)));
   return dat[n];
 }
 
@@ -47,7 +53,7 @@ mint fact_invs(Ts... xs) {
 }
 
 template <typename mint, class Head, class... Tail>
-mint multinomial(Head &&head, Tail &&... tail) {
+mint multinomial(Head &&head, Tail &&...tail) {
   return fact<mint>(head) * fact_invs<mint>(std::forward<Tail>(tail)...);
 }
 
@@ -104,6 +110,8 @@ template <typename mint, bool large = false, bool dense = false>
 mint C_negative(ll n, ll d) {
   assert(n >= 0);
   if (d < 0) return mint(0);
-  if (n == 0) { return (d == 0 ? mint(1) : mint(0)); }
+  if (n == 0) {
+    return (d == 0 ? mint(1) : mint(0));
+  }
   return C<mint, large, dense>(n + d - 1, d);
 }
