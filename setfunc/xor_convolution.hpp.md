@@ -6,15 +6,15 @@ data:
     title: setfunc/hadamard.hpp
   _extendedRequiredBy: []
   _extendedVerifiedWith:
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
     title: test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/1142.test.cpp
     title: test/3_yukicoder/1142.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 2 \"setfunc/hadamard.hpp\"\n\r\n// B[j] = sum_i (-1)^{popcnt(i&j)A[i]}\r\
@@ -38,7 +38,7 @@ data:
   path: setfunc/xor_convolution.hpp
   requiredBy: []
   timestamp: '2023-10-24 20:44:29+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/convolution/bitwise_xor_convolution.test.cpp
   - test/3_yukicoder/1142.test.cpp
