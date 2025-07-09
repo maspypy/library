@@ -8,7 +8,7 @@ data:
   - icon: ':heavy_check_mark:'
     path: poly/sparse_exp_of_div.hpp
     title: poly/sparse_exp_of_div.hpp
-  - icon: ':question:'
+  - icon: ':heavy_check_mark:'
     path: seq/p_recursive.hpp
     title: seq/p_recursive.hpp
   _extendedVerifiedWith:
@@ -21,12 +21,12 @@ data:
   - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/2166.test.cpp
     title: test/3_yukicoder/2166.test.cpp
-  - icon: ':x:'
+  - icon: ':heavy_check_mark:'
     path: test/3_yukicoder/502_2.test.cpp
     title: test/3_yukicoder/502_2.test.cpp
-  _isVerificationFailed: true
+  _isVerificationFailed: false
   _pathExtension: hpp
-  _verificationStatusIcon: ':question:'
+  _verificationStatusIcon: ':heavy_check_mark:'
   attributes:
     links: []
   bundledCode: "#line 1 \"linalg/solve_linear.hpp\"\n/*\r\n0 \u884C\u76EE\u306B\u89E3\
@@ -74,7 +74,7 @@ data:
   - poly/sparse_exp_of_div.hpp
   - poly/from_log_differentiation.hpp
   timestamp: '2023-11-16 18:26:59+09:00'
-  verificationStatus: LIBRARY_SOME_WA
+  verificationStatus: LIBRARY_ALL_AC
   verifiedWith:
   - test/2_library_checker/linear_algebra/solve_linear.test.cpp
   - test/3_yukicoder/1080_2.test.cpp
